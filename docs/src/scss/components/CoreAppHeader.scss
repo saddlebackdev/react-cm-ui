@@ -1,0 +1,43 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+
+.core-app-header {
+    align-items: center;
+    background-color: $bkgd-inverse;
+    display: flex;
+    height: 55px;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    .button-menu {
+        background-color: transparent;
+        border: 0;
+        color: $color-text-inverse;
+        font-size: rem(14px);
+        font-weight: $default-font-weight-semibold;
+        height: 55px;
+        left: 0;
+        outline: none;
+        padding: 0 11px;
+        position: absolute;
+        text-transform: uppercase;
+        transition: background-color 300ms ease-out;
+        top: 0;
+    }
+    .logo-wrapper {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        position: fixed;
+        .logo {
+            display: inline-block;
+            flex: 0 1 auto;
+            height: 31px;
+            margin: 0;
+            width: 130px;
+            path { fill: $color-text-inverse; }
+        }
+    }
+}
+.pushed-right .core-app-header .button-menu {
+    background-color: $bkgd-button-alternate;
+}

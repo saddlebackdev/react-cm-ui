@@ -1,0 +1,10 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+
+.ui.block {
+    background-color: $bkgd;
+    border: 1px solid $border-light;
+    border-radius: 3px;
+    padding: 11px;
+    &.block-inverse { background-color: $bkgd-inverse; border: 0; }
+    &.block-nest { background-color: $bkgd-nest; border: 0; }
+}

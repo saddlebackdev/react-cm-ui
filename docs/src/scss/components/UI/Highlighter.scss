@@ -1,0 +1,24 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+
+.highlighter {
+    background-color: $bkgd !important;
+    border-bottom: 1px solid $border;
+    border-top: 1px solid $border;
+    font-size: rem(13.5px);
+    line-height: 20px;
+    margin: 0 -11px;
+    padding: 22px 11px !important;
+    code {
+        background-color: transparent;
+        border-radius: 0;
+        color: inherit;
+        font-size: inherit;
+        padding: 0;
+    }
+    + .highlighter { margin-top: 33px; }
+    &:last-child { margin-bottom: 0 !important; }
+}
+
+@media only screen and (min-width: 768px) {
+    .highlighter { margin: 0 -22px; padding: 22px !important;}
+}
