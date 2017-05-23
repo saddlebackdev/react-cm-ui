@@ -1,0 +1,44 @@
+@import 'config/ColorsNew', 'config/FontSizeCalculator';
+
+.ui.label {
+    border: 0;
+    border-radius: 3px;
+    color: $color-text-inverse;
+    cursor: pointer;
+    display: inline-block;
+    font-size: rem(14px);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: 0 11px 0 0;
+    outline: none;
+    overflow: hidden;
+    padding: rem(8px) rem(11px);
+    text-align: left;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
+    white-space: normal;
+    &.label-color- {
+        &alert { background-color: $bkgd-button-alert; }
+        &primary { background-color: $bkgd-button-bright; }
+        &alternate { background-color: $bkgd-button-alternate; }
+        &disable { background-color: $bkgd-button-disable; cursor: default; }
+        &success { background-color: $bkgd-button-success; }
+        &warning { background-color: $bkgd-button-warning; }
+    }
+    &.label-inverse .label-color- {
+        &alert { background-color: $bkgd-button-alert; }
+        &primary { background-color: $bkgd-button-bright; }
+        &alternate { background-color: $bkgd-button-alternate; }
+        &disable { background-color: $bkgd-button-disable; cursor: default;  }
+        &success { background-color: $bkgd-button-success; }
+    }
+    &.label-clearable {
+        cursor: default;
+        span { cursor: default; }
+        i { border-left: 1px solid; cursor: pointer; }
+    }
+    .ui.icon { float: right; }
+    &.label-fluid { width: 100%; }
+    &.label-selected { background-color: $bkgd-highlight; }
+}

@@ -1,0 +1,138 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+
+$size: 22px;
+$size-toggle: 52px;
+$padding-label-toggle: 63px;
+
+.ui.checkbox {
+    display: inline-block;
+    min-height: $size;
+    position: relative;
+    text-align: left;
+    .input { display: none; }
+    label {
+        color: $color-text;
+        cursor: pointer;
+        display: block;
+        font-size: rem(14px);
+        position: relative;
+        > span { display: inline-block; padding-left: rem(33px); padding-top: 2px; }
+        &::before, &::after {
+            content: '';
+            height: $size;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition:
+                background 150ms ease,
+                border 150ms ease,
+                opacity 150ms ease;
+            width: $size;
+        }
+        &::before { // faux input
+            background: $bkgd;
+            border: 1px solid $border;
+            border-radius: 3px;
+        }
+        &::after { // check
+            color: $color-text-inverse;
+            content: '\e94a';
+            font-family: 'cm-icons-newui';
+            font-size: rem(14px);
+            padding-top: 2px;
+            text-align: center;
+        }
+        &.label-not-clickable {
+            cursor: auto;
+            &::before, &::after { cursor: pointer; }
+        }
+    }
+    .input:checked + {
+        label::before { background-color: $bkgd-highlight; border: 1px solid $border-highlight; }
+        label::after { opacity: 1; }
+    }
+    &-align-right {
+        text-align: left;
+        label {
+            > span {
+                padding-left: 0;
+                padding-right: rem(33px);
+            }
+            &::before, &::after { left: auto; right: 0; }
+        }
+    }
+    &-disabled {
+        label {
+            color: $color-text-static;
+            cursor: auto;
+            &::before { background: $bkgd-disable; }
+            &::after { color: $bkgd-static; }
+        }
+    }
+    &-full-width { display: block; }
+    &-inverse label { color: $color-text-inverse; }
+    &-toggle {
+        label {
+            > span { padding-left: rem($padding-label-toggle); }
+            &::before {
+                border-radius: rem(11px);
+                display: block;
+                height: $size;
+                width: $size-toggle;
+                z-index: 1;
+            }
+            &::after {
+                background-color: $bkgd-button-alternate;
+                border: 0;
+                border-radius: rem(12.5px);
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.30);
+                content: '';
+                height: 25px;
+                opacity: 1;
+                top: rem(-1.5px);
+                transition:
+                    background-color 300ms ease,
+                    left 300ms ease,
+                    right 300ms ease;
+                width: 25px;
+                z-index: 3;
+            }
+            .checkbox-toggle-text {
+                align-items: center;
+                display: inline-flex;
+                font-size: rem(12px);
+                font-weight: $default-font-weight-semibold;
+                height: $size;
+                justify-content: center;
+                left: 0;
+                letter-spacing: .4px;
+                padding: 0 7px 0 8px;
+                position: absolute;
+                text-align: left;
+                top: 0;
+                width: $size-toggle;
+                z-index: 2;
+            }
+                .checkbox-toggle-text-on, .checkbox-toggle-text-off { flex: 1 0 auto; }
+                .checkbox-toggle-text-on { color: $color-text-inverse; }
+                .checkbox-toggle-text-off { text-align: right; }
+        }
+        .input:checked + {
+            label::after { left: rem(27px); }
+        }
+        &.checkbox-align-right {
+            label {
+                > span {
+                    padding-left: 0;
+                    padding-right: rem($padding-label-toggle);
+                }
+                .checkbox-toggle-text { left: auto; right: 0; text-align: left; }
+                &::after {
+                    left: auto;
+                    right: rem(27px);
+                }
+            }
+            .input:checked + label::after { left: auto; right: 0; }
+        }
+    }
+}

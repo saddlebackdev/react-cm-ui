@@ -1,0 +1,73 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+
+$size: 22px;
+$size-dot: 14px;
+
+.ui.radio {
+    display: inline-block;
+    margin-right: 11px;
+    min-height: $size;
+    position: relative;
+    text-align: left;
+    .input { display: none; }
+    label {
+        color: $color-text;
+        cursor: pointer;
+        display: block;
+        font-size: rem(14px);
+        position: relative;
+        > span { display: inline-block; padding-left: rem(33px); padding-top: 2px; }
+        &::before, &::after {
+            content: '';
+            height: $size;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition: opacity 150ms ease;
+            width: $size;
+        }
+        &::before { // faux input
+            background: $bkgd;
+            border: 1px solid $border;
+            border-radius: rem(11px);
+        }
+        &::after { // dot/check
+            background-color: $bkgd-highlight;
+            border-radius: rem($size-dot / 2);
+            height: $size-dot;
+            margin: ($size - $size-dot) / 2;
+            opacity: 0;
+            width: $size-dot;
+        }
+        &.label-not-clickable {
+            cursor: auto;
+            &::before, &::after { cursor: pointer; }
+        }
+    }
+    .input:checked + {
+        label::after { opacity: 1; }
+    }
+    &-align-right {
+        margin-left: 11px;
+        margin-right: 0;
+        text-align: left;
+        label {
+            > span {
+                padding-left: 0;
+                padding-right: rem(33px);
+            }
+            &::before, &::after { left: auto; right: 0; }
+        }
+    }
+    &-disabled {
+        label {
+            color: $color-text-static;
+            cursor: auto;
+            &::before { background: $bkgd-disable; }
+            &::after { background-color: $bkgd-static; }
+        }
+    }
+    &-full-width {
+        display: block;
+    }
+}

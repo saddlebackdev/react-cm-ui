@@ -1,0 +1,79 @@
+// ######## //
+// Color Names
+// NOTE: Don't use the color names in .scss files.
+//       Only use the Types variables below.
+// ######## //
+// Primary Nutrual Colors
+$pcn-white:          #fff;
+$pcn-grey-one:       #f6f7f8;
+$pcn-grey-two:       #edf1f5;
+$pcn-grey-three:     #dbe0e3;
+$pcn-grey-four:      #97a4ab;
+$pcn-grey-five:      #38424d;
+$pcn-grey-six:       #1c2530;
+// Secondary Colors
+$sc-blue:           #134174;
+$sc-blue-dark:      #00254d;
+$sc-cyan:           #00aeef;
+$sc-cyan-dark:      #1c93c4;
+$sc-sky:            #6dcff6;
+$sc-sky-dark:       #4095b6;
+$sc-teal:           #56c4c4;
+$sc-teal-dark:      #329594;
+$sc-green:          #54cd86;
+$sc-green-dark:     #398f5d;
+$sc-orange:         #f99e49;
+$sc-orange-dark:    #c96d20;
+$sc-red-orange:     #f27a4d;
+$sc-red-orange-dark:#d94710;
+$sc-red:            #ee4334;
+$sc-red-dark:       #c2241a;
+$sc-pink:           #eb4ea1;
+$sc-pink-dark:      #c23680;
+$sc-purple:         #c68ef6;
+$sc-purple-dark:    #9958d2;
+
+// ######## //
+// Types //
+// NOTE: Use common names when creating new variables.
+//       Try as hard as posible to stay away from element specific names.
+//       Don't use color names as a variable names. e.g. $bkgd-pink <--- DON'T DO
+//       The whole philosophy behind this is to not have a growing list of variable names.
+// ######## //
+// Backgrounds
+$bkgd:                      $pcn-white;
+$bkgd-disable:              $pcn-grey-two;
+$bkgd-alert:                $sc-red;
+$bkgd-highlight:            $sc-cyan;
+$bkgd-inverse:              $pcn-grey-six;
+$bkgd-inverse-alternate:    $pcn-grey-five;
+$bkgd-light:                $pcn-grey-one;
+$bkgd-nest:                 $pcn-grey-two;
+$bkgd-static:               $pcn-grey-four;
+$bkgd-button:               $sc-cyan-dark;
+$bkgd-button-bright:        $sc-sky;
+$bkgd-button-warning:       $sc-orange;
+$bkgd-button-disable:       $pcn-grey-three;
+$bkgd-button-alert:         $sc-red;
+$bkgd-button-alternate:     $pcn-grey-five;
+$bkgd-button-success:       $sc-green;
+// Borders
+$border:                    $pcn-grey-three;
+$border-alternate:          $pcn-grey-four;
+$border-highlight:          $sc-cyan;
+$border-inverse:            $pcn-grey-five;
+$border-inverse-alternate:  $pcn-grey-six;
+$border-light:              $pcn-grey-two;
+// Color
+$color-text:                $pcn-grey-six;
+$color-text-inverse:        $pcn-white;
+$color-text-disable:        $pcn-grey-three;
+$color-text-cta:            $sc-cyan;
+$color-text-highlight:      $sc-cyan;
+$color-text-link:           $sc-cyan;
+$color-text-static:         $pcn-grey-four;
+$color-text-alert:          $sc-red;
+$color-text-warning:        $sc-orange;
+$color-text-secondary:      $sc-teal-dark;
+$color-text-code:           $sc-red-orange-dark;
+$color-text-success:        $sc-green;

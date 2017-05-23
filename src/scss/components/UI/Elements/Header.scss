@@ -1,0 +1,102 @@
+@import 'config/ColorsNew', 'config/fonts', 'config/FontSizeCalculator';
+// @import 'config/ColorsNew';
+
+h1.ui.header {
+    font-size: rem(24px);
+    font-weight: $default-font-weight-bold;
+    &.header-subheader .subheader { font-size: rem(16px); }
+}
+h2.ui.header {
+    font-size: rem(20px);
+    font-weight: $default-font-weight-bold;
+    &.header-subheader .subheader { font-size: rem(16px); }
+}
+h3.ui.header {
+    font-size: rem(18px);
+    font-weight: $default-font-weight-semibold;
+    &.header-subheader .subheader { font-size: rem(16px); }
+}
+h4.ui.header {
+    font-size: rem(16px);
+    font-weight: $default-font-weight-semibold;
+    &.header-subheader .subheader { font-size: rem(14px); }
+}
+h5.ui.header {
+    font-size: rem(14px);
+    font-weight: $default-font-weight-normal;
+    &.header-subheader .subheader { font-size: rem(12px); }
+}
+h6.ui.header {
+    font-size: rem(12px);
+    font-weight: $default-font-weight-normal;
+    &.header-subheader .subheader { font-size: rem(10px); }
+}
+
+.ui.header.header-size- {
+    &xlarge {
+        font-size: em(24px);
+        font-weight: $default-font-weight-bold;
+        &.header-subheader .subheader { font-size: em(16px, 24px); }
+    }
+    &large {
+        font-size: em(20px);
+        font-weight: $default-font-weight-bold;
+        &.header-subheader .subheader { font-size: em(16px, 20px); }
+    }
+    &medium {
+        font-size: em(18px);
+        font-weight: $default-font-weight-semibold;
+        &.header-subheader .subheader { font-size: em(16px, 18px); }
+    }
+    &small {
+        font-size: em(16px);
+        font-weight: $default-font-weight-semibold;
+        &.header-subheader .subheader { font-size: em(14px, 16px); }
+    }
+    &xsmall {
+        font-size: em(14px);
+        font-weight: $default-font-weight-normal;
+        &.header-subheader .subheader { font-size: em(12px, 14px); }
+    }
+    &xxsmall {
+        font-size: em(12px);
+        font-weight: $default-font-weight-normal;
+        &.header-subheader .subheader { font-size: em(10px, 12px); }
+    }
+}
+
+.ui.header {
+    margin: calc(2rem - .14285em) 0 1rem;
+    position: relative;
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+    &.header-icon {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    &.header-subheader .subheader { font-weight: $default-font-weight-normal; }
+    &.header-icon.header-subheader {
+        align-items: flex-start;
+        > div { display: block; }
+            .icon { padding-top: em(3px); }
+    }
+    &.header-color-static { color: $color-text-static; }
+    &.header-color-text { color: $color-text; }
+    &.header-color-inverse {
+        color: $color-text-inverse;
+        &.header-color-static { color: $color-text-static; }
+        &.header-color-text { color: $color-text-inverse; }
+    }
+    &.header-anchor {
+        .header-anchor-icon {
+            opacity: 0;
+            transition:
+                opacity 150ms ease-out,
+                margin 150ms ease-out;
+            visibility: hidden;
+        }
+        &:hover .header-anchor-icon { margin-left: 11px; opacity: 1; visibility: visible; }
+    }
+}
