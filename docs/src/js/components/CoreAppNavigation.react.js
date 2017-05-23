@@ -206,11 +206,11 @@ export default class CoreAppNavigation extends React.Component {
 
     _toggleNavigation(event) {
         const isCoreAppNav = this.refs.coreAppNav.contains(event.target);
-        const isPushedRight = DOMUtils.hasClass(document.body, 'pushed-right');
+        const isPushedRight = DOMUtils.hasClassName(document.body, 'pushed-right');
 
         if (
-            DOMUtils.hasClass(event.target, 'button-menu') ||
-            isPushedRight && isCoreAppNav && !DOMUtils.hasClass(event.target, 'core-app-nav-item') ||
+            DOMUtils.hasClassName(event.target, 'button-menu') ||
+            isPushedRight && isCoreAppNav && !DOMUtils.hasClassName(event.target, 'core-app-nav-item') ||
             !isPushedRight && !isCoreAppNav
         ) {
             return;

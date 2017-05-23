@@ -71,7 +71,7 @@ export default class CoreApp extends React.Component {
     }
 
     _onToggleNavigation(event) {
-        if (DOMUtils.hasClass(document.body, 'pushed-right')) {
+        if (DOMUtils.hasClassName(document.body, 'pushed-right')) {
             document.body.classList.remove('pushed-right');
         } else {
             this._curScrollPos = DOMUtils.scrollPos();
