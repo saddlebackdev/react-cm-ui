@@ -47,7 +47,7 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
-                                <a href="https://github.com/saddlebackdev/church-management/blob/dev/client/docs/CHANGELOG.md" target="_blank">Changelog</a>
+                                <a href="https://github.com/saddlebackdev/church-management-ui/blob/master/CHANGELOG.md" target="_blank">Changelog</a>
                             </li>
                         </ul>
 
