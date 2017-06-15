@@ -4,7 +4,7 @@ import 'components/UI/Modules/DatePickerDay.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePickerUtils from 'utils/UI/DatePickerUtils.js';

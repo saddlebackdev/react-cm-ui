@@ -1,11 +1,14 @@
 var webpack = require('webpack');
 var path = require('path');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (env) {
     return {
         entry: {
-            app: './docs/src/js/components/CoreApp.react.js'
+            bundle: './docs/src/js/components/CoreApp.react.js',
+            commons: [ 'react-syntax-highlighter' ]
         },
         devServer: {
             historyApiFallback: true,
@@ -14,7 +17,8 @@ module.exports = function (env) {
         },
         output: {
             path: path.join(__dirname, './docs/build'),
-            filename: 'js/bundle.js',
+            filename: 'js/[name].[hash].js',
+            chunkFilename: 'js/[name].[chunkhash].js',
             publicPath: '/'
         },
         devtool: 'eval',
@@ -91,25 +95,25 @@ module.exports = function (env) {
                     '*': 'http://0.0.0.0:5000'
                 },
             }),
-            new webpack.DefinePlugin({
-                __API_HOST__: (typeof process.env.API_HOST === 'undefined') ? null : '"' + process.env.API_HOST + '"', /* THIS NEEDS TO BE DECIDED AT RUNTIME */
-                __CM_CORE_FE_VERSION__: (typeof process.env.CM_CORE_FE_VERSION === 'undefined') ?
-                    '"?"' : '"' + process.env.CM_CORE_FE_VERSION + '"',
-                __S3_LANGUAGE_BUCKET__: (typeof process.env.S3_LANGUAGE_BUCKET === 'undefined') ?
-                    '"https://s3-us-west-1.amazonaws.com/cm-languages/"' : '"' + process.env.S3_LANGUAGE_BUCKET + '"'
+            new CommonsChunkPlugin({
+                name: 'commons',
+                minChunks: Infinity
+            }),
+            new HtmlWebpackPlugin({
+                filename: 'index.html',
+                title: 'Church Management UI Docs',
+                template: 'docs/template.ejs'
             }),
             new ExtractTextPlugin({
                 filename: 'css/bundle.css',
                 allChunks: true
             }),
-            /* BEGIN UGLIFY: VERY IMPORTANT DO NOT REMOVE */
             new webpack.optimize.UglifyJsPlugin({
                 minimize: true,
                 compress: {
                     warnings: false
                 }
             })
-            /* END UGLIFY: VERY IMPORTANT DO NOT REMOVE */
         ]
     }
 };

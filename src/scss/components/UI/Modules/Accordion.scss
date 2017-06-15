@@ -29,7 +29,10 @@ $standard-divider: $border;
         }
     }
     &:not(.accordion-basic) {
-        .accordion-item { margin: rem(11px) 0; }
+        .accordion-item {
+            margin: rem(5px) 0 0;
+            &:first-child { margin-top: 0; }
+        }
             .accordion-item-summary {
                 background-color: $bkgd-light;
                 border: 1px solid $bkgd-light;

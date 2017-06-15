@@ -47,7 +47,7 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
-                                <a href="https://github.com/saddlebackdev/church-management-ui/blob/master/CHANGELOG.md" target="_blank">Changelog</a>
+                                <a href="https://github.com/saddlebackdev/church-management/blob/dev/client/docs/CHANGELOG.md" target="_blank">Changelog</a>
                             </li>
                         </ul>
 
@@ -87,6 +87,10 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/elements/label' }} activeClassName={isActive}>Label</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/elements/loader' }} activeClassName={isActive}>Loader</Link>
                             </li>
 
@@ -107,14 +111,6 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/collections/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/collections/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
-                            </li>
-
-                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/collections/table' }} activeClassName={isActive}>Table</Link>
                             </li>
 
@@ -127,7 +123,15 @@ export default class CoreAppNavigation extends React.Component {
 
                         <ul>
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/views/banner' }} activeClassName={isActive}>Banner</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/views/card' }} activeClassName={isActive}>Card</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/views/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
                             </li>
 
                             <li>
@@ -156,6 +160,10 @@ export default class CoreAppNavigation extends React.Component {
 
                             <li>
                                 <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/modal' }} activeClassName={isActive}>Modal</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/modules/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
                             </li>
 
                             <li>
@@ -206,11 +214,11 @@ export default class CoreAppNavigation extends React.Component {
 
     _toggleNavigation(event) {
         const isCoreAppNav = this.refs.coreAppNav.contains(event.target);
-        const isPushedRight = DOMUtils.hasClassName(document.body, 'pushed-right');
+        const isPushedRight = DOMUtils.hasClass(document.body, 'pushed-right');
 
         if (
-            DOMUtils.hasClassName(event.target, 'button-menu') ||
-            isPushedRight && isCoreAppNav && !DOMUtils.hasClassName(event.target, 'core-app-nav-item') ||
+            DOMUtils.hasClass(event.target, 'button-menu') ||
+            isPushedRight && isCoreAppNav && !DOMUtils.hasClass(event.target, 'core-app-nav-item') ||
             !isPushedRight && !isCoreAppNav
         ) {
             return;

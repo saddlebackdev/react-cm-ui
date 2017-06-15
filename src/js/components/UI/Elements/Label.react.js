@@ -13,19 +13,18 @@ import UIUtils from 'utils/UI/Utils.js';
 export default class Label extends React.Component {
 
     render() {
-        const { className, clearable, color, disabled, fluid, icon, selected, square, style, text } = this.props;
+        const { children, className, color, disabled, fluid, inverse, onClick, onClearClick, style } = this.props;
         const containerClasses = ClassNames('ui', 'label', className, {
+            'label-clickable': onClick,
             'label-color-alert': color === 'alert',
-            'label-color-disable': disabled || color === 'disable',
+            'label-color-highlight': color === 'highlight',
             'label-color-primary': color === 'primary',
-            'label-color-alternate': color === 'alternate',
             'label-color-success': color === 'success',
-            'label-color-warning': color === 'bright',
+            'label-color-transparent': color === 'transparent',
+            'label-color-warning': color === 'warning',
             'label-fluid': fluid,
-            'label-icon': icon,
-            'label-square': square,
-            'label-clearable': clearable,
-            'label-selected': selected
+            'label-inverse': inverse,
+            'label-clearable': onClearClick
         });
 
         return (
@@ -35,24 +34,20 @@ export default class Label extends React.Component {
                 disabled={disabled}
                 style={style}
             >
-                <span className="label-inner-container text-semibold">{text}</span>
+                <span className="label-inner-container">
+                    {children}
 
-                {selected ?
-                    <Icon
-                        compact={true}
-                        inverse={true}
-                        type="check"
-                    />
-                : null}
-
-                {clearable ?
-                    <Icon
-                        compact={true}
-                        onClick={this._onClearClick.bind(this)}
-                        inverse={true}
-                        type="times"
-                    />
-                : null}
+                    {onClearClick ? (
+                        <span className="label-clearable-button" onClick={this._onClearClick.bind(this)}>
+                            <Icon
+                                compact={true}
+                                inverse={true}
+                                size="xxsmall"
+                                type="times"
+                            />
+                        </span>
+                    ) : null}
+                </span>
             </div>
         );
     }
@@ -73,14 +68,9 @@ export default class Label extends React.Component {
 
 Label.propTypes = {
     className: React.PropTypes.string,
-    clearable: React.PropTypes.bool,
     color: React.PropTypes.oneOf(UIUtils.colorEnums()),
-    disabled: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
-    icon: React.PropTypes.bool,
     onClearClick: React.PropTypes.func,
     onClick: React.PropTypes.func,
-    selected: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    text: React.PropTypes.string
+    style: React.PropTypes.object
 }

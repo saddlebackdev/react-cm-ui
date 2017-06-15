@@ -57,7 +57,7 @@ export default class Accordion extends React.Component {
                         <div className="accordion-item-content" key={`accordion-item-content-${index}`}>
                             {children}
                         </div>
-                    ] : children.length >= 2 ? (
+                    ] : children.length >= 3 ? (
                         <div
                             style={{
                                 display: 'flex',

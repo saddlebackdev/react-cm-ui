@@ -412,6 +412,8 @@ Dropdown.propTypes = {
     theme: React.PropTypes.oneOf(UIUtils.themeEnums()),
     value: React.PropTypes.oneOfType([
         React.PropTypes.array,
-        React.PropTypes.object
+        React.PropTypes.number,
+        React.PropTypes.object,
+        React.PropTypes.string
     ])
 };

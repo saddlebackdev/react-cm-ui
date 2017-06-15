@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Collections/SegmentedControls.scss';
+import 'components/UI/Modules/SegmentedControls.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Icon from 'components/UI/Elements/Icon.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControlsItem from 'components/UI/Modules/SegmentedControlsItem.react';
 
 export default class SegmentedControls extends React.Component {
 

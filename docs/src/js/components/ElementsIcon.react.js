@@ -14,7 +14,7 @@ import Grid from 'components/UI/Collections/Grid.react';
 import Header from 'components/UI/Elements/Header.react';
 import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
 import Icon from 'components/UI/Elements/Icon.react';
-import SubNavigation from 'components/UI/Collections/SubNavigation.react';
+import SubNavigation from 'components/UI/Views/SubNavigation.react';
 import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const iconSample = `import React from 'react';

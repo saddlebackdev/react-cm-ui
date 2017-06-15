@@ -14,32 +14,6 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import CoreAppHeader from 'components/CoreAppHeader.react';
 import CoreAppNavigation from 'components/CoreAppNavigation.react';
 
-// Page Components
-import CollectionsGrid from 'components/CollectionsGrid.react';
-import CollectionsSubNavigation from 'components/CollectionsSubNavigation.react';
-import CollectionsSegmentedControls from 'components/CollectionsSegmentedControls.react';
-import CollectionsTable from 'components/CollectionsTable.react';
-import CollectionsTabs from 'components/CollectionsTabs.react';
-import GettingStartedIntroduction from 'components/GettingStartedIntroduction.react';
-import ElementsButton from 'components/ElementsButton.react';
-import ElementsCheckbox from 'components/ElementsCheckbox.react';
-import ElementsDivider from 'components/ElementsDivider.react';
-import ElementsHeader from 'components/ElementsHeader.react';
-import ElementsIcon from 'components/ElementsIcon.react';
-import ElementsLoader from 'components/ElementsLoader.react';
-import ElementsInput from 'components/ElementsInput.react';
-import ElementsRadio from 'components/ElementsRadio.react';
-import ElementsTextArea from 'components/ElementsTextArea.react';
-import ModulesAccordion from 'components/ModulesAccordion.react';
-import ModulesDatePicker from 'components/ModulesDatePicker.react';
-import ModulesDrawer from 'components/ModulesDrawer.react';
-import ModulesDropdown from 'components/ModulesDropdown.react';
-import ModulesModal from 'components/ModulesModal.react';
-import ModulesTimePicker from 'components/ModulesTimePicker.react';
-import StyleGuideColors from 'components/StyleGuideColors.react';
-import ViewsCard from 'components/ViewsCard.react';
-import ViewsTitleBar from 'components/ViewsTitleBar.react';
-
 import DOMUtils from 'utils/UI/DOMUtils.js';
 
 if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
@@ -71,7 +45,7 @@ export default class CoreApp extends React.Component {
     }
 
     _onToggleNavigation(event) {
-        if (DOMUtils.hasClassName(document.body, 'pushed-right')) {
+        if (DOMUtils.hasClass(document.body, 'pushed-right')) {
             document.body.classList.remove('pushed-right');
         } else {
             this._curScrollPos = DOMUtils.scrollPos();
@@ -101,46 +75,236 @@ function onUpdate() {
 
 let routes = (
     <Route path="/" component={CoreApp}>
-        <IndexRoute component={GettingStartedIntroduction} />
+        <IndexRoute
+            getComponent={(location, callback) => {
+                require.ensure([], require => {
+                    callback(null, require('components/GettingStartedIntroduction.react'))
+                }, 'GettingStartedIntroduction')
+            }}
+        />
 
-        <Route path="introduction" component={GettingStartedIntroduction} />
+        <Route
+            path="introduction"
+            getComponent={(location, callback) => {
+                require.ensure([], require => {
+                    callback(null, require('components/GettingStartedIntroduction.react'))
+                }, 'GettingStartedIntroduction')
+            }}
+        />
 
         <Route path="style-guide">
-            <Route path="colors" component={StyleGuideColors} />
+            <Route
+                path="colors"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/StyleGuideColors.react'))
+                    }, 'StyleGuideColors')
+                }}
+            />
         </Route>
 
         <Route path="elements">
-            <Route path="button" component={ElementsButton} />
-            <Route path="checkbox" component={ElementsCheckbox} />
-            <Route path="divider" component={ElementsDivider} />
-            <Route path="header" component={ElementsHeader} />
-            <Route path="icon" component={ElementsIcon} />
-            <Route path="input" component={ElementsInput} />
-            <Route path="loader" component={ElementsLoader} />
-            <Route path="radio" component={ElementsRadio} />
-            <Route path="text-area" component={ElementsTextArea} />
+            <Route
+                path="button"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsButton.react'))
+                    }, 'ElementsButton')
+                }}
+            />
+            <Route
+                path="checkbox"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsCheckbox.react'))
+                    }, 'ElementsCheckbox')
+                }}
+            />
+            <Route
+                path="divider"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsDivider.react'))
+                    }, 'ElementsDivider')
+                }}
+            />
+            <Route
+                path="header"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsHeader.react'))
+                    }, 'ElementsHeader')
+                }}
+            />
+            <Route
+                path="icon"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsIcon.react'))
+                    }, 'ElementsIcon')
+                }}
+            />
+            <Route
+                path="input"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsInput.react'))
+                    }, 'ElementsInput')
+                }}
+            />
+            <Route
+                path="label"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsLabel.react'))
+                    }, 'ElementsLabel')
+                }}
+            />
+            <Route
+                path="loader"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsLoader.react'))
+                    }, 'ElementsLoader')
+                }}
+            />
+            <Route
+                path="radio"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsRadio.react'))
+                    }, 'ElementsRadio')
+                }}
+            />
+            <Route
+                path="text-area"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsTextArea.react'))
+                    }, 'ElementsTextArea')
+                }}
+            />
         </Route>
 
         <Route path="collections">
-            <Route path="grid" component={CollectionsGrid} />
-            <Route path="sub-navigation" component={CollectionsSubNavigation} />
-            <Route path="segmented-controls" component={CollectionsSegmentedControls} />
-            <Route path="table" component={CollectionsTable} />
-            <Route path="tabs" component={CollectionsTabs} />
+            <Route
+                path="grid"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/CollectionsGrid.react'))
+                    }, 'CollectionsGrid')
+                }}
+            />
+            <Route
+                path="table"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/CollectionsTable.react'))
+                    }, 'CollectionsTable')
+                }}
+            />
+            <Route
+                path="tabs"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/CollectionsTabs.react'))
+                    }, 'CollectionsTabs')
+                }}
+            />
         </Route>
 
         <Route path="views">
-            <Route path="card" component={ViewsCard} />
-            <Route path="title-bar" component={ViewsTitleBar} />
+            <Route
+                path="banner"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsBanner.react'))
+                    }, 'ViewsBanner')
+                }}
+            />
+            <Route
+                path="card"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsCard.react'))
+                    }, 'ViewsCard')
+                }}
+            />
+            <Route
+                path="sub-navigation"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsSubNavigation.react'))
+                    }, 'ViewsSubNavigation')
+                }}
+            />
+            <Route
+                path="title-bar"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsTitleBar.react'))
+                    }, 'ViewsTitleBar')
+                }}
+            />
         </Route>
 
         <Route path="modules">
-            <Route path="accordion" component={ModulesAccordion} />
-            <Route path="date-picker" component={ModulesDatePicker} />
-            <Route path="drawer" component={ModulesDrawer} />
-            <Route path="dropdown" component={ModulesDropdown} />
-            <Route path="modal" component={ModulesModal} />
-            <Route path="time-picker" component={ModulesTimePicker} />
+            <Route
+                path="accordion"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesAccordion.react'))
+                    }, 'ModulesAccordion')
+                }}
+            />
+            <Route
+                path="date-picker"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDatePicker.react'))
+                    }, 'ModulesDatePicker')
+                }}
+            />
+            <Route
+                path="drawer"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDrawer.react'))
+                    }, 'ModulesDrawer')
+                }}
+            />
+            <Route
+                path="dropdown"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDropdown.react'))
+                    }, 'ModulesDropdown')
+                }}
+            />
+            <Route
+                path="modal"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesModal.react'))
+                    }, 'ModulesModal')
+                }}
+            />
+            <Route
+                path="segmented-controls"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesSegmentedControls.react'))
+                    }, 'ModulesSegmentedControls')
+                }}
+            />
+            <Route
+                path="time-picker"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesTimePicker.react'))
+                    }, 'ModulesTimePicker')
+                }}
+            />
         </Route>
     </Route>
 );

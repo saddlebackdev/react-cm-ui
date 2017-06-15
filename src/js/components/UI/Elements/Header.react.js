@@ -7,6 +7,8 @@ import React from 'react';
 
 import Icon from 'components/UI/Elements/Icon.react';
 
+import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
+
 import UIUtils from 'utils/UI/Utils.js';
 
 export default class Header extends React.Component {
@@ -79,6 +81,8 @@ export default class Header extends React.Component {
     }
 
 }
+
+Header.Subheader = HeaderSubheader;
 
 const asEnums = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
 const colorEnums = [ 'static', 'text' ];

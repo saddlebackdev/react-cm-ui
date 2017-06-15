@@ -1,6 +1,6 @@
 'use strict';
 
-import moment from 'moment';
+import moment from 'moment-timezone';
 import React from 'react';
 
 // Docs UI Components
@@ -86,7 +86,7 @@ export default class DateRangeInputSample extends React.Component {
 
 }`;
 
-const servicePeriodInputSample = `import moment from 'moment';
+const servicePeriodInputSample = `import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePicker from 'components/UI/Modules/DatePicker.react';
@@ -134,7 +134,7 @@ export default class ServicePeriodInputSample extends React.Component {
 
 }`;
 
-const servicePeriodRangeInputSample = `import moment from 'moment';
+const servicePeriodRangeInputSample = `import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePicker from 'components/UI/Modules/DatePicker.react';
@@ -267,7 +267,7 @@ export default class DateRangeCalendarSample extends React.Component {
 
 }`;
 
-const servicePeriodCalendarSample = `import moment from 'moment';
+const servicePeriodCalendarSample = `import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePicker from 'components/UI/Modules/DatePicker.react';
@@ -315,7 +315,7 @@ export default class ServicePeriodCalendarSample extends React.Component {
 
 }`;
 
-const servicePeriodRangeCalendarSample = `import moment from 'moment';
+const servicePeriodRangeCalendarSample = `import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePicker from 'components/UI/Modules/DatePicker.react';
@@ -366,7 +366,7 @@ export default class ServicePeriodRangeCalendarSample extends React.Component {
 
 }`;
 
-const eventsCalendarSample = `import moment from 'moment';
+const eventsCalendarSample = `import moment from 'moment-timezone';
 import React from 'react';
 
 import DatePicker from 'components/UI/Modules/DatePicker.react';

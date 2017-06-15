@@ -51,7 +51,7 @@ const columnEnums = [ 'auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
 const floatedEnums = [ 'left', 'right' ];
 const onlyEnums = [ 'desktop', 'desktopLarge', 'laptop', 'mobile', 'mobileLarge', 'mobileMedium', 'tablet'];
 const textAlignEnums = [ 'center', 'left', 'right' ];
-const verticalAlignEnums = [ 'bottom', 'center', 'top' ];
+const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 GridColumn.propTypes = {
     align: React.PropTypes.oneOf(alignEnums),

@@ -11,22 +11,20 @@ import TableProps from 'components/UI/TableProps.react';
 import Card from 'components/UI/Views/Card.react';
 import Header from 'components/UI/Elements/Header.react';
 import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const basicSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class BasicSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls>
-                <SegmentedControlsItem label="Button 1" />
-                <SegmentedControlsItem label="Button Number 2" />
+                <SegmentedControls.Item label="Button 1" />
+                <SegmentedControls.Item label="Button Number 2" />
             </SegmentedControls>
         );
     }
@@ -35,23 +33,22 @@ export default class BasicSample extends React.Component {
 
 const iconsSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class IconsSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls>
-                <SegmentedControlsItem icon="circle" label="Button 1" />
-                <SegmentedControlsItem icon="block" label="Button 2" />
-                <SegmentedControlsItem icon="check-circle" label="Button 3" />
+                <SegmentedControls.Item icon="circle" label="Button 1" />
+                <SegmentedControls.Item icon="block" label="Button 2" />
+                <SegmentedControls.Item icon="check-circle" label="Button 3" />
             </SegmentedControls><br /><br />
 
             <SegmentedControls>
-                <SegmentedControlsItem icon="circle" />
-                <SegmentedControlsItem icon="block" />
-                <SegmentedControlsItem icon="check-circle" />
+                <SegmentedControls.Item icon="circle" />
+                <SegmentedControls.Item icon="block" />
+                <SegmentedControls.Item icon="check-circle" />
             </SegmentedControls>
         );
     }
@@ -60,17 +57,16 @@ export default class IconsSample extends React.Component {
 
 const fluidSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class FluidSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls fluid={true}>
-                <SegmentedControlsItem label="Button 1" />
-                <SegmentedControlsItem label="Button 2" />
-                <SegmentedControlsItem label="Button 3" />
+                <SegmentedControls.Item label="Button 1" />
+                <SegmentedControls.Item label="Button 2" />
+                <SegmentedControls.Item label="Button 3" />
             </SegmentedControls>
         );
     }
@@ -79,17 +75,16 @@ export default class FluidSample extends React.Component {
 
 const selectedSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class SelectedSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls selected={this.state.selected}>
-                <SegmentedControlsItem label="Button 1" />
-                <SegmentedControlsItem label="Button 2" />
-                <SegmentedControlsItem label="Button 3" />
+                <SegmentedControls.Item label="Button 1" />
+                <SegmentedControls.Item label="Button 2" />
+                <SegmentedControls.Item label="Button 3" />
             </SegmentedControls>
         );
     }
@@ -98,16 +93,15 @@ export default class SelectedSample extends React.Component {
 
 const onClickParentSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class OnClickParentSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
-                <SegmentedControlsItem label="Button 1" />
-                <SegmentedControlsItem label="Button 2" />
+                <SegmentedControls.Item label="Button 1" />
+                <SegmentedControls.Item label="Button 2" />
             </SegmentedControls>
         );
     }
@@ -116,18 +110,17 @@ export default class OnClickParentSample extends React.Component {
 
 const onClickChildrenSample = `import React from 'react';
 
-import SegmentedControls from 'components/UI/Collections/SegmentedControls.react';
-import SegmentedControlsItem from 'components/UI/Collections/SegmentedControlsItem.react';
+import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
 
 export default class OnClickChildrenSample extends React.Component {
 
     render() {
         return (
             <SegmentedControls>
-                <SegmentedControlsItem label="Button One" onClick={this._onChildClick.bind(this)} />
-                <SegmentedControlsItem label="Button Two" onClick={this._onChildClick.bind(this)} />
-                <SegmentedControlsItem label="Button Three" onClick={this._onChildClick.bind(this)} />
-                <SegmentedControlsItem label="Button Four" onClick={this._onChildClick.bind(this)} />
+                <SegmentedControls.Item label="Button One" onClick={this._onChildClick.bind(this)} />
+                <SegmentedControls.Item label="Button Two" onClick={this._onChildClick.bind(this)} />
+                <SegmentedControls.Item label="Button Three" onClick={this._onChildClick.bind(this)} />
+                <SegmentedControls.Item label="Button Four" onClick={this._onChildClick.bind(this)} />
             </SegmentedControls>
         );
     }
@@ -199,8 +192,8 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls>
-                    <SegmentedControlsItem label="Button 1" />
-                    <SegmentedControlsItem label="Button Number 2" />
+                    <SegmentedControls.Item label="Button 1" />
+                    <SegmentedControls.Item label="Button Number 2" />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -216,15 +209,15 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls>
-                    <SegmentedControlsItem icon="circle" label="Button 1" />
-                    <SegmentedControlsItem icon="block" label="Button 2" />
-                    <SegmentedControlsItem icon="check-circle" label="Button 3" />
+                    <SegmentedControls.Item icon="circle" label="Button 1" />
+                    <SegmentedControls.Item icon="block" label="Button 2" />
+                    <SegmentedControls.Item icon="check-circle" label="Button 3" />
                 </SegmentedControls><br /><br />
 
                 <SegmentedControls>
-                    <SegmentedControlsItem icon="circle" />
-                    <SegmentedControlsItem icon="block" />
-                    <SegmentedControlsItem icon="check-circle" />
+                    <SegmentedControls.Item icon="circle" />
+                    <SegmentedControls.Item icon="block" />
+                    <SegmentedControls.Item icon="check-circle" />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -240,9 +233,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls fluid={true}>
-                    <SegmentedControlsItem label="Button 1" />
-                    <SegmentedControlsItem label="Button 2" />
-                    <SegmentedControlsItem label="Button 3" />
+                    <SegmentedControls.Item label="Button 1" />
+                    <SegmentedControls.Item label="Button 2" />
+                    <SegmentedControls.Item label="Button 3" />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -258,9 +251,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls selected={this.state.selected}>
-                    <SegmentedControlsItem label="Button 1" />
-                    <SegmentedControlsItem label="Button 2" />
-                    <SegmentedControlsItem label="Button 3" />
+                    <SegmentedControls.Item label="Button 1" />
+                    <SegmentedControls.Item label="Button 2" />
+                    <SegmentedControls.Item label="Button 3" />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -276,8 +269,8 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
-                    <SegmentedControlsItem label="Button 1" />
-                    <SegmentedControlsItem label="Button 2" />
+                    <SegmentedControls.Item label="Button 1" />
+                    <SegmentedControls.Item label="Button 2" />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -293,10 +286,10 @@ export default class CollectionsSegmentedControls extends React.Component {
                 </Header>
 
                 <SegmentedControls>
-                    <SegmentedControlsItem label="Button One" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControlsItem label="Button Two" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControlsItem label="Button Three" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControlsItem label="Button Four" onClick={this._onChildClick.bind(this)} />
+                    <SegmentedControls.Item label="Button One" onClick={this._onChildClick.bind(this)} />
+                    <SegmentedControls.Item label="Button Two" onClick={this._onChildClick.bind(this)} />
+                    <SegmentedControls.Item label="Button Three" onClick={this._onChildClick.bind(this)} />
+                    <SegmentedControls.Item label="Button Four" onClick={this._onChildClick.bind(this)} />
                 </SegmentedControls>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

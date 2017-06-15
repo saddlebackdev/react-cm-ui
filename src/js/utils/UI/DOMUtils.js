@@ -15,10 +15,6 @@ export default class DOMUtils {
         el.classList.remove(cls);
     }
 
-    static scrollPos() {
-        return (window.scrollY || window.pageYOffset);
-    }
-
     static scrollTo(to, duration, parentEl) {
         // Defaults
         let o = {

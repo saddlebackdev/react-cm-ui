@@ -155,7 +155,7 @@ export default class Drawer extends React.Component {
 
     _onOpen(node) {
         // console.log('_onOpen');
-        const { maxWidth, onClickOutside } = this.props;
+        const { ignorePadding, maxWidth, onClickOutside } = this.props;
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         const drawer = node.querySelector('.ui.drawer');
@@ -166,7 +166,7 @@ export default class Drawer extends React.Component {
         const headerHeight = containerInnerEl.querySelector('header').offsetHeight;
         let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
-        !this.props.ignorePadding ? ReactDOM.findDOMNode(containerInnerEl).style.padding = `${(headerHeight + 33) + 'px'} 22px 22px` : null;
+        !ignorePadding ? ReactDOM.findDOMNode(containerInnerEl).style.padding = `${(headerHeight + 33) + 'px'} 22px 22px` : null;
 
         if (onClickOutside) {
             document.addEventListener('click', this._onClickOutsideRef);
@@ -177,6 +177,7 @@ export default class Drawer extends React.Component {
             DOMUtils.addClassName(body, 'drawer-open-layered');
 
             drawer.style.zIndex = zIndex;
+            drawerContainer.style.boxShadow = '-2px 0 7px 0 rgba(0, 0, 0, 0.17)';
             drawerContainer.style.zIndex = zIndex;
             drawerDimmer.style.display = 'none';
         } else {
@@ -215,8 +216,8 @@ Drawer.propTypes = {
         React.PropTypes.string
     ]),
     header: React.PropTypes.bool,
-    inverse: React.PropTypes.bool,
     ignorePadding: React.PropTypes.bool,
+    inverse: React.PropTypes.bool,
     isOpen: React.PropTypes.bool.isRequired,
     maxWidth: React.PropTypes.oneOfType([
         React.PropTypes.number,

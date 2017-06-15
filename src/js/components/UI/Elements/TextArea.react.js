@@ -84,8 +84,15 @@ export default class TextArea extends React.Component {
     }
 
     componentDidMount() {
+        let autoResize;
+
         if (this.props.autoHeight) {
-            autosize(ReactDOM.findDOMNode(this.refs.textArea));
+            autoResize = setInterval(() => {
+                if (this.props.value) {
+                    autosize(ReactDOM.findDOMNode(this.refs.textArea));
+                    clearInterval(autoResize);
+                }
+            }, 150);
         }
     }
 

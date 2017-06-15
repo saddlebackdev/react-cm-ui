@@ -14,7 +14,8 @@
   "scripts": {
     "start": "npm run docs:dev",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
-    "docs:prod": "webpack"
+    "docs:prod": "webpack",
+    "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress"
   },
   "dependencies": {
     "autosize": "^3.0.17",
@@ -48,6 +49,7 @@
     "eslint": "^3.4.0",
     "extract-text-webpack-plugin": "2.0.0-rc.1",
     "file-loader": "^0.10.0",
+    "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.4.0",
     "postcss-loader": "^1.2.2",
     "sass-loader": "^4.1.1",

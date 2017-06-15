@@ -10,9 +10,6 @@ import TableProps from 'components/UI/TableProps.react';
 
 // CM App UI Components
 import Accordion from 'components/UI/Modules/Accordion.react';
-import AccordionContent from 'components/UI/Modules/AccordionContent.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
-import AccordionSummary from 'components/UI/Modules/AccordionSummary.react';
 import Card from 'components/UI/Views/Card.react';
 import Header from 'components/UI/Elements/Header.react';
 import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
@@ -21,34 +18,31 @@ import TitleBar from 'components/UI/Views/TitleBar.react';
 const accordionSample = `import React from 'react';
 
 import Accordion from 'components/UI/Modules/Accordion.react';
-import AccordionContent from 'components/UI/Modules/AccordionContent.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
-import AccordionSummary from 'components/UI/Modules/AccordionSummary.react';
 
 export default class AccordionSample extends React.Component {
 
     render() {
         return (
             <Accordion>
-                <AccordionItem>
-                    <AccordionSummary>
+                <Accordion.Item>
+                    <Accordion.Summary>
                         Option One
-                    </AccordionSummary>
+                    </Accordion.Summary>
 
-                    <AccordionContent>
+                    <Accordion.Content>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionContent>
-                </AccordionItem>
+                    </Accordion.Content>
+                </Accordion.Item>
 
-                <AccordionItem>
-                    <AccordionSummary>
+                <Accordion.Item>
+                    <Accordion.Summary>
                         Option Two
-                    </AccordionSummary>
+                    </Accordion.Summary>
 
-                    <AccordionContent>
+                    <Accordion.Content>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionContent>
-                </AccordionItem>
+                    </Accordion.Content>
+                </Accordion.Item>
             </Accordion>
         );
     }
@@ -58,20 +52,19 @@ export default class AccordionSample extends React.Component {
 const basicSample = `import React from 'react';
 
 import Accordion from 'components/UI/Modules/Accordion.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
 
 export default class BasicSample extends React.Component {
 
     render() {
         return (
             <Accordion basic={true}>
-                <AccordionItem title="Option One">
+                <Accordion.Item title="Option One">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
 
-                <AccordionItem title="Option Two">
+                <Accordion.Item title="Option Two">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
             </Accordion>
         );
     }
@@ -81,20 +74,19 @@ export default class BasicSample extends React.Component {
 const inverseSample = `import React from 'react';
 
 import Accordion from 'components/UI/Modules/Accordion.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
 
 export default class InverseSample extends React.Component {
 
     render() {
         return (
             <Accordion basic={true} inverse={true}>
-                <AccordionItem title="Option One">
+                <Accordion.Item title="Option One">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
 
-                <AccordionItem title="Option Two">
+                <Accordion.Item title="Option Two">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
             </Accordion>
         );
     }
@@ -104,27 +96,26 @@ export default class InverseSample extends React.Component {
 const selectedSample = `import React from 'react';
 
 import Accordion from 'components/UI/Modules/Accordion.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
 
 export default class SelectedSample extends React.Component {
 
     render() {
         return (
             <Accordion basic={true} selected={1}>
-                <AccordionItem title="Option One">
+                <Accordion.Item title="Option One">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
 
-                <AccordionItem title="Option Two">
+                <Accordion.Item title="Option Two">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </AccordionItem>
+                </Accordion.Item>
             </Accordion>
         );
     }
 
 }`;
 
-export default class ModulesAccordion extends React.Component {
+export default class CollectionsAccordion extends React.Component {
 
     render() {
         const props = [
@@ -180,25 +171,25 @@ export default class ModulesAccordion extends React.Component {
                 </Header>
 
                 <Accordion>
-                    <AccordionItem>
-                        <AccordionSummary>
+                    <Accordion.Item>
+                        <Accordion.Summary>
                             Option One
-                        </AccordionSummary>
+                        </Accordion.Summary>
 
-                        <AccordionContent>
+                        <Accordion.Content>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                        </AccordionContent>
-                    </AccordionItem>
+                        </Accordion.Content>
+                    </Accordion.Item>
 
-                    <AccordionItem>
-                        <AccordionSummary>
+                    <Accordion.Item>
+                        <Accordion.Summary>
                             Option Two
-                        </AccordionSummary>
+                        </Accordion.Summary>
 
-                        <AccordionContent>
+                        <Accordion.Content>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                        </AccordionContent>
-                    </AccordionItem>
+                        </Accordion.Content>
+                    </Accordion.Item>
                 </Accordion>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -214,13 +205,13 @@ export default class ModulesAccordion extends React.Component {
                 </Header>
 
                 <Accordion basic={true}>
-                    <AccordionItem title="Option One">
+                    <Accordion.Item title="Option One">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionItem>
+                    </Accordion.Item>
 
-                    <AccordionItem title="Option Two">
+                    <Accordion.Item title="Option Two">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionItem>
+                    </Accordion.Item>
                 </Accordion>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -237,13 +228,13 @@ export default class ModulesAccordion extends React.Component {
 
                 <Block inverse={true}>
                     <Accordion basic={true} inverse={true}>
-                        <AccordionItem title="Option One">
+                        <Accordion.Item title="Option One">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                        </AccordionItem>
+                        </Accordion.Item>
 
-                        <AccordionItem title="Option Two">
+                        <Accordion.Item title="Option Two">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                        </AccordionItem>
+                        </Accordion.Item>
                     </Accordion>
                 </Block>
 
@@ -260,13 +251,13 @@ export default class ModulesAccordion extends React.Component {
                 </Header>
 
                 <Accordion basic={true} selected={1}>
-                    <AccordionItem title="Option One">
+                    <Accordion.Item title="Option One">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionItem>
+                    </Accordion.Item>
 
-                    <AccordionItem title="Option Two">
+                    <Accordion.Item title="Option Two">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                    </AccordionItem>
+                    </Accordion.Item>
                 </Accordion>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

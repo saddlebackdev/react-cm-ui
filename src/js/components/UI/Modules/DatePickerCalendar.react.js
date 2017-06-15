@@ -4,7 +4,7 @@ import 'components/UI/Modules/DatePickerCalendar.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import React from 'react';
 

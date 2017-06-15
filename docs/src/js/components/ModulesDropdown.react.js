@@ -13,7 +13,7 @@ import Dropdown from 'components/UI/Modules/Dropdown.react';
 import Header from 'components/UI/Elements/Header.react';
 import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
 import TitleBar from 'components/UI/Views/TitleBar.react';
-import SubNavigation from 'components/UI/Collections/SubNavigation.react';
+import SubNavigation from 'components/UI/Views/SubNavigation.react';
 
 const dropdownSample = `import React from 'react';
 
