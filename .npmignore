@@ -1,0 +1,5 @@
+.*rc
+.eslintignore
+.*.yml
+webpack.config.*
+docs
