@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14.0 - 2017-06-12
+### Added
+- New **Banner** view component.
+
+### Changed
+- Moved **SegmentedControls** to Modules.
+- Moved **Accordion** to Modules.
+- Moved **SubNavigation** to Modules.
+- Docs' code has been split and chunked. I've been looking into speeding up the end-user's user experience when first loading the app.
+
+## 0.13.1 - 2017-06-01
+### Changed
+- Layered **Drawer** shadows have been fixed.
+
+## 0.13.0 - 2017-05-31
+### Added
+- Added **Label** documentation.
+
+### Changed
+- Moved **Accordion** to Collections.
+- Fixed the **Accordion** Item to have a `5px` top margin.
+- Refactored the **Label** component.
+- **Checkbox** check is now `10px`.
+- Fixed the **TextArea** `autoHeight` on render.
+
+## 0.12.10 - 2017-05-26
+### Changed
+- **Dropdown** `value` prop update: now accepts propTypes `number` and `string`.
+
 ## 0.12.10 - 2017-05-20
 ### Changed
 - Added `onMonthChange` prop to **DatePicker**.

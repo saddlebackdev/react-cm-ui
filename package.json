@@ -1,16 +1,16 @@
 {
-  "name": "church-management-ui",
-  "version": "1.0.0",
+  "name": "react-cm-ui",
+  "version": "0.14.0",
   "description": "React UI for Church management",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/saddlebackdev/church-management-ui.git"
+    "url": "git+ssh://git@github.com/saddlebackdev/react-cm-ui.git"
   },
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/saddlebackdev/church-management-ui/issues"
+    "url": "https://github.com/saddlebackdev/react-cm-ui/issues"
   },
-  "homepage": "https://github.com/saddlebackdev/church-management-ui#readme",
+  "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "start": "npm run docs:dev",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
@@ -22,6 +22,7 @@
     "classnames": "^2.2.5",
     "jstimezonedetect": "^1.0.6",
     "lodash": "^4.15.0",
+    "material-ui": "^0.18.3",
     "moment": "^2.14.1",
     "moment-timezone": "^0.5.13",
     "react": "^0.14.8",
@@ -34,7 +35,8 @@
     "react-select": "^1.0.0-rc.3",
     "react-syntax-highlighter": "^4.0.1",
     "react-tether": "^0.3.3",
-    "react-text-mask": "^0.19.0"
+    "react-text-mask": "^0.19.0",
+    "semantic-ui-react": "^0.68.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
