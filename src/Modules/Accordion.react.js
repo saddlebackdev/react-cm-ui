@@ -1,15 +1,15 @@
 'use strict';
 
-import 'components/UI/Modules/Accordion.scss';
+import 'Collections//Modules/Accordion.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import AccordionContent from 'components/UI/Modules/AccordionContent.react';
-import AccordionCheckbox from 'components/UI/Modules/AccordionCheckbox.react';
-import AccordionItem from 'components/UI/Modules/AccordionItem.react';
-import AccordionSummary from 'components/UI/Modules/AccordionSummary.react';
-import Icon from 'components/UI/Elements/Icon.react';
+import AccordionContent from 'Collections//Modules/AccordionContent.react';
+import AccordionCheckbox from 'Collections//Modules/AccordionCheckbox.react';
+import AccordionItem from 'Collections//Modules/AccordionItem.react';
+import AccordionSummary from 'Collections//Modules/AccordionSummary.react';
+import Icon from 'Collections//Elements/Icon.react';
 
 export default class Accordion extends React.Component {
 

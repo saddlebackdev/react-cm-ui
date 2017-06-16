@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Modules/DatePickerDropdownYear.scss';
+import 'Collections//Modules/DatePickerDropdownYear.scss';
 
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DOMUtils from 'utils/UI/DOMUtils.js';
+import DOMUtils from 'utils/DOMUtils.js';
 
 export class DatePickerDropdownYear extends React.Component {
     render() {

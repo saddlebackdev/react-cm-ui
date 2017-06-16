@@ -1,15 +1,15 @@
 'use strict';
 
-import 'components/UI/Elements/Header.scss';
+import 'Collections//Elements/Header.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import Icon from 'components/UI/Elements/Icon.react';
+import Icon from 'Collections//Elements/Icon.react';
 
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
+import HeaderSubheader from 'Collections//Elements/HeaderSubheader.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Header extends React.Component {
 

@@ -1,14 +1,14 @@
 'use strict';
 
-import 'components/UI/Elements/Label.scss';
+import 'Collections//Elements/Label.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import Icon from 'components/UI/Elements/Icon.react';
+import Icon from 'Collections//Elements/Icon.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Label extends React.Component {
 

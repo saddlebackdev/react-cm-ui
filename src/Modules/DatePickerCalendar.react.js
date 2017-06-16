@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Modules/DatePickerCalendar.scss';
+import 'Collections//Modules/DatePickerCalendar.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -8,16 +8,16 @@ import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import React from 'react';
 
-import Button from 'components/UI/Elements/Button.react';
-import DatePickerMonth from 'components/UI/Modules/DatePickerMonth.react';
-import DatePickerDropdownMonth from 'components/UI/Modules/DatePickerDropdownMonth.react';
-import DatePickerDropdownYear from 'components/UI/Modules/DatePickerDropdownYear.react';
-import Grid from 'components/UI/Collections/Grid.react';
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import GridRow from 'components/UI/Collections/GridRow.react';
-import Icon from 'components/UI/Elements/Icon.react';
+import Button from 'Collections//Elements/Button.react';
+import DatePickerMonth from 'Collections//Modules/DatePickerMonth.react';
+import DatePickerDropdownMonth from 'Collections//Modules/DatePickerDropdownMonth.react';
+import DatePickerDropdownYear from 'Collections//Modules/DatePickerDropdownYear.react';
+import Grid from 'Collections//Collections/Grid.react';
+import GridColumn from 'Collections//Collections/GridColumn.react';
+import GridRow from 'Collections//Collections/GridRow.react';
+import Icon from 'Collections//Elements/Icon.react';
 
-import DatePickerUtils from 'utils/UI/DatePickerUtils.js';
+import DatePickerUtils from 'utils/DatePickerUtils.js';
 
 export class DatePickerCalendar extends React.Component {
     constructor(props) {

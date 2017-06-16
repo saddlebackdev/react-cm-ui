@@ -1,11 +1,11 @@
 'use strict';
 
-import 'components/UI/Views/SubNavigation.scss';
+import 'Collections//Views/SubNavigation.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import SubNavigationItem from 'components/UI/Views/SubNavigationItem.react';
+import SubNavigationItem from 'Collections//Views/SubNavigationItem.react';
 
 export default class SubNavigation extends React.Component {
 

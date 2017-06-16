@@ -1,12 +1,12 @@
 'use strict';
 
-import 'components/UI/Views/Tabs.scss';
+import 'Collections//Views/Tabs.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import TabsItem from 'components/UI/Collections/TabsItem.react';
+import TabsItem from 'Collections//Collections/TabsItem.react';
 
 export default class Tabs extends React.Component {
 

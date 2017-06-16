@@ -1,13 +1,13 @@
 'use strict';
 
-import 'components/UI/Modules/DatePickerDay.scss';
+import 'Collections//Modules/DatePickerDay.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import React from 'react';
 
-import DatePickerUtils from 'utils/UI/DatePickerUtils.js';
+import DatePickerUtils from 'utils/DatePickerUtils.js';
 
 export default class DatePickerDay extends React.Component {
     render() {

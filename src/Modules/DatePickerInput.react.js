@@ -5,13 +5,13 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import React from 'react';
 
-import Grid from 'components/UI/Collections/Grid.react';
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import Input from 'components/UI/Elements/Input.react';
+import Grid from 'Collections//Collections/Grid.react';
+import GridColumn from 'Collections//Collections/GridColumn.react';
+import Icon from 'Collections//Elements/Icon.react';
+import Input from 'Collections//Elements/Input.react';
 
-import DatePickerUtils from 'utils/UI/DatePickerUtils.js';
-import DateUtils from 'utils/UI/DateUtils.js';
+import DatePickerUtils from 'utils/DatePickerUtils.js';
+import DateUtils from 'utils/DateUtils.js';
 
 export default class DatePickerInput extends React.Component {
 

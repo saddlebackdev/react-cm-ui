@@ -1,12 +1,12 @@
 'use strict';
 
-import 'components/UI/Elements/Button.scss';
+import 'Collections//Elements/Button.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Button extends React.Component {
 

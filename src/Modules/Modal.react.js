@@ -1,15 +1,15 @@
 'use strict';
 
-import 'components/UI/Modules/Modal.scss';
+import 'Collections//Modules/Modal.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
 import React from 'react';
 
-import ModalContainer from 'components/UI/Modules/ModalContainer.react';
+import ModalContainer from 'Collections//Modules/ModalContainer.react';
 
-import DOMUtils from 'utils/UI/DOMUtils.js';
+import DOMUtils from 'utils/DOMUtils.js';
 
 export default class Modal extends React.Component {
 

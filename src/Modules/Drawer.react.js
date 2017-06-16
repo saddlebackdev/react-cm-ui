@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Modules/Drawer.scss';
+import 'Collections//Modules/Drawer.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -9,9 +9,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DrawerHeader from 'components/UI/Modules/DrawerHeader.react';
+import DrawerHeader from 'Collections//Modules/DrawerHeader.react';
 
-import DOMUtils from 'utils/UI/DOMUtils.js';
+import DOMUtils from 'utils/DOMUtils.js';
 
 export default class Drawer extends React.Component {
 

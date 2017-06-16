@@ -1,11 +1,11 @@
 'use strict';
 
-import 'components/UI/Elements/Divider.scss';
+import 'Collections//Elements/Divider.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Divider extends React.Component {
 

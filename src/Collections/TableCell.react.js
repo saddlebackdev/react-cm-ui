@@ -1,11 +1,11 @@
 'use strict';
 
-import 'components/UI/Collections/TableCell.scss';
+import 'Collections//Collections/TableCell.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class TableCell extends React.Component {
 

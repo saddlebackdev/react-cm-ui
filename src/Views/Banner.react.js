@@ -1,13 +1,13 @@
 'use strict';
 
-import 'components/UI/Views/Banner.scss';
+import 'Collections//Views/Banner.scss';
 
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
 import React from 'react';
 
-import Header from 'components/UI/Elements/Header.react';
-import Icon from 'components/UI/Elements/Icon.react';
+import Header from 'Collections//Elements/Header.react';
+import Icon from 'Collections//Elements/Icon.react';
 
 export default class Banner extends React.Component {
 

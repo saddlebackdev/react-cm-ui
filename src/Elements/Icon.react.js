@@ -1,12 +1,12 @@
 'use strict';
 
-import 'components/UI/Elements/Icon.scss';
+import 'Collections//Elements/Icon.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Icon extends React.Component {
 

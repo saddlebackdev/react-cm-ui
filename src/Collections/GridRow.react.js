@@ -3,7 +3,7 @@
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class GridRow extends React.Component {
 

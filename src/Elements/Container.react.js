@@ -1,14 +1,14 @@
 'use strict';
 
-import 'components/UI/Elements/Container.scss';
+import 'Collections//Elements/Container.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import ContainerActionBar from 'components/UI/Elements/ContainerActionBar.react';
-import ContainerContent from 'components/UI/Elements/ContainerContent.react';
+import ContainerActionBar from 'Collections//Elements/ContainerActionBar.react';
+import ContainerContent from 'Collections//Elements/ContainerContent.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Container extends React.Component {
 

@@ -1,13 +1,13 @@
 'use strict';
 
-import 'components/UI/Elements/List.scss';
+import 'Collections//Elements/List.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import ListItem from 'components/UI/Elements/ListItem.react';
+import ListItem from 'Collections//Elements/ListItem.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class List extends React.Component {
 

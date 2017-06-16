@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Elements/Checkbox.scss';
+import 'Collections//Elements/Checkbox.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Collections/TableHeader.scss';
+import 'Collections//Collections/TableHeader.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';

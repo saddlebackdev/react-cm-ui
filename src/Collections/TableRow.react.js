@@ -1,12 +1,12 @@
 'use strict';
 
-import 'components/UI/Collections/TableRow.scss';
+import 'Collections//Collections/TableRow.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class TableRow extends React.Component {
 

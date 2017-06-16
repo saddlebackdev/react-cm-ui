@@ -1,14 +1,14 @@
 'use strict';
 
-import 'components/UI/Collections/Grid.scss';
+import 'Collections//Collections/Grid.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import GridRow from 'components/UI/Collections/GridRow.react';
+import GridColumn from 'Collections//Collections/GridColumn.react';
+import GridRow from 'Collections//Collections/GridRow.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Grid extends React.Component {
 

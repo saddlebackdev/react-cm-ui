@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Modules/Dropdown.scss';
+import 'Collections//Modules/Dropdown.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -9,12 +9,12 @@ import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
 
-import Button from 'components/UI/Elements/Button.react';
-import DropdownItem from 'components/UI/Modules/DropdownItem.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import Modal from 'components/UI/Modules/Modal.react';
+import Button from 'Collections//Elements/Button.react';
+import DropdownItem from 'Collections//Modules/DropdownItem.react';
+import Icon from 'Collections//Elements/Icon.react';
+import Modal from 'Collections//Modules/Modal.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Dropdown extends React.Component {
 

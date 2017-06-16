@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Elements/Radio.scss';
+import 'Collections//Elements/Radio.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

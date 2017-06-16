@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class ListItem extends React.Component {
 

@@ -1,17 +1,17 @@
 'use strict';
 
-import 'components/UI/Collections/Table.scss';
+import 'Collections//Collections/Table.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import TableBody from 'Collections//Collections/TableBody.react';
+import TableCell from 'Collections//Collections/TableCell.react';
+import TableHeader from 'Collections//Collections/TableHeader.react';
+import TableHeaderCell from 'Collections//Collections/TableHeaderCell.react';
+import TableRow from 'Collections//Collections/TableRow.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import UIUtils from 'utils/Utils.js';
 
 export default class Table extends React.Component {
 

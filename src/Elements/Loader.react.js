@@ -1,6 +1,6 @@
 'use strict';
 
-import 'components/UI/Elements/Loader.scss';
+import 'Collections//Elements/Loader.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
