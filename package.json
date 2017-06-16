@@ -2,7 +2,8 @@
   "name": "react-cm-ui",
   "version": "0.14.0-beta-5",
   "description": "React UI for Church management",
-  "main": "lib/index.js",
+  "main": "lib/",
+  "jsnext:main": "src/",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/saddlebackdev/react-cm-ui.git"
@@ -11,6 +12,18 @@
   "bugs": {
     "url": "https://github.com/saddlebackdev/react-cm-ui/issues"
   },
+  "keywords": [
+    "button",
+    "drawer",
+    "grid",
+    "icon",
+    "label",
+    "responsive",
+    "react",
+    "react-component"
+    "church management",
+    "cm"
+  ],
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "npm run docs:prod",
