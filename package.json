@@ -13,10 +13,11 @@
   },
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
-    "build": "babel -d lib/ src/",
+    "compile": "babel -d lib/ src/",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
+    "prepublish": "npm run compile",
     "start": "npm run docs:dev"
   },
   "dependencies": {
