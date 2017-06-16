@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
+    "build": "npm run docs:prod",
     "compile": "babel -d lib/ src/",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
