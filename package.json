@@ -20,9 +20,7 @@
   "dependencies": {
     "autosize": "^3.0.17",
     "classnames": "^2.2.5",
-    "jstimezonedetect": "^1.0.6",
     "lodash": "^4.15.0",
-    "moment": "^2.14.1",
     "moment-timezone": "^0.5.13",
     "react": "^0.14.8",
     "react-custom-scrollbars": "^4.0.0",
