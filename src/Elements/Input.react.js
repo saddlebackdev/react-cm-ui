@@ -1,13 +1,13 @@
 'use strict';
 
-import 'Collections//Elements/Input.scss';
+import 'Elements/Input.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import React from 'react';
 
-import Icon from 'Collections//Elements/Icon.react';
+import Icon from 'Elements/Icon.react';
 
 export default class Input extends React.Component {
     constructor(props) {

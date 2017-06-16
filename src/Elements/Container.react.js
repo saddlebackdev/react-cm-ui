@@ -1,12 +1,12 @@
 'use strict';
 
-import 'Collections//Elements/Container.scss';
+import 'Elements/Container.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import ContainerActionBar from 'Collections//Elements/ContainerActionBar.react';
-import ContainerContent from 'Collections//Elements/ContainerContent.react';
+import ContainerActionBar from 'Elements/ContainerActionBar.react';
+import ContainerContent from 'Elements/ContainerContent.react';
 
 import UIUtils from 'utils/Utils.js';
 

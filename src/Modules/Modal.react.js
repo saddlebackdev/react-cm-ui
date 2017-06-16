@@ -1,13 +1,13 @@
 'use strict';
 
-import 'Collections//Modules/Modal.scss';
+import 'Modules/Modal.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
 import React from 'react';
 
-import ModalContainer from 'Collections//Modules/ModalContainer.react';
+import ModalContainer from 'Modules/ModalContainer.react';
 
 import DOMUtils from 'utils/DOMUtils.js';
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Collections/TableRow.scss';
+import 'Collections/TableRow.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

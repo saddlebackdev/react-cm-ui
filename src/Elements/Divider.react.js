@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Elements/Divider.scss';
+import 'Elements/Divider.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';

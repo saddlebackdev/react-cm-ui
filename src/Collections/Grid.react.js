@@ -1,12 +1,12 @@
 'use strict';
 
-import 'Collections//Collections/Grid.scss';
+import 'Collections/Grid.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import GridColumn from 'Collections//Collections/GridColumn.react';
-import GridRow from 'Collections//Collections/GridRow.react';
+import GridColumn from 'Collections/GridColumn.react';
+import GridRow from 'Collections/GridRow.react';
 
 import UIUtils from 'utils/Utils.js';
 

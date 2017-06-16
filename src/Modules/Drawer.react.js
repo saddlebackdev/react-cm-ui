@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/Drawer.scss';
+import 'Modules/Drawer.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DrawerHeader from 'Collections//Modules/DrawerHeader.react';
+import DrawerHeader from 'Modules/DrawerHeader.react';
 
 import DOMUtils from 'utils/DOMUtils.js';
 

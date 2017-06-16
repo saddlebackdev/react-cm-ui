@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Elements/Button.scss';
+import 'Elements/Button.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

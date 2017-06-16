@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/DatePicker.scss';
+import 'Modules/DatePicker.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -9,8 +9,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
-import DatePickerCalendar from 'Collections//Modules/DatePickerCalendar.react';
-import DatePickerInput from 'Collections//Modules/DatePickerInput.react';
+import DatePickerCalendar from 'Modules/DatePickerCalendar.react';
+import DatePickerInput from 'Modules/DatePickerInput.react';
 
 import DatePickerUtils from 'utils/DatePickerUtils.js';
 

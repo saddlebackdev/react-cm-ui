@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Views/Card.scss';
+import 'Views/Card.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

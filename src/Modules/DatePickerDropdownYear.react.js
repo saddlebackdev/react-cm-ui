@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/DatePickerDropdownYear.scss';
+import 'Modules/DatePickerDropdownYear.scss';
 
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';

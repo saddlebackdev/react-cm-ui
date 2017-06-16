@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Elements/Icon.scss';
+import 'Elements/Icon.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

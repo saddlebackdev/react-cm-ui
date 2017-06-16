@@ -1,15 +1,15 @@
 'use strict';
 
-import 'Collections//Collections/Table.scss';
+import 'Collections/Table.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import TableBody from 'Collections//Collections/TableBody.react';
-import TableCell from 'Collections//Collections/TableCell.react';
-import TableHeader from 'Collections//Collections/TableHeader.react';
-import TableHeaderCell from 'Collections//Collections/TableHeaderCell.react';
-import TableRow from 'Collections//Collections/TableRow.react';
+import TableBody from 'Collections/TableBody.react';
+import TableCell from 'Collections/TableCell.react';
+import TableHeader from 'Collections/TableHeader.react';
+import TableHeaderCell from 'Collections/TableHeaderCell.react';
+import TableRow from 'Collections/TableRow.react';
 
 import UIUtils from 'utils/Utils.js';
 

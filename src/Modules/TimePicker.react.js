@@ -1,15 +1,15 @@
 'use strict';
 
-import 'Collections//Modules/TimePicker.scss';
+import 'Modules/TimePicker.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import React from 'react';
 
-import Dropdown from 'Collections//Modules/Dropdown.react';
-import Icon from 'Collections//Elements/Icon.react';
-import Input from 'Collections//Elements/Input.react';
+import Dropdown from 'Modules/Dropdown.react';
+import Icon from 'Elements/Icon.react';
+import Input from 'Elements/Input.react';
 
 export default class TimePicker extends React.Component {
 

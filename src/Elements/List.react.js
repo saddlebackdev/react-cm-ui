@@ -1,11 +1,11 @@
 'use strict';
 
-import 'Collections//Elements/List.scss';
+import 'Elements/List.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import ListItem from 'Collections//Elements/ListItem.react';
+import ListItem from 'Elements/ListItem.react';
 
 import UIUtils from 'utils/Utils.js';
 

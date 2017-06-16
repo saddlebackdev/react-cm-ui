@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/DatePickerDay.scss';
+import 'Modules/DatePickerDay.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

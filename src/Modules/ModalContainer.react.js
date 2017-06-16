@@ -6,10 +6,10 @@ import onClickOutside from 'react-onclickoutside';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 
-import Button from 'Collections//Elements/Button.react';
-import Divider from 'Collections//Elements/Divider.react';
-import Header from 'Collections//Elements/Header.react';
-import Icon from 'Collections//Elements/Icon.react';
+import Button from 'Elements/Button.react';
+import Divider from 'Elements/Divider.react';
+import Header from 'Elements/Header.react';
+import Icon from 'Elements/Icon.react';
 
 export class ModalContainer extends React.Component {
 

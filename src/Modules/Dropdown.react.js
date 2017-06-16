@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/Dropdown.scss';
+import 'Modules/Dropdown.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -9,10 +9,10 @@ import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
 
-import Button from 'Collections//Elements/Button.react';
-import DropdownItem from 'Collections//Modules/DropdownItem.react';
-import Icon from 'Collections//Elements/Icon.react';
-import Modal from 'Collections//Modules/Modal.react';
+import Button from 'Elements/Button.react';
+import DropdownItem from 'Modules/DropdownItem.react';
+import Icon from 'Elements/Icon.react';
+import Modal from 'Modules/Modal.react';
 
 import UIUtils from 'utils/Utils.js';
 

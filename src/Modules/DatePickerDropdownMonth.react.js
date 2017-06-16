@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Modules/DatePickerDropdownMonth.scss';
+import 'Modules/DatePickerDropdownMonth.scss';
 
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';

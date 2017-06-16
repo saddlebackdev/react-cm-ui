@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Elements/Checkbox.scss';
+import 'Elements/Checkbox.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

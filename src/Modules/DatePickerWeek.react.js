@@ -1,11 +1,11 @@
 'use strict';
 
-import 'Collections//Modules/DatePickerWeek.scss';
+import 'Modules/DatePickerWeek.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import DatePickerDay from 'Collections//Modules/DatePickerDay.react';
+import DatePickerDay from 'Modules/DatePickerDay.react';
 
 export default class DatePickerWeek extends React.Component {
     render() {

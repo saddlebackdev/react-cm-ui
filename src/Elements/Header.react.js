@@ -1,13 +1,13 @@
 'use strict';
 
-import 'Collections//Elements/Header.scss';
+import 'Elements/Header.scss';
 
 import ClassNames from 'classnames';
 import React from 'react';
 
-import Icon from 'Collections//Elements/Icon.react';
+import Icon from 'Elements/Icon.react';
 
-import HeaderSubheader from 'Collections//Elements/HeaderSubheader.react';
+import HeaderSubheader from 'Elements/HeaderSubheader.react';
 
 import UIUtils from 'utils/Utils.js';
 

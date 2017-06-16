@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Collections/TableHeaderCell.scss';
+import 'Collections/TableHeaderCell.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';

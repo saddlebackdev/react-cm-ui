@@ -1,6 +1,6 @@
 'use strict';
 
-import 'Collections//Elements/TextArea.scss';
+import 'Elements/TextArea.scss';
 
 import _ from 'lodash';
 import autosize from 'autosize';

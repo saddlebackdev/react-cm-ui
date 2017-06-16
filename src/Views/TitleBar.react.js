@@ -1,12 +1,12 @@
 'use strict';
 
-import 'Collections//Views/TitleBar.scss';
+import 'Views/TitleBar.scss';
 
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 
-import Header from 'Collections//Elements/Header.react';
+import Header from 'Elements/Header.react';
 
 export default class TitleBar extends React.Component {
 

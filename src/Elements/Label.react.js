@@ -1,12 +1,12 @@
 'use strict';
 
-import 'Collections//Elements/Label.scss';
+import 'Elements/Label.scss';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 
-import Icon from 'Collections//Elements/Icon.react';
+import Icon from 'Elements/Icon.react';
 
 import UIUtils from 'utils/Utils.js';
 
