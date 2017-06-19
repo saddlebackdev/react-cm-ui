@@ -1,15 +1,13 @@
 'use strict';
 
-import 'Elements/Input.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Icon from 'Elements/Icon.react';
+import Icon from './Icon.react';
 
-export default class Input extends React.Component {
+class Input extends Component {
     constructor(props) {
         super(props);
 
@@ -221,3 +219,5 @@ Input.propTypes = {
     type: React.PropTypes.oneOf(typeEnums),
     value: React.PropTypes.string
 };
+
+export default Input;

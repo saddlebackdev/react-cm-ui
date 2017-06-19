@@ -1,11 +1,11 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class ContainerActionBar extends React.Component {
+class ContainerActionBar extends Component {
 
     render() {
         const { as, className, color, stretch, style } = this.props;
@@ -16,7 +16,7 @@ export default class ContainerActionBar extends React.Component {
             'container-action-bar-color-transparent': color === 'transparent',
             'container-stretch': stretch
         });
-        const ElementType = UIUtils.getElementType(as || 'header', this.props);
+        const ElementType = Utils.getElementType(as || 'header', this.props);
 
         return (
             <ElementType className={containerClasses} style={style}>
@@ -32,7 +32,9 @@ const asEnums = [ 'div', 'header' ,'section' ];
 ContainerActionBar.propTypes = {
     as: React.PropTypes.oneOf(asEnums),
     className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    color: React.PropTypes.oneOf(Utils.colorEnums()),
     stretch: React.PropTypes.bool,
     style: React.PropTypes.object
 };
+
+export default ContainerActionBar;

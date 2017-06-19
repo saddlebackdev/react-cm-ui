@@ -1,11 +1,9 @@
 'use strict';
 
-import 'Collections/TableHeader.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class TableHeader extends React.Component {
+class TableHeader extends Component {
 
     render() {
         const { className, desktop, desktopLarge,
@@ -80,3 +78,5 @@ TableHeader.propTypes = {
     tablet: React.PropTypes.bool,
     width: React.PropTypes.bool
 };
+
+export default TableHeader;

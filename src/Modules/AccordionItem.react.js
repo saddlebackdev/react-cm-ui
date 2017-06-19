@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AccordionItem extends React.Component {
+class AccordionItem extends Component {
 
     render() {
         return (
@@ -23,3 +23,5 @@ AccordionItem.propTypes = {
     selected: React.PropTypes.number,
     style: React.PropTypes.object
 };
+
+export default AccordionItem;

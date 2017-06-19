@@ -1,6 +1,6 @@
 'use strict';
 
-export default class DatePickerUtils {
+class DatePickerUtils {
     static isSameDay(moment1, moment2) {
         if (moment1 && moment2) {
             return moment1.isSame(moment2, 'day')
@@ -18,3 +18,5 @@ export default class DatePickerUtils {
         false
     }
 }
+
+export default DatePickerUtils

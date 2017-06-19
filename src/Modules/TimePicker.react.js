@@ -1,17 +1,15 @@
 'use strict';
 
-import 'Modules/TimePicker.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Dropdown from 'Modules/Dropdown.react';
-import Icon from 'Elements/Icon.react';
-import Input from 'Elements/Input.react';
+import Dropdown from './Dropdown.react';
+import Icon from '../Elements/Icon.react';
+import Input from '../Elements/Input.react';
 
-export default class TimePicker extends React.Component {
+class TimePicker extends Component {
 
     constructor(props) {
         super(props);
@@ -432,3 +430,5 @@ TimePicker.propTypes = {
     }),
     zoneOptions: React.PropTypes.array
 };
+
+export default TimePicker;

@@ -1,18 +1,18 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class GridRow extends React.Component {
+class GridRow extends Component {
 
     render() {
         const { className, columns, horizontalAlign, stressed, style, textAlign, verticalAlign } = this.props;
         const containerClasses = ClassNames(
             'ui',
             'grid-row',
-            columns ? `grid-row-columns-${UIUtils.numberToWord(columns)}` : null, {
+            columns ? `grid-row-columns-${Utils.numberToWord(columns)}` : null, {
                 'grid-row-horizontal-center': horizontalAlign === 'center',
                 'grid-row-horizontal-left': horizontalAlign === 'left',
                 'grid-row-horizontal-right': horizontalAlign === 'right',
@@ -49,3 +49,5 @@ GridRow.propTypes = {
     textAlign: React.PropTypes.oneOf(xAlignEnums),
     verticalAlign: React.PropTypes.oneOf(verticalAlignEnums)
 };
+
+export default GridRow;

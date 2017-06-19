@@ -1,13 +1,13 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class ListItem extends React.Component {
+class ListItem extends Component {
 
     render() {
-        const ElementType = UIUtils.getElementType(as || 'div', this.props);
+        const ElementType = Utils.getElementType(as || 'div', this.props);
 
         return (
             <div className="list-item" style={this.props.style}>
@@ -25,3 +25,5 @@ ListItem.propTypes = {
     label: React.PropTypes.string,
     style: React.PropTypes.string
 };
+
+export default ListItem;

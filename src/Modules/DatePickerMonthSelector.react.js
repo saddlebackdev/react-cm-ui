@@ -1,9 +1,9 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class DatePickerMonthDropdown extends React.Component {
+class DatePickerMonthDropdown extends Component {
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-month-dropdown');
 
@@ -20,3 +20,5 @@ DatePickerMonthDropdown.propTypes = {
     month: React.PropTypes.number.isRequired,
     onChange: React.PropTypes.func.isRequired
 };
+
+export default DatePickerMonthDropdown;

@@ -1,14 +1,12 @@
 'use strict';
 
-import 'Collections/TableHeaderCell.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class TableHeaderCell extends React.Component {
+class TableHeaderCell extends Component {
 
     render() {
         const { className, collapsing, desktop, desktopLarge, laptop, mobile, mobileLarge, mobileMedium, onClick, style, tablet, textAlign, width } = this.props;
@@ -17,56 +15,56 @@ export default class TableHeaderCell extends React.Component {
             'ui',
             'table-header-cell',
             _.isNumber(width) ?
-                    `${cellPrefix}-${UIUtils.numberToWord(width)}` :
+                    `${cellPrefix}-${Utils.numberToWord(width)}` :
                 width === true || width === 'auto' ?
                     `${cellPrefix}-show` :
                 width === false ?
                     `${cellPrefix}-hide` :
                 null,
             _.isNumber(mobile) ?
-                    `${cellPrefix}-mobile-${UIUtils.numberToWord(mobile)}` :
+                    `${cellPrefix}-mobile-${Utils.numberToWord(mobile)}` :
                 mobile === true || mobile === 'auto' ?
                     `${cellPrefix}-mobile-show` :
                 mobile === false ?
                     `${cellPrefix}-mobile-hide` :
                 null,
             _.isNumber(mobileMedium) ?
-                    `${cellPrefix}-mobile-medium-${UIUtils.numberToWord(mobileMedium)}` :
+                    `${cellPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}` :
                 mobileMedium === true || mobileMedium === 'auto' ?
                     `${cellPrefix}-mobile-medium-show` :
                 mobileMedium === false ?
                     `${cellPrefix}-mobile-medium-hide` :
                 null,
             _.isNumber(mobileLarge) ?
-                    `${cellPrefix}-mobile-large-${UIUtils.numberToWord(mobileLarge)}` :
+                    `${cellPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}` :
                 mobileLarge === true || mobileLarge === 'auto' ?
                     `${cellPrefix}-mobile-large-show` :
                 mobileLarge === false ?
                     `${cellPrefix}-mobile-large-hide` :
                 null,
             _.isNumber(tablet) ?
-                    `${cellPrefix}-tablet-${UIUtils.numberToWord(tablet)}` :
+                    `${cellPrefix}-tablet-${Utils.numberToWord(tablet)}` :
                 tablet === true || tablet === 'auto' ?
                     `${cellPrefix}-tablet-show` :
                 tablet === false ?
                     `${cellPrefix}-tablet-hide` :
                 null,
             _.isNumber(laptop) ?
-                    `${cellPrefix}-laptop-${UIUtils.numberToWord(laptop)}` :
+                    `${cellPrefix}-laptop-${Utils.numberToWord(laptop)}` :
                 laptop === true || laptop === 'auto' ?
                     `${cellPrefix}-laptop-show` :
                 laptop === false ?
                     `${cellPrefix}-laptop-hide` :
                 null,
             _.isNumber(desktop) ?
-                    `${cellPrefix}-desktop-${UIUtils.numberToWord(desktop)}` :
+                    `${cellPrefix}-desktop-${Utils.numberToWord(desktop)}` :
                 desktop === true || desktop === 'auto' ?
                     `${cellPrefix}-desktop-show` :
                 desktop === false ?
                     `${cellPrefix}-desktop-hide` :
                 null,
             _.isNumber(desktopLarge) ?
-                    `${cellPrefix}-desktop-${UIUtils.numberToWord(desktopLarge)}` :
+                    `${cellPrefix}-desktop-${Utils.numberToWord(desktopLarge)}` :
                 desktopLarge === true || desktopLarge === 'auto' ?
                     `${cellPrefix}-desktop-show` :
                 desktopLarge === false ?
@@ -139,3 +137,5 @@ TableHeaderCell.propTypes = {
         React.PropTypes.oneOf(columnNumberEnums)
     ]),
 };
+
+export default TableHeaderCell;

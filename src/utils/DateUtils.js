@@ -3,7 +3,7 @@
 import _ from 'lodash';
 import moment from 'moment-timezone';
 
-export default class DateUtils {
+class DateUtils {
 
     static formatWithTz(data, userTimeZoneId) {
         let timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
@@ -186,3 +186,5 @@ export default class DateUtils {
         return moment.unix(date).utc().tz(timeZoneId);
     }
 }
+
+export default DateUtils;

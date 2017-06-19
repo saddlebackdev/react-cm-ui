@@ -2,3 +2,4 @@ node_modules/**
 npm-debug.log
 build
 lib
+stats.json

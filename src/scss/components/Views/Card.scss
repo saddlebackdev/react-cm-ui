@@ -1,0 +1,24 @@
+@import 'config/Colors', 'config/FontsizeCalculator';
+
+.ui.card {
+    background-color: $bkgd;
+    border: 1px solid $border-light;
+    border-radius: 3px;
+    margin: calc(2rem - .14285em) 0 1rem;
+    padding: 22px;
+    transition: background-color 150ms ease-out;
+    &.card-active { background-color: $bkgd-inverse-alternate; color: $color-text-inverse; cursor: default; }
+    &.card-compact { padding: 11px; }
+    &.card-clickable {
+        cursor: pointer;
+        &:hover { background-color: $bkgd-nest; }
+        &:active { background-color: $bkgd; }
+    }
+    &.card-nest { border: 0; box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1), 1px 1px 2px 0 rgba(0, 0, 0, .1); }
+    > {
+        :first-child { margin-top: 0; }
+        :last-child { margin-bottom: 0; }
+    }
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+}

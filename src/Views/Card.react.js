@@ -1,12 +1,10 @@
 'use strict';
 
-import 'Views/Card.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Card extends React.Component {
+class Card extends Component {
 
     render() {
         const containerClasses = ClassNames('ui', 'card', this.props.className, {
@@ -39,3 +37,5 @@ Card.propTypes = {
     onClick: React.PropTypes.func,
     style: React.PropTypes.object
 };
+
+export default Card;

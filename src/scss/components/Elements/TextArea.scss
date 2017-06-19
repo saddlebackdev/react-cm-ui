@@ -1,0 +1,39 @@
+@import 'config/Colors', 'config/Fonts', 'config/FontsizeCalculator';
+
+.ui.text-area {
+    align-items: flex-start;
+    color: $color-text;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: em(16px);
+    justify-content: flex-start;
+    .label { margin-bottom: em(6px); }
+        .text-area-required-indicator {
+            color: $color-text-alert;
+            display: inline-block;
+            font-size: rem(14px);
+            margin-right: 6px;
+        }
+    .text-area-container { position: relative; }
+        textarea {
+            background-color: $bkgd;
+            border: 1px solid $border;
+            border-radius: 3px;
+            display: block;
+            margin: 0;
+            outline: none;
+            padding: em(10px);
+            text-align: left;
+            transition: border-color 150ms ease-out;
+            width: 100%;
+            &::placeholder { color: $color-text-static; }
+        }
+    &.text-area-disabled textarea { background-color: $bkgd-disable; }
+    &.text-area-error {
+        textarea { border-color: $bkgd-alert !important; }
+        .text-area-error-message { color: $color-text-alert; font-size: em(14px); }
+    }
+    &.text-area-fluid { display: block; }
+    &.text-area-focused textarea { border-color: $bkgd-highlight; }
+    + * { margin-top: em(26px); }
+}

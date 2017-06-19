@@ -1,69 +1,58 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Table, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
-
 const tableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class TableSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -73,48 +62,48 @@ export default class TableSample extends React.Component {
 const basicTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class BasicTableSample extends React.Component {
 
     render() {
         return (
             <Table basic={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -124,48 +113,48 @@ export default class BasicTableSample extends React.Component {
 const celledTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class CelledTableSample extends React.Component {
 
     render() {
         return (
             <Table celled={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -175,48 +164,48 @@ export default class CelledTableSample extends React.Component {
 const celledBasicTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class CelledBasicTableSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} celled={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -226,48 +215,48 @@ export default class CelledBasicTableSample extends React.Component {
 const collapsingTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class CollapsingTableSample extends React.Component {
 
     render() {
         return (
             <Table collapsing={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -277,48 +266,48 @@ export default class CollapsingTableSample extends React.Component {
 const definitionTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class DefinitionTableSample extends React.Component {
 
     render() {
         return (
             <Table definition={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell />
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell />
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -328,48 +317,48 @@ export default class DefinitionTableSample extends React.Component {
 const definitionBasicTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class DefinitionBasicTableSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} definition={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell />
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell />
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -379,48 +368,48 @@ export default class DefinitionBasicTableSample extends React.Component {
 const fixedTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class FixedTableSample extends React.Component {
 
     render() {
         return (
             <Table fixed={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -430,48 +419,48 @@ export default class FixedTableSample extends React.Component {
 const fontSizeTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class FontSizeTableSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} fontSize="xsmall">
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -481,48 +470,48 @@ export default class FontSizeTableSample extends React.Component {
 const fontSizeTableRowSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
-export default class FontSizeTableRowSample extends React.Component {
+export default class fontSizeTableRowSample extends React.Component {
 
     render() {
         return (
             <Table basic={true}>
-                <TableHeader>
-                    <TableRow fontSize="xsmall">
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row fontSize="xsmall">
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -532,48 +521,48 @@ export default class FontSizeTableRowSample extends React.Component {
 const fontSizeTableCellSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
-export default class FontSizeTableCellSample extends React.Component {
+export default class fontSizeTableCellSample extends React.Component {
 
     render() {
         return (
             <Table basic={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell fontSize="xsmall">cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell fontSize="xsmall">cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell fontSize="xsmall">cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -583,48 +572,48 @@ export default class FontSizeTableCellSample extends React.Component {
 const fullWidthTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class FullWidthTableSample extends React.Component {
 
     render() {
         return (
             <Table definition={true} fullWidth={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell />
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell />
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -634,48 +623,48 @@ export default class FullWidthTableSample extends React.Component {
 const selectableTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
-export default class FontSizeTableCellSample extends React.Component {
+export default class fontSizeTableCellSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} selectable={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -685,48 +674,48 @@ export default class FontSizeTableCellSample extends React.Component {
 const singleLineTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
-export default class FontSizeTableCellSample extends React.Component {
+export default class fontSizeTableCellSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} fixed={true} singleLine={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -736,48 +725,48 @@ export default class FontSizeTableCellSample extends React.Component {
 const stretchTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class StretchTableSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} stretch={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -787,48 +776,48 @@ export default class StretchTableSample extends React.Component {
 const stretchVeryTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
-export default class FontSizeTableCellSample extends React.Component {
+export default class fontSizeTableCellSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} stretch="very">
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -838,48 +827,48 @@ export default class FontSizeTableCellSample extends React.Component {
 const stripedTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class StripedTableSample extends React.Component {
 
     render() {
         return (
             <Table striped={true}>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -889,48 +878,48 @@ export default class StripedTableSample extends React.Component {
 const activeTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class ActiveTableSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell active={true}>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell active={true}>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow active={true}>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row active={true}>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -940,48 +929,48 @@ export default class ActiveTableSample extends React.Component {
 const disabledTableSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class ActiveTableSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell disabled={true}>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell disabled={true}>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow disabled={true}>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row disabled={true}>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -991,48 +980,48 @@ export default class ActiveTableSample extends React.Component {
 const textAlignSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class TextAlignSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell textAlign="right">Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell textAlign="right">Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell textAlign="right">cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell textAlign="right">cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow textAlign="center">
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell textAlign="right">cell</TableCell>
-                    </TableRow>
+                    <Table.Row textAlign="center">
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell textAlign="right">cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell textAlign="right">cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell textAlign="right">cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -1042,150 +1031,150 @@ export default class TextAlignSample extends React.Component {
 const verticalAlignSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class VerticalAlignSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell verticalAlign="bottom">cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow verticalAlign="top">
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell verticalAlign="bottom">cell</TableCell>
-                    </TableRow>
+                    <Table.Row verticalAlign="top">
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell verticalAlign="bottom">cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
 
 }`;
 
-const tableHeaderCellOnClickSample = `import React from 'react';
+const TableHeaderCellOnClickSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class TableHeaderCellOnClickSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell onClick={this._onClick.bind(this)}>Header 1</TableHeaderCell>
-                        <TableHeaderCell onClick={this._onClick.bind(this)}>Header 2</TableHeaderCell>
-                        <TableHeaderCell onClick={this._onClick.bind(this)}>Header 3</TableHeaderCell>
-                        <TableHeaderCell onClick={this._onClick.bind(this)}>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
 
 }`;
 
-const tableRowOnClickSample = `import React from 'react';
+const TableRowOnClickSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class TableRowOnClickSample extends React.Component {
 
     render() {
         return (
             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderCell>Header 1</TableHeaderCell>
-                        <TableHeaderCell>Header 2</TableHeaderCell>
-                        <TableHeaderCell>Header 3</TableHeaderCell>
-                        <TableHeaderCell>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow onClick={this._onClick.bind(this)}>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row onClick={this._onClick.bind(this)}>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                        <TableCell>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -1195,48 +1184,48 @@ export default class TableRowOnClickSample extends React.Component {
 const responsiveWidthSample = `import React from 'react';
 
 import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import Table.Body from 'components/UI/Collections/Table.Body.react';
+import Table.Cell from 'components/UI/Collections/Table.Cell.react';
+import Table.Header from 'components/UI/Collections/Table.Header.react';
+import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
+import Table.Row from 'components/UI/Collections/Table.Row.react';
 
 export default class ResponsiveWidthSample extends React.Component {
 
     render() {
         return (
             <Table basic={true} fixed={true} singleLine={true}>
-                <TableHeader width={false} tablet={true}>
-                    <TableRow>
-                        <TableHeaderCell width={2} laptop={3}>Header 1</TableHeaderCell>
-                        <TableHeaderCell width={11} laptop={3}>Header 2</TableHeaderCell>
-                        <TableHeaderCell width={false} laptop={3}>Header 3</TableHeaderCell>
-                        <TableHeaderCell width={false} laptop={3}>Header 4</TableHeaderCell>
-                    </TableRow>
-                </TableHeader>
+                <Table.Header width={false} tablet={true}>
+                    <Table.Row>
+                        <Table.HeaderCell width={2} laptop={3}>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell width={11} laptop={3}>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell width={false} laptop={3}>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell width={false} laptop={3}>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <TableBody>
-                    <TableRow>
-                        <TableCell width={2} laptop={3}>cell</TableCell>
-                        <TableCell width={11} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                    </TableRow>
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell width={2} laptop={3}>cell</TableCell>
-                        <TableCell width={11} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                    </TableRow>
+                    <Table.Row>
+                        <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                    </Table.Row>
 
-                    <TableRow>
-                        <TableCell width={2} laptop={3}>cell</TableCell>
-                        <TableCell width={11} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                        <TableCell width={false} laptop={3}>cell</TableCell>
-                    </TableRow>
-                </TableBody>
+                    <Table.Row>
+                        <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
             </Table>
         );
     }
@@ -1353,43 +1342,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard table.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1399,43 +1388,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Basic Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Basic Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table can be more basic, stripping UI away.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table basic={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1445,43 +1434,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Celled Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Celled Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's cells can be devided.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table celled={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1489,37 +1478,37 @@ export default class CollectionsTable extends React.Component {
                 </Highlighter>
 
                 <Table basic={true} celled={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1529,43 +1518,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Collapsing Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Collapsing Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table can be collapsing.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table collapsing={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1575,43 +1564,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Definition Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Definition Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table may be formatted to emphasize a first column that defines a row content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table definition={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell />
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1619,37 +1608,37 @@ export default class CollectionsTable extends React.Component {
                 </Highlighter>
 
                 <Table basic={true} definition={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell />
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1659,43 +1648,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Fixed Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fixed Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table column's width can be evenly spaced.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table fixed={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1705,9 +1694,9 @@ export default class CollectionsTable extends React.Component {
                 {/* Font Size */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Font Size
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's default font size can be changed.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="small" sub={true}>
@@ -1715,37 +1704,37 @@ export default class CollectionsTable extends React.Component {
                 </Header>
 
                 <Table basic={true} fontSize="xsmall">
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1757,37 +1746,37 @@ export default class CollectionsTable extends React.Component {
                 </Header>
 
                 <Table basic={true}>
-                    <TableHeader>
-                        <TableRow fontSize="xsmall">
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row fontSize="xsmall">
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1799,37 +1788,37 @@ export default class CollectionsTable extends React.Component {
                 </Header>
 
                 <Table basic={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell fontSize="xsmall">cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell fontSize="xsmall">cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell fontSize="xsmall">cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell fontSize="xsmall">cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1839,43 +1828,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Full Width Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Full Width Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table, along with <code>definition</code> enabled, can have a full width header, filling in the gap left by the first column.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table definition={true} fullWidth={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell />
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1885,43 +1874,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Selectable Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Selectable Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's rows can appear to be selectable when rolling over them.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table basic={true} selectable={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1931,9 +1920,9 @@ export default class CollectionsTable extends React.Component {
                 {/* Single Line Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Single Line Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's cells will not wrap content in them.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
@@ -1941,37 +1930,37 @@ export default class CollectionsTable extends React.Component {
                 </p>
 
                 <Table basic={true} fixed={true} singleLine={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -1981,16 +1970,16 @@ export default class CollectionsTable extends React.Component {
                 {/* Stretch Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Stretch Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table can be stretched to fill in its container, edge-to-edge.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="small" sub={true}>
                     Stretch: true
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         11px Stretch
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
@@ -1998,37 +1987,37 @@ export default class CollectionsTable extends React.Component {
                 </p>
 
                 <Table basic={true} stretch={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2037,9 +2026,9 @@ export default class CollectionsTable extends React.Component {
 
                 <Header size="small" sub={true}>
                     Stretch: Very
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         22px Stretch
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
@@ -2047,37 +2036,37 @@ export default class CollectionsTable extends React.Component {
                 </p>
 
                 <Table basic={true} stretch="very">
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2087,43 +2076,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Striped Table */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Striped Table
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's rows can be striped, alternating rows with slightly darker background color.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table striped={true}>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2133,43 +2122,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Active */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Active
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's row or cell can be active.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell active={true}>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell active={true}>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow active={true}>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row active={true}>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2179,43 +2168,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Disabled */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's row or cell can be disabled.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell disabled={true}>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell disabled={true}>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow disabled={true}>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row disabled={true}>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2225,43 +2214,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Text Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Text Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's row or cell's text alignment can be changed.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell textAlign="right">Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell textAlign="right">Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell textAlign="right">cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell textAlign="right">cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow textAlign="center">
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell textAlign="right">cell</TableCell>
-                        </TableRow>
+                        <Table.Row textAlign="center">
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell textAlign="right">cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell textAlign="right">cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell textAlign="right">cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2271,43 +2260,43 @@ export default class CollectionsTable extends React.Component {
                 {/* Vertical Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Vertical Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table's row or cell's vertical alignment can be changed.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell verticalAlign="bottom">cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow verticalAlign="top">
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell verticalAlign="bottom">cell</TableCell>
-                        </TableRow>
+                        <Table.Row verticalAlign="top">
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell verticalAlign="bottom">cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell verticalAlign="bottom">cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -2317,135 +2306,135 @@ export default class CollectionsTable extends React.Component {
                 {/* Table Header Cell onClick Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Table Header Cell onClick Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table header cell can handle an onClick event.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell onClick={this._onClick.bind(this)}>Header 1</TableHeaderCell>
-                            <TableHeaderCell onClick={this._onClick.bind(this)}>Header 2</TableHeaderCell>
-                            <TableHeaderCell onClick={this._onClick.bind(this)}>Header 3</TableHeaderCell>
-                            <TableHeaderCell onClick={this._onClick.bind(this)}>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {tableHeaderCellOnClickSample}
+                    {TableHeaderCellOnClickSample}
                 </Highlighter>
 
                 {/* Table Row onClick Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Table Row onClick Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table row cell can handle an onClick event.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderCell>Header 1</TableHeaderCell>
-                            <TableHeaderCell>Header 2</TableHeaderCell>
-                            <TableHeaderCell>Header 3</TableHeaderCell>
-                            <TableHeaderCell>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow onClick={this._onClick.bind(this)}>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row onClick={this._onClick.bind(this)}>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                            <TableCell>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {tableRowOnClickSample}
+                    {TableRowOnClickSample}
                 </Highlighter>
 
                 {/* Responsive Width */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Responsive Width
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A table header cell and table ceel can specify a width for a specific device.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Table basic={true} fixed={true} singleLine={true}>
-                    <TableHeader width={false} tablet={true}>
-                        <TableRow>
-                            <TableHeaderCell width={2} laptop={3}>Header 1</TableHeaderCell>
-                            <TableHeaderCell width={11} laptop={3}>Header 2</TableHeaderCell>
-                            <TableHeaderCell width={false} laptop={3}>Header 3</TableHeaderCell>
-                            <TableHeaderCell width={false} laptop={3}>Header 4</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header width={false} tablet={true}>
+                        <Table.Row>
+                            <Table.HeaderCell width={2} laptop={3}>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell width={11} laptop={3}>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell width={false} laptop={3}>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell width={false} laptop={3}>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        <TableRow>
-                            <TableCell width={2} laptop={3}>cell</TableCell>
-                            <TableCell width={11} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                        </TableRow>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell width={2} laptop={3}>cell</TableCell>
-                            <TableCell width={11} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                        </TableRow>
+                        <Table.Row>
+                            <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        </Table.Row>
 
-                        <TableRow>
-                            <TableCell width={2} laptop={3}>cell</TableCell>
-                            <TableCell width={11} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                            <TableCell width={false} laptop={3}>cell</TableCell>
-                        </TableRow>
-                    </TableBody>
+                        <Table.Row>
+                            <Table.Cell width={2} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={11} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                            <Table.Cell width={false} laptop={3}>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

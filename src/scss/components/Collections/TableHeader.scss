@@ -1,0 +1,64 @@
+@import 'config/Colors', 'config/FontsizeCalculator';
+
+$breakpoints: (
+    'mobile' '(max-width: 374px)',
+    'mobile-medium' '(min-width: 375px)',
+    'mobile-large' '(min-width: 425px)',
+    'tablet' '(min-width: 768px)',
+    'laptop' '(min-width: 1024px)',
+    'desktop' '(min-width: 1440px)',
+    'desktop-large' '(min-width: 1720px)'
+);
+$breakpoint-has-widths: (
+    'mobile',
+    'mobile-medium',
+    'mobile-large',
+    'tablet',
+    'laptop',
+    'desktop',
+    'desktop-large'
+);
+
+.ui.table {
+    background-color: $bkgd;
+    border: 1px solid $border;
+    color: $color-text;
+    text-align: left;
+    width: 100%;
+}
+
+@mixin device-type($namespace: '') {
+    $prefix: '.table-header-' + $namespace;
+
+    #{$prefix}hide { display: none; }
+    #{$prefix}show { display: table-header-group; }
+}
+
+@include device-type();
+
+@mixin grid-media-query($media-query) {
+    $breakpoint-found: false;
+
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        $declaration: nth($breakpoint, 2);
+
+        @if $media-query == $name and $declaration{
+            $breakpoint-found: true;
+
+            @media only screen and #{$declaration}{
+                @content;
+            }
+        }
+    }
+
+    @if $breakpoint-found == false{
+        @warn "Breakpoint ‘#{$media-query}’ does not exist"
+    }
+}
+
+@each $name in $breakpoint-has-widths {
+    @include grid-media-query($name) {
+        @include device-type('#{$name}-');
+    }
+}

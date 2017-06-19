@@ -1,19 +1,17 @@
 'use strict';
 
-import 'Modules/Drawer.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DrawerHeader from 'Modules/DrawerHeader.react';
+import DrawerHeader from './DrawerHeader.react';
 
-import DOMUtils from 'utils/DOMUtils.js';
+import DOMUtils from '../utils/DOMUtils.js';
 
-export default class Drawer extends React.Component {
+class Drawer extends Component {
 
     constructor(props) {
         super(props);
@@ -234,3 +232,5 @@ Drawer.propTypes = {
 Drawer.contextTypes = {
     router: React.PropTypes.object
 };
+
+export default Drawer;

@@ -1,19 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Card, Dropdown, Header, TitleBar, SubNavigation } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Dropdown from 'components/UI/Modules/Dropdown.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
-import SubNavigation from 'components/UI/Views/SubNavigation.react';
 
 const dropdownSample = `import React from 'react';
 
@@ -772,9 +765,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Icon */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Icon
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             An Item can have an icon.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown button={true} placeholder="Button Dropdown">
@@ -795,9 +788,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Dropdown */}
                     <Header anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Dropdown
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A baisc Dropdown.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown placeholder="select">
@@ -814,9 +807,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Button */}
                     <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Button
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown can take on the style of a Button.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown button={true} placeholder="Button Dropdown">
@@ -833,9 +826,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Button Compact */}
                     <Header anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Button Compact
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown can take on the style of a Button.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown button={true} buttonCompact={true} placeholder="Button Compact Dropdown">
@@ -852,9 +845,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Disable */}
                     <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Disable
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown can be disabled.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown button={true} disable={true} placeholder="Disabled Button Dropdown">
@@ -892,9 +885,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Icon */}
                     <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Icon
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown's icon.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -917,9 +910,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Menu Height */}
                     <Header anchor="menu-maximum-height" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Menu Height
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown's menu's maximum and minimum height can be set.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -938,9 +931,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Selection Creatable */}
                     <Header anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Creatable
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown can be a select dropdown where you can choose and create items.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -960,9 +953,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Selection Mobile */}
                     <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Mobile
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown Selection can be user friendly on mobile devices. Go ahead, shrink that browser.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -981,9 +974,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Selection Mutiple */}
                     <Header anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Mutiple
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A Dropdown can be a select dropdown where you can choose items.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -1002,9 +995,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Selection Option Component */}
                     <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Option Component
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Give a Dropdown Selection custom options.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown
@@ -1023,9 +1016,9 @@ export default class ModulesDropdown extends React.Component {
                     {/* Theme */}
                     <Header anchor="theme" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Theme
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Changes the menu's color.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Dropdown button={true} placeholder="Button Dropdown" theme="dark">

@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, TextArea, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TextArea from 'components/UI/Elements/TextArea.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const textAreaSample = `import React from 'react';
 
@@ -466,9 +460,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Text Area */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Text Area
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard text area.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea />
@@ -480,9 +474,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Auto Height */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Auto Height
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A text area can auto resize based on it's content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea autoHeight={true} />
@@ -494,9 +488,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Disabled */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates that the text area is not available for interaction.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea disabled={true} value="So cool!" />
@@ -508,9 +502,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Error */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Error
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates that the text area has an error. You can either supply a boolean value or a string with a message.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea error={true} value="No, you did it wrong!" /><br /><br />
@@ -524,9 +518,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A text area can take on the size of its container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea fluid={true} value="I'm totally the longest string you have ever seen. Ship it!" />
@@ -538,9 +532,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Inverse */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Inverse
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Format to appear on dark backgrounds.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true}>
@@ -554,9 +548,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Label */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Optional Label to display on top of the text area.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Comment" />
@@ -568,9 +562,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Max Height */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Max Height
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea maxHeight={101} />
@@ -582,9 +576,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Max Length */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Max Length
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Maximum Characters Is 2" maxLength={2} />
@@ -596,9 +590,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Min Height */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Min Height
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea minHeight={300} />
@@ -610,9 +604,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Min Length */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Min Length
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Minimum Characters Is 2" minLength={2} />
@@ -624,9 +618,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* onBlur Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onBlur Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onBlur</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Check It!" onBlur={this._onBlur.bind(this)} />
@@ -638,9 +632,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* onChange Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onChange Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Check It!" onChange={this._onChange.bind(this)} value={this.state.onChangeValue} />
@@ -652,9 +646,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* onClick Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onClick</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Check It!" onClick={this._onClick.bind(this)} />
@@ -666,9 +660,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* onFocus Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onFocus Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onFocus</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Check It!" onFocus={this._onFocus.bind(this)} />
@@ -680,9 +674,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* onKeyDown Event Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onKeyDown Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onKeyDown</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Check It!" onKeyDown={this._onKeyDown.bind(this)} />
@@ -694,9 +688,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Placeholder */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Placeholder
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A hint to the user of what can be entered in the text area.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Comment" placeholder="Leave a message..." />
@@ -708,9 +702,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Required */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Required
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea label="Comment" placeholder="Leave a message..." required={true} />
@@ -722,9 +716,9 @@ export default class ElementsTextArea extends React.Component {
                 {/* Resize */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Resize
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TextArea

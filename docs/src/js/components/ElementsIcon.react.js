@@ -1,21 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Grid, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Grid from 'components/UI/Collections/Grid.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import SubNavigation from 'components/UI/Views/SubNavigation.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const iconSample = `import React from 'react';
 
@@ -567,9 +559,9 @@ export default class ElementsButton extends React.Component {
                     {/* Icon */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Icon
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             A standard icon. The <code>type</code> prop is required.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon type="activity" />
@@ -581,9 +573,9 @@ export default class ElementsButton extends React.Component {
                     {/* Align */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Align
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can change the side the margin is positioned on.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon align="left" type="activity" />
@@ -603,9 +595,9 @@ export default class ElementsButton extends React.Component {
                     {/* Color */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Color
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can be formatted with different colors.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon color="alert" type="activity" />
@@ -621,9 +613,9 @@ export default class ElementsButton extends React.Component {
                     {/* Inverse */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Inverse
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icon colors can be inverted to appear on darker backgrounds better.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Block inverse={true}>
@@ -640,9 +632,9 @@ export default class ElementsButton extends React.Component {
                     {/* Compact */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Compact
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can appear without space to left or right.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon compact={true} type="activity" />
@@ -657,9 +649,9 @@ export default class ElementsButton extends React.Component {
                     {/* onClick Event Handler */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         onClick Event Handler
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can handle an onClick event.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon type="activity" onClick={this._onIconClick.bind(this)} />
@@ -671,9 +663,9 @@ export default class ElementsButton extends React.Component {
                     {/* Rotate */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Rotate
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can be rotated.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon rotate={-90} type="heart" />
@@ -686,9 +678,9 @@ export default class ElementsButton extends React.Component {
                     {/* Size */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Size
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can have different sizes.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon size="xlarge" type="activity" />
@@ -705,9 +697,9 @@ export default class ElementsButton extends React.Component {
                     {/* Spin */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Spin
-                        <HeaderSubheader>
+                        <Header.Subheader>
                             Icons can spin clockwise.
-                        </HeaderSubheader>
+                        </Header.Subheader>
                     </Header>
 
                     <Icon spin={true} type="activity" />

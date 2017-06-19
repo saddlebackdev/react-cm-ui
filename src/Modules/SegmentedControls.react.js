@@ -1,16 +1,14 @@
 'use strict';
 
-import 'Modules/SegmentedControls.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Icon from 'Elements/Icon.react';
-import SegmentedControlsItem from 'Modules/SegmentedControlsItem.react';
+import Icon from '../Elements/Icon.react';
+import SegmentedControlsItem from './SegmentedControlsItem.react';
 
-export default class SegmentedControls extends React.Component {
+class SegmentedControls extends Component {
 
     constructor(props) {
         super(props);
@@ -124,3 +122,5 @@ SegmentedControls.propTypes = {
     selected: React.PropTypes.number,
     style: React.PropTypes.object
 };
+
+export default SegmentedControls;

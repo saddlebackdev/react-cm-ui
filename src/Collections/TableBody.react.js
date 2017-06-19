@@ -1,11 +1,9 @@
 'use strict';
 
-import 'Collections/TableBody.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class TableBody extends React.Component {
+class TableBody extends Component {
 
     render() {
         const { className, style } = this.props;
@@ -28,3 +26,5 @@ TableBody.propTypes = {
     className: React.PropTypes.string,
     style: React.PropTypes.object
 };
+
+export default TableBody;

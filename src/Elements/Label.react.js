@@ -1,16 +1,14 @@
 'use strict';
 
-import 'Elements/Label.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Icon from 'Elements/Icon.react';
+import Icon from './Icon.react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Label extends React.Component {
+class Label extends Component {
 
     render() {
         const { children, className, color, disabled, fluid, inverse, onClick, onClearClick, style } = this.props;
@@ -68,9 +66,11 @@ export default class Label extends React.Component {
 
 Label.propTypes = {
     className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    color: React.PropTypes.oneOf(Utils.colorEnums()),
     fluid: React.PropTypes.bool,
     onClearClick: React.PropTypes.func,
     onClick: React.PropTypes.func,
     style: React.PropTypes.object
 }
+
+export default Label;

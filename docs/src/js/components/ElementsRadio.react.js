@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Radio, Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Radio from 'components/UI/Elements/Radio.react';
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const radioSample = `import React from 'react';
 
@@ -257,9 +251,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Radio */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Radio
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard radio input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio />
@@ -271,9 +265,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Label */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A radio input can have a label defined.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio label="Do you want to check the box?" />
@@ -285,9 +279,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A label definition can sit on the right or left side of the radio input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio align="left" label="Do you want to check the box?" /><br /><br />
@@ -300,9 +294,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Checked */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Checked
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A radio input can be checked from it's parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio checked={true} label="Do you want to check the box?" />
@@ -314,9 +308,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Disabled */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Disable a radio input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio disabled={true} label="This radio input has been disabled, true or false?" /><br /><br />
@@ -329,9 +323,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A radio input can stretch as wide as the parent container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block style={{ maxWidth: '400px' }}>
@@ -349,9 +343,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Label Click */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label Click
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Sometimes you may want to disable a radio from being checked by clicking it's label definition.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio labelClick={false} label="Sorry, you can no longer click here to check the box." />
@@ -363,9 +357,9 @@ export default class ElementsRadio extends React.Component {
                 {/* OnChange */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     OnChange
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio
@@ -381,9 +375,9 @@ export default class ElementsRadio extends React.Component {
                 {/* Radio Group */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Radio Group
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Sometimes you may want to disable a radio input from being checked by clicking it's label definition.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Radio label="Choose me!" name="group-sample" /><br /><br />

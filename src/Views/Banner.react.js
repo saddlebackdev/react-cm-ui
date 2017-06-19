@@ -1,15 +1,13 @@
 'use strict';
 
-import 'Views/Banner.scss';
-
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Header from 'Elements/Header.react';
-import Icon from 'Elements/Icon.react';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
 
-export default class Banner extends React.Component {
+class Banner extends Component {
 
     render() {
         const { children, className, isOpen, level, levelIcon, message, title, type } = this.props;
@@ -176,3 +174,5 @@ Banner.propTypes = {
     title: React.PropTypes.string,
     type: React.PropTypes.oneOf(typeEnums)
 };
+
+export default Banner;

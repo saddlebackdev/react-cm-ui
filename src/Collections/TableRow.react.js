@@ -1,14 +1,12 @@
 'use strict';
 
-import 'Collections/TableRow.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class TableRow extends React.Component {
+class TableRow extends Component {
 
     constructor(props) {
         super(props);
@@ -76,10 +74,12 @@ TableRow.propTypes = {
     active: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    fontSize: React.PropTypes.oneOf(UIUtils.sizeEnums()),
+    fontSize: React.PropTypes.oneOf(Utils.sizeEnums()),
     onClick: React.PropTypes.func,
     selected: React.PropTypes.bool,
     style: React.PropTypes.object,
     textAlign: React.PropTypes.oneOf(textAlignEnums),
     verticalAlign: React.PropTypes.oneOf(verticalAlignEnums)
 };
+
+export default TableRow;

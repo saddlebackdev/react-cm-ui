@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AccordionSummary extends React.Component {
+class AccordionSummary extends Component {
 
     render() {
         return (
@@ -20,3 +20,5 @@ export default class AccordionSummary extends React.Component {
 AccordionSummary.propTypes = {
     onClick: React.PropTypes.func
 };
+
+export default AccordionSummary;

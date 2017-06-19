@@ -1,17 +1,15 @@
 'use strict';
 
-import 'Modules/Accordion.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import AccordionContent from 'Modules/AccordionContent.react';
-import AccordionCheckbox from 'Modules/AccordionCheckbox.react';
-import AccordionItem from 'Modules/AccordionItem.react';
-import AccordionSummary from 'Modules/AccordionSummary.react';
-import Icon from 'Elements/Icon.react';
+import AccordionContent from './AccordionContent.react';
+import AccordionCheckbox from './AccordionCheckbox.react';
+import AccordionItem from './AccordionItem.react';
+import AccordionSummary from './AccordionSummary.react';
+import Icon from '../Elements/Icon.react';
 
-export default class Accordion extends React.Component {
+class Accordion extends Component {
 
     constructor(props) {
         super(props);
@@ -112,3 +110,5 @@ Accordion.propTypes = {
     selected: React.PropTypes.number,
     style: React.PropTypes.object
 };
+
+export default Accordion;

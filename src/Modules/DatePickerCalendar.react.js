@@ -1,25 +1,23 @@
 'use strict';
 
-import 'Modules/DatePickerCalendar.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Button from 'Elements/Button.react';
-import DatePickerMonth from 'Modules/DatePickerMonth.react';
-import DatePickerDropdownMonth from 'Modules/DatePickerDropdownMonth.react';
-import DatePickerDropdownYear from 'Modules/DatePickerDropdownYear.react';
-import Grid from 'Collections/Grid.react';
-import GridColumn from 'Collections/GridColumn.react';
-import GridRow from 'Collections/GridRow.react';
-import Icon from 'Elements/Icon.react';
+import Button from '../Elements/Button.react';
+import DatePickerMonth from './DatePickerMonth.react';
+import DatePickerDropdownMonth from './DatePickerDropdownMonth.react';
+import DatePickerDropdownYear from './DatePickerDropdownYear.react';
+import Grid from '../Collections/Grid.react';
+import GridColumn from '../Collections/GridColumn.react';
+import GridRow from '../Collections/GridRow.react';
+import Icon from '../Elements/Icon.react';
 
-import DatePickerUtils from 'utils/DatePickerUtils.js';
+import DatePickerUtils from '../utils/DatePickerUtils.js';
 
-export class DatePickerCalendar extends React.Component {
+export class DatePickerCalendar extends Component {
     constructor(props) {
         super(props);
 
@@ -264,8 +262,6 @@ export class DatePickerCalendar extends React.Component {
     }
 }
 
-export default onClickOutside(DatePickerCalendar);
-
 DatePickerCalendar.propTypes = {
     buttonClear: React.PropTypes.bool,
     date: React.PropTypes.object, // Single date moment object. Coverted from timestamp in parent component.
@@ -288,3 +284,5 @@ DatePickerCalendar.propTypes = {
     type: React.PropTypes.string,
     uxMode: React.PropTypes.string
 };
+
+export default onClickOutside(DatePickerCalendar);

@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Divider, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Divider from 'components/UI/Elements/Divider.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const dividerSample = `import React from 'react';
 
@@ -186,9 +180,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Divider */}
                 <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Divider
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic divider.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Divider />
@@ -200,9 +194,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Color */}
                 <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Color
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Divider's color can be changed.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Divider color="alternate" />
@@ -218,9 +212,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Inverse */}
                 <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Inverse
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Divider's color can be set to the appropriate color when on a dark background.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true}>
@@ -238,9 +232,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Compact */}
                 <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Compact
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Divider can be compact, not having any margin above or below.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
@@ -254,9 +248,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Hidden */}
                 <Header anchor="hidden" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Hidden
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Divider can divide content without a line.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
@@ -270,9 +264,9 @@ export default class ElementsDivider extends React.Component {
                 {/* Relaxed */}
                 <Header anchor="relaxed" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Relaxed
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Divider can increase it's margin above and below.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.

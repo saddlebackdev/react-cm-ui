@@ -1,14 +1,12 @@
 'use strict';
 
-import 'Views/TitleBar.scss';
-
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Header from 'Elements/Header.react';
+import Header from '../Elements/Header.react';
 
-export default class TitleBar extends React.Component {
+class TitleBar extends Component {
 
     render() {
         const containerClasses = ClassNames('ui', 'title-bar', this.props.className);
@@ -33,3 +31,5 @@ TitleBar.propTypes = {
     style: React.PropTypes.object,
     title: React.PropTypes.string
 };
+
+export default TitleBar;

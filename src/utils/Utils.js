@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-export default class UIUtils {
+class Utils {
     static colorEnums() {
         return [
             'alert',
@@ -74,3 +74,5 @@ export default class UIUtils {
         ];
     }
 }
+
+export default Utils;

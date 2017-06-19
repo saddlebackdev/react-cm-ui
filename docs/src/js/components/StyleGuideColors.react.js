@@ -1,15 +1,10 @@
 'use strict';
 
 import React from 'react';
+import { Grid, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Swatch from 'components/UI/Swatch.react';
-
-// CM App UI Components
-import Grid from 'components/UI/Collections/Grid.react';
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import Header from 'components/UI/Elements/Header.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 export default class StyleGuideColors extends React.Component {
 

@@ -1,14 +1,12 @@
 'use strict';
 
-import 'Views/Tabs.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import TabsItem from 'Collections/TabsItem.react';
+import TabsItem from './TabsItem.react';
 
-export default class Tabs extends React.Component {
+class Tabs extends Component {
 
     constructor(props) {
         super(props);
@@ -76,3 +74,5 @@ Tabs.propTypes = {
     selected: React.PropTypes.number,
     style: React.PropTypes.object
 };
+
+export default Tabs;

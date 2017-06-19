@@ -1,20 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Tabs, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TabsItem from 'components/UI/Collections/TabsItem.react';
-import Tabs from 'components/UI/Collections/Tabs.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const tabsSample = `import React from 'react';
 
@@ -118,9 +111,9 @@ export default class CollectionsTabs extends React.Component {
                 {/* Tabs */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Tabs
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Tabs>
@@ -140,9 +133,9 @@ export default class CollectionsTabs extends React.Component {
                 {/* Nested Tabs */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Nested Tabs
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block

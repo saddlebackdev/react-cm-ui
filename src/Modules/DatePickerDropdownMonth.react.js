@@ -1,12 +1,10 @@
 'use strict';
 
-import 'Modules/DatePickerDropdownMonth.scss';
-
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
-import React from 'react';
+import React, { Component } from 'react';
 
-export class DatePickerDropdownMonth extends React.Component {
+export class DatePickerDropdownMonth extends Component {
     render() {
         const { month } = this.props;
         const containerClasses = ClassNames('ui', 'date-picker-dropdown-month');
@@ -45,11 +43,11 @@ export class DatePickerDropdownMonth extends React.Component {
     }
 }
 
-export default onClickOutside(DatePickerDropdownMonth);
-
 DatePickerDropdownMonth.propTypes = {
     maxDate: React.PropTypes.object,
     month: React.PropTypes.number.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onClose: React.PropTypes.func.isRequired
 };
+
+export default onClickOutside(DatePickerDropdownMonth);

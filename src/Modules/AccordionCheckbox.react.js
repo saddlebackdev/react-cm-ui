@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AccordionCheckbox extends React.Component {
+class AccordionCheckbox extends Component {
 
     render() {
         return (
@@ -23,3 +23,5 @@ AccordionCheckbox.propTypes = {
     className: React.PropTypes.string,
     style: React.PropTypes.object
 };
+
+export default AccordionCheckbox;

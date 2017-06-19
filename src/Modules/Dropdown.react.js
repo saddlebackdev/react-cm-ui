@@ -1,22 +1,20 @@
 'use strict';
 
-import 'Modules/Dropdown.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
-import React from 'react';
+import React, { Component } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
 
-import Button from 'Elements/Button.react';
-import DropdownItem from 'Modules/DropdownItem.react';
-import Icon from 'Elements/Icon.react';
-import Modal from 'Modules/Modal.react';
+import Button from '../Elements/Button.react';
+import DropdownItem from './DropdownItem.react';
+import Icon from '../Elements/Icon.react';
+import Modal from './Modal.react';
 
-import UIUtils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Dropdown extends React.Component {
+class Dropdown extends Component {
 
     constructor(props) {
         super(props);
@@ -381,15 +379,15 @@ Dropdown.Item = DropdownItem;
 
 Dropdown.propTypes = {
     button: React.PropTypes.bool,
-    buttonColor: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    buttonColor: React.PropTypes.oneOf(Utils.colorEnums()),
     buttonCompact: React.PropTypes.bool,
     className: React.PropTypes.string,
     clearable: React.PropTypes.bool,
     disable: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
-    iconColor: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    iconColor: React.PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: React.PropTypes.bool,
-    iconSize: React.PropTypes.oneOf(UIUtils.sizeEnums()),
+    iconSize: React.PropTypes.oneOf(Utils.sizeEnums()),
     iconType: React.PropTypes.string,
     label: React.PropTypes.string,
     menuMaxHeight: React.PropTypes.number,
@@ -409,7 +407,7 @@ Dropdown.propTypes = {
         React.PropTypes.number,
         React.PropTypes.string
     ]),
-    theme: React.PropTypes.oneOf(UIUtils.themeEnums()),
+    theme: React.PropTypes.oneOf(Utils.themeEnums()),
     value: React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.number,
@@ -417,3 +415,5 @@ Dropdown.propTypes = {
         React.PropTypes.string
     ])
 };
+
+export default Dropdown;

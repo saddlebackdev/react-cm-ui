@@ -2,18 +2,12 @@
 
 import MediaQuery from 'react-responsive';
 import React from 'react';
+import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import SubNavigation from 'components/UI/Views/SubNavigation.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const subNavigationSample = `import React from 'react';
 
@@ -148,9 +142,9 @@ export default class CollectionsSubNavigation extends React.Component {
                 {/* Sub Navigation */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Sub Navigation
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard Sub Navigation.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>
@@ -175,9 +169,9 @@ export default class CollectionsSubNavigation extends React.Component {
                 {/* Selected */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Selected
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Sub Navigation can change the default selected button.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>
@@ -202,9 +196,9 @@ export default class CollectionsSubNavigation extends React.Component {
                 {/* onClick Parent Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Parent Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Sub Navigation can a have <code>onClick</code> event handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>
@@ -229,9 +223,9 @@ export default class CollectionsSubNavigation extends React.Component {
                 {/* onClick Children Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Children Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an onClick event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>

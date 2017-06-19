@@ -3,17 +3,17 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Grid from 'Collections/Grid.react';
-import GridColumn from 'Collections/GridColumn.react';
-import Icon from 'Elements/Icon.react';
-import Input from 'Elements/Input.react';
+import Grid from '../Collections/Grid.react';
+import GridColumn from '../Collections/GridColumn.react';
+import Icon from '../Elements/Icon.react';
+import Input from '../Elements/Input.react';
 
-import DatePickerUtils from 'utils/DatePickerUtils.js';
-import DateUtils from 'utils/DateUtils.js';
+import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DateUtils from '../utils/DateUtils.js';
 
-export default class DatePickerInput extends React.Component {
+class DatePickerInput extends Component {
 
     constructor(props) {
         super(props);
@@ -344,3 +344,5 @@ DatePickerInput.propTypes = {
     type: React.PropTypes.string,
     uxMode: React.PropTypes.string
 };
+
+export default DatePickerInput;

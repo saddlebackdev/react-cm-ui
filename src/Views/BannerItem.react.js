@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class BannerItem extends React.Component {
+class BannerItem extends Component {
 
     render() {
         return (
@@ -23,3 +23,5 @@ BannerItem.propTypes = {
     style: React.PropTypes.object,
     title: React.PropTypes.string
 };
+
+export default BannerItem;

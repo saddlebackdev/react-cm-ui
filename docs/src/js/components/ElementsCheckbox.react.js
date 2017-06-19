@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Checkbox, Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Checkbox from 'components/UI/Elements/Checkbox.react';
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const checkboxSample = `import React from 'react';
 
@@ -266,9 +260,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Checkbox */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Checkbox
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard checkbox.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox />
@@ -280,9 +274,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Label */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A checkbox can have a label defined.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox label="Do you want to check the box?" />
@@ -294,9 +288,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A label definition can sit on the right or left side of the checkbox.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox align="left" label="Do you want to check the box?" /><br /><br />
@@ -309,9 +303,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Checked */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Checked
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A checkbox can be checked from it's parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox checked={true} label="Do you want to check the box?" />
@@ -323,9 +317,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Disabled */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Disable a checkbox.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox disabled={true} label="This checkbox has been disabled, true or false?" />
@@ -337,9 +331,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A checkbox can stretch as wide as the parent container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block style={{ maxWidth: '400px' }}>
@@ -357,9 +351,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Label Click */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label Click
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Sometimes you may want to disable a checkbox from being checked by clicking it's label definition.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox labelClick={false} label="Sorry, you can no longer click here to check the box." />
@@ -371,9 +365,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* OnChange */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     OnChange
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox
@@ -389,9 +383,9 @@ export default class ElementsCheckbox extends React.Component {
                 {/* Toggle */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Toggle
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A checkbox can be transformed into a toggle switch.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Checkbox toggle={true} /><br /><br />

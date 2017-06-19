@@ -1,0 +1,95 @@
+@import 'config/Colors', 'config/Fonts', 'config/FontsizeCalculator';
+
+$height: 55px;
+
+.sub-navigation {
+    background-color: $bkgd-light;
+    border-bottom: 1px solid $border;
+    font-size: em(14px);
+    font-weight: $default-font-weight-semibold;
+    height: $height;
+    margin: 0 -11px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    .sub-navigation-scroll-indicator {
+        background: -webkit-gradient(
+            linear, left top, right top,
+            color-stop(0%, rgba(246, 247, 248, 0)),
+            color-stop(100%, rgba(246, 247, 248, 1))
+        );
+        height: $height - 1px;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 24px;
+        z-index: 2;
+    }
+    .sub-navigation-scroll {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+        .sub-navigation-item-container {
+            display: inline-block;
+            height: $height;
+            overflow: hidden;
+            padding-right: 8px;
+            white-space: nowrap;
+        }
+    &-drawer {
+        .sub-navigation-item-container { padding: 0 11px; }
+        > div { border-top: 1px solid $border; }
+    }
+        button {
+            align-items: center;
+            background-color: transparent;
+            border: 0;
+            display: inline-flex;
+            height: 55px;
+            justify-content: flex-start;
+            letter-spacing: .6px;
+            line-height: 55px;
+            margin: 0 15px;
+            outline: none;
+            padding: 0;
+            position: relative;
+            transition: background-color 250ms linear;
+            z-index: 1;
+            > .tab-btn-inner {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .copy { color: $color-text-static; transition: color 250ms linear; }
+            .button-is-active-indicator {
+                background-color: $bkgd-highlight;
+                bottom: 10px;
+                height: 2px;
+                left: 0;
+                opacity: 0;
+                position: absolute;
+                transition: opacity 250ms linear;
+                visibility: visible;
+                width: 100%;
+            }
+            &.is-active {
+                cursor: auto;
+                z-index: 2;
+                .copy { color: $color-text; }
+                .button-is-active-indicator { opacity: 1; visibility: visible; }
+            }
+            &:hover .copy { color: $color-text; }
+            &:first-child { margin-left: 11px; }
+            &:last-child { margin-right: 11px; }
+        }
+}
+
+@media only screen and (min-width: 768px) {
+    .sub-navigation {
+        margin: 0 -22px;
+        .sub-navigation-item-container { padding: 0 11px; }
+    }
+}

@@ -1,14 +1,12 @@
 'use strict';
 
-import 'Elements/TextArea.scss';
-
 import _ from 'lodash';
 import autosize from 'autosize';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-export default class TextArea extends React.Component {
+class TextArea extends Component {
     constructor(props) {
         super(props);
 
@@ -169,3 +167,5 @@ TextArea.propTypes = {
     style: React.PropTypes.object,
     value: React.PropTypes.string
 };
+
+export default TextArea;
