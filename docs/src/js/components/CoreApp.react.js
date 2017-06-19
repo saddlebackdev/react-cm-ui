@@ -4,8 +4,8 @@ import 'babel-core/register';
 import 'babel-polyfill';
 
 import 'components/CoreApp.scss';
+import 'scss/Style.scss';
 
-import { Style } from 'react-cm-ui';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import ReactDOM from 'react-dom';
