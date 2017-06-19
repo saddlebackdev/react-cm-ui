@@ -11,13 +11,11 @@ import DatePickerMonth from './DatePickerMonth.react';
 import DatePickerDropdownMonth from './DatePickerDropdownMonth.react';
 import DatePickerDropdownYear from './DatePickerDropdownYear.react';
 import Grid from '../Collections/Grid.react';
-import GridColumn from '../Collections/GridColumn.react';
-import GridRow from '../Collections/GridRow.react';
 import Icon from '../Elements/Icon.react';
 
 import DatePickerUtils from '../utils/DatePickerUtils.js';
 
-export class DatePickerCalendar extends Component {
+class DatePickerCalendar extends Component {
     constructor(props) {
         super(props);
 
@@ -144,15 +142,15 @@ export class DatePickerCalendar extends Component {
 
                 {buttonClear === true || _.isFunction(onApplyClick) ? (
                     <Grid columns={2} style={{ marginTop: '11px' }} verticalAlign="middle">
-                        <GridRow>
+                        <Grid.Row>
                             {buttonClear === true && dateStart || dateSecondaryStart ? (
-                                <GridColumn floated="left">
+                                <Grid.Column floated="left">
                                     <a className="font-size-xsmall color-alert" onClick={this._onClearClick.bind(this)}>Clear</a>
-                                </GridColumn>
+                                </Grid.Column>
                             ) : null}
 
                             {_.isFunction(onApplyClick) ? (
-                                <GridColumn floated="right" textAlign="right">
+                                <Grid.Column floated="right" textAlign="right">
                                     <Button
                                         color={
                                             (type === 'singleDate' && date) ||
@@ -169,9 +167,9 @@ export class DatePickerCalendar extends Component {
                                             'Select'
                                         }
                                     </Button>
-                                </GridColumn>
+                                </Grid.Column>
                             ) : null}
-                        </GridRow>
+                        </Grid.Row>
                     </Grid>
                 ) : null}
             </div>

@@ -131,7 +131,7 @@ class DatePickerInput extends Component {
         } else if (uxMode === 'calendar') {
             return (
                 <Grid columns={2} style={{ marginBottom: '5px', marginTop: '7px' }}>
-                    <GridColumn>
+                    <Grid.Column>
                         <Input
                             autoComplete="off"
                             className={containerClasses}
@@ -153,9 +153,9 @@ class DatePickerInput extends Component {
                             type="text"
                             value={this.state.maybeDateRange.dateStart}
                         />
-                    </GridColumn>
+                    </Grid.Column>
 
-                    <GridColumn>
+                    <Grid.Column>
                         <Input
                             autoComplete="off"
                             className={containerClasses}
@@ -177,7 +177,7 @@ class DatePickerInput extends Component {
                             type="text"
                             value={this.state.maybeDateRange.dateEnd}
                         />
-                    </GridColumn>
+                    </Grid.Column>
                 </Grid>
             );
         }

@@ -2,7 +2,7 @@
 
 import moment from 'moment-timezone';
 import React from 'react';
-import { Card, DatePicker, Header, TitleBar } from 'react';
+import { Card, DatePicker, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';

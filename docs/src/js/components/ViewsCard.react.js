@@ -67,18 +67,18 @@ export default class CompactSample extends React.Component {
         return (
             <Card compact={true} nest={true}>
                 <Grid stressed={true}>
-                    <GridRow>
-                        <GridColumn style={{ padding: 0, width: '44px' }}>
+                    <Grid.Row>
+                        <Grid.Column style={{ padding: 0, width: '44px' }}>
                             <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </GridColumn>
+                        </Grid.Column>
 
-                        <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                             <Header size="small" sub={true}>
                                 A Title
                                 <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                             </Header>
-                        </GridColumn>
-                    </GridRow>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Card>
         );
@@ -96,18 +96,18 @@ export default class CardOnClickSample extends React.Component {
         return (
             <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
                 <Grid stressed={true}>
-                    <GridRow>
-                        <GridColumn style={{ padding: 0, width: '44px' }}>
+                    <Grid.Row>
+                        <Grid.Column style={{ padding: 0, width: '44px' }}>
                             <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </GridColumn>
+                        </Grid.Column>
 
-                        <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                             <Header size="small" sub={true}>
                                 A Title
                                 <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                             </Header>
-                        </GridColumn>
-                    </GridRow>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Card>
         );
@@ -125,18 +125,18 @@ export default class ActiveSample extends React.Component {
         return (
             <Card active={true} compact={true} nest={true}>
                 <Grid stressed={true}>
-                    <GridRow>
-                        <GridColumn style={{ padding: 0, width: '44px' }}>
+                    <Grid.Row>
+                        <Grid.Column style={{ padding: 0, width: '44px' }}>
                             <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </GridColumn>
+                        </Grid.Column>
 
-                        <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                             <Header size="small" sub={true}>
                                 A Title
                                 <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                             </Header>
-                        </GridColumn>
-                    </GridRow>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Card>
         );
@@ -270,18 +270,18 @@ export default class ViewsTitleBar extends React.Component {
                 >
                     <Card compact={true} nest={true}>
                         <Grid stressed={true}>
-                            <GridRow>
-                                <GridColumn style={{ padding: 0, width: '44px' }}>
+                            <Grid.Row>
+                                <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                                </GridColumn>
+                                </Grid.Column>
 
-                                <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                                <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                                     <Header size="small" sub={true}>
                                         A Title
                                         <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                     </Header>
-                                </GridColumn>
-                            </GridRow>
+                                </Grid.Column>
+                            </Grid.Row>
                         </Grid>
                     </Card>
                 </Block>
@@ -304,18 +304,18 @@ export default class ViewsTitleBar extends React.Component {
                 >
                     <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
                         <Grid stressed={true}>
-                            <GridRow>
-                                <GridColumn style={{ padding: 0, width: '44px' }}>
+                            <Grid.Row>
+                                <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                                </GridColumn>
+                                </Grid.Column>
 
-                                <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                                <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                                     <Header size="small" sub={true}>
                                         A Title
                                         <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                     </Header>
-                                </GridColumn>
-                            </GridRow>
+                                </Grid.Column>
+                            </Grid.Row>
                         </Grid>
                     </Card>
                 </Block>
@@ -338,18 +338,18 @@ export default class ViewsTitleBar extends React.Component {
                 >
                     <Card active={true} compact={true} nest={true}>
                         <Grid stressed={true}>
-                            <GridRow>
-                                <GridColumn style={{ padding: 0, width: '44px' }}>
+                            <Grid.Row>
+                                <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                                </GridColumn>
+                                </Grid.Column>
 
-                                <GridColumn style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                                <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                                     <Header size="small" sub={true}>
                                         A Title
                                         <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                     </Header>
-                                </GridColumn>
-                            </GridRow>
+                                </Grid.Column>
+                            </Grid.Row>
                         </Grid>
                     </Card>
                 </Block>

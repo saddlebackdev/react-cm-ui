@@ -19,13 +19,13 @@ export default class TabsSample extends React.Component {
     render() {
         return (
             <Tabs>
-                <TabsItem label="Tab 1">
+                <Tabs.Item label="Tab 1">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                </TabsItem>
+                </Tabs.Item>
 
-                <TabsItem label="Tab 2">
+                <Tabs.Item label="Tab 2">
                     <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                </TabsItem>
+                </Tabs.Item>
             </Tabs>
         );
     }
@@ -42,13 +42,13 @@ export default class NestSample extends React.Component {
     render() {
         return (
             <Tabs nest={true}>
-                <TabsItem label="Tab 1">
+                <Tabs.Item label="Tab 1">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                </TabsItem>
+                </Tabs.Item>
 
-                <TabsItem label="Tab 2">
+                <Tabs.Item label="Tab 2">
                     <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                </TabsItem>
+                </Tabs.Item>
             </Tabs>
         );
     }
@@ -117,13 +117,13 @@ export default class CollectionsTabs extends React.Component {
                 </Header>
 
                 <Tabs>
-                    <TabsItem label="Tab 1">
+                    <Tabs.Item label="Tab 1">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                    </TabsItem>
+                    </Tabs.Item>
 
-                    <TabsItem label="Tab 2">
+                    <Tabs.Item label="Tab 2">
                         <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                    </TabsItem>
+                    </Tabs.Item>
                 </Tabs>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -143,13 +143,13 @@ export default class CollectionsTabs extends React.Component {
                     style={{ padding: '22px' }}
                 >
                     <Tabs nest={true}>
-                        <TabsItem label="Tab 1">
+                        <Tabs.Item label="Tab 1">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                        </TabsItem>
+                        </Tabs.Item>
 
-                        <TabsItem label="Tab 2">
+                        <Tabs.Item label="Tab 2">
                             <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                        </TabsItem>
+                        </Tabs.Item>
                     </Tabs>
                 </Block>
 

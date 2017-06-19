@@ -415,7 +415,7 @@ export default class ItemIconSample extends React.Component {
 
 }`;
 
-export class SelectionCustomComponent extends React.Component {
+class SelectionCustomComponent extends React.Component {
 
     render() {
         const { option } = this.props;
@@ -856,7 +856,7 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
                     </Dropdown><br /><br />
-
+                    
                     <Dropdown
                         disable={true}
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}

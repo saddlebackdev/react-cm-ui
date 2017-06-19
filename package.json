@@ -27,7 +27,7 @@
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "npm run docs:prod",
-    "compile": "babel src/ -d lib/ && cp -r src/scss lib/scss",
+    "compile": "rm -rf lib && node-sass src/scss/style.scss -o lib/style && babel src/ -d lib/",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",

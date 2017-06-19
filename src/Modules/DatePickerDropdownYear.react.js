@@ -9,7 +9,7 @@ import ScrollBar from 'react-custom-scrollbars';
 
 import DOMUtils from '../utils/DOMUtils.js';
 
-export class DatePickerDropdownYear extends Component {
+class DatePickerDropdownYear extends Component {
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-dropdown-year');
 
