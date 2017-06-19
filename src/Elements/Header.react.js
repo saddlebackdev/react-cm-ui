@@ -3,11 +3,10 @@
 import ClassNames from 'classnames';
 import React, { Component } from 'react';
 
-import Icon from 'Elements/Icon.react';
+import Icon from './Icon.react';
+import HeaderSubheader from './HeaderSubheader.react';
 
-import HeaderSubheader from 'Elements/HeaderSubheader.react';
-
-import Utils from 'utils/Utils.js';
+import Utils from '../utils/Utils.js';
 
 class Header extends Component {
 
