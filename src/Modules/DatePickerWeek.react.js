@@ -1,13 +1,11 @@
 'use strict';
 
-import 'components/UI/Modules/DatePickerWeek.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import DatePickerDay from 'components/UI/Modules/DatePickerDay.react';
+import DatePickerDay from './DatePickerDay.react';
 
-export default class DatePickerWeek extends React.Component {
+class DatePickerWeek extends Component {
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-week');
 
@@ -74,3 +72,5 @@ DatePickerWeek.propTypes = {
     type: React.PropTypes.string,
     uxMode: React.PropTypes.string
 };
+
+export default DatePickerWeek;

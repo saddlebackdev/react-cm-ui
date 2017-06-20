@@ -3,17 +3,17 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Grid from 'components/UI/Collections/Grid.react';
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import Input from 'components/UI/Elements/Input.react';
+import Grid from '../Collections/Grid.react';
+import GridColumn from '../Collections/GridColumn.react';
+import Icon from '../Elements/Icon.react';
+import Input from '../Elements/Input.react';
 
-import DatePickerUtils from 'utils/UI/DatePickerUtils.js';
-import DateUtils from 'utils/UI/DateUtils.js';
+import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DateUtils from '../utils/DateUtils.js';
 
-export default class DatePickerInput extends React.Component {
+class DatePickerInput extends Component {
 
     constructor(props) {
         super(props);
@@ -131,7 +131,7 @@ export default class DatePickerInput extends React.Component {
         } else if (uxMode === 'calendar') {
             return (
                 <Grid columns={2} style={{ marginBottom: '5px', marginTop: '7px' }}>
-                    <GridColumn>
+                    <Grid.Column>
                         <Input
                             autoComplete="off"
                             className={containerClasses}
@@ -153,9 +153,9 @@ export default class DatePickerInput extends React.Component {
                             type="text"
                             value={this.state.maybeDateRange.dateStart}
                         />
-                    </GridColumn>
+                    </Grid.Column>
 
-                    <GridColumn>
+                    <Grid.Column>
                         <Input
                             autoComplete="off"
                             className={containerClasses}
@@ -177,7 +177,7 @@ export default class DatePickerInput extends React.Component {
                             type="text"
                             value={this.state.maybeDateRange.dateEnd}
                         />
-                    </GridColumn>
+                    </Grid.Column>
                 </Grid>
             );
         }
@@ -344,3 +344,5 @@ DatePickerInput.propTypes = {
     type: React.PropTypes.string,
     uxMode: React.PropTypes.string
 };
+
+export default DatePickerInput;

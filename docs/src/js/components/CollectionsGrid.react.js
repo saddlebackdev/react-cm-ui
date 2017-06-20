@@ -1,18 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Card, Grid, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Grid from 'components/UI/Collections/Grid.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const gridSample = `import React from 'react';
 
@@ -691,9 +685,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Grid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Grid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic grid.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid>
@@ -753,9 +747,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Grid Columns */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Grid Columns
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid can reset the default width of columns.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={6}>
@@ -791,9 +785,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Rows */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Rows
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid can have multiple defined rows.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={8}>
@@ -857,9 +851,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Row Columns */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Row Columns
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid row can reset the default width of columns.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={3}>
@@ -907,9 +901,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Columns */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Columns
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid column can specify it's own width.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid>
@@ -943,9 +937,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Relaxed */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Relaxed
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid can increase its gutters to allow for more negative space.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={6} relaxed={true}>
@@ -981,9 +975,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Stressed */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Stressed
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid can remove its gutters.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={6} stressed={true}>
@@ -1019,9 +1013,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Floated */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Floated
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A column can sit against the left or right side of a row.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid>
@@ -1047,9 +1041,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Horizontal Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Horizontal Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid or row can specify the horizontal alignment of the columns.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid horizontalAlign="right">
@@ -1139,9 +1133,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Vertical Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Vertical Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid or row can specify the vertical alignment of the columns.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid verticalAlign="middle">
@@ -1205,9 +1199,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Text Align */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Text Align
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A grid, row, or column can specify its text alignement.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid columns={3} textAlign="left">
@@ -1247,9 +1241,9 @@ export default class CollectionsGrid extends React.Component {
                 {/* Responsive Width */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Responsive Width
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A column can specify a width for a specific device.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Grid>

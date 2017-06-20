@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Loader, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Loader from 'components/UI/Elements/Loader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const fooSample = `import React from 'react';
 
@@ -68,9 +62,9 @@ export default class ElementsButton extends React.Component {
                 {/* Loader */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Loader
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard loader. To be used to alert the user that something is happening.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Loader />
@@ -82,9 +76,9 @@ export default class ElementsButton extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Loader's container can take on the size of its parent container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block style={{ maxWidth: '450px' }}>

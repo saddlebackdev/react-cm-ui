@@ -1,20 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Icon, Input, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import Input from 'components/UI/Elements/Input.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const inputSample = `import React from 'react';
 
@@ -520,9 +513,9 @@ export default class ElementsButton extends React.Component {
                 {/* Input */}
                 <Header anchor="input" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Input
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard input is text input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input />
@@ -534,9 +527,9 @@ export default class ElementsButton extends React.Component {
                 {/* Auto Complete */}
                 <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Auto Complete
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates whether the value of the control can be automatically completed by the browser.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input autoComplete="off" />
@@ -548,9 +541,9 @@ export default class ElementsButton extends React.Component {
                 {/* Disabled */}
                 <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates that the input is not available for interaction.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input disabled={true} value="So cool!" />
@@ -562,9 +555,9 @@ export default class ElementsButton extends React.Component {
                 {/* Error */}
                 <Header anchor="error" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Error
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates that the input has an error. You can either supply a boolean value or a string with a message.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input error={true} value="No, you did it wrong!" /><br /><br />
@@ -578,9 +571,9 @@ export default class ElementsButton extends React.Component {
                 {/* Fluid */}
                 <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         An input can take on the size of its container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input fluid={true} value="I'm totally the longest string you have ever seen. Ship it!" />
@@ -592,9 +585,9 @@ export default class ElementsButton extends React.Component {
                 {/* Icon */}
                 <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Icon
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         An input can be formatted with an icon. You can either supply a string or add a custom icon by passing a node.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input icon="calendar" /><br /><br />
@@ -612,9 +605,9 @@ export default class ElementsButton extends React.Component {
                 {/* Inverse */}
                 <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Inverse
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Format to appear on dark backgrounds.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true}>
@@ -628,9 +621,9 @@ export default class ElementsButton extends React.Component {
                 {/* Label */}
                 <Header anchor="label" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Label
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Optional Label to display on top of the Input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Name" />
@@ -642,9 +635,9 @@ export default class ElementsButton extends React.Component {
                 {/* Loading */}
                 <Header anchor="loading" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Loading
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         An icon input field can show that it is currently loading data.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input icon="search" label="Search" loading={true} />
@@ -656,9 +649,9 @@ export default class ElementsButton extends React.Component {
                 {/* Max Length */}
                 <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Max Length
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Maximum Characters Is 2" maxLength={2} />
@@ -670,9 +663,9 @@ export default class ElementsButton extends React.Component {
                 {/* Min Length */}
                 <Header anchor="min-length" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Min Length
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Minimum Characters Is 2" maxLength={2} />
@@ -684,9 +677,9 @@ export default class ElementsButton extends React.Component {
                 {/* onBlur Event Handler */}
                 <Header anchor="onblur" size="large" style={{ marginTop: '55px' }} sub={true}>
                     onBlur Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onBlur</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Check It!" onBlur={this._onBlur.bind(this)} />
@@ -698,9 +691,9 @@ export default class ElementsButton extends React.Component {
                 {/* onChange Event Handler */}
                 <Header anchor="onchange" size="large" style={{ marginTop: '55px' }} sub={true}>
                     onChange Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Check It!" onChange={this._onChange.bind(this)} value={this.state.onChangeValue} />
@@ -712,9 +705,9 @@ export default class ElementsButton extends React.Component {
                 {/* onClick Event Handler */}
                 <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onClick</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Check It!" onClick={this._onClick.bind(this)} />
@@ -726,9 +719,9 @@ export default class ElementsButton extends React.Component {
                 {/* onFocus Event Handler */}
                 <Header anchor="onfocus" size="large" style={{ marginTop: '55px' }} sub={true}>
                     onFocus Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onFocus</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Check It!" onFocus={this._onFocus.bind(this)} />
@@ -740,9 +733,9 @@ export default class ElementsButton extends React.Component {
                 {/* onKeyDown Event Handler */}
                 <Header anchor="onkeydown" size="large" style={{ marginTop: '55px' }} sub={true}>
                     onKeyDown Event Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an <code>onKeyDown</code> event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Check It!" onKeyDown={this._onKeyDown.bind(this)} />
@@ -754,9 +747,9 @@ export default class ElementsButton extends React.Component {
                 {/* Placeholder */}
                 <Header anchor="placeholder" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Placeholder
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A hint to the user of what can be entered in the input.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Name" placeholder="First & Last Name" />
@@ -768,9 +761,9 @@ export default class ElementsButton extends React.Component {
                 {/* Required */}
                 <Header anchor="required" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Required
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Name" placeholder="First & Last Name" required={true} />
@@ -782,9 +775,9 @@ export default class ElementsButton extends React.Component {
                 {/* Type */}
                 <Header anchor="type" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Type
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         The HTML input type.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input label="Email" type="email" /><br /><br />
@@ -800,9 +793,9 @@ export default class ElementsButton extends React.Component {
                 {/* Mask */}
                 <Header anchor="mask" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Mask
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Is an array that defines how the user input is going to be masked.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Input

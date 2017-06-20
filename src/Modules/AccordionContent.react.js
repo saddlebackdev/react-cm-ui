@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AccordionContent extends React.Component {
+class AccordionContent extends Component {
 
     render() {
         return (
@@ -16,3 +16,5 @@ export default class AccordionContent extends React.Component {
 AccordionContent.propTypes = {
     style: React.PropTypes.object
 };
+
+export default AccordionContent;

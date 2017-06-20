@@ -4,23 +4,17 @@ import 'components/UI/TableProps.scss';
 
 import _ from 'lodash';
 import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import { Table } from 'react-cm-ui';
 
 export default class TableProps extends React.Component {
 
     render() {
 
-        let tableRowKey = 1;
-        let tableRows = _.map(this.props.props, (p, i) => {
+        let TableRowKey = 1;
+        let TableRows = _.map(this.props.props, (p, i) => {
             return (
-                <TableRow key={`table-props-row-key${tableRowKey++}`}>
-                    <TableCell className="table-cell-name">
+                <Table.Row key={`table-props-row-key${TableRowKey++}`}>
+                    <Table.Cell className="table-cell-name">
                         <code>{p.name}</code>
 
                         <dl className="mobile-info">
@@ -47,18 +41,18 @@ export default class TableProps extends React.Component {
                                 ) : null}
                             </dd>
                         </dl>
-                    </TableCell>
-                    <TableCell width={false} laptop={true}>{p.type}</TableCell>
-                    <TableCell width={false} laptop={true}>{p.default}</TableCell>
-                    <TableCell width={false} laptop={true}>
+                    </Table.Cell>
+                    <Table.Cell width={false} laptop={true}>{p.type}</Table.Cell>
+                    <Table.Cell width={false} laptop={true}>{p.default}</Table.Cell>
+                    <Table.Cell width={false} laptop={true}>
                         <p>{p.description}</p>
                         {p.allowedTypes ? (
                             <p className="allowed-types">
                                 <span className="type">{`${p.type}s:`}</span> {p.allowedTypes}
                             </p>
                         ) : null}
-                    </TableCell>
-                </TableRow>
+                    </Table.Cell>
+                </Table.Row>
             );
         });
 
@@ -69,18 +63,18 @@ export default class TableProps extends React.Component {
         return (
             <div className="table-props">
                 <Table basic={true} fontSize="xsmall" stretch="very" style={newStyle}>
-                    <TableHeader width={false} laptop={true}>
-                        <TableRow>
-                            <TableHeaderCell>Name</TableHeaderCell>
-                            <TableHeaderCell>Type</TableHeaderCell>
-                            <TableHeaderCell>Default</TableHeaderCell>
-                            <TableHeaderCell>Description</TableHeaderCell>
-                        </TableRow>
-                    </TableHeader>
+                    <Table.Header width={false} laptop={true}>
+                        <Table.Row>
+                            <Table.HeaderCell>Name</Table.HeaderCell>
+                            <Table.HeaderCell>Type</Table.HeaderCell>
+                            <Table.HeaderCell>Default</Table.HeaderCell>
+                            <Table.HeaderCell>Description</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                    <TableBody>
-                        {tableRows}
-                    </TableBody>
+                    <Table.Body>
+                        {TableRows}
+                    </Table.Body>
                 </Table>
             </div>
         );

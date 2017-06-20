@@ -6,11 +6,7 @@ import _ from 'lodash';
 import { Link } from 'react-router';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-
-// Docs UI Components
-import Header from 'components/UI/Elements/Header.react';
-
-import DOMUtils from 'utils/UI/DOMUtils.js';
+import { DOMUtils, Header } from 'react-cm-ui';
 
 export default class CoreAppNavigation extends React.Component {
 
@@ -214,11 +210,11 @@ export default class CoreAppNavigation extends React.Component {
 
     _toggleNavigation(event) {
         const isCoreAppNav = this.refs.coreAppNav.contains(event.target);
-        const isPushedRight = DOMUtils.hasClass(document.body, 'pushed-right');
+        const isPushedRight = DOMUtils.hasClassName(document.body, 'pushed-right');
 
         if (
-            DOMUtils.hasClass(event.target, 'button-menu') ||
-            isPushedRight && isCoreAppNav && !DOMUtils.hasClass(event.target, 'core-app-nav-item') ||
+            DOMUtils.hasClassName(event.target, 'button-menu') ||
+            isPushedRight && isCoreAppNav && !DOMUtils.hasClassName(event.target, 'core-app-nav-item') ||
             !isPushedRight && !isCoreAppNav
         ) {
             return;

@@ -1,11 +1,11 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class GridColumn extends React.Component {
+class GridColumn extends Component {
 
     render() {
         const { align, className, desktop, desktopLarge,
@@ -16,14 +16,14 @@ export default class GridColumn extends React.Component {
         const containerClasses = ClassNames(
             'ui',
             'grid-col',
-            _.isNumber(width) ? `${colPrefix}-${UIUtils.numberToWord(width)}` : width === 'auto' ? `${colPrefix}-auto` : null,
-            _.isNumber(mobile) ? `${colPrefix}-mobile-${UIUtils.numberToWord(mobile)}` : mobile === 'auto' ? `${colPrefix}-mobile-auto` : null,
-            _.isNumber(mobileMedium) ? `${colPrefix}-mobile-medium-${UIUtils.numberToWord(mobileMedium)}` : mobileMedium === 'auto' ? `${colPrefix}-mobile-medium-auto` : null,
-            _.isNumber(mobileLarge) ? `${colPrefix}-mobile-large-${UIUtils.numberToWord(mobileLarge)}` : mobileLarge === 'auto' ? `${colPrefix}-mobile-large-auto` : null,
-            _.isNumber(tablet) ? `${colPrefix}-tablet-${UIUtils.numberToWord(tablet)}` : tablet === 'auto' ? `${colPrefix}-tablet-auto` : null,
-            _.isNumber(laptop) ? `${colPrefix}-laptop-${UIUtils.numberToWord(laptop)}` : laptop === 'auto' ? `${colPrefix}-laptop-auto` : null,
-            _.isNumber(desktop) ? `${colPrefix}-desktop-${UIUtils.numberToWord(desktop)}` : desktop === 'auto' ? `${colPrefix}-desktop-auto` : null,
-            _.isNumber(desktopLarge) ? `${colPrefix}-desktop-${UIUtils.numberToWord(desktopLarge)}` : desktopLarge === 'auto' ? `${colPrefix}-desktop-auto` : null, {
+            _.isNumber(width) ? `${colPrefix}-${Utils.numberToWord(width)}` : width === 'auto' ? `${colPrefix}-auto` : null,
+            _.isNumber(mobile) ? `${colPrefix}-mobile-${Utils.numberToWord(mobile)}` : mobile === 'auto' ? `${colPrefix}-mobile-auto` : null,
+            _.isNumber(mobileMedium) ? `${colPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}` : mobileMedium === 'auto' ? `${colPrefix}-mobile-medium-auto` : null,
+            _.isNumber(mobileLarge) ? `${colPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}` : mobileLarge === 'auto' ? `${colPrefix}-mobile-large-auto` : null,
+            _.isNumber(tablet) ? `${colPrefix}-tablet-${Utils.numberToWord(tablet)}` : tablet === 'auto' ? `${colPrefix}-tablet-auto` : null,
+            _.isNumber(laptop) ? `${colPrefix}-laptop-${Utils.numberToWord(laptop)}` : laptop === 'auto' ? `${colPrefix}-laptop-auto` : null,
+            _.isNumber(desktop) ? `${colPrefix}-desktop-${Utils.numberToWord(desktop)}` : desktop === 'auto' ? `${colPrefix}-desktop-auto` : null,
+            _.isNumber(desktopLarge) ? `${colPrefix}-desktop-${Utils.numberToWord(desktopLarge)}` : desktopLarge === 'auto' ? `${colPrefix}-desktop-auto` : null, {
                 'grid-col-floated-left': floated === 'left',
                 'grid-col-floated-right': floated === 'right',
                 'grid-col-align-stretch': align === 'stretch',
@@ -70,3 +70,5 @@ GridColumn.propTypes = {
     verticalAlign: React.PropTypes.oneOf(verticalAlignEnums),
     width: React.PropTypes.oneOf(columnEnums)
 };
+
+export default GridColumn;

@@ -2,14 +2,14 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Button from 'components/UI/Elements/Button.react';
-import Divider from 'components/UI/Elements/Divider.react';
-import Header from 'components/UI/Elements/Header.react';
-import Icon from 'components/UI/Elements/Icon.react';
+import Button from '../Elements/Button.react';
+import Divider from '../Elements/Divider.react';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
 
-export default class DrawerHeader extends React.Component {
+class DrawerHeader extends Component {
 
     render() {
         const { children, closeButton, inverse, title, titleTruncate } = this.props;
@@ -59,3 +59,5 @@ DrawerHeader.propTypes = {
     title: React.PropTypes.string,
     titleTruncate: React.PropTypes.bool
 };
+
+export default DrawerHeader;

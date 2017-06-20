@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class SubNavigationItem extends React.Component {
+class SubNavigationItem extends Component {
 
     render() {
         return (
@@ -19,3 +19,5 @@ SubNavigationItem.propTypes = {
     onClick: React.PropTypes.func,
     style: React.PropTypes.object
 };
+
+export default SubNavigationItem;

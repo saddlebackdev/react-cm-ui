@@ -1,17 +1,15 @@
 'use strict';
 
-import 'components/UI/Modules/DatePickerDropdownYear.scss';
-
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DOMUtils from 'utils/UI/DOMUtils.js';
+import DOMUtils from '../utils/DOMUtils.js';
 
-export class DatePickerDropdownYear extends React.Component {
+class DatePickerDropdownYear extends Component {
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-dropdown-year');
 
@@ -76,11 +74,11 @@ export class DatePickerDropdownYear extends React.Component {
     }
 }
 
-export default onClickOutside(DatePickerDropdownYear);
-
 DatePickerDropdownYear.propTypes = {
     maxDate: React.PropTypes.object,
     onChange: React.PropTypes.func.isRequired,
     onClose: React.PropTypes.func.isRequired,
     year: React.PropTypes.number.isRequired
 };
+
+export default onClickOutside(DatePickerDropdownYear);

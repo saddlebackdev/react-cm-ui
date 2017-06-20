@@ -1,21 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Button, Card, Drawer, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Button from 'components/UI/Elements/Button.react';
-import Card from 'components/UI/Views/Card.react';
-import Drawer from 'components/UI/Modules/Drawer.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import SubNavigation from 'components/UI/Views/SubNavigation.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const drawerSample = `import React from 'react';
 
@@ -455,9 +446,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Drawer */}
                 <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Drawer
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic drawer.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
@@ -483,9 +474,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Close Button */}
                 <Header anchor="close-button" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Close Button
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Drawer's close button can be changed using a string or giving custom JSX.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onCloseButtonDrawerClick.bind(this)}>A Chevron-WH-Right Close Button</Button><br /><br />
@@ -526,9 +517,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Header */}
                 <Header anchor="header" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Drawer can be closed when click outside of it's container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onDrawerHeaderClick.bind(this)}>Open The Drawer</Button>
@@ -575,9 +566,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Inverse */}
                 <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Inverse
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Drawer can be inversed..
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onDrawerInverseClick.bind(this)}>Open The Inversed Drawer</Button>
@@ -614,9 +605,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Max Width */}
                 <Header anchor="max-width" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Max Width
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Drawer's max width can be defined and overwritten.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
@@ -646,9 +637,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* On Click Outside */}
                 <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub={true}>
                     On Click Outside
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Drawer can be closed when click outside of it's container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onClickOutsideDrawerClick.bind(this)}>Open The Drawer</Button>
@@ -671,9 +662,9 @@ export default class ModulesDrawer extends React.Component {
                 {/* Path */}
                 <Header anchor="path" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Path
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Route to a different path from a drawer.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onPathDrawerClick.bind(this)}>Open The Basic Drawer</Button>

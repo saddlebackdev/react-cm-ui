@@ -1,15 +1,9 @@
 'use strict';
 
 import _ from 'lodash';
-import jstz from 'jstimezonedetect';
 import moment from 'moment-timezone';
 
-export default class DateUtils {
-
-    static getDetectedTimeZone() {
-        let tz = jstz.determine().name();
-        return tz;
-    }
+class DateUtils {
 
     static formatWithTz(data, userTimeZoneId) {
         let timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
@@ -192,3 +186,5 @@ export default class DateUtils {
         return moment.unix(date).utc().tz(timeZoneId);
     }
 }
+
+export default DateUtils;

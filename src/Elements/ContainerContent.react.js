@@ -1,18 +1,18 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class ContainerContent extends React.Component {
+class ContainerContent extends Component {
 
     render() {
         const { as, className, maxWidth, style } = this.props;
         const containerClasses = ClassNames('container-content', className, {
             'container-content-max-width-laptop': maxWidth === 'laptop'
         });
-        const ElementType = UIUtils.getElementType(as || 'section', this.props);
+        const ElementType = Utils.getElementType(as || 'section', this.props);
         const containerStyle = _.merge(style, {
             maxWidth: _.isNumber(maxWidth) ? maxWidth : null
         });
@@ -37,3 +37,5 @@ ContainerContent.propTypes = {
     ]),
     style: React.PropTypes.object
 };
+
+export default ContainerContent;

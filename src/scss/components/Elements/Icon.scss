@@ -1,0 +1,44 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+
+.ui.icon {
+    display: inline-block;
+    margin-right: 11px;
+    text-align: center;
+    transition:
+        color 150ms ease-out,
+        transform 150ms ease-out;
+    &-align-left { margin-right: 11px; }
+    &-align-right { margin-left: 11px; margin-right: 0; }
+    &-clickable { cursor: pointer; }
+    &-color {
+        &-alert { color: $color-text-alert; }
+        &-highlight { color: $color-text-highlight; }
+        &-primary { color: $color-text; }
+        &-static { color: $color-text-static; }
+        &-success { color: $color-text-success; }
+    }
+    &-inverse {
+        &.icon-color-alert { color: $color-text-alert; }
+        &.icon-color-warning { color: $color-text-alert; }
+        &.icon-color-highlight { color: $color-text-highlight; }
+        &.icon-color-primary { color: $color-text-inverse; }
+        &.icon-color-static { color: $color-text-static; }
+        &.icon-color-success { color: $color-text-success; }
+    }
+    &-compact { margin: 0; }
+    &.icon-disable { color: $color-text-disable; cursor: default; }
+    &-size- {
+        &xlarge { font-size: rem(24px); }
+        &large { font-size: rem(20px); }
+        &medium { font-size: rem(18px); }
+        &small { font-size: rem(14px); }
+        &xsmall { font-size: rem(12px); }
+        &xxsmall { font-size: rem(10px); }
+    }
+    &-spin { animation: 1500ms infinite spin linear; line-height: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+}

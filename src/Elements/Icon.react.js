@@ -1,14 +1,12 @@
 'use strict';
 
-import 'components/UI/Elements/Icon.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Icon extends React.Component {
+class Icon extends Component {
 
     render() {
         const { align, color, compact, disable, id, inverse, onClick, rotate, size, spin, style, type } = this.props;
@@ -56,15 +54,17 @@ const alignEnums = [ 'left', 'right' ];
 Icon.propTypes = {
     align: React.PropTypes.oneOf(alignEnums),
     className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    color: React.PropTypes.oneOf(Utils.colorEnums()),
     compact: React.PropTypes.bool,
     disable: React.PropTypes.bool,
     id: React.PropTypes.string,
     inverse: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     rotate: React.PropTypes.number,
-    size: React.PropTypes.oneOf(UIUtils.sizeEnums()),
+    size: React.PropTypes.oneOf(Utils.sizeEnums()),
     spin: React.PropTypes.bool,
     style: React.PropTypes.object,
     type: React.PropTypes.string.isRequired
 };
+
+export default Icon;

@@ -1,13 +1,11 @@
 'use strict';
 
-import 'components/UI/Views/SubNavigation.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import SubNavigationItem from 'components/UI/Views/SubNavigationItem.react';
+import SubNavigationItem from './SubNavigationItem.react';
 
-export default class SubNavigation extends React.Component {
+class SubNavigation extends Component {
 
     constructor(props) {
         super(props);
@@ -83,3 +81,5 @@ SubNavigation.propTypes = {
     selected: React.PropTypes.number,
     style: React.PropTypes.object
 };
+
+export default SubNavigation;

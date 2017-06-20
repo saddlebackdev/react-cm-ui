@@ -1,12 +1,10 @@
 'use strict';
 
-import 'components/UI/Elements/Radio.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Radio extends React.Component {
+class Radio extends Component {
 
     constructor(props) {
         super(props);
@@ -97,3 +95,5 @@ Radio.propTypes = {
     style: React.PropTypes.object,
     value: React.PropTypes.string
 }
+
+export default Radio;

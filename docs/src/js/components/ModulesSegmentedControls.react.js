@@ -1,18 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, SegmentedControls, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import SegmentedControls from 'components/UI/Modules/SegmentedControls.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const basicSample = `import React from 'react';
 
@@ -186,9 +180,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* Segmented Controls */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Segmented Controls
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Basic segmented controls with labels.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls>
@@ -203,9 +197,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* Icons */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Icons
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A segmented control can have an icon either along with a label or by itself.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls>
@@ -227,9 +221,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Segmented controls can take on the size of its container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls fluid={true}>
@@ -245,9 +239,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* Selected */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Selected
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Change the default selected button.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls selected={this.state.selected}>
@@ -263,9 +257,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* onClick Parent Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Parent Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an onClick event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
@@ -280,9 +274,9 @@ export default class CollectionsSegmentedControls extends React.Component {
                 {/* onClick Children Handler */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     onClick Children Handler
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Can handle an onClick event from parent.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <SegmentedControls>

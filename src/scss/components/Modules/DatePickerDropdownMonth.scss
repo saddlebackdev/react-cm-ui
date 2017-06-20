@@ -1,0 +1,43 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+
+.ui.date-picker-dropdown-month {
+    align-items: flex-start;
+    background-color: $bkgd;
+    border: 1px solid $border;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .06);
+    display: flex;
+    height: 223px;
+    justify-content: flex-start;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    z-index: 10;
+    ul {
+        flex: 1 0 auto;
+        list-style: none;
+        margin: 0;
+        padding: 5px 0;
+        width: 109px;
+    }
+        li {
+            margin: 7px 0 0;
+            &:last-child { margin-bottom: 7px; }
+        }
+            a {
+                color: $color-text;
+                display: block;
+                font-size: rem(14px);
+                font-weight: $default-font-weight-semibold;
+                padding: 4px 22px;
+                text-align: left;
+                transition: color 150ms ease-out;
+            }
+            .date-picker-month-option-is-selected a, a:hover { color: $color-text-highlight; }
+            ul {
+                &:first-child a { padding-right: 11px; }
+                &:last-child a { padding-left: 11px; }
+            }
+}

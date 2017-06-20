@@ -1,0 +1,65 @@
+@import '../../config/Colors', '../../config/FontsizeCalculator';
+
+$border-radius: 3px 0 0 3px;
+$top: 88px;
+
+.ui.banner {
+    backface-visibility: hidden;
+    height: 100%;
+    left: 0;
+    min-width: 320px;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .banner-container {
+        align-items: flex-start;
+        animation: slideInDrawer 150ms ease-out forwards;
+        backface-visibility: hidden;
+        border-radius: $border-radius;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.43);
+        color: $color-text-inverse;
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        pointer-events: auto;
+        position: absolute;
+        right: 0;
+        top: $top;
+        transition: top 150ms ease-out;
+        width: 282px;
+        .banner-level-type {
+            align-items: center;
+            align-self: stretch;
+            border-radius: $border-radius;
+            display: inline-flex;
+            flex: 0 1 1px;
+            justify-content: center;
+            max-width: 44px;
+            min-width: 44px;
+        }
+        .banner-message-container {
+            align-self: stretch;
+            background-color: $bkgd-inverse;
+            flex: 1 1 auto;
+            padding: 18px 22px;
+        }
+        &.animate-out { animation: slideOutDrawer 333ms forwards; }
+    }
+    &.banner-level- {
+        &error .banner-container { background: $bkgd-alert; }
+        &secondary .banner-container { background: $bkgd-highlight; }
+        &success .banner-container { background: $bkgd-success; }
+        &warning .banner-container { background: $bkgd-warning; }
+    }
+}
+
+@keyframes slideInDrawer {
+    0% { transform: translate(100%, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes slideOutDrawer {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100%, 0); }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-export default class DOMUtils {
+class DOMUtils {
     static addClassName(el, cls) {
         if (!this.hasClassName(el, cls)) {
             el.classList.add(cls);
@@ -13,6 +13,10 @@ export default class DOMUtils {
 
     static removeClassName(el, cls) {
         el.classList.remove(cls);
+    }
+
+    static scrollPos() {
+        return (window.scrollY || window.pageYOffset);
     }
 
     static scrollTo(to, duration, parentEl) {
@@ -55,3 +59,5 @@ export default class DOMUtils {
         }, SCROLL_INCREMENT_MS);
     }
 }
+
+export default DOMUtils;

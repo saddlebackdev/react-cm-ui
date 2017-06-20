@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class SegmentedControlsItem extends React.Component {
+class SegmentedControlsItem extends Component {
 
     render() {
         return (
@@ -19,3 +19,5 @@ SegmentedControlsItem.propTypes = {
     label: React.PropTypes.string,
     onClick: React.PropTypes.func
 };
+
+export default SegmentedControlsItem;

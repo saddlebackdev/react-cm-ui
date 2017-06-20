@@ -1,19 +1,17 @@
 'use strict';
 
-import 'components/UI/Elements/Button.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Button extends React.Component {
+class Button extends Component {
 
     render() {
         const { as, children, className, color, compact, disabled, fluid, href, icon, inverse, style, width } = this.props;
         const newAs = as || 'button';
-        const ElementType = UIUtils.getElementType(newAs, this.props);
+        const ElementType = Utils.getElementType(newAs, this.props);
         const containerClasses = ClassNames('ui', 'button', className, {
             'button-inverse': inverse,
             'button-color-alert': !disabled && color === 'alert',
@@ -61,7 +59,7 @@ Button.propTypes = {
     as: React.PropTypes.oneOf(asEnums),
     circle: React.PropTypes.bool,
     className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    color: React.PropTypes.oneOf(Utils.colorEnums()),
     compact: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
@@ -76,3 +74,5 @@ Button.propTypes = {
         React.PropTypes.string
     ])
 }
+
+export default Button;

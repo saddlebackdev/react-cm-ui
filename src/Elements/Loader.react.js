@@ -1,11 +1,9 @@
 'use strict';
 
-import 'components/UI/Elements/Loader.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Loader extends React.Component {
+class Loader extends Component {
 
     render() {
         const { className, fluid, style } = this.props;
@@ -43,3 +41,5 @@ Loader.propTypes = {
     fluid: React.PropTypes.bool,
     style: React.PropTypes.object
 };
+
+export default Loader;

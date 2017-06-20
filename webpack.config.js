@@ -26,7 +26,7 @@ module.exports = function (env) {
             rules: [
                 {
                     test: /\.js$/,
-                    exclude: [/node_modules/, /vendors/],
+                    exclude: [/node_modules/],
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015', 'react'],
@@ -76,13 +76,15 @@ module.exports = function (env) {
             ],
             modules: [
                 'node_modules',
-                'src',
                 'docs/src',
                 'docs/src/js',
-                'src/js',
                 'docs/src/scss',
-                'src/scss',
-            ]
+                'src',
+            ],
+            alias: {
+                'react-cm-ui': path.resolve(__dirname, 'src'),
+                'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss')
+            }
         },
         plugins: [
             new webpack.LoaderOptionsPlugin({

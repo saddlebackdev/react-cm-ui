@@ -3,15 +3,15 @@
 import _ from 'lodash';
 import MediaQuery from 'react-responsive';
 import onClickOutside from 'react-onclickoutside';
-import React from 'react';
+import React, { Component } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 
-import Button from 'components/UI/Elements/Button.react';
-import Divider from 'components/UI/Elements/Divider.react';
-import Header from 'components/UI/Elements/Header.react';
-import Icon from 'components/UI/Elements/Icon.react';
+import Button from '../Elements/Button.react';
+import Divider from '../Elements/Divider.react';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
 
-export class ModalContainer extends React.Component {
+export class ModalContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -167,8 +167,6 @@ export class ModalContainer extends React.Component {
 
 }
 
-export default onClickOutside(ModalContainer);
-
 ModalContainer.propTypes = {
     closeButton: React.PropTypes.oneOfType([
         React.PropTypes.object,
@@ -203,3 +201,5 @@ ModalContainer.propTypes = {
         React.PropTypes.string
     ])
 };
+
+export default onClickOutside(ModalContainer);

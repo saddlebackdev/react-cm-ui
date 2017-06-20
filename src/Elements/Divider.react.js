@@ -1,13 +1,11 @@
 'use strict';
 
-import 'components/UI/Elements/Divider.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Divider extends React.Component {
+class Divider extends Component {
 
     render() {
         const { className, color, compact, hidden, inverse, relaxed, style } = this.props;
@@ -32,10 +30,12 @@ export default class Divider extends React.Component {
 }
 Divider.propTypes = {
     className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    color: React.PropTypes.oneOf(Utils.colorEnums()),
     compact: React.PropTypes.bool,
     hidden: React.PropTypes.bool,
     inverse: React.PropTypes.bool,
     relaxed: React.PropTypes.bool,
     style: React.PropTypes.object
 };
+
+export default Divider;

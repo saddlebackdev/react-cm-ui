@@ -1,20 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Button, Card, Header, Icon, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Button from 'components/UI/Elements/Button.react';
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const buttonSample = `import React from 'react';
 
@@ -255,9 +248,9 @@ export default class ElementsButton extends React.Component {
                 {/* Button */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Button
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard button.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button>Button</Button>
@@ -269,9 +262,9 @@ export default class ElementsButton extends React.Component {
                 {/* Compact */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Compact
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A button can have reduced padding.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button compact={true}>Compact</Button>
@@ -284,9 +277,9 @@ export default class ElementsButton extends React.Component {
                 {/* Disabled */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disabled
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A disabled Button.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button disabled={true}>Disabled Button</Button>
@@ -298,9 +291,9 @@ export default class ElementsButton extends React.Component {
                 {/* Width */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Width
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A button can have a fixed width.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button width={170}>Fixed Width Number</Button><br /><br />
@@ -313,9 +306,9 @@ export default class ElementsButton extends React.Component {
                 {/* Fluid */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A button can take on the width of the container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button fluid={true}>Fluid Button</Button>
@@ -327,9 +320,9 @@ export default class ElementsButton extends React.Component {
                 {/* Icon */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Icon
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A button can contain an icon.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button icon={true}>
@@ -357,9 +350,9 @@ export default class ElementsButton extends React.Component {
                 {/* Color */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Color
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Buttons can have different colors.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button color="alert">Alert</Button>
@@ -377,9 +370,9 @@ export default class ElementsButton extends React.Component {
                 {/* Color Inverted */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Colors Inverted
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Button colors can be inverted.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true} style={{ marginTop: '33px' }}>

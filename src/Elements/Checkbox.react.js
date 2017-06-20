@@ -1,12 +1,10 @@
 'use strict';
 
-import 'components/UI/Elements/Checkbox.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Checkbox extends React.Component {
+class Checkbox extends Component {
 
     constructor(props) {
         super(props);
@@ -110,3 +108,5 @@ Checkbox.propTypes = {
     toggle: React.PropTypes.bool,
     value: React.PropTypes.string
 }
+
+export default Checkbox;

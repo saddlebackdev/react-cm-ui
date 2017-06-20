@@ -1,18 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Label, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import Label from 'components/UI/Elements/Label.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const labelSample = `import React from 'react';
 

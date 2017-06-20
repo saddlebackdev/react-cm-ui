@@ -1,19 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Banner, Button, Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Banner from 'components/UI/Views/Banner.react';
-import Button from 'components/UI/Elements/Button.react';
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const bannerSample = `import React from 'react';
 
@@ -316,9 +309,9 @@ export default class ViewsBanner extends React.Component {
                 {/* Banner */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Banner
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A standard Banner.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
@@ -361,9 +354,9 @@ export default class ViewsBanner extends React.Component {
                 {/* On After Close */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     On After Close
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         After a Banner's close animation handler.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
@@ -380,9 +373,9 @@ export default class ViewsBanner extends React.Component {
                 {/* Type */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Type
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>

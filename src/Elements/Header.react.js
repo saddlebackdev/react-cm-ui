@@ -1,21 +1,18 @@
 'use strict';
 
-import 'components/UI/Elements/Header.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import Icon from 'components/UI/Elements/Icon.react';
+import Icon from './Icon.react';
+import HeaderSubheader from './HeaderSubheader.react';
 
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
+import Utils from '../utils/Utils.js';
 
-import UIUtils from 'utils/UI/Utils.js';
-
-export default class Header extends React.Component {
+class Header extends Component {
 
     render() {
         const { anchor, as, children, className, color, icon, inverse, size, style, sub, title } = this.props;
-        const ElementType = UIUtils.getElementType(as);
+        const ElementType = Utils.getElementType(as);
         const containerClasses = ClassNames('ui', 'header', className, {
             'header-anchor': anchor,
             'header-color-inverse': inverse,
@@ -94,8 +91,10 @@ Header.propTypes = {
     color: React.PropTypes.oneOf(colorEnums),
     icon: React.PropTypes.bool,
     inverse: React.PropTypes.bool,
-    size: React.PropTypes.oneOf(UIUtils.sizeEnums()),
+    size: React.PropTypes.oneOf(Utils.sizeEnums()),
     style: React.PropTypes.object,
     sub: React.PropTypes.bool,
     title: React.PropTypes.string
 };
+
+export default Header;

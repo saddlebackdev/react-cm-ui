@@ -1,0 +1,11 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+
+.ui.date-picker-week {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    margin: 4px 0;
+    width: 100%;
+    &:last-child { margin-bottom: 0; }
+}

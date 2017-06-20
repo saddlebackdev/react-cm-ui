@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class HeaderSubheader extends React.Component {
+class HeaderSubheader extends Component {
 
     render() {
         return (
@@ -13,3 +13,5 @@ export default class HeaderSubheader extends React.Component {
     }
 
 }
+
+export default HeaderSubheader;

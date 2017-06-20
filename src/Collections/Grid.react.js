@@ -1,23 +1,21 @@
 'use strict';
 
-import 'components/UI/Collections/Grid.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import GridColumn from 'components/UI/Collections/GridColumn.react';
-import GridRow from 'components/UI/Collections/GridRow.react';
+import GridColumn from './GridColumn.react';
+import GridRow from './GridRow.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Grid extends React.Component {
+class Grid extends Component {
 
     render() {
         const { className, columns, horizontalAlign, relaxed, stressed, style, textAlign, verticalAlign } = this.props;
         const containerClasses = ClassNames(
             'ui',
             'grid',
-            columns ? `grid-columns-${UIUtils.numberToWord(columns)}` : null,
+            columns ? `grid-columns-${Utils.numberToWord(columns)}` : null,
             {
                 'grid-relaxed': relaxed,
                 'grid-stressed': stressed,
@@ -60,3 +58,5 @@ Grid.propTypes = {
     textAlign: React.PropTypes.oneOf(xAlignEnums),
     verticalAlign: React.PropTypes.oneOf(yAlignEnums)
 };
+
+export default Grid;

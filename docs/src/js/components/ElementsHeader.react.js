@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, Icon, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const headersSample = `import React from 'react';
 
@@ -64,9 +58,9 @@ export default class HeadersSubheadersSample extends React.Component {
         return (
             <Header size="medium" sub={true}>
                 The Best Header In The World
-                <HeaderSubheader>
+                <Header.Subheader>
                     Oh yeah? Well, I think I'm the best subheader in the world.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
         );
     }
@@ -130,49 +124,49 @@ export default class HeadersColorsSample extends React.Component {
             <Header size="xlarge" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 XLarge Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
 
             <Header size="large" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 Large Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
 
             <Header size="medium" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 Medium Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
 
             <Header size="small" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 Small Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
 
             <Header size="xsmall" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 XSmall Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
 
             <Header size="xsmall" icon={true} sub={true}>
                 <Icon type="new-cards" />
                 XXSmall Icon & Subheader Header
-                <HeaderSubheader>
+                <Header.Subheader>
                     A header can have an icon aligned to the left of the content.
-                </HeaderSubheader>
+                </Header.Subheader>
             </Header>
         );
     }
@@ -284,9 +278,9 @@ export default class ElementsHeader extends React.Component {
                 {/* Page Headers */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Page Headers
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Headers may be oriented to give the hierarchy of a section in the context of the page.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Page headings are sized using <code>rem</code> and are not affected by surrounding content size.</p>
@@ -305,9 +299,9 @@ export default class ElementsHeader extends React.Component {
                 {/* Content Headers */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Content Headers
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Headers may be oriented to give the importance of a section.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Content headings are sized with <code>em</code> and are based on the <code>font-size</code> of their container.</p>
@@ -326,16 +320,16 @@ export default class ElementsHeader extends React.Component {
                 {/* Subheader */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Subheader
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Headers may be formatted to label smaller or de-emphasized content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="medium" style={{ marginTop: '33px' }} sub={true}>
                     The Best Header In The World
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Oh yeah? Well, I think I'm the best subheader in the world.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -345,9 +339,9 @@ export default class ElementsHeader extends React.Component {
                 {/* Icon */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Icon
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="xlarge" icon={true}>
@@ -387,57 +381,57 @@ export default class ElementsHeader extends React.Component {
                 {/* Icon & Subheader */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Icon & Subheader
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="xlarge" icon={true} sub={true}>
                     <Icon type="check" />
                     XLarge Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="large" icon={true} sub={true}>
                     <Icon type="check" />
                     Large Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="medium" icon={true} sub={true}>
                     <Icon type="check" />
                     Medium Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="small" icon={true} sub={true}>
                     <Icon type="check" />
                     Small Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="xsmall" icon={true} sub={true}>
                     <Icon type="check" />
                     XSmall Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header size="xsmall" icon={true} sub={true}>
                     <Icon type="check" />
                     XXSmall Icon & Subheader Header
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can have an icon aligned to the left of the content.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -447,9 +441,9 @@ export default class ElementsHeader extends React.Component {
                 {/* Colors */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Colors
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header can be formatted with different colors.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Header color="static" size="small">Static</Header>
@@ -462,9 +456,9 @@ export default class ElementsHeader extends React.Component {
                 {/* Colors Inverted */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Colors Inverted
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A header's color can be inverted.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true} style={{ marginTop: '33px' }}>

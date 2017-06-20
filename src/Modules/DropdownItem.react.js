@@ -1,11 +1,11 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class DropdownItem extends React.Component {
+class DropdownItem extends Component {
 
     render() {
         const { className, style } = this.props;
@@ -22,7 +22,7 @@ export default class DropdownItem extends React.Component {
 
 DropdownItem.propTypes = {
     className: React.PropTypes.string,
-    iconColor: React.PropTypes.oneOf(UIUtils.colorEnums()),
+    iconColor: React.PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: React.PropTypes.bool,
     iconType: React.PropTypes.string,
     id: React.PropTypes.oneOfType([
@@ -32,3 +32,5 @@ DropdownItem.propTypes = {
     label: React.PropTypes.string,
     style: React.PropTypes.object
 };
+
+export default DropdownItem;

@@ -2,17 +2,12 @@
 
 import MediaQuery from 'react-responsive';
 import React from 'react';
+import { Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const titleBarSample = `import React from 'react';
 
@@ -66,9 +61,9 @@ export default class ViewsTitleBar extends React.Component {
                 {/* Title Bar */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Title Bar
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>

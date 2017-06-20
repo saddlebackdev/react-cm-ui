@@ -1,20 +1,18 @@
 'use strict';
 
-import 'components/UI/Modules/DatePicker.scss';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
-import DatePickerCalendar from 'components/UI/Modules/DatePickerCalendar.react';
-import DatePickerInput from 'components/UI/Modules/DatePickerInput.react';
+import DatePickerCalendar from './DatePickerCalendar.react';
+import DatePickerInput from './DatePickerInput.react';
 
-import DatePickerUtils from 'utils/UI/DatePickerUtils.js';
+import DatePickerUtils from '../utils/DatePickerUtils.js';
 
-export default class DatePicker extends React.Component {
+class DatePicker extends Component {
     constructor(props) {
         super(props);
 
@@ -438,3 +436,5 @@ DatePicker.propTypes = {
     type: React.PropTypes.oneOf(typeEnums),
     uxMode: React.PropTypes.oneOf(uxModeEnums)
 };
+
+export default DatePicker;

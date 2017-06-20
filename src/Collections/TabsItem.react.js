@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class TabsItem extends React.Component {
+class TabsItem extends Component {
 
     render() {
         return (
@@ -18,3 +18,5 @@ TabsItem.propTypes = {
     label: React.PropTypes.string,
     style: React.PropTypes.object
 };
+
+export default TabsItem;

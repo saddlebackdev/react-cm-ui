@@ -1,0 +1,30 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+
+.ui.list {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0; // need to think about the top and bottom margin. Moved it to 0 for the time being. ******
+    padding: 0;
+    .list-item { display: list-item; }
+    .ui.icon { margin: 0; }
+    &.list-fluid { display: block; }
+    &.list-divide .list-item {
+        border-top: 1px solid $border;
+        &:first-child { border-top: 0; }
+    }
+    &.list-horizontal {
+        > .list-item {
+            align-items: center;
+            display: inline-flex;
+            justify-content: center;
+            min-height: rem(22px);
+        }
+        &.list-divide .list-item {
+            border-left: 1px solid $border;
+            border-top: 0;
+            padding: 0 em(11px);
+            &:first-child { border-left: 0; padding-left: 0; }
+            &:last-child { padding-right: 0; }
+        }
+    }
+}

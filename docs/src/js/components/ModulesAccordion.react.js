@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Accordion, Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Accordion from 'components/UI/Modules/Accordion.react';
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const accordionSample = `import React from 'react';
 
@@ -165,9 +159,9 @@ export default class CollectionsAccordion extends React.Component {
                 {/* Accordion */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Accordion
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A baisc Accordion can be inverted to appear on darker backgrounds better.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Accordion>
@@ -199,9 +193,9 @@ export default class CollectionsAccordion extends React.Component {
                 {/* Basic */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Basic
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic Accordion.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Accordion basic={true}>
@@ -221,9 +215,9 @@ export default class CollectionsAccordion extends React.Component {
                 {/* Inverse */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Inverse
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A baisc Accordion can be inverted to appear on darker backgrounds better.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block inverse={true}>
@@ -245,9 +239,9 @@ export default class CollectionsAccordion extends React.Component {
                 {/* Selected */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Selected
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A baisc Accordion can be inverted to appear on darker backgrounds better.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Accordion basic={true} selected={1}>

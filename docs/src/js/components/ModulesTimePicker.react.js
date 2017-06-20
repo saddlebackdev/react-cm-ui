@@ -1,19 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Card, Header, TitleBar, TimePicker } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Card from 'components/UI/Views/Card.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
-import TimePicker from 'components/UI/Modules/TimePicker.react';
 
 const timePickerSample = `import React from 'react';
 
@@ -216,9 +210,9 @@ export default class ModulesTimePicker extends React.Component {
                 {/* Time Picker */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Time Picker
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic Time Picker.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TimePicker
@@ -233,9 +227,9 @@ export default class ModulesTimePicker extends React.Component {
                 {/* Disable */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Disable
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         Indicates that the Time Picker is not available for interaction.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <TimePicker
@@ -251,9 +245,9 @@ export default class ModulesTimePicker extends React.Component {
                 {/* Nest */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Nest
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block
@@ -274,9 +268,9 @@ export default class ModulesTimePicker extends React.Component {
                 {/* Range */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Range
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Block

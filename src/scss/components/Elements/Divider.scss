@@ -1,0 +1,28 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+
+.ui.divider {
+    border-bottom: 1px solid $border;
+    height: 0;
+    letter-spacing: .05em;
+    line-height: 1;
+    margin: rem(11px) 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    &.divider-compact { margin: 0; }
+    &.divider-hidden { border: 0; }
+    &.divider-color- {
+        &alternate { border-color: $border-alternate; }
+        &highlight { border-color: $border-highlight; }
+        &inverse { border-color: $border-inverse; }
+        &inverse-alternate { border-color: $border-inverse-alternate; }
+        &primary { border-color: $border; }
+    }
+    &.divider-inverse.divider-color- {
+        &alternate { border-color: $border-alternate; }
+        &highlight { border-color: $border-highlight; }
+        &inverse { border-color: $border-inverse; }
+        &inverse-alternate { border-color: $border-inverse-alternate; }
+        &primary { border-color: $border-alternate; }
+    }
+    &.divider-relaxed { margin: rem(22px) 0; }
+}

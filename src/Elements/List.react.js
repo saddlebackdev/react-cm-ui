@@ -1,15 +1,13 @@
 'use strict';
 
-import 'components/UI/Elements/List.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import ListItem from 'components/UI/Elements/ListItem.react';
+import ListItem from './ListItem.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class List extends React.Component {
+class List extends Component {
 
     render() {
         const { as, children, className, divide, fluid, horizontal, style } = this.props;
@@ -18,7 +16,7 @@ export default class List extends React.Component {
             'list-horizontal': horizontal,
             'list-fluid': fluid
         });
-        const ElementType = UIUtils.getElementType(as || 'div', this.props);
+        const ElementType = Utils.getElementType(as || 'div', this.props);
         const convertChildren = _.isArray(children) ? children : [ children ];
         let items = _.map(convertChildren, (child, index) => {
             return (
@@ -60,3 +58,5 @@ List.propTypes = {
     horizontal: React.PropTypes.bool,
     style: React.PropTypes.object
 };
+
+export default List;

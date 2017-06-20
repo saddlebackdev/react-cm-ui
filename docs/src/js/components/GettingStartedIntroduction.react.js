@@ -7,13 +7,10 @@ import 'style-guide/cm-ui-kit_as_1.6.2.sketch';
 import 'style-guide/cm-ui-kit_as_1.6.2.pdf';
 
 import React from 'react';
+import { Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Main from 'components/UI/Main.react';
-
-// CM App UI Components
-import Header from 'components/UI/Elements/Header.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 export default class GettingStartedIntroduction extends React.Component {
 

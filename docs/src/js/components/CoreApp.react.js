@@ -1,20 +1,20 @@
 'use strict';
 
-import 'components/CoreApp.scss';
-
 import 'babel-core/register';
 import 'babel-polyfill';
+
+import 'components/CoreApp.scss';
+import 'css-cm-ui';
 
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { DOMUtils } from 'react-cm-ui';
 
 // Structure Components
 import CoreAppHeader from 'components/CoreAppHeader.react';
 import CoreAppNavigation from 'components/CoreAppNavigation.react';
-
-import DOMUtils from 'utils/UI/DOMUtils.js';
 
 if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
     history.pushState({}, '', location.hash.substring(2));
@@ -45,7 +45,7 @@ export default class CoreApp extends React.Component {
     }
 
     _onToggleNavigation(event) {
-        if (DOMUtils.hasClass(document.body, 'pushed-right')) {
+        if (DOMUtils.hasClassName(document.body, 'pushed-right')) {
             document.body.classList.remove('pushed-right');
         } else {
             this._curScrollPos = DOMUtils.scrollPos();

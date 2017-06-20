@@ -1,19 +1,17 @@
 'use strict';
 
-import 'components/UI/Collections/Table.scss';
-
 import ClassNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import TableBody from 'components/UI/Collections/TableBody.react';
-import TableCell from 'components/UI/Collections/TableCell.react';
-import TableHeader from 'components/UI/Collections/TableHeader.react';
-import TableHeaderCell from 'components/UI/Collections/TableHeaderCell.react';
-import TableRow from 'components/UI/Collections/TableRow.react';
+import TableBody from './TableBody.react';
+import TableCell from './TableCell.react';
+import TableHeader from './TableHeader.react';
+import TableHeaderCell from './TableHeaderCell.react';
+import TableRow from './TableRow.react';
 
-import UIUtils from 'utils/UI/Utils.js';
+import Utils from '../utils/Utils.js';
 
-export default class Table extends React.Component {
+class Table extends Component {
 
     render() {
         const { basic, celled, className,
@@ -69,7 +67,7 @@ Table.propTypes = {
     color: React.PropTypes.oneOf(colorEnums),
     definition: React.PropTypes.bool,
     fixed: React.PropTypes.bool,
-    fontSize: React.PropTypes.oneOf(UIUtils.sizeEnums()),
+    fontSize: React.PropTypes.oneOf(Utils.sizeEnums()),
     fullWidth: React.PropTypes.bool,
     selectable: React.PropTypes.bool,
     singleLine: React.PropTypes.bool,
@@ -81,3 +79,5 @@ Table.propTypes = {
     striped: React.PropTypes.bool,
     style: React.PropTypes.object
 };
+
+export default Table;

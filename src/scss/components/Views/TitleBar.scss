@@ -1,0 +1,26 @@
+@import '../../config/Colors', '../../config/FontsizeCalculator';
+
+.ui.title-bar {
+    align-items: center;
+    background-color: $bkgd;
+    display: flex;
+    height: 44px;
+    justify-content: flex-start;
+    margin: 0 -11px;
+    padding: 0 11px;
+    position: relative;
+    z-index: 1;
+    &::after {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .26), transparent);
+        bottom: -3px;
+        content: '';
+        height: 3px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.title-bar { height: 66px; margin: 0 -22px; padding: 0 22px; }
+}

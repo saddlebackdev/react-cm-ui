@@ -1,20 +1,12 @@
 'use strict';
 
 import React from 'react';
+import { Button, Card, Modal, Header, Icon, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
-
-// CM App UI Components
-import Button from 'components/UI/Elements/Button.react';
-import Card from 'components/UI/Views/Card.react';
-import Modal from 'components/UI/Modules/Modal.react';
-import Header from 'components/UI/Elements/Header.react';
-import HeaderSubheader from 'components/UI/Elements/HeaderSubheader.react';
-import Icon from 'components/UI/Elements/Icon.react';
-import TitleBar from 'components/UI/Views/TitleBar.react';
 
 const modalSample = `import React from 'react';
 
@@ -426,9 +418,9 @@ export default class ModulesModal extends React.Component {
                 {/* Modal */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Modal
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A basic Modal.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p>
@@ -466,9 +458,9 @@ export default class ModulesModal extends React.Component {
                 {/* Close Button */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Close Button
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Modal's close button can be changed using a string or giving custom JSX.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onCloseButtonModalClick.bind(this)}>A Chevron-WH-Right Close Button</Button><br /><br />
@@ -513,9 +505,9 @@ export default class ModulesModal extends React.Component {
                 {/* Dimensions */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Dimensions
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Modal's dimensions can be changed for anything above 768 pixels.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
@@ -582,9 +574,9 @@ export default class ModulesModal extends React.Component {
                 {/* On Click Outside */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     On Click Outside
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Modal can be closed when click outside of it's container.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onClickOutsideModalClick.bind(this)}>Open The Modal</Button>
@@ -609,9 +601,9 @@ export default class ModulesModal extends React.Component {
                 {/* emptyTitle */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Empty Title
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Modal can be shown without a title.
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onEmptyTitleModalClick.bind(this)}>Open The Modal without title</Button>
@@ -633,9 +625,9 @@ export default class ModulesModal extends React.Component {
                 {/* Fluid Content */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Fluid Content
-                    <HeaderSubheader>
+                    <Header.Subheader>
                         A Modal`s inner div can be stretched to the whole container height (e.g. align buttons to the bottom).
-                    </HeaderSubheader>
+                    </Header.Subheader>
                 </Header>
 
                 <Button onClick={this._onFluidContentModalClick.bind(this)}>Open The Modal</Button>
