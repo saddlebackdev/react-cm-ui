@@ -84,7 +84,7 @@ module.exports = function (env) {
             alias: {
                 'react-cm-ui': path.resolve(__dirname, 'src'),
                 'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss')
-            },
+            }
         },
         plugins: [
             new webpack.LoaderOptionsPlugin({
