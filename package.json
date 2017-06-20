@@ -27,11 +27,15 @@
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "npm run docs:prod",
-    "compile": "rm -rf lib && node-sass src/scss/Style.scss -o lib/css --output-style compressed && cp -r src/fonts lib/fonts && babel src/ -d lib/",
+    "clean:lib": "rimraf lib",
+    "compile": "npm run clean:lib && node-sass src/scss/Style.scss -o lib/css --output-style compressed && cp -r src/fonts lib/fonts && babel src/ -d lib/",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
-    "prepublish": "npm run compile",
+    "postpublish": "git checkout dev && git push && git push --tags",
+    "prepublish": "git flow release finish v$npm_package_version && git checkout master && latesttag=$(git describe --tags) && echo checking out ${latesttag} && git checkout ${latesttag}",
+    "publish": "echo 'Published $npm_package_version'",
+    "version": "git flow release start v$npm_package_version",
     "start": "npm run docs:dev"
   },
   "dependencies": {
@@ -68,6 +72,7 @@
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.4.0",
     "postcss-loader": "^1.2.2",
+    "rimraf": "^2.6.1",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
