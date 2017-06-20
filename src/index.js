@@ -26,6 +26,10 @@ export { default as Modal } from './Modules/Modal.react.js';
 export { default as SegmentedControls } from './Modules/SegmentedControls.react.js';
 export { default as TimePicker } from './Modules/TimePicker.react.js';
 
+// scss
+export { default as SCSS } from './scss/Style.scss';
+export { default as CSS } from './css/Style.css';
+
 // utils
 export { default as DatePickerUtils } from './utils/DatePickerUtils.js';
 export { default as DateUtils } from './utils/DateUtils.js';
