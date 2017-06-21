@@ -32,11 +32,11 @@
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
-    "flow:version": "git flow release start v$VERSION && npm version $VERSION && git push --set-upstream origin release/v$npm_package_version",
     "postpublish": "git checkout dev && git push && git push --tags",
-    "flow:prepublish": "git flow release finish v$npm_package_version && git push && git push --tags && git checkout master && git push",
     "prepublish": "npm run compile",
     "publish": "echo 'Published $npm_package_version'",
+    "release:finish": "git flow release finish v$npm_package_version && git push && git push --tags && git checkout master && git push",
+    "release:start": "git flow release start v$npm_package_version && git push --set-upstream origin release/v$npm_package_version",
     "start": "npm run docs:dev"
   },
   "dependencies": {
