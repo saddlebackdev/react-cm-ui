@@ -36,7 +36,7 @@
     "prepublish": "npm run compile",
     "publish": "echo 'Published $npm_package_version'",
     "release:finish": "git flow release finish v$npm_package_version && git push && git push --tags && git checkout master && git push",
-    "release:start": "git flow release start v$npm_package_version && git push --set-upstream origin release/v$npm_package_version",
+    "release:start": "git flow release start v$VERSION && git push --set-upstream origin release/v$npm_package_version",
     "start": "npm run docs:dev"
   },
   "dependencies": {
