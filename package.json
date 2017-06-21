@@ -34,7 +34,7 @@
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepublish": "npm run compile",
-    "release:finish": "git flow release finish $npm_package_version && git push && git push --tags",
+    "release:finish": "git flow release finish v$npm_package_version && git push && git push --tags",
     "start": "npm run docs:dev"
   },
   "dependencies": {
