@@ -32,7 +32,7 @@
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
-    "postpublish": "git checkout dev && git push",
+    "postpublish": "git checkout master && git push && git checkout dev",
     "prepublish": "npm run compile",
     "release:finish": "git flow release finish v$npm_package_version && git push && git push --tags",
     "start": "npm run docs:dev"
