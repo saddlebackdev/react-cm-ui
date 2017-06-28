@@ -4,4 +4,5 @@
 
 *If the current behavior is a bug, please provide the steps to reproduce.*
 
-*Which browser / OS are affected by this issue? Did this work in previous versions of CM?*
+*Which version of react-cm-ui, and which browser / OS are affected by this issue? Did this work in previous versions of react-cm-ui?*
+
