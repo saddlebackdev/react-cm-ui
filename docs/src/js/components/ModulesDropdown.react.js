@@ -856,7 +856,7 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
                     </Dropdown><br /><br />
-                    
+
                     <Dropdown
                         disable={true}
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -889,6 +889,20 @@ export default class ModulesDropdown extends React.Component {
                             A Dropdown's icon.
                         </Header.Subheader>
                     </Header>
+
+                    <Dropdown iconType="plus" placeholder="select">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                        <Dropdown.Item label="Option 3" />
+                        <Dropdown.Item label="Option 4" />
+                    </Dropdown><br /><br />
+
+                    <Dropdown button={true} iconSize="small" iconType="plus" placeholder="Button Placeholder/Icon">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                        <Dropdown.Item label="Option 3" />
+                        <Dropdown.Item label="Option 4" />
+                    </Dropdown><br /><br />
 
                     <Dropdown
                         button={true}

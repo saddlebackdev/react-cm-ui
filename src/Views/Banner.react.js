@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
+import BannerItem from './BannerItem.react';
 
 class Banner extends Component {
 
@@ -153,6 +154,8 @@ class Banner extends Component {
     }
 
 };
+
+Banner.Item = BannerItem;
 
 const levelEnums = [ 'error', 'secondary', 'success', 'warning' ];
 const typeEnums = [ 'alert', 'notification' ];
