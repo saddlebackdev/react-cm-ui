@@ -34,6 +34,7 @@ export { default as Utils } from './utils/Utils.js';
 
 // Views
 export { default as Banner } from './Views/Banner.react.js';
+export { default as BannerItem } from './Views/BannerItem.react.js';
 export { default as Card } from './Views/Card.react.js';
 export { default as SubNavigation } from './Views/SubNavigation.react.js';
 export { default as TitleBar } from './Views/TitleBar.react.js';
