@@ -3,8 +3,8 @@
 import 'babel-core/register';
 import 'babel-polyfill';
 
-import 'components/CoreApp.scss';
 import 'css-cm-ui';
+import 'components/CoreApp.scss';
 
 import MediaQuery from 'react-responsive';
 import React from 'react';
@@ -303,6 +303,14 @@ let routes = (
                     require.ensure([], require => {
                         callback(null, require('components/ModulesTimePicker.react'))
                     }, 'ModulesTimePicker')
+                }}
+            />
+            <Route
+                path="tree-menu"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesTreeMenu.react'))
+                    }, 'ModulesTreeMenu')
                 }}
             />
         </Route>

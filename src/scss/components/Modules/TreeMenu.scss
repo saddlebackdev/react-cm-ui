@@ -1,0 +1,16 @@
+.ui.tree-menu {
+    font-size: rem(14px);
+    .tree-menu-node {
+        margin: 11px 0;
+        > span { position: relative; }
+        .tree-menu-node { margin-left: 27px; }
+    }
+        .tree-menu-node-collapse-toggle {
+            margin: 0 11px 0 6px;
+            width: 10px;
+            &.collapse-spacer { display: inline-block; width: 10px; }
+        }
+        .tree-menu-node-children .tree-menu-node-collapse-toggle { margin: 0 16px 0 6px; }
+        .ui.checkbox { left: 0; position: absolute; }
+        .tree-menu-node-label { display: inline-block; padding: 2px 0 0 33px; }
+}
