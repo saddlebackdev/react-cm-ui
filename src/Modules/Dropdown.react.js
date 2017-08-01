@@ -45,6 +45,7 @@ class Dropdown extends Component {
             selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionMultiple, selectionRequired,
             style, tabIndex, theme } = this.props;
+        const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
             'dropdown-button-compact': buttonCompact,
@@ -212,26 +213,19 @@ class Dropdown extends Component {
             >
                 {labelJSX}
 
-                {!iconType ? [
+                {placeholder ? (
                     <span className="dropdown-selection-value" key="dropdown-selection-value-key">
                         {this.state.value ? this.state.value.label : placeholder}
-                    </span>,
-                    <Icon
-                        compact={true}
-                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
-                        key="dropdown-selection-icon-indicator-key"
-                        size="xxsmall"
-                        type="caret-down"
-                    />
-                ] : (
-                    <Icon
-                        color={iconColor}
-                        compact={true}
-                        inverse={iconInverse}
-                        size={iconSize}
-                        type={iconType}
-                    />
-                )}
+                    </span>
+                ) : null}
+
+                <Icon
+                    color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                    compact={true}
+                    inverse={iconInverse}
+                    size={iconSize || 'xxsmall'}
+                    type={iconType || 'caret-down'}
+                />
 
                 <ul
                     className="dropdown-menu"

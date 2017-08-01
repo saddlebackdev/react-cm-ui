@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.0 - 2017-06-21
+### Changed
+- Ability to add **Drawer.Header** to a component child. The ability to pass props: `onClose`, `title` and etc from **Drawer.Header** is now obsolete. Props must be passed from the parent **Drawer** instead.
+- Added the ability to have an **Icon** along with a placeholder in the **Dropdown** component.
+- Fixed **Dropdown**'s disable background color.
+- Importing **BannerItem** in **Banner** now.
+
+## 1.0.1 - 2017-06-21
+### Changed
+- Fixed Doc's **Grid.Column**
+
+## 1.0.0 - 2017-06-21
+### Added
+- Official first release of the React Church Management UI Library.
+
 ## 0.14.0 - 2017-06-12
 ### Added
 - New **Banner** view component.

@@ -44,25 +44,25 @@ class Drawer extends Component {
                             onScrollStop={this._onScrollStop.bind(this)}
                         >
                             <div className="drawer-container-inner" ref="containerInner">
-                                {header ? (
-                                    <div className="drawer-children">
+                                {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
+                                    closeButton: closeButton,
+                                    inverse: inverse,
+                                    onClose: onClose || null,
+                                    title: title || null,
+                                    titleTruncate: titleTruncate
+                                })) : [
+                                    <DrawerHeader
+                                        closeButton={closeButton}
+                                        inverse={inverse}
+                                        key={`drawer-header-${_.kebabCase(title)}`}
+                                        onClose={onClose}
+                                        title={title}
+                                        titleTruncate={titleTruncate}
+                                    />,
+                                    <div className="drawer-children" key={`drawer-children-${_.kebabCase(title)}`}>
                                         {this.props.children}
                                     </div>
-                                ) : (
-                                    <div>
-                                        <DrawerHeader
-                                            closeButton={closeButton}
-                                            inverse={inverse}
-                                            onClose={onClose}
-                                            title={title}
-                                            titleTruncate={titleTruncate}
-                                        />
-
-                                        <div className="drawer-children">
-                                            {this.props.children}
-                                        </div>
-                                    </div>
-                                )}
+                                ]}
                             </div>
                         </ScrollBar>
                     </div>
@@ -73,16 +73,7 @@ class Drawer extends Component {
         );
     }
 
-    componentWillMount() {
-        // console.log('drawer componentWillMount');
-    }
-
-    componentWillUnmount() {
-        // console.log('drawer componentWillUnmount');
-    }
-
     _animationProps(el) {
-        // console.log('_animationProps');
         let a;
         let animations = {
             'animation': 'animationend',
@@ -145,14 +136,12 @@ class Drawer extends Component {
     }
 
     _onPortalClose() {
-        // console.log('_onPortalClose');
         if (this.props.onClickOutside) {
             document.removeEventListener('click', this._onClickOutsideRef);
         }
     }
 
     _onOpen(node) {
-        // console.log('_onOpen');
         const { ignorePadding, maxWidth, onClickOutside } = this.props;
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -222,10 +211,10 @@ Drawer.propTypes = {
         React.PropTypes.string
     ]),
     onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
+    onClose: React.PropTypes.func.isRequired,
     path: React.PropTypes.string,
     style: React.PropTypes.object,
-    title: React.PropTypes.string,
+    title: React.PropTypes.string.isRequired,
     titleTruncate: React.PropTypes.bool
 };
 

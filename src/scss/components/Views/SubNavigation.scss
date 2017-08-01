@@ -1,10 +1,9 @@
-@import '../../config/Colors', '../../config/Fonts', '../../config/FontsizeCalculator';
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
 
 $height: 55px;
 
 .sub-navigation {
     background-color: $bkgd-light;
-    border-bottom: 1px solid $border;
     font-size: em(14px);
     font-weight: $default-font-weight-semibold;
     height: $height;
@@ -12,6 +11,8 @@ $height: 55px;
     overflow: hidden;
     position: relative;
     z-index: 0;
+    &.sub-navigation-border-bottom { border-bottom: 1px solid $border; }
+    &.sub-navigation-border-top { border-top: 1px solid $border; }
     .sub-navigation-scroll-indicator {
         background: -webkit-gradient(
             linear, left top, right top,

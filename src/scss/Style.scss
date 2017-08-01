@@ -11,12 +11,15 @@
 @import 'base/Typography';
 
 // Components
+// Collections
 @import 'components/Collections/Grid';
 @import 'components/Collections/Table';
 @import 'components/Collections/TableCell';
 @import 'components/Collections/TableHeader';
 @import 'components/Collections/TableHeaderCell';
 @import 'components/Collections/TableRow';
+
+// Elements
 @import 'components/Elements/Button';
 @import 'components/Elements/Checkbox';
 @import 'components/Elements/Container';
@@ -29,6 +32,8 @@
 @import 'components/Elements/Loader';
 @import 'components/Elements/Radio';
 @import 'components/Elements/TextArea';
+
+// Modules
 @import 'components/Modules/Accordion';
 @import 'components/Modules/DatePicker';
 @import 'components/Modules/DatePickerCalendar';
@@ -42,6 +47,9 @@
 @import 'components/Modules/Modal';
 @import 'components/Modules/SegmentedControls';
 @import 'components/Modules/TimePicker';
+@import 'components/Modules/TreeMenu';
+
+// Views
 @import 'components/Views/Banner';
 @import 'components/Views/Card';
 @import 'components/Views/SubNavigation';

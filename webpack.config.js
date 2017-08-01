@@ -13,7 +13,7 @@ module.exports = function (env) {
         devServer: {
             historyApiFallback: true,
             inline: true,
-            port: 8081
+            port: 8080
         },
         output: {
             path: path.join(__dirname, './docs/build'),
@@ -27,6 +27,16 @@ module.exports = function (env) {
                 {
                     test: /\.js$/,
                     exclude: [/node_modules/],
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015', 'react'],
+                        plugins: [ 'add-module-exports' ]
+                    }
+                }, {
+                    test: /\.jsx$/,
+                    include: [
+                        path.resolve(__dirname, 'node_modules', 'react-tree-menu')
+                    ],
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015', 'react'],
@@ -60,6 +70,7 @@ module.exports = function (env) {
         resolve: {
             extensions: [
                 '.js',
+                '.jsx',
                 '.scss',
                 '.ico',
                 '.png',

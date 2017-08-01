@@ -20,8 +20,10 @@ class SubNavigation extends Component {
     }
 
     render() {
-        const { className, drawer, style } = this.props;
+        const { border, className, drawer, style } = this.props;
         const containerClasses = ClassNames('ui', 'sub-navigation', className, {
+            'sub-navigation-border-bottom': !border || border === 'bottom' || border === 'both',
+            'sub-navigation-border-top': border === 'top' || border === 'both',
             'sub-navigation-drawer': drawer
         });
         let buttons = _.map(this.props.children, (child, index) => {
@@ -74,7 +76,10 @@ class SubNavigation extends Component {
 
 SubNavigation.Item = SubNavigationItem;
 
+const borderEnums = [ 'both', 'bottom', 'top' ];
+
 SubNavigation.propTypes = {
+    border: React.PropTypes.oneOf(borderEnums),
     className: React.PropTypes.string,
     drawer: React.PropTypes.bool,
     onClick: React.PropTypes.func,
