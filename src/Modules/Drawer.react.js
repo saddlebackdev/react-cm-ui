@@ -211,10 +211,10 @@ Drawer.propTypes = {
         React.PropTypes.string
     ]),
     onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
+    onClose: React.PropTypes.func.isRequired,
     path: React.PropTypes.string,
     style: React.PropTypes.object,
-    title: React.PropTypes.string,
+    title: React.PropTypes.string.isRequired,
     titleTruncate: React.PropTypes.bool
 };
 
