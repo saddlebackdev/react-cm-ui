@@ -47,8 +47,8 @@ class Drawer extends Component {
                                 {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
                                     closeButton: closeButton,
                                     inverse: inverse,
-                                    onClose: onClose || null,
-                                    title: title || null,
+                                    onClose: onClose,
+                                    title: title,
                                     titleTruncate: titleTruncate
                                 })) : [
                                     <DrawerHeader

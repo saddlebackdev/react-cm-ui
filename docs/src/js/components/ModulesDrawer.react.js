@@ -988,7 +988,6 @@ class NestHeader1DrawerComponent extends React.Component {
                 <Drawer.Header
                     closeButton={closeButton}
                     inverse={inverse}
-                    key={`drawer-header-${_.kebabCase(title)}`}
                     onClose={onClose}
                     title={title}
                     titleTruncate={titleTruncate}
@@ -1060,7 +1059,6 @@ class NestHeader2DrawerComponent extends React.Component {
                 <Drawer.Header
                     closeButton={closeButton}
                     inverse={inverse}
-                    key={`drawer-header-${_.kebabCase(title)}`}
                     onClose={onClose}
                     title={title}
                     titleTruncate={titleTruncate}
