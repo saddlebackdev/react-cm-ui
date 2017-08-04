@@ -30,6 +30,7 @@
         &primary { background-color: $bkgd-button; }
         &success { background-color: $bkgd-button-success; }
         &transparent { background-color: transparent; }
+        &warning { background-color: $bkgd-warning; }
     }
     &.button-inverse.button-color- {
         &alert { background-color: $bkgd-button-alert; }
@@ -40,6 +41,7 @@
         &primary { background-color: $bkgd-button; }
         &success { background-color: $bkgd-button-success; }
         &transparent { background-color: transparent; }
+        &warning { background-color: $bkgd-warning; }
     }
     &.button-icon {
         height: 44px;

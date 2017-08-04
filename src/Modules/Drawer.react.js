@@ -16,7 +16,10 @@ class Drawer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { isScrolled: false };
+        this.state = {
+            drawerContainerInnerPaddingTop: 33,
+            isScrolled: false
+        };
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
     }
@@ -35,15 +38,24 @@ class Drawer extends Component {
                 isOpened={isOpen}
                 onClose={this._onPortalClose.bind(this)}
                 onOpen={this._onOpen.bind(this)}
+                onUpdate={this._onUpdate.bind(this)}
             >
                 <div className={containerClasses}>
-                    <div className={containerInnerClasses} ref="drawerContainer">
+                    <div className={containerInnerClasses} ref={el => this.drawerContainer = el}>
                         <ScrollBar
                             autoHide={true}
                             onScrollStart={this._onScrollStart.bind(this)}
                             onScrollStop={this._onScrollStop.bind(this)}
                         >
-                            <div className="drawer-container-inner" ref="containerInner">
+                            <div
+                                className="drawer-container-inner"
+                                ref={el => this.drawerContainerInner = el}
+                                style={{
+                                    paddingLeft: '22px',
+                                    paddingRight: '22px',
+                                    paddingTop: this.state.drawerContainerInnerPaddingTop + 33 + 'px'
+                                }}
+                            >
                                 {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
                                     closeButton: closeButton,
                                     inverse: inverse,
@@ -128,11 +140,19 @@ class Drawer extends Component {
     }
 
     _onClickOutside(event) {
-        if (this.refs.drawerContainer.contains(event.target) || !this.props.onClickOutside) {
+        if (this.drawerContainer.contains(event.target) || !this.props.onClickOutside) {
             return;
         }
 
         this.props.onClose();
+    }
+
+    _onUpdate() {
+        const paddingTop = this.drawerContainerInner.querySelector('.drawer-header').offsetHeight;
+
+        if (paddingTop !== this.state.drawerContainerInnerPaddingTop) {
+            this.setState({ drawerContainerInnerPaddingTop: paddingTop });
+        }
     }
 
     _onPortalClose() {
@@ -142,18 +162,17 @@ class Drawer extends Component {
     }
 
     _onOpen(node) {
-        const { ignorePadding, maxWidth, onClickOutside } = this.props;
+        const { maxWidth, onClickOutside } = this.props;
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         const drawer = node.querySelector('.ui.drawer');
         const drawerContainer = node.querySelector('.drawer-container');
         const drawerDimmer = node.querySelector('.drawer-dimmer');
         const layeredOffset = 11;
-        const containerInnerEl = this.refs.containerInner;
-        const headerHeight = containerInnerEl.querySelector('header').offsetHeight;
+        const containerInnerEl = ReactDOM.findDOMNode(this.drawerContainerInner);
+        const headerEl = containerInnerEl.querySelector('header');
+        const headerHeight = headerEl.offsetHeight;
         let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
-
-        !ignorePadding ? ReactDOM.findDOMNode(containerInnerEl).style.padding = `${(headerHeight + 33) + 'px'} 22px 22px` : null;
 
         if (onClickOutside) {
             document.addEventListener('click', this._onClickOutsideRef);
@@ -181,13 +200,13 @@ class Drawer extends Component {
     }
 
     _onScrollStart() {
-        const scrollContainerPos = this.refs.containerInner.parentNode.scrollTop;
+        const scrollContainerPos = this.drawerContainerInner.parentNode.scrollTop;
 
         this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
     }
 
     _onScrollStop() {
-        const scrollContainerPos = this.refs.containerInner.parentNode.scrollTop;
+        const scrollContainerPos = this.drawerContainerInner.parentNode.scrollTop;
 
         this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
     }
@@ -203,7 +222,6 @@ Drawer.propTypes = {
         React.PropTypes.string
     ]),
     header: React.PropTypes.bool,
-    ignorePadding: React.PropTypes.bool,
     inverse: React.PropTypes.bool,
     isOpen: React.PropTypes.bool.isRequired,
     maxWidth: React.PropTypes.oneOfType([
@@ -211,10 +229,10 @@ Drawer.propTypes = {
         React.PropTypes.string
     ]),
     onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func.isRequired,
+    onClose: React.PropTypes.func,
     path: React.PropTypes.string,
     style: React.PropTypes.object,
-    title: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string,
     titleTruncate: React.PropTypes.bool
 };
 
