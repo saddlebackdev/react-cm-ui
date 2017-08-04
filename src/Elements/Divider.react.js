@@ -19,7 +19,8 @@ class Divider extends Component {
             'divider-compact': compact,
             'divider-hidden': hidden,
             'divider-inverse': inverse,
-            'divider-relaxed': relaxed
+            'divider-relaxed': relaxed,
+            'divider-relaxed-very': relaxed === 'very'
         });
 
         return (
@@ -34,7 +35,10 @@ Divider.propTypes = {
     compact: React.PropTypes.bool,
     hidden: React.PropTypes.bool,
     inverse: React.PropTypes.bool,
-    relaxed: React.PropTypes.bool,
+    relaxed: React.PropTypes.oneOfType([
+        React.PropTypes.bool,
+        React.PropTypes.oneOf([ 'very' ])
+    ]),
     style: React.PropTypes.object
 };
 

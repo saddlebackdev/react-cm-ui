@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.4 - 2017-08-04
+### Aadded
+- Added a `filter` icon.
+
+### Changed
+- **Divider**: `relaxed` prop now accepts the string `very` to add even more negative space.
+- **Icon**: fixed the color `warning`.
+- **Icon**: removed temporary spinner icons and just left the one that looks the best.
+
 ## 1.1.3 - 2017-08-04
 ### Changed
 - **Drawer**: Removed `setState` and replaced with `style.paddingTop` in the `_onUpdate` function.

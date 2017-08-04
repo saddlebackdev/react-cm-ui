@@ -16,14 +16,15 @@
         &-primary { color: $color-text; }
         &-static { color: $color-text-static; }
         &-success { color: $color-text-success; }
+        &-warning { color: $color-text-warning; }
     }
     &-inverse {
         &.icon-color-alert { color: $color-text-alert; }
-        &.icon-color-warning { color: $color-text-alert; }
         &.icon-color-highlight { color: $color-text-highlight; }
         &.icon-color-primary { color: $color-text-inverse; }
         &.icon-color-static { color: $color-text-static; }
         &.icon-color-success { color: $color-text-success; }
+        &.icon-color-warning { color: $color-text-warning; }
     }
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
