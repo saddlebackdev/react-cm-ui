@@ -16,11 +16,11 @@ class Icon extends Component {
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
             'icon-color-alert': color === 'alert',
-            'icon-color-warning': color === 'warning',
             'icon-color-highlight': color === 'highlight',
             'icon-color-primary': _.isUndefined(color) && !disable || color === 'primary',
             'icon-color-static': color === 'static',
             'icon-color-success': color === 'success',
+            'icon-color-warning': color === 'warning',
             'icon-compact': compact,
             'icon-disable': disable,
             'icon-inverse': inverse,
@@ -30,7 +30,7 @@ class Icon extends Component {
             'icon-size-xlarge': size === 'xlarge',
             'icon-size-xsmall': size === 'xsmall',
             'icon-size-xxsmall': size === 'xxsmall',
-            'icon-spin': spin || type === 'check-circle' // need to change type to "loader"
+            'icon-spin': spin || type === 'spinner'
         });
         const containerStyle = _.merge(style, {
             transform: _.isNumber(rotate) ? `rotate(${rotate}deg)` : null

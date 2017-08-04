@@ -53,10 +53,14 @@ export default class ColorSample extends React.Component {
 
     render() {
         return (
-            <Icon color="alert" type="activity" />
-            <Icon color="primary" type="calendar" />
-            <Icon color="static" type="cards" />
-            <Icon color="success" type="clock" />
+            <div>
+                <Icon color="alert" type="activity" />
+                <Icon color="highlight" type="caret-down" />
+                <Icon color="primary" type="calendar" />
+                <Icon color="static" type="cards" />
+                <Icon color="success" type="clock" />
+                <Icon color="warning" type="exclamation" />
+            </div>
         );
     }
 
@@ -70,10 +74,14 @@ export default class InverseSample extends React.Component {
 
     render() {
         return (
-            <Icon color="alert" inverse={true} type="activity" />
-            <Icon color="primary" inverse={true} type="calendar" />
-            <Icon color="static" inverse={true} type="cards" />
-            <Icon color="success" inverse={true} type="clock" />
+            <div>
+                <Icon color="alert" inverse={true} type="activity" />
+                <Icon color="highlight" inverse={true} type="caret-down" />
+                <Icon color="primary" inverse={true} type="calendar" />
+                <Icon color="static" inverse={true} type="cards" />
+                <Icon color="success" inverse={true} type="clock" />
+                <Icon color="warning" inverse={true} type="exclamation" />
+            </div>
         );
     }
 
@@ -367,6 +375,11 @@ export default class ElementsButton extends React.Component {
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="filter" />
+                                <p className="icon-type-name">filter</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="gift" />
                                 <p className="icon-type-name">gift</p>
                             </Grid.Column>
@@ -475,7 +488,7 @@ export default class ElementsButton extends React.Component {
                         <Grid.Row>
                             <Grid.Column textAlign="left" width={12}>
                                 <Header size="large" style={{ margin: '55px 0 22px' }}>
-                                    Web App
+                                    Directional
                                 </Header>
                             </Grid.Column>
                         </Grid.Row>
@@ -546,6 +559,21 @@ export default class ElementsButton extends React.Component {
                                 <p className="icon-type-name">arrows-alt</p>
                             </Grid.Column>
                         </Grid.Row>
+
+                        <Grid.Row>
+                            <Grid.Column textAlign="left" width={12}>
+                                <Header size="large" style={{ margin: '55px 0 22px' }}>
+                                    Spinners
+                                </Header>
+                            </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="spinner" />
+                                <p className="icon-type-name">spinner</p>
+                            </Grid.Column>
+                        </Grid.Row>
                     </Grid>
                 </div>
 
@@ -605,6 +633,7 @@ export default class ElementsButton extends React.Component {
                     <Icon color="primary" type="calendar" />
                     <Icon color="static" type="cards" />
                     <Icon color="success" type="clock" />
+                    <Icon color="warning" type="exclamation" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {colorSample}
@@ -620,9 +649,11 @@ export default class ElementsButton extends React.Component {
 
                     <Block inverse={true}>
                         <Icon color="alert" inverse={true} type="activity" />
+                        <Icon color="highlight" inverse={true} type="caret-down" />
                         <Icon color="primary" inverse={true} type="calendar" />
                         <Icon color="static" inverse={true} type="cards" />
                         <Icon color="success" inverse={true} type="clock" />
+                        <Icon color="warning" inverse={true} type="exclamation" />
                     </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

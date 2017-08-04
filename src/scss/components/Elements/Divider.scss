@@ -24,5 +24,8 @@
         &inverse-alternate { border-color: $border-inverse-alternate; }
         &primary { border-color: $border-alternate; }
     }
-    &.divider-relaxed { margin: rem(22px) 0; }
+    &.divider-relaxed {
+        margin: rem(22px) 0;
+        &-very { margin: rem(33px) 0; }
+    }
 }
