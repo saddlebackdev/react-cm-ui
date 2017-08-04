@@ -16,12 +16,11 @@ class Drawer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            drawerContainerInnerPaddingTop: 33,
-            isScrolled: false
-        };
+        this.state = { isScrolled: false };
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
+
+        this._drawerContainerInnerPaddingTop = 33;
     }
 
     render() {
@@ -52,8 +51,7 @@ class Drawer extends Component {
                                 ref={el => this.drawerContainerInner = el}
                                 style={{
                                     paddingLeft: '22px',
-                                    paddingRight: '22px',
-                                    paddingTop: this.state.drawerContainerInnerPaddingTop + 33 + 'px'
+                                    paddingRight: '22px'
                                 }}
                             >
                                 {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
@@ -150,8 +148,9 @@ class Drawer extends Component {
     _onUpdate() {
         const paddingTop = this.drawerContainerInner.querySelector('.drawer-header').offsetHeight;
 
-        if (paddingTop !== this.state.drawerContainerInnerPaddingTop) {
-            this.setState({ drawerContainerInnerPaddingTop: paddingTop });
+        if (paddingTop !== this._drawerContainerInnerPaddingTop) {
+            this._drawerContainerInnerPaddingTop = paddingTop + 33 + 'px';
+            this.drawerContainerInner.style.paddingTop = this._drawerContainerInnerPaddingTop;
         }
     }
 
