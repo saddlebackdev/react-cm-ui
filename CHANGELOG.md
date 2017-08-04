@@ -4,14 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.1.0 - 2017-06-21
+## 1.1.2 - 2017-08-03
+### Changed
+- Added a `warning` (orange) color to **Button**.
+- Added `onUpdate` to **Drawer**.
+- Removed `ignorePadding` from **Drawer**.
+
+## 1.1.1 - 2017-08-03
+### Changed
+- Upgraded extract-text-webpack-plugin.
+
+## 1.1.0 - 2017-08-01
 ### Changed
 - Ability to add **Drawer.Header** to a component child. The ability to pass props: `onClose`, `title` and etc from **Drawer.Header** is now obsolete. Props must be passed from the parent **Drawer** instead.
 - Added the ability to have an **Icon** along with a placeholder in the **Dropdown** component.
 - Fixed **Dropdown**'s disable background color.
 - Importing **BannerItem** in **Banner** now.
 
-## 1.0.1 - 2017-06-21
+## 1.0.2 - 2017-06-29
+### Changed
+- A fix for the UI docs website.
+
+## 1.0.1 - 2017-06-28
 ### Changed
 - Fixed Doc's **Grid.Column**
 

@@ -121,11 +121,16 @@ export default class ButtonSample extends React.Component {
 
     render() {
         return (
-            <Button color="alert">Alert</Button>
-            <Button color="alternate">Alternate</Button>
-            <Button color="disable">Disable</Button>
-            <Button color="primary">Primary</Button>
-            <Button color="success">Success</Button>
+            <div>
+                <Button color="alert">Alert</Button>
+                <Button color="alternate">Alternate</Button>
+                <Button color="disable">Disable</Button>
+                <Button color="light">Light</Button>
+                <Button color="outline">Outline</Button>
+                <Button color="primary">Primary</Button>
+                <Button color="success">Success</Button>
+                <Button color="warning">Warning</Button>
+            </div>
         );
     }
 
@@ -139,11 +144,16 @@ export default class ButtonSample extends React.Component {
 
     render() {
         return (
-            <Button color="alert" inverse={true}>Alert</Button>
-            <Button color="alternate" inverse={true}>Alternate</Button>
-            <Button color="disable" inverse={true}>Disable</Button>
-            <Button color="primary" inverse={true}>Primary</Button>
-            <Button color="success" inverse={true}>Success</Button>
+            <div>
+                <Button color="alert" inverse={true}>Alert</Button>
+                <Button color="alternate" inverse={true}>Alternate</Button>
+                <Button color="disable" inverse={true}>Disable</Button>
+                <Button color="light" inverse={true}>Light</Button>
+                <Button color="outline" inverse={true}>Outline</Button>
+                <Button color="primary" inverse={true}>Primary</Button>
+                <Button color="success" inverse={true}>Success</Button>
+                <Button color="warning" inverse={true}>Warning</Button>
+            </div>
         );
     }
 
@@ -362,6 +372,7 @@ export default class ElementsButton extends React.Component {
                 <Button color="outline">Outline</Button>
                 <Button color="primary">Primary</Button>
                 <Button color="success">Success</Button>
+                <Button color="warning">Warning</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {colorSample}
@@ -383,6 +394,7 @@ export default class ElementsButton extends React.Component {
                     <Button color="outline" inverse={true}>Outline</Button>
                     <Button color="primary" inverse={true}>Primary</Button>
                     <Button color="success" inverse={true}>Success</Button>
+                    <Button color="warning" inverse={true}>Warning</Button>
                 </Block>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
