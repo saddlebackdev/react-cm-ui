@@ -194,9 +194,9 @@ export default class CoreAppNavigation extends React.Component {
                                 <a className="core-app-nav-item" href="https://github.com/captivationsoftware/react-sticky" target="_blank">react-sticky</a>
                             </li>
 
-                            <li>
+                            {/*<li>
                                 <a className="core-app-nav-item" href="https://github.com/MandarinConLaBarba/react-tree-menu" target="_blank">react-tree-menu</a>
-                            </li>
+                            </li>*/}
                         </ul>
                     </div>
                 </ScrollBar>
