@@ -4,8 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.5 - 2017-08-11
+### Removed
+- **TreeMenu** removed.
+
 ## 1.1.4 - 2017-08-04
-### Aadded
+### Added
 - Added a `filter` icon.
 
 ### Changed

@@ -25,7 +25,7 @@ export { default as Dropdown } from './Modules/Dropdown.react.js';
 export { default as Modal } from './Modules/Modal.react.js';
 export { default as SegmentedControls } from './Modules/SegmentedControls.react.js';
 export { default as TimePicker } from './Modules/TimePicker.react.js';
-export { default as TreeMenu } from './Modules/TreeMenu.react.js';
+//export { default as TreeMenu } from './Modules/TreeMenu.react.js';
 
 // utils
 export { default as DatePickerUtils } from './utils/DatePickerUtils.js';
