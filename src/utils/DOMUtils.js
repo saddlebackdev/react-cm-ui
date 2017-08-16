@@ -11,6 +11,21 @@ class DOMUtils {
         return el.classList.contains(cls);
     }
 
+    static isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        const isInTop = rect.top >= 0;
+        const isInRight = rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+        const isInBottom = rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+        const isInLeft = rect.left >= 0;
+
+        return {
+            isInTop: isInTop,
+            isInRight: isInRight,
+            isInBottom: isInBottom,
+            isInLeft: isInLeft
+        }
+    }
+
     static removeClassName(el, cls) {
         el.classList.remove(cls);
     }
