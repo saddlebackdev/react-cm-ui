@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.6 - 2017-08-16
+### Added
+- **Dropdown** (not selections) menu's now detect if they are in the viewport.
+
 ## 1.1.5 - 2017-08-11
 ### Removed
 - **TreeMenu** removed.
