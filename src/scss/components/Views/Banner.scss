@@ -14,7 +14,7 @@ $top: 88px;
     width: 100%;
     .banner-container {
         align-items: flex-start;
-        animation: slideInDrawer 150ms ease-out forwards;
+        animation: slideInBanner 150ms ease-out forwards;
         backface-visibility: hidden;
         border-radius: $border-radius;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.43);
@@ -44,7 +44,7 @@ $top: 88px;
             flex: 1 1 auto;
             padding: 18px 22px;
         }
-        &.animate-out { animation: slideOutDrawer 333ms forwards; }
+        &.animate-out { animation: slideOutBanner 333ms forwards; }
     }
     &.banner-level- {
         &error .banner-container { background: $bkgd-alert; }
@@ -54,12 +54,12 @@ $top: 88px;
     }
 }
 
-@keyframes slideInDrawer {
+@keyframes slideInBanner {
     0% { transform: translate(100%, 0); }
     100% { transform: translate(0, 0); }
 }
 
-@keyframes slideOutDrawer {
+@keyframes slideOutBanner {
     0% { transform: translate(0, 0); }
     100% { transform: translate(100%, 0); }
 }
