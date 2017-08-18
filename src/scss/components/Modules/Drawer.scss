@@ -6,19 +6,21 @@ $zindex: 9000;
 body {
     &.drawer-open {
         overflow: hidden;
-        #coreApp {
-            animation: fadeInBlur 150ms ease-out forwards;
-            animation-delay: 200ms;
-            backface-visibility: hidden;
+        #coreApp::after {
+            background: rgb(0, 0, 0);
+            content: '';
+            height: 100%;
+            left: 0;
+            mix-blend-mode: saturation;
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            transition: opacity 150ms linear;
+            width: 100%;
         }
     }
-    &.drawer-animate-out {
-        overflow: hidden;
-        #coreApp {
-            animation: fadeOutBlur 150ms ease-out forwards;
-            animation-delay: 200ms;
-            backface-visibility: hidden;
-        }
+    &.drawer-animate-out #coreApp::after {
+        opacity: 0;
     }
 }
 .ui.drawer {
@@ -33,7 +35,6 @@ body {
         animation: slideInDrawer 200ms ease-out forwards;
         backface-visibility: hidden;
         background-color: $bkgd;
-        box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22);
         height: 100%;
         max-width: 768px;
         overflow-x: hidden;
@@ -126,16 +127,6 @@ body {
     }
 }
 
-@keyframes fadeInBlur {
-    0% { filter: blur(0); }
-    100% { filter: blur(5px); }
-}
-
-@keyframes fadeOutBlur {
-    0% { filter: blur(5px); }
-    100% { filter: blur(0); }
-}
-
 @keyframes fadeInDimmer {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -147,8 +138,9 @@ body {
 }
 
 @keyframes slideInDrawer {
-    0% { transform: translate(100%, 0); }
-    100% { transform: translate(0, 0); }
+    0% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, 0); transform: translate(100%, 0); }
+    40% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22); }
+    100% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22); transform: translate(0, 0); }
 }
 
 @keyframes slideOutDrawer {
