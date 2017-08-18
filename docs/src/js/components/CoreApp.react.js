@@ -44,6 +44,10 @@ export default class CoreApp extends React.Component {
         );
     }
 
+    componentWillMount() {
+        document.querySelector('html').classList.add(DOMUtils.browserDetect());
+    }
+
     _onToggleNavigation(event) {
         if (DOMUtils.hasClassName(document.body, 'pushed-right')) {
             document.body.classList.remove('pushed-right');
