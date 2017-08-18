@@ -3,7 +3,7 @@
 // The drawers z-index's starts at 9000
 $zindex: 9000;
 
-body {
+html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.drawer-open {
         overflow: hidden;
         #coreApp::after {
@@ -13,7 +13,7 @@ body {
             left: 0;
             mix-blend-mode: saturation;
             opacity: 1;
-            position: absolute;
+            position: fixed;
             top: 0;
             transition: opacity 150ms linear;
             width: 100%;
