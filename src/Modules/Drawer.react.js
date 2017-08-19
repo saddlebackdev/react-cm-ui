@@ -50,6 +50,7 @@ class Drawer extends Component {
                                 className="drawer-container-inner"
                                 ref={el => this.drawerContainerInner = el}
                                 style={{
+                                    paddingBottom: '33px',
                                     paddingLeft: '22px',
                                     paddingRight: '22px'
                                 }}

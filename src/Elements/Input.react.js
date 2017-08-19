@@ -66,11 +66,11 @@ class Input extends Component {
             <div className={containerClasses} style={style}>
                 {label ? (
                     <label className="label" htmlFor={id}>
+                        {label}
+
                         {required && !this.state.value ? (
                             <span className="input-required-indicator">*</span>
                         ) : null}
-
-                        {label}
                     </label>
                 ) : null}
 

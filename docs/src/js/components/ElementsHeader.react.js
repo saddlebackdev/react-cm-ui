@@ -203,6 +203,22 @@ export default class HeadersColorsInvertedSample extends React.Component {
 
 }`;
 
+const weightSample = `import React from 'react';
+
+import Header from 'components/UI/Elements/Header.react';
+
+export default class WeightSample extends React.Component {
+
+    render() {
+        return (
+            <Header size="medium" weight="bold">Bold</Header>
+            <Header size="medium" weight="normal">Normal</Header>
+            <Header size="medium" weight="semibold">SemiBold</Header>
+        );
+    }
+
+}`;
+
 export default class ElementsHeader extends React.Component {
 
     render() {
@@ -262,6 +278,12 @@ export default class ElementsHeader extends React.Component {
                 default: 'false',
                 description: 'Headers may be formatted with a subheader',
                 allowedTypes: ''
+            }, {
+                name: 'weight',
+                type: 'enum',
+                default: 'false',
+                description: 'Headers may be formatted to have lighter or bolder weights',
+                allowedTypes: 'bold, normal, semibold'
             }
         ];
 
@@ -468,6 +490,22 @@ export default class ElementsHeader extends React.Component {
 
                 <Highlighter customStyle={{ marginTop: '44px' }}>
                     {colorsInvertedSample}
+                </Highlighter>
+
+                {/* Weight */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Weight
+                    <Header.Subheader>
+                        A header's weight can be changed.
+                    </Header.Subheader>
+                </Header>
+
+                <Header size="medium" weight="bold">Bold</Header>
+                <Header size="medium" weight="normal">Normal</Header>
+                <Header size="medium" weight="semibold">SemiBold</Header>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {weightSample}
                 </Highlighter>
             </Main>
         );
