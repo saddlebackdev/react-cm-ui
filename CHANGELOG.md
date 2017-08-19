@@ -5,10 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.1.9 - 2017-08-19
-
 ### Changed
 - Removed **Drawer**'s close button container height to be default.
 - Moved **TextArea**'s required indicator to the right of the label.
+- Changed **Input** and **TextArea**'s required indicator negative space.
 
 ## 1.1.8 - 2017-08-19
 ### Added
