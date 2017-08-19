@@ -11,7 +11,7 @@ import Utils from '../utils/Utils.js';
 class Header extends Component {
 
     render() {
-        const { anchor, as, children, className, color, icon, inverse, size, style, sub, title } = this.props;
+        const { anchor, as, children, className, color, icon, inverse, size, style, sub, title, weight } = this.props;
         const ElementType = Utils.getElementType(as);
         const containerClasses = ClassNames('ui', 'header', className, {
             'header-anchor': anchor,
@@ -25,7 +25,10 @@ class Header extends Component {
             'header-size-xlarge': size === 'xlarge',
             'header-size-xsmall': size === 'xsmall',
             'header-size-xxsmall': size === 'xxsmall',
-            'header-subheader': sub
+            'header-subheader': sub,
+            'header-weight-bold': weight === 'bold',
+            'header-weight-normal': weight === 'normal',
+            'header-weight-semibold': weight === 'semibold'
         });
         const anchorJSX = () => {
             if (anchor) {
@@ -83,6 +86,7 @@ Header.Subheader = HeaderSubheader;
 
 const asEnums = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
 const colorEnums = [ 'static', 'text' ];
+const weightEnums = [ 'bold', 'normal', 'semibold' ];
 
 Header.propTypes = {
     anchor: React.PropTypes.string,
@@ -94,7 +98,8 @@ Header.propTypes = {
     size: React.PropTypes.oneOf(Utils.sizeEnums()),
     style: React.PropTypes.object,
     sub: React.PropTypes.bool,
-    title: React.PropTypes.string
+    title: React.PropTypes.string,
+    weight: React.PropTypes.oneOf(weightEnums)
 };
 
 export default Header;
