@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'cm-icons-newui';
+  font-family: 'react-cm-ui';
   src:
-    url('../fonts/cm-icons-newui.woff2?lugdgj') format('woff2'),
-    url('../fonts/cm-icons-newui.ttf?lugdgj') format('truetype'),
-    url('../fonts/cm-icons-newui.woff?lugdgj') format('woff'),
-    url('../fonts/cm-icons-newui.svg?lugdgj#cm-icons-newui') format('svg');
+    url('../fonts/react-cm-ui.woff2?z4gxfr') format('woff2'),
+    url('../fonts/react-cm-ui.ttf?z4gxfr') format('truetype'),
+    url('../fonts/react-cm-ui.woff?z4gxfr') format('woff'),
+    url('../fonts/react-cm-ui.svg?z4gxfr#react-cm-ui') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="i-"], [class*=" i-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'cm-icons-newui' !important;
+  font-family: 'react-cm-ui' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;

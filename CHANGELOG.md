@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.8 - 2017-08-19
+### Added
+- New **Header** prop, `weight`. enums: `bold`, `normal`, and `semibold`.
+
+### Changed
+- Moved **Input**'s required indicator to the right of the label.
+- Changed **Drawer**'s inner container to have a bottom padding.
+- Changed icon font name.
+- **Icon** type `times` is now bigger.
+
 ## 1.1.7 - 2017-08-19
 ### Added
 - New **Button** prop, `relax`.
