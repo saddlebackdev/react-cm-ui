@@ -145,14 +145,11 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         border: 1px solid $border;
         border-radius: 3px;
         box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.06);
-        display: none;
         flex: 1 0 auto;
-        left: 0;
         list-style: none;
         margin: 0;
         padding: 0;
         position: absolute;
-        top: 27px;
         z-index: 8000;
         li {
             padding: rem(4px) 0;
@@ -204,7 +201,6 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             font-size: rem(14px);
             font-weight: $default-font-weight-semibold;
         }
-        .dropdown-menu { top: 49px; }
         &.dropdown-disable {
             background-color: $bkgd-disable !important;
             cursor: default;
@@ -598,10 +594,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
 }
 
 @media only screen and (min-width: 768px) {
-    .ui.dropdown.dropdown-button {
-        height: 33px;
-        .dropdown-menu { top: 39px; }
-    }
+    .ui.dropdown.dropdown-button { height: 33px; }
 }
 
 @keyframes Select-animation-fadeIn {

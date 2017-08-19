@@ -4,6 +4,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
 
@@ -13,6 +14,7 @@ import Icon from '../Elements/Icon.react';
 import Modal from './Modal.react';
 
 import Utils from '../utils/Utils.js';
+import DOMUtils from '../utils/DOMUtils.js';
 
 class Dropdown extends Component {
 
@@ -22,10 +24,13 @@ class Dropdown extends Component {
         this.state = {
             isModalOpen: false,
             menuIsOpen: false,
+            menuXPosition: 'left',
+            menuYPosition: 'top',
             value: props.value || null
         };
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
+        this._onDropdownMenuRepositionRef = this._onDropdownMenuReposition.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -227,13 +232,36 @@ class Dropdown extends Component {
                     type={iconType || 'caret-down'}
                 />
 
-                <ul
-                    className="dropdown-menu"
-                    onClick={this._onDropdownMenuClick.bind(this)}
-                    style={{ display: this.state.menuIsOpen ? 'block' : 'none' }}
-                >
-                    {items}
-                </ul>
+                <MediaQuery maxWidth={767}>
+                    {matches => {
+                        console.log(`matches: ${matches}`)
+                        return (
+                            <ul
+                                className="dropdown-menu"
+                                onClick={this._onDropdownMenuClick.bind(this)}
+                                ref={el => this.dropdownMenu = el}
+                                style={{
+                                    bottom: this.state.menuYPosition === 'bottom' && button ?
+                                                matches ? '49px' : '39px' :
+                                            this.state.menuYPosition === 'bottom' && !button ?
+                                                '27px' :
+                                                null,
+                                    left: this.state.menuXPosition === 'left' ? 0 : null,
+                                    opacity: this.state.menuIsOpen ? 1 : 0,
+                                    right: this.state.menuXPosition === 'right' ? 0 : null,
+                                    top: this.state.menuYPosition === 'top' && button ?
+                                            matches ? '49px' : '39px' :
+                                         this.state.menuYPosition === 'top' && !button ?
+                                            '27px' :
+                                            null,
+                                    visibility: this.state.menuIsOpen ? 'visible' : 'hidden'
+                                }}
+                            >
+                                {items}
+                            </ul>
+                        );
+                    }}
+                </MediaQuery>
             </div>
         );
     }
@@ -241,6 +269,9 @@ class Dropdown extends Component {
     componentDidMount() {
         if (!this.props.selection) {
             document.addEventListener('click', this._onClickOutsideRef);
+            document.addEventListener('scroll', this._onDropdownMenuRepositionRef);
+
+            this._onDropdownMenuRepositionRef();
         }
     }
 
@@ -311,7 +342,9 @@ class Dropdown extends Component {
         event.stopPropagation();
 
         if (!this.props.disable) {
-            this.setState({ menuIsOpen: !this.state.menuIsOpen });
+            this.setState({
+                menuIsOpen: !this.state.menuIsOpen
+            });
         }
     }
 
@@ -324,6 +357,37 @@ class Dropdown extends Component {
     _onDropdownMenuClick(event) {
         // Prevents click event from bubbling up and closing the menu
         event.stopPropagation();
+    }
+
+    _onDropdownMenuReposition() {
+        const { menuXPosition, menuYPosition } = this.state;
+        const dropdownMenuObj = DOMUtils.isInViewport(ReactDOM.findDOMNode(this.dropdownMenu));
+        const isInTop = dropdownMenuObj.isInTop;
+        const isInRight = dropdownMenuObj.isInRight;
+        const isInBottom = dropdownMenuObj.isInBottom;
+        const isInLeft = dropdownMenuObj.isInLeft;
+        let newMenuXPosition, newMenuYPosition;
+
+        if (!isInLeft || !isInLeft && isInRight) {
+            newMenuXPosition = 'left';
+        } else if (!isInRight || isInLeft && !isInRight) {
+            newMenuXPosition = 'right';
+        } else if (isInLeft && isInRight) {
+            newMenuXPosition = menuXPosition;
+        }
+
+        if (!isInTop || !isInTop && isInBottom) {
+            newMenuYPosition = 'top';
+        } else if (!isInBottom || isInTop && !isInBottom) {
+            newMenuYPosition = 'bottom';
+        } else if (isInTop && isInBottom) {
+            newMenuYPosition = menuYPosition;
+        }
+
+        this.setState({
+            menuXPosition: newMenuXPosition,
+            menuYPosition: newMenuYPosition
+        });
     }
 
     _onSelectionMenuOpen() {

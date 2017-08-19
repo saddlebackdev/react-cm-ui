@@ -800,6 +800,15 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 4" />
                     </Dropdown>
 
+                    <div style={{ textAlign: 'right' }}>
+                        <Dropdown placeholder="select">
+                            <Dropdown.Item label="Option 1" />
+                            <Dropdown.Item label="Really Long Option 2" />
+                            <Dropdown.Item label="Option 3" />
+                            <Dropdown.Item label="Option 4" />
+                        </Dropdown>
+                    </div>
+
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {dropdownSample}
                     </Highlighter>
