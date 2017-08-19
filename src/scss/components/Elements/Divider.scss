@@ -15,6 +15,7 @@
         &highlight { border-color: $border-highlight; }
         &inverse { border-color: $border-inverse; }
         &inverse-alternate { border-color: $border-inverse-alternate; }
+        &light { border-color: $border-light; }
         &primary { border-color: $border; }
     }
     &.divider-inverse.divider-color- {
@@ -22,6 +23,7 @@
         &highlight { border-color: $border-highlight; }
         &inverse { border-color: $border-inverse; }
         &inverse-alternate { border-color: $border-inverse-alternate; }
+        &light { border-color: $border-light; }
         &primary { border-color: $border-alternate; }
     }
     &.divider-relaxed {

@@ -60,6 +60,7 @@
         .ui.icon:only-child { margin: 0; }
     &.button-fluid { width: 100%; }
     &.button-compact { padding-left: rem(11px); padding-right: rem(11px); }
+    &.button-relax { padding-left: rem(33px); padding-right: rem(33px); }
     &.button-fixed-width { padding-left: 0; padding-right: 0; }
     &:last-child { margin-right: 0; }
 }
