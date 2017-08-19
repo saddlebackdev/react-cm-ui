@@ -41,11 +41,26 @@ const compactSample = `import React from 'react';
 
 import Button from 'components/UI/Elements/Button.react';
 
-export default class ButtonSample extends React.Component {
+export default class CompactSample extends React.Component {
 
     render() {
         return (
             <Button compact={true}>Compact</Button>
+            <Button>Normal</Button>
+        );
+    }
+
+}`;
+
+const relaxSample = `import React from 'react';
+
+import Button from 'components/UI/Elements/Button.react';
+
+export default class RelaxSample extends React.Component {
+
+    render() {
+        return (
+            <Button relax={true}>Relax</Button>
             <Button>Normal</Button>
         );
     }
@@ -231,6 +246,12 @@ export default class ElementsButton extends React.Component {
                 description: 'Called after the end-user\'s click.',
                 allowedTypes: ''
             }, {
+                name: 'relax',
+                type: 'bool',
+                default: 'false',
+                description: 'A button can relax its padding.',
+                allowedTypes: ''
+            }, {
                 name: 'style',
                 type: 'object',
                 default: '',
@@ -282,6 +303,21 @@ export default class ElementsButton extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {compactSample}
+                </Highlighter>
+
+                {/* Relax */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Relax
+                    <Header.Subheader>
+                        A button can have relaxed padding.
+                    </Header.Subheader>
+                </Header>
+
+                <Button relax={true}>Relax</Button>
+                <Button>Normal</Button>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {relaxSample}
                 </Highlighter>
 
                 {/* Disabled */}

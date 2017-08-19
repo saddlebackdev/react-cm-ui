@@ -9,7 +9,7 @@ import Utils from '../utils/Utils.js';
 class Button extends Component {
 
     render() {
-        const { as, children, className, color, compact, disabled, fluid, href, icon, inverse, style, width } = this.props;
+        const { as, children, className, color, compact, disabled, fluid, href, icon, inverse, relax, style, width } = this.props;
         const newAs = as || 'button';
         const ElementType = Utils.getElementType(newAs, this.props);
         const containerClasses = ClassNames('ui', 'button', className, {
@@ -27,7 +27,8 @@ class Button extends Component {
             'button-compact': compact,
             'button-fluid': fluid,
             'button-icon': icon,
-            'button-fixed-width': width
+            'button-fixed-width': width,
+            'button-relax': relax
         });
         const containerStyle = _.merge(style, {
             width: _.isNumber(width) ? `${width}px` : _.isString(width) ? width : null
@@ -68,6 +69,7 @@ Button.propTypes = {
     icon: React.PropTypes.bool,
     inverse: React.PropTypes.bool,
     onClick: React.PropTypes.func,
+    relax: React.PropTypes.bool,
     square: React.PropTypes.bool,
     style: React.PropTypes.object,
     width: React.PropTypes.oneOfType([

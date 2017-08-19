@@ -15,6 +15,7 @@ class Divider extends Component {
             'divider-color-highlight': color === 'highlight',
             'divider-color-inverse': color === 'inverse',
             'divider-color-inverse-alternate': color === 'inverse-alternate',
+            'divider-color-light': color === 'light',
             'divider-color-primary': !color || color === 'primary',
             'divider-compact': compact,
             'divider-hidden': hidden,
