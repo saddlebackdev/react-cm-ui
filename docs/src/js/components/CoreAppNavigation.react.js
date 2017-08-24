@@ -165,10 +165,6 @@ export default class CoreAppNavigation extends React.Component {
                             <li>
                                 <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/time-picker' }} activeClassName={isActive}>Time Picker</Link>
                             </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/tree-menu' }} activeClassName={isActive}>Tree Menu</Link>
-                            </li>
                         </ul>
 
                         <Header size="small">Packages</Header>
@@ -193,10 +189,6 @@ export default class CoreAppNavigation extends React.Component {
                             <li>
                                 <a className="core-app-nav-item" href="https://github.com/captivationsoftware/react-sticky" target="_blank">react-sticky</a>
                             </li>
-
-                            {/*<li>
-                                <a className="core-app-nav-item" href="https://github.com/MandarinConLaBarba/react-tree-menu" target="_blank">react-tree-menu</a>
-                            </li>*/}
                         </ul>
                     </div>
                 </ScrollBar>
