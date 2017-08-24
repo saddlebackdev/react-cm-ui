@@ -11,7 +11,7 @@ import TableProps from 'components/UI/TableProps.react';
 
 const radioSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class RadioSample extends React.Component {
 
@@ -25,7 +25,7 @@ export default class RadioSample extends React.Component {
 
 const labelSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -39,7 +39,7 @@ export default class LabelSample extends React.Component {
 
 const alignSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class AlignSample extends React.Component {
 
@@ -54,7 +54,7 @@ export default class AlignSample extends React.Component {
 
 const checkedSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class CheckedSample extends React.Component {
 
@@ -68,7 +68,7 @@ export default class CheckedSample extends React.Component {
 
 const disabledSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -82,7 +82,7 @@ export default class DisabledSample extends React.Component {
 
 const fluidSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -97,7 +97,7 @@ export default class FluidSample extends React.Component {
 
 const labelClickSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class LabelClickSample extends React.Component {
 
@@ -111,7 +111,7 @@ export default class LabelClickSample extends React.Component {
 
 const onChangeSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -139,7 +139,7 @@ export default class OnChangeSample extends React.Component {
 
 const radioGroupSample = `import React from 'react';
 
-import Radio from 'components/UI/Elements/Radio.react';
+import { Radio } from 'react-cm-ui';
 
 export default class RadioGroupSample extends React.Component {
 
@@ -152,12 +152,41 @@ export default class RadioGroupSample extends React.Component {
 
 }`;
 
+const radioGroupPillSample = `import React from 'react';
+
+import { Radio } from 'react-cm-ui';
+
+export default class RadioGroupPillSample extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Radio name="pill-sample" pill={true}>
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio><br /><br />
+
+                <Radio checked={this.state.checkedPill} name="pill-onchange-sample" onChange={this._onPillChange.bind(this)} pill={true}>
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio>
+            </div>
+        );
+    }
+
+}`;
+
 export default class ElementsRadio extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { onChangeSample: false };
+        this.state = {
+            onChangeSample: false,
+            checkedPill: 0
+        };
     }
 
     render() {
@@ -222,6 +251,12 @@ export default class ElementsRadio extends React.Component {
                 type: 'func',
                 default: '',
                 description: 'Can handle an onChange event from parent.',
+                allowedTypes: ''
+            }, {
+                name: 'pill',
+                type: 'bool',
+                default: 'false',
+                description: 'Group radio buttons together in a pill container.',
                 allowedTypes: ''
             }, {
                 name: 'style',
@@ -376,7 +411,7 @@ export default class ElementsRadio extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Radio Group
                     <Header.Subheader>
-                        Sometimes you may want to disable a radio input from being checked by clicking it's label definition.
+                        Group radio buttons together.
                     </Header.Subheader>
                 </Header>
 
@@ -386,12 +421,41 @@ export default class ElementsRadio extends React.Component {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {radioGroupSample}
                 </Highlighter>
+
+                {/* Radio Pill Group */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Radio Pill Group
+                    <Header.Subheader>
+                        Group Radio buttons together in a pill container.<br />
+                        <a className="font-size-xsmall" href="https://www.youtube.com/watch?v=xT4ksAgQouc" target="_blank">https://www.youtube.com/watch?v=xT4ksAgQouc</a>
+                    </Header.Subheader>
+                </Header>
+
+                <Radio name="pill-sample" pill={true}>
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio><br /><br />
+
+                <Radio checked={this.state.checkedPill} name="pill-onchange-sample" onChange={this._onPillChange.bind(this)} pill={true}>
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {radioGroupPillSample}
+                </Highlighter>
             </Main>
         );
     }
 
     _onChange(id, checked) {
         this.setState({ onChangeSample: checked });
+    }
+
+    _onPillChange(id) {
+        this.setState({ checkedPill: id });
     }
 
 }

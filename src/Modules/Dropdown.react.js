@@ -234,7 +234,6 @@ class Dropdown extends Component {
 
                 <MediaQuery maxWidth={767}>
                     {matches => {
-                        console.log(`matches: ${matches}`)
                         return (
                             <ul
                                 className="dropdown-menu"

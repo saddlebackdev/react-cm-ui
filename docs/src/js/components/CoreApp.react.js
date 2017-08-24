@@ -309,14 +309,6 @@ let routes = (
                     }, 'ModulesTimePicker')
                 }}
             />
-            {/*<Route
-                path="tree-menu"
-                getComponent={(location, callback) => {
-                    require.ensure([], require => {
-                        callback(null, require('components/ModulesTreeMenu.react'))
-                    }, 'ModulesTreeMenu')
-                }}
-            />*/}
         </Route>
     </Route>
 );

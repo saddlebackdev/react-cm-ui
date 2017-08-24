@@ -42,11 +42,11 @@ class TextArea extends Component {
             <div className={containerClasses} style={style}>
                 {label ? (
                     <label className="label" htmlFor={id}>
+                        {label}
+
                         {required && !this.state.value ? (
                             <span className="text-area-required-indicator">*</span>
                         ) : null}
-
-                        {label}
                     </label>
                 ) : null}
 

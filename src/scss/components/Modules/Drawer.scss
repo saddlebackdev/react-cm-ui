@@ -89,7 +89,6 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                     align-items: center;
                     display: flex;
                     flex: 0 1 1px;
-                    height: 44px;
                     justify-content: center;
                     margin: 0 22px 0 11px;
                     width: 44px;
@@ -122,7 +121,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
 
 @media only screen and (min-width: 768px) {
     .ui.drawer {
-        .drawer-container-inner .drawer-header .drawer-close-button-container { height: 33px; width: 33px; }
+        .drawer-container-inner .drawer-header .drawer-close-button-container { width: 33px; }
         .drawer-container-inverse .drawer-header .drawer-close-button-container { margin: -5px 11px 0 11px; }
     }
 }

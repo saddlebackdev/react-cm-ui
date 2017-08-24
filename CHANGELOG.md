@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.0 - 2017-08-24
+### Added
+- New **Radio** pill grouping.
+
+### Changed
+- Removed **Drawer**'s close button container height.
+- Moved **TextArea**'s required indicator to the right of the label.
+- Changed **Input** and **TextArea**'s required indicator negative space.
+
 ## 1.1.8 - 2017-08-19
 ### Added
 - New **Header** prop, `weight`. enums: `bold`, `normal`, and `semibold`.
