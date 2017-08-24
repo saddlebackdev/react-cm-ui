@@ -70,4 +70,38 @@ $size-dot: 14px;
     &-full-width {
         display: block;
     }
+    &-pill {
+        .radio-item {
+            display: inline-block;
+            label {
+                background-color: $bkgd;
+                border: 1px solid $border;
+                border-right: 0;
+                cursor: pointer;
+                display: inline-block;
+                font-size: rem(14px);
+                font-weight: $default-font-weight-normal;
+                outline: none;
+                padding: rem(6px) rem(22px);
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 125ms linear, border 125ms linear, color 125ms linear;
+                white-space: nowrap;
+                &::before, &::after { display: none; }
+            }
+            .input:checked + label {
+                background-color: $bkgd-highlight;
+                border-color: $border-highlight;
+                color: $color-text-inverse;
+            }
+            &:first-child {
+                label { border-radius: 15.5px 0 0 15.5px; }
+            }
+            &:last-child {
+                label { border-right: 1px solid $border; border-radius: 0 15.5px 15.5px 0; }
+                .input:checked + label { border-right: 1px solid $border-highlight; }
+            }
+            &.radio-item-is-checked + .radio-item label { border-left: 1px solid $border-highlight; }
+        }
+    }
 }

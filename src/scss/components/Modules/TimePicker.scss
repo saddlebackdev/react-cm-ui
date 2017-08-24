@@ -14,11 +14,13 @@
         border: rem(3px);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
         border: 1px solid $border-light;
+        margin-top: 0;
         padding: 11px;
         position: absolute;
         top: 64px;
         width: 260px;
         z-index: 1;
+        .ui.dropdown.dropdown-selection { margin-top: 0; }
         > div {
             align-items: center;
             display: flex;
