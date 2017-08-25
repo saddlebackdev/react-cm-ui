@@ -186,10 +186,10 @@ class Input extends Component {
 
         switch(action) {
             case 'down':
-                newValue = newValue - 1;
+                newValue = --newValue;
                 break;
             case 'up':
-                newValue = newValue + 1;
+                newValue = ++newValue;
                 break;
             default:
                 newValue = newValue;
