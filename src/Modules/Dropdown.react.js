@@ -75,11 +75,11 @@ class Dropdown extends Component {
         if (label) {
             labelJSX = (
                 <label className="label">
+                    {label}
+
                     {selectionRequired && !this.state.value ? (
                         <span className="input-required-indicator">*</span>
                     ) : null}
-
-                    {label}
                 </label>
             );
         }
