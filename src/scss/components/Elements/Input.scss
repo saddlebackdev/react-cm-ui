@@ -4,7 +4,7 @@
     color: $color-text;
     display: inline-block;
     font-size: em(16px);
-    .label { margin-bottom: em(6px); }
+    .label { margin-bottom: em(8px); }
         .input-required-indicator {
             color: $color-text-alert;
             display: inline-block;
@@ -46,5 +46,5 @@
             input { padding-right: em(38px); }
     }
     &.input-focused input { border-color: $bkgd-highlight; }
-    + * { margin-top: em(26px); }
+    + * { margin-top: em(33px); }
 }

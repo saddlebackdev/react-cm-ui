@@ -5,7 +5,7 @@ $size-dot: 14px;
 
 .ui.radio {
     display: inline-block;
-    margin-right: 11px;
+    margin-right: 22px;
     min-height: $size;
     position: relative;
     text-align: left;
@@ -69,6 +69,7 @@ $size-dot: 14px;
     }
     &-full-width {
         display: block;
+        margin-right: 0;
     }
     &-pill {
         .radio-item {

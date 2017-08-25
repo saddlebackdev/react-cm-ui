@@ -6,6 +6,7 @@ $padding-label-toggle: 63px;
 
 .ui.checkbox {
     display: inline-block;
+    margin-right: 22px;
     min-height: $size;
     position: relative;
     text-align: left;
@@ -69,7 +70,7 @@ $padding-label-toggle: 63px;
             &::after { color: $bkgd-static; }
         }
     }
-    &-full-width { display: block; }
+    &-full-width { display: block; margin-right: 0; }
     &-inverse label { color: $color-text-inverse; }
     &-toggle {
         label {

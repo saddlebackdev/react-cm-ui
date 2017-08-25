@@ -19,6 +19,7 @@
     text-decoration: none;
     text-transform: capitalize;
     transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
+    vertical-align: top;
     white-space: normal;
     .button-inner-container { align-items: center; display: flex; justify-content: center; }
     &.button-color- {

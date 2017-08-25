@@ -131,6 +131,12 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
     justify-content: center;
     position: relative;
     > .label { margin-bottom: em(6px); }
+        .input-required-indicator {
+            color: $color-text-alert;
+            display: inline-block;
+            font-size: rem(14px);
+            margin-left: 3px;
+        }
     .dropdown-selection-value {
         color: $color-text-secondary;
         cursor: pointer;
@@ -231,7 +237,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         display: inline-block;
         min-width: 200px;
         &.dropdown-fluid { display: block; }
-        + * { margin-top: em(26px); }
+        + * { margin-top: em(33px); }
     }
     &.dropdown-menu-theme-dark .dropdown-menu {
         background: $bkgd-inverse-alternate;
