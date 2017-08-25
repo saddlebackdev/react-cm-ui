@@ -75,7 +75,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                     display: flex;
                     flex: 1 1 1px;
                     justify-content: flex-start;
-                    margin: 0;
+                    margin: -4px 0 0;
                     padding: 0 33px 0 22px;
                     width: 100%;
                     &.drawer-title-truncate {
@@ -93,7 +93,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                     margin: 0 22px 0 11px;
                     width: 44px;
                 }
-                .ui.divider, .drawer-header-children { flex: 0 1 100%; margin: 11px 0 0;  }
+                .ui.divider, .drawer-header-children { flex: 0 1 100%; margin: 21px 0 0;  }
             }
             .drawer-children > :first-child { margin-top: 0; }
             .drawer-pushdown { margin-top: 66px; }

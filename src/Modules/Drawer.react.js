@@ -20,7 +20,7 @@ class Drawer extends Component {
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
 
-        this._drawerContainerInnerPaddingTop = 33;
+        this._drawerContainerInnerPaddingTop = 27;
     }
 
     render() {
@@ -150,7 +150,7 @@ class Drawer extends Component {
         const paddingTop = this.drawerContainerInner.querySelector('.drawer-header').offsetHeight;
 
         if (paddingTop !== this._drawerContainerInnerPaddingTop) {
-            this._drawerContainerInnerPaddingTop = paddingTop + 33 + 'px';
+            this._drawerContainerInnerPaddingTop = paddingTop + 27 + 'px';
             this.drawerContainerInner.style.paddingTop = this._drawerContainerInnerPaddingTop;
         }
     }
