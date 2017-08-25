@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.1 - 2017-08-24
+### Changed
+- **Button**'s vertical alignment when having an icon is now aligned.
+- **Drawer.Header** is aligned to mockups more appropriately.
+- **Radio** has a `margin-right: 22px` now instead of `margin-right: 11px`.
+- Moved **Dropdown**'s required indicator to the right of the label and actually styled the asterisk.
+- Elements adjacent to **Dropdown**, **Input**, and **Textarea** now has a `margin-top: em(26);`.
+- Elements adjacent to **Dropdown** now has a `margin-top: em(26);`.
+- **Timepicker**
+
+
+
 ## 1.2.0 - 2017-08-24
 ### Added
 - New **Radio** pill grouping.
