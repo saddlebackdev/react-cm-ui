@@ -131,6 +131,13 @@ class Input extends Component {
                             {icon}
                         </div>
                     ) : null}
+
+                    {newType === 'number' ? (
+                        <div className="input-number-controls">
+                            <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
+                            <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
+                        </div>
+                    ) : null}
                 </div>
             </div>
         );
@@ -172,6 +179,24 @@ class Input extends Component {
         if (!_.isUndefined(this.props.onKeyDown)) {
             this.props.onKeyDown(event);
         }
+    }
+
+    _onNumberToggleClick(action) {
+        let newValue = this.state.value;
+
+        switch(action) {
+            case 'down':
+                newValue = newValue - 1;
+                break;
+            case 'up':
+                newValue = newValue + 1;
+                break;
+            default:
+                newValue = newValue;
+                break;
+        }
+
+        this.setState({ value: newValue });
     }
 }
 

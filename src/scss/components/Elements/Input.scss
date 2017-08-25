@@ -46,5 +46,24 @@
             input { padding-right: em(38px); }
     }
     &.input-focused input { border-color: $bkgd-highlight; }
+    &.input-type-number {
+        input {
+            -moz-appearance: textfield;
+            &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+        .input-number-controls {
+            margin-top: -13px;
+            position: absolute;
+            right: 11px;
+            top: 50%;
+            i {
+                display: block;
+                &:last-child { margin-top: 2px; }
+            }
+        }
+    }
     + * { margin-top: em(33px); }
 }
