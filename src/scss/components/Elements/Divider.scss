@@ -15,15 +15,13 @@
         &highlight { border-color: $border-highlight; }
         &inverse { border-color: $border-inverse; }
         &inverse-alternate { border-color: $border-inverse-alternate; }
-        &light { border-color: $border-light; }
-        &primary { border-color: $border; }
+        &primary { border-color: $border-light; }
     }
     &.divider-inverse.divider-color- {
         &alternate { border-color: $border-alternate; }
         &highlight { border-color: $border-highlight; }
         &inverse { border-color: $border-inverse; }
         &inverse-alternate { border-color: $border-inverse-alternate; }
-        &light { border-color: $border-light; }
         &primary { border-color: $border-alternate; }
     }
     &.divider-relaxed {
