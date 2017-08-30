@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.3 - 2017-08-30
+### Changed
+- Changed the **Divider's** primary color and removed `color="light"`.
+
 ## 1.3.2 - 2017-08-30
 ### Added
 - New `labelStyle` prop added to **Input**, **Dropdown**, and **TextArea**.

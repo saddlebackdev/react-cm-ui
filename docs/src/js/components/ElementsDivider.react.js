@@ -36,7 +36,6 @@ export default class ColorSample extends React.Component {
                 <Divider color="highlight" />
                 <Divider color="inverse" />
                 <Divider color="inverse-alternate" />
-                <Divider color="light" />
                 <Divider color="primary" />
             </div>
         );
@@ -57,7 +56,6 @@ export default class InverseSample extends React.Component {
                 <Divider color="highlight" inverse={true} />
                 <Divider color="inverse" inverse={true} />
                 <Divider color="inverse-alternate" inverse={true} />
-                <Divider color="light" inverse={true} />
                 <Divider color="primary" inverse={true} />
             </div>
         );
@@ -208,7 +206,6 @@ export default class ElementsDivider extends React.Component {
                 <Divider color="highlight" />
                 <Divider color="inverse" />
                 <Divider color="inverse-alternate" />
-                <Divider color="light" />
                 <Divider color="primary" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -228,7 +225,6 @@ export default class ElementsDivider extends React.Component {
                     <Divider color="highlight" inverse={true} />
                     <Divider color="inverse" inverse={true} />
                     <Divider color="inverse-alternate" inverse={true} />
-                    <Divider color="light" inverse={true} />
                     <Divider color="primary" inverse={true} />
                 </Block>
 
