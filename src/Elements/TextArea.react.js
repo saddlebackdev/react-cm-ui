@@ -25,7 +25,7 @@ class TextArea extends Component {
     render() {
         const { autoHeight, className,
             disabled, error, fluid,
-            id, inverse, label,
+            id, inverse, label, labelStyle,
             maxHeight, maxLength, minHeight, minLength, name,
             placeholder, required, resize, style } = this.props;
         const containerClasses = ClassNames('ui', 'text-area', className, {
@@ -41,7 +41,7 @@ class TextArea extends Component {
         return (
             <div className={containerClasses} style={style}>
                 {label ? (
-                    <label className="label" htmlFor={id}>
+                    <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
                         {required && !this.state.value ? (
@@ -145,6 +145,7 @@ TextArea.propTypes = {
     id: React.PropTypes.string,
     inverse: React.PropTypes.bool,
     label: React.PropTypes.string,
+    labelStyle: React.PropTypes.object,
     maxHeight: React.PropTypes.oneOfType([
         React.PropTypes.number,
         React.PropTypes.string

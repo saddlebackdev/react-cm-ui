@@ -361,6 +361,12 @@ export default class ElementsTextArea extends React.Component {
                 description: 'Optional Label to display on top of the text area.',
                 allowedTypes: ''
             }, {
+                name: 'labelStyle',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the label container.',
+                allowedTypes: ''
+            }, {
                 name: 'maxHeight',
                 type: 'number || string',
                 default: '',

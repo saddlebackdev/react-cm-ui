@@ -408,6 +408,12 @@ export default class ElementsButton extends React.Component {
                 description: 'Optional Label to display on top of the Input.',
                 allowedTypes: ''
             }, {
+                name: 'labelStyle',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the label container.',
+                allowedTypes: ''
+            }, {
                 name: 'loading',
                 type: 'string',
                 default: '',

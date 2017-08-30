@@ -681,6 +681,12 @@ export default class ModulesDropdown extends React.Component {
                 default: '',
                 description: 'Label for the item.',
                 allowedTypes: ''
+            }, {
+                name: 'labelStyle',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the label container.',
+                allowedTypes: ''
             }
         ];
 

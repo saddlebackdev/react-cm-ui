@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.2 - 2017-08-30
+### Added
+- New `labelStyle` prop added to **Input**, **Dropdown**, and **TextArea**.
+
+### Changed
+- Removed a **Loader** warning in Chrome.
+- **Drawer** dimmer saturation experiment.
+
 ## 1.3.1 - 2017-08-25
 ### Changed
 - Fixed the way **Input** number controls were adding and subtracting. Whoops. :)

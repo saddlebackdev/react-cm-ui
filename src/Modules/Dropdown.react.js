@@ -45,7 +45,7 @@ class Dropdown extends Component {
     render() {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
-            iconInverse, iconSize, iconType, label,
+            iconInverse, iconSize, iconType, label, labelStyle,
             options, placeholder, selection,
             selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionMultiple, selectionRequired,
@@ -74,7 +74,7 @@ class Dropdown extends Component {
 
         if (label) {
             labelJSX = (
-                <label className="label">
+                <label className="label" style={labelStyle}>
                     {label}
 
                     {selectionRequired && !this.state.value ? (
@@ -447,6 +447,7 @@ Dropdown.propTypes = {
     iconSize: React.PropTypes.oneOf(Utils.sizeEnums()),
     iconType: React.PropTypes.string,
     label: React.PropTypes.string,
+    labelStyle: React.PropTypes.object,
     menuMaxHeight: React.PropTypes.number,
     menuMinHeight: React.PropTypes.number,
     onChange: React.PropTypes.func,

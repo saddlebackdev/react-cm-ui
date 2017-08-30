@@ -21,7 +21,7 @@ class Loader extends Component {
                             <stop stopColor="#00AEEF" offset="100%"></stop>
                         </linearGradient>
                     </defs>
-                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
+                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                         <g id="Artboard">
                             <g id="Group" transform="translate(3.000000, 3.000000)">
                                 <path d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z" id="Oval-23" opacity="0.0447761194"></path>

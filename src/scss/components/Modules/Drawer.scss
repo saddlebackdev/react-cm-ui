@@ -7,7 +7,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.drawer-open {
         overflow: hidden;
         #coreApp::after {
-            background: rgb(0, 0, 0);
+            background: $bkgd-disable;
             content: '';
             height: 100%;
             left: 0;

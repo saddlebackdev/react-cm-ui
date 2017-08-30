@@ -130,7 +130,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
     display: inline-flex;
     justify-content: center;
     position: relative;
-    > .label { margin-bottom: em(6px); }
+    > .label { margin-bottom: em(8px); }
         .input-required-indicator {
             color: $color-text-alert;
             display: inline-block;

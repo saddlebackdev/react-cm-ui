@@ -27,7 +27,7 @@ class Input extends Component {
         const { autoComplete, className, disabled,
             error, fluid, guide,
             icon, id, inverse,
-            keepCharPositions, label, loading,
+            keepCharPositions, label, labelStyle, loading,
             mask, maxLength, minLength,
             name, placeholder, required,
             style, tabIndex, type } = this.props;
@@ -65,7 +65,7 @@ class Input extends Component {
         return (
             <div className={containerClasses} style={style}>
                 {label ? (
-                    <label className="label" htmlFor={id}>
+                    <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
                         {required && !this.state.value ? (
@@ -221,6 +221,7 @@ Input.propTypes = {
     inverse: React.PropTypes.bool,
     keepCharPositions: React.PropTypes.bool,
     label: React.PropTypes.string,
+    labelStyle: React.PropTypes.object,
     loading: React.PropTypes.bool,
     mask: React.PropTypes.oneOfType([
         React.PropTypes.array,
