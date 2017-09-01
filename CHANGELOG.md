@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.4.0 - 2017-08-30
+### Added
+- **Accordion** can be inclusive by passing `false` using the new props, `exclusive`.
+- **Accordion's** can now be nested in **Accordion's**.
+
+## Changed
+- A `basic` **Accordion** that uses Summary and Content containers is now styled.
+
 ## 1.3.3 - 2017-08-30
 ### Changed
 - Changed the **Divider's** primary color and removed `color="light"`.

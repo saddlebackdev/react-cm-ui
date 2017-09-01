@@ -15,13 +15,8 @@ class AccordionItem extends Component {
 
 AccordionItem.propTypes = {
     className: React.PropTypes.string,
-    id: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
-    ]),
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.number,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
+    subAccordion: React.PropTypes.bool
 };
 
 export default AccordionItem;

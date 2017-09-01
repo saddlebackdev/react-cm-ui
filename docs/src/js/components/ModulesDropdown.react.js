@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Card, Dropdown, Header, TitleBar, SubNavigation } from 'react-cm-ui';
+import { Card, Dropdown, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
@@ -10,7 +10,7 @@ import TableProps from 'components/UI/TableProps.react';
 
 const dropdownSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class DropdownSample extends React.Component {
 
@@ -29,7 +29,7 @@ export default class DropdownSample extends React.Component {
 
 const buttonSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class ButtonSample extends React.Component {
 
@@ -48,7 +48,7 @@ export default class ButtonSample extends React.Component {
 
 const buttonCompactSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class ButtonCompactSample extends React.Component {
 
@@ -67,7 +67,7 @@ export default class ButtonCompactSample extends React.Component {
 
 const disableSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class DisableSample extends React.Component {
 
@@ -159,7 +159,7 @@ export default class DisableSample extends React.Component {
 
 const iconSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class IconSample extends React.Component {
 
@@ -184,7 +184,7 @@ export default class IconSample extends React.Component {
 
 const menuHeightSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class MenuHeightSample extends React.Component {
 
@@ -217,7 +217,7 @@ export default class MenuHeightSample extends React.Component {
 
 const selectionCreatableSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class SelectionCreatableSample extends React.Component {
 
@@ -251,7 +251,7 @@ export default class SelectionCreatableSample extends React.Component {
 
 const selectionMobileSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class SelectionMobileSample extends React.Component {
 
@@ -284,7 +284,7 @@ export default class SelectionMobileSample extends React.Component {
 
 const selectionMultipleSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class SelectionMultipleSample extends React.Component {
 
@@ -317,7 +317,7 @@ export default class SelectionMultipleSample extends React.Component {
 
 const selectionOptionComponentSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class SelectionOptionComponentSample extends React.Component {
 
@@ -379,7 +379,7 @@ export default class SelectionOptionComponentSample extends React.Component {
 
 const themeSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class ThemeSample extends React.Component {
 
@@ -398,7 +398,7 @@ export default class ThemeSample extends React.Component {
 
 const itemIconSample = `import React from 'react';
 
-import Dropdown from 'components/UI/Modules/Dropdown.react';
+import { Dropdown } from 'react-cm-ui';
 
 export default class ItemIconSample extends React.Component {
 
