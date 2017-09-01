@@ -59,7 +59,7 @@ class Accordion extends Component {
 
             if (title) {
                 return (
-                    <div className={isActiveClass} style={style}>
+                    <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
                         <div
                             className="accordion-item-title"
                             key={`accordion-item-title-${index}`}
@@ -75,7 +75,7 @@ class Accordion extends Component {
                     </div>
                 );
             } else if (children.length >= 3) {
-                <div className={isActiveClass} style={style}>
+                <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
                     <div
                         style={{
                             display: 'flex',
@@ -95,7 +95,7 @@ class Accordion extends Component {
                 </div>
             } else {
                 return (
-                    <div className={isActiveClass} style={style}>
+                    <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
                         {React.cloneElement(children[0], {
                             onClick: this._onItemClick.bind(this, index),
                         })}
