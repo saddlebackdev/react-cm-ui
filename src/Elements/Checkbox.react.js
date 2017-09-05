@@ -68,12 +68,12 @@ class Checkbox extends Component {
         );
     }
 
-    _onClick() {
+    _onClick(event) {
         const { disabled, id, onChange } = this.props;
         const isChecked = this.state.isChecked;
 
         if (!_.isUndefined(onChange)) {
-            onChange(id, !isChecked);
+            onChange(id, !isChecked, event);
         } else if (!disabled) {
             this.setState({ isChecked: !isChecked });
         }
