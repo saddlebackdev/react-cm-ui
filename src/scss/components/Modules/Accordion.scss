@@ -21,7 +21,13 @@ $standard-divider: $border;
             &:last-child { border-bottom: 1px solid $standard-divider; }
             .ui.accordion &:last-child { border-bottom: 0; }
         }
-            .accordion-item-content {
+        .accordion-item-no-summary .accordion-item-content {
+            align-items: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            min-height: 44px;
+        }
+            :not(.accordion-item-no-summary) .accordion-item-content {
                 margin: 11px 0 22px;
                 > {
                     :first-child { margin-top: 0; }
@@ -75,6 +81,7 @@ $standard-divider: $border;
         }
     }
     > .accordion-item > .accordion-item-content { display: none; }
+    > .accordion-item-no-summary > .accordion-item-content { display: flex; }
     > .accordion-item-is-active > .accordion-item-content {
         animation: animateInContent 200ms ease-out forwards;
         display: block;

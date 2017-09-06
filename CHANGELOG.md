@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.4.3 - 2017-09-06
+## Changed
+- **Accordion** now allows for custom content within **Accordion.Item** using the `summary` prop.
+
 ## 1.4.2 - 2017-09-05
 ## Changed
-- **Checkbox** onClick is now passing the event the parent handler. 
+- **Checkbox** onClick is now passing the event the parent handler.
 
 ## 1.4.1 - 2017-09-01
 ## Changed

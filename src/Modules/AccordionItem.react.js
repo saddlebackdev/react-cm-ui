@@ -16,7 +16,8 @@ class AccordionItem extends Component {
 AccordionItem.propTypes = {
     className: React.PropTypes.string,
     style: React.PropTypes.object,
-    subAccordion: React.PropTypes.bool
+    subAccordion: React.PropTypes.bool,
+    summary: React.PropTypes.bool
 };
 
 export default AccordionItem;

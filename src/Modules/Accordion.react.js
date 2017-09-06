@@ -50,11 +50,12 @@ class Accordion extends Component {
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         let items = _.map(convertChildren, (child, index) => {
-            const { children, style, subTitle, subAccordion, title } = child.props;
+            const { children, style, subTitle, subAccordion, summary, title } = child.props;
             const isSelected = exclusive === false ? _.includes(selected, index) : selected === index;
             const isActiveClass = ClassNames('accordion-item', {
                 'accordion-item-is-active': isSelected,
-                'accordion-item-sub-accordion': subAccordion
+                'accordion-item-sub-accordion': subAccordion,
+                'accordion-item-no-summary': summary === false
             });
 
             if (title) {
@@ -62,37 +63,25 @@ class Accordion extends Component {
                     <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
                         <div
                             className="accordion-item-title"
-                            key={`accordion-item-title-${index}`}
                             onClick={this._onItemClick.bind(this, index)}
                         >
                             <span className="copy">{title}{subTitle ? <span className="padding-left">{subTitle}</span> : null}</span>
                             <Icon compact={true} inverse={inverse} rotate={isSelected ? 135 : 0} type="plus" />
                         </div>
 
-                        <div className="accordion-item-content" key={`accordion-item-content-${index}`}>
+                        <div className="accordion-item-content">
                             {children}
                         </div>
                     </div>
                 );
-            } else if (children.length >= 3) {
-                <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
-                    <div
-                        style={{
-                            display: 'flex',
-                            width: '100%'
-                        }}
-                    >
-                        {children[0]}
-
-                        <div style={{ flex: '1 1 auto' }}>
-                            {React.cloneElement(children[1], {
-                                onClick: this._onItemClick.bind(this, index),
-                            })}
-
-                            {children[2]}
+            } else if (summary === false) {
+                return (
+                    <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>
+                        <div className="accordion-item-content">
+                            {children}
                         </div>
                     </div>
-                </div>
+                );
             } else {
                 return (
                     <div className={isActiveClass} key={`accordion-item-${index}`} style={style}>

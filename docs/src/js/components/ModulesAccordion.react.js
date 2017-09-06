@@ -375,6 +375,54 @@ export default class CollectionsAccordion extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {subAccordionSample}
                     </Highlighter>
+
+                    {/* Summary */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Summary
+                        <Header.Subheader>
+                            A Accordion can be nested within an Accordion.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Accordion basic={true}>
+                        <Accordion.Item>
+                            <Accordion.Summary>
+                                Option One
+                            </Accordion.Summary>
+
+                            <Accordion.Content>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Content>
+                        </Accordion.Item>
+
+                        <Accordion.Item>
+                            <Accordion.Summary>
+                                Option Two
+                            </Accordion.Summary>
+
+                            <Accordion.Content>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Content>
+                        </Accordion.Item>
+
+                        <Accordion.Item summary={false}>
+                            <div>Shown Item Number Three</div>
+                        </Accordion.Item>
+
+                        <Accordion.Item>
+                            <Accordion.Summary>
+                                Option Four
+                            </Accordion.Summary>
+
+                            <Accordion.Content>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Content>
+                        </Accordion.Item>
+                    </Accordion>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {subAccordionSample}
+                    </Highlighter>
                 </div>
             );
         } else {
