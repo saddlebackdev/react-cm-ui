@@ -27,14 +27,16 @@ $standard-divider: $border;
             justify-content: flex-start;
             min-height: 44px;
         }
-            :not(.accordion-item-no-summary) .accordion-item-content {
+            .accordion-item-content {
                 margin: 11px 0 22px;
                 > {
                     :first-child { margin-top: 0; }
                     :last-child { margin-bottom: 0; }
                 }
             }
-            .accordion-item-sub-accordion > .accordion-item-content { margin: 0; }
+            .accordion-item-no-summary, .accordion-item-sub-accordion > {
+                .accordion-item-content { margin: 0; }
+            }
         &.accordion-inverse {
             .accordion-item .accordion-item-title {
                 color: $color-text-inverse;

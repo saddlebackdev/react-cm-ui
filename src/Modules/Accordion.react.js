@@ -50,9 +50,9 @@ class Accordion extends Component {
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         let items = _.map(convertChildren, (child, index) => {
-            const { children, style, subTitle, subAccordion, summary, title } = child.props;
+            const { children, className, style, subTitle, subAccordion, summary, title } = child.props;
             const isSelected = exclusive === false ? _.includes(selected, index) : selected === index;
-            const isActiveClass = ClassNames('accordion-item', {
+            const isActiveClass = ClassNames('accordion-item', className, {
                 'accordion-item-is-active': isSelected,
                 'accordion-item-sub-accordion': subAccordion,
                 'accordion-item-no-summary': summary === false

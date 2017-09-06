@@ -304,6 +304,12 @@ export default class CollectionsAccordion extends React.Component {
                 default: '',
                 description: 'Required boolean for Accordion\'s nested inside of Accordion Item container.',
                 allowedTypes: ''
+            }, {
+                name: 'summary',
+                type: 'bool',
+                default: 'true',
+                description: 'Use custom content within an Accordion\'s Item.',
+                allowedTypes: ''
             }
         ];
 
@@ -380,7 +386,7 @@ export default class CollectionsAccordion extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Summary
                         <Header.Subheader>
-                            A Accordion can be nested within an Accordion.
+                            You can supply custom content within an Accordion's Item.
                         </Header.Subheader>
                     </Header>
 

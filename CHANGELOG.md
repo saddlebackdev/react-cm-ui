@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.4.4 - 2017-09-06
+## Added
+- Added `className` to **Accordion.Item**.
+
+## Changed
+- Fixed some **Accordion.Item** styling.
+
 ## 1.4.3 - 2017-09-06
 ## Changed
 - **Accordion** now allows for custom content within **Accordion.Item** using the `summary` prop.
