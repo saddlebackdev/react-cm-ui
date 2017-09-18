@@ -1,0 +1,6 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
+
+.ui.prompt {
+    position: relative;
+    &-inline { display: inline-block; }
+}

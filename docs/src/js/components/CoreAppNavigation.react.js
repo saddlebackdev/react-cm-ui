@@ -159,6 +159,10 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/modules/prompt' }} activeClassName={isActive}>Prompt</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/modules/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
                             </li>
 

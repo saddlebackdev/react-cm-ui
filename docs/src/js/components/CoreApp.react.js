@@ -294,6 +294,14 @@ let routes = (
                 }}
             />
             <Route
+                path="prompt"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesPrompt.react'))
+                    }, 'ModulesPrompt')
+                }}
+            />
+            <Route
                 path="segmented-controls"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
