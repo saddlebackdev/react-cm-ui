@@ -8,6 +8,12 @@ import Utils from '../utils/Utils.js';
 
 class Button extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this._onClick = this._onClick.bind(this);
+    }
+
     render() {
         const { as, children, className, color, compact, disabled, fluid, href, icon, inverse, relax, style, width } = this.props;
         const newAs = as || 'button';
@@ -38,7 +44,7 @@ class Button extends Component {
             <ElementType
                 className={containerClasses}
                 href={href}
-                onClick={this._onClick.bind(this)}
+                onClick={this._onClick}
                 style={containerStyle}
                 disabled={disabled}
             >
@@ -47,9 +53,9 @@ class Button extends Component {
         );
     }
 
-    _onClick() {
+    _onClick(event) {
         if(_.isFunction(this.props.onClick)) {
-            this.props.onClick();
+            this.props.onClick(event);
         }
     }
 
