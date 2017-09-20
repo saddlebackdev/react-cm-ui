@@ -13,7 +13,7 @@ module.exports = function (env) {
         devServer: {
             historyApiFallback: true,
             inline: true,
-            port: 8080
+            port: 8082
         },
         output: {
             path: path.join(__dirname, './docs/build'),
