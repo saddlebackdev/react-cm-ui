@@ -1,7 +1,7 @@
-@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator', '../../config/Variables';
 
 // The modal z-index's starts at 10000
-$zindex: 10000;
+$zindex: $modal-zindex;
 
 body {
     &.modal-open {

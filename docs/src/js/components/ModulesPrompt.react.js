@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Button, Card, Grid, Header, Prompt, TitleBar } from 'react-cm-ui';
+import { Button, Card, Dropdown, Grid, Header, Prompt, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
@@ -9,25 +9,30 @@ import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
-const cardSample = `import React from 'react';
+const inlineSample = `import React from 'react';
 
-import Card from 'components/UI/Views/Card.react';
+import { Button, Dropdown, Prompt } from 'react-cm-ui';
 
-export default class CardSample extends React.Component {
+export default class InlineSample extends React.Component {
 
     render() {
         return (
-            <Card>
-                <Header size="large">Look at me!!!</Header>
+            <div>
+                <Prompt inline={true}>
+                    <Button color="success">Save Me!</Button>
+                </Prompt><br /><br />
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
-                    Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
-                    Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
-                    Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
-                    dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                    sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
-            </Card>
+                <Prompt inline={true}>
+                    <Dropdown button={true} buttonColor="alert" placeholder="Remove Me!">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+                </Prompt><br /><br />
+
+                <Prompt inline={true}>
+                    <a>Simple Link</a>
+                </Prompt>
+            </div>
         );
     }
 
@@ -38,46 +43,58 @@ export default class ModulesPrompt extends React.Component {
     render() {
         const props = [
             {
-                name: 'active',
-                type: 'bool',
-                default: 'false',
-                description: 'Cards can have an active state.',
-                allowedTypes: ''
-            }, {
-                name: 'children',
-                type: 'node',
-                default: '',
-                description: 'Primary content.',
-                allowedTypes: ''
-            }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
-                name: 'compact',
+                name: 'inline',
                 type: 'bool',
-                default: 'false',
-                description: 'A card can reduce its padding.',
+                default: '',
+                description: 'Prompts will be handled inline with the action.',
                 allowedTypes: ''
             }, {
-                name: 'nest',
-                type: 'bool',
-                default: 'false',
-                description: 'Cards may be placed in a nested background color.',
+                name: 'inlineMessageColor',
+                type: 'enum',
+                default: '',
+                description: 'Give an inline Prompt\'s action message a custom background color.',
+                allowedTypes: 'alert, success'
+            }, {
+                name: 'inlineHorizontalAlign',
+                type: 'enum',
+                default: 'left',
+                description: 'An inline Prompt can be horizontal aligned to the left or the right.',
+                allowedTypes: 'left, right'
+            }, {
+                name: 'message',
+                type: 'string',
+                default: '',
+                description: 'Supply a Prompt a custom message.',
                 allowedTypes: ''
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
-                description: 'Cards can handle an onClick event.',
+                description: 'Prompts can handle an onClick event.',
+                allowedTypes: ''
+            }, {
+                name: 'onNoClick',
+                type: 'func',
+                default: '',
+                description: 'An onClick event handler for the no button.',
+                allowedTypes: ''
+            }, {
+                name: 'onYesClick',
+                type: 'func',
+                default: '',
+                description: 'An onClick event handler for the yes button.',
                 allowedTypes: ''
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Card\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Prompt\'s container. Mainly used for padding and margins.',
                 allowedTypes: ''
             }
         ];
@@ -92,27 +109,38 @@ export default class ModulesPrompt extends React.Component {
                     <TableProps props={props} />
                 </Card>
 
-                {/* Card */}
+                {/* Inline */}
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Card
+                    Inline
                     <Header.Subheader>
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
                     </Header.Subheader>
                 </Header>
 
                 <Prompt inline={true}>
                     <Button color="success">Save Me!</Button>
+                </Prompt><br /><br />
+
+                <Prompt inline={true}>
+                    <Dropdown button={true} buttonColor="alert" placeholder="Remove Me!">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+                </Prompt><br /><br />
+
+                <Prompt inline={true}>
+                    <a>Simple Link</a>
                 </Prompt>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {cardSample}
+                    {inlineSample}
                 </Highlighter>
             </Main>
         );
     }
 
-    _onClick() {
-        window.alert('The card has been clicked!');
+    _onClick(option) {
+        console.log('option:', option);
     }
 
 }

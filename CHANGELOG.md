@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.5.0 - 2017-09-20
+##Added
+- New **Prompt** component. Only handles inline prompts for now.
+
+## Changed
+- Changed *Button's** onClick handler back to older es6 for now.
+
+## 1.4.5 - 2017-09-18
+## Changed
+- Changed *Button's** onClick handler method.
+
 ## 1.4.4 - 2017-09-06
 ## Added
 - Added `className` to **Accordion.Item**.
