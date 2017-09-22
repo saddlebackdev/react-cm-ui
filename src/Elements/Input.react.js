@@ -14,7 +14,7 @@ class Input extends Component {
 
         this.state = {
             isFocused: false,
-            value: props.value || ''
+            value: props.value || props.value === 0 ? props.value : ''
         };
     }
 

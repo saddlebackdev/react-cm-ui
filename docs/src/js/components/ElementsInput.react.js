@@ -672,7 +672,7 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Input label="Min - Max" max={99} min={0} type="number" />
+                <Input label="Age" max={99} min={0} type="number" value={0} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {maxLengthSample}
