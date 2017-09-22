@@ -14,7 +14,7 @@ class Input extends Component {
 
         this.state = {
             isFocused: false,
-            value: props.value || ''
+            value: props.value || props.value === 0 ? props.value : ''
         };
     }
 
@@ -63,8 +63,6 @@ class Input extends Component {
             'input-type-password': newType === 'password',
             'input-type-text': newType === 'text'
         });
-
-        console.log(`label: ${label}`);
 
         return (
             <div className={containerClasses} style={style}>
