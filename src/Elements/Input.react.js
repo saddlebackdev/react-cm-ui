@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
+import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 
 import Icon from './Icon.react';
@@ -28,9 +29,10 @@ class Input extends Component {
             error, fluid, guide,
             icon, id, inverse,
             keepCharPositions, label, labelStyle, loading,
-            mask, maxLength, minLength,
-            name, placeholder, required,
-            style, tabIndex, type } = this.props;
+            mask, max, maxLength,
+            min, minLength, name,
+            placeholder, required, style,
+            tabIndex, type } = this.props;
         let newType;
         switch(type) {
             case 'email':
@@ -61,6 +63,8 @@ class Input extends Component {
             'input-type-password': newType === 'password',
             'input-type-text': newType === 'text'
         });
+
+        console.log(`label: ${label}`);
 
         return (
             <div className={containerClasses} style={style}>
@@ -105,7 +109,9 @@ class Input extends Component {
                             disabled={disabled}
                             id={id}
                             name={name}
+                            max={max}
                             maxLength={maxLength}
+                            min={min}
                             minLength={minLength}
                             onBlur={this._onBlur.bind(this)}
                             onChange={this._onChange.bind(this)}
@@ -113,6 +119,7 @@ class Input extends Component {
                             onFocus={this._onFocus.bind(this)}
                             onKeyDown={this._onKeyDown.bind(this)}
                             placeholder={placeholder}
+                            ref={input => { this.input = input }}
                             required={required}
                             tabIndex={tabIndex}
                             type={newType}
@@ -152,12 +159,18 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const value = event.target.value;
+        const { value } = this.state;
+        const { max, min, onChange, type } = this.props;
+        let newValue = event.target.value;
 
-        if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(event.target.value);
+        if (type === 'number' && _.isNumber(max) || _.isNumber(min)) {
+            newValue = newValue > max || newValue < min ? value : newValue;
+        }
+
+        if (!_.isUndefined(onChange)) {
+            onChange(newValue);
         } else {
-            this.setState({ value: value });
+            this.setState({ value: newValue });
         }
     }
 
@@ -182,17 +195,16 @@ class Input extends Component {
     }
 
     _onNumberToggleClick(action) {
-        let newValue = this.state.value;
+        const { value } = this.state;
+        const { max, min, type } = this.props;
+        let newValue = value || 0;
 
         switch(action) {
             case 'down':
-                newValue = --newValue;
+                newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
                 break;
             case 'up':
-                newValue = ++newValue;
-                break;
-            default:
-                newValue = newValue;
+                newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
                 break;
         }
 
@@ -227,7 +239,9 @@ Input.propTypes = {
         React.PropTypes.array,
         React.PropTypes.func
     ]),
+    max: React.PropTypes.number,
     maxLength: React.PropTypes.number,
+    min: React.PropTypes.number,
     minLength: React.PropTypes.number,
     name: React.PropTypes.string,
     onBlur: React.PropTypes.func,
@@ -243,7 +257,10 @@ Input.propTypes = {
         React.PropTypes.string
     ]),
     type: React.PropTypes.oneOf(typeEnums),
-    value: React.PropTypes.string
+    value: React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string
+    ])
 };
 
 export default Input;

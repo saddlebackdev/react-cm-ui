@@ -426,10 +426,22 @@ export default class ElementsButton extends React.Component {
                 description: 'Is an array that defines how the user input is going to be masked.',
                 allowedTypes: ''
             }, {
+                name: 'max',
+                type: 'number',
+                default: '',
+                description: 'Specifies the maximum value the field can have.',
+                allowedTypes: ''
+            }, {
                 name: 'maxLength',
                 type: 'number',
                 default: '',
                 description: 'Specifies the maximum number of characters that the user can enter.',
+                allowedTypes: ''
+            }, {
+                name: 'min',
+                type: 'number',
+                default: '',
+                description: 'Specifies the minimum value the field can have.',
                 allowedTypes: ''
             }, {
                 name: 'minLength',
@@ -499,7 +511,7 @@ export default class ElementsButton extends React.Component {
                 allowedTypes: 'email, number, password, tel, text'
             }, {
                 name: 'value',
-                type: 'string',
+                type: 'string || number',
                 default: '',
                 description: 'The initial value of the control. This attribute is optional.',
                 allowedTypes: ''
@@ -650,6 +662,20 @@ export default class ElementsButton extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {loadingSample}
+                </Highlighter>
+
+                {/* Max & Min */}
+                <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Max & Min
+                    <Header.Subheader>
+                        Specifies the minimum and maximum value that the field can have.
+                    </Header.Subheader>
+                </Header>
+
+                <Input label="Min - Max" max={99} min={0} type="number" />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {maxLengthSample}
                 </Highlighter>
 
                 {/* Max Length */}
