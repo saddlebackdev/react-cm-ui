@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.5.1 - 2017-09-20
+##Added
+- New **Input** props: `max` and `min`.
+
+##Changed
+- **Input's** value accepts numbers now.
+
 ## 1.5.0 - 2017-09-20
 ##Added
 - New **Prompt** component. Only handles inline prompts for now.
