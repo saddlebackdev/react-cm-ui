@@ -64,8 +64,6 @@ class Input extends Component {
             'input-type-text': newType === 'text'
         });
 
-        console.log(`label: ${label}`);
-
         return (
             <div className={containerClasses} style={style}>
                 {label ? (
