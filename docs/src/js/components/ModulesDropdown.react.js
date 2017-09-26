@@ -4,6 +4,7 @@ import React from 'react';
 import { Card, Dropdown, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
+import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
@@ -558,6 +559,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Change the icon inside of the Dropdown.',
                 allowedTypes: ''
             }, {
+                name: 'inverse',
+                type: 'bool',
+                default: '',
+                description: 'A Dropdown can be formatted to appear on dark backgrounds better.',
+                allowedTypes: ''
+            }, {
                 name: 'menuMaxHeight',
                 type: 'number',
                 default: '',
@@ -931,6 +938,29 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
                     </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconSample}
+                    </Highlighter>
+
+                    {/* Inverse */}
+                    <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Inverse
+                        <Header.Subheader>
+                            A Dropdown can be formatted to appear on dark backgrounds better.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Block inverse={true} style={{ height: '300px', marginTop: '33px' }}>
+                        <Dropdown
+                            inverse={true}
+                            onChange={this._onSelectionChange.bind(this)}
+                            options={selectionOptions}
+                            placeholder="Select a user"
+                            selection={true}
+                            value={this.state.selectionValue}
+                        />
+                    </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {iconSample}

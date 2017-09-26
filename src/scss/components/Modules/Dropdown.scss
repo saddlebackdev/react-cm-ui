@@ -579,7 +579,6 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 }
         &.is-open > .Select-control .Select-arrow-zone .ui.icon { color: $color-text-highlight; }
     }
-
     .Select--multi.is-disabled {
         > .Select-control {
             background-color: $select-input-bg-disabled;
@@ -596,6 +595,22 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
     			background-color: $select-item-disabled-bg;
     		}
     	}
+    }
+    &.ui.dropdown-inverse  {
+        .is-open:not(.Select--multi) > .Select-control {
+            background-color: $bkgd;
+            .Select-arrow-zone, .Select-clear-zone {
+                .ui.icon { color: $color-text; }
+            }
+        }
+        .Select-menu-outer { background-color: $bkgd; }
+            .Select-option {
+                background-color: $bkgd;
+                color: $color-text;
+                &.is-selected, &.is-focused, &:hover { background-color: $bkgd-highlight; color: $color-text-inverse; }
+                &.is-disabled { color: $select-option-disabled-color; }
+            }
+            .Select-noresults { color: $color-text; }
     }
 }
 

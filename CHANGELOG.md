@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.5.3 - 2017-09-26
+##Added
+- New text color class name, `color-warning`.
+- Added an `inverse` prop to **Dropdown**. Only works for selections for right now.
+
 ## 1.5.2 - 2017-09-22
 ##Changed
 - **Input** value fix.
