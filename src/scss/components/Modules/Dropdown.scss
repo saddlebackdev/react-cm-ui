@@ -602,6 +602,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             .Select-arrow-zone, .Select-clear-zone {
                 .ui.icon { color: $color-text; }
             }
+            .Select-value-label { color: $color-text !important; }
         }
         .Select-menu-outer { background-color: $bkgd; }
             .Select-option {

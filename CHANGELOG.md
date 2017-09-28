@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.5.4 - 2017-09-28
+##Added
+- Fixes **Dropdown's** `inverse` & `selection` value not appearing when input is focused.
+
 ## 1.5.3 - 2017-09-26
 ##Added
 - New text color class name, `color-warning`.
