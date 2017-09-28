@@ -612,6 +612,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 &.is-disabled { color: $select-option-disabled-color; }
             }
             .Select-noresults { color: $color-text; }
+        .Select-input > input { color: $color-text; }
     }
 }
 
