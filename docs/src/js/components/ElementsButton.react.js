@@ -115,11 +115,11 @@ export default class IconSample extends React.Component {
 
                 <Button>
                     <Icon color="inverse" type="cards" />
-                    Icon On The Left
+                    <span>Icon On The Left</span>
                 </Button>
 
                 <Button>
-                    Icon On The Right
+                    <span>Icon On The Right</span>
                     <Icon color="inverse" type="cards" />
                 </Button>
             </div>
@@ -381,11 +381,11 @@ export default class ElementsButton extends React.Component {
 
                 <Button>
                     <Icon color="inverse" type="cards" />
-                    Icon On The Left
+                    <span>Icon On The Left</span>
                 </Button>
 
                 <Button>
-                    Icon On The Right
+                    <span>Icon On The Right</span>
                     <Icon color="inverse" type="cards" />
                 </Button>
 

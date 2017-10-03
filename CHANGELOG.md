@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.6.0 - 2017-10-03
+##Changed
+- Bumped React from version `0.14.8` to version `15.6.2`.
+
 ## 1.5.5 - 2017-09-28
 ##Added
 - Fixes **Dropdown's** `inverse` & `selection` input value not appearing when searching.
