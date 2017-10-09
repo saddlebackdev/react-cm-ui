@@ -294,6 +294,14 @@ let routes = (
                 }}
             />
             <Route
+                path="phone-input"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesPhoneInput.react'))
+                    }, 'ModulesPhoneInput')
+                }}
+            />
+            <Route
                 path="prompt"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
