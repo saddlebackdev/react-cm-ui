@@ -46,9 +46,9 @@ class Dropdown extends Component {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconSize, iconType, inverse, label, labelStyle,
-            options, placeholder, selection,
+            options, placeholder, searchable, selection,
             selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
-            selectionMobile, selectionOptionComponent, selectionMultiple, selectionRequired,
+            selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
             style, tabIndex, theme } = this.props;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
@@ -170,8 +170,10 @@ class Dropdown extends Component {
                                         optionComponent={selectionOptionComponent}
                                         options={options}
                                         placeholder={placeholder}
+                                        searchable={!searchable ? searchable : true}
                                         tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                                         value={this.state.value}
+                                        valueComponent={selectionValueComponent}
                                     />
                                 </div>
                             );
@@ -203,8 +205,10 @@ class Dropdown extends Component {
                         optionComponent={selectionOptionComponent}
                         options={options}
                         placeholder={placeholder}
+                        searchable={!searchable ? searchable : true}
                         tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                         value={this.state.value}
+                        valueComponent={selectionValueComponent}
                     />
                 </div>
             );
@@ -455,6 +459,7 @@ Dropdown.propTypes = {
     onChange: React.PropTypes.func,
     options: React.PropTypes.array,
     placeholder: React.PropTypes.string,
+    searchable: React.PropTypes.bool,
     selectionCreatable: React.PropTypes.bool,
     selectionMenuContainerStyle: React.PropTypes.object,
     selectionMenuStyle: React.PropTypes.object,
@@ -462,6 +467,7 @@ Dropdown.propTypes = {
     selectionMultiple: React.PropTypes.bool,
     selectionOptionComponent: React.PropTypes.func,
     selectionRequired: React.PropTypes.bool,
+    selectionValueComponent: React.PropTypes.func,
     style: React.PropTypes.object,
     tabIndex: React.PropTypes.oneOfType([
         React.PropTypes.number,

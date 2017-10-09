@@ -23,6 +23,7 @@ export { default as DatePicker } from './Modules/DatePicker.react.js';
 export { default as Drawer } from './Modules/Drawer.react.js';
 export { default as Dropdown } from './Modules/Dropdown.react.js';
 export { default as Modal } from './Modules/Modal.react.js';
+export { default as PhoneInput } from './Modules/PhoneInput.react.js';
 export { default as Prompt } from './Modules/Prompt.react.js';
 export { default as SegmentedControls } from './Modules/SegmentedControls.react.js';
 export { default as TimePicker } from './Modules/TimePicker.react.js';

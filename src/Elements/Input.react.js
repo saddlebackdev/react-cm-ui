@@ -16,10 +16,16 @@ class Input extends Component {
             isFocused: false,
             value: props.value || props.value === 0 ? props.value : ''
         };
+
+        this._onBlur = this._onBlur.bind(this);
+        this._onChange = this._onChange.bind(this);
+        this._onClick = this._onClick.bind(this);
+        this._onFocus = this._onFocus.bind(this);
+        this._onKeyDown = this._onKeyDown.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.value, nextProps.value)) {
+        if (this.props.value !== nextProps.value) {
             this.setState({ value: nextProps.value });
         }
     }
@@ -32,23 +38,8 @@ class Input extends Component {
             mask, max, maxLength,
             min, minLength, name,
             placeholder, required, style,
-            tabIndex, type } = this.props;
-        let newType;
-        switch(type) {
-            case 'email':
-                newType = 'email';
-                break;
-            case 'number':
-                newType = 'number';
-                break;
-            case 'password':
-                newType = 'password';
-                break;
-            case 'text':
-            default:
-                newType = 'text';
-                break;
-        }
+            tabIndex } = this.props;
+        const type = this._getType();
         const containerClasses = ClassNames('ui', 'input', className, {
             'input-disabled': disabled,
             'input-error': error,
@@ -58,10 +49,11 @@ class Input extends Component {
             'input-focused': this.state.isFocused,
             'input-inverse': inverse,
             'input-loading': loading,
-            'input-type-email': newType === 'email',
-            'input-type-number': newType === 'number',
-            'input-type-password': newType === 'password',
-            'input-type-text': newType === 'text'
+            'input-type-email': type === 'email',
+            'input-type-number': type === 'number',
+            'input-type-password': type === 'password',
+            'input-type-tel': type === 'tel',
+            'input-type-text': type === 'text'
         });
 
         return (
@@ -80,7 +72,6 @@ class Input extends Component {
                     {mask ? (
                         <InputMasked
                             autoComplete={autoComplete}
-                            data-parsley-error-message={_.isString(error) ? error : null}
                             disabled={disabled}
                             guide={guide}
                             id={id}
@@ -89,21 +80,20 @@ class Input extends Component {
                             mask={mask}
                             maxLength={maxLength}
                             minLength={minLength}
-                            onBlur={this._onBlur.bind(this)}
-                            onChange={this._onChange.bind(this)}
-                            onClick={this._onClick.bind(this)}
-                            onFocus={this._onFocus.bind(this)}
-                            onKeyDown={this._onKeyDown.bind(this)}
+                            onBlur={this._onBlur}
+                            onChange={this._onChange}
+                            onClick={this._onClick}
+                            onFocus={this._onFocus}
+                            onKeyDown={this._onKeyDown}
                             placeholder={placeholder}
                             required={required}
                             tabIndex={tabIndex}
-                            type={newType}
+                            type={type}
                             value={this.state.value}
                         />
                     ) : (
                         <input
                             autoComplete={autoComplete}
-                            data-parsley-error-message={_.isString(error) ? error : null}
                             disabled={disabled}
                             id={id}
                             name={name}
@@ -111,16 +101,16 @@ class Input extends Component {
                             maxLength={maxLength}
                             min={min}
                             minLength={minLength}
-                            onBlur={this._onBlur.bind(this)}
-                            onChange={this._onChange.bind(this)}
-                            onClick={this._onClick.bind(this)}
-                            onFocus={this._onFocus.bind(this)}
-                            onKeyDown={this._onKeyDown.bind(this)}
+                            onBlur={this._onBlur}
+                            onChange={this._onChange}
+                            onClick={this._onClick}
+                            onFocus={this._onFocus}
+                            onKeyDown={this._onKeyDown}
                             placeholder={placeholder}
                             ref={input => { this.input = input }}
                             required={required}
                             tabIndex={tabIndex}
-                            type={newType}
+                            type={type}
                             value={this.state.value}
                         />
                     )}
@@ -137,7 +127,7 @@ class Input extends Component {
                         </div>
                     ) : null}
 
-                    {newType === 'number' ? (
+                    {type === 'number' ? (
                         <div className="input-number-controls">
                             <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
                             <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
@@ -156,9 +146,38 @@ class Input extends Component {
         this.setState({ isFocused: false });
     }
 
+    _getType() {
+        const { type } = this.props;
+        let newType;
+
+        switch(type) {
+            case 'email':
+                newType = 'email';
+                break;
+            case 'number':
+                newType = 'number';
+                break;
+            case 'password':
+                newType = 'password';
+                break;
+            case 'telephone':
+            case 'tel':
+            case 'phone':
+                newType = 'tel';
+                break;
+            case 'text':
+            default:
+                newType = 'text';
+                break;
+        }
+
+        return newType;
+    }
+
     _onChange(event) {
         const { value } = this.state;
-        const { max, min, onChange, type } = this.props;
+        const { max, min, onChange } = this.props;
+        const type = this._getType();
         let newValue = event.target.value;
 
         if (type === 'number' && _.isNumber(max) || _.isNumber(min)) {

@@ -836,6 +836,7 @@ export default class ElementsButton extends React.Component {
                     label="Phone Number"
                     mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     placeholder="(555) 495-3947"
+                    type="tel"
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

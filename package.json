@@ -40,6 +40,8 @@
   "dependencies": {
     "autosize": "^3.0.17",
     "classnames": "^2.2.5",
+    "country-telephone-data": "^0.4.4",
+    "emoji-flags": "^1.2.0",
     "lodash": "^4.15.0",
     "moment-timezone": "^0.5.13",
     "react": "^15.6.2",
@@ -52,7 +54,7 @@
     "react-select": "^1.0.0-rc.3",
     "react-syntax-highlighter": "^4.0.1",
     "react-tether": "^0.5.7",
-    "react-text-mask": "^0.19.0",
+    "react-text-mask": "^5.0.2",
     "react-tree-menu": "^1.5.0"
   },
   "devDependencies": {
