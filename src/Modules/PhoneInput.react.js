@@ -3,7 +3,6 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import CountryTelephoneData from 'country-telephone-data';
-import EmojiFlags from 'emoji-flags';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -41,14 +40,12 @@ class CountrySelectionOption extends Component {
                     }}
                 >
                     <span
-                        className="flag"
+                        className={`flag-icon flag-icon-${option.iso2}`}
                         style={{
                             display: 'inline-block',
-                            flex: '0 1 1px'
+                            flex: '0 1 20px'
                         }}
-                    >
-                        {option.emoji}
-                    </span>
+                    />
                     <span
                         className="country-name"
                         style={{ display: 'inline-block', flex: '0 1 auto', margin: '0 11px' }}
@@ -109,7 +106,7 @@ class CountrySelectionValue extends Component {
                 className={containerClasses}
                 title={value.name}
             >
-                <span className="flag">{value.emoji}</span>
+                <span className={`flag-icon flag-icon-${value.iso2}`} />
             </div>
         );
     }
@@ -195,7 +192,6 @@ class PhoneInput extends Component {
         return _.map(CountryTelephoneData.allCountries, (c, i) => {
             return {
                 dialCode: c.dialCode,
-                emoji: EmojiFlags.countryCode(c.iso2).emoji,
                 format: c.format,
                 iso2: c.iso2,
                 label: c.name,
