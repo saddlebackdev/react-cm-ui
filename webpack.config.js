@@ -46,14 +46,12 @@ module.exports = function (env) {
                     test: /\.scss$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        loader: [
+                        use: [
                             'css-loader',
                             'postcss-loader',
-                            'sass-loader?outputStyle=expanded&includePaths[]=' +
-                            path.resolve(__dirname, 'docs/src/scss') +
-                            '&includePaths[]=' +
-                            path.resolve(__dirname, 'src/scss')
-                        ].join('!')
+                            'resolve-url-loader',
+                            'sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, 'docs/src/scss') + '&includePaths[]=' + path.resolve(__dirname, 'src/scss'),
+                        ]
                     })
                 }, {
                     test: /\.(ico|png|jpg|gif|svg|eot|ttf|woff|woff(2)?)(\?[a-z0-9=\.]+)?$/,
