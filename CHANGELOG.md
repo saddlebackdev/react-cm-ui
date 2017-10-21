@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.7.2 - 2017-10-21
+##Added
+- New icon "ban".
+
 ## 1.7.1 - 2017-10-10
 ##Changed
 - The **Phone Input's** emojis were not working cross OS'. Switched to a flag CSS icons that will work for folks.
