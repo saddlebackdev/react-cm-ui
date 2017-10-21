@@ -285,6 +285,11 @@ export default class ElementsButton extends React.Component {
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="ban" />
+                                <p className="icon-type-name">ban</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="block" />
                                 <p className="icon-type-name">block</p>
                             </Grid.Column>
