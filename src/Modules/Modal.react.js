@@ -3,48 +3,185 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import ScrollBar from 'react-custom-scrollbars';
 
-import ModalContainer from './ModalContainer.react';
+import Button from '../Elements/Button.react';
+import Divider from '../Elements/Divider.react';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
 
 import DOMUtils from '../utils/DOMUtils.js';
 
-class Modal extends Component {
+class ModalHeader extends Component {
+
+    constructor() {
+        super();
+
+        this._onCloseClick = this._onCloseClick.bind(this);
+    }
 
     render() {
-        const { className, closeButton, height,
-            maxHeight, maxWidth, minHeight,
-            minWidth, isOpen, onClickOutside,
-            onClose, title, width, fluidContent } = this.props;
+        const { children, closeButton, inverse, title, titleTruncate } = this.props;
+        const titleClass = ClassNames('title', {
+            'modal-title-truncate': titleTruncate
+        });
+
+        return (
+            <header className="modal-header">
+                <Header as="h2" className={titleClass} title={title}>{title}</Header>
+
+                <div className="modal-close-button-container">
+                    {!closeButton || _.isString(closeButton) ? (
+                        <Button
+                            className="modal-close-button"
+                            color={inverse ? 'transparent' : 'alternate'}
+                            onClick={this._onCloseClick}
+                            icon={true}
+                        >
+                            <Icon inverse={true} type={_.isString(closeButton) ? closeButton : 'times'} />
+                        </Button>
+                    ) : _.isObject(closeButton) ? closeButton : null}
+                </div>
+
+                {children ? (
+                    <div className="modal-header-children">{children}</div>
+                ) : (
+                    <Divider />
+                )}
+            </header>
+        );
+    }
+
+    _onCloseClick() {
+        this.props.onClose();
+    }
+
+}
+
+ModalHeader.propTypes = {
+    closeButton: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
+    ]),
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
+};
+
+class Modal extends Component {
+
+    constructor() {
+        super();
+
+        this._defaultDimensions = {
+            height: '100%',
+            maxHeight: '100%',
+            maxWidth: 'none',
+            minHeight: 'auto',
+            minWidth: '320px',
+            width: '100%'
+        };
+
+        this.state = {
+            height: this._defaultDimensions.height,
+            isScrolled: false,
+            maxHeight: this._defaultDimensions.maxHeight,
+            maxWidth: this._defaultDimensions.maxWidth,
+            minHeight: this._defaultDimensions.minHeight,
+            minWidth: this._defaultDimensions.minWidth,
+            width: this._defaultDimensions.width
+        };
+
+        this._mounted = false;
+
+        this._onBeforeClose = this._onBeforeClose.bind(this);
+        this._onOpen = this._onOpen.bind(this);
+        this._onResize = this._onResize.bind(this);
+        this._onScrollStart = this._onScrollStart.bind(this);
+        this._onScrollStop = this._onScrollStop.bind(this);
+    }
+
+    render() {
+        const { className, closeButton, fluidContent, header, inverse, isOpen, onClickOutside, onClose, title, titleTruncate } = this.props;
+        const { height, isScrolled, maxHeight, maxWidth, minHeight, minWidth, width } = this.state;
         const containerClasses = ClassNames('ui', 'modal', className);
+        const containerInnerClasses = ClassNames('modal-container', {
+            'modal-container-inverse': inverse,
+            'modal-container-is-scrolled': isScrolled
+        });
+        const containerInnerStyles = {
+            height: height,
+            maxHeight: maxHeight,
+            maxWidth: maxWidth,
+            minHeight: minHeight,
+            minWidth: minWidth,
+            width: width
+        };
+        const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
 
         return (
             <Portal
-                beforeClose={this._onBeforeClose.bind(this)}
+                beforeClose={this._onBeforeClose}
                 isOpened={isOpen}
-                onOpen={this._onOpen.bind(this)}
+                onOpen={this._onOpen}
             >
                 <div className={containerClasses}>
-                    <ModalContainer
-                        closeButton={closeButton}
-                        height={height}
-                        maxHeight={maxHeight}
-                        maxWidth={maxWidth}
-                        minHeight={minHeight}
-                        minWidth={minWidth}
-                        onClose={onClose}
-                        onClickOutside={onClickOutside}
-                        title={title}
-                        width={width}
-                        fluidContent={fluidContent}
-                    >
-                        {this.props.children}
-                    </ModalContainer>
+                    <div className={containerInnerClasses} ref={el => this.mmodalContainer = el} style={containerInnerStyles}>
+                        <ScrollBar
+                            autoHide={true}
+                            onScrollStart={this._onScrollStart}
+                            onScrollStop={this._onScrollStop}
+                        >
+                            <div
+                                className="modal-container-inner"
+                                ref={el => this.modalContainerInner = el}
+                                style={containerInnerScrollStyles}
+                            >
+                                {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
+                                    closeButton: closeButton,
+                                    inverse: inverse,
+                                    onClose: onClose,
+                                    title: title,
+                                    titleTruncate: titleTruncate
+                                })) : [
+                                    <ModalHeader
+                                        closeButton={closeButton}
+                                        inverse={inverse}
+                                        key={`modal-header-${_.kebabCase(title)}`}
+                                        onClose={onClose}
+                                        title={title}
+                                        titleTruncate={titleTruncate}
+                                    />,
+                                    <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
+                                        {this.props.children}
+                                    </div>
+                                ]}
+                            </div>
+                        </ScrollBar>
+                    </div>
 
                     <div className="modal-dimmer" />
                 </div>
             </Portal>
         );
+    }
+
+    componentDidMount() {
+        this._mounted = true;
+
+        window.addEventListener('resize', this._onResize);
+
+        this._onResize();
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+
+        window.removeEventListener('resize', this._onResize);
     }
 
     _animationProps(el) {
@@ -77,8 +214,6 @@ class Modal extends Component {
 
         if (modalLength === 0) {
             DOMUtils.removeClassName(element, 'modal-open');
-            const modalDimmerSaturation = document.querySelector('.modal-dimmer-saturation');
-            modalDimmerSaturation.parentNode.removeChild(modalDimmerSaturation);
         }
 
         DOMUtils.removeClassName(element, 'modal-animate-out');
@@ -116,10 +251,6 @@ class Modal extends Component {
             DOMUtils.addClassName(body, 'modal-open');
             modal.style.zIndex = zIndex - 1;
             modalContainer.style.zIndex = zIndex + modalLength;
-
-            const modalDimmerSaturation = document.createElement('div');
-            modalDimmerSaturation.classList.add('modal-dimmer-saturation');
-            document.getElementById('coreApp').appendChild(modalDimmerSaturation);
         }
 
         if (!_.isUndefined(maxWidth)) {
@@ -129,43 +260,87 @@ class Modal extends Component {
         }
     }
 
+    _onResize() {
+        if (this._mounted) {
+            let dimensions = {};
+
+            if (window.matchMedia('(min-width: 768px)').matches === true) {
+                dimensions = {
+                    height: this.props.height || '500px',
+                    maxHeight: this.props.maxHeight || this._defaultDimensions.maxHeight,
+                    maxWidth: this.props.maxWidth || this._defaultDimensions.maxWidth,
+                    minHeight: this.props.minHeight || '305px',
+                    minWidth: this.props.minWidth || this._defaultDimensions.minWidth,
+                    width: this.props.width || '640px'
+                };
+            } else {
+                dimensions = {
+                    height: this._defaultDimensions.height,
+                    maxHeight: this._defaultDimensions.maxHeight,
+                    maxWidth: this._defaultDimensions.maxWidth,
+                    minHeight: this._defaultDimensions.minHeight,
+                    minWidth: this._defaultDimensions.minWidth,
+                    width: this._defaultDimensions.width
+                };
+            }
+
+            this.setState(dimensions);
+        }
+    }
+
+    _onScrollStart() {
+        const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
+
+        this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
+    }
+
+    _onScrollStop() {
+        const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
+
+        this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
+    }
+
 }
 
 Modal.propTypes = {
-    className: React.PropTypes.string,
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    className: PropTypes.string,
+    closeButton: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
     ]),
-    fluidContent: React.PropTypes.bool,
-    height: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    fluidContent: PropTypes.bool,
+    header: PropTypes.bool,
+    height: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    isOpen: React.PropTypes.bool.isRequired,
-    maxHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    inverse: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
+    maxHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    maxWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    minHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    minHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    minWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    minWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string,
-    width: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    onClickOutside: PropTypes.bool,
+    onClose: PropTypes.func.isRequired,
+    style: PropTypes.object,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ])
 };
 
