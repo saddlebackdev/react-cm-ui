@@ -6,48 +6,21 @@ $zindex: $modal-zindex;
 body {
     &.modal-open {
         overflow: hidden;
-        #coreApp {
-            animation: fadeInBlur 150ms ease-out forwards;
-            animation-delay: 300ms;
-            backface-visibility: hidden;
-            .modal-dimmer-saturation {
-                animation: fadeInDimmer 150ms ease-out forwards;
-                animation-delay: 100ms;
-                background-color: rgba(0, 0, 0, .7);
-                display: block;
-                height: 100%;
-                left: 0;
-                mix-blend-mode: color;
-                opacity: 0;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: $zindex;
-            }
+        #coreApp::after {
+            background: $bkgd-disable;
+            content: '';
+            height: 100%;
+            left: 0;
+            mix-blend-mode: saturation;
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            transition: opacity 150ms linear;
+            width: 100%;
         }
     }
-    &.modal-animate-out {
-        overflow: hidden;
-        #coreApp {
-            animation: fadeOutBlur 150ms ease-out forwards;
-            animation-delay: 300ms;
-            backface-visibility: hidden;
-            .modal-dimmer-saturation {
-                animation: fadeOutDimmer 150ms ease-out forwards;
-                animation-delay: 100ms;
-                backface-visibility: hidden;
-                background-color: rgba(0, 0, 0, .7);
-                display: block;
-                height: 100%;
-                left: 0;
-                mix-blend-mode: color;
-                opacity: 0;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: $zindex;
-            }
-        }
+    &.modal-animate-out #coreApp::after {
+        opacity: 0;
     }
 }
 .ui.modal {

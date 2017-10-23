@@ -3,24 +3,91 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DrawerHeader from './DrawerHeader.react';
+import Button from '../Elements/Button.react';
+import Divider from '../Elements/Divider.react';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
 
 import DOMUtils from '../utils/DOMUtils.js';
 
+class DrawerHeader extends Component {
+
+    constructor() {
+        super();
+
+        this._onCloseClick = this._onCloseClick.bind(this);
+    }
+
+    render() {
+        const { children, closeButton, inverse, title, titleTruncate } = this.props;
+        const titleClass = ClassNames('title', {
+            'drawer-title-truncate': titleTruncate
+        });
+
+        return (
+            <header className="drawer-header">
+                <Header as="h2" className={titleClass} title={title}>{title}</Header>
+
+                <div className="drawer-close-button-container">
+                    {!closeButton || _.isString(closeButton) ? (
+                        <Button
+                            className="drawer-close-button"
+                            color={inverse ? 'transparent' : 'alternate'}
+                            onClick={this._onCloseClick}
+                            icon={true}
+                        >
+                            <Icon inverse={true} type={_.isString(closeButton) ? closeButton : 'times'} />
+                        </Button>
+                    ) : _.isObject(closeButton) ? closeButton : null}
+                </div>
+
+                {children ? (
+                    <div className="drawer-header-children">{children}</div>
+                ) : (
+                    <Divider />
+                )}
+            </header>
+        );
+    }
+
+    _onCloseClick() {
+        this.props.onClose();
+    }
+
+}
+
+DrawerHeader.propTypes = {
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
+    ]),
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
+};
+
 class Drawer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = { isScrolled: false };
 
-        this._onClickOutsideRef = this._onClickOutside.bind(this);
-
         this._drawerContainerInnerPaddingTop = 27;
+
+        this._onBeforeClose = this._onBeforeClose.bind(this);
+        this._onClickOutside = this._onClickOutside.bind(this);
+        this._onOpen = this._onOpen.bind(this);
+        this._onPortalClose = this._onPortalClose.bind(this);
+        this._onScrollStart = this._onScrollStart.bind(this);
+        this._onScrollStop = this._onScrollStop.bind(this);
+        this._onUpdate = this._onUpdate.bind(this);
     }
 
     render() {
@@ -33,18 +100,18 @@ class Drawer extends Component {
 
         return (
             <Portal
-                beforeClose={this._onBeforeClose.bind(this)}
+                beforeClose={this._onBeforeClose}
                 isOpened={isOpen}
-                onClose={this._onPortalClose.bind(this)}
-                onOpen={this._onOpen.bind(this)}
-                onUpdate={this._onUpdate.bind(this)}
+                onClose={this._onPortalClose}
+                onOpen={this._onOpen}
+                onUpdate={this._onUpdate}
             >
                 <div className={containerClasses}>
                     <div className={containerInnerClasses} ref={el => this.drawerContainer = el}>
                         <ScrollBar
                             autoHide={true}
-                            onScrollStart={this._onScrollStart.bind(this)}
-                            onScrollStop={this._onScrollStop.bind(this)}
+                            onScrollStart={this._onScrollStart}
+                            onScrollStop={this._onScrollStop}
                         >
                             <div
                                 className="drawer-container-inner"
@@ -157,7 +224,7 @@ class Drawer extends Component {
 
     _onPortalClose() {
         if (this.props.onClickOutside) {
-            document.removeEventListener('click', this._onClickOutsideRef);
+            document.removeEventListener('click', this._onClickOutside);
         }
     }
 
@@ -175,7 +242,7 @@ class Drawer extends Component {
         let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         if (onClickOutside) {
-            document.addEventListener('click', this._onClickOutsideRef);
+            document.addEventListener('click', this._onClickOutside);
         }
 
         if (DOMUtils.hasClassName(body, 'drawer-open')) {
@@ -216,28 +283,28 @@ class Drawer extends Component {
 Drawer.Header = DrawerHeader;
 
 Drawer.propTypes = {
-    className: React.PropTypes.string,
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    className: PropTypes.string,
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    header: React.PropTypes.bool,
-    inverse: React.PropTypes.bool,
-    isOpen: React.PropTypes.bool.isRequired,
-    maxWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    header: PropTypes.bool,
+    inverse: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
+    maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    path: React.PropTypes.string,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    onClickOutside: PropTypes.bool,
+    onClose: PropTypes.func,
+    path: PropTypes.string,
+    style: PropTypes.object,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };
 
 Drawer.contextTypes = {
-    router: React.PropTypes.object
+    router: PropTypes.object
 };
 
 export default Drawer;
