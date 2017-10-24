@@ -33,7 +33,7 @@ class ModalHeader extends Component {
                 <Header as="h2" className={titleClass} title={title}>{title}</Header>
 
                 <div className="modal-close-button-container">
-                    {!closeButton || _.isString(closeButton) ? (
+                    {_.isUndefined(closeButton) || _.isString(closeButton) ? (
                         <Button
                             className="modal-close-button"
                             color={inverse ? 'transparent' : 'alternate'}
