@@ -332,9 +332,9 @@ export default class ModulesModal extends React.Component {
                 allowedTypes: ''
             }, {
                 name: 'closeButton',
-                type: 'string || object',
+                type: 'bool || string || object',
                 default: '',
-                description: 'A Modal\'s close button can be changed using a string or giving custom JSX.',
+                description: 'A Modal\'s close button can be disabled or or the icon type can be changed using a string or giving custom JSX.',
                 allowedTypes: ''
             }, {
                 name: 'height',
