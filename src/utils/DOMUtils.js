@@ -19,7 +19,7 @@ class DOMUtils {
         } else if (ua.indexOf('Edge/') > -1) {
             // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
             return 'ua-ie-edge';
-        } else if (browser.indexOf('firefox') > -1) {
+        } else if (ua.indexOf('firefox') > -1) {
             // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:54.0) Gecko/20100101 Firefox/54.0"
             return 'ua-firefox';
         } else if (ua.indexOf('Safari/') > -1 && ua.indexOf('Chrome/') <= -1) {
