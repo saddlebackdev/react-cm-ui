@@ -355,6 +355,11 @@ export default class ElementsButton extends React.Component {
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="duplicate" />
+                                <p className="icon-type-name">duplicate</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="ellipsis-h" />
                                 <p className="icon-type-name">ellipsis-h</p>
                             </Grid.Column>
@@ -482,6 +487,11 @@ export default class ElementsButton extends React.Component {
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="user-alt" />
                                 <p className="icon-type-name">user-alt</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="users" />
+                                <p className="icon-type-name">users</p>
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
