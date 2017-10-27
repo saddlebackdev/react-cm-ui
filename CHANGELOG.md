@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.7.6 - 2017-10-27
+##Added
+- Two new icons: "duplicate" and "users".
+
 ## 1.7.5 - 2017-10-24
 ##Changed
-- Fixed the **Modal**'s `closeButton` boolean condition. 
+- Fixed the **Modal**'s `closeButton` boolean condition.
 
 ## 1.7.4 - 2017-10-23
 ##Changed
