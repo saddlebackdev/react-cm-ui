@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.7.7 - 2017-10-27
+##Changed
+- Added the new icons to docs.
+
 ## 1.7.6 - 2017-10-27
 ##Added
 - Two new icons: "duplicate" and "users".
