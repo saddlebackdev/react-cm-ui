@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.7.11 - 2017-10-30
+##Added
+- **Banner** has a new prop, `topPosition`.
+
 ## 1.7.10 - 2017-10-30
 ##Changed
 - `DOMUtils`' `browserDetect()` is case-sensitive and Firefox was all in lowercase. Fixed!

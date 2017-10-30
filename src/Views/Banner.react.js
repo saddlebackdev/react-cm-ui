@@ -3,6 +3,7 @@
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
@@ -133,7 +134,8 @@ class Banner extends Component {
     }
 
     _bannerYPositions() {
-        let bannersYPosition = 88;
+        const { topPosition } = this.props;
+        let bannersYPosition = topPosition || 22;
         const containersArray = document.querySelectorAll('.ui.banner .banner-container');
         const containersLength = containersArray.length - 1;
 
@@ -163,21 +165,22 @@ const levelEnums = [ 'error', 'purple', 'secondary', 'success', 'teal', 'warning
 const typeEnums = [ 'alert', 'notification' ];
 
 Banner.propTypes = {
-    className: React.PropTypes.string,
-    id: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string,
+    className: PropTypes.string,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
     ]).isRequired,
-    isOpen: React.PropTypes.bool.isRequired,
-    level: React.PropTypes.oneOf(levelEnums),
-    levelIcon: React.PropTypes.string,
-    message: React.PropTypes.string,
-    onAfterClose: React.PropTypes.func,
-    onClose: React.PropTypes.func.isRequired,
-    onOpen: React.PropTypes.func,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string,
-    type: React.PropTypes.oneOf(typeEnums)
+    isOpen: PropTypes.bool.isRequired,
+    level: PropTypes.oneOf(levelEnums),
+    levelIcon: PropTypes.string,
+    message: PropTypes.string,
+    onAfterClose: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
+    onOpen: PropTypes.func,
+    style: PropTypes.object,
+    title: PropTypes.string,
+    topPosition: PropTypes.number,
+    type: PropTypes.oneOf(typeEnums)
 };
 
 export default Banner;
