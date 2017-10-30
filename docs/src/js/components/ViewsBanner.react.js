@@ -288,6 +288,12 @@ export default class ViewsBanner extends React.Component {
                 description: 'A Banner\'s title.',
                 allowedTypes: ''
             }, {
+                name: 'topPosition',
+                type: 'number',
+                default: '',
+                description: 'Changes the Banner\'s top position relative to the top of the viewport.',
+                allowedTypes: ''
+            }, {
                 name: 'type',
                 type: 'enum',
                 default: '',
