@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.7.9 - 2017-10-30
+##Added
+- Added `level` colors to **Banner**. These two new colors, `purple` and `teal`, need to be defined some time by the design team and renamed by us in the future.
+
 ## 1.7.8 - 2017-10-27
 ##Changed
 - Fixed the browser variable in `DOMUtils`.
