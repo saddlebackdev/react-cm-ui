@@ -14,8 +14,10 @@ class Banner extends Component {
         const { children, className, isOpen, level, levelIcon, message, title, type } = this.props;
         const containerClasses = ClassNames('ui', 'banner', className, {
             'banner-level-error': level === 'error',
+            'banner-level-purple': level === 'purple', // Rename when better defined.
             'banner-level-secondary': !level || level === 'secondary',
             'banner-level-success': level === 'success',
+            'banner-level-teal': level === 'teal', // Rename when better defined.
             'banner-level-warning': level === 'warning',
             'banner-type-alert': type === 'alert',
             'banner-type-notification': type === 'notification'
@@ -157,7 +159,7 @@ class Banner extends Component {
 
 Banner.Item = BannerItem;
 
-const levelEnums = [ 'error', 'secondary', 'success', 'warning' ];
+const levelEnums = [ 'error', 'purple', 'secondary', 'success', 'teal', 'warning' ];
 const typeEnums = [ 'alert', 'notification' ];
 
 Banner.propTypes = {

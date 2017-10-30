@@ -48,8 +48,10 @@ $top: 88px;
     }
     &.banner-level- {
         &error .banner-container { background: $bkgd-alert; }
+        &purple .banner-container { background: $bkgd-purple; } // Rename when better defined
         &secondary .banner-container { background: $bkgd-highlight; }
         &success .banner-container { background: $bkgd-success; }
+        &teal .banner-container { background: $bkgd-teal; } // Rename when better defined
         &warning .banner-container { background: $bkgd-warning; }
     }
 }
