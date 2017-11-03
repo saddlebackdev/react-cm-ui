@@ -2,6 +2,7 @@
 
 import ClassNames from 'classnames';
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import SubNavigationItem from './SubNavigationItem.react';
 
@@ -20,13 +21,14 @@ class SubNavigation extends Component {
     }
 
     render() {
-        const { border, className, drawer, style } = this.props;
+        const { border, className, drawer, style, children } = this.props;
         const containerClasses = ClassNames('ui', 'sub-navigation', className, {
             'sub-navigation-border-bottom': !border || border === 'bottom' || border === 'both',
             'sub-navigation-border-top': border === 'top' || border === 'both',
             'sub-navigation-drawer': drawer
         });
-        let buttons = _.map(this.props.children, (child, index) => {
+        const childrenArray = children && (_.isArray(children) ? children : [children]);
+        let buttons = _.map(childrenArray, (child, index) => {
             const { label, onClick, style } = child.props;
             let isActive = ClassNames({ 'is-active': this.state.selected === index });
 
