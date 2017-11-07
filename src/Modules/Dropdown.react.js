@@ -16,6 +16,23 @@ import Modal from './Modal.react';
 import Utils from '../utils/Utils.js';
 import DOMUtils from '../utils/DOMUtils.js';
 
+class CustomSelect extends Select {
+    renderHiddenField(valueArray) {
+        const options = this._visibleOptions = this.filterOptions(this.props.multi && this.props.removeSelected ? valueArray : null);
+        const menu = this.renderMenu(options, valueArray);
+        const styles = Object.assign({}, this.props.menuContainerStyle, {visibility: 'hidden'});
+        return (
+            <div className="Select-menu-outer" style={styles}>
+                <div role="listbox" tabIndex={-1} className="Select-menu" id={this._instancePrefix + '-list'} style={this.props.menuStyle}>
+                    {menu}
+                </div>
+            </div>
+        );
+    }
+};
+
+const customCreatableSelect = props => <CustomSelect {...props}/>;
+
 class Dropdown extends Component {
 
     constructor(props) {
@@ -47,7 +64,7 @@ class Dropdown extends Component {
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconSize, iconType, inverse, label, labelStyle,
             options, placeholder, searchable, selection,
-            selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
+            selectionCreatable, selectionMenuContainerStyle: menuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
             style, tabIndex, theme } = this.props;
         const isButtonDisabled = buttonColor === 'disable';
@@ -111,107 +128,120 @@ class Dropdown extends Component {
             });
         }
 
-        if (selection && !selectionCreatable) {
-            return (
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        if (selectionMobile && matches) {
-                            return (
-                                <div
-                                    className={containerClasses}
-                                    ref="dropdownSelectionContainer"
-                                    style={style}
-                                >
-                                    {labelJSX}
+        if (selection) {
+            const selectionMenuContainerStyle = Object.assign({}, {
+                top: this.state.menuYPosition === 'bottom' ? 'initial' : '100%',
+                bottom: this.state.menuYPosition === 'bottom' ? '100%' : 'initial',
+                marginTop: this.state.menuYPosition === 'bottom' ? 0 : '4px',
+                marginBottom: this.state.menuYPosition === 'bottom' ? '4px' : 0
+            }, menuContainerStyle);
 
+            if (!selectionCreatable) {
+                return (
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            if (selectionMobile && matches) {
+                                return (
                                     <div
-                                        className="dropdown-selection-mobile-button"
-                                        onClick={this._onSelectionMobileModalToggle.bind(this)}
+                                        className={containerClasses}
+                                        ref="dropdownSelectionContainer"
+                                        style={style}
                                     >
-                                        {placeholder && !this.state.value ? (
-                                            <span className="placeholder">{placeholder}</span>
-                                        ) : (
-                                            <span className="label">{this.state.value.label}</span>
-                                        )}
+                                        {labelJSX}
 
-                                        <Icon color={disable ? 'disable' : null} compact={true} type="arrows-alt" />
+                                        <div
+                                            className="dropdown-selection-mobile-button"
+                                            onClick={this._onSelectionMobileModalToggle.bind(this)}
+                                        >
+                                            {placeholder && !this.state.value ? (
+                                                <span className="placeholder">{placeholder}</span>
+                                            ) : (
+                                                <span className="label">{this.state.value.label}</span>
+                                            )}
+
+                                            <Icon color={disable ? 'disable' : null} compact={true} type="arrows-alt" />
+                                        </div>
+
+                                        <Modal
+                                            isOpen={this.state.isModalOpen}
+                                            onClose={this._onSelectionMobileModalToggle.bind(this)}
+                                            title={placeholder}
+                                        >
+                                            {this._onSelectionMobileItemRenderer()}
+                                        </Modal>
                                     </div>
-
-                                    <Modal
-                                        isOpen={this.state.isModalOpen}
-                                        onClose={this._onSelectionMobileModalToggle.bind(this)}
-                                        title={placeholder}
+                                );
+                            } else {
+                                return (
+                                    <div
+                                        className={containerClasses}
+                                        ref="dropdownSelectionContainer"
+                                        style={style}
                                     >
-                                        {this._onSelectionMobileItemRenderer()}
-                                    </Modal>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div
-                                    className={containerClasses}
-                                    ref="dropdownSelectionContainer"
-                                    style={style}
-                                >
-                                    {labelJSX}
+                                        {labelJSX}
 
-                                    <Select
-                                        arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
-                                        clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
-                                        clearable={!clearable ? clearable : true}
-                                        disabled={disable}
-                                        menuContainerStyle={selectionMenuContainerStyle}
-                                        menuRenderer={this._menuRenderer.bind(this)}
-                                        menuStyle={selectionMenuStyle}
-                                        multi={selectionMultiple}
-                                        name="firstSelect"
-                                        onChange={this._onChange.bind(this)}
-                                        onOpen={this._onSelectionMenuOpen.bind(this)}
-                                        optionComponent={selectionOptionComponent}
-                                        options={options}
-                                        placeholder={placeholder}
-                                        searchable={!searchable ? searchable : true}
-                                        tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
-                                        value={this.state.value}
-                                        valueComponent={selectionValueComponent}
-                                    />
-                                </div>
-                            );
-                        }
-                    }}
-                </MediaQuery>
-            );
-        } else if (selection && selectionCreatable) {
-            return (
-                <div
-                    className={containerClasses}
-                    ref="dropdownSelectionContainer"
-                    style={style}
-                >
-                    {labelJSX}
+                                        <CustomSelect
+                                            arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
+                                            clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
+                                            clearable={!clearable ? clearable : true}
+                                            disabled={disable}
+                                            menuContainerStyle={selectionMenuContainerStyle}
+                                            menuRenderer={this._menuRenderer.bind(this)}
+                                            menuStyle={selectionMenuStyle}
+                                            multi={selectionMultiple}
+                                            name="firstSelect"
+                                            onChange={this._onChange.bind(this)}
+                                            onOpen={this._onSelectionMenuOpen.bind(this)}
+                                            optionComponent={selectionOptionComponent}
+                                            options={options}
+                                            placeholder={placeholder}
+                                            searchable={!searchable ? searchable : true}
+                                            tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
+                                            value={this.state.value}
+                                            valueComponent={selectionValueComponent}
+                                            ref="dropdownContainer"
+                                        />
+                                    </div>
+                                );
+                            }
+                        }}
+                    </MediaQuery>
+                );
+            } else if (selectionCreatable) {
+                return (
+                    <div
+                        className={containerClasses}
+                        ref="dropdownSelectionContainer"
+                        style={style}
+                    >
+                        {labelJSX}
 
-                    <Select.Creatable
-                        arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
-                        clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
-                        clearable={!clearable ? clearable : true}
-                        disabled={disable}
-                        menuContainerStyle={selectionMenuContainerStyle}
-                        menuRenderer={this._menuRenderer.bind(this)}
-                        menuStyle={selectionMenuStyle}
-                        multi={selectionMultiple}
-                        name="firstSelect"
-                        onChange={this._onChange.bind(this)}
-                        onOpen={this._onSelectionMenuOpen.bind(this)}
-                        optionComponent={selectionOptionComponent}
-                        options={options}
-                        placeholder={placeholder}
-                        searchable={!searchable ? searchable : true}
-                        tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
-                        value={this.state.value}
-                        valueComponent={selectionValueComponent}
-                    />
-                </div>
-            );
+                        <Select.Creatable
+                            arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
+                            clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
+                            clearable={!clearable ? clearable : true}
+                            disabled={disable}
+                            menuContainerStyle={selectionMenuContainerStyle}
+                            menuRenderer={this._menuRenderer.bind(this)}
+                            menuStyle={selectionMenuStyle}
+                            multi={selectionMultiple}
+                            name="firstSelect"
+                            onChange={this._onChange.bind(this)}
+                            onOpen={this._onSelectionMenuOpen.bind(this)}
+                            optionComponent={selectionOptionComponent}
+                            options={options}
+                            placeholder={placeholder}
+                            searchable={!searchable ? searchable : true}
+                            tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
+                            value={this.state.value}
+                            valueComponent={selectionValueComponent}
+                            ref="dropdownContainer"
+                        >
+                            {customCreatableSelect}
+                        </Select.Creatable>
+                    </div>
+                );
+            }
         }
 
         return (
@@ -271,18 +301,14 @@ class Dropdown extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.selection) {
-            document.addEventListener('click', this._onClickOutsideRef);
-            document.addEventListener('scroll', this._onDropdownMenuRepositionRef);
-
-            this._onDropdownMenuRepositionRef();
-        }
+        document.addEventListener('click', this._onClickOutsideRef);
+        document.addEventListener('scroll', this._onDropdownMenuRepositionRef);
+        this._onDropdownMenuRepositionRef();
     }
 
     componentWillUnmount() {
-        if (!this.props.selection) {
-            document.removeEventListener('click', this._onClickOutsideRef);
-        }
+        document.removeEventListener('click', this._onClickOutsideRef);
+        document.removeEventListener('scroll', this._onDropdownMenuRepositionRef);
     }
 
     _menuRenderer(params) {
@@ -320,6 +346,7 @@ class Dropdown extends Component {
                 autoHeightMin={this.props.menuMinHeight}
                 autoHide={true}
                 className="select-menu-scrollbar"
+                ref={el => this.dropdownMenu = el}
             >
                 {items}
             </ScrollBar>
