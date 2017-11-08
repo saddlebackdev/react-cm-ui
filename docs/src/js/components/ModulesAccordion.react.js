@@ -128,26 +128,88 @@ export default class ExclusiveSample extends React.Component {
 
 }`;
 
-const inverseSample = `import React from 'react';
+const inverseSample = `import ScrollBar from 'react-custom-scrollbars';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { Accordion } from 'react-cm-ui';
 
 export default class InverseSample extends React.Component {
+    constructor() {
+        super();
+
+        this.state = { scrollBarNode: null };
+    }
 
     render() {
         return (
-            <Accordion basic={true} inverse={true}>
-                <Accordion.Item title="Option One">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </Accordion.Item>
+            <div>
+                <Block inverse={true} style={{ height: '180px' }}>
+                    <ScrollBar autoHide={true} className="accordion-scrollbar">
+                        <Accordion basic={true} inverse={true} scrollContainer=".accordion-scrollbar > div:first-child" scrollContainerMarginHeight={15}>
+                            <Accordion.Item title="Option One">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
 
-                <Accordion.Item title="Option Two">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-                </Accordion.Item>
-            </Accordion>
+                            <Accordion.Item title="Option Two">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Three">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Four">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Five">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Six">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+                        </Accordion>
+                    </ScrollBar>
+                </Block><br /><br />
+
+                <Block inverse={true} style={{ height: '180px' }}>
+                    <ScrollBar autoHide={true} ref={scrollBarNode => { this.scrollBarNode = scrollBarNode }}>
+                        <Accordion basic={true} inverse={true} scrollContainer={scrollBarNode} scrollContainerMarginHeight={15}>
+                            <Accordion.Item title="Option One">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Two">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Three">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Four">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Five">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+
+                            <Accordion.Item title="Option Six">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                            </Accordion.Item>
+                        </Accordion>
+                    </ScrollBar>
+                </Block>
+            </div>
         );
     }
 
+    componentDidMount() {
+        this.setState({ scrollBarNode: ReactDOM.findDOMNode(this.scrollBarNode).querySelector('div:first-child') });
+    }
 }`;
 
 const selectedSample = `import React from 'react';
@@ -243,10 +305,14 @@ export default class CollectionsAccordion extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { subNavIndex: 0 };
+        this.state = {
+            scrollBarNode: null,
+            subNavIndex: 0
+        };
     }
 
     render() {
+        const { scrollBarNode } = this.state;
         const props = [
             {
                 name: 'basic',
@@ -560,7 +626,37 @@ export default class CollectionsAccordion extends React.Component {
 
                     <Block inverse={true} style={{ height: '180px' }}>
                         <ScrollBar autoHide={true} className="accordion-scrollbar">
-                            <Accordion basic={true} inverse={true} scrollContainerClassName=".accordion-scrollbar > div:first-child" scrollContainerMarginHeight={15}>
+                            <Accordion basic={true} inverse={true} scrollContainer=".accordion-scrollbar > div:first-child" scrollContainerMarginHeight={15}>
+                                <Accordion.Item title="Option One">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+
+                                <Accordion.Item title="Option Two">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+
+                                <Accordion.Item title="Option Three">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+
+                                <Accordion.Item title="Option Four">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+
+                                <Accordion.Item title="Option Five">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+
+                                <Accordion.Item title="Option Six">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                                </Accordion.Item>
+                            </Accordion>
+                        </ScrollBar>
+                    </Block><br /><br />
+
+                    <Block inverse={true} style={{ height: '180px' }}>
+                        <ScrollBar autoHide={true} ref={scrollBarNode => { this.scrollBarNode = scrollBarNode }}>
+                            <Accordion basic={true} inverse={true} scrollContainer={scrollBarNode} scrollContainerMarginHeight={15}>
                                 <Accordion.Item title="Option One">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
                                 </Accordion.Item>
@@ -643,6 +739,10 @@ export default class CollectionsAccordion extends React.Component {
                 {examplesJSX}
             </Main>
         );
+    }
+
+    componentDidMount() {
+        this.setState({ scrollBarNode: ReactDOM.findDOMNode(this.scrollBarNode).querySelector('div:first-child') });
     }
 
     _onSubNavClick(index) {
