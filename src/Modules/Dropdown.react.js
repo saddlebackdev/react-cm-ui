@@ -362,7 +362,7 @@ class Dropdown extends Component {
     }
 
     _onClickOutside(event) {
-        if (this.refs.dropdownContainer.contains(event.target) && this.state.menuIsOpen) {
+        if (this.refs.dropdownContainer && ReactDOM.findDOMNode(this.refs.dropdownContainer).contains(event.target) && this.state.menuIsOpen) {
             return;
         }
 
