@@ -65,10 +65,9 @@ class AccordionItem extends Component {
         itemElement.removeEventListener(animationEvent, this._onAnimationComplete);
 
         const { scrollContainerClassName, scrollContainerMarginHeight } = this.props;
-        const scrollContainerEl = ReactDOM.findDOMNode(document.querySelector('.accordion-scrollbar > div:first-child'));
-        const isScrollContainer = scrollContainerClassName ? scrollContainerEl : null;
-        const containerHeight = isScrollContainer ? scrollContainerEl.offsetHeight - (scrollContainerMarginHeight || 0) : window.innerHeight;
-        const scrollPosition = DOMUtils.scrollPos(isScrollContainer);
+        const scrollContainerEl = scrollContainerClassName ? ReactDOM.findDOMNode(document.querySelector(scrollContainerClassName)) : null;
+        const containerHeight = scrollContainerEl ? scrollContainerEl.offsetHeight - (scrollContainerMarginHeight || 0) : window.innerHeight;
+        const scrollPosition = DOMUtils.scrollPos(scrollContainerEl);
         const containerBottom = containerHeight + scrollPosition;
         const itemElHeight = itemElement.offsetHeight;
         const itemElTopYPosition = itemElement.offsetTop;
@@ -76,7 +75,7 @@ class AccordionItem extends Component {
         const belowFold = itemElBottomYPosition - (containerHeight + scrollPosition);
 
         if (containerBottom < itemElBottomYPosition) {
-            DOMUtils.scrollTo(scrollPosition + belowFold, null, isScrollContainer);
+            DOMUtils.scrollTo(scrollPosition + belowFold, null, scrollContainerEl);
         }
     }
 
