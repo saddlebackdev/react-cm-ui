@@ -64,8 +64,8 @@ class AccordionItem extends Component {
 
         itemElement.removeEventListener(animationEvent, this._onAnimationComplete);
 
-        const { scrollContainerClassName, scrollContainerMarginHeight } = this.props;
-        const scrollContainerEl = scrollContainerClassName ? ReactDOM.findDOMNode(document.querySelector(scrollContainerClassName)) : null;
+        const { scrollContainer, scrollContainerMarginHeight } = this.props;
+        const scrollContainerEl = _.isString(scrollContainer) ? ReactDOM.findDOMNode(document.querySelector(scrollContainer)) : _.isObject(scrollContainer) ? scrollContainer : null;
         const containerHeight = scrollContainerEl ? scrollContainerEl.offsetHeight - (scrollContainerMarginHeight || 0) : window.innerHeight;
         const scrollPosition = DOMUtils.scrollPos(scrollContainerEl);
         const containerBottom = containerHeight + scrollPosition;
@@ -94,7 +94,10 @@ class AccordionItem extends Component {
 AccordionItem.propTypes = {
     className: PropTypes.string,
     isSelected: PropTypes.bool,
-    scrollContainerClassName: PropTypes.string,
+    scrollContainer: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
+    ]),
     scrollContainerMarginHeight: PropTypes.number,
     style: PropTypes.object,
     subAccordion: PropTypes.bool,
@@ -193,7 +196,7 @@ class Accordion extends Component {
     }
 
     render() {
-        const { basic, children, className, exclusive, inverse, scrollContainerClassName, scrollContainerMarginHeight, style } = this.props;
+        const { basic, children, className, exclusive, inverse, scrollContainer, scrollContainerMarginHeight, style } = this.props;
         const { selected } = this.state;
         const containerClasses = ClassNames('ui', 'accordion', className, {
             'accordion-basic': basic,
@@ -210,7 +213,7 @@ class Accordion extends Component {
                     <AccordionItem
                         isSelected={isSelected}
                         key={`accordion-item-${index}`}
-                        scrollContainerClassName={scrollContainerClassName}
+                        scrollContainer={scrollContainer}
                         scrollContainerMarginHeight={scrollContainerMarginHeight}
                         style={style}
                         subAccordion={subAccordion}
@@ -234,7 +237,7 @@ class Accordion extends Component {
                     <AccordionItem
                         isSelected={isSelected}
                         key={`accordion-item-${index}`}
-                        scrollContainerClassName={scrollContainerClassName}
+                        scrollContainer={scrollContainer}
                         scrollContainerMarginHeight={scrollContainerMarginHeight}
                         style={style}
                         subAccordion={subAccordion}
@@ -250,7 +253,7 @@ class Accordion extends Component {
                     <AccordionItem
                         isSelected={isSelected}
                         key={`accordion-item-${index}`}
-                        scrollContainerClassName={scrollContainerClassName}
+                        scrollContainer={scrollContainer}
                         scrollContainerMarginHeight={scrollContainerMarginHeight}
                         style={style}
                         subAccordion={subAccordion}
@@ -311,7 +314,10 @@ Accordion.propTypes = {
     className: PropTypes.string,
     exclusive: PropTypes.bool,
     inverse: PropTypes.bool,
-    scrollContainerClassName: PropTypes.string,
+    scrollContainer: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
+    ]),
     scrollContainerMarginHeight: PropTypes.number,
     selected: PropTypes.oneOfType([
         PropTypes.array,
