@@ -35,17 +35,21 @@ class DOMUtils {
     }
 
     static isInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        const isInTop = rect.top >= 0;
-        const isInRight = rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-        const isInBottom = rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-        const isInLeft = rect.left >= 0;
+        if (el) {
+            const rect = el.getBoundingClientRect();
+            const isInTop = rect.top >= 0;
+            const isInRight = rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+            const isInBottom = rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+            const isInLeft = rect.left >= 0;
 
-        return {
-            isInTop: isInTop,
-            isInRight: isInRight,
-            isInBottom: isInBottom,
-            isInLeft: isInLeft
+            return {
+                isInTop: isInTop,
+                isInRight: isInRight,
+                isInBottom: isInBottom,
+                isInLeft: isInLeft
+            }
+        } else {
+            return false;
         }
     }
 
@@ -53,8 +57,12 @@ class DOMUtils {
         el.classList.remove(cls);
     }
 
-    static scrollPos() {
-        return (window.scrollY || window.pageYOffset);
+    static scrollPos(el) {
+        if (el) {
+            return el.scrollTop;
+        } else {
+            return window.scrollY || window.pageYOffset;
+        }
     }
 
     static scrollTo(to, duration, parentEl) {
@@ -68,12 +76,12 @@ class DOMUtils {
         const SCROLL_INCREMENT_MS = 10;
 
         let currentViewPortPosistion = !o.parentEl ? document.body.scrollTop || document.documentElement.scrollTop : o.parentEl.scrollTop;
-        console.log('currentViewPortPosistion: ' + currentViewPortPosistion);
+        // console.log('currentViewPortPosistion: ' + currentViewPortPosistion);
         let difference = o.to - currentViewPortPosistion;
         let numSteps = o.duration / SCROLL_INCREMENT_MS;
         let increment = difference / numSteps;
 
-        // let startTime = Date.now();
+        let startTime = Date.now();
         // console.log('start: ' + startTime);
 
         let scrollInterval = setInterval(() => {
