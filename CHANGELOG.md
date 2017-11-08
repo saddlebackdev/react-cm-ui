@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.0 - 2017-11-08
+##Added
+- **Accordion** looks to see if an **Accordion.Item's** content is below the fold and if it is the end user's container/window will scroll up.
+
 ## 1.7.11 - 2017-10-30
 ##Added
 - **Banner** has a new prop, `topPosition`.
