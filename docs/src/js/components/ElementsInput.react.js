@@ -302,7 +302,8 @@ export default class TypeSample extends React.Component {
     render() {
         return (
             <Input label="Email" type="email" /><br /><br />
-            <Input label="Number" type="number" /><br /><br />
+            <Input label="Number" type="number" min={1} max={10}/><br /><br />
+            <Input label="Number" type="number" allowEmpty={true} min={1} max={10}/><br /><br />
             <Input label="Password" type="password" /><br /><br />
             <Input label="Telephone" type="tel" /><br /><br />
             <Input label="Text" type="text" />
@@ -342,6 +343,12 @@ export default class ElementsButton extends React.Component {
 
         const props = [
             {
+                name: 'allowEmpty',
+                type: 'bool',
+                default: 'false',
+                description: 'Indicates that the input can be empty and if it has min/max restrictions it can be cleared.',
+                allowedTypes: ''
+            }, {
                 name: 'autoComplete',
                 type: 'enum',
                 default: '',
@@ -813,7 +820,8 @@ export default class ElementsButton extends React.Component {
                 </Header>
 
                 <Input label="Email" type="email" /><br /><br />
-                <Input label="Number" type="number" /><br /><br />
+                <Input label="Number" type="number" min={1} max={10}/><br /><br />
+                <Input label="Number" type="number" allowEmpty={true} min={1} max={10}/><br /><br />
                 <Input label="Password" type="password" /><br /><br />
                 <Input label="Telephone" type="tel" /><br /><br />
                 <Input label="Text" type="text" />
