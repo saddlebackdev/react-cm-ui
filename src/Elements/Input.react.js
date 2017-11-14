@@ -180,10 +180,8 @@ class Input extends Component {
         const type = this._getType();
         let newValue = event.target.value;
 
-        if (type === 'number' && _.isNumber(max) || _.isNumber(min)) {
-            if (!_.isEmpty(newValue) || !allowEmpty) {
-                newValue = newValue > max || newValue < min ? value : newValue;
-            }
+        if (type === 'number' && _.isNumber(max) || _.isNumber(min) || !_.isEmpty(newValue) || !allowEmpty) {
+            newValue = newValue > max || newValue < min ? value : newValue;
         }
 
         if (!_.isUndefined(onChange)) {
