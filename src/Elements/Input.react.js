@@ -176,12 +176,24 @@ class Input extends Component {
 
     _onChange(event) {
         const { value } = this.state;
-        const { max, min, onChange, allowEmpty } = this.props;
+        const { max, min, onChange, required } = this.props;
         const type = this._getType();
         let newValue = event.target.value;
 
-        if (type === 'number' && _.isNumber(max) || _.isNumber(min) || !_.isEmpty(newValue) || !allowEmpty) {
-            newValue = newValue > max || newValue < min ? value : newValue;
+        if (type === 'number') {
+            if (_.isEmpty(newValue)) {
+                if (required) {
+                    newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                }
+            } else {
+                newValue = +newValue;
+                if (_.isNumber(max)) {
+                    newValue = Math.min(max, newValue);
+                }
+                if (_.isNumber(min)) {
+                    newValue = Math.max(min, newValue);
+                }
+            }
         }
 
         if (!_.isUndefined(onChange)) {
@@ -233,7 +245,6 @@ const autoCompleteEnums = [ 'off', 'on' ];
 const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
 Input.propTypes = {
-    allowEmpty: React.PropTypes.bool,
     autoComplete: React.PropTypes.oneOf(autoCompleteEnums),
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
