@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.3 - 2017-11-15
+##Changed
+- Cleaned up conditions around `min` and `max` props for **Input**.
+
 ## 1.8.2 - 2017-11-08
 ##Changed
 - Changed `scrollContainerClassName` to `scrollContainer` so we can also pass a node and not just a string.
