@@ -147,6 +147,23 @@ export default class LoadingSample extends React.Component {
 
 }`;
 
+const maxminSample = `import React from 'react';
+
+import Input from 'components/UI/Elements/Input.react';
+
+export default class MaxMinSample extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
+                <Input label="Age" max={99} min={0} type="number" value={0} />
+            </div>
+        );
+    }
+
+}`;
+
 const maxLengthSample = `import React from 'react';
 
 import Input from 'components/UI/Elements/Input.react';
@@ -302,7 +319,8 @@ export default class TypeSample extends React.Component {
     render() {
         return (
             <Input label="Email" type="email" /><br /><br />
-            <Input label="Number" type="number" /><br /><br />
+            <Input label="Number" type="number" min={1} max={10}/><br /><br />
+            <Input label="Number" type="number" required={true} min={1} max={10}/><br /><br />
             <Input label="Password" type="password" /><br /><br />
             <Input label="Telephone" type="tel" /><br /><br />
             <Input label="Text" type="text" />
@@ -672,10 +690,11 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
+                <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
                 <Input label="Age" max={99} min={0} type="number" value={0} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxLengthSample}
+                    {maxminSample}
                 </Highlighter>
 
                 {/* Max Length */}
@@ -813,7 +832,8 @@ export default class ElementsButton extends React.Component {
                 </Header>
 
                 <Input label="Email" type="email" /><br /><br />
-                <Input label="Number" type="number" /><br /><br />
+                <Input label="Number" type="number" min={1} max={10}/><br /><br />
+                <Input label="Number" type="number" required={true} min={1} max={10}/><br /><br />
                 <Input label="Password" type="password" /><br /><br />
                 <Input label="Telephone" type="tel" /><br /><br />
                 <Input label="Text" type="text" />

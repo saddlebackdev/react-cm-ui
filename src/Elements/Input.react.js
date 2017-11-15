@@ -176,12 +176,24 @@ class Input extends Component {
 
     _onChange(event) {
         const { value } = this.state;
-        const { max, min, onChange } = this.props;
+        const { max, min, onChange, required } = this.props;
         const type = this._getType();
         let newValue = event.target.value;
 
-        if (type === 'number' && _.isNumber(max) || _.isNumber(min)) {
-            newValue = newValue > max || newValue < min ? value : newValue;
+        if (type === 'number') {
+            if (_.isEmpty(newValue)) {
+                if (required) {
+                    newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                }
+            } else {
+                newValue = +newValue;
+                if (_.isNumber(max)) {
+                    newValue = Math.min(max, newValue);
+                }
+                if (_.isNumber(min)) {
+                    newValue = Math.max(min, newValue);
+                }
+            }
         }
 
         if (!_.isUndefined(onChange)) {
