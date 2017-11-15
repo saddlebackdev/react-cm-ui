@@ -147,6 +147,23 @@ export default class LoadingSample extends React.Component {
 
 }`;
 
+const maxminSample = `import React from 'react';
+
+import Input from 'components/UI/Elements/Input.react';
+
+export default class MaxMinSample extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
+                <Input label="Age" max={99} min={0} type="number" value={0} />
+            </div>
+        );
+    }
+
+}`;
+
 const maxLengthSample = `import React from 'react';
 
 import Input from 'components/UI/Elements/Input.react';
@@ -673,10 +690,11 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
+                <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
                 <Input label="Age" max={99} min={0} type="number" value={0} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxLengthSample}
+                    {maxminSample}
                 </Highlighter>
 
                 {/* Max Length */}
