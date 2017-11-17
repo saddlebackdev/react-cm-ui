@@ -214,7 +214,7 @@ class Input extends Component {
             } else {
                 this.setState({ value: newValue });
             }
-        }, 300);
+        }, 500);
         this.setState({ value: newValue });
     }
 
