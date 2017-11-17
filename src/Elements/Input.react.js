@@ -22,11 +22,19 @@ class Input extends Component {
         this._onClick = this._onClick.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+
+        this.inputTimer = null;
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
             this.setState({ value: nextProps.value });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.inputTimer) {
+            clearTimeout(this.inputTimer);
         }
     }
 
@@ -180,27 +188,34 @@ class Input extends Component {
         const type = this._getType();
         let newValue = event.target.value;
 
-        if (type === 'number') {
-            if (_.isEmpty(newValue)) {
-                if (required) {
-                    newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
-                }
-            } else {
-                newValue = +newValue;
-                if (_.isNumber(max)) {
-                    newValue = Math.min(max, newValue);
-                }
-                if (_.isNumber(min)) {
-                    newValue = Math.max(min, newValue);
-                }
-            }
+        if (this.inputTimer) {
+            clearTimeout(this.inputTimer);
         }
 
-        if (!_.isUndefined(onChange)) {
-            onChange(newValue);
-        } else {
-            this.setState({ value: newValue });
-        }
+        this.inputTimer = setTimeout(() => {
+            if (type === 'number') {
+                if (_.isEmpty(newValue)) {
+                    if (required) {
+                        newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                    }
+                } else {
+                    newValue = +newValue;
+                    if (_.isNumber(max)) {
+                        newValue = Math.min(max, newValue);
+                    }
+                    if (_.isNumber(min)) {
+                        newValue = Math.max(min, newValue);
+                    }
+                }
+            }
+
+            if (!_.isUndefined(onChange)) {
+                onChange(newValue);
+            } else {
+                this.setState({ value: newValue });
+            }
+        }, 300);
+        this.setState({ value: newValue });
     }
 
     _onClick(event) {
