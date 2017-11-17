@@ -319,8 +319,8 @@ export default class TypeSample extends React.Component {
     render() {
         return (
             <Input label="Email" type="email" /><br /><br />
-            <Input label="Number" type="number" min={1} max={10}/><br /><br />
-            <Input label="Number" type="number" required={true} min={1} max={10}/><br /><br />
+            <Input label="Number" type="number" min={25} max={99}/> <span>Min: 25, Max: 99</span><br /><br />
+            <Input label="Number" type="number" required={true} min={25} max={99}/> <span>Min: 25, Max: 99</span><br /><br />
             <Input label="Password" type="password" /><br /><br />
             <Input label="Telephone" type="tel" /><br /><br />
             <Input label="Text" type="text" />
@@ -832,8 +832,8 @@ export default class ElementsButton extends React.Component {
                 </Header>
 
                 <Input label="Email" type="email" /><br /><br />
-                <Input label="Number" type="number" min={1} max={10}/><br /><br />
-                <Input label="Number" type="number" required={true} min={1} max={10}/><br /><br />
+                <Input label="Number" type="number" min={25} max={99}/> <span>Min: 25, Max: 99</span><br /><br />
+                <Input label="Number" type="number" required={true} min={25} max={99}/> <span>Min: 25, Max: 99</span><br /><br />
                 <Input label="Password" type="password" /><br /><br />
                 <Input label="Telephone" type="tel" /><br /><br />
                 <Input label="Text" type="text" />
