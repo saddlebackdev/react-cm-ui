@@ -188,12 +188,12 @@ class Input extends Component {
         const type = this._getType();
         let newValue = event.target.value;
 
-        if (this.inputTimer) {
-            clearTimeout(this.inputTimer);
-        }
+        if (type === 'number') {
+            if (this.inputTimer) {
+                clearTimeout(this.inputTimer);
+            }
 
-        this.inputTimer = setTimeout(() => {
-            if (type === 'number') {
+            this.inputTimer = setTimeout(() => {
                 if (_.isEmpty(newValue)) {
                     if (required) {
                         newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
@@ -207,15 +207,21 @@ class Input extends Component {
                         newValue = Math.max(min, newValue);
                     }
                 }
-            }
+
+                this.setState({ value: newValue });
+
+                if (!_.isUndefined(onChange)) {
+                    onChange(newValue);
+                }
+            }, 500);
+            this.setState({ value: newValue });
+        } else {
+            this.setState({ value: newValue });
 
             if (!_.isUndefined(onChange)) {
                 onChange(newValue);
-            } else {
-                this.setState({ value: newValue });
             }
-        }, 500);
-        this.setState({ value: newValue });
+        }
     }
 
     _onClick(event) {
