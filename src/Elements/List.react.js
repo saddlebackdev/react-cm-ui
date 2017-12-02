@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import ListItem from './ListItem.react';
@@ -51,12 +52,12 @@ List.Item = ListItem;
 const asEnums = [ 'div', 'ol', 'ul' ];
 
 List.propTypes = {
-    as: React.PropTypes.oneOf(asEnums),
-    className: React.PropTypes.string,
-    divide: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    horizontal: React.PropTypes.bool,
-    style: React.PropTypes.object
+    as: PropTypes.oneOf(asEnums),
+    className: PropTypes.string,
+    divide: PropTypes.bool,
+    fluid: PropTypes.bool,
+    horizontal: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default List;

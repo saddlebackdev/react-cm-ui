@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class TableBody extends Component {
@@ -23,8 +24,8 @@ class TableBody extends Component {
 }
 
 TableBody.propTypes = {
-    className: React.PropTypes.string,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    style: PropTypes.object
 };
 
 export default TableBody;

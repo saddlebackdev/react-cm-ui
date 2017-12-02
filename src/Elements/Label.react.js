@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Icon from './Icon.react';
@@ -65,12 +66,12 @@ class Label extends Component {
 }
 
 Label.propTypes = {
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(Utils.colorEnums()),
-    fluid: React.PropTypes.bool,
-    onClearClick: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    fluid: PropTypes.bool,
+    onClearClick: PropTypes.func,
+    onClick: PropTypes.func,
+    style: PropTypes.object
 }
 
 export default Label;

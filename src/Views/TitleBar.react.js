@@ -2,6 +2,7 @@
 
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Header from '../Elements/Header.react';
@@ -27,9 +28,9 @@ class TitleBar extends Component {
 };
 
 TitleBar.propTypes = {
-    className: React.PropTypes.string,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string
+    className: PropTypes.string,
+    style: PropTypes.object,
+    title: PropTypes.string
 };
 
 export default TitleBar;

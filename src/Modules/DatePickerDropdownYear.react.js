@@ -3,6 +3,7 @@
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
@@ -75,10 +76,10 @@ class DatePickerDropdownYear extends Component {
 }
 
 DatePickerDropdownYear.propTypes = {
-    maxDate: React.PropTypes.object,
-    onChange: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func.isRequired,
-    year: React.PropTypes.number.isRequired
+    maxDate: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    year: PropTypes.number.isRequired
 };
 
 export default onClickOutside(DatePickerDropdownYear);

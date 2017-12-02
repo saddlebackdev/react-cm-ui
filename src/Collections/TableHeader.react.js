@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class TableHeader extends Component {
@@ -67,16 +68,16 @@ class TableHeader extends Component {
 }
 
 TableHeader.propTypes = {
-    className: React.PropTypes.string,
-    desktop: React.PropTypes.bool,
-    desktopLarge: React.PropTypes.bool,
-    laptop: React.PropTypes.bool,
-    mobile: React.PropTypes.bool,
-    mobileLarge: React.PropTypes.bool,
-    mobileMedium: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    tablet: React.PropTypes.bool,
-    width: React.PropTypes.bool
+    className: PropTypes.string,
+    desktop: PropTypes.bool,
+    desktopLarge: PropTypes.bool,
+    laptop: PropTypes.bool,
+    mobile: PropTypes.bool,
+    mobileLarge: PropTypes.bool,
+    mobileMedium: PropTypes.bool,
+    style: PropTypes.object,
+    tablet: PropTypes.bool,
+    width: PropTypes.bool
 };
 
 export default TableHeader;

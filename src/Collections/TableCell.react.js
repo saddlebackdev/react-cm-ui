@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -109,47 +110,47 @@ const textAlignEnums = [ 'center', 'left', 'right' ];
 const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 TableCell.propTypes = {
-    active: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    collapsing: React.PropTypes.bool,
-    desktop: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    active: PropTypes.bool,
+    className: PropTypes.string,
+    collapsing: PropTypes.bool,
+    desktop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    desktopLarge: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    desktopLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    disabled: React.PropTypes.bool,
-    fontSize: React.PropTypes.oneOf(fontSizeEnums),
-    laptop: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    disabled: PropTypes.bool,
+    fontSize: PropTypes.oneOf(fontSizeEnums),
+    laptop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    mobile: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    mobile: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    mobileLarge: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    mobileLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    mobileMedium: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    mobileMedium: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    selectable: React.PropTypes.bool,
-    singleLine: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    tablet: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    selectable: PropTypes.bool,
+    singleLine: PropTypes.bool,
+    style: PropTypes.object,
+    tablet: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
-    textAlign: React.PropTypes.oneOf(textAlignEnums),
-    verticalAlign: React.PropTypes.oneOf(verticalAlignEnums),
-    width: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(columnNumberEnums)
+    textAlign: PropTypes.oneOf(textAlignEnums),
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
+    width: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums)
     ]),
 };
 

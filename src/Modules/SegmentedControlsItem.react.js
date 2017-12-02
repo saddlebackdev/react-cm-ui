@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class SegmentedControlsItem extends Component {
@@ -15,9 +16,9 @@ class SegmentedControlsItem extends Component {
 };
 
 SegmentedControlsItem.propTypes = {
-    icon: React.PropTypes.string,
-    label: React.PropTypes.string,
-    onClick: React.PropTypes.func
+    icon: PropTypes.string,
+    label: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 export default SegmentedControlsItem;
