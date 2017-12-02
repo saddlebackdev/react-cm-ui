@@ -3,6 +3,7 @@
 import 'components/UI/TableProps.scss';
 
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Table } from 'react-cm-ui';
 
@@ -83,6 +84,6 @@ export default class TableProps extends React.Component {
 }
 
 TableProps.propTypes = {
-    props: React.PropTypes.array.isRequired,
-    style: React.PropTypes.object
+    props: PropTypes.array.isRequired,
+    style: PropTypes.object
 };

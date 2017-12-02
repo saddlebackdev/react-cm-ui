@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Checkbox, Card, Header, TitleBar } from 'react-cm-ui';
 

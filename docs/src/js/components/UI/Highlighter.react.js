@@ -3,6 +3,7 @@
 import 'components/UI/Highlighter.scss';
 
 import { atomOneLight } from 'react-syntax-highlighter/dist/styles';
+import PropTypes from 'prop-types';
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -34,6 +35,6 @@ export default class Highlighter extends React.Component {
 }
 
 Highlighter.propTypes = {
-    customStyle: React.PropTypes.object,
-    language: React.PropTypes.string
+    customStyle: PropTypes.object,
+    language: PropTypes.string
 };

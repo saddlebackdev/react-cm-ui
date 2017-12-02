@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import _ from 'lodash';
 
@@ -81,12 +82,12 @@ SubNavigation.Item = SubNavigationItem;
 const borderEnums = [ 'both', 'bottom', 'top' ];
 
 SubNavigation.propTypes = {
-    border: React.PropTypes.oneOf(borderEnums),
-    className: React.PropTypes.string,
-    drawer: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.number,
-    style: React.PropTypes.object
+    border: PropTypes.oneOf(borderEnums),
+    className: PropTypes.string,
+    drawer: PropTypes.bool,
+    onClick: PropTypes.func,
+    selected: PropTypes.number,
+    style: PropTypes.object
 };
 
 export default SubNavigation;

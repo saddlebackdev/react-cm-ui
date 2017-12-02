@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Main extends React.Component {
@@ -18,6 +19,6 @@ export default class Main extends React.Component {
 }
 
 Main.propTypes = {
-    page: React.PropTypes.string,
-    style: React.PropTypes.object
+    page: PropTypes.string,
+    style: PropTypes.object
 };

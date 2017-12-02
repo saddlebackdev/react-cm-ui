@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, Header, SubNavigation, TitleBar, TreeMenu } from 'react-cm-ui';
 

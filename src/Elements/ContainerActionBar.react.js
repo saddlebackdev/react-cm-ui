@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -30,11 +31,11 @@ class ContainerActionBar extends Component {
 const asEnums = [ 'div', 'header' ,'section' ];
 
 ContainerActionBar.propTypes = {
-    as: React.PropTypes.oneOf(asEnums),
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(Utils.colorEnums()),
-    stretch: React.PropTypes.bool,
-    style: React.PropTypes.object
+    as: PropTypes.oneOf(asEnums),
+    className: PropTypes.string,
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    stretch: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default ContainerActionBar;

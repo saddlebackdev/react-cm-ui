@@ -4,6 +4,7 @@ import 'components/CoreAppNavigation.scss';
 
 import _ from 'lodash';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import { DOMUtils, Header } from 'react-cm-ui';
@@ -236,5 +237,5 @@ export default class CoreAppNavigation extends React.Component {
 }
 
 CoreAppNavigation.propTypes = {
-    toggleNavigation: React.PropTypes.func
+    toggleNavigation: PropTypes.func
 };

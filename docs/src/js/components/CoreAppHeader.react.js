@@ -3,6 +3,7 @@
 import 'components/CoreAppHeader.scss';
 
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class CoreAppHeader extends React.Component {
@@ -28,5 +29,5 @@ export default class CoreAppHeader extends React.Component {
 }
 
 CoreAppHeader.propTypes = {
-    onToggleNavigation: React.PropTypes.func
+    onToggleNavigation: PropTypes.func
 };

@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Card extends Component {
@@ -30,12 +31,12 @@ class Card extends Component {
 };
 
 Card.propTypes = {
-    active: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    compact: React.PropTypes.bool,
-    nest: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    style: React.PropTypes.object
+    active: PropTypes.bool,
+    className: PropTypes.string,
+    compact: PropTypes.bool,
+    nest: PropTypes.bool,
+    onClick: PropTypes.func,
+    style: PropTypes.object
 };
 
 export default Card;
