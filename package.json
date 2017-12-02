@@ -33,7 +33,7 @@
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "postpublish": "git checkout master && git push && git checkout dev",
-    "prepublish": "npm run compile",
+    "prepublishOnly": "npm run compile",
     "start": "npm run docs:dev"
   },
   "dependencies": {
