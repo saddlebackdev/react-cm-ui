@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
@@ -467,45 +468,45 @@ class Dropdown extends Component {
 Dropdown.Item = DropdownItem;
 
 Dropdown.propTypes = {
-    button: React.PropTypes.bool,
-    buttonColor: React.PropTypes.oneOf(Utils.colorEnums()),
-    buttonCompact: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    clearable: React.PropTypes.bool,
-    disable: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    iconColor: React.PropTypes.oneOf(Utils.colorEnums()),
-    iconInverse: React.PropTypes.bool,
-    iconSize: React.PropTypes.oneOf(Utils.sizeEnums()),
-    iconType: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    labelStyle: React.PropTypes.object,
-    menuMaxHeight: React.PropTypes.number,
-    menuMinHeight: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    options: React.PropTypes.array,
-    placeholder: React.PropTypes.string,
-    searchable: React.PropTypes.bool,
-    selectionCreatable: React.PropTypes.bool,
-    selectionMenuContainerStyle: React.PropTypes.object,
-    selectionMenuStyle: React.PropTypes.object,
-    selectionMobile: React.PropTypes.bool,
-    selectionMultiple: React.PropTypes.bool,
-    selectionOptionComponent: React.PropTypes.func,
-    selectionRequired: React.PropTypes.bool,
-    selectionValueComponent: React.PropTypes.func,
-    style: React.PropTypes.object,
-    tabIndex: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    button: PropTypes.bool,
+    buttonColor: PropTypes.oneOf(Utils.colorEnums()),
+    buttonCompact: PropTypes.bool,
+    className: PropTypes.string,
+    clearable: PropTypes.bool,
+    disable: PropTypes.bool,
+    fluid: PropTypes.bool,
+    iconColor: PropTypes.oneOf(Utils.colorEnums()),
+    iconInverse: PropTypes.bool,
+    iconSize: PropTypes.oneOf(Utils.sizeEnums()),
+    iconType: PropTypes.string,
+    inverse: PropTypes.bool,
+    label: PropTypes.string,
+    labelStyle: PropTypes.object,
+    menuMaxHeight: PropTypes.number,
+    menuMinHeight: PropTypes.number,
+    onChange: PropTypes.func,
+    options: PropTypes.array,
+    placeholder: PropTypes.string,
+    searchable: PropTypes.bool,
+    selectionCreatable: PropTypes.bool,
+    selectionMenuContainerStyle: PropTypes.object,
+    selectionMenuStyle: PropTypes.object,
+    selectionMobile: PropTypes.bool,
+    selectionMultiple: PropTypes.bool,
+    selectionOptionComponent: PropTypes.func,
+    selectionRequired: PropTypes.bool,
+    selectionValueComponent: PropTypes.func,
+    style: PropTypes.object,
+    tabIndex: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    theme: React.PropTypes.oneOf(Utils.themeEnums()),
-    value: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.number,
-        React.PropTypes.object,
-        React.PropTypes.string
+    theme: PropTypes.oneOf(Utils.themeEnums()),
+    value: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.number,
+        PropTypes.object,
+        PropTypes.string
     ])
 };
 

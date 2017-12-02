@@ -2,6 +2,7 @@
 
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class DatePickerDropdownMonth extends Component {
@@ -44,10 +45,10 @@ class DatePickerDropdownMonth extends Component {
 }
 
 DatePickerDropdownMonth.propTypes = {
-    maxDate: React.PropTypes.object,
-    month: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func.isRequired
+    maxDate: PropTypes.object,
+    month: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired
 };
 
 export default onClickOutside(DatePickerDropdownMonth);

@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Loader extends Component {
@@ -37,9 +38,9 @@ class Loader extends Component {
 }
 
 Loader.propTypes = {
-    className: React.PropTypes.string,
-    fluid: React.PropTypes.bool,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    fluid: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default Loader;

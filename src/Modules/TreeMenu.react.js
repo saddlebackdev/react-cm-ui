@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactTreeMenu from 'react-tree-menu';
 
@@ -58,25 +59,25 @@ class TreeMenu extends Component {
 TreeMenu.Item = TreeMenuItem;
 
 TreeMenu.propTypes = {
-    className: React.PropTypes.string,
-    collapsible: React.PropTypes.bool,
-    checkboxFactory: React.PropTypes.func,
-    collapseIcon: React.PropTypes.string,
-    data: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.object
+    className: PropTypes.string,
+    collapsible: PropTypes.bool,
+    checkboxFactory: PropTypes.func,
+    collapseIcon: PropTypes.string,
+    data: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object
     ]),
-    expandIcon: React.PropTypes.string,
-    id: React.PropTypes.string,
-    labelFactory: React.PropTypes.func,
-    labelFilter: React.PropTypes.func,
-    onTreeMenuAction: React.PropTypes.func,
-    sort: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.function
+    expandIcon: PropTypes.string,
+    id: PropTypes.string,
+    labelFactory: PropTypes.func,
+    labelFilter: PropTypes.func,
+    onTreeMenuAction: PropTypes.func,
+    sort: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.function
     ]),
-    stateful: React.PropTypes.bool,
-    style: React.PropTypes.object
+    stateful: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default TreeMenu;

@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import MediaQuery from 'react-responsive';
 import onClickOutside from 'react-onclickoutside';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 
@@ -168,37 +169,37 @@ export class ModalContainer extends Component {
 }
 
 ModalContainer.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    fluidContent: React.PropTypes.bool,
-    height: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    fluidContent: PropTypes.bool,
+    height: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    maxHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    maxHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    maxWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    minHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    minHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    minWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    minWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    onClickOutside: React.PropTypes.bool,
-    onClose: React.PropTypes.func.isRequired,
-    title: React.PropTypes.string,
-    width: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    onClickOutside: PropTypes.bool,
+    onClose: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ])
 };
 

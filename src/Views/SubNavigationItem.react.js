@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class SubNavigationItem extends Component {
@@ -15,9 +16,9 @@ class SubNavigationItem extends Component {
 }
 
 SubNavigationItem.propTypes = {
-    label: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    style: React.PropTypes.object
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    style: PropTypes.object
 };
 
 export default SubNavigationItem;
