@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class RadioItem extends Component {
@@ -36,16 +37,16 @@ class RadioItem extends Component {
 }
 
 RadioItem.propTypes = {
-    checked: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    id: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    index: React.PropTypes.number,
-    label: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    style: React.PropTypes.object
+    index: PropTypes.number,
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    style: PropTypes.object
 };
 
 export default RadioItem;

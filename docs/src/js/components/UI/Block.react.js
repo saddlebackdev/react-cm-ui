@@ -3,6 +3,7 @@
 import 'components/UI/Block.scss';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Block extends React.Component {
@@ -23,8 +24,8 @@ export default class Block extends React.Component {
 }
 
 Block.propTypes = {
-    className: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    nest: React.PropTypes.bool,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    inverse: PropTypes.bool,
+    nest: PropTypes.bool,
+    style: PropTypes.object
 };

@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Grid from '../Collections/Grid.react';
@@ -315,34 +316,34 @@ class DatePickerInput extends Component {
 }
 
 DatePickerInput.propTypes = {
-    className: React.PropTypes.string,
-    date: React.PropTypes.object,
-    dateEnd: React.PropTypes.object,
-    dateFormat: React.PropTypes.string,
-    dateSecondaryEnd: React.PropTypes.object,
-    dateSecondaryStart: React.PropTypes.object,
-    dateStart: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
-    errorMessage: React.PropTypes.string,
-    excludeDates: React.PropTypes.array,
-    filterDates: React.PropTypes.func,
-    hasValue: React.PropTypes.func.isRequired,
-    id: React.PropTypes.string,
-    includeDates: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onDone: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onSelect: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    required: React.PropTypes.bool,
-    tabIndex: React.PropTypes.number,
-    type: React.PropTypes.string,
-    uxMode: React.PropTypes.string
+    className: PropTypes.string,
+    date: PropTypes.object,
+    dateEnd: PropTypes.object,
+    dateFormat: PropTypes.string,
+    dateSecondaryEnd: PropTypes.object,
+    dateSecondaryStart: PropTypes.object,
+    dateStart: PropTypes.object,
+    disabled: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    hasValue: PropTypes.func.isRequired,
+    id: PropTypes.string,
+    includeDates: PropTypes.array,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    mode: PropTypes.string,
+    onBlur: PropTypes.func,
+    onClick: PropTypes.func,
+    onDone: PropTypes.func,
+    onFocus: PropTypes.func,
+    onSelect: PropTypes.func,
+    open: PropTypes.bool,
+    required: PropTypes.bool,
+    tabIndex: PropTypes.number,
+    type: PropTypes.string,
+    uxMode: PropTypes.string
 };
 
 export default DatePickerInput;

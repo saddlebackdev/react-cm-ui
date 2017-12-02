@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -29,13 +30,13 @@ class ContainerContent extends Component {
 const asEnums = [ 'div', 'section' ];
 
 ContainerContent.propTypes = {
-    as: React.PropTypes.oneOf(asEnums),
-    className: React.PropTypes.string,
-    maxWidth: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    as: PropTypes.oneOf(asEnums),
+    className: PropTypes.string,
+    maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    style: React.PropTypes.object
+    style: PropTypes.object
 };
 
 export default ContainerContent;

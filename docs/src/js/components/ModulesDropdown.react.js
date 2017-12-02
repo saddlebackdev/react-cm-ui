@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, Dropdown, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
@@ -486,10 +487,10 @@ class SelectionCustomComponent extends React.Component {
 };
 
 SelectionCustomComponent.propTypes = {
-    isFocused: React.PropTypes.bool,
-    onFocus: React.PropTypes.func,
-    onSelect: React.PropTypes.func,
-    option: React.PropTypes.object.isRequired
+    isFocused: PropTypes.bool,
+    onFocus: PropTypes.func,
+    onSelect: PropTypes.func,
+    option: PropTypes.object.isRequired
 };
 
 export default class ModulesDropdown extends React.Component {

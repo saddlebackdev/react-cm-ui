@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Dropdown from './Dropdown.react';
@@ -407,28 +408,28 @@ class TimePicker extends Component {
 }
 
 TimePicker.propTypes = {
-    className: React.PropTypes.string,
-    disable: React.PropTypes.bool,
-    error: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.string
+    className: PropTypes.string,
+    disable: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string
     ]),
-    id: React.PropTypes.string,
-    label: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    range: React.PropTypes.bool,
-    required: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    value: React.PropTypes.shape({
-        timeDisplay: React.PropTypes.string,
-        timeFrom: React.PropTypes.string,
-        timeTo: React.PropTypes.string,
-        timeZone: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.object
+    id: PropTypes.string,
+    label: PropTypes.string,
+    onChange: PropTypes.func,
+    range: PropTypes.bool,
+    required: PropTypes.bool,
+    style: PropTypes.object,
+    value: PropTypes.shape({
+        timeDisplay: PropTypes.string,
+        timeFrom: PropTypes.string,
+        timeTo: PropTypes.string,
+        timeZone: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.object
         ])
     }),
-    zoneOptions: React.PropTypes.array
+    zoneOptions: PropTypes.array
 };
 
 export default TimePicker;

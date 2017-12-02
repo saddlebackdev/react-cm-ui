@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class TabsItem extends Component {
@@ -15,8 +16,8 @@ class TabsItem extends Component {
 };
 
 TabsItem.propTypes = {
-    label: React.PropTypes.string,
-    style: React.PropTypes.object
+    label: PropTypes.string,
+    style: PropTypes.object
 };
 
 export default TabsItem;

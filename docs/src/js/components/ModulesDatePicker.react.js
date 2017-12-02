@@ -1,6 +1,7 @@
 'use strict';
 
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, DatePicker, Header, TitleBar } from 'react-cm-ui';
 

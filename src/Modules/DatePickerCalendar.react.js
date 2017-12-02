@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import onClickOutside from 'react-onclickoutside';
 import React, { Component } from 'react';
 
@@ -261,26 +262,26 @@ class DatePickerCalendar extends Component {
 }
 
 DatePickerCalendar.propTypes = {
-    buttonClear: React.PropTypes.bool,
-    date: React.PropTypes.object, // Single date moment object. Coverted from timestamp in parent component.
-    dateEnd: React.PropTypes.object, // Range end date moment object. Coverted from timestamp in parent component.
-    dateSecondaryEnd: React.PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateSecondaryStart: React.PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateStart: React.PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    events: React.PropTypes.array,
-    excludeDates: React.PropTypes.array,
-    filterDate: React.PropTypes.func,
-    includeDates: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onApplyClick: React.PropTypes.func,
-    onClearClick: React.PropTypes.func,
-    onClose: React.PropTypes.func,
-    onMonthChange: React.PropTypes.func,
-    onSelect: React.PropTypes.func.isRequired,
-    type: React.PropTypes.string,
-    uxMode: React.PropTypes.string
+    buttonClear: PropTypes.bool,
+    date: PropTypes.object, // Single date moment object. Coverted from timestamp in parent component.
+    dateEnd: PropTypes.object, // Range end date moment object. Coverted from timestamp in parent component.
+    dateSecondaryEnd: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
+    dateSecondaryStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
+    dateStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDate: PropTypes.func,
+    includeDates: PropTypes.array,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onApplyClick: PropTypes.func,
+    onClearClick: PropTypes.func,
+    onClose: PropTypes.func,
+    onMonthChange: PropTypes.func,
+    onSelect: PropTypes.func.isRequired,
+    type: PropTypes.string,
+    uxMode: PropTypes.string
 };
 
 export default onClickOutside(DatePickerCalendar);

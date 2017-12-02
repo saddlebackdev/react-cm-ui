@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 
@@ -245,50 +246,50 @@ const autoCompleteEnums = [ 'off', 'on' ];
 const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
 Input.propTypes = {
-    autoComplete: React.PropTypes.oneOf(autoCompleteEnums),
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    error: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.string
+    autoComplete: PropTypes.oneOf(autoCompleteEnums),
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string
     ]),
-    fluid: React.PropTypes.bool,
-    guide: React.PropTypes.bool,
-    icon: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    fluid: PropTypes.bool,
+    guide: PropTypes.bool,
+    icon: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    id: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    keepCharPositions: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    labelStyle: React.PropTypes.object,
-    loading: React.PropTypes.bool,
-    mask: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.func
+    id: PropTypes.string,
+    inverse: PropTypes.bool,
+    keepCharPositions: PropTypes.bool,
+    label: PropTypes.string,
+    labelStyle: PropTypes.object,
+    loading: PropTypes.bool,
+    mask: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.func
     ]),
-    max: React.PropTypes.number,
-    maxLength: React.PropTypes.number,
-    min: React.PropTypes.number,
-    minLength: React.PropTypes.number,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    required: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    tabIndex: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    max: PropTypes.number,
+    maxLength: PropTypes.number,
+    min: PropTypes.number,
+    minLength: PropTypes.number,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
+    required: PropTypes.bool,
+    style: PropTypes.object,
+    tabIndex: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    type: React.PropTypes.oneOf(typeEnums),
-    value: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    type: PropTypes.oneOf(typeEnums),
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ])
 };
 

@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import DatePickerWeek from './DatePickerWeek.react';
@@ -60,21 +61,21 @@ class DatePickerMonth extends Component {
 }
 
 DatePickerMonth.propTypes = {
-    date: React.PropTypes.object,
-    dateEnd: React.PropTypes.object,
-    dateInView: React.PropTypes.object.isRequired,
-    dateSecondaryEnd: React.PropTypes.object,
-    dateSecondaryStart: React.PropTypes.object,
-    dateStart: React.PropTypes.object,
-    events: React.PropTypes.array,
-    excludeDates: React.PropTypes.array,
-    filterDates: React.PropTypes.func,
-    includeDates: React.PropTypes.array,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onDayClick: React.PropTypes.func,
-    type: React.PropTypes.string,
-    uxMode: React.PropTypes.string
+    date: PropTypes.object,
+    dateEnd: PropTypes.object,
+    dateInView: PropTypes.object.isRequired,
+    dateSecondaryEnd: PropTypes.object,
+    dateSecondaryStart: PropTypes.object,
+    dateStart: PropTypes.object,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    includeDates: PropTypes.array,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onDayClick: PropTypes.func,
+    type: PropTypes.string,
+    uxMode: PropTypes.string
 };
 
 export default DatePickerMonth;

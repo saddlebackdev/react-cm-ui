@@ -1,6 +1,7 @@
 'use strict';
 
 import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 

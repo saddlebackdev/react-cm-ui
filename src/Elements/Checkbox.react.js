@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Checkbox extends Component {
@@ -92,21 +93,21 @@ class Checkbox extends Component {
 const alignEnums = [ 'left', 'right' ];
 
 Checkbox.propTypes = {
-    align: React.PropTypes.oneOf(alignEnums),
-    checked: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    id: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    labelClick: React.PropTypes.bool,
-    labelStyle: React.PropTypes.object,
-    name: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    style: React.PropTypes.object,
-    toggle: React.PropTypes.bool,
-    value: React.PropTypes.string
+    align: PropTypes.oneOf(alignEnums),
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    fluid: PropTypes.bool,
+    id: PropTypes.string,
+    inverse: PropTypes.bool,
+    label: PropTypes.string,
+    labelClick: PropTypes.bool,
+    labelStyle: PropTypes.object,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    style: PropTypes.object,
+    toggle: PropTypes.bool,
+    value: PropTypes.string
 }
 
 export default Checkbox;

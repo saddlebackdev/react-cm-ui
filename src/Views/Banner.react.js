@@ -2,8 +2,8 @@
 
 import ClassNames from 'classnames';
 import Portal from 'react-portal';
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';

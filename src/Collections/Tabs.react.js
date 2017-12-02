@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import TabsItem from './TabsItem.react';
@@ -68,11 +69,11 @@ class Tabs extends Component {
 Tabs.Item = TabsItem;
 
 Tabs.propTypes = {
-    className: React.PropTypes.string,
-    nest: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.number,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    nest: PropTypes.bool,
+    onClick: PropTypes.func,
+    selected: PropTypes.number,
+    style: PropTypes.object
 };
 
 export default Tabs;

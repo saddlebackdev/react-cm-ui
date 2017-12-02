@@ -7,6 +7,7 @@ import 'style-guide/cm-ui-kit_as_1.6.2.sketch';
 import 'style-guide/cm-ui-kit_as_1.6.2.pdf';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
