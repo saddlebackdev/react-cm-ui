@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "1.8.5",
+  "version": "1.8.6",
   "description": "React UI for Church management",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -28,7 +28,7 @@
   "scripts": {
     "build": "npm run docs:prod",
     "clean:lib": "rimraf lib",
-    "compile": "npm run clean:lib && node-sass src/scss/Style.scss -o lib/css --output-style compressed && cpx src/fonts lib/fonts && cpx src/images lib/images && babel src/ -d lib/",
+    "compile": "npm run clean:lib && node-sass src/scss -o lib/css --output-style compressed && cpx src/fonts lib/fonts && cpx src/images lib/images && babel src/ -d lib/",
     "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "docs:prod": "webpack",
     "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
