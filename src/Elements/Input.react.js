@@ -217,6 +217,8 @@ class Input extends Component {
 
             if (_.isUndefined(onChange)) {
                 this.setState({ value: newValue });
+            } else {
+                onChange(newValue);
             }
         } else {
             if (_.isUndefined(onChange)) {
