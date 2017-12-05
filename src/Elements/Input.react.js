@@ -208,17 +208,20 @@ class Input extends Component {
                     }
                 }
 
-                this.setState({ value: newValue });
-
-                if (!_.isUndefined(onChange)) {
+                if (_.isUndefined(onChange)) {
+                    this.setState({ value: newValue });
+                } else {
                     onChange(newValue);
                 }
             }, 500);
-            this.setState({ value: newValue });
-        } else {
-            this.setState({ value: newValue });
 
-            if (!_.isUndefined(onChange)) {
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            }
+        } else {
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            } else {
                 onChange(newValue);
             }
         }
