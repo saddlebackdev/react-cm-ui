@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.8.7 - 2017-12-02
+## 1.8.9 - 2017-12-12
+##Changed
+- merged PR #18: DatePicker tweaks for using it in `dateRange` mode.
+
+## 1.8.8 - 2017-12-02
 ##Changed
 - Fixed `./lib/css/components` image url paths.
 
