@@ -21,7 +21,7 @@ $breakpoint-has-widths: (
 );
 $cell-border-color: $border-light;
 
-.ui.table-cell {
+.ui.table .table-cell {
     border-top: 1px solid $cell-border-color;
     color: $color-text;
     font-weight: $default-font-weight-normal;
@@ -50,11 +50,14 @@ $cell-border-color: $border-light;
 .table-row:first-child .table-cell { border-top: 0; }
 .ui.table {
     // table
-    &.table-basic .table-cell {
-        background-color: inherit;
-        padding: rem(11px);
-        &:first-child { padding-left: 0; }
-        &:last-child { padding-right: 0; }
+    &.table-basic {
+        .table-cell {
+            background-color: inherit;
+            padding: rem(11px);
+            &:first-child { padding-left: 0; }
+            &:last-child { padding-right: 0; }
+        }
+        .table-row:last-child .table-cell { border-bottom: 1px solid $cell-border-color; }
     }
     &.table-celled .table-cell {
         border-left: 1px solid $cell-border-color;

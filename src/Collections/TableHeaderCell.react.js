@@ -13,7 +13,6 @@ class TableHeaderCell extends Component {
         const { className, collapsing, desktop, desktopLarge, laptop, mobile, mobileLarge, mobileMedium, onClick, style, tablet, textAlign, width } = this.props;
         const cellPrefix = 'table-header-cell';
         const containerClasses = ClassNames(
-            'ui',
             'table-header-cell',
             _.isNumber(width) ?
                     `${cellPrefix}-${Utils.numberToWord(width)}` :

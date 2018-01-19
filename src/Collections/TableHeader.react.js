@@ -13,7 +13,6 @@ class TableHeader extends Component {
             width } = this.props;
         const cellPrefix = 'table-header';
         const containerClasses = ClassNames(
-            'ui',
             'table-header',
             width === true ?
                     `${cellPrefix}-show` :
