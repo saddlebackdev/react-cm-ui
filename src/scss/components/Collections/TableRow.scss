@@ -1,6 +1,6 @@
 @import '../../config/Colors', '../../config/FontSizeCalculator';
 
-.ui.table-row {
+.ui.table .table-row {
     &.table-row-text-align- {
         &center { text-align: center; }
         &left { text-align: left; }
