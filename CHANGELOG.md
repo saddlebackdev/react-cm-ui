@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.8.9 - 2017-01-19
+## 1.8.10 - 2017-01-19
 ##Changed
 - Added a bottom divider to a `basic` **Table's** last row.
 - Removed `.ui` from a **Table's** children components.
