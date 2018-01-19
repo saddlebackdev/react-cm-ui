@@ -26,7 +26,6 @@ class TableRow extends Component {
             fontSize, onClick, style,
             textAlign, verticalAlign } = this.props;
         const containerClasses = ClassNames(
-            'ui',
             'table-row',
             {
                 'table-row-active': active,

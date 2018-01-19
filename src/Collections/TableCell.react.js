@@ -17,7 +17,6 @@ class TableCell extends Component {
             textAlign, verticalAlign, width } = this.props;
         const cellPrefix = 'table-cell';
         const containerClasses = ClassNames(
-            'ui',
             'table-cell',
             _.isNumber(width) ?
                     `${cellPrefix}-${Utils.numberToWord(width)}` :
