@@ -47,16 +47,17 @@ class Header extends Component {
         };
 
         if (icon && sub) {
+            console.log('children', children);
             return (
                 <ElementType className={containerClasses} id={anchor} style={style}>
                     {children[0]}
 
                     <div>
-                        {children.splice(1,1)}
+                        {children[1]}
 
                         {anchorJSX()}
 
-                        {children.splice(1,2)}
+                        {children[2]}
                     </div>
                 </ElementType>
             );

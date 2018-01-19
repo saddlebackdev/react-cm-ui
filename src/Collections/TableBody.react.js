@@ -9,7 +9,6 @@ class TableBody extends Component {
     render() {
         const { className, style } = this.props;
         const containerClasses = ClassNames(
-            'ui',
             'table-body',
             className
         );
