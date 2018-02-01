@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.12 - 2017-01-31
+##Added
+- Added ability to adjust a **Modal's** height according to its content.
+
 ## 1.8.11 - 2017-01-20
 ##Changed
 - Fixes the onClick event and styling for a **Radio's** `pill` UI while being `disabled`.
