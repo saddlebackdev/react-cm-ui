@@ -73,11 +73,11 @@ ModalHeader.propTypes = {
 };
 
 class Modal extends Component {
-
     constructor() {
         super();
 
         this._defaultDimensions = {
+            autoHeightMax: null,
             height: '100%',
             maxHeight: '100%',
             maxWidth: 'none',
@@ -106,8 +106,8 @@ class Modal extends Component {
     }
 
     render() {
-        const { className, closeButton, fluidContent, header, inverse, isOpen, onClickOutside, onClose, title, titleTruncate } = this.props;
-        const { height, isScrolled, maxHeight, maxWidth, minHeight, minWidth, width } = this.state;
+        const { autoHeight, className, closeButton, fluidContent, header, inverse, isOpen, onClickOutside, onClose, title, titleTruncate } = this.props;
+        const { autoHeightMax, height, isScrolled, maxHeight, maxWidth, minHeight, minWidth, width } = this.state;
         const containerClasses = ClassNames('ui', 'modal', className);
         const containerInnerClasses = ClassNames('modal-container', {
             'modal-container-inverse': inverse,
@@ -132,6 +132,8 @@ class Modal extends Component {
                 <div className={containerClasses}>
                     <div className={containerInnerClasses} ref={el => this.mmodalContainer = el} style={containerInnerStyles}>
                         <ScrollBar
+                            autoHeight={autoHeight}
+                            autoHeightMax={autoHeightMax}
                             autoHide={true}
                             onScrollStart={this._onScrollStart}
                             onScrollStop={this._onScrollStop}
@@ -231,7 +233,7 @@ class Modal extends Component {
     }
 
     _onOpen(node) {
-        const { maxWidth } = this.props;
+        const { autoHeight, maxWidth } = this.props;
         const body = document.body;
         const modalLength = document.querySelectorAll('.ui.modal').length;
         const modal = node.querySelector('.ui.modal');
@@ -257,6 +259,15 @@ class Modal extends Component {
             modalContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
         } else {
             modalContainer.style.maxWidth = 768 - (layeredOffset * (modalLength - 1)) + 'px';
+        }
+
+        if (autoHeight) {
+            const modalPaddingBottom = parseInt(getComputedStyle(modal).paddingBottom);
+            const modalPaddingTop = parseInt(getComputedStyle(modal).paddingTop);
+            const modalHeight = modal.offsetHeight;
+            const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
+
+            this.setState({ autoHeightMax: newAutoHeightMax });
         }
     }
 
@@ -303,6 +314,7 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
+    autoHeight: PropTypes.bool,
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
