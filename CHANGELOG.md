@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.13 - 2017-02-02
+##Added
+- Added ability to give a **Dropdown** select a different arrow icon.
+
 ## 1.8.12 - 2017-01-31
 ##Added
 - Added ability to adjust a **Modal's** height according to its content.
