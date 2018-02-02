@@ -167,18 +167,30 @@ export default class IconSample extends React.Component {
 
     render() {
         return (
-            <Dropdown
-                button={true}
-                buttonCompact={true}
-                iconInverse={true}
-                iconSize="xlarge"
-                iconType="ellipsis-h"
-            >
-                <Dropdown.Item label="Option 1" />
-                <Dropdown.Item label="Option 2" />
-                <Dropdown.Item label="Option 3" />
-                <Dropdown.Item label="Option 4" />
-            </Dropdown>
+            <div>
+                <Dropdown
+                    button={true}
+                    buttonCompact={true}
+                    iconInverse={true}
+                    iconSize="xlarge"
+                    iconType="ellipsis-h"
+                >
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                    <Dropdown.Item label="Option 3" />
+                    <Dropdown.Item label="Option 4" />
+                </Dropdown>
+
+                <Dropdown
+                    iconType="plus"
+                    onChange={this._onSelectionCustomOptionsChange.bind(this)}
+                    selectionOptionComponent={SelectionCustomComponent}
+                    options={selectionCustomOptions}
+                    placeholder="Select a status"
+                    selection={true}
+                    value={this.state.selectionCustomOptionsValue}
+                />
+            </div<
         );
     }
 
@@ -938,7 +950,17 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
-                    </Dropdown>
+                    </Dropdown><br /><br />
+
+                    <Dropdown
+                        iconType="plus"
+                        onChange={this._onSelectionCustomOptionsChange.bind(this)}
+                        selectionOptionComponent={SelectionCustomComponent}
+                        options={selectionCustomOptions}
+                        placeholder="Select a status"
+                        selection={true}
+                        value={this.state.selectionCustomOptionsValue}
+                    />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {iconSample}

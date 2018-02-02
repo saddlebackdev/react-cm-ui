@@ -182,7 +182,7 @@ class Dropdown extends Component {
                                         {labelJSX}
 
                                         <CustomSelect
-                                            arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
+                                            arrowRenderer={() => <Icon compact={true} size="xsmall" type={iconType || 'chevron-wl-down'} />}
                                             clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
                                             clearable={!clearable ? clearable : true}
                                             disabled={disable}
