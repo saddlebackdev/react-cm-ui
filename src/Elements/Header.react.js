@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Icon from './Icon.react';
@@ -46,16 +47,17 @@ class Header extends Component {
         };
 
         if (icon && sub) {
+            console.log('children', children);
             return (
                 <ElementType className={containerClasses} id={anchor} style={style}>
                     {children[0]}
 
                     <div>
-                        {children.splice(1,1)}
+                        {children[1]}
 
                         {anchorJSX()}
 
-                        {children.splice(1,2)}
+                        {children[2]}
                     </div>
                 </ElementType>
             );
@@ -89,17 +91,17 @@ const colorEnums = [ 'static', 'text' ];
 const weightEnums = [ 'bold', 'normal', 'semibold' ];
 
 Header.propTypes = {
-    anchor: React.PropTypes.string,
-    as: React.PropTypes.oneOf(asEnums),
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(colorEnums),
-    icon: React.PropTypes.bool,
-    inverse: React.PropTypes.bool,
-    size: React.PropTypes.oneOf(Utils.sizeEnums()),
-    style: React.PropTypes.object,
-    sub: React.PropTypes.bool,
-    title: React.PropTypes.string,
-    weight: React.PropTypes.oneOf(weightEnums)
+    anchor: PropTypes.string,
+    as: PropTypes.oneOf(asEnums),
+    className: PropTypes.string,
+    color: PropTypes.oneOf(colorEnums),
+    icon: PropTypes.bool,
+    inverse: PropTypes.bool,
+    size: PropTypes.oneOf(Utils.sizeEnums()),
+    style: PropTypes.object,
+    sub: PropTypes.bool,
+    title: PropTypes.string,
+    weight: PropTypes.oneOf(weightEnums)
 };
 
 export default Header;

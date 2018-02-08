@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import GridColumn from './GridColumn.react';
@@ -49,14 +50,14 @@ const xAlignEnums = [ 'center', 'left', 'right' ];
 const yAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 Grid.propTypes = {
-    className: React.PropTypes.string,
-    columns: React.PropTypes.oneOf(columnNumberEnums),
-    horizontalAlign: React.PropTypes.oneOf(xAlignEnums),
-    relaxed: React.PropTypes.bool,
-    stressed: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    textAlign: React.PropTypes.oneOf(xAlignEnums),
-    verticalAlign: React.PropTypes.oneOf(yAlignEnums)
+    className: PropTypes.string,
+    columns: PropTypes.oneOf(columnNumberEnums),
+    horizontalAlign: PropTypes.oneOf(xAlignEnums),
+    relaxed: PropTypes.bool,
+    stressed: PropTypes.bool,
+    style: PropTypes.object,
+    textAlign: PropTypes.oneOf(xAlignEnums),
+    verticalAlign: PropTypes.oneOf(yAlignEnums)
 };
 
 export default Grid;

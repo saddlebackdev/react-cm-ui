@@ -23,7 +23,7 @@ $cell-bkgd-color: $bkgd-nest;
 $cell-border-bottom-color: $border;
 $cell-border-side-left-color: $border;
 
-.ui.table-header-cell {
+.ui.table .table-header-cell {
     background-color: $cell-bkgd-color;
     border-bottom: 1px solid $cell-border-bottom-color;
     border-left: 0;

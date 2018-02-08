@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class TreeMenuItem extends Component {
@@ -19,23 +20,23 @@ class TreeMenuItem extends Component {
 }
 
 TreeMenuItem.propTypes = {
-    checkboxFactory: React.PropTypes.func,
-    checkbox: React.PropTypes.bool,
-    checked: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    collapsed : React.PropTypes.bool,
-    collapsible : React.PropTypes.bool,
-    collapseIconClass: React.PropTypes.string,
-    expandIconClass: React.PropTypes.string,
-    id: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired,
-    labelFactory: React.PropTypes.func,
-    labelFilter: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onCheckChange: React.PropTypes.func,
-    onCollapseChange: React.PropTypes.func,
-    onSelectChange: React.PropTypes.func,
-    stateful: React.PropTypes.bool
+    checkboxFactory: PropTypes.func,
+    checkbox: PropTypes.bool,
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    collapsed : PropTypes.bool,
+    collapsible : PropTypes.bool,
+    collapseIconClass: PropTypes.string,
+    expandIconClass: PropTypes.string,
+    id: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    labelFactory: PropTypes.func,
+    labelFilter: PropTypes.func,
+    onClick: PropTypes.func,
+    onCheckChange: PropTypes.func,
+    onCollapseChange: PropTypes.func,
+    onSelectChange: PropTypes.func,
+    stateful: PropTypes.bool
 };
 
 export default TreeMenuItem;

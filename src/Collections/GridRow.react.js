@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -41,13 +42,13 @@ const xAlignEnums = [ 'center', 'left', 'right' ];
 const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 GridRow.propTypes = {
-    className: React.PropTypes.string,
-    columns: React.PropTypes.oneOf(columnNumberEnums),
-    horizontalAlign: React.PropTypes.oneOf(xAlignEnums),
-    stressed: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    textAlign: React.PropTypes.oneOf(xAlignEnums),
-    verticalAlign: React.PropTypes.oneOf(verticalAlignEnums)
+    className: PropTypes.string,
+    columns: PropTypes.oneOf(columnNumberEnums),
+    horizontalAlign: PropTypes.oneOf(xAlignEnums),
+    stressed: PropTypes.bool,
+    style: PropTypes.object,
+    textAlign: PropTypes.oneOf(xAlignEnums),
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums)
 };
 
 export default GridRow;

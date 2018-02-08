@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, Grid, Header, TitleBar } from 'react-cm-ui';
 
@@ -124,6 +125,35 @@ export default class ActiveSample extends React.Component {
     render() {
         return (
             <Card active={true} compact={true} nest={true}>
+                <Grid stressed={true}>
+                    <Grid.Row>
+                        <Grid.Column style={{ padding: 0, width: '44px' }}>
+                            <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
+                        </Grid.Column>
+
+                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                            <Header size="small" sub={true}>
+                                A Title
+                                <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
+                            </Header>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Card>
+        );
+    }
+
+}`;
+
+const collapsableSample = `import React from 'react';
+
+import Card from 'components/UI/Views/Card.react';
+
+export default class CollapsableSample extends React.Component {
+
+    render() {
+        return (
+            <Card collapsable nest>
                 <Grid stressed={true}>
                     <Grid.Row>
                         <Grid.Column style={{ padding: 0, width: '44px' }}>
@@ -356,6 +386,43 @@ export default class ViewsTitleBar extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {activeSample}
+                </Highlighter>
+
+                {/* Collapsable */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Collapsable
+                    <Header.Subheader>
+                        Cards can be collapsable.
+                    </Header.Subheader>
+                </Header>
+
+                <Block
+                    nest={true}
+                    style={{ padding: '22px' }}
+                >
+                    <Card collapsable nest title="Collapsable Card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                            Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                            Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                            dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                    </Card>
+
+                    <Card compact collapsable nest title="Compact Collapsable Card">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                            Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                            Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                            dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                    </Card>
+                </Block>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {collapsableSample}
                 </Highlighter>
             </Main>
         );

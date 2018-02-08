@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -31,16 +32,16 @@ class Divider extends Component {
 
 }
 Divider.propTypes = {
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(Utils.colorEnums()),
-    compact: React.PropTypes.bool,
-    hidden: React.PropTypes.bool,
-    inverse: React.PropTypes.bool,
-    relaxed: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf([ 'very' ])
+    className: PropTypes.string,
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    compact: PropTypes.bool,
+    hidden: PropTypes.bool,
+    inverse: PropTypes.bool,
+    relaxed: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf([ 'very' ])
     ]),
-    style: React.PropTypes.object
+    style: PropTypes.object
 };
 
 export default Divider;

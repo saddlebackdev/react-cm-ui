@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -116,11 +117,11 @@ class SegmentedControls extends Component {
 SegmentedControls.Item = SegmentedControlsItem;
 
 SegmentedControls.propTypes = {
-    className: React.PropTypes.string,
-    fluid: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.number,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    fluid: PropTypes.bool,
+    onClick: PropTypes.func,
+    selected: PropTypes.number,
+    style: PropTypes.object
 };
 
 export default SegmentedControls;

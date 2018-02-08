@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 
@@ -22,11 +23,19 @@ class Input extends Component {
         this._onClick = this._onClick.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+
+        this.inputTimer = null;
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
             this.setState({ value: nextProps.value });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.inputTimer) {
+            clearTimeout(this.inputTimer);
         }
     }
 
@@ -181,25 +190,43 @@ class Input extends Component {
         let newValue = event.target.value;
 
         if (type === 'number') {
-            if (_.isEmpty(newValue)) {
-                if (required) {
-                    newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
-                }
-            } else {
-                newValue = +newValue;
-                if (_.isNumber(max)) {
-                    newValue = Math.min(max, newValue);
-                }
-                if (_.isNumber(min)) {
-                    newValue = Math.max(min, newValue);
-                }
+            if (this.inputTimer) {
+                clearTimeout(this.inputTimer);
             }
-        }
 
-        if (!_.isUndefined(onChange)) {
-            onChange(newValue);
+            this.inputTimer = setTimeout(() => {
+                if (_.isEmpty(newValue)) {
+                    if (required) {
+                        newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                    }
+                } else {
+                    newValue = +newValue;
+                    if (_.isNumber(max)) {
+                        newValue = Math.min(max, newValue);
+                    }
+                    if (_.isNumber(min)) {
+                        newValue = Math.max(min, newValue);
+                    }
+                }
+
+                if (_.isUndefined(onChange)) {
+                    this.setState({ value: newValue });
+                } else {
+                    onChange(newValue);
+                }
+            }, 500);
+
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            } else {
+                onChange(newValue);
+            }
         } else {
-            this.setState({ value: newValue });
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            } else {
+                onChange(newValue);
+            }
         }
     }
 
@@ -245,50 +272,50 @@ const autoCompleteEnums = [ 'off', 'on' ];
 const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
 Input.propTypes = {
-    autoComplete: React.PropTypes.oneOf(autoCompleteEnums),
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    error: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.string
+    autoComplete: PropTypes.oneOf(autoCompleteEnums),
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string
     ]),
-    fluid: React.PropTypes.bool,
-    guide: React.PropTypes.bool,
-    icon: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    fluid: PropTypes.bool,
+    guide: PropTypes.bool,
+    icon: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    id: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    keepCharPositions: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    labelStyle: React.PropTypes.object,
-    loading: React.PropTypes.bool,
-    mask: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.func
+    id: PropTypes.string,
+    inverse: PropTypes.bool,
+    keepCharPositions: PropTypes.bool,
+    label: PropTypes.string,
+    labelStyle: PropTypes.object,
+    loading: PropTypes.bool,
+    mask: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.func
     ]),
-    max: React.PropTypes.number,
-    maxLength: React.PropTypes.number,
-    min: React.PropTypes.number,
-    minLength: React.PropTypes.number,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    required: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    tabIndex: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    max: PropTypes.number,
+    maxLength: PropTypes.number,
+    min: PropTypes.number,
+    minLength: PropTypes.number,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
+    required: PropTypes.bool,
+    style: PropTypes.object,
+    tabIndex: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    type: React.PropTypes.oneOf(typeEnums),
-    value: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    type: PropTypes.oneOf(typeEnums),
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ])
 };
 

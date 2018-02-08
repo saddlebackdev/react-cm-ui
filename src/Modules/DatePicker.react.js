@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
@@ -150,7 +151,7 @@ class DatePicker extends Component {
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'monthToDate')}
                                         >
-                                            Month-To-Date
+                                            Past 30 Days
                                         </a>
                                     </li>
 
@@ -328,7 +329,25 @@ class DatePicker extends Component {
                 (dateStart && dateEnd && isDateBeforeDateStart) ||
                 (dateType === 'dateStart' && dateStart && dateEnd && date.isBefore(this._convertTimestamp(dateEnd)))
             ) {
-                dateObj.dateStart = date.unix();
+                let unixTimestamp;
+
+                // If the start date is in UTC, it is necessary to adjust it to user's timezone
+                // i.e. it will be the start of some day (12:00 AM) UTC; we need the same time but local
+                if (date._isUTC) {
+                    const tweakedStartDate = moment(date).subtract(moment().utcOffset(), 'minutes');
+                    unixTimestamp = tweakedStartDate.unix();
+                } else {
+                    unixTimestamp = date.unix();
+                }
+
+                dateObj.dateStart = unixTimestamp;
+
+                // In dateRange mode, selection of a single date should set this as start _and_ end
+                // The caller should interpret this as beginning of that day to end of that day, in appropriate timezone
+                if (!dateEnd) {
+                    dateObj.dateEnd = unixTimestamp;
+                }
+
                 this.props.onChange(dateObj);
 
                 this.setState({ presetLink: 'custom' });
@@ -340,7 +359,15 @@ class DatePicker extends Component {
                 (dateStart && dateEnd && isDateBeforeDateEnd) ||
                 (dateStart && dateEnd && isDateAfterDateEnd)
             )) {
-                dateObj.dateEnd = date.unix();
+                // If the end date is in UTC, it is necessary to adjust it to user's timezone
+                // i.e. it will be the start of some day (12:00 AM) UTC; we need the same time local
+                if (date._isUTC) {
+                    const tweakedEndDate = moment(date).subtract(moment().utcOffset(), 'minutes');
+                    dateObj.dateEnd = tweakedEndDate.unix();
+                } else {
+                    dateObj.endDate = date.unx();
+                }
+
                 this.props.onChange(dateObj);
 
                 this.setState({ presetLink: 'custom' });
@@ -407,34 +434,34 @@ const typeEnums = [ 'dateRange', 'servicePeriod', 'servicePeriodRange', 'service
 const uxModeEnums = [ 'input', 'calendar' ];
 
 DatePicker.propTypes = {
-    buttonClear: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    classNameInput: React.PropTypes.string,
-    date: React.PropTypes.number,
-    dateEnd: React.PropTypes.number,
-    dateFormat: React.PropTypes.string,
-    dateSecondaryEnd: React.PropTypes.number,
-    dateSecondaryStart: React.PropTypes.number,
-    dateStart: React.PropTypes.number,
-    disabled: React.PropTypes.bool,
-    errorMessage: React.PropTypes.string,
-    events: React.PropTypes.array,
-    excludeDates: React.PropTypes.array,
-    filterDates: React.PropTypes.func,
-    id: React.PropTypes.string,
-    includeDates: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onApplyClick: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func.isRequired,
-    onFocus: React.PropTypes.func,
-    onMonthChange: React.PropTypes.func,
-    required: React.PropTypes.bool,
-    tabIndex: React.PropTypes.number,
-    type: React.PropTypes.oneOf(typeEnums),
-    uxMode: React.PropTypes.oneOf(uxModeEnums)
+    buttonClear: PropTypes.bool,
+    className: PropTypes.string,
+    classNameInput: PropTypes.string,
+    date: PropTypes.number,
+    dateEnd: PropTypes.number,
+    dateFormat: PropTypes.string,
+    dateSecondaryEnd: PropTypes.number,
+    dateSecondaryStart: PropTypes.number,
+    dateStart: PropTypes.number,
+    disabled: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    id: PropTypes.string,
+    includeDates: PropTypes.array,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onApplyClick: PropTypes.func,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onMonthChange: PropTypes.func,
+    required: PropTypes.bool,
+    tabIndex: PropTypes.number,
+    type: PropTypes.oneOf(typeEnums),
+    uxMode: PropTypes.oneOf(uxModeEnums)
 };
 
 export default DatePicker;

@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class DatePickerMonthDropdown extends Component {
@@ -16,9 +17,9 @@ class DatePickerMonthDropdown extends Component {
 }
 
 DatePickerMonthDropdown.propTypes = {
-    maxDate: React.PropTypes.object,
-    month: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func.isRequired
+    maxDate: PropTypes.object,
+    month: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default DatePickerMonthDropdown;

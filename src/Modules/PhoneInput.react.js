@@ -142,12 +142,12 @@ class PhoneInput extends Component {
     }
 
     render() {
-        const { disable, id, label, labelStyle, required, tabIndex } = this.props;
+        const { disable, dropdownIconType, id, label, labelStyle, required, style, tabIndex } = this.props;
         const { countriesOptions, countrySelection, inputMask, inputPlaceholder, inputValue } = this.state;
         const containerClasses = ClassNames('ui', 'phone-input');
 
         return (
-            <div className={containerClasses}>
+            <div className={containerClasses} style={style}>
                 {label ? (
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
@@ -160,8 +160,9 @@ class PhoneInput extends Component {
 
                 <div className="phone-input-fields">
                     <Dropdown
-                        disable={disable}
                         clearable={false}
+                        disable={disable}
+                        iconType={dropdownIconType}
                         onChange={this._onDropdownChange}
                         options={countriesOptions}
                         selection={true}
@@ -278,6 +279,7 @@ class PhoneInput extends Component {
 PhoneInput.propTypes = {
     className: PropTypes.string,
     disable: PropTypes.bool,
+    dropdownIconType: PropTypes.string,
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string
