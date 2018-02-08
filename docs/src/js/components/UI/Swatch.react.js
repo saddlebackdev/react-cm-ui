@@ -3,6 +3,7 @@
 import 'components/UI/Swatch.scss';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Main extends React.Component {
@@ -33,8 +34,8 @@ export default class Main extends React.Component {
 }
 
 Main.propTypes = {
-    border: React.PropTypes.bool,
-    color: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string,
-    textInverse: React.PropTypes.bool
+    border: PropTypes.bool,
+    color: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    textInverse: PropTypes.bool
 };

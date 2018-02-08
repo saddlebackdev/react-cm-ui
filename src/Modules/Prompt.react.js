@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -137,15 +138,15 @@ const inlineHorizontalAlign = [ 'left', 'right' ];
 const inlineMessageColor = [ 'alert', 'success' ];
 
 Prompt.propTypes = {
-    className: React.PropTypes.string,
-    inline: React.PropTypes.bool,
-    inlineHorizontalAlign: React.PropTypes.oneOf(inlineHorizontalAlign),
-    inlineMessageColor: React.PropTypes.oneOf(inlineMessageColor),
-    message: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    onNoClick: React.PropTypes.func,
-    onYesClick: React.PropTypes.func,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    inline: PropTypes.bool,
+    inlineHorizontalAlign: PropTypes.oneOf(inlineHorizontalAlign),
+    inlineMessageColor: PropTypes.oneOf(inlineMessageColor),
+    message: PropTypes.string,
+    onClick: PropTypes.func,
+    onNoClick: PropTypes.func,
+    onYesClick: PropTypes.func,
+    style: PropTypes.object
 };
 
 export default Prompt;

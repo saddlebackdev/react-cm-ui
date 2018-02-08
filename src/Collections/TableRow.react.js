@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -25,7 +26,6 @@ class TableRow extends Component {
             fontSize, onClick, style,
             textAlign, verticalAlign } = this.props;
         const containerClasses = ClassNames(
-            'ui',
             'table-row',
             {
                 'table-row-active': active,
@@ -71,15 +71,15 @@ const textAlignEnums = [ 'center', 'left', 'right' ];
 const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 TableRow.propTypes = {
-    active: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    fontSize: React.PropTypes.oneOf(Utils.sizeEnums()),
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    textAlign: React.PropTypes.oneOf(textAlignEnums),
-    verticalAlign: React.PropTypes.oneOf(verticalAlignEnums)
+    active: PropTypes.bool,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
+    onClick: PropTypes.func,
+    selected: PropTypes.bool,
+    style: PropTypes.object,
+    textAlign: PropTypes.oneOf(textAlignEnums),
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums)
 };
 
 export default TableRow;

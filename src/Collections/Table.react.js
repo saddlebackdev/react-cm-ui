@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import TableBody from './TableBody.react';
@@ -60,24 +61,24 @@ Table.Row = TableRow;
 const colorEnums = [ 'bottom', 'middle', 'top' ];
 
 Table.propTypes = {
-    basic: React.PropTypes.bool,
-    celled: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    collapsing: React.PropTypes.bool,
-    color: React.PropTypes.oneOf(colorEnums),
-    definition: React.PropTypes.bool,
-    fixed: React.PropTypes.bool,
-    fontSize: React.PropTypes.oneOf(Utils.sizeEnums()),
-    fullWidth: React.PropTypes.bool,
-    selectable: React.PropTypes.bool,
-    singleLine: React.PropTypes.bool,
-    stackable: React.PropTypes.bool,
-    stretch: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.oneOf(['very'])
+    basic: PropTypes.bool,
+    celled: PropTypes.bool,
+    className: PropTypes.string,
+    collapsing: PropTypes.bool,
+    color: PropTypes.oneOf(colorEnums),
+    definition: PropTypes.bool,
+    fixed: PropTypes.bool,
+    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
+    fullWidth: PropTypes.bool,
+    selectable: PropTypes.bool,
+    singleLine: PropTypes.bool,
+    stackable: PropTypes.bool,
+    stretch: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['very'])
     ]),
-    striped: React.PropTypes.bool,
-    style: React.PropTypes.object
+    striped: PropTypes.bool,
+    style: PropTypes.object
 };
 
 export default Table;

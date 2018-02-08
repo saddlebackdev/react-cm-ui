@@ -4,6 +4,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.15 - 2017-02-07
+##Added
+- Added ability to collapse a **Card**.
+
+## 1.8.14 - 2017-02-02
+##Added
+- Added ability to give a **PhoneInput** flag dropdown a different arrow icon.
+- Added ability to style a **PhoneInput** container.
+
+## 1.8.13 - 2017-02-02
+##Added
+- Added ability to give a **Dropdown** select a different arrow icon.
+
+## 1.8.12 - 2017-01-31
+##Added
+- Added ability to adjust a **Modal's** height according to its content.
+
+## 1.8.11 - 2017-01-20
+##Changed
+- Fixes the onClick event and styling for a **Radio's** `pill` UI while being `disabled`.
+
+## 1.8.10 - 2017-01-19
+##Changed
+- Added a bottom divider to a `basic` **Table's** last row.
+- Removed `.ui` from a **Table's** children components.
+- Fixed a **Header** error when having an icon and sub header.
+
+## 1.8.9 - 2017-12-12
+##Changed
+- merged PR #18: DatePicker tweaks for using it in `dateRange` mode.
+
+## 1.8.8 - 2017-12-02
+##Changed
+- Fixed `./lib/css/components` image url paths.
+
+## 1.8.6 - 2017-12-02
+##Added
+- `./lib` now has all the individual `.css` files to import.
+
+## 1.8.5 - 2017-12-02
+##Changed
+- Removed PropTypes warnings.
+
 ## 1.8.3 - 2017-11-15
 ##Changed
 - Cleaned up conditions around `min` and `max` props for **Input**.

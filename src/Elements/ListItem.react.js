@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -21,9 +22,9 @@ class ListItem extends Component {
 const asEnums = [ 'div', 'li' ];
 
 ListItem.propTypes = {
-    as: React.PropTypes.oneOf(asEnums),
-    label: React.PropTypes.string,
-    style: React.PropTypes.string
+    as: PropTypes.oneOf(asEnums),
+    label: PropTypes.string,
+    style: PropTypes.string
 };
 
 export default ListItem;

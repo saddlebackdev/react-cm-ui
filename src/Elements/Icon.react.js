@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -52,19 +53,19 @@ class Icon extends Component {
 const alignEnums = [ 'left', 'right' ];
 
 Icon.propTypes = {
-    align: React.PropTypes.oneOf(alignEnums),
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(Utils.colorEnums()),
-    compact: React.PropTypes.bool,
-    disable: React.PropTypes.bool,
-    id: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    rotate: React.PropTypes.number,
-    size: React.PropTypes.oneOf(Utils.sizeEnums()),
-    spin: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    type: React.PropTypes.string.isRequired
+    align: PropTypes.oneOf(alignEnums),
+    className: PropTypes.string,
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    compact: PropTypes.bool,
+    disable: PropTypes.bool,
+    id: PropTypes.string,
+    inverse: PropTypes.bool,
+    onClick: PropTypes.func,
+    rotate: PropTypes.number,
+    size: PropTypes.oneOf(Utils.sizeEnums()),
+    spin: PropTypes.bool,
+    style: PropTypes.object,
+    type: PropTypes.string.isRequired
 };
 
 export default Icon;

@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import autosize from 'autosize';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -134,39 +135,39 @@ class TextArea extends Component {
 }
 
 TextArea.propTypes = {
-    autoHeight: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    error: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.string
+    autoHeight: PropTypes.bool,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string
     ]),
-    fluid: React.PropTypes.bool,
-    id: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    labelStyle: React.PropTypes.object,
-    maxHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    fluid: PropTypes.bool,
+    id: PropTypes.string,
+    inverse: PropTypes.bool,
+    label: PropTypes.string,
+    labelStyle: PropTypes.object,
+    maxHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    maxLength: React.PropTypes.number,
-    minHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    maxLength: PropTypes.number,
+    minHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ]),
-    minLength: React.PropTypes.number,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    required: React.PropTypes.bool,
-    resize: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    value: React.PropTypes.string
+    minLength: PropTypes.number,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
+    required: PropTypes.bool,
+    resize: PropTypes.bool,
+    style: PropTypes.object,
+    value: PropTypes.string
 };
 
 export default TextArea;

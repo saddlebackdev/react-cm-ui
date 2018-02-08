@@ -1,6 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -54,21 +55,21 @@ const textAlignEnums = [ 'center', 'left', 'right' ];
 const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
 
 GridColumn.propTypes = {
-    align: React.PropTypes.oneOf(alignEnums),
-    className: React.PropTypes.string,
-    desktop: React.PropTypes.oneOf(columnEnums),
-    desktopLarge: React.PropTypes.oneOf(columnEnums),
-    floated: React.PropTypes.oneOf(floatedEnums),
-    laptop: React.PropTypes.oneOf(columnEnums),
-    mobile: React.PropTypes.oneOf(columnEnums),
-    mobileLarge: React.PropTypes.oneOf(columnEnums),
-    mobileMedium: React.PropTypes.oneOf(columnEnums),
-    only: React.PropTypes.oneOf(onlyEnums),
-    style: React.PropTypes.object,
-    tablet: React.PropTypes.oneOf(columnEnums),
-    textAlign: React.PropTypes.oneOf(textAlignEnums),
-    verticalAlign: React.PropTypes.oneOf(verticalAlignEnums),
-    width: React.PropTypes.oneOf(columnEnums)
+    align: PropTypes.oneOf(alignEnums),
+    className: PropTypes.string,
+    desktop: PropTypes.oneOf(columnEnums),
+    desktopLarge: PropTypes.oneOf(columnEnums),
+    floated: PropTypes.oneOf(floatedEnums),
+    laptop: PropTypes.oneOf(columnEnums),
+    mobile: PropTypes.oneOf(columnEnums),
+    mobileLarge: PropTypes.oneOf(columnEnums),
+    mobileMedium: PropTypes.oneOf(columnEnums),
+    only: PropTypes.oneOf(onlyEnums),
+    style: PropTypes.object,
+    tablet: PropTypes.oneOf(columnEnums),
+    textAlign: PropTypes.oneOf(textAlignEnums),
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
+    width: PropTypes.oneOf(columnEnums)
 };
 
 export default GridColumn;

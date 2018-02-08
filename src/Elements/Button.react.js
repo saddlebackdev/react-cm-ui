@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Utils from '../utils/Utils.js';
@@ -64,23 +65,23 @@ class Button extends Component {
 const asEnums = [ 'button', 'a' ];
 
 Button.propTypes = {
-    as: React.PropTypes.oneOf(asEnums),
-    circle: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    color: React.PropTypes.oneOf(Utils.colorEnums()),
-    compact: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    href: React.PropTypes.string,
-    icon: React.PropTypes.bool,
-    inverse: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    relax: React.PropTypes.bool,
-    square: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    width: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
+    as: PropTypes.oneOf(asEnums),
+    circle: PropTypes.bool,
+    className: PropTypes.string,
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    compact: PropTypes.bool,
+    disabled: PropTypes.bool,
+    fluid: PropTypes.bool,
+    href: PropTypes.string,
+    icon: PropTypes.bool,
+    inverse: PropTypes.bool,
+    onClick: PropTypes.func,
+    relax: PropTypes.bool,
+    square: PropTypes.bool,
+    style: PropTypes.object,
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
     ])
 }
 

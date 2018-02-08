@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class BannerItem extends Component {
@@ -16,12 +17,12 @@ class BannerItem extends Component {
 const levelEnums = [ 'error', 'secondary', 'success', 'warning' ];
 
 BannerItem.propTypes = {
-    className: React.PropTypes.string,
-    level: React.PropTypes.oneOf(levelEnums),
-    levelIcon: React.PropTypes.string,
-    message: React.PropTypes.string,
-    style: React.PropTypes.object,
-    title: React.PropTypes.string
+    className: PropTypes.string,
+    level: PropTypes.oneOf(levelEnums),
+    levelIcon: PropTypes.string,
+    message: PropTypes.string,
+    style: PropTypes.object,
+    title: PropTypes.string
 };
 
 export default BannerItem;

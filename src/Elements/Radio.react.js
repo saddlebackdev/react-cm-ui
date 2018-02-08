@@ -2,9 +2,53 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import RadioItem from './RadioItem.react';
+class RadioItem extends Component {
+
+    render() {
+        const { checked, className, id, label, name } = this.props;
+        const containerClasses = ClassNames('radio-item', className, {
+            'radio-item-is-checked': checked
+        });
+
+        return (
+            <div className={containerClasses} onClick={this._onClick.bind(this)}>
+                <input
+                    checked={checked}
+                    className="input"
+                    id={id}
+                    name={name}
+                    readOnly={true}
+                    type="radio"
+                />
+
+                <label className="label">{label}</label>
+            </div>
+        );
+    }
+
+    _onClick() {
+        const { id, index, onClick } = this.props;
+
+        onClick(id || index);
+    }
+
+}
+
+RadioItem.propTypes = {
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
+    index: PropTypes.number,
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    style: PropTypes.object
+};
 
 class Radio extends Component {
 
@@ -102,22 +146,22 @@ Radio.Item = RadioItem;
 const alignEnums = [ 'left', 'right' ];
 
 Radio.propTypes = {
-    align: React.PropTypes.oneOf(alignEnums),
-    checked: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.number
+    align: PropTypes.oneOf(alignEnums),
+    checked: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number
     ]),
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    id: React.PropTypes.string,
-    label: React.PropTypes.string,
-    labelClick: React.PropTypes.bool,
-    name: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    pill: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    value: React.PropTypes.string
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    fluid: PropTypes.bool,
+    id: PropTypes.string,
+    label: PropTypes.string,
+    labelClick: PropTypes.bool,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    pill: PropTypes.bool,
+    style: PropTypes.object,
+    value: PropTypes.string
 }
 
 export default Radio;

@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Card, Dropdown, Grid, Header, PhoneInput, TitleBar } from 'react-cm-ui';
 

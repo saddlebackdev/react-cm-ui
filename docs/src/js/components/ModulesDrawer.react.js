@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Card, Container, Drawer, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
@@ -470,14 +471,14 @@ class NestHeader1DrawerComponent extends React.Component {
 };
 
 NestHeader1DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };
 
 class NestHeader2DrawerComponent extends React.Component {
@@ -535,14 +536,14 @@ class NestHeader2DrawerComponent extends React.Component {
 };
 
 NestHeader2DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };
 
 class NestHeader3DrawerComponent extends React.Component {
@@ -591,14 +592,14 @@ class NestHeader3DrawerComponent extends React.Component {
 };
 
 NestHeader3DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };`;
 
 export default class ModulesDrawer extends React.Component {
@@ -1036,7 +1037,7 @@ export default class ModulesDrawer extends React.Component {
 }
 
 ModulesDrawer.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 class NestHeader1DrawerComponent extends React.Component {
@@ -1092,14 +1093,14 @@ class NestHeader1DrawerComponent extends React.Component {
 };
 
 NestHeader1DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };
 
 class NestHeader2DrawerComponent extends React.Component {
@@ -1156,14 +1157,14 @@ class NestHeader2DrawerComponent extends React.Component {
 };
 
 NestHeader2DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };
 
 class NestHeader3DrawerComponent extends React.Component {
@@ -1211,12 +1212,12 @@ class NestHeader3DrawerComponent extends React.Component {
 };
 
 NestHeader3DrawerComponent.propTypes = {
-    closeButton: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.string
+    closeButton: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
     ]),
-    inverse: React.PropTypes.bool,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    titleTruncate: React.PropTypes.bool
+    inverse: PropTypes.bool,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    titleTruncate: PropTypes.bool
 };

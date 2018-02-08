@@ -1,5 +1,6 @@
 'use strict';
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Radio, Card, Header, TitleBar } from 'react-cm-ui';
 
@@ -431,17 +432,33 @@ export default class ElementsRadio extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Radio name="pill-sample" pill={true}>
+                <Radio name="pill-sample" pill>
                     <Radio.Item label="Option 01" />
                     <Radio.Item label="Option 02" />
                     <Radio.Item label="Option 03" />
                 </Radio><br /><br />
 
-                <Radio checked={this.state.checkedPill} name="pill-onchange-sample" onChange={this._onPillChange.bind(this)} pill={true}>
+                <Radio
+                    checked={this.state.checkedPill}
+                    name="pill-onchange-sample"
+                    onChange={this._onPillChange.bind(this)}
+                    pill
+                >
                     <Radio.Item label="Option 01" />
                     <Radio.Item label="Option 02" />
                     <Radio.Item label="Option 03" />
-                </Radio>
+                </Radio><br /><br />
+
+                <Radio
+                    checked={2}
+                    disabled
+                    name="pill-disabled-sample"
+                    pill
+                >
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio><br /><br />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {radioGroupPillSample}
