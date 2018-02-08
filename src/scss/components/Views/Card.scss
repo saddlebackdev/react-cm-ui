@@ -6,6 +6,7 @@
     border-radius: 3px;
     margin: calc(2rem - .14285em) 0 1rem;
     padding: 22px;
+    position: relative;
     transition: background-color 150ms ease-out;
     &.card-active { background-color: $bkgd-inverse-alternate; color: $color-text-inverse; cursor: default; }
     &.card-compact { padding: 11px; }
@@ -14,8 +15,29 @@
         &:hover { background-color: $bkgd-nest; }
         &:active { background-color: $bkgd; }
     }
+    .card-title { margin-bottom: 16px; }
+    .card-collapse-button {
+        position: absolute;
+        right: 22px;
+        top: 26px;
+        z-index: 1;
+    }
+    .card-content {
+        overflow: hidden;
+        transition:
+            height 166ms linear,
+            opacity 166ms linear;
+        }
+    &.card-is-collapsed {
+        padding-bottom: 6px;
+        .card-content { opacity: 0; }
+    }
+    &.card-compact {
+        &.card-is-collapsed { padding-bottom: 0; }
+        .card-collapse-button { right: 11px; top: 15px; }
+    }
     &.card-nest { border: 0; box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1), 1px 1px 2px 0 rgba(0, 0, 0, .1); }
-    > {
+    .card-content > {
         :first-child { margin-top: 0; }
         :last-child { margin-bottom: 0; }
     }
