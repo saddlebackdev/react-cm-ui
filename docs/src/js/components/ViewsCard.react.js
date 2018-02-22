@@ -197,6 +197,12 @@ export default class ViewsTitleBar extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
+                name: 'collapsable',
+                type: 'bool',
+                default: 'false',
+                description: 'Cards can be collapsable.',
+                allowedTypes: ''
+            }, {
                 name: 'compact',
                 type: 'bool',
                 default: 'false',

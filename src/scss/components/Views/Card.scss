@@ -23,11 +23,13 @@
         z-index: 1;
     }
     .card-content {
-        overflow: hidden;
-        transition:
-            height 166ms linear,
-            opacity 166ms linear;
+        transition: height 166ms linear, opacity 166ms linear;
+        > div > {
+            *:first-child { margin-top: 0; }
+            *:last-child { margin-bottom: 0; }
         }
+    }
+    &.card-collapsable.card-is-collapsing .card-content { overflow: hidden; }
     &.card-is-collapsed {
         padding-bottom: 6px;
         .card-content { opacity: 0; }

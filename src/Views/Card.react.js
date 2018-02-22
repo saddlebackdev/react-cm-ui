@@ -9,35 +9,46 @@ import ReactDOM from 'react-dom';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
 
-class Card extends Component {
+import DOMUtils from '../utils/DOMUtils.js';
 
-    constructor() {
-        super();
+class Card extends Component {
+    constructor(props) {
+        super(props);
 
         this.state = {
             contentHeight: null,
-            isCollapsed: false
+            isCollapsed: false,
+            isCollapsing: false
         };
 
         this._onClick = this._onClick.bind(this);
         this._onCollapseClick = this._onCollapseClick.bind(this);
+        this._removeIsCollapsing = this._removeIsCollapsing.bind(this);
+        this._setContentHeightDebounce = _.debounce(() => this._setContentHeight(), 50);
 
-        this._prevContentHeight = 0;
+        if (props.collapsable) {
+            this._prevContentHeight = 0;
+
+            this._observer = new MutationObserver(mutations => {
+                _.forEach(mutations, m => {
+                    this._setContentHeight();
+                });
+            });
+        }
     }
 
     render() {
         const { active, className, collapsable, compact, onClick, nest, style, title } = this.props;
-        const { contentHeight, isCollapsed } = this.state;
+        const { contentHeight, isCollapsed, isCollapsing } = this.state;
         const containerClasses = ClassNames('ui', 'card', className, {
             'card-active': active,
             'card-clickable': onClick,
             'card-collapsable': collapsable,
             'card-is-collapsed': isCollapsed,
+            'card-is-collapsing': isCollapsing,
             'card-compact': compact,
             'card-nest': nest
         });
-
-        console.log('contentHeight', contentHeight);
 
         return (
             <section
@@ -55,30 +66,57 @@ class Card extends Component {
 
                 <div
                     className="card-content"
-                    ref={content => { this.content = content; }}
+                    ref={outerContent => { this.outerContent = outerContent; }}
                     style={{ height: contentHeight }}
                 >
-                    {this.props.children}
+                    <div ref={innerContent => { this.innerContent = innerContent; }}>
+                        {this.props.children}
+                    </div>
                 </div>
             </section>
         );
     }
 
     componentDidMount() {
-        this.setState({
-            contentHeight: this._getContentHeight()
-        });
+        const { collapsable } = this.props;
+
+        if (collapsable) {
+            const outerContent = ReactDOM.findDOMNode(this.outerContent);
+            const innerContent = ReactDOM.findDOMNode(this.innerContent);
+
+            window.addEventListener('resize', this._setContentHeightDebounce);
+            outerContent.addEventListener(DOMUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
+            this._observer.observe(innerContent, {
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
+
+            this._setContentHeight();
+        }
+    }
+
+    componentWillUnmount() {
+        const { collapsable } = this.props;
+
+        if (collapsable) {
+            const outerContent = ReactDOM.findDOMNode(this.outerContent);
+
+            window.removeEventListener('resize', this._setContentHeightDebounce);
+            outerContent.removeEventListener(DOMUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
+            this._observer.disconnect();
+        }
     }
 
     _getContentHeight() {
-        const height = ReactDOM.findDOMNode(this.content).offsetHeight;
+        const innerHeight = ReactDOM.findDOMNode(this.innerContent).offsetHeight;
 
-        if (height <= 0) {
+        if (innerHeight <= 0) {
             return this._prevContentHeight;
         } else {
-            this._prevContentHeight = height;
+            this._prevContentHeight = innerHeight;
 
-            return height;
+            return innerHeight;
         }
     }
 
@@ -95,8 +133,13 @@ class Card extends Component {
 
         this.setState({
             contentHeight: !isCollapsed ? 0 : this._getContentHeight(),
-            isCollapsed: !isCollapsed
+            isCollapsed: !isCollapsed,
+            isCollapsing: true
         });
+    }
+
+    _removeIsCollapsing() {
+        this.setState({ isCollapsing: false });
     }
 
     _renderCollapsableButton() {
@@ -116,6 +159,10 @@ class Card extends Component {
                 </div>
             );
         }
+    }
+
+    _setContentHeight() {
+        this.setState({ contentHeight: this._getContentHeight() });
     }
 };
 

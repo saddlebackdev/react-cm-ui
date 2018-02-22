@@ -195,7 +195,7 @@ class PhoneInput extends Component {
                 dialCode: c.dialCode,
                 format: c.format,
                 iso2: c.iso2,
-                label: c.name,
+                label: `${c.name} (${c.iso2}) (+${c.dialCode})`,
                 name: c.name,
                 priority: c.priority,
                 value: i
