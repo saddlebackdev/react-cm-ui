@@ -26,15 +26,14 @@
   ],
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
-    "build": "npm run docs:prod",
+    "build": "webpack",
+    "build:local": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+    "build:prod": "npm run build",
+    "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "clean:lib": "rimraf lib",
     "compile": "npm run clean:lib && gulp compile:lib && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
-    "docs:dev": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
-    "docs:prod": "webpack",
-    "docs:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "postpublish": "git checkout master && git push && git checkout dev",
-    "prepublishOnly": "npm run compile",
-    "start": "npm run docs:dev"
+    "prepublishOnly": "npm run compile"
   },
   "dependencies": {
     "autosize": "^3.0.17",

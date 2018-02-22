@@ -30,6 +30,38 @@ class DOMUtils {
         }
     }
 
+    static cssAnimationType(el) {
+        let a;
+        const animations = {
+            'animation': 'animationend',
+            'OAnimation': 'oAnimationEnd',
+            'MozAnimation': 'animationend',
+            'WebkitAnimation': 'webkitAnimationEnd'
+        };
+
+        for (a in animations) {
+            if (el.style[a] !== undefined) {
+                return animations[a];
+            }
+        }
+    }
+
+    static cssTransitionType(el) {
+        let t;
+        const transitions = {
+            'transition': 'transitionend',
+            'OTransition': 'oTransitionEnd otransitionend',
+            'MozTransition': 'transitionend',
+            'WebkitTransition': 'webkitTransitionEnd'
+        };
+
+        for (t in transitions) {
+            if (el.style[t] !== undefined) {
+                return transitions[t];
+            }
+        }
+    }
+
     static hasClassName(el, cls) {
         return el.classList.contains(cls);
     }

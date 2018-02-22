@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.17 - 2017-02-21
+##Change
+- Fix for dynamically changing a collapsable **Card's** content height.
+
 ## 1.8.16 - 2017-02-13
 ##Added
 - ISO2 and dial codes are now searchable in **InputPhone**.
