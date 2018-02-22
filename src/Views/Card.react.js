@@ -162,7 +162,11 @@ class Card extends Component {
     }
 
     _setContentHeight() {
-        this.setState({ contentHeight: this._getContentHeight() });
+        const { isCollapsed } = this.state;
+
+        if (!isCollapsed) {
+            this.setState({ contentHeight: this._getContentHeight() });
+        }
     }
 };
 
