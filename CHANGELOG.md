@@ -4,40 +4,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.8.19 - 2017-02-22
+## 1.8.21 - 2018-03-01
+##Added
+- react-dnd is now apart of react-cm-ui.
+
+## 1.8.19 - 2018-02-22
 ##Change
 - Disables a collapsable **Card's** content height when already collapsed.
 
-## 1.8.17 - 2017-02-21
+## 1.8.17 - 2018-02-21
 ##Change
 - Fix for dynamically changing a collapsable **Card's** content height.
 
-## 1.8.16 - 2017-02-13
+## 1.8.16 - 2018-02-13
 ##Added
 - ISO2 and dial codes are now searchable in **InputPhone**.
 
-## 1.8.15 - 2017-02-07
+## 1.8.15 - 2018-02-07
 ##Added
 - Added ability to collapse a **Card**.
 
-## 1.8.14 - 2017-02-02
+## 1.8.14 - 2018-02-02
 ##Added
 - Added ability to give a **PhoneInput** flag dropdown a different arrow icon.
 - Added ability to style a **PhoneInput** container.
 
-## 1.8.13 - 2017-02-02
+## 1.8.13 - 2018-02-02
 ##Added
 - Added ability to give a **Dropdown** select a different arrow icon.
 
-## 1.8.12 - 2017-01-31
+## 1.8.12 - 2018-01-31
 ##Added
 - Added ability to adjust a **Modal's** height according to its content.
 
-## 1.8.11 - 2017-01-20
+## 1.8.11 - 2018-01-20
 ##Changed
 - Fixes the onClick event and styling for a **Radio's** `pill` UI while being `disabled`.
 
-## 1.8.10 - 2017-01-19
+## 1.8.10 - 2018-01-19
 ##Changed
 - Added a bottom divider to a `basic` **Table's** last row.
 - Removed `.ui` from a **Table's** children components.
