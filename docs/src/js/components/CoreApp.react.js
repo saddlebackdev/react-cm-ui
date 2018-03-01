@@ -271,6 +271,14 @@ let routes = (
                 }}
             />
             <Route
+                path="drag-and-drop"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDragAndDrop.react'))
+                    }, 'ModulesDragAndDrop')
+                }}
+            />
+            <Route
                 path="drawer"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
