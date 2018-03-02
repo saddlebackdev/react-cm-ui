@@ -252,7 +252,7 @@ class Input extends Component {
 
     _onNumberToggleClick(action) {
         const { value } = this.state;
-        const { max, min, type } = this.props;
+        const { max, min, type, onChange } = this.props;
         let newValue = value || 0;
 
         switch(action) {
@@ -264,7 +264,11 @@ class Input extends Component {
                 break;
         }
 
-        this.setState({ value: newValue });
+        if (_.isUndefined(onChange)) {
+            this.setState({ value: newValue });
+        } else {
+            onChange(newValue);
+        }
     }
 }
 
