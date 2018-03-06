@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.23 - 2018-03-05
+##Changed
+- Changed how `browserDetect()` detects the browser.
+
 ## 1.8.21 - 2018-03-01
 ##Added
 - react-dnd is now apart of react-cm-ui.
