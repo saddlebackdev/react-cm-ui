@@ -8,25 +8,34 @@ class DOMUtils {
     }
 
     static browserDetect() {
-        let ua = window.navigator.userAgent;
+        // https://github.com/mbasso/react-browser-detection/blob/master/src/index.js
+        const isOpera = (!!window.opr && !!window.opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        const isFirefox = typeof InstallTrigger !== 'undefined';
+        const isChrome = !!window.chrome && !!window.chrome.webstore && navigator.userAgent.toLowerCase().indexOf('googlebot') === -1;
+        const isSafari = !isChrome && navigator.userAgent.toLowerCase().indexOf('safari') !== -1;
+        const isIE = /*@cc_on!@*/false || !!document.documentMode;
+        const isEdge = !(isIE) && !!window.StyleMedia;
+        const isBlink = (isChrome || isOpera) && !!window.CSS;
+        const isGoogleBot = navigator.userAgent.toLowerCase().indexOf('googlebot') !== -1;
 
-        if (ua.indexOf('Chrome/') > -1 && ua.indexOf('Safari/') > -1 && ua.indexOf('Edge/') <= -1) {
-            // "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36"
-            return 'ua-chrome';
-        } else if (ua.indexOf('Trident/') > -1) {
-            // "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko"
-            return 'ua-ie-11';
-        } else if (ua.indexOf('Edge/') > -1) {
-            // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
-            return 'ua-ie-edge';
-        } else if (ua.indexOf('Firefox') > -1) {
-            // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:54.0) Gecko/20100101 Firefox/54.0"
-            return 'ua-firefox';
-        } else if (ua.indexOf('Safari/') > -1 && ua.indexOf('Chrome/') <= -1) {
-            // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/601.5.17 (KHTML, like Gecko) Version/9.1 Safari/601.5.17"
-            return 'ua-safari';
+        if (isOpera) {
+            return 'opera';
+        } else if (isFirefox) {
+            return 'firefox';
+        } else if (isSafari) {
+            return 'safari';
+        } else if (isIE) {
+            return 'ie';
+        } else if (isEdge) {
+            return 'edge';
+        } else if (isChrome) {
+            return 'chrome';
+        } else if (isBlink) {
+            return 'blink';
+        } else if (isGoogleBot) {
+            return 'googlebot';
         } else {
-            return false;
+            return 'unknown';
         }
     }
 
