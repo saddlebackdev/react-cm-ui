@@ -215,7 +215,11 @@ class Modal extends Component {
         }
 
         if (modalLength === 0) {
+            const scrollPosition = parseInt(element.style.top, 10);
+
             DOMUtils.removeClassName(element, 'modal-open');
+            window.scroll(0, Math.abs(scrollPosition));
+            document.body.style.top = null;
         }
 
         DOMUtils.removeClassName(element, 'modal-animate-out');
@@ -235,6 +239,7 @@ class Modal extends Component {
     _onOpen(node) {
         const { autoHeight, maxWidth } = this.props;
         const body = document.body;
+        const scrollPosition = window.pageYOffset;
         const modalLength = document.querySelectorAll('.ui.modal').length;
         const modal = node.querySelector('.ui.modal');
         const modalContainer = node.querySelector('.modal-container');
@@ -250,6 +255,7 @@ class Modal extends Component {
             modalContainer.style.zIndex = zIndex;
             modalDimmer.style.display = 'none';
         } else {
+            body.style.top = `-${scrollPosition}px`;
             DOMUtils.addClassName(body, 'modal-open');
             modal.style.zIndex = zIndex - 1;
             modalContainer.style.zIndex = zIndex + modalLength;
