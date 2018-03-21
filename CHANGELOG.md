@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.8.25 - 2018-03-20
+## 1.8.26 - 2018-03-20
 ##Changed
 - **Modals** and **Drawers** no longer remove the scrollbar causing side effects in the background.
 - PR #21 fixed a **Input** bug having to do with the `onChange` event handler when the `type` was set to `number`. Thanks @gbulatov!
