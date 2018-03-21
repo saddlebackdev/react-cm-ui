@@ -180,7 +180,11 @@ class Drawer extends Component {
         }
 
         if (drawerLength === 0) {
+            const scrollPosition = parseInt(element.style.top, 10);
+
             DOMUtils.removeClassName(element, 'drawer-open');
+            window.scroll(0, Math.abs(scrollPosition));
+            document.body.style.top = null;
         }
 
         DOMUtils.removeClassName(element, 'drawer-animate-out');
@@ -231,6 +235,7 @@ class Drawer extends Component {
     _onOpen(node) {
         const { maxWidth, onClickOutside } = this.props;
         const body = document.body;
+        const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         const drawer = node.querySelector('.ui.drawer');
         const drawerContainer = node.querySelector('.drawer-container');
@@ -254,6 +259,7 @@ class Drawer extends Component {
             drawerContainer.style.zIndex = zIndex;
             drawerDimmer.style.display = 'none';
         } else {
+            body.style.top = `-${scrollPosition}px`;
             DOMUtils.addClassName(body, 'drawer-open');
             drawer.style.zIndex = zIndex - 1;
             drawerContainer.style.zIndex = zIndex + drawerLength;

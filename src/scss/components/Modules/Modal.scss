@@ -5,7 +5,9 @@ $zindex: $modal-zindex;
 
 body {
     &.modal-open {
-        overflow: hidden;
+        overflow-y: scroll;
+        position: fixed;
+        width: 100%;
         #coreApp::after {
             background: $bkgd-disable;
             content: '';
