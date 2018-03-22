@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "1.8.26",
+  "version": "1.8.27",
   "description": "React UI for Church management",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -33,7 +33,7 @@
     "clean:lib": "rimraf lib",
     "compile": "npm run clean:lib && gulp compile:lib && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
     "postpublish": "git checkout master && git push && git checkout dev",
-    "prepublishOnly": "npm run compile"
+    "prepare": "npm run compile"
   },
   "dependencies": {
     "autosize": "^3.0.17",

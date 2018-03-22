@@ -6,7 +6,6 @@ $shadow: rgba(0, 0, 0, .17);
     .tabs-buttons {
         display: inline-flex;
         height: 39px;
-        overflow: hidden;
         position: relative;
         &::after {
             background-color: $bkgd;
@@ -53,7 +52,7 @@ $shadow: rgba(0, 0, 0, .17);
             }
             &::after {
                 background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNHB4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iNDk2IDExMyA0IDQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8cGF0aCBkPSJNNDk3LDExMyBDNDk3LjQ4MTU2NywxMTUuNzU2MzQ4IDUwMCwxMTYgNTAwLDExNiBMNDk5LjUwNDUxNywxMTYgTDQ5NywxMTYgTDQ5NywxMTMgWiIgaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PC9wYXRoPgo8L3N2Zz4=');
-                right: -3px;
+                right: -2px;
             }
             > .tab-card-button-inner {
                 align-items: center;
@@ -71,6 +70,7 @@ $shadow: rgba(0, 0, 0, .17);
                 z-index: 2;
                 i { color: $bkgd-highlight; }
                 &::before, &::after { opacity: 1; visibility: visible; }
+                &:last-child { box-shadow: none; }
             }
             i { margin-right: 11px; }
             &:first-child::before { display: none; }

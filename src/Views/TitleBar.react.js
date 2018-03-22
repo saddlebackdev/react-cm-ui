@@ -17,7 +17,16 @@ class TitleBar extends Component {
                 <MediaQuery maxWidth={767}>
                     {matches => {
                         return (
-                            <Header as={matches ? 'h2' : 'h1'}>{this.props.title}</Header>
+                            <Header
+                                as={matches ? 'h2' : 'h1'}
+                                style={{
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                }}
+                            >
+                                {this.props.title}
+                            </Header>
                         );
                     }}
                 </MediaQuery>
