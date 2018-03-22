@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.8.27 - 2018-03-22
+##Added
+- New `circle-filled` icon type.
+
+##Changed
+- Fixed some styling in Firefox for **Tabs**.
+- **TitleBar** now truncates long titles on smaller viewports.
+
 ## 1.8.26 - 2018-03-20
 ##Changed
 - **Modals** and **Drawers** no longer remove the scrollbar causing side effects in the background.
