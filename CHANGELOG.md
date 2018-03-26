@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.8.21 - 2018-03-01
 ##Added
-- react-dnd is now apart of react-cm-ui.
+- react-dnd is now a part of react-cm-ui.
 
 ## 1.8.19 - 2018-02-22
 ##Change
