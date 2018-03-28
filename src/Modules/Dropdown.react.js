@@ -42,6 +42,7 @@ class Dropdown extends Component {
         this.state = {
             isModalOpen: false,
             menuIsOpen: false,
+            menuPositionStyle: {},
             menuXPosition: 'left',
             menuYPosition: 'top',
             value: props.value || null
@@ -67,7 +68,8 @@ class Dropdown extends Component {
             options, placeholder, searchable, selection,
             selectionCreatable, selectionMenuContainerStyle: menuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
-            style, tabIndex, theme } = this.props;
+            style, tabIndex, text, theme } = this.props;
+        const { menuIsOpen, menuPositionStyle } = this.state;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
@@ -200,7 +202,7 @@ class Dropdown extends Component {
                                             tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                                             value={this.state.value}
                                             valueComponent={selectionValueComponent}
-                                            ref="dropdownContainer"
+                                            ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                                         />
                                     </div>
                                 );
@@ -236,7 +238,7 @@ class Dropdown extends Component {
                             tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                             value={this.state.value}
                             valueComponent={selectionValueComponent}
-                            ref="dropdownContainer"
+                            ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                         >
                             {customCreatableSelect}
                         </Select.Creatable>
@@ -249,16 +251,14 @@ class Dropdown extends Component {
             <div
                 className={containerClasses}
                 onClick={this._onDropdownClick.bind(this)}
-                ref="dropdownContainer"
+                ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                 style={style}
             >
                 {labelJSX}
 
-                {placeholder ? (
-                    <span className="dropdown-selection-value" key="dropdown-selection-value-key">
-                        {this.state.value ? this.state.value.label : placeholder}
-                    </span>
-                ) : null}
+                <span className="dropdown-selection-value">
+                    {text ? text : this.state.value ? this.state.value.label : placeholder}
+                </span>
 
                 <Icon
                     color={this.state.menuIsOpen && !button ? 'highlight' : null}
@@ -275,22 +275,10 @@ class Dropdown extends Component {
                                 className="dropdown-menu"
                                 onClick={this._onDropdownMenuClick.bind(this)}
                                 ref={el => this.dropdownMenu = el}
-                                style={{
-                                    bottom: this.state.menuYPosition === 'bottom' && button ?
-                                                matches ? '49px' : '39px' :
-                                            this.state.menuYPosition === 'bottom' && !button ?
-                                                '27px' :
-                                                null,
-                                    left: this.state.menuXPosition === 'left' ? 0 : null,
-                                    opacity: this.state.menuIsOpen ? 1 : 0,
-                                    right: this.state.menuXPosition === 'right' ? 0 : null,
-                                    top: this.state.menuYPosition === 'top' && button ?
-                                            matches ? '49px' : '39px' :
-                                         this.state.menuYPosition === 'top' && !button ?
-                                            '27px' :
-                                            null,
-                                    visibility: this.state.menuIsOpen ? 'visible' : 'hidden'
-                                }}
+                                style={_.assign(menuPositionStyle, {
+                                    opacity: menuIsOpen ? 1 : 0,
+                                    visibility: menuIsOpen ? 'visible' : 'hidden'
+                                })}
                             >
                                 {items}
                             </ul>
@@ -363,7 +351,9 @@ class Dropdown extends Component {
     }
 
     _onClickOutside(event) {
-        if (this.refs.dropdownContainer && ReactDOM.findDOMNode(this.refs.dropdownContainer).contains(event.target) && this.state.menuIsOpen) {
+        const { menuIsOpen } = this.state;
+
+        if (this.dropdownContainer && ReactDOM.findDOMNode(this.dropdownContainer).contains(event.target) && this.state.menuIsOpen) {
             return;
         }
 
@@ -392,33 +382,38 @@ class Dropdown extends Component {
     }
 
     _onDropdownMenuReposition() {
-        const { menuXPosition, menuYPosition } = this.state;
-        const dropdownMenuObj = DOMUtils.isInViewport(ReactDOM.findDOMNode(this.dropdownMenu));
+        const { button } = this.props;
+        const { menuIsOpen } = this.state;
+        const dropdownContainerEl = ReactDOM.findDOMNode(this.dropdownContainer);
+        const dropdownMenuEl = ReactDOM.findDOMNode(this.dropdownMenu);
+        const dropdownMenuObj = DOMUtils.isInViewport(dropdownMenuEl, dropdownContainerEl);
         const isInTop = dropdownMenuObj.isInTop;
         const isInRight = dropdownMenuObj.isInRight;
         const isInBottom = dropdownMenuObj.isInBottom;
         const isInLeft = dropdownMenuObj.isInLeft;
-        let newMenuXPosition, newMenuYPosition;
+        let menuXPosition, menuYPosition;
 
-        if (!isInLeft || !isInLeft && isInRight) {
-            newMenuXPosition = 'left';
-        } else if (!isInRight || isInLeft && !isInRight) {
-            newMenuXPosition = 'right';
-        } else if (isInLeft && isInRight) {
-            newMenuXPosition = menuXPosition;
+        if (isInRight) {
+            menuXPosition = 'left';
+        } else {
+            menuXPosition = 'right';
         }
 
-        if (!isInTop || !isInTop && isInBottom) {
-            newMenuYPosition = 'top';
-        } else if (!isInBottom || isInTop && !isInBottom) {
-            newMenuYPosition = 'bottom';
-        } else if (isInTop && isInBottom) {
-            newMenuYPosition = menuYPosition;
+        if (isInBottom) {
+            menuYPosition = 'top';
+        } else {
+            menuYPosition = 'bottom';
         }
 
         this.setState({
-            menuXPosition: newMenuXPosition,
-            menuYPosition: newMenuYPosition
+            menuXPosition,
+            menuYPosition,
+            menuPositionStyle: {
+                bottom: menuYPosition === 'bottom' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
+                left: menuXPosition === 'left' ? 0 : null,
+                right: menuXPosition === 'right' ? 0 : null,
+                top: menuYPosition === 'top' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
+            }
         });
     }
 
@@ -499,6 +494,10 @@ Dropdown.propTypes = {
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
+        PropTypes.string
+    ]),
+    text: PropTypes.oneOfType([
+        PropTypes.object,
         PropTypes.string
     ]),
     theme: PropTypes.oneOf(Utils.themeEnums()),

@@ -24,7 +24,7 @@ export default class InputSample extends React.Component {
 
 }`;
 
-export default class ElementsButton extends React.Component {
+export default class ElementsLoader extends React.Component {
 
     render() {
 

@@ -1,0 +1,28 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
+
+.ui.image {
+    background-color: transparent;
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    vertical-align: middle;
+    &.image-size- {
+        &xxsmall { height: auto; width: 32px; }
+    }
+    &.image-avatar {
+        align-items: center;
+        background-color: $bkgd-nest;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 500em;
+        box-shadow: inset 0 0 0 1px $border;
+        display: inline-flex;
+        height: 32px;
+        justify-content: center;
+        width: 32px;
+        &.image-size- {
+            &xxsmall { height: 32px; }
+        }
+    }
+}

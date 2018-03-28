@@ -4,7 +4,7 @@
     align-items: center;
     background-color: $bkgd;
     display: flex;
-    height: 44px;
+    height: 55px;
     justify-content: flex-start;
     margin: 0 -11px;
     padding: 0 11px;
@@ -19,8 +19,17 @@
         position: absolute;
         width: 100%;
     }
+    .ui.header {
+        flex: 1 1 auto;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.header-subheader .subheader { color: $color-text-static; font-weight: $default-font-weight-semibold; }
+    }
+    .title-bar-children { flex: none; text-align: right; }
 }
 
 @media only screen and (min-width: 768px) {
-    .ui.title-bar { height: 66px; margin: 0 -22px; padding: 0 22px; }
+    .ui.title-bar { height: 70px; margin: 0 -22px; padding: 0 22px; }
 }

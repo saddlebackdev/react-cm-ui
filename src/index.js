@@ -10,6 +10,7 @@ export { default as Container } from './Elements/Container.react.js';
 export { default as Divider } from './Elements/Divider.react.js';
 export { default as Header } from './Elements/Header.react.js';
 export { default as Icon } from './Elements/Icon.react.js';
+export { default as Image } from './Elements/Image.react.js';
 export { default as Input } from './Elements/Input.react.js';
 export { default as Label } from './Elements/Label.react.js';
 export { default as List } from './Elements/List.react.js';
