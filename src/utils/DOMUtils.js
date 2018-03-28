@@ -75,20 +75,27 @@ class DOMUtils {
         return el.classList.contains(cls);
     }
 
-    static isInViewport(el) {
+    static isInViewport(el, parentEl) {
         if (el) {
-            const rect = el.getBoundingClientRect();
-            const isInTop = rect.top >= 0;
-            const isInRight = rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-            const isInBottom = rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-            const isInLeft = rect.left >= 0;
+            const elRect = el.getBoundingClientRect();
+            const parentElRect = parentEl.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+            let isInTop, isInRight, isInBottom, isInLeft;
 
-            return {
-                isInTop: isInTop,
-                isInRight: isInRight,
-                isInBottom: isInBottom,
-                isInLeft: isInLeft
+            if (!parentEl) {
+                isInTop = elRect.top >= 0;
+                isInRight = elRect.right <= windowWidth;
+                isInBottom = elRect.bottom <= windowHeight;
+                isInLeft = elRect.left >= 0;
+            } else {
+                isInTop = parentElRect.top >= elRect.height;
+                isInRight = windowWidth - parentElRect.right >= elRect.width;
+                isInBottom = windowHeight - parentElRect.bottom >= elRect.height;
+                isInLeft = parentElRect.left >= elRect.width;;
             }
+
+            return { isInTop, isInRight, isInBottom, isInLeft }
         } else {
             return false;
         }

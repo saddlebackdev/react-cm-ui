@@ -150,6 +150,14 @@ let routes = (
                 }}
             />
             <Route
+                path="image"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsImage.react'))
+                    }, 'ElementsImage')
+                }}
+            />
+            <Route
                 path="input"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
@@ -163,6 +171,14 @@ let routes = (
                     require.ensure([], require => {
                         callback(null, require('components/ElementsLabel.react'))
                     }, 'ElementsLabel')
+                }}
+            />
+            <Route
+                path="list"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsList.react'))
+                    }, 'ElementsList')
                 }}
             />
             <Route
