@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.9.0 - 2018-03-28
+##Added
+- New **Image** component. Only is for a basic avatar for now. Updates expanding the component will happen down the road.
+
+##Changed
+- **TitleBar** now supports `subTitle` and `children`.
+
 ## 1.8.27 - 2018-03-22
 ##Added
 - New `circle-filled` icon type.
