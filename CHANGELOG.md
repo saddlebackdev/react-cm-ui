@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.9.1 - 2018-03-28
+##Changed
+- Fixed a bug in `./src/scss/components/Views/TitleBar.scss` upon publishing the package.
+
 ## 1.9.0 - 2018-03-28
 ##Added
 - New **Image** component. Only is for a basic avatar for now. Updates expanding the component will happen down the road.
