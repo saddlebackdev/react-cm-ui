@@ -416,6 +416,11 @@ export default class ElementsButton extends React.Component {
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="info" />
+                                <p className="icon-type-name">info</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="list" />
                                 <p className="icon-type-name">list</p>
                             </Grid.Column>
@@ -453,6 +458,11 @@ export default class ElementsButton extends React.Component {
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="plus" />
                                 <p className="icon-type-name">plus</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="question-circle" />
+                                <p className="icon-type-name">question-circle</p>
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.9.2 - 2018-04-10
+##Changed
+- Added **Dropdown** `onChange` example.
+- Added two new icons to **Icon**: `info` and `question-circle`
+
 ## 1.9.1 - 2018-03-28
 ##Changed
 - Fixed a bug in `./src/scss/components/Views/TitleBar.scss` upon publishing the package.
