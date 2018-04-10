@@ -229,6 +229,35 @@ export default class MenuHeightSample extends React.Component {
 
 }`;
 
+const onChangeSample = `import React from 'react';
+import { Dropdown } from 'react-cm-ui';
+
+export default class OnChangeSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this._onSampleOnChange = this._onSampleOnChange.bind(this);
+    }
+
+    render() {
+        return (
+            <Dropdown onChange={this._onSampleOnChange} text="Marty McFly">
+                <Dropdown.Item label="Option 1" />
+                <Dropdown.Item label="Option 2" />
+                <Dropdown.Item label="Option 3" />
+                <Dropdown.Item label="Option 4" />
+            </Dropdown>
+        );
+    }
+
+    _onSampleOnChange(test) {
+        console.log('_onSampleOnChange');
+        console.log('test', test);
+    }
+
+}`;
+
 const selectionCreatableSample = `import React from 'react';
 
 import { Dropdown } from 'react-cm-ui';
@@ -519,6 +548,8 @@ export default class ModulesDropdown extends React.Component {
             selectionMultipleCreatableValue: null,
             subNavIndex: 0
         };
+
+        this._onSampleOnChange = this._onSampleOnChange.bind(this);
     }
 
     render() {
@@ -1010,6 +1041,25 @@ export default class ModulesDropdown extends React.Component {
                         {menuHeightSample}
                     </Highlighter>
 
+                    {/* onChange */}
+                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        onChange
+                        <Header.Subheader>
+                            onChagne event handler.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown onChange={this._onSampleOnChange} text="Marty McFly">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                        <Dropdown.Item label="Option 3" />
+                        <Dropdown.Item label="Option 4" />
+                    </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onChangeSample}
+                    </Highlighter>
+
                     {/* Selection Creatable */}
                     <Header anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Creatable
@@ -1149,6 +1199,11 @@ export default class ModulesDropdown extends React.Component {
         console.log('Parent component has the object now and can do what needs to be done');
 
         this.setState({ dropdownValue: selectedOption });
+    }
+
+    _onSampleOnChange(test) {
+        console.log('_onSampleOnChange');
+        console.log('test', test);
     }
 
     _onSelectionChange(selectedOption) {
