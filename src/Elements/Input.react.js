@@ -49,6 +49,7 @@ class Input extends Component {
             placeholder, required, style,
             tabIndex } = this.props;
         const type = this._getType();
+        const labelPosition = this.props.labelPosition || 'top';
         const containerClasses = ClassNames('ui', 'input', className, {
             'input-disabled': disabled,
             'input-error': error,
@@ -64,85 +65,105 @@ class Input extends Component {
             'input-type-tel': type === 'tel',
             'input-type-text': type === 'text'
         });
-
-        return (
-            <div className={containerClasses} style={style}>
-                {label ? (
-                    <label className="label" htmlFor={id} style={labelStyle}>
+        const labelContainerClassNames = ClassNames('label', {
+            'label-bottom': labelPosition === 'bottom',
+            'label-top': labelPosition === 'top'
+        });
+        const renderLabel = () => {
+            if (label) {
+                return (
+                    <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                         {label}
 
                         {required && !this.state.value ? (
                             <span className="input-required-indicator">*</span>
                         ) : null}
                     </label>
+                );
+            }
+        }
+
+        return (
+            <div className={containerClasses} style={style}>
+                {labelPosition === 'top' ? renderLabel() : null}
+
+                {mask ? (
+                    <InputMasked
+                        autoComplete={autoComplete}
+                        disabled={disabled}
+                        guide={guide}
+                        id={id}
+                        keepCharPositions={keepCharPositions}
+                        name={name}
+                        mask={mask}
+                        maxLength={maxLength}
+                        minLength={minLength}
+                        onBlur={this._onBlur}
+                        onChange={this._onChange}
+                        onClick={this._onClick}
+                        onFocus={this._onFocus}
+                        onKeyDown={this._onKeyDown}
+                        placeholder={placeholder}
+                        required={required}
+                        tabIndex={tabIndex}
+                        type={type}
+                        value={this.state.value}
+                    />
+                ) : (
+                    <input
+                        autoComplete={autoComplete}
+                        disabled={disabled}
+                        id={id}
+                        name={name}
+                        max={max}
+                        maxLength={maxLength}
+                        min={min}
+                        minLength={minLength}
+                        onBlur={this._onBlur}
+                        onChange={this._onChange}
+                        onClick={this._onClick}
+                        onFocus={this._onFocus}
+                        onKeyDown={this._onKeyDown}
+                        placeholder={placeholder}
+                        ref={input => { this.input = input }}
+                        required={required}
+                        tabIndex={tabIndex}
+                        type={type}
+                        value={this.state.value}
+                    />
+                )}
+
+                {labelPosition === 'bottom' ? renderLabel() : null}
+
+                {error && _.isString(error) ? (
+                    <p className="input-error-message">{error}</p>
                 ) : null}
 
-                <div className="input-container">
-                    {mask ? (
-                        <InputMasked
-                            autoComplete={autoComplete}
-                            disabled={disabled}
-                            guide={guide}
-                            id={id}
-                            keepCharPositions={keepCharPositions}
-                            name={name}
-                            mask={mask}
-                            maxLength={maxLength}
-                            minLength={minLength}
-                            onBlur={this._onBlur}
-                            onChange={this._onChange}
-                            onClick={this._onClick}
-                            onFocus={this._onFocus}
-                            onKeyDown={this._onKeyDown}
-                            placeholder={placeholder}
-                            required={required}
-                            tabIndex={tabIndex}
-                            type={type}
-                            value={this.state.value}
-                        />
-                    ) : (
-                        <input
-                            autoComplete={autoComplete}
-                            disabled={disabled}
-                            id={id}
-                            name={name}
-                            max={max}
-                            maxLength={maxLength}
-                            min={min}
-                            minLength={minLength}
-                            onBlur={this._onBlur}
-                            onChange={this._onChange}
-                            onClick={this._onClick}
-                            onFocus={this._onFocus}
-                            onKeyDown={this._onKeyDown}
-                            placeholder={placeholder}
-                            ref={input => { this.input = input }}
-                            required={required}
-                            tabIndex={tabIndex}
-                            type={type}
-                            value={this.state.value}
-                        />
-                    )}
+                {_.isString(icon) || _.isObject(icon) || loading || type === 'number' ? (
+                    <div
+                        className="input-actions"
+                        style={{
+                            bottom: labelPosition === 'top' ? 0 : null,
+                            top: labelPosition === 'bottom' ? 0 : null
+                        }}
+                    >
+                        {_.isString(icon) || loading ? (
+                            <Icon compact={true} spin={loading} type={loading ? 'spinner-1' : icon} />
+                        ) : _.isObject(icon) ? (
+                            <div className="input-icon-custom">
+                                {icon}
+                            </div>
+                        ) : null}
 
-                    {error && _.isString(error) ? (
-                        <p className="input-error-message">{error}</p>
-                    ) : null}
+                        {type === 'number' ? (
+                            <div className="input-number-controls">
+                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
+                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
+                            </div>
+                        ) : null}
+                    </div>
+                ) : null}
 
-                    {_.isString(icon) || loading ? (
-                        <Icon compact={true} spin={loading} type={loading ? 'spinner-1' : icon} />
-                    ) : _.isObject(icon) ? (
-                        <div className="input-icon-custom">
-                            {icon}
-                        </div>
-                    ) : null}
-
-                    {type === 'number' ? (
-                        <div className="input-number-controls">
-                            <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
-                            <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
-                        </div>
-                    ) : null}
-                </div>
             </div>
         );
     }
@@ -273,6 +294,7 @@ class Input extends Component {
 }
 
 const autoCompleteEnums = [ 'off', 'on' ];
+const labelPosition = [ 'bottom', 'top' ];
 const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
 Input.propTypes = {
@@ -293,6 +315,7 @@ Input.propTypes = {
     inverse: PropTypes.bool,
     keepCharPositions: PropTypes.bool,
     label: PropTypes.string,
+    labelPosition: PropTypes.oneOf(labelPosition),
     labelStyle: PropTypes.object,
     loading: PropTypes.bool,
     mask: PropTypes.oneOfType([
