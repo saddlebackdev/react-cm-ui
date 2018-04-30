@@ -11,8 +11,7 @@ import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
 const inputSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class InputSample extends React.Component {
 
@@ -25,8 +24,7 @@ export default class InputSample extends React.Component {
 }`;
 
 const autoCompleteSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class AutoCompleteSample extends React.Component {
 
@@ -39,8 +37,7 @@ export default class AutoCompleteSample extends React.Component {
 }`;
 
 const disabledSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -53,8 +50,7 @@ export default class DisabledSample extends React.Component {
 }`;
 
 const errorSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class ErrorSample extends React.Component {
 
@@ -69,8 +65,7 @@ export default class ErrorSample extends React.Component {
 }`;
 
 const fluidSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -83,8 +78,7 @@ export default class FluidSample extends React.Component {
 }`;
 
 const iconSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class IconSample extends React.Component {
 
@@ -107,8 +101,7 @@ export default class IconSample extends React.Component {
 }`;
 
 const inverseSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
@@ -121,8 +114,7 @@ export default class InverseSample extends React.Component {
 }`;
 
 const labelSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -134,9 +126,25 @@ export default class LabelSample extends React.Component {
 
 }`;
 
-const loadingSample = `import React from 'react';
+const labelPositionSample = `import React from 'react';
+import { Input } from 'react-cm-ui';
 
-import Input from 'components/UI/Elements/Input.react';
+export default class LabelPositionSample extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Input label="Bottom Label" labelPosition="bottom" /><br /><br />
+
+                <Input label="Top Label" labelPosition="top" />
+            </div>
+        );
+    }
+
+}`;
+
+const loadingSample = `import React from 'react';
+import { Input } from 'react-cm-ui';
 
 export default class LoadingSample extends React.Component {
 
@@ -149,8 +157,7 @@ export default class LoadingSample extends React.Component {
 }`;
 
 const maxminSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class MaxMinSample extends React.Component {
 
@@ -166,8 +173,7 @@ export default class MaxMinSample extends React.Component {
 }`;
 
 const maxLengthSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class MaxLengthSample extends React.Component {
 
@@ -180,8 +186,7 @@ export default class MaxLengthSample extends React.Component {
 }`;
 
 const minLengthSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class MinLengthSample extends React.Component {
 
@@ -194,8 +199,7 @@ export default class MinLengthSample extends React.Component {
 }`;
 
 const onBlurSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class OnBlurSample extends React.Component {
 
@@ -212,8 +216,7 @@ export default class OnBlurSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -230,8 +233,7 @@ export default class OnChangeSample extends React.Component {
 }`;
 
 const onClickSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class OnClickSample extends React.Component {
 
@@ -248,8 +250,7 @@ export default class OnClickSample extends React.Component {
 }`;
 
 const onFocusSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class OnFocusSample extends React.Component {
 
@@ -266,8 +267,7 @@ export default class OnFocusSample extends React.Component {
 }`;
 
 const onKeyDownSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class OnKeyDownSample extends React.Component {
 
@@ -284,8 +284,7 @@ export default class OnKeyDownSample extends React.Component {
 }`;
 
 const placeholderSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class PlaceholderSample extends React.Component {
 
@@ -298,8 +297,7 @@ export default class PlaceholderSample extends React.Component {
 }`;
 
 const requiredSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class RequiredSample extends React.Component {
 
@@ -312,8 +310,7 @@ export default class RequiredSample extends React.Component {
 }`;
 
 const typeSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class TypeSample extends React.Component {
 
@@ -331,8 +328,7 @@ export default class TypeSample extends React.Component {
 }`;
 
 const maskSample = `import React from 'react';
-
-import Input from 'components/UI/Elements/Input.react';
+import { Input } from 'react-cm-ui';
 
 export default class MaskSample extends React.Component {
 
@@ -406,7 +402,7 @@ export default class ElementsButton extends React.Component {
                 name: 'id',
                 type: 'string',
                 default: '',
-                description: 'Give an input an id.',
+                description: 'The id is used for the a label\'s for.',
                 allowedTypes: ''
             }, {
                 name: 'inverse',
@@ -424,13 +420,19 @@ export default class ElementsButton extends React.Component {
                 name: 'label',
                 type: 'string',
                 default: '',
-                description: 'Optional Label to display on top of the Input.',
+                description: 'Optional Label to display with the Input.',
                 allowedTypes: ''
+            }, {
+                name: 'labelPosition',
+                type: 'enum',
+                default: 'top',
+                description: 'Position the label above or below the input.',
+                allowedTypes: 'bottom, top'
             }, {
                 name: 'labelStyle',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the label container.',
+                description: 'Supply any inline styles to the label.',
                 allowedTypes: ''
             }, {
                 name: 'loading',
@@ -667,6 +669,22 @@ export default class ElementsButton extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {labelSample}
+                </Highlighter>
+
+                {/* Label Position */}
+                <Header anchor="label-position" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Label Position
+                    <Header.Subheader>
+                        Position the label above or below the input.
+                    </Header.Subheader>
+                </Header>
+
+                <Input label="Bottom Label" labelPosition="bottom" /><br /><br />
+
+                <Input label="Top Label" labelPosition="top" />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {labelPositionSample}
                 </Highlighter>
 
                 {/* Loading */}
