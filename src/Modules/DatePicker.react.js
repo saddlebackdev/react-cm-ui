@@ -151,7 +151,7 @@ class DatePicker extends Component {
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'monthToDate')}
                                         >
-                                            Past 30 Days
+                                            Month-To-Date
                                         </a>
                                     </li>
 
@@ -329,25 +329,7 @@ class DatePicker extends Component {
                 (dateStart && dateEnd && isDateBeforeDateStart) ||
                 (dateType === 'dateStart' && dateStart && dateEnd && date.isBefore(this._convertTimestamp(dateEnd)))
             ) {
-                let unixTimestamp;
-
-                // If the start date is in UTC, it is necessary to adjust it to user's timezone
-                // i.e. it will be the start of some day (12:00 AM) UTC; we need the same time but local
-                if (date._isUTC) {
-                    const tweakedStartDate = moment(date).subtract(moment().utcOffset(), 'minutes');
-                    unixTimestamp = tweakedStartDate.unix();
-                } else {
-                    unixTimestamp = date.unix();
-                }
-
-                dateObj.dateStart = unixTimestamp;
-
-                // In dateRange mode, selection of a single date should set this as start _and_ end
-                // The caller should interpret this as beginning of that day to end of that day, in appropriate timezone
-                if (!dateEnd) {
-                    dateObj.dateEnd = unixTimestamp;
-                }
-
+                dateObj.dateStart = date.unix();
                 this.props.onChange(dateObj);
 
                 this.setState({ presetLink: 'custom' });
@@ -359,15 +341,7 @@ class DatePicker extends Component {
                 (dateStart && dateEnd && isDateBeforeDateEnd) ||
                 (dateStart && dateEnd && isDateAfterDateEnd)
             )) {
-                // If the end date is in UTC, it is necessary to adjust it to user's timezone
-                // i.e. it will be the start of some day (12:00 AM) UTC; we need the same time local
-                if (date._isUTC) {
-                    const tweakedEndDate = moment(date).subtract(moment().utcOffset(), 'minutes');
-                    dateObj.dateEnd = tweakedEndDate.unix();
-                } else {
-                    dateObj.endDate = date.unx();
-                }
-
+                dateObj.dateEnd = date.unix();
                 this.props.onChange(dateObj);
 
                 this.setState({ presetLink: 'custom' });
