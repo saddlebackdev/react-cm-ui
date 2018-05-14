@@ -365,7 +365,7 @@ class DatePicker extends Component {
                     const tweakedEndDate = moment(date).subtract(moment().utcOffset(), 'minutes');
                     dateObj.dateEnd = tweakedEndDate.unix();
                 } else {
-                    dateObj.endDate = date.unix();
+                    dateObj.endDate = date.unx();
                 }
 
                 this.props.onChange(dateObj);
