@@ -151,7 +151,7 @@ class DatePicker extends Component {
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'monthToDate')}
                                         >
-                                            Month-To-Date
+                                            Past 30 Days
                                         </a>
                                     </li>
 
