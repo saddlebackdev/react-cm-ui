@@ -33,8 +33,7 @@
     "clean:lib": "rimraf lib",
     "compile": "npm run clean:lib && gulp compile:lib && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
     "postpublish": "git checkout master && git push && git checkout dev",
-    "prepare": "npm run compile",
-    "start": "npm run build:local"
+    "prepare": "npm run compile"
   },
   "dependencies": {
     "autosize": "^3.0.17",
