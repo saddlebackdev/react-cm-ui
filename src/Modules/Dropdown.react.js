@@ -48,8 +48,8 @@ class Dropdown extends Component {
             value: props.value || null
         };
 
-        this._onClickOutsideRef = this._onClickOutside.bind(this);
-        this._onDropdownMenuRepositionRef = this._onDropdownMenuReposition.bind(this);
+        this._onClickOutside = this._onClickOutside.bind(this);
+        this._onDropdownMenuReposition = this._onDropdownMenuReposition.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -66,7 +66,7 @@ class Dropdown extends Component {
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconSize, iconType, inverse, label, labelStyle,
             options, placeholder, searchable, selection,
-            selectionCreatable, selectionMenuContainerStyle: menuContainerStyle, selectionMenuStyle,
+            selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
             style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
@@ -132,12 +132,7 @@ class Dropdown extends Component {
         }
 
         if (selection) {
-            const selectionMenuContainerStyle = Object.assign({}, {
-                top: this.state.menuYPosition === 'bottom' ? 'initial' : '100%',
-                bottom: this.state.menuYPosition === 'bottom' ? '100%' : 'initial',
-                marginTop: this.state.menuYPosition === 'bottom' ? 0 : '4px',
-                marginBottom: this.state.menuYPosition === 'bottom' ? '4px' : 0
-            }, menuContainerStyle);
+            const newSelectionMenuContainerStyle = Object.assign({}, selectionMenuContainerStyle, menuPositionStyle);
 
             if (!selectionCreatable) {
                 return (
@@ -147,7 +142,7 @@ class Dropdown extends Component {
                                 return (
                                     <div
                                         className={containerClasses}
-                                        ref="dropdownSelectionContainer"
+                                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -178,7 +173,7 @@ class Dropdown extends Component {
                                 return (
                                     <div
                                         className={containerClasses}
-                                        ref="dropdownSelectionContainer"
+                                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -202,7 +197,6 @@ class Dropdown extends Component {
                                             tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                                             value={this.state.value}
                                             valueComponent={selectionValueComponent}
-                                            ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                                         />
                                     </div>
                                 );
@@ -214,7 +208,7 @@ class Dropdown extends Component {
                 return (
                     <div
                         className={containerClasses}
-                        ref="dropdownSelectionContainer"
+                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                         style={style}
                     >
                         {labelJSX}
@@ -238,7 +232,6 @@ class Dropdown extends Component {
                             tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
                             value={this.state.value}
                             valueComponent={selectionValueComponent}
-                            ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                         >
                             {customCreatableSelect}
                         </Select.Creatable>
@@ -290,14 +283,14 @@ class Dropdown extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('click', this._onClickOutsideRef);
-        document.addEventListener('scroll', this._onDropdownMenuRepositionRef);
-        this._onDropdownMenuRepositionRef();
+        document.addEventListener('click', this._onClickOutside);
+        document.addEventListener('scroll', this._onDropdownMenuReposition);
+        this._onDropdownMenuReposition();
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this._onClickOutsideRef);
-        document.removeEventListener('scroll', this._onDropdownMenuRepositionRef);
+        document.removeEventListener('click', this._onClickOutside);
+        document.removeEventListener('scroll', this._onDropdownMenuReposition);
     }
 
     _menuRenderer(params) {
