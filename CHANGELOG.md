@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.10.2 - 2018-05-18
+##Changed
+- Squashed a bug when a **Input** had actionable icons causing an enduser to be able to enter a value.
+
 ## 1.10.0 - 2018-04-30
 ##Changed
 - Moved **Input's** label adjacent to the input and added a new prop `labelPosition`.
