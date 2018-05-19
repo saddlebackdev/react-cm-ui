@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.10.3 - 2018-05-18
+##Changed
+- **Input's** action icon container is now adjusted according to the top position of the input that's relative to the components wrapping container.
+
 ## 1.10.2 - 2018-05-18
 ##Changed
 - Squashed a bug when a **Input** had actionable icons causing an enduser to be able to enter a value.
+- Fixed Dropdown's select dropdown position styling.
 
 ## 1.10.1 - 2018-05-15
 ##Changed
