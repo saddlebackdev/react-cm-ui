@@ -15,6 +15,7 @@ class Input extends Component {
 
         this.state = {
             isFocused: false,
+            inputActionsTopPosition: 0,
             value: props.value || props.value === 0 ? props.value : ''
         };
 
@@ -48,6 +49,7 @@ class Input extends Component {
             min, minLength, name,
             placeholder, required, style,
             tabIndex } = this.props;
+        const { inputActionsTopPosition } = this.state;
         const type = this._getType();
         const labelPosition = this.props.labelPosition || 'top';
         const containerClasses = ClassNames('ui', 'input', className, {
@@ -104,6 +106,7 @@ class Input extends Component {
                         onFocus={this._onFocus}
                         onKeyDown={this._onKeyDown}
                         placeholder={placeholder}
+                        ref={ref => { this.input = ref }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -125,7 +128,7 @@ class Input extends Component {
                         onFocus={this._onFocus}
                         onKeyDown={this._onKeyDown}
                         placeholder={placeholder}
-                        ref={input => { this.input = input }}
+                        ref={ref => { this.input = ref }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -135,17 +138,13 @@ class Input extends Component {
 
                 {labelPosition === 'bottom' ? renderLabel() : null}
 
-                {error && _.isString(error) ? (
-                    <p className="input-error-message">{error}</p>
-                ) : null}
-
                 {_.isString(icon) || _.isObject(icon) || loading || type === 'number' ? (
                     <div
                         className="input-actions"
+                        ref={ref => { this.inputActions = ref }}
                         style={{
-                            bottom: labelPosition === 'top' ? 0 : null,
                             pointerEvents: 'none',
-                            top: labelPosition === 'bottom' ? 0 : null
+                            top: inputActionsTopPosition
                         }}
                     >
                         {_.isString(icon) || loading ? (
@@ -165,8 +164,24 @@ class Input extends Component {
                     </div>
                 ) : null}
 
+                {error && _.isString(error) ? (
+                    <p className="input-error-message">{error}</p>
+                ) : null}
             </div>
         );
+    }
+
+    componentDidMount() {
+        const { icon, loading } = this.props;
+        const type = this._getType();
+
+        if (_.isString(icon) || _.isObject(icon) || loading || type === 'number') {
+            const inputTop = ReactDOM.findDOMNode(this.input).offsetTop;
+
+            if (inputTop > 0) {
+                this.setState({ inputActionsTopPosition: inputTop });
+            }
+        }
     }
 
     _onBlur(event) {
