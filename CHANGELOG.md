@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ##Changed
 - Squashed a bug when a **Input** had actionable icons causing an enduser to be able to enter a value.
 
+## 1.10.1 - 2018-05-15
+##Changed
+- **DatePicker** patch.
+
 ## 1.10.0 - 2018-04-30
 ##Changed
 - Moved **Input's** label adjacent to the input and added a new prop `labelPosition`.
