@@ -144,19 +144,20 @@ class Input extends Component {
                         className="input-actions"
                         style={{
                             bottom: labelPosition === 'top' ? 0 : null,
+                            pointerEvents: 'none',
                             top: labelPosition === 'bottom' ? 0 : null
                         }}
                     >
                         {_.isString(icon) || loading ? (
                             <Icon compact={true} spin={loading} type={loading ? 'spinner-1' : icon} />
                         ) : _.isObject(icon) ? (
-                            <div className="input-icon-custom">
+                            <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
                                 {icon}
                             </div>
                         ) : null}
 
                         {type === 'number' ? (
-                            <div className="input-number-controls">
+                            <div className="input-number-controls" style={{ pointerEvents: 'auto' }}>
                                 <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
                                 <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
                             </div>
