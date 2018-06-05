@@ -2,41 +2,108 @@
 
 .ui.icon {
     display: inline-block;
+    height: rem(16px);
     margin-right: 11px;
     text-align: center;
     transition:
         color 150ms ease-out,
         transform 150ms ease-out;
+    width: rem(16px);
     &-align-left { margin-right: 11px; }
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert { color: $color-text-alert; }
-        &-highlight { color: $color-text-highlight; }
-        &-primary { color: $color-text; }
-        &-static { color: $color-text-static; }
-        &-success { color: $color-text-success; }
-        &-warning { color: $color-text-warning; }
+        &-alert path { fill: $color-text-alert; }
+        &-highlight path { fill: $color-text-highlight; }
+        &-primary path { fill: $color-text; }
+        &-static path { fill: $color-text-static; }
+        &-success path { fill: $color-text-success; }
+        &-warning path { fill: $color-text-warning; }
     }
     &-inverse {
-        &.icon-color-alert { color: $color-text-alert; }
-        &.icon-color-highlight { color: $color-text-highlight; }
-        &.icon-color-primary { color: $color-text-inverse; }
-        &.icon-color-static { color: $color-text-static; }
-        &.icon-color-success { color: $color-text-success; }
-        &.icon-color-warning { color: $color-text-warning; }
+        &.icon-color-alert path { fill: $color-text-alert; }
+        &.icon-color-highlight path { fill: $color-text-highlight; }
+        &.icon-color-primary path { fill: $color-text-inverse; }
+        &.icon-color-static path { fill: $color-text-static; }
+        &.icon-color-success path { fill: $color-text-success; }
+        &.icon-color-warning path { fill: $color-text-warning; }
     }
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
     &-size- {
-        &xlarge { font-size: rem(24px); }
-        &large { font-size: rem(20px); }
-        &medium { font-size: rem(18px); }
-        &small { font-size: rem(14px); }
-        &xsmall { font-size: rem(12px); }
-        &xxsmall { font-size: rem(10px); }
+        &xlarge { height: rem(24px); width: rem(24px); }
+        &large { height: rem(20px); width: rem(20px); }
+        &medium { height: rem(18px); width: rem(18px); }
+        &small { height: rem(14px); width: rem(14px); }
+        &xsmall { height: rem(12px); width: rem(12px); }
+        &xxsmall { height: rem(10px); width: rem(10px); }
     }
     &-spin { animation: 1500ms infinite spin linear; line-height: 1; }
+
+    // From icomoon.io SVG style.css download
+    &.icon-award {
+      width: 0.84375em;
+    }
+
+    &.icon-cards {
+      width: 0.8125em;
+    }
+
+    &.icon-exclamation {
+      width: 0.3125em;
+    }
+
+    &.icon-file {
+      width: 0.8125em;
+    }
+
+    &.icon-hand-stop {
+      width: 0.6875em;
+    }
+
+    &.icon-info {
+      width: 0.4580078125em;
+    }
+
+    &.icon-ministry {
+      width: 0.65625em;
+    }
+
+    &.icon-note {
+      width: 0.84375em;
+    }
+
+    &.icon-paperclip {
+      width: 0.90625em;
+    }
+
+    &.icon-user {
+      width: 0.875em;
+    }
+
+    &.icon-caret-right {
+      width: 0.6875em;
+    }
+
+    &.icon-caret-left {
+      width: 0.6875em;
+    }
+
+    &.icon-chevron-wh-left {
+      width: 0.6875em;
+    }
+
+    &.icon-chevron-wh-right {
+      width: 0.6875em;
+    }
+
+    &.icon-chevron-wl-left {
+      width: 0.625em;
+    }
+
+    &.icon-chevron-wl-right {
+      width: 0.625em;
+    }
 }
 
 @keyframes spin {
