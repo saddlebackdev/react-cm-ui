@@ -8,6 +8,12 @@ import React, { Component } from 'react';
 import Utils from '../utils/Utils.js';
 
 class Icon extends Component {
+    constructor() {
+        super();
+
+        this._onClick = this._onClick.bind(this);
+    }
+
     render() {
         const { align, color, compact, disable, id, inverse, onClick, rotate, size, spin, style, type } = this.props;
         const containerClasses = ClassNames('ui', 'icon', `i-${type}`, this.props.className, {
