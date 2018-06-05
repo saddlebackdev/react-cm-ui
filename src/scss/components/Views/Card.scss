@@ -2,20 +2,48 @@
 
 .ui.card {
     background-color: $bkgd;
-    border: 1px solid $border-light;
     border-radius: 3px;
+    box-shadow: inset 0 0 0 1px $border-light;
     margin: calc(2rem - .14285em) 0 1rem;
     padding: 22px;
     position: relative;
     transition: background-color 150ms ease-out;
     &.card-active { background-color: $bkgd-inverse-alternate; color: $color-text-inverse; cursor: default; }
+    &.card-attached {
+        border-radius: 0;
+        .card-header-attached { border-radius: 0; }
+    }
     &.card-compact { padding: 11px; }
     &.card-clickable {
         cursor: pointer;
         &:hover { background-color: $bkgd-nest; }
         &:active { background-color: $bkgd; }
     }
-    .card-title { margin-bottom: 16px; }
+    .card-header {
+        margin-bottom: 16px;
+        &.card-header-attached {
+            align-items: center;
+            border-radius: 3px 3px 0 0;
+            display: flex;
+            height: 44px;
+            margin: -22px -22px 16px;
+            padding: 0 22px;
+        }
+        &.card-header-color {
+            &-blue, &-green, &-pink { color: $color-text-inverse; }
+            &-blue {
+                background: linear-gradient(to left, #54cc86, #1c93c4);
+            }
+            &-green {
+                background: linear-gradient(to right, #329594, #8bbd72);
+            }
+            &-pink {
+                background: linear-gradient(to left, #f99e49, #c33580);
+            }
+        }
+    }
+        &.card-attached .card-header-attached { border-radius: 0; }
+        &.card-compact .card-header-attached { margin: -11px -11px 16px; padding: 0 11px; }
     .card-collapse-button {
         position: absolute;
         right: 22px;

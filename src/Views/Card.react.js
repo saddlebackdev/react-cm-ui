@@ -11,6 +11,36 @@ import Icon from '../Elements/Icon.react';
 
 import DOMUtils from '../utils/DOMUtils.js';
 
+class CardHeader extends Component {
+    render() {
+        const { attached, children, className, color, style, title } = this.props;
+        const containerClasses = ClassNames('card-header', className, {
+            'card-header-attached': attached,
+            'card-header-color-blue': color === 'blue',
+            'card-header-color-green': color === 'green',
+            'card-header-color-pink': color === 'pink'
+        });
+
+        return (
+            <header className={containerClasses} style={style}>
+                {title ? (
+                    <Header size="large">{title}</Header>
+                ) : children}
+            </header>
+        );
+    }
+}
+
+const colorEnums = [ 'blue', 'green', 'pink' ];
+
+CardHeader.propTypes = {
+    attached: PropTypes.bool,
+    className: PropTypes.string,
+    color: PropTypes.oneOf(colorEnums),
+    style: PropTypes.object,
+    title: PropTypes.string
+};
+
 class Card extends Component {
     constructor(props) {
         super(props);
@@ -38,16 +68,38 @@ class Card extends Component {
     }
 
     render() {
-        const { active, className, collapsable, compact, onClick, nest, style, title } = this.props;
+        const { active, attached, children, className, collapsable, compact, header, onClick, nest, style, title } = this.props;
         const { contentHeight, isCollapsed, isCollapsing } = this.state;
         const containerClasses = ClassNames('ui', 'card', className, {
             'card-active': active,
+            'card-attached': attached,
             'card-clickable': onClick,
             'card-collapsable': collapsable,
             'card-is-collapsed': isCollapsed,
             'card-is-collapsing': isCollapsing,
             'card-compact': compact,
             'card-nest': nest
+        });
+        const convertChildren = _.isArray(children) ? children : [ children ];
+        let renderHeader = _.map(convertChildren, (child, index) => {
+            const isCardHeader = _.isFunction(child.type) && child.type.name === 'CardHeader';
+
+            if (header && isCardHeader || title && !header) {
+                return (
+                    <CardHeader key={index} {...child.props} title={title} />
+                );
+            }
+        });
+        let renderContent = _.map(convertChildren, (child, index) => {
+            const isCardHeader = _.isFunction(child.type) && child.type.name === 'CardHeader';
+
+            if (!isCardHeader) {
+                return (
+                    <div key={index}>
+                        {child}
+                    </div>
+                );
+            }
         });
 
         return (
@@ -58,11 +110,7 @@ class Card extends Component {
             >
                 {this._renderCollapsableButton()}
 
-                {title ? (
-                    <div className="card-title">
-                        <Header size="large">{title}</Header>
-                    </div>
-                ) : null}
+                {renderHeader}
 
                 <div
                     className="card-content"
@@ -70,7 +118,7 @@ class Card extends Component {
                     style={{ height: contentHeight }}
                 >
                     <div ref={innerContent => { this.innerContent = innerContent; }}>
-                        {this.props.children}
+                        {renderContent}
                     </div>
                 </div>
             </section>
@@ -170,11 +218,15 @@ class Card extends Component {
     }
 };
 
+Card.Header = CardHeader;
+
 Card.propTypes = {
     active: PropTypes.bool,
+    attached: PropTypes.bool,
     className: PropTypes.string,
     collapsable: PropTypes.bool,
     compact: PropTypes.bool,
+    header: PropTypes.bool,
     nest: PropTypes.bool,
     onClick: PropTypes.func,
     style: PropTypes.object,
