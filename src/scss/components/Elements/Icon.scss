@@ -13,20 +13,20 @@
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert path { fill: $color-text-alert; }
-        &-highlight path { fill: $color-text-highlight; }
-        &-primary path { fill: $color-text; }
-        &-static path { fill: $color-text-static; }
-        &-success path { fill: $color-text-success; }
-        &-warning path { fill: $color-text-warning; }
+        &-alert { circle, path { fill: $color-text-alert; } }
+        &-highlight { circle, path { fill: $color-text-highlight; } }
+        &-primary { circle, path { fill: $color-text; } }
+        &-static { circle, path { fill: $color-text-static; } }
+        &-success { circle, path { fill: $color-text-success; } }
+        &-warning { circle, path { fill: $color-text-warning; } }
     }
     &-inverse {
-        &.icon-color-alert path { fill: $color-text-alert; }
-        &.icon-color-highlight path { fill: $color-text-highlight; }
-        &.icon-color-primary path { fill: $color-text-inverse; }
-        &.icon-color-static path { fill: $color-text-static; }
-        &.icon-color-success path { fill: $color-text-success; }
-        &.icon-color-warning path { fill: $color-text-warning; }
+        &.icon-color-alert { circle, path { fill: $color-text-alert; } }
+        &.icon-color-highlight { circle, path { fill: $color-text-highlight; } }
+        &.icon-color-primary { circle, path { fill: $color-text-inverse; } }
+        &.icon-color-static { circle, path { fill: $color-text-static; } }
+        &.icon-color-success { circle, path { fill: $color-text-success; } }
+        &.icon-color-warning { circle, path { fill: $color-text-warning; } }
     }
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
