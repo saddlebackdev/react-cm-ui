@@ -11,8 +11,7 @@ import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
 const iconSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class IconSample extends React.Component {
 
@@ -25,8 +24,7 @@ export default class IconSample extends React.Component {
 }`;
 
 const alignSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class AlignSample extends React.Component {
 
@@ -47,8 +45,7 @@ export default class AlignSample extends React.Component {
 }`;
 
 const colorSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class ColorSample extends React.Component {
 
@@ -59,8 +56,13 @@ export default class ColorSample extends React.Component {
                 <Icon color="highlight" type="caret-down" />
                 <Icon color="primary" type="calendar" />
                 <Icon color="static" type="cards" />
-                <Icon color="success" type="clock" />
-                <Icon color="warning" type="exclamation" />
+                <Icon color="success" type="time" />
+                <Icon color="warning" type="exclamation" /><br /><br />
+
+                <Icon color="action" type="circle-filled" />
+                <Icon color="condition" type="time" />
+                <Icon color="configuration" type="comment" />
+                <Icon color="subject" type="heart" />
             </div>
         );
     }
@@ -68,8 +70,7 @@ export default class ColorSample extends React.Component {
 }`;
 
 const inverseSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
@@ -80,7 +81,7 @@ export default class InverseSample extends React.Component {
                 <Icon color="highlight" inverse={true} type="caret-down" />
                 <Icon color="primary" inverse={true} type="calendar" />
                 <Icon color="static" inverse={true} type="cards" />
-                <Icon color="success" inverse={true} type="clock" />
+                <Icon color="success" inverse={true} type="time" />
                 <Icon color="warning" inverse={true} type="exclamation" />
             </div>
         );
@@ -89,8 +90,7 @@ export default class InverseSample extends React.Component {
 }`;
 
 const compactSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class CompactSample extends React.Component {
 
@@ -99,15 +99,14 @@ export default class CompactSample extends React.Component {
             <Icon compact={true} type="activity" />
             <Icon compact={true} type="calendar" />
             <Icon compact={true} type="cards" />
-            <Icon compact={true} type="clock" />
+            <Icon compact={true} type="time" />
         );
     }
 
 }`;
 
 const onClickSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class OnClickSample extends React.Component {
 
@@ -124,8 +123,7 @@ export default class OnClickSample extends React.Component {
 }`;
 
 const rotateSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class RotateSample extends React.Component {
 
@@ -139,27 +137,29 @@ export default class RotateSample extends React.Component {
 }`;
 
 const sizeSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class SizeSample extends React.Component {
 
     render() {
         return (
-            <Icon size="xlarge" type="activity" />
-            <Icon size="large" type="award" />
-            <Icon size="medium" type="book-open" />
-            <Icon size="small" type="user" />
-            <Icon size="xsmall" type="clock" />
-            <Icon size="xxsmall" type="check" />
+            <div>
+                <Icon size={64} type="cloud-upload" />
+                <Icon size={32} type="heart" />
+                <Icon size="xlarge" type="activity" />
+                <Icon size="large" type="award" />
+                <Icon size="medium" type="book-open" />
+                <Icon size="small" type="user" />
+                <Icon size="xsmall" type="time" />
+                <Icon size="xxsmall" type="check" />
+            </div>
         );
     }
 
 }`;
 
 const spinSample = `import React from 'react';
-
-import Icon from 'components/UI/Elements/Icon.react';
+import { Icon } from 'react-cm-ui';
 
 export default class SpinSample extends React.Component {
 
@@ -169,7 +169,7 @@ export default class SpinSample extends React.Component {
             <Icon spin={true} type="award" />
             <Icon spin={true} type="book-open" />
             <Icon spin={true} type="user" />
-            <Icon spin={true} type="clock" />
+            <Icon spin={true} type="time" />
             <Icon spin={true} type="check" />
         );
     }
@@ -177,7 +177,6 @@ export default class SpinSample extends React.Component {
 }`;
 
 export default class ElementsButton extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -185,7 +184,6 @@ export default class ElementsButton extends React.Component {
     }
 
     render() {
-
         const props = [
             {
                 name: 'align',
@@ -225,7 +223,7 @@ export default class ElementsButton extends React.Component {
                 allowedTypes: ''
             }, {
                 name: 'size',
-                type: 'enum',
+                type: 'enum || number',
                 default: '',
                 description: 'Size of icon.',
                 allowedTypes: 'xlarge, large, medium, small, xsmall, xxsmall'
@@ -245,6 +243,238 @@ export default class ElementsButton extends React.Component {
         ];
         const iconCompact = true;
         const iconSize = 'xlarge';
+        const icons = [
+            {
+                category: 'Actions',
+                types: [
+                    'action',
+                    'cloud-download',
+                    'cloud-upload',
+                    'duplicate',
+                    'edit',
+                    'pencil',
+                    'pencil-input',
+                    'plus',
+                    'power',
+                    'save',
+                    'text-edit',
+                    'trash',
+                    'undo'
+                ]
+            }, {
+                category: 'App Features',
+                types: [
+                    'connection-cards',
+                    'ministry',
+                    'person-record',
+                    'serving-opportunity',
+                    'task',
+                    'workflow'
+                ]
+            }, {
+                category: 'Communication',
+                types: [
+                    'at',
+                    'bell',
+                    'comment',
+                    'comment-lines',
+                    'envelope',
+                    'file-alt',
+                    'inbox-in',
+                    'newspaper',
+                    'paperclip',
+                    'paper-plane',
+                    'phone',
+                    'reply',
+                    'snail-mail'
+                ]
+            }, {
+                category: 'Data Elements',
+                types: [
+                    'element-calendar',
+                    'element-checkbox',
+                    'element-button',
+                    'element-input',
+                    'element-input-number',
+                    'element-select',
+                    'element-select-multi',
+                    'element-time',
+                    'element-toggle'
+                ]
+            }, {
+                category: 'Data States',
+                types: [
+                    'archive',
+                    'broadcast',
+                    'check-square',
+                    'lock',
+                    'power-square',
+                    'power-off-square',
+                    'question',
+                    'square-filled-partial',
+                    'square-outline',
+                    'star',
+                    'times-square'
+                ]
+            }, {
+                category: 'Data Types Custom',
+                types: [
+                    'info',
+                    'link',
+                    'list-category',
+                    'question-circle',
+                    'quotation',
+                    'status'
+                ]
+            }, {
+                category: 'Data Types Date & Time',
+                types: [
+                    'calendar',
+                    'calendar-range',
+                    'clock-period',
+                    'hourglass',
+                    'recurring',
+                    'time',
+                    'time-future',
+                    'time-history'
+                ]
+            }, {
+                category: 'Data Types File',
+                types: [
+                    'file',
+                    'image',
+                    'video-reel',
+                    'volume'
+                ]
+            }, {
+                category: 'Data Types Person',
+                types: [
+                    'award',
+                    'birthday-cake',
+                    'book-open',
+                    'briefcase',
+                    'briefcase-membership',
+                    'gender',
+                    'gift',
+                    'heart',
+                    'notebook',
+                    'shoe-prints',
+                    'user'
+                ]
+            }, {
+                category: 'Data Types Text',
+                types: [
+                    'sort-alpha',
+                    'sort-alpha-numeric',
+                    'sort-numeric',
+                    'text'
+                ]
+            }, {
+                category: 'Data Values',
+                types: [
+                    'check-circle',
+                    'equal-circle',
+                    'greater-than-equal-circle',
+                    'less-than-equal-circle',
+                    'minus-circle',
+                    'not-equal-circle',
+                    'plus-circle',
+                    'times-circle'
+                ]
+            }, {
+                category: 'Interface',
+                types: [
+                    'arrow-to-bottom',
+                    'arrow-to-top',
+                    'arrow-sort',
+                    'caret-sort',
+                    'chevron-down',
+                    'chevron-left',
+                    'chevron-right',
+                    'chevron-up',
+                    'compas',
+                    'drag',
+                    'ellipsis-h',
+                    'filter',
+                    'grid',
+                    'hand-select',
+                    'list',
+                    'pin',
+                    'search',
+                    'times'
+                ]
+            }, {
+                category: 'Miscellaneous',
+                types: [
+                    'activity',
+                    'ban',
+                    'calendar-one',
+                    'calendar-recurring',
+                    'chair',
+                    'check',
+                    'cog',
+                    'exclamation',
+                    'flag',
+                    'hand-help',
+                    'shield',
+                    'sliders',
+                    'stairs',
+                    'subjects-and-objects',
+                    'template',
+                    'wrench-screwdriver'
+                ]
+            }, {
+                category: 'People',
+                types: [
+                    'address-book',
+                    'briefcase-user',
+                    'hand-stop',
+                    'user',
+                    'user-circle',
+                    'users',
+                    'users-circle'
+                ]
+            }, {
+                category: 'Places',
+                types: [
+                    'building',
+                    'church',
+                    'map-marker',
+                    'venue'
+                ]
+            }, {
+                category: 'Workflow',
+                types: [
+                    'blocked',
+                    'circle',
+                    'reassign'
+                ]
+            }
+        ];
+        let renderCategories = _.map(icons, (set, index) => {
+            return (
+                <Grid key={index} textAlign="center">
+                    <Grid.Row>
+                        <Grid.Column textAlign="left" width={12}>
+                            <Header size="large" style={{ margin: '0 0 22px' }}>
+                                {set.category}
+                            </Header>
+                        </Grid.Column>
+                    </Grid.Row>
+
+                    <Grid.Row>
+                        {_.map(set.types, (type, index) => {
+                            return (
+                                <Grid.Column key={index} laptop={3} mobileLarge={4} width={6}>
+                                    <Icon compact={iconCompact} size={iconSize} type={type} />
+                                    <p className="icon-type-name">{type}</p>
+                                </Grid.Column>
+                            );
+                        })}
+                    </Grid.Row>
+                </Grid>
+            );
+        });
 
         return (
             <Main page="headers">
@@ -260,271 +490,28 @@ export default class ElementsButton extends React.Component {
                 </SubNavigation>
 
                 <div style={{ display: this.state.subNavIndex === 0 ? 'block' : 'none' }}>
+                    {renderCategories}
+
                     <Grid textAlign="center">
                         <Grid.Row>
                             <Grid.Column textAlign="left" width={12}>
                                 <Header size="large" style={{ margin: '0 0 22px' }}>
-                                    Web App
+                                    Older Icons
                                 </Header>
                             </Grid.Column>
                         </Grid.Row>
 
                         <Grid.Row>
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="activity" />
-                                <p className="icon-type-name">activity</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="award" />
-                                <p className="icon-type-name">award</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="archive" />
-                                <p className="icon-type-name">archive</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="ban" />
-                                <p className="icon-type-name">ban</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="block" />
-                                <p className="icon-type-name">block</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="book-open" />
-                                <p className="icon-type-name">book-open</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="calendar" />
-                                <p className="icon-type-name">calendar</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="cards" />
-                                <p className="icon-type-name">cards</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="check" />
-                                <p className="icon-type-name">check</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="check-circle" />
-                                <p className="icon-type-name">check-circle</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="check-square" />
-                                <p className="icon-type-name">check-square</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="circle" />
-                                <p className="icon-type-name">circle</p>
-                            </Grid.Column>
-
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
                                 <p className="icon-type-name">circle-filled</p>
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="clock" />
-                                <p className="icon-type-name">clock</p>
+                                <Icon compact={iconCompact} size={iconSize} type="text-lines" />
+                                <p className="icon-type-name">text-lines</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="cloud-upload" />
-                                <p className="icon-type-name">cloud-upload</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="cog" />
-                                <p className="icon-type-name">cog</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="comment" />
-                                <p className="icon-type-name">comment</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="comment-sms" />
-                                <p className="icon-type-name">comment-sms</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="duplicate" />
-                                <p className="icon-type-name">duplicate</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="ellipsis-h" />
-                                <p className="icon-type-name">ellipsis-h</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="email" />
-                                <p className="icon-type-name">email</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="exclamation" />
-                                <p className="icon-type-name">exclamation</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="feet" />
-                                <p className="icon-type-name">feet</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="file" />
-                                <p className="icon-type-name">file</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="filter" />
-                                <p className="icon-type-name">filter</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="gift" />
-                                <p className="icon-type-name">gift</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="hand-stop" />
-                                <p className="icon-type-name">hand-stop</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="heart" />
-                                <p className="icon-type-name">heart</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="history" />
-                                <p className="icon-type-name">history</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="info" />
-                                <p className="icon-type-name">info</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="list" />
-                                <p className="icon-type-name">list</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="map-marker" />
-                                <p className="icon-type-name">map-marker</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="ministry" />
-                                <p className="icon-type-name">ministry</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="note" />
-                                <p className="icon-type-name">note</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="paperclip" />
-                                <p className="icon-type-name">paperclip</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="pencil" />
-                                <p className="icon-type-name">pencil</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="phone" />
-                                <p className="icon-type-name">phone</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="plus" />
-                                <p className="icon-type-name">plus</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="question-circle" />
-                                <p className="icon-type-name">question-circle</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="reassign" />
-                                <p className="icon-type-name">reassign</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="search" />
-                                <p className="icon-type-name">search</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="send" />
-                                <p className="icon-type-name">send</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="shield" />
-                                <p className="icon-type-name">shield</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="star" />
-                                <p className="icon-type-name">star</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="times" />
-                                <p className="icon-type-name">times</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="user" />
-                                <p className="icon-type-name">user</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="user-alt" />
-                                <p className="icon-type-name">user-alt</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="users" />
-                                <p className="icon-type-name">users</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="workflow" />
-                                <p className="icon-type-name">workflow</p>
-                            </Grid.Column>
-                        </Grid.Row>
-
-                        <Grid.Row>
-                            <Grid.Column textAlign="left" width={12}>
-                                <Header size="large" style={{ margin: '55px 0 22px' }}>
-                                    Directional
-                                </Header>
-                            </Grid.Column>
-                        </Grid.Row>
-
-                        <Grid.Row>
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-up" />
                                 <p className="icon-type-name">caret-up</p>
@@ -546,60 +533,10 @@ export default class ElementsButton extends React.Component {
                             </Grid.Column>
 
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wh-up" />
-                                <p className="icon-type-name">chevron-wh-up</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wh-right" />
-                                <p className="icon-type-name">chevron-wh-right</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wh-down" />
-                                <p className="icon-type-name">chevron-wh-down</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wh-left" />
-                                <p className="icon-type-name">chevron-wh-left</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wl-up" />
-                                <p className="icon-type-name">chevron-wl-up</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wl-right" />
-                                <p className="icon-type-name">chevron-wl-right</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wl-down" />
-                                <p className="icon-type-name">chevron-wl-down</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="chevron-wl-left" />
-                                <p className="icon-type-name">chevron-wl-left</p>
-                            </Grid.Column>
-
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
                                 <p className="icon-type-name">arrows-alt</p>
                             </Grid.Column>
-                        </Grid.Row>
 
-                        <Grid.Row>
-                            <Grid.Column textAlign="left" width={12}>
-                                <Header size="large" style={{ margin: '55px 0 22px' }}>
-                                    Spinners
-                                </Header>
-                            </Grid.Column>
-                        </Grid.Row>
-
-                        <Grid.Row>
                             <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="spinner" />
                                 <p className="icon-type-name">spinner</p>
@@ -663,8 +600,13 @@ export default class ElementsButton extends React.Component {
                     <Icon color="highlight" type="caret-down" />
                     <Icon color="primary" type="calendar" />
                     <Icon color="static" type="cards" />
-                    <Icon color="success" type="clock" />
-                    <Icon color="warning" type="exclamation" />
+                    <Icon color="success" type="time" />
+                    <Icon color="warning" type="exclamation" /><br /><br />
+
+                    <Icon color="action" type="circle-filled" />
+                    <Icon color="condition" type="time" />
+                    <Icon color="configuration" type="comment" />
+                    <Icon color="subject" type="heart" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {colorSample}
@@ -683,7 +625,7 @@ export default class ElementsButton extends React.Component {
                         <Icon color="highlight" inverse={true} type="caret-down" />
                         <Icon color="primary" inverse={true} type="calendar" />
                         <Icon color="static" inverse={true} type="cards" />
-                        <Icon color="success" inverse={true} type="clock" />
+                        <Icon color="success" inverse={true} type="time" />
                         <Icon color="warning" inverse={true} type="exclamation" />
                     </Block>
 
@@ -702,7 +644,7 @@ export default class ElementsButton extends React.Component {
                     <Icon compact={true} type="activity" />
                     <Icon compact={true} type="calendar" />
                     <Icon compact={true} type="cards" />
-                    <Icon compact={true} type="clock" />
+                    <Icon compact={true} type="time" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {compactSample}
@@ -745,11 +687,13 @@ export default class ElementsButton extends React.Component {
                         </Header.Subheader>
                     </Header>
 
+                    <Icon size={64} type="cloud-upload" />
+                    <Icon size={32} type="heart" />
                     <Icon size="xlarge" type="activity" />
                     <Icon size="large" type="award" />
                     <Icon size="medium" type="book-open" />
                     <Icon size="small" type="user" />
-                    <Icon size="xsmall" type="clock" />
+                    <Icon size="xsmall" type="time" />
                     <Icon size="xxsmall" type="check" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -768,7 +712,7 @@ export default class ElementsButton extends React.Component {
                     <Icon spin={true} type="award" />
                     <Icon spin={true} type="book-open" />
                     <Icon spin={true} type="user" />
-                    <Icon spin={true} type="clock" />
+                    <Icon spin={true} type="time" />
                     <Icon spin={true} type="check" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
