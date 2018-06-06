@@ -309,6 +309,8 @@ export default class ViewsTitleBar extends React.Component {
                     <Card>
                         <Header size="large">Look at me!!!</Header>
 
+                        {null}
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                             Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                             Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
