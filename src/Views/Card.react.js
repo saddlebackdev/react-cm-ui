@@ -81,15 +81,21 @@ class Card extends Component {
             'card-nest': nest
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
-        let renderHeader = _.map(convertChildren, (child, index) => {
-            const isCardHeader = child && _.isFunction(child.type) && child.type.name === 'CardHeader';
-
-            if (header && isCardHeader || title && !header) {
-                return (
-                    <CardHeader key={index} {...child.props} title={title} />
-                );
-            }
+        const customHeaderObj = _.find(convertChildren, child => {
+            return child && _.isFunction(child.type) && child.type.name === 'CardHeader';
         });
+        let renderHeader;
+
+        if (header && customHeaderObj) {
+            renderHeader = (
+                <CardHeader {...customHeaderObj.props} title={title} />
+            );
+        } else if (title && !header) {
+            renderHeader = (
+                <CardHeader title={title} />
+            );
+        }
+
         let renderContent = _.map(convertChildren, (child, index) => {
             const isCardHeader = child && _.isFunction(child.type) && child.type.name === 'CardHeader';
 
@@ -101,6 +107,8 @@ class Card extends Component {
                 );
             }
         });
+
+        console.log('title', title);
 
         return (
             <section
