@@ -13,20 +13,20 @@
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert { circle, path, polygon { fill: $color-text-alert; } }
-        &-highlight { circle, path, polygon { fill: $color-text-highlight; } }
-        &-primary { circle, path, polygon { fill: $color-text; } }
-        &-static { circle, path, polygon { fill: $color-text-static; } }
-        &-success { circle, path, polygon { fill: $color-text-success; } }
-        &-warning { circle, path, polygon { fill: $color-text-warning; } }
+        &-alert { .icon-use-path { fill: $color-text-alert; } }
+        &-highlight { .icon-use-path { fill: $color-text-highlight; } }
+        &-primary { .icon-use-path { fill: $color-text; } }
+        &-static { .icon-use-path { fill: $color-text-static; } }
+        &-success { .icon-use-path { fill: $color-text-success; } }
+        &-warning { .icon-use-path { fill: $color-text-warning; } }
     }
     &-inverse {
-        &.icon-color-alert { circle, path, polygon { fill: $color-text-alert; } }
-        &.icon-color-highlight { circle, path, polygon { fill: $color-text-highlight; } }
-        &.icon-color-primary { circle, path, polygon { fill: $color-text-inverse; } }
-        &.icon-color-static { circle, path, polygon { fill: $color-text-static; } }
-        &.icon-color-success { circle, path, polygon { fill: $color-text-success; } }
-        &.icon-color-warning { circle, path, polygon { fill: $color-text-warning; } }
+        &.icon-color-alert { .icon-use-path { fill: $color-text-alert; } }
+        &.icon-color-highlight { .icon-use-path { fill: $color-text-highlight; } }
+        &.icon-color-primary { .icon-use-path { fill: $color-text-inverse; } }
+        &.icon-color-static { .icon-use-path { fill: $color-text-static; } }
+        &.icon-color-success { .icon-use-path { fill: $color-text-success; } }
+        &.icon-color-warning { .icon-use-path { fill: $color-text-warning; } }
     }
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
