@@ -881,7 +881,7 @@ class Icon extends Component {
                                     <use xlinkHref={`#${pathId}`}></use>
                                 </mask>
                             ) : null}
-                            <use xlinkHref={`#${pathId}`}></use>
+                            <use className="icon-use-path" fill="black" xlinkHref={`#${pathId}`}></use>
                             {renderGradientColor ? (
                                 <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24"></rect>
                             ) : null}
