@@ -18,39 +18,38 @@ $padding-label-toggle: 63px;
         font-size: rem(14px);
         position: relative;
         > span { display: inline-block; padding-left: rem(33px); padding-top: 2px; }
-        &::before, &::after {
-            content: '';
-            height: $size;
-            left: 0;
+        &::before, .ui.icon-check {
             position: absolute;
-            top: 0;
             transition:
                 background 150ms ease,
                 border 150ms ease,
                 opacity 150ms ease;
-            width: $size;
         }
         &::before { // faux input
             background: $bkgd;
             border: 1px solid $border;
             border-radius: 3px;
+            content: '';
+            height: $size;
+            left: 0;
+            top: 0;
+            width: $size;
         }
-        &::after { // check
+        .ui.icon-check { // check
             color: $color-text-inverse;
-            content: '\e94a';
-            font-family: 'react-cm-ui';
-            font-size: rem(10px);
+            left: 3px;
             padding-top: 5px;
             text-align: center;
+            top: 1px;
         }
         &.label-not-clickable {
             cursor: auto;
-            &::before, &::after { cursor: pointer; }
+            &::before, &.ui.icon-check { cursor: pointer; }
         }
     }
     .input:checked + {
         label::before { background-color: $bkgd-highlight; border: 1px solid $border-highlight; }
-        label::after { opacity: 1; }
+        .ui.icon-check { opacity: 1; }
     }
     &-align-right {
         text-align: left;
@@ -59,7 +58,8 @@ $padding-label-toggle: 63px;
                 padding-left: 0;
                 padding-right: rem(33px);
             }
-            &::before, &::after { left: auto; right: 0; }
+            &::before { left: auto; right: 0; }
+            .ui.icon-check { left: auto; right: 3px; }
         }
     }
     &-disabled {
@@ -67,7 +67,7 @@ $padding-label-toggle: 63px;
             color: $color-text-static;
             cursor: auto;
             &::before { background: $bkgd-disable; }
-            &::after { color: $bkgd-static; }
+            .ui.icon-check { color: $bkgd-static; }
         }
     }
     &-full-width { display: block; margin-right: 0; }
@@ -89,7 +89,9 @@ $padding-label-toggle: 63px;
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.30);
                 content: '';
                 height: 25px;
+                left: 0;
                 opacity: 1;
+                position: absolute;
                 top: rem(-1.5px);
                 transition:
                     background-color 300ms ease,

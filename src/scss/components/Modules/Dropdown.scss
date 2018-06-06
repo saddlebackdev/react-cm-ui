@@ -145,7 +145,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         text-transform: capitalize;
     }
     > .ui.icon { cursor: pointer; }
-    .dropdown-selection-value + .ui.icon { padding-left: 11px;}
+    .dropdown-selection-value + .ui.icon { margin-left: 11px;}
     .dropdown-menu {
         background: $bkgd;
         border: 1px solid $border;
@@ -181,7 +181,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 li > span { border-radius: rem(3px); padding: 0; }
         }
     }
-    &:not(.dropdown-menu-theme-dark) .dropdown-menu li > span:hover .ui.icon { color: $color-text-inverse; }
+    &:not(.dropdown-menu-theme-dark) .dropdown-menu li > span:hover .ui.icon {
+        circle, path, polygon { fill: $color-text-inverse; }
+    }
     &.dropdown-button {
         align-items: center;
         background-color: $bkgd-button;
@@ -200,7 +202,10 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         text-transform: capitalize;
         transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
         white-space: normal;
-        &.dropdown-button-compact { padding-left: rem(11px); padding-right: rem(11px); }
+        &.dropdown-button-compact {
+            padding-left: rem(11px);
+            padding-right: rem(11px);
+        }
         .dropdown-selection-value {
             color: inherit;
             cursor: pointer;
@@ -211,23 +216,68 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             background-color: $bkgd-disable !important;
             cursor: default;
             .dropdown-selection-value { color: $color-text-static; cursor: inherit; }
-            .ui.icon { color: $color-text-static; cursor: inherit; }
+            .ui.icon {
+                cursor: inherit;
+                circle, path, polygon { fill: $color-text-static; }
+            }
         }
         &.dropdown-color- {
-            &alert { background-color: $bkgd-button-alert; }
-            &alternate { background-color: $bkgd-button-alternate; }
-            &disable { background-color: $bkgd-button-disable !important; cursor: default; }
-            &light { background-color: $bkgd-light; color: $color-text; }
-            &outline { background-color: transparent; box-shadow: inset 0 0 0 1px $border-inverse; color: $color-text; }
-            &primary { background-color: $bkgd-button; }
-            &success { background-color: $bkgd-button-success; }
+            &alert {
+                background-color: $bkgd-button-alert;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-inverse; }
+                }
+            }
+            &alternate {
+                background-color: $bkgd-button-alternate;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-inverse; }
+                }
+            }
+            &disable {
+                background-color: $bkgd-button-disable !important; cursor: default;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-static; }
+                }
+            }
+            &light {
+                background-color: $bkgd-light; color: $color-text;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text; }
+                }
+            }
+            &outline {
+                background-color: transparent; box-shadow: inset 0 0 0 1px $border-inverse; color: $color-text;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text; }
+                }
+            }
+            &primary {
+                background-color: $bkgd-button;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-inverse; }
+                }
+            }
+            &success {
+                background-color: $bkgd-button-success;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-inverse; }
+                }
+            }
         }
         &.dropdown-inverse.dropdown-color- {
             &alert { background-color: $bkgd-button-alert; }
             &alternate { background-color: $bkgd-button-alternate; }
             &disable { background-color: $bkgd-button-disable; cursor: default;  }
             &light { background-color: $bkgd-light; color: $color-text; }
-            &outline { background-color: transparent; box-shadow: inset 0 0 0 1px $border-light; color: $color-text-inverse; }
+            &outline {
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px $border-light;
+                color: $color-text-inverse;
+                > .ui.icon {
+                    circle, path, polygon { fill: $color-text-inverse; }
+                }
+            }
             &primary { background-color: $bkgd-button; }
             &success { background-color: $bkgd-button-success; }
         }
@@ -249,7 +299,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             &:hover {
                 background-color: $bkgd;
                 color: $color-text;
-                .ui.icon-color-primary.icon-inverse { color: $color-text; }
+                .ui.icon-color-primary.icon-inverse {
+                    circle, path, polygon { fill: $color-text; }
+                }
             }
         }
     }
@@ -292,7 +344,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         &.is-disabled .Select-arrow-zone {
             cursor: default;
             pointer-events: none;
-            .ui.icon { color: $color-text-static; }
+            .ui.icon {
+                circle, path, polygon { fill: $color-text-static; }
+            }
         }
     }
         .Select-control {
@@ -330,7 +384,11 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             }
             .Select-value-label { color: $select-text-color-focus !important; }
             .Select-arrow-zone, .Select-clear-zone {
-                .ui.icon { color: $select-input-arrow-color-focus; }
+                .ui.icon {
+                    circle, path, polygon {
+                        fill: $select-input-arrow-color-focus;
+                    }
+                }
             }
         }
         .is-searchable.is-focused:not(.is-open) > .Select-control { cursor: text; }
@@ -544,13 +602,6 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                     border: 1px solid $border;
                     color: $color-text-static;
                     cursor: pointer;
-                    font-family: 'react-cm-ui';
-                    font-size: 0;
-                    -moz-osx-font-smoothing: grayscale;
-                    -webkit-font-smoothing: antialiased;
-                    font-style: normal;
-                    font-variant: normal;
-                    font-weight: normal;
                     line-height: 1;
                     margin: -1px -1px -1px 0;
                     padding: 0 9px;
@@ -577,7 +628,11 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                         width: 10px;
                     }
                 }
-        &.is-open > .Select-control .Select-arrow-zone .ui.icon { color: $color-text-highlight; }
+        &.is-open > .Select-control .Select-arrow-zone .ui.icon {
+            circle, path, polygon {
+                fill: $color-text-highlight;
+            }
+        }
     }
     .Select--multi.is-disabled {
         > .Select-control {
@@ -600,7 +655,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         .is-open:not(.Select--multi) > .Select-control {
             background-color: $bkgd;
             .Select-arrow-zone, .Select-clear-zone {
-                .ui.icon { color: $color-text; }
+                .ui.icon {
+                    circle, path, polygon { fill: $color-text; }
+                }
             }
             .Select-value-label { color: $color-text !important; }
         }

@@ -13,20 +13,20 @@
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert { circle, path { fill: $color-text-alert; } }
-        &-highlight { circle, path { fill: $color-text-highlight; } }
-        &-primary { circle, path { fill: $color-text; } }
-        &-static { circle, path { fill: $color-text-static; } }
-        &-success { circle, path { fill: $color-text-success; } }
-        &-warning { circle, path { fill: $color-text-warning; } }
+        &-alert { circle, path, polygon { fill: $color-text-alert; } }
+        &-highlight { circle, path, polygon { fill: $color-text-highlight; } }
+        &-primary { circle, path, polygon { fill: $color-text; } }
+        &-static { circle, path, polygon { fill: $color-text-static; } }
+        &-success { circle, path, polygon { fill: $color-text-success; } }
+        &-warning { circle, path, polygon { fill: $color-text-warning; } }
     }
     &-inverse {
-        &.icon-color-alert { circle, path { fill: $color-text-alert; } }
-        &.icon-color-highlight { circle, path { fill: $color-text-highlight; } }
-        &.icon-color-primary { circle, path { fill: $color-text-inverse; } }
-        &.icon-color-static { circle, path { fill: $color-text-static; } }
-        &.icon-color-success { circle, path { fill: $color-text-success; } }
-        &.icon-color-warning { circle, path { fill: $color-text-warning; } }
+        &.icon-color-alert { circle, path, polygon { fill: $color-text-alert; } }
+        &.icon-color-highlight { circle, path, polygon { fill: $color-text-highlight; } }
+        &.icon-color-primary { circle, path, polygon { fill: $color-text-inverse; } }
+        &.icon-color-static { circle, path, polygon { fill: $color-text-static; } }
+        &.icon-color-success { circle, path, polygon { fill: $color-text-success; } }
+        &.icon-color-warning { circle, path, polygon { fill: $color-text-warning; } }
     }
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
@@ -39,71 +39,6 @@
         &xxsmall { height: rem(10px); width: rem(10px); }
     }
     &-spin { animation: 1500ms infinite spin linear; line-height: 1; }
-
-    // From icomoon.io SVG style.css download
-    &.icon-award {
-      width: 0.84375em;
-    }
-
-    &.icon-cards {
-      width: 0.8125em;
-    }
-
-    &.icon-exclamation {
-      width: 0.3125em;
-    }
-
-    &.icon-file {
-      width: 0.8125em;
-    }
-
-    &.icon-hand-stop {
-      width: 0.6875em;
-    }
-
-    &.icon-info {
-      width: 0.4580078125em;
-    }
-
-    &.icon-ministry {
-      width: 0.65625em;
-    }
-
-    &.icon-note {
-      width: 0.84375em;
-    }
-
-    &.icon-paperclip {
-      width: 0.90625em;
-    }
-
-    &.icon-user {
-      width: 0.875em;
-    }
-
-    &.icon-caret-right {
-      width: 0.6875em;
-    }
-
-    &.icon-caret-left {
-      width: 0.6875em;
-    }
-
-    &.icon-chevron-wh-left {
-      width: 0.6875em;
-    }
-
-    &.icon-chevron-wh-right {
-      width: 0.6875em;
-    }
-
-    &.icon-chevron-wl-left {
-      width: 0.625em;
-    }
-
-    &.icon-chevron-wl-right {
-      width: 0.625em;
-    }
 }
 
 @keyframes spin {
