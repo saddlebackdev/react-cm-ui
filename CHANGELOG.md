@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.0 - 2018-06-06
+##Added
+- Added ability to have a custom header in a **Card**.
+
+##Changed
+- Removed icon font and replaced with SVG icons.
+
 ## 1.10.3 - 2018-05-18
 ##Changed
 - **Input's** action icon container is now adjusted according to the top position of the input that's relative to the components wrapping container.

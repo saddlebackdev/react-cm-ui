@@ -148,7 +148,7 @@ class Input extends Component {
                         }}
                     >
                         {_.isString(icon) || loading ? (
-                            <Icon compact={true} spin={loading} type={loading ? 'spinner-1' : icon} />
+                            <Icon compact={true} spin={loading} type={loading ? 'spinner' : icon} />
                         ) : _.isObject(icon) ? (
                             <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
                                 {icon}

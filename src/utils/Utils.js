@@ -5,9 +5,12 @@ import _ from 'lodash';
 class Utils {
     static colorEnums() {
         return [
+            'action',
             'alert',
             'alternate',
             'bright',
+            'condition',
+            'configuration',
             'disable',
             'highlight',
             'inverse',
@@ -17,6 +20,7 @@ class Utils {
             'outline',
             'primary',
             'static',
+            'subject',
             'success',
             'transparent',
             'warning'
