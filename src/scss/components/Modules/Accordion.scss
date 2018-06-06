@@ -16,7 +16,7 @@ $standard-divider: $border;
             }
             .accordion-item-title {
                 .copy { flex: 1 1 auto; font-weight: $default-font-weight-semibold; }
-                .ui.icon { flex: 0 1 1px; width: 16px; }
+                .ui.icon { flex: none; width: 16px; }
             }
             &:last-child { border-bottom: 1px solid $standard-divider; }
             .ui.accordion &:last-child { border-bottom: 0; }

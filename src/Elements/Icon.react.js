@@ -16,13 +16,13 @@ class Icon extends Component {
 
     render() {
         const { align, color, compact, disable, id, inverse, onClick, rotate, size, spin, style, type } = this.props;
-        const containerClasses = ClassNames('ui', 'icon', `i-${type}`, this.props.className, {
+        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, this.props.className, {
             'icon-align-left': !align && !compact || align === 'left',
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
             'icon-color-alert': color === 'alert',
             'icon-color-highlight': color === 'highlight',
-            'icon-color-primary': _.isUndefined(color) && !disable || color === 'primary',
+            'icon-color-primary': _.isNil(color) && !disable || color === 'primary',
             'icon-color-static': color === 'static',
             'icon-color-success': color === 'success',
             'icon-color-warning': color === 'warning',
@@ -619,56 +619,12 @@ class Icon extends Component {
                     </svg>
                 );
                 break;
-            case 'caret-up':
-                return (
-                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 32 32">
-                        <title>caret-up</title>
-                        <defs>
-                            <path id={pathId} d="M16 5l-16 21.333h32z"></path>
-                            {renderGradientColor}
-                        </defs>
-                        <g fill="none" fillRule="evenodd">
-                            {renderGradientColor ? (
-                                <mask id={maskId} fill="white">
-                                    <use xlinkHref={`#${pathId}`}></use>
-                                </mask>
-                            ) : null}
-                            <use xlinkHref={`#${pathId}`}></use>
-                            {renderGradientColor ? (
-                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24"></rect>
-                            ) : null}
-                        </g>
-                    </svg>
-                );
-                break;
-            case 'caret-right':
-                return (
-                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 22 32">
-                        <title>caret-right</title>
-                        <defs>
-                            <path id={pathId} d="M21.667 16l-21.333-16v32z"></path>
-                            {renderGradientColor}
-                        </defs>
-                        <g fill="none" fillRule="evenodd">
-                            {renderGradientColor ? (
-                                <mask id={maskId} fill="white">
-                                    <use xlinkHref={`#${pathId}`}></use>
-                                </mask>
-                            ) : null}
-                            <use xlinkHref={`#${pathId}`}></use>
-                            {renderGradientColor ? (
-                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24"></rect>
-                            ) : null}
-                        </g>
-                    </svg>
-                );
-                break;
             case 'caret-down':
                 return (
-                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 32 32">
+                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 24 24">
                         <title>caret-down</title>
                         <defs>
-                            <path id={pathId} d="M16 26.333l16-21.333h-32z"></path>
+                            <polygon id={pathId} transform="translate(12.000000, 12.000000) rotate(180.000000) translate(-12.000000, -12.000000) " points="12 5 24 19 0 19"></polygon>
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -687,10 +643,32 @@ class Icon extends Component {
                 break;
             case 'caret-left':
                 return (
-                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 22 32">
+                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 24 24">
                         <title>caret-left</title>
                         <defs>
-                            <path id={pathId} d="M0.333 16l21.333 16v-32z"></path>
+                            <polygon id={pathId} points="5 12 19 0 19 24"></polygon>
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`}></use>
+                                </mask>
+                            ) : null}
+                            <use xlinkHref={`#${pathId}`}></use>
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24"></rect>
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+                break;
+            case 'caret-right':
+                return (
+                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 24 24">
+                        <title>caret-right</title>
+                        <defs>
+                            <polygon id={pathId} transform="translate(14.000000, 12.000000) rotate(90.000000) translate(-14.000000, -12.000000) " points="14 5 26 19 2 19"></polygon>
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -713,6 +691,28 @@ class Icon extends Component {
                         <title>caret-sort</title>
                         <defs>
                             <path id={pathId} d="M12,24 L4,14 L20,14 L12,24 Z M12,-8.8817842e-16 L20,10 L4,10 L12,-8.8817842e-16 Z"></path>
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`}></use>
+                                </mask>
+                            ) : null}
+                            <use xlinkHref={`#${pathId}`}></use>
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24"></rect>
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+                break;
+            case 'caret-up':
+                return (
+                    <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 24 24">
+                        <title>caret-up</title>
+                        <defs>
+                            <polygon id={pathId} points="12 5 24 19 0 19"></polygon>
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -824,7 +824,7 @@ class Icon extends Component {
                     <svg className={containerClasses} onClick={this._onClick} style={containerStyle} viewBox="0 0 24 24">
                         <title>chevron-down</title>
                         <defs>
-                            <path id={pathId} d="M18.3815642,11.8451227 C18.7152312,12.2341359 18.6947797,12.8254075 18.3215393,13.1986479 L8.12861462,23.3915726 C7.73035448,23.7898327 7.10630707,23.7868938 6.71959367,23.4001804 L5.28735371,21.9679405 C4.90111359,21.5817004 4.90449418,20.9503869 5.29596157,20.5589195 L14.0097584,11.8451227 L5.29596157,3.1313259 C4.90449418,2.73985852 4.90111359,2.10854506 5.28735371,1.72230495 L6.71959367,0.290064986 C7.10630707,-0.0966484099 7.73035448,-0.0995872988 8.12861462,0.298672846 L18.3215393,10.4915975 C18.6947797,10.8648379 18.7152312,11.4561095 18.3815642,11.8451227 Z"></path>
+                            <path id={pathId} d="M18.3815642,11.8451227 C18.7152312,12.2341359 18.6947797,12.8254075 18.3215393,13.1986479 L8.12861462,23.3915726 C7.73035448,23.7898327 7.10630707,23.7868938 6.71959367,23.4001804 L5.28735371,21.9679405 C4.90111359,21.5817004 4.90449418,20.9503869 5.29596157,20.5589195 L14.0097584,11.8451227 L5.29596157,3.1313259 C4.90449418,2.73985852 4.90111359,2.10854506 5.28735371,1.72230495 L6.71959367,0.290064986 C7.10630707,-0.0966484099 7.73035448,-0.0995872988 8.12861462,0.298672846 L18.3215393,10.4915975 C18.6947797,10.8648379 18.7152312,11.4561095 18.3815642,11.8451227 Z" transform="translate(11.808750, 11.845123) rotate(90.000000) translate(-11.808750, -11.845123) "></path>
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
