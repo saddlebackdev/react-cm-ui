@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.2 - 2018-06-06
+##Changed
+- Fixed an issue with Firefox not displaying the new **Icons**.
+
 ## 1.11.1 - 2018-06-06
 ##Changed
 - Fixed a bug when passing `null` as a child of **Card**.
