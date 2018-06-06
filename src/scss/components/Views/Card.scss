@@ -32,13 +32,13 @@
         &.card-header-color {
             &-blue, &-green, &-pink { color: $color-text-inverse; }
             &-blue {
-                background: linear-gradient(to left, #54cc86, #1c93c4);
+                background: linear-gradient(to left, #54cc86 -66%, #1c93c4 100%);
             }
             &-green {
-                background: linear-gradient(to right, #329594, #8bbd72);
+                background: linear-gradient(to right, #329594 -66%, #8bbd72 100%);
             }
             &-pink {
-                background: linear-gradient(to left, #f99e49, #c33580);
+                background: linear-gradient(to left, #f99e49 -66%, #c33580 100%);
             }
         }
     }

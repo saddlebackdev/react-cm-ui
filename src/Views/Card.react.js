@@ -82,7 +82,7 @@ class Card extends Component {
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         let renderHeader = _.map(convertChildren, (child, index) => {
-            const isCardHeader = _.isFunction(child.type) && child.type.name === 'CardHeader';
+            const isCardHeader = child && _.isFunction(child.type) && child.type.name === 'CardHeader';
 
             if (header && isCardHeader || title && !header) {
                 return (
@@ -91,7 +91,7 @@ class Card extends Component {
             }
         });
         let renderContent = _.map(convertChildren, (child, index) => {
-            const isCardHeader = _.isFunction(child.type) && child.type.name === 'CardHeader';
+            const isCardHeader = child && _.isFunction(child.type) && child.type.name === 'CardHeader';
 
             if (!isCardHeader) {
                 return (

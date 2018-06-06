@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.1 - 2018-06-06
+##Changed
+- Fixed a bug when passing `null` as a child of **Card**.
+- Fixed **Card.Header** gradient positions.
+
 ## 1.11.0 - 2018-06-06
 ##Added
 - Added ability to have a custom header in a **Card**.
