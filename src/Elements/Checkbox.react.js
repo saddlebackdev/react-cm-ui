@@ -5,6 +5,8 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import Icon from '../Elements/Icon.react';
+
 class Checkbox extends Component {
 
     constructor(props) {
@@ -64,6 +66,8 @@ class Checkbox extends Component {
                             <span className="checkbox-toggle-text-off">Off</span>
                         </div>
                     ) : null}
+
+                    <Icon compact inverse size={16} type="check" />
                 </label>
             </div>
         );

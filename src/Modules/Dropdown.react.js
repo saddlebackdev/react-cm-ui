@@ -249,9 +249,11 @@ class Dropdown extends Component {
             >
                 {labelJSX}
 
-                <span className="dropdown-selection-value">
-                    {text ? text : this.state.value ? this.state.value.label : placeholder}
-                </span>
+                {placeholder || text || this.state.value ? (
+                    <span className="dropdown-selection-value">
+                        {text ? text : this.state.value ? this.state.value.label : placeholder}
+                    </span>
+                ) : null}
 
                 <Icon
                     color={this.state.menuIsOpen && !button ? 'highlight' : null}
