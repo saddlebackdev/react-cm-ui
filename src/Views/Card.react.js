@@ -108,8 +108,6 @@ class Card extends Component {
             }
         });
 
-        console.log('title', title);
-
         return (
             <section
                 className={containerClasses}

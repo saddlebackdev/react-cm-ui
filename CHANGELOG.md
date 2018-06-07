@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.5 - 2018-06-06
+##Changed
+- Removed a `console.log` from **Card**.
+
 ## 1.11.4 - 2018-06-06
 ##Changed
 - Fixed how **Card** renders its header.
