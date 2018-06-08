@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.11.5 - 2018-06-08
+## 1.11.6 - 2018-06-08
 ##Changed
-- New font size and weight for **Table.Header's** **Table.Cell** when not clickable. 
+- New font size and weight for **Table.Header's** **Table.Cell** when not clickable.
 
 ## 1.11.5 - 2018-06-06
 ##Changed
