@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.7 - 2018-06-08
+##Changed
+- Changed **Card.Header** gradients.
+
 ## 1.11.6 - 2018-06-08
 ##Changed
 - New font size and weight for **Table.Header's** **Table.Cell** when not clickable.
