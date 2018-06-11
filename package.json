@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "1.11.7",
+  "version": "1.11.8",
   "description": "React UI for Church management",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -26,15 +26,15 @@
   ],
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
-    "build": "webpack",
-    "build:local": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
-    "build:prod": "npm run build",
-    "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
-    "clean:lib": "rimraf lib",
-    "compile": "npm run clean:lib && gulp compile:lib && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
-    "postpublish": "git checkout master && git push && git checkout dev",
-    "prepare": "npm run compile",
-    "start": "npm run build:local"
+      "build": "webpack",
+      "build:local": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+      "build:prod": "npm run build",
+      "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
+      "clean:lib": "rimraf lib",
+      "compile": "npm run clean:lib && gulp compile:lib && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
+      "postpublish": "git checkout master && git push && git checkout dev",
+      "prepare": "npm run compile",
+      "start": "npm run build:local"
   },
   "dependencies": {
     "autosize": "^3.0.17",
@@ -79,6 +79,7 @@
     "gulp-cssmin": "^0.2.0",
     "gulp-rework": "^1.2.0",
     "gulp-sass": "^3.1.0",
+    "highcharts": "^6.1.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.4.0",
     "postcss-loader": "^1.2.2",

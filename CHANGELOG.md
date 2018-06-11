@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.8 - 2018-06-11
+##Added
+- Sort of have documentation for **List**. They are really just examples I tested with.
+- Add a **Chart** module that uses `highcharts`.
+
 ## 1.11.7 - 2018-06-08
 ##Changed
 - Changed **Card.Header** gradients.

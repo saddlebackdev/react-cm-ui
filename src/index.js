@@ -20,6 +20,7 @@ export { default as TextArea } from './Elements/TextArea.react.js';
 
 // Modules
 export { default as Accordion } from './Modules/Accordion.react.js';
+export { default as Chart } from './Modules/Chart.react.js';
 export { default as DatePicker } from './Modules/DatePicker.react.js';
 export { default as Drawer } from './Modules/Drawer.react.js';
 export { default as Dropdown } from './Modules/Dropdown.react.js';
