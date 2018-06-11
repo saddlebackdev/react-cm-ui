@@ -8,8 +8,57 @@ import ListItem from './ListItem.react';
 
 import Utils from '../utils/Utils.js';
 
-class List extends Component {
+class Item extends Component {
+    constructor() {
+        super();
 
+        this._onClick = this._onClick.bind(this);
+    }
+
+    render() {
+        const { as, children, className, divide, style } = this.props;
+        const containerClasses = ClassNames('list-item', className, {
+            'list-item-divide': divide
+        });
+        let ElementType;
+
+        switch (as) {
+            case 'ol':
+            case 'ul':
+                ElementType = Utils.getElementType('li', this.props);
+
+                break;
+            default:
+                ElementType = Utils.getElementType('div', this.props);
+
+                break;
+        }
+
+        return (
+            <ElementType className={containerClasses} onClick={this._onClick} style={style}>
+                {children}
+            </ElementType>
+        );
+    }
+
+    _onClick() {
+        const { onClick } = this.props;
+
+        if (!_.isUndefined(onClick)) {
+            onClick();
+        }
+    }
+}
+
+Item.propTypes = {
+    as: PropTypes.string,
+    className: PropTypes.string,
+    divide: PropTypes.bool,
+    onClick: PropTypes.func,
+    style: PropTypes.object
+};
+
+class List extends Component {
     render() {
         const { as, children, className, divide, fluid, horizontal, style } = this.props;
         const containerClasses = ClassNames('ui', 'list', className, {
@@ -21,13 +70,7 @@ class List extends Component {
         const convertChildren = _.isArray(children) ? children : [ children ];
         let items = _.map(convertChildren, (child, index) => {
             return (
-                <div
-                    className="list-item"
-                    onClick={this._onItemClick.bind(this, index, child.props.onClick)}
-                    key={'list-item' + index}
-                >
-                        {child.props.children}
-                </div>
+                <Item as={as} key={'list-item' + index} {...child.props} />
             );
         });
 
