@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.9 - 2018-06-11
+
 ## 1.11.8 - 2018-06-11
 ##Added
 - Sort of have documentation for **List**. They are really just examples I tested with.
