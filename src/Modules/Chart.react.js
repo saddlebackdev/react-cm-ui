@@ -6,7 +6,7 @@ import Highcharts from 'highcharts';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-export default class Chart extends React.Component {
+class Chart extends React.Component {
     constructor() {
         super();
 
