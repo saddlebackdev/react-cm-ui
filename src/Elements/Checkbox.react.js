@@ -8,11 +8,10 @@ import React, { Component } from 'react';
 import Icon from '../Elements/Icon.react';
 
 class Checkbox extends Component {
-
     constructor(props) {
         super(props);
 
-        this.state = { isChecked: props.checked }
+        this.state = { isChecked: props.checked || false }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -23,8 +22,10 @@ class Checkbox extends Component {
 
     render() {
         const { align, className, disabled, fluid, id, inverse,
-            label, labelClick, labelStyle, name, style, toggle, value } = this.props;
-        const isChecked = this.state.isChecked;
+            label, labelClick, labelStyle, name, size, style, toggle, value } = this.props;
+        const { isChecked } = this.state;
+        const newDisabled = disabled || false;
+        const newValue = value || '';
         const containerClasses = ClassNames('ui', 'checkbox', className, {
             'checkbox-align-left': align === 'left',
             'checkbox-align-right': align === 'right',
@@ -32,11 +33,13 @@ class Checkbox extends Component {
             'checkbox-full-width': fluid,
             'checkbox-inverse': inverse,
             'checkbox-is-checked': isChecked,
+            'checkbox-size-small': size === 'small',
             'checkbox-toggle': toggle
         });
-        const labelClasses = ClassNames('label', {
+        const labelClasses = ClassNames('checkbox-label', {
             'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
         });
+        const checkSize = size === 'small' ? 8 : 10;
 
         return (
             <div
@@ -47,17 +50,23 @@ class Checkbox extends Component {
                 <input
                     checked={isChecked}
                     className="input"
-                    disabled={disabled}
+                    disabled={newDisabled}
                     id={id}
                     name={name}
-                    readOnly={true}
+                    readOnly
                     type="checkbox"
-                    value={value}
+                    value={newValue}
                 />
 
                 <label className={labelClasses}>
                     {label ? (
-                        <span onClick={this._onLabelClick.bind(this)} style={labelStyle}>{label}</span>
+                        <span
+                            className="checkbox-label-text"
+                            onClick={this._onLabelClick.bind(this)}
+                            style={labelStyle}
+                        >
+                            {label}
+                        </span>
                     ) : null}
 
                     {toggle ? (
@@ -67,7 +76,7 @@ class Checkbox extends Component {
                         </div>
                     ) : null}
 
-                    <Icon compact inverse size={16} type="check" />
+                    <Icon compact inverse size={checkSize} type="check" />
                 </label>
             </div>
         );
@@ -95,6 +104,7 @@ class Checkbox extends Component {
 }
 
 const alignEnums = [ 'left', 'right' ];
+const sizeEnums = [ 'small', 'large' ];
 
 Checkbox.propTypes = {
     align: PropTypes.oneOf(alignEnums),
@@ -109,6 +119,7 @@ Checkbox.propTypes = {
     labelStyle: PropTypes.object,
     name: PropTypes.string,
     onChange: PropTypes.func,
+    size: PropTypes.oneOf(sizeEnums),
     style: PropTypes.object,
     toggle: PropTypes.bool,
     value: PropTypes.string
