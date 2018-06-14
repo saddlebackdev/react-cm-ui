@@ -53,7 +53,6 @@ class TextArea extends Component {
 
                 <div className="text-area-container">
                     <textarea
-                        autoFocus
                         disabled={disabled}
                         id={id}
                         name={name}
@@ -96,7 +95,7 @@ class TextArea extends Component {
         }
 
         if(this.props.autoFocus) {
-            this.input.focus();
+            ReactDOM.findDOMNode(this.refs.textArea).focus();
 
             this.setState({
                 isFocused: true
