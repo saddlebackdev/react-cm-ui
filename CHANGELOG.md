@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.10 - 2018-06-14
+##Added
+- Added a `size` prop for **Checkbox**. You can now have a default size (large) and a small checkbox.
+
+##Changed
+- Fixed Checkbox to be always be a controlled input in order to quiet down the console.
+
 ## 1.11.9 - 2018-06-11
 
 ## 1.11.8 - 2018-06-11
