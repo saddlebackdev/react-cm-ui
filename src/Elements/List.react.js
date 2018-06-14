@@ -4,8 +4,6 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import ListItem from './ListItem.react';
-
 import Utils from '../utils/Utils.js';
 
 class Item extends Component {
@@ -60,11 +58,12 @@ Item.propTypes = {
 
 class List extends Component {
     render() {
-        const { as, children, className, divide, fluid, horizontal, style } = this.props;
+        const { as, children, className, divide, fluid, horizontal, inverse, style } = this.props;
         const containerClasses = ClassNames('ui', 'list', className, {
             'list-divide': divide,
             'list-horizontal': horizontal,
-            'list-fluid': fluid
+            'list-fluid': fluid,
+            'list-inverse': inverse
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
         const convertChildren = _.isArray(children) ? children : [ children ];
@@ -90,7 +89,7 @@ class List extends Component {
     }
 }
 
-List.Item = ListItem;
+List.Item = Item;
 
 const asEnums = [ 'div', 'ol', 'ul' ];
 
@@ -100,6 +99,7 @@ List.propTypes = {
     divide: PropTypes.bool,
     fluid: PropTypes.bool,
     horizontal: PropTypes.bool,
+    inverse: PropTypes.bool,
     style: PropTypes.object
 };
 

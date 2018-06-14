@@ -86,6 +86,12 @@ export default class ElementsList extends React.Component {
                 description: 'A List can be displayed horizontally.',
                 allowedTypes: ''
             }, {
+                name: 'inverse',
+                type: 'bool',
+                default: '',
+                description: 'A List can be formatted to appear on dark backgrounds.',
+                allowedTypes: ''
+            }, {
                 name: 'style',
                 type: 'object',
                 default: '',
@@ -228,6 +234,74 @@ export default class ElementsList extends React.Component {
                             </div>
                         </List.Item>
                     </List>
+
+                    {/* Inverse */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Inverse
+                        <Header.Subheader>
+                            A List's color can be set to the appropriate color when on a dark background.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Block inverse>
+                        <List inverse divide>
+                            <List.Item>
+                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                    A Header
+                                </Header>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    20
+                                </div>
+                            </List.Item>
+
+                            <List.Item>
+                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                    Another Header
+                                </Header>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    300
+                                </div>
+                            </List.Item>
+                        </List><br /><br />
+
+                        <List divide inverse horizontal>
+                            <List.Item>
+                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                    A Header
+                                </Header>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    20
+                                </div>
+                            </List.Item>
+
+                            <List.Item>
+                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                    Another Header
+                                </Header>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    300
+                                </div>
+                            </List.Item>
+
+                            <List.Item>
+                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                    A Long Item Header
+                                </Header>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    15
+                                </div>
+
+                                <div className="font-weight-semibold font-size-small">
+                                    20
+                                </div>
+                            </List.Item>
+                        </List>
+                    </Block>
                 </div>
             );
         }
@@ -281,7 +355,7 @@ export default class ElementsList extends React.Component {
                     </Header>
 
                     <List horizontal>
-                        <List.Item>
+                        <List.Item style={{ backgroundColor: '#c0c0c0' }}>
                             <Header color="static" size="xsmall" style={{ margin: 0 }}>
                                 Received
                             </Header>
