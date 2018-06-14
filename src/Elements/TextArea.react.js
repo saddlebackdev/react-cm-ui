@@ -93,6 +93,14 @@ class TextArea extends Component {
                 }
             }, 150);
         }
+
+        if (this.props.autoFocus) {
+            ReactDOM.findDOMNode(this.refs.textArea).focus();
+
+            this.setState({
+                isFocused: true
+            })
+        }
     }
 
     _onBlur(event) {
@@ -135,6 +143,7 @@ class TextArea extends Component {
 }
 
 TextArea.propTypes = {
+    autoFocus: PropTypes.bool,
     autoHeight: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,

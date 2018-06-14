@@ -172,7 +172,7 @@ class Input extends Component {
     }
 
     componentDidMount() {
-        const { icon, loading } = this.props;
+        const { autoFocus, icon, loading } = this.props;
         const type = this._getType();
 
         if (_.isString(icon) || _.isObject(icon) || loading || type === 'number') {
@@ -181,6 +181,14 @@ class Input extends Component {
             if (inputTop > 0) {
                 this.setState({ inputActionsTopPosition: inputTop });
             }
+        }
+
+        if (autoFocus) {
+            ReactDOM.findDOMNode(this.input).focus();
+
+            this.setState({
+                isFocused: true
+            })
         }
     }
 
@@ -221,7 +229,6 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const { value } = this.state;
         const { max, min, onChange, required } = this.props;
         const type = this._getType();
         let newValue = event.target.value;
@@ -315,6 +322,7 @@ const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
 Input.propTypes = {
     autoComplete: PropTypes.oneOf(autoCompleteEnums),
+    autoFocus: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
