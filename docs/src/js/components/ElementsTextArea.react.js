@@ -38,6 +38,20 @@ export default class AutoHeightSample extends React.Component {
 
 }`;
 
+const autoFocusSample = `import React from 'react';
+
+import TextArea from 'components/UI/Elements/TextArea.react';
+
+export default class AutoFocusSample extends React.Component {
+
+    render() {
+        return (
+            <TextArea autoFocus={true} />
+        );
+    }
+
+}`;
+
 const disabledSample = `import React from 'react';
 
 import TextArea from 'components/UI/Elements/TextArea.react';
@@ -490,6 +504,20 @@ export default class ElementsTextArea extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {autoHeightSample}
+                </Highlighter>
+
+                {/* Auto Focus */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Auto Focus
+                    <Header.Subheader>
+                        A text area that will be focused upon loading.
+                    </Header.Subheader>
+                </Header>
+
+                <TextArea autoFocus={true} />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {autoFocusSample}
                 </Highlighter>
 
                 {/* Disabled */}

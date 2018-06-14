@@ -36,6 +36,19 @@ export default class AutoCompleteSample extends React.Component {
 
 }`;
 
+const autoFocusSample = `import React from 'react';
+import { Input } from 'react-cm-ui';
+
+export default class AutoCompleteSample extends React.Component {
+
+    render() {
+        return (
+            <Input autoFocus={true} />
+        );
+    }
+
+}`;
+
 const disabledSample = `import React from 'react';
 import { Input } from 'react-cm-ui';
 
@@ -575,6 +588,20 @@ export default class ElementsButton extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {autoCompleteSample}
+                </Highlighter>
+
+                {/* Auto Focus */}
+                <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Auto Focus
+                    <Header.Subheader>
+                        Allows the Input to receive focus on load.
+                    </Header.Subheader>
+                </Header>
+
+                <Input autoFocus={true} />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {autoFocusSample}
                 </Highlighter>
 
                 {/* Disabled */}

@@ -53,6 +53,7 @@ class TextArea extends Component {
 
                 <div className="text-area-container">
                     <textarea
+                        autoFocus
                         disabled={disabled}
                         id={id}
                         name={name}
@@ -92,6 +93,14 @@ class TextArea extends Component {
                     clearInterval(autoResize);
                 }
             }, 150);
+        }
+
+        if(this.props.autoFocus) {
+            this.input.focus();
+
+            this.setState({
+                isFocused: true
+            })
         }
     }
 
@@ -135,6 +144,7 @@ class TextArea extends Component {
 }
 
 TextArea.propTypes = {
+    autoFocus: PropTypes.bool,
     autoHeight: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
