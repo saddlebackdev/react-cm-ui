@@ -12,8 +12,7 @@ import TableProps from 'components/UI/TableProps.react';
 
 const checkboxSample = `import React from 'react';
 
-import Checkbox from 'components/UI/Elements/Checkbox.react';
-
+import { Checkbox } from 'react-cm-ui';
 export default class CheckboxSample extends React.Component {
 
     render() {
@@ -25,8 +24,7 @@ export default class CheckboxSample extends React.Component {
 }`;
 
 const labelSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -39,8 +37,7 @@ export default class LabelSample extends React.Component {
 }`;
 
 const alignSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class AlignSample extends React.Component {
 
@@ -54,8 +51,7 @@ export default class AlignSample extends React.Component {
 }`;
 
 const checkedSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class CheckedSample extends React.Component {
 
@@ -68,8 +64,7 @@ export default class CheckedSample extends React.Component {
 }`;
 
 const disabledSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -82,8 +77,7 @@ export default class DisabledSample extends React.Component {
 }`;
 
 const fluidSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -97,8 +91,7 @@ export default class FluidSample extends React.Component {
 }`;
 
 const labelClickSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class LabelClickSample extends React.Component {
 
@@ -111,8 +104,7 @@ export default class LabelClickSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -138,9 +130,19 @@ export default class OnChangeSample extends React.Component {
 
 }`;
 
-const toggleSample = `import React from 'react';
+const sizeSample = `import React from 'react';
+import { Checkbox } from 'react-cm-ui';
 
-import Checkbox from 'components/UI/Elements/Checkbox.react';
+export default class SizeSample extends React.Component {
+    render() {
+        return (
+            <Checkbox size="small" />
+        );
+    }
+}`;
+
+const toggleSample = `import React from 'react';
+import { Checkbox } from 'react-cm-ui';
 
 export default class ToggleSample extends React.Component {
 
@@ -227,6 +229,12 @@ export default class ElementsCheckbox extends React.Component {
                 default: '',
                 description: 'Can handle an onChange event from parent.',
                 allowedTypes: ''
+            }, {
+                name: 'size',
+                type: 'enum',
+                default: '',
+                description: 'A checkbox can be small or large.',
+                allowedTypes: 'small, large'
             }, {
                 name: 'style',
                 type: 'object',
@@ -379,6 +387,20 @@ export default class ElementsCheckbox extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {onChangeSample}
+                </Highlighter>
+
+                {/* Size */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Size
+                    <Header.Subheader>
+                        A checkbox can be small or large.
+                    </Header.Subheader>
+                </Header>
+
+                <Checkbox size="small" />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {sizeSample}
                 </Highlighter>
 
                 {/* Toggle */}

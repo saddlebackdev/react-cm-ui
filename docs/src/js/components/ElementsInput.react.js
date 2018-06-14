@@ -36,6 +36,19 @@ export default class AutoCompleteSample extends React.Component {
 
 }`;
 
+const autoFocusSample = `import React from 'react';
+import { Input } from 'react-cm-ui';
+
+export default class AutoCompleteSample extends React.Component {
+
+    render() {
+        return (
+            <Input autoFocus={true} />
+        );
+    }
+
+}`;
+
 const disabledSample = `import React from 'react';
 import { Input } from 'react-cm-ui';
 
@@ -363,6 +376,12 @@ export default class ElementsButton extends React.Component {
                 description: 'Indicates whether the value of the control can be automatically completed by the browser.',
                 allowedTypes: 'on, off'
             }, {
+                name: 'autoFocus',
+                type: 'bool',
+                default: '',
+                description: 'Gives Input immediate focus.',
+                allowedTypes: ''
+            }, {
                 name: 'className',
                 type: 'string',
                 default: '',
@@ -550,7 +569,7 @@ export default class ElementsButton extends React.Component {
                 </Card>
 
                 {/* Input */}
-                <Header anchor="input" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="input" size="large" style={{ marginTop: '55px' }} sub >
                     Input
                     <Header.Subheader>
                         A standard input is text input.
@@ -564,7 +583,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Auto Complete */}
-                <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub >
                     Auto Complete
                     <Header.Subheader>
                         Indicates whether the value of the control can be automatically completed by the browser.
@@ -577,8 +596,22 @@ export default class ElementsButton extends React.Component {
                     {autoCompleteSample}
                 </Highlighter>
 
+                {/* Auto Focus */}
+                <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub >
+                    Auto Focus
+                    <Header.Subheader>
+                        Allows the Input to receive focus on load.
+                    </Header.Subheader>
+                </Header>
+
+                <Input autoFocus={true} />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {autoFocusSample}
+                </Highlighter>
+
                 {/* Disabled */}
-                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub >
                     Disabled
                     <Header.Subheader>
                         Indicates that the input is not available for interaction.
@@ -592,7 +625,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Error */}
-                <Header anchor="error" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="error" size="large" style={{ marginTop: '55px' }} sub >
                     Error
                     <Header.Subheader>
                         Indicates that the input has an error. You can either supply a boolean value or a string with a message.
@@ -608,7 +641,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Fluid */}
-                <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub >
                     Fluid
                     <Header.Subheader>
                         An input can take on the size of its container.
@@ -622,7 +655,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Icon */}
-                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub >
                     Icon
                     <Header.Subheader>
                         An input can be formatted with an icon. You can either supply a string or add a custom icon by passing a node.
@@ -642,7 +675,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Inverse */}
-                <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub >
                     Inverse
                     <Header.Subheader>
                         Format to appear on dark backgrounds.
@@ -658,7 +691,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Label */}
-                <Header anchor="label" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="label" size="large" style={{ marginTop: '55px' }} sub >
                     Label
                     <Header.Subheader>
                         Optional Label to display on top of the Input.
@@ -672,7 +705,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Label Position */}
-                <Header anchor="label-position" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="label-position" size="large" style={{ marginTop: '55px' }} sub >
                     Label Position
                     <Header.Subheader>
                         Position the label above or below the input.
@@ -688,7 +721,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Loading */}
-                <Header anchor="loading" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="loading" size="large" style={{ marginTop: '55px' }} sub >
                     Loading
                     <Header.Subheader>
                         An icon input field can show that it is currently loading data.
@@ -702,7 +735,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Max & Min */}
-                <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub >
                     Max & Min
                     <Header.Subheader>
                         Specifies the minimum and maximum value that the field can have.
@@ -717,7 +750,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Max Length */}
-                <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub >
                     Max Length
                     <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
@@ -731,7 +764,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Min Length */}
-                <Header anchor="min-length" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="min-length" size="large" style={{ marginTop: '55px' }} sub >
                     Min Length
                     <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
@@ -745,7 +778,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* onBlur Event Handler */}
-                <Header anchor="onblur" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="onblur" size="large" style={{ marginTop: '55px' }} sub >
                     onBlur Event Handler
                     <Header.Subheader>
                         Can handle an <code>onBlur</code> event from parent.
@@ -759,7 +792,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* onChange Event Handler */}
-                <Header anchor="onchange" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="onchange" size="large" style={{ marginTop: '55px' }} sub >
                     onChange Event Handler
                     <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
@@ -773,7 +806,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* onClick Event Handler */}
-                <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub >
                     onClick Event Handler
                     <Header.Subheader>
                         Can handle an <code>onClick</code> event from parent.
@@ -787,7 +820,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* onFocus Event Handler */}
-                <Header anchor="onfocus" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="onfocus" size="large" style={{ marginTop: '55px' }} sub >
                     onFocus Event Handler
                     <Header.Subheader>
                         Can handle an <code>onFocus</code> event from parent.
@@ -801,7 +834,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* onKeyDown Event Handler */}
-                <Header anchor="onkeydown" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="onkeydown" size="large" style={{ marginTop: '55px' }} sub >
                     onKeyDown Event Handler
                     <Header.Subheader>
                         Can handle an <code>onKeyDown</code> event from parent.
@@ -815,7 +848,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Placeholder */}
-                <Header anchor="placeholder" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="placeholder" size="large" style={{ marginTop: '55px' }} sub >
                     Placeholder
                     <Header.Subheader>
                         A hint to the user of what can be entered in the input.
@@ -829,7 +862,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Required */}
-                <Header anchor="required" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="required" size="large" style={{ marginTop: '55px' }} sub >
                     Required
                     <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
@@ -843,7 +876,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Type */}
-                <Header anchor="type" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="type" size="large" style={{ marginTop: '55px' }} sub >
                     Type
                     <Header.Subheader>
                         The HTML input type.
@@ -862,7 +895,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Mask */}
-                <Header anchor="mask" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="mask" size="large" style={{ marginTop: '55px' }} sub >
                     Mask
                     <Header.Subheader>
                         Is an array that defines how the user input is going to be masked.

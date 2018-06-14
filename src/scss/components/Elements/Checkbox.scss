@@ -1,6 +1,7 @@
 @import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
 
 $size: 22px;
+$size-small: 18px;
 $size-toggle: 52px;
 $padding-label-toggle: 63px;
 
@@ -15,9 +16,13 @@ $padding-label-toggle: 63px;
         color: $color-text;
         cursor: pointer;
         display: block;
-        font-size: rem(14px);
         position: relative;
-        > span { display: inline-block; padding-left: rem(33px); padding-top: 2px; }
+        > .checkbox-label-text {
+            display: inline-block;
+            font-size: rem(14px);
+            padding-left: rem(33px);
+            padding-top: 2px;
+        }
         &::before, .ui.icon-check {
             position: absolute;
             transition:
@@ -36,15 +41,22 @@ $padding-label-toggle: 63px;
             width: $size;
         }
         .ui.icon-check { // check
-            color: $color-text-inverse;
-            left: 3px;
-            padding-top: 5px;
-            text-align: center;
-            top: 1px;
+            left: 6px;
+            top: 6px;
         }
         &.label-not-clickable {
             cursor: auto;
             &::before, &.ui.icon-check { cursor: pointer; }
+        }
+    }
+    &.checkbox-size-small {
+        min-height: $size-small;
+        label {
+            &::before { height: $size-small; width: $size-small; }
+            .ui.icon-check { // check
+                left: 5px;
+                top: 5px;
+            }
         }
     }
     .input:checked + {
@@ -59,7 +71,7 @@ $padding-label-toggle: 63px;
                 padding-right: rem(33px);
             }
             &::before { left: auto; right: 0; }
-            .ui.icon-check { left: auto; right: 3px; }
+            .ui.icon-check { left: auto; right: 6px; }
         }
     }
     &-disabled {

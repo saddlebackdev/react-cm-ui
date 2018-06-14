@@ -38,6 +38,20 @@ export default class AutoHeightSample extends React.Component {
 
 }`;
 
+const autoFocusSample = `import React from 'react';
+
+import TextArea from 'components/UI/Elements/TextArea.react';
+
+export default class AutoFocusSample extends React.Component {
+
+    render() {
+        return (
+            <TextArea autoFocus={true} />
+        );
+    }
+
+}`;
+
 const disabledSample = `import React from 'react';
 
 import TextArea from 'components/UI/Elements/TextArea.react';
@@ -320,6 +334,12 @@ export default class ElementsTextArea extends React.Component {
                 description: 'Indicates whether height of the text area fits the content or not.',
                 allowedTypes: ''
             }, {
+                name: 'autoFocus',
+                type: 'bool',
+                default: '',
+                description: 'Gives Text Area immediate focus.',
+                allowedTypes: ''
+            }, {
                 name: 'className',
                 type: 'string',
                 default: '',
@@ -465,7 +485,7 @@ export default class ElementsTextArea extends React.Component {
                 </Card>
 
                 {/* Text Area */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Text Area
                     <Header.Subheader>
                         A standard text area.
@@ -479,7 +499,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Auto Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Auto Height
                     <Header.Subheader>
                         A text area can auto resize based on it's content.
@@ -492,8 +512,22 @@ export default class ElementsTextArea extends React.Component {
                     {autoHeightSample}
                 </Highlighter>
 
+                {/* Auto Focus */}
+                <Header size="large" style={{ marginTop: '55px' }} sub >
+                    Auto Focus
+                    <Header.Subheader>
+                        A text area that will be focused upon loading.
+                    </Header.Subheader>
+                </Header>
+
+                <TextArea autoFocus={true} />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {autoFocusSample}
+                </Highlighter>
+
                 {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Disabled
                     <Header.Subheader>
                         Indicates that the text area is not available for interaction.
@@ -507,7 +541,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Error */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Error
                     <Header.Subheader>
                         Indicates that the text area has an error. You can either supply a boolean value or a string with a message.
@@ -523,7 +557,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Fluid
                     <Header.Subheader>
                         A text area can take on the size of its container.
@@ -537,7 +571,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Inverse */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Inverse
                     <Header.Subheader>
                         Format to appear on dark backgrounds.
@@ -553,7 +587,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Label
                     <Header.Subheader>
                         Optional Label to display on top of the text area.
@@ -567,7 +601,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Max Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Max Height
                     <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
@@ -581,7 +615,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Max Length */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Max Length
                     <Header.Subheader>
                         Specifies the maximum number of characters that the user can enter.
@@ -595,7 +629,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Min Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Min Height
                     <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
@@ -609,7 +643,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Min Length */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Min Length
                     <Header.Subheader>
                         Specifies the minimum number of characters that the user needs to enter.
@@ -623,7 +657,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* onBlur Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     onBlur Event Handler
                     <Header.Subheader>
                         Can handle an <code>onBlur</code> event from parent.
@@ -637,7 +671,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* onChange Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     onChange Event Handler
                     <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
@@ -651,7 +685,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* onClick Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     onClick Event Handler
                     <Header.Subheader>
                         Can handle an <code>onClick</code> event from parent.
@@ -665,7 +699,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* onFocus Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     onFocus Event Handler
                     <Header.Subheader>
                         Can handle an <code>onFocus</code> event from parent.
@@ -679,7 +713,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* onKeyDown Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     onKeyDown Event Handler
                     <Header.Subheader>
                         Can handle an <code>onKeyDown</code> event from parent.
@@ -693,7 +727,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Placeholder */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Placeholder
                     <Header.Subheader>
                         A hint to the user of what can be entered in the text area.
@@ -707,7 +741,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Required */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Required
                     <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
@@ -721,7 +755,7 @@ export default class ElementsTextArea extends React.Component {
                 </Highlighter>
 
                 {/* Resize */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub >
                     Resize
                     <Header.Subheader>
                         Specifies that the user must fill in a value before submitting a form.
