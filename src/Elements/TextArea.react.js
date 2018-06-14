@@ -94,7 +94,7 @@ class TextArea extends Component {
             }, 150);
         }
 
-        if(this.props.autoFocus) {
+        if (this.props.autoFocus) {
             ReactDOM.findDOMNode(this.refs.textArea).focus();
 
             this.setState({

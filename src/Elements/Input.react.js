@@ -183,7 +183,7 @@ class Input extends Component {
             }
         }
 
-        if(autoFocus) {
+        if (autoFocus) {
             ReactDOM.findDOMNode(this.input).focus();
 
             this.setState({
@@ -229,7 +229,6 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const { value } = this.state;
         const { max, min, onChange, required } = this.props;
         const type = this._getType();
         let newValue = event.target.value;
