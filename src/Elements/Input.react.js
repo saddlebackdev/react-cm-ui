@@ -115,7 +115,6 @@ class Input extends Component {
                 ) : (
                     <input
                         autoComplete={autoComplete}
-                        autoFocus
                         disabled={disabled}
                         id={id}
                         name={name}
@@ -185,8 +184,7 @@ class Input extends Component {
         }
 
         if(autoFocus) {
-            let len = this.state.value.length;
-            this.state.value[len-1].focus();
+            ReactDOM.findDOMNode(this.input).focus();
 
             this.setState({
                 isFocused: true
