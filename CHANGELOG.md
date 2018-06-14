@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.11.10 - 2018-06-14
 ##Added
-- Added a `size` prop for **Checkbox**. You can now have a default size (large) and a small checkbox.
+- New `size` prop for **Checkbox**. You can now have a default size (large) and a small checkbox.
+- New `inverse` prop for **List**.
+- New `autoFocus` prop for **Input** and **TextArea**.
 
 ##Changed
 - Fixed Checkbox to be always be a controlled input in order to quiet down the console.
 - New `transition` css property to animate the `background-color` and `border-top-color` on hovering over a **Table.Row**.
+- Removed the **ListItem** file and and defined the correct **List.Item** component. This also removes the **List.Item** style type warning.
 
 ## 1.11.9 - 2018-06-11
 

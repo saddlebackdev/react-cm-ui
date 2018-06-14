@@ -41,4 +41,10 @@
             &:last-child { padding-right: 0; }
         }
     }
+    &.list-inverse {
+        color: $color-text-inverse;
+        &.list-horizontal.list-divide .list-item, .list-item-divide {
+            &:not(:first-child)::before { background-color: $color-text-inverse; }
+        }
+    }
 }
