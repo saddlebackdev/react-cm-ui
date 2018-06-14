@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ##Changed
 - Fixed Checkbox to be always be a controlled input in order to quiet down the console.
+- New `transition` css property to animate the `background-color` and `border-top-color` on hovering over a **Table.Row**.
 
 ## 1.11.9 - 2018-06-11
 

@@ -27,6 +27,9 @@ $cell-border-color: $border-light;
     font-weight: $default-font-weight-normal;
     padding: rem(11px);
     text-align: inherit;
+    transition:
+        background-color 150ms linear,
+        border-top-color 150ms linear;
     &.table-cell-active { background-color: $bkgd-nest; }
     &.table-cell-collapsing { white-space: nowrap; width: 1px; }
     &.table-cell-disabled { color: $color-text-static; pointer-events: none; }
