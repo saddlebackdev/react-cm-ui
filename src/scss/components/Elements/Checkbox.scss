@@ -22,6 +22,9 @@ $padding-label-toggle: 63px;
             font-size: rem(14px);
             padding-left: rem(33px);
             padding-top: 2px;
+            &-weight-bold { font-weight: $default-font-weight-bold; }
+            &-weight-normal { font-weight: $default-font-weight-normal; }
+            &-weight-semibold { font-weight: $default-font-weight-semibold; }
         }
         &::before, .ui.icon-check {
             position: absolute;
@@ -52,6 +55,8 @@ $padding-label-toggle: 63px;
     &.checkbox-size-small {
         min-height: $size-small;
         label {
+            font-size: rem(12px);
+            > .checkbox-label-text { font-size: rem(12px); padding-top: 1px; }
             &::before { height: $size-small; width: $size-small; }
             .ui.icon-check { // check
                 left: 5px;
@@ -64,7 +69,7 @@ $padding-label-toggle: 63px;
         .ui.icon-check { opacity: 1; }
     }
     &-align-right {
-        text-align: left;
+        text-align: right;
         label {
             > span {
                 padding-left: 0;

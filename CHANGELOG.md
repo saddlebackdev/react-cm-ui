@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.11 - 2018-06-14
+##Added
+- New **Rail** component.
+- New `labelClassName` and `labelWeight` for **Checkbox**.
+
 ## 1.11.10 - 2018-06-14
 ##Added
 - New `size` prop for **Checkbox**. You can now have a default size (large) and a small checkbox.
