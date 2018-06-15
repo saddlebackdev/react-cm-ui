@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.11.11 - 2018-06-14
+## 1.11.11 - 2018-06-15
 ##Added
 - New **Rail** component.
 - New `labelClassName` and `labelWeight` for **Checkbox**.
