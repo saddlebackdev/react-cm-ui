@@ -140,6 +140,10 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/views/info-bar' }} activeClassName={isActive}>Info Bar</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/views/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
                             </li>
 
