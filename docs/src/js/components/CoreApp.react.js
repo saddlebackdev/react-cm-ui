@@ -252,6 +252,14 @@ let routes = (
                 }}
             />
             <Route
+                path="info-bar"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsInfoBar.react'))
+                    }, 'ViewsInfoBar')
+                }}
+            />
+            <Route
                 path="card"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {

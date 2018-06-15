@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ##Added
 - New **Rail** component.
 - New `labelClassName` and `labelWeight` for **Checkbox**.
+- New **InfoBar** component.
 
 ## 1.11.10 - 2018-06-14
 ##Added
