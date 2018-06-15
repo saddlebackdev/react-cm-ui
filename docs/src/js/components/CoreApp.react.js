@@ -198,6 +198,14 @@ let routes = (
                 }}
             />
             <Route
+                path="rail"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsRail.react'))
+                    }, 'ElementsRail')
+                }}
+            />
+            <Route
                 path="text-area"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
@@ -241,6 +249,14 @@ let routes = (
                     require.ensure([], require => {
                         callback(null, require('components/ViewsBanner.react'))
                     }, 'ViewsBanner')
+                }}
+            />
+            <Route
+                path="info-bar"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ViewsInfoBar.react'))
+                    }, 'ViewsInfoBar')
                 }}
             />
             <Route

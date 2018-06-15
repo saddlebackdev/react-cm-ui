@@ -22,7 +22,7 @@ class Checkbox extends Component {
 
     render() {
         const { align, className, disabled, fluid, id, inverse,
-            label, labelClick, labelStyle, name, size, style, toggle, value } = this.props;
+            label, labelClassName, labelClick, labelStyle, labelWeight, name, size, style, toggle, value } = this.props;
         const { isChecked } = this.state;
         const newDisabled = disabled || false;
         const newValue = value || '';
@@ -38,6 +38,11 @@ class Checkbox extends Component {
         });
         const labelClasses = ClassNames('checkbox-label', {
             'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
+        });
+        const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
+            'checkbox-label-text-weight-bold': labelWeight == 'bold',
+            'checkbox-label-text-weight-normal': !labelWeight || labelWeight === 'normal',
+            'checkbox-label-text-weight-semibold': labelWeight == 'semibold',
         });
         const checkSize = size === 'small' ? 8 : 10;
 
@@ -61,7 +66,7 @@ class Checkbox extends Component {
                 <label className={labelClasses}>
                     {label ? (
                         <span
-                            className="checkbox-label-text"
+                            className={labelTextClasses}
                             onClick={this._onLabelClick.bind(this)}
                             style={labelStyle}
                         >
@@ -104,6 +109,7 @@ class Checkbox extends Component {
 }
 
 const alignEnums = [ 'left', 'right' ];
+const labelWeightEnums = [ 'bold', 'normal', 'semibold' ];
 const sizeEnums = [ 'small', 'large' ];
 
 Checkbox.propTypes = {
@@ -116,6 +122,8 @@ Checkbox.propTypes = {
     inverse: PropTypes.bool,
     label: PropTypes.string,
     labelClick: PropTypes.bool,
+    labelClassName: PropTypes.string,
+    labelWeight: PropTypes.oneOf(labelWeightEnums),
     labelStyle: PropTypes.object,
     name: PropTypes.string,
     onChange: PropTypes.func,
