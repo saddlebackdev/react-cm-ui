@@ -98,6 +98,7 @@ class DatePickerInput extends Component {
         }
 
         if (uxMode === 'input') {
+            console.log('value', value);
             return (
                 <Input
                     autoComplete="off"

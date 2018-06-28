@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.12 - 2018-06-28
+##Changed
+- Fixed **TimePicker's** actionable **Icon** `type`.
+- Upgraded `react-text-mask` to `v.5.4.1`. This version has been pinned as well, because of a bug in `v.5.4.2`.
+- Fixed **Table.HeaderCell** basic clickable style.
+
 ## 1.11.11 - 2018-06-15
 ##Added
 - New **Rail** component.
