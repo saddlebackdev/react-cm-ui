@@ -85,6 +85,8 @@ class Input extends Component {
             }
         }
 
+        console.log('mask', mask);
+
         return (
             <div className={containerClasses} style={style}>
                 {labelPosition === 'top' ? renderLabel() : null}

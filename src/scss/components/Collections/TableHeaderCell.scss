@@ -34,11 +34,7 @@ $cell-border-side-left-color: $border;
     text-align: inherit;
     text-transform: none;
     vertical-align: inherit;
-    &.table-header-cell-clickable {
-        color: $color-text-secondary;
-        font-weight: $default-font-weight-semibold;
-        span { cursor: pointer; }
-    }
+    &.table-header-cell-clickable span { cursor: pointer; }
     &.table-header-cell-collapsing { white-space: nowrap; width: 1px; }
     &.table-header-cell-text-align-left { text-align: left; }
     &.table-header-cell-text-align-center { text-align: center; }
