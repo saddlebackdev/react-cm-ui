@@ -78,17 +78,17 @@ class TimePicker extends Component {
                     className="time-picker-input"
                     disabled={disable}
                     error={error}
-                    guide={true}
+                    guide
                     icon={(
                         <Icon
                             color={isTimePopoverActive ? 'highlight' : null}
-                            compact={true}
-                            type="clock"
+                            compact
+                            type="time"
                             onClick={this._onTimePopoverToggle.bind(this)}
                         />
                     )}
                     id={id}
-                    keepCharPositions={true}
+                    keepCharPositions
                     label={label}
                     mask={this._onInputMask.bind(this)}
                     onChange={this._onChange.bind(this)}
@@ -106,7 +106,7 @@ class TimePicker extends Component {
                     onChange={this._onZoneDropdownChange.bind(this)}
                     options={zoneOptions}
                     placeholder="(-07:00 PDT) America (Los Angeles)"
-                    selection={true}
+                    selection
                     menuMaxHeight={448}
                     tabIndex={isTimePopoverActive ? 5 : 2}
                     value={value.timeZone}
@@ -124,7 +124,7 @@ class TimePicker extends Component {
                                 onChange={this._onTimeDropdownChange.bind(this, 'hour')}
                                 options={hourOptions}
                                 placeholder="hh"
-                                selection={true}
+                                selection
                                 menuMaxHeight={448}
                                 style={{
                                     minWidth: 72
@@ -140,9 +140,9 @@ class TimePicker extends Component {
                                 onChange={this._onTimeDropdownChange.bind(this, 'minute')}
                                 options={minuteOptions}
                                 placeholder="mm"
-                                selection={true}
+                                selection
                                 menuMaxHeight={448}
-                                selectionCreatable={true}
+                                selectionCreatable
                                 style={{
                                     minWidth: 72
                                 }}
@@ -155,7 +155,7 @@ class TimePicker extends Component {
                                 onChange={this._onTimeDropdownChange.bind(this, 'period')}
                                 options={periodOptions}
                                 placeholder="AM"
-                                selection={true}
+                                selection
                                 menuMaxHeight={448}
                                 style={{
                                     minWidth: 72
@@ -174,7 +174,7 @@ class TimePicker extends Component {
                                     onChange={this._onTimeDropdownChange.bind(this, 'hourTo')}
                                     options={hourOptions}
                                     placeholder="hh"
-                                    selection={true}
+                                    selection
                                     menuMaxHeight={448}
                                     style={{
                                         minWidth: 72
@@ -190,9 +190,9 @@ class TimePicker extends Component {
                                     onChange={this._onTimeDropdownChange.bind(this, 'minuteTo')}
                                     options={minuteOptions}
                                     placeholder="mm"
-                                    selection={true}
+                                    selection
                                     menuMaxHeight={448}
-                                    selectionCreatable={true}
+                                    selectionCreatable
                                     style={{
                                         minWidth: 72
                                     }}
@@ -205,7 +205,7 @@ class TimePicker extends Component {
                                     onChange={this._onTimeDropdownChange.bind(this, 'periodTo')}
                                     options={periodOptions}
                                     placeholder="PM"
-                                    selection={true}
+                                    selection
                                     menuMaxHeight={448}
                                     style={{
                                         minWidth: 72

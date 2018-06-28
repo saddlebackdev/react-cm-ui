@@ -599,6 +599,7 @@ export default class ModulesDatePicker extends React.Component {
             }
         ];
 
+        console.log('this.state.inputSingleDate', this.state.inputSingleDate);
         return (
             <Main page="headers">
                 <TitleBar title="Date Picker" />
