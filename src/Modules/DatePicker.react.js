@@ -224,7 +224,7 @@ class DatePicker extends Component {
     }
 
     _convertTimestamp(timestamp) {
-        return !_.isNull(timestamp) && !_.isUndefined(timestamp) ? moment.unix(timestamp).utc() : null;
+        return !_.isNil(timestamp) ? moment.unix(timestamp).utc() : null;
     }
 
     _hasValue(date) {

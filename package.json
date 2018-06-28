@@ -43,7 +43,7 @@
     "highcharts": "^6.1.0",
     "immutability-helper": "^2.6.5",
     "lodash": "^4.15.0",
-    "moment-timezone": "^0.5.13",
+    "moment-timezone": "^0.5.21",
     "react": "^15.6.2",
     "react-custom-scrollbars": "^4.0.0",
     "react-dnd": "^2.5.4",
@@ -56,7 +56,7 @@
     "react-select": "^1.1.0",
     "react-syntax-highlighter": "^4.0.1",
     "react-tether": "^0.5.7",
-    "react-text-mask": "^5.0.2",
+    "react-text-mask": "5.4.1",
     "react-tree-menu": "^1.5.0"
   },
   "devDependencies": {

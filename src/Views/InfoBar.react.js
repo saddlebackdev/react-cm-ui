@@ -71,7 +71,6 @@ class InfoBar extends Component {
         const ElementType = Utils.getElementType(as || 'div', this.props);
         const convertChildren = _.isArray(children) ? children : [ children ];
         const customDrawerObj = _.find(convertChildren, child => {
-            console.log('child', child);
             return child && _.isFunction(child.type) && child.type.name === 'Drawer';
         });
         let renderDrawer;
