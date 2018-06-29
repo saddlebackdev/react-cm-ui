@@ -167,8 +167,9 @@ class Drawer extends Component {
         }
     }
 
-    _onAnimationComplete(animationEvent, drawerContainer, removeFromDOM) {
-        drawerContainer.removeEventListener(animationEvent, this._onAnimationComplete.bind(this));
+    _onCloseAnimationComplete(animationEvent, drawerContainer, removeFromDOM) {
+        const { onCloseComplete } = this.props;
+        drawerContainer.removeEventListener(animationEvent, this._onCloseAnimationComplete.bind(this));
 
         removeFromDOM();
 
@@ -188,6 +189,20 @@ class Drawer extends Component {
         }
 
         DOMUtils.removeClassName(element, 'drawer-animate-out');
+
+        if (_.isFunction(onCloseComplete)) {
+            onCloseComplete(true);
+        }
+    }
+
+    _onOpenAnimationComplete(animationEvent, drawerContainer) {
+        const { onOpenComplete } = this.props;
+
+        drawerContainer.removeEventListener(animationEvent, this._onOpenAnimationComplete.bind(this));
+
+        if (_.isFunction(onOpenComplete)) {
+            onOpenComplete(true);
+        }
     }
 
     _onBeforeClose(node, removeFromDOM) {
@@ -199,7 +214,7 @@ class Drawer extends Component {
             DOMUtils.addClassName(document.body, 'drawer-animate-out');
             drawer.className = 'ui drawer drawer-animate-out';
 
-            drawerContainer.addEventListener(animationEvent, this._onAnimationComplete.bind(this, animationEvent, drawerContainer, removeFromDOM));
+            drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete.bind(this, animationEvent, drawerContainer, removeFromDOM));
         } else {
             const element = document.body;
             DOMUtils.removeClassName(element, 'drawer-open');
@@ -244,7 +259,10 @@ class Drawer extends Component {
         const containerInnerEl = ReactDOM.findDOMNode(this.drawerContainerInner);
         const headerEl = containerInnerEl.querySelector('header');
         const headerHeight = headerEl.offsetHeight;
+        const animationEvent = this._animationProps(drawerContainer);
         let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+
+        drawerContainer.addEventListener(animationEvent, this._onOpenAnimationComplete.bind(this, animationEvent, drawerContainer));
 
         if (onClickOutside) {
             document.addEventListener('click', this._onClickOutside);
@@ -296,7 +314,9 @@ Drawer.propTypes = {
     ]),
     header: PropTypes.bool,
     inverse: PropTypes.bool,
+    onCloseComplete: PropTypes.func,
     isOpen: PropTypes.bool.isRequired,
+    onOpenComplete: PropTypes.func,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
