@@ -304,6 +304,69 @@ export default class InverseSample extends React.Component {
 
 }`;
 
+const onOpenAndCloseCompleteSample = `import React from 'react';
+
+import { Button, Drawer } from 'react-cm-ui';
+
+export default class OnOpenAndCloseCompleteSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { isOnOpenAndCloseCompleteDrawerOpen: false };
+
+        this._onCloseComplete = this._onCloseComplete.bind(this);
+        this._onOpenComplete = this._onOpenComplete.bind(this);
+        this._onOpenCompleteClick = this._onOpenCompleteClick.bind(this);
+    }
+
+    render() {
+        return (
+            <div>
+                <Button onClick={this._onOpenCompleteClick}>Open Drawer</Button>
+
+                <Drawer
+                    isOpen={this.state.isOnOpenAndCloseCompleteDrawerOpen}
+                    onClose={this._onOpenCompleteClick}
+                    onCloseComplete={this._onCloseComplete}
+                    onOpenComplete={this._onOpenComplete}
+                    title="A OnCloseComplete and OnOpenComplete Drawer"
+                >
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+                    </div>
+                </Drawer>
+            </div>
+        );
+    }
+
+    _onOpenCompleteClick() {
+        this.setState({ isOnOpenAndCloseCompleteDrawerOpen: !this.state.isOnOpenAndCloseCompleteDrawerOpen });
+    }
+
+    _onCloseComplete(isComplete) {
+        console.log('on drawer close animation is complete');
+    }
+
+    _onOpenCompleteClick() {
+        this.setState({ isOnOpenAndCloseCompleteDrawerOpen: !this.state.isOnOpenAndCloseCompleteDrawerOpen });
+    }
+}`;
+
 const pathSample = `import React from 'react';
 
 import { Button, Drawer } from 'react-cm-ui';
@@ -616,10 +679,15 @@ export default class ModulesDrawer extends React.Component {
             isDrawerInverseOpen: false,
             isMaxWidthDrawerOpen: false,
             isOnClickOutsideDrawerOpen: false,
+            isOnOpenAndCloseCompleteDrawerOpen: false,
             isPathDrawerOpen: false,
             nestHeaderDrawer: false,
             nestHeaderIndex: 0
         };
+
+        this._onCloseComplete = this._onCloseComplete.bind(this);
+        this._onOpenComplete = this._onOpenComplete.bind(this);
+        this._onOpenCompleteClick = this._onOpenCompleteClick.bind(this);
     }
 
     render() {
@@ -671,6 +739,18 @@ export default class ModulesDrawer extends React.Component {
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Drawer.',
+                allowedTypes: ''
+            }, {
+                name: 'onCloseComplete',
+                type: 'func',
+                default: '',
+                description: 'Alerts the parent component that the closing animation is complete.',
+                allowedTypes: ''
+            }, {
+                name: 'onOpenComplete',
+                type: 'func',
+                default: '',
+                description: 'Alerts the parent component that the opening animation is complete.',
                 allowedTypes: ''
             }, {
                 name: 'style',
@@ -869,6 +949,46 @@ export default class ModulesDrawer extends React.Component {
                     {inverseSample}
                 </Highlighter>
 
+                {/* onCloseComplete and onOpenComplete */}
+                <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    onCloseComplete and onOpenComplete
+                    <Header.Subheader>
+                        Alerts the parent component that the Drawer's open and closing animations are complete.
+                    </Header.Subheader>
+                </Header>
+
+                <Button onClick={this._onOpenCompleteClick}>Open Drawer</Button>
+
+                <Drawer
+                    isOpen={this.state.isOnOpenAndCloseCompleteDrawerOpen}
+                    onClose={this._onOpenCompleteClick}
+                    onCloseComplete={this._onCloseComplete}
+                    onOpenComplete={this._onOpenComplete}
+                    title="A OnCloseComplete and OnOpenComplete Drawer"
+                >
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+                    </div>
+                </Drawer>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {onOpenAndCloseCompleteSample}
+                </Highlighter>
+
                 {/* Max Width */}
                 <Header anchor="max-width" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Max Width
@@ -1005,6 +1125,18 @@ export default class ModulesDrawer extends React.Component {
 
     _onMaxWidthDrawerClick(arg) {
         this.setState({ isMaxWidthDrawerOpen: !this.state.isMaxWidthDrawerOpen });
+    }
+
+    _onOpenComplete(isComplete) {
+        console.log('on drawer open animation is complete');
+    }
+
+    _onCloseComplete(isComplete) {
+        console.log('on drawer close animation is complete');
+    }
+
+    _onOpenCompleteClick() {
+        this.setState({ isOnOpenAndCloseCompleteDrawerOpen: !this.state.isOnOpenAndCloseCompleteDrawerOpen });
     }
 
     _onClickOutsideDrawerClick(arg) {
