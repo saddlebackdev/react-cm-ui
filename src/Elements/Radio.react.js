@@ -8,13 +8,13 @@ import React, { Component } from 'react';
 class RadioItem extends Component {
 
     render() {
-        const { checked, className, id, label, name } = this.props;
+        const { checked, className, id, label, name, style } = this.props;
         const containerClasses = ClassNames('radio-item', className, {
             'radio-item-is-checked': checked
         });
 
         return (
-            <div className={containerClasses} onClick={this._onClick.bind(this)}>
+            <div className={containerClasses} onClick={this._onClick.bind(this)} style={style}>
                 <input
                     checked={checked}
                     className="input"
