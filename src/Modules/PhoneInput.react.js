@@ -266,10 +266,12 @@ class PhoneInput extends Component {
 
     _onInputChange(value) {
         const { onChange } = this.props;
-        const { countrySelection } = this.state;
 
         if (!_.isUndefined(onChange)) {
-            onChange(value, countrySelection.iso2);
+            const { countrySelection } = this.state;
+            console.log('countrySelection', countrySelection);
+
+            onChange(value, countrySelection.iso2, countrySelection.dialCode, countrySelection.format);
         } else {
             this.setState({ inputValue: value });
         }
