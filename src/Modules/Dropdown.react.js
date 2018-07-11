@@ -270,7 +270,7 @@ class Dropdown extends Component {
                                 className="dropdown-menu"
                                 onClick={this._onDropdownMenuClick.bind(this)}
                                 ref={el => this.dropdownMenu = el}
-                                style={_.assign(menuPositionStyle, {
+                                style={Object.assign({}, menuPositionStyle, {
                                     opacity: menuIsOpen ? 1 : 0,
                                     visibility: menuIsOpen ? 'visible' : 'hidden'
                                 })}

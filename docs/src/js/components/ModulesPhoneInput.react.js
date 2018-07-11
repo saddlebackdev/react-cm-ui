@@ -63,12 +63,12 @@ export default class OnChangeSample extends React.Component {
 
         this.state = { onChangeValue: '' };
 
-        this._onChange = this._onChangeSample.bind(this);
+        this._onChangeSample = this._onChangeSample.bind(this);
     }
 
     render() {
         return (
-            <PhoneInput onChange={this._onChange} value={this.state.onChangeValue} />
+            <PhoneInput onChange={this._onChangeSample} value={this.state.onChangeValue} />
         );
     }
 
@@ -100,7 +100,7 @@ export default class ModulesPhoneInput extends React.Component {
 
         this.state = { onChangeValue: '' };
 
-        this._onChange = this._onChangeSample.bind(this);
+        this._onChangeSample = this._onChangeSample.bind(this);
     }
 
     render() {
@@ -254,7 +254,7 @@ export default class ModulesPhoneInput extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <PhoneInput onChange={this._onChange} value={this.state.onChangeValue} />
+                <PhoneInput onChange={this._onChangeSample} value={this.state.onChangeValue} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {onChangeSample}
@@ -281,7 +281,13 @@ export default class ModulesPhoneInput extends React.Component {
         );
     }
 
-    _onChangeSample(value) {
+    _onChangeSample(value, iso2, format, dialCode) {
+        console.log('_onChangeSample');
+        console.log('value', value);
+        console.log('iso2', iso2);
+        console.log('format', format);
+        console.log('dialCode', dialCode);
+
         this.setState({ onChangeValue: value });
     }
 
