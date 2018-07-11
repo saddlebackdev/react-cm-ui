@@ -224,45 +224,40 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         &.dropdown-color- {
             &alert {
                 background-color: $bkgd-button-alert;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text-inverse; }
-                }
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
             &alternate {
                 background-color: $bkgd-button-alternate;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text-inverse; }
-                }
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
             &disable {
-                background-color: $bkgd-button-disable !important; cursor: default;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text-static; }
-                }
+                background-color: $bkgd-button-disable !important;
+                color: $color-text-static;
+                cursor: default;
+                > .ui.icon .icon-use-path { fill: $color-text-static; }
             }
             &light {
-                background-color: $bkgd-light; color: $color-text;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text; }
-                }
+                background-color: $bkgd-light;
+                color: $color-text;
+                > .ui.icon .icon-use-path { fill: $color-text; }
             }
             &outline {
-                background-color: transparent; box-shadow: inset 0 0 0 1px $border-inverse; color: $color-text;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text; }
-                }
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px $border-inverse;
+                color: $color-text;
+                > .ui.icon .icon-use-path { fill: $color-text; }
             }
             &primary {
                 background-color: $bkgd-button;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text-inverse; }
-                }
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
             &success {
                 background-color: $bkgd-button-success;
-                > .ui.icon {
-                    .icon-use-path { fill: $color-text-inverse; }
-                }
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
+            }
+            &warning {
+                background-color: $bkgd-warning;
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
         }
         &.dropdown-inverse.dropdown-color- {
