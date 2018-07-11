@@ -82,6 +82,7 @@ class Dropdown extends Component {
             'dropdown-color-primary': !buttonColor || buttonColor === 'primary',
             'dropdown-color-alternate': buttonColor === 'alternate',
             'dropdown-color-success': buttonColor === 'success',
+            'dropdown-color-warning': buttonColor === 'warning',
             'dropdown-disable': disable,
             'dropdown-fluid': fluid,
             'dropdown-icon': iconType,

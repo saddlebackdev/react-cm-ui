@@ -561,6 +561,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'A Dropdown can take on the look of a Button.',
                 allowedTypes: ''
             }, {
+                name: 'buttonColor',
+                type: 'enum',
+                default: '',
+                description: 'Color of the button Dropdown.',
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, warning'
+            }, {
                 name: 'buttonCompact',
                 type: 'bool',
                 default: '',
@@ -884,6 +890,59 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
                     </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {buttonSample}
+                    </Highlighter>
+
+                    {/* Button Color */}
+                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Button Color
+                        <Header.Subheader>
+                            Button Dropdowns can be different colors.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown button buttonColor="alert" text="Alert">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="alternate" text="Alternate">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="disable" text="Disable">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="light" text="Light">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="outline" text="Outline">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="primary" text="Primary">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="success" text="Success">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="warning" text="Warning">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {buttonSample}
