@@ -45,12 +45,12 @@ $select-noresults-color:            $color-text-inverse;
 $select-clear-size:                 floor(($select-input-height / 2)) !default;
 $select-clear-color:                #999 !default;
 $select-clear-hover-color:          #D0021B !default; // red
-$select-clear-width:                ($select-input-internal-height / 2) !default;
+$select-clear-width:                16px !default;
 
 // arrow indicator
 $select-arrow-color:                #999 !default;
 $select-arrow-color-hover:          #666 !default;
-$select-arrow-width:                5px !default;
+$select-arrow-width:                16px !default;
 
 // loading indicator
 $select-loading-size:               16px !default;
@@ -464,12 +464,16 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 color: $select-clear-color;
                 cursor: pointer;
                 display: table-cell;
-                padding-bottom: 1px;
+                padding-right: 11px;
                 position: relative;
                 text-align: center;
                 vertical-align: middle;
                 width: $select-clear-width;
-
+                > div {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
                 &:hover {
                 color: $select-clear-hover-color;
                 }
@@ -492,12 +496,17 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             .Select-arrow-zone {
                 cursor: pointer;
                 display: table-cell;
-                padding-bottom: 1px;
+                padding-bottom: 0;
+                padding-right: 11px;
                 position: relative;
                 text-align: center;
                 vertical-align: middle;
-                width: ($select-arrow-width * 5);
-                padding-right: $select-arrow-width;
+                width: $select-arrow-width;
+                > div {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
             }
                 .Select-arrow {
                     border-color: $select-arrow-color transparent transparent;
@@ -613,15 +622,6 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                         color: $color-text-inverse;
                     }
                     &:active { background-color: $select-item-border-color; }
-                    &::before {
-                        content: '\e93e'; // icon-times
-                        font-size: rem(10px);
-                        height: 10px;
-                        margin-top: -5px;
-                        position: absolute;
-                        top: 50%;
-                        width: 10px;
-                    }
                 }
         &.is-open > .Select-control .Select-arrow-zone .ui.icon {
             .icon-use-path {
@@ -634,17 +634,15 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             background-color: $select-input-bg-disabled;
             &:hover { box-shadow: none; }
         }
-    	// icon
-    	.Select-value-icon {
-    		cursor: not-allowed;
-    		border-right: 1px solid $select-item-disabled-border-color;
+        // icon
+        .Select-value-icon {
+            cursor: not-allowed;
+            border-right: 1px solid $select-item-disabled-border-color;
 
-    		&:hover,
-    		&:focus,
-    		&:active {
-    			background-color: $select-item-disabled-bg;
-    		}
-    	}
+            &:hover, &:focus, &:active {
+                background-color: $select-item-disabled-bg;
+            }
+        }
     }
     &.ui.dropdown-inverse  {
         .is-open:not(.Select--multi) > .Select-control {
@@ -665,6 +663,36 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             }
             .Select-noresults { color: $color-text; }
         .Select-input > input { color: $color-text; }
+    }
+    &.dropdown-selection-underline  {
+        .Select--single .Select-control {
+            border-left: 0;
+            border-radius: 0;
+            border-right: 0;
+            border-top: 0;
+            font-size: rem(14px);
+            height: 32px;
+            &:hover { box-shadow: none; }
+            .Select-placeholder { line-height: 33px; padding-left: 0; padding-right: 0; }
+            .Select-value { line-height: 33px; padding-left: 0; }
+            .Select-input {
+                height: 32px;
+                padding-left: 0;
+                > input {
+                    color: $color-text;
+                    padding: 7px 0 11px;
+                }
+            }
+            .Select-arrow-zone { padding-right: 0; width: 10px; }
+                .ui.icon-times { height: 10px; width: 10px; }
+        }
+        .is-open:not(.Select--multi).Select--single > .Select-control {
+            background-color: $bkgd;
+            border-bottom-color: $select-input-border-color;
+            box-shadow: none;
+            color: $color-text;
+            .Select-arrow-zone .icon-use-path { fill: $color-text-highlight; }
+        }
     }
 }
 
