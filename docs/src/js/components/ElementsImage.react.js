@@ -125,6 +125,21 @@ export default class ElementsImage extends React.Component {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {avatarSample}
                 </Highlighter>
+
+                {/* Size */}
+                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Size
+                    <Header.Subheader>
+                        An image.
+                    </Header.Subheader>
+                </Header>
+
+                <Image src="/_/docs/src/images/marty-mcfly.jpg" size={100} /><br /><br />
+                <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {imageSample}
+                </Highlighter>
             </Main>
         );
     }

@@ -11,16 +11,12 @@ import Utils from '../utils/Utils.js';
 
 class Image extends Component {
     render() {
-        const { as, avatar, className, src, style } = this.props;
+        const { as, avatar, className, size, src, style } = this.props;
         let newAs = as || 'img';
         let newStyle = style;
 
         if (avatar) {
             newAs = 'div';
-            newStyle = _.assign(style, {
-                boxShadow: src ? 'none' : null,
-                backgroundImage: src ? `url(${src})` : null
-            });
         }
 
         const ElementType = Utils.getElementType(newAs, this.props);
@@ -29,6 +25,11 @@ class Image extends Component {
         });
 
         if (ElementType === 'img') {
+            newStyle = Object.assign({}, style, {
+                backgroundImage: src ? `url(${src})` : null,
+                width: size
+            });
+
             return (
                 <ElementType
                     className={containerClasses}
@@ -36,6 +37,15 @@ class Image extends Component {
                     style={newStyle}
                 />
             );
+        }
+
+        if (avatar) {
+            newStyle = Object.assign({}, style, {
+                boxShadow: src ? 'none' : null,
+                backgroundImage: src ? `url(${src})` : null,
+                height: size,
+                width: size
+            });
         }
 
         return (
@@ -58,7 +68,7 @@ Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
     avatar: PropTypes.bool,
     className: PropTypes.string,
-    size: PropTypes.oneOf(Utils.sizeEnums()),
+    size: PropTypes.number,
     src: PropTypes.string,
     style: PropTypes.object
 };
