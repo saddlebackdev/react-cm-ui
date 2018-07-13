@@ -13,6 +13,7 @@ import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
 const imageSample = `import React from 'react';
+import { Image } from 'react-cm-ui';
 
 import Loader from 'components/UI/Elements/Loader.react';
 
@@ -27,8 +28,7 @@ export default class ImageSample extends React.Component {
 }`;
 
 const avatarSample = `import React from 'react';
-
-import Loader from 'components/UI/Elements/Loader.react';
+import { Image } from 'react-cm-ui';
 
 export default class AvatarSample extends React.Component {
 
@@ -40,13 +40,25 @@ export default class AvatarSample extends React.Component {
             </div>
         );
     }
+}`;
 
+const sizeSample = `import React from 'react';
+import { Image } from 'react-cm-ui';
+
+export default class SizeSample extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Image src="/_/docs/src/images/marty-mcfly.jpg" size={100} /><br /><br />
+                <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
+            </div>
+        );
+    }
 }`;
 
 export default class ElementsImage extends React.Component {
-
     render() {
-
         const props = [
             {
                 name: 'as',
@@ -68,10 +80,10 @@ export default class ElementsImage extends React.Component {
                 allowedTypes: '',
             }, {
                 name: 'size',
-                type: 'enum',
+                type: 'number',
                 default: '',
                 description: 'Size of Image.',
-                allowedTypes: 'xlarge, large, medium, small, xsmall, xxsmall'
+                allowedTypes: ''
             }, {
                 name: 'src',
                 type: 'string',
@@ -130,7 +142,7 @@ export default class ElementsImage extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                     Size
                     <Header.Subheader>
-                        An image.
+                        Passing a size (number) will contrain the image by its width.
                     </Header.Subheader>
                 </Header>
 
@@ -138,7 +150,7 @@ export default class ElementsImage extends React.Component {
                 <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {imageSample}
+                    {sizeSample}
                 </Highlighter>
             </Main>
         );
