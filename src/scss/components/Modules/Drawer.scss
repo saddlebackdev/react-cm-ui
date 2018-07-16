@@ -8,22 +8,23 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         overflow-y: scroll;
         position: fixed;
         width: 100%;
-        #coreApp::after {
-            background: $bkgd-disable;
-            content: '';
-            height: 100%;
-            left: 0;
-            mix-blend-mode: saturation;
-            opacity: 1;
-            position: fixed;
-            top: 0;
-            transition: opacity 150ms linear;
-            width: 100%;
+        &.drawer-dimmers {
+            #coreApp::after {
+                background: $bkgd-disable;
+                content: '';
+                height: 100%;
+                left: 0;
+                mix-blend-mode: saturation;
+                opacity: 1;
+                position: fixed;
+                top: 0;
+                transition: opacity 100ms linear;
+                width: 100%;
+            }
+            &.drawer-animate-out #coreApp::after { opacity: 0; }
         }
     }
-    &.drawer-animate-out #coreApp::after {
-        opacity: 0;
-    }
+
 }
 .ui.drawer {
     backface-visibility: hidden;
@@ -34,15 +35,17 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     top: 0;
     width: 100%;
     .drawer-container {
-        animation: slideInDrawer 200ms ease-out forwards;
         backface-visibility: hidden;
         background-color: $bkgd;
+        box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22);
         height: 100%;
         max-width: 768px;
-        overflow-x: hidden;
+        // overflow-x: hidden; // Removing this for now because I am not sure it's need and it's causing pains. We'll see if anything arises.
         position: absolute;
         right: 0;
         top: 0;
+        transform: translate(100%, 0);
+        transition: transform 200ms linear;
         width: 100%;
         &.drawer-container-inverse {
             background: $bkgd-inverse-alternate;
@@ -50,6 +53,24 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             .drawer-container-inner .drawer-header {
                 background: $bkgd-inverse-alternate;
                 color: $color-text-inverse;
+            }
+        }
+        &.color {
+            &-dark-blue {
+                background: $bkgd-blue;
+                color: $color-text-inverse;
+                .drawer-container-inner .drawer-header {
+                    background: $bkgd-blue;
+                    color: $color-text-inverse;
+                }
+            }
+        }
+        &.drawer-container-no-header {
+            .drawer-close-button {
+                position: fixed;
+                right: 11px;
+                top: 11px;
+                z-index: 1;
             }
         }
         > div > div:last-child { z-index: $zindex; }
@@ -97,28 +118,53 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 }
                 .ui.divider, .drawer-header-children { flex: 0 1 100%; margin: 21px 0 0;  }
             }
-            .drawer-children > :first-child { margin-top: 0; }
+            .drawer-children > :first-child { margin-top: 0; } // TODO: Before commiting find out a new way of either having the container or doing first-child somewhere else.
             .drawer-pushdown { margin-top: 66px; }
         }
         .drawer-container-inverse .drawer-header .drawer-close-button-container { margin: -8px 8px 0 11px; }
         .drawer-container-is-scrolled .drawer-header { box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .20); }
-    .drawer-dimmer {
-        animation: fadeInDimmer 150ms ease-out forwards;
-        animation-delay: 150ms;
-        backface-visibility: hidden;
-        background-color: rgba(255, 255, 255, .3);
-        height: 100%;
-        left: 0;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: $zindex + 2;
+    &.drawer-animate-out .drawer-dimmer { animation: fadeOutDimmer 100ms forwards; animation-delay: 200ms; }
+    .drawer-container {
+        .drawer-wing-container {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+            > div {
+                background-color: $bkgd;
+                height: 100%;
+                position: relative;
+                transform: translate(100%, 0);
+                width: 100%;
+            }
+        }
+            .drawer-wing {
+                background-color: $bkgd;
+                color: $color-text;
+                height: 100%;
+                left: 0;
+                padding: 22px;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                &.color {
+                    &-dark-blue { background-color: $bkgd-blue; color: $color-text-inverse; }
+                }
+            }
     }
-    &.drawer-animate-out {
-        .drawer-container { animation: slideOutDrawer 333ms forwards; }
-        .drawer-dimmer { animation: fadeOutDimmer 150ms ease-out forwards; }
-    }
+}
+.drawer-dimmers .drawer-dimmer {
+    animation: fadeInDimmer 150ms forwards;
+    backface-visibility: hidden;
+    background-color: rgba(255, 255, 255, .3);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $zindex + 2;
 }
 
 @media only screen and (min-width: 768px) {
@@ -136,15 +182,4 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
 @keyframes fadeOutDimmer {
     0% { opacity: 1; }
     100% { opacity: 0; }
-}
-
-@keyframes slideInDrawer {
-    0% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, 0); transform: translate(100%, 0); }
-    40% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22); }
-    100% { box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22); transform: translate(0, 0); }
-}
-
-@keyframes slideOutDrawer {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(100%, 0); }
 }
