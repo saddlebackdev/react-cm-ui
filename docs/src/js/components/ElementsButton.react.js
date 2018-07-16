@@ -203,7 +203,7 @@ export default class ElementsButton extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Color of the button.',
-                allowedTypes: 'primary, static'
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, warning'
             }, {
                 name: 'compact',
                 type: 'bool',

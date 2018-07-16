@@ -22,9 +22,16 @@ class CustomSelect extends Select {
         const options = this._visibleOptions = this.filterOptions(this.props.multi && this.props.removeSelected ? valueArray : null);
         const menu = this.renderMenu(options, valueArray);
         const styles = Object.assign({}, this.props.menuContainerStyle, {visibility: 'hidden'});
+
         return (
             <div className="Select-menu-outer" style={styles}>
-                <div role="listbox" tabIndex={-1} className="Select-menu" id={this._instancePrefix + '-list'} style={this.props.menuStyle}>
+                <div
+                    role="listbox"
+                    tabIndex={-1}
+                    className="Select-menu"
+                    id={this._instancePrefix + '-list'}
+                    style={this.props.menuStyle}
+                >
                     {menu}
                 </div>
             </div>
@@ -68,7 +75,7 @@ class Dropdown extends Component {
             options, placeholder, searchable, selection,
             selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
-            style, tabIndex, text, theme } = this.props;
+            selectionUnderline, style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
@@ -82,6 +89,7 @@ class Dropdown extends Component {
             'dropdown-color-primary': !buttonColor || buttonColor === 'primary',
             'dropdown-color-alternate': buttonColor === 'alternate',
             'dropdown-color-success': buttonColor === 'success',
+            'dropdown-color-warning': buttonColor === 'warning',
             'dropdown-disable': disable,
             'dropdown-fluid': fluid,
             'dropdown-icon': iconType,
@@ -89,7 +97,8 @@ class Dropdown extends Component {
             'dropdown-is-active': this.state.menuIsOpen,
             'dropdown-menu-theme-dark': theme === 'dark',
             'dropdown-menu-theme-light': theme === 'light',
-            'dropdown-selection': selection
+            'dropdown-selection': selection,
+            'dropdown-selection-underline': selectionUnderline
         });
         let items, labelJSX;
 
@@ -157,7 +166,7 @@ class Dropdown extends Component {
                                                 <span className="label">{this.state.value.label}</span>
                                             )}
 
-                                            <Icon color={disable ? 'disable' : null} compact={true} type="arrows-alt" />
+                                            <Icon color={disable ? 'disable' : null} compact type="arrows-alt" />
                                         </div>
 
                                         <Modal
@@ -179,8 +188,28 @@ class Dropdown extends Component {
                                         {labelJSX}
 
                                         <CustomSelect
-                                            arrowRenderer={() => <Icon compact={true} size="xsmall" type={iconType || 'chevron-wl-down'} />}
-                                            clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
+                                            arrowRenderer={() => {
+                                                return (
+                                                    <div>
+                                                        <Icon
+                                                            compact={true}
+                                                            size={selectionUnderline ? 10 : 16}
+                                                            type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
+                                                        />
+                                                    </div>
+                                                );
+                                            }}
+                                            clearRenderer={() => {
+                                                return (
+                                                    <div>
+                                                        <Icon
+                                                            compact
+                                                            size={selectionUnderline ? 10 : 16}
+                                                            type="times"
+                                                        />
+                                                    </div>
+                                                );
+                                            }}
                                             clearable={!clearable ? clearable : true}
                                             disabled={disable}
                                             menuContainerStyle={selectionMenuContainerStyle}
@@ -214,8 +243,20 @@ class Dropdown extends Component {
                         {labelJSX}
 
                         <Select.Creatable
-                            arrowRenderer={() => <Icon compact={true} size="xsmall" type="chevron-wl-down" />}
-                            clearRenderer={() => <Icon compact={true} size="xsmall" type="times" />}
+                            arrowRenderer={() => {
+                                return (
+                                    <div>
+                                        <Icon compact size={16} type="chevron-down" />
+                                    </div>
+                                );
+                            }}
+                            clearRenderer={() => {
+                                return (
+                                    <div>
+                                        <Icon compact size={16} type="times" />
+                                    </div>
+                                );
+                            }}
                             clearable={!clearable ? clearable : true}
                             disabled={disable}
                             menuContainerStyle={selectionMenuContainerStyle}
@@ -485,6 +526,7 @@ Dropdown.propTypes = {
     selectionMultiple: PropTypes.bool,
     selectionOptionComponent: PropTypes.func,
     selectionRequired: PropTypes.bool,
+    selectionUnderline: PropTypes.bool,
     selectionValueComponent: PropTypes.func,
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([

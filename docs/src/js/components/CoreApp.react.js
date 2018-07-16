@@ -126,6 +126,14 @@ let routes = (
                 }}
             />
             <Route
+                path="comment"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ElementsComment.react'))
+                    }, 'ElementsComment')
+                }}
+            />
+            <Route
                 path="divider"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {

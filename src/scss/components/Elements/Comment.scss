@@ -1,0 +1,14 @@
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
+
+.ui.comment {
+    .comment-name { display: block; font-size: rem(16px); font-weight: $default-font-weight-semibold; }
+    .comment-time { color: $color-text-static; display: block; font-size: rem(14px); }
+    .comment-bubble {
+        background: $bkgd;
+        border-radius: 3px;
+        box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .10), 1px 1px 2px 0 rgba(0, 0, 0, .10);
+        font-size: rem(14px);
+        margin-top: 11px;
+        padding: 11px;
+    }
+}
