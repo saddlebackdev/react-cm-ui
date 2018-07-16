@@ -72,6 +72,10 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/elements/comment' }} activeClassName={isActive}>Comment</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/elements/header' }} activeClassName={isActive}>Header</Link>
                             </li>
 
