@@ -72,7 +72,7 @@ export default class OnChangeSample extends React.Component {
         );
     }
 
-    _onChangeSample(value) {
+    _onChangeSample(value, iso2, dialCode, isValueComplete) {
         this.setState({ onChangeValue: value });
     }
 }`;
@@ -281,12 +281,12 @@ export default class ModulesPhoneInput extends React.Component {
         );
     }
 
-    _onChangeSample(value, iso2, format, dialCode) {
+    _onChangeSample(value, iso2, dialCode, isValueComplete) {
         console.log('_onChangeSample');
         console.log('value', value);
         console.log('iso2', iso2);
-        console.log('format', format);
         console.log('dialCode', dialCode);
+        console.log('isValueComplete', isValueComplete);
 
         this.setState({ onChangeValue: value });
     }
