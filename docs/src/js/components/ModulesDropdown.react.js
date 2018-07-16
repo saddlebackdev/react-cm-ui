@@ -48,6 +48,57 @@ export default class ButtonSample extends React.Component {
 
 }`;
 
+const buttonColorSample = `import React from 'react';
+import { Dropdown } from 'react-cm-ui';
+
+export default class ButtonColorSample extends React.Component {
+    render() {
+        return (
+            <div>
+                <Dropdown button buttonColor="alert" text="Alert">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="alternate" text="Alternate">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="disable" text="Disable">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="light" text="Light">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="outline" text="Outline">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="primary" text="Primary">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="success" text="Success">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown button buttonColor="warning" text="Warning">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+            </div>
+        );
+    }
+}`;
+
 const buttonCompactSample = `import React from 'react';
 
 import { Dropdown } from 'react-cm-ui';
@@ -420,6 +471,69 @@ export default class SelectionOptionComponentSample extends React.Component {
 
 }`;
 
+
+const selectionUnderlineSample = `import React from 'react';
+
+import { Dropdown } from 'react-cm-ui';
+
+export default class SelectionUnderlineSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { selectionCustomOptionsValue: null };
+    }
+
+    render() {
+        const selectionCustomOptions = [
+            {
+                'avatar': '',
+                'id': -1,
+                'label': 'All Users',
+                'value': -1
+            }, {
+                'avatar': 'http://i.pravatar.cc/33?img=3',
+                'id': 5,
+                'label': 'Rafi Ghazarian',
+                'value': 5
+            }, {
+                'avatar': 'http://i.pravatar.cc/33?img=4',
+                'id': 8,
+                'label': 'Mike Jacobs',
+                'value': 8
+            }, {
+                'avatar': 'http://i.pravatar.cc/33?img=5',
+                'id': 36,
+                'label': 'Joseph Lee',
+                'value': 36
+            }, {
+                'avatar': 'http://i.pravatar.cc/33?img=68',
+                'id': 36,
+                'label': 'Cameron Brewer',
+                'value': 36
+            }
+        ];
+
+        return (
+            <Dropdown
+                onChange={this._onSelectionCustomOptionsChange.bind(this)}
+                options={selectionCustomOptions}
+                placeholder="Select a status"
+                selection
+                selectionUnderline
+                value={this.state.selectionCustomOptionsValue}
+            />
+        );
+    }
+
+    _onSelectionCustomOptionsChange(selectedOption) {
+        console.log('Parent component has the object now and can do what needs to be done');
+
+        this.setState({ selectionCustomOptionsValue: selectedOption });
+    }
+
+}`;
+
 const themeSample = `import React from 'react';
 
 import { Dropdown } from 'react-cm-ui';
@@ -561,6 +675,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'A Dropdown can take on the look of a Button.',
                 allowedTypes: ''
             }, {
+                name: 'buttonColor',
+                type: 'enum',
+                default: '',
+                description: 'Color of the button Dropdown.',
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, warning'
+            }, {
                 name: 'buttonCompact',
                 type: 'bool',
                 default: '',
@@ -673,6 +793,12 @@ export default class ModulesDropdown extends React.Component {
                 type: 'func',
                 default: '',
                 description: 'Give a Dropdown Selection custom options.',
+                allowedTypes: ''
+            }, {
+                name: 'selectionUnderline',
+                type: 'bool',
+                default: '',
+                description: 'Underlined Dropdown selection.',
                 allowedTypes: ''
             }, {
                 name: 'style',
@@ -887,6 +1013,58 @@ export default class ModulesDropdown extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {buttonSample}
+                    </Highlighter>
+
+                    {/* Button Color */}
+                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Button Color
+                        <Header.Subheader>
+                            Button Dropdowns can be different colors.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown button buttonColor="alert" text="Alert">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="alternate" text="Alternate">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="disable" text="Disable">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="light" text="Light">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="outline" text="Outline">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="primary" text="Primary">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="success" text="Success">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="warning" text="Warning">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {buttonColorSample}
                     </Highlighter>
 
                     {/* Button Compact */}
@@ -1143,6 +1321,27 @@ export default class ModulesDropdown extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {selectionOptionComponentSample}
+                    </Highlighter>
+
+                    {/* Selection Underline */}
+                    <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Selection Underline
+                        <Header.Subheader>
+                            A Dropdown selection can be styled to have an underline.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown
+                        onChange={this._onSelectionCustomOptionsChange.bind(this)}
+                        options={selectionCustomOptions}
+                        placeholder="Select a status"
+                        selection
+                        selectionUnderline
+                        value={this.state.selectionCustomOptionsValue}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {selectionUnderlineSample}
                     </Highlighter>
 
                     {/* Theme */}
