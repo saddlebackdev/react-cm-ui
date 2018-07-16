@@ -6,6 +6,7 @@ export { default as Tabs } from './Collections/Tabs.react.js';
 // Elements
 export { default as Button } from './Elements/Button.react.js';
 export { default as Checkbox } from './Elements/Checkbox.react.js';
+export { default as Comment } from './Elements/Comment.react.js';
 export { default as Container } from './Elements/Container.react.js';
 export { default as Divider } from './Elements/Divider.react.js';
 export { default as Header } from './Elements/Header.react.js';
