@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.16 - 2018-07-16
+##Change
+- **PhoneInput** passes a new `isValueComplete` parameter in place of `format`.
+
+## 1.11.15 - 2018-07-10
+##Change
+- Removed a warning that **Dropdown** was throwing.
+
+##Added
+- Added two new **PhoneInput** parameters `dialCode` and `format`.
+
 ## 1.11.14 - 2018-06-28
 ##Added
 - Added two new **Drawer** props: `onCloseComplete` and `onOpenComplete`.
