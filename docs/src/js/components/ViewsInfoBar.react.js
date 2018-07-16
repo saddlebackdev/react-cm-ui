@@ -61,82 +61,6 @@ export default class ColorSample extends React.Component {
     }
 }`;
 
-const infoBarDrawerSample = `import React from 'react';
-import { InfoBar } from 'react-cm-ui';
-
-export default class InfoBarDrawerSample extends React.Component {
-    render() {
-        return (
-            <InfoBar color={1} drawer>
-                <InfoBar.Drawer>
-                    <p style={{ margin: 0 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget.</p>
-                </InfoBar.Drawer>
-
-                <Header
-                    inverse
-                    size="large"
-                    weight="semibold"
-                    style={{ marginBottom: '10px' }}
-                >
-                    An Info Header
-                </Header>
-
-                <List inverse horizontal>
-                    <List.Item>
-                        <Header inverse size="xsmall" style={{ margin: 0 }}>
-                            Received
-                        </Header>
-
-                        <div className="font-weight-semibold font-size-small">
-                            640
-                        </div>
-                    </List.Item>
-
-                    <List.Item>
-                        <Header inverse size="xsmall" style={{ margin: 0 }}>
-                            Closed
-                        </Header>
-
-                        <div className="font-weight-semibold font-size-small">
-                            320
-                        </div>
-                    </List.Item>
-
-                    <List.Item divide>
-                        <Header inverse size="xsmall" style={{ margin: 0 }}>
-                            Open
-                        </Header>
-
-                        <div className="font-weight-semibold font-size-small">
-                            200
-                        </div>
-                    </List.Item>
-
-                    <List.Item>
-                        <Header inverse size="xsmall" style={{ margin: 0 }}>
-                            Blocked
-                        </Header>
-
-                        <div className="font-weight-semibold font-size-small">
-                            120
-                        </div>
-                    </List.Item>
-
-                    <List.Item divide>
-                        <Header inverse size="xsmall" style={{ margin: 0 }}>
-                            Past Due
-                        </Header>
-
-                        <div className="font-weight-semibold font-size-small">
-                            70
-                        </div>
-                    </List.Item>
-                </List>
-            </InfoBar>
-        );
-    }
-}`;
-
 export default class ViewsInfoBar extends React.Component {
     render() {
         const props = [
@@ -158,12 +82,6 @@ export default class ViewsInfoBar extends React.Component {
                 default: '',
                 description: 'Color of the Info Bar.',
                 allowedTypes: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10'
-            }, {
-                name: 'drawer',
-                type: 'bool',
-                default: '',
-                description: 'Additional classes.',
-                allowedTypes: ''
             }, {
                 name: 'style',
                 type: 'object',
@@ -233,85 +151,6 @@ export default class ViewsInfoBar extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {colorSample}
-                </Highlighter>
-
-                {/* Drawer */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Drawer
-                    <Header.Subheader>
-                        An Info Bar's drawer.
-                    </Header.Subheader>
-                </Header>
-
-                <InfoBar color={1} drawer>
-                    <InfoBar.Drawer>
-                        <p style={{ margin: 0 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget.</p>
-                    </InfoBar.Drawer>
-
-                    <Header
-                        inverse
-                        size="large"
-                        weight="semibold"
-                        style={{ marginBottom: '10px' }}
-                    >
-                        An Info Header
-                    </Header>
-
-                    <List inverse horizontal>
-                        <List.Item>
-                            <Header inverse size="xsmall" style={{ margin: 0 }}>
-                                Received
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                640
-                            </div>
-                        </List.Item>
-
-                        <List.Item>
-                            <Header inverse size="xsmall" style={{ margin: 0 }}>
-                                Closed
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                320
-                            </div>
-                        </List.Item>
-
-                        <List.Item divide>
-                            <Header inverse size="xsmall" style={{ margin: 0 }}>
-                                Open
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                200
-                            </div>
-                        </List.Item>
-
-                        <List.Item>
-                            <Header inverse size="xsmall" style={{ margin: 0 }}>
-                                Blocked
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                120
-                            </div>
-                        </List.Item>
-
-                        <List.Item divide>
-                            <Header inverse size="xsmall" style={{ margin: 0 }}>
-                                Past Due
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                70
-                            </div>
-                        </List.Item>
-                    </List>
-                </InfoBar>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {infoBarDrawerSample}
                 </Highlighter>
             </Main>
         );
