@@ -268,10 +268,10 @@ class PhoneInput extends Component {
         const { onChange } = this.props;
 
         if (!_.isUndefined(onChange)) {
-            const { countrySelection } = this.state;
-            console.log('countrySelection', countrySelection);
+            const { countrySelection: { iso2, dialCode } } = this.state;
+            const isValueComplete = !_.some(value, c => c === '_');
 
-            onChange(value, countrySelection.iso2, countrySelection.dialCode, countrySelection.format);
+            onChange(value, iso2, dialCode, isValueComplete);
         } else {
             this.setState({ inputValue: value });
         }
