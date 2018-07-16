@@ -4,12 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.12.00 - 2018-07-16
+##Added
+- New **Comment** component.
+- New **Dropdown** `selectionUnderline` prop and `buttonColor` color additions.
+- New **Image** `size` prop.
+- New **Drawer.Wing** subcomponent to **Drawer**.
+
+##Changed
+- Removed **InfoBar.Drawer** from **InfoBar**.
+
 ## 1.11.16 - 2018-07-16
-##Change
+##Changed
 - **PhoneInput** passes a new `isValueComplete` parameter in place of `format`.
 
 ## 1.11.15 - 2018-07-10
-##Change
+##Changed
 - Removed a warning that **Dropdown** was throwing.
 
 ##Added
