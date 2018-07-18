@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.12.00 - 2018-07-17
+## 1.12.02 - 2018-07-18
+##Added
+- New **PhoneInput** `onCountryChange` function prop.
+
+##Changed
+- Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
+
+## 1.12.01 - 2018-07-17
 ##Changed
 - Fixed **Button** padding when there's an **Icon**.
 
