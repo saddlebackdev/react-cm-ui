@@ -165,7 +165,7 @@ class PhoneInput extends Component {
                         iconType={dropdownIconType}
                         onChange={this._onDropdownChange}
                         options={countriesOptions}
-                        selection={true}
+                        selection
                         selectionMenuContainerStyle={{ width: 'auto' }}
                         selectionOptionComponent={CountrySelectionOption}
                         selectionValueComponent={CountrySelectionValue}
@@ -173,8 +173,8 @@ class PhoneInput extends Component {
                     />
                     <Input
                         disabled={disable}
-                        guide={true}
-                        keepCharPositions={true}
+                        guide
+                        keepCharPositions
                         mask={inputMask}
                         onChange={this._onInputChange}
                         placeholder={inputPlaceholder}
@@ -262,6 +262,11 @@ class PhoneInput extends Component {
             inputMask: this._getCountryInputMask(selectionOption),
             inputPlaceholder: this._getCountryInputPlaceholder(selectionOption)
         });
+
+        const { onCountryChange } = this.props;
+        if (_.isFunction(onCountryChange)) {
+            onCountryChange(selectionOption.iso2);
+        }
     }
 
     _onInputChange(value) {
@@ -291,6 +296,7 @@ PhoneInput.propTypes = {
     label: PropTypes.string,
     labelStyle: PropTypes.object,
     onChange: PropTypes.func,
+    onCountryChange: PropTypes.func,
     required: PropTypes.bool,
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
