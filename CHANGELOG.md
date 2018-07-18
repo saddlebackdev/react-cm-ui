@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.12.00 - 2018-07-17
+##Changed
+- Fixed **Button** padding when there's an **Icon**.
+
 ## 1.12.00 - 2018-07-16
 ##Added
 - New **Comment** component.
