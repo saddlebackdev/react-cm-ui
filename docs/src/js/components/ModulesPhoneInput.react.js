@@ -61,19 +61,51 @@ export default class OnChangeSample extends React.Component {
     constructor() {
         super();
 
-        this.state = { onChangeValue: '' };
+        this.state = {
+            onChangeDialCode: '',
+            onChangeISO2: '',
+            onChangeIsValueComplete: false,
+            onChangeValue: '',
+        };
 
         this._onChangeSample = this._onChangeSample.bind(this);
     }
 
     render() {
+        const { onChangeISO2, onChangeValue, onChangeDialCode, onChangeIsValueComplete } = this.state;
+
         return (
-            <PhoneInput onChange={this._onChangeSample} value={this.state.onChangeValue} />
+            <div>
+                <table>
+                    <tr>
+                        <td>Phone Number Value:</td>
+                        <td>{onChangeValue || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td>Country ISO2 Code:</td>
+                        <td>{onChangeISO2 || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td>Country Dial Code:</td>
+                        <td>{onChangeDialCode || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td>Is Phone Number Value Complete?</td>
+                        <td>{onChangeIsValueComplete.toString()}</td>
+                    </tr>
+                </table>
+                <PhoneInput onChange={this._onChangeSample} value={onChangeValue} />
+            </div>
         );
     }
 
     _onChangeSample(value, iso2, dialCode, isValueComplete) {
-        this.setState({ onChangeValue: value });
+        this.setState({
+            onChangeDialCode: dialCode,
+            onChangeISO2: iso2,
+            onChangeIsValueComplete: isValueComplete,
+            onChangeValue: value
+        });
     }
 }`;
 
@@ -98,9 +130,15 @@ export default class ModulesPhoneInput extends React.Component {
     constructor() {
         super();
 
-        this.state = { onChangeValue: '' };
+        this.state = {
+            onChangeDialCode: '',
+            onChangeISO2: '',
+            onChangeIsValueComplete: false,
+            onChangeValue: '',
+        };
 
         this._onChangeSample = this._onChangeSample.bind(this);
+        this._onChangeCountrySample = this._onChangeCountrySample.bind(this);
     }
 
     render() {
@@ -154,6 +192,12 @@ export default class ModulesPhoneInput extends React.Component {
                 description: 'Can handle an onChange event from parent.',
                 allowedTypes: ''
             }, {
+                name: 'onCountryChange',
+                type: 'func',
+                default: '',
+                description: 'Can handle an onCountryChange event from parent (allowing parent to react to a change in Country if necessary).',
+                allowedTypes: ''
+            },{
                 name: 'required',
                 type: 'bool',
                 default: '',
@@ -179,6 +223,8 @@ export default class ModulesPhoneInput extends React.Component {
                 allowedTypes: ''
             }
         ];
+
+        const { onChangeISO2, onChangeValue, onChangeDialCode, onChangeIsValueComplete } = this.state;
 
         return (
             <Main page="headers">
@@ -254,7 +300,30 @@ export default class ModulesPhoneInput extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <PhoneInput onChange={this._onChangeSample} value={this.state.onChangeValue} />
+                <table style={{ marginBottom: '22px' }}>
+                    <tr>
+                        <td>{'Phone Number Value:'}</td>
+                        <td>{onChangeValue || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td>{'Country ISO2 Code:'}</td>
+                        <td>{onChangeISO2 || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td>{'Country Dial Code:'}</td>
+                        <td>{onChangeDialCode || '<Empty>'}</td>
+                    </tr>
+                    <tr>
+                        <td style={{ paddingRight: '11px' }}>{'Is Phone Number Value Complete?'}</td>
+                        <td>{onChangeIsValueComplete.toString()}</td>
+                    </tr>
+                </table>
+
+                <PhoneInput
+                    onChange={this._onChangeSample}
+                    onCountryChange={this._onChangeCountrySample}
+                    value={onChangeValue}
+                />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {onChangeSample}
@@ -282,13 +351,16 @@ export default class ModulesPhoneInput extends React.Component {
     }
 
     _onChangeSample(value, iso2, dialCode, isValueComplete) {
-        console.log('_onChangeSample');
-        console.log('value', value);
-        console.log('iso2', iso2);
-        console.log('dialCode', dialCode);
-        console.log('isValueComplete', isValueComplete);
 
-        this.setState({ onChangeValue: value });
+        this.setState({
+            onChangeDialCode: dialCode,
+            onChangeISO2: iso2,
+            onChangeIsValueComplete: isValueComplete,
+            onChangeValue: value
+        });
     }
 
+    _onChangeCountrySample(countryIso2Code) {
+        console.log(`Country changed to '${countryIso2Code.toUpperCase()}'`);
+    }
 }
