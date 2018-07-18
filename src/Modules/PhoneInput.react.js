@@ -296,7 +296,7 @@ PhoneInput.propTypes = {
     label: PropTypes.string,
     labelStyle: PropTypes.object,
     onChange: PropTypes.func,
-    onCountryChange: PropType.func,
+    onCountryChange: PropTypes.func,
     required: PropTypes.bool,
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
