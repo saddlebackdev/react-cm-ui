@@ -124,6 +124,10 @@ module.exports = function (env) {
                 compress: {
                     warnings: false
                 }
+            }),
+            new webpack.DefinePlugin({
+                __UI_DOCS_VERSION__: (typeof process.env.CM_UI_DOCS_VERSION === 'undefined') ?
+                    '"?"' : '"' + process.env.CM_UI_DOCS_VERSION + '"'
             })
         ]
     }
