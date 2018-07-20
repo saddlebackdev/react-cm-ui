@@ -25,6 +25,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ##Changed
 - Removed **InfoBar.Drawer** from **InfoBar**.
 
+## 1.11.17 - 2018-07-20
+##Added
+- New **PhoneInput** `onCountryChange` function prop.
+  - (This was originally included in the `1.12.2` release but we needed it in `1.11.x` so hence this "hotfix")
+
+##Changed
+- Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
+
 ## 1.11.16 - 2018-07-16
 ##Changed
 - **PhoneInput** passes a new `isValueComplete` parameter in place of `format`.
