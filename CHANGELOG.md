@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.11.17 - 2018-07-20
+##Added
+- New **PhoneInput** `onCountryChange` function prop.
+  - (This was originally included in the `1.12.2` release but we needed it in `1.11.x` so hence this "hotfix")
+
+##Changed
+- Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
+
 ## 1.11.16 - 2018-07-16
 ##Change
 - **PhoneInput** passes a new `isValueComplete` parameter in place of `format`.
