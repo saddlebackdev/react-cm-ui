@@ -9,6 +9,7 @@
         color 150ms ease-out,
         transform 150ms ease-out;
     width: rem(16px);
+    .icon-use-path { transition: fill 150ms linear; }
     &-align-left { margin-right: 11px; }
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }

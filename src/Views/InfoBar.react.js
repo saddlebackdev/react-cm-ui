@@ -23,22 +23,13 @@ class InfoBar extends Component {
             'info-bar-color-ten': color === 10
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
-        const convertChildren = _.isArray(children) ? children : [ children ];
-
-        let renderChildren = _.map(convertChildren, (child, index) => {
-            return (
-                <div key={index}>
-                    {child}
-                </div>
-            );
-        });
 
         return (
             <ElementType
                 className={containerClasses}
                 style={style}
             >
-                {renderChildren}
+                {children}
             </ElementType>
         );
     }
