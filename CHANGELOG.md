@@ -4,18 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.12.02 - 2018-07-18
+## 1.12.3 - 2018-07-23
+##Added
+- **Icon's** now have a smooth color transition.
+
+##Changed
+- **Button** has a new style property when `color="outline"` and `inverse` is passed.
+- **InfoBar** renders children differently now.
+- The **Drawer** component now clones custom close buttons and gives it a proper class name.
+
+## 1.12.2 - 2018-07-18
 ##Added
 - New **PhoneInput** `onCountryChange` function prop.
 
 ##Changed
 - Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
 
-## 1.12.01 - 2018-07-17
+## 1.12.1 - 2018-07-17
 ##Changed
 - Fixed **Button** padding when there's an **Icon**.
 
-## 1.12.00 - 2018-07-16
+## 1.12.0 - 2018-07-16
 ##Added
 - New **Comment** component.
 - New **Dropdown** `selectionUnderline` prop and `buttonColor` color additions.

@@ -30,7 +30,9 @@ class CloseButton extends Component {
         if (!onClose) { return false; }
 
         if (_.isObject(closeButton)) {
-            return closeButton;
+            return React.cloneElement(closeButton, {
+                className: 'drawer-close-button'
+            });;
         } else {
             return (
                 <Button

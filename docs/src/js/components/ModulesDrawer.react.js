@@ -111,7 +111,7 @@ export default class CloseButtonsSample extends React.Component {
 }`;
 
 const colorSample = `import React from 'react';
-import { Button, Drawer } from 'react-cm-ui';
+import { Button, Drawer, Icon } from 'react-cm-ui';
 
 export default class ColorSample extends React.Component {
     constructor(props) {
@@ -130,6 +130,16 @@ export default class ColorSample extends React.Component {
                 <Button onClick={this._onDrawerColorClick}>Open Drawer</Button>
 
                 <Drawer
+                    closeButton={(
+                        <Button
+                            color="outline"
+                            icon
+                            inverse
+                            onClick={this._onDrawerColorClick}
+                        >
+                            <Icon compact inverse type="times" />
+                        </Button>
+                    )}
                     color="dark-blue"
                     header={false}
                     isOpen={this.state.isDrawerColorOpen}
@@ -1115,6 +1125,16 @@ export default class ModulesDrawer extends React.Component {
                     <Button onClick={this._onDrawerColorClick}>Open Drawer</Button>
 
                     <Drawer
+                        closeButton={(
+                            <Button
+                                color="outline"
+                                icon
+                                inverse
+                                onClick={this._onDrawerColorClick}
+                            >
+                                <Icon compact inverse type="times" />
+                            </Button>
+                        )}
                         color="dark-blue"
                         header={false}
                         isOpen={this.state.isDrawerColorOpen}
