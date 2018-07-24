@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.12.4 - 2018-07-23
+##Changed
+- Removed `header === true` from the **Drawer** children statement. It's checking only to see if the child is a function/component.
+
 ## 1.12.3 - 2018-07-23
 ##Added
 - **Icon's** now have a smooth color transition.

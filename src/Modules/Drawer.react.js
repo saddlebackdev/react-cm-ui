@@ -206,7 +206,7 @@ class Drawer extends Component {
         }
 
         renderContent = React.Children.map(children, child => {
-            if (header === true && _.isFunction(child.type)) {
+            if (_.isFunction(child.type)) {
                 return React.cloneElement(child, {
                     closeButton: closeButton,
                     inverse: inverse,
