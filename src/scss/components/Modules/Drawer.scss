@@ -34,6 +34,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: $zindex;
     .drawer-container {
         backface-visibility: hidden;
         background-color: $bkgd;
