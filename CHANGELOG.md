@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.12.5 - 2018-07-24
+##Changed
+- Fixed a **Drawer** bug not cleaning up drawer class names when being unmounted.
+
 ## 1.12.4 - 2018-07-23
 ##Changed
 - Removed `header === true` from the **Drawer** children statement. It's checking only to see if the child is a function/component.

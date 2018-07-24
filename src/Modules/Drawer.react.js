@@ -383,7 +383,7 @@ class Drawer extends Component {
             this._removeFromDOM = removeFromDOM;
             this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
         } else {
-            document.body.classList.remove('ddrawer-open', 'drawer-open-layered');
+            document.body.classList.remove('drawer-open', 'drawer-open-layered', 'drawer-dimmers');
 
             removeFromDOM();
         }
