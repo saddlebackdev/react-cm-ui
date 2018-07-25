@@ -144,7 +144,7 @@ class Drawer extends Component {
 
         this.state = {
             isScrolled: false,
-            transformValue: props.side === 'right'
+            transformValue: props.position === 'right'
                 ? 'translate(100%, 0)' : 'translate(-100%, 0)',
             wing: null
         };
@@ -190,7 +190,7 @@ class Drawer extends Component {
 
     render() {
         const { children, className, closeButton, color, header,
-            inverse, isOpen, onClose, title, titleTruncate, side } = this.props;
+            inverse, isOpen, onClose, title, titleTruncate, position } = this.props;
         const { transformValue, wing } = this.state;
         const containerClasses = ClassNames('ui', 'drawer', className);
         const containerInnerClasses = ClassNames('drawer-container', {
@@ -198,10 +198,10 @@ class Drawer extends Component {
             'drawer-container-inverse': inverse,
             'drawer-container-is-scrolled': this.state.isScrolled,
             'drawer-container-no-header': header === false,
-            'left-side': side === 'left'
+            'left-position': position === 'left'
         });
         const wingClasses = ClassNames('drawer-wing-container', {
-            'left-side': side === 'left'
+            'left-position': position === 'left'
         });
         let renderContent;
 
@@ -283,7 +283,7 @@ class Drawer extends Component {
                         ref={el => this.drawerContainer = el}
                         style={{ transform: transformValue }}
                     >
-                        {side === 'left' && <div className={wingClasses}>
+                        {position === 'left' && <div className={wingClasses}>
                             <div>
                                 {wing ? React.cloneElement(wing, {
                                     onOpenToggle: this._onOpenWingToggle
@@ -310,7 +310,7 @@ class Drawer extends Component {
                             </div>
                         </ScrollBar>
 
-                        {side === 'right' && <div className={wingClasses}>
+                        {position === 'right' && <div className={wingClasses}>
                             <div>
                                 {wing ? React.cloneElement(wing, {
                                     onOpenToggle: this._onOpenWingToggle
@@ -343,7 +343,7 @@ class Drawer extends Component {
     }
 
     _onCloseAnimationComplete() {
-        const { onCloseComplete, side } = this.props;
+        const { onCloseComplete, position } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainer);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -365,7 +365,7 @@ class Drawer extends Component {
 
         body.classList.remove('drawer-animate-out');
 
-        this.setState({ transformValue: side === 'right'
+        this.setState({ transformValue: position === 'right'
             ? 'translate(100%, 0)' : 'translate(-100%, 0)' });
 
         if (_.isFunction(onCloseComplete)) {
@@ -392,7 +392,7 @@ class Drawer extends Component {
 
             document.body.classList.add('drawer-animate-out');
             this._drawer.classList.add('drawer-animate-out');
-            this._drawerContainer.style.transform = this.props.side === 'right'
+            this._drawerContainer.style.transform = this.props.position === 'right'
                 ? 'translate(100%, 0)' : 'translate(-100%, 0)';
 
             this._removeFromDOM = removeFromDOM;
@@ -432,7 +432,7 @@ class Drawer extends Component {
     }
 
     _onOpen(node) {
-        const { maxWidth, onClickOutside, side } = this.props;
+        const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
         const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -455,7 +455,7 @@ class Drawer extends Component {
             DOMUtils.addClassName(body, 'drawer-open-layered');
 
             this._drawer.style.zIndex = zIndex;
-            this._drawerContainer.style.boxShadow = `${side === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
+            this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
             this._drawerContainer.style.zIndex = zIndex;
             drawerDimmer.style.display = 'none';
         } else {
@@ -475,8 +475,8 @@ class Drawer extends Component {
     }
 
     _onOpenWingToggle(width) {
-        const { side } = this.props;
-        this.setState({ transformValue: side === 'right'
+        const { position } = this.props;
+        this.setState({ transformValue: position === 'right'
             ? `translate(-${width}, 0)` : `translate(${width}, 0)` });
     }
 
@@ -512,7 +512,7 @@ Drawer.Header = DrawerHeader;
 Drawer.Wing = DrawerWing;
 
 Drawer.defaultProps = {
-    side: 'right'
+    position: 'right'
 };
 
 Drawer.propTypes = {
@@ -534,7 +534,7 @@ Drawer.propTypes = {
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
     path: PropTypes.string,
-    side: PropTypes.oneOf([ 'left', 'right' ]),
+    position: PropTypes.oneOf([ 'left', 'right' ]),
     style: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.object,

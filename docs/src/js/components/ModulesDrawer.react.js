@@ -69,7 +69,7 @@ export default class DrawerSample extends React.Component {
                     isOpen={this.state.isBasicDrawerOpen}
                     onClose={this._onBasicDrawerClick.bind(this)}
                     title="The Best Title"
-                    side="left
+                    position="left"
                 >
                     <div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -1068,10 +1068,10 @@ export default class ModulesDrawer extends React.Component {
                 description: 'Required string to give a Drawer a title.',
                 allowedTypes: ''
             }, {
-                name: 'side',
+                name: 'position',
                 type: 'string',
                 default: 'right',
-                description: 'The side of the Drawer.',
+                description: 'The position of the Drawer.',
                 allowedTypes: 'left, right'
             }
         ];
@@ -1130,7 +1130,7 @@ export default class ModulesDrawer extends React.Component {
                         isOpen={this.state.isBasicLeftDrawerOpen}
                         onClose={this._onBasicLeftDrawerClick.bind(this)}
                         title="The Best Title"
-                        side="left"
+                        position="left"
                     >
                         <div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
