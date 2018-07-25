@@ -46,7 +46,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         right: 0;
         top: 0;
         transform: translate(100%, 0);
-        &.left-side {
+        &.left-position {
             right: inherit;
             left: 0;
             transform: translate(-100%, 0);
@@ -146,7 +146,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 transform: translate(100%, 0);
                 width: 100%;
             }
-            &.left-side > div {
+            &.left-position > div {
                 transform: translate(-100%, 0);
             }
         }
@@ -164,7 +164,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 }
             }
 
-            .drawer-wing-container.left-side .drawer-wing {
+            .drawer-wing-container.left-position .drawer-wing {
                 left: inherit;
                 right: 0;
             }
