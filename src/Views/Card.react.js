@@ -207,7 +207,7 @@ class Card extends Component {
                     <Icon
                         compact
                         onClick={this._onCollapseClick}
-                        rotate={isCollapsed ? 135 : 0}
+                        rotate={!isCollapsed ? 135 : 0}
                         type="plus"
                     />
                 </div>
