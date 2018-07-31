@@ -34,6 +34,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: $zindex;
     .drawer-container {
         backface-visibility: hidden;
         background-color: $bkgd;
@@ -45,6 +46,12 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         right: 0;
         top: 0;
         transform: translate(100%, 0);
+        &.left-position {
+            right: inherit;
+            left: 0;
+            transform: translate(-100%, 0);
+            box-shadow: 12px 0 19px 0 rgba(0, 0, 0, .22);
+        }
         transition: transform 200ms linear;
         width: 100%;
         &.drawer-container-inverse {
@@ -139,6 +146,9 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 transform: translate(100%, 0);
                 width: 100%;
             }
+            &.left-position > div {
+                transform: translate(-100%, 0);
+            }
         }
             .drawer-wing {
                 background-color: $bkgd;
@@ -152,6 +162,11 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 &.color {
                     &-dark-blue { background-color: $bkgd-blue; color: $color-text-inverse; }
                 }
+            }
+
+            .drawer-wing-container.left-position .drawer-wing {
+                left: inherit;
+                right: 0;
             }
     }
 }
