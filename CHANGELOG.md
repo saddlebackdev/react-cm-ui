@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.1 - 2018-07-31
+##Changed
+- Flipped **Card's** collapsable icon around.
+
 ## 1.13.0 - 2018-07-31
 ##Added
 - Adds an option for a drawer to open from a left side (also support second wing and other drawer features). PR #26
