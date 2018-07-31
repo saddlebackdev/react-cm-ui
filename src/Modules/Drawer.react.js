@@ -139,12 +139,13 @@ DrawerHeader.propTypes = {
 };
 
 class Drawer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             isScrolled: false,
-            transformValue: 'translate(100%, 0)',
+            transformValue: props.position === 'right'
+                ? 'translate(100%, 0)' : 'translate(-100%, 0)',
             wing: null
         };
 
@@ -189,14 +190,18 @@ class Drawer extends Component {
 
     render() {
         const { children, className, closeButton, color, header,
-            inverse, isOpen, onClose, title, titleTruncate } = this.props;
+            inverse, isOpen, onClose, title, titleTruncate, position } = this.props;
         const { transformValue, wing } = this.state;
         const containerClasses = ClassNames('ui', 'drawer', className);
         const containerInnerClasses = ClassNames('drawer-container', {
             'color-dark-blue': color === 'dark-blue',
             'drawer-container-inverse': inverse,
             'drawer-container-is-scrolled': this.state.isScrolled,
-            'drawer-container-no-header': header === false
+            'drawer-container-no-header': header === false,
+            'left-position': position === 'left'
+        });
+        const wingClasses = ClassNames('drawer-wing-container', {
+            'left-position': position === 'left'
         });
         let renderContent;
 
@@ -278,6 +283,14 @@ class Drawer extends Component {
                         ref={el => this.drawerContainer = el}
                         style={{ transform: transformValue }}
                     >
+                        {position === 'left' && <div className={wingClasses}>
+                            <div>
+                                {wing ? React.cloneElement(wing, {
+                                    onOpenToggle: this._onOpenWingToggle
+                                }) : null}
+                            </div>
+                        </div>}
+
                         <ScrollBar
                             autoHide
                             onScrollStart={this._onScrollStart}
@@ -297,13 +310,13 @@ class Drawer extends Component {
                             </div>
                         </ScrollBar>
 
-                        <div className="drawer-wing-container">
+                        {position === 'right' && <div className={wingClasses}>
                             <div>
                                 {wing ? React.cloneElement(wing, {
                                     onOpenToggle: this._onOpenWingToggle
                                 }) : null}
                             </div>
-                        </div>
+                        </div>}
 
                     </div>
 
@@ -330,7 +343,7 @@ class Drawer extends Component {
     }
 
     _onCloseAnimationComplete() {
-        const { onCloseComplete } = this.props;
+        const { onCloseComplete, position } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainer);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -352,7 +365,8 @@ class Drawer extends Component {
 
         body.classList.remove('drawer-animate-out');
 
-        this.setState({ transformValue: 'translate(100%, 0)' });
+        this.setState({ transformValue: position === 'right'
+            ? 'translate(100%, 0)' : 'translate(-100%, 0)' });
 
         if (_.isFunction(onCloseComplete)) {
             onCloseComplete(true);
@@ -378,7 +392,8 @@ class Drawer extends Component {
 
             document.body.classList.add('drawer-animate-out');
             this._drawer.classList.add('drawer-animate-out');
-            this._drawerContainer.style.transform = 'translate(100%, 0)';
+            this._drawerContainer.style.transform = this.props.position === 'right'
+                ? 'translate(100%, 0)' : 'translate(-100%, 0)';
 
             this._removeFromDOM = removeFromDOM;
             this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
@@ -417,7 +432,7 @@ class Drawer extends Component {
     }
 
     _onOpen(node) {
-        const { maxWidth, onClickOutside } = this.props;
+        const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
         const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -440,7 +455,7 @@ class Drawer extends Component {
             DOMUtils.addClassName(body, 'drawer-open-layered');
 
             this._drawer.style.zIndex = zIndex;
-            this._drawerContainer.style.boxShadow = '-2px 0 7px 0 rgba(0, 0, 0, 0.17)';
+            this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
             this._drawerContainer.style.zIndex = zIndex;
             drawerDimmer.style.display = 'none';
         } else {
@@ -460,7 +475,9 @@ class Drawer extends Component {
     }
 
     _onOpenWingToggle(width) {
-        this.setState({ transformValue: `translate(-${width}, 0)` });
+        const { position } = this.props;
+        this.setState({ transformValue: position === 'right'
+            ? `translate(-${width}, 0)` : `translate(${width}, 0)` });
     }
 
     _onCloseWingToggle() {
@@ -494,6 +511,10 @@ class Drawer extends Component {
 Drawer.Header = DrawerHeader;
 Drawer.Wing = DrawerWing;
 
+Drawer.defaultProps = {
+    position: 'right'
+};
+
 Drawer.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
@@ -513,6 +534,7 @@ Drawer.propTypes = {
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
     path: PropTypes.string,
+    position: PropTypes.oneOf([ 'left', 'right' ]),
     style: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.object,

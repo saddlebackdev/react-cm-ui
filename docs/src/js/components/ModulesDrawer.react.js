@@ -48,6 +48,45 @@ export default class DrawerSample extends React.Component {
 
 }`;
 
+const leftDrawerSample = `import React from 'react';
+
+import { Button, Drawer } from 'react-cm-ui';
+
+export default class DrawerSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { isBasicDrawerOpen: false };
+    }
+
+    render() {
+        return (
+            <div>
+                <Button onClick={this._onBasicDrawerClick.bind(this)}>Open The Basic Drawer</Button>
+
+                <Drawer
+                    isOpen={this.state.isBasicDrawerOpen}
+                    onClose={this._onBasicDrawerClick.bind(this)}
+                    title="The Best Title"
+                    position="left"
+                >
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+                    </div>
+                </Drawer>
+            </div>
+        );
+    }
+
+    _onBasicDrawerClick() {
+        this.setState({ isBasicDrawerOpen: !this.state.isBasicDrawerOpen });
+    }
+
+}`;
+
 const closeButtonsSample = `import React from 'react';
 
 import { Button, Drawer } from 'react-cm-ui';
@@ -876,6 +915,10 @@ export default class ModulesDrawer extends React.Component {
         this.setState({ isBasicDrawerOpen: !this.state.isBasicDrawerOpen });
     }
 
+    _onBasicLeftDrawerClick() {
+        this.setState({ isBasicLeftDrawerOpen: !this.state.isBasicLeftDrawerOpen });
+    }
+
     _onCloseButtonDrawerClick() {
         this.setState({ isCloseButtonDrawerOpen: !this.state.isCloseButtonDrawerOpen });
     }
@@ -1024,6 +1067,12 @@ export default class ModulesDrawer extends React.Component {
                 default: '',
                 description: 'Required string to give a Drawer a title.',
                 allowedTypes: ''
+            }, {
+                name: 'position',
+                type: 'string',
+                default: 'right',
+                description: 'The position of the Drawer.',
+                allowedTypes: 'left, right'
             }
         ];
         const { subNavIndex } = this.state;
@@ -1065,6 +1114,33 @@ export default class ModulesDrawer extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerSample}
+                    </Highlighter>
+
+                    {/* Left Side Drawer */}
+                    <Header anchor="left-side-drawer" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Drawer
+                        <Header.Subheader>
+                            A left side drawer.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Button onClick={this._onBasicLeftDrawerClick.bind(this)}>Open The Left Side Drawer</Button>
+
+                    <Drawer
+                        isOpen={this.state.isBasicLeftDrawerOpen}
+                        onClose={this._onBasicLeftDrawerClick.bind(this)}
+                        title="The Best Title"
+                        position="left"
+                    >
+                        <div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+                        </div>
+                    </Drawer>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {leftDrawerSample}
                     </Highlighter>
 
                     {/* Close Button */}
