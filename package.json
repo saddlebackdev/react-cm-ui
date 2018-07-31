@@ -80,7 +80,7 @@
     "gulp-cssmin": "^0.2.0",
     "gulp-rework": "^1.2.0",
     "gulp-sass": "^3.1.0",
-    "hoek": "^5.0.3",
+    "hoek": "^4.2.1",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.9.2",
     "postcss-loader": "^1.2.2",
