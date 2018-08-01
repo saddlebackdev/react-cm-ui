@@ -274,7 +274,7 @@ class PhoneInput extends Component {
 
         if (!_.isUndefined(onChange)) {
             const { countrySelection: { iso2, dialCode } } = this.state;
-            const isValueComplete = !_.some(value, c => c === '_');
+            const isValueComplete = !_.isEmpty(value) && !_.some(value, c => c === '_');
 
             onChange(value, iso2, dialCode, isValueComplete);
         } else {
