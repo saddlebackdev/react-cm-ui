@@ -118,15 +118,7 @@ export default class ElementsList extends React.Component {
                     </Header>
 
                     <List>
-                        <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
-                                A Header
-                            </Header>
-
-                            <div className="font-weight-semibold font-size-small">
-                                20
-                            </div>
-                        </List.Item>
+                        {null}
 
                         <List.Item>
                             <Header color="static" size="xsmall" style={{ margin: 0 }}>

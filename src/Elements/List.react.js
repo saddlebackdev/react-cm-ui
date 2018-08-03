@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -68,9 +69,11 @@ class List extends Component {
         const ElementType = Utils.getElementType(as || 'div', this.props);
         const convertChildren = _.isArray(children) ? children : [ children ];
         let items = _.map(convertChildren, (child, index) => {
-            return (
-                <Item as={as} key={'list-item' + index} {...child.props} />
-            );
+            if (!_.isNil(child)) {
+                return (
+                    <Item as={as} key={'list-item' + index} {...child.props} />
+                );
+            }
         });
 
         return (
