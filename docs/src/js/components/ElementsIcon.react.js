@@ -239,6 +239,12 @@ export default class ElementsButton extends React.Component {
                 default: '',
                 description: 'Type of icon.',
                 allowedTypes: ''
+            }, {
+                name: 'title',
+                type: 'string',
+                default: '',
+                description: 'Title (tooltip) of icon.',
+                allowedTypes: ''
             }
         ];
         const iconCompact = true;
