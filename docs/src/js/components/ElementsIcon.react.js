@@ -176,6 +176,19 @@ export default class SpinSample extends React.Component {
 
 }`;
 
+const titleSample = `import React from 'react';
+import { Icon } from 'react-cm-ui';
+
+export default class IconSample extends React.Component {
+
+    render() {
+        return (
+            <Icon type="activity" title={'I am an Activity Icon!'} />
+        );
+    }
+
+}`;
+
 export default class ElementsButton extends React.Component {
     constructor(props) {
         super(props);
@@ -723,6 +736,20 @@ export default class ElementsButton extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {spinSample}
+                    </Highlighter>
+
+                    {/* Title */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Title
+                        <Header.Subheader>
+                            Icons can have a <code>title</code> prop that gives them a &ldquo;tooltip&rdquo;.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Icon type="activity" title={'I am an Activity Icon!'} />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {titleSample}
                     </Highlighter>
                 </div>
             </Main>
