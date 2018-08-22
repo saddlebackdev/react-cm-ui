@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.5 - 2018-08-22
+###Added
+- Added a new **Button** color, `secondary`.
+- Added a new **Dropdown** `buttonColor`, `secondary`.
+- Added `name` to **Image** in order to show initials.
+
+###Changed
+- Fixed **Dropdown** menu spacing.
+- Updated **Dropdown** to use highlight background color when active.
+
 ## 1.13.4 - 2018-08-22
 ###Changed
 - **Icon** now supports an optional `title` prop that can give it a tooltip.
