@@ -44,6 +44,7 @@
             }
         }
         &primary { background-color: $bkgd-button; }
+        &secondary { background-color: $bkgd-button-secondary; }
         &success { background-color: $bkgd-button-success; }
         &transparent { background-color: transparent; }
         &warning { background-color: $bkgd-warning; }
@@ -63,6 +64,7 @@
         }
         &primary { background-color: $bkgd-button; }
         &success { background-color: $bkgd-button-success; }
+        &secondary { background-color: $bkgd-button-secondary; }
         &transparent { background-color: transparent; }
         &warning { background-color: $bkgd-warning; }
     }
