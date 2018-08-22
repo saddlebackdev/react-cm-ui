@@ -32,7 +32,7 @@ export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <Button disabled={true}>Disabled Button</Button>
+            <Button disabled>Disabled Button</Button>
         );
     }
 
@@ -46,7 +46,7 @@ export default class CompactSample extends React.Component {
 
     render() {
         return (
-            <Button compact={true}>Compact</Button>
+            <Button compact>Compact</Button>
             <Button>Normal</Button>
         );
     }
@@ -61,7 +61,7 @@ export default class RelaxSample extends React.Component {
 
     render() {
         return (
-            <Button relax={true}>Relax</Button>
+            <Button relax>Relax</Button>
             <Button>Normal</Button>
         );
     }
@@ -91,7 +91,7 @@ export default class ButtonSample extends React.Component {
 
     render() {
         return (
-            <Button fluid={true}>Fluid Button</Button>
+            <Button fluid>Fluid Button</Button>
         );
     }
 
@@ -106,11 +106,11 @@ export default class IconSample extends React.Component {
     render() {
         return (
             <div>
-                <Button icon={true}>
+                <Button icon>
                     <Icon color="inverse" type="plus" />
                 </Button>
 
-                <Button icon={true}>
+                <Button icon>
                     <Icon color="inverse" size="medium" type="times" />
                 </Button>
 
@@ -144,6 +144,7 @@ export default class ButtonSample extends React.Component {
                 <Button color="light">Light</Button>
                 <Button color="outline">Outline</Button>
                 <Button color="primary">Primary</Button>
+                <Button color="secondary">Secondary</Button>
                 <Button color="success">Success</Button>
                 <Button color="warning">Warning</Button>
             </div>
@@ -161,14 +162,15 @@ export default class ButtonSample extends React.Component {
     render() {
         return (
             <div>
-                <Button color="alert" inverse={true}>Alert</Button>
-                <Button color="alternate" inverse={true}>Alternate</Button>
-                <Button color="disable" inverse={true}>Disable</Button>
-                <Button color="light" inverse={true}>Light</Button>
-                <Button color="outline" inverse={true}>Outline</Button>
-                <Button color="primary" inverse={true}>Primary</Button>
-                <Button color="success" inverse={true}>Success</Button>
-                <Button color="warning" inverse={true}>Warning</Button>
+                <Button color="alert" inverse>Alert</Button>
+                <Button color="alternate" inverse>Alternate</Button>
+                <Button color="disable" inverse>Disable</Button>
+                <Button color="light" inverse>Light</Button>
+                <Button color="outline" inverse>Outline</Button>
+                <Button color="primary" inverse>Primary</Button>
+                <Button color="secondary" inverse>Secondary</Button>
+                <Button color="success" inverse>Success</Button>
+                <Button color="warning" inverse>Warning</Button>
             </div>
         );
     }
@@ -278,7 +280,7 @@ export default class ElementsButton extends React.Component {
                 </Card>
 
                 {/* Button */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
                     Button
                     <Header.Subheader>
                         A standard button.
@@ -292,14 +294,14 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Compact */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
                     Compact
                     <Header.Subheader>
                         A button can have reduced padding.
                     </Header.Subheader>
                 </Header>
 
-                <Button compact={true}>Compact</Button>
+                <Button compact>Compact</Button>
                 <Button>Normal</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -307,14 +309,14 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Relax */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="relax" size="large" style={{ marginTop: '55px' }} sub>
                     Relax
                     <Header.Subheader>
                         A button can have relaxed padding.
                     </Header.Subheader>
                 </Header>
 
-                <Button relax={true}>Relax</Button>
+                <Button relax>Relax</Button>
                 <Button>Normal</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -322,21 +324,21 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
                     Disabled
                     <Header.Subheader>
                         A disabled Button.
                     </Header.Subheader>
                 </Header>
 
-                <Button disabled={true}>Disabled Button</Button>
+                <Button disabled>Disabled Button</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {disabledSample}
                 </Highlighter>
 
                 {/* Width */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="width" size="large" style={{ marginTop: '55px' }} sub>
                     Width
                     <Header.Subheader>
                         A button can have a fixed width.
@@ -351,32 +353,32 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub>
                     Fluid
                     <Header.Subheader>
                         A button can take on the width of the container.
                     </Header.Subheader>
                 </Header>
 
-                <Button fluid={true}>Fluid Button</Button>
+                <Button fluid>Fluid Button</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {fluidSample}
                 </Highlighter>
 
                 {/* Icon */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
                     Icon
                     <Header.Subheader>
                         A button can contain an icon.
                     </Header.Subheader>
                 </Header>
 
-                <Button icon={true}>
+                <Button icon>
                     <Icon color="inverse" type="plus" />
                 </Button>
 
-                <Button icon={true}>
+                <Button icon>
                     <Icon color="inverse" size="medium" type="times" />
                 </Button>
 
@@ -395,7 +397,7 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Color */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
                     Color
                     <Header.Subheader>
                         Buttons can have different colors.
@@ -408,6 +410,7 @@ export default class ElementsButton extends React.Component {
                 <Button color="light">Light</Button>
                 <Button color="outline">Outline</Button>
                 <Button color="primary">Primary</Button>
+                <Button color="secondary">Secondary</Button>
                 <Button color="success">Success</Button>
                 <Button color="warning">Warning</Button>
 
@@ -416,22 +419,23 @@ export default class ElementsButton extends React.Component {
                 </Highlighter>
 
                 {/* Color Inverted */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="color-inverted" size="large" style={{ marginTop: '55px' }} sub>
                     Colors Inverted
                     <Header.Subheader>
                         Button colors can be inverted.
                     </Header.Subheader>
                 </Header>
 
-                <Block inverse={true} style={{ marginTop: '33px' }}>
-                    <Button color="alert" inverse={true}>Alert</Button>
-                    <Button color="alternate" inverse={true}>Alternate</Button>
-                    <Button color="disable" inverse={true}>Disable</Button>
-                    <Button color="light" inverse={true}>Light</Button>
-                    <Button color="outline" inverse={true}>Outline</Button>
-                    <Button color="primary" inverse={true}>Primary</Button>
-                    <Button color="success" inverse={true}>Success</Button>
-                    <Button color="warning" inverse={true}>Warning</Button>
+                <Block inverse style={{ marginTop: '33px' }}>
+                    <Button color="alert" inverse>Alert</Button>
+                    <Button color="alternate" inverse>Alternate</Button>
+                    <Button color="disable" inverse>Disable</Button>
+                    <Button color="light" inverse>Light</Button>
+                    <Button color="outline" inverse>Outline</Button>
+                    <Button color="primary" inverse>Primary</Button>
+                    <Button color="secondary" inverse>Secondary</Button>
+                    <Button color="success" inverse>Success</Button>
+                    <Button color="warning" inverse>Warning</Button>
                 </Block>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
