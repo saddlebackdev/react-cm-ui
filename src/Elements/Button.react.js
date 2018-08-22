@@ -28,6 +28,7 @@ class Button extends Component {
             'button-color-light': !disabled && color === 'light',
             'button-color-outline': !disabled && color === 'outline',
             'button-color-primary': !disabled && (!color || color === 'primary'),
+            'button-color-secondary': !disabled && color === 'secondary',
             'button-color-success': !disabled && color === 'success',
             'button-color-transparent': !disabled && color === 'transparent',
             'button-color-warning': !disabled && color === 'warning',
