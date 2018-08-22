@@ -153,7 +153,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.06);
         flex: 1 0 auto;
         list-style: none;
-        margin: 0;
+        margin: 5px 0;
         padding: 0;
         position: absolute;
         z-index: 8000;
@@ -251,6 +251,10 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 background-color: $bkgd-button;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
+            &secondary {
+                background-color: $bkgd-button-secondary;
+                > .ui.icon .icon-use-path { fill: $color-text-inverse; }
+            }
             &success {
                 background-color: $bkgd-button-success;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
@@ -258,6 +262,23 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             &warning {
                 background-color: $bkgd-warning;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
+            }
+        }
+        &.dropdown-is-active {
+            background-color: $bkgd-highlight;
+            color: $color-text-inverse;
+            > .ui.icon .icon-use-path { fill: $color-text-inverse; }
+            &.dropdown-color-disable {
+                background-color: $bkgd-button-disable !important;
+                color: $color-text-static;
+                cursor: default;
+                > .ui.icon .icon-use-path { fill: $color-text-static; }
+            }
+            &.dropdown-color-outline {
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px $border-highlight;
+                color: $color-text;
+                > .ui.icon .icon-use-path { fill: $color-text; }
             }
         }
         &.dropdown-inverse.dropdown-color- {

@@ -17,7 +17,9 @@
         background-size: cover;
         border-radius: 500em;
         box-shadow: inset 0 0 0 1px $border;
+        color: $bkgd-inverse-alternate;
         display: inline-flex;
+        font-weight: $default-font-weight-semibold;
         height: 32px;
         justify-content: center;
         width: 32px;

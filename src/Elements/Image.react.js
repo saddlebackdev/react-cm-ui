@@ -11,7 +11,7 @@ import Utils from '../utils/Utils.js';
 
 class Image extends Component {
     render() {
-        const { as, avatar, className, size, src, style } = this.props;
+        const { as, avatar, className, name, size, src, style } = this.props;
         let newAs = as || 'img';
         let newStyle = style;
 
@@ -33,7 +33,7 @@ class Image extends Component {
             return (
                 <ElementType
                     className={containerClasses}
-                    src={!avatar ? src : null}
+                    src={src}
                     style={newStyle}
                 />
             );
@@ -43,9 +43,17 @@ class Image extends Component {
             newStyle = Object.assign({}, style, {
                 boxShadow: src ? 'none' : null,
                 backgroundImage: src ? `url(${src})` : null,
+                fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size
             });
+        }
+
+        let newInitials;
+
+        if (name) {
+            newInitials = name.match(/\b\w/g) || [];
+            newInitials = ((newInitials.shift() || '') + (newInitials.pop() || '')).toUpperCase();
         }
 
         return (
@@ -54,7 +62,7 @@ class Image extends Component {
                 src={!avatar ? src : null}
                 style={newStyle}
             >
-                {avatar && !src ? (
+                {avatar && name ? newInitials : avatar && !name && !src ? (
                     <Icon color="static" compact size="xsmall" type="user" />
                 ) : null}
             </ElementType>
@@ -68,6 +76,7 @@ Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
     avatar: PropTypes.bool,
     className: PropTypes.string,
+    name: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
     style: PropTypes.object

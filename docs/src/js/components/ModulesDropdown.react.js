@@ -85,6 +85,11 @@ export default class ButtonColorSample extends React.Component {
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
+                <Dropdown button buttonColor="secondary" text="Secondary">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
                 <Dropdown button buttonColor="success" text="Success">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
@@ -1049,6 +1054,11 @@ export default class ModulesDropdown extends React.Component {
                     </Dropdown>
 
                     <Dropdown button buttonColor="primary" text="Primary">
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                    </Dropdown>
+
+                    <Dropdown button buttonColor="secondary" text="Secondary">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                     </Dropdown>

@@ -132,7 +132,8 @@ export default class ElementsImage extends React.Component {
                 </Header>
 
                 <Image avatar /><br /><br />
-                <Image avatar src="/_/docs/src/images/marty-mcfly.jpg" />
+                <Image avatar src="/_/docs/src/images/marty-mcfly.jpg" /><br /><br />
+                <Image avatar name="Marty McFly" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {avatarSample}
@@ -147,6 +148,7 @@ export default class ElementsImage extends React.Component {
                 </Header>
 
                 <Image src="/_/docs/src/images/marty-mcfly.jpg" size={100} /><br /><br />
+                <Image avatar size={44} name="Marty McFly" /><br /><br />
                 <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
