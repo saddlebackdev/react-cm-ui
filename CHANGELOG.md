@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.4 - 2018-08-22
+###Changed
+- **Icon** now supports an optional `title` prop that can give it a tooltip.
+
 ## 1.13.3 - 2018-08-03
 ##Changed
 - **List** is now checking if a child a null or undefined and if so will not return the "child."
