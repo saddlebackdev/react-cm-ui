@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.6 - 2018-08-22
+###Added
+- Added a new **Button** prop, `iconPosition`.
+
+###Changed
+- Fixed **Dropdown** button icon size.
+
 ## 1.13.5 - 2018-08-22
 ###Added
 - Added a new **Button** color, `secondary`.
