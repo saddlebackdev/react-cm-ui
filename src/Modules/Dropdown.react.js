@@ -71,7 +71,7 @@ class Dropdown extends Component {
     render() {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
-            iconInverse, iconSize, iconType, inverse, label, labelStyle,
+            iconInverse, iconPosition, iconSize, iconType, inverse, label, labelStyle,
             options, placeholder, searchable, selection,
             selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
             selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
@@ -119,7 +119,7 @@ class Dropdown extends Component {
             const convertChildren = _.isArray(children) ? children : [ children ];
             items = _.map(convertChildren, (child, index) => {
                 const { iconColor, iconInverse, iconType, id, label } = child.props;
-                const itemClass = ClassNames('dropdown-item', {
+                const itemClass = ClassNames('dropdown-item', child.props.className, {
                     'dropdown-item-is-selected': this.state.value ? this.state.value.label === label : false
                 });
                 const value = {
@@ -137,7 +137,7 @@ class Dropdown extends Component {
                             {value.label}
                         </span>
                     </li>
-                );z
+                );
             });
         }
 
@@ -289,6 +289,15 @@ class Dropdown extends Component {
                 ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                 style={style}
             >
+                {iconPosition === 'left' ? (
+                    <Icon
+                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        inverse={iconInverse}
+                        size={iconSize || 'small'}
+                        type={iconType || 'chevron-down'}
+                    />
+                ) : null}
+
                 {labelJSX}
 
                 {placeholder || text || this.state.value ? (
@@ -297,13 +306,15 @@ class Dropdown extends Component {
                     </span>
                 ) : null}
 
-                <Icon
-                    color={this.state.menuIsOpen && !button ? 'highlight' : null}
-                    compact={true}
-                    inverse={iconInverse}
-                    size={iconSize || 'xxsmall'}
-                    type={iconType || 'caret-down'}
-                />
+                {!iconPosition || iconPosition === 'right' ? (
+                    <Icon
+                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        compact
+                        inverse={iconInverse}
+                        size={iconSize || 'small'}
+                        type={iconType || 'chevron-down'}
+                    />
+                ) : null}
 
                 <MediaQuery maxWidth={767}>
                     {matches => {
@@ -499,6 +510,8 @@ class Dropdown extends Component {
 
 Dropdown.Item = DropdownItem;
 
+
+
 Dropdown.propTypes = {
     button: PropTypes.bool,
     buttonColor: PropTypes.oneOf(Utils.colorEnums()),
@@ -509,6 +522,7 @@ Dropdown.propTypes = {
     fluid: PropTypes.bool,
     iconColor: PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: PropTypes.bool,
+    iconPosition: PropTypes.oneOf([ 'left', 'right' ]),
     iconSize: PropTypes.oneOf(Utils.sizeEnums()),
     iconType: PropTypes.string,
     inverse: PropTypes.bool,
