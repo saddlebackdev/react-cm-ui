@@ -716,6 +716,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Change the icon inside of the Dropdown to inverse.',
                 allowedTypes: ''
             }, {
+                name: 'iconPosition',
+                type: 'enum',
+                default: '',
+                description: 'Change the position of the icon.',
+                allowedTypes: 'left, right'
+            }, {
                 name: 'iconSize',
                 type: 'enum',
                 default: '',
@@ -1151,7 +1157,7 @@ export default class ModulesDropdown extends React.Component {
                         <Dropdown.Item label="Option 4" />
                     </Dropdown><br /><br />
 
-                    <Dropdown button={true} iconSize="small" iconType="plus" placeholder="Button Placeholder/Icon">
+                    <Dropdown button iconSize="small" iconPosition="left" iconType="plus" placeholder="Button Placeholder/Icon">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
