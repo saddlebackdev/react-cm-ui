@@ -419,7 +419,7 @@ class Drawer extends Component {
             const paddingTop = headerEl.offsetHeight;
 
             if (paddingTop !== this._drawerContainerInnerPaddingTop) {
-                this._drawerContainerInnerPaddingTop = paddingTop + 27 + 'px';
+                this._drawerContainerInnerPaddingTop = `${paddingTop + 27}px`;
                 this.drawerContainerInner.style.paddingTop = this._drawerContainerInnerPaddingTop;
             }
         }
