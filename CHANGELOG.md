@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.10 - 2018-08-24
+###Added
+- **TextArea's** `onChange` handler is now passing `event`.
+
 ## 1.13.9 - 2018-08-24
 ###Added
 - Ugh, forgot to save a fix to **TextArea** (`columns` to `cols`) before releasing the last version.
