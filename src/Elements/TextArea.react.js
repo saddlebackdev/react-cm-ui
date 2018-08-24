@@ -117,7 +117,7 @@ class TextArea extends Component {
         const value = event.target.value;
 
         if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(value);
+            this.props.onChange(value, event);
         } else {
             this.setState({ value: value });
         }
