@@ -67,8 +67,7 @@ class List extends Component {
             'list-inverse': inverse
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
-        const convertChildren = _.isArray(children) ? children : [ children ];
-        let items = _.map(convertChildren, (child, index) => {
+        const items = React.Children.map(children, (child, index) => {
             if (!_.isNil(child)) {
                 return (
                     <Item as={as} key={'list-item' + index} {...child.props} />
