@@ -118,8 +118,6 @@ export default class ElementsList extends React.Component {
                     </Header>
 
                     <List>
-                        {null}
-
                         <List.Item>
                             <Header color="static" size="xsmall" style={{ margin: 0 }}>
                                 Another Header
