@@ -54,7 +54,7 @@ class TextArea extends Component {
                 <div className="text-area-container">
                     <textarea
                         disabled={disabled}
-                        columns={columns}
+                        cols={columns}
                         id={id}
                         name={name}
                         maxLength={maxLength}
