@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.8 - 2018-08-24
+###Added
+- Added `columns` and `rows` props to **TextArea**.
+
 ## 1.13.7 - 2018-08-24
 ###Added
 - Added `secondary` color name to the Utils.js color function.
