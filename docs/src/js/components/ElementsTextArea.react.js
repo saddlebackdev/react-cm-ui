@@ -346,6 +346,12 @@ export default class ElementsTextArea extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
+                name: 'columns',
+                type: 'number',
+                default: '',
+                description: 'Specify a column size.',
+                allowedTypes: ''
+            }, {
                 name: 'disabled',
                 type: 'bool',
                 default: 'false',
@@ -458,6 +464,12 @@ export default class ElementsTextArea extends React.Component {
                 type: 'bool',
                 default: '',
                 description: 'Specifies if a text area can be resized by the end user.',
+                allowedTypes: ''
+            }, {
+                name: 'rows',
+                type: 'number',
+                default: '',
+                description: 'Specify a row size.',
                 allowedTypes: ''
             }, {
                 name: 'style',

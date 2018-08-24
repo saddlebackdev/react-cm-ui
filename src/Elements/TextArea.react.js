@@ -24,11 +24,11 @@ class TextArea extends Component {
     }
 
     render() {
-        const { autoHeight, className,
+        const { autoHeight, className, columns,
             disabled, error, fluid,
             id, inverse, label, labelStyle,
             maxHeight, maxLength, minHeight, minLength, name,
-            placeholder, required, resize, style } = this.props;
+            placeholder, required, resize, rows, style } = this.props;
         const containerClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
             'text-area-disabled': disabled,
@@ -54,6 +54,7 @@ class TextArea extends Component {
                 <div className="text-area-container">
                     <textarea
                         disabled={disabled}
+                        columns={columns}
                         id={id}
                         name={name}
                         maxLength={maxLength}
@@ -66,6 +67,7 @@ class TextArea extends Component {
                         placeholder={placeholder}
                         ref="textArea"
                         required={required}
+                        rows={rows}
                         style={{
                             maxHeight: _.isNumber(maxHeight) ? `${maxHeight}px` : _.isString(maxHeight) ? maxHeight : null,
                             minHeight: _.isNumber(minHeight) ? `${minHeight}px` : _.isString(minHeight) ? minHeight : '88px',
@@ -146,6 +148,7 @@ TextArea.propTypes = {
     autoFocus: PropTypes.bool,
     autoHeight: PropTypes.bool,
     className: PropTypes.string,
+    columns: PropTypes.number,
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
@@ -175,6 +178,7 @@ TextArea.propTypes = {
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     resize: PropTypes.bool,
+    rows: PropTypes.number,
     style: PropTypes.object,
     value: PropTypes.string
 };
