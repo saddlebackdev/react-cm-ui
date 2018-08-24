@@ -19,6 +19,7 @@ class Utils {
             'nest',
             'outline',
             'primary',
+            'secondary',
             'static',
             'subject',
             'success',
