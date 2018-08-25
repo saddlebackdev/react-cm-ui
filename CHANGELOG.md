@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.12 - 2018-08-24
+###Changed
+- Removed `value` from **TextArea's** state.
+
 ## 1.13.11 - 2018-08-24
 ###Changed
 - Fixed **TextArea's** `autoHeight` when no `value` is controlling textarea.

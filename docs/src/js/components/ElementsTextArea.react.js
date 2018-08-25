@@ -732,7 +732,12 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea label="Check It!" onKeyDown={this._onKeyDown.bind(this)} />
+                <TextArea
+                    autoHeight
+                    label="Check It!"
+                    ref={ref => this.onKeyDownTextArea = ref}
+                    onKeyDown={this._onKeyDown.bind(this)}
+                />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {onKeyDownSample}
@@ -805,7 +810,13 @@ export default class ElementsTextArea extends React.Component {
     }
 
     _onKeyDown(event) {
-        window.alert(`You just pressed the ${event.key} key`);
+        if (event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            console.log('post message', this.onKeyDownTextArea.textArea.value);
+            window.alert('Success! Your message posted. Clearing the textarea.');
+            this.onKeyDownTextArea.textArea.value = '';
+            this.onKeyDownTextArea.textArea.style.height = null;
+        }
     }
 
     _onIconClick() {
