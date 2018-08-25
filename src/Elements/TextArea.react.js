@@ -89,7 +89,7 @@ class TextArea extends Component {
 
         if (this.props.autoHeight) {
             autoResize = setInterval(() => {
-                if (this.props.value) {
+                if (this.state.value) {
                     autosize(ReactDOM.findDOMNode(this.refs.textArea));
                     clearInterval(autoResize);
                 }
@@ -117,7 +117,7 @@ class TextArea extends Component {
         const value = event.target.value;
 
         if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(value, event);
+            this.props.onChange(value);
         } else {
             this.setState({ value: value });
         }
