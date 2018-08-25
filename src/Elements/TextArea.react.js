@@ -13,14 +13,7 @@ class TextArea extends Component {
 
         this.state = {
             isFocused: false,
-            value: props.value || ''
         };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.value, nextProps.value)) {
-            this.setState({ value: nextProps.value });
-        }
     }
 
     render() {
@@ -65,7 +58,7 @@ class TextArea extends Component {
                         onFocus={this._onFocus.bind(this)}
                         onKeyDown={this._onKeyDown.bind(this)}
                         placeholder={placeholder}
-                        ref="textArea"
+                        ref={ref => this.textArea = ref}
                         required={required}
                         rows={rows}
                         style={{
@@ -73,7 +66,7 @@ class TextArea extends Component {
                             minHeight: _.isNumber(minHeight) ? `${minHeight}px` : _.isString(minHeight) ? minHeight : '88px',
                             resize: !_.isUndefined(resize) && !resize ? 'none' : 'auto'
                         }}
-                        value={this.state.value}
+                        value={this.props.value}
                     />
 
                     {error && _.isString(error) ? (
@@ -85,19 +78,20 @@ class TextArea extends Component {
     }
 
     componentDidMount() {
-        let autoResize;
-
         if (this.props.autoHeight) {
+            const textArea = ReactDOM.findDOMNode(this.textArea);
+            let autoResize;
+
             autoResize = setInterval(() => {
-                if (this.state.value) {
-                    autosize(ReactDOM.findDOMNode(this.refs.textArea));
+                if (this.props.value || textArea.value) {
+                    autosize(textArea);
                     clearInterval(autoResize);
                 }
             }, 150);
         }
 
         if (this.props.autoFocus) {
-            ReactDOM.findDOMNode(this.refs.textArea).focus();
+            ReactDOM.findDOMNode(this.textArea).focus();
 
             this.setState({
                 isFocused: true
