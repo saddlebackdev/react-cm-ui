@@ -57,6 +57,7 @@ class Dropdown extends Component {
 
         this._onClickOutside = this._onClickOutside.bind(this);
         this._onDropdownMenuReposition = this._onDropdownMenuReposition.bind(this);
+        this._onDropdownMenuResize = this._onDropdownMenuResize.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -340,12 +341,14 @@ class Dropdown extends Component {
     componentDidMount() {
         document.addEventListener('click', this._onClickOutside);
         document.addEventListener('scroll', this._onDropdownMenuReposition);
+        window.addEventListener('resize', this._onDropdownMenuResize);
         this._onDropdownMenuReposition();
     }
 
     componentWillUnmount() {
         document.removeEventListener('click', this._onClickOutside);
         document.removeEventListener('scroll', this._onDropdownMenuReposition);
+        window.removeEventListener('resize', this._onDropdownMenuResize);
     }
 
     _menuRenderer(params) {
@@ -463,6 +466,10 @@ class Dropdown extends Component {
                 top: menuYPosition === 'top' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
             }
         });
+    }
+
+    _onDropdownMenuResize() {
+        this._onDropdownMenuReposition();
     }
 
     _onSelectionMenuOpen() {
