@@ -442,6 +442,8 @@ class Dropdown extends Component {
         const isInRight = dropdownMenuObj.isInRight;
         const isInBottom = dropdownMenuObj.isInBottom;
         const isInLeft = dropdownMenuObj.isInLeft;
+        const topBias = dropdownMenuObj.topBias;
+        const bottomBias = dropdownMenuObj.bottomBias;
         let menuXPosition, menuYPosition;
 
         if (isInRight) {
@@ -452,8 +454,16 @@ class Dropdown extends Component {
 
         if (isInBottom) {
             menuYPosition = 'top';
-        } else {
+        } else if (isInTop) {
             menuYPosition = 'bottom';
+        } else {
+            if (topBias < 0) {
+                menuYPosition = 'bottom';
+            } else if (bottomBias < 0) {
+                menuYPosition = 'top';
+            } else {
+                menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
+            }
         }
 
         this.setState({
