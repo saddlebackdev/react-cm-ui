@@ -1056,6 +1056,12 @@ export default class ModulesDrawer extends React.Component {
                 description: 'Alerts the parent component that the opening animation is complete.',
                 allowedTypes: ''
             }, {
+                name: 'scrollBar',
+                type: 'bool',
+                default: 'true',
+                description: 'Disable the custom scrollbars.',
+                allowedTypes: ''
+            }, {
                 name: 'style',
                 type: 'object',
                 default: '',
@@ -1103,6 +1109,7 @@ export default class ModulesDrawer extends React.Component {
                     <Drawer
                         isOpen={this.state.isBasicDrawerOpen}
                         onClose={this._onBasicDrawerClick.bind(this)}
+                        scrollBar={false}
                         title="The Best Title"
                     >
                         <div>

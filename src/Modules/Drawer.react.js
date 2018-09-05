@@ -190,7 +190,7 @@ class Drawer extends Component {
 
     render() {
         const { children, className, closeButton, color, header,
-            inverse, isOpen, onClose, title, titleTruncate, position } = this.props;
+            inverse, isOpen, onClose, scrollBar, title, titleTruncate, position } = this.props;
         const { transformValue, wing } = this.state;
         const containerClasses = ClassNames('ui', 'drawer', className);
         const containerInnerClasses = ClassNames('drawer-container', {
@@ -291,11 +291,26 @@ class Drawer extends Component {
                             </div>
                         </div>}
 
-                        <ScrollBar
-                            autoHide
-                            onScrollStart={this._onScrollStart}
-                            onScrollStop={this._onScrollStop}
-                        >
+                        {scrollBar === true || _.isUndefined(scrollBar) ? (
+                            <ScrollBar
+                                autoHide
+                                onScrollStart={this._onScrollStart}
+                                onScrollStop={this._onScrollStop}
+                            >
+                                <div
+                                    className="drawer-container-inner"
+                                    ref={el => this.drawerContainerInner = el}
+                                    style={{
+                                        paddingBottom: '33px',
+                                        paddingLeft: '22px',
+                                        paddingRight: '22px',
+                                        paddingTop: header === false ? '22px' : null
+                                    }}
+                                >
+                                    {renderContent}
+                                </div>
+                            </ScrollBar>
+                        ) : (
                             <div
                                 className="drawer-container-inner"
                                 ref={el => this.drawerContainerInner = el}
@@ -308,7 +323,7 @@ class Drawer extends Component {
                             >
                                 {renderContent}
                             </div>
-                        </ScrollBar>
+                        )}
 
                         {position === 'right' && <div className={wingClasses}>
                             <div>
@@ -535,6 +550,7 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     path: PropTypes.string,
     position: PropTypes.oneOf([ 'left', 'right' ]),
+    scrollBar: PropTypes.bool,
     style: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.object,
