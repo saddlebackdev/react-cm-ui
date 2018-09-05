@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.14 - 2018-09-05
+###Added
+- Added `scrollBar` prop to **Drawer**
+
 ## 1.13.13 - 2018-09-05
 ###Changed
 - Resize Window event handler for **Dropdown** menu
