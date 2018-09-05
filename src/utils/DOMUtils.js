@@ -81,21 +81,25 @@ class DOMUtils {
             const parentElRect = parentEl.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-            let isInTop, isInRight, isInBottom, isInLeft;
+            let isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias;
 
             if (!parentEl) {
                 isInTop = elRect.top >= 0;
                 isInRight = elRect.right <= windowWidth;
                 isInBottom = elRect.bottom <= windowHeight;
                 isInLeft = elRect.left >= 0;
+                topBias = elRect.top;
+                bottomBias = elRect.bottom;
             } else {
                 isInTop = parentElRect.top >= elRect.height;
                 isInRight = windowWidth - parentElRect.right >= elRect.width;
                 isInBottom = windowHeight - parentElRect.bottom >= elRect.height;
-                isInLeft = parentElRect.left >= elRect.width;;
+                isInLeft = parentElRect.left >= elRect.width;
+                topBias = parentElRect.top;
+                bottomBias = windowHeight - parentElRect.bottom;
             }
 
-            return { isInTop, isInRight, isInBottom, isInLeft }
+            return { isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias }
         } else {
             return false;
         }
