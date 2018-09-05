@@ -57,6 +57,7 @@ class Dropdown extends Component {
 
         this._onClickOutside = this._onClickOutside.bind(this);
         this._onDropdownMenuReposition = this._onDropdownMenuReposition.bind(this);
+        this._onDropdownMenuResize = this._onDropdownMenuResize.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -340,12 +341,14 @@ class Dropdown extends Component {
     componentDidMount() {
         document.addEventListener('click', this._onClickOutside);
         document.addEventListener('scroll', this._onDropdownMenuReposition);
+        window.addEventListener('resize', this._onDropdownMenuResize);
         this._onDropdownMenuReposition();
     }
 
     componentWillUnmount() {
         document.removeEventListener('click', this._onClickOutside);
         document.removeEventListener('scroll', this._onDropdownMenuReposition);
+        window.removeEventListener('resize', this._onDropdownMenuResize);
     }
 
     _menuRenderer(params) {
@@ -439,6 +442,8 @@ class Dropdown extends Component {
         const isInRight = dropdownMenuObj.isInRight;
         const isInBottom = dropdownMenuObj.isInBottom;
         const isInLeft = dropdownMenuObj.isInLeft;
+        const topBias = dropdownMenuObj.topBias;
+        const bottomBias = dropdownMenuObj.bottomBias;
         let menuXPosition, menuYPosition;
 
         if (isInRight) {
@@ -449,8 +454,16 @@ class Dropdown extends Component {
 
         if (isInBottom) {
             menuYPosition = 'top';
-        } else {
+        } else if (isInTop) {
             menuYPosition = 'bottom';
+        } else {
+            if (topBias < 0) {
+                menuYPosition = 'bottom';
+            } else if (bottomBias < 0) {
+                menuYPosition = 'top';
+            } else {
+                menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
+            }
         }
 
         this.setState({
@@ -463,6 +476,10 @@ class Dropdown extends Component {
                 top: menuYPosition === 'top' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
             }
         });
+    }
+
+    _onDropdownMenuResize() {
+        this._onDropdownMenuReposition();
     }
 
     _onSelectionMenuOpen() {
