@@ -29,12 +29,14 @@ class CloseButton extends Component {
 
         if (!onClose) { return false; }
 
+        let closeButtonJSX;
+
         if (_.isObject(closeButton)) {
-            return React.cloneElement(closeButton, {
+            closeButtonJSX = React.cloneElement(closeButton, {
                 className: 'drawer-close-button'
             });;
         } else {
-            return (
+            closeButtonJSX = (
                 <Button
                     className="drawer-close-button"
                     color={inverse ? 'transparent' : 'alternate'}
@@ -46,6 +48,12 @@ class CloseButton extends Component {
                 </Button>
             );
         }
+
+        return (
+            <div className="drawer-close-button-container">
+                {closeButtonJSX}
+            </div>
+        );
     }
 
     _onCloseClick() {
@@ -65,7 +73,6 @@ CloseButton.propTypes = {
 class DrawerWing extends Component {
     render() {
         const { children, className, color, width, style } = this.props;
-        console.log('color', color);
         const containerClasses = ClassNames('drawer-wing', className, {
             'color-dark-blue': color === 'dark-blue'
         });
@@ -108,11 +115,11 @@ class DrawerHeader extends Component {
 
         return (
             <header className="drawer-header">
-                <Header as="h2" className={titleClass} title={title}>{title}</Header>
+                {title ? (
+                    <Header as="h2" className={titleClass} title={title}>{title}</Header>
+                ) : null}
 
-                <div className="drawer-close-button-container">
-                    <CloseButton closeButton={closeButton} inverse={inverse} onClose={onClose}/>
-                </div>
+                <CloseButton closeButton={closeButton} inverse={inverse} onClose={onClose} />
 
                 {children ? (
                     <div className="drawer-header-children">{children}</div>
@@ -171,19 +178,16 @@ class Drawer extends Component {
     componentDidUpdate(prevProps) {
         // Open wing if there wasn't a previous wing open.
         if (!!this.props.wing && !!!prevProps.wing) {
-            console.log('Open wing if there wasn\'t a previous wing open.')
             this.setState({ wing: this.props.wing });
         }
 
         // Open new wing and close old wing.
         if (!!this.props.wing && !!prevProps.wing && this.props.wing !== prevProps.wing) {
-            console.log('Open new wing and close old wing.');
             this.setState({ wing: this.props.wing });
         }
 
         // Close wing if there is no other wing to open.
         if (!!!this.props.wing && !!prevProps.wing) {
-            console.log('Close wing if there is no other wing to open.');
             this._onCloseWingToggle(false);
         }
     }
@@ -344,9 +348,9 @@ class Drawer extends Component {
     _transitionProps(el) {
         let t;
         let transitions = {
-            'transiton': 'transitonend',
+            'transition': 'transitionend',
             'oTransition': 'oTransitionEnd',
-            'MozTransition': 'transitonend',
+            'MozTransition': 'transitionend',
             'WebkitTransition': 'webkitTransitionEnd'
         }
 
@@ -389,13 +393,13 @@ class Drawer extends Component {
     }
 
     _onOpenAnimationComplete() {
-        const { onOpenComplete } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainer);
-
         this.drawerContainer.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
-        if (_.isFunction(onOpenComplete)) {
-            onOpenComplete(true);
+        const { onOpenComplete } = this.props;
+
+        if (typeof onOpenComplete === 'function') {
+            onOpenComplete();
         }
 
         document.body.classList.add('drawer-dimmers');
@@ -465,28 +469,30 @@ class Drawer extends Component {
             document.addEventListener('click', this._onClickOutside);
         }
 
-        if (DOMUtils.hasClassName(body, 'drawer-open')) {
-            zIndex = zIndex + drawerLength
-            DOMUtils.addClassName(body, 'drawer-open-layered');
+        setTimeout(() => {
+            if (DOMUtils.hasClassName(body, 'drawer-open')) {
+                zIndex = zIndex + drawerLength
+                DOMUtils.addClassName(body, 'drawer-open-layered');
 
-            this._drawer.style.zIndex = zIndex;
-            this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
-            this._drawerContainer.style.zIndex = zIndex;
-            drawerDimmer.style.display = 'none';
-        } else {
-            body.style.top = `-${scrollPosition}px`;
-            DOMUtils.addClassName(body, 'drawer-open');
-            this._drawer.style.zIndex = zIndex - 1;
-            this._drawerContainer.style.zIndex = zIndex + drawerLength;
-        }
+                this._drawer.style.zIndex = zIndex;
+                this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
+                this._drawerContainer.style.zIndex = zIndex;
+                drawerDimmer.style.display = 'none';
+            } else {
+                body.style.top = `-${scrollPosition}px`;
+                DOMUtils.addClassName(body, 'drawer-open');
+                this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
+                this._drawer.style.zIndex = zIndex - 1;
+                this._drawerContainer.style.zIndex = zIndex + drawerLength;
+            }
 
-        if (!_.isUndefined(maxWidth)) {
-            this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
-        } else {
-            this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
-        }
-
-        this._drawerContainer.style.transform = 'translate(0, 0)';
+            if (!_.isUndefined(maxWidth)) {
+                this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
+            } else {
+                this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
+            }
+            this._drawerContainer.style.transform = 'translate(0, 0)';
+        }, 30);
     }
 
     _onOpenWingToggle(width) {
