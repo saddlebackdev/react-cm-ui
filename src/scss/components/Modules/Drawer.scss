@@ -38,10 +38,8 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     .drawer-container {
         backface-visibility: hidden;
         background-color: $bkgd;
-        box-shadow: -12px 0 19px 0 rgba(0, 0, 0, .22);
         height: 100%;
         max-width: 768px;
-        // overflow-x: hidden; // Removing this for now because I am not sure it's need and it's causing pains. We'll see if anything arises.
         position: absolute;
         right: 0;
         top: 0;
@@ -50,9 +48,8 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             right: inherit;
             left: 0;
             transform: translate(-100%, 0);
-            box-shadow: 12px 0 19px 0 rgba(0, 0, 0, .22);
         }
-        transition: transform 200ms linear;
+        transition: transform 200ms ease-in-out;
         width: 100%;
         &.drawer-container-inverse {
             background: $bkgd-inverse-alternate;
