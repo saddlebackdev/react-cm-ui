@@ -293,13 +293,13 @@ class Drawer extends Component {
                         ref={el => this.drawerContainer = el}
                         style={{ transform: transformValue }}
                     >
-                        {position === 'left' && <div className={wingClasses}>
-                            <div>
-                                {wing ? React.cloneElement(wing, {
-                                    onOpenToggle: this._onOpenWingToggle
-                                }) : null}
+                        {position === 'left' && wing ? (
+                            <div className={wingClasses}>
+                                <div>
+                                    {React.cloneElement(wing, { onOpenToggle: this._onOpenWingToggle })}
+                                </div>
                             </div>
-                        </div>}
+                        ) : null}
 
                         {scrollBar === true || _.isUndefined(scrollBar) ? (
                             <ScrollBar
@@ -335,14 +335,13 @@ class Drawer extends Component {
                             </div>
                         )}
 
-                        {position === 'right' && <div className={wingClasses}>
-                            <div>
-                                {wing ? React.cloneElement(wing, {
-                                    onOpenToggle: this._onOpenWingToggle
-                                }) : null}
+                        {position === 'right' && wing ? (
+                            <div className={wingClasses}>
+                                <div>
+                                    {React.cloneElement(wing, { onOpenToggle: this._onOpenWingToggle })}
+                                </div>
                             </div>
-                        </div>}
-
+                        ) : null}
                     </div>
 
                     <div className="drawer-dimmer" />
