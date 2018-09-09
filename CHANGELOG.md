@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.17 - 2018-09-09
+###Changed
+- Removed **Drawer** wing JSX when there's no wing to ever be rendered.
+
 ## 1.13.16 - 2018-09-07
 ###Added
 - Added the ability to change the **Drawer's** `maxWidth` on the fly.
