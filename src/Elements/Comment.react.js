@@ -9,7 +9,7 @@ import Image from './Image.react';
 
 class Comment extends Component {
     render() {
-        const { avatarSrc, children, className, commentDetailsPosition, name, style, time } = this.props;
+        const { avatarSrc, children, className, detailsPosition, name, style, time } = this.props;
         const containerClasses = ClassNames('ui', 'comment', className);
 
         console.log('name', name);
@@ -22,7 +22,7 @@ class Comment extends Component {
                         style={{
                             alignItems: 'center',
                             display: 'flex',
-                            flexDirection: commentDetailsPosition === 'right' ? 'row-reverse' : 'row',
+                            flexDirection: detailsPosition === 'right' ? 'row-reverse' : 'row',
                             justifyContent: 'flex-start'
                         }}
                     >
@@ -33,8 +33,8 @@ class Comment extends Component {
                         <div
                             style={{
                                 flex: '1 0 auto',
-                                margin: commentDetailsPosition === 'right' ? '0 11px 0 0' : '0 0 0 11px',
-                                textAlign: commentDetailsPosition === 'right' ? 'right' : 'left'
+                                margin: detailsPosition === 'right' ? '0 11px 0 0' : '0 0 0 11px',
+                                textAlign: detailsPosition === 'right' ? 'right' : 'left'
                             }}
                         >
                             <span className="comment-name">{name}</span>
@@ -67,7 +67,7 @@ class Comment extends Component {
 Comment.propTypes = {
     avatarSrc: PropTypes.string,
     className: PropTypes.string,
-    commentDetailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
+    detailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
     name: PropTypes.string.isRequired,
     style: PropTypes.object,
     time: PropTypes.number.isRequired
