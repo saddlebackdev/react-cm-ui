@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.18 - 2018-09-11
+###Added
+- Added `detailsPosition` prop to **Comment**.
+
+###Changed
+- The **Comment** not need any details.
+
 ## 1.13.17 - 2018-09-09
 ###Changed
 - Removed **Drawer** wing JSX when there's no wing to ever be rendered.
