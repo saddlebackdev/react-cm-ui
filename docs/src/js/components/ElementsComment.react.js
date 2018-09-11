@@ -45,6 +45,12 @@ export default class ElmentsComment extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
+                name: 'detailsPosition',
+                type: 'enum',
+                default: '',
+                description: 'Position the comment\'s details on either the left or right.',
+                allowedTypes: 'left, right'
+            }, {
                 name: 'name *',
                 type: 'string',
                 default: '',
