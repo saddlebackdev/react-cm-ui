@@ -58,7 +58,7 @@ export default class ColorSample extends React.Component {
                 </InfoBar><br /><br />
 
                 <InfoBar color={11}>
-                    Super Cool Info Bar - Color: 10
+                    Super Cool Info Bar - Color: 11
                 </InfoBar>
             </div>
         );
@@ -151,11 +151,11 @@ export default class ViewsInfoBar extends React.Component {
 
                 <InfoBar color={10}>
                     Super Cool Info Bar - Color: 10
-                </InfoBar>
+                </InfoBar><br /><br />
 
                 <InfoBar color={11}>
-                    Super Cool Info Bar - Color: 10
-                </InfoBar><br /><br />
+                    Super Cool Info Bar - Color: 11
+                </InfoBar>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {colorSample}

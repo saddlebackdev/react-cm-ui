@@ -21,7 +21,7 @@ class InfoBar extends Component {
             'info-bar-color-eight': color === 8,
             'info-bar-color-nine': color === 9,
             'info-bar-color-ten': color === 10,
-            'info-bar-color-ten': color === 11
+            'info-bar-color-eleven': color === 11
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
 
