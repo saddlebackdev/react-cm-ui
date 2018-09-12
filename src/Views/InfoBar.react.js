@@ -20,7 +20,8 @@ class InfoBar extends Component {
             'info-bar-color-seven': color === 7,
             'info-bar-color-eight': color === 8,
             'info-bar-color-nine': color === 9,
-            'info-bar-color-ten': color === 10
+            'info-bar-color-ten': color === 10,
+            'info-bar-color-ten': color === 11
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
 
@@ -36,7 +37,7 @@ class InfoBar extends Component {
 };
 
 const asEnums = [ 'div', 'section' ];
-const colorEnums = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+const colorEnums = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ];
 
 InfoBar.propTypes = {
     as: PropTypes.oneOf(asEnums),
