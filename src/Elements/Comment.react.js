@@ -12,9 +12,6 @@ class Comment extends Component {
         const { avatarSrc, children, className, detailsPosition, name, style, time } = this.props;
         const containerClasses = ClassNames('ui', 'comment', className);
 
-        console.log('name', name);
-        console.log('avatarSrc', avatarSrc);
-        console.log('time', time);
         return (
             <div className={containerClasses} style={style}>
                 {name && time || avatarSrc && time ? (
@@ -68,9 +65,9 @@ Comment.propTypes = {
     avatarSrc: PropTypes.string,
     className: PropTypes.string,
     detailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     style: PropTypes.object,
-    time: PropTypes.number.isRequired
+    time: PropTypes.number
 };
 
 export default Comment;
