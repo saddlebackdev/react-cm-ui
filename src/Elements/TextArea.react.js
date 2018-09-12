@@ -14,6 +14,8 @@ class TextArea extends Component {
         this.state = {
             isFocused: false,
         };
+
+        this._onAutoHeightResized = this._onAutoHeightResized.bind(this);
     }
 
     render() {
@@ -84,8 +86,12 @@ class TextArea extends Component {
 
             autoResize = setInterval(() => {
                 if (this.props.value || textArea.value) {
-                    autosize(textArea);
                     clearInterval(autoResize);
+                    autosize(textArea);
+
+                    if (typeof this.props.onAutoHeightResized === 'function') {
+                        textArea.addEventListener('autosize:resized', this._onAutoHeightResized);
+                    }
                 }
             }, 150);
         }
@@ -96,6 +102,20 @@ class TextArea extends Component {
             this.setState({
                 isFocused: true
             })
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.autoHeight && typeof this.props.onAutoHeightResized === 'function') {
+            const textArea = ReactDOM.findDOMNode(this.textArea);
+
+            textArea.removeEventListener('autosize:resized', this._onAutoHeightResized);
+        }
+    }
+
+    _onAutoHeightResized() {
+        if (typeof this.props.onAutoHeightResized === 'function') {
+            this.props.onAutoHeightResized();
         }
     }
 
@@ -164,6 +184,7 @@ TextArea.propTypes = {
     ]),
     minLength: PropTypes.number,
     name: PropTypes.string,
+    onAutoHeightResized: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
