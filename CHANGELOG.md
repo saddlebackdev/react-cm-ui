@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.13.18 - 2018-09-11
+## 1.13.20 - 2018-09-12
+###Added
+- **Comment** component's CSS now handles line breaks.
+- Added `onAutoHeightResized` prop to **TextArea**.
+
+## 1.13.19 - 2018-09-11
 ###Changed
 - Cleaned up the **Comment** code.
 
