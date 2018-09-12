@@ -11,8 +11,7 @@ import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
 const textAreaSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class TextAreaSample extends React.Component {
 
@@ -25,56 +24,60 @@ export default class TextAreaSample extends React.Component {
 }`;
 
 const autoHeightSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class AutoHeightSample extends React.Component {
+    constructor() {
+        super();
+
+        this._onAutoHeightResized = this._onAutoHeightResized.bind(this);
+    }
 
     render() {
         return (
-            <TextArea autoHeight={true} />
+            <TextArea autoHeight onAutoHeightResized={this._onAutoHeightResized} />
         );
     }
 
+    _onAutoHeightResized() {
+        console.log('resized');
+    }
 }`;
 
 const autoFocusSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class AutoFocusSample extends React.Component {
 
     render() {
         return (
-            <TextArea autoFocus={true} />
+            <TextArea autoFocus />
         );
     }
 
 }`;
 
 const disabledSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <TextArea disabled={true} value="So cool!" />
+            <TextArea disabled value="So cool!" />
         );
     }
 
 }`;
 
 const errorSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class ErrorSample extends React.Component {
 
     render() {
         return (
-            <TextArea error={true} value="No, you did it wrong!" /><br /><br />
+            <TextArea error value="No, you did it wrong!" /><br /><br />
 
             <TextArea error="The worst." value="Totally wrong value ..." />
         );
@@ -83,36 +86,33 @@ export default class ErrorSample extends React.Component {
 }`;
 
 const fluidSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
     render() {
         return (
-            <TextArea fluid={true} value="I'm totally the longest string you have ever seen. Ship it!" />
+            <TextArea fluid value="I'm totally the longest string you have ever seen. Ship it!" />
         );
     }
 
 }`;
 
 const inverseSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
     render() {
         return (
-            <TextArea inverse={true} />
+            <TextArea inverse />
         );
     }
 
 }`;
 
 const labelSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -125,8 +125,7 @@ export default class LabelSample extends React.Component {
 }`;
 
 const maxHeightSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class MaxHeightSample extends React.Component {
 
@@ -139,8 +138,7 @@ export default class MaxHeightSample extends React.Component {
 }`;
 
 const maxLengthSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class MaxLengthSample extends React.Component {
 
@@ -153,8 +151,7 @@ export default class MaxLengthSample extends React.Component {
 }`;
 
 const minHeightSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class MinHeightSample extends React.Component {
 
@@ -167,8 +164,7 @@ export default class MinHeightSample extends React.Component {
 }`;
 
 const minLengthSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class MinLengthSample extends React.Component {
 
@@ -181,8 +177,7 @@ export default class MinLengthSample extends React.Component {
 }`;
 
 const onBlurSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class OnBlurSample extends React.Component {
 
@@ -199,8 +194,7 @@ export default class OnBlurSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -217,8 +211,7 @@ export default class OnChangeSample extends React.Component {
 }`;
 
 const onClickSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class OnClickSample extends React.Component {
 
@@ -235,8 +228,7 @@ export default class OnClickSample extends React.Component {
 }`;
 
 const onFocusSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class OnFocusSample extends React.Component {
 
@@ -253,8 +245,7 @@ export default class OnFocusSample extends React.Component {
 }`;
 
 const onKeyDownSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class OnKeyDownSample extends React.Component {
 
@@ -271,8 +262,7 @@ export default class OnKeyDownSample extends React.Component {
 }`;
 
 const placeholderSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class PlaceholderSample extends React.Component {
 
@@ -285,22 +275,20 @@ export default class PlaceholderSample extends React.Component {
 }`;
 
 const requiredSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class RequiredSample extends React.Component {
 
     render() {
         return (
-            <TextArea label="Name" placeholder="First & Last Name" required={true} />
+            <TextArea label="Name" placeholder="First & Last Name" required />
         );
     }
 
 }`;
 
 const resizeSample = `import React from 'react';
-
-import TextArea from 'components/UI/Elements/TextArea.react';
+import { TextArea } from 'react-cm-ui';
 
 export default class ResizeSample extends React.Component {
 
@@ -322,6 +310,8 @@ export default class ElementsTextArea extends React.Component {
         super(props);
 
         this.state = { onChangeValue: '' };
+
+        this._onAutoHeightResized = this._onAutoHeightResized.bind(this);
     }
 
     render() {
@@ -416,6 +406,12 @@ export default class ElementsTextArea extends React.Component {
                 type: 'number',
                 default: '',
                 description: 'Specifies the minimum number of characters that the user needs to enter.',
+                allowedTypes: ''
+            }, {
+                name: 'onAutoHeightResized',
+                type: 'func',
+                default: '',
+                description: 'Can handle an onAutoHeightResized event from parent.',
                 allowedTypes: ''
             }, {
                 name: 'onBlur',
@@ -518,7 +514,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea autoHeight={true} />
+                <TextArea autoHeight onAutoHeightResized={this._onAutoHeightResized.bind(this)} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {autoHeightSample}
@@ -532,7 +528,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea autoFocus={true} />
+                <TextArea autoFocus />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {autoFocusSample}
@@ -546,7 +542,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea disabled={true} value="So cool!" />
+                <TextArea disabled value="So cool!" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {disabledSample}
@@ -560,7 +556,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea error={true} value="No, you did it wrong!" /><br /><br />
+                <TextArea error value="No, you did it wrong!" /><br /><br />
 
                 <TextArea error="The worst." value="Totally wrong value ..." />
 
@@ -576,7 +572,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea fluid={true} value="I'm totally the longest string you have ever seen. Ship it!" />
+                <TextArea fluid value="I'm totally the longest string you have ever seen. Ship it!" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {fluidSample}
@@ -590,8 +586,8 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Block inverse={true}>
-                    <TextArea inverse={true} />
+                <Block inverse>
+                    <TextArea inverse />
                 </Block>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -765,7 +761,7 @@ export default class ElementsTextArea extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <TextArea label="Comment" placeholder="Leave a message..." required={true} />
+                <TextArea label="Comment" placeholder="Leave a message..." required />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {requiredSample}
@@ -823,4 +819,7 @@ export default class ElementsTextArea extends React.Component {
         window.alert('Look at my action.');
     }
 
+    _onAutoHeightResized() {
+        console.log('resized');
+    }
 }
