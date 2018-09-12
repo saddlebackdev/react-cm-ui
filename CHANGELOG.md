@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.13.18 - 2018-09-11
+###Changed
+- Cleaned up the **Comment** code.
+
+## 1.13.18 - 2018-09-11
 ###Added
 - Added `detailsPosition` prop to **Comment**.
 
