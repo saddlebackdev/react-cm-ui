@@ -16,6 +16,7 @@ class Comment extends Component {
             <div className={containerClasses} style={style}>
                 {name && time || avatarSrc && time ? (
                     <div
+                        className="comment-details"
                         style={{
                             alignItems: 'center',
                             display: 'flex',
@@ -50,7 +51,7 @@ class Comment extends Component {
     _renderTime() {
         const { time } = this.props;
 
-        return moment.unix(time).utc().calendar(null, {
+        return moment.unix(time).calendar(null, {
             sameDay: '[Today] - h:mm a',
             nextWeek: 'MMMM D, YYYY - h:mm a',
             nextDay: 'MMMM D, YYYY - h:mm a',
