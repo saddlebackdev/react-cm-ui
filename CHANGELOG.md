@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.21 - 2018-09-14
+###Changed
+- Fixed some styling in the **Comment** component.
+- Fixed **Comment** time bug.
+
 ## 1.13.20 - 2018-09-12
 ###Added
 - **Comment** component's CSS now handles line breaks.
