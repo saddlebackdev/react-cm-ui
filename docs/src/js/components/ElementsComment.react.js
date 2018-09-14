@@ -89,7 +89,7 @@ export default class ElmentsComment extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Comment name="Joe Smith" time={1531648822}>
+                <Comment name="Joe Smith" time={1536941364}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.
                 </Comment>
 
