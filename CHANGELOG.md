@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.22 - 2018-09-14
+###Changed
+- Removed the fill attribute from the `<use>` within our **Icon's** SVG markup.
+
 ## 1.13.21 - 2018-09-14
 ###Changed
 - Fixed some styling in the **Comment** component.

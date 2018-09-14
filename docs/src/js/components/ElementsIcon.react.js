@@ -77,12 +77,17 @@ export default class InverseSample extends React.Component {
     render() {
         return (
             <div>
-                <Icon color="alert" inverse={true} type="activity" />
-                <Icon color="highlight" inverse={true} type="caret-down" />
-                <Icon color="primary" inverse={true} type="calendar" />
-                <Icon color="static" inverse={true} type="cards" />
-                <Icon color="success" inverse={true} type="time" />
-                <Icon color="warning" inverse={true} type="exclamation" />
+                <Icon color="alert" inverse type="activity" />
+                <Icon color="highlight" inverse type="caret-down" />
+                <Icon color="primary" inverse type="calendar" />
+                <Icon color="static" inverse type="cards" />
+                <Icon color="success" inverse type="time" />
+                <Icon color="warning" inverse type="exclamation" /><br /><br />
+
+                <Icon color="action" inverse type="circle-filled" />
+                <Icon color="condition" inverse type="time" />
+                <Icon color="configuration" inverse type="comment" />
+                <Icon color="subject" inverse type="heart" />
             </div>
         );
     }
@@ -96,10 +101,10 @@ export default class CompactSample extends React.Component {
 
     render() {
         return (
-            <Icon compact={true} type="activity" />
-            <Icon compact={true} type="calendar" />
-            <Icon compact={true} type="cards" />
-            <Icon compact={true} type="time" />
+            <Icon compact type="activity" />
+            <Icon compact type="calendar" />
+            <Icon compact type="cards" />
+            <Icon compact type="time" />
         );
     }
 
@@ -165,12 +170,12 @@ export default class SpinSample extends React.Component {
 
     render() {
         return (
-            <Icon spin={true} type="activity" />
-            <Icon spin={true} type="award" />
-            <Icon spin={true} type="book-open" />
-            <Icon spin={true} type="user" />
-            <Icon spin={true} type="time" />
-            <Icon spin={true} type="check" />
+            <Icon spin type="activity" />
+            <Icon spin type="award" />
+            <Icon spin type="book-open" />
+            <Icon spin type="user" />
+            <Icon spin type="time" />
+            <Icon spin type="check" />
         );
     }
 
@@ -572,7 +577,7 @@ export default class ElementsButton extends React.Component {
                     </Card>
 
                     {/* Icon */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Icon
                         <Header.Subheader>
                             A standard icon. The <code>type</code> prop is required.
@@ -586,7 +591,7 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Align */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Align
                         <Header.Subheader>
                             Icons can change the side the margin is positioned on.
@@ -608,7 +613,7 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Color
                         <Header.Subheader>
                             Icons can be formatted with different colors.
@@ -632,20 +637,25 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Inverse
                         <Header.Subheader>
                             Icon colors can be inverted to appear on darker backgrounds better.
                         </Header.Subheader>
                     </Header>
 
-                    <Block inverse={true}>
-                        <Icon color="alert" inverse={true} type="activity" />
-                        <Icon color="highlight" inverse={true} type="caret-down" />
-                        <Icon color="primary" inverse={true} type="calendar" />
-                        <Icon color="static" inverse={true} type="cards" />
-                        <Icon color="success" inverse={true} type="time" />
-                        <Icon color="warning" inverse={true} type="exclamation" />
+                    <Block inverse>
+                        <Icon color="alert" inverse type="activity" />
+                        <Icon color="highlight" inverse type="caret-down" />
+                        <Icon color="primary" inverse type="calendar" />
+                        <Icon color="static" inverse type="cards" />
+                        <Icon color="success" inverse type="time" />
+                        <Icon color="warning" inverse type="exclamation" /><br /><br />
+
+                        <Icon color="action" inverse type="circle-filled" />
+                        <Icon color="condition" inverse type="time" />
+                        <Icon color="configuration" inverse type="comment" />
+                        <Icon color="subject" inverse type="heart" />
                     </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -653,24 +663,24 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Compact
                         <Header.Subheader>
                             Icons can appear without space to left or right.
                         </Header.Subheader>
                     </Header>
 
-                    <Icon compact={true} type="activity" />
-                    <Icon compact={true} type="calendar" />
-                    <Icon compact={true} type="cards" />
-                    <Icon compact={true} type="time" />
+                    <Icon compact type="activity" />
+                    <Icon compact type="calendar" />
+                    <Icon compact type="cards" />
+                    <Icon compact type="time" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {compactSample}
                     </Highlighter>
 
                     {/* onClick Event Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         onClick Event Handler
                         <Header.Subheader>
                             Icons can handle an onClick event.
@@ -684,7 +694,7 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Rotate */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Rotate
                         <Header.Subheader>
                             Icons can be rotated.
@@ -699,7 +709,7 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Size */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Size
                         <Header.Subheader>
                             Icons can have different sizes.
@@ -720,26 +730,26 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Spin */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Spin
                         <Header.Subheader>
                             Icons can spin clockwise.
                         </Header.Subheader>
                     </Header>
 
-                    <Icon spin={true} type="activity" />
-                    <Icon spin={true} type="award" />
-                    <Icon spin={true} type="book-open" />
-                    <Icon spin={true} type="user" />
-                    <Icon spin={true} type="time" />
-                    <Icon spin={true} type="check" />
+                    <Icon spin type="activity" />
+                    <Icon spin type="award" />
+                    <Icon spin type="book-open" />
+                    <Icon spin type="user" />
+                    <Icon spin type="time" />
+                    <Icon spin type="check" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {spinSample}
                     </Highlighter>
 
                     {/* Title */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Title
                         <Header.Subheader>
                             Icons can have a <code>title</code> prop that gives them a &ldquo;tooltip&rdquo;.
