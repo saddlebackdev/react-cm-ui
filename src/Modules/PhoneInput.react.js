@@ -143,8 +143,13 @@ class PhoneInput extends Component {
 
     render() {
         const { disable, dropdownIconType, id, label, labelStyle, required, style, tabIndex } = this.props;
-        const { countriesOptions, countrySelection, inputMask, inputPlaceholder, inputValue } = this.state;
+        const { countriesOptions, countrySelection, inputMask, inputPlaceholder } = this.state;
+        let { inputValue } = this.state;
         const containerClasses = ClassNames('ui', 'phone-input');
+
+        if (!_.startsWith(inputValue, '+')) {
+            inputValue = `+${countrySelection.dialCode}${inputValue}`;
+        }
 
         return (
             <div className={containerClasses} style={style}>

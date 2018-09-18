@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.24 - 2018-09-18
+##Changed
+- **PhoneInput** Fixed bug affecting U.S. phone numbers specified without leading `+1` and with area codes with `1` in
+the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
+
 ## 1.13.23 - 2018-09-18
 ###Added
 - **InfoBar** `color` goes to 11.
