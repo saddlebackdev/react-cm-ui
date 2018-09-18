@@ -120,7 +120,9 @@ export default class ValueSample extends React.Component {
 
                 <PhoneInput value={'9497777777'} /><br /><br />
 
-                <PhoneInput value={'+1 (949) 777-7777'} />
+                <PhoneInput value={'+1 (949) 777-7777'} /><br /><br />
+
+                <PhoneInput value={'7145554321'} />
             </div>
         );
     }
@@ -341,7 +343,9 @@ export default class ModulesPhoneInput extends React.Component {
 
                 <PhoneInput value={'9497777777'} /><br /><br />
 
-                <PhoneInput value={'+1 (949) 777-7777'} />
+                <PhoneInput value={'+1 (949) 777-7777'} /><br /><br />
+
+                <PhoneInput value={'7145554321'} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {valueSample}
