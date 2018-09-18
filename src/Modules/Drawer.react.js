@@ -492,7 +492,7 @@ class Drawer extends Component {
             }
 
             if (!_.isUndefined(maxWidth)) {
-                this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
+                this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : '768px'
             } else {
                 this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
             }

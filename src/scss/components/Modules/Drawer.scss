@@ -39,7 +39,6 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         backface-visibility: hidden;
         background-color: $bkgd;
         height: 100%;
-        max-width: 768px;
         position: absolute;
         right: 0;
         top: 0;
@@ -88,7 +87,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 flex-wrap: wrap;
                 justify-content: flex-start;
                 left: 0;
-                padding: 22px 0 0;
+                padding: 70px 0 0;
                 position: fixed;
                 top: 0;
                 transition: box-shadow 150ms linear;
@@ -98,12 +97,10 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                     top: -6px;
                 }
                 .title {
-                    align-items: flex-start;
-                    display: flex;
-                    flex: 1 1 1px;
-                    justify-content: flex-start;
-                    margin: -4px 0 0;
-                    padding: 0 33px 0 22px;
+                    left: 0;
+                    padding: 0 88px 0 22px;
+                    position: absolute;
+                    top: 21px;
                     width: 100%;
                     &.drawer-title-truncate {
                         display: block;
@@ -113,14 +110,12 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                     }
                 }
                 .drawer-close-button-container {
-                    align-items: center;
-                    display: flex;
-                    flex: 0 1 1px;
-                    justify-content: center;
-                    margin: 0 22px 0 11px;
+                    position: absolute;
+                    right: 22px;
+                    top: 14px;
                     width: 44px;
                 }
-                .ui.divider, .drawer-header-children { flex: 0 1 100%; margin: 21px 0 0;  }
+                .ui.divider, .drawer-header-children { margin: 0; width: 100%; }
             }
             .drawer-children > :first-child { margin-top: 0; } // TODO: Before commiting find out a new way of either having the container or doing first-child somewhere else.
             .drawer-pushdown { margin-top: 66px; }
@@ -181,7 +176,8 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
 
 @media only screen and (min-width: 768px) {
     .ui.drawer {
-        .drawer-container-inner .drawer-header .drawer-close-button-container { width: 33px; }
+        .drawer-container-inner .drawer-header .title { padding-right: 77px; }
+        .drawer-container-inner .drawer-header .drawer-close-button-container { top: 18px; width: 33px; }
         .drawer-container-inverse .drawer-header .drawer-close-button-container { margin: -5px 11px 0 11px; }
     }
 }
