@@ -22,11 +22,14 @@
     }
 }
 .container-action-bar {
+    align-items: center;
     background-color: $bkgd;
     border-bottom: 1px solid $border;
     border-top: 1px solid $border;
-    min-height: 0;
-    padding: 10px 22px;
+    display: flex;
+    justify-content: flex-start;
+    min-height: 70px;
+    padding: 0 22px;
     width: auto;
     &.container-action-bar-color {
         &-inverse { background-color: $bkgd-inverse; }

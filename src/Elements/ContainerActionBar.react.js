@@ -21,7 +21,9 @@ class ContainerActionBar extends Component {
 
         return (
             <ElementType className={containerClasses} style={style}>
-                {this.props.children}
+                <div style={{ width: '100%' }}>
+                    {this.props.children}
+                </div>
             </ElementType>
         );
     }
