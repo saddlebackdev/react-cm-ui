@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.13.23 - 2018-09-18
+###Added
+- **InfoBar** `color` goes to 11.
+
+###Changed
+- Fixed **Drawer's** `maxWidth` problem when opening a drawer that is not by default 768px.
+- Big Change. **Container.ActionBar** now has a minimum height of 70px and has been changed to flex to align its items.
+
 ## 1.13.22 - 2018-09-14
 ###Changed
 - Removed the fill attribute from the `<use>` within our **Icon's** SVG markup.
