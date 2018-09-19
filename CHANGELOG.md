@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.14.0 - 2018-09-18
+##Changed
+- Fixed a bug in **Dropdown** when passing a null child.
+
 ## 1.13.24 - 2018-09-18
 ##Changed
 - **PhoneInput** Fixed bug affecting U.S. phone numbers specified without leading `+1` and with area codes with `1` in
