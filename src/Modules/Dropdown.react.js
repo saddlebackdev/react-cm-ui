@@ -117,28 +117,29 @@ class Dropdown extends Component {
         }
 
         if (children && !selection) {
-            const convertChildren = _.isArray(children) ? children : [ children ];
-            items = _.map(convertChildren, (child, index) => {
-                const { iconColor, iconInverse, iconType, id, label } = child.props;
-                const itemClass = ClassNames('dropdown-item', child.props.className, {
-                    'dropdown-item-is-selected': this.state.value ? this.state.value.label === label : false
-                });
-                const value = {
-                    id: id,
-                    label: label
-                }
+            items = React.Children.map(children, (child, index) => {
+                if (!_.isNil(child)) {
+                    const { iconColor, iconInverse, iconType, id, label } = child.props;
+                    const itemClass = ClassNames('dropdown-item', child.props.className, {
+                        'dropdown-item-is-selected': this.state.value ? this.state.value.label === label : false
+                    });
+                    const value = {
+                        id: id,
+                        label: label
+                    }
 
-                return (
-                    <li
-                        className={itemClass}
-                        key={'dropdown-menu-item-' + index}
-                    >
-                        <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
-                            {iconType ? <Icon inverse={iconInverse} color={iconColor} type={iconType} /> : null}
-                            {value.label}
-                        </span>
-                    </li>
-                );
+                    return (
+                        <li
+                            className={itemClass}
+                            key={'dropdown-menu-item-' + index}
+                        >
+                            <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
+                                {iconType ? <Icon inverse={iconInverse} color={iconColor} type={iconType} /> : null}
+                                {value.label}
+                            </span>
+                        </li>
+                    );
+                }
             });
         }
 
