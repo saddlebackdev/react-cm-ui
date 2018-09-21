@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.14.0 - 2018-09-21
+## 1.15.0 - 2018-09-21
 ##Added
 - Added a CSS rule `.color-highlight`.
 
