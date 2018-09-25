@@ -179,6 +179,7 @@ export default class MaxMinSample extends React.Component {
             <div>
                 <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
                 <Input label="Age" max={99} min={0} type="number" value={0} />
+                <Input label="Age without spinners" max={99} min={0} type="number" showSpinners={false} value={0} />
             </div>
         );
     }
@@ -532,6 +533,12 @@ export default class ElementsButton extends React.Component {
                 description: 'Specifies that the user must fill in a value before submitting a form.',
                 allowedTypes: ''
             }, {
+                name: 'showSpinners',
+                type: 'bool',
+                default: 'true',
+                description: 'Show or not the spinners for numeric control. This attribute is optional.',
+                allowedTypes: ''
+            }, {
                 name: 'style',
                 type: 'object',
                 default: '',
@@ -743,7 +750,8 @@ export default class ElementsButton extends React.Component {
                 </Header>
 
                 <Input label="How many years has it been since the Reformation?" max={510} type="number" /><br /><br />
-                <Input label="Age" max={99} min={0} type="number" value={0} />
+                <Input label="Age" max={99} min={0} type="number" value={0} /><br /><br />
+                <Input label="Age without spinners" max={99} min={0} type="number" showSpinners={false} value={0} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {maxminSample}
