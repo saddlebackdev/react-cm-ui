@@ -536,7 +536,7 @@ export default class ElementsButton extends React.Component {
                 name: 'showSpinners',
                 type: 'bool',
                 default: 'true',
-                description: 'Show or not the spinners for numeric control. This attribute is optional.',
+                description: 'Specifies whether or not to show the spinners for the numeric control. This attribute is optional.',
                 allowedTypes: ''
             }, {
                 name: 'style',
