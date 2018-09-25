@@ -48,7 +48,7 @@ class Input extends Component {
             mask, max, maxLength,
             min, minLength, name,
             placeholder, required, style,
-            tabIndex } = this.props;
+            tabIndex, showSpinners } = this.props;
         const { inputActionsTopPosition } = this.state;
         const type = this._getType();
         const labelPosition = this.props.labelPosition || 'top';
@@ -155,7 +155,7 @@ class Input extends Component {
                             </div>
                         ) : null}
 
-                        {type === 'number' ? (
+                        {type === 'number' && showSpinners ? (
                             <div className="input-number-controls" style={{ pointerEvents: 'auto' }}>
                                 <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
                                 <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
@@ -320,6 +320,10 @@ const autoCompleteEnums = [ 'off', 'on' ];
 const labelPosition = [ 'bottom', 'top' ];
 const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
 
+Input.defaultProps = {
+    showSpinners: true
+};
+
 Input.propTypes = {
     autoComplete: PropTypes.oneOf(autoCompleteEnums),
     autoFocus: PropTypes.bool,
@@ -358,6 +362,7 @@ Input.propTypes = {
     onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
+    showSpinners: PropTypes.bool,
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
