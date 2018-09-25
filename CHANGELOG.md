@@ -4,215 +4,221 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.14.0 - 2018-09-21
-##Added
+## 1.16.0 - 2018-09-25
+### Added
+- Added `showSpinners` prop in **Input** component.  When the `type` is "number" this new prop dictates whether or not
+to show the "spin box" up and down arrow controls.  The new prop, which is optional, defaults to `true` and the spin box
+controls are shown.  Set it to `false` to suppress these if you want a numeric input without them.
+
+## 1.15.0 - 2018-09-21
+### Added
 - Added a CSS rule `.color-highlight`.
 
 ## 1.14.0 - 2018-09-18
-##Changed
+### Changed
 - Fixed a bug in **Dropdown** when passing a null child.
 
 ## 1.13.24 - 2018-09-18
-##Changed
+### Changed
 - **PhoneInput** Fixed bug affecting U.S. phone numbers specified without leading `+1` and with area codes with `1` in
 the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
 
 ## 1.13.23 - 2018-09-18
-###Added
+### Added
 - **InfoBar** `color` goes to 11.
 
-###Changed
+### Changed
 - Fixed **Drawer's** `maxWidth` problem when opening a drawer that is not by default 768px.
 - Big Change. **Container.ActionBar** now has a minimum height of 70px and has been changed to flex to align its items.
 
 ## 1.13.22 - 2018-09-14
-###Changed
+### Changed
 - Removed the fill attribute from the `<use>` within our **Icon's** SVG markup.
 
 ## 1.13.21 - 2018-09-14
-###Changed
+### Changed
 - Fixed some styling in the **Comment** component.
 - Fixed **Comment** time bug.
 
 ## 1.13.20 - 2018-09-12
-###Added
+### Added
 - **Comment** component's CSS now handles line breaks.
 - Added `onAutoHeightResized` prop to **TextArea**.
 
 ## 1.13.19 - 2018-09-11
-###Changed
+### Changed
 - Cleaned up the **Comment** code.
 
 ## 1.13.18 - 2018-09-11
-###Added
+### Added
 - Added `detailsPosition` prop to **Comment**.
 
-###Changed
+### Changed
 - The **Comment** not need any details.
 
 ## 1.13.17 - 2018-09-09
-###Changed
+### Changed
 - Removed **Drawer** wing JSX when there's no wing to ever be rendered.
 
 ## 1.13.16 - 2018-09-07
-###Added
+### Added
 - Added the ability to change the **Drawer's** `maxWidth` on the fly.
 
 ## 1.13.15 - 2018-09-07
-###Changed
+### Changed
 - Fixed **Drawer's** transitionend event.
 
 ## 1.13.13 - 2018-09-05
-###Changed
+### Changed
 - Resize Window event handler for **Dropdown** menu
 - Improved estimation of direction to open **Dropdown** window
 
 ## 1.13.12 - 2018-08-24
-###Changed
+### Changed
 - Removed `value` from **TextArea's** state.
 
 ## 1.13.11 - 2018-08-24
-###Changed
+### Changed
 - Fixed **TextArea's** `autoHeight` when no `value` is controlling textarea.
 
 ## 1.13.10 - 2018-08-24
-###Added
+### Added
 - **TextArea's** `onChange` handler is now passing `event`.
 
 ## 1.13.9 - 2018-08-24
-###Added
+### Added
 - Ugh, forgot to save a fix to **TextArea** (`columns` to `cols`) before releasing the last version.
 
 ## 1.13.8 - 2018-08-24
-###Added
+### Added
 - Added `columns` and `rows` props to **TextArea**.
 
 ## 1.13.7 - 2018-08-24
-###Added
+### Added
 - Added `secondary` color name to the Utils.js color function.
 
-###Changed
+### Changed
 - Fixed a **List** bug.
 
 ## 1.13.6 - 2018-08-22
-###Added
+### Added
 - Added a new **Button** prop, `iconPosition`.
 
-###Changed
+### Changed
 - Fixed **Dropdown** button icon size.
 
 ## 1.13.5 - 2018-08-22
-###Added
+### Added
 - Added a new **Button** color, `secondary`.
 - Added a new **Dropdown** `buttonColor`, `secondary`.
 - Added `name` to **Image** in order to show initials.
 
-###Changed
+### Changed
 - Fixed **Dropdown** menu spacing.
 - Updated **Dropdown** to use highlight background color when active.
 
 ## 1.13.4 - 2018-08-22
-###Changed
+### Changed
 - **Icon** now supports an optional `title` prop that can give it a tooltip.
 
 ## 1.13.3 - 2018-08-03
-##Changed
+### Changed
 - **List** is now checking if a child a null or undefined and if so will not return the "child."
 
 ## 1.13.2 - 2018-07-31
-##Changed
+### Changed
 - **PhoneInput** `isValueComplete` now checks to see if the value is not empty.
 
 ## 1.13.1 - 2018-07-31
-##Changed
+### Changed
 - Flipped **Card's** collapsable icon around.
 
 ## 1.13.0 - 2018-07-31
-##Added
+### Added
 - Adds an option for a drawer to open from a left side (also support second wing and other drawer features). PR #26
 
 ## 1.12.5 - 2018-07-24
-##Changed
+### Changed
 - Fixed a **Drawer** bug not cleaning up drawer class names when being unmounted.
 
 ## 1.12.4 - 2018-07-23
-##Changed
+### Changed
 - Removed `header === true` from the **Drawer** children statement. It's checking only to see if the child is a function/component.
 
 ## 1.12.3 - 2018-07-23
-##Added
+### Added
 - **Icon's** now have a smooth color transition.
 
-##Changed
+### Changed
 - **Button** has a new style property when `color="outline"` and `inverse` is passed.
 - **InfoBar** renders children differently now.
 - The **Drawer** component now clones custom close buttons and gives it a proper class name.
 
 ## 1.12.2 - 2018-07-18
-##Added
+### Added
 - New **PhoneInput** `onCountryChange` function prop.
 
-##Changed
+### Changed
 - Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
 
 ## 1.12.1 - 2018-07-17
-##Changed
+### Changed
 - Fixed **Button** padding when there's an **Icon**.
 
 ## 1.12.0 - 2018-07-16
-##Added
+### Added
 - New **Comment** component.
 - New **Dropdown** `selectionUnderline` prop and `buttonColor` color additions.
 - New **Image** `size` prop.
 - New **Drawer.Wing** subcomponent to **Drawer**.
 
-##Changed
+### Changed
 - Removed **InfoBar.Drawer** from **InfoBar**.
 
 ## 1.11.17 - 2018-07-20
-##Added
+### Added
 - New **PhoneInput** `onCountryChange` function prop.
   - (This was originally included in the `1.12.2` release but we needed it in `1.11.x` so hence this "hotfix")
 
-##Changed
+### Changed
 - Enhanced the documentation/sample for **PhoneInput**'s `onChange` to show all the parameters it passes.
 
 ## 1.11.16 - 2018-07-16
-##Changed
+### Changed
 - **PhoneInput** passes a new `isValueComplete` parameter in place of `format`.
 
 ## 1.11.15 - 2018-07-10
-##Changed
+### Changed
 - Removed a warning that **Dropdown** was throwing.
 
-##Added
+### Added
 - Added two new **PhoneInput** parameters `dialCode` and `format`.
 
 ## 1.11.14 - 2018-06-28
-##Added
+### Added
 - Added two new **Drawer** props: `onCloseComplete` and `onOpenComplete`.
 
 ## 1.11.13 - 2018-06-28
 
 ## 1.11.12 - 2018-06-28
-##Changed
+### Changed
 - Fixed **TimePicker's** actionable **Icon** `type`.
 - Upgraded `react-text-mask` to `v.5.4.1`. This version has been pinned as well, because of a bug in `v.5.4.2`.
 - Fixed **Table.HeaderCell** basic clickable style.
 
 ## 1.11.11 - 2018-06-15
-##Added
+### Added
 - New **Rail** component.
 - New `labelClassName` and `labelWeight` for **Checkbox**.
 - New **InfoBar** component.
 
 ## 1.11.10 - 2018-06-14
-##Added
+### Added
 - New `size` prop for **Checkbox**. You can now have a default size (large) and a small checkbox.
 - New `inverse` prop for **List**.
 - New `autoFocus` prop for **Input** and **TextArea**.
 
-##Changed
+### Changed
 - Fixed Checkbox to be always be a controlled input in order to quiet down the console.
 - New `transition` css property to animate the `background-color` and `border-top-color` on hovering over a **Table.Row**.
 - Removed the **ListItem** file and and defined the correct **List.Item** component. This also removes the **List.Item** style type warning.
@@ -220,281 +226,281 @@ the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
 ## 1.11.9 - 2018-06-11
 
 ## 1.11.8 - 2018-06-11
-##Added
+### Added
 - Sort of have documentation for **List**. They are really just examples I tested with.
 - Add a **Chart** module that uses `highcharts`.
 
 ## 1.11.7 - 2018-06-08
-##Changed
+### Changed
 - Changed **Card.Header** gradients.
 
 ## 1.11.6 - 2018-06-08
-##Changed
+### Changed
 - New font size and weight for **Table.Header's** **Table.Cell** when not clickable.
 
 ## 1.11.5 - 2018-06-06
-##Changed
+### Changed
 - Removed a `console.log` from **Card**.
 
 ## 1.11.4 - 2018-06-06
-##Changed
+### Changed
 - Fixed how **Card** renders its header.
 
 ## 1.11.3 - 2018-06-06
-##Changed
+### Changed
 - Fixed a missing `className` and `fill` from an SVG `<use>`.
 
 ## 1.11.2 - 2018-06-06
-##Changed
+### Changed
 - Fixed an issue with Firefox not displaying the new **Icons**.
 
 ## 1.11.1 - 2018-06-06
-##Changed
+### Changed
 - Fixed a bug when passing `null` as a child of **Card**.
 - Fixed **Card.Header** gradient positions.
 
 ## 1.11.0 - 2018-06-06
-##Added
+### Added
 - Added ability to have a custom header in a **Card**.
 
-##Changed
+### Changed
 - Removed icon font and replaced with SVG icons.
 
 ## 1.10.3 - 2018-05-18
-##Changed
+### Changed
 - **Input's** action icon container is now adjusted according to the top position of the input that's relative to the components wrapping container.
 
 ## 1.10.2 - 2018-05-18
-##Changed
+### Changed
 - Squashed a bug when a **Input** had actionable icons causing an enduser to be able to enter a value.
 - Fixed Dropdown's select dropdown position styling.
 
 ## 1.10.1 - 2018-05-15
-##Changed
+### Changed
 - **DatePicker** patch.
 
 ## 1.10.0 - 2018-04-30
-##Changed
+### Changed
 - Moved **Input's** label adjacent to the input and added a new prop `labelPosition`.
 
 ## 1.9.2 - 2018-04-10
-##Changed
+### Changed
 - Added **Dropdown** `onChange` example.
 - Added two new icons to **Icon**: `info` and `question-circle`
 
 ## 1.9.1 - 2018-03-28
-##Changed
+### Changed
 - Fixed a bug in `./src/scss/components/Views/TitleBar.scss` upon publishing the package.
 
 ## 1.9.0 - 2018-03-28
-##Added
+### Added
 - New **Image** component. Only is for a basic avatar for now. Updates expanding the component will happen down the road.
 
-##Changed
+### Changed
 - **TitleBar** now supports `subTitle` and `children`.
 
 ## 1.8.27 - 2018-03-22
-##Added
+### Added
 - New `circle-filled` icon type.
 
-##Changed
+### Changed
 - Fixed some styling in Firefox for **Tabs**.
 - **TitleBar** now truncates long titles on smaller viewports.
 
 ## 1.8.26 - 2018-03-20
-##Changed
+### Changed
 - **Modals** and **Drawers** no longer remove the scrollbar causing side effects in the background.
 - PR #21 fixed a **Input** bug having to do with the `onChange` event handler when the `type` was set to `number`. Thanks @gbulatov!
 
 ## 1.8.24 - 2018-03-05
-##Changed
+### Changed
 - Changed how `browserDetect()` detects the browser.
 
 ## 1.8.21 - 2018-03-01
-##Added
+### Added
 - react-dnd is now a part of react-cm-ui.
 
 ## 1.8.19 - 2018-02-22
-##Change
+### Change
 - Disables a collapsable **Card's** content height when already collapsed.
 
 ## 1.8.17 - 2018-02-21
-##Change
+### Change
 - Fix for dynamically changing a collapsable **Card's** content height.
 
 ## 1.8.16 - 2018-02-13
-##Added
+### Added
 - ISO2 and dial codes are now searchable in **InputPhone**.
 
 ## 1.8.15 - 2018-02-07
-##Added
+### Added
 - Added ability to collapse a **Card**.
 
 ## 1.8.14 - 2018-02-02
-##Added
+### Added
 - Added ability to give a **PhoneInput** flag dropdown a different arrow icon.
 - Added ability to style a **PhoneInput** container.
 
 ## 1.8.13 - 2018-02-02
-##Added
+### Added
 - Added ability to give a **Dropdown** select a different arrow icon.
 
 ## 1.8.12 - 2018-01-31
-##Added
+### Added
 - Added ability to adjust a **Modal's** height according to its content.
 
 ## 1.8.11 - 2018-01-20
-##Changed
+### Changed
 - Fixes the onClick event and styling for a **Radio's** `pill` UI while being `disabled`.
 
 ## 1.8.10 - 2018-01-19
-##Changed
+### Changed
 - Added a bottom divider to a `basic` **Table's** last row.
 - Removed `.ui` from a **Table's** children components.
 - Fixed a **Header** error when having an icon and sub header.
 
 ## 1.8.9 - 2017-12-12
-##Changed
+### Changed
 - merged PR #18: DatePicker tweaks for using it in `dateRange` mode.
 
 ## 1.8.8 - 2017-12-02
-##Changed
+### Changed
 - Fixed `./lib/css/components` image url paths.
 
 ## 1.8.6 - 2017-12-02
-##Added
+### Added
 - `./lib` now has all the individual `.css` files to import.
 
 ## 1.8.5 - 2017-12-02
-##Changed
+### Changed
 - Removed PropTypes warnings.
 
 ## 1.8.3 - 2017-11-15
-##Changed
+### Changed
 - Cleaned up conditions around `min` and `max` props for **Input**.
 
 ## 1.8.2 - 2017-11-08
-##Changed
+### Changed
 - Changed `scrollContainerClassName` to `scrollContainer` so we can also pass a node and not just a string.
 
 ## 1.8.1 - 2017-11-08
-##Changed
+### Changed
 - Fixes and code clean up to **Accordion**. Whoops.
 
 ## 1.8.0 - 2017-11-08
-##Changed
+### Changed
 - **Accordion** looks to see if an **Accordion.Item's** content is below the fold and if it is the end user's container/window will scroll up.
 - **Dropdown** looks to see if the Select's dropdown is below the fold and if it is the dropdown will be render above.
 - Fixes to **SubNavigation** when rendering only one tab.
 
 ## 1.7.11 - 2017-10-30
-##Added
+### Added
 - **Banner** has a new prop, `topPosition`.
 
 ## 1.7.10 - 2017-10-30
-##Changed
+### Changed
 - `DOMUtils`' `browserDetect()` is case-sensitive and Firefox was all in lowercase. Fixed!
 
 ## 1.7.9 - 2017-10-30
-##Added
+### Added
 - Added `level` colors to **Banner**. These two new colors, `purple` and `teal`, need to be defined some time by the design team and renamed by us in the future.
 
 ## 1.7.8 - 2017-10-27
-##Changed
+### Changed
 - Fixed the browser variable in `DOMUtils`.
 
 ## 1.7.7 - 2017-10-27
-##Changed
+### Changed
 - Added the new icons to docs.
 
 ## 1.7.6 - 2017-10-27
-##Added
+### Added
 - Two new icons: "duplicate" and "users".
 
 ## 1.7.5 - 2017-10-24
-##Changed
+### Changed
 - Fixed the **Modal**'s `closeButton` boolean condition.
 
 ## 1.7.4 - 2017-10-23
-##Changed
+### Changed
 - Updated **Modal** to work a little more like the **Drawwer**.
 
 ## 1.7.3 - 2017-10-23
-##Added
+### Added
 - `DOMUtils`'s `browserDetect()` now checks for Firefox too.
 
 ## 1.7.2 - 2017-10-21
-##Added
+### Added
 - New icon "ban".
 
 ## 1.7.1 - 2017-10-10
-##Changed
+### Changed
 - The **Phone Input's** emojis were not working cross OS'. Switched to a flag CSS icons that will work for folks.
 
 ## 1.7.0 - 2017-10-09
-##Added
+### Added
 - Brand spanking new **Phone Input**.
 - New **Dropdown** `selectionValueComponent` & `searchable` prop.
 
-##Changed
+### Changed
 - **Input** now handles the `tel` type value correctly.
 
 ## 1.6.0 - 2017-10-03
-##Changed
+### Changed
 - Bumped React from version `0.14.8` to version `15.6.2`.
 
 ## 1.5.5 - 2017-09-28
-##Added
+### Added
 - Fixes **Dropdown's** `inverse` & `selection` input value not appearing when searching.
 
 ## 1.5.4 - 2017-09-28
-##Added
+### Added
 - Fixes **Dropdown's** `inverse` & `selection` value not appearing when input is focused.
 
 ## 1.5.3 - 2017-09-26
-##Added
+### Added
 - New text color class name, `color-warning`.
 - Added an `inverse` prop to **Dropdown**. Only works for selections for right now.
 
 ## 1.5.2 - 2017-09-22
-##Changed
+### Changed
 - **Input** value fix.
 
 ## 1.5.1 - 2017-09-22
-##Added
+### Added
 - New **Input** props: `max` and `min`.
 
-##Changed
+### Changed
 - **Input's** value accepts numbers now.
 
 ## 1.5.0 - 2017-09-20
-##Added
+### Added
 - New **Prompt** component. Only handles inline prompts for now.
 
-## Changed
+### Changed
 - Changed *Button's** onClick handler back to older es6 for now.
 
 ## 1.4.5 - 2017-09-18
-## Changed
+### Changed
 - Changed *Button's** onClick handler method.
 
 ## 1.4.4 - 2017-09-06
-## Added
+### Added
 - Added `className` to **Accordion.Item**.
 
-## Changed
+### Changed
 - Fixed some **Accordion.Item** styling.
 
 ## 1.4.3 - 2017-09-06
-## Changed
+### Changed
 - **Accordion** now allows for custom content within **Accordion.Item** using the `summary` prop.
 
 ## 1.4.2 - 2017-09-05
-## Changed
+### Changed
 - **Checkbox** onClick is now passing the event the parent handler.
 
 ## 1.4.1 - 2017-09-01
-## Changed
+### Changed
 - Fixed a key warning that was being thrown by **Accordion**.
 
 ## 1.4.0 - 2017-09-01
@@ -502,7 +508,7 @@ the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
 - **Accordion** can be inclusive by passing `false` using the new props, `exclusive`.
 - **Accordion's** can now be nested in **Accordion's**.
 
-## Changed
+### Changed
 - A `basic` **Accordion** that uses Summary and Content containers is now styled.
 
 ## 1.3.3 - 2017-08-30
