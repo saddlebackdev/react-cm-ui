@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.16.0 - 2018-09-25
+### Added
+- Added `showSpinners` prop in **Input** component.  When the `type` is "number" this new prop dictates whether or not
+to show the "spin box" up and down arrow controls.  The new prop, which is optional, defaults to `true` and the spin box
+controls are shown.  Set it to `false` to suppress these if you want a numeric input without them.
+
 ## 1.15.0 - 2018-09-21
 ##Added
 - Added a CSS rule `.color-highlight`.
