@@ -1027,7 +1027,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Button Color */}
-                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="button-color" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Button Color
                         <Header.Subheader>
                             Button Dropdowns can be different colors.
@@ -1192,7 +1192,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Inverse
                         <Header.Subheader>
                             A Dropdown can be formatted to appear on dark backgrounds better.
@@ -1340,7 +1340,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Underline */}
-                    <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-underline" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Selection Underline
                         <Header.Subheader>
                             A Dropdown selection can be styled to have an underline.
