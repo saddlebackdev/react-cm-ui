@@ -8,23 +8,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         overflow-y: scroll;
         position: fixed;
         width: 100%;
-        &.drawer-dimmers {
-            #coreApp::after {
-                background: $bkgd-disable;
-                content: '';
-                height: 100%;
-                left: 0;
-                mix-blend-mode: saturation;
-                opacity: 1;
-                position: fixed;
-                top: 0;
-                transition: opacity 100ms linear;
-                width: 100%;
-            }
-            &.drawer-animate-out #coreApp::after { opacity: 0; }
-        }
     }
-
 }
 .ui.drawer {
     backface-visibility: hidden;
@@ -48,7 +32,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             left: 0;
             transform: translate(-100%, 0);
         }
-        transition: max-width 200ms ease-in-out, transform 200ms ease-in-out;
+        transition: max-width 200ms ease-in-out, transform 333ms ease-in-out;
         width: 100%;
         &.drawer-container-inverse {
             background: $bkgd-inverse-alternate;
@@ -163,9 +147,9 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     }
 }
 .drawer-dimmers .drawer-dimmer {
-    animation: fadeInDimmer 150ms forwards;
+    animation: fadeInDimmer 200ms forwards;
     backface-visibility: hidden;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, .7);
     height: 100%;
     left: 0;
     position: absolute;
