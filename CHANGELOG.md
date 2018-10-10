@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.16.1 - 2018-10-10
+### Changed
+- **Drawer** dimmers bug fix.
+
 ## 1.16.0 - 2018-09-25
 ### Added
 - Added `showSpinners` prop in **Input** component.  When the `type` is "number" this new prop dictates whether or not
