@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.16.3 - 2018-10-24
+### Changed
+- Nothing new; same as described in  **1.16.2**.  Due to some git user errors made by Geoffrey, `1.16.2` didn't contain the changes it
+was supposed to.  And `npm` does not allow re-publishing the same version (see [here](https://blog.npmjs.org/post/77758351673/no-more-npm-publish-f)).  So I'm going to publish the corrected package as
+`1.16.3` and remove `1.16.2`.  Sorry about that.
+
 ## 1.16.2 - 2018-10-24
 ### Changed
 - **Image** component was updated to improve behavior in `avatar` mode.  Previously, if a consumer specified both `name`
