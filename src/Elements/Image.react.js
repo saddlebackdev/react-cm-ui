@@ -62,9 +62,11 @@ class Image extends Component {
                 src={!avatar ? src : null}
                 style={newStyle}
             >
-                {avatar && name ? newInitials : avatar && !name && !src ? (
-                    <Icon color="static" compact size="xsmall" type="user" />
-                ) : null}
+                {avatar && !src ?
+                    name ?
+                        newInitials :
+                        ( <Icon color="static" compact size="xsmall" type="user" /> ) :
+                    null}
             </ElementType>
         );
     }
