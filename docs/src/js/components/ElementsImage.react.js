@@ -21,7 +21,7 @@ export default class ImageSample extends React.Component {
 
     render() {
         return (
-            <Image src="/_/docs/src/images/marty-mcfly.jpg" />
+            <Image src="/images/marty-mcfly.jpg" />
         );
     }
 
@@ -36,7 +36,11 @@ export default class AvatarSample extends React.Component {
         return (
             <div>
                 <Image avatar /><br /><br />
-                <Image avatar src="/_/docs/src/images/marty-mcfly.jpg" />
+                <Image avatar src="/images/marty-mcfly.jpg" /><br /><br />
+                <Image avatar name="Marty McFly" /><br /><br />
+
+                {/* If you pass both name AND image src it won't render the image AND the initials ... only the image! :-) */}
+                <Image avatar name="Marty McFly" src="/images/marty-mcfly.jpg" />
             </div>
         );
     }
@@ -50,8 +54,9 @@ export default class SizeSample extends React.Component {
     render() {
         return (
             <div>
-                <Image src="/_/docs/src/images/marty-mcfly.jpg" size={100} /><br /><br />
-                <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
+                <Image src="/images/marty-mcfly.jpg" size={100} /><br /><br />
+                <Image avatar size={44} name="Marty McFly" /><br /><br />
+                <Image avatar size={66} src="/images/marty-mcfly.jpg" />
             </div>
         );
     }
@@ -99,6 +104,10 @@ export default class ElementsImage extends React.Component {
             }
         ];
 
+        const martyMcFlyImageSrc = window.location.host.indexOf('localhost') > -1 ?
+            '/_/docs/src/images/marty-mcfly.jpg' :
+            '/images/marty-mcfly.jpg';
+
         return (
             <Main page="headers">
                 <TitleBar title="Image" />
@@ -117,7 +126,7 @@ export default class ElementsImage extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Image src="/_/docs/src/images/marty-mcfly.jpg" />
+                <Image src={martyMcFlyImageSrc} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {imageSample}
@@ -132,8 +141,10 @@ export default class ElementsImage extends React.Component {
                 </Header>
 
                 <Image avatar /><br /><br />
-                <Image avatar src="/_/docs/src/images/marty-mcfly.jpg" /><br /><br />
-                <Image avatar name="Marty McFly" />
+                <Image avatar src={martyMcFlyImageSrc} /><br /><br />
+                <Image avatar name="Marty McFly" /><br /><br />
+                {/* Test Name AND Image Source -- shouldn't render image AND initials ... only image :-) */}
+                <Image avatar name="Marty McFly" src={martyMcFlyImageSrc} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {avatarSample}
@@ -147,7 +158,7 @@ export default class ElementsImage extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Image src="/_/docs/src/images/marty-mcfly.jpg" size={100} /><br /><br />
+                <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
                 <Image avatar size={44} name="Marty McFly" /><br /><br />
                 <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
 
