@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.16.2 - 2018-10-24
+### Changed
+- **Image** component was updated to improve behavior in `avatar` mode.  Previously, if a consumer specified both `name`
+and `src` props, the component would happily render _both_ the image _and_ the initials.  :man_facepalming:  That meant
+that it was up to consumers to conditionally pass a `name` prop or not.  Now, the component itself has been fixed to do
+the right thing.
+- Also, the documentation page for the **Image** component should now correctly render the sample image.
+
 ## 1.16.1 - 2018-10-10
 ### Changed
 - **Drawer** dimmers bug fix.
