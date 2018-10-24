@@ -160,7 +160,7 @@ export default class ElementsImage extends React.Component {
 
                 <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
                 <Image avatar size={44} name="Marty McFly" /><br /><br />
-                <Image avatar size={66} src="/_/docs/src/images/marty-mcfly.jpg" />
+                <Image avatar size={66} src={martyMcFlyImageSrc} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {sizeSample}
