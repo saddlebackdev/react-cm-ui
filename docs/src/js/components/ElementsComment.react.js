@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Comment, Header, Image, TitleBar } from 'react-cm-ui';
+import { Banner, Card, Comment, Header, Image, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
@@ -23,14 +23,101 @@ export default class CommentSample extends React.Component {
     }
 }`;
 
-export default class ElmentsComment extends React.Component {
+const editableCommentSample = `import React from 'react';
+import { Banner, Comment } from 'react-cm-ui';
+
+export default class CommentSample extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
+            isRemoveBannerOpen: false,
+            isSaveBannerOpen: false
+        };
+    }
+
     render() {
+        const { editableCommentText, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
+
+        return (
+            <Comment
+                canEdit
+                canRemove
+                isEditable
+                name="Joe Smith"
+                onRemove={this._onRemoveComment}
+                onSaveEdit={this._onSaveComment}
+                text={editableCommentText}
+                time={1531648822}
+            >
+                {editableCommentText}
+            </Comment>
+        );
+    }
+
+    _onCloseRemoveBanner() {
+        this.setState({ isRemoveBannerOpen: false });
+    }
+
+    _onCloseSaveBanner() {
+        this.setState({ isSaveBannerOpen: false });
+    }
+
+    _onRemoveComment() {
+        // TODO - Issue API call or whatever to delete the persisted comment data
+
+        this.setState({ isRemoveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isRemoveBannerOpen: false}), 2000);
+        });
+    }
+
+    _onSaveComment(updatedComment) {
+        // TODO - Issue API call or whatever to delete the persisted comment data
+
+        this.setState({ editableCommentText: updatedComment, isSaveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
+        });
+    }
+}`;
+
+export default class ElmentsComment extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
+            isRemoveBannerOpen: false,
+            isSaveBannerOpen: false
+        };
+
+        this._onCloseRemoveBanner = this._onCloseRemoveBanner.bind(this);
+        this._onCloseSaveBanner = this._onCloseSaveBanner.bind(this);
+        this._onRemoveComment = this._onRemoveComment.bind(this);
+        this._onSaveComment = this._onSaveComment.bind(this);
+    }
+
+    render() {
+        const { editableCommentText, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
+
         const props = [
             {
                 name: 'avatarSrc',
                 type: 'string',
                 default: '',
                 description: 'Show the user\'s avatar.',
+                allowedTypes: ''
+            }, {
+                name: 'canEdit',
+                type: 'bool',
+                default: 'false',
+                description: 'Whether or not the user is permitted to edit and save an update to the comment (assuming that isEditable is true and it is editable in the first place).',
+                allowedTypes: ''
+            }, {
+                name: 'canRemove',
+                type: 'bool',
+                default: 'false',
+                description: 'Whether or not the user is permitted to remove (delete) the comment (assuming that isEditable is true and it is editable in the first place).',
                 allowedTypes: ''
             }, {
                 name: 'children',
@@ -47,9 +134,15 @@ export default class ElmentsComment extends React.Component {
             }, {
                 name: 'detailsPosition',
                 type: 'enum',
-                default: '',
+                default: 'left',
                 description: 'Position the comment\'s details on either the left or right.',
                 allowedTypes: 'left, right'
+            }, {
+                name: 'isEditable',
+                type: 'bool',
+                default: 'false',
+                description: 'Whether or not the comment is editable.  At all.  If it is editable, but certain users may not have permission, use canEdit and canRemove to govern that.',
+                allowedTypes: ''
             }, {
                 name: 'name *',
                 type: 'string',
@@ -61,6 +154,12 @@ export default class ElmentsComment extends React.Component {
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the List\'s container. Mainly used for padding and margins.',
+                allowedTypes: ''
+            }, {
+                name: 'text',
+                type: 'string',
+                default: '',
+                description: 'In addition to passing it in as the child, you must pass the text/contents of a comment in here if you want to make it editable.',
                 allowedTypes: ''
             }, {
                 name: 'time *',
@@ -96,7 +195,72 @@ export default class ElmentsComment extends React.Component {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {commentSample}
                 </Highlighter>
+
+                {/* Editable Comment */}
+                <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Editable Comments
+                    <Header.Subheader>
+                        A comment can be editable and deletable.
+                    </Header.Subheader>
+                </Header>
+
+                <Comment
+                    canEdit
+                    canRemove
+                    isEditable
+                    name="Joe Smith"
+                    onRemove={this._onRemoveComment}
+                    onSaveEdit={this._onSaveComment}
+                    text={editableCommentText}
+                    time={1536941364}
+                >
+                    {editableCommentText}
+                </Comment>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {editableCommentSample}
+                </Highlighter>
+
+                <Banner
+                    id="remove-success"
+                    level="success"
+                    isOpen={isRemoveBannerOpen}
+                    message="Comment Removed!"
+                    onClose={this._onCloseRemoveBanner}
+                    title="Comment Removed"
+                    type="notification"
+                />
+
+                <Banner
+                    id="save-success"
+                    level="success"
+                    isOpen={isSaveBannerOpen}
+                    message="Comment Saved!"
+                    onClose={this._onCloseSaveBanner}
+                    title="Comment Saved"
+                    type="notification"
+                />
             </Main>
         );
+    }
+
+    _onCloseRemoveBanner() {
+        this.setState({ isRemoveBannerOpen: false });
+    }
+
+    _onCloseSaveBanner() {
+        this.setState({ isSaveBannerOpen: false });
+    }
+
+    _onRemoveComment() {
+        this.setState({ isRemoveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isRemoveBannerOpen: false}), 2000);
+        });
+    }
+
+    _onSaveComment(updatedComment) {
+        this.setState({ editableCommentText: updatedComment, isSaveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
+        });
     }
 }
