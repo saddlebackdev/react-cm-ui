@@ -73,7 +73,7 @@ export default class CommentSample extends React.Component {
     }
 
     _onSaveComment(updatedComment) {
-        // TODO - Issue API call or whatever to delete the persisted comment data
+        // TODO - Issue API call or whatever to update the persisted comment data
 
         this.setState({ editableCommentText: updatedComment, isSaveBannerOpen: true }, () => {
             setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
