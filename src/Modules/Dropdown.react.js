@@ -60,12 +60,12 @@ class Dropdown extends Component {
         this._onDropdownMenuResize = this._onDropdownMenuResize.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props, nextProps)) {
-            this.setState({
-                menuIsOpen: !_.isEqual(this.props.value, nextProps.value),
-                value: nextProps.value
-            });
+    componentDidUpdate(prevProps) {
+        const { value: currentPropsValue } = this.props;
+        const { value: previousPropsValue } = prevProps;
+
+        if (!_.isEqual(currentPropsValue, previousPropsValue)) {
+            this.setState({ menuIsOpen: false, value: currentPropsValue });
         }
     }
 
@@ -395,10 +395,22 @@ class Dropdown extends Component {
     }
 
     _onChange(selectedOption) {
-        if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(selectedOption);
+        const { collapseMenuOnChange, onChange } = this.props;
+
+        if (!_.isUndefined(onChange)) {
+            onChange(selectedOption);
+
+            if (collapseMenuOnChange) {
+                this.setState({ menuIsOpen: false });
+            }
         } else {
-            this.setState({ value: selectedOption });
+            const updatedState = { value: selectedOption };
+
+            if (collapseMenuOnChange) {
+                updatedState.menuIsOpen = false;
+            }
+
+            this.setState(updatedState);
         }
     }
 
@@ -519,16 +531,9 @@ class Dropdown extends Component {
 
         return items;
     }
-
-    _valueRenderer() {
-
-    }
-
 }
 
 Dropdown.Item = DropdownItem;
-
-
 
 Dropdown.propTypes = {
     button: PropTypes.bool,
@@ -536,6 +541,7 @@ Dropdown.propTypes = {
     buttonCompact: PropTypes.bool,
     className: PropTypes.string,
     clearable: PropTypes.bool,
+    collapseMenuOnChange: PropTypes.bool,
     disable: PropTypes.bool,
     fluid: PropTypes.bool,
     iconColor: PropTypes.oneOf(Utils.colorEnums()),
