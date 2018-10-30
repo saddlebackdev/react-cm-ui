@@ -42,11 +42,11 @@ export default class CommentSample extends React.Component {
 
         return (
             <Comment
+                canDelete
                 canEdit
-                canRemove
                 isEditable
                 name="Joe Smith"
-                onRemove={this._onRemoveComment}
+                onDelete={this._onRemoveComment}
                 onSaveEdit={this._onSaveComment}
                 text={editableCommentText}
                 time={1531648822}
@@ -87,6 +87,7 @@ export default class ElmentsComment extends React.Component {
 
         this.state = {
             editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
+            editableComment2Text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
             isRemoveBannerOpen: false,
             isSaveBannerOpen: false
         };
@@ -95,10 +96,11 @@ export default class ElmentsComment extends React.Component {
         this._onCloseSaveBanner = this._onCloseSaveBanner.bind(this);
         this._onRemoveComment = this._onRemoveComment.bind(this);
         this._onSaveComment = this._onSaveComment.bind(this);
+        this._onSaveComment2 = this._onSaveComment2.bind(this);
     }
 
     render() {
-        const { editableCommentText, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
+        const { editableCommentText, editableComment2Text, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
 
         const props = [
             {
@@ -108,16 +110,16 @@ export default class ElmentsComment extends React.Component {
                 description: 'Show the user\'s avatar.',
                 allowedTypes: ''
             }, {
+                name: 'canDelete',
+                type: 'bool',
+                default: 'false',
+                description: 'Whether or not the user is permitted to remove (delete) the comment (assuming that isEditable is true and it is editable in the first place).',
+                allowedTypes: ''
+            }, {
                 name: 'canEdit',
                 type: 'bool',
                 default: 'false',
                 description: 'Whether or not the user is permitted to edit and save an update to the comment (assuming that isEditable is true and it is editable in the first place).',
-                allowedTypes: ''
-            }, {
-                name: 'canRemove',
-                type: 'bool',
-                default: 'false',
-                description: 'Whether or not the user is permitted to remove (delete) the comment (assuming that isEditable is true and it is editable in the first place).',
                 allowedTypes: ''
             }, {
                 name: 'children',
@@ -181,7 +183,7 @@ export default class ElmentsComment extends React.Component {
                 </Card>
 
                 {/* Comment */}
-                <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Comment
                     <Header.Subheader>
                         A user's comment.
@@ -197,7 +199,7 @@ export default class ElmentsComment extends React.Component {
                 </Highlighter>
 
                 {/* Editable Comment */}
-                <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub={true}>
                     Editable Comments
                     <Header.Subheader>
                         A comment can be editable and deletable.
@@ -205,11 +207,11 @@ export default class ElmentsComment extends React.Component {
                 </Header>
 
                 <Comment
+                    canDelete
                     canEdit
-                    canRemove
                     isEditable
                     name="Joe Smith"
-                    onRemove={this._onRemoveComment}
+                    onDelete={this._onRemoveComment}
                     onSaveEdit={this._onSaveComment}
                     text={editableCommentText}
                     time={1536941364}
@@ -220,6 +222,28 @@ export default class ElmentsComment extends React.Component {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {editableCommentSample}
                 </Highlighter>
+
+                {/* Editable Comment with Details on Right and Actions on Left */}
+                <Header anchor="editable-comment-right" size="large" style={{ marginTop: '55px' }} sub>
+                    Editable comment with opposite alignment.
+                    <Header.Subheader>
+                        When the comment details are right-aligned, the edit and delete actions are left-aligned.
+                    </Header.Subheader>
+                </Header>
+
+                <Comment
+                    canDelete
+                    canEdit
+                    detailsPosition="right"
+                    isEditable
+                    name="Joe Smith"
+                    onDelete={this._onRemoveComment}
+                    onSaveEdit={this._onSaveComment2}
+                    text={editableComment2Text}
+                    time={1536941364}
+                >
+                    {editableComment2Text}
+                </Comment>
 
                 <Banner
                     id="remove-success"
@@ -260,6 +284,12 @@ export default class ElmentsComment extends React.Component {
 
     _onSaveComment(updatedComment) {
         this.setState({ editableCommentText: updatedComment, isSaveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
+        });
+    }
+
+    _onSaveComment2(updatedComment) {
+        this.setState({ editableComment2Text: updatedComment, isSaveBannerOpen: true }, () => {
             setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
         });
     }

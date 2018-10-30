@@ -6,7 +6,9 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import Dropdown from '../Modules/Dropdown.react';
 import Image from './Image.react';
+import Prompt from '../Modules/Prompt.react';
 import TextArea from './TextArea.react';
 
 class Comment extends Component {
@@ -14,22 +16,26 @@ class Comment extends Component {
         super(props);
 
         this.state = {
+            isEditMode: false,
+            showDeleteConfirmation: false,
             updatedCommentText: props.text || '',
-            isEditMode: false
         };
 
         this._onCancelEditClick = this._onCancelEditClick.bind(this);
         this._onCommentChange = this._onCommentChange.bind(this);
-        this._onEditClick = this._onEditClick.bind(this);
+        this._onDeletePromptNoClick = this._onDeletePromptNoClick.bind(this);
+        this._onDeletePromptYesClick = this._onDeletePromptYesClick.bind(this);
         this._onEditKeyDown = this._onEditKeyDown.bind(this);
-        this._onRemoveClick = this._onRemoveClick.bind(this);
+        this._onEditOrDeletePromptClick = this._onEditOrDeletePromptClick.bind(this);
         this._onSaveClick = this._onSaveClick.bind(this);
     }
 
     render() {
-        const { avatarSrc, canEdit, canRemove, children, className, detailsPosition, isEditable, name, style, time } = this.props;
-        const { isEditMode, updatedCommentText } = this.state;
+        const { avatarSrc, canDelete, canEdit, children, className, detailsPosition, isEditable, name, style, time } = this.props;
+        const { isEditMode, showDeleteConfirmation, updatedCommentText } = this.state;
         const containerClasses = ClassNames('ui', 'comment', className);
+        const isRightAligned = detailsPosition === 'right';
+        const editActionMenuAlignment = isRightAligned ? 'left' : 'right';
 
         return (
             <div className={containerClasses} style={style}>
@@ -39,7 +45,7 @@ class Comment extends Component {
                         style={{
                             alignItems: 'center',
                             display: 'flex',
-                            flexDirection: detailsPosition === 'right' ? 'row-reverse' : 'row',
+                            flexDirection: isRightAligned ? 'row-reverse' : 'row',
                             justifyContent: 'flex-start'
                         }}
                     >
@@ -50,59 +56,88 @@ class Comment extends Component {
                         <div
                             style={{
                                 flex: '1 0 auto',
-                                margin: detailsPosition === 'right' ? '0 11px 0 0' : '0 0 0 11px',
-                                textAlign: detailsPosition === 'right' ? 'right' : 'left'
+                                margin: isRightAligned ? '0 11px 0 0' : '0 0 0 11px',
+                                textAlign: isRightAligned ? 'right' : 'left',
                             }}
                         >
                             <span className="comment-name">{name}</span>
                             <span className="comment-time">{this._renderTime()}</span>
                         </div>
-                        { isEditable && (canEdit || canRemove) ?
+                        { isEditable && (canEdit || canDelete) ?
                             isEditMode ? (
                                 <div
                                     style={{
                                         flex: '1 0 auto',
-                                        margin: detailsPosition === 'right' ? '0 0 0 11px' : '0 11px 0 0',
-                                        textAlign: detailsPosition === 'right' ? 'left' : 'right'
+                                        margin: 0,
+                                        paddingTop: '19px',
+                                        textAlign: editActionMenuAlignment
                                     }}
                                 >
                                     <a
-                                        className="cancel-link"
+                                        className="cancel-link font-size-xsmall color-text"
                                         onClick={this._onCancelEditClick}
-                                        style={{ marginRight: '11px' }}
+                                        style={{ display: 'inline-block' }}
                                     >
                                         {'Cancel'}
                                     </a>
                                     <a
-                                        className="save-link"
+                                        className="save-link font-size-xsmall"
                                         disabled={!canEdit}
                                         onClick={this._onSaveClick}
-                                        style={{ marginRight: '11px' }}
+                                        style={{ display: 'inline-block', marginLeft: '22px' }}
                                     >
                                         {'Save'}
-                                    </a>
-                                    <a
-                                        className="remove-link"
-                                        disabled={!canRemove}
-                                        onClick={this._onRemoveClick}
-                                    >
-                                        {'Remove'}
                                     </a>
                                 </div>
                             ) : (
                                 <div
                                     style={{
                                         flex: '1 0 auto',
-                                        margin: detailsPosition === 'right' ? '0 0 0 11px' : '0 11px 0 0',
-                                        textAlign: detailsPosition === 'right' ? 'left' : 'right'
+                                        margin: 0,
+                                        textAlign: editActionMenuAlignment
                                     }}
                                 >
-                                    <a
-                                        className="edit-link"
-                                        onClick={this._onEditClick}
+                                    <Prompt
+                                        inline
+                                        inlineHorizontalAlign={isRightAligned ? 'left' : 'right'}
+                                        inlineMessageColor="alert"
+                                        message={'Delete?'}
+                                        onClick={this._onEditOrDeletePromptClick}
+                                        onNoClick={this._onDeletePromptNoClick}
+                                        onYesClick={this._onDeletePromptYesClick}
+                                        show={showDeleteConfirmation}
                                     >
-                                        {'Edit'}
-                                    </a>
+                                        <Dropdown
+                                            button
+                                            buttonColor="transparent"
+                                            buttonCompact
+                                            collapseMenuOnChange
+                                            iconColor="static"
+                                            iconPosition="right"
+                                            iconType="ellipsis-h"
+                                            style={{ margin: 0, padding: 0  }}
+                                            theme="dark"
+                                        >
+                                            { canEdit ? (
+                                                <Dropdown.Item
+                                                    className="action-edit"
+                                                    iconInverse
+                                                    iconType="pencil"
+                                                    id="edit"
+                                                    label={'Edit'}
+                                                />
+                                            ) : null}
+                                            { canDelete ? (
+                                                <Dropdown.Item
+                                                    className="action-delete"
+                                                    iconInverse
+                                                    iconType="trash"
+                                                    id="delete"
+                                                    label={'Delete'}
+                                                />
+                                            ) : null}
+                                        </Dropdown>
+                                    </Prompt>
                                 </div>
                                 ) :
                             null
@@ -126,15 +161,38 @@ class Comment extends Component {
     }
 
     _onCancelEditClick() {
-        this.setState({ isEditMode: false });
+        this.setState({
+            isEditMode: false,
+            updatedCommentText: this.props.text || ''
+        });
     }
 
     _onCommentChange(value) {
         this.setState({ updatedCommentText: value });
     }
 
-    _onEditClick() {
-        this.setState({ isEditMode: true });
+    _onDeletePromptNoClick() {
+        this.setState({ showDeleteConfirmation: false });
+    }
+
+    _onDeletePromptYesClick() {
+        const { onDelete } = this.props;
+        if (_.isFunction(onDelete)) {
+            onDelete();
+        }
+
+        this.setState({ showDeleteConfirmation: false });
+    }
+
+    _onEditOrDeletePromptClick(selectedOption) {
+        switch (selectedOption.id) {
+            case 'delete':
+                this.setState({ showDeleteConfirmation: true });
+                break;
+            case 'edit':
+                this.setState({ isEditMode: true });
+                break;
+        }
     }
 
     _onEditKeyDown(event) {
@@ -142,15 +200,6 @@ class Comment extends Component {
             event.preventDefault();
             this._onSaveClick();
         }
-    }
-
-    _onRemoveClick() {
-        const { onRemove } = this.props;
-        if (_.isFunction(onRemove)) {
-            onRemove();
-        }
-
-        this.setState({ isEditMode: false });
     }
 
     _onSaveClick() {
@@ -178,13 +227,13 @@ class Comment extends Component {
 
 Comment.propTypes = {
     avatarSrc: PropTypes.string,
+    canDelete: PropTypes.bool,
     canEdit: PropTypes.bool,
-    canRemove: PropTypes.bool,
     className: PropTypes.string,
     detailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
     isEditable: PropTypes.bool,
     name: PropTypes.string,
-    onRemove: PropTypes.func,
+    onDelete: PropTypes.func,
     onSaveEdit: PropTypes.func,
     style: PropTypes.object,
     text: PropTypes.string,
@@ -192,8 +241,8 @@ Comment.propTypes = {
 };
 
 Comment.defaultProps = {
+    canDelete: false,
     canEdit: false,
-    canRemove: false,
     detailsPosition: 'left',
     isEditable: false
 }
