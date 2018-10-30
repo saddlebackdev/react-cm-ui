@@ -32,27 +32,44 @@ export default class CommentSample extends React.Component {
 
         this.state = {
             editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
+            editableComment2Text: 'Pellentesque sagittis quam enim, a euismod nisl tristique ac. Duis rutrum accumsan nisl sit amet congue. Vivamus ut convallis velit, nec adipiscing mi. Sed semper dui ut velit eleifend tincidunt.',
             isRemoveBannerOpen: false,
             isSaveBannerOpen: false
         };
     }
 
     render() {
-        const { editableCommentText, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
+        const { editableCommentText, editableComment2Text, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
 
         return (
-            <Comment
-                canDelete
-                canEdit
-                isEditable
-                name="Joe Smith"
-                onDelete={this._onRemoveComment}
-                onSaveEdit={this._onSaveComment}
-                text={editableCommentText}
-                time={1531648822}
-            >
-                {editableCommentText}
-            </Comment>
+            <div>
+                <Comment
+                    canDelete
+                    canEdit
+                    isEditable
+                    name="Joe Smith"
+                    onDelete={this._onRemoveComment}
+                    onSaveEdit={this._onSaveComment}
+                    text={editableCommentText}
+                    time={1531648822}
+                >
+                    {editableCommentText}
+                </Comment>
+
+                <Comment
+                    canDelete
+                    canEdit
+                    detailsPosition="right"
+                    isEditable
+                    name="Jessica Jones"
+                    onDelete={this._onRemoveComment}
+                    onSaveEdit={this._onSaveComment2}
+                    text={editableComment2Text}
+                    time={1536941520}
+                >
+                    {editableComment2Text}
+                </Comment>
+            </div>
         );
     }
 
@@ -79,6 +96,14 @@ export default class CommentSample extends React.Component {
             setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
         });
     }
+
+    _onSaveComment2(updatedComment) {
+        // TODO - Issue API call or whatever to update the persisted comment data
+
+        this.setState({ editableComment2Text: updatedComment, isSaveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
+        });
+    }
 }`;
 
 export default class ElmentsComment extends React.Component {
@@ -87,7 +112,7 @@ export default class ElmentsComment extends React.Component {
 
         this.state = {
             editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
-            editableComment2Text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
+            editableComment2Text: 'Pellentesque sagittis quam enim, a euismod nisl tristique ac. Duis rutrum accumsan nisl sit amet congue. Vivamus ut convallis velit, nec adipiscing mi. Sed semper dui ut velit eleifend tincidunt.',
             isRemoveBannerOpen: false,
             isSaveBannerOpen: false
         };
@@ -206,6 +231,8 @@ export default class ElmentsComment extends React.Component {
                     </Header.Subheader>
                 </Header>
 
+                <p>When the comment details are right-aligned, the edit and delete actions are left-aligned.</p>
+
                 <Comment
                     canDelete
                     canEdit
@@ -219,31 +246,23 @@ export default class ElmentsComment extends React.Component {
                     {editableCommentText}
                 </Comment>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {editableCommentSample}
-                </Highlighter>
-
-                {/* Editable Comment with Details on Right and Actions on Left */}
-                <Header anchor="editable-comment-right" size="large" style={{ marginTop: '55px' }} sub>
-                    Editable comment with opposite alignment.
-                    <Header.Subheader>
-                        When the comment details are right-aligned, the edit and delete actions are left-aligned.
-                    </Header.Subheader>
-                </Header>
-
                 <Comment
                     canDelete
                     canEdit
                     detailsPosition="right"
                     isEditable
-                    name="Joe Smith"
+                    name="Jessica Jones"
                     onDelete={this._onRemoveComment}
                     onSaveEdit={this._onSaveComment2}
                     text={editableComment2Text}
-                    time={1536941364}
+                    time={1536941520}
                 >
                     {editableComment2Text}
                 </Comment>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {editableCommentSample}
+                </Highlighter>
 
                 <Banner
                     id="remove-success"
