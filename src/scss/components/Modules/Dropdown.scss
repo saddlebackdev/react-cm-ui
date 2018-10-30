@@ -259,6 +259,10 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 background-color: $bkgd-button-success;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
+            &transparent {
+                background-color: transparent;
+                > .ui.icon.icon-color-primary .icon-use-path { fill: $color-text; }
+            }
             &warning {
                 background-color: $bkgd-warning;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
