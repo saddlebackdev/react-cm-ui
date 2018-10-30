@@ -91,6 +91,7 @@ class Dropdown extends Component {
             'dropdown-color-alternate': buttonColor === 'alternate',
             'dropdown-color-secondary': buttonColor === 'secondary',
             'dropdown-color-success': buttonColor === 'success',
+            'dropdown-color-transparent': buttonColor === 'transparent',
             'dropdown-color-warning': buttonColor === 'warning',
             'dropdown-disable': disable,
             'dropdown-fluid': fluid,
@@ -293,7 +294,7 @@ class Dropdown extends Component {
             >
                 {iconPosition === 'left' ? (
                     <Icon
-                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        color={this.state.menuIsOpen && !button ? 'highlight' : button ? iconColor || null : null}
                         inverse={iconInverse}
                         size={iconSize || 'small'}
                         type={iconType || 'chevron-down'}
@@ -310,7 +311,7 @@ class Dropdown extends Component {
 
                 {!iconPosition || iconPosition === 'right' ? (
                     <Icon
-                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        color={this.state.menuIsOpen && !button ? 'highlight' : button ? iconColor || null : null}
                         compact
                         inverse={iconInverse}
                         size={iconSize || 'small'}
@@ -547,7 +548,10 @@ Dropdown.propTypes = {
     iconColor: PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: PropTypes.bool,
     iconPosition: PropTypes.oneOf([ 'left', 'right' ]),
-    iconSize: PropTypes.oneOf(Utils.sizeEnums()),
+    iconSize: PropTypes.oneOfType([
+        PropTypes.oneOf(Utils.sizeEnums()),
+        PropTypes.number
+    ]),
     iconType: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
