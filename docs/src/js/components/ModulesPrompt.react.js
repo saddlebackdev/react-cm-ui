@@ -24,7 +24,7 @@ export default class InlineSample extends React.Component {
                 </Prompt><br /><br />
 
                 <Prompt inline>
-                    <Dropdown button buttonColor="alert" placeholder="Remove Me!">
+                    <Dropdown button buttonColor="alert" collapseMenuOnChange placeholder="Remove Me!">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                     </Dropdown>
@@ -191,7 +191,7 @@ export default class ModulesPrompt extends React.Component {
                 </Prompt><br /><br />
 
                 <Prompt inline={true}>
-                    <Dropdown button buttonColor="alert" placeholder="Remove Me!">
+                    <Dropdown button buttonColor="alert" collapseMenuOnChange placeholder="Remove Me!">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                     </Dropdown>
