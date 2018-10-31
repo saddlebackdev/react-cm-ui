@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.0 - 2018-10-31
+### Added
+- Ability to edit and delete comments via the **Comment** component.
+- Ability to instruct **Dropdown** to collapse the menu on change imperatively using new `collapseMenuOnChange` Boolean
+prop regardless of whether or not it's a controlled component and there is a `value` prop change.
+- Ability to set the title/tooltip for the **Icon** embedded within the **Dropdown** (via new `iconTitle` prop).
+- Ability to set **Dropdown** color to `transparent`.
+### Changed
+- Bug fix in logic within **Dropdown** to update selected value state and collapse the menu on prop change.  Also converted
+this from legacy `componentWillReceiveProps()` to proper `componentDidUpdate()`.
+- Set some reasonable default behavior around **Icon** tooltip within the **Dropdown** (utilizing `placeholder` and/or `text`)
+props when new `iconTitle` prop is not specified.
+- Numerous enhancements to the documentation pages for **Dropdown** and **Prompt** components, including an example of
+how to wrap a **Dropdown** with a **Prompt** but only have some options trigger the prompt but not others.  Also corrected
+some typos and such.
+
 ## 1.16.3 - 2018-10-24
 ### Changed
 - Nothing new; same as described in  **1.16.2**.  Due to some git user errors made by Geoffrey, `1.16.2` didn't contain the changes it
