@@ -259,6 +259,10 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 background-color: $bkgd-button-success;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             }
+            &transparent {
+                background-color: transparent;
+                > .ui.icon.icon-color-primary .icon-use-path { fill: $color-text; }
+            }
             &warning {
                 background-color: $bkgd-warning;
                 > .ui.icon .icon-use-path { fill: $color-text-inverse; }
@@ -267,7 +271,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         &.dropdown-is-active {
             background-color: $bkgd-highlight;
             color: $color-text-inverse;
-            > .ui.icon .icon-use-path { fill: $color-text-inverse; }
+            &:not(.dropdown-color-transparent) > .ui.icon .icon-use-path { fill: $color-text-inverse; }
             &.dropdown-color-disable {
                 background-color: $bkgd-button-disable !important;
                 color: $color-text-static;
@@ -279,6 +283,11 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 box-shadow: inset 0 0 0 1px $border-highlight;
                 color: $color-text;
                 > .ui.icon .icon-use-path { fill: $color-text; }
+            }
+            &.dropdown-color-transparent {
+                background-color: transparent;
+                color: $color-text;
+                > .ui.icon.icon-color-primary .icon-use-path { fill: $color-text; }
             }
         }
         &.dropdown-inverse.dropdown-color- {
