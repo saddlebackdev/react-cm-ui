@@ -60,24 +60,26 @@ class Dropdown extends Component {
         this._onDropdownMenuResize = this._onDropdownMenuResize.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props, nextProps)) {
-            this.setState({
-                menuIsOpen: !_.isEqual(this.props.value, nextProps.value),
-                value: nextProps.value
-            });
+    componentDidUpdate(prevProps) {
+        const { value: currentPropsValue } = this.props;
+        const { value: previousPropsValue } = prevProps;
+
+        if (!_.isEqual(currentPropsValue, previousPropsValue)) {
+            this.setState({ menuIsOpen: false, value: currentPropsValue });
         }
     }
 
     render() {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
-            iconInverse, iconPosition, iconSize, iconType, inverse, label, labelStyle,
-            options, placeholder, searchable, selection,
-            selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
-            selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
+            iconInverse, iconPosition, iconSize, iconTitle, iconType,
+            inverse, label, labelStyle, options, placeholder, searchable,
+            selection, selectionCreatable, selectionMenuContainerStyle,
+            selectionMenuStyle, selectionMobile, selectionOptionComponent,
+            selectionValueComponent, selectionMultiple, selectionRequired,
             selectionUnderline, style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
+        const dropdownIconTitle = iconTitle || placeholder || text;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
@@ -91,6 +93,7 @@ class Dropdown extends Component {
             'dropdown-color-alternate': buttonColor === 'alternate',
             'dropdown-color-secondary': buttonColor === 'secondary',
             'dropdown-color-success': buttonColor === 'success',
+            'dropdown-color-transparent': buttonColor === 'transparent',
             'dropdown-color-warning': buttonColor === 'warning',
             'dropdown-disable': disable,
             'dropdown-fluid': fluid,
@@ -134,7 +137,7 @@ class Dropdown extends Component {
                             key={'dropdown-menu-item-' + index}
                         >
                             <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
-                                {iconType ? <Icon inverse={iconInverse} color={iconColor} type={iconType} /> : null}
+                                {iconType ? <Icon inverse={iconInverse} color={iconColor} title={value.label} type={iconType} /> : null}
                                 {value.label}
                             </span>
                         </li>
@@ -169,7 +172,7 @@ class Dropdown extends Component {
                                                 <span className="label">{this.state.value.label}</span>
                                             )}
 
-                                            <Icon color={disable ? 'disable' : null} compact type="arrows-alt" />
+                                            <Icon color={disable ? 'disable' : null} compact title={dropdownIconTitle} type="arrows-alt" />
                                         </div>
 
                                         <Modal
@@ -197,6 +200,7 @@ class Dropdown extends Component {
                                                         <Icon
                                                             compact={true}
                                                             size={selectionUnderline ? 10 : 16}
+                                                            title={dropdownIconTitle}
                                                             type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
                                                         />
                                                     </div>
@@ -208,6 +212,7 @@ class Dropdown extends Component {
                                                         <Icon
                                                             compact
                                                             size={selectionUnderline ? 10 : 16}
+                                                            title={'Clear Selection'}
                                                             type="times"
                                                         />
                                                     </div>
@@ -249,14 +254,14 @@ class Dropdown extends Component {
                             arrowRenderer={() => {
                                 return (
                                     <div>
-                                        <Icon compact size={16} type="chevron-down" />
+                                        <Icon compact size={16} title={dropdownIconTitle} type="chevron-down" />
                                     </div>
                                 );
                             }}
                             clearRenderer={() => {
                                 return (
                                     <div>
-                                        <Icon compact size={16} type="times" />
+                                        <Icon compact size={16} title={'Clear Selection'} type="times" />
                                     </div>
                                 );
                             }}
@@ -293,9 +298,10 @@ class Dropdown extends Component {
             >
                 {iconPosition === 'left' ? (
                     <Icon
-                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        color={this.state.menuIsOpen && !button ? 'highlight' : button ? iconColor || null : null}
                         inverse={iconInverse}
                         size={iconSize || 'small'}
+                        title={dropdownIconTitle}
                         type={iconType || 'chevron-down'}
                     />
                 ) : null}
@@ -310,10 +316,11 @@ class Dropdown extends Component {
 
                 {!iconPosition || iconPosition === 'right' ? (
                     <Icon
-                        color={this.state.menuIsOpen && !button ? 'highlight' : null}
+                        color={this.state.menuIsOpen && !button ? 'highlight' : button ? iconColor || null : null}
                         compact
                         inverse={iconInverse}
                         size={iconSize || 'small'}
+                        title={dropdownIconTitle}
                         type={iconType || 'chevron-down'}
                     />
                 ) : null}
@@ -395,10 +402,22 @@ class Dropdown extends Component {
     }
 
     _onChange(selectedOption) {
-        if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(selectedOption);
+        const { collapseMenuOnChange, onChange } = this.props;
+
+        if (!_.isUndefined(onChange)) {
+            onChange(selectedOption);
+
+            if (collapseMenuOnChange) {
+                this.setState({ menuIsOpen: false });
+            }
         } else {
-            this.setState({ value: selectedOption });
+            const updatedState = { value: selectedOption };
+
+            if (collapseMenuOnChange) {
+                updatedState.menuIsOpen = false;
+            }
+
+            this.setState(updatedState);
         }
     }
 
@@ -519,16 +538,9 @@ class Dropdown extends Component {
 
         return items;
     }
-
-    _valueRenderer() {
-
-    }
-
 }
 
 Dropdown.Item = DropdownItem;
-
-
 
 Dropdown.propTypes = {
     button: PropTypes.bool,
@@ -536,12 +548,17 @@ Dropdown.propTypes = {
     buttonCompact: PropTypes.bool,
     className: PropTypes.string,
     clearable: PropTypes.bool,
+    collapseMenuOnChange: PropTypes.bool,
     disable: PropTypes.bool,
     fluid: PropTypes.bool,
     iconColor: PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: PropTypes.bool,
     iconPosition: PropTypes.oneOf([ 'left', 'right' ]),
-    iconSize: PropTypes.oneOf(Utils.sizeEnums()),
+    iconSize: PropTypes.oneOfType([
+        PropTypes.oneOf(Utils.sizeEnums()),
+        PropTypes.number
+    ]),
+    iconTitle: PropTypes.string,
     iconType: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
