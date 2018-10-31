@@ -46,6 +46,7 @@ export default class CommentSample extends React.Component {
                 <Comment
                     canDelete
                     canEdit
+                    detailsPosition="right"
                     isEditable
                     name="Joe Smith"
                     onDelete={this._onRemoveComment}
@@ -59,7 +60,6 @@ export default class CommentSample extends React.Component {
                 <Comment
                     canDelete
                     canEdit={false}
-                    detailsPosition="right"
                     isEditable
                     name="Jessica Jones"
                     onDelete={this._onRemoveComment}
@@ -71,6 +71,7 @@ export default class CommentSample extends React.Component {
                 <Comment
                     canDelete
                     canEdit
+                    detailsPosition="right"
                     isEditable
                     name="Joe Smith"
                     onDelete={this._onRemoveComment}
