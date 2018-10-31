@@ -92,7 +92,7 @@ export default class OptionalPromptSample extends React.Component {
 
             case 'edit':
                 console.log('Proceeding with edit action (with no prompt) ...');
-                // TODO: DO whatever edit is supposed to do
+                // TODO: Do whatever edit is supposed to do
                 break;
 
             // TODO: Handle other options if applicable
@@ -285,7 +285,7 @@ export default class ModulesPrompt extends React.Component {
 
             case 'edit':
                 console.log('Proceeding with edit action (with no prompt) ...');
-                // TODO: DO whatever edit is supposed to do
+                // TODO: Do whatever edit is supposed to do
                 break;
 
             // TODO: Handle other options if applicable
