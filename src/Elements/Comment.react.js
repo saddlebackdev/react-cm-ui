@@ -36,6 +36,7 @@ class Comment extends Component {
         const containerClasses = ClassNames('ui', 'comment', className);
         const isRightAligned = detailsPosition === 'right';
         const editActionMenuAlignment = isRightAligned ? 'left' : 'right';
+        const editMenuTitle = (canDelete && canEdit) ? 'Edit or Delete' : canEdit ? 'Edit' : canDelete ? 'Delete' : null;
 
         return (
             <div className={containerClasses} style={style}>
@@ -99,7 +100,7 @@ class Comment extends Component {
                                 >
                                     <Prompt
                                         inline
-                                        inlineHorizontalAlign={isRightAligned ? 'left' : 'right'}
+                                        inlineHorizontalAlign={editActionMenuAlignment}
                                         inlineMessageColor="alert"
                                         message={'Delete?'}
                                         onClick={this._onEditOrDeletePromptClick}
@@ -114,6 +115,7 @@ class Comment extends Component {
                                             collapseMenuOnChange
                                             iconColor="static"
                                             iconPosition="right"
+                                            iconTitle={editMenuTitle}
                                             iconType="ellipsis-h"
                                             style={{ margin: 0, padding: 0  }}
                                             theme="dark"
