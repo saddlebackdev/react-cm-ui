@@ -84,11 +84,19 @@ export default class OptionalPromptSample extends React.Component {
     _onPromptClick(option) {
         console.log('Prompt got clicked!  Option:', option);
 
-        if (option.label === 'Delete') {
-            this.setState({ showPrompt: true });
-        }
+        switch (option.id) {
+            case 'delete':
+                console.log('Showing delete prompt...');
+                this.setState({ showPrompt: true }); // show the prompt
+                break;
 
-        // Otherwise handle other option
+            case 'edit':
+                console.log('Proceeding with edit action (with no prompt) ...');
+                // TODO: DO whatever edit is supposed to do
+                break;
+
+            // TODO: Handle other options if applicable
+        }
     }
 
     _onYesClick() {
@@ -180,11 +188,17 @@ export default class ModulesPrompt extends React.Component {
 
                 {/* Inline */}
                 <Header anchor="inline" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Inline
+                    Inline Prompt
                     <Header.Subheader>
                         A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
                     </Header.Subheader>
                 </Header>
+
+                <p>
+                    Note that the prompt will suppress actions from the wrapped control--button and link <code>onClick</code>,
+                    dropdown <code>onChange</code>, etc.  You handle the <code>Prompt</code> component's events instead
+                    (<code>onClick</code>, <code>onYesClick</code> and <code>onNoClick</code>).
+                </p>
 
                 <Prompt inline={true}>
                     <Button color="success">Save Me!</Button>
@@ -206,18 +220,25 @@ export default class ModulesPrompt extends React.Component {
                 </Highlighter>
 
                 {/* Dropdown with only some items prompting */}
-                <Header anchor="optional-prompt" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Optional Prompting for Dropdown
+                <Header anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    Selective Prompting for Dropdown Options
                     <Header.Subheader>
-                        A Dropdown with an inline prompt attached to it asking for a confirmation from the end-user can
-                        apply this prompt to some items but not others.  This does require some logic in the
-                        <code>onClick</code> handler function and use of the <code>show</code> prop as well.
+                        Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
+                        but we only want <em>certain</em> options to trigger not prompt, not all options (i.e. we need to trigger
+                        the prompt <em>selectively</em>). Note that in the sample above with the dropdown button menu,
+                        the prompt is triggered on <em>all options</em>.
                     </Header.Subheader>
                 </Header>
 
                 <p>
-                    Only the <strong>Delete</strong> option in the dropdown menu below should prompt.
-                    The <strong>Edit</strong> option shouldn't prompt.
+                    In order to achieve selective triggering of the prompt, you will have to add some logic to the
+                    function that handles the prompt's <code>onClick</code> event (where you will switch on the selected
+                    option to determine what to do) and use prompt's <code>show</code> prop to selectively show and hide
+                    the prompt as appropriate.
+                </p>
+                <p>
+                    The example below shows a sample Dropdown button action menu that contains Edit and Delete actions.<br />
+                    Only the <strong>Delete</strong> option should prompt. The <strong>Edit</strong> option shouldn't prompt.
                 </p>
 
                 <Prompt
@@ -243,7 +264,7 @@ export default class ModulesPrompt extends React.Component {
                 </Prompt>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {inlineSample}
+                    {optionalPrompSample}
                 </Highlighter>
             </Main>
         );
@@ -256,11 +277,19 @@ export default class ModulesPrompt extends React.Component {
     _onPromptClick(option) {
         console.log('Prompt got clicked!  Option:', option);
 
-        if (option.label === 'Delete') {
-            this.setState({ showPrompt: true });
-        }
+        switch (option.id) {
+            case 'delete':
+                console.log('Showing delete prompt...');
+                this.setState({ showPrompt: true }); // show the prompt
+                break;
 
-        // Otherwise handle other option
+            case 'edit':
+                console.log('Proceeding with edit action (with no prompt) ...');
+                // TODO: DO whatever edit is supposed to do
+                break;
+
+            // TODO: Handle other options if applicable
+        }
     }
 
     _onYesClick() {
