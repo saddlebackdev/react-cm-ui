@@ -72,12 +72,14 @@ class Dropdown extends Component {
     render() {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
-            iconInverse, iconPosition, iconSize, iconType, inverse, label, labelStyle,
-            options, placeholder, searchable, selection,
-            selectionCreatable, selectionMenuContainerStyle, selectionMenuStyle,
-            selectionMobile, selectionOptionComponent, selectionValueComponent, selectionMultiple, selectionRequired,
+            iconInverse, iconPosition, iconSize, iconTitle, iconType,
+            inverse, label, labelStyle, options, placeholder, searchable,
+            selection, selectionCreatable, selectionMenuContainerStyle,
+            selectionMenuStyle, selectionMobile, selectionOptionComponent,
+            selectionValueComponent, selectionMultiple, selectionRequired,
             selectionUnderline, style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
+        const dropdownIconTitle = iconTitle || placeholder || text;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
@@ -135,7 +137,7 @@ class Dropdown extends Component {
                             key={'dropdown-menu-item-' + index}
                         >
                             <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
-                                {iconType ? <Icon inverse={iconInverse} color={iconColor} type={iconType} /> : null}
+                                {iconType ? <Icon inverse={iconInverse} color={iconColor} title={value.label} type={iconType} /> : null}
                                 {value.label}
                             </span>
                         </li>
@@ -170,7 +172,7 @@ class Dropdown extends Component {
                                                 <span className="label">{this.state.value.label}</span>
                                             )}
 
-                                            <Icon color={disable ? 'disable' : null} compact type="arrows-alt" />
+                                            <Icon color={disable ? 'disable' : null} compact title={dropdownIconTitle} type="arrows-alt" />
                                         </div>
 
                                         <Modal
@@ -198,6 +200,7 @@ class Dropdown extends Component {
                                                         <Icon
                                                             compact={true}
                                                             size={selectionUnderline ? 10 : 16}
+                                                            title={dropdownIconTitle}
                                                             type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
                                                         />
                                                     </div>
@@ -209,6 +212,7 @@ class Dropdown extends Component {
                                                         <Icon
                                                             compact
                                                             size={selectionUnderline ? 10 : 16}
+                                                            title={'Clear Selection'}
                                                             type="times"
                                                         />
                                                     </div>
@@ -250,14 +254,14 @@ class Dropdown extends Component {
                             arrowRenderer={() => {
                                 return (
                                     <div>
-                                        <Icon compact size={16} type="chevron-down" />
+                                        <Icon compact size={16} title={dropdownIconTitle} type="chevron-down" />
                                     </div>
                                 );
                             }}
                             clearRenderer={() => {
                                 return (
                                     <div>
-                                        <Icon compact size={16} type="times" />
+                                        <Icon compact size={16} title={'Clear Selection'} type="times" />
                                     </div>
                                 );
                             }}
@@ -297,6 +301,7 @@ class Dropdown extends Component {
                         color={this.state.menuIsOpen && !button ? 'highlight' : button ? iconColor || null : null}
                         inverse={iconInverse}
                         size={iconSize || 'small'}
+                        title={dropdownIconTitle}
                         type={iconType || 'chevron-down'}
                     />
                 ) : null}
@@ -315,6 +320,7 @@ class Dropdown extends Component {
                         compact
                         inverse={iconInverse}
                         size={iconSize || 'small'}
+                        title={dropdownIconTitle}
                         type={iconType || 'chevron-down'}
                     />
                 ) : null}
@@ -552,6 +558,7 @@ Dropdown.propTypes = {
         PropTypes.oneOf(Utils.sizeEnums()),
         PropTypes.number
     ]),
+    iconTitle: PropTypes.string,
     iconType: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
