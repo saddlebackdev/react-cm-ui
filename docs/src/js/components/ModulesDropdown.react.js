@@ -772,7 +772,7 @@ export default class ModulesDropdown extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Color of the button Dropdown.',
-                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, warning'
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, transparent, warning'
             }, {
                 name: 'buttonCompact',
                 type: 'bool',
