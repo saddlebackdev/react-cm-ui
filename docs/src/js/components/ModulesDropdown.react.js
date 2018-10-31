@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Dropdown, Header, SubNavigation, TitleBar } from 'react-cm-ui';
+import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
@@ -18,7 +18,7 @@ export default class DropdownSample extends React.Component {
 
     render() {
         return (
-            <Dropdown placeholder="select">
+            <Dropdown collapseMenuOnChange placeholder="select">
                 <Dropdown.Item label="Option 1" />
                 <Dropdown.Item label="Option 2" />
                 <Dropdown.Item label="Option 3" />
@@ -37,7 +37,7 @@ export default class ButtonSample extends React.Component {
 
     render() {
         return (
-            <Dropdown button={true} placeholder="Button Dropdown">
+            <Dropdown button collapseMenuOnChange placeholder="Button Dropdown">
                 <Dropdown.Item label="Option 1" />
                 <Dropdown.Item label="Option 2" />
                 <Dropdown.Item label="Option 3" />
@@ -48,6 +48,91 @@ export default class ButtonSample extends React.Component {
 
 }`;
 
+const buttonControlledSample = `import React from 'react';
+
+import { Dropdown } from 'react-cm-ui';
+
+export default class ButtonControlledSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            buttonDropdownValue: null
+        };
+
+        this._onButtonDropDownChange = this._onButtonDropDownChange.bind(this);
+    }
+
+    render() {
+        return (
+            <Dropdown
+                button
+                placeholder="Button Dropdown"
+                onChange={this._onButtonDropDownChange}
+                value={this.state.buttonDropdownValue}
+            >
+                <Dropdown.Item label="Option 1" />
+                <Dropdown.Item label="Option 2" />
+                <Dropdown.Item label="Option 3" />
+                <Dropdown.Item label="Option 4" />
+            </Dropdown>
+        );
+    }
+
+    _onButtonDropDownChange(selectedOption) {
+        this.setState({ buttonDropdownValue: selectedOption });
+    }
+}`;
+
+const buttonMenuSample = `import React from 'react';
+
+import { Dropdown } from 'react-cm-ui';
+
+export default class ButtonMenuSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            buttonMenuAction: null
+        };
+
+        this._onButtonDropDownMenuChange = this._onButtonDropDownMenuChange.bind(this);
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.buttonMenuAction ? (
+                    <p>You selected: <strong>{this.state.buttonMenuAction}</strong></p>
+                ) : (
+                    <p>Select something...</p>
+                )}
+
+                <Dropdown
+                    button
+                    collapseMenuOnChange
+                    onChange={this._onButtonDropDownMenuChange}
+                    placeholder="Button Dropdown Menu"
+                >
+                    <Dropdown.Item label="Action 1" />
+                    <Dropdown.Item label="Action 2" />
+                    <Dropdown.Item label="Action 3" />
+                    <Dropdown.Item label="Action 4" />
+                </Dropdown>
+            </div>
+        );
+    }
+
+    _onButtonDropDownMenuChange(selectedOption) {
+        // TODO: Do whatever it is you want to do with the selected option
+        this.setState({ buttonMenuAction: selectedOption.label }, () => {
+            setTimeout(() => { this.setState({ buttonMenuAction: null }); }, 2000);
+        });
+    }
+}`;
+
 const buttonColorSample = `import React from 'react';
 import { Dropdown } from 'react-cm-ui';
 
@@ -55,47 +140,62 @@ export default class ButtonColorSample extends React.Component {
     render() {
         return (
             <div>
-                <Dropdown button buttonColor="alert" text="Alert">
+                <Dropdown button buttonColor="alert" collapseMenuOnChange text="Alert">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="alternate" text="Alternate">
+                <Dropdown button buttonColor="alternate" collapseMenuOnChange text="Alternate">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="disable" text="Disable">
+                <Dropdown button buttonColor="disable" collapseMenuOnChange text="Disable">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="light" text="Light">
+                <Dropdown button buttonColor="light" collapseMenuOnChange text="Light">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="outline" text="Outline">
+                <Dropdown button buttonColor="outline" collapseMenuOnChange text="Outline">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="primary" text="Primary">
+                <Dropdown button buttonColor="primary" collapseMenuOnChange text="Primary">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="secondary" text="Secondary">
+                <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="success" text="Success">
+                <Dropdown button buttonColor="success" collapseMenuOnChange text="Success">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
 
-                <Dropdown button buttonColor="warning" text="Warning">
+                <Dropdown button buttonColor="warning" collapseMenuOnChange text="Warning">
+                    <Dropdown.Item label="Option 1" />
+                    <Dropdown.Item label="Option 2" />
+                </Dropdown>
+
+                <Dropdown
+                    button
+                    buttonColor="transparent"
+                    buttonCompact
+                    collapseMenuOnChange
+                    iconColor="static"
+                    iconTitle={'Transparent icon button dropdown'}
+                    iconType="ellipsis-h"
+                    onChange={() => { }}
+                    style={{ margin: 0 }}
+                >
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
@@ -112,7 +212,7 @@ export default class ButtonCompactSample extends React.Component {
 
     render() {
         return (
-            <Dropdown button={true} buttonCompact={true} placeholder="Button Compact Dropdown">
+            <Dropdown button buttonCompact collapseMenuOnChange placeholder="Button Compact Dropdown">
                 <Dropdown.Item label="Option 1" />
                 <Dropdown.Item label="Option 2" />
                 <Dropdown.Item label="Option 3" />
@@ -225,9 +325,10 @@ export default class IconSample extends React.Component {
         return (
             <div>
                 <Dropdown
-                    button={true}
-                    buttonCompact={true}
-                    iconInverse={true}
+                    button
+                    buttonCompact
+                    collapseMenuOnChange
+                    iconInverse
                     iconSize="xlarge"
                     iconType="ellipsis-h"
                 >
@@ -240,10 +341,10 @@ export default class IconSample extends React.Component {
                 <Dropdown
                     iconType="plus"
                     onChange={this._onSelectionCustomOptionsChange.bind(this)}
-                    selectionOptionComponent={SelectionCustomComponent}
                     options={selectionCustomOptions}
-                    placeholder="Select a status"
-                    selection={true}
+                    placeholder="Select a user"
+                    selectionOptionComponent={SelectionCustomComponent}
+                    selection
                     value={this.state.selectionCustomOptionsValue}
                 />
             </div<
@@ -669,6 +770,8 @@ export default class ModulesDropdown extends React.Component {
         };
 
         this._onSampleOnChange = this._onSampleOnChange.bind(this);
+        this._onButtonDropDownChange = this._onButtonDropDownChange.bind(this);
+        this._onButtonDropDownMenuChange = this._onButtonDropDownMenuChange.bind(this);
     }
 
     render() {
@@ -684,7 +787,7 @@ export default class ModulesDropdown extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Color of the button Dropdown.',
-                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, warning'
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, transparent, warning'
             }, {
                 name: 'buttonCompact',
                 type: 'bool',
@@ -692,6 +795,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'A button can reduce its padding.',
                 allowedTypes: ''
             }, {
+                name: 'collapseMenuOnChange',
+                type: 'bool',
+                default: '',
+                description: 'Whether or not to automatically collapse the menu when an option is selected (regardless of whether or not the value changes).  it is a good idea to set this prop to true if you\'re handing onChange but not updating the value (e.g. if you\'re using a button dropdown as an aciton menu).',
+                allowedTypes: ''
+            },{
                 name: 'className',
                 type: 'string',
                 default: '',
@@ -726,6 +835,12 @@ export default class ModulesDropdown extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Change the size of the icon inside of the Dropdown.',
+                allowedTypes: ''
+            }, {
+                name: 'iconTitle',
+                type: 'string',
+                default: '',
+                description: 'Set the title (tooltip) of the icon inside of the Dropdown menu.  If not specified, placeholder or text value is used instead.',
                 allowedTypes: ''
             }, {
                 name: 'iconType',
@@ -816,6 +931,12 @@ export default class ModulesDropdown extends React.Component {
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Dropdown\'s container. Mainly used for padding and margins.',
+                allowedTypes: ''
+            }, {
+                name: 'text',
+                type: 'string, object',
+                default: '',
+                description: 'Set text of Dropdown; an alternative to placeholder.',
                 allowedTypes: ''
             }, {
                 name: 'theme',
@@ -983,11 +1104,11 @@ export default class ModulesDropdown extends React.Component {
                     <Header anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Dropdown
                         <Header.Subheader>
-                            A baisc Dropdown.
+                            A basic Dropdown.
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown placeholder="select">
+                    <Dropdown collapseMenuOnChange placeholder="select">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -995,7 +1116,7 @@ export default class ModulesDropdown extends React.Component {
                     </Dropdown>
 
                     <div style={{ textAlign: 'right' }}>
-                        <Dropdown placeholder="select">
+                        <Dropdown collapseMenuOnChange placeholder="select">
                             <Dropdown.Item label="Option 1" />
                             <Dropdown.Item label="Really Long Option 2" />
                             <Dropdown.Item label="Option 3" />
@@ -1015,7 +1136,7 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button={true} placeholder="Button Dropdown">
+                    <Dropdown button collapseMenuOnChange placeholder="Button Dropdown">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1026,6 +1147,67 @@ export default class ModulesDropdown extends React.Component {
                         {buttonSample}
                     </Highlighter>
 
+                    {/* Button Dropdown Controlled Component */}
+                    <Header anchor="button-controlled" size="large" style={{ marginTop: '55px' }} sub>
+                        Button Dropdown as a Controlled Component
+                        <Header.Subheader>
+                            A Button Dropdown can act as a typical React controlled component.  This means that we set the
+                            <code>value</code> prop, handle the <code>onChange</code> event and update whatever state we
+                            we're using for <code>value</code>.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown
+                        button
+                        onChange={this._onButtonDropDownChange}
+                        placeholder="Button Dropdown"
+                        value={this.state.buttonDropdownValue}
+                    >
+                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item label="Option 2" />
+                        <Dropdown.Item label="Option 3" />
+                        <Dropdown.Item label="Option 4" />
+                    </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {buttonControlledSample}
+                    </Highlighter>
+
+                    {/* Button Menu - Auto-collapse even if value doesn't change */}
+                    <Header anchor="button-menu" size="large" style={{ marginTop: '55px' }} sub>
+                        Button Dropdown Menu
+                        <Header.Subheader>
+                            This is an example of how to use a Button Dropdown as a "menu".  We're not actually updating
+                            its value when an option is selected because we don't want the text of the button to change,
+                            but we are taking advantage of its <code>onChange</code> event do possibly do things in response
+                            to the selection, and we're also setting <code>collapseMenuOnChange</code> in order to force
+                            it to retract the menu.  (This latter is not necessary if we were to use it normally as a
+                            controlled component and update the value; contrast this example with the example above.)
+                        </Header.Subheader>
+                    </Header>
+
+                    {this.state.buttonMenuAction ? (
+                        <p>You selected: <strong>{this.state.buttonMenuAction}</strong></p>
+                    ) : (
+                        <p>Select something...</p>
+                    )}
+
+                    <Dropdown
+                        button
+                        collapseMenuOnChange
+                        onChange={this._onButtonDropDownMenuChange}
+                        placeholder="Button Dropdown Menu"
+                    >
+                        <Dropdown.Item label="Action 1" />
+                        <Dropdown.Item label="Action 2" />
+                        <Dropdown.Item label="Action 3" />
+                        <Dropdown.Item label="Action 4" />
+                    </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {buttonMenuSample}
+                    </Highlighter>
+
                     {/* Button Color */}
                     <Header anchor="button-color" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Button Color
@@ -1034,50 +1216,95 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button buttonColor="alert" text="Alert">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                    <Grid>
+                        <Grid.Row stackable>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="alert" collapseMenuOnChange text="Alert" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="alternate" text="Alternate">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="alternate" collapseMenuOnChange text="Alternate" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="disable" text="Disable">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="disable" collapseMenuOnChange text="Disable" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="light" text="Light">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="light" collapseMenuOnChange text="Light" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="outline" text="Outline">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="outline" collapseMenuOnChange text="Outline" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="primary" text="Primary">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="primary" collapseMenuOnChange text="Primary" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row stackable>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="secondary" text="Secondary">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="success" collapseMenuOnChange text="Success" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="success" text="Success">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <Dropdown button buttonColor="warning" collapseMenuOnChange text="Warning" style={{ maxWidth: '200px', width: '100%' }}>
+                                    <Dropdown.Item label="Option 1" />
+                                    <Dropdown.Item label="Option 2" />
+                                </Dropdown>
+                            </Grid.Column>
 
-                    <Dropdown button buttonColor="warning" text="Warning">
-                        <Dropdown.Item label="Option 1" />
-                        <Dropdown.Item label="Option 2" />
-                    </Dropdown>
+                            <Grid.Column width={6} tablet={4} laptop={2}>
+                                <div style={{ flex: '0 0 auto' }}>
+                                    <Dropdown
+                                        button
+                                        buttonColor="transparent"
+                                        buttonCompact
+                                        collapseMenuOnChange
+                                        iconColor="static"
+                                        iconTitle={'Transparent icon button dropdown'}
+                                        iconType="ellipsis-h"
+                                        onChange={() => { }}
+                                        style={{ margin: 0 }}
+                                    >
+                                        <Dropdown.Item label="Option 1" />
+                                        <Dropdown.Item label="Option 2" />
+                                    </Dropdown>
+                                    <div style={{ display: 'inline-flex' }}>
+                                        {'(Transparent)'}
+                                    </div>
+                                </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {buttonColorSample}
@@ -1087,11 +1314,11 @@ export default class ModulesDropdown extends React.Component {
                     <Header anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub={true}>
                         Button Compact
                         <Header.Subheader>
-                            A Dropdown can take on the style of a Button.
+                            A Dropdown Button can be made compact.
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button={true} buttonCompact={true} placeholder="Button Compact Dropdown">
+                    <Dropdown button buttonCompact collapseMenuOnChange placeholder="Button Compact Dropdown">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1150,14 +1377,14 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown iconType="plus" placeholder="select">
+                    <Dropdown collapseMenuOnChange iconType="plus" placeholder="select">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
                     </Dropdown><br /><br />
 
-                    <Dropdown button iconSize="small" iconPosition="left" iconType="plus" placeholder="Button Placeholder/Icon">
+                    <Dropdown button collapseMenuOnChange iconSize="small" iconPosition="left" iconType="plus" placeholder="Button Placeholder/Icon">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1165,9 +1392,10 @@ export default class ModulesDropdown extends React.Component {
                     </Dropdown><br /><br />
 
                     <Dropdown
-                        button={true}
-                        buttonCompact={true}
-                        iconInverse={true}
+                        button
+                        buttonCompact
+                        collapseMenuOnChange
+                        iconInverse
                         iconSize="xlarge"
                         iconType="ellipsis-h"
                     >
@@ -1180,10 +1408,10 @@ export default class ModulesDropdown extends React.Component {
                     <Dropdown
                         iconType="plus"
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}
-                        selectionOptionComponent={SelectionCustomComponent}
                         options={selectionCustomOptions}
-                        placeholder="Select a status"
-                        selection={true}
+                        placeholder="Select a user"
+                        selectionOptionComponent={SelectionCustomComponent}
+                        selection
                         value={this.state.selectionCustomOptionsValue}
                     />
 
@@ -1239,7 +1467,7 @@ export default class ModulesDropdown extends React.Component {
                     <Header anchor="on-change" size="large" style={{ marginTop: '55px' }} sub={true}>
                         onChange
                         <Header.Subheader>
-                            onChagne event handler.
+                            onChange event handler.
                         </Header.Subheader>
                     </Header>
 
@@ -1297,11 +1525,11 @@ export default class ModulesDropdown extends React.Component {
                         {selectionMobileSample}
                     </Highlighter>
 
-                    {/* Selection Mutiple */}
+                    {/* Selection Multiple */}
                     <Header anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub={true}>
-                        Selection Mutiple
+                        Selection Multiple
                         <Header.Subheader>
-                            A Dropdown can be a select dropdown where you can choose items.
+                            A Dropdown can be a select dropdown where you can choose multiple items.
                         </Header.Subheader>
                     </Header>
 
@@ -1408,6 +1636,17 @@ export default class ModulesDropdown extends React.Component {
                 {examplesJSX}
             </Main>
         );
+    }
+
+    _onButtonDropDownChange(selectedOption) {
+        this.setState({ buttonDropdownValue: selectedOption });
+    }
+
+    _onButtonDropDownMenuChange(selectedOption) {
+        // TODO: Do whatever it is you want to do with the selected option
+        this.setState({ buttonMenuAction: selectedOption.label }, () => {
+            setTimeout(() => { this.setState({ buttonMenuAction: null}); }, 2000);
+        });
     }
 
     _onDropdownChange(selectedOption) {

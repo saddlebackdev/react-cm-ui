@@ -119,7 +119,7 @@ class Prompt extends Component {
         } else if (children && children.type.name === 'Dropdown') {
             return React.cloneElement(children, {
                 className: promptActionClasses,
-                buttonColor: show ? 'disable' : children.props.buttonColor,
+                buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
                 onChange: this._onClick.bind(this),
                 ref: promptAction => { this.promptAction = promptAction }
             });
