@@ -144,13 +144,13 @@ export default class ElmentsComment extends React.Component {
                 name: 'avatarSrc',
                 type: 'string',
                 default: '',
-                description: 'Show the user\'s avatar.',
+                description: 'Show the comment author\'s avatar.',
                 allowedTypes: ''
             }, {
                 name: 'canDelete',
                 type: 'bool',
                 default: 'false',
-                description: 'Whether or not the user is permitted to remove (delete) the comment (assuming that isEditable is true and it is editable in the first place).',
+                description: 'Whether or not the user is permitted to delete the comment (assuming that isEditable is true and it is editable in the first place).',
                 allowedTypes: ''
             }, {
                 name: 'canEdit',
@@ -180,7 +180,7 @@ export default class ElmentsComment extends React.Component {
                 name: 'isEditable',
                 type: 'bool',
                 default: 'false',
-                description: 'Whether or not the comment is editable.  At all.  If it is editable, but certain users may not have permission, use canEdit and canRemove to govern that.',
+                description: 'Whether or not the comment is editable.  At all.  If it is editable, but certain users may not have Edit and/or Delete permission, use canEdit and canDelete to govern that.',
                 allowedTypes: ''
             }, {
                 name: 'name *',
@@ -192,7 +192,7 @@ export default class ElmentsComment extends React.Component {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the List\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Comment\'s container. Mainly used for padding and margins.',
                 allowedTypes: ''
             }, {
                 name: 'text',
