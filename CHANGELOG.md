@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.1 - 2018-11-01
+### Added
+- Add `onClick()` event to `Dropdown`.  This will be called whenever menu is expanded/collapsed, passing a Boolean
+argument to indicate whether the menu is open (true) or closed (false).
+
 ## 1.17.0 - 2018-10-31
 ### Added
 - Ability to edit and delete comments via the **Comment** component.
