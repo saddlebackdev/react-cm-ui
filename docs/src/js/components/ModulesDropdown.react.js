@@ -870,7 +870,13 @@ export default class ModulesDropdown extends React.Component {
                 name: 'onChange',
                 type: 'func',
                 default: '',
-                description: 'The onChange even handler.',
+                description: 'The onChange event handler.',
+                allowedTypes: ''
+            }, {
+                name: 'onClick',
+                type: 'func',
+                default: '',
+                description: 'The onClick event handler (when dropdown is clicked to expand/activate).  Passes a Boolean argument indicating whether the menu is open or not.',
                 allowedTypes: ''
             }, {
                 name: 'options',
