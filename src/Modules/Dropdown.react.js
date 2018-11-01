@@ -79,7 +79,6 @@ class Dropdown extends Component {
             selectionValueComponent, selectionMultiple, selectionRequired,
             selectionUnderline, style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
-        const dropdownIconTitle = iconTitle || placeholder || text;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
@@ -105,6 +104,13 @@ class Dropdown extends Component {
             'dropdown-selection': selection,
             'dropdown-selection-underline': selectionUnderline
         });
+
+        let dropdownIconTitle = iconTitle || placeholder;
+
+        if (_.isEmpty(dropdownIconTitle) && _.isString(text)) {
+            dropdownIconTitle = text;
+        }
+
         let items, labelJSX;
 
         if (label) {
@@ -402,7 +408,7 @@ class Dropdown extends Component {
     }
 
     _onChange(selectedOption) {
-        const { collapseMenuOnChange, onChange } = this.props;
+        const { collapseMenuOnChange, onChange, onClick } = this.props;
 
         if (!_.isUndefined(onChange)) {
             onChange(selectedOption);
@@ -415,6 +421,9 @@ class Dropdown extends Component {
 
             if (collapseMenuOnChange) {
                 updatedState.menuIsOpen = false;
+                if (_.isFunction(onClick)) {
+                    onClick(false);
+                }
             }
 
             this.setState(updatedState);
@@ -424,20 +433,32 @@ class Dropdown extends Component {
     _onClickOutside(event) {
         const { menuIsOpen } = this.state;
 
-        if (this.dropdownContainer && ReactDOM.findDOMNode(this.dropdownContainer).contains(event.target) && this.state.menuIsOpen) {
+        if (this.dropdownContainer && ReactDOM.findDOMNode(this.dropdownContainer).contains(event.target) && menuIsOpen) {
             return;
         }
 
         this.setState({ menuIsOpen: false });
+
+        const { onClick } = this.props;
+        if (_.isFunction(onClick)) {
+            onClick(false);
+        }
     }
 
     _onDropdownClick(event) {
         event.stopPropagation();
 
-        if (!this.props.disable) {
+        const { disable, onClick } = this.props;
+        const updatedMenuOpenState = !this.state.menuIsOpen;
+
+        if (!disable) {
             this.setState({
-                menuIsOpen: !this.state.menuIsOpen
+                menuIsOpen: updatedMenuOpenState
             });
+
+            if (_.isFunction(onClick)) {
+                onClick(updatedMenuOpenState);
+            }
         }
     }
 
@@ -565,6 +586,7 @@ Dropdown.propTypes = {
     labelStyle: PropTypes.object,
     menuMaxHeight: PropTypes.number,
     menuMinHeight: PropTypes.number,
+    onClick: PropTypes.func,
     onChange: PropTypes.func,
     options: PropTypes.array,
     placeholder: PropTypes.string,
