@@ -189,6 +189,24 @@ export default class ElmentsComment extends React.Component {
                 description: 'A required field which displays the user\'s name.',
                 allowedTypes: ''
             }, {
+                name: 'onActionMenuClick',
+                type: 'func',
+                default: '',
+                description: 'The onActionMenuClick event handler.',
+                allowedTypes: ''
+            }, {
+                name: 'onDelete',
+                type: 'func',
+                default: '',
+                description: 'The onDelete event handler.',
+                allowedTypes: ''
+            }, {
+                name: 'onSaveEdit',
+                type: 'func',
+                default: '',
+                description: 'The onSaveEdit event handler.',
+                allowedTypes: ''
+            }, {
                 name: 'style',
                 type: 'object',
                 default: '',
@@ -271,6 +289,7 @@ export default class ElmentsComment extends React.Component {
                     detailsPosition="right"
                     isEditable
                     name="Joe Smith"
+                    onActionMenuClick={this._onMenuClick.bind(this)}
                     onDelete={this._onRemoveComment}
                     onSaveEdit={this._onSaveComment}
                     text={editableCommentText}
@@ -355,5 +374,9 @@ export default class ElmentsComment extends React.Component {
         this.setState({ editableComment2Text: updatedComment, isSaveBannerOpen: true }, () => {
             setTimeout(() => this.setState({ isSaveBannerOpen: false}), 2000);
         });
+    }
+
+    _onMenuClick(menuIsOpen) {
+        console.log('Action menu clicked!  Menu open:', menuIsOpen);
     }
 }
