@@ -79,7 +79,6 @@ class Dropdown extends Component {
             selectionValueComponent, selectionMultiple, selectionRequired,
             selectionUnderline, style, tabIndex, text, theme } = this.props;
         const { menuIsOpen, menuPositionStyle } = this.state;
-        const dropdownIconTitle = iconTitle || placeholder || text;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
@@ -105,6 +104,13 @@ class Dropdown extends Component {
             'dropdown-selection': selection,
             'dropdown-selection-underline': selectionUnderline
         });
+
+        let dropdownIconTitle = iconTitle || placeholder;
+
+        if (_.isEmpty(dropdownIconTitle) && _.isString(text)) {
+            dropdownIconTitle = text;
+        }
+
         let items, labelJSX;
 
         if (label) {
