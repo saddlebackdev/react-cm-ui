@@ -408,7 +408,7 @@ class Dropdown extends Component {
     }
 
     _onChange(selectedOption) {
-        const { collapseMenuOnChange, onChange } = this.props;
+        const { collapseMenuOnChange, onChange, onClick } = this.props;
 
         if (!_.isUndefined(onChange)) {
             onChange(selectedOption);
@@ -421,6 +421,9 @@ class Dropdown extends Component {
 
             if (collapseMenuOnChange) {
                 updatedState.menuIsOpen = false;
+                if (_.isFunction(onClick)) {
+                    onClick(false);
+                }
             }
 
             this.setState(updatedState);
@@ -430,20 +433,32 @@ class Dropdown extends Component {
     _onClickOutside(event) {
         const { menuIsOpen } = this.state;
 
-        if (this.dropdownContainer && ReactDOM.findDOMNode(this.dropdownContainer).contains(event.target) && this.state.menuIsOpen) {
+        if (this.dropdownContainer && ReactDOM.findDOMNode(this.dropdownContainer).contains(event.target) && menuIsOpen) {
             return;
         }
 
         this.setState({ menuIsOpen: false });
+
+        const { onClick } = this.props;
+        if (_.isFunction(onClick)) {
+            onClick(false);
+        }
     }
 
     _onDropdownClick(event) {
         event.stopPropagation();
 
-        if (!this.props.disable) {
+        const { disable, onClick } = this.props;
+        const updatedMenuOpenState = !this.state.menuIsOpen;
+
+        if (!disable) {
             this.setState({
-                menuIsOpen: !this.state.menuIsOpen
+                menuIsOpen: updatedMenuOpenState
             });
+
+            if (_.isFunction(onClick)) {
+                onClick(updatedMenuOpenState);
+            }
         }
     }
 
@@ -571,6 +586,7 @@ Dropdown.propTypes = {
     labelStyle: PropTypes.object,
     menuMaxHeight: PropTypes.number,
     menuMinHeight: PropTypes.number,
+    onClick: PropTypes.func,
     onChange: PropTypes.func,
     options: PropTypes.array,
     placeholder: PropTypes.string,

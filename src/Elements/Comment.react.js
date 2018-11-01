@@ -21,6 +21,7 @@ class Comment extends Component {
             updatedCommentText: props.text || '',
         };
 
+        this._onActionMenuClick = this._onActionMenuClick.bind(this);
         this._onCancelEditClick = this._onCancelEditClick.bind(this);
         this._onCommentChange = this._onCommentChange.bind(this);
         this._onDeletePromptNoClick = this._onDeletePromptNoClick.bind(this);
@@ -117,6 +118,7 @@ class Comment extends Component {
                                             iconPosition="right"
                                             iconTitle={editMenuTitle}
                                             iconType="ellipsis-h"
+                                            onClick={this._onActionMenuClick}
                                             style={{ margin: 0, padding: 0  }}
                                             theme="dark"
                                         >
@@ -162,6 +164,14 @@ class Comment extends Component {
         );
     }
 
+    _onActionMenuClick(menuIsOpen) {
+        const { onActionMenuClick } = this.props;
+
+        if (_.isFunction(onActionMenuClick)) {
+            onActionMenuClick(menuIsOpen);
+        }
+    }
+
     _onCancelEditClick() {
         this.setState({
             isEditMode: false,
@@ -193,6 +203,12 @@ class Comment extends Component {
                 break;
             case 'edit':
                 this.setState({ isEditMode: true });
+
+                const { onActionMenuClick } = this.props;
+                if (_.isFunction(onActionMenuClick)) {
+                    onActionMenuClick(false);
+                }
+
                 break;
         }
     }
@@ -235,6 +251,7 @@ Comment.propTypes = {
     detailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
     isEditable: PropTypes.bool,
     name: PropTypes.string,
+    onActionMenuClick: PropTypes.func,
     onDelete: PropTypes.func,
     onSaveEdit: PropTypes.func,
     style: PropTypes.object,
