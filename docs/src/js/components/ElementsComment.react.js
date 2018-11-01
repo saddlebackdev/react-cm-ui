@@ -254,9 +254,10 @@ export default class ElmentsComment extends React.Component {
                     example, let's say the rules are that a comment may only be edited by its original author, but that
                     certain "moderator" users are authorized to delete comments (e.g. comments deemed "inappropriate").
                     You should use the <code>canDelete</code> and <code>canEdit</code> props to drive these kinds of
-                    permissions and selectively make deletion and editing available. The example below demonstrates
-                    this: Joe Smith's comments are editable and deleteable; Jessica Jone's comment is only deletable
-                    (i.e. let's say that Joe Smith is the logged in user and has moderation privileges.)
+                    permissions and selectively make deletion and editing available. The sample below demonstrates
+                    this: Let's say that Joe Smith is the logged in user and has moderation privileges.
+                    Joe Smith's comments are both editable and deleteable whereas Jessica Jones' comment is deletable
+                    because Joe is a moderator but not editable because Joe is not the author.
                 </p>
 
                 <p>
