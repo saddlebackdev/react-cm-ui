@@ -118,7 +118,8 @@ class Comment extends Component {
                                             iconPosition="right"
                                             iconTitle={editMenuTitle}
                                             iconType="ellipsis-h"
-                                            onClick={this._onActionMenuClick}
+                                            onClose={() => this._onActionMenuClick(false)}
+                                            onOpen={() => this._onActionMenuClick(true)}
                                             style={{ margin: 0, padding: 0  }}
                                             theme="dark"
                                         >

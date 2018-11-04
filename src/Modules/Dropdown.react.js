@@ -408,7 +408,7 @@ class Dropdown extends Component {
     }
 
     _onChange(selectedOption) {
-        const { collapseMenuOnChange, onChange, onClick } = this.props;
+        const { collapseMenuOnChange, onChange, onClose } = this.props;
 
         if (!_.isUndefined(onChange)) {
             onChange(selectedOption);
@@ -421,8 +421,8 @@ class Dropdown extends Component {
 
             if (collapseMenuOnChange) {
                 updatedState.menuIsOpen = false;
-                if (_.isFunction(onClick)) {
-                    onClick(false);
+                if (_.isFunction(onClose)) {
+                    onClose();
                 }
             }
 
@@ -439,16 +439,16 @@ class Dropdown extends Component {
 
         this.setState({ menuIsOpen: false });
 
-        const { onClick } = this.props;
-        if (_.isFunction(onClick)) {
-            onClick(false);
+        const { onClose } = this.props;
+        if (_.isFunction(onClose)) {
+            onClose();
         }
     }
 
     _onDropdownClick(event) {
         event.stopPropagation();
 
-        const { disable, onClick } = this.props;
+        const { disable, onOpen, onClose } = this.props;
         const updatedMenuOpenState = !this.state.menuIsOpen;
 
         if (!disable) {
@@ -456,8 +456,14 @@ class Dropdown extends Component {
                 menuIsOpen: updatedMenuOpenState
             });
 
-            if (_.isFunction(onClick)) {
-                onClick(updatedMenuOpenState);
+            if (updatedMenuOpenState) {
+                if (_.isFunction(onOpen)) {
+                    onOpen();
+                }
+            } else {
+                if (_.isFunction(onClose)) {
+                    onClose();
+                }
             }
         }
     }
@@ -525,6 +531,10 @@ class Dropdown extends Component {
 
     _onSelectionMenuOpen() {
         // debugger;
+        const { onOpen } = this.props;
+        if (_.isFunction(onOpen)) {
+            onOpen();
+        }
     }
 
     _onSelectionMobileModalToggle() {
@@ -586,8 +596,9 @@ Dropdown.propTypes = {
     labelStyle: PropTypes.object,
     menuMaxHeight: PropTypes.number,
     menuMinHeight: PropTypes.number,
-    onClick: PropTypes.func,
+    onClose: PropTypes.func,
     onChange: PropTypes.func,
+    onOpen: PropTypes.func,
     options: PropTypes.array,
     placeholder: PropTypes.string,
     searchable: PropTypes.bool,
