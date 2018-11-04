@@ -1,5 +1,11 @@
 'use strict';
 
+import 'images/avatar1.jpg';
+import 'images/avatar2.jpg';
+import 'images/avatar3.jpg';
+import 'images/avatar4.jpg';
+import 'images/avatar5.jpg';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
@@ -9,6 +15,10 @@ import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
+
+const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
+    `/_/docs/src/images/${imageFileName}` :
+    `/images/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
 
@@ -246,25 +256,30 @@ export default class DisableSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=3',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=4',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=5',
-                'id': 36,
+                'avatar': '/images/avatar3.jpg',
+                'id': 13,
                 'label': 'Joseph Lee',
-                'value': 36
+                'value': 13
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=68',
-                'id': 36,
+                'avatar': '/images/avatar4.jpg',
+                'id': 21,
                 'label': 'Cameron Brewer',
-                'value': 36
+                'value': 21
+            }, {
+                'avatar': '/images/avatar5.jpg',
+                'id': 34,
+                'label': 'Geoffrey Roberts',
+                'value': 34
             }
         ];
 
@@ -535,25 +550,30 @@ export default class SelectionOptionComponentSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=3',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=4',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=5',
-                'id': 36,
+                'avatar': '/images/avatar3.jpg',
+                'id': 13,
                 'label': 'Joseph Lee',
-                'value': 36
+                'value': 13
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=68',
-                'id': 36,
+                'avatar': '/images/avatar4.jpg',
+                'id': 21,
                 'label': 'Cameron Brewer',
-                'value': 36
+                'value': 21
+            }, {
+                'avatar': '/images/avatar5.jpg',
+                'id': 34,
+                'label': 'Geoffrey Roberts',
+                'value': 34
             }
         ];
 
@@ -598,25 +618,30 @@ export default class SelectionUnderlineSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=3',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=4',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=5',
-                'id': 36,
+                'avatar': '/images/avatar3.jpg',
+                'id': 13,
                 'label': 'Joseph Lee',
-                'value': 36
+                'value': 13
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=68',
-                'id': 36,
+                'avatar': '/images/avatar4.jpg',
+                'id': 21,
                 'label': 'Cameron Brewer',
-                'value': 36
+                'value': 21
+            }, {
+                'avatar': '/images/avatar5.jpg',
+                'id': 34,
+                'label': 'Geoffrey Roberts',
+                'value': 34
             }
         ];
 
@@ -873,10 +898,16 @@ export default class ModulesDropdown extends React.Component {
                 description: 'The onChange event handler.',
                 allowedTypes: ''
             }, {
-                name: 'onClick',
+                name: 'onClose',
                 type: 'func',
                 default: '',
-                description: 'The onClick event handler (when dropdown is clicked to expand/activate).  Passes a Boolean argument indicating whether the menu is open or not.',
+                description: 'The onClose event handler function.  This event is called when dropdown menu is closed.',
+                allowedTypes: ''
+            }, {
+                name: 'onOpen',
+                type: 'func',
+                default: '',
+                description: 'The onOpen event handler function.  This event is called when dropdown menu is opened.',
                 allowedTypes: ''
             }, {
                 name: 'options',
@@ -1019,17 +1050,17 @@ export default class ModulesDropdown extends React.Component {
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'id': 36,
+                'id': 13,
                 'label': 'Joseph Lee',
-                'value': 36
+                'value': 13
             }, {
-                'id': 23,
+                'id': 21,
                 'label': 'Geoffrey Roberts',
-                'value': 23
+                'value': 21
             }, {
-                'id': 55,
+                'id': 34,
                 'label': 'Cameron Brewer',
-                'value': 55
+                'value': 34
             }
         ];
 
@@ -1040,25 +1071,30 @@ export default class ModulesDropdown extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=3',
+                'avatar': getImageUrl('avatar1.jpg'),
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=4',
+                'avatar': getImageUrl('avatar2.jpg'),
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=5',
-                'id': 36,
+                'avatar': getImageUrl('avatar3.jpg'),
+                'id': 13,
                 'label': 'Joseph Lee',
-                'value': 36
+                'value': 13
             }, {
-                'avatar': 'http://i.pravatar.cc/33?img=68',
-                'id': 36,
+                'avatar': getImageUrl('avatar4.jpg'),
+                'id': 21,
                 'label': 'Cameron Brewer',
-                'value': 36
+                'value': 21
+            }, {
+                'avatar': getImageUrl('avatar5.jpg'),
+                'id': 34,
+                'label': 'Geoffrey Roberts',
+                'value': 34
             }
         ];
 
