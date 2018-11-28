@@ -430,6 +430,39 @@ export default class OnChangeSample extends React.Component {
 
 }`;
 
+const selectionMatchPropSample = `import React from 'react';
+
+import { Dropdown } from 'react-cm-ui';
+
+export default class SelectionMatchPropSample extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { selectionValue: null };
+    }
+
+    render() {
+        return (
+            <Dropdown
+                onChange={this._onSelectionChange.bind(this)}
+                options={selectionOptions}
+                placeholder="Select a user"
+                selection
+                selectionMatchProp="label"
+                value={this.state.selectionValue}
+            />
+        );
+    }
+
+    _onSelectionChange(selectedOption) {
+        console.log('Parent component has the object now and can do what needs to be done');
+
+        this.setState({ selectionValue: selectedOption });
+    }}
+
+}`;
+
 const selectionCreatableSample = `import React from 'react';
 
 import { Dropdown } from 'react-cm-ui';
@@ -934,6 +967,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Supply any inline styles to the Dropdown Selection\'s outer menu.',
                 allowedTypes: ''
             }, {
+                name: 'selectionMatchProp',
+                type: 'enum',
+                default: 'any',
+                description: 'Whether to match the value, label or both values of each selection option when filtering.',
+                allowedTypes: 'any, label, value'
+            }, {
                 name: 'selectionMenuStyle',
                 type: 'object',
                 default: '',
@@ -1040,27 +1079,31 @@ export default class ModulesDropdown extends React.Component {
             {
                 'id': -1,
                 'label': 'All Users',
-                'value': -1
+                'value': 'all users',
             }, {
                 'id': 5,
                 'label': 'Rafi Ghazarian',
-                'value': 5
+                'value':'rafi ghazarian',
             }, {
                 'id': 8,
                 'label': 'Mike Jacobs',
-                'value': 8
+                'value':'mike jacobs',
             }, {
                 'id': 13,
                 'label': 'Joseph Lee',
-                'value': 13
+                'value': 'joseph lee',
             }, {
                 'id': 21,
                 'label': 'Geoffrey Roberts',
-                'value': 21
+                'value': 'geoffrey roberts',
             }, {
                 'id': 34,
                 'label': 'Cameron Brewer',
-                'value': 34
+                'value': 'cameron brewer',
+            }, {
+                'id': 39,
+                'label': 'Joe Smoe',
+                'value': 'cameron joe smoe',
             }
         ];
 
@@ -1522,6 +1565,27 @@ export default class ModulesDropdown extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {onChangeSample}
+                    </Highlighter>
+
+                    {/* Selection Match Props */}
+                    <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Selection Match Props
+                        <Header.Subheader>
+                            Whether to match the value, label or both values of each selection option when filtering
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown
+                        onChange={this._onSelectionChange.bind(this)}
+                        options={selectionOptions}
+                        placeholder="Select a user"
+                        selection
+                        selectionMatchProp="label"
+                        value={this.state.selectionValue}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {selectionMatchPropSample}
                     </Highlighter>
 
                     {/* Selection Creatable */}
