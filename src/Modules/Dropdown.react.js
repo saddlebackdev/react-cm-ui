@@ -74,7 +74,7 @@ class Dropdown extends Component {
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconPosition, iconSize, iconTitle, iconType,
             inverse, label, labelStyle, options, placeholder, searchable,
-            selection, selectionCreatable, selectionMenuContainerStyle,
+            selection, selectionCreatable, selectionMatchProp, selectionMenuContainerStyle,
             selectionMenuStyle, selectionMobile, selectionOptionComponent,
             selectionValueComponent, selectionMultiple, selectionRequired,
             selectionUnderline, style, tabIndex, text, theme } = this.props;
@@ -226,6 +226,7 @@ class Dropdown extends Component {
                                             }}
                                             clearable={!clearable ? clearable : true}
                                             disabled={disable}
+                                            matchProp={selectionMatchProp || 'any'}
                                             menuContainerStyle={selectionMenuContainerStyle}
                                             menuRenderer={this._menuRenderer.bind(this)}
                                             menuStyle={selectionMenuStyle}
@@ -603,6 +604,7 @@ Dropdown.propTypes = {
     placeholder: PropTypes.string,
     searchable: PropTypes.bool,
     selectionCreatable: PropTypes.bool,
+    selectionMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
     selectionMenuContainerStyle: PropTypes.object,
     selectionMenuStyle: PropTypes.object,
     selectionMobile: PropTypes.bool,

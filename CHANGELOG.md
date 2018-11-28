@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.5 - 2018-11-28
+### Added
+- Added `selectionMatchProp` prop in **Dropdown** component.
+
+## 1.17.4 - 2018-11-04
+### Changed
+- `Dropdown` `onClick()` that was added in `1.17.1` has been removed and replaced with `onOpen()` and `onClose()`.
+- `Dropdown` documentation page samples with user avatar images refactored to use local image files as the sample avatar
+service we were previously using does not support HTTPS.  This way we can avoid mixed content issue if the documentation
+site is viewed over HTTPS.
+
 ## 1.17.4 - 2018-11-04
 ### Changed
 - `Dropdown` `onClick()` that was added in `1.17.1` has been removed and replaced with `onOpen()` and `onClose()`.

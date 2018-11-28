@@ -54,7 +54,7 @@ class TimePicker extends Component {
 
     render() {
         const { className, disable, error, id, label, nest, range, required, style } = this.props;
-        const { hourOptions, isTimePopoverActive, minuteOptions, periodOptions, value, zoneOptions } = this.state;
+        const { hourOptions, isTimePopoverActive, minuteOptions, periodOptions, value, zoneMatchProp, zoneOptions } = this.state;
         const containerClasses = ClassNames('ui', 'time-picker', className, {
             'time-picker-disable': disable,
             'time-picker-error': error,
@@ -107,6 +107,7 @@ class TimePicker extends Component {
                     options={zoneOptions}
                     placeholder="(-07:00 PDT) America (Los Angeles)"
                     selection
+                    selectionMatchProps={zoneMatchProp || 'label'}
                     menuMaxHeight={448}
                     tabIndex={isTimePopoverActive ? 5 : 2}
                     value={value.timeZone}
@@ -429,6 +430,7 @@ TimePicker.propTypes = {
             PropTypes.object
         ])
     }),
+    zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
     zoneOptions: PropTypes.array
 };
 
