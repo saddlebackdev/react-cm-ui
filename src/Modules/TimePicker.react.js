@@ -107,7 +107,7 @@ class TimePicker extends Component {
                     options={zoneOptions}
                     placeholder="(-07:00 PDT) America (Los Angeles)"
                     selection
-                    selectionMatchProps={zoneMatchProp || 'label'}
+                    selectionMatchProp={zoneMatchProp || 'label'}
                     menuMaxHeight={448}
                     tabIndex={isTimePopoverActive ? 5 : 2}
                     value={value.timeZone}
