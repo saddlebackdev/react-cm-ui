@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.4 - 2018-11-29
+### Changed
+- Fixed `zoneMatchProp` prop in **TimePicker** component.
+
 ## 1.17.3 - 2018-11-28
 ### Added
 - Added `selectionMatchProp` prop in **Dropdown** component.
