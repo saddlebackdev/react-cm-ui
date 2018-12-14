@@ -255,6 +255,12 @@ export default class ModulesTimePicker extends React.Component {
                 default: 'any',
                 description: 'Whether to match the value, label or both values of each selection option when filtering.',
                 allowedTypes: 'any, label, value'
+            }, {
+                name: 'zonePlaceholderText',
+                type: 'string',
+                default: '',
+                description: 'Set the placeholder text in the Time Zone Select component.',
+                allowedTypes: ''
             }
         ];
 
