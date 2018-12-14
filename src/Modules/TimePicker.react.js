@@ -15,6 +15,9 @@ class TimePicker extends Component {
     constructor(props) {
         super(props);
 
+        const zoneOptions = this._renderZoneOptions();
+        const guessedTimeZone = moment.tz.guess();
+
         this.state = {
             hourOptions: this._renderHourOptions(),
             isTimePopoverActive: false,
@@ -24,9 +27,9 @@ class TimePicker extends Component {
                 timeDisplay: null,
                 timeFrom: null,
                 timeTo: null,
-                timeZone: _.find(this._renderZoneOptions(), o => o.value === moment.tz.guess())
+                timeZone: _.find(zoneOptions, o => o.value === guessedTimeZone)
             },
-            zoneOptions: this._renderZoneOptions()
+            zoneOptions
         };
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
@@ -53,7 +56,7 @@ class TimePicker extends Component {
     }
 
     render() {
-        const { className, disable, error, id, label, nest, range, required, style } = this.props;
+        const { className, disable, error, id, label, nest, range, required, style, zonePlaceholderText } = this.props;
         const { hourOptions, isTimePopoverActive, minuteOptions, periodOptions, value, zoneMatchProp, zoneOptions } = this.state;
         const containerClasses = ClassNames('ui', 'time-picker', className, {
             'time-picker-disable': disable,
@@ -105,7 +108,7 @@ class TimePicker extends Component {
                     disable={disable}
                     onChange={this._onZoneDropdownChange.bind(this)}
                     options={zoneOptions}
-                    placeholder="(-07:00 PDT) America (Los Angeles)"
+                    placeholder={zonePlaceholderText || 'Select a Time Zone'}
                     selection
                     selectionMatchProp={zoneMatchProp || 'label'}
                     menuMaxHeight={448}
@@ -431,7 +434,8 @@ TimePicker.propTypes = {
         ])
     }),
     zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
-    zoneOptions: PropTypes.array
+    zoneOptions: PropTypes.array,
+    zonePlaceholderText: PropTypes.string
 };
 
 export default TimePicker;
