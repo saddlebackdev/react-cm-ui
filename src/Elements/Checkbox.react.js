@@ -12,17 +12,24 @@ class Checkbox extends Component {
         super(props);
 
         this.state = { isChecked: props.checked || false }
+
+        this._onClick = this._onClick.bind(this);
+        this._onLabelClick = this._onLabelClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.checked, nextProps.checked)) {
-            this.setState({ isChecked: nextProps.checked });
+    componentDidUpdate(prevProps, prevState) {
+        const { checked: checkedInCurrentProps } = this.props;
+        const { isChecked: checkedInPrevState } = prevState;
+
+        if (checkedInCurrentProps !== checkedInPrevState) {
+            this.setState({ isChecked: checkedInCurrentProps });
         }
     }
 
     render() {
         const { align, className, disabled, fluid, id, inverse,
-            label, labelClassName, labelClick, labelStyle, labelWeight, name, size, style, toggle, value } = this.props;
+            label, labelClassName, labelClick, labelStyle, labelWeight,
+            name, size, style, toggle, value } = this.props;
         const { isChecked } = this.state;
         const newDisabled = disabled || false;
         const newValue = value || '';
@@ -36,20 +43,23 @@ class Checkbox extends Component {
             'checkbox-size-small': size === 'small',
             'checkbox-toggle': toggle
         });
+
         const labelClasses = ClassNames('checkbox-label', {
             'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
         });
+
         const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
             'checkbox-label-text-weight-bold': labelWeight == 'bold',
             'checkbox-label-text-weight-normal': !labelWeight || labelWeight === 'normal',
             'checkbox-label-text-weight-semibold': labelWeight == 'semibold',
         });
+
         const checkSize = size === 'small' ? 8 : 10;
 
         return (
             <div
                 className={containerClasses}
-                onClick={this._onClick.bind(this)}
+                onClick={this._onClick}
                 style={style}
             >
                 <input
@@ -67,7 +77,7 @@ class Checkbox extends Component {
                     {label ? (
                         <span
                             className={labelTextClasses}
-                            onClick={this._onLabelClick.bind(this)}
+                            onClick={this._onLabelClick}
                             style={labelStyle}
                         >
                             {label}
@@ -89,12 +99,15 @@ class Checkbox extends Component {
 
     _onClick(event) {
         const { disabled, id, onChange } = this.props;
-        const isChecked = this.state.isChecked;
+        const { isChecked } = this.state;
+        const isCheckedNow = !isChecked;
 
-        if (!_.isUndefined(onChange)) {
-            onChange(id, !isChecked, event);
-        } else if (!disabled) {
-            this.setState({ isChecked: !isChecked });
+        if (!disabled) {
+            if (!_.isUndefined(onChange)) {
+                onChange(id, isCheckedNow, event);
+            } else {
+                this.setState({ isChecked: isCheckedNow });
+            }
         }
     }
 

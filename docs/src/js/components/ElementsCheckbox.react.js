@@ -331,7 +331,11 @@ export default class ElementsCheckbox extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Checkbox disabled={true} label="This checkbox has been disabled, true or false?" />
+                <Checkbox
+                    disabled
+                    label="This checkbox has been disabled, true or false?"
+                    onChange={this._onDisabledCheckBoxChange.bind(this)}
+                />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {disabledSample}
@@ -432,6 +436,10 @@ export default class ElementsCheckbox extends React.Component {
 
     _onChange(id, checked) {
         this.setState({ onChangeSample: checked });
+    }
+
+    _onDisabledCheckBoxChange(id, checked) {
+        console.log('You should NOT be seeing this console log because the checkbox is disabled!'); // eslint-disable-line no-console
     }
 
 }
