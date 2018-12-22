@@ -108,6 +108,8 @@ class Checkbox extends Component {
             } else {
                 this.setState({ isChecked: isCheckedNow });
             }
+        } else {
+            event.stopPropagation();
         }
     }
 
