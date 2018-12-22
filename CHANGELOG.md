@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.6 - 2018-12-21
+- Fixed a bug in the **Checkbox** component.  It was calling `onChange` even when the
+`disabled` prop was set to `true`.  The upshot of that is, when used as a controlled
+component, disabled Checkboxes were not quite as disabled as we might have liked! =)
+
 ## 1.17.5 - 2018-12-14
 ### Changed
 - Fixed time zone select placeholder text (and added ability to specify it via prop) in **TimePicker** component.
