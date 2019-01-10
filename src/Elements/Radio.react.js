@@ -150,9 +150,7 @@ class Radio extends Component {
 
         if (!_.isUndefined(onChange)) {
             onChange(pill ? idArg : id, newValue);
-        } else if (!disabled && !pill) {
-            this.setState({ isChecked: newValue });
-        } else if (!disabled && pill) {
+        } else if (!disabled) {
             this.setState({ isChecked: newValue });
         }
     }
