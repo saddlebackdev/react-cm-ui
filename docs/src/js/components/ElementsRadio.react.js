@@ -168,7 +168,13 @@ export default class RadioGroupPillSample extends React.Component {
                     <Radio.Item label="Option 03" />
                 </Radio><br /><br />
 
-                <Radio checked={this.state.checkedPill} name="pill-onchange-sample" onChange={this._onPillChange.bind(this)} pill={true} multi={true}>
+                <Radio
+                    checked={this.state.checkedPill}
+                    name="pill-onchange-sample"
+                    onChange={this._onPillChange.bind(this)}
+                    pill
+                    multi
+                >
                     <Radio.Item label="Option 01" />
                     <Radio.Item label="Option 02" />
                     <Radio.Item label="Option 03" />
@@ -242,6 +248,12 @@ export default class ElementsRadio extends React.Component {
                 description: 'Disable the label\'s definition onClick handler.',
                 allowedTypes: ''
             }, {
+                name: 'multi',
+                type: 'bool',
+                default: 'false',
+                description: 'Force the radio button group to work in a multi checkbox mode.',
+                allowedTypes: ''
+            }, {
                 name: 'name',
                 type: 'string',
                 default: '',
@@ -258,12 +270,6 @@ export default class ElementsRadio extends React.Component {
                 type: 'bool',
                 default: 'false',
                 description: 'Group radio buttons together in a pill container.',
-                allowedTypes: ''
-            }, {
-                name: 'multi',
-                type: 'bool',
-                default: 'false',
-                description: 'Force to work radio button group in a multi checkbox mode.',
                 allowedTypes: ''
             }, {
                 name: 'style',
