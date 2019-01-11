@@ -50,6 +50,15 @@ RadioItem.propTypes = {
     style: PropTypes.object
 };
 
+const isCheckedSingle = (c, i, isChecked) => (
+    c.id ? c.id === isChecked : i === isChecked
+);
+
+const isCheckedMulti = (c, i, isChecked) => {
+    const id = c.id ? c.id : i;
+    return _.includes(isChecked, id);
+};
+
 class Radio extends Component {
 
     constructor(props) {
@@ -65,7 +74,7 @@ class Radio extends Component {
     }
 
     render() {
-        const { align, children, className, disabled, fluid, id, label, labelClick, name, pill, style, value } = this.props;
+        const { align, children, className, disabled, fluid, id, label, labelClick, name, pill, style, value, multi } = this.props;
         const isChecked = this.state.isChecked;
         const containerClasses = ClassNames('ui', 'radio', className, {
             'radio-align-left': align === 'left',
@@ -80,12 +89,13 @@ class Radio extends Component {
         });
 
         if (pill) {
+            const isCheckedItem = multi ? isCheckedMulti : isCheckedSingle;
             return (
                 <div className={containerClasses} style={style}>
                     {React.Children.map(children, (c, i) => React.cloneElement(c, {
                         index: i,
-                        checked: c.id ? c.id === isChecked : i === isChecked,
-                        name: name,
+                        checked: isCheckedItem(c, i, isChecked),
+                        name: multi ? null : name,
                         onClick: this._onClick.bind(this)
                     }))}
                 </div>
@@ -119,15 +129,29 @@ class Radio extends Component {
     }
 
     _onClick(idArg) {
-        const { disabled, id, onChange, pill } = this.props;
-        const { isChecked } = this.state;
+        const { disabled, id, onChange, pill, multi } = this.props;
+        let newValue = _.clone(this.state.isChecked);
+
+        if (multi) {
+            if (_.includes(newValue, idArg)) {
+                _.remove(newValue, v => v === idArg);
+            } else {
+                if (_.isArray(newValue)) {
+                    newValue.push(idArg);
+                } else {
+                    newValue = [ idArg ];
+                }
+            }
+        } else if (pill) {
+            newValue = idArg;
+        } else {
+            newValue = true;
+        }
 
         if (!_.isUndefined(onChange)) {
-            onChange(pill ? idArg : id, !isChecked);
-        } else if (!disabled && !pill) {
-            this.setState({ isChecked: isChecked || true });
-        } else if (!disabled && pill) {
-            this.setState({ isChecked: idArg });
+            onChange(pill ? idArg : id, newValue);
+        } else if (!disabled) {
+            this.setState({ isChecked: newValue });
         }
     }
 
@@ -157,6 +181,7 @@ Radio.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
     labelClick: PropTypes.bool,
+    multi: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
     pill: PropTypes.bool,
