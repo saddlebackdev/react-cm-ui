@@ -74,8 +74,9 @@ class Radio extends Component {
     }
 
     render() {
-        const { align, children, className, disabled, fluid, id, label, labelClick, name, pill, style, value, multi } = this.props;
-        const isChecked = this.state.isChecked;
+        const { align, children, className, disabled, fluid, id, label,
+            labelClick, multi, name, pill, style, value } = this.props;
+        const { isChecked } = this.state;
         const containerClasses = ClassNames('ui', 'radio', className, {
             'radio-align-left': align === 'left',
             'radio-align-right': align === 'right',
