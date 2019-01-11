@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.8 - 2019-01-10
+### Added
+- Add `multi` property to **Radio** component.  This allows multiple selections
+(which is useful in combination with `pill` for certain desired UI elements; see
+#35)
+
 ## 1.17.7 - 2018-12-21
 ### Fixed
 - As a further update to **1.17.6**, ensure that click event propagation is stopped
