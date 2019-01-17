@@ -175,23 +175,27 @@ class Accordion extends Component {
         if (props.exclusive === false) {
             newSelected = props.selected || [];
         } else {
-            newSelected = props.selected || -1;
+            newSelected = _.isNil(props.selected) ? -1 : props.selected;
         }
 
         this.state = { selected: newSelected };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.selected, nextProps.selected)) {
-            let newSelected;
+    componentDidUpdate(prevProps, prevState) {
+        const { selected: prevSelectedProp } = prevProps;
+        const { exclusive, selected: nextSelectedProp } = this.props;
 
-            if (nextProps.exclusive === false) {
-                newSelected = nextProps.selected || [];
+        if (!_.isEqual(prevSelectedProp, nextSelectedProp)) {
+            let nextSelectedState;
+
+            if (exclusive === false) {
+                nextSelectedState = nextSelectedProp || [];
             } else {
-                newSelected = nextProps.selected || -1;
+                nextSelectedState = _.isNil(nextSelectedProp) ?
+                    -1 : nextSelectedProp;
             }
 
-            this.setState({ selected: newSelected });
+            this.setState({ selected: nextSelectedState });
         }
     }
 
