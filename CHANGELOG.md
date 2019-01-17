@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.17.9 - 2019-01-17
+### Fixed
+- Fixed a bug in the **Accordion** component.  When using it in exclusive mode,
+you were unable to pass the value `0` to the `selected` prop to default select
+the first item.  This was due to standard JavaScript truthy/falsy silliness;
+`0` is falsy so a naive check for whether the prop was specified resulted in
+falling back on `-1` (nothing selected) as a default when `0` was the specified
+value.  Converted this to use Lodash's `_.isNil()` function for a more precise
+check, and life is good!
+
 ## 1.17.8 - 2019-01-10
 ### Added
 - Add `multi` property to **Radio** component.  This allows multiple selections
