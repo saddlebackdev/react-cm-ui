@@ -229,47 +229,50 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const { max, min, onChange, required } = this.props;
-        const type = this._getType();
-        let newValue = event.target.value;
+        const { disabled, max, min, onChange, required } = this.props;
 
-        if (type === 'number') {
-            if (this.inputTimer) {
-                clearTimeout(this.inputTimer);
-            }
+        if (!disabled) {
+            const type = this._getType();
+            let newValue = event.target.value;
 
-            this.inputTimer = setTimeout(() => {
-                if (_.isEmpty(newValue)) {
-                    if (required) {
-                        newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
-                    }
-                } else {
-                    newValue = +newValue;
-                    if (_.isNumber(max)) {
-                        newValue = Math.min(max, newValue);
-                    }
-                    if (_.isNumber(min)) {
-                        newValue = Math.max(min, newValue);
-                    }
+            if (type === 'number') {
+                if (this.inputTimer) {
+                    clearTimeout(this.inputTimer);
                 }
+
+                this.inputTimer = setTimeout(() => {
+                    if (_.isEmpty(newValue)) {
+                        if (required) {
+                            newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                        }
+                    } else {
+                        newValue = +newValue;
+                        if (_.isNumber(max)) {
+                            newValue = Math.min(max, newValue);
+                        }
+                        if (_.isNumber(min)) {
+                            newValue = Math.max(min, newValue);
+                        }
+                    }
+
+                    if (_.isUndefined(onChange)) {
+                        this.setState({ value: newValue });
+                    } else {
+                        onChange(newValue);
+                    }
+                }, 500);
 
                 if (_.isUndefined(onChange)) {
                     this.setState({ value: newValue });
                 } else {
                     onChange(newValue);
                 }
-            }, 500);
-
-            if (_.isUndefined(onChange)) {
-                this.setState({ value: newValue });
             } else {
-                onChange(newValue);
-            }
-        } else {
-            if (_.isUndefined(onChange)) {
-                this.setState({ value: newValue });
-            } else {
-                onChange(newValue);
+                if (_.isUndefined(onChange)) {
+                    this.setState({ value: newValue });
+                } else {
+                    onChange(newValue);
+                }
             }
         }
     }
