@@ -171,13 +171,7 @@ export default class ModulesDurationPicker extends React.Component {
                 default: '',
                 description: 'Give the Duration Picker input an id.',
                 allowedTypes: ''
-            }, {
-                name: 'label',
-                type: 'string',
-                default: '',
-                description: 'Optional Label to display on top of the Duration Picker.',
-                allowedTypes: ''
-            }, {
+            }{
                 name: 'nest',
                 type: 'bool',
                 default: '',
