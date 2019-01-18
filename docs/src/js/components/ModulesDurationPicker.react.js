@@ -157,31 +157,31 @@ export default class ModulesDurationPicker extends React.Component {
                 name: 'disabled',
                 type: 'bool',
                 default: '',
-                description: 'Indicates that the Time Span Picker is not available for interaction.',
+                description: 'Indicates that the Duration Picker is not available for interaction.',
                 allowedTypes: ''
             }, {
                 name: 'error',
                 type: 'bool || string',
                 default: '',
-                description: 'Indicates that the Time Span Picker has an error.',
+                description: 'Indicates that the Duration Picker has an error.',
                 allowedTypes: ''
             }, {
                 name: 'id',
                 type: 'string',
                 default: '',
-                description: 'Give the Time Span Picker input an id.',
+                description: 'Give the Duration Picker input an id.',
                 allowedTypes: ''
             }, {
                 name: 'label',
                 type: 'string',
                 default: '',
-                description: 'Optional Label to display on top of the Time Span Picker.',
+                description: 'Optional Label to display on top of the Duration Picker.',
                 allowedTypes: ''
             }, {
                 name: 'nest',
                 type: 'bool',
                 default: '',
-                description: 'Time Span Picker may be placed in a nested background color.',
+                description: 'Duration Picker may be placed in a nested background color.',
                 allowedTypes: ''
             }, {
                 name: 'onChange',
@@ -273,7 +273,7 @@ export default class ModulesDurationPicker extends React.Component {
                 />
 
                 <br />
-                
+
                 <DurationPicker
                     showHours={false}
                     showMonths
