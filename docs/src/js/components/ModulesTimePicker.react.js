@@ -79,11 +79,13 @@ export default class NestSample extends React.Component {
 
     render() {
         return (
-            <TimePicker
-                nest
-                onChange={this._onNestChange.bind(this)}
-                value={this.state.nestValue}
-            />
+            <div className="some-class-that-has-nested-bkgd-color">
+                <TimePicker
+                    nest
+                    onChange={this._onNestChange.bind(this)}
+                    value={this.state.nestValue}
+                />
+            </div>
         );
     }
 
@@ -338,7 +340,7 @@ export default class ModulesTimePicker extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Range
                     <Header.Subheader>
-                        A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
+                        A Time Picker can be used in range mode, specifing a start time and an end time for the range.
                     </Header.Subheader>
                 </Header>
 
