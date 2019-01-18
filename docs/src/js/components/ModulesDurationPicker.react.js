@@ -171,7 +171,7 @@ export default class ModulesDurationPicker extends React.Component {
                 default: '',
                 description: 'Give the Duration Picker input an id.',
                 allowedTypes: ''
-            }{
+            }, {
                 name: 'nest',
                 type: 'bool',
                 default: '',
