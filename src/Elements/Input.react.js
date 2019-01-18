@@ -28,9 +28,9 @@ class Input extends Component {
         this.inputTimer = null;
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value !== nextProps.value) {
-            this.setState({ value: nextProps.value });
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.value !== prevProps.value) {
+            this.setState({ value: this.props.value });
         }
     }
 
@@ -156,9 +156,19 @@ class Input extends Component {
                         ) : null}
 
                         {type === 'number' && showSpinners ? (
-                            <div className="input-number-controls" style={{ pointerEvents: 'auto' }}>
-                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
-                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
+                            <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
+                                <Icon
+                                    onClick={this._onNumberToggleClick.bind(this, 'up')}
+                                    size="xsmall"
+                                    title={'Increase'}
+                                    type="caret-up"
+                                />
+                                <Icon
+                                    onClick={this._onNumberToggleClick.bind(this, 'down')}
+                                    size="xsmall"
+                                    title={'Decrease'}
+                                    type="caret-down"
+                                />
                             </div>
                         ) : null}
                     </div>
@@ -299,22 +309,25 @@ class Input extends Component {
 
     _onNumberToggleClick(action) {
         const { value } = this.state;
-        const { max, min, type, onChange } = this.props;
-        let newValue = value || 0;
+        const { disabled, max, min, type, onChange } = this.props;
 
-        switch(action) {
-            case 'down':
-                newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
-                break;
-            case 'up':
-                newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
-                break;
-        }
+        if (!disabled) {
+            let newValue = value || 0;
 
-        if (_.isUndefined(onChange)) {
-            this.setState({ value: newValue });
-        } else {
-            onChange(newValue);
+            switch(action) {
+                case 'down':
+                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
+                    break;
+                case 'up':
+                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
+                    break;
+            }
+
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            } else {
+                onChange(newValue);
+            }
         }
     }
 }
