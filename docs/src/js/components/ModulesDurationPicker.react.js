@@ -257,7 +257,7 @@ export default class ModulesDurationPicker extends React.Component {
                     value={this.state.value1}
                 />
 
-            <p>You can use the <code>showXXX</code> props to include or exclude various units of time.</p>
+                <p>You can use the <code>showXXX</code> props to include or exclude various units of time.</p>
 
                 <DurationPicker
                     showMinutes
