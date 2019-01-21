@@ -76,11 +76,16 @@ class DurationPicker extends Component {
         });
 
         // TODO/FIXME: Is there a smarter way for this? :-)
-        const showHoursMinutesSeconds = showHours && showMinutes && showSeconds;
-        const showHoursAndMinutes = showHours && showMinutes && !showSeconds;
-        const showMinutesAndSeconds = showMinutes && showSeconds && !showHours;
-        const needsHoursToMinutesSeparator = showHoursMinutesSeconds || showHoursAndMinutes;
-        const needsMinutesToSecondsSeparator = showHoursMinutesSeconds || showMinutesAndSeconds;
+        const needsHoursToMinutesSeparator = showHours && showMinutes;
+        const needsMinutesToSecondsSeparator = showMinutes && showSeconds;
+        const onlyOne =
+            showHours && !showMinutes && !showSeconds ||
+            showMinutes && !showHours && !showSeconds ||
+            showSeconds && !showHours && !showMinutes;
+
+        const hhMmSsClasses = ClassNames('hh-mm-ss', {
+            'only-one': onlyOne
+        });
 
         return (
             <div
@@ -134,54 +139,56 @@ class DurationPicker extends Component {
                     />
                 ) : null}
 
-                {showHours ? (
-                    <Input
-                        className="duration-picker-input"
-                        disabled={disabled}
-                        id={`${id || 'duration-picker'}-hours`}
-                        label="Hours"
-                        max={23}
-                        min={0}
-                        ref="hoursPicker"
-                        type="number"
-                        value={hours}
-                        onChange={this._onHoursChange}
-                    />
-                ) : null}
+                <div className={hhMmSsClasses}>
+                  {showHours ? (
+                      <Input
+                          className="duration-picker-input"
+                          disabled={disabled}
+                          id={`${id || 'duration-picker'}-hours`}
+                          label="Hours"
+                          max={23}
+                          min={0}
+                          ref="hoursPicker"
+                          type="number"
+                          value={hours}
+                          onChange={this._onHoursChange}
+                      />
+                  ) : null}
 
-                {needsHoursToMinutesSeparator ? colonJsx : null}
+                  {needsHoursToMinutesSeparator ? colonJsx : null}
 
-                {showMinutes ? (
-                    <Input
-                        className="duration-picker-input"
-                        disabled={disabled}
-                        id={`${id || 'duration-picker'}-minutes`}
-                        label="Minutes"
-                        max={59}
-                        min={0}
-                        ref="minutesPicker"
-                        type="number"
-                        value={minutes}
-                        onChange={this._onMinutesChange}
-                    />
-                ) : null}
+                  {showMinutes ? (
+                      <Input
+                          className="duration-picker-input"
+                          disabled={disabled}
+                          id={`${id || 'duration-picker'}-minutes`}
+                          label="Minutes"
+                          max={59}
+                          min={0}
+                          ref="minutesPicker"
+                          type="number"
+                          value={minutes}
+                          onChange={this._onMinutesChange}
+                      />
+                  ) : null}
 
-                {needsMinutesToSecondsSeparator ? colonJsx : null}
+                  {needsMinutesToSecondsSeparator ? colonJsx : null}
 
-                {showMinutes ? (
-                    <Input
-                        className="duration-picker-input"
-                        disabled={disabled}
-                        id={`${id || 'duration-picker'}-seconds`}
-                        label="Seconds"
-                        max={59}
-                        min={0}
-                        ref="secondsPicker"
-                        type="number"
-                        value={seconds}
-                        onChange={this._onSecondsChange}
-                    />
-                ) : null}
+                  {showSeconds ? (
+                      <Input
+                          className="duration-picker-input"
+                          disabled={disabled}
+                          id={`${id || 'duration-picker'}-seconds`}
+                          label="Seconds"
+                          max={59}
+                          min={0}
+                          ref="secondsPicker"
+                          type="number"
+                          value={seconds}
+                          onChange={this._onSecondsChange}
+                      />
+                  ) : null}
+                </div>
             </div>
         )
     }
