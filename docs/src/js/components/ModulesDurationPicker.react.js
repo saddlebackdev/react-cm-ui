@@ -227,7 +227,7 @@ export default class ModulesDurationPicker extends React.Component {
                 allowedTypes: ''
             }, {
                 name: 'value',
-                type: 'object',
+                type: 'object (moment.duration)',
                 default: '',
                 description: 'The initial value of the control.',
                 allowedTypes: ''
