@@ -35,18 +35,18 @@ export default class DurationPickerSample extends React.Component {
 
                 <DurationPicker
                     id="duration-picker-2"
+                    onChange={this._onDurationPicker2Change}
                     showMinutes
                     showSeconds
-                    onChange={this._onDurationPicker2Change}
                     value={this.state.value2}
                 />
 
                 <DurationPicker
                     id="duration-picker-3"
+                    onChange={this._onDurationPicker3Change}
                     showHours={false}
                     showMonths
                     showYears
-                    onChange={this._onDurationPicker3Change}
                     value={this.state.value3}
                 />
             </div>
@@ -257,22 +257,25 @@ export default class ModulesDurationPicker extends React.Component {
                     value={this.state.value1}
                 />
 
-                <p>You can use the <code>showXXX</code> props to include or exclude various units of time.</p>
+              <p>
+                You can use the <code>showXXX</code> props to include or exclude various units of time.<br />
+                This one has days and hours (by default) and opts in to include minutes and seconds as well.
+              </p>
 
                 <DurationPicker
+                    onChange={this._onDurationPicker2Change}
                     showMinutes
                     showSeconds
-                    onChange={this._onDurationPicker2Change}
                     value={this.state.value2}
                 />
 
-                <br />
+                <p>This one shows years, months and days, opting out of hours</p>
 
                 <DurationPicker
+                    onChange={this._onDurationPicker3Change}
                     showHours={false}
                     showMonths
                     showYears
-                    onChange={this._onDurationPicker3Change}
                     value={this.state.value3}
                 />
 
