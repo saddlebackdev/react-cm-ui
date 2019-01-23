@@ -179,6 +179,9 @@ export default class CoreAppNavigation extends React.Component {
                             <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/modules/dropdown' }} activeClassName={isActive}>Dropdown</Link>
                             </li>
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/modules/duration-picker' }} activeClassName={isActive}>Duration Picker</Link>
+                            </li>
 
                             <li>
                                 <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/modal' }} activeClassName={isActive}>Modal</Link>
