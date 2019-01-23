@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.0 - 2019-01-23
+### Added
+- Added new **DurationPicker** component.
+### Fixed
+- Fixed some issues with **Input** with `disabled` prop set.  It was still
+doing state changes and calling `onChange()` so it was not acting disabled, even
+if it was visually styled to appear disabled.
+
 ## 1.17.9 - 2019-01-17
 ### Fixed
 - Fixed a bug in the **Accordion** component.  When using it in exclusive mode,

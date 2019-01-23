@@ -28,9 +28,9 @@ class Input extends Component {
         this.inputTimer = null;
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value !== nextProps.value) {
-            this.setState({ value: nextProps.value });
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.value !== prevProps.value) {
+            this.setState({ value: this.props.value });
         }
     }
 
@@ -148,7 +148,7 @@ class Input extends Component {
                         }}
                     >
                         {_.isString(icon) || loading ? (
-                            <Icon compact={true} spin={loading} type={loading ? 'spinner' : icon} />
+                            <Icon compact spin={loading} type={loading ? 'spinner' : icon} />
                         ) : _.isObject(icon) ? (
                             <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
                                 {icon}
@@ -156,9 +156,21 @@ class Input extends Component {
                         ) : null}
 
                         {type === 'number' && showSpinners ? (
-                            <div className="input-number-controls" style={{ pointerEvents: 'auto' }}>
-                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'up')} size="xsmall" type="caret-up" />
-                                <Icon compact={true} onClick={this._onNumberToggleClick.bind(this, 'down')} size="xsmall" type="caret-down" />
+                            <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
+                                <Icon
+                                    compact
+                                    onClick={this._onNumberToggleClick.bind(this, 'up')}
+                                    size="xsmall"
+                                    title={'Increase'}
+                                    type="caret-up"
+                                />
+                                <Icon
+                                    compact
+                                    onClick={this._onNumberToggleClick.bind(this, 'down')}
+                                    size="xsmall"
+                                    title={'Decrease'}
+                                    type="caret-down"
+                                />
                             </div>
                         ) : null}
                     </div>
@@ -229,47 +241,50 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const { max, min, onChange, required } = this.props;
-        const type = this._getType();
-        let newValue = event.target.value;
+        const { disabled, max, min, onChange, required } = this.props;
 
-        if (type === 'number') {
-            if (this.inputTimer) {
-                clearTimeout(this.inputTimer);
-            }
+        if (!disabled) {
+            const type = this._getType();
+            let newValue = event.target.value;
 
-            this.inputTimer = setTimeout(() => {
-                if (_.isEmpty(newValue)) {
-                    if (required) {
-                        newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
-                    }
-                } else {
-                    newValue = +newValue;
-                    if (_.isNumber(max)) {
-                        newValue = Math.min(max, newValue);
-                    }
-                    if (_.isNumber(min)) {
-                        newValue = Math.max(min, newValue);
-                    }
+            if (type === 'number') {
+                if (this.inputTimer) {
+                    clearTimeout(this.inputTimer);
                 }
+
+                this.inputTimer = setTimeout(() => {
+                    if (_.isEmpty(newValue)) {
+                        if (required) {
+                            newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                        }
+                    } else {
+                        newValue = +newValue;
+                        if (_.isNumber(max)) {
+                            newValue = Math.min(max, newValue);
+                        }
+                        if (_.isNumber(min)) {
+                            newValue = Math.max(min, newValue);
+                        }
+                    }
+
+                    if (_.isUndefined(onChange)) {
+                        this.setState({ value: newValue });
+                    } else {
+                        onChange(newValue);
+                    }
+                }, 500);
 
                 if (_.isUndefined(onChange)) {
                     this.setState({ value: newValue });
                 } else {
                     onChange(newValue);
                 }
-            }, 500);
-
-            if (_.isUndefined(onChange)) {
-                this.setState({ value: newValue });
             } else {
-                onChange(newValue);
-            }
-        } else {
-            if (_.isUndefined(onChange)) {
-                this.setState({ value: newValue });
-            } else {
-                onChange(newValue);
+                if (_.isUndefined(onChange)) {
+                    this.setState({ value: newValue });
+                } else {
+                    onChange(newValue);
+                }
             }
         }
     }
@@ -296,22 +311,25 @@ class Input extends Component {
 
     _onNumberToggleClick(action) {
         const { value } = this.state;
-        const { max, min, type, onChange } = this.props;
-        let newValue = value || 0;
+        const { disabled, max, min, type, onChange } = this.props;
 
-        switch(action) {
-            case 'down':
-                newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
-                break;
-            case 'up':
-                newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
-                break;
-        }
+        if (!disabled) {
+            let newValue = value || 0;
 
-        if (_.isUndefined(onChange)) {
-            this.setState({ value: newValue });
-        } else {
-            onChange(newValue);
+            switch(action) {
+                case 'down':
+                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
+                    break;
+                case 'up':
+                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
+                    break;
+            }
+
+            if (_.isUndefined(onChange)) {
+                this.setState({ value: newValue });
+            } else {
+                onChange(newValue);
+            }
         }
     }
 }
