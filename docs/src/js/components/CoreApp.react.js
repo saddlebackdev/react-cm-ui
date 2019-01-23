@@ -335,6 +335,14 @@ let routes = (
                 }}
             />
             <Route
+                path="duration-picker"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDurationPicker.react'))
+                    }, 'ModulesDurationPicker')
+                }}
+            />
+            <Route
                 path="modal"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
