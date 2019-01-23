@@ -148,7 +148,7 @@ class Input extends Component {
                         }}
                     >
                         {_.isString(icon) || loading ? (
-                            <Icon compact={true} spin={loading} type={loading ? 'spinner' : icon} />
+                            <Icon compact spin={loading} type={loading ? 'spinner' : icon} />
                         ) : _.isObject(icon) ? (
                             <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
                                 {icon}
@@ -158,12 +158,14 @@ class Input extends Component {
                         {type === 'number' && showSpinners ? (
                             <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
                                 <Icon
+                                    compact
                                     onClick={this._onNumberToggleClick.bind(this, 'up')}
                                     size="xsmall"
                                     title={'Increase'}
                                     type="caret-up"
                                 />
                                 <Icon
+                                    compact
                                     onClick={this._onNumberToggleClick.bind(this, 'down')}
                                     size="xsmall"
                                     title={'Decrease'}
