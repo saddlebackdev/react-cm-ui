@@ -18,7 +18,7 @@ export default class ButtonSample extends React.Component {
 
     render() {
         return (
-            <Button>Button</Button>
+            <Button id="ui-button--demo_button">Button</Button>
         );
     }
 
@@ -237,6 +237,12 @@ export default class ElementsButton extends React.Component {
                 description: 'A button can be fixed height and width with an icon in the center.',
                 allowedTypes: ''
             }, {
+                name: 'id',
+                type: 'string',
+                default: '',
+                description: 'Assign the button an id attribute value.',
+                allowedTypes: ''
+            }, {
                 name: 'inverse',
                 type: 'bool',
                 default: 'false',
@@ -287,7 +293,7 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Button>Button</Button>
+                <Button id="ui-button--demo_button">Button</Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {buttonSample}
