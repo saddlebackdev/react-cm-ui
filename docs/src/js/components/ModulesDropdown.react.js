@@ -28,7 +28,11 @@ export default class DropdownSample extends React.Component {
 
     render() {
         return (
-            <Dropdown collapseMenuOnChange placeholder="select">
+            <Dropdown
+                collapseMenuOnChange
+                id="ui-dropdown--demo_dropdown1"
+                placeholder="select"
+            >
                 <Dropdown.Item label="Option 1" />
                 <Dropdown.Item label="Option 2" />
                 <Dropdown.Item label="Option 3" />
@@ -907,6 +911,12 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Change the icon inside of the Dropdown.',
                 allowedTypes: ''
             }, {
+                name: 'id',
+                type: 'string',
+                default: '',
+                description: 'Assign the Dropdown an id attribute value.',
+                allowedTypes: ''
+            }, {
                 name: 'inverse',
                 type: 'bool',
                 default: '',
@@ -1170,7 +1180,7 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button={true} placeholder="Button Dropdown">
+                    <Dropdown button placeholder="Button Dropdown">
                         <Dropdown.Item iconType="block" label="Option 1" />
                         <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
                         <Dropdown.Item iconType="circle" label="Option 3" />
@@ -1193,7 +1203,11 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown collapseMenuOnChange placeholder="select">
+                    <Dropdown
+                        collapseMenuOnChange
+                        id="ui-dropdown--demo_dropdown1"
+                        placeholder="select"
+                    >
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1280,6 +1294,7 @@ export default class ModulesDropdown extends React.Component {
                     <Dropdown
                         button
                         collapseMenuOnChange
+                        id="ui-dropdown--button_menu_demo"
                         onChange={this._onButtonDropDownMenuChange}
                         placeholder="Button Dropdown Menu"
                     >

@@ -16,7 +16,9 @@ class Button extends Component {
     }
 
     render() {
-        const { as, children, className, color, compact, disabled, fluid, href, icon, inverse, relax, style, width } = this.props;
+        const { as, children, className, color, compact, disabled, fluid, href,
+            icon, id, inverse, relax, style, width } = this.props;
+
         const newAs = as || 'button';
         const ElementType = Utils.getElementType(newAs, this.props);
         const containerClasses = ClassNames('ui', 'button', className, {
@@ -45,6 +47,7 @@ class Button extends Component {
         return (
             <ElementType
                 className={containerClasses}
+                id={id}
                 href={href}
                 onClick={this._onClick}
                 style={containerStyle}
@@ -75,6 +78,7 @@ Button.propTypes = {
     fluid: PropTypes.bool,
     href: PropTypes.string,
     icon: PropTypes.bool,
+    id: PropTypes.string,
     inverse: PropTypes.bool,
     onClick: PropTypes.func,
     relax: PropTypes.bool,
