@@ -73,11 +73,13 @@ class Dropdown extends Component {
         const { button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconPosition, iconSize, iconTitle, iconType,
-            inverse, label, labelStyle, options, placeholder, searchable,
-            selection, selectionCreatable, selectionMatchProp, selectionMenuContainerStyle,
-            selectionMenuStyle, selectionMobile, selectionOptionComponent,
-            selectionValueComponent, selectionMultiple, selectionRequired,
-            selectionUnderline, style, tabIndex, text, theme } = this.props;
+            id, inverse, label, labelStyle, options, placeholder, searchable,
+            selection, selectionCreatable, selectionMatchProp,
+            selectionMenuContainerStyle, selectionMenuStyle, selectionMobile,
+            selectionOptionComponent, selectionValueComponent, selectionMultiple,
+            selectionRequired, selectionUnderline, style, tabIndex, text, theme
+        } = this.props;
+
         const { menuIsOpen, menuPositionStyle } = this.state;
         const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
@@ -226,6 +228,7 @@ class Dropdown extends Component {
                                             }}
                                             clearable={!clearable ? clearable : true}
                                             disabled={disable}
+                                            id={id}
                                             matchProp={selectionMatchProp || 'any'}
                                             menuContainerStyle={selectionMenuContainerStyle}
                                             menuRenderer={this._menuRenderer.bind(this)}
@@ -274,6 +277,7 @@ class Dropdown extends Component {
                             }}
                             clearable={!clearable ? clearable : true}
                             disabled={disable}
+                            id={id}
                             menuContainerStyle={selectionMenuContainerStyle}
                             menuRenderer={this._menuRenderer.bind(this)}
                             menuStyle={selectionMenuStyle}
@@ -299,6 +303,7 @@ class Dropdown extends Component {
         return (
             <div
                 className={containerClasses}
+                id={id}
                 onClick={this._onDropdownClick.bind(this)}
                 ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                 style={style}
@@ -592,6 +597,7 @@ Dropdown.propTypes = {
     ]),
     iconTitle: PropTypes.string,
     iconType: PropTypes.string,
+    id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
     labelStyle: PropTypes.object,
