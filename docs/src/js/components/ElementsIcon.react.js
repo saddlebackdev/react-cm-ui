@@ -300,6 +300,7 @@ export default class ElementsButton extends React.Component {
                 types: [
                     'at',
                     'bell',
+                    'bell-recurring',
                     'comment',
                     'comment-lines',
                     'envelope',
