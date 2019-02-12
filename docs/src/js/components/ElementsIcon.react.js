@@ -310,6 +310,9 @@ export default class ElementsButton extends React.Component {
                     'paperclip',
                     'paper-plane',
                     'phone',
+                    'phone-cell',
+                    'phone-home',
+                    'phone-work',
                     'reply',
                     'snail-mail'
                 ]
