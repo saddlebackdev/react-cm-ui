@@ -386,7 +386,7 @@ class DatePicker extends Component {
                 this.props.onChange(dateObj);
             }
         } else {
-            if (date) {
+            if (moment.isMoment(date)) {
                 this.props.onChange(date.unix());
             } else {
                 this.props.onChange(null);
