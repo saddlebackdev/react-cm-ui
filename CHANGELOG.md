@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.3 - 2019-02-11
+### Added
+- Added `phone-cell`, `phone-home`, and `phone-work` to the **Icon** set.
+
 ## 1.18.2 - 2019-02-01
 ### Added
 - Added `bell-recurring` the **Icon** set.
