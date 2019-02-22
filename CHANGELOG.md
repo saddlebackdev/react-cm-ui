@@ -4,8 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.5 - 2019-02-22
+### Fixed
+- Fixed an issue with **DurationPicker** component; it was not initializing
+its internal state properly when a `value` prop was specified, so it was not
+showing the initial value until a re-render.
+
 ## 1.18.4 - 2019-02-20
-### Changed
+### Fixed
 - Fixed **DatePicker** value when the date value is cleared.
 
 ## 1.18.3 - 2019-02-11
