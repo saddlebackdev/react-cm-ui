@@ -27,7 +27,8 @@ class DurationPicker extends Component {
     constructor(props) {
         super(props);
 
-        this.state = Object.assign({}, defaultState);
+        const state = this._getStateFromDurationValue(props.value);
+        this.state = Object.assign({}, state || defaultState);
 
         this._areMomentDurationsEqual = this._areMomentDurationsEqual.bind(this);
         this._buildMomentDuration = this._buildMomentDuration.bind(this);
@@ -46,15 +47,7 @@ class DurationPicker extends Component {
 
         if (!this._areMomentDurationsEqual(prevValue, nextValue)) {
             if (moment.isDuration(nextValue)) {
-                this.setState({
-                    days: nextValue.days(),
-                    hours: nextValue.hours(),
-                    minutes: nextValue.minutes(),
-                    months: nextValue.months(),
-                    seconds: nextValue.seconds(),
-                    years: nextValue.years(),
-                    value: nextValue
-                });
+                this.setState(this._getStateFromDurationValue(nextValue));
             } else { // if value is nil or invalid, reset to default state
                 this.setState(defaultState);
             }
@@ -218,6 +211,22 @@ class DurationPicker extends Component {
             months,
             years
         });
+    }
+
+    _getStateFromDurationValue(duration) {
+        if (moment.isDuration(duration)) {
+            return {
+                days: duration.days(),
+                hours: duration.hours(),
+                minutes: duration.minutes(),
+                months: duration.months(),
+                seconds: duration.seconds(),
+                years: duration.years(),
+                value: duration
+            };
+        } else {
+            return null;
+        }
     }
 
     _handleStateChange(updatedState) {
