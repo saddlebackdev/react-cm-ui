@@ -1,5 +1,6 @@
 'use strict';
 
+import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, DurationPicker, Header, TitleBar } from 'react-cm-ui';
@@ -19,9 +20,10 @@ export default class DurationPickerSample extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { value1: null, value2: null };
+        this.state = { value1: moment.duration({ hours: 2 }), value2: null };
         this._onDurationPicker1Change = this._onDurationPicker1Change.bind(this);
         this._onDurationPicker2Change = this._onDurationPicker2Change.bind(this);
+        this._onDurationPicker3Change = this._onDurationPicker3Change.bind(this);
     }
 
     render() {
@@ -131,7 +133,7 @@ export default class ModulesDurationPicker extends React.Component {
         super(props);
 
         this.state = {
-            value1: null,
+            value1: moment.duration({ hours: 2 }),
             value2: null,
             value3: null,
             value4: null,
