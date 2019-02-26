@@ -24,6 +24,8 @@ class Input extends Component {
         this._onClick = this._onClick.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+        this._onNumberToggleDownClick = this._onNumberToggleDownClick.bind(this);
+        this._onNumberToggleUpClick = this._onNumberToggleUpClick.bind(this);
 
         this.inputTimer = null;
     }
@@ -159,14 +161,14 @@ class Input extends Component {
                             <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
                                 <Icon
                                     compact
-                                    onClick={this._onNumberToggleClick.bind(this, 'up')}
+                                    onClick={this._onNumberToggleUpClick}
                                     size="xsmall"
                                     title={'Increase'}
                                     type="caret-up"
                                 />
                                 <Icon
                                     compact
-                                    onClick={this._onNumberToggleClick.bind(this, 'down')}
+                                    onClick={this._onNumberToggleDownClick}
                                     size="xsmall"
                                     title={'Decrease'}
                                     type="caret-down"
@@ -331,6 +333,14 @@ class Input extends Component {
                 onChange(newValue);
             }
         }
+    }
+
+    _onNumberToggleDownClick(event) {
+        this._onNumberToggleClick('down');
+    }
+
+    _onNumberToggleUpClick(event) {
+        this._onNumberToggleClick('up');
     }
 }
 
