@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.8 - 2019-02-26
+### Fixed
+- `1.18.6` inadvertently caused some browsers to show a gray background for the
+**Input** type `number` spin box controls (up and down arrows), likely due to
+user agent defaults for button elements.  This patch sets a transparent
+background color for these.
+
 ## 1.18.7 - 2019-02-26
 ### Added
 - Added `200` and `300` as font-weight options to the sans serif font.
