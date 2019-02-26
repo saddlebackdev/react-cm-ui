@@ -24,6 +24,8 @@ class Input extends Component {
         this._onClick = this._onClick.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+        this._onNumberToggleDownClick = this._onNumberToggleDownClick.bind(this);
+        this._onNumberToggleUpClick = this._onNumberToggleUpClick.bind(this);
 
         this.inputTimer = null;
     }
@@ -157,20 +159,27 @@ class Input extends Component {
 
                         {type === 'number' && showSpinners ? (
                             <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
-                                <Icon
-                                    compact
-                                    onClick={this._onNumberToggleClick.bind(this, 'up')}
-                                    size="xsmall"
-                                    title={'Increase'}
-                                    type="caret-up"
-                                />
-                                <Icon
-                                    compact
-                                    onClick={this._onNumberToggleClick.bind(this, 'down')}
-                                    size="xsmall"
-                                    title={'Decrease'}
-                                    type="caret-down"
-                                />
+                                <button
+                                    onClick={this._onNumberToggleUpClick}
+                                >
+                                    <Icon
+                                        compact
+                                        size="xsmall"
+                                        title={'Increase'}
+                                        type="caret-up"
+                                    />
+                                </button>
+
+                                <button
+                                    onClick={this._onNumberToggleDownClick}
+                                >
+                                    <Icon
+                                        compact
+                                        size="xsmall"
+                                        title={'Decrease'}
+                                        type="caret-down"
+                                    />
+                                </button>
                             </div>
                         ) : null}
                     </div>
@@ -318,10 +327,10 @@ class Input extends Component {
 
             switch(action) {
                 case 'down':
-                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
+                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? !newValue ? max : newValue : --newValue;
                     break;
                 case 'up':
-                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
+                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : newValue < min ? min : ++newValue;
                     break;
             }
 
@@ -331,6 +340,14 @@ class Input extends Component {
                 onChange(newValue);
             }
         }
+    }
+
+    _onNumberToggleDownClick(event) {
+        this._onNumberToggleClick('down');
+    }
+
+    _onNumberToggleUpClick(event) {
+        this._onNumberToggleClick('up');
     }
 }
 

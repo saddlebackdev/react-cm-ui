@@ -29,13 +29,25 @@ const disabledSample = `import React from 'react';
 import Button from 'components/UI/Elements/Button.react';
 
 export default class DisabledSample extends React.Component {
+   constructor(props) {
+       super(props);
+       this._onClick = this._onClick.bind(this);
+   }
 
     render() {
         return (
-            <Button disabled>Disabled Button</Button>
+            <Button
+                disabled
+                onClick={this._onClick}
+            >
+                Disabled Button
+            </Button>
         );
     }
 
+    _onClick() {
+        console.log('Button was clicked (but shouldn\\'t have been if it was disabled)'); // eslint-disable-line no-console
+    }
 }`;
 
 const compactSample = `import React from 'react';
@@ -178,6 +190,10 @@ export default class ButtonSample extends React.Component {
 }`;
 
 export default class ElementsButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this._onClickDisabledButton = this._onClickDisabledButton.bind(this);
+    }
 
     render() {
 
@@ -337,7 +353,12 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Button disabled>Disabled Button</Button>
+                <Button
+                    disabled
+                    onClick={this._onClickDisabledButton}
+                >
+                    Disabled Button
+                </Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {disabledSample}
@@ -451,8 +472,8 @@ export default class ElementsButton extends React.Component {
         );
     }
 
-    _onClick() {
-        return false;
+    _onClickDisabledButton() {
+        console.log('Button was clicked (but shouldn\'t have been if it was disabled)'); // eslint-disable-line no-console
     }
 
 }
