@@ -159,20 +159,27 @@ class Input extends Component {
 
                         {type === 'number' && showSpinners ? (
                             <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
-                                <Icon
-                                    compact
+                                <button
                                     onClick={this._onNumberToggleUpClick}
-                                    size="xsmall"
-                                    title={'Increase'}
-                                    type="caret-up"
-                                />
-                                <Icon
-                                    compact
+                                >
+                                    <Icon
+                                        compact
+                                        size="xsmall"
+                                        title={'Increase'}
+                                        type="caret-up"
+                                    />
+                                </button>
+
+                                <button
                                     onClick={this._onNumberToggleDownClick}
-                                    size="xsmall"
-                                    title={'Decrease'}
-                                    type="caret-down"
-                                />
+                                >
+                                    <Icon
+                                        compact
+                                        size="xsmall"
+                                        title={'Decrease'}
+                                        type="caret-down"
+                                    />
+                                </button>
                             </div>
                         ) : null}
                     </div>
@@ -320,10 +327,10 @@ class Input extends Component {
 
             switch(action) {
                 case 'down':
-                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? newValue : --newValue;
+                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? !newValue ? max : newValue : --newValue;
                     break;
                 case 'up':
-                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : ++newValue;
+                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : newValue < min ? min : ++newValue;
                     break;
             }
 
