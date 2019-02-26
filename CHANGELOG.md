@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.6 - 2019-02-26
+### Fixed
+- Fixed **Input** type `number` controls. Changed icons to buttons to stop the
+highlighting of elements around the **Input**. Also, when `min` and `max` are set
+values are kept between the two when using the controls.
+
 ## 1.18.5 - 2019-02-22
 ### Fixed
 - Fixed an issue with **DurationPicker** component; it was not initializing
