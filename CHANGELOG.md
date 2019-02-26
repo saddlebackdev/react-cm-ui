@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.9 - 2019-02-26
+### Fixed
+- Upgraded `lodash` dependency to fix a possible security vulnerability
+identified by `npm audit`.
+
 ## 1.18.8 - 2019-02-26
 ### Fixed
 - `1.18.6` inadvertently caused some browsers to show a gray background for the
