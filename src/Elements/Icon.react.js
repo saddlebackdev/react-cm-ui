@@ -3445,11 +3445,11 @@ class Icon extends Component {
         return now.substring(now.length - 6, now.length) + _.uniqueId();
     }
 
-    _onClick() {
+    _onClick(event) {
         const { disable, onClick } = this.props;
 
         if (!_.isUndefined(onClick) && !disable) {
-            onClick();
+            onClick(event);
         }
     }
 };
