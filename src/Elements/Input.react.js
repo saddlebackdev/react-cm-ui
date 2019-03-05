@@ -9,14 +9,15 @@ import React, { Component } from 'react';
 
 import Icon from './Icon.react';
 
-class Input extends Component {
+class Input extends React.PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
             isFocused: false,
             inputActionsTopPosition: 0,
-            value: props.value || props.value === 0 ? props.value : ''
+            showRequiredIndicator: props.required,
+            // value: props.value || props.value === 0 ? props.value : ''
         };
 
         this._onBlur = this._onBlur.bind(this);
@@ -27,19 +28,8 @@ class Input extends Component {
         this._onNumberToggleDownClick = this._onNumberToggleDownClick.bind(this);
         this._onNumberToggleUpClick = this._onNumberToggleUpClick.bind(this);
 
-        this.inputTimer = null;
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.value !== prevProps.value) {
-            this.setState({ value: this.props.value });
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.inputTimer) {
-            clearTimeout(this.inputTimer);
-        }
+        this._inputTimer = null;
+        this._previousInputValue = '';
     }
 
     render() {
@@ -50,8 +40,8 @@ class Input extends Component {
             mask, max, maxLength,
             min, minLength, name,
             placeholder, required, style,
-            tabIndex, showSpinners } = this.props;
-        const { inputActionsTopPosition } = this.state;
+            tabIndex, showSpinners, value } = this.props;
+        const { inputActionsTopPosition, showRequiredIndicator } = this.state;
         const type = this._getType();
         const labelPosition = this.props.labelPosition || 'top';
         const containerClasses = ClassNames('ui', 'input', className, {
@@ -79,7 +69,7 @@ class Input extends Component {
                     <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                         {label}
 
-                        {required && !this.state.value ? (
+                        {showRequiredIndicator ? (
                             <span className="input-required-indicator">*</span>
                         ) : null}
                     </label>
@@ -108,11 +98,11 @@ class Input extends Component {
                         onFocus={this._onFocus}
                         onKeyDown={this._onKeyDown}
                         placeholder={placeholder}
-                        ref={ref => { this.input = ref }}
+                        ref={ref => { this._input = ref }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
-                        value={this.state.value}
+                        value={value}
                     />
                 ) : (
                     <input
@@ -130,11 +120,11 @@ class Input extends Component {
                         onFocus={this._onFocus}
                         onKeyDown={this._onKeyDown}
                         placeholder={placeholder}
-                        ref={ref => { this.input = ref }}
+                        ref={ref => { this._input = ref }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
-                        value={this.state.value}
+                        value={value}
                     />
                 )}
 
@@ -143,7 +133,7 @@ class Input extends Component {
                 {_.isString(icon) || _.isObject(icon) || loading || type === 'number' ? (
                     <div
                         className="input-actions"
-                        ref={ref => { this.inputActions = ref }}
+                        ref={ref => { this._inputActions = ref }}
                         style={{
                             pointerEvents: 'none',
                             top: inputActionsTopPosition
@@ -197,7 +187,7 @@ class Input extends Component {
         const type = this._getType();
 
         if (_.isString(icon) || _.isObject(icon) || loading || type === 'number') {
-            const inputTop = ReactDOM.findDOMNode(this.input).offsetTop;
+            const inputTop = ReactDOM.findDOMNode(this._input).offsetTop;
 
             if (inputTop > 0) {
                 this.setState({ inputActionsTopPosition: inputTop });
@@ -205,7 +195,7 @@ class Input extends Component {
         }
 
         if (autoFocus) {
-            ReactDOM.findDOMNode(this.input).focus();
+            ReactDOM.findDOMNode(this._input).focus();
 
             this.setState({
                 isFocused: true
@@ -250,18 +240,18 @@ class Input extends Component {
     }
 
     _onChange(event) {
-        const { disabled, max, min, onChange, required } = this.props;
+        const { disabled, max, min, onChange } = this.props;
 
         if (!disabled) {
             const type = this._getType();
             let newValue = event.target.value;
 
             if (type === 'number') {
-                if (this.inputTimer) {
-                    clearTimeout(this.inputTimer);
+                if (this._inputTimer) {
+                    clearTimeout(this._inputTimer);
                 }
 
-                this.inputTimer = setTimeout(() => {
+                this._inputTimer = setTimeout(() => {
                     if (_.isEmpty(newValue)) {
                         if (required) {
                             newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
@@ -277,24 +267,26 @@ class Input extends Component {
                     }
 
                     if (_.isUndefined(onChange)) {
-                        this.setState({ value: newValue });
+                        this._input.value = newValue;
                     } else {
                         onChange(newValue);
                     }
                 }, 500);
 
                 if (_.isUndefined(onChange)) {
-                    this.setState({ value: newValue });
+                    this._input.value = newValue;
                 } else {
                     onChange(newValue);
                 }
             } else {
                 if (_.isUndefined(onChange)) {
-                    this.setState({ value: newValue });
+                    this._input.value = newValue;
                 } else {
                     onChange(newValue);
                 }
             }
+
+            this._shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -319,8 +311,8 @@ class Input extends Component {
     }
 
     _onNumberToggleClick(action) {
-        const { value } = this.state;
         const { disabled, max, min, type, onChange } = this.props;
+        const value = this._input.value;
 
         if (!disabled) {
             let newValue = value || 0;
@@ -335,10 +327,12 @@ class Input extends Component {
             }
 
             if (_.isUndefined(onChange)) {
-                this.setState({ value: newValue });
+                this._input.value = newValue;
             } else {
                 onChange(newValue);
             }
+
+            this._shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -348,6 +342,18 @@ class Input extends Component {
 
     _onNumberToggleUpClick(event) {
         this._onNumberToggleClick('up');
+    }
+
+    _shouldShowRequiredIndicator(value) {
+        const { required } = this.props;
+
+        if (required && this._previousInputValue !== value) {
+            this._previousInputValue = value;
+
+            this.setState({
+                showRequiredIndicator: required && !value,
+            });
+        }
     }
 }
 
