@@ -56,7 +56,7 @@
     "react-select": "^1.3.0",
     "react-syntax-highlighter": "^4.0.1",
     "react-tether": "^0.5.7",
-    "react-text-mask": "5.4.1",
+    "react-text-mask": "5.4.3",
     "react-tree-menu": "^1.5.0"
   },
   "devDependencies": {
