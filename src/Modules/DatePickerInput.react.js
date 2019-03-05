@@ -15,7 +15,6 @@ import DatePickerUtils from '../utils/DatePickerUtils.js';
 import DateUtils from '../utils/DateUtils.js';
 
 class DatePickerInput extends Component {
-
     constructor(props) {
         super(props);
 
@@ -33,23 +32,30 @@ class DatePickerInput extends Component {
 
         this._onErrorRef = this._onError.bind(this);
         this._dateFormats = this._getAllowedDateFormats('MM/DD/YYYY');
+
+        this._onBlur = this._onBlur.bind(this);
+        this._onClick = this._onClick.bind(this);
+        this._onFocus = this._onFocus.bind(this);
+        this._onKeyDown = this._onKeyDown.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!DatePickerUtils.isSameDay(nextProps.date, this.props.date) ||
-            !DatePickerUtils.isSameDay(nextProps.dateStart, this.props.dateStart) ||
-            !DatePickerUtils.isSameDay(nextProps.dateEnd, this.props.dateEnd) ||
-            !DatePickerUtils.isSameDay(nextProps.dateSecondaryStart, this.props.dateSecondaryStart) ||
-            !DatePickerUtils.isSameDay(nextProps.dateSecondaryEnd, this.props.dateSecondaryEnd) ||
-            !_.isEqual(nextProps.locale, this.props.locale)
+    componentDidUpdate(prevProps, prevState) {
+        const { date, dateStart, dateEnd, dateSecondaryStart, dateSecondaryEnd, locale } = this.props;
+
+        if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
+            !DatePickerUtils.isSameDay(dateStart, prevProps.dateStart) ||
+            !DatePickerUtils.isSameDay(dateEnd, prevProps.dateEnd) ||
+            !DatePickerUtils.isSameDay(dateSecondaryStart, prevProps.dateSecondaryStart) ||
+            !DatePickerUtils.isSameDay(dateSecondaryEnd, prevProps.dateSecondaryEnd) ||
+            !_.isEqual(locale, prevProps.locale)
         ) {
             this.setState({
-                maybeDate: this._safeDateFormat(nextProps.date, nextProps.locale),
+                maybeDate: this._safeDateFormat(date, locale),
                 maybeDateRange: {
-                    dateEnd: this._safeDateFormat(nextProps.dateEnd, nextProps.locale),
-                    dateSecondaryEnd: this._safeDateFormat(nextProps.dateSecondaryEnd, nextProps.locale),
-                    dateSecondaryStart: this._safeDateFormat(nextProps.dateSecondaryStart, nextProps.locale),
-                    dateStart: this._safeDateFormat(nextProps.dateStart, nextProps.locale)
+                    dateEnd: this._safeDateFormat(dateEnd, locale),
+                    dateSecondaryEnd: this._safeDateFormat(dateSecondaryEnd, locale),
+                    dateSecondaryStart: this._safeDateFormat(dateSecondaryStart, locale),
+                    dateStart: this._safeDateFormat(dateStart, locale)
                 }
             });
         }
@@ -109,18 +115,18 @@ class DatePickerInput extends Component {
                         <Icon
                             color={open ? 'highlight' : null}
                             compact={true}
-                            onClick={this._onClick.bind(this)}
+                            onClick={this._onClick}
                             type="calendar"
                         />
                     )}
                     id={this.props.id}
-                    keepCharPositions={true}
+                    keepCharPositions
                     mask={mask}
-                    onBlur={this._onBlur.bind(this)}
+                    onBlur={this._onBlur}
                     onChange={this._onChange.bind(this, 'date')}
-                    onClick={this._onClick.bind(this)}
-                    onFocus={this._onFocus.bind(this)}
-                    onKeyDown={this._onKeyDown.bind(this)}
+                    onClick={this._onClick}
+                    onFocus={this._onFocus}
+                    onKeyDown={this._onKeyDown}
                     placeholder={placeholder}
                     ref="input"
                     required={this.props.required}
@@ -143,10 +149,10 @@ class DatePickerInput extends Component {
                             keepCharPositions={true}
                             label="From"
                             mask={mask}
-                            onBlur={this._onBlur.bind(this)}
+                            onBlur={this._onBlur}
                             onChange={this._onChange.bind(this, 'dateStart')}
-                            onClick={this._onClick.bind(this)}
-                            onFocus={this._onFocus.bind(this)}
+                            onClick={this._onClick}
+                            onFocus={this._onFocus}
                             placeholder={placeholder}
                             ref="inputStart"
                             required={this.props.required}
@@ -167,10 +173,10 @@ class DatePickerInput extends Component {
                             keepCharPositions={true}
                             label="To"
                             mask={mask}
-                            onBlur={this._onBlur.bind(this)}
+                            onBlur={this._onBlur}
                             onChange={this._onChange.bind(this, 'dateEnd')}
-                            onClick={this._onClick.bind(this)}
-                            onFocus={this._onFocus.bind(this)}
+                            onClick={this._onClick}
+                            onFocus={this._onFocus}
                             placeholder={placeholder}
                             ref="inputEnd"
                             required={this.props.required}
