@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.18.10 - 2019-03-04
+### Fixed
+- Removed `componentDidUpdate` from **Input** to fix some state issues when using an `onChange` event handler. :)
+
 ## 1.18.9 - 2019-02-26
 ### Fixed
 - Upgraded `lodash` dependency to fix a possible security vulnerability
