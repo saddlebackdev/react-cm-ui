@@ -169,6 +169,10 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/modules/date-picker-input' }} activeClassName={isActive}>Date Picker Input</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/modules/drag-and-drop' }} activeClassName={isActive}>Drag & Drop</Link>
                             </li>
 

@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import DatePickerDay from './DatePickerDay.react';
+import DatePickerDay from './DatePickerDeprecatedDay.react';
 
 class DatePickerWeek extends Component {
     render() {

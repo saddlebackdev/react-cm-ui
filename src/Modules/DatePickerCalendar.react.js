@@ -1,22 +1,16 @@
 'use strict';
 
-import _ from 'lodash';
 import ClassNames from 'classnames';
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import onClickOutside from 'react-onclickoutside';
-import React, { Component } from 'react';
-
-import Button from '../Elements/Button.react';
-import DatePickerMonth from './DatePickerMonth.react';
 import DatePickerDropdownMonth from './DatePickerDropdownMonth.react';
 import DatePickerDropdownYear from './DatePickerDropdownYear.react';
-import Grid from '../Collections/Grid.react';
-import Icon from '../Elements/Icon.react';
-
+import DatePickerMonth from './DatePickerDeprecatedMonth.react';
 import DatePickerUtils from '../utils/DatePickerUtils.js';
+import Icon from '../Elements/Icon.react';
+import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-class DatePickerCalendar extends Component {
+class DatePickerCalendar extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -24,205 +18,118 @@ class DatePickerCalendar extends Component {
             dateInView: this._localizeMoment(
                 this._getDateInView(
                     props.date,
-                    props.dateStart,
-                    props.dateSecondaryStart,
+                    props.dateFrom,
+                    props.dateTo,
                     props.maxDate,
                     props.minDate
                 )
             ),
             showDropdownMonth: false,
-            showDropdownYear: false
+            showDropdownYear: false,
         };
+
+        this._onChangeMonth = this._onChangeMonth.bind(this);
+        this._onChangeYear = this._onChangeYear.bind(this);
+        this._onDayClick = this._onDayClick.bind(this);
+        this._onDropdownMonthClick = this._onDropdownMonthClick.bind(this);
+        this._onDropdownYearClick = this._onDropdownYearClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!DatePickerUtils.isSameDay(nextProps.date, this.props.date) ||
-            !DatePickerUtils.isSameDay(nextProps.dateStart, this.props.dateStart)
+    componentDidUpdate(prevProps, prevState) {
+        const {
+            date,
+            dateFrom,
+            dateTo,
+            maxDate,
+            minDate,
+        } = this.props;
+
+        if (!DatePickerUtils.isSameDay(prevProps.date, date) ||
+            !DatePickerUtils.isSameDay(prevProps.dateFrom, dateFrom)
         ) {
             this.setState({
                 dateInView: this._localizeMoment(
                     this._getDateInView(
-                        nextProps.date,
-                        nextProps.dateStart,
-                        nextProps.dateSecondaryStart,
-                        nextProps.maxDate,
-                        nextProps.minDate
+                        date,
+                        dateFrom,
+                        dateTo,
+                        maxDate,
+                        minDate
                     )
                 )
             });
         }
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        // issue onMonthChange() call when month changes due to a user selection of the date
-        // (as opposed to via the month dropdown)
-        if (this.state.dateInView &&
-            nextState.dateInView &&
-            (nextState.dateInView.month() !== this.state.dateInView.month()) &&
-            (typeof this.props.onMonthChange === 'function')) {
-            this.props.onMonthChange(nextState.dateInView.month(), nextState.dateInView.year());
-        }
-    }
-
     render() {
-        const { buttonClear, date, dateEnd, dateStart, dateSecondaryEnd, dateSecondaryStart, onApplyClick, type, uxMode } = this.props;
-        const dateInView = this.state.dateInView;
+        const {
+            date,
+            dateFrom,
+            dateTo,
+            disabledDays,
+            enabledDays,
+            maxDate,
+            minDate,
+            mode,
+        } = this.props;
+        const { dateInView } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-calendar', {
-            'date-picker-calendar-uxmode-input': uxMode === 'input',
-            'date-picker-calendar-uxmode-calendar': uxMode === 'calendar',
-            'date-picker-calendar-date-range': type === 'dateRange',
-            'date-picker-calendar-service-period': type === 'servicePeriod',
-            'date-picker-calendar-service-period-range': type === 'servicePeriodRange' ||
-                type === 'servicePeriodRangeEnd' ||
-                type === 'servicePeriodRangeStart',
-            'date-picker-calendar-single-date': type === 'singleDate'
+            'date-picker-calendar-mode-input': mode === 'input',
+            'date-picker-calendar-mode-calendar': mode === 'calendar',
+            'date-picker-calendar-date-range': !_.isEmpty(dateFrom) || !_.isEmpty(dateTo),
+            'date-picker-calendar-single-date': _.isEmpty(dateFrom) && _.isEmpty(dateTo),
         });
 
         return (
             <div className={containerClasses}>
-                {uxMode === 'input' ? (
+                {mode === 'input' ? (
                     <div className="date-picker-pointer" />
                 ) : null}
 
-                <div className="date-picker-selected-month-year">
-                    <div className="date-picker-selected-month" onClick={this._onDropdownMonthClick.bind(this)}>
-                        <span>
-                            {dateInView.format('MMMM')}
-                            <Icon align="right" size="xxsmall" type="caret-down" />
-                        </span>
-
-                        {this.state.showDropdownMonth ? (
-                            <DatePickerDropdownMonth
-                                month={dateInView.month()}
-                                onChange={this._onChangeMonth.bind(this)}
-                                onClose={this._onDropdownMonthClick.bind(this)}
-                            />
-                        ) : null}
-                    </div>
-
-                    <div className="date-picker-selected-year" onClick={this._onDropdownYearClick.bind(this)}>
-                        <span>
-                            {dateInView.format('YYYY')}
-                            <Icon align="right" size="xxsmall" type="caret-down" />
-                        </span>
-
-                        {this.state.showDropdownYear ? (
-                            <DatePickerDropdownYear
-                                onChange={this._onChangeYear.bind(this)}
-                                onClose={this._onDropdownYearClick.bind(this)}
-                                year={dateInView.year()}
-                            />
-                        ) : null}
-                    </div>
-                </div>
+                {this._renderControls()}
 
                 <div className="date-picker-month-container">
-                    <div className="ui date-picker-header-days">
-                        {this._headerDays()}
-                    </div>
+                    {this._renderHeaderDays()}
 
                     <DatePickerMonth
-                        dateInView={dateInView}
                         date={date}
-                        dateEnd={dateEnd}
-                        dateSecondaryEnd={dateSecondaryEnd}
-                        dateSecondaryStart={dateSecondaryStart}
-                        dateStart={dateStart}
-                        events={this.props.events}
-                        excludeDates={this.props.excludeDates}
-                        filterDates={this.props.filterDates}
-                        includeDates={this.props.includeDates}
-                        key="datepicker-month"
-                        maxDate={this.props.maxDate}
-                        minDate={this.props.minDate}
-                        onDayClick={this._onDayClick.bind(this)}
-                        type={this.props.type}
-                        uxMode={this.props.uxMode}
+                        dateFrom={dateFrom}
+                        dateInView={dateInView}
+                        dateTo={dateTo}
+                        disabledDays={disabledDays}
+                        enabledDays={enabledDays}
+                        maxDate={maxDate}
+                        minDate={minDate}
+                        onDayClick={this._onDayClick}
+                        mode={mode}
                     />
                 </div>
-
-                {buttonClear === true || _.isFunction(onApplyClick) ? (
-                    <Grid columns={2} style={{ marginTop: '11px' }} verticalAlign="middle">
-                        <Grid.Row>
-                            {buttonClear === true && dateStart || dateSecondaryStart ? (
-                                <Grid.Column floated="left">
-                                    <a className="font-size-xsmall color-alert" onClick={this._onClearClick.bind(this)}>Clear</a>
-                                </Grid.Column>
-                            ) : null}
-
-                            {_.isFunction(onApplyClick) ? (
-                                <Grid.Column floated="right" textAlign="right">
-                                    <Button
-                                        color={
-                                            (type === 'singleDate' && date) ||
-                                            ((type === 'dateRange' || type === 'servicePeriod') && dateStart && dateEnd) ||
-                                            (type === 'servicePeriodRange' && dateStart && dateEnd && dateSecondaryStart && dateSecondaryEnd) ?
-                                                'primary' : 'disable'
-                                        }
-                                        onClick={date || dateStart && dateEnd || dateSecondaryStart && dateSecondaryEnd ? this._onApplyClick.bind(this) : null}
-                                    >
-                                        {(type === 'singleDate' && date) ||
-                                        ((type === 'dateRange' || type === 'servicePeriod') && dateStart && dateEnd) ||
-                                        (type === 'servicePeriodRange' && dateStart && dateEnd && dateSecondaryStart && dateSecondaryEnd) ?
-                                            'Apply' :
-                                            'Select'
-                                        }
-                                    </Button>
-                                </Grid.Column>
-                            ) : null}
-                        </Grid.Row>
-                    </Grid>
-                ) : null}
             </div>
         );
     }
 
-    _getDateInView(date, dateStart, dateSecondaryStart, maxDate, minDate) {
+    _getDateInView(date, dateFrom, dateTo, maxDate, minDate) {
         const today = moment();
 
-        if (date) {
+        if (!_.isEmpty(date)) {
             return date;
-        } else if (dateStart /*&& (_.isNull(dateSecondaryStart) || dateSecondaryStart)*/) { // I'm 99.9% certain that portion is useless ... it should ALWAYS be either NULL OR truthy, right...?
-            return dateStart;
-        } else if (!dateStart && dateSecondaryStart) {
-            return dateSecondaryStart;
+        } else if (!_.isEmpty(dateFrom)) {
+            return dateFrom;
         }
 
-        if (minDate && minDate.isAfter(today)) {
+        if (!_.isEmpty(minDate) && minDate.isAfter(today)) {
             return minDate;
-        } else if (maxDate && maxDate.isBefore(today)) {
+        } else if (!_.isEmpty(maxDate) && maxDate.isBefore(today)) {
             return maxDate;
         } else {
             return today;
         }
     }
 
-    handleClickOutside() {
-        this.props.onClose();
-    }
+    _localizeMoment(value) {
+        const { locale } = this.props;
 
-    _headerDays() {
-        const startOfWeek = this.state.dateInView.clone().startOf('week');
-
-        return [0, 1, 2, 3, 4, 5, 6].map(offset => {
-            const day = startOfWeek.clone().add(offset, 'days');
-
-            return (
-                <div className="ui date-picker-day" key={offset} >
-                    {day.localeData().weekdaysMin(day)}
-                </div>
-            );
-        })
-    }
-
-    _localizeMoment(date) {
-        return date.clone().locale(this.props.locale || moment.locale());
-    }
-
-    _onApplyClick() {
-        if (_.isFunction(this.props.onApplyClick)) {
-            this.props.onApplyClick();
-        }
+        return moment.isMoment(value) && value.clone().locale(locale || moment.locale());
     }
 
     _onChangeMonth(month) {
@@ -238,50 +145,138 @@ class DatePickerCalendar extends Component {
     _onChangeYear(year) {
         this.setState({
             dateInView: this.state.dateInView.clone().set('year', year),
-            showDropdownYear: false
+            showDropdownYear: false,
         });
     }
 
-    _onClearClick() {
-        this.props.onClearClick();
-    }
-
     _onDayClick(day) {
-        if (_.isFunction(this.props.onSelect)) {
-            this.props.onSelect(day);
+        const { onChange } = this.props;
+
+        if (_.isFunction(onChange)) {
+            onChange(day);
         }
     }
 
     _onDropdownMonthClick() {
-        this.setState({ showDropdownMonth: !this.state.showDropdownMonth });
+        const { showDropdownMonth } = this.state;
+
+        this.setState({ showDropdownMonth: !showDropdownMonth });
     }
 
     _onDropdownYearClick() {
-        this.setState({ showDropdownYear: !this.state.showDropdownYear });
+        const { showDropdownYear } = this.state;
+
+        this.setState({ showDropdownYear: !showDropdownYear });
+    }
+
+    _renderControls() {
+        const { controls } = this.props;
+        const {
+            dateInView,
+            showDropdownMonth,
+            showDropdownYear,
+        } = this.state;
+
+        if (controls === 'arrows') {
+            return (
+                <div className="date-picker-selected-month-year-arrows">
+                    arrows
+                </div>
+            );
+        } else {
+            return (
+                <div className="date-picker-selected-month-year-dropdowns">
+                    <div
+                        className="date-picker-selected-month"
+                        onClick={this._onDropdownMonthClick}
+                    >
+                        <span>
+                            {dateInView.format('MMMM')}
+
+                            <Icon align="right" size="xxsmall" type="caret-down" />
+                        </span>
+
+                        {showDropdownMonth ? (
+                            <DatePickerDropdownMonth
+                                month={dateInView.month()}
+                                onChange={this._onChangeMonth}
+                                onClose={this._onDropdownMonthClick}
+                            />
+                        ) : null}
+                    </div>
+
+                    <div
+                        className="date-picker-selected-year"
+                        onClick={this._onDropdownYearClick}
+                    >
+                        <span>
+                            {dateInView.format('YYYY')}
+
+                            <Icon align="right" size="xxsmall" type="caret-down" />
+                        </span>
+
+                        {showDropdownYear ? (
+                            <DatePickerDropdownYear
+                                onChange={this._onChangeYear}
+                                onClose={this._onDropdownYearClick}
+                                year={dateInView.year()}
+                            />
+                        ) : null}
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    _renderHeaderDays() {
+        const { dateInView } = this.state;
+        const startOfWeek = dateInView.clone().startOf('week');
+        const days = [0, 1, 2, 3, 4, 5, 6].map(offset => {
+            const day = startOfWeek.clone().add(offset, 'days');
+
+            return (
+                <div className="ui date-picker-day" key={offset} >
+                    {day.localeData().weekdaysMin(day)}
+                </div>
+            );
+        });
+
+        return (
+            <div className="ui date-picker-header-days">
+                {days}
+            </div>
+        );
     }
 }
 
+DatePickerCalendar.defaultProps = {
+    controls: 'dropdowns',
+    date: moment(),
+    dateFrom: undefined,
+    dateTo: undefined,
+    disabledDays: [],
+    enabledDays: [],
+    locale: '',
+    maxDate: {},
+    minDate: {},
+    mode: 'calendar',
+    onDateSelect: () => {},
+    onMonthChange:  () => {},
+};
+
 DatePickerCalendar.propTypes = {
-    buttonClear: PropTypes.bool,
-    date: PropTypes.object, // Single date moment object. Coverted from timestamp in parent component.
-    dateEnd: PropTypes.object, // Range end date moment object. Coverted from timestamp in parent component.
-    dateSecondaryEnd: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateSecondaryStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    events: PropTypes.array,
-    excludeDates: PropTypes.array,
-    filterDate: PropTypes.func,
-    includeDates: PropTypes.array,
+    controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
+    date: PropTypes.object,
+    dateFrom: PropTypes.object,
+    dateTo: PropTypes.object,
+    disabledDays: PropTypes.array,
+    enabledDays: PropTypes.array,
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    onApplyClick: PropTypes.func,
-    onClearClick: PropTypes.func,
-    onClose: PropTypes.func,
+    mode: PropTypes.oneOf([ 'calendar', 'input' ]),
+    onChange: PropTypes.func,
     onMonthChange: PropTypes.func,
-    onSelect: PropTypes.func.isRequired,
-    type: PropTypes.string,
-    uxMode: PropTypes.string
 };
 
-export default onClickOutside(DatePickerCalendar);
+export default DatePickerCalendar;
