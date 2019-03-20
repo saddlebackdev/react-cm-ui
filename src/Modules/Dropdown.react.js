@@ -196,6 +196,7 @@ class Dropdown extends Component {
                                 return (
                                     <div
                                         className={containerClasses}
+                                        id={id}
                                         ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                                         style={style}
                                     >
@@ -228,7 +229,6 @@ class Dropdown extends Component {
                                             }}
                                             clearable={!clearable ? clearable : true}
                                             disabled={disable}
-                                            id={id}
                                             matchProp={selectionMatchProp || 'any'}
                                             menuContainerStyle={selectionMenuContainerStyle}
                                             menuRenderer={this._menuRenderer.bind(this)}
@@ -255,6 +255,7 @@ class Dropdown extends Component {
                 return (
                     <div
                         className={containerClasses}
+                        id={id}
                         ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
                         style={style}
                     >
@@ -277,7 +278,6 @@ class Dropdown extends Component {
                             }}
                             clearable={!clearable ? clearable : true}
                             disabled={disable}
-                            id={id}
                             menuContainerStyle={selectionMenuContainerStyle}
                             menuRenderer={this._menuRenderer.bind(this)}
                             menuStyle={selectionMenuStyle}
