@@ -200,7 +200,17 @@ class Accordion extends Component {
     }
 
     render() {
-        const { basic, children, className, exclusive, inverse, scrollContainer, scrollContainerMarginHeight, style } = this.props;
+        const {
+            basic,
+            children,
+            className,
+            exclusive,
+            id,
+            inverse,
+            scrollContainer,
+            scrollContainerMarginHeight,
+            style,
+        } = this.props;
         const { selected } = this.state;
         const containerClasses = ClassNames('ui', 'accordion', className, {
             'accordion-basic': basic,
@@ -280,7 +290,11 @@ class Accordion extends Component {
         });
 
         return (
-            <div className={containerClasses} style={style}>
+            <div
+                className={containerClasses}
+                id={id}
+                style={style}
+            >
                 {items}
             </div>
         );
@@ -317,6 +331,7 @@ Accordion.propTypes = {
     basic: PropTypes.bool,
     className: PropTypes.string,
     exclusive: PropTypes.bool,
+    id: PropTypes.string,
     inverse: PropTypes.bool,
     scrollContainer: PropTypes.oneOfType([
         PropTypes.object,
