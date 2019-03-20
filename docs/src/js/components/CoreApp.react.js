@@ -311,6 +311,14 @@ let routes = (
                 }}
             />
             <Route
+                path="date-picker-input"
+                getComponent={(location, callback) => {
+                    require.ensure([], require => {
+                        callback(null, require('components/ModulesDatePickerInput.react'))
+                    }, 'ModulesDatePickerInput')
+                }}
+            />
+            <Route
                 path="drag-and-drop"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {

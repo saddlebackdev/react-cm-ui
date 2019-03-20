@@ -1,16 +1,15 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import DOMUtils from '../utils/DOMUtils.js';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DOMUtils from '../utils/DOMUtils.js';
-
-class DatePickerDropdownYear extends Component {
+class DatePickerDropdownYear extends React.PureComponent {
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-dropdown-year');
 

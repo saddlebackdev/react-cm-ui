@@ -3,9 +3,9 @@
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
-class DatePickerDropdownMonth extends Component {
+class DatePickerDropdownMonth extends React.PureComponent {
     render() {
         const { month } = this.props;
         const containerClasses = ClassNames('ui', 'date-picker-dropdown-month');

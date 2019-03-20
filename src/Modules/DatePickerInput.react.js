@@ -1,303 +1,180 @@
 'use strict';
 
-import _ from 'lodash';
 import ClassNames from 'classnames';
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
-import Grid from '../Collections/Grid.react';
-import GridColumn from '../Collections/GridColumn.react';
+import DatePickerCalendar from './DatePickerCalendar.react';
 import Icon from '../Elements/Icon.react';
 import Input from '../Elements/Input.react';
+import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
+import React from 'react';
+import TetherComponent from 'react-tether';
 
-import DatePickerUtils from '../utils/DatePickerUtils.js';
-import DateUtils from '../utils/DateUtils.js';
 
-class DatePickerInput extends Component {
+class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            hasAnError: false,
-            listensForErrors: !_.isUndefined(props.required),
+            isCalendarOpen: false,
             maybeDate: this._safeDateFormat(props.date, props.locale),
-            maybeDateRange: {
-                dateEnd: this._safeDateFormat(props.dateEnd, props.locale),
-                dateSecondaryEnd: this._safeDateFormat(props.dateSecondaryEnd, props.locale),
-                dateSecondaryStart: this._safeDateFormat(props.dateSecondaryStart, props.locale),
-                dateStart: this._safeDateFormat(props.dateStart, props.locale)
-            }
         };
 
-        this._onErrorRef = this._onError.bind(this);
-        this._dateFormats = this._getAllowedDateFormats('MM/DD/YYYY');
-
-        this._onBlur = this._onBlur.bind(this);
-        this._onClick = this._onClick.bind(this);
-        this._onFocus = this._onFocus.bind(this);
-        this._onKeyDown = this._onKeyDown.bind(this);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { date, dateStart, dateEnd, dateSecondaryStart, dateSecondaryEnd, locale } = this.props;
-
-        if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
-            !DatePickerUtils.isSameDay(dateStart, prevProps.dateStart) ||
-            !DatePickerUtils.isSameDay(dateEnd, prevProps.dateEnd) ||
-            !DatePickerUtils.isSameDay(dateSecondaryStart, prevProps.dateSecondaryStart) ||
-            !DatePickerUtils.isSameDay(dateSecondaryEnd, prevProps.dateSecondaryEnd) ||
-            !_.isEqual(locale, prevProps.locale)
-        ) {
-            this.setState({
-                maybeDate: this._safeDateFormat(date, locale),
-                maybeDateRange: {
-                    dateEnd: this._safeDateFormat(dateEnd, locale),
-                    dateSecondaryEnd: this._safeDateFormat(dateSecondaryEnd, locale),
-                    dateSecondaryStart: this._safeDateFormat(dateSecondaryStart, locale),
-                    dateStart: this._safeDateFormat(dateStart, locale)
-                }
-            });
-        }
+        this._getDate = this._getDate.bind(this);
+        this._getDateFrom = this._getDateFrom.bind(this);
+        this._getDateTo = this._getDateTo.bind(this);
+        this._getMaxDate = this._getMaxDate.bind(this);
+        this._getMinDate = this._getMinDate.bind(this);
+        this._onCalendarChange = this._onCalendarChange.bind(this);
+        this._onCalendarClickOutside = this._onCalendarClickOutside.bind(this);
+        this._onInputClick = this._onInputClick.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputKeyDown = this._onInputKeyDown.bind(this);
+        this._onMonthChange = this._onMonthChange.bind(this);
     }
 
     render() {
-        const { className, open, type, uxMode } = this.props;
-        const disabled = this.props.disabled ||
-            type === 'servicePeriod' ||
-            type === 'servicePeriodRangeEnd' ||
-            type === 'servicePeriodRangeStart';
-        const containerClasses = ClassNames('datepicker-input', {
-            'date-picker-input-disabled': disabled,
-            'date-picker-input-type-date-range': type === 'dateRange',
-            'date-picker-input-type-service-period': type === 'servicePeriod',
-            'date-picker-input-type-service-period-range': type === 'servicePeriodRange',
-            'date-picker-input-type-single-date': type === 'singleDate',
-            'ignore-react-onclickoutside': open
-        }, className);
-        let mask, placeholder, value;
+        const {
+            className,
+            errorMessage,
+            disabled,
+            disabledDays,
+            enabledDays,
+            locale,
+            required,
+            tabIndex,
+        } = this.props;
+        const { isCalendarOpen, maybeDate } = this.state;
+        const containerClasses = ClassNames('ui', 'date-picker-input', className);
 
-        if (uxMode === 'input' &&
-            type === 'dateRange' ||
-            type === 'servicePeriod' ||
-            type === 'servicePeriodRangeEnd' ||
-            type === 'servicePeriodRangeStart'
-        ) {
-            mask = [
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
-                ' ', '-', ' ',
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
-            ];
-            placeholder = 'mm/dd/yyyy - mm/dd/yyyy';
+        return (
+            <div className={containerClasses}>
+                <TetherComponent
+                    attachment={'top left'}
+                    classPrefix="date-picker-tether"
+                    constraints={[{
+                        to: 'window',
+                        attachment: 'together'
+                    }]}
+                    targetAttachment={'bottom left'}
+                    targetOffset={'10px 0'}
+                >
+                    <Input
+                        autoComplete="off"
+                        data-parsley-error-message={errorMessage}
+                        disabled={disabled}
+                        guide
+                        icon={(
+                            <Icon
+                                color={isCalendarOpen ? 'highlight' : null}
+                                compact
+                                onClick={this._onInputClick}
+                                type="calendar"
+                            />
+                        )}
+                        keepCharPositions
+                        mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
+                        onBlur={this._onInputBlur}
+                        onChange={this._onInputChange}
+                        onClick={this._onInputClick}
+                        onFocus={this._onInputFocus}
+                        onKeyDown={this._onInputKeyDown}
+                        placeholder="mm/dd/yyyy"
+                        required={required}
+                        tabIndex={tabIndex}
+                        type="text"
+                        value={maybeDate}
+                    />
+                </TetherComponent>
 
-            if (type === 'servicePeriodRangeEnd') {
-                value = `${this.state.maybeDateRange.dateSecondaryStart} - ${this.state.maybeDateRange.dateSecondaryEnd}`;
-            } else {
-                value = `${this.state.maybeDateRange.dateStart} - ${this.state.maybeDateRange.dateEnd}`;
-            }
-        } else {
-            mask = [
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
-            ];
-            placeholder = 'mm/dd/yyyy';
-            value = this.state.maybeDate;
-        }
-
-        if (uxMode === 'input') {
-            return (
-                <Input
-                    autoComplete="off"
-                    className={containerClasses}
-                    data-parsley-error-message={this.props.errorMessage}
-                    disabled={disabled}
-                    guide={true}
-                    icon={(
-                        <Icon
-                            color={open ? 'highlight' : null}
-                            compact={true}
-                            onClick={this._onClick}
-                            type="calendar"
-                        />
-                    )}
-                    id={this.props.id}
-                    keepCharPositions
-                    mask={mask}
-                    onBlur={this._onBlur}
-                    onChange={this._onChange.bind(this, 'date')}
-                    onClick={this._onClick}
-                    onFocus={this._onFocus}
-                    onKeyDown={this._onKeyDown}
-                    placeholder={placeholder}
-                    ref="input"
-                    required={this.props.required}
-                    tabIndex={this.props.tabIndex}
-                    type="text"
-                    value={value}
+                <DatePickerCalendar
+                    date={this._getDate()}
+                    dateFrom={this._getDateFrom()}
+                    dateTo={this._getDateTo()}
+                    disabledDays={disabledDays}
+                    enabledDays={enabledDays}
+                    locale={locale}
+                    maxDate={this._getMaxDate()}
+                    minDate={this._getMinDate()}
+                    mode="input"
+                    onChange={this._onCalendarChange}
+                    onMonthChange={this._onMonthChange}
                 />
-            );
-        } else if (uxMode === 'calendar') {
-            return (
-                <Grid columns={2} style={{ marginBottom: '5px', marginTop: '7px' }}>
-                    <Grid.Column>
-                        <Input
-                            autoComplete="off"
-                            className={containerClasses}
-                            data-parsley-error-message={this.props.errorMessage}
-                            disabled={disabled}
-                            guide={true}
-                            id={this.props.id}
-                            keepCharPositions={true}
-                            label="From"
-                            mask={mask}
-                            onBlur={this._onBlur}
-                            onChange={this._onChange.bind(this, 'dateStart')}
-                            onClick={this._onClick}
-                            onFocus={this._onFocus}
-                            placeholder={placeholder}
-                            ref="inputStart"
-                            required={this.props.required}
-                            tabIndex={this.props.tabIndex}
-                            type="text"
-                            value={this.state.maybeDateRange.dateStart}
-                        />
-                    </Grid.Column>
-
-                    <Grid.Column>
-                        <Input
-                            autoComplete="off"
-                            className={containerClasses}
-                            data-parsley-error-message={this.props.errorMessage}
-                            disabled={disabled}
-                            guide={true}
-                            id={this.props.id}
-                            keepCharPositions={true}
-                            label="To"
-                            mask={mask}
-                            onBlur={this._onBlur}
-                            onChange={this._onChange.bind(this, 'dateEnd')}
-                            onClick={this._onClick}
-                            onFocus={this._onFocus}
-                            placeholder={placeholder}
-                            ref="inputEnd"
-                            required={this.props.required}
-                            tabIndex={this.props.tabIndex}
-                            type="text"
-                            value={this.state.maybeDateRange.dateEnd}
-                        />
-                    </Grid.Column>
-                </Grid>
-            );
-        }
+            </div>
+        );
     }
 
-    componentDidMount() {
-        if (this.state.listensForErrors) {
-            ParsleyFormStore.addChangeListener(this._onErrorRef);
-        }
+    _getDate() {
+        const { date } = this.props;
+
+        return this._getValueIfMoment(date, 'date');
     }
 
-    componentWillUnmount() {
-        if (this.state.listensForErrors) {
-            ParsleyFormStore.removeChangeListener(this._onErrorRef);
-        }
+    _getDateFrom() {
+        const { dateFrom } = this.props;
+
+        return this._getValueIfMoment(dateFrom, 'dateFrom');
     }
 
-    _onBlur(value) {
-        const { date, dateEnd, dateStart, locale, type } = this.props;
-        const isSingleDateOrServicePeriod = type === 'singleDate' || type === 'servicePeriod';
-        const isDateRange = type === 'dateRange';
+    _getDateTo() {
+        const { dateTo } = this.props;
 
-        if (!_.isUndefined(this.props.onBlur)) {
-            this.props.onBlur(event);
-        }
-
-        this.props.hasValue(value);
-
-        this.setState({
-            maybeDate: isSingleDateOrServicePeriod ? this._safeDateFormat(date, locale) : this.state.maybeDate,
-            maybeDateRange: isDateRange ? {
-                dateEnd: this._safeDateFormat(dateEnd, locale),
-                dateStart: this._safeDateFormat(dateStart, locale)
-            } : this.state.maybeDateRange
-        });
+        return this._getValueIfMoment(dateTo, 'dateTo');
     }
 
-    _onChange(dateType, value) {
-        const { type, locale, uxMode } = this.props;
-        const newLocale = locale || moment.locale();
+    _getMaxDate() {
+        const { maxDate } = this.props;
 
-        if (uxMode === 'input' && type === 'dateRange') {
-            const datesArray = value ? value.split('-') : '';
-
-            if (value !== '' && value !== '__/__/____ - __/__/____') {
-                _.map(datesArray, (date, index) => {
-                    const newDate = moment(date.trim(), this._dateFormats, newLocale, true);
-                    const dateType = index === 0 ? 'dateStart' : index === 1 ? 'dateEnd' : null;
-
-                    if (newDate.isValid() &&
-                        (!DatePickerUtils.isDayDisabled(newDate, this.props) &&
-                        (index === 0 && !DatePickerUtils.isSameDay(this.props.dateStart, newDate)) ||
-                        (index === 1 && !DatePickerUtils.isSameDay(this.props.dateEnd, newDate)))
-                    ) {
-                        this.props.onSelect(newDate, dateType);
-                    }
-                });
-            } else {
-                this.props.onSelect(null, null, true);
-            }
-
-            this.setState({
-                maybeDateRange: {
-                    dateEnd: value ? datesArray[1].trim() : '',
-                    dateStart: value ? datesArray[0].trim() : ''
-                }
-            });
-        } else if (uxMode === 'calendar' || uxMode === 'input' && type === 'singleDate') {
-            const date = moment(value, this._dateFormats, newLocale, true);
-
-            if (date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
-                this.props.onSelect(date);
-            } else if (value === '' || value === '__/__/____') {
-                this.props.onSelect(null, null, true);
-            }
-
-            if (uxMode === 'input') {
-                this.setState({ maybeDate: value });
-            }
-
-            if (uxMode === 'calendar') {
-                this.setState({
-                    maybeDateRange: {
-                        dateEnd: dateType === 'dateEnd' ? value : this.state.maybeDateRange.dateEnd,
-                        dateStart: dateType === 'dateStart' ? value : this.state.maybeDateRange.dateStart
-                    }
-                });
-            }
-        }
-
-        this.props.hasValue(value);
+        return this._getValueIfMoment(maxDate, 'maxDate');
     }
 
-    _onClick(dateField) {
-        if (_.isFunction(this.props.onClick)) {
-            this.props.onClick();
-        }
+    _getMinDate() {
+        const { minDate } = this.props;
+
+        return this._getValueIfMoment(minDate, 'minDate');
     }
 
-    _onError() {
-        this.setState({ 'hasAnError': ParsleyFormStore.inputHasError(this.props.id) });
+    _getValueIfMoment(value, type) {
+        if (value && !moment.isMoment(value)) {
+            console.warn(`${type || 'value'} is not a moment object`);
+
+            return;
+        }
+
+        return value || {};
     }
 
-    _onFocus() {
-        if (_.isFunction(this.props.onFocus)) {
-            this.props.onFocus();
-        }
+    _onCalendarChange() {
+
     }
 
-    _onKeyDown(event) {
-        if (event.keyCode === 9 || event.keyCode === 13) {
-            this.props.onDone();
-        }
+    _onCalendarClickOutside(event) {
+
+    }
+
+    _onInputBlur() {
+
+    }
+
+    _onInputChange() {
+
+    }
+
+    _onInputClick() {
+
+    }
+
+    _onInputFocus() {
+
+    }
+
+    _onInputKeyDown() {
+
+    }
+
+    _onMonthChange() {
+
     }
 
     _safeDateFormat(date, locale) {
@@ -309,47 +186,51 @@ class DatePickerInput extends Component {
             return null;
         }
     }
-
-    _getAllowedDateFormats(specifiedFormat) {
-        const formats = DateUtils.getAllowedDateFormats();
-
-        if (_.indexOf(formats, specifiedFormat) < 0) {
-            formats.unshift(specifiedFormat);
-        }
-
-        return formats;
-    }
 }
+
+DatePickerInput.defaultProps = {
+    className: '',
+    date: moment(),
+    dateFrom: undefined,
+    dateTo: undefined,
+    disabled: false,
+    disabledDays: undefined,
+    errorMessage: '',
+    enabledDays: undefined,
+    id: undefined,
+    locale: '',
+    maxDate: undefined,
+    minDate: undefined,
+    onBlur: undefined,
+    onChange: undefined,
+    onFocus: undefined,
+    onMonthChange: undefined,
+    required: false,
+    tabIndex: undefined,
+};
 
 DatePickerInput.propTypes = {
     className: PropTypes.string,
     date: PropTypes.object,
-    dateEnd: PropTypes.object,
-    dateFormat: PropTypes.string,
-    dateSecondaryEnd: PropTypes.object,
-    dateSecondaryStart: PropTypes.object,
-    dateStart: PropTypes.object,
+    dateFrom: PropTypes.object,
+    dateTo: PropTypes.object,
     disabled: PropTypes.bool,
+    disabledDays: PropTypes.array,
     errorMessage: PropTypes.string,
-    excludeDates: PropTypes.array,
-    filterDates: PropTypes.func,
-    hasValue: PropTypes.func.isRequired,
-    id: PropTypes.string,
-    includeDates: PropTypes.array,
+    enabledDays: PropTypes.array,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    mode: PropTypes.string,
     onBlur: PropTypes.func,
-    onClick: PropTypes.func,
-    onDone: PropTypes.func,
+    onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    onSelect: PropTypes.func,
-    open: PropTypes.bool,
+    onMonthChange: PropTypes.func,
     required: PropTypes.bool,
     tabIndex: PropTypes.number,
-    type: PropTypes.string,
-    uxMode: PropTypes.string
 };
 
 export default DatePickerInput;

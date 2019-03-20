@@ -8,8 +8,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
-import DatePickerCalendar from './DatePickerCalendar.react';
-import DatePickerInput from './DatePickerInput.react';
+import DatePickerCalendar from './DatePickerDeprecatedCalendar.react';
+import DatePickerInput from './DatePickerDeprecatedInput.react';
 
 import DatePickerUtils from '../utils/DatePickerUtils.js';
 
