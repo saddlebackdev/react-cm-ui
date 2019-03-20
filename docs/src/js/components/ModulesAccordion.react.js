@@ -607,7 +607,7 @@ export default class CollectionsAccordion extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Accordion>
+                    <Accordion id="accordion-demo-id">
                         <Accordion.Item>
                             <Accordion.Summary>
                                 Option One
