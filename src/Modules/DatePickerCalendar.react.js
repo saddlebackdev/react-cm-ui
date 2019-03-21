@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import ClassNames from 'classnames';
 import DatePickerDropdownMonth from './DatePickerDropdownMonth.react';
 import DatePickerDropdownYear from './DatePickerDropdownYear.react';
@@ -66,8 +67,10 @@ class DatePickerCalendar extends React.PureComponent {
             date,
             dateFrom,
             dateTo,
-            disabledDays,
-            enabledDays,
+            events,
+            excludeDates,
+            filterDate,
+            includeDates,
             maxDate,
             minDate,
             mode,
@@ -96,8 +99,10 @@ class DatePickerCalendar extends React.PureComponent {
                         dateFrom={dateFrom}
                         dateInView={dateInView}
                         dateTo={dateTo}
-                        disabledDays={disabledDays}
-                        enabledDays={enabledDays}
+                        events={events}
+                        excludeDates={excludeDates}
+                        filterDate={filterDate}
+                        includeDates={includeDates}
                         maxDate={maxDate}
                         minDate={minDate}
                         onDayClick={this._onDayClick}
@@ -150,9 +155,10 @@ class DatePickerCalendar extends React.PureComponent {
     }
 
     _onDayClick(day) {
+        console.log('DatePickerCalendar _onDayClick');
         const { onChange } = this.props;
 
-        if (_.isFunction(onChange)) {
+        if (!_.isUndefined(onChange)) {
             onChange(day);
         }
     }
@@ -250,27 +256,38 @@ class DatePickerCalendar extends React.PureComponent {
 }
 
 DatePickerCalendar.defaultProps = {
+    className: '',
     controls: 'dropdowns',
     date: moment(),
     dateFrom: undefined,
     dateTo: undefined,
-    disabledDays: [],
-    enabledDays: [],
+    events: undefined,
+    excludeDates: undefined,
+    filterDates: undefined,
+    id: undefined,
+    includeDates: undefined,
     locale: '',
-    maxDate: {},
-    minDate: {},
+    maxDate: undefined,
+    minDate: undefined,
     mode: 'calendar',
-    onDateSelect: () => {},
-    onMonthChange:  () => {},
+    onChange: undefined,
+    onMonthChange: undefined,
 };
 
 DatePickerCalendar.propTypes = {
+    className: PropTypes.string,
     controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
     date: PropTypes.object,
     dateFrom: PropTypes.object,
     dateTo: PropTypes.object,
-    disabledDays: PropTypes.array,
-    enabledDays: PropTypes.array,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
+    includeDates: PropTypes.array,
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,

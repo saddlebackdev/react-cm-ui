@@ -11,7 +11,7 @@ class DatePickerDay extends Component {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this._onDayClick = this._onDayClick.bind(this);
     }
 
     render() {
@@ -32,7 +32,7 @@ class DatePickerDay extends Component {
         return (
             <div
                 className={containerClasses}
-                onClick={this._onClick}
+                onClick={this._onDayClick}
             >
                 <span>
                     {moment(dateInView).format('DD')}
@@ -71,7 +71,9 @@ class DatePickerDay extends Component {
     }
 
     _isDisabled() {
-        return DatePickerUtils.isDayDisabled(this.props.dateInView, this.props);
+        const { dateInView } =  this.props;
+
+        return DatePickerUtils.isDayDisabled(dateInView, this.props);
     }
 
     _isDayEndSelected() {
@@ -111,9 +113,9 @@ class DatePickerDay extends Component {
     }
 
     _isOutsideMonth() {
-        const { month } = this.props;
+        const { dateInView, month } = this.props;
 
-        return !_.isUndefined(month) && month !== this.props.dateInView.month();
+        return !_.isUndefined(month) && month !== dateInView.month();
     }
 
     _isToday() {
@@ -126,11 +128,17 @@ class DatePickerDay extends Component {
         return weekday === 0 || weekday === 6;
     }
 
-    _onClick(event) {
-        const { onClick } = this.props;
+    _onDayClick() {
+        console.log('DatePickerDay _onDayClick');
+        const { dateInView, onDayClick } = this.props;
 
-        if (!this._isOutsideMonth() && !this._isDisabled() && _.isFunction(this.props.onClick)) {
-            this.props.onClick(event);
+        console.log('!this._isOutsideMonth()', this._isOutsideMonth());
+        console.log('!this._isDisabled()', this._isDisabled());
+        console.log('!_.isUndefined(onDayClick)', _.isUndefined(onDayClick));
+
+        if (!this._isOutsideMonth() && !this._isDisabled() && !_.isUndefined(onDayClick)) {
+            console.log('change it')
+            onDayClick(dateInView);
         }
     }
 }
@@ -139,12 +147,15 @@ DatePickerDay.propTypes = {
     date: PropTypes.object,
     dateEnd: PropTypes.object,
     dateInView: PropTypes.object.isRequired,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    includeDates: PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     month: PropTypes.number,
     onDayClick: PropTypes.func,
     type: PropTypes.string,
-    uxMode: PropTypes.string
 };
 
 export default DatePickerDay;

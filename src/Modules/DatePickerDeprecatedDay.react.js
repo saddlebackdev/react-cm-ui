@@ -138,7 +138,7 @@ DatePickerDay.propTypes = {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     month: PropTypes.number,
-    onDayClick: PropTypes.func,
+    onClick: PropTypes.func,
     type: PropTypes.string,
     uxMode: PropTypes.string
 };
