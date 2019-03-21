@@ -35,35 +35,35 @@ $pointer-size: 8px;
     &::before { border-top-color: $border; bottom: -1px; }
 }
 
-.date-picker-tether-element {
+.date-picker-deprecated-tether-element {
     z-index: 10000;
     .date-picker-pointer { content: ''; left: 50px; position: absolute; }
     &-attached-top .date-picker-pointer { @extend %triangle-pointer-up; }
     &-attached-bottom .date-picker-pointer { @extend %triangle-pointer-down; }
     &-attached-top.datepicker-tether-element .date-picker-pointer { margin-top: -20px; }
-    .ui.date-picker-calendar {
+    .ui.date-picker-deprecated-calendar {
         background-color: $bkgd;
         border: 1px solid $border;
         border-radius: 3px;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
-        max-width: 232px;
-        padding: 11px;
+        padding: 22px;
+        width: 298px;
+        .date-picker-month-container { margin: 0 -11px; }
     }
 }
-    .ui.date-picker-calendar {
+    .ui.date-picker-deprecated-calendar {
         display: inline-block;
         font-size: rem(16px);
         position: relative;
-        max-width: 210px;
         .date-picker-month-container {
             align-items: flex-start;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            margin: 0 -13px;
             position: relative;
-            min-width: 210px;
         }
-            .date-picker-selected-month-year-dropdowns {
+            .date-picker-selected-month-year {
                 align-items: flex-start;
                 display: flex;
                 justify-content: flex-start;
@@ -71,7 +71,7 @@ $pointer-size: 8px;
                 width: 100%;
                 .date-picker-selected- {
                     &month, &year {
-                        color: $color-text-link;
+                        color: $color-text-secondary;
                         cursor: pointer;
                         font-size: rem(16px);
                         font-weight: $default-font-weight-bold;
@@ -85,13 +85,8 @@ $pointer-size: 8px;
             .date-picker-header-days {
                 align-items: center;
                 display: flex;
-                justify-content: space-between;
-                min-width: 210px;
+                justify-content: center;
                 width: 100%;
-                .date-picker-day {
-                    font-size: rem(14px);
-                    font-weight: $default-font-weight-bold;
-                    text-transform: uppercase;
-                }
+                .date-picker-deprecated-day { font-size: rem(14px); font-weight: $default-font-weight-bold; text-transform: uppercase; }
             }
     }

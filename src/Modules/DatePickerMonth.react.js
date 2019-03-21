@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import ClassNames from 'classnames';
 import DatePickerWeek from './DatePickerWeek.react';
 import PropTypes from 'prop-types';
@@ -30,9 +31,10 @@ class DatePickerMonth extends React.PureComponent {
     }
 
     _onDayClick(day) {
+        console.log('DatePickerMonth _onDayClick');
         const { onDayClick } = this.props;
 
-        if (_.isFunction(onDayClick)) {
+        if (!_.isUndefined(onDayClick)) {
             onDayClick(day);
         }
     }
@@ -43,6 +45,10 @@ class DatePickerMonth extends React.PureComponent {
             dateFrom,
             dateInView,
             dateTo,
+            events,
+            excludeDates,
+            filterDate,
+            includeDates,
             maxDate,
             minDate,
             mode,
@@ -58,6 +64,10 @@ class DatePickerMonth extends React.PureComponent {
                     dateFrom={dateFrom}
                     dateInView={startOfWeek}
                     dateTo={dateTo}
+                    events={events}
+                    excludeDates={excludeDates}
+                    filterDate={filterDate}
+                    includeDates={includeDates}
                     key={week}
                     maxDate={maxDate}
                     minDate={minDate}
@@ -70,24 +80,15 @@ class DatePickerMonth extends React.PureComponent {
     }
 }
 
-DatePickerMonth.defaultProps = {
-    date: {},
-    dateFrom: {},
-    dateTo: {},
-    disabledDays: [],
-    enabledDays: [],
-    maxDate: {},
-    minDate: {},
-    mode: 'calendar',
-};
-
 DatePickerMonth.propTypes = {
     date: PropTypes.object,
     dateFrom: PropTypes.object,
     dateInView: PropTypes.object.isRequired,
     dateTo: PropTypes.object,
-    disabledDays: PropTypes.array,
-    enabledDays: PropTypes.array,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    includeDates: PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     mode: PropTypes.oneOf([ 'calendar', 'input' ]),

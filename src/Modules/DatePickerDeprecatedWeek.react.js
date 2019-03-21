@@ -41,7 +41,6 @@ class DatePickerWeek extends Component {
                     excludeDates={this.props.excludeDates}
                     filterDate={this.props.filterDate}
                     includeDates={this.props.includeDates}
-                    filterDate={this.props.filterDate}
                     key={offset}
                     maxDate={this.props.maxDate}
                     minDate={this.props.minDate}

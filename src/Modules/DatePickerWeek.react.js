@@ -24,9 +24,10 @@ class DatePickerWeek extends Component {
     }
 
     _onDayClick(day) {
+        console.log('DatePickerWeek _onDayClick');
         const { onDayClick } = this.props;
 
-        if (_.isFunction(onDayClick)) {
+        if (!_.isUndefined(onDayClick)) {
             onDayClick(day);
         }
     }
@@ -35,6 +36,10 @@ class DatePickerWeek extends Component {
         const {
             date,
             dateInView,
+            events,
+            excludeDates,
+            filterDate,
+            includeDates,
             maxDate,
             minDate,
             mode,
@@ -49,12 +54,16 @@ class DatePickerWeek extends Component {
                 <DatePickerDay
                     date={date}
                     dateInView={dateInView}
+                    events={events}
+                    excludeDates={excludeDates}
+                    filterDate={filterDate}
+                    includeDates={includeDates}
                     key={day}
                     maxDate={maxDate}
                     minDate={minDate}
                     mode={mode}
                     month={month}
-                    onClick={this._onDayClick}
+                    onDayClick={this._onDayClick}
                 />
             );
         });
@@ -66,6 +75,10 @@ DatePickerWeek.propTypes = {
     dateEnd: PropTypes.object,
     dateInView: PropTypes.object.isRequired,
     dateTo: PropTypes.object,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    includeDates: PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     mode: PropTypes.string,
