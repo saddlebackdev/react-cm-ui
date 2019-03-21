@@ -1529,6 +1529,7 @@ export default class ModulesDropdown extends React.Component {
 
                     <Block inverse={true} style={{ height: '300px', marginTop: '33px' }}>
                         <Dropdown
+                            id="demo-selection-id"
                             inverse={true}
                             onChange={this._onSelectionChange.bind(this)}
                             options={selectionOptions}
