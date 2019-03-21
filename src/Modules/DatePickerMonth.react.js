@@ -1,5 +1,8 @@
 'use strict';
 
+import ClassNames from 'classnames';
+import DatePickerWeek from './DatePickerWeek.react';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class DatePickerMonth extends React.PureComponent {
@@ -14,7 +17,7 @@ class DatePickerMonth extends React.PureComponent {
 
         return (
             <div className={containerClasses}>
-                hello world
+                {this._renderWeeks()}
             </div>
         );
     }
@@ -46,23 +49,24 @@ class DatePickerMonth extends React.PureComponent {
         } = this.props;
         const startOfMonth = dateInView.clone().startOf('month').startOf('week');
 
-        return [0, 1, 2, 3, 4, 5]
-        .map(offset => startOfMonth.clone().add(offset, 'weeks'))
-        .filter(startOfWeek => this._isWeekInMonth(startOfWeek))
-        .map((startOfWeek, offset) =>
-            <DatePickerWeek
-                date={date}
-                dateFrom={dateFrom}
-                dateInView={startOfWeek}
-                dateTo={dateTo}
-                key={offset}
-                maxDate={maxDate}
-                minDate={minDate}
-                month={dateInView.month()}
-                onDayClick={this._onDayClick}
-                mode={mode}
-            />
-        );
+        return _.map([0, 1, 2, 3, 4, 5], week => {
+            const startOfWeek = startOfMonth.clone().add(week, 'weeks');
+
+            return (
+                <DatePickerWeek
+                    date={date}
+                    dateFrom={dateFrom}
+                    dateInView={startOfWeek}
+                    dateTo={dateTo}
+                    key={week}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    month={dateInView.month()}
+                    onDayClick={this._onDayClick}
+                    mode={mode}
+                />
+            );
+        })
     }
 }
 
