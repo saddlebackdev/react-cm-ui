@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TetherComponent from 'react-tether';
 
-
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);

@@ -10,17 +10,17 @@ import DatePickerUtils from '../utils/DatePickerUtils.js';
 
 class DatePickerDay extends Component {
     render() {
-        const containerClasses = ClassNames('ui', 'date-picker-day', {
-            'date-picker-day-disabled': this._isDisabled(),
-            'date-picker-day-end-selected': this._isDayEndSelected(),
-            'date-picker-day-has-event': this._hasEvent(),
-            'date-picker-day-in-range': this._isInRange(),
-            'date-picker-day-no-end-day-selected': this._isDayStartSelected() && !this.props.dateEnd,
-            'date-picker-day-outside-month': this._isOutsideMonth(),
-            'date-picker-day-selected': this._isDaySelected(),
-            'date-picker-day-start-selected': this._isDayStartSelected(),
-            'date-picker-day-today': this._isToday(),
-            'date-picker-day-weekend': this._isWeekend()
+        const containerClasses = ClassNames('ui', 'date-picker-deprecated-day', {
+            'date-picker-deprecated-day-disabled': this._isDisabled(),
+            'date-picker-deprecated-day-end-selected': this._isDayEndSelected(),
+            'date-picker-deprecated-day-has-event': this._hasEvent(),
+            'date-picker-deprecated-day-in-range': this._isInRange(),
+            'date-picker-deprecated-day-no-end-day-selected': this._isDayStartSelected() && !this.props.dateEnd,
+            'date-picker-deprecated-day-outside-month': this._isOutsideMonth(),
+            'date-picker-deprecated-day-selected': this._isDaySelected(),
+            'date-picker-deprecated-day-start-selected': this._isDayStartSelected(),
+            'date-picker-deprecated-day-today': this._isToday(),
+            'date-picker-deprecated-day-weekend': this._isWeekend()
         });
 
         return (

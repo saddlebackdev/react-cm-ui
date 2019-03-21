@@ -37,7 +37,7 @@ class DatePicker extends Component {
             includeDates, locale, maxDate,
             minDate, required, tabIndex,
             type, uxMode } = this.props;
-        const containerClasses = ClassNames('ui', 'date-picker', className);
+        const containerClasses = ClassNames('ui', 'date-picker-deprecated', className);
         const calendarJSX = (
             <DatePickerCalendar
                 buttonClear={buttonClear}
@@ -69,7 +69,7 @@ class DatePicker extends Component {
                 {uxMode === 'input' ? (
                     <TetherComponent
                         attachment={'top left'}
-                        classPrefix="date-picker-tether"
+                        classPrefix="date-picker-deprecated-tether"
                         constraints={[{
                             to: 'window',
                             attachment: 'together'

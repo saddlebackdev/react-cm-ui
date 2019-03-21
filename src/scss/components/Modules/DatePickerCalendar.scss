@@ -35,13 +35,13 @@ $pointer-size: 8px;
     &::before { border-top-color: $border; bottom: -1px; }
 }
 
-.date-picker-tether-element {
+.date-picker-deprecated-tether-element {
     z-index: 10000;
     .date-picker-pointer { content: ''; left: 50px; position: absolute; }
     &-attached-top .date-picker-pointer { @extend %triangle-pointer-up; }
     &-attached-bottom .date-picker-pointer { @extend %triangle-pointer-down; }
     &-attached-top.datepicker-tether-element .date-picker-pointer { margin-top: -20px; }
-    .ui.date-picker-calendar {
+    .ui.date-picker-deprecated-calendar {
         background-color: $bkgd;
         border: 1px solid $border;
         border-radius: 3px;
@@ -51,7 +51,7 @@ $pointer-size: 8px;
         .date-picker-month-container { margin: 0 -11px; }
     }
 }
-    .ui.date-picker-calendar {
+    .ui.date-picker-deprecated-calendar {
         display: inline-block;
         font-size: rem(16px);
         position: relative;
@@ -87,6 +87,6 @@ $pointer-size: 8px;
                 display: flex;
                 justify-content: center;
                 width: 100%;
-                .date-picker-day { font-size: rem(14px); font-weight: $default-font-weight-bold; text-transform: uppercase; }
+                .date-picker-deprecated-day { font-size: rem(14px); font-weight: $default-font-weight-bold; text-transform: uppercase; }
             }
     }

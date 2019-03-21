@@ -67,7 +67,7 @@ class DatePickerInput extends Component {
             type === 'servicePeriod' ||
             type === 'servicePeriodRangeEnd' ||
             type === 'servicePeriodRangeStart';
-        const containerClasses = ClassNames('datepicker-input', {
+        const containerClasses = ClassNames('date-picker-deprecated-input', {
             'date-picker-input-disabled': disabled,
             'date-picker-input-type-date-range': type === 'dateRange',
             'date-picker-input-type-service-period': type === 'servicePeriod',
