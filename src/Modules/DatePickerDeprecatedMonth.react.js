@@ -8,7 +8,7 @@ import DatePickerWeek from './DatePickerDeprecatedWeek.react';
 
 class DatePickerMonth extends Component {
     render() {
-        const containerClasses = ClassNames('ui', 'date-picker-month');
+        const containerClasses = ClassNames('ui', 'date-picker-deprecated-month');
 
         return (
             <div className={containerClasses}>

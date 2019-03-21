@@ -67,15 +67,15 @@ class DatePickerCalendar extends Component {
     render() {
         const { buttonClear, date, dateEnd, dateStart, dateSecondaryEnd, dateSecondaryStart, onApplyClick, type, uxMode } = this.props;
         const dateInView = this.state.dateInView;
-        const containerClasses = ClassNames('ui', 'date-picker-calendar', {
-            'date-picker-calendar-uxmode-input': uxMode === 'input',
-            'date-picker-calendar-uxmode-calendar': uxMode === 'calendar',
-            'date-picker-calendar-date-range': type === 'dateRange',
-            'date-picker-calendar-service-period': type === 'servicePeriod',
-            'date-picker-calendar-service-period-range': type === 'servicePeriodRange' ||
+        const containerClasses = ClassNames('ui', 'date-picker-deprecated-calendar', {
+            'date-picker-deprecated-calendar-uxmode-input': uxMode === 'input',
+            'date-picker-deprecated-calendar-uxmode-calendar': uxMode === 'calendar',
+            'date-picker-deprecated-calendar-date-range': type === 'dateRange',
+            'date-picker-deprecated-calendar-service-period': type === 'servicePeriod',
+            'date-picker-deprecated-calendar-service-period-range': type === 'servicePeriodRange' ||
                 type === 'servicePeriodRangeEnd' ||
                 type === 'servicePeriodRangeStart',
-            'date-picker-calendar-single-date': type === 'singleDate'
+            'date-picker-deprecated-calendar-single-date': type === 'singleDate'
         });
 
         return (
@@ -208,7 +208,7 @@ class DatePickerCalendar extends Component {
             const day = startOfWeek.clone().add(offset, 'days');
 
             return (
-                <div className="ui date-picker-day" key={offset} >
+                <div className="ui date-picker-deprecated-day" key={offset} >
                     {day.localeData().weekdaysMin(day)}
                 </div>
             );
