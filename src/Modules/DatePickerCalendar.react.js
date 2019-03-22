@@ -139,19 +139,24 @@ class DatePickerCalendar extends React.PureComponent {
     }
 
     _onChangeMonth(month) {
-        if (typeof this.props.onMonthChange === 'function') {
-            this.props.onMonthChange(month, this.state.dateInView.year());
+        const { onMonthChange } = this.props;
+        const { dateInView } = this.state;
+
+        if (!_.isUndefined(onMonthChange)) {
+            onMonthChange(month, dateInView.year());
         }
 
         this.setState({
-            dateInView: this.state.dateInView.clone().set('month', month),
-            showDropdownMonth: false
+            dateInView: dateInView.clone().set('month', month),
+            showDropdownMonth: false,
         });
     }
 
     _onChangeYear(year) {
+        const { dateInView } = this.state;
+
         this.setState({
-            dateInView: this.state.dateInView.clone().set('year', year),
+            dateInView: dateInView.clone().set('year', year),
             showDropdownYear: false,
         });
     }

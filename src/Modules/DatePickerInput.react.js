@@ -248,12 +248,18 @@ class DatePickerInput extends React.PureComponent {
         this._setOpen(true);
     }
 
-    _onInputKeyDown() {
-
+    _onInputKeyDown(event) {
+        if (event.keyCode === 9 || event.keyCode === 13) {
+            this._setOpen(false);
+        }
     }
 
-    _onMonthChange() {
+    _onMonthChange(month, year) {
+        const { onMonthChange } = this.props;
 
+        if (!_.isUndefined(onMonthChange)) {
+            onMonthChange(month, year);
+        }
     }
 
     _safeDateFormat(date, locale) {
