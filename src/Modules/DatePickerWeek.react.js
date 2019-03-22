@@ -4,9 +4,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import DatePickerDay from './DatePickerDay.react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
-class DatePickerWeek extends Component {
+class DatePickerWeek extends React.PureComponent {
     constructor() {
         super();
 
@@ -23,12 +23,12 @@ class DatePickerWeek extends Component {
         );
     }
 
-    _onDayClick(day) {
+    _onDayClick(date) {
         console.log('DatePickerWeek _onDayClick');
         const { onDayClick } = this.props;
 
         if (!_.isUndefined(onDayClick)) {
-            onDayClick(day);
+            onDayClick(date);
         }
     }
 
@@ -47,7 +47,7 @@ class DatePickerWeek extends Component {
         } = this.props;
         const startOfWeek = dateInView.clone().startOf('week');
 
-        return _.map([0, 1, 2, 3, 4, 5, 6], day => {
+        return _.map([ 0, 1, 2, 3, 4, 5, 6 ], day => {
             const dateInView = startOfWeek.clone().add(day, 'days');
 
             return (

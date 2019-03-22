@@ -30,12 +30,12 @@ class DatePickerMonth extends React.PureComponent {
         return startOfWeek.isSame(dateInView, 'month') || endOfWeek.isSame(dateInView, 'month');
     }
 
-    _onDayClick(day) {
+    _onDayClick(date) {
         console.log('DatePickerMonth _onDayClick');
         const { onDayClick } = this.props;
 
         if (!_.isUndefined(onDayClick)) {
-            onDayClick(day);
+            onDayClick(date);
         }
     }
 
@@ -55,7 +55,7 @@ class DatePickerMonth extends React.PureComponent {
         } = this.props;
         const startOfMonth = dateInView.clone().startOf('month').startOf('week');
 
-        return _.map([0, 1, 2, 3, 4, 5], week => {
+        return _.map([ 0, 1, 2, 3, 4, 5 ], week => {
             const startOfWeek = startOfMonth.clone().add(week, 'weeks');
 
             return (
@@ -76,7 +76,7 @@ class DatePickerMonth extends React.PureComponent {
                     mode={mode}
                 />
             );
-        })
+        });
     }
 }
 
