@@ -16,6 +16,7 @@ class DatePickerCalendar extends React.PureComponent {
         super(props);
 
         this.state = {
+            date: props.date,
             dateInView: this._localizeMoment(
                 this._getDateInView(
                     props.date,
@@ -49,6 +50,7 @@ class DatePickerCalendar extends React.PureComponent {
             !DatePickerUtils.isSameDay(prevProps.dateFrom, dateFrom)
         ) {
             this.setState({
+                date,
                 dateInView: this._localizeMoment(
                     this._getDateInView(
                         date,
@@ -64,7 +66,6 @@ class DatePickerCalendar extends React.PureComponent {
 
     render() {
         const {
-            date,
             dateFrom,
             dateTo,
             events,
@@ -75,7 +76,7 @@ class DatePickerCalendar extends React.PureComponent {
             minDate,
             mode,
         } = this.props;
-        const { dateInView } = this.state;
+        const { date, dateInView } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-calendar', {
             'date-picker-calendar-mode-input': mode === 'input',
             'date-picker-calendar-mode-calendar': mode === 'calendar',
@@ -138,8 +139,9 @@ class DatePickerCalendar extends React.PureComponent {
     }
 
     _onChangeMonth(month) {
-        if (typeof this.props.onMonthChange === 'function')
+        if (typeof this.props.onMonthChange === 'function') {
             this.props.onMonthChange(month, this.state.dateInView.year());
+        }
 
         this.setState({
             dateInView: this.state.dateInView.clone().set('month', month),
@@ -154,12 +156,20 @@ class DatePickerCalendar extends React.PureComponent {
         });
     }
 
-    _onDayClick(day) {
+    _onDayClick(date) {
         console.log('DatePickerCalendar _onDayClick');
-        const { onChange } = this.props;
+        const { mode, onChange } = this.props;
 
-        if (!_.isUndefined(onChange)) {
-            onChange(day);
+        if (mode === 'calendar') {
+            if (!_.isUndefined(onChange)) {
+                onChange(date);
+            } else {
+                this.setState({ date });
+            }
+        } else {
+            if (!_.isUndefined(onChange)) {
+                onChange(date);
+            }
         }
     }
 
@@ -237,7 +247,7 @@ class DatePickerCalendar extends React.PureComponent {
     _renderHeaderDays() {
         const { dateInView } = this.state;
         const startOfWeek = dateInView.clone().startOf('week');
-        const days = [0, 1, 2, 3, 4, 5, 6].map(offset => {
+        const days = [ 0, 1, 2, 3, 4, 5, 6 ].map(offset => {
             const day = startOfWeek.clone().add(offset, 'days');
 
             return (

@@ -2,8 +2,8 @@
 
 import ClassNames from 'classnames';
 import DatePickerCalendar from './DatePickerCalendar.react';
-import DateUtils from '../utils/DateUtils.js';
 import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DateUtils from '../utils/DateUtils.js';
 import Icon from '../Elements/Icon.react';
 import Input from '../Elements/Input.react';
 import moment from 'moment-timezone';
@@ -15,9 +15,7 @@ import TetherComponent from 'react-tether';
 
 class Calendar extends React.PureComponent {
     render() {
-        return (
-            <DatePickerCalendar {...this.props} />
-        )
+        return <DatePickerCalendar {...this.props} />;
     }
 
     handleClickOutside(event) {
@@ -34,10 +32,10 @@ class DatePickerInput extends React.PureComponent {
         super(props);
 
         this.state = {
+            date: props.date,
             isCalendarOpen: false,
             inputValue: this._safeDateFormat(props.date, props.locale),
         };
-
 
         this._dateFormats = this._getAllowedDateFormats('MM/DD/YYYY');
 
@@ -54,6 +52,19 @@ class DatePickerInput extends React.PureComponent {
         this._onInputFocus = this._onInputFocus.bind(this);
         this._onInputKeyDown = this._onInputKeyDown.bind(this);
         this._onMonthChange = this._onMonthChange.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { date, locale } = this.props;
+
+        if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
+            !_.isEqual(locale, prevProps.locale)
+        ) {
+            this.setState({
+                date,
+                inputValue: this._safeDateFormat(date, locale),
+            });
+        }
     }
 
     render() {
@@ -147,7 +158,7 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _getDate() {
-        const { date } = this.props;
+        const { date } = this.state;
 
         return this._getValueIfMoment(date, 'date');
     }
@@ -183,12 +194,25 @@ class DatePickerInput extends React.PureComponent {
             return;
         }
 
-        return value || {};
+        return value || undefined;
     }
 
     _onCalendarChange(date) {
         console.log('DatePickerInput _onCalendarChange');
-        console.log(date);
+        const { onChange } = this.props;
+
+        if (!_.isUndefined(onChange)) {
+            onChange(date);
+        } else {
+            const { locale } = this.props;
+
+            console.log('date', date);
+
+            this.setState({
+                date,
+                inputValue: this._safeDateFormat(date, locale),
+            });
+        }
     }
 
     _onCalendarClickOutside(event) {
@@ -214,7 +238,7 @@ class DatePickerInput extends React.PureComponent {
         if (date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
             this._onCalendarChange(date);
         } else if (value === '' || value === '__/__/____') {
-            this._onCalendarChange({});
+            this._onCalendarChange();
         }
 
         this.setState({ inputValue: value });
@@ -279,8 +303,8 @@ DatePickerInput.propTypes = {
     dateFrom: PropTypes.object,
     dateTo: PropTypes.object,
     disabled: PropTypes.bool,
-    events: PropTypes.array,
     errorMessage: PropTypes.string,
+    events: PropTypes.array,
     excludeDates: PropTypes.array,
     filterDates: PropTypes.func,
     id: PropTypes.oneOfType([

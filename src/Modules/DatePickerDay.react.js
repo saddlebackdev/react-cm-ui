@@ -3,11 +3,11 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import DatePickerUtils from '../utils/DatePickerUtils.js';
-import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-class DatePickerDay extends Component {
+class DatePickerDay extends React.PureComponent {
     constructor() {
         super();
 
@@ -78,6 +78,7 @@ class DatePickerDay extends Component {
 
     _isDayEndSelected() {
         const { dateEnd, dateSecondaryEnd } = this.props;
+
         if (this.props.type === 'dateRange' ||
             this.props.type === 'servicePeriod' ||
             this.props.type === 'servicePeriodRange' ||
@@ -132,12 +133,7 @@ class DatePickerDay extends Component {
         console.log('DatePickerDay _onDayClick');
         const { dateInView, onDayClick } = this.props;
 
-        console.log('!this._isOutsideMonth()', this._isOutsideMonth());
-        console.log('!this._isDisabled()', this._isDisabled());
-        console.log('!_.isUndefined(onDayClick)', _.isUndefined(onDayClick));
-
         if (!this._isOutsideMonth() && !this._isDisabled() && !_.isUndefined(onDayClick)) {
-            console.log('change it')
             onDayClick(dateInView);
         }
     }
