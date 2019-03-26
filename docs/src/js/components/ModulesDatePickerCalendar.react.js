@@ -140,19 +140,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     {datePickerSample}
                 </Highlighter>
 
-                {/* Controls */}
-                <Header anchor="controls" size="large" style={{ marginTop: '55px' }}>
-                    Controls
-                </Header>
-
-                <DatePickerCalendar
-                    controls="arrows"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
-
                 {/* Events */}
                 <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
                     Events
@@ -171,24 +158,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     {datePickerSample}
                 </Highlighter>
 
-                {/* Exclude Dates */}
-                <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
-                    Exclude Dates
-                </Header>
-
-                <DatePickerCalendar
-                    excludeDates={[
-                        moment().subtract(1, 'days'),
-                        moment().subtract(2, 'days'),
-                        moment().subtract(3, 'days'),
-                        moment().subtract(4, 'days'),
-                    ]}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
-
                 {/* Filter Dates */}
                 <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
                     Filter Dates
@@ -196,22 +165,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
 
                 <DatePickerCalendar
                     filterDates={this._isWeekday}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
-
-                {/* Include Dates */}
-                <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
-                    Include Dates
-                </Header>
-
-                <DatePickerCalendar
-                    includeDates={[
-                        moment(),
-                        moment().subtract(1, 'days'),
-                    ]}
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

@@ -161,6 +161,7 @@ class DatePickerInput extends React.PureComponent {
 
                     {isCalendarOpen ? (
                         <CalendarOnClickOutisde
+                            controls="drowpdowns"
                             date={date}
                             dateFrom={dateFrom}
                             dateTo={dateTo}
@@ -235,6 +236,8 @@ class DatePickerInput extends React.PureComponent {
                 inputValue: this._safeDateFormat(date, locale),
             });
         }
+
+        this._setOpen(false);
     }
 
     _onCalendarClickOutside(event) {
