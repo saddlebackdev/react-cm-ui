@@ -3,7 +3,7 @@
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, DatePickerCalendar, DatePickerInput, Header, TitleBar } from 'react-cm-ui';
+import { Card, DatePickerInput, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
@@ -46,11 +46,14 @@ export default class ModulesDatePickerInput extends React.Component {
 
         this.state = {
             caledarDate: {},
+            dateOnChange: moment(),
             dateRangeFrom: moment(),
             dateRangeTo: moment(),
             inputDate: {},
         };
 
+        this._isWeekend = this._isWeekend.bind(this);
+        this._onChange = this._onChange.bind(this);
         this._onRangeChange = this._onRangeChange.bind(this);
     }
 
@@ -215,6 +218,7 @@ export default class ModulesDatePickerInput extends React.Component {
             }
         ];
         const {
+            dateOnChange,
             dateRangeFrom,
             dateRangeTo,
         } = this.state;
@@ -234,7 +238,7 @@ export default class ModulesDatePickerInput extends React.Component {
                     Single Date
                 </Header>
 
-                <DatePickerInput /><br /><br />
+                <DatePickerInput />
 
                 {/* Date Range */}
                 <Header size="large" style={{ marginTop: '55px' }}>
@@ -255,8 +259,116 @@ export default class ModulesDatePickerInput extends React.Component {
                     rangeTo
                     label="To"
                 />
+
+                {/* onChange Event Handler */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onChange Event Handler
+                </Header>
+
+                <DatePickerInput
+                    date={dateOnChange}
+                    onChange={this._onChange}
+                />
+
+                {/* Events */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Events
+                </Header>
+
+                <DatePickerInput
+                    events={[
+                        moment().subtract(1, 'days'),
+                        moment().subtract(2, 'days'),
+                        moment().subtract(3, 'days'),
+                        moment().subtract(4, 'days'),
+                    ]}
+                />
+
+                {/* Exclude Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Exclude Dates
+                </Header>
+
+                <DatePickerInput
+                    excludeDates={[
+                        moment().subtract(1, 'days'),
+                        moment().subtract(2, 'days'),
+                        moment().subtract(3, 'days'),
+                        moment().subtract(4, 'days'),
+                    ]}
+                />
+
+                {/* Include Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Include Dates
+                </Header>
+
+                <DatePickerInput
+                    includeDates={[
+                        moment(),
+                        moment().subtract(1, 'days'),
+                    ]}
+                />
+
+                {/* Filter Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Filter Dates
+                </Header>
+
+                <DatePickerInput
+                    filterDates={this._isWeekend}
+                />
+
+                {/* Max Date */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Max Date
+                </Header>
+
+                <DatePickerInput
+                    maxDate={moment()}
+                />
+
+                {/* Min Date */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Min Date
+                </Header>
+
+                <DatePickerInput
+                    minDate={moment().subtract(10, 'years')}
+                />
+
+                {/* onMonthChange */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onMonthChange Event Handler
+                </Header>
+
+                <DatePickerInput
+                    onMonthChange={() => window.alert('The month was changed!') }
+                />
+
+                {/* Locale */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Locale
+                </Header>
+
+                <DatePickerInput
+                    locale={moment().locale()}
+                />
             </Main>
         );
+    }
+
+    _isWeekend(date) {
+        const day = date.day();
+
+        return day === 0 || day === 6;
+    }
+
+    _onChange({ date, dateFrom, dateTo }) {
+        console.log('date', date);
+        this.setState({
+            dateOnChange: date,
+        });
     }
 
     _onRangeChange({ date, dateFrom, dateTo }) {

@@ -105,7 +105,7 @@ class DatePickerInput extends React.PureComponent {
             disabled,
             events,
             excludeDates,
-            filterDate,
+            filterDates,
             id,
             includeDates,
             label,
@@ -165,7 +165,7 @@ class DatePickerInput extends React.PureComponent {
                             dateTo={dateTo}
                             events={events}
                             excludeDates={excludeDates}
-                            filterDate={filterDate}
+                            filterDates={filterDates}
                             includeDates={includeDates}
                             locale={locale}
                             maxDate={this._getMaxDate()}
