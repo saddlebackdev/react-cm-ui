@@ -5,34 +5,15 @@ import moment from 'moment-timezone';
 import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
-const singleDateInputSample = `import React from 'react';
+const datePickerSample = `import { DatePickerInput } from 'react-cm-ui';
+import React from 'react';
 
-import DatePicker from 'components/UI/Modules/DatePicker.react';
-
-export default class SingleDateInputSample extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = { inputSingleDate: null };
-    }
-
+export default class DatePickerSample extends React.Component {
     render() {
         return (
-            <DatePicker
-                date={this.state.inputSingleDate}
-                onChange={this._onChange.bind(this, 'inputSingleDate')}
-                uxMode="input"
-            />
+            <DatePickerCalendar />
         );
     }
-
-    _onChange(field, date) {
-        if (field === 'inputSingleDate') {
-            this.setState({ inputSingleDate: date });
-        }
-    }
-
 }`;
 
 export default class ModulesDatePickerCalendar extends React.Component {
@@ -155,6 +136,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
 
                 <DatePickerCalendar />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Controls */}
                 <Header anchor="controls" size="large" style={{ marginTop: '55px' }}>
                     Controls
@@ -163,6 +148,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 <DatePickerCalendar
                     controls="arrows"
                 />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
 
                 {/* Events */}
                 <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
@@ -178,6 +167,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     ]}
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Exclude Dates */}
                 <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
                     Exclude Dates
@@ -192,6 +185,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     ]}
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Filter Dates */}
                 <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
                     Filter Dates
@@ -200,6 +197,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 <DatePickerCalendar
                     filterDates={this._isWeekday}
                 />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
 
                 {/* Include Dates */}
                 <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
@@ -213,6 +214,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     ]}
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Locale */}
                 <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
                     Locale
@@ -221,6 +226,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 <DatePickerCalendar
                     locale={moment().locale()}
                 />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
 
                 {/* Max Date */}
                 <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
@@ -231,6 +240,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     maxDate={moment()}
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Min Date */}
                 <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
                     Min Date
@@ -239,6 +252,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 <DatePickerCalendar
                     minDate={moment().subtract(10, 'years')}
                 />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
 
                 {/* onChange Event Handler */}
                 <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
@@ -252,6 +269,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     range
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* onMonthChange */}
                 <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
                     onMonthChange Event Handler
@@ -261,6 +282,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     onMonthChange={() => window.alert('The month was changed!') }
                 />
 
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
+
                 {/* Range */}
                 <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
                     Range
@@ -269,6 +294,10 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 <DatePickerCalendar
                     range
                 />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {datePickerSample}
+                </Highlighter>
             </Main>
         );
     }

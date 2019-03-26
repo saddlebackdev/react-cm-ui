@@ -31,7 +31,7 @@ $day-size: 30px;
     }
     &.date-picker-day-has-event span { box-shadow: inset 0 0 0 1px $border; }
     &:not(.date-picker-day-outside-month):not(.date-picker-day-disabled) span:hover {
-        background-color: $bkgd-highlight-dark;
+        background-color: $bkgd-highlight;
         box-shadow: none;
         color: $color-text-inverse;
     }
@@ -78,24 +78,24 @@ $day-size: 30px;
 .date-picker-calendar- {
     &single-date {
         .date-picker-day-selected span {
-            background-color: $bkgd-highlight-dark;
+            background-color: $bkgd-highlight;
             color: $color-text-inverse;
         }
     }
     &date-range {
         .date-picker-day-end-selected, .date-picker-day-start-selected {
             span {
-                background-color: $bkgd-highlight-dark;
+                background-color: $bkgd-highlight;
                 color: $color-text-inverse;
             }
         }
         .date-picker-day-end-selected, .date-picker-day-start-selected, .date-picker-day-in-range {
-            &::after { background-color: $bkgd-highlight; }
+            &::after { background-color: $bkgd-sky; }
         }
         .date-picker-day-in-range {
             span { color: $color-text-inverse; }
             &:first-child, &:last-child {
-                span { background-color: $bkgd-highlight; }
+                span { background-color: $bkgd-sky; }
             }
         }
     }
