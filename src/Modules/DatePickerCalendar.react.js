@@ -15,8 +15,6 @@ class DatePickerCalendar extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this._isDateRange = (props.mode === 'input' && props.rangeFrom || props.rangeTo) || props.range;
-
         this.state = {
             date: props.date,
             dateFrom: props.dateFrom,
@@ -174,18 +172,17 @@ class DatePickerCalendar extends React.PureComponent {
     }
 
     _onDayClick(date) {
-        const { onChange } = this.props;
+        const { onChange, range, rangeFrom, rangeTo } = this.props;
         const { dateFrom, dateTo } = this.state;
+        const isDateBeforeFrom = !_.isUndefined(dateFrom) && date.isBefore(dateFrom);
+        const isDateBetweenToAndFrom = date.isAfter(dateFrom) && date.isBefore(dateTo);
+        const isDateAfterTo = !_.isUndefined(dateTo) && date.isAfter(dateTo);
+        const isDateSameAsFrom = DatePickerUtils.isSameDay(date, dateFrom);
+        const isDateSameAsTo = DatePickerUtils.isSameDay(date, dateTo);
+        const isFromAndToSame = DatePickerUtils.isSameDay(dateFrom, dateTo);
+        const isDateSameAsFromAndTo = isDateSameAsFrom && isDateSameAsTo && isFromAndToSame;
 
-        if (this._isDateRange) {
-            const isDateBeforeFrom = !_.isUndefined(dateFrom) && date.isBefore(dateFrom);
-            const isDateBetweenToAndFrom = date.isAfter(dateFrom) && date.isBefore(dateTo);
-            const isDateAfterTo = !_.isUndefined(dateTo) && date.isAfter(dateTo);
-            const isDateSameAsFrom = DatePickerUtils.isSameDay(date, dateFrom);
-            const isDateSameAsTo = DatePickerUtils.isSameDay(date, dateTo);
-            const isFromAndToSame = DatePickerUtils.isSameDay(dateFrom, dateTo);
-            const isDateSameAsFromAndTo = isDateSameAsFrom && isDateSameAsTo && isFromAndToSame;
-
+        if (range) {
             if (isDateBeforeFrom) {
                 if (!_.isUndefined(onChange)) {
                     onChange({ date: undefined, dateFrom: date, dateTo: dateTo });
@@ -221,6 +218,20 @@ class DatePickerCalendar extends React.PureComponent {
                         dateFrom: undefined,
                         dateTo: undefined,
                     });
+                }
+            }
+        } else if (rangeFrom || rangeTo) {
+            if (rangeFrom) {
+                if (isDateSameAsTo || isDateAfterTo) {
+                    onChange({ date: undefined, dateFrom: date, dateTo: date });
+                } else {
+                    onChange({ date: undefined, dateFrom: date, dateTo: dateTo });
+                }
+            } else if (rangeTo) {
+                if (isDateSameAsFrom || isDateBeforeFrom) {
+                    onChange({ date: undefined, dateFrom: date, dateTo: date });
+                } else {
+                    onChange({ date: undefined, dateFrom: dateFrom, dateTo: date });
                 }
             }
         } else {
@@ -356,7 +367,7 @@ class DatePickerCalendar extends React.PureComponent {
 
 DatePickerCalendar.defaultProps = {
     className: '',
-    controls: 'dropdowns',
+    controls: 'arrows',
     date: moment(),
     dateFrom: undefined,
     dateTo: undefined,

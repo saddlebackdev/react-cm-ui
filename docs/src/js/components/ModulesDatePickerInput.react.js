@@ -18,6 +18,105 @@ export default class DatePickerSample extends React.Component {
     }
 }`;
 
+const disabledSample = `import { DatePickerInput } from 'react-cm-ui';
+import React from 'react';
+
+export default class DisabledSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput disabled />
+        );
+    }
+}`;
+
+const eventsSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class EventsSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                events={[
+                    moment().subtract(1, 'days'),
+                    moment().subtract(2, 'days'),
+                    moment().subtract(3, 'days'),
+                    moment().subtract(4, 'days'),
+                ]}
+            />
+        );
+    }
+}`;
+
+const excludeDatesSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class ExcludeDatesSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                excludeDates={[
+                    moment().subtract(1, 'days'),
+                    moment().subtract(2, 'days'),
+                    moment().subtract(3, 'days'),
+                    moment().subtract(4, 'days'),
+                ]}
+            />
+        );
+    }
+}`;
+
+const filterDatesSample = `import { DatePickerInput } from 'react-cm-ui';
+import React from 'react';
+
+export default class FilterDatesSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                filterDates={this._isWeekend}
+            />
+        );
+    }
+
+    _isWeekend(date) {
+        const day = date.day();
+
+        return day === 0 || day === 6;
+    }
+}`;
+
+const includeDatesSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class IncludeDatesSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                includeDates={[
+                    moment(),
+                    moment().subtract(1, 'days'),
+                ]}
+            />
+        );
+    }
+}`;
+
+const localeSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class LocaleSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                locale={moment().locale()}
+            />
+        );
+    }
+}`;
+
 export default class ModulesDatePickerInput extends React.Component {
     constructor(props) {
         super(props);
@@ -194,7 +293,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 <DatePickerInput disabled />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {disabledSample}
                 </Highlighter>
 
                 {/* Events */}
@@ -212,7 +311,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {eventsSample}
                 </Highlighter>
 
                 {/* Exclude Dates */}
@@ -230,7 +329,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {excludeDatesSample}
                 </Highlighter>
 
                 {/* Filter Dates */}
@@ -243,7 +342,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {filterDatesSample}
                 </Highlighter>
 
                 {/* Include Dates */}
@@ -259,7 +358,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {includeDatesSample}
                 </Highlighter>
 
                 {/* Locale */}
@@ -272,7 +371,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {localeSample}
                 </Highlighter>
 
                 {/* Max Date */}
