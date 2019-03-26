@@ -214,8 +214,6 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onCalendarChange({ date, dateFrom, dateTo }) {
-        console.log('DatePickerInput _onCalendarChange');
-        console.log('date', date);
         const { onChange } = this.props;
 
         if (!_.isUndefined(onChange)) {

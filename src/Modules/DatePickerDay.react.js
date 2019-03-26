@@ -45,7 +45,6 @@ class DatePickerDay extends React.PureComponent {
 
     _hasEvent() {
         const { dateInView, events } = this.props;
-        console.log('_hasEvent');
 
         return _.some(events, event => event.isSame(dateInView, 'day'));
     }
@@ -113,7 +112,6 @@ class DatePickerDay extends React.PureComponent {
     }
 
     _onDayClick() {
-        console.log('DatePickerDay _onDayClick');
         const { dateInView, onDayClick } = this.props;
 
         if (!this._isOutsideMonth() && !this._isDisabled() && !_.isUndefined(onDayClick)) {

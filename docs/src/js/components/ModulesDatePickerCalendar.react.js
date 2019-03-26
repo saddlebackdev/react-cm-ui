@@ -1,11 +1,8 @@
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Card, DatePickerCalendar, DatePickerInput, Header, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
+import { Card, DatePickerCalendar, Header, TitleBar } from 'react-cm-ui';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import moment from 'moment-timezone';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const singleDateInputSample = `import React from 'react';
