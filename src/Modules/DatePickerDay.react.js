@@ -44,7 +44,10 @@ class DatePickerDay extends React.PureComponent {
     }
 
     _hasEvent() {
-        return _.some(this.props.events, event => moment.unix(event).utc().isSame(this.props.dateInView, 'day'));
+        const { dateInView, events } = this.props;
+        console.log('_hasEvent');
+
+        return _.some(events, event => event.isSame(dateInView, 'day'));
     }
 
     _isDaySelected() {

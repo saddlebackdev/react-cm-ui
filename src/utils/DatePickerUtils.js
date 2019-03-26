@@ -14,8 +14,8 @@ class DatePickerUtils {
     static isDayDisabled(day, { minDate, maxDate, excludeDates, includeDates, filterDates } = {}) {
         return (minDate && day.isBefore(minDate, 'day')) ||
         (maxDate && day.isAfter(maxDate, 'day')) ||
-        (excludeDates && excludeDates.some(excludeDate => isSameDay(day, excludeDate))) ||
-        (includeDates && !includeDates.some(includeDate => isSameDay(day, includeDate))) ||
+        (excludeDates && excludeDates.some(excludeDate => DatePickerUtils.isSameDay(day, excludeDate))) ||
+        (includeDates && !includeDates.some(includeDate => DatePickerUtils.isSameDay(day, includeDate))) ||
         (filterDates && !filterDates(day.clone())) ||
         false;
     }
