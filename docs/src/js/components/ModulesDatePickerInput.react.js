@@ -57,12 +57,6 @@ export default class ModulesDatePickerInput extends React.Component {
     render() {
         const props = [
             {
-                name: 'buttonClear',
-                type: 'bool',
-                default: '',
-                description: 'Shows a clear button.',
-                allowedTypes: ''
-            }, {
                 name: 'className',
                 type: 'string',
                 default: '',
@@ -70,51 +64,27 @@ export default class ModulesDatePickerInput extends React.Component {
                 allowedTypes: ''
             }, {
                 name: 'date',
-                type: 'number',
+                type: 'object',
                 default: '',
                 description: 'Single date timestamp.',
                 allowedTypes: ''
             }, {
-                name: 'dateEnd',
-                type: 'number',
+                name: 'dateFrom',
+                type: 'object',
                 default: '',
-                description: 'Date timestamp for date range, service period, and service period range.',
+                description: 'Moment object for date range',
                 allowedTypes: ''
             }, {
-                name: 'dateFormat',
-                type: 'number',
+                name: 'dateTo',
+                type: 'object',
                 default: '',
-                description: 'Custom date format.',
-                allowedTypes: ''
-            }, {
-                name: 'dateSecondaryEnd',
-                type: 'number',
-                default: '',
-                description: 'Date timestamp for service period range.',
-                allowedTypes: ''
-            }, {
-                name: 'dateSecondaryStart',
-                type: 'number',
-                default: '',
-                description: 'Date timestamp for service period range.',
-                allowedTypes: ''
-            }, {
-                name: 'dateStart',
-                type: 'number',
-                default: '',
-                description: 'Date timestamp for date range, service period, and service period range.',
+                description: 'Moment object for date range',
                 allowedTypes: ''
             }, {
                 name: 'disabled',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the date input is not available for interaction.',
-                allowedTypes: ''
-            }, {
-                name: 'error',
-                type: 'bool || string',
-                default: '',
-                description: 'Indicates that the date input has an error.',
                 allowedTypes: ''
             }, {
                 name: 'events',
@@ -165,12 +135,6 @@ export default class ModulesDatePickerInput extends React.Component {
                 description: 'Minumum date\'s in range that are selectable.',
                 allowedTypes: ''
             }, {
-                name: 'onApplyClick',
-                type: 'func',
-                default: '',
-                description: 'Can handle an event from parent',
-                allowedTypes: ''
-            }, {
                 name: 'onBlur',
                 type: 'func',
                 default: '',
@@ -200,18 +164,6 @@ export default class ModulesDatePickerInput extends React.Component {
                 default: '',
                 description: 'An Input can receive focus.',
                 allowedTypes: ''
-            }, {
-                name: 'type',
-                type: 'enum',
-                default: 'singleDate',
-                description: 'The type of the date picker',
-                allowedTypes: 'dateRange, servicePeriod, servicePeriodRange, servicePeriodRangeEnd, servicePeriodRangeStart, singleDate'
-            }, {
-                name: 'uxMode',
-                type: 'enum',
-                default: '',
-                description: 'Tells the component how it is going to be used',
-                allowedTypes: 'calendar, input'
             }
         ];
         const {
@@ -236,6 +188,13 @@ export default class ModulesDatePickerInput extends React.Component {
                 </Header>
 
                 <DatePickerInput />
+
+                {/* Disabled */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Disabled
+                </Header>
+
+                <DatePickerInput disabled />
 
                 {/* Date Range */}
                 <Header size="large" style={{ marginTop: '55px' }}>
