@@ -5,13 +5,139 @@ import moment from 'moment-timezone';
 import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
-const datePickerSample = `import { DatePickerInput } from 'react-cm-ui';
+const datePickerSample = `import { DatePickerCalendar } from 'react-cm-ui';
 import React from 'react';
 
 export default class DatePickerSample extends React.Component {
     render() {
         return (
             <DatePickerCalendar />
+        );
+    }
+}`;
+
+const eventsSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class EventsSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                events={[
+                    moment().subtract(1, 'days'),
+                    moment().subtract(2, 'days'),
+                    moment().subtract(3, 'days'),
+                    moment().subtract(4, 'days'),
+                ]}
+            />
+        );
+    }
+}`;
+
+const filterDatesSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import React from 'react';
+
+export default class FilterDatesSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                filterDates={this._isWeekday}
+            />
+        );
+    }
+
+    _isWeekday(date) {
+        const day = date.day();
+
+        return day !== 0 && day !== 6;
+    }
+}`;
+
+const localeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import React from 'react';
+
+export default class LocaleSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                locale={moment().locale()}
+            />
+        );
+    }
+}`;
+
+const maxDateSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class MaxDateSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                maxDate={moment()}
+            />
+        );
+    }
+}`;
+
+const minDateSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class MinDateSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                minDate={moment().subtract(10, 'years')}
+            />
+        );
+    }
+}`;
+
+const onChangeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import React from 'react';
+
+export default class OnChangeSample extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            dateRangeFrom: moment(),
+            dateRangeTo: moment(),
+        };
+
+        this._onDateRangeChange = this._onDateRangeChange.bind(this);
+    }
+
+    render() {
+        return (
+            <DatePickerCalendar
+                dateFrom={dateRangeFrom}
+                dateTo={dateRangeTo}
+                onChange={this._onDateRangeChange}
+                range
+            />
+        );
+    }
+
+    _onDateRangeChange({ date, dateFrom, dateTo }) {
+        this.setState({
+            dateRangeFrom: dateFrom,
+            dateRangeTo: dateTo,
+        });
+    }
+}`;
+
+const onMonthChangeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+import React from 'react';
+
+export default class OnMonthChangeSample extends React.Component {
+    render() {
+        return (
+            <DatePickerCalendar
+                onMonthChange={() => window.alert('The month was changed!') }
+            />
         );
     }
 }`;
@@ -37,12 +163,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 default: '',
                 description: 'Additional classes.',
                 allowedTypes: ''
-            }, {
-                name: 'controls',
-                type: 'enum',
-                default: 'dropdowns',
-                description: 'Sets the type of prev/next controls months and years',
-                allowedTypes: 'arrows, dropdowns'
             }, {
                 name: 'date',
                 type: 'object',
@@ -109,12 +229,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 default: '',
                 description: 'Minumum date\'s in range that are selectable.',
                 allowedTypes: ''
-            }, {
-                name: 'range',
-                type: 'bool',
-                default: '',
-                description: 'Specifies whether the calendar is going to be a date range or not',
-                allowedTypes: ''
             },
         ];
         const { dateRangeFrom, dateRangeTo } = this.state;
@@ -155,7 +269,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {eventsSample}
                 </Highlighter>
 
                 {/* Filter Dates */}
@@ -168,7 +282,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {filterDatesSample}
                 </Highlighter>
 
                 {/* Locale */}
@@ -181,7 +295,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {localeSample}
                 </Highlighter>
 
                 {/* Max Date */}
@@ -194,7 +308,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {maxDateSample}
                 </Highlighter>
 
                 {/* Min Date */}
@@ -207,7 +321,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {minDateSample}
                 </Highlighter>
 
                 {/* onChange Event Handler */}
@@ -223,7 +337,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {onChangeSample}
                 </Highlighter>
 
                 {/* onMonthChange */}
@@ -236,20 +350,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
-
-                {/* Range */}
-                <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
-                    Range
-                </Header>
-
-                <DatePickerCalendar
-                    range
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {onMonthChangeSample}
                 </Highlighter>
             </Main>
         );
