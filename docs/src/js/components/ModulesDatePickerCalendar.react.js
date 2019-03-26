@@ -57,6 +57,12 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
+                name: 'controls',
+                type: 'enum',
+                default: 'dropdowns',
+                description: 'Sets the type of prev/next controls months and years',
+                allowedTypes: 'arrows, dropdowns'
+            }, {
                 name: 'date',
                 type: 'object',
                 default: '',
