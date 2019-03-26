@@ -1,5 +1,3 @@
-'use strict';
-
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -40,18 +38,16 @@ export default class SingleDateInputSample extends React.Component {
 
 }`;
 
-export default class ModulesDatePickerInput extends React.Component {
+export default class ModulesDatePickerCalendar extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            caledarDate: {},
             dateRangeFrom: moment(),
             dateRangeTo: moment(),
-            inputDate: {},
         };
 
-        this._onRangeChange = this._onRangeChange.bind(this);
+        this._onDateRangeChange = this._onDateRangeChange.bind(this);
     }
 
     render() {
@@ -214,10 +210,9 @@ export default class ModulesDatePickerInput extends React.Component {
                 allowedTypes: 'calendar, input'
             }
         ];
-        const {
-            dateRangeFrom,
-            dateRangeTo,
-        } = this.state;
+        const { dateRangeFrom, dateRangeTo } = this.state;
+        console.log('dateRangeFrom', dateRangeFrom);
+        console.log('dateRangeTo', dateRangeTo);
 
         return (
             <Main page="headers">
@@ -229,40 +224,47 @@ export default class ModulesDatePickerInput extends React.Component {
                     <TableProps props={props} />
                 </Card>
 
-                {/* Single Date */}
+                {/* Single Date Input */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Single Date
+                    Single Date Input
                 </Header>
 
-                <DatePickerInput /><br /><br />
+                <DatePickerCalendar />
 
-                {/* Date Range */}
+                {/* Controls */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Date Range
+                    Controls
                 </Header>
 
-                <DatePickerInput
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeFrom
-                    label="From"
+                <DatePickerCalendar
+                    controls="arrows"
                 />
-                <DatePickerInput
+
+                {/* Range */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Range
+                </Header>
+
+                <DatePickerCalendar
+                    range
+                />
+
+                {/* onChange Event Handler */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onChange Event Handler
+                </Header>
+
+                <DatePickerCalendar
                     dateFrom={dateRangeFrom}
                     dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeTo
-                    label="To"
+                    onChange={this._onDateRangeChange}
+                    range
                 />
             </Main>
         );
     }
 
-    _onRangeChange({ date, dateFrom, dateTo }) {
-        console.log('_onRangeFromChange');
-        console.log('dateFrom', dateFrom);
-        console.log('dateTo', dateTo);
+    _onDateRangeChange({ date, dateFrom, dateTo }) {
         this.setState({
             dateRangeFrom: dateFrom,
             dateRangeTo: dateTo,
