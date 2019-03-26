@@ -194,22 +194,22 @@ export default class ModulesDatePickerInput extends React.Component {
                     <TableProps props={props} />
                 </Card>
 
-                {/* Single Date */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Single Date
+                {/* Date Picker Input */}
+                <Header anchor="date-picker-input" size="large" style={{ marginTop: '55px' }}>
+                    Date Picker Input
                 </Header>
 
                 <DatePickerInput />
 
                 {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }}>
                     Disabled
                 </Header>
 
                 <DatePickerInput disabled />
 
                 {/* Events */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
                     Events
                 </Header>
 
@@ -223,7 +223,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Exclude Dates */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
                     Exclude Dates
                 </Header>
 
@@ -237,7 +237,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Filter Dates */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
                     Filter Dates
                 </Header>
 
@@ -246,7 +246,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Include Dates */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
                     Include Dates
                 </Header>
 
@@ -258,7 +258,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Locale */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
                     Locale
                 </Header>
 
@@ -267,7 +267,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Max Date */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
                     Max Date
                 </Header>
 
@@ -276,7 +276,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Min Date */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
                     Min Date
                 </Header>
 
@@ -285,7 +285,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* onChange Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
                     onChange Event Handler
                 </Header>
 
@@ -295,7 +295,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* onMonthChange */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
                     onMonthChange Event Handler
                 </Header>
 
@@ -304,7 +304,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 {/* Range */}
-                <Header size="large" style={{ marginTop: '55px' }}>
+                <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
                     Range
                 </Header>
 
