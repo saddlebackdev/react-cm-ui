@@ -153,6 +153,18 @@ export default class ModulesDatePickerInput extends React.Component {
                 description: 'Can handle an onFocus event from parent.',
                 allowedTypes: ''
             }, {
+                name: 'rangeFrom',
+                type: 'bool',
+                default: '',
+                description: 'Specifies whether the input is the from in the date range or not.',
+                allowedTypes: ''
+            }, {
+                name: 'rangeTo',
+                type: 'bool',
+                default: '',
+                description: 'Specifies whether the input is the to in the date range or not.',
+                allowedTypes: ''
+            }, {
                 name: 'required',
                 type: 'bool',
                 default: '',
