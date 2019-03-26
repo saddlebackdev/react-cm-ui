@@ -17,13 +17,13 @@ class DatePickerDay extends React.PureComponent {
     }
 
     render() {
-        const { dateInView } = this.props;
-        const containerClasses = ClassNames('ui', 'date-picker-day', {
+        const { dateInView, dateTo } = this.props;
+        const containerClasses = ClassNames('ui', 'date-picker-day', `date-picker-day-${moment(dateInView).format('DD')}`, {
             'date-picker-day-disabled': this._isDisabled(),
             'date-picker-day-end-selected': this._isDayEndSelected(),
             'date-picker-day-has-event': this._hasEvent(),
             'date-picker-day-in-range': this._isInRange(),
-            'date-picker-day-no-end-day-selected': this._isDayStartSelected() && !this.props.dateTo,
+            'date-picker-day-no-end-day-selected': this._isDayStartSelected() && !dateTo,
             'date-picker-day-outside-month': this._isOutsideMonth(),
             'date-picker-day-selected': this._isDaySelected(),
             'date-picker-day-start-selected': this._isDayStartSelected(),
@@ -37,7 +37,7 @@ class DatePickerDay extends React.PureComponent {
                 onClick={this._onDayClick}
             >
                 <span>
-                    {moment(dateInView).format('DD')}
+                    {moment(dateInView).format('D')}
                 </span>
             </div>
         );
