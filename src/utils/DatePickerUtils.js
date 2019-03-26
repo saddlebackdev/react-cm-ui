@@ -1,11 +1,13 @@
 'use strict';
 
+import moment from 'moment-timezone';
+
 class DatePickerUtils {
     static isSameDay(moment1, moment2) {
         if (moment1 && moment2) {
-            return moment1.isSame(moment2, 'day')
+            return moment1.isSame(moment2, 'day');
         } else {
-            return !moment1 && !moment2
+            return !moment1 && !moment2;
         }
     }
 
@@ -15,8 +17,16 @@ class DatePickerUtils {
         (excludeDates && excludeDates.some(excludeDate => isSameDay(day, excludeDate))) ||
         (includeDates && !includeDates.some(includeDate => isSameDay(day, includeDate))) ||
         (filterDates && !filterDates(day.clone())) ||
-        false
+        false;
+    }
+
+    static getMoment(date, isDateRange) {
+        return {
+            date: isDateRange ? undefined : date || moment(),
+            dateFrom: !isDateRange ? undefined : date || moment(),
+            dateTo: !isDateRange ? undefined : date || moment(),
+        };
     }
 }
 
-export default DatePickerUtils
+export default DatePickerUtils;

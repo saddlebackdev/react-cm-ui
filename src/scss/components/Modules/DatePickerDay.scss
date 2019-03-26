@@ -32,7 +32,7 @@ $day-size: 30px;
     }
     &.date-picker-day-has-event span { box-shadow: inset 0 0 0 1px $border; }
     &:not(.date-picker-day-outside-month) span:hover {
-        background-color: $bkgd-highlight;
+        background-color: $bkgd-highlight-dark;
         box-shadow: none;
         color: $color-text-inverse;
     }
@@ -57,15 +57,16 @@ $day-size: 30px;
         &:first-child::after { background-color: transparent !important; }
         &::after { left: 0; width: 50%; }
     }
-    &.date-picker-day-in-range {
-        background-color: transparent;
-        &::after { width: 100%; }
-        &:first-child::after { right: 0; width: 50%; }
-        &:last-child::after { left: 0; width: 50%; }
-    }
     &-today span {
         background-color: $bkgd-disable;
         box-shadow: none;
+    }
+    &.date-picker-day-in-range {
+        background-color: transparent;
+        span { background-color: transparent; }
+        &::after { width: 100%; }
+        &:first-child::after { right: 0; width: 50%; }
+        &:last-child::after { left: 0; width: 50%; }
     }
     &-outside-month span { color: $color-text-static; cursor: default; font-weight: $default-font-weight-normal; }
 }

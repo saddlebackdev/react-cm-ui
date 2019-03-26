@@ -35,7 +35,9 @@ class DatePickerWeek extends React.PureComponent {
     _renderDays() {
         const {
             date,
+            dateFrom,
             dateInView,
+            dateTo,
             events,
             excludeDates,
             filterDate,
@@ -44,6 +46,9 @@ class DatePickerWeek extends React.PureComponent {
             minDate,
             mode,
             month,
+            range,
+            rangeFrom,
+            rangeTo,
         } = this.props;
         const startOfWeek = dateInView.clone().startOf('week');
 
@@ -53,7 +58,9 @@ class DatePickerWeek extends React.PureComponent {
             return (
                 <DatePickerDay
                     date={date}
+                    dateFrom={dateFrom}
                     dateInView={dateInView}
+                    dateTo={dateTo}
                     events={events}
                     excludeDates={excludeDates}
                     filterDate={filterDate}
@@ -64,6 +71,9 @@ class DatePickerWeek extends React.PureComponent {
                     mode={mode}
                     month={month}
                     onDayClick={this._onDayClick}
+                    range={range}
+                    rangeFrom={rangeFrom}
+                    rangeTo={rangeTo}
                 />
             );
         });
@@ -84,6 +94,9 @@ DatePickerWeek.propTypes = {
     mode: PropTypes.string,
     month: PropTypes.number,
     onDayClick: PropTypes.func,
+    range: PropTypes.bool,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
 };
 
 export default DatePickerWeek;

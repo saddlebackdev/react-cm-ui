@@ -31,17 +31,31 @@ class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);
 
+        this._isDateRange = props.rangeFrom || props.rangeTo;
+
+        const newDate = DatePickerUtils.getMoment(props.date, this._isDateRange).date;
+        const newDateFrom = DatePickerUtils.getMoment(props.dateFrom, this._isDateRange).dateFrom;
+        const newDateTo = DatePickerUtils.getMoment(props.dateTo, this._isDateRange).dateTo;
+        let inputValue;
+
+        if (props.rangeFrom) {
+            inputValue = this._safeDateFormat(newDateFrom, props.locale);
+        } else if (props.rangeTo) {
+            inputValue = this._safeDateFormat(newDateTo, props.locale);
+        } else {
+            inputValue = this._safeDateFormat(newDate, props.locale);
+        }
+
         this.state = {
-            date: props.date,
+            date: newDate,
+            dateFrom: newDateFrom,
+            dateTo: newDateTo,
             isCalendarOpen: false,
-            inputValue: this._safeDateFormat(props.date, props.locale),
+            inputValue,
         };
 
         this._dateFormats = this._getAllowedDateFormats('MM/DD/YYYY');
 
-        this._getDate = this._getDate.bind(this);
-        this._getDateFrom = this._getDateFrom.bind(this);
-        this._getDateTo = this._getDateTo.bind(this);
         this._getMaxDate = this._getMaxDate.bind(this);
         this._getMinDate = this._getMinDate.bind(this);
         this._onCalendarChange = this._onCalendarChange.bind(this);
@@ -55,14 +69,31 @@ class DatePickerInput extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { date, locale } = this.props;
+        const { date, dateFrom, dateTo, locale, rangeFrom, rangeTo } = this.props;
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
+            !DatePickerUtils.isSameDay(dateFrom, prevProps.dateFrom) ||
+            !DatePickerUtils.isSameDay(dateTo, prevProps.dateTo) ||
             !_.isEqual(locale, prevProps.locale)
         ) {
+            const newDate = DatePickerUtils.getMoment(date, this._isDateRange).date;
+            const newDateFrom = DatePickerUtils.getMoment(dateFrom, this._isDateRange).dateFrom;
+            const newDateTo = DatePickerUtils.getMoment(dateTo, this._isDateRange).dateTo;
+            let inputValue;
+
+            if (rangeFrom) {
+                inputValue = this._safeDateFormat(newDateFrom, locale);
+            } else if (rangeTo) {
+                inputValue = this._safeDateFormat(newDateTo, locale);
+            } else {
+                inputValue = this._safeDateFormat(newDate, locale);
+            }
+
             this.setState({
-                date,
-                inputValue: this._safeDateFormat(date, locale),
+                date: newDate,
+                dateFrom: newDateFrom,
+                dateTo: newDateTo,
+                inputValue,
             });
         }
     }
@@ -75,16 +106,20 @@ class DatePickerInput extends React.PureComponent {
             events,
             excludeDates,
             filterDate,
+            id,
             includeDates,
+            label,
             locale,
+            rangeFrom,
+            rangeTo,
             required,
             tabIndex,
         } = this.props;
-        const { isCalendarOpen, inputValue } = this.state;
+        const { date, dateFrom, dateTo, isCalendarOpen, inputValue } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-input', className);
 
         return (
-            <div className={containerClasses}>
+            <div className={containerClasses} id={id}>
                 <TetherComponent
                     attachment={'top left'}
                     classPrefix="date-picker-tether"
@@ -97,13 +132,11 @@ class DatePickerInput extends React.PureComponent {
                 >
                     <Input
                         autoComplete="off"
-                        className="ignore-react-onclickoutside"
                         data-parsley-error-message={errorMessage}
                         disabled={disabled}
                         guide
                         icon={(
                             <Icon
-                                className="ignore-react-onclickoutside"
                                 color={isCalendarOpen ? 'highlight' : null}
                                 compact
                                 onClick={this._onIconClick}
@@ -111,6 +144,7 @@ class DatePickerInput extends React.PureComponent {
                             />
                         )}
                         keepCharPositions
+                        label={label}
                         mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
                         onBlur={this._onInputBlur}
                         onChange={this._onInputChange}
@@ -126,9 +160,9 @@ class DatePickerInput extends React.PureComponent {
 
                     {isCalendarOpen ? (
                         <CalendarOnClickOutisde
-                            date={this._getDate()}
-                            dateFrom={this._getDateFrom()}
-                            dateTo={this._getDateTo()}
+                            date={date}
+                            dateFrom={dateFrom}
+                            dateTo={dateTo}
                             events={events}
                             excludeDates={excludeDates}
                             filterDate={filterDate}
@@ -140,11 +174,21 @@ class DatePickerInput extends React.PureComponent {
                             onChange={this._onCalendarChange}
                             onClose={this._onCalendarClickOutside}
                             onMonthChange={this._onMonthChange}
+                            rangeFrom={rangeFrom}
+                            rangeTo={rangeTo}
                         />
                     ) : null}
                 </TetherComponent>
             </div>
         );
+    }
+
+    componentDidMount() {
+        const { onChange, rangeFrom, rangeTo } = this.props;
+
+        if ((rangeFrom || rangeTo) && _.isUndefined(onChange)) {
+            console.error('The onChange prop is required when using the rangeFrom or rangeTo props');
+        }
     }
 
     _getAllowedDateFormats(specifiedFormat) {
@@ -157,56 +201,27 @@ class DatePickerInput extends React.PureComponent {
         return formats;
     }
 
-    _getDate() {
-        const { date } = this.state;
-
-        return this._getValueIfMoment(date, 'date');
-    }
-
-    _getDateFrom() {
-        const { dateFrom } = this.props;
-
-        return this._getValueIfMoment(dateFrom, 'dateFrom');
-    }
-
-    _getDateTo() {
-        const { dateTo } = this.props;
-
-        return this._getValueIfMoment(dateTo, 'dateTo');
-    }
-
     _getMaxDate() {
         const { maxDate } = this.props;
 
-        return this._getValueIfMoment(maxDate, 'maxDate');
+        return maxDate;
     }
 
     _getMinDate() {
         const { minDate } = this.props;
 
-        return this._getValueIfMoment(minDate, 'minDate');
+        return minDate;
     }
 
-    _getValueIfMoment(value, type) {
-        if (value && !moment.isMoment(value)) {
-            console.warn(`${type || 'value'} is not a moment object`);
-
-            return;
-        }
-
-        return value || undefined;
-    }
-
-    _onCalendarChange(date) {
+    _onCalendarChange({ date, dateFrom, dateTo }) {
         console.log('DatePickerInput _onCalendarChange');
+        console.log('date', date);
         const { onChange } = this.props;
 
         if (!_.isUndefined(onChange)) {
-            onChange(date);
+            onChange({ date, dateFrom, dateTo });
         } else {
             const { locale } = this.props;
-
-            console.log('date', date);
 
             this.setState({
                 date,
@@ -280,7 +295,7 @@ class DatePickerInput extends React.PureComponent {
 DatePickerInput.defaultProps = {
     className: '',
     controls: 'dropdowns',
-    date: moment(),
+    date: undefined,
     dateFrom: undefined,
     dateTo: undefined,
     disabled: false,
@@ -291,6 +306,7 @@ DatePickerInput.defaultProps = {
     filterDates: undefined,
     id: undefined,
     includeDates: undefined,
+    label: '',
     locale: '',
     maxDate: undefined,
     minDate: undefined,
@@ -298,6 +314,8 @@ DatePickerInput.defaultProps = {
     onChange: undefined,
     onFocus: undefined,
     onMonthChange: undefined,
+    rangeFrom: false,
+    rangeTo: false,
     required: false,
     tabIndex: undefined,
 };
@@ -318,6 +336,7 @@ DatePickerInput.propTypes = {
         PropTypes.string,
     ]),
     includeDates: PropTypes.array,
+    label: PropTypes.string,
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
@@ -325,6 +344,8 @@ DatePickerInput.propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onMonthChange: PropTypes.func,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
     required: PropTypes.bool,
     tabIndex: PropTypes.number,
 };

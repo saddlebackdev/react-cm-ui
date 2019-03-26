@@ -52,6 +52,9 @@ class DatePickerMonth extends React.PureComponent {
             maxDate,
             minDate,
             mode,
+            range,
+            rangeFrom,
+            rangeTo,
         } = this.props;
         const startOfMonth = dateInView.clone().startOf('month').startOf('week');
 
@@ -74,6 +77,9 @@ class DatePickerMonth extends React.PureComponent {
                     month={dateInView.month()}
                     onDayClick={this._onDayClick}
                     mode={mode}
+                    range={range}
+                    rangeFrom={rangeFrom}
+                    rangeTo={rangeTo}
                 />
             );
         });
@@ -93,6 +99,9 @@ DatePickerMonth.propTypes = {
     minDate: PropTypes.object,
     mode: PropTypes.oneOf([ 'calendar', 'input' ]),
     onDayClick: PropTypes.func.isRequired,
+    range: PropTypes.bool,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
 };
 
 export default DatePickerMonth;

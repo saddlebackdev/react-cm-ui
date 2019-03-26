@@ -63,6 +63,18 @@ $pointer-size: 8px;
             position: relative;
             min-width: 210px;
         }
+            .date-picker-selected-month-year-arrows {
+                align-items: center;
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: 9px;
+                width: 100%;
+                .title {
+                    flex: 1 0 auto;
+                    font-weight: $default-font-weight-bold;
+                    text-align: center;
+                }
+            }
             .date-picker-selected-month-year-dropdowns {
                 align-items: flex-start;
                 display: flex;
