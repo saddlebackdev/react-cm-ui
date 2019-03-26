@@ -1,13 +1,10 @@
 'use strict';
 
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Card, DatePickerInput, Header, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import moment from 'moment-timezone';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const singleDateInputSample = `import React from 'react';
@@ -365,16 +362,12 @@ export default class ModulesDatePickerInput extends React.Component {
     }
 
     _onChange({ date, dateFrom, dateTo }) {
-        console.log('date', date);
         this.setState({
             dateOnChange: date,
         });
     }
 
     _onRangeChange({ date, dateFrom, dateTo }) {
-        console.log('_onRangeFromChange');
-        console.log('dateFrom', dateFrom);
-        console.log('dateTo', dateTo);
         this.setState({
             dateRangeFrom: dateFrom,
             dateRangeTo: dateTo,

@@ -174,8 +174,7 @@ class DatePickerCalendar extends React.PureComponent {
     }
 
     _onDayClick(date) {
-        console.log('DatePickerCalendar _onDayClick');
-        const { mode, onChange, range, rangeFrom, rangeTo } = this.props;
+        const { onChange } = this.props;
         const { dateFrom, dateTo } = this.state;
 
         if (this._isDateRange) {
@@ -207,7 +206,6 @@ class DatePickerCalendar extends React.PureComponent {
             }
 
             if (isDateAfterTo || isDateBetweenToAndFrom) {
-                console.log('isDateAfterTo || isDateBetweenToAndFrom');
                 if (!_.isUndefined(onChange)) {
                     onChange({ date: undefined, dateFrom: dateFrom, dateTo: date });
                 } else {

@@ -31,7 +31,6 @@ class DatePickerMonth extends React.PureComponent {
     }
 
     _onDayClick(date) {
-        console.log('DatePickerMonth _onDayClick');
         const { onDayClick } = this.props;
 
         if (!_.isUndefined(onDayClick)) {

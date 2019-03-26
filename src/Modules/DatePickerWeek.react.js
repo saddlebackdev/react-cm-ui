@@ -24,7 +24,6 @@ class DatePickerWeek extends React.PureComponent {
     }
 
     _onDayClick(date) {
-        console.log('DatePickerWeek _onDayClick');
         const { onDayClick } = this.props;
 
         if (!_.isUndefined(onDayClick)) {
