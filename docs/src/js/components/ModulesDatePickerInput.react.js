@@ -103,6 +103,17 @@ export default class IncludeDatesSample extends React.Component {
     }
 }`;
 
+const labelSample = `import { DatePickerInput } from 'react-cm-ui';
+import React from 'react';
+
+export default class LabelSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput label="The Coolest Label Ever"/>
+        );
+    }
+}`;
+
 const localeSample = `import { DatePickerInput } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
@@ -114,6 +125,123 @@ export default class LocaleSample extends React.Component {
                 locale={moment().locale()}
             />
         );
+    }
+}`;
+
+const maxDateSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class MaxDateSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                maxDate={moment()}
+            />
+        );
+    }
+}`;
+
+const minDateSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class MinDateSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                minDate={moment().subtract(10, 'years')}
+            />
+        );
+    }
+}`;
+
+const onChangeSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class OnChangeSample extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            dateOnChange: moment(),
+        };
+
+        this._onChange = this._onChange.bind(this);
+    }
+
+    render() {
+        return (
+            <DatePickerInput
+                date={dateOnChange}
+                onChange={this._onChange}
+            />
+        );
+    }
+
+    _onChange({ date, dateFrom, dateTo }) {
+        this.setState({
+            dateOnChange: date,
+        });
+    }
+}`;
+
+const onMonthChangeSample = `import { DatePickerInput } from 'react-cm-ui';
+import React from 'react';
+
+export default class OnMonthChangeSample extends React.Component {
+    render() {
+        return (
+            <DatePickerInput
+                onMonthChange={() => window.alert('The month was changed!') }
+            />
+        );
+    }
+}`;
+
+const rangeSample = `import { DatePickerInput } from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
+
+export default class RangeSample extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            dateRangeFrom: moment(),
+            dateRangeTo: moment(),
+        };
+
+        this._onRangeChange = this._onRangeChange.bind(this);
+    }
+
+    render() {
+        return (
+            <div>
+                <DatePickerInput
+                    dateFrom={dateRangeFrom}
+                    dateTo={dateRangeTo}
+                    onChange={this._onRangeChange}
+                    rangeFrom
+                    label="From"
+                />
+                <DatePickerInput
+                    dateFrom={dateRangeFrom}
+                    dateTo={dateRangeTo}
+                    onChange={this._onRangeChange}
+                    rangeTo
+                    label="To"
+                />
+            </div>
+        );
+    }
+
+    _onRangeChange({ date, dateFrom, dateTo }) {
+        this.setState({
+            dateRangeFrom: dateFrom,
+            dateRangeTo: dateTo,
+        });
     }
 }`;
 
@@ -195,6 +323,12 @@ export default class ModulesDatePickerInput extends React.Component {
                 type: 'array',
                 default: '',
                 description: 'Sets a range of dates that are selectable.',
+                allowedTypes: ''
+            }, {
+                name: 'label',
+                type: 'string',
+                default: '',
+                description: 'Optional Label to display with the Input.',
                 allowedTypes: ''
             }, {
                 name: 'locale',
@@ -361,6 +495,17 @@ export default class ModulesDatePickerInput extends React.Component {
                     {includeDatesSample}
                 </Highlighter>
 
+                {/* Label */}
+                <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                    Label
+                </Header>
+
+                <DatePickerInput label="The Coolest Label Ever"/>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {labelSample}
+                </Highlighter>
+
                 {/* Locale */}
                 <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
                     Locale
@@ -384,7 +529,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {maxDateSample}
                 </Highlighter>
 
                 {/* Min Date */}
@@ -397,7 +542,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {minDateSample}
                 </Highlighter>
 
                 {/* onChange Event Handler */}
@@ -411,7 +556,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {onChangeSample}
                 </Highlighter>
 
                 {/* onMonthChange */}
@@ -424,7 +569,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {onMonthChangeSample}
                 </Highlighter>
 
                 {/* Range */}
@@ -448,7 +593,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
+                    {rangeSample}
                 </Highlighter>
             </Main>
         );
