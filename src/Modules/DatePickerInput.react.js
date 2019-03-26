@@ -137,8 +137,9 @@ class DatePickerInput extends React.PureComponent {
                         guide
                         icon={(
                             <Icon
-                                color={isCalendarOpen ? 'highlight' : null}
+                                color={isCalendarOpen ? 'highlight' : disabled ? 'primary' : null}
                                 compact
+                                disable={disabled}
                                 onClick={this._onIconClick}
                                 type="calendar"
                             />
