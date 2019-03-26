@@ -208,36 +208,6 @@ export default class ModulesDatePickerInput extends React.Component {
 
                 <DatePickerInput disabled />
 
-                {/* Date Range */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Date Range
-                </Header>
-
-                <DatePickerInput
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeFrom
-                    label="From"
-                />
-                <DatePickerInput
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeTo
-                    label="To"
-                />
-
-                {/* onChange Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    onChange Event Handler
-                </Header>
-
-                <DatePickerInput
-                    date={dateOnChange}
-                    onChange={this._onChange}
-                />
-
                 {/* Events */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     Events
@@ -266,6 +236,15 @@ export default class ModulesDatePickerInput extends React.Component {
                     ]}
                 />
 
+                {/* Filter Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Filter Dates
+                </Header>
+
+                <DatePickerInput
+                    filterDates={this._isWeekend}
+                />
+
                 {/* Include Dates */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     Include Dates
@@ -278,13 +257,13 @@ export default class ModulesDatePickerInput extends React.Component {
                     ]}
                 />
 
-                {/* Filter Dates */}
+                {/* Locale */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Filter Dates
+                    Locale
                 </Header>
 
                 <DatePickerInput
-                    filterDates={this._isWeekend}
+                    locale={moment().locale()}
                 />
 
                 {/* Max Date */}
@@ -305,6 +284,16 @@ export default class ModulesDatePickerInput extends React.Component {
                     minDate={moment().subtract(10, 'years')}
                 />
 
+                {/* onChange Event Handler */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onChange Event Handler
+                </Header>
+
+                <DatePickerInput
+                    date={dateOnChange}
+                    onChange={this._onChange}
+                />
+
                 {/* onMonthChange */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     onMonthChange Event Handler
@@ -314,13 +303,24 @@ export default class ModulesDatePickerInput extends React.Component {
                     onMonthChange={() => window.alert('The month was changed!') }
                 />
 
-                {/* Locale */}
+                {/* Range */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Locale
+                    Range
                 </Header>
 
                 <DatePickerInput
-                    locale={moment().locale()}
+                    dateFrom={dateRangeFrom}
+                    dateTo={dateRangeTo}
+                    onChange={this._onRangeChange}
+                    rangeFrom
+                    label="From"
+                />
+                <DatePickerInput
+                    dateFrom={dateRangeFrom}
+                    dateTo={dateRangeTo}
+                    onChange={this._onRangeChange}
+                    rangeTo
+                    label="To"
                 />
             </Main>
         );
