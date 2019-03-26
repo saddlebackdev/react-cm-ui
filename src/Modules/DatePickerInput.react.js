@@ -354,7 +354,6 @@ DatePickerInput.propTypes = {
     rangeFrom: PropTypes.bool,
     rangeTo: PropTypes.bool,
     required: PropTypes.bool,
-    tabIndex: PropTypes.number,
 };
 
 export default DatePickerInput;
