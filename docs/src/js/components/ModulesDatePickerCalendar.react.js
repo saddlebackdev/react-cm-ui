@@ -47,6 +47,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
             dateRangeTo: moment(),
         };
 
+        this._isWeekday = this._isWeekday.bind(this);
         this._onDateRangeChange = this._onDateRangeChange.bind(this);
     }
 
@@ -211,8 +212,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
             }
         ];
         const { dateRangeFrom, dateRangeTo } = this.state;
-        console.log('dateRangeFrom', dateRangeFrom);
-        console.log('dateRangeTo', dateRangeTo);
 
         return (
             <Main page="headers">
@@ -260,8 +259,99 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     onChange={this._onDateRangeChange}
                     range
                 />
+
+                {/* Events */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Events
+                </Header>
+
+                <DatePickerCalendar
+                    events={[
+                        moment().subtract(1, 'days'),
+                        moment().subtract(2, 'days'),
+                        moment().subtract(3, 'days'),
+                        moment().subtract(4, 'days'),
+                    ]}
+                />
+
+                {/* Exclude Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Exclude Dates
+                </Header>
+
+                <DatePickerCalendar
+                    excludeDates={[
+                        moment().subtract(1, 'days'),
+                        moment().subtract(2, 'days'),
+                        moment().subtract(3, 'days'),
+                        moment().subtract(4, 'days'),
+                    ]}
+                />
+
+                {/* Include Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Include Dates
+                </Header>
+
+                <DatePickerCalendar
+                    includeDates={[
+                        moment(),
+                        moment().subtract(1, 'days'),
+                    ]}
+                />
+
+                {/* Filter Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Filter Dates
+                </Header>
+
+                <DatePickerCalendar
+                    filterDates={this._isWeekday}
+                />
+
+                {/* Max Date */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Max Date
+                </Header>
+
+                <DatePickerCalendar
+                    maxDate={moment()}
+                />
+
+                {/* Min Date */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Min Date
+                </Header>
+
+                <DatePickerCalendar
+                    minDate={moment().subtract(10, 'years')}
+                />
+
+                {/* onMonthChange */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onMonthChange Event Handler
+                </Header>
+
+                <DatePickerCalendar
+                    onMonthChange={() => window.alert('The month was changed!') }
+                />
+
+                {/* Locale */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Locale
+                </Header>
+
+                <DatePickerCalendar
+                    locale={moment().locale()}
+                />
             </Main>
         );
+    }
+
+    _isWeekday(date) {
+        const day = date.day();
+
+        return day !== 0 && day !== 6;
     }
 
     _onDateRangeChange({ date, dateFrom, dateTo }) {

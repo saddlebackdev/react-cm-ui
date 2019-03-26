@@ -47,7 +47,7 @@ class DatePickerMonth extends React.PureComponent {
             dateTo,
             events,
             excludeDates,
-            filterDate,
+            filterDates,
             includeDates,
             maxDate,
             minDate,
@@ -69,7 +69,7 @@ class DatePickerMonth extends React.PureComponent {
                     dateTo={dateTo}
                     events={events}
                     excludeDates={excludeDates}
-                    filterDate={filterDate}
+                    filterDates={filterDates}
                     includeDates={includeDates}
                     key={week}
                     maxDate={maxDate}

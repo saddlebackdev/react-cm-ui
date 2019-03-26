@@ -75,7 +75,7 @@ class DatePickerCalendar extends React.PureComponent {
         const {
             events,
             excludeDates,
-            filterDate,
+            filterDates,
             id,
             includeDates,
             maxDate,
@@ -111,7 +111,7 @@ class DatePickerCalendar extends React.PureComponent {
                         dateTo={dateTo}
                         events={events}
                         excludeDates={excludeDates}
-                        filterDate={filterDate}
+                        filterDates={filterDates}
                         includeDates={includeDates}
                         maxDate={maxDate}
                         minDate={minDate}
