@@ -164,27 +164,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     controls="arrows"
                 />
 
-                {/* Range */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Range
-                </Header>
-
-                <DatePickerCalendar
-                    range
-                />
-
-                {/* onChange Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    onChange Event Handler
-                </Header>
-
-                <DatePickerCalendar
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onDateRangeChange}
-                    range
-                />
-
                 {/* Events */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     Events
@@ -213,6 +192,15 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     ]}
                 />
 
+                {/* Filter Dates */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    Filter Dates
+                </Header>
+
+                <DatePickerCalendar
+                    filterDates={this._isWeekday}
+                />
+
                 {/* Include Dates */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     Include Dates
@@ -225,13 +213,13 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     ]}
                 />
 
-                {/* Filter Dates */}
+                {/* Locale */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Filter Dates
+                    Locale
                 </Header>
 
                 <DatePickerCalendar
-                    filterDates={this._isWeekday}
+                    locale={moment().locale()}
                 />
 
                 {/* Max Date */}
@@ -252,6 +240,18 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     minDate={moment().subtract(10, 'years')}
                 />
 
+                {/* onChange Event Handler */}
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    onChange Event Handler
+                </Header>
+
+                <DatePickerCalendar
+                    dateFrom={dateRangeFrom}
+                    dateTo={dateRangeTo}
+                    onChange={this._onDateRangeChange}
+                    range
+                />
+
                 {/* onMonthChange */}
                 <Header size="large" style={{ marginTop: '55px' }}>
                     onMonthChange Event Handler
@@ -261,13 +261,13 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     onMonthChange={() => window.alert('The month was changed!') }
                 />
 
-                {/* Locale */}
+                {/* Range */}
                 <Header size="large" style={{ marginTop: '55px' }}>
-                    Locale
+                    Range
                 </Header>
 
                 <DatePickerCalendar
-                    locale={moment().locale()}
+                    range
                 />
             </Main>
         );
