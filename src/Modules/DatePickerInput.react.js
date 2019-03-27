@@ -162,7 +162,7 @@ class DatePickerInput extends React.PureComponent {
 
                     {isCalendarOpen ? (
                         <CalendarOnClickOutside
-                            controls="drowpdowns"
+                            controls="dropdowns"
                             date={date}
                             dateFrom={dateFrom}
                             dateTo={dateTo}
