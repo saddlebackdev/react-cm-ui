@@ -23,7 +23,7 @@ class ListItem extends React.PureComponent {
         });
 
         return (
-            <li id={isSelected ? 'date-picker-year-option-is-selected' : null}>
+            <li className={isSelected ? 'date-picker-year-option-is-selected' : null}>
                 <a
                     className={isSelectedClass}
                     onClick={this._onClick}
@@ -88,7 +88,7 @@ class DatePickerDropdownYear extends React.PureComponent {
 
         if (!maxDate) {
             const datePickerWrapElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-dropdown-year-scrollbar > div'));
-            const selectedElement = ReactDOM.findDOMNode(document.getElementById('date-picker-year-option-is-selected'));
+            const selectedElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-year-option-is-selected'));
             const selectedPosistion = selectedElement.offsetTop - 11;
 
             DOMUtils.scrollTo(selectedPosistion, 0, datePickerWrapElement);
