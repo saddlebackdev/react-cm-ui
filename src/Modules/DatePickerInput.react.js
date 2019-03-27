@@ -195,7 +195,8 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _getAllowedDateFormats(specifiedFormat) {
-        const formats = DateUtils.getAllowedDateFormats();
+        let formats = DateUtils.getAllowedDateFormats();
+        formats = [ specifiedFormat, ...formats ];
 
         if (_.indexOf(formats, specifiedFormat) < 0) {
             formats.unshift(specifiedFormat);
