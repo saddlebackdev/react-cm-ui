@@ -25,7 +25,7 @@ class Calendar extends React.PureComponent {
     }
 }
 
-const CalendarOnClickOutisde = onClickOutside(Calendar);
+const CalendarOnClickOutside = onClickOutside(Calendar);
 
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
@@ -160,7 +160,7 @@ class DatePickerInput extends React.PureComponent {
                     />
 
                     {isCalendarOpen ? (
-                        <CalendarOnClickOutisde
+                        <CalendarOnClickOutside
                             controls="drowpdowns"
                             date={date}
                             dateFrom={dateFrom}
