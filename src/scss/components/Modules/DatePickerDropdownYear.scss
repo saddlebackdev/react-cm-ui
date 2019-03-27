@@ -26,5 +26,5 @@
                 text-align: left;
                 transition: color 150ms ease-out;
             }
-            #date-picker-year-option-is-selected a, a:hover { color: $color-text-highlight; }
+            .date-picker-year-option-is-selected a, a:hover { color: $color-text-highlight; }
 }
