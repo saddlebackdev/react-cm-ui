@@ -1,5 +1,6 @@
 'use strict';
 
+import { Link } from 'react-router';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -602,6 +603,11 @@ export default class ModulesDatePicker extends React.Component {
         return (
             <Main page="headers">
                 <TitleBar title="Date Picker" />
+
+                <Header size="large" style={{ marginTop: '55px' }}>
+                    This component has been deprecated.<br />
+                Please use <Link to={{ pathname: '/modules/date-picker-input' }}>DatePickerInput</Link> or <Link to={{ pathname: '/modules/date-picker-calendar' }}>DatePickerCalendar</Link>
+                </Header>
 
                 <Card>
                     <Header size="large">Props</Header>
