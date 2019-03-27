@@ -297,31 +297,12 @@ class DatePickerInput extends React.PureComponent {
 }
 
 DatePickerInput.defaultProps = {
-    className: '',
     controls: 'dropdowns',
-    date: undefined,
-    dateFrom: undefined,
-    dateTo: undefined,
     disabled: false,
-    disabledDays: undefined,
-    events: undefined,
-    errorMessage: '',
-    excludeDates: undefined,
-    filterDates: undefined,
-    id: undefined,
-    includeDates: undefined,
-    label: '',
-    locale: '',
-    maxDate: undefined,
-    minDate: undefined,
-    onBlur: undefined,
-    onChange: undefined,
-    onFocus: undefined,
-    onMonthChange: undefined,
+    locale: 'en-US',
     rangeFrom: false,
     rangeTo: false,
     required: false,
-    tabIndex: undefined,
 };
 
 DatePickerInput.propTypes = {
