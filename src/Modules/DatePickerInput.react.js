@@ -31,11 +31,11 @@ class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this._isDateRange = props.rangeFrom || props.rangeTo;
+        const isDateRange = props.rangeFrom || props.rangeTo;
+        const newDate = isDateRange ? undefined : props.date || moment();
+        const newDateFrom = !isDateRange ? undefined : props.dateFrom;
+        const newDateTo = !isDateRange ? undefined : props.dateTo;
 
-        const newDate = this._getMoment(props.date, this._isDateRange).date;
-        const newDateFrom = this._getMoment(props.dateFrom, this._isDateRange).dateFrom;
-        const newDateTo = this._getMoment(props.dateTo, this._isDateRange).dateTo;
         let inputValue;
 
         if (props.rangeFrom) {
@@ -76,9 +76,10 @@ class DatePickerInput extends React.PureComponent {
             !DatePickerUtils.isSameDay(dateTo, prevProps.dateTo) ||
             !_.isEqual(locale, prevProps.locale)
         ) {
-            const newDate = this._getMoment(date, this._isDateRange).date;
-            const newDateFrom = this._getMoment(dateFrom, this._isDateRange).dateFrom;
-            const newDateTo = this._getMoment(dateTo, this._isDateRange).dateTo;
+            const isDateRange = rangeFrom || rangeTo;
+            const newDate = isDateRange ? undefined : date || moment();
+            const newDateFrom = !isDateRange ? undefined : dateFrom;
+            const newDateTo = !isDateRange ? undefined : dateTo;
             let inputValue;
 
             if (rangeFrom) {
@@ -213,14 +214,6 @@ class DatePickerInput extends React.PureComponent {
         const { minDate } = this.props;
 
         return minDate;
-    }
-
-    _getMoment(date, isDateRange) {
-        return {
-            date: isDateRange ? undefined : date || moment(),
-            dateFrom: !isDateRange ? undefined : date || moment(),
-            dateTo: !isDateRange ? undefined : date || moment(),
-        };
     }
 
     _onCalendarChange({ date, dateFrom, dateTo }) {
