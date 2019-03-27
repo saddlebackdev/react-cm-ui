@@ -43,8 +43,8 @@ class ListItem extends React.PureComponent {
 
 ListItem.propTypes = {
     isSelected: PropTypes.bool,
-    onClick: PropTypes.func,
-    year: PropTypes.number,
+    onClick: PropTypes.func.isRequired,
+    year: PropTypes.number.isRequired,
 };
 
 class DatePickerDropdownYear extends React.PureComponent {
