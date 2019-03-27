@@ -179,8 +179,7 @@ class DatePickerCalendar extends React.PureComponent {
         const isDateAfterTo = !_.isUndefined(dateTo) && date.isAfter(dateTo);
         const isDateSameAsFrom = DatePickerUtils.isSameDay(date, dateFrom);
         const isDateSameAsTo = DatePickerUtils.isSameDay(date, dateTo);
-        const isFromAndToSame = DatePickerUtils.isSameDay(dateFrom, dateTo);
-        const isDateSameAsFromAndTo = isDateSameAsFrom && isDateSameAsTo && isFromAndToSame;
+        const isDateSameAsFromAndTo = isDateSameAsFrom && isDateSameAsTo;
 
         if (range) {
             if (isDateBeforeFrom) {
