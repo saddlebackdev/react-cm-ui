@@ -31,8 +31,8 @@ class DatePickerCalendar extends React.PureComponent {
             showDropdownYear: false,
         };
 
-        this._onChangeMonth = this._onChangeMonth.bind(this);
-        this._onChangeYear = this._onChangeYear.bind(this);
+        this._onMonthChange = this._onMonthChange.bind(this);
+        this._onYearChange = this._onYearChange.bind(this);
         this._onDayClick = this._onDayClick.bind(this);
         this._onDropdownMonthClick = this._onDropdownMonthClick.bind(this);
         this._onDropdownYearClick = this._onDropdownYearClick.bind(this);
@@ -148,7 +148,7 @@ class DatePickerCalendar extends React.PureComponent {
         return moment.isMoment(value) && value.clone().locale(locale || moment.locale());
     }
 
-    _onChangeMonth(month) {
+    _onMonthChange(month) {
         const { onMonthChange } = this.props;
         const { dateInView } = this.state;
 
@@ -162,7 +162,7 @@ class DatePickerCalendar extends React.PureComponent {
         });
     }
 
-    _onChangeYear(year) {
+    _onYearChange(year) {
         const { dateInView } = this.state;
 
         this.setState({
@@ -258,14 +258,14 @@ class DatePickerCalendar extends React.PureComponent {
         const { dateInView } = this.state;
         const currentMonth = dateInView.month();
 
-        this._onChangeMonth(currentMonth - 1);
+        this._onMonthChange(currentMonth - 1);
     }
 
     _onNextMonthChange() {
         const { dateInView } = this.state;
         const currentMonth = dateInView.month();
 
-        this._onChangeMonth(currentMonth + 1);
+        this._onMonthChange(currentMonth + 1);
     }
 
     _renderControls() {
@@ -314,7 +314,7 @@ class DatePickerCalendar extends React.PureComponent {
                         {showDropdownMonth ? (
                             <DatePickerDropdownMonth
                                 month={dateInView.month()}
-                                onChange={this._onChangeMonth}
+                                onChange={this._onMonthChange}
                                 onClose={this._onDropdownMonthClick}
                             />
                         ) : null}
@@ -332,7 +332,7 @@ class DatePickerCalendar extends React.PureComponent {
 
                         {showDropdownYear ? (
                             <DatePickerDropdownYear
-                                onChange={this._onChangeYear}
+                                onChange={this._onYearChange}
                                 onClose={this._onDropdownYearClick}
                                 year={dateInView.year()}
                             />
