@@ -1,7 +1,7 @@
 @import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
 
 .ui.icon {
-    display: inline-block;
+    display: inline-flex;
     height: rem(16px);
     margin-right: 11px;
     text-align: center;
