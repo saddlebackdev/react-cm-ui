@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.19.0 - 2019-03-28
+### Added
+- `<DatePickerInput />` and `<DatePickerCalendar />` modules get a much needed - forgotten - `style` prop.
+
+## 1.19.0 - 2019-03-28
 ### Deprecated
 - `<DatePicker />` has been **deprecated**. Please use [DatePickerInput](http://cm-ui-docs.saddleback.com/modules/date-picker-input) or [DatePickerCalendar](http://cm-ui-docs.saddleback.com/modules/date-picker-input). `<DatePicker />` will be removed in the next major version of react-cm-ui.
 
