@@ -1,35 +1,78 @@
 'use strict';
 
 import ClassNames from 'classnames';
+import DOMUtils from '../utils/DOMUtils.js';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import DOMUtils from '../utils/DOMUtils.js';
+class ListItem extends React.PureComponent {
+    constructor() {
+        super();
 
-class DatePickerDropdownYear extends Component {
+        this._onClick = this._onClick.bind(this);
+    }
+
     render() {
-        const containerClasses = ClassNames('ui', 'date-picker-dropdown-year');
+        const { isSelected, year } = this.props;
+        const isSelectedClass = ClassNames('date-picker-year-option', {
+            'date-picker-year-option-is-selected': isSelected,
+        });
 
-        let options = _.map(this._generateYears(), year => {
-            const isSelectedClass = ClassNames('date-picker-year-option', {
-                'date-picker-year-option-is-selected': this.props.year === year
-            });
+        return (
+            <li className={isSelected ? 'date-picker-year-option-is-selected' : null}>
+                <a
+                    className={isSelectedClass}
+                    onClick={this._onClick}
+                >
+                    {year}
+                </a>
+            </li>
+        );
+    }
 
+    _onClick() {
+        const { onClick, year } = this.props;
+
+        onClick(year);
+    }
+}
+
+ListItem.propTypes = {
+    isSelected: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    year: PropTypes.number.isRequired,
+};
+
+class DatePickerDropdownYear extends React.PureComponent {
+    constructor() {
+        super();
+
+        this._onClick = this._onClick.bind(this);
+    }
+
+    render() {
+        const { year } = this.props;
+        const containerClasses = ClassNames('date-picker-dropdown-year');
+
+        let options = _.map(this._generateYears(), y => {
             return (
-                <li id={this.props.year !== year ? null : 'date-picker-year-option-is-selected'} key={year}>
-                    <a className={isSelectedClass} onClick={this._onClick.bind(this, year)}>{year}</a>
-                </li>
+                <ListItem
+                    isSelected={year === y}
+                    key={y}
+                    onClick={this._onClick}
+                    year={y}
+                />
             );
         });
 
         return (
             <div className={containerClasses}>
                 <ScrollBar
-                    autoHide={true}
+                    autoHide
                     className="date-picker-dropdown-year-scrollbar"
                 >
                     <ul>
@@ -41,9 +84,11 @@ class DatePickerDropdownYear extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.maxDate) {
+        const { maxDate } = this.props;
+
+        if (!maxDate) {
             const datePickerWrapElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-dropdown-year-scrollbar > div'));
-            const selectedElement = ReactDOM.findDOMNode(document.getElementById('date-picker-year-option-is-selected'));
+            const selectedElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-year-option-is-selected'));
             const selectedPosistion = selectedElement.offsetTop - 11;
 
             DOMUtils.scrollTo(selectedPosistion, 0, datePickerWrapElement);
@@ -51,7 +96,7 @@ class DatePickerDropdownYear extends Component {
     }
 
     _generateYears() {
-        const maxDate = this.props.maxDate;
+        const { maxDate } = this.props;
         const maxYear = maxDate ? moment(maxDate).year() : null;
         const currentYear = moment().year().valueOf();
         let futureYear = maxYear || currentYear + 100;
@@ -66,12 +111,16 @@ class DatePickerDropdownYear extends Component {
     }
 
     handleClickOutside() {
-        this.props.onClose();
+        const { onClose } = this.props;
+
+        onClose();
     }
 
-    _onClick(year) {
-        this.props.onChange(year);
-        this.props.onClose();
+    _onClick(month) {
+        const { onChange, onClose } = this.props;
+
+        onChange(month);
+        onClose();
     }
 }
 

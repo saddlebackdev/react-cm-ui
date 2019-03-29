@@ -1,11 +1,11 @@
 @import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
 
-.ui.date-picker-week {
+.ui.date-picker-deprecated-week {
     align-items: flex-start;
     align-self: stretch;
     display: flex;
-    justify-content: space-between;
-    min-width: 210px;
+    justify-content: center;
+    margin: 4px 0;
     width: 100%;
     &:last-child { margin-bottom: 0; }
 }

@@ -38,13 +38,18 @@
 
 // Modules
 @import 'components/Modules/Accordion';
-@import 'components/Modules/DatePicker';
 @import 'components/Modules/DatePickerCalendar';
 @import 'components/Modules/DatePickerDay';
 @import 'components/Modules/DatePickerDropdownMonth';
 @import 'components/Modules/DatePickerDropdownYear';
+@import 'components/Modules/DatePickerInput';
 @import 'components/Modules/DatePickerMonth';
 @import 'components/Modules/DatePickerWeek';
+@import 'components/Modules/DatePickerDeprecated';
+@import 'components/Modules/DatePickerDeprecatedCalendar';
+@import 'components/Modules/DatePickerDeprecatedDay';
+@import 'components/Modules/DatePickerDeprecatedMonth';
+@import 'components/Modules/DatePickerDeprecatedWeek';
 @import 'components/Modules/Drawer';
 @import 'components/Modules/Dropdown';
 @import 'components/Modules/DurationPicker';
