@@ -16,9 +16,9 @@ class DatePickerCalendar extends React.PureComponent {
         super(props);
 
         this.state = {
-            date: props.date,
-            dateFrom: props.dateFrom,
-            dateTo: props.dateTo,
+            date: _.cloneDeep(props.date),
+            dateFrom: _.cloneDeep(props.dateFrom),
+            dateTo: _.cloneDeep(props.dateTo),
             dateInView: this._localizeMoment(
                 this._getDateInView(
                     props.date,
@@ -237,7 +237,7 @@ class DatePickerCalendar extends React.PureComponent {
             if (!_.isUndefined(onChange)) {
                 onChange({ date: date, dateFrom: undefined, dateTo: undefined });
             } else {
-                this.setState({ date });
+                this.setState({ date: _.cloneDeep(date) });
             }
         }
     }
@@ -367,20 +367,8 @@ class DatePickerCalendar extends React.PureComponent {
 DatePickerCalendar.defaultProps = {
     className: '',
     controls: 'arrows',
-    date: moment(),
-    dateFrom: undefined,
-    dateTo: undefined,
-    events: undefined,
-    excludeDates: undefined,
-    filterDates: undefined,
-    id: undefined,
-    includeDates: undefined,
-    locale: '',
-    maxDate: undefined,
-    minDate: undefined,
+    locale: 'en-US',
     mode: 'calendar',
-    onChange: undefined,
-    onMonthChange: undefined,
     rangeFrom: false,
     rangeTo: false,
 };
