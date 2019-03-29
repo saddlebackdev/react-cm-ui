@@ -77,24 +77,24 @@ class DatePickerInput extends React.PureComponent {
             !_.isEqual(locale, prevProps.locale)
         ) {
             const isDateRange = rangeFrom || rangeTo;
-            const newDate = isDateRange ? undefined : date || moment();
+            const newDate = isDateRange ? undefined : date;
             const newDateFrom = !isDateRange ? undefined : dateFrom;
             const newDateTo = !isDateRange ? undefined : dateTo;
-            let inputValue;
+            let newInputValue;
 
             if (rangeFrom) {
-                inputValue = this._safeDateFormat(newDateFrom, locale);
+                newInputValue = this._safeDateFormat(newDateFrom, locale);
             } else if (rangeTo) {
-                inputValue = this._safeDateFormat(newDateTo, locale);
+                newInputValue = this._safeDateFormat(newDateTo, locale);
             } else {
-                inputValue = this._safeDateFormat(newDate, locale);
+                newInputValue = this._safeDateFormat(newDate, locale);
             }
 
             this.setState({
                 date: newDate,
                 dateFrom: newDateFrom,
                 dateTo: newDateTo,
-                inputValue,
+                inputValue: newInputValue,
             });
         }
     }
@@ -196,10 +196,9 @@ class DatePickerInput extends React.PureComponent {
 
     _getAllowedDateFormats(specifiedFormat) {
         let formats = DateUtils.getAllowedDateFormats();
-        formats = [ specifiedFormat, ...formats ];
 
         if (_.indexOf(formats, specifiedFormat) < 0) {
-            formats.unshift(specifiedFormat);
+            formats = [ specifiedFormat, ...formats ];
         }
 
         return formats;
@@ -255,12 +254,10 @@ class DatePickerInput extends React.PureComponent {
         const date = moment(value, this._dateFormats, locale || moment.locale(), true);
 
         if (date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
-            this._onCalendarChange(date);
+            this._onCalendarChange({ date });
         } else if (value === '' || value === '__/__/____') {
-            this._onCalendarChange();
+            this._onCalendarChange({ date: undefined });
         }
-
-        this.setState({ inputValue: value });
     }
 
     _onInputFocus() {
@@ -286,8 +283,8 @@ class DatePickerInput extends React.PureComponent {
             return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
         }
 
-        if (_.isNull(date)) {
-            return null;
+        if (_.isNil(date)) {
+            return '';
         }
     }
 
