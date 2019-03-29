@@ -10,7 +10,6 @@ import HeaderSubheader from './HeaderSubheader.react';
 import Utils from '../utils/Utils.js';
 
 class Header extends Component {
-
     render() {
         const { anchor, as, children, className, color, icon, inverse, size, style, sub, title, weight } = this.props;
         const ElementType = Utils.getElementType(as);
@@ -31,13 +30,14 @@ class Header extends Component {
             'header-weight-normal': weight === 'normal',
             'header-weight-semibold': weight === 'semibold'
         });
+
         const anchorJSX = () => {
             if (anchor) {
                 return (
                     <Icon
                         className="header-anchor-icon"
                         color="static"
-                        compact={true}
+                        compact
                         onClick={this._onAnchorClick.bind(this)}
                         size="small"
                         type="link"
@@ -47,7 +47,6 @@ class Header extends Component {
         };
 
         if (icon && sub) {
-            console.log('children', children);
             return (
                 <ElementType className={containerClasses} id={anchor} style={style}>
                     {children[0]}
@@ -67,11 +66,9 @@ class Header extends Component {
             <ElementType className={containerClasses} id={anchor} style={style} title={title}>
                 {anchor ? (
                     <span>
-                        {children[0]}
+                        {children}
 
                         {anchorJSX()}
-
-                        {children[1]}
                     </span>
                 ) : children}
             </ElementType>
@@ -81,7 +78,6 @@ class Header extends Component {
     _onAnchorClick() {
         window.location.hash = this.props.anchor;
     }
-
 }
 
 Header.Subheader = HeaderSubheader;

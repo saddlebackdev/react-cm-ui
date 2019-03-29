@@ -2,113 +2,107 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import moment from 'moment-timezone';
-import React, { Component } from 'react';
-
 import DatePickerUtils from '../utils/DatePickerUtils.js';
+import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-class DatePickerDay extends Component {
+class DatePickerDay extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this._isDateRange = props.rangeFrom || props.rangeTo || props.range;
+
+        this._onDayClick = this._onDayClick.bind(this);
+    }
+
     render() {
-        const containerClasses = ClassNames('ui', 'date-picker-day', {
+        const { dateInView, dateTo } = this.props;
+        const containerClasses = ClassNames('ui', 'date-picker-day', `date-picker-day-${moment(dateInView).format('DD')}`, {
             'date-picker-day-disabled': this._isDisabled(),
             'date-picker-day-end-selected': this._isDayEndSelected(),
             'date-picker-day-has-event': this._hasEvent(),
             'date-picker-day-in-range': this._isInRange(),
-            'date-picker-day-no-end-day-selected': this._isDayStartSelected() && !this.props.dateEnd,
+            'date-picker-day-no-end-day-selected': this._isDayStartSelected() && !dateTo,
             'date-picker-day-outside-month': this._isOutsideMonth(),
             'date-picker-day-selected': this._isDaySelected(),
             'date-picker-day-start-selected': this._isDayStartSelected(),
             'date-picker-day-today': this._isToday(),
-            'date-picker-day-weekend': this._isWeekend()
+            'date-picker-day-weekend': this._isWeekend(),
         });
 
         return (
-            <div className={containerClasses} onClick={this._onClick.bind(this)}>
+            <div
+                className={containerClasses}
+                onClick={this._onDayClick}
+            >
                 <span>
-                    {moment(this.props.dateInView).format('DD')}
+                    {moment(dateInView).format('D')}
                 </span>
             </div>
         );
     }
 
     _hasEvent() {
-        return _.some(this.props.events, event => moment.unix(event).utc().isSame(this.props.dateInView, 'day'));
+        const { dateInView, events } = this.props;
+
+        return _.some(events, event => event.isSame(dateInView, 'day'));
     }
 
     _isDaySelected() {
-        if (this.props.type !== 'dateRange' ||
-            this.props.type !== 'servicePeriod' ||
-            this.props.type !== 'servicePeriodRange' ||
-            this.props.type !== 'servicePeriodRangeEnd' ||
-            this.props.type !== 'servicePeriodRangeStart'
-        ) {
-            return DatePickerUtils.isSameDay(this.props.dateInView, this.props.date);
+        const { date, dateInView } = this.props;
+
+        if (!this._isDateRange) {
+            return DatePickerUtils.isSameDay(dateInView, date);
         }
     }
 
     _isDayStartSelected() {
-        const { dateSecondaryStart, dateStart } = this.props;
+        const { dateFrom, dateInView } = this.props;
 
-        if (this.props.type === 'dateRange' ||
-            this.props.type === 'servicePeriod' ||
-            this.props.type === 'servicePeriodRange' ||
-            this.props.type === 'servicePeriodRangeEnd' ||
-            this.props.type === 'servicePeriodRangeStart'
-        ) {
-            return DatePickerUtils.isSameDay(this.props.dateInView, dateStart) ||
-                DatePickerUtils.isSameDay(this.props.dateInView, dateSecondaryStart);
+        if (this._isDateRange) {
+            return DatePickerUtils.isSameDay(dateInView, dateFrom);
         }
     }
 
     _isDisabled() {
-        return DatePickerUtils.isDayDisabled(this.props.dateInView, this.props);
+        const { dateInView } =  this.props;
+
+        return DatePickerUtils.isDayDisabled(dateInView, this.props);
     }
 
     _isDayEndSelected() {
-        const { dateEnd, dateSecondaryEnd } = this.props;
-        if (this.props.type === 'dateRange' ||
-            this.props.type === 'servicePeriod' ||
-            this.props.type === 'servicePeriodRange' ||
-            this.props.type === 'servicePeriodRangeEnd' ||
-            this.props.type === 'servicePeriodRangeStart'
-        ) {
-            return DatePickerUtils.isSameDay(this.props.dateInView, dateEnd) ||
-                DatePickerUtils.isSameDay(this.props.dateInView, dateSecondaryEnd);
+        const { dateInView, dateTo } = this.props;
+
+        if (this._isDateRange) {
+            return DatePickerUtils.isSameDay(dateInView, dateTo);
         }
     }
 
     _isInRange() {
-        const { dateEnd, dateInView, dateSecondaryEnd, dateSecondaryStart, dateStart, type } = this.props;
+        const { dateTo, dateInView, dateFrom } = this.props;
         const newDateInView = dateInView.clone().startOf('day');
 
-        if (!dateStart || !dateEnd) {
+        if (!dateFrom || !dateTo) {
             return false;
         }
 
-        const newDateStart = dateStart.clone().startOf('day');
-        const newDateEnd = dateEnd.clone().startOf('day');
+        const newDateFrom = dateFrom.clone().startOf('day');
+        const newDateTo = dateTo.clone().startOf('day');
 
-        if (type === 'servicePeriodRangeEnd' && dateSecondaryStart || dateSecondaryEnd) {
-            const newDateSecondaryStart = dateSecondaryStart.clone().startOf('day');
-            const newDateSecondaryEnd = dateSecondaryEnd.clone().startOf('day');
-
-            return newDateInView.isBetween(newDateStart, newDateEnd) ||
-                newDateInView.isBetween(newDateEnd, newDateSecondaryStart) ||
-                newDateInView.isBetween(newDateSecondaryStart, newDateSecondaryEnd);
-        } else {
-            return newDateInView.isBetween(newDateStart, newDateEnd);
-        }
+        return newDateInView.isBetween(newDateFrom, newDateTo);
     }
 
     _isOutsideMonth() {
-        const { month } = this.props;
+        const { dateInView, month } = this.props;
 
-        return !_.isUndefined(month) && month !== this.props.dateInView.month();
+        return !_.isUndefined(month) && month !== dateInView.month();
     }
 
     _isToday() {
-        return this.props.dateInView.format('MM/DD/YYYY') === moment().format('MM/DD/YYYY');
+        const { dateInView } = this.props;
+
+        return dateInView.format('MM/DD/YYYY') === moment().format('MM/DD/YYYY');
     }
 
     _isWeekend() {
@@ -117,20 +111,20 @@ class DatePickerDay extends Component {
         return weekday === 0 || weekday === 6;
     }
 
-    _onClick(event) {
-        if (!this._isOutsideMonth() && !this._isDisabled() && _.isFunction(this.props.onClick)) {
-            this.props.onClick(event);
+    _onDayClick() {
+        const { dateInView, onDayClick } = this.props;
+
+        if (!this._isOutsideMonth() && !this._isDisabled() && !_.isUndefined(onDayClick)) {
+            onDayClick(dateInView);
         }
     }
 }
 
 DatePickerDay.propTypes = {
     date: PropTypes.object,
-    dateEnd: PropTypes.object,
+    dateFrom: PropTypes.object,
     dateInView: PropTypes.object.isRequired,
-    dateSecondaryEnd: PropTypes.object,
-    dateSecondaryStart: PropTypes.object,
-    dateStart: PropTypes.object,
+    dateTo: PropTypes.object,
     events: PropTypes.array,
     excludeDates: PropTypes.array,
     filterDates: PropTypes.func,
@@ -139,8 +133,10 @@ DatePickerDay.propTypes = {
     minDate: PropTypes.object,
     month: PropTypes.number,
     onDayClick: PropTypes.func,
+    range: PropTypes.bool,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
     type: PropTypes.string,
-    uxMode: PropTypes.string
 };
 
 export default DatePickerDay;
