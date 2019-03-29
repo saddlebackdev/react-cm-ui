@@ -1,12 +1,18 @@
 'use strict';
 
+import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import DatePickerWeek from './DatePickerWeek.react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-class DatePickerMonth extends Component {
+class DatePickerMonth extends React.PureComponent {
+    constructor() {
+        super();
+
+        this._onDayClick = this._onDayClick.bind(this);
+    }
+
     render() {
         const containerClasses = ClassNames('ui', 'date-picker-month');
 
@@ -24,58 +30,77 @@ class DatePickerMonth extends Component {
         return startOfWeek.isSame(dateInView, 'month') || endOfWeek.isSame(dateInView, 'month');
     }
 
-    _onDayClick(day) {
-        if (this.props.onDayClick) {
-            this.props.onDayClick(day);
+    _onDayClick(date) {
+        const { onDayClick } = this.props;
+
+        if (!_.isUndefined(onDayClick)) {
+            onDayClick(date);
         }
     }
 
     _renderWeeks() {
-        const startOfMonth = this.props.dateInView.clone().startOf('month').startOf('week');
+        const {
+            date,
+            dateFrom,
+            dateInView,
+            dateTo,
+            events,
+            excludeDates,
+            filterDates,
+            includeDates,
+            maxDate,
+            minDate,
+            mode,
+            range,
+            rangeFrom,
+            rangeTo,
+        } = this.props;
+        const startOfMonth = dateInView.clone().startOf('month').startOf('week');
 
-        return [0, 1, 2, 3, 4, 5]
-        .map(offset => startOfMonth.clone().add(offset, 'weeks'))
-        .filter(startOfWeek => this._isWeekInMonth(startOfWeek))
-        .map((startOfWeek, offset) =>
-            <DatePickerWeek
-                date={this.props.date}
-                dateEnd={this.props.dateEnd}
-                dateInView={startOfWeek}
-                dateSecondaryEnd={this.props.dateSecondaryEnd}
-                dateSecondaryStart={this.props.dateSecondaryStart}
-                dateStart={this.props.dateStart}
-                events={this.props.events}
-                key={offset}
-                maxDate={this.props.maxDate}
-                minDate={this.props.minDate}
-                month={this.props.dateInView.month()}
-                onDayClick={this._onDayClick.bind(this)}
-                excludeDates={this.props.excludeDates}
-                filterDates={this.props.filterDates}
-                includeDates={this.props.includeDates}
-                type={this.props.type}
-                uxMode={this.props.uxMode}
-            />
-        );
+        return _.map([ 0, 1, 2, 3, 4, 5 ], week => {
+            const startOfWeek = startOfMonth.clone().add(week, 'weeks');
+
+            return (
+                <DatePickerWeek
+                    date={date}
+                    dateFrom={dateFrom}
+                    dateInView={startOfWeek}
+                    dateTo={dateTo}
+                    events={events}
+                    excludeDates={excludeDates}
+                    filterDates={filterDates}
+                    includeDates={includeDates}
+                    key={week}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    month={dateInView.month()}
+                    onDayClick={this._onDayClick}
+                    mode={mode}
+                    range={range}
+                    rangeFrom={rangeFrom}
+                    rangeTo={rangeTo}
+                />
+            );
+        });
     }
 }
 
 DatePickerMonth.propTypes = {
     date: PropTypes.object,
-    dateEnd: PropTypes.object,
+    dateFrom: PropTypes.object,
     dateInView: PropTypes.object.isRequired,
-    dateSecondaryEnd: PropTypes.object,
-    dateSecondaryStart: PropTypes.object,
-    dateStart: PropTypes.object,
+    dateTo: PropTypes.object,
     events: PropTypes.array,
     excludeDates: PropTypes.array,
     filterDates: PropTypes.func,
     includeDates: PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    onDayClick: PropTypes.func,
-    type: PropTypes.string,
-    uxMode: PropTypes.string
+    mode: PropTypes.oneOf([ 'calendar', 'input' ]),
+    onDayClick: PropTypes.func.isRequired,
+    range: PropTypes.bool,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
 };
 
 export default DatePickerMonth;

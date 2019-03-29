@@ -3,12 +3,12 @@
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
-class DatePickerDropdownMonth extends Component {
+class DatePickerDropdownMonth extends React.PureComponent {
     render() {
         const { month } = this.props;
-        const containerClasses = ClassNames('ui', 'date-picker-dropdown-month');
+        const containerClasses = ClassNames('date-picker-dropdown-month');
         const selectedClass = 'date-picker-month-option-is-selected';
 
         return (
@@ -35,12 +35,16 @@ class DatePickerDropdownMonth extends Component {
     }
 
     handleClickOutside() {
-        this.props.onClose();
+        const { onClose } = this.props;
+
+        onClose();
     }
 
     _onClick(month) {
-        this.props.onChange(month);
-        this.props.onClose();
+        const { onChange, onClose } = this.props;
+
+        onChange(month);
+        onClose();
     }
 }
 
