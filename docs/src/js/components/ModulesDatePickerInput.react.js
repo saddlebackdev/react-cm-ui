@@ -385,12 +385,18 @@ export default class ModulesDatePickerInput extends React.Component {
                 description: 'Specifies that the user must fill in a value before submitting a form.',
                 allowedTypes: ''
             }, {
+                name: 'style',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the DatePickerInput\'s container. Mainly used for padding and margins.',
+                allowedTypes: ''
+            }, {
                 name: 'tabIndex',
                 type: 'number',
                 default: '',
                 description: 'An Input can receive focus.',
                 allowedTypes: ''
-            }
+            },
         ];
         const {
             dateOnChange,
