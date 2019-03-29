@@ -1,6 +1,6 @@
 @import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
 
-.ui.date-picker-dropdown-year {
+.date-picker-dropdown-year {
     background-color: $bkgd;
     border: 1px solid $border;
     border-radius: 3px;
@@ -26,5 +26,5 @@
                 text-align: left;
                 transition: color 150ms ease-out;
             }
-            #date-picker-year-option-is-selected a, a:hover { color: $color-text-highlight; }
+            .date-picker-year-option-is-selected a, a:hover { color: $color-text-highlight; }
 }
