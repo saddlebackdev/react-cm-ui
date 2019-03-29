@@ -149,27 +149,21 @@ class Input extends React.PureComponent {
 
                         {type === 'number' && showSpinners ? (
                             <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
-                                <button
+                                <Icon
+                                    compact
                                     onClick={this._onNumberToggleUpClick}
-                                >
-                                    <Icon
-                                        compact
-                                        size="xsmall"
-                                        title={'Increase'}
-                                        type="caret-up"
-                                    />
-                                </button>
+                                    size="xsmall"
+                                    title={'Increase'}
+                                    type="caret-up"
+                                />
 
-                                <button
+                                <Icon
+                                    compact
                                     onClick={this._onNumberToggleDownClick}
-                                >
-                                    <Icon
-                                        compact
-                                        size="xsmall"
-                                        title={'Decrease'}
-                                        type="caret-down"
-                                    />
-                                </button>
+                                    size="xsmall"
+                                    title={'Decrease'}
+                                    type="caret-down"
+                                />
                             </div>
                         ) : null}
                     </div>

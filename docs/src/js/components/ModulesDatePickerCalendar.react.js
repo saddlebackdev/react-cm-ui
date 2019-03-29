@@ -228,6 +228,12 @@ export default class ModulesDatePickerCalendar extends React.Component {
                 default: '',
                 description: 'Minumum date\'s in range that are selectable.',
                 allowedTypes: ''
+            }, {
+                name: 'style',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the DatePickerCalendar\'s container. Mainly used for padding and margins.',
+                allowedTypes: ''
             },
         ];
         const { onChangeDate } = this.state;
