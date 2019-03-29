@@ -82,6 +82,7 @@ class DatePickerCalendar extends React.PureComponent {
             range,
             rangeFrom,
             rangeTo,
+            style,
         } = this.props;
         const { date, dateFrom, dateTo, dateInView } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-calendar', {
@@ -92,7 +93,7 @@ class DatePickerCalendar extends React.PureComponent {
         });
 
         return (
-            <div className={containerClasses} id={id}>
+            <div className={containerClasses} id={id} style={style}>
                 {mode === 'input' ? (
                     <div className="date-picker-pointer" />
                 ) : null}
@@ -396,6 +397,7 @@ DatePickerCalendar.propTypes = {
     range: PropTypes.bool,
     rangeFrom: PropTypes.bool,
     rangeTo: PropTypes.bool,
+    style: PropTypes.object,
 };
 
 export default DatePickerCalendar;

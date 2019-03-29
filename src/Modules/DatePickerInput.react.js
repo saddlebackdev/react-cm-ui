@@ -114,13 +114,14 @@ class DatePickerInput extends React.PureComponent {
             rangeFrom,
             rangeTo,
             required,
+            style,
             tabIndex,
         } = this.props;
         const { date, dateFrom, dateTo, isCalendarOpen, inputValue } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-input', className);
 
         return (
-            <div className={containerClasses} id={id}>
+            <div className={containerClasses} id={id} style={style}>
                 <TetherComponent
                     attachment={'top left'}
                     classPrefix="date-picker-tether"
@@ -329,6 +330,7 @@ DatePickerInput.propTypes = {
     rangeFrom: PropTypes.bool,
     rangeTo: PropTypes.bool,
     required: PropTypes.bool,
+    style: PropTypes.object,
 };
 
 export default DatePickerInput;
