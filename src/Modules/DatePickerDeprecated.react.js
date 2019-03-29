@@ -223,6 +223,10 @@ class DatePicker extends Component {
         );
     }
 
+    componentDidMount() {
+        console.warn('<DatePicker /> has been deprecated. This will be removed in the next major version of react-cm-ui. Please use <DatePickerInput />: http://cm-ui-docs.saddleback.com/modules/date-picker-input or use <DatePickerCalendar />: http://cm-ui-docs.saddleback.com/modules/date-picker-calendar');
+    }
+
     _convertTimestamp(timestamp) {
         return !_.isNil(timestamp) ? moment.unix(timestamp).utc() : null;
     }
