@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.19.2 - 2019-04-01
+### Fixed
+- **`<DatePickerInput />`** and  **`<DatePickerCalendar />`** allow `null now`.
+- The `onChange` event handler will not fire if **`<DatePickerInput />`** and  **`<DatePickerCalendar />`** is disabled.
+
 ## 1.19.1 - 2019-03-28
 ### Added
 - `<DatePickerInput />` and `<DatePickerCalendar />` modules get a much needed - forgotten - `style` prop.
