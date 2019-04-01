@@ -218,17 +218,19 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onCalendarChange({ date, dateFrom, dateTo }) {
-        const { onChange } = this.props;
+        const { disabled, onChange } = this.props;
 
-        if (!_.isUndefined(onChange)) {
+        if (!disabled && !_.isUndefined(onChange)) {
             onChange({ date, dateFrom, dateTo });
         } else {
-            const { locale } = this.props;
+            if (!disabled) {
+                const { locale } = this.props;
 
-            this.setState({
-                date,
-                inputValue: this._safeDateFormat(date, locale),
-            });
+                this.setState({
+                    date,
+                    inputValue: this._safeDateFormat(date, locale),
+                });
+            }
         }
 
         this._setOpen(false);
@@ -239,7 +241,11 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onIconClick() {
-        ReactDOM.findDOMNode(this._datePickerInput._input).focus();
+        const { disabled } = this.props;
+
+        if (!disabled) {
+            ReactDOM.findDOMNode(this._datePickerInput._input).focus();
+        }
     }
 
     _onInputBlur(event) {
@@ -251,12 +257,12 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onInputChange(value) {
-        const { locale } = this.props;
+        const { disabled, locale } = this.props;
         const date = moment(value, this._dateFormats, locale || moment.locale(), true);
 
-        if (date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
+        if (!disabled && date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
             this._onCalendarChange({ date });
-        } else if (value === '' || value === '__/__/____') {
+        } else if (!disabled && value === '' || value === '__/__/____') {
             this._onCalendarChange({ date: null });
         }
     }

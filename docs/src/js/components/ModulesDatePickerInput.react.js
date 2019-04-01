@@ -22,10 +22,30 @@ const disabledSample = `import { DatePickerInput } from 'react-cm-ui';
 import React from 'react';
 
 export default class DisabledSample extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            dateOnChange: moment(),
+        };
+
+        this._onChange = this._onChange.bind(this);
+    }
+
     render() {
         return (
-            <DatePickerInput disabled />
+            <DatePickerInput
+                date={dateOnChange}
+                disabled
+                onChange={this._onChange}
+            />
         );
+    }
+
+    _onChange({ date, dateFrom, dateTo }) {
+        this.setState({
+            dateOnChange: date,
+        });
     }
 }`;
 
@@ -430,7 +450,11 @@ export default class ModulesDatePickerInput extends React.Component {
                     Disabled
                 </Header>
 
-                <DatePickerInput disabled />
+                <DatePickerInput
+                    date={dateOnChange}
+                    disabled
+                    onChange={this._onChange}
+                />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {disabledSample}
