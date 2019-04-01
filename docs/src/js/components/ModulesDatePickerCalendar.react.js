@@ -107,7 +107,7 @@ export default class OnChangeSample extends React.Component {
             dateRangeTo: moment(),
         };
 
-        this._onDateRangeChange = this._onDateRangeChange.bind(this);
+        this._onChange = this._onChange.bind(this);
     }
 
     render() {
@@ -115,13 +115,13 @@ export default class OnChangeSample extends React.Component {
             <DatePickerCalendar
                 dateFrom={dateRangeFrom}
                 dateTo={dateRangeTo}
-                onChange={this._onDateRangeChange}
+                onChange={this._onChange}
                 range
             />
         );
     }
 
-    _onDateRangeChange({ date, dateFrom, dateTo }) {
+    _onChange({ date, dateFrom, dateTo }) {
         this.setState({
             dateRangeFrom: dateFrom,
             dateRangeTo: dateTo,
@@ -147,11 +147,12 @@ export default class ModulesDatePickerCalendar extends React.Component {
         super(props);
 
         this.state = {
-            onChangeDate: moment(),
+            // onChangeDate: moment(),
+            onChangeDate: null,
         };
 
         this._isWeekday = this._isWeekday.bind(this);
-        this._onDateRangeChange = this._onDateRangeChange.bind(this);
+        this._onChange = this._onChange.bind(this);
     }
 
     render() {
@@ -365,7 +366,7 @@ export default class ModulesDatePickerCalendar extends React.Component {
         return day !== 0 && day !== 6;
     }
 
-    _onDateRangeChange({ date, dateFrom, dateTo }) {
+    _onChange({ date, dateFrom, dateTo }) {
         this.setState({
             onChangeDate: date,
         });
