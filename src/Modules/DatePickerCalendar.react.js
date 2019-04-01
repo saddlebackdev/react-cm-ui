@@ -128,15 +128,15 @@ class DatePickerCalendar extends React.PureComponent {
     _getDateInView(date, dateFrom, maxDate, minDate) {
         const today = moment();
 
-        if (!_.isUndefined(date)) {
+        if (moment.isMoment(date)) {
             return date;
-        } else if (!_.isEmpty(dateFrom)) {
+        } else if (moment.isMoment(dateFrom)) {
             return dateFrom;
         }
 
-        if (!_.isEmpty(minDate) && minDate.isAfter(today)) {
+        if (moment.isMoment(minDate) && minDate.isAfter(today)) {
             return minDate;
-        } else if (!_.isEmpty(maxDate) && maxDate.isBefore(today)) {
+        } else if (moment.isMoment(maxDate) && maxDate.isBefore(today)) {
             return maxDate;
         } else {
             return today;
@@ -175,6 +175,7 @@ class DatePickerCalendar extends React.PureComponent {
     _onDayClick(date) {
         const { onChange, range, rangeFrom, rangeTo } = this.props;
         const { dateFrom, dateTo } = this.state;
+        const isDateSame = DatePickerUtils.isSameDay(this.state.date, date);
         const isDateBeforeFrom = !_.isUndefined(dateFrom) && date.isBefore(dateFrom);
         const isDateBetweenToAndFrom = date.isAfter(dateFrom) && date.isBefore(dateTo);
         const isDateAfterTo = !_.isUndefined(dateTo) && date.isAfter(dateTo);
@@ -212,33 +213,43 @@ class DatePickerCalendar extends React.PureComponent {
 
             if (isDateSameAsFromAndTo) {
                 if (!_.isUndefined(onChange)) {
-                    onChange({ date: undefined, dateFrom: undefined, dateTo: undefined });
+                    onChange({ date: undefined, dateFrom: null, dateTo: null });
                 } else {
                     this.setState({
-                        dateFrom: undefined,
-                        dateTo: undefined,
+                        dateFrom: null,
+                        dateTo: null,
                     });
                 }
             }
         } else if (rangeFrom || rangeTo) {
-            if (rangeFrom) {
-                if (isDateSameAsTo || isDateAfterTo) {
-                    onChange({ date: undefined, dateFrom: date, dateTo: date });
-                } else {
-                    onChange({ date: undefined, dateFrom: date, dateTo: dateTo });
-                }
-            } else if (rangeTo) {
-                if (isDateSameAsFrom || isDateBeforeFrom) {
-                    onChange({ date: undefined, dateFrom: date, dateTo: date });
-                } else {
-                    onChange({ date: undefined, dateFrom: dateFrom, dateTo: date });
-                }
+            let newDateFrom, newDateTo;
+
+            if (rangeFrom && isDateSameAsTo || isDateAfterTo) {
+                newDateFrom = !isDateSameAsFromAndTo ? date : null;
+                newDateTo = !isDateSameAsFromAndTo ? date : null;
+            } else if (rangeFrom && !isDateSameAsTo && !isDateAfterTo) {
+                newDateFrom = date;
+                newDateTo = dateTo;
             }
+
+            if (rangeTo && isDateSameAsFrom || isDateBeforeFrom) {
+                newDateFrom = !isDateSameAsFromAndTo ? date : null;
+                newDateTo = !isDateSameAsFromAndTo ? date : null;
+            } else if (rangeTo && !isDateSameAsFrom && !isDateBeforeFrom) {
+                newDateFrom = dateFrom;
+                newDateTo = date;
+            }
+
+            onChange({ date: undefined, dateFrom: newDateFrom, dateTo: newDateTo });
         } else {
             if (!_.isUndefined(onChange)) {
-                onChange({ date: date, dateFrom: undefined, dateTo: undefined });
+                onChange({
+                    date: !isDateSame ? date : null,
+                    dateFrom: undefined,
+                    dateTo: undefined,
+                });
             } else {
-                this.setState({ date: _.cloneDeep(date) });
+                this.setState({ date: !isDateSame ? date : null });
             }
         }
     }
