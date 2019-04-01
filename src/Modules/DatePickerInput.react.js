@@ -32,7 +32,7 @@ class DatePickerInput extends React.PureComponent {
         super(props);
 
         const isDateRange = props.rangeFrom || props.rangeTo;
-        const newDate = isDateRange ? undefined : props.date || moment();
+        const newDate = isDateRange ? undefined : props.date;
         const newDateFrom = !isDateRange ? undefined : props.dateFrom;
         const newDateTo = !isDateRange ? undefined : props.dateTo;
 
@@ -257,7 +257,7 @@ class DatePickerInput extends React.PureComponent {
         if (date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
             this._onCalendarChange({ date });
         } else if (value === '' || value === '__/__/____') {
-            this._onCalendarChange({ date: undefined });
+            this._onCalendarChange({ date: null });
         }
     }
 
