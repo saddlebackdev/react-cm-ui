@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.19.3 - 2019-04-04
+### Fixed
+- Fixed a bug when a selected **`<DatePickerInput />`** and  **`<DatePickerCalendar />`** day is on an day that has an event.
+
 ## 1.19.2 - 2019-04-01
 ### Fixed
 - **`<DatePickerInput />`** and  **`<DatePickerCalendar />`** allow `null now`.
