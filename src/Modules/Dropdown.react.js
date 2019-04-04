@@ -1,21 +1,19 @@
 'use strict';
 
-import _ from 'lodash';
-import ClassNames from 'classnames';
-import MediaQuery from 'react-responsive';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import _ from 'lodash';
+import Button from '../Elements/Button.react';
+import ClassNames from 'classnames';
+import DOMUtils from '../utils/DOMUtils.js';
+import DropdownItem from './DropdownItem.react';
+import Icon from '../Elements/Icon.react';
+import MediaQuery from 'react-responsive';
+import Modal from './Modal.react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
-
-import Button from '../Elements/Button.react';
-import DropdownItem from './DropdownItem.react';
-import Icon from '../Elements/Icon.react';
-import Modal from './Modal.react';
-
 import Utils from '../utils/Utils.js';
-import DOMUtils from '../utils/DOMUtils.js';
 
 class CustomSelect extends Select {
     renderHiddenField(valueArray) {
@@ -37,12 +35,11 @@ class CustomSelect extends Select {
             </div>
         );
     }
-};
+}
 
 const customCreatableSelect = props => <CustomSelect {...props}/>;
 
 class Dropdown extends Component {
-
     constructor(props) {
         super(props);
 
@@ -81,7 +78,6 @@ class Dropdown extends Component {
         } = this.props;
 
         const { menuIsOpen, menuPositionStyle } = this.state;
-        const isButtonDisabled = buttonColor === 'disable';
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
             'dropdown-button-compact': buttonCompact,
@@ -130,22 +126,31 @@ class Dropdown extends Component {
         if (children && !selection) {
             items = React.Children.map(children, (child, index) => {
                 if (!_.isNil(child)) {
-                    const { iconColor, iconInverse, iconType, id, label } = child.props;
+                    const itemIconColor = child.props.iconColor;
+                    const itemIconInverse = child.props.iconInverse;
+                    const itemIconType = child.props.iconType;
+                    const itemLabel = child.props.label;
+                    let itemId = child.props.id;
                     const itemClass = ClassNames('dropdown-item', child.props.className, {
-                        'dropdown-item-is-selected': this.state.value ? this.state.value.label === label : false
+                        'dropdown-item-is-selected': this.state.value ? this.state.value.label === itemLabel : false,
                     });
                     const value = {
-                        id: id,
-                        label: label
+                        id: itemId || null,
+                        label: itemLabel
+                    };
+
+                    if (id && itemId) {
+                        itemId = `${id}_${itemId}`;
                     }
 
                     return (
                         <li
                             className={itemClass}
+                            id={itemId}
                             key={'dropdown-menu-item-' + index}
                         >
                             <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
-                                {iconType ? <Icon inverse={iconInverse} color={iconColor} title={value.label} type={iconType} /> : null}
+                                {itemIconType ? <Icon inverse={itemIconInverse} color={itemIconColor} title={value.label} type={itemIconType} /> : null}
                                 {value.label}
                             </span>
                         </li>
@@ -155,8 +160,6 @@ class Dropdown extends Component {
         }
 
         if (selection) {
-            const newSelectionMenuContainerStyle = Object.assign({}, selectionMenuContainerStyle, menuPositionStyle);
-
             if (!selectionCreatable) {
                 return (
                     <MediaQuery maxWidth={767}>
@@ -165,7 +168,7 @@ class Dropdown extends Component {
                                 return (
                                     <div
                                         className={containerClasses}
-                                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
+                                        ref={ref => { this.dropdownContainer = ref; }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -197,7 +200,7 @@ class Dropdown extends Component {
                                     <div
                                         className={containerClasses}
                                         id={id}
-                                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
+                                        ref={ref => { this.dropdownContainer = ref; }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -207,7 +210,7 @@ class Dropdown extends Component {
                                                 return (
                                                     <div>
                                                         <Icon
-                                                            compact={true}
+                                                            compact
                                                             size={selectionUnderline ? 10 : 16}
                                                             title={dropdownIconTitle}
                                                             type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
@@ -256,7 +259,7 @@ class Dropdown extends Component {
                     <div
                         className={containerClasses}
                         id={id}
-                        ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
+                        ref={ref => { this.dropdownContainer = ref; }}
                         style={style}
                     >
                         {labelJSX}
@@ -305,7 +308,7 @@ class Dropdown extends Component {
                 className={containerClasses}
                 id={id}
                 onClick={this._onDropdownClick.bind(this)}
-                ref={dropdownContainer => { this.dropdownContainer = dropdownContainer }}
+                ref={dropdownContainer => { this.dropdownContainer = dropdownContainer; }}
                 style={style}
             >
                 {iconPosition === 'left' ? (
@@ -337,23 +340,17 @@ class Dropdown extends Component {
                     />
                 ) : null}
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <ul
-                                className="dropdown-menu"
-                                onClick={this._onDropdownMenuClick.bind(this)}
-                                ref={el => this.dropdownMenu = el}
-                                style={Object.assign({}, menuPositionStyle, {
-                                    opacity: menuIsOpen ? 1 : 0,
-                                    visibility: menuIsOpen ? 'visible' : 'hidden'
-                                })}
-                            >
-                                {items}
-                            </ul>
-                        );
-                    }}
-                </MediaQuery>
+                <ul
+                    className="dropdown-menu"
+                    onClick={this._onDropdownMenuClick.bind(this)}
+                    ref={el => this.dropdownMenu = el}
+                    style={Object.assign({}, menuPositionStyle, {
+                        opacity: menuIsOpen ? 1 : 0,
+                        visibility: menuIsOpen ? 'visible' : 'hidden'
+                    })}
+                >
+                    {items}
+                </ul>
             </div>
         );
     }
@@ -401,10 +398,10 @@ class Dropdown extends Component {
 
         return (
             <ScrollBar
-                autoHeight={true}
+                autoHeight
                 autoHeightMax={this.props.menuMaxHeight || 180}
                 autoHeightMin={this.props.menuMinHeight}
-                autoHide={true}
+                autoHide
                 className="select-menu-scrollbar"
                 ref={el => this.dropdownMenu = el}
             >
@@ -446,6 +443,7 @@ class Dropdown extends Component {
         this.setState({ menuIsOpen: false });
 
         const { onClose } = this.props;
+
         if (_.isFunction(onClose)) {
             onClose();
         }
@@ -477,7 +475,7 @@ class Dropdown extends Component {
     _onDropdownMenuItemClick(selectedOption, event) {
         event.stopPropagation();
 
-        this._onChange(selectedOption)
+        this._onChange(selectedOption);
     }
 
     _onDropdownMenuClick(event) {
@@ -486,15 +484,12 @@ class Dropdown extends Component {
     }
 
     _onDropdownMenuReposition() {
-        const { button } = this.props;
-        const { menuIsOpen } = this.state;
         const dropdownContainerEl = ReactDOM.findDOMNode(this.dropdownContainer);
         const dropdownMenuEl = ReactDOM.findDOMNode(this.dropdownMenu);
         const dropdownMenuObj = DOMUtils.isInViewport(dropdownMenuEl, dropdownContainerEl);
         const isInTop = dropdownMenuObj.isInTop;
         const isInRight = dropdownMenuObj.isInRight;
         const isInBottom = dropdownMenuObj.isInBottom;
-        const isInLeft = dropdownMenuObj.isInLeft;
         const topBias = dropdownMenuObj.topBias;
         const bottomBias = dropdownMenuObj.bottomBias;
         let menuXPosition, menuYPosition;
@@ -538,6 +533,7 @@ class Dropdown extends Component {
     _onSelectionMenuOpen() {
         // debugger;
         const { onOpen } = this.props;
+
         if (_.isFunction(onOpen)) {
             onOpen();
         }
@@ -558,9 +554,9 @@ class Dropdown extends Component {
                 <Button
                     className="Select-option"
                     color="light"
-                    compact={true}
-                    fluid={true}
-                    inverse={true}
+                    compact
+                    fluid
+                    inverse
                     key={`select-option-key-${i}`}
                     onClick={this._onSelectionMobileItemClick.bind(this, o)}
                     style={{
@@ -603,8 +599,8 @@ Dropdown.propTypes = {
     labelStyle: PropTypes.object,
     menuMaxHeight: PropTypes.number,
     menuMinHeight: PropTypes.number,
-    onClose: PropTypes.func,
     onChange: PropTypes.func,
+    onClose: PropTypes.func,
     onOpen: PropTypes.func,
     options: PropTypes.array,
     placeholder: PropTypes.string,
