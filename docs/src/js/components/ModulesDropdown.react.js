@@ -1208,7 +1208,7 @@ export default class ModulesDropdown extends React.Component {
                         id="ui-dropdown--demo_dropdown1"
                         placeholder="select"
                     >
-                        <Dropdown.Item label="Option 1" />
+                        <Dropdown.Item id="option_1" label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
                         <Dropdown.Item label="Option 4" />
@@ -1777,9 +1777,9 @@ export default class ModulesDropdown extends React.Component {
         this.setState({ dropdownValue: selectedOption });
     }
 
-    _onSampleOnChange(test) {
+    _onSampleOnChange(selectedOption) {
         console.log('_onSampleOnChange');
-        console.log('test', test);
+        console.log('Clicked item value', selectedOption);
     }
 
     _onSelectionChange(selectedOption) {

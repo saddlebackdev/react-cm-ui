@@ -1,18 +1,16 @@
 'use strict';
 
-import ClassNames from 'classnames';
-import Portal from 'react-portal';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
+import BannerItem from './BannerItem.react';
+import ClassNames from 'classnames';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
-import BannerItem from './BannerItem.react';
+import Portal from 'react-portal';
+import PropTypes from 'prop-types';
 
 class Banner extends Component {
-
     render() {
-        const { children, className, isOpen, level, levelIcon, message, title, type } = this.props;
+        const { children, className, id, isOpen, level, levelIcon, message, title, type } = this.props;
         const containerClasses = ClassNames('ui', 'banner', className, {
             'banner-level-error': level === 'error',
             'banner-level-purple': level === 'purple', // Rename when better defined.
@@ -48,10 +46,10 @@ class Banner extends Component {
                 isOpened={isOpen}
                 onOpen={this._onOpen.bind(this)}
             >
-                <div className={containerClasses} style={this.props.style}>
+                <div className={containerClasses} id={id} style={this.props.style}>
                     <div className={containerInnerClasses}>
                         <div className="banner-level-type">
-                            <Icon compact={true} inverse={true} type={levelIcon || levelBasedIcon} />
+                            <Icon compact inverse type={levelIcon || levelBasedIcon} />
                         </div>
 
                         <div className="banner-message-container">
@@ -74,8 +72,9 @@ class Banner extends Component {
 
                         {hasCloseButton ? (
                             <Icon
-                                compact={true}
-                                inverse={true}
+                                compact
+                                id={`ui-button--close_banner_${id}`}
+                                inverse
                                 onClick={this._onClose.bind(this)}
                                 type="times"
                                 style={{
@@ -98,7 +97,7 @@ class Banner extends Component {
             'OAnimation': 'oAnimationEnd',
             'MozAnimation': 'animationend',
             'WebkitAnimation': 'webkitAnimationEnd'
-        }
+        };
 
         for (a in animations) {
             if (el.style[a] !== undefined) {
@@ -156,8 +155,7 @@ class Banner extends Component {
             this.props.onOpen();
         }
     }
-
-};
+}
 
 Banner.Item = BannerItem;
 
@@ -180,7 +178,7 @@ Banner.propTypes = {
     style: PropTypes.object,
     title: PropTypes.string,
     topPosition: PropTypes.number,
-    type: PropTypes.oneOf(typeEnums)
+    type: PropTypes.oneOf(typeEnums),
 };
 
 export default Banner;
