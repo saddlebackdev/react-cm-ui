@@ -1,13 +1,11 @@
 'use strict';
 
+import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import Utils from '../utils/Utils.js';
 
 class DropdownItem extends Component {
-
     render() {
         const { className, style } = this.props;
         const containerClasses = ClassNames('ui', 'dropdown', className);
@@ -18,7 +16,6 @@ class DropdownItem extends Component {
             </div>
         );
     }
-
 }
 
 DropdownItem.propTypes = {
