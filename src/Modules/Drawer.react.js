@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-const colorEnums = [ 'dark-blue', 'white' ];
+const DEFAULT_CONTAINER_PADDING_TOP = 27;
 
 class CloseButton extends Component {
     constructor() {
@@ -106,7 +106,7 @@ class DrawerHeader extends Component {
     constructor() {
         super();
 
-        this._drawerContainerInnerPaddingTop = 27;
+        this._drawerContainerInnerPaddingTop = DEFAULT_CONTAINER_PADDING_TOP;
     }
 
     render() {
@@ -143,7 +143,7 @@ class DrawerHeader extends Component {
             const paddingTop = headerEl.offsetHeight;
 
             if (paddingTop !== this._drawerContainerInnerPaddingTop) {
-                this._drawerContainerInnerPaddingTop = `${paddingTop + 27}px`;
+                this._drawerContainerInnerPaddingTop = `${paddingTop + DEFAULT_CONTAINER_PADDING_TOP}px`;
                 headerEl.closest('.drawer-container-inner').style.paddingTop = this._drawerContainerInnerPaddingTop;
             }
         }
@@ -153,13 +153,13 @@ class DrawerHeader extends Component {
 DrawerHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
 };
@@ -174,7 +174,7 @@ class Drawer extends Component {
             transformValue: props.position === 'right' ?
                 'translate(100%, 0)' :
                 'translate(-100%, 0)',
-            wing: null
+            wing: null,
         };
 
         this._onBeforeClose = this._onBeforeClose.bind(this);
@@ -231,7 +231,9 @@ class Drawer extends Component {
             inverse, scrollBar, title, titleTruncate, position } = this.props;
         const { isOpen } = this.state;
 
-        if (!isOpen) { return false; }
+        if (!isOpen) {
+            return false;
+        }
 
         const { transformValue, wing } = this.state;
         const containerClasses = ClassNames('ui', 'drawer', className);
@@ -240,10 +242,10 @@ class Drawer extends Component {
             'drawer-container-inverse': inverse,
             'drawer-container-is-scrolled': this.state.isScrolled,
             'drawer-container-no-header': header === false,
-            'left-position': position === 'left'
+            'left-position': position === 'left',
         });
         const wingClasses = ClassNames('drawer-wing-container', {
-            'left-position': position === 'left'
+            'left-position': position === 'left',
         });
         let renderContent;
 
@@ -297,7 +299,7 @@ class Drawer extends Component {
         renderContent = [
             <div className="drawer-children" key={`drawer-children-${_.kebabCase(title)}`}>
                 {renderContent}
-            </div>
+            </div>,
         ];
 
         if (header === false) {
@@ -340,7 +342,7 @@ class Drawer extends Component {
                                         paddingBottom: '33px',
                                         paddingLeft: '22px',
                                         paddingRight: '22px',
-                                        paddingTop: header === false ? '22px' : null
+                                        paddingTop: header === false ? '22px' : null,
                                     }}
                                 >
                                     {renderContent}
@@ -354,7 +356,7 @@ class Drawer extends Component {
                                     paddingBottom: '33px',
                                     paddingLeft: '22px',
                                     paddingRight: '22px',
-                                    paddingTop: header === false ? '22px' : null
+                                    paddingTop: header === false ? '22px' : null,
                                 }}
                             >
                                 {renderContent}
@@ -544,7 +546,7 @@ class Drawer extends Component {
             'transition': 'transitionend',
             'oTransition': 'oTransitionEnd',
             'MozTransition': 'transitionend',
-            'WebkitTransition': 'webkitTransitionEnd'
+            'WebkitTransition': 'webkitTransitionEnd',
         };
 
         for (t in transitions) {
@@ -563,11 +565,13 @@ Drawer.defaultProps = {
     position: 'right',
 };
 
+const colorEnums = [ 'dark-blue', 'white' ];
+
 Drawer.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     color: PropTypes.oneOf(colorEnums),
     header: PropTypes.bool,
@@ -575,7 +579,7 @@ Drawer.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
@@ -587,14 +591,14 @@ Drawer.propTypes = {
     style: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
-    wing: PropTypes.object
+    wing: PropTypes.object,
 };
 
 Drawer.contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
 };
 
 export default Drawer;
