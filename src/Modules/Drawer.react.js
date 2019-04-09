@@ -157,7 +157,6 @@ DrawerHeader.propTypes = {
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
-    onHeaderUpdate: PropTypes.func,
     title: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.string
