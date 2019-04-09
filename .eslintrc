@@ -10,9 +10,11 @@
   "parser": "babel-eslint",
   "rules": {
     "array-bracket-spacing": ["warn", "always", { "objectsInArrays": false }],
-    "brace-style": ["warn", "1tbs", { "allowSingleLine": true }],
+    "brace-style": ["warn", "1tbs", {
+        "allowSingleLine": false
+    }],
     "camelcase": ["warn", {"properties": "always"}],
-    "comma-dangle": ["warn", "only-multiline"],
+    "comma-dangle": ["warn", "always-multiline"],
     "comma-style": [2, "last"],
     "curly": "warn",
     "eol-last": [0],
@@ -70,6 +72,11 @@
     "sort-imports": ["warn", {
         "ignoreCase": true,
         "memberSyntaxSortOrder": ['none', 'multiple', 'all', 'single']
+    }],
+    "space-before-function-paren": ["warn", {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
     }],
     "space-before-blocks": "warn",
     "template-curly-spacing": "warn"
