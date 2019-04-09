@@ -1,21 +1,19 @@
 'use strict';
 
-import _ from 'lodash';
-import ClassNames from 'classnames';
-import Portal from 'react-portal';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ScrollBar from 'react-custom-scrollbars';
-
+import _ from 'lodash';
 import Button from '../Elements/Button.react';
+import ClassNames from 'classnames';
 import Divider from '../Elements/Divider.react';
+import DOMUtils from '../utils/DOMUtils.js';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
-
-import DOMUtils from '../utils/DOMUtils.js';
+import { Portal } from 'react-portal';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import ScrollBar from 'react-custom-scrollbars';
 
 class ModalHeader extends Component {
-
     constructor() {
         super();
 
@@ -38,9 +36,9 @@ class ModalHeader extends Component {
                             className="modal-close-button"
                             color={inverse ? 'transparent' : 'alternate'}
                             onClick={this._onCloseClick}
-                            icon={true}
+                            icon
                         >
-                            <Icon inverse={true} type={_.isString(closeButton) ? closeButton : 'times'} />
+                            <Icon inverse type={_.isString(closeButton) ? closeButton : 'times'} />
                         </Button>
                     ) : _.isObject(closeButton) ? closeButton : null}
                 </div>
@@ -57,7 +55,6 @@ class ModalHeader extends Component {
     _onCloseClick() {
         this.props.onClose();
     }
-
 }
 
 ModalHeader.propTypes = {
@@ -73,8 +70,8 @@ ModalHeader.propTypes = {
 };
 
 class Modal extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this._defaultDimensions = {
             autoHeightMax: null,
@@ -88,6 +85,7 @@ class Modal extends Component {
 
         this.state = {
             height: this._defaultDimensions.height,
+            isOpen: props.isOpen,
             isScrolled: false,
             maxHeight: this._defaultDimensions.maxHeight,
             maxWidth: this._defaultDimensions.maxWidth,
@@ -97,17 +95,58 @@ class Modal extends Component {
         };
 
         this._mounted = false;
+        this._modalContainer = null;
 
         this._onBeforeClose = this._onBeforeClose.bind(this);
+        this._onClickOutside = this._onClickOutside.bind(this);
+        this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
+        this._onClose = this._onClose.bind(this);
         this._onOpen = this._onOpen.bind(this);
+        this._onOpenAnimationComplete = this._onOpenAnimationComplete.bind(this);
         this._onResize = this._onResize.bind(this);
         this._onScrollStart = this._onScrollStart.bind(this);
         this._onScrollStop = this._onScrollStop.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevProps.isOpen && this.props.isOpen) {
+            this.setState({
+                isOpen: this.props.isOpen,
+            }, () => {
+                this._onOpen();
+            });
+        }
+
+        if (prevProps.isOpen && !this.props.isOpen) {
+            this._onBeforeClose();
+        }
+    }
+
     render() {
-        const { autoHeight, className, closeButton, fluidContent, header, inverse, isOpen, onClickOutside, onClose, title, titleTruncate } = this.props;
-        const { autoHeightMax, height, isScrolled, maxHeight, maxWidth, minHeight, minWidth, width } = this.state;
+        const {
+            autoHeight,
+            className,
+            closeButton,
+            fluidContent,
+            header,
+            inverse,
+            title,
+            titleTruncate
+        } = this.props;
+        const {
+            autoHeightMax,
+            height,
+            isOpen,
+            isScrolled,
+            maxHeight,
+            maxWidth,
+            minHeight,
+            minWidth,
+            width
+        } = this.state;
+
+        if (!isOpen) { return false; }
+
         const containerClasses = ClassNames('ui', 'modal', className);
         const containerInnerClasses = ClassNames('modal-container', {
             'modal-container-inverse': inverse,
@@ -124,17 +163,17 @@ class Modal extends Component {
         const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
 
         return (
-            <Portal
-                beforeClose={this._onBeforeClose}
-                isOpened={isOpen}
-                onOpen={this._onOpen}
-            >
+            <Portal ref={ref => this._portalRef = ref }>
                 <div className={containerClasses}>
-                    <div className={containerInnerClasses} ref={el => this.mmodalContainer = el} style={containerInnerStyles}>
+                    <div
+                        className={containerInnerClasses}
+                        ref={ref => this._modalContainerRef = ref}
+                        style={containerInnerStyles}
+                    >
                         <ScrollBar
                             autoHeight={autoHeight}
                             autoHeightMax={autoHeightMax}
-                            autoHide={true}
+                            autoHide
                             onScrollStart={this._onScrollStart}
                             onScrollStop={this._onScrollStop}
                         >
@@ -144,17 +183,17 @@ class Modal extends Component {
                                 style={containerInnerScrollStyles}
                             >
                                 {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
-                                    closeButton: closeButton,
-                                    inverse: inverse,
-                                    onClose: onClose,
-                                    title: title,
-                                    titleTruncate: titleTruncate
+                                    closeButton: this.props.closeButton,
+                                    inverse: this.props.inverse,
+                                    onClose: this._onClose,
+                                    title: this.props.title,
+                                    titleTruncate: this.props.titleTruncate,
                                 })) : [
                                     <ModalHeader
                                         closeButton={closeButton}
                                         inverse={inverse}
                                         key={`modal-header-${_.kebabCase(title)}`}
-                                        onClose={onClose}
+                                        onClose={this._onClose}
                                         title={title}
                                         titleTruncate={titleTruncate}
                                     />,
@@ -193,7 +232,7 @@ class Modal extends Component {
             'OAnimation': 'oAnimationEnd',
             'MozAnimation': 'animationend',
             'WebkitAnimation': 'webkitAnimationEnd'
-        }
+        };
 
         for (a in animations) {
             if (el.style[a] !== undefined) {
@@ -202,78 +241,118 @@ class Modal extends Component {
         }
     }
 
-    _onAnimationComplete(animationEvent, modalContainer, removeFromDOM) {
-        modalContainer.removeEventListener(animationEvent, this._onAnimationComplete.bind(this));
+    _onBeforeClose() {
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const modalContainer = nodePortal.querySelector('.modal-container');
+        const animationEvent = this._animationProps(modalContainer);
 
-        removeFromDOM();
+        document.body.classList.add('modal-animate-out');
+        nodePortal.classList.add('modal-animate-out');
+
+        this._modalContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
+    }
+
+    _onClickOutside(event) {
+        if (this._modalContainerRef.contains(event.target) || !this.props.onClickOutside) {
+            return;
+        }
+
+        this._onClose();
+    }
+
+    _onClose() {
+        const { onClickOutside, onClose } = this.props;
+
+        if (onClickOutside) {
+            document.removeEventListener('click', this._onClickOutside);
+        }
+
+        onClose();
+    }
+
+    _onCloseAnimationComplete() {
+        const body = document.body;
+        const animationEvent = this._animationProps(this._modalContainerRef);
+        this._modalContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         const element = document.body;
         const modalLength = document.querySelectorAll('.ui.modal').length;
 
-        if (modalLength <= 1) {
-            DOMUtils.removeClassName(element, 'modal-open-layered');
+        if (modalLength <= 2) {
+            body.classList.remove('modal-open-layered');
         }
 
-        if (modalLength === 0) {
+        if (modalLength <= 1) {
             const scrollPosition = parseInt(element.style.top, 10);
 
-            DOMUtils.removeClassName(element, 'modal-open');
+            body.classList.remove('modal-open');
             window.scroll(0, Math.abs(scrollPosition));
-            document.body.style.top = null;
+            body.style.top = null;
         }
 
-        DOMUtils.removeClassName(element, 'modal-animate-out');
+        body.classList.remove('modal-animate-out');
+
+        this.setState({
+            isOpen: false,
+        });
     }
 
-    _onBeforeClose(node, removeFromDOM) {
-        const modal = node.querySelector('.ui.modal');
-        const modalContainer = modal.querySelector('.modal-container');
-        const animationEvent = this._animationProps(modalContainer);
-
-        DOMUtils.addClassName(document.body, 'modal-animate-out');
-        modal.className = 'ui modal modal-animate-out';
-
-        modalContainer.addEventListener(animationEvent, this._onAnimationComplete.bind(this, animationEvent, modalContainer, removeFromDOM));
-    }
-
-    _onOpen(node) {
-        const { autoHeight, maxWidth } = this.props;
+    _onOpen() {
+        const { autoHeight, onClickOutside, maxWidth } = this.props;
         const body = document.body;
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
         const scrollPosition = window.pageYOffset;
         const modalLength = document.querySelectorAll('.ui.modal').length;
-        const modal = node.querySelector('.ui.modal');
-        const modalContainer = node.querySelector('.modal-container');
-        const modalDimmer = node.querySelector('.modal-dimmer');
+        this._modalContainer = nodePortal.querySelector('.modal-container');
+        const modalDimmer = nodePortal.querySelector('.modal-dimmer');
         const layeredOffset = 11;
+        const animationEvent = this._animationProps(this._modalContainer);
         let zIndex = 10002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+
+        this._modalContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
+
+        if (onClickOutside) {
+            document.addEventListener('click', this._onClickOutside);
+        }
 
         if (DOMUtils.hasClassName(body, 'modal-open')) {
             zIndex = zIndex + modalLength;
             DOMUtils.addClassName(body, 'modal-open-layered');
 
-            modal.style.zIndex = zIndex;
-            modalContainer.style.zIndex = zIndex;
+            nodePortal.style.zIndex = zIndex;
+            this._modalContainer.style.zIndex = zIndex;
             modalDimmer.style.display = 'none';
         } else {
             body.style.top = `-${scrollPosition}px`;
             DOMUtils.addClassName(body, 'modal-open');
-            modal.style.zIndex = zIndex - 1;
-            modalContainer.style.zIndex = zIndex + modalLength;
+            nodePortal.style.zIndex = zIndex - 1;
+            this._modalContainer.style.zIndex = zIndex + modalLength;
         }
 
         if (!_.isUndefined(maxWidth)) {
-            modalContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
+            this._modalContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
         } else {
-            modalContainer.style.maxWidth = 768 - (layeredOffset * (modalLength - 1)) + 'px';
+            this._modalContainer.style.maxWidth = 768 - (layeredOffset * (modalLength - 1)) + 'px';
         }
 
         if (autoHeight) {
-            const modalPaddingBottom = parseInt(getComputedStyle(modal).paddingBottom);
-            const modalPaddingTop = parseInt(getComputedStyle(modal).paddingTop);
-            const modalHeight = modal.offsetHeight;
+            const modalPaddingBottom = parseInt(getComputedStyle(nodePortal).paddingBottom);
+            const modalPaddingTop = parseInt(getComputedStyle(nodePortal).paddingTop);
+            const modalHeight = nodePortal.offsetHeight;
             const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
 
             this.setState({ autoHeightMax: newAutoHeightMax });
+        }
+    }
+
+    _onOpenAnimationComplete() {
+        const animationEvent = this._animationProps(this._modalContainerRef);
+        this._modalContainer.removeEventListener(animationEvent, this._onOpenAnimationComplete);
+
+        const { onOpenComplete } = this.props;
+
+        if (typeof onOpenComplete === 'function') {
+            onOpenComplete();
         }
     }
 
@@ -316,7 +395,6 @@ class Modal extends Component {
 
         this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
     }
-
 }
 
 Modal.propTypes = {
@@ -359,7 +437,7 @@ Modal.propTypes = {
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
-    ])
+    ]),
 };
 
 export default Modal;
