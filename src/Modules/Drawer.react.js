@@ -1,32 +1,28 @@
 'use strict';
 
-import _ from 'lodash';
-import ClassNames from 'classnames';
-import Portal from 'react-portal';
-import PropTypes from 'prop-types';
+import { Portal, PortalWithState } from 'react-portal';
 import React, { Component } from 'react';
+import _ from 'lodash';
+import Button from '../Elements/Button.react';
+import ClassNames from 'classnames';
+import Divider from '../Elements/Divider.react';
+import DOMUtils from '../utils/DOMUtils.js';
+import Header from '../Elements/Header.react';
+import Icon from '../Elements/Icon.react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-import Button from '../Elements/Button.react';
-import Divider from '../Elements/Divider.react';
-import Header from '../Elements/Header.react';
-import Icon from '../Elements/Icon.react';
-
-import DOMUtils from '../utils/DOMUtils.js';
-
-const colorEnums = [ 'dark-blue', 'white' ];
+const DEFAULT_CONTAINER_PADDING_TOP = 27;
 
 class CloseButton extends Component {
     constructor() {
         super();
-
         this._onCloseClick = this._onCloseClick.bind(this);
     }
 
     render() {
         const { closeButton, inverse, onClose } = this.props;
-
         if (!onClose) { return false; }
 
         let closeButtonJSX;
@@ -34,7 +30,7 @@ class CloseButton extends Component {
         if (_.isObject(closeButton)) {
             closeButtonJSX = React.cloneElement(closeButton, {
                 className: 'drawer-close-button'
-            });;
+            });
         } else {
             closeButtonJSX = (
                 <Button
@@ -102,11 +98,17 @@ DrawerWing.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
     onOpenToggle: PropTypes.func,
+    style: PropTypes.object,
     width: PropTypes.number,
-    style: PropTypes.object
 };
 
 class DrawerHeader extends Component {
+    constructor() {
+        super();
+
+        this._drawerContainerInnerPaddingTop = DEFAULT_CONTAINER_PADDING_TOP;
+    }
+
     render() {
         const { children, closeButton, inverse, onClose, title, titleTruncate } = this.props;
         const titleClass = ClassNames('title', {
@@ -114,7 +116,7 @@ class DrawerHeader extends Component {
         });
 
         return (
-            <header className="drawer-header">
+            <header className="drawer-header" ref={ref => this._drawerHeaderRef = ref}>
                 {title ? (
                     <Header as="h2" className={titleClass} title={title}>{title}</Header>
                 ) : null}
@@ -129,20 +131,37 @@ class DrawerHeader extends Component {
             </header>
         );
     }
+
+    componentDidMount() {
+        this._onHeaderUpdate();
+    }
+
+    _onHeaderUpdate(node) {
+        const headerEl = ReactDOM.findDOMNode(this);
+
+        if (headerEl) {
+            const paddingTop = headerEl.offsetHeight;
+
+            if (paddingTop !== this._drawerContainerInnerPaddingTop) {
+                this._drawerContainerInnerPaddingTop = `${paddingTop + DEFAULT_CONTAINER_PADDING_TOP}px`;
+                headerEl.closest('.drawer-container-inner').style.paddingTop = this._drawerContainerInnerPaddingTop;
+            }
+        }
+    }
 }
 
 DrawerHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
-    titleTruncate: PropTypes.bool
+    titleTruncate: PropTypes.bool,
 };
 
 class Drawer extends Component {
@@ -150,13 +169,13 @@ class Drawer extends Component {
         super(props);
 
         this.state = {
+            isOpen: props.isOpen,
             isScrolled: false,
-            transformValue: props.position === 'right'
-                ? 'translate(100%, 0)' : 'translate(-100%, 0)',
-            wing: null
+            transformValue: props.position === 'right' ?
+                'translate(100%, 0)' :
+                'translate(-100%, 0)',
+            wing: null,
         };
-
-        this._drawerContainerInnerPaddingTop = 27;
 
         this._onBeforeClose = this._onBeforeClose.bind(this);
         this._onClickOutside = this._onClickOutside.bind(this);
@@ -165,13 +184,10 @@ class Drawer extends Component {
         this._onOpen = this._onOpen.bind(this);
         this._onOpenAnimationComplete = this._onOpenAnimationComplete.bind(this);
         this._onOpenWingToggle = this._onOpenWingToggle.bind(this);
-        this._onPortalClose = this._onPortalClose.bind(this);
+        this._onClose = this._onClose.bind(this);
         this._onScrollStart = this._onScrollStart.bind(this);
         this._onScrollStop = this._onScrollStop.bind(this);
-        this._onUpdate = this._onUpdate.bind(this);
 
-        this._removeFromDOM = null;
-        this._drawer = null;
         this._drawerContainer = null;
     }
 
@@ -196,11 +212,29 @@ class Drawer extends Component {
 
             this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : '768px';
         }
+
+        if (!prevProps.isOpen && this.props.isOpen) {
+            this.setState({
+                isOpen: this.props.isOpen,
+            }, () => {
+                this._onOpen();
+            });
+        }
+
+        if (prevProps.isOpen && !this.props.isOpen) {
+            this._onBeforeClose();
+        }
     }
 
     render() {
         const { children, className, closeButton, color, header,
-            inverse, isOpen, onClose, scrollBar, title, titleTruncate, position } = this.props;
+            inverse, scrollBar, title, titleTruncate, position } = this.props;
+        const { isOpen } = this.state;
+
+        if (!isOpen) {
+            return false;
+        }
+
         const { transformValue, wing } = this.state;
         const containerClasses = ClassNames('ui', 'drawer', className);
         const containerInnerClasses = ClassNames('drawer-container', {
@@ -208,10 +242,10 @@ class Drawer extends Component {
             'drawer-container-inverse': inverse,
             'drawer-container-is-scrolled': this.state.isScrolled,
             'drawer-container-no-header': header === false,
-            'left-position': position === 'left'
+            'left-position': position === 'left',
         });
         const wingClasses = ClassNames('drawer-wing-container', {
-            'left-position': position === 'left'
+            'left-position': position === 'left',
         });
         let renderContent;
 
@@ -225,9 +259,9 @@ class Drawer extends Component {
                 return React.cloneElement(child, {
                     closeButton: closeButton,
                     inverse: inverse,
-                    onClose: onClose,
+                    onClose: this._onClose,
                     title: title,
-                    titleTruncate: titleTruncate
+                    titleTruncate: titleTruncate,
                 });
             } else {
                 return React.Children.map(child.props.children, secondaryChild => {
@@ -235,11 +269,11 @@ class Drawer extends Component {
                         return (
                             <DrawerHeader
                                 children={secondaryChild.props.children}
-                                closeButton={this.props.closeButton}
-                                inverse={this.props.inverse}
-                                onClose={this.props.onClose}
-                                title={this.props.title}
-                                titleTruncate={this.props.titleTruncat}
+                                closeButton={closeButton}
+                                inverse={inverse}
+                                onClose={this._onClose}
+                                title={title}
+                                titleTruncate={titleTruncat}
                             />
                         );
                     } else {
@@ -255,7 +289,7 @@ class Drawer extends Component {
                     closeButton={closeButton}
                     inverse={inverse}
                     key={`drawer-header-${_.kebabCase(title)}`}
-                    onClose={onClose}
+                    onClose={this._onClose}
                     title={title}
                     titleTruncate={titleTruncate}
                 />
@@ -265,7 +299,7 @@ class Drawer extends Component {
         renderContent = [
             <div className="drawer-children" key={`drawer-children-${_.kebabCase(title)}`}>
                 {renderContent}
-            </div>
+            </div>,
         ];
 
         if (header === false) {
@@ -274,23 +308,17 @@ class Drawer extends Component {
                     closeButton={closeButton}
                     inverse={inverse}
                     key="drawer-close-button"
-                    onClose={onClose}
+                    onClose={this._onClose}
                 />
             );
         }
 
         return (
-            <Portal
-                beforeClose={this._onBeforeClose}
-                isOpened={isOpen}
-                onClose={this._onPortalClose}
-                onOpen={this._onOpen}
-                onUpdate={this._onUpdate}
-            >
+            <Portal ref={ref => this._portalRef = ref }>
                 <div className={containerClasses}>
                     <div
                         className={containerInnerClasses}
-                        ref={el => this.drawerContainer = el}
+                        ref={el => this.drawerContainerRef = el}
                         style={{ transform: transformValue }}
                     >
                         {position === 'left' && wing ? (
@@ -309,12 +337,12 @@ class Drawer extends Component {
                             >
                                 <div
                                     className="drawer-container-inner"
-                                    ref={el => this.drawerContainerInner = el}
+                                    ref={el => this._drawerContainerInnerRef = el}
                                     style={{
                                         paddingBottom: '33px',
                                         paddingLeft: '22px',
                                         paddingRight: '22px',
-                                        paddingTop: header === false ? '22px' : null
+                                        paddingTop: header === false ? '22px' : null,
                                     }}
                                 >
                                     {renderContent}
@@ -323,12 +351,12 @@ class Drawer extends Component {
                         ) : (
                             <div
                                 className="drawer-container-inner"
-                                ref={el => this.drawerContainerInner = el}
+                                ref={el => this._drawerContainerInnerRef = el}
                                 style={{
                                     paddingBottom: '33px',
                                     paddingLeft: '22px',
                                     paddingRight: '22px',
-                                    paddingTop: header === false ? '22px' : null
+                                    paddingTop: header === false ? '22px' : null,
                                 }}
                             >
                                 {renderContent}
@@ -350,30 +378,46 @@ class Drawer extends Component {
         );
     }
 
-    _transitionProps(el) {
-        let t;
-        let transitions = {
-            'transition': 'transitionend',
-            'oTransition': 'oTransitionEnd',
-            'MozTransition': 'transitionend',
-            'WebkitTransition': 'webkitTransitionEnd'
+    _onBeforeClose() {
+        if (!this.props.isOpen) {
+            const animationEvent = this._transitionProps(this._drawerContainer);
+
+            document.body.classList.add('drawer-animate-out');
+            this._drawerContainer.classList.add('drawer-animate-out');
+            this._drawerContainer.style.transform = this.props.position === 'right' ?
+                'translate(100%, 0)' :
+                'translate(-100%, 0)';
+            this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
+        } else {
+            document.body.classList.remove('drawer-open', 'drawer-open-layered', 'drawer-dimmers');
+        }
+    }
+
+    _onClickOutside(event) {
+        if (this.drawerContainerRef.contains(event.target) || !this.props.onClickOutside) {
+            return;
         }
 
-        for (t in transitions) {
-            if (el.style[t] !== undefined) {
-                return transitions[t];
-            }
+        this._onClose();
+    }
+
+    _onClose() {
+        const { onClickOutside, onClose } = this.props;
+
+        if (onClickOutside) {
+            document.removeEventListener('click', this._onClickOutside);
         }
+
+        onClose();
     }
 
     _onCloseAnimationComplete() {
         const { onCloseComplete, position } = this.props;
-        const animationEvent = this._transitionProps(this.drawerContainer);
+        const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
 
-        this.drawerContainer.removeEventListener(animationEvent, this._onCloseAnimationComplete);
-        this._removeFromDOM();
+        this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         if (drawerLength <= 2) {
             body.classList.remove('drawer-open-layered');
@@ -389,82 +433,28 @@ class Drawer extends Component {
 
         body.classList.remove('drawer-animate-out');
 
-        this.setState({ transformValue: position === 'right'
-            ? 'translate(100%, 0)' : 'translate(-100%, 0)' });
+        this.setState({ transformValue: position === 'right' ?
+            'translate(100%, 0)' :
+            'translate(-100%, 0)' });
 
         if (_.isFunction(onCloseComplete)) {
             onCloseComplete(true);
         }
+
+        this.setState({
+            isOpen: false,
+        });
     }
 
-    _onOpenAnimationComplete() {
-        const animationEvent = this._transitionProps(this.drawerContainer);
-        this.drawerContainer.removeEventListener(animationEvent, this._onOpenAnimationComplete);
-
-        const { onOpenComplete } = this.props;
-
-        if (typeof onOpenComplete === 'function') {
-            onOpenComplete();
-        }
-
-        document.body.classList.add('drawer-dimmers');
-    }
-
-    _onBeforeClose(node, removeFromDOM) {
-        if (!this.props.isOpen) {
-            const animationEvent = this._transitionProps(this._drawerContainer);
-
-            document.body.classList.add('drawer-animate-out');
-            this._drawer.classList.add('drawer-animate-out');
-            this._drawerContainer.style.transform = this.props.position === 'right'
-                ? 'translate(100%, 0)' : 'translate(-100%, 0)';
-
-            this._removeFromDOM = removeFromDOM;
-            this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
-        } else {
-            document.body.classList.remove('drawer-open', 'drawer-open-layered', 'drawer-dimmers');
-
-            removeFromDOM();
-        }
-    }
-
-    _onClickOutside(event) {
-        if (this.drawerContainer.contains(event.target) || !this.props.onClickOutside) {
-            return;
-        }
-
-        this.props.onClose();
-    }
-
-    _onUpdate() {
-        const headerEl = this.drawerContainerInner.querySelector('.drawer-header');
-
-        if (headerEl) {
-            const paddingTop = headerEl.offsetHeight;
-
-            if (paddingTop !== this._drawerContainerInnerPaddingTop) {
-                this._drawerContainerInnerPaddingTop = `${paddingTop + 27}px`;
-                this.drawerContainerInner.style.paddingTop = this._drawerContainerInnerPaddingTop;
-            }
-        }
-    }
-
-    _onPortalClose() {
-        if (this.props.onClickOutside) {
-            document.removeEventListener('click', this._onClickOutside);
-        }
-    }
-
-    _onOpen(node) {
+    _onOpen() {
         const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
         const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
-        this._drawer = node.querySelector('.drawer-container');
-        this._drawerContainer = node.querySelector('.drawer-container');
-        const drawerDimmer = node.querySelector('.drawer-dimmer');
+        this._drawerContainer = nodePortal.querySelector('.drawer-container');
+        const drawerDimmer = nodePortal.querySelector('.drawer-dimmer');
         const layeredOffset = 11;
-        const containerInnerEl = ReactDOM.findDOMNode(this.drawerContainerInner);
         const animationEvent = this._transitionProps(this._drawerContainer);
         let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
@@ -476,10 +466,10 @@ class Drawer extends Component {
 
         setTimeout(() => {
             if (DOMUtils.hasClassName(body, 'drawer-open')) {
-                zIndex = zIndex + drawerLength
+                zIndex = zIndex + drawerLength;
                 DOMUtils.addClassName(body, 'drawer-open-layered');
 
-                this._drawer.style.zIndex = zIndex;
+                nodePortal.style.zIndex = zIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
                 this._drawerContainer.style.zIndex = zIndex;
                 drawerDimmer.style.display = 'none';
@@ -487,23 +477,41 @@ class Drawer extends Component {
                 body.style.top = `-${scrollPosition}px`;
                 DOMUtils.addClassName(body, 'drawer-open');
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
-                this._drawer.style.zIndex = zIndex - 1;
+                nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
             }
 
             if (!_.isUndefined(maxWidth)) {
-                this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : '768px'
+                this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ?
+                    `${maxWidth}px` :
+                    _.isString(maxWidth) ?
+                        maxWidth :
+                        '768px';
             } else {
                 this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
             }
+
             this._drawerContainer.style.transform = 'translate(0, 0)';
         }, 30);
     }
 
+    _onOpenAnimationComplete() {
+        const animationEvent = this._transitionProps(this.drawerContainerRef);
+        this.drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
+
+        const { onOpenComplete } = this.props;
+
+        if (typeof onOpenComplete === 'function') {
+            onOpenComplete();
+        }
+
+        document.body.classList.add('drawer-dimmers');
+    }
+
     _onOpenWingToggle(width) {
         const { position } = this.props;
-        this.setState({ transformValue: position === 'right'
-            ? `translate(-${width}, 0)` : `translate(${width}, 0)` });
+
+        this.setState({ transformValue: position === 'right' ? `translate(-${width}, 0)` : `translate(${width}, 0)` });
     }
 
     _onCloseWingToggle() {
@@ -521,58 +529,76 @@ class Drawer extends Component {
     }
 
     _onScrollStart() {
-        const scrollContainerPos = this.drawerContainerInner.parentNode.scrollTop;
+        const scrollContainerPos = this._drawerContainerInnerRef.parentNode.scrollTop;
 
         this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
     }
 
     _onScrollStop() {
-        const scrollContainerPos = this.drawerContainerInner.parentNode.scrollTop;
+        const scrollContainerPos = this._drawerContainerInnerRef.parentNode.scrollTop;
 
         this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
     }
 
+    _transitionProps(el) {
+        let t;
+        let transitions = {
+            'transition': 'transitionend',
+            'oTransition': 'oTransitionEnd',
+            'MozTransition': 'transitionend',
+            'WebkitTransition': 'webkitTransitionEnd',
+        };
+
+        for (t in transitions) {
+            if (el.style[t] !== undefined) {
+                return transitions[t];
+            }
+        }
+    }
 }
 
 Drawer.Header = DrawerHeader;
 Drawer.Wing = DrawerWing;
 
 Drawer.defaultProps = {
-    position: 'right'
+    isOpen: false,
+    position: 'right',
 };
+
+const colorEnums = [ 'dark-blue', 'white' ];
 
 Drawer.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     color: PropTypes.oneOf(colorEnums),
     header: PropTypes.bool,
     inverse: PropTypes.bool,
-    onCloseComplete: PropTypes.func,
     isOpen: PropTypes.bool.isRequired,
-    onOpenComplete: PropTypes.func,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
+    onCloseComplete: PropTypes.func,
+    onOpenComplete: PropTypes.func,
     path: PropTypes.string,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     scrollBar: PropTypes.bool,
     style: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
-    wing: PropTypes.object
+    wing: PropTypes.object,
 };
 
 Drawer.contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
 };
 
 export default Drawer;

@@ -1,13 +1,10 @@
 'use strict';
 
-import _ from 'lodash';
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Card, Container, Drawer, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const drawerSample = `import React from 'react';
@@ -124,7 +121,7 @@ export default class CloseButtonsSample extends React.Component {
                 <Drawer
                     closeButton={(
                         <Icon
-                            compact={true}
+                            compact
                             onClick={this._onCustomCloseButtonDrawerClick.bind(this)}
                             type="times"
                         />
@@ -236,7 +233,7 @@ export default class MaxWidthSample extends React.Component {
                 <Drawer
                     closeButton={(
                         <Icon
-                            compact={true}
+                            compact
                             onClick={this._onMaxWidthDrawerClick.bind(this)}
                             type="times"
                         />
@@ -281,7 +278,7 @@ export default class OnClickOutsideSample extends React.Component {
 
                 <Drawer
                     isOpen={this.state.isOnClickOutsideDrawerOpen}
-                    onClickOutside={true}
+                    onClickOutside
                     onClose={this._onClickOutsideDrawerClick.bind(this)}
                     title="Click Outside of The Drawer"
                 >
@@ -318,7 +315,7 @@ export default class HeaderSample extends React.Component {
             <div>
                 <Drawer
                     isOpen={this.state.isDrawerHeaderOpen}
-                    header={true}
+                    header
                     onClose={this._onDrawerHeaderClick.bind(this)}
                     title="Custom Header"
                 >
@@ -378,7 +375,7 @@ export default class InverseSample extends React.Component {
 
                 <Drawer
                     isOpen={this.state.isDrawerInverseOpen}
-                    inverse={true}
+                    inverse
                     onClose={this._onDrawerInverseClick.bind(this)}
                     title="A Inversed Drawer"
                 >
@@ -538,7 +535,7 @@ export default class NestHeaderSample extends React.Component {
         const { nestHeaderIndex } = this.state;
         const nestHeaderNavRender = (
             <SubNavigation
-                drawer={true}
+                drawer
                 onClick={this._onNestHeaderNavClick.bind(this)}
                 selected={nestHeaderIndex}
                 style={{ margin: 0 }}
@@ -554,7 +551,7 @@ export default class NestHeaderSample extends React.Component {
 
                 <Drawer
                     isOpen={this.state.nestHeaderDrawer}
-                    header={true}
+                    header
                     onClose={this._onNestHeaderDrawerClick.bind(this)}
                     title="Child Component Header Nesting"
                 >
@@ -634,7 +631,7 @@ class NestHeader1DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
 
 };
@@ -699,7 +696,7 @@ class NestHeader2DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
 
 };
@@ -852,13 +849,13 @@ export default class WingSample extends React.Component {
 }`;
 
 export default class ModulesDrawer extends React.Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
             drawerOnClosePath: null,
             isBasicDrawerOpen: false,
+            isBasicLeftDrawerOpen: false,
             isCloseButtonDrawerOpen: false,
             isCustomCloseButtonDrawerOpen: false,
             isDrawerColorOpen: false,
@@ -874,7 +871,6 @@ export default class ModulesDrawer extends React.Component {
             nestHeaderIndex: 0,
             subNavIndex: 0
         };
-
 
         this._onCloseComplete = this._onCloseComplete.bind(this);
         this._onDrawerColorClick = this._onDrawerColorClick.bind(this);
@@ -945,11 +941,11 @@ export default class ModulesDrawer extends React.Component {
     }
 
     _onOpenComplete(isComplete) {
-        console.log('on drawer open animation is complete');
+        console.log('on drawer open animation is complete'); // eslint-disable-line no-console
     }
 
     _onCloseComplete(isComplete) {
-        console.log('on drawer close animation is complete');
+        console.log('on drawer close animation is complete'); // eslint-disable-line no-console
     }
 
     _onOpenCompleteClick() {
@@ -1093,7 +1089,7 @@ export default class ModulesDrawer extends React.Component {
                     </Card>
 
                     {/* Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Drawer
                         <Header.Subheader>
                             A basic drawer.
@@ -1124,7 +1120,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Left Side Drawer */}
-                    <Header anchor="left-side-drawer" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="left-side-drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Drawer
                         <Header.Subheader>
                             A left side drawer.
@@ -1151,7 +1147,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Close Button */}
-                    <Header anchor="close-button" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="close-button" size="large" style={{ marginTop: '55px' }} sub>
                         Close Button
                         <Header.Subheader>
                             A Drawer's close button can be changed using a string or giving custom JSX.
@@ -1177,7 +1173,7 @@ export default class ModulesDrawer extends React.Component {
                     <Drawer
                         closeButton={(
                             <Icon
-                                compact={true}
+                                compact
                                 onClick={this._onCustomCloseButtonDrawerClick.bind(this)}
                                 type="times"
                             />
@@ -1198,7 +1194,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
                         Color
                         <Header.Subheader>
                             A Drawer can have different background colors.
@@ -1250,7 +1246,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
                         Inverse
                         <Header.Subheader>
                             A Drawer can be inversed..
@@ -1261,7 +1257,7 @@ export default class ModulesDrawer extends React.Component {
 
                     <Drawer
                         isOpen={this.state.isDrawerInverseOpen}
-                        inverse={true}
+                        inverse
                         onClose={this._onDrawerInverseClick.bind(this)}
                         title="A Inversed Drawer"
                     >
@@ -1289,7 +1285,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* onCloseComplete and onOpenComplete */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
                         onCloseComplete and onOpenComplete
                         <Header.Subheader>
                             Alerts the parent component that the Drawer's open and closing animations are complete.
@@ -1329,7 +1325,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Max Width */}
-                    <Header anchor="max-width" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="max-width" size="large" style={{ marginTop: '55px' }} sub>
                         Max Width
                         <Header.Subheader>
                             A Drawer's max width can be defined and overwritten.
@@ -1341,7 +1337,7 @@ export default class ModulesDrawer extends React.Component {
                     <Drawer
                         closeButton={(
                             <Icon
-                                compact={true}
+                                compact
                                 onClick={this._onMaxWidthDrawerClick.bind(this)}
                                 type="times"
                             />
@@ -1363,7 +1359,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* On Click Outside */}
-                    <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub>
                         On Click Outside
                         <Header.Subheader>
                             A Drawer can be closed when click outside of it's container.
@@ -1374,7 +1370,7 @@ export default class ModulesDrawer extends React.Component {
 
                     <Drawer
                         isOpen={this.state.isOnClickOutsideDrawerOpen}
-                        onClickOutside={true}
+                        onClickOutside
                         onClose={this._onClickOutsideDrawerClick.bind(this)}
                         title="Click Outside of The Drawer"
                     >
@@ -1390,18 +1386,18 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Path */}
-                    <Header anchor="path" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="path" size="large" style={{ marginTop: '55px' }} sub>
                         Path
                         <Header.Subheader>
                             Route to a different path from a drawer.
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onPathDrawerClick.bind(this)}>Open The Basic Drawer</Button>
+                    <Button onClick={this._onPathDrawerClick.bind(this, '')}>Open The Basic Drawer</Button>
 
                     <Drawer
                         isOpen={this.state.isPathDrawerOpen}
-                        onClose={this._onPathDrawerClick.bind(this)}
+                        onClose={this._onPathDrawerClick.bind(this, '')}
                         path={this.state.drawerOnClosePath}
                         title="The Best Title"
                     >
@@ -1459,7 +1455,7 @@ export default class ModulesDrawer extends React.Component {
         const { nestHeaderIndex, subNavIndex } = this.state;
         const nestHeaderNavRender = (
             <SubNavigation
-                drawer={true}
+                drawer
                 onClick={this._onNestHeaderNavClick.bind(this)}
                 selected={nestHeaderIndex}
                 style={{ margin: 0 }}
@@ -1480,7 +1476,7 @@ export default class ModulesDrawer extends React.Component {
                     </Card>
 
                     {/* Header */}
-                    <Header anchor="header" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="header" size="large" style={{ marginTop: '55px' }} sub>
                         Header
                         <Header.Subheader>
                             A Drawer can be closed when click outside of it's container.
@@ -1530,7 +1526,7 @@ export default class ModulesDrawer extends React.Component {
                     </Highlighter>
 
                     {/* Child Component Header Nesting */}
-                    <Header anchor="child-component-header-nesting" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="child-component-header-nesting" size="large" style={{ marginTop: '55px' }} sub>
                         Child Component Header Nesting
                         <Header.Subheader>
                             Nest a Header inside of a child component.
@@ -1541,7 +1537,7 @@ export default class ModulesDrawer extends React.Component {
 
                     <Drawer
                         isOpen={this.state.nestHeaderDrawer}
-                        header={true}
+                        header
                         onClose={this._onNestHeaderDrawerClick.bind(this)}
                         title="Child Component Header Nesting"
                     >
@@ -1603,7 +1599,7 @@ export default class ModulesDrawer extends React.Component {
                     </Card>
 
                     {/* Wing */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
                         Wing
                         <Header.Subheader>
                             A Drawer can have different background colors.
@@ -1655,11 +1651,10 @@ export default class ModulesDrawer extends React.Component {
 }
 
 ModulesDrawer.contextTypes = {
-    router: PropTypes.object.isRequired
-}
+    router: PropTypes.object.isRequired,
+};
 
 class NestHeader1DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1707,10 +1702,9 @@ class NestHeader1DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
-
-};
+}
 
 NestHeader1DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
@@ -1724,7 +1718,6 @@ NestHeader1DrawerComponent.propTypes = {
 };
 
 class NestHeader2DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1773,10 +1766,9 @@ class NestHeader2DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
-
-};
+}
 
 NestHeader2DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
@@ -1790,7 +1782,6 @@ NestHeader2DrawerComponent.propTypes = {
 };
 
 class NestHeader3DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1832,8 +1823,7 @@ class NestHeader3DrawerComponent extends React.Component {
             </div>
         );
     }
-
-};
+}
 
 NestHeader3DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
