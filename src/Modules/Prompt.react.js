@@ -1,13 +1,12 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Prompt extends Component {
-
     constructor(props) {
         super(props);
 
@@ -28,7 +27,16 @@ class Prompt extends Component {
     }
 
     render() {
-        const { children, className, inline, inlineHorizontalAlign, inlineMessageColor, message, style } = this.props;
+        const {
+            children,
+            className,
+            id,
+            inline,
+            inlineHorizontalAlign,
+            inlineMessageColor,
+            message,
+            style
+        } = this.props;
         const { show, inlineVerticalAlign } = this.state;
         const containerClasses = ClassNames('ui', 'prompt', className, {
             'prompt-show': show,
@@ -45,7 +53,7 @@ class Prompt extends Component {
         };
 
         return (
-            <div className={containerClasses} style={style}>
+            <div className={containerClasses} id={id} style={style}>
                 {this._renderAction()}
 
                 <div className="prompt-actions" style={promptActionsStyle}>
@@ -114,24 +122,23 @@ class Prompt extends Component {
                 className: promptActionClasses,
                 color: show ? 'disable' : children.props.color,
                 onClick: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction }
+                ref: promptAction => { this.promptAction = promptAction; },
             });
         } else if (children && children.type.name === 'Dropdown') {
             return React.cloneElement(children, {
                 className: promptActionClasses,
                 buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
                 onChange: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction }
+                ref: promptAction => { this.promptAction = promptAction; },
             });
         } else {
             return React.cloneElement(children, {
                 className: `${promptActionClasses} ${show ? 'color-static' : null}`,
                 onClick: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction }
+                ref: promptAction => { this.promptAction = promptAction; },
             });
         }
     }
-
 }
 
 const inlineHorizontalAlign = [ 'left', 'right' ];
@@ -139,6 +146,7 @@ const inlineMessageColor = [ 'alert', 'success' ];
 
 Prompt.propTypes = {
     className: PropTypes.string,
+    id: PropTypes.string,
     inline: PropTypes.bool,
     inlineHorizontalAlign: PropTypes.oneOf(inlineHorizontalAlign),
     inlineMessageColor: PropTypes.oneOf(inlineMessageColor),
@@ -146,7 +154,7 @@ Prompt.propTypes = {
     onClick: PropTypes.func,
     onNoClick: PropTypes.func,
     onYesClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Prompt;
