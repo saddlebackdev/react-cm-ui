@@ -1,11 +1,16 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 
 class RadioItem extends Component {
+    constructor() {
+        super();
+
+        this._onClick = this._onClick.bind(this);
+    }
 
     render() {
         const { checked, className, id, label, name, style } = this.props;
@@ -14,13 +19,13 @@ class RadioItem extends Component {
         });
 
         return (
-            <div className={containerClasses} onClick={this._onClick.bind(this)} style={style}>
+            <div className={containerClasses} onClick={this._onClick} style={style}>
                 <input
                     checked={checked}
                     className="input"
                     id={id}
                     name={name}
-                    readOnly={true}
+                    readOnly
                     type="radio"
                 />
 
@@ -34,7 +39,6 @@ class RadioItem extends Component {
 
         onClick(id || index);
     }
-
 }
 
 RadioItem.propTypes = {
@@ -60,11 +64,13 @@ const isCheckedMulti = (c, i, isChecked) => {
 };
 
 class Radio extends Component {
-
     constructor(props) {
         super(props);
 
-        this.state = { isChecked: props.checked }
+        this.state = { isChecked: props.checked };
+
+        this._onClick = this._onClick.bind(this);
+        this._onLabelClick = this._onLabelClick.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,7 +89,7 @@ class Radio extends Component {
             'radio-disabled': disabled,
             'radio-full-width': fluid,
             'radio-is-checked': isChecked && !pill,
-            'radio-pill': pill
+            'radio-pill': pill,
         });
         const labelClasses = ClassNames('label', {
             'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
@@ -97,7 +103,7 @@ class Radio extends Component {
                         index: i,
                         checked: isCheckedItem(c, i, isChecked),
                         name: multi ? null : name,
-                        onClick: this._onClick.bind(this)
+                        onClick: this._onClick
                     }))}
                 </div>
             );
@@ -105,7 +111,7 @@ class Radio extends Component {
             return (
                 <div
                     className={containerClasses}
-                    onClick={this._onClick.bind(this)}
+                    onClick={this._onClick}
                     style={style}
                 >
                     <input
@@ -114,14 +120,14 @@ class Radio extends Component {
                         disabled={disabled}
                         id={id}
                         name={name}
-                        readOnly={true}
+                        readOnly
                         type="radio"
                         value={value}
                     />
 
                     <label className={labelClasses}>
                         {label ? (
-                            <span onClick={this._onLabelClick.bind(this)}>{label}</span>
+                            <span onClick={this._onLabelClick}>{label}</span>
                         ) : null}
                     </label>
                 </div>
@@ -149,10 +155,12 @@ class Radio extends Component {
             newValue = true;
         }
 
-        if (!_.isUndefined(onChange)) {
-            onChange(pill ? idArg : id, newValue);
-        } else if (!disabled) {
-            this.setState({ isChecked: newValue });
+        if (!disabled) {
+            if (!_.isUndefined(onChange)) {
+                onChange(pill ? idArg : id, newValue);
+            } else {
+                this.setState({ isChecked: newValue });
+            }
         }
     }
 
@@ -163,7 +171,6 @@ class Radio extends Component {
             event.stopPropagation();
         }
     }
-
 }
 
 Radio.Item = RadioItem;
@@ -187,7 +194,7 @@ Radio.propTypes = {
     onChange: PropTypes.func,
     pill: PropTypes.bool,
     style: PropTypes.object,
-    value: PropTypes.string
-}
+    value: PropTypes.string,
+};
 
 export default Radio;
