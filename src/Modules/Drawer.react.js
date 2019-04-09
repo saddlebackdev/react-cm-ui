@@ -257,11 +257,11 @@ class Drawer extends Component {
         renderContent = React.Children.map(children, child => {
             if (_.isFunction(child.type)) {
                 return React.cloneElement(child, {
-                    closeButton: this.props.closeButton,
-                    inverse: this.props.inverse,
+                    closeButton: closeButton,
+                    inverse: inverse,
                     onClose: this._onClose,
-                    title: this.props.title,
-                    titleTruncate: this.props.titleTruncate,
+                    title: title,
+                    titleTruncate: titleTruncate,
                 });
             } else {
                 return React.Children.map(child.props.children, secondaryChild => {
@@ -269,11 +269,11 @@ class Drawer extends Component {
                         return (
                             <DrawerHeader
                                 children={secondaryChild.props.children}
-                                closeButton={this.props.closeButton}
-                                inverse={this.props.inverse}
+                                closeButton={closeButton}
+                                inverse={inverse}
                                 onClose={this._onClose}
-                                title={this.props.title}
-                                titleTruncate={this.props.titleTruncat}
+                                title={title}
+                                titleTruncate={titleTruncat}
                             />
                         );
                     } else {
