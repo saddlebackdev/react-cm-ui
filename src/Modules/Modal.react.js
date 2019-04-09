@@ -23,7 +23,7 @@ class ModalHeader extends Component {
     render() {
         const { children, closeButton, inverse, title, titleTruncate } = this.props;
         const titleClass = ClassNames('title', {
-            'modal-title-truncate': titleTruncate
+            'modal-title-truncate': titleTruncate,
         });
 
         return (
@@ -131,7 +131,7 @@ class Modal extends Component {
             header,
             inverse,
             title,
-            titleTruncate
+            titleTruncate,
         } = this.props;
         const {
             autoHeightMax,
@@ -142,15 +142,17 @@ class Modal extends Component {
             maxWidth,
             minHeight,
             minWidth,
-            width
+            width,
         } = this.state;
 
-        if (!isOpen) { return false; }
+        if (!isOpen) {
+            return false;
+        }
 
         const containerClasses = ClassNames('ui', 'modal', className);
         const containerInnerClasses = ClassNames('modal-container', {
             'modal-container-inverse': inverse,
-            'modal-container-is-scrolled': isScrolled
+            'modal-container-is-scrolled': isScrolled,
         });
         const containerInnerStyles = {
             height: height,
@@ -158,7 +160,7 @@ class Modal extends Component {
             maxWidth: maxWidth,
             minHeight: minHeight,
             minWidth: minWidth,
-            width: width
+            width: width,
         };
         const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
 
@@ -183,11 +185,11 @@ class Modal extends Component {
                                 style={containerInnerScrollStyles}
                             >
                                 {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
-                                    closeButton: this.props.closeButton,
-                                    inverse: this.props.inverse,
+                                    closeButton: closeButton,
+                                    inverse: inverse,
                                     onClose: this._onClose,
-                                    title: this.props.title,
-                                    titleTruncate: this.props.titleTruncate,
+                                    title: title,
+                                    titleTruncate: titleTruncate,
                                 })) : [
                                     <ModalHeader
                                         closeButton={closeButton}
@@ -199,7 +201,7 @@ class Modal extends Component {
                                     />,
                                     <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
                                         {this.props.children}
-                                    </div>
+                                    </div>,
                                 ]}
                             </div>
                         </ScrollBar>
@@ -231,7 +233,7 @@ class Modal extends Component {
             'animation': 'animationend',
             'OAnimation': 'oAnimationEnd',
             'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd'
+            'WebkitAnimation': 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -330,7 +332,11 @@ class Modal extends Component {
         }
 
         if (!_.isUndefined(maxWidth)) {
-            this._modalContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : null
+            this._modalContainer.style.maxWidth = _.isNumber(maxWidth) ?
+                `${maxWidth}px` :
+                _.isString(maxWidth) ?
+                    maxWidth :
+                    null;
         } else {
             this._modalContainer.style.maxWidth = 768 - (layeredOffset * (modalLength - 1)) + 'px';
         }
@@ -367,7 +373,7 @@ class Modal extends Component {
                     maxWidth: this.props.maxWidth || this._defaultDimensions.maxWidth,
                     minHeight: this.props.minHeight || '305px',
                     minWidth: this.props.minWidth || this._defaultDimensions.minWidth,
-                    width: this.props.width || '640px'
+                    width: this.props.width || '640px',
                 };
             } else {
                 dimensions = {
@@ -376,7 +382,7 @@ class Modal extends Component {
                     maxWidth: this._defaultDimensions.maxWidth,
                     minHeight: this._defaultDimensions.minHeight,
                     minWidth: this._defaultDimensions.minWidth,
-                    width: this._defaultDimensions.width
+                    width: this._defaultDimensions.width,
                 };
             }
 
@@ -403,31 +409,31 @@ Modal.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     fluidContent: PropTypes.bool,
     header: PropTypes.bool,
     height: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     maxHeight: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     minHeight: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     minWidth: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -436,7 +442,7 @@ Modal.propTypes = {
     titleTruncate: PropTypes.bool,
     width: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
 };
 
