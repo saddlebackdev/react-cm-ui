@@ -5,12 +5,43 @@ import BannerItem from './BannerItem.react';
 import ClassNames from 'classnames';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
-import Portal from 'react-portal';
+import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 class Banner extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isOpen: props.isOpen,
+        };
+
+        this._onAnimationComplete = this._onAnimationComplete.bind(this);
+        this._onBeforeClose = this._onBeforeClose.bind(this);
+        this._onOpen = this._onOpen.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevProps.isOpen && this.props.isOpen) {
+            this.setState({
+                isOpen: this.props.isOpen,
+            }, () => {
+                this._onOpen();
+            });
+        }
+
+        if (prevProps.isOpen && !this.props.isOpen) {
+            this._onBeforeClose();
+        }
+    }
+
     render() {
-        const { children, className, id, isOpen, level, levelIcon, message, title, type } = this.props;
+        const { children, className, id, level, levelIcon, message, title, type } = this.props;
+        const { isOpen } = this.state;
+
+        if (!isOpen) { return false; }
+
         const containerClasses = ClassNames('ui', 'banner', className, {
             'banner-level-error': level === 'error',
             'banner-level-purple': level === 'purple', // Rename when better defined.
@@ -41,11 +72,7 @@ class Banner extends Component {
         }
 
         return (
-            <Portal
-                beforeClose={this._onBeforeClose.bind(this)}
-                isOpened={isOpen}
-                onOpen={this._onOpen.bind(this)}
-            >
+            <Portal ref={ref => this._portalRef = ref }>
                 <div className={containerClasses} id={id} style={this.props.style}>
                     <div className={containerInnerClasses}>
                         <div className="banner-level-type">
@@ -90,6 +117,12 @@ class Banner extends Component {
         );
     }
 
+    componentDidMount() {
+        if (this.state.isOpen) {
+            this._onOpen();
+        }
+    }
+
     _animationProps(el) {
         let a;
         let animations = {
@@ -104,32 +137,6 @@ class Banner extends Component {
                 return animations[a];
             }
         }
-    }
-
-    _onAnimationComplete(animationEvent, el, removeFromDOM) {
-        const { id, isOpen, onAfterClose } = this.props;
-        el.removeEventListener(animationEvent, this._onAnimationComplete.bind(this));
-
-        removeFromDOM();
-
-        this._bannerYPositions();
-
-        if (!_.isUndefined(onAfterClose) && !isOpen) {
-            onAfterClose(id);
-        }
-    }
-
-    _onBeforeClose(node, removeFromDOM) {
-        const banner = node.querySelector('.ui.banner');
-        const bannerContainer = banner.querySelector('.banner-container');
-        const animationEvent = this._animationProps(bannerContainer);
-
-        bannerContainer.className += ' animate-out';
-        bannerContainer.addEventListener(animationEvent, this._onAnimationComplete.bind(this, animationEvent, bannerContainer, removeFromDOM));
-    }
-
-    _onClose() {
-        this.props.onClose(this.props.id);
     }
 
     _bannerYPositions() {
@@ -147,8 +154,40 @@ class Banner extends Component {
         });
     }
 
-    _onOpen(node) {
-        node.querySelector('.ui.banner').style.zIndex = 10000;
+    _onAnimationComplete() {
+        const { id, isOpen, onAfterClose } = this.props;
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const bannerContainer = nodePortal.querySelector('.banner-container');
+        const animationEvent = this._animationProps(bannerContainer);
+        bannerContainer.removeEventListener(animationEvent, this._onAnimationComplete);
+
+        this.setState({
+            isOpen: false,
+        }, () => {
+            this._bannerYPositions();
+
+            if (!_.isUndefined(onAfterClose) && !isOpen) {
+                onAfterClose(id);
+            }
+        });
+    }
+
+    _onBeforeClose() {
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const bannerContainer = nodePortal.querySelector('.banner-container');
+        const animationEvent = this._animationProps(bannerContainer);
+
+        bannerContainer.className += ' animate-out';
+        bannerContainer.addEventListener(animationEvent, this._onAnimationComplete);
+    }
+
+    _onClose() {
+        this.props.onClose(this.props.id);
+    }
+
+    _onOpen() {
+        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        nodePortal.style.zIndex = 10000;
         this._bannerYPositions();
 
         if (!_.isUndefined(this.props.onOpen)) {
