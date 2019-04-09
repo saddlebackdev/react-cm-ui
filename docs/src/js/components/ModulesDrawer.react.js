@@ -1,13 +1,10 @@
 'use strict';
 
-import _ from 'lodash';
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Card, Container, Drawer, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const drawerSample = `import React from 'react';
@@ -634,7 +631,7 @@ class NestHeader1DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
 
 };
@@ -699,7 +696,7 @@ class NestHeader2DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
 
 };
@@ -944,11 +941,11 @@ export default class ModulesDrawer extends React.Component {
     }
 
     _onOpenComplete(isComplete) {
-        console.log('on drawer open animation is complete');
+        console.log('on drawer open animation is complete'); // eslint-disable-line no-console
     }
 
     _onCloseComplete(isComplete) {
-        console.log('on drawer close animation is complete');
+        console.log('on drawer close animation is complete'); // eslint-disable-line no-console
     }
 
     _onOpenCompleteClick() {
@@ -974,7 +971,6 @@ export default class ModulesDrawer extends React.Component {
     }
 
     _onPathDrawerClick(path) {
-        console.log('path', path);
         this.setState({
             isPathDrawerOpen: !this.state.isPathDrawerOpen,
             drawerOnClosePath: path || this.state.drawerOnClosePath
@@ -1655,11 +1651,10 @@ export default class ModulesDrawer extends React.Component {
 }
 
 ModulesDrawer.contextTypes = {
-    router: PropTypes.object.isRequired
-}
+    router: PropTypes.object.isRequired,
+};
 
 class NestHeader1DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1707,10 +1702,9 @@ class NestHeader1DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
-
-};
+}
 
 NestHeader1DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
@@ -1724,7 +1718,6 @@ NestHeader1DrawerComponent.propTypes = {
 };
 
 class NestHeader2DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1773,10 +1766,9 @@ class NestHeader2DrawerComponent extends React.Component {
     }
 
     _onClick() {
-        console.log('Clicked!');
+        console.log('Clicked!'); // eslint-disable-line no-console
     }
-
-};
+}
 
 NestHeader2DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
@@ -1790,7 +1782,6 @@ NestHeader2DrawerComponent.propTypes = {
 };
 
 class NestHeader3DrawerComponent extends React.Component {
-
     render() {
         const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
 
@@ -1832,8 +1823,7 @@ class NestHeader3DrawerComponent extends React.Component {
             </div>
         );
     }
-
-};
+}
 
 NestHeader3DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
