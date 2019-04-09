@@ -1,7 +1,7 @@
-@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator';
+@import '../../config/Colors', '../../config/Fonts', '../../config/FontSizeCalculator', '../../config/Variables';
 
 // The drawers z-index's starts at 9000
-$zindex: 9000;
+$zindex: $drawer-zindex;
 
 html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.drawer-open {
