@@ -1,15 +1,13 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
+import DOMUtils from '../utils/DOMUtils.js';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
-
-import DOMUtils from '../utils/DOMUtils.js';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 class CardHeader extends Component {
     render() {
@@ -18,7 +16,7 @@ class CardHeader extends Component {
             'card-header-attached': attached,
             'card-header-color-blue': color === 'blue',
             'card-header-color-green': color === 'green',
-            'card-header-color-pink': color === 'pink'
+            'card-header-color-pink': color === 'pink',
         });
 
         return (
@@ -38,7 +36,7 @@ CardHeader.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
     style: PropTypes.object,
-    title: PropTypes.string
+    title: PropTypes.string,
 };
 
 class Card extends Component {
@@ -48,7 +46,7 @@ class Card extends Component {
         this.state = {
             contentHeight: null,
             isCollapsed: false,
-            isCollapsing: false
+            isCollapsing: false,
         };
 
         this._onClick = this._onClick.bind(this);
@@ -68,7 +66,20 @@ class Card extends Component {
     }
 
     render() {
-        const { active, attached, children, className, collapsable, compact, header, onClick, nest, style, title } = this.props;
+        const {
+            active,
+            attached,
+            children,
+            className,
+            collapsable,
+            compact,
+            header,
+            id,
+            onClick,
+            nest,
+            style,
+            title,
+        } = this.props;
         const { contentHeight, isCollapsed, isCollapsing } = this.state;
         const containerClasses = ClassNames('ui', 'card', className, {
             'card-active': active,
@@ -78,7 +89,7 @@ class Card extends Component {
             'card-is-collapsed': isCollapsed,
             'card-is-collapsing': isCollapsing,
             'card-compact': compact,
-            'card-nest': nest
+            'card-nest': nest,
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         const customHeaderObj = _.find(convertChildren, child => {
@@ -111,6 +122,7 @@ class Card extends Component {
         return (
             <section
                 className={containerClasses}
+                id={id}
                 onClick={this._onClick}
                 style={style}
             >
@@ -120,10 +132,14 @@ class Card extends Component {
 
                 <div
                     className="card-content"
-                    ref={outerContent => { this.outerContent = outerContent; }}
+                    ref={outerContent => {
+                        this.outerContent = outerContent; 
+                    }}
                     style={{ height: contentHeight }}
                 >
-                    <div ref={innerContent => { this.innerContent = innerContent; }}>
+                    <div ref={innerContent => {
+                        this.innerContent = innerContent; 
+                    }}>
                         {renderContent}
                     </div>
                 </div>
@@ -143,7 +159,7 @@ class Card extends Component {
             this._observer.observe(innerContent, {
                 childList: true,
                 characterData: true,
-                subtree: true
+                subtree: true,
             });
 
             this._setContentHeight();
@@ -188,7 +204,7 @@ class Card extends Component {
         this.setState({
             contentHeight: !isCollapsed ? 0 : this._getContentHeight(),
             isCollapsed: !isCollapsed,
-            isCollapsing: true
+            isCollapsing: true,
         });
     }
 
@@ -222,7 +238,7 @@ class Card extends Component {
             this.setState({ contentHeight: this._getContentHeight() });
         }
     }
-};
+}
 
 Card.Header = CardHeader;
 
@@ -233,10 +249,11 @@ Card.propTypes = {
     collapsable: PropTypes.bool,
     compact: PropTypes.bool,
     header: PropTypes.bool,
+    id: PropTypes.string,
     nest: PropTypes.bool,
     onClick: PropTypes.func,
     style: PropTypes.object,
-    title: PropTypes.string
+    title: PropTypes.string,
 };
 
 export default Card;
