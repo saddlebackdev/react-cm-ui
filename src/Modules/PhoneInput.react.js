@@ -1,14 +1,12 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import CountryTelephoneData from 'country-telephone-data';
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import Dropdown from './Dropdown.react';
 import Input from '../Elements/Input.react';
+import PropTypes from 'prop-types';
 
 class CountrySelectionOption extends Component {
     constructor() {
@@ -19,8 +17,8 @@ class CountrySelectionOption extends Component {
         this._onMouseMove = this._onMouseMove.bind(this);
     }
 
-    render () {
-        const { children, className, handleMouseDown, option } = this.props;
+    render() {
+        const { className, option } = this.props;
         const containerClasses = ClassNames('Select-option', className);
 
         return (
@@ -36,14 +34,14 @@ class CountrySelectionOption extends Component {
                     style={{
                         alignItems: 'center',
                         display: 'flex',
-                        justifyContent: 'flex-start'
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <span
                         className={`flag-icon flag-icon-${option.iso2}`}
                         style={{
                             display: 'inline-block',
-                            flex: '0 1 20px'
+                            flex: '0 1 20px',
                         }}
                     />
                     <span
@@ -81,11 +79,13 @@ class CountrySelectionOption extends Component {
     _onMouseMove(event) {
         const { isFocused, onFocus, option } = this.props;
 
-        if (isFocused) return;
+        if (isFocused) {
+            return;
+        }
 
         onFocus(option, event);
     }
-};
+}
 
 CountrySelectionOption.propTypes = {
     className: PropTypes.string,
@@ -97,7 +97,7 @@ CountrySelectionOption.propTypes = {
 };
 
 class CountrySelectionValue extends Component {
-    render () {
+    render() {
         const { value } = this.props;
         const containerClasses = ClassNames('Select-value');
 
@@ -110,10 +110,10 @@ class CountrySelectionValue extends Component {
             </div>
         );
     }
-};
+}
 
 CountrySelectionValue.propTypes = {
-    value: PropTypes.object
+    value: PropTypes.object,
 };
 
 class PhoneInput extends Component {
@@ -128,7 +128,7 @@ class PhoneInput extends Component {
             countrySelection,
             inputMask: this._getCountryInputMask(countrySelection),
             inputPlaceholder: this._getCountryInputPlaceholder(countrySelection),
-            inputValue: props.value || ''
+            inputValue: props.value || '',
         };
 
         this._onDropdownChange = this._onDropdownChange.bind(this);
@@ -152,7 +152,11 @@ class PhoneInput extends Component {
         }
 
         return (
-            <div className={containerClasses} style={style}>
+            <div
+                className={containerClasses}
+                id={id}
+                style={style}
+            >
                 {label ? (
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
@@ -203,7 +207,7 @@ class PhoneInput extends Component {
                 label: `${c.name} (${c.iso2}) (+${c.dialCode})`,
                 name: c.name,
                 priority: c.priority,
-                value: i
+                value: i,
             };
         })
     }
@@ -211,7 +215,9 @@ class PhoneInput extends Component {
     _getCountryInputMask(selectionOption) {
         let mask = [];
 
-        if (_.isUndefined(selectionOption)) { return mask; }
+        if (_.isUndefined(selectionOption)) {
+            return mask;
+        }
 
         const dialCode = selectionOption.dialCode;
         const format = selectionOption.format;
@@ -242,7 +248,9 @@ class PhoneInput extends Component {
     _getCountryInputPlaceholder(selectionOption) {
         let placeholder = '';
 
-        if (_.isUndefined(selectionOption)) { return placeholder; }
+        if (_.isUndefined(selectionOption)) {
+            return placeholder;
+        }
 
         const dialCode = selectionOption.dialCode;
         const format = selectionOption.format;
@@ -265,10 +273,11 @@ class PhoneInput extends Component {
         this.setState({
             countrySelection: selectionOption,
             inputMask: this._getCountryInputMask(selectionOption),
-            inputPlaceholder: this._getCountryInputPlaceholder(selectionOption)
+            inputPlaceholder: this._getCountryInputPlaceholder(selectionOption),
         });
 
         const { onCountryChange } = this.props;
+
         if (_.isFunction(onCountryChange)) {
             onCountryChange(selectionOption.iso2);
         }
@@ -294,7 +303,7 @@ PhoneInput.propTypes = {
     dropdownIconType: PropTypes.string,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
     iso2: PropTypes.string,
@@ -306,12 +315,12 @@ PhoneInput.propTypes = {
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     value: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
-    ])
+        PropTypes.string,
+    ]),
 };
 
 export default PhoneInput;
