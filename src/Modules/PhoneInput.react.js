@@ -209,7 +209,7 @@ class PhoneInput extends Component {
                 priority: c.priority,
                 value: i,
             };
-        })
+        });
     }
 
     _getCountryInputMask(selectionOption) {
