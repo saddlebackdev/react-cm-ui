@@ -1,17 +1,15 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import TetherComponent from 'react-tether';
-
 import DatePickerCalendar from './DatePickerDeprecatedCalendar.react';
 import DatePickerInput from './DatePickerDeprecatedInput.react';
-
 import DatePickerUtils from '../utils/DatePickerUtils.js';
+import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import TetherComponent from 'react-tether';
 
 class DatePicker extends Component {
     constructor(props) {
@@ -20,7 +18,7 @@ class DatePicker extends Component {
         this.state = {
             inputHasValue: false,
             isCalendarOpen: false,
-            presetLink: 'open'
+            presetLink: 'open',
         };
     }
 
@@ -72,45 +70,51 @@ class DatePicker extends Component {
                         classPrefix="date-picker-deprecated-tether"
                         constraints={[{
                             to: 'window',
-                            attachment: 'together'
+                            attachment: 'together',
                         }]}
+                        renderElement={ref => this.state.isCalendarOpen && (
+                            <div ref={ref}>
+                                {calendarJSX}
+                            </div>
+                        )}
+                        renderTarget={ref => (
+                            <div ref={ref}>
+                                <DatePickerInput
+                                    className={classNameInput}
+                                    date={this._convertTimestamp(date)}
+                                    dateEnd={this._convertTimestamp(dateEnd)}
+                                    dateFormat={dateFormat}
+                                    dateSecondaryEnd={this._convertTimestamp(dateSecondaryEnd)}
+                                    dateSecondaryStart={this._convertTimestamp(dateSecondaryStart)}
+                                    dateStart={this._convertTimestamp(dateStart)}
+                                    disabled={disabled}
+                                    error={error}
+                                    excludeDates={excludeDates}
+                                    filterDates={filterDates}
+                                    hasValue={this._hasValue.bind(this)}
+                                    id={id}
+                                    includeDates={includeDates}
+                                    locale={locale}
+                                    maxDate={maxDate}
+                                    minDate={minDate}
+                                    onBlur={this._onInputBlur.bind(this)}
+                                    onClick={this._onInputClick.bind(this)}
+                                    onDone={this._setOpen.bind(this)}
+                                    onFocus={this._onInputFocus.bind(this)}
+                                    onSelect={this._onSelect.bind(this)}
+                                    open={this.state.isCalendarOpen}
+                                    ref="input"
+                                    required={required}
+                                    setSelected={this._setSelected.bind(this)}
+                                    tabIndex={tabIndex}
+                                    type={type || 'singleDate'}
+                                    uxMode={uxMode}
+                                />
+                            </div>
+                        )}
                         targetAttachment={'bottom left'}
                         targetOffset={'10px 0'}
-                    >
-                        <DatePickerInput
-                            className={classNameInput}
-                            date={this._convertTimestamp(date)}
-                            dateEnd={this._convertTimestamp(dateEnd)}
-                            dateFormat={dateFormat}
-                            dateSecondaryEnd={this._convertTimestamp(dateSecondaryEnd)}
-                            dateSecondaryStart={this._convertTimestamp(dateSecondaryStart)}
-                            dateStart={this._convertTimestamp(dateStart)}
-                            disabled={disabled}
-                            error={error}
-                            excludeDates={excludeDates}
-                            filterDates={filterDates}
-                            hasValue={this._hasValue.bind(this)}
-                            id={id}
-                            includeDates={includeDates}
-                            locale={locale}
-                            maxDate={maxDate}
-                            minDate={minDate}
-                            onBlur={this._onInputBlur.bind(this)}
-                            onClick={this._onInputClick.bind(this)}
-                            onDone={this._setOpen.bind(this)}
-                            onFocus={this._onInputFocus.bind(this)}
-                            onSelect={this._onSelect.bind(this)}
-                            open={this.state.isCalendarOpen}
-                            ref="input"
-                            required={required}
-                            setSelected={this._setSelected.bind(this)}
-                            tabIndex={tabIndex}
-                            type={type || 'singleDate'}
-                            uxMode={uxMode}
-                        />
-
-                        {this.state.isCalendarOpen ? calendarJSX : null}
-                    </TetherComponent>
+                    />
                 ) : (
                     <div>
                         {type === 'dateRange' ? (
@@ -121,7 +125,7 @@ class DatePicker extends Component {
                                             className={ClassNames('font-size-xsmall', {
                                                 'color-static': this.state.presetLink !== 'open',
                                                 'color-text': this.state.presetLink === 'open',
-                                                'text-decoration-underline': this.state.presetLink === 'open'
+                                                'text-decoration-underline': this.state.presetLink === 'open',
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'open')}
                                         >
@@ -134,7 +138,7 @@ class DatePicker extends Component {
                                             className={ClassNames('font-size-xsmall', {
                                                 'color-static': this.state.presetLink !== 'pastWeek',
                                                 'color-text': this.state.presetLink === 'pastWeek',
-                                                'text-decoration-underline': this.state.presetLink === 'pastWeek'
+                                                'text-decoration-underline': this.state.presetLink === 'pastWeek',
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'pastWeek')}
                                         >
@@ -147,7 +151,7 @@ class DatePicker extends Component {
                                             className={ClassNames('font-size-xsmall', {
                                                 'color-static': this.state.presetLink !== 'monthToDate',
                                                 'color-text': this.state.presetLink === 'monthToDate',
-                                                'text-decoration-underline': this.state.presetLink === 'monthToDate'
+                                                'text-decoration-underline': this.state.presetLink === 'monthToDate',
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'monthToDate')}
                                         >
@@ -160,7 +164,7 @@ class DatePicker extends Component {
                                             className={ClassNames('font-size-xsmall', {
                                                 'color-static': this.state.presetLink !== 'custom',
                                                 'color-text': this.state.presetLink === 'custom',
-                                                'text-decoration-underline': this.state.presetLink === 'custom'
+                                                'text-decoration-underline': this.state.presetLink === 'custom',
                                             })}
                                             onClick={this._onPresetClick.bind(this, 'custom')}
                                         >
@@ -249,7 +253,7 @@ class DatePicker extends Component {
         } else if (type === 'servicePeriodRange' || type === 'servicePeriodRangeEnd' || type === 'servicePeriodRangeStart') {
             this.props.onChange({
                 dateFirstChoice: null,
-                dateSecondChoice: null
+                dateSecondChoice: null,
             });
         } else {
             this._setSelected(null);
@@ -292,21 +296,21 @@ class DatePicker extends Component {
 
             this.props.onChange({
                 dateEnd: null,
-                dateStart: null
+                dateStart: null,
             });
         } else if (type === 'pastWeek') {
             activePreset = 'pastWeek';
 
             this.props.onChange({
                 dateEnd: moment().subtract(1, 'day').unix(),
-                dateStart: moment().subtract(1, 'week').unix()
+                dateStart: moment().subtract(1, 'week').unix(),
             });
         } else if (type === 'monthToDate') {
             activePreset = 'monthToDate';
 
             this.props.onChange({
                 dateEnd: moment().unix(),
-                dateStart: moment().subtract(1, 'month').unix()
+                dateStart: moment().subtract(1, 'month').unix(),
             });
         } else if (type === 'custom') {
             activePreset = 'custom';
@@ -321,7 +325,7 @@ class DatePicker extends Component {
         if (type === 'dateRange') {
             const dateObj = {
                 dateEnd: dateEnd,
-                dateStart: dateStart
+                dateStart: dateStart,
             };
             const isDateBeforeDateStart = (_.isUndefined(dateType) || dateType === 'dateStart') && date.isBefore(this._convertTimestamp(dateStart));
             const isDateBeforeDateEnd = (_.isUndefined(dateType) || dateType === 'dateEnd') && date.isBefore(this._convertTimestamp(dateEnd));
@@ -370,7 +374,7 @@ class DatePicker extends Component {
         } else if (type === 'servicePeriodRange' || type === 'servicePeriodRangeEnd' || type === 'servicePeriodRangeStart') {
             const dateObj = {
                 dateFirstChoice: dateStart,
-                dateSecondChoice: dateSecondaryStart
+                dateSecondChoice: dateSecondaryStart,
             };
             const isDateBeforeDateStart = date.isBefore(this._convertTimestamp(dateStart));
             const isDateAfterDateEnd = date.isAfter(this._convertTimestamp(dateEnd));
@@ -395,6 +399,7 @@ class DatePicker extends Component {
             } else {
                 this.props.onChange(null);
             }
+
             this._hasValue(date);
         }
     }
@@ -443,7 +448,7 @@ DatePicker.propTypes = {
     required: PropTypes.bool,
     tabIndex: PropTypes.number,
     type: PropTypes.oneOf(typeEnums),
-    uxMode: PropTypes.oneOf(uxModeEnums)
+    uxMode: PropTypes.oneOf(uxModeEnums),
 };
 
 export default DatePicker;
