@@ -10,7 +10,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { DOMUtils } from 'react-cm-ui';
 
 // Structure Components
@@ -22,7 +22,6 @@ if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
 }
 
 export default class CoreApp extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -58,7 +57,6 @@ export default class CoreApp extends React.Component {
             document.body.classList.add('pushed-right');
         }
     }
-
 }
 
 function onUpdate() {
@@ -83,8 +81,8 @@ let routes = (
         <IndexRoute
             getComponent={(location, callback) => {
                 require.ensure([], require => {
-                    callback(null, require('components/GettingStartedIntroduction.react'))
-                }, 'GettingStartedIntroduction')
+                    callback(null, require('components/GettingStartedIntroduction.react'));
+                }, 'GettingStartedIntroduction');
             }}
         />
 
@@ -92,8 +90,8 @@ let routes = (
             path="introduction"
             getComponent={(location, callback) => {
                 require.ensure([], require => {
-                    callback(null, require('components/GettingStartedIntroduction.react'))
-                }, 'GettingStartedIntroduction')
+                    callback(null, require('components/GettingStartedIntroduction.react'));
+                }, 'GettingStartedIntroduction');
             }}
         />
 
@@ -102,8 +100,8 @@ let routes = (
                 path="colors"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/StyleGuideColors.react'))
-                    }, 'StyleGuideColors')
+                        callback(null, require('components/StyleGuideColors.react'));
+                    }, 'StyleGuideColors');
                 }}
             />
         </Route>
@@ -113,112 +111,112 @@ let routes = (
                 path="button"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsButton.react'))
-                    }, 'ElementsButton')
+                        callback(null, require('components/ElementsButton.react'));
+                    }, 'ElementsButton');
                 }}
             />
             <Route
                 path="checkbox"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsCheckbox.react'))
-                    }, 'ElementsCheckbox')
+                        callback(null, require('components/ElementsCheckbox.react'));
+                    }, 'ElementsCheckbox');
                 }}
             />
             <Route
                 path="comment"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsComment.react'))
-                    }, 'ElementsComment')
+                        callback(null, require('components/ElementsComment.react'));
+                    }, 'ElementsComment');
                 }}
             />
             <Route
                 path="divider"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsDivider.react'))
-                    }, 'ElementsDivider')
+                        callback(null, require('components/ElementsDivider.react'));
+                    }, 'ElementsDivider');
                 }}
             />
             <Route
                 path="header"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsHeader.react'))
-                    }, 'ElementsHeader')
+                        callback(null, require('components/ElementsHeader.react'));
+                    }, 'ElementsHeader');
                 }}
             />
             <Route
                 path="icon"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsIcon.react'))
-                    }, 'ElementsIcon')
+                        callback(null, require('components/ElementsIcon.react'));
+                    }, 'ElementsIcon');
                 }}
             />
             <Route
                 path="image"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsImage.react'))
-                    }, 'ElementsImage')
+                        callback(null, require('components/ElementsImage.react'));
+                    }, 'ElementsImage');
                 }}
             />
             <Route
                 path="input"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsInput.react'))
-                    }, 'ElementsInput')
+                        callback(null, require('components/ElementsInput.react'));
+                    }, 'ElementsInput');
                 }}
             />
             <Route
                 path="label"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsLabel.react'))
-                    }, 'ElementsLabel')
+                        callback(null, require('components/ElementsLabel.react'));
+                    }, 'ElementsLabel');
                 }}
             />
             <Route
                 path="list"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsList.react'))
-                    }, 'ElementsList')
+                        callback(null, require('components/ElementsList.react'));
+                    }, 'ElementsList');
                 }}
             />
             <Route
                 path="loader"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsLoader.react'))
-                    }, 'ElementsLoader')
+                        callback(null, require('components/ElementsLoader.react'));
+                    }, 'ElementsLoader');
                 }}
             />
             <Route
                 path="radio"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsRadio.react'))
-                    }, 'ElementsRadio')
+                        callback(null, require('components/ElementsRadio.react'));
+                    }, 'ElementsRadio');
                 }}
             />
             <Route
                 path="rail"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsRail.react'))
-                    }, 'ElementsRail')
+                        callback(null, require('components/ElementsRail.react'));
+                    }, 'ElementsRail');
                 }}
             />
             <Route
                 path="text-area"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ElementsTextArea.react'))
-                    }, 'ElementsTextArea')
+                        callback(null, require('components/ElementsTextArea.react'));
+                    }, 'ElementsTextArea');
                 }}
             />
         </Route>
@@ -228,24 +226,24 @@ let routes = (
                 path="grid"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/CollectionsGrid.react'))
-                    }, 'CollectionsGrid')
+                        callback(null, require('components/CollectionsGrid.react'));
+                    }, 'CollectionsGrid');
                 }}
             />
             <Route
                 path="table"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/CollectionsTable.react'))
-                    }, 'CollectionsTable')
+                        callback(null, require('components/CollectionsTable.react'));
+                    }, 'CollectionsTable');
                 }}
             />
             <Route
                 path="tabs"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/CollectionsTabs.react'))
-                    }, 'CollectionsTabs')
+                        callback(null, require('components/CollectionsTabs.react'));
+                    }, 'CollectionsTabs');
                 }}
             />
         </Route>
@@ -255,40 +253,40 @@ let routes = (
                 path="banner"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ViewsBanner.react'))
-                    }, 'ViewsBanner')
+                        callback(null, require('components/ViewsBanner.react'));
+                    }, 'ViewsBanner');
                 }}
             />
             <Route
                 path="info-bar"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ViewsInfoBar.react'))
-                    }, 'ViewsInfoBar')
+                        callback(null, require('components/ViewsInfoBar.react'));
+                    }, 'ViewsInfoBar');
                 }}
             />
             <Route
                 path="card"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ViewsCard.react'))
-                    }, 'ViewsCard')
+                        callback(null, require('components/ViewsCard.react'));
+                    }, 'ViewsCard');
                 }}
             />
             <Route
                 path="sub-navigation"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ViewsSubNavigation.react'))
-                    }, 'ViewsSubNavigation')
+                        callback(null, require('components/ViewsSubNavigation.react'));
+                    }, 'ViewsSubNavigation');
                 }}
             />
             <Route
                 path="title-bar"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ViewsTitleBar.react'))
-                    }, 'ViewsTitleBar')
+                        callback(null, require('components/ViewsTitleBar.react'));
+                    }, 'ViewsTitleBar');
                 }}
             />
         </Route>
@@ -298,104 +296,96 @@ let routes = (
                 path="accordion"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesAccordion.react'))
-                    }, 'ModulesAccordion')
+                        callback(null, require('components/ModulesAccordion.react'));
+                    }, 'ModulesAccordion');
                 }}
             />
             <Route
                 path="date-picker"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDatePicker.react'))
-                    }, 'ModulesDatePicker')
+                        callback(null, require('components/ModulesDatePicker.react'));
+                    }, 'ModulesDatePicker');
                 }}
             />
             <Route
                 path="date-picker-calendar"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDatePickerCalendar.react'))
-                    }, 'ModulesDatePickerCalendar')
+                        callback(null, require('components/ModulesDatePickerCalendar.react'));
+                    }, 'ModulesDatePickerCalendar');
                 }}
             />
             <Route
                 path="date-picker-input"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDatePickerInput.react'))
-                    }, 'ModulesDatePickerInput')
-                }}
-            />
-            <Route
-                path="drag-and-drop"
-                getComponent={(location, callback) => {
-                    require.ensure([], require => {
-                        callback(null, require('components/ModulesDragAndDrop.react'))
-                    }, 'ModulesDragAndDrop')
+                        callback(null, require('components/ModulesDatePickerInput.react'));
+                    }, 'ModulesDatePickerInput');
                 }}
             />
             <Route
                 path="drawer"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDrawer.react'))
-                    }, 'ModulesDrawer')
+                        callback(null, require('components/ModulesDrawer.react'));
+                    }, 'ModulesDrawer');
                 }}
             />
             <Route
                 path="dropdown"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDropdown.react'))
-                    }, 'ModulesDropdown')
+                        callback(null, require('components/ModulesDropdown.react'));
+                    }, 'ModulesDropdown');
                 }}
             />
             <Route
                 path="duration-picker"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesDurationPicker.react'))
-                    }, 'ModulesDurationPicker')
+                        callback(null, require('components/ModulesDurationPicker.react'));
+                    }, 'ModulesDurationPicker');
                 }}
             />
             <Route
                 path="modal"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesModal.react'))
-                    }, 'ModulesModal')
+                        callback(null, require('components/ModulesModal.react'));
+                    }, 'ModulesModal');
                 }}
             />
             <Route
                 path="phone-input"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesPhoneInput.react'))
-                    }, 'ModulesPhoneInput')
+                        callback(null, require('components/ModulesPhoneInput.react'));
+                    }, 'ModulesPhoneInput');
                 }}
             />
             <Route
                 path="prompt"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesPrompt.react'))
-                    }, 'ModulesPrompt')
+                        callback(null, require('components/ModulesPrompt.react'));
+                    }, 'ModulesPrompt');
                 }}
             />
             <Route
                 path="segmented-controls"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesSegmentedControls.react'))
-                    }, 'ModulesSegmentedControls')
+                        callback(null, require('components/ModulesSegmentedControls.react'));
+                    }, 'ModulesSegmentedControls');
                 }}
             />
             <Route
                 path="time-picker"
                 getComponent={(location, callback) => {
                     require.ensure([], require => {
-                        callback(null, require('components/ModulesTimePicker.react'))
-                    }, 'ModulesTimePicker')
+                        callback(null, require('components/ModulesTimePicker.react'));
+                    }, 'ModulesTimePicker');
                 }}
             />
         </Route>
