@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2019-04-25
+### Added
+- Added a new **<Drawer.Wing />** color: `grey`.
+
+### Changed
+- Upgraded React from version 15.6.2 to 16.8.6.
+
 ## 1.20.1 - 2019-04-11
 ### Added
 - **<Card />** and **<PhoneInput />** now accept IDs. This is the same change as `v1.19.6`.
