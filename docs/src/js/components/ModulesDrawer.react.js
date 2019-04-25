@@ -788,10 +788,17 @@ export default class WingSample extends React.Component {
     render() {
         let wing;
 
-        if (this.state.isWingOpen === 1) {
-            wing = <Drawer.Wing key={1}>first wing render drawer wing</Drawer.Wing>;
-        } else if (this.state.isWingOpen === 2) {
-            wing = <Drawer.Wing color="dark-blue" key={2} width={320}>second wing render drawer wing</Drawer.Wing>;
+        switch (this.state.isWingOpen) {
+            case 1:
+                wing = <Drawer.Wing key={1}>white wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 2:
+                wing = <Drawer.Wing color="dark-blue" key={2} width={320}>dark blue wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 3:
+                wing = <Drawer.Wing color="grey" key={3} width={320}>grey wing render drawer wing</Drawer.Wing>;
         }
 
         return (
@@ -809,9 +816,11 @@ export default class WingSample extends React.Component {
                     <div>
                         <Header>A Blue Drawer</Header>
 
-                        <Button onClick={() => this._openWing(1)}>First Wing</Button>
+                        <Button onClick={() => this._openWing(1)}>White Wing</Button>
 
-                        <Button onClick={() => this._openWing(2)}>Second Wing</Button>
+                        <Button onClick={() => this._openWing(2)}>Dark Blue Wing</Button>
+
+                        <Button onClick={() => this._openWing(3)}>Grey Wing</Button>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -869,7 +878,7 @@ export default class ModulesDrawer extends React.Component {
             isWingOpen: false,
             nestHeaderDrawer: false,
             nestHeaderIndex: 0,
-            subNavIndex: 0
+            subNavIndex: 0,
         };
 
         this._onCloseComplete = this._onCloseComplete.bind(this);
@@ -925,14 +934,14 @@ export default class ModulesDrawer extends React.Component {
 
     _onDrawerColorClick() {
         this.setState({
-            isDrawerColorOpen: !this.state.isDrawerColorOpen
+            isDrawerColorOpen: !this.state.isDrawerColorOpen,
         });
     }
 
     _onDrawerWingClick() {
         this.setState({
             isDrawerWingOpen: !this.state.isDrawerWingOpen,
-            isWingOpen: null
+            isWingOpen: null,
         });
     }
 
@@ -973,7 +982,7 @@ export default class ModulesDrawer extends React.Component {
     _onPathDrawerClick(path) {
         this.setState({
             isPathDrawerOpen: !this.state.isPathDrawerOpen,
-            drawerOnClosePath: path || this.state.drawerOnClosePath
+            drawerOnClosePath: path || this.state.drawerOnClosePath,
         });
     }
 
@@ -996,86 +1005,86 @@ export default class ModulesDrawer extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'closeButton',
                 type: 'string || object',
                 default: '',
                 description: 'A Drawer\'s close button can be changed using a string or giving custom JSX.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'header',
                 type: 'bool',
                 default: '',
                 description: 'Required boolean for the Drawer\'s custom Header.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown can be inversed.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'isOpen',
                 type: 'bool',
                 default: 'false',
                 description: 'Required boolean for the Drawer\'s open/close state.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'maxWidth',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Drawer a maximum width.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClickOutside',
                 type: 'bool',
                 default: 'false',
                 description: 'Ability to close Drawer if clicked outside of container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Drawer.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onCloseComplete',
                 type: 'func',
                 default: '',
                 description: 'Alerts the parent component that the closing animation is complete.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onOpenComplete',
                 type: 'func',
                 default: '',
                 description: 'Alerts the parent component that the opening animation is complete.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'scrollBar',
                 type: 'bool',
                 default: 'true',
                 description: 'Disable the custom scrollbars.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Drawer\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'title',
                 type: 'string',
                 default: '',
                 description: 'Required string to give a Drawer a title.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'position',
                 type: 'string',
                 default: 'right',
                 description: 'The position of the Drawer.',
-                allowedTypes: 'left, right'
-            }
+                allowedTypes: 'left, right',
+            },
         ];
         const { subNavIndex } = this.state;
 
@@ -1425,32 +1434,32 @@ export default class ModulesDrawer extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'closeButton',
                 type: 'string || object',
                 default: '',
                 description: 'A Drawer\'s close button can be changed using a string or giving custom JSX.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Drawer.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Drawer\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'title',
                 type: 'string',
                 default: '',
                 description: 'Required string to give a Drawer a title.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
         const { nestHeaderIndex, subNavIndex } = this.state;
         const nestHeaderNavRender = (
@@ -1571,22 +1580,29 @@ export default class ModulesDrawer extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'A DrawerWing can have different background colors.',
-                allowedTypes: 'dark-blue, white'
+                allowedTypes: 'dark-blue, grey, white',
             }, {
                 name: 'width',
                 type: 'number',
                 default: '',
                 description: 'A DrawerWing can have differnet widths.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
         const { subNavIndex } = this.state;
         let wing;
 
-        if (this.state.isWingOpen === 1) {
-            wing = <Drawer.Wing key={1}>first wing render drawer wing</Drawer.Wing>;
-        } else if (this.state.isWingOpen === 2) {
-            wing = <Drawer.Wing color="dark-blue" key={2} width={320}>second wing render drawer wing</Drawer.Wing>;
+        switch (this.state.isWingOpen) {
+            case 1:
+                wing = <Drawer.Wing key={1}>white wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 2:
+                wing = <Drawer.Wing color="dark-blue" key={2} width={320}>dark blue wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 3:
+                wing = <Drawer.Wing color="grey" key={3} width={320}>grey wing render drawer wing</Drawer.Wing>;
         }
 
         if (subNavIndex === 2) {
@@ -1619,9 +1635,11 @@ export default class ModulesDrawer extends React.Component {
                         <div>
                             <Header>A Blue Drawer</Header>
 
-                            <Button onClick={() => this._openWing(1)}>First Wing</Button>
+                            <Button onClick={() => this._openWing(1)}>White Wing</Button>
 
-                            <Button onClick={() => this._openWing(2)}>Second Wing</Button>
+                            <Button onClick={() => this._openWing(2)}>Dark Blue Wing</Button>
+
+                            <Button onClick={() => this._openWing(3)}>Grey Wing</Button>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -1709,12 +1727,12 @@ class NestHeader1DrawerComponent extends React.Component {
 NestHeader1DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.string,
-    titleTruncate: PropTypes.bool
+    titleTruncate: PropTypes.bool,
 };
 
 class NestHeader2DrawerComponent extends React.Component {
@@ -1773,12 +1791,12 @@ class NestHeader2DrawerComponent extends React.Component {
 NestHeader2DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.string,
-    titleTruncate: PropTypes.bool
+    titleTruncate: PropTypes.bool,
 };
 
 class NestHeader3DrawerComponent extends React.Component {
@@ -1828,10 +1846,10 @@ class NestHeader3DrawerComponent extends React.Component {
 NestHeader3DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.string,
-    titleTruncate: PropTypes.bool
+    titleTruncate: PropTypes.bool,
 };
