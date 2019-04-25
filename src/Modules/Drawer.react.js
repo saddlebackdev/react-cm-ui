@@ -75,6 +75,7 @@ class DrawerWing extends Component {
         const { children, className, color, width, style } = this.props;
         const containerClasses = ClassNames('drawer-wing', className, {
             'color-dark-blue': color === 'dark-blue',
+            'color-grey': color === 'grey',
         });
         const defaultStyle = {
             width: width || null,
@@ -318,7 +319,7 @@ class Drawer extends Component {
         }
 
         return (
-            <Portal ref={ref => this._portalRef = ref }>
+            <Portal>
                 <div className={containerClasses}>
                     <div
                         className={containerInnerClasses}
@@ -453,7 +454,7 @@ class Drawer extends Component {
     _onOpen() {
         const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         this._drawerContainer = nodePortal.querySelector('.drawer-container');

@@ -788,10 +788,17 @@ export default class WingSample extends React.Component {
     render() {
         let wing;
 
-        if (this.state.isWingOpen === 1) {
-            wing = <Drawer.Wing key={1}>first wing render drawer wing</Drawer.Wing>;
-        } else if (this.state.isWingOpen === 2) {
-            wing = <Drawer.Wing color="dark-blue" key={2} width={320}>second wing render drawer wing</Drawer.Wing>;
+        switch (this.state.isWingOpen) {
+            case 1:
+                wing = <Drawer.Wing key={1}>white wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 2:
+                wing = <Drawer.Wing color="dark-blue" key={2} width={320}>dark blue wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 3:
+                wing = <Drawer.Wing color="grey" key={3} width={320}>grey wing render drawer wing</Drawer.Wing>;
         }
 
         return (
@@ -809,9 +816,11 @@ export default class WingSample extends React.Component {
                     <div>
                         <Header>A Blue Drawer</Header>
 
-                        <Button onClick={() => this._openWing(1)}>First Wing</Button>
+                        <Button onClick={() => this._openWing(1)}>White Wing</Button>
 
-                        <Button onClick={() => this._openWing(2)}>Second Wing</Button>
+                        <Button onClick={() => this._openWing(2)}>Dark Blue Wing</Button>
+
+                        <Button onClick={() => this._openWing(3)}>Grey Wing</Button>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -1583,10 +1592,17 @@ export default class ModulesDrawer extends React.Component {
         const { subNavIndex } = this.state;
         let wing;
 
-        if (this.state.isWingOpen === 1) {
-            wing = <Drawer.Wing key={1}>first wing render drawer wing</Drawer.Wing>;
-        } else if (this.state.isWingOpen === 2) {
-            wing = <Drawer.Wing color="dark-blue" key={2} width={320}>second wing render drawer wing</Drawer.Wing>;
+        switch (this.state.isWingOpen) {
+            case 1:
+                wing = <Drawer.Wing key={1}>white wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 2:
+                wing = <Drawer.Wing color="dark-blue" key={2} width={320}>dark blue wing render drawer wing</Drawer.Wing>;
+
+                break;
+            case 3:
+                wing = <Drawer.Wing color="grey" key={3} width={320}>grey wing render drawer wing</Drawer.Wing>;
         }
 
         if (subNavIndex === 2) {
@@ -1619,9 +1635,11 @@ export default class ModulesDrawer extends React.Component {
                         <div>
                             <Header>A Blue Drawer</Header>
 
-                            <Button onClick={() => this._openWing(1)}>First Wing</Button>
+                            <Button onClick={() => this._openWing(1)}>White Wing</Button>
 
-                            <Button onClick={() => this._openWing(2)}>Second Wing</Button>
+                            <Button onClick={() => this._openWing(2)}>Dark Blue Wing</Button>
+
+                            <Button onClick={() => this._openWing(3)}>Grey Wing</Button>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 

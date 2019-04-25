@@ -173,10 +173,6 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/drag-and-drop' }} activeClassName={isActive}>Drag & Drop</Link>
-                            </li>
-
-                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/modules/drawer' }} activeClassName={isActive}>Drawer</Link>
                             </li>
 
@@ -216,10 +212,6 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
 
                             <li>
-                                <a className="core-app-nav-item" href="http://react-dnd.github.io/react-dnd/" target="_blank">react-dnd</a>
-                            </li>
-
-                            <li>
                                 <a className="core-app-nav-item" href="https://github.com/tajo/react-portal" target="_blank">react-portal</a>
                             </li>
 
@@ -229,14 +221,6 @@ export default class CoreAppNavigation extends React.Component {
 
                             <li>
                                 <a className="core-app-nav-item" href="https://github.com/JedWatson/react-select" target="_blank">react-select</a>
-                            </li>
-
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/captivationsoftware/react-sticky" target="_blank">react-sticky</a>
-                            </li>
-
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/captivationsoftware/react-sticky" target="_blank">highcharts</a>
                             </li>
                         </ul>
                     </div>
