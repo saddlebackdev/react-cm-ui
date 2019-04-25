@@ -1,6 +1,5 @@
 'use strict';
 
-import { Portal, PortalWithState } from 'react-portal';
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Button from '../Elements/Button.react';
@@ -9,11 +8,13 @@ import Divider from '../Elements/Divider.react';
 import DOMUtils from '../utils/DOMUtils.js';
 import Header from '../Elements/Header.react';
 import Icon from '../Elements/Icon.react';
+import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
 const DEFAULT_CONTAINER_PADDING_TOP = 27;
+const colorEnums = [ 'dark-blue', 'grey', 'white' ];
 
 class CloseButton extends Component {
     constructor() {
@@ -23,13 +24,16 @@ class CloseButton extends Component {
 
     render() {
         const { closeButton, inverse, onClose } = this.props;
-        if (!onClose) { return false; }
+
+        if (!onClose) {
+            return false;
+        }
 
         let closeButtonJSX;
 
         if (_.isObject(closeButton)) {
             closeButtonJSX = React.cloneElement(closeButton, {
-                className: 'drawer-close-button'
+                className: 'drawer-close-button',
             });
         } else {
             closeButtonJSX = (
@@ -60,7 +64,7 @@ class CloseButton extends Component {
 CloseButton.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
@@ -70,10 +74,10 @@ class DrawerWing extends Component {
     render() {
         const { children, className, color, width, style } = this.props;
         const containerClasses = ClassNames('drawer-wing', className, {
-            'color-dark-blue': color === 'dark-blue'
+            'color-dark-blue': color === 'dark-blue',
         });
         const defaultStyle = {
-            width: width || null
+            width: width || null,
         };
 
         return (
@@ -112,7 +116,7 @@ class DrawerHeader extends Component {
     render() {
         const { children, closeButton, inverse, onClose, title, titleTruncate } = this.props;
         const titleClass = ClassNames('title', {
-            'drawer-title-truncate': titleTruncate
+            'drawer-title-truncate': titleTruncate,
         });
 
         return (
@@ -564,8 +568,6 @@ Drawer.defaultProps = {
     isOpen: false,
     position: 'right',
 };
-
-const colorEnums = [ 'dark-blue', 'white' ];
 
 Drawer.propTypes = {
     className: PropTypes.string,
