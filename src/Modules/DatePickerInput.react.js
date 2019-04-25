@@ -127,62 +127,66 @@ class DatePickerInput extends React.PureComponent {
                     classPrefix="date-picker-tether"
                     constraints={[{
                         to: 'window',
-                        attachment: 'together'
+                        attachment: 'together',
                     }]}
-                    targetAttachment={'bottom left'}
-                    targetOffset={'10px 0'}
-                >
-                    <Input
-                        autoComplete="off"
-                        data-parsley-error-message={errorMessage}
-                        disabled={disabled}
-                        guide
-                        icon={(
-                            <Icon
-                                color={isCalendarOpen ? 'highlight' : disabled ? 'primary' : null}
-                                compact
-                                disable={disabled}
-                                onClick={this._onIconClick}
-                                type="calendar"
+                    renderElement={ref => isCalendarOpen && (
+                        <div ref={ref}>
+                            <CalendarOnClickOutside
+                                controls="dropdowns"
+                                date={date}
+                                dateFrom={dateFrom}
+                                dateTo={dateTo}
+                                events={events}
+                                excludeDates={excludeDates}
+                                filterDates={filterDates}
+                                includeDates={includeDates}
+                                locale={locale}
+                                maxDate={this._getMaxDate()}
+                                minDate={this._getMinDate()}
+                                mode="input"
+                                onChange={this._onCalendarChange}
+                                onClose={this._onCalendarClickOutside}
+                                onMonthChange={this._onMonthChange}
+                                rangeFrom={rangeFrom}
+                                rangeTo={rangeTo}
                             />
-                        )}
-                        keepCharPositions
-                        label={label}
-                        mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
-                        onBlur={this._onInputBlur}
-                        onChange={this._onInputChange}
-                        onFocus={this._onInputFocus}
-                        onKeyDown={this._onInputKeyDown}
-                        placeholder="mm/dd/yyyy"
-                        ref={ref => this._datePickerInput = ref}
-                        required={required}
-                        tabIndex={tabIndex}
-                        type="text"
-                        value={inputValue}
-                    />
-
-                    {isCalendarOpen ? (
-                        <CalendarOnClickOutside
-                            controls="dropdowns"
-                            date={date}
-                            dateFrom={dateFrom}
-                            dateTo={dateTo}
-                            events={events}
-                            excludeDates={excludeDates}
-                            filterDates={filterDates}
-                            includeDates={includeDates}
-                            locale={locale}
-                            maxDate={this._getMaxDate()}
-                            minDate={this._getMinDate()}
-                            mode="input"
-                            onChange={this._onCalendarChange}
-                            onClose={this._onCalendarClickOutside}
-                            onMonthChange={this._onMonthChange}
-                            rangeFrom={rangeFrom}
-                            rangeTo={rangeTo}
-                        />
-                    ) : null}
-                </TetherComponent>
+                        </div>
+                    )}
+                    renderTarget={ref => (
+                        <div ref={ref}>
+                            <Input
+                                autoComplete="off"
+                                data-parsley-error-message={errorMessage}
+                                disabled={disabled}
+                                guide
+                                icon={(
+                                    <Icon
+                                        color={isCalendarOpen ? 'highlight' : disabled ? 'primary' : null}
+                                        compact
+                                        disable={disabled}
+                                        onClick={this._onIconClick}
+                                        type="calendar"
+                                    />
+                                )}
+                                keepCharPositions
+                                label={label}
+                                mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
+                                onBlur={this._onInputBlur}
+                                onChange={this._onInputChange}
+                                onFocus={this._onInputFocus}
+                                onKeyDown={this._onInputKeyDown}
+                                placeholder="mm/dd/yyyy"
+                                required={required}
+                                ref={ref => this._datePickerInput = ref}
+                                tabIndex={tabIndex}
+                                type="text"
+                                value={inputValue}
+                            />
+                        </div>
+                    )}
+                    targetAttachment={'bottom left'}
+                    targetOffset={'11px 0'}
+                />
             </div>
         );
     }
