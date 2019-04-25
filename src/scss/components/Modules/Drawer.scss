@@ -126,24 +126,26 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 transform: translate(-100%, 0);
             }
         }
-            .drawer-wing {
-                background-color: $bkgd;
-                color: $color-text;
-                height: 100%;
-                left: 0;
-                padding: 22px;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                &.color {
-                    &-dark-blue { background-color: $bkgd-blue; color: $color-text-inverse; }
-                }
+        .drawer-wing {
+            background-color: $bkgd;
+            color: $color-text;
+            height: 100%;
+            left: 0;
+            padding: 22px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            &.color-dark-blue {
+                background-color: $bkgd-blue;
+                color: $color-text-inverse;
             }
+            &.color-grey { background-color: $bkgd-nest; }
+        }
 
-            .drawer-wing-container.left-position .drawer-wing {
-                left: inherit;
-                right: 0;
-            }
+        .drawer-wing-container.left-position .drawer-wing {
+            left: inherit;
+            right: 0;
+        }
     }
 }
 .drawer-dimmers .drawer-dimmer {

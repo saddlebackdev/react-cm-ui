@@ -165,7 +165,7 @@ class Modal extends Component {
         const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
 
         return (
-            <Portal ref={ref => this._portalRef = ref }>
+            <Portal>
                 <div className={containerClasses}>
                     <div
                         className={containerInnerClasses}
@@ -244,7 +244,7 @@ class Modal extends Component {
     }
 
     _onBeforeClose() {
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         const modalContainer = nodePortal.querySelector('.modal-container');
         const animationEvent = this._animationProps(modalContainer);
 
@@ -302,7 +302,7 @@ class Modal extends Component {
     _onOpen() {
         const { autoHeight, onClickOutside, maxWidth } = this.props;
         const body = document.body;
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
         const modalLength = document.querySelectorAll('.ui.modal').length;
         this._modalContainer = nodePortal.querySelector('.modal-container');

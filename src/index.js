@@ -22,7 +22,6 @@ export { default as TextArea } from './Elements/TextArea.react.js';
 
 // Modules
 export { default as Accordion } from './Modules/Accordion.react.js';
-export { default as Chart } from './Modules/Chart.react.js';
 export { default as DatePicker } from './Modules/DatePickerDeprecated.react.js';
 export { default as DatePickerCalendar } from './Modules/DatePickerCalendar.react.js';
 export { default as DatePickerInput } from './Modules/DatePickerInput.react.js';
