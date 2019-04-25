@@ -40,7 +40,9 @@ class Banner extends Component {
         const { children, className, id, level, levelIcon, message, title, type } = this.props;
         const { isOpen } = this.state;
 
-        if (!isOpen) { return false; }
+        if (!isOpen) {
+            return false; 
+        }
 
         const containerClasses = ClassNames('ui', 'banner', className, {
             'banner-level-error': level === 'error',
@@ -50,7 +52,7 @@ class Banner extends Component {
             'banner-level-teal': level === 'teal', // Rename when better defined.
             'banner-level-warning': level === 'warning',
             'banner-type-alert': type === 'alert',
-            'banner-type-notification': type === 'notification'
+            'banner-type-notification': type === 'notification',
         });
         const containerInnerClasses = ClassNames('banner-container', className);
         const hasCloseButton = type === 'notification';
@@ -72,7 +74,7 @@ class Banner extends Component {
         }
 
         return (
-            <Portal ref={ref => this._portalRef = ref }>
+            <Portal>
                 <div className={containerClasses} id={id} style={this.props.style}>
                     <div className={containerInnerClasses}>
                         <div className="banner-level-type">
@@ -84,7 +86,7 @@ class Banner extends Component {
                                 size="small"
                                 style={{
                                     marginBottom: '5px',
-                                    paddingRight: hasCloseButton ? '16px' : null
+                                    paddingRight: hasCloseButton ? '16px' : null,
                                 }}
                             >
                                 {title}
@@ -129,7 +131,7 @@ class Banner extends Component {
             'animation': 'animationend',
             'OAnimation': 'oAnimationEnd',
             'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd'
+            'WebkitAnimation': 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -156,7 +158,7 @@ class Banner extends Component {
 
     _onAnimationComplete() {
         const { id, isOpen, onAfterClose } = this.props;
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         const bannerContainer = nodePortal.querySelector('.banner-container');
         const animationEvent = this._animationProps(bannerContainer);
         bannerContainer.removeEventListener(animationEvent, this._onAnimationComplete);
@@ -173,7 +175,7 @@ class Banner extends Component {
     }
 
     _onBeforeClose() {
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         const bannerContainer = nodePortal.querySelector('.banner-container');
         const animationEvent = this._animationProps(bannerContainer);
 
@@ -186,7 +188,7 @@ class Banner extends Component {
     }
 
     _onOpen() {
-        const nodePortal = ReactDOM.findDOMNode(this._portalRef.portal);
+        const nodePortal = ReactDOM.findDOMNode(this);
         nodePortal.style.zIndex = 10000;
         this._bannerYPositions();
 
