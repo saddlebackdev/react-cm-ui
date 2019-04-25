@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.0 - 2019-04-25
+### Fixed
+- Removed **<MenuTree**. It was unused and never an officially designed component.
+- Upgraded react-tether.
+
+## 2.0.0 - 2019-04-25
 ### Added
 - Added a new **<Drawer.Wing />** color: `grey`.
 
