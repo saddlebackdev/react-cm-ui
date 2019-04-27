@@ -212,10 +212,16 @@ class Drawer extends Component {
             this._onCloseWingToggle(false);
         }
 
-        if (prevProps.maxWidth !== this.props.maxWidth) {
+        if (this.props.isOpen && prevProps.maxWidth !== this.props.maxWidth) {
             const { maxWidth } = this.props;
 
-            this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : '768px';
+            if (_.isNumber(maxWidth)) {
+                this._drawerContainer.style.maxWidth = `${maxWidth}px`;
+            } else if (_.isString(maxWidth)) {
+                this._drawerContainer.style.maxWidth = maxWidth;
+            } else {
+                this._drawerContainer.style.maxWidth = '768px';
+            }
         }
 
         if (!prevProps.isOpen && this.props.isOpen) {
