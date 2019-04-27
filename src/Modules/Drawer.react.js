@@ -278,7 +278,7 @@ class Drawer extends Component {
                                 inverse={inverse}
                                 onClose={this._onClose}
                                 title={title}
-                                titleTruncate={titleTruncat}
+                                titleTruncate={titleTruncate}
                             />
                         );
                     } else {
