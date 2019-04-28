@@ -1,14 +1,12 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import TabsItem from './TabsItem.react';
 
 class Tabs extends Component {
-
     constructor(props) {
         super(props);
 
@@ -22,17 +20,24 @@ class Tabs extends Component {
     }
 
     render() {
-        const { children } = this.props;
+        const {
+            children,
+            id,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'tabs', this.props.className, {
-            'tabs-nest': this.props.nest
+            'tabs-nest': this.props.nest,
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         let buttons = _.map(convertChildren, (child, index) => {
             let isActive = ClassNames({ 'is-active': this.state.selected === index });
+            const buttonID = id ?
+                `${id}_${_.snakeCase(child.props.label)}` :
+                `tabs_button--${_.snakeCase(child.props.label)}`;
 
             return (
                 <button
                     className={isActive}
+                    id={buttonID}
                     onClick={this._onTabClick.bind(this, index)}
                     key={'tabs-buttons-' + index}
                 >
@@ -44,7 +49,11 @@ class Tabs extends Component {
         });
 
         return (
-            <div className={containerClasses} style={this.props.style}>
+            <div
+                className={containerClasses}
+                id={id}
+                style={this.props.style}
+            >
                 <div className="ui tabs-buttons">
                     {buttons}
                 </div>
@@ -63,17 +72,17 @@ class Tabs extends Component {
 
         event.preventDefault();
     }
-
-};
+}
 
 Tabs.Item = TabsItem;
 
 Tabs.propTypes = {
     className: PropTypes.string,
+    id: PropTypes.string,
     nest: PropTypes.bool,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Tabs;
