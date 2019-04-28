@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.6 - 2019-04-27
 ### Fixed
+- **<Table />** and its child components accept IDs now.
+
+## 2.0.5 - 2019-04-27
+### Fixed
 - Added another condition to look if **<Drawer />** is open before trying to add a style.
 
 ## 2.0.4 - 2019-04-26
