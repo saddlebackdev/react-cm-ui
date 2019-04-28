@@ -1,9 +1,8 @@
 'use strict';
 
+import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import TableBody from './TableBody.react';
 import TableCell from './TableCell.react';
 import TableHeader from './TableHeader.react';
@@ -13,10 +12,24 @@ import TableRow from './TableRow.react';
 import Utils from '../utils/Utils.js';
 
 class Table extends Component {
-
     render() {
-        const { basic, celled, className,
-            collapsing, definition, fixed, fontSize, fullWidth, selectable, singleLine, stretch, style, stackable, striped } = this.props;
+        const {
+            basic,
+            celled,
+            className,
+            collapsing,
+            definition,
+            fixed,
+            fontSize,
+            fullWidth,
+            id,
+            selectable,
+            singleLine,
+            stretch,
+            style,
+            stackable,
+            striped,
+        } = this.props;
         const containerClasses = ClassNames(
             'ui',
             'table', {
@@ -38,18 +51,21 @@ class Table extends Component {
                 'table-stretch-very': stretch === 'very',
                 'table-striped': striped,
                 'table-stackable': stackable,
-                'table-unstackable': stackable === false
+                'table-unstackable': stackable === false,
             },
             className
         );
 
         return (
-            <table className={containerClasses} style={style}>
+            <table
+                className={containerClasses}
+                id={id}
+                style={style}
+            >
                 {this.props.children}
             </table>
         );
     }
-
 }
 
 Table.Body = TableBody;
@@ -70,15 +86,16 @@ Table.propTypes = {
     fixed: PropTypes.bool,
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
     fullWidth: PropTypes.bool,
+    id: PropTypes.string,
     selectable: PropTypes.bool,
     singleLine: PropTypes.bool,
     stackable: PropTypes.bool,
     stretch: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf(['very'])
+        PropTypes.oneOf([ 'very' ]),
     ]),
     striped: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Table;
