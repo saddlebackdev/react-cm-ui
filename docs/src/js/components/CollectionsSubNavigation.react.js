@@ -1,13 +1,10 @@
 'use strict';
 
-import MediaQuery from 'react-responsive';
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import MediaQuery from 'react-responsive';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const subNavigationSample = `import React from 'react';
@@ -94,7 +91,6 @@ export default class OnClickChildrenSample extends React.Component {
 }`;
 
 export default class CollectionsSubNavigation extends React.Component {
-
     render() {
         const props = [
             {
@@ -102,32 +98,38 @@ export default class CollectionsSubNavigation extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'drawer',
                 type: 'bool',
                 default: '',
                 description: 'Applies a top border style to handle being in a drawer.',
-                allowedTypes: ''
+                allowedTypes: '',
+            }, {
+                name: 'id',
+                type: 'string',
+                default: '',
+                description: 'An identifier.',
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
                 description: 'SubNavigation can handle an onClick event.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selected',
                 type: 'number',
                 default: '',
                 description: 'Default selected button.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the SubNavigation\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -141,7 +143,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Card>
 
                 {/* Sub Navigation */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Sub Navigation
                     <Header.Subheader>
                         A standard Sub Navigation.
@@ -152,7 +154,7 @@ export default class CollectionsSubNavigation extends React.Component {
                     {matches => {
                         return (
                             <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation>
+                                <SubNavigation id="sub-navigation">
                                     <SubNavigation.Item label="Button 1" />
                                     <SubNavigation.Item label="Button 2" />
                                     <SubNavigation.Item label="Button 3" />
@@ -168,7 +170,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* Selected */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Selected
                     <Header.Subheader>
                         A Sub Navigation can change the default selected button.
@@ -195,7 +197,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Parent Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     onClick Parent Handler
                     <Header.Subheader>
                         A Sub Navigation can a have <code>onClick</code> event handler.
@@ -222,7 +224,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Children Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     onClick Children Handler
                     <Header.Subheader>
                         Can handle an onClick event from parent.
@@ -258,5 +260,4 @@ export default class CollectionsSubNavigation extends React.Component {
     _onParentClick(index) {
         window.alert('Yay, index ' + index + ' was just clicked!');
     }
-
 }

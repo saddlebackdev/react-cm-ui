@@ -1,14 +1,12 @@
 'use strict';
 
-import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import _ from 'lodash';
-
+import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import SubNavigationItem from './SubNavigationItem.react';
 
 class SubNavigation extends Component {
-
     constructor(props) {
         super(props);
 
@@ -22,20 +20,31 @@ class SubNavigation extends Component {
     }
 
     render() {
-        const { border, className, drawer, style, children } = this.props;
+        const {
+            border,
+            className,
+            drawer,
+            id,
+            style,
+            children,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'sub-navigation', className, {
             'sub-navigation-border-bottom': !border || border === 'bottom' || border === 'both',
             'sub-navigation-border-top': border === 'top' || border === 'both',
-            'sub-navigation-drawer': drawer
+            'sub-navigation-drawer': drawer,
         });
-        const childrenArray = children && (_.isArray(children) ? children : [children]);
+        const childrenArray = children && (_.isArray(children) ? children : [ children ]);
         let buttons = _.map(childrenArray, (child, index) => {
             const { label, onClick, style } = child.props;
             let isActive = ClassNames({ 'is-active': this.state.selected === index });
+            const buttonID = id ?
+                `${id}_${_.snakeCase(child.props.label)}` :
+                `sub_navigation_button--${_.snakeCase(child.props.label)}`;
 
             return (
                 <button
                     className={isActive}
+                    id={buttonID}
                     onClick={this._onItemClick.bind(this, index, label, onClick)}
                     key={'sub-navigation-buttons-' + index}
                     style={style}
@@ -49,7 +58,11 @@ class SubNavigation extends Component {
         });
 
         return (
-            <div className={containerClasses} style={style}>
+            <div
+                className={containerClasses}
+                id={id}
+                style={style}
+            >
                 <div className="sub-navigation-scroll-indicator" />
 
                 <div className="sub-navigation-scroll">
@@ -74,7 +87,6 @@ class SubNavigation extends Component {
 
         event.preventDefault();
     }
-
 }
 
 SubNavigation.Item = SubNavigationItem;
@@ -85,9 +97,10 @@ SubNavigation.propTypes = {
     border: PropTypes.oneOf(borderEnums),
     className: PropTypes.string,
     drawer: PropTypes.bool,
+    id: PropTypes.string,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default SubNavigation;
