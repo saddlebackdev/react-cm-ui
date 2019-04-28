@@ -1,13 +1,10 @@
 'use strict';
 
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Card, Header, Tabs, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Block from 'components/UI/Block.react';
 import Highlighter from 'components/UI/Highlighter.react';
 import Main from 'components/UI/Main.react';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const tabsSample = `import React from 'react';
@@ -57,7 +54,6 @@ export default class NestSample extends React.Component {
 }`;
 
 export default class CollectionsTabs extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -71,32 +67,38 @@ export default class CollectionsTabs extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
+            }, {
+                name: 'id',
+                type: 'string',
+                default: '',
+                description: 'An identifier.',
+                allowedTypes: '',
             }, {
                 name: 'nest',
                 type: 'bool',
                 default: '',
                 description: 'Tabs may be placed in a nested background color.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
                 description: 'Tabs can handle an onClick event.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selected',
                 type: 'number',
                 default: '',
                 description: 'Change the default selected tab.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Tabs\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -110,14 +112,14 @@ export default class CollectionsTabs extends React.Component {
                 </Card>
 
                 {/* Tabs */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Tabs
                     <Header.Subheader>
                         Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
                     </Header.Subheader>
                 </Header>
 
-                <Tabs>
+                <Tabs id="tabs">
                     <Tabs.Item label="Tab 1">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
                     </Tabs.Item>
@@ -132,7 +134,7 @@ export default class CollectionsTabs extends React.Component {
                 </Highlighter>
 
                 {/* Nested Tabs */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Nested Tabs
                     <Header.Subheader>
                         Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
@@ -140,10 +142,10 @@ export default class CollectionsTabs extends React.Component {
                 </Header>
 
                 <Block
-                    nest={true}
+                    nest
                     style={{ padding: '22px' }}
                 >
-                    <Tabs nest={true}>
+                    <Tabs nest>
                         <Tabs.Item label="Tab 1">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
                         </Tabs.Item>
