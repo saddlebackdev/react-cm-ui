@@ -419,7 +419,7 @@ class Drawer extends Component {
             document.removeEventListener('click', this._onClickOutside);
         }
 
-        onClose();
+        onClose(...arguments);
     }
 
     _onCloseAnimationComplete() {
