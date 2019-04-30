@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.9 - 2019-04-30
+### Fixed
+- Fixes the issues when **<Drawer />** child's onClose was overridden.
+
 ## 2.0.8 - 2019-04-28
 ### Added
 - **<SubNavigation />** and its child components accept IDs now.
