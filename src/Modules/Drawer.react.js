@@ -197,6 +197,7 @@ class Drawer extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log('componentDidUpdate');
         // Open wing if there wasn't a previous wing open.
         if (!!this.props.wing && !!!prevProps.wing) {
             this.setState({ wing: this.props.wing });
@@ -223,6 +224,9 @@ class Drawer extends Component {
                 this._drawerContainer.style.maxWidth = '768px';
             }
         }
+
+        console.log('prevProps.isOpen', prevProps.isOpen);
+        console.log('this.props.isOpen', this.props.isOpen);
 
         if (!prevProps.isOpen && this.props.isOpen) {
             this.setState({
@@ -389,6 +393,18 @@ class Drawer extends Component {
         );
     }
 
+    componentDidMount() {
+        const { isOpen } = this.props;
+
+        if (isOpen) {
+            this.setState({
+                isOpen,
+            }, () => {
+                this._onOpen();
+            });
+        }
+    }
+
     _onBeforeClose() {
         if (!this.props.isOpen) {
             const animationEvent = this._transitionProps(this._drawerContainer);
@@ -458,6 +474,7 @@ class Drawer extends Component {
     }
 
     _onOpen() {
+        console.log('_onOpen');
         const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);
