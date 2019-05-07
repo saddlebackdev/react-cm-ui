@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.13 - 2019-05-07
+### Fixed
+- CSS for `disabled` **<Dropdown.Item />** when using "dark theme" for the menu.
+This was still making the text of the item white, instead of the "static" color
+as is proper for a disabled item.
+
 ## 2.0.12 - 2019-05-07
 ### Added
 - Ability to mark a **<Dropdown.Item />** as `disabled`.
