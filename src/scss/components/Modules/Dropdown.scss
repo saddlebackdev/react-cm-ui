@@ -334,6 +334,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 }
             }
         }
+        li.dropdown-item-is-disabled span {
+            color: $color-text-static;
+        }
     }
     .dropdown-selection-mobile-button {
         align-items: center;
