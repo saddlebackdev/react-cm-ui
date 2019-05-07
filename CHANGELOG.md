@@ -4,17 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.12 - 2019-05-07
+### Added
+- Ability to mark a **<Dropdown.Item />** as `disabled`.
+
 ## 2.0.11 - 2019-05-01
 ### Fixed
 - Removed console logs in **<Drawer />**.
 
 ## 2.0.10 - 2019-05-01
 ### Fixed
-- Fixed a **<Drawer />** bug
+- Fixed a **<Drawer />** bug.
 
 ## 2.0.9 - 2019-04-30
 ### Fixed
-- Fixes the issues when **<Drawer />** child's onClose was overridden.
+- Fixes the issues when **<Drawer />** child's `onClose` was overridden.
 
 ## 2.0.8 - 2019-04-28
 ### Added

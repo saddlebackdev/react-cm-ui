@@ -25,10 +25,10 @@ DropdownItem.propTypes = {
     iconType: PropTypes.string,
     id: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     label: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default DropdownItem;
