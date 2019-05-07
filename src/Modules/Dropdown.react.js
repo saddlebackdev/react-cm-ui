@@ -49,7 +49,7 @@ class Dropdown extends Component {
             menuPositionStyle: {},
             menuXPosition: 'left',
             menuYPosition: 'top',
-            value: props.value || null
+            value: props.value || null,
         };
 
         this._onClickOutside = this._onClickOutside.bind(this);
@@ -74,7 +74,7 @@ class Dropdown extends Component {
             selection, selectionCreatable, selectionMatchProp,
             selectionMenuContainerStyle, selectionMenuStyle, selectionMobile,
             selectionOptionComponent, selectionValueComponent, selectionMultiple,
-            selectionRequired, selectionUnderline, style, tabIndex, text, theme
+            selectionRequired, selectionUnderline, style, tabIndex, text, theme,
         } = this.props;
 
         const { menuIsOpen, menuPositionStyle } = this.state;
@@ -96,11 +96,11 @@ class Dropdown extends Component {
             'dropdown-fluid': fluid,
             'dropdown-icon': iconType,
             'dropdown-inverse': inverse,
-            'dropdown-is-active': this.state.menuIsOpen,
+            'dropdown-is-active': menuIsOpen,
             'dropdown-menu-theme-dark': theme === 'dark',
             'dropdown-menu-theme-light': theme === 'light',
             'dropdown-selection': selection,
-            'dropdown-selection-underline': selectionUnderline
+            'dropdown-selection-underline': selectionUnderline,
         });
 
         let dropdownIconTitle = iconTitle || placeholder;
@@ -126,17 +126,26 @@ class Dropdown extends Component {
         if (children && !selection) {
             items = React.Children.map(children, (child, index) => {
                 if (!_.isNil(child)) {
-                    const itemIconColor = child.props.iconColor;
                     const itemIconInverse = child.props.iconInverse;
                     const itemIconType = child.props.iconType;
                     const itemLabel = child.props.label;
+                    const itemDisabled = child.props.disabled;
+
+                    let itemIconColor = child.props.iconColor;
                     let itemId = child.props.id;
+
                     const itemClass = ClassNames('dropdown-item', child.props.className, {
                         'dropdown-item-is-selected': this.state.value ? this.state.value.label === itemLabel : false,
+                        'dropdown-item-is-disabled': itemDisabled,
                     });
+
+                    if (itemDisabled) {
+                        itemIconColor = 'static';
+                    }
+
                     const value = {
                         id: itemId || null,
-                        label: itemLabel
+                        label: itemLabel,
                     };
 
                     if (id && itemId) {
@@ -168,7 +177,9 @@ class Dropdown extends Component {
                                 return (
                                     <div
                                         className={containerClasses}
-                                        ref={ref => { this.dropdownContainer = ref; }}
+                                        ref={ref => {
+                                            this.dropdownContainer = ref;
+                                        }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -200,7 +211,9 @@ class Dropdown extends Component {
                                     <div
                                         className={containerClasses}
                                         id={id}
-                                        ref={ref => { this.dropdownContainer = ref; }}
+                                        ref={ref => {
+                                            this.dropdownContainer = ref;
+                                        }}
                                         style={style}
                                     >
                                         {labelJSX}
@@ -259,7 +272,9 @@ class Dropdown extends Component {
                     <div
                         className={containerClasses}
                         id={id}
-                        ref={ref => { this.dropdownContainer = ref; }}
+                        ref={ref => {
+                            this.dropdownContainer = ref;
+                        }}
                         style={style}
                     >
                         {labelJSX}
@@ -308,7 +323,9 @@ class Dropdown extends Component {
                 className={containerClasses}
                 id={id}
                 onClick={this._onDropdownClick.bind(this)}
-                ref={dropdownContainer => { this.dropdownContainer = dropdownContainer; }}
+                ref={dropdownContainer => {
+                    this.dropdownContainer = dropdownContainer;
+                }}
                 style={style}
             >
                 {iconPosition === 'left' ? (
@@ -346,7 +363,7 @@ class Dropdown extends Component {
                     ref={el => this.dropdownMenu = el}
                     style={Object.assign({}, menuPositionStyle, {
                         opacity: menuIsOpen ? 1 : 0,
-                        visibility: menuIsOpen ? 'visible' : 'hidden'
+                        visibility: menuIsOpen ? 'visible' : 'hidden',
                     })}
                 >
                     {items}
@@ -403,7 +420,9 @@ class Dropdown extends Component {
                 autoHeightMin={this.props.menuMinHeight}
                 autoHide
                 className="select-menu-scrollbar"
-                ref={el => this.dropdownMenu = el}
+                ref={el => {
+                    this.dropdownMenu = el;
+                }}
             >
                 {items}
             </ScrollBar>
@@ -456,9 +475,7 @@ class Dropdown extends Component {
         const updatedMenuOpenState = !this.state.menuIsOpen;
 
         if (!disable) {
-            this.setState({
-                menuIsOpen: updatedMenuOpenState
-            });
+            this.setState({ menuIsOpen: updatedMenuOpenState });
 
             if (updatedMenuOpenState) {
                 if (_.isFunction(onOpen)) {
@@ -522,7 +539,7 @@ class Dropdown extends Component {
                 left: menuXPosition === 'left' ? 0 : null,
                 right: menuXPosition === 'right' ? 0 : null,
                 top: menuYPosition === 'top' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
-            }
+            },
         });
     }
 
@@ -561,7 +578,7 @@ class Dropdown extends Component {
                     onClick={this._onSelectionMobileItemClick.bind(this, o)}
                     style={{
                         margin: '3px 0',
-                        textAlign: 'left'
+                        textAlign: 'left',
                     }}
                 >
                     {o.label}
@@ -589,7 +606,7 @@ Dropdown.propTypes = {
     iconPosition: PropTypes.oneOf([ 'left', 'right' ]),
     iconSize: PropTypes.oneOfType([
         PropTypes.oneOf(Utils.sizeEnums()),
-        PropTypes.number
+        PropTypes.number,
     ]),
     iconTitle: PropTypes.string,
     iconType: PropTypes.string,
@@ -618,19 +635,19 @@ Dropdown.propTypes = {
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     text: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     theme: PropTypes.oneOf(Utils.themeEnums()),
     value: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.number,
         PropTypes.object,
-        PropTypes.string
-    ])
+        PropTypes.string,
+    ]),
 };
 
 export default Dropdown;
