@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.14 - 2019-05-08
+### Fixed
+- Fixed a bug in **<Drawer />** by ensuring we remove `_onClickOutside` event
+listener on unmount).
+
 ## 2.0.13 - 2019-05-07
 ### Fixed
 - CSS for `disabled` **<Dropdown.Item />** when using "dark theme" for the menu.
