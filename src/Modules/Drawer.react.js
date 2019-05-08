@@ -236,6 +236,10 @@ class Drawer extends Component {
             this._onBeforeClose();
         }
     }
+    
+    componentWillUnmount() {
+        document.removeEventListener('click', this._onClickOutside);
+    }
 
     render() {
         const { children, className, closeButton, color, header,
