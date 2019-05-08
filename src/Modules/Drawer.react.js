@@ -197,6 +197,10 @@ class Drawer extends Component {
             this._drawerContainer.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` : _.isString(maxWidth) ? maxWidth : '768px';
         }
     }
+    
+    componentWillUnmount() {
+        document.removeEventListener('click', this._onClickOutside);
+    }
 
     render() {
         const { children, className, closeButton, color, header,
