@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.15 - 2019-05-09
+- Second attempt to fix the bug in **<Drawer />** by ensuring the removal of the
+`_onClickOutside` event listener.  Since the **<Drawer />** is used with a
+**<Portal />**, it is not unmounted the way typical components in the regular DOM
+tree are, so the prior attempt to remove the event listener on unmount (in
+`2.0.14`) was unsuccessful.  Hopefully this version will fare better.
+
 ## 2.0.14 - 2019-05-08
 ### Fixed
 - Fixed a bug in **<Drawer />** by ensuring we remove `_onClickOutside` event
