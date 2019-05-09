@@ -81,7 +81,7 @@ as is proper for a disabled item.
 
 ## 1.20.1 - 2019-04-11
 ### Added
-- **&lt;Card /gt;** and **&lt;PhoneInput /&gt;** now accept IDs. This is the same change as `v1.19.6`.
+- **&lt;Card /&gt;** and **&lt;PhoneInput /&gt;** now accept IDs. This is the same change as `v1.19.6`.
 
 ## 1.20.0 - 2019-04-09
 ### Changed
