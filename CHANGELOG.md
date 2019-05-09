@@ -6,15 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.15 - 2019-05-09
 ### Fixed
-- Second attempt to fix the bug in **<Drawer />** by ensuring the removal of the
-`_onClickOutside` event listener.  Since the **<Drawer />** is used with a
-**<Portal />**, it is not unmounted the way typical components in the regular DOM
+- Second attempt to fix the bug in **&lt;Drawer /&gt;** by ensuring the removal of the
+`_onClickOutside` event listener.  Since the **&lt;Drawer /&gt;** is used with a
+**&lt;Portal /&gt;**, it is not unmounted the way typical components in the regular DOM
 tree are, so the prior attempt to remove the event listener on unmount (in
 `2.0.14`) was unsuccessful.  Hopefully this version will fare better.
 
 ## 2.0.14 - 2019-05-08
 ### Fixed
-- Fixed a bug in **<Drawer />** by ensuring we remove `_onClickOutside` event
+- Fixed a bug in **&lt;Drawer /&gt;** by ensuring we remove `_onClickOutside` event
 listener on unmount).
 
 ## 2.0.13 - 2019-05-07
@@ -29,23 +29,23 @@ as is proper for a disabled item.
 
 ## 2.0.11 - 2019-05-01
 ### Fixed
-- Removed console logs in **<Drawer />**.
+- Removed console logs in **&lt;Drawer /&gt;**.
 
 ## 2.0.10 - 2019-05-01
 ### Fixed
-- Fixed a **<Drawer />** bug.
+- Fixed a **&lt;Drawer /&gt;** bug.
 
 ## 2.0.9 - 2019-04-30
 ### Fixed
-- Fixes the issues when **<Drawer />** child's `onClose` was overridden.
+- Fixes the issues when **&lt;Drawer /&gt;** child's `onClose` was overridden.
 
 ## 2.0.8 - 2019-04-28
 ### Added
-- **<SubNavigation />** and its child components accept IDs now.
+- **&lt;SubNavigation /&gt;** and its child components accept IDs now.
 
 ## 2.0.7 - 2019-04-27
 ### Added
-- **<Tabs />** and its child components accept IDs now.
+- **&lt;Tabs /&gt;** and its child components accept IDs now.
 
 ## 2.0.6 - 2019-04-27
 ### Added
@@ -53,7 +53,7 @@ as is proper for a disabled item.
 
 ## 2.0.5 - 2019-04-27
 ### Fixed
-- Added another condition to look if **<Drawer />** is open before trying to add a style.
+- Added another condition to look if **&lt;Drawer /&gt;** is open before trying to add a style.
 
 ## 2.0.4 - 2019-04-26
 ### Fixed
@@ -61,15 +61,15 @@ as is proper for a disabled item.
 
 ## 2.0.3 - 2019-04-25
 ### Fixed
-- Fixed **<Banner />** bug after upgrading to React 16.8.6.
+- Fixed **&lt;Banner /&gt;** bug after upgrading to React 16.8.6.
 
 ## 2.0.2 - 2019-04-25
 ### Fixed
-- Fixed **<DatePickerInput />** react-tether component.
+- Fixed **&lt;DatePickerInput /&gt;** react-tether component.
 
 ## 2.0.1 - 2019-04-25
 ### Fixed
-- Removed **<MenuTree**. It was unused and never an officially designed component.
+- Removed **&lt;MenuTree /&gt;**. It was unused and never an officially designed component.
 - Upgraded react-tether.
 
 ## 2.0.0 - 2019-04-25
@@ -81,27 +81,27 @@ as is proper for a disabled item.
 
 ## 1.20.1 - 2019-04-11
 ### Added
-- **<Card />** and **<PhoneInput />** now accept IDs. This is the same change as `v1.19.6`.
+- **&lt;Card /gt;** and **&lt;PhoneInput /&gt;** now accept IDs. This is the same change as `v1.19.6`.
 
 ## 1.20.0 - 2019-04-09
 ### Changed
 - Upgraded react-dnd.
-- Upgraded react-portal which caused some refactoring of our **<Banner />**, **<Drawer />**, and **<Modal />** components.
+- Upgraded react-portal which caused some refactoring of our **&lt;Banner /&gt;**, **&lt;Drawer /&gt;**, and **&lt;Modal /&gt** components.
 
 ## 1.19.6 - 2019-04-11
 ### Added
-- **<Card />** and **<PhoneInput />** now accept IDs.
+- **&lt;Card /&gt;** and **&lt;PhoneInput /&gt;** now accept IDs.
 
 ## 1.19.5 - 2019-04-09
 ### Added
-- **<Prompt />** now accepts an ID.
+- **&lt;Prompt /&gt;** now accepts an ID.
 
 ### Fixed
-- **<Radio />** does not allow a click to happen when disabled.
+- **&lt;Radio /&gt;** does not allow a click to happen when disabled.
 
 ## 1.19.4 - 2019-04-04
 ### Added
-- **<DropdownItem />** and **<Banner />** implements the `id` value passed to them now.
+- **&lt;DropdownItem /&gt;** and **&lt;Banner /&gt;** implements the `id` value passed to them now.
 
 ## 1.19.3 - 2019-04-04
 ### Fixed
