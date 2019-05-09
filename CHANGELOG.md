@@ -86,7 +86,7 @@ as is proper for a disabled item.
 ## 1.20.0 - 2019-04-09
 ### Changed
 - Upgraded react-dnd.
-- Upgraded react-portal which caused some refactoring of our **&lt;Banner /&gt;**, **&lt;Drawer /&gt;**, and **&lt;Modal /&gt** components.
+- Upgraded react-portal which caused some refactoring of our **&lt;Banner /&gt;**, **&lt;Drawer /&gt;**, and **&lt;Modal /&gt;** components.
 
 ## 1.19.6 - 2019-04-11
 ### Added
