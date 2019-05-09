@@ -236,10 +236,6 @@ class Drawer extends Component {
             this._onBeforeClose();
         }
     }
-    
-    componentWillUnmount() {
-        document.removeEventListener('click', this._onClickOutside);
-    }
 
     render() {
         const { children, className, closeButton, color, header,
@@ -439,10 +435,14 @@ class Drawer extends Component {
     }
 
     _onCloseAnimationComplete() {
-        const { onCloseComplete, position } = this.props;
+        const { onCloseComplete, position, onClickOutside } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
+
+        if (onClickOutside) {
+            document.removeEventListener('click', this._onClickOutside);
+        }
 
         this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
