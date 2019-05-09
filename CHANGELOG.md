@@ -49,7 +49,7 @@ as is proper for a disabled item.
 
 ## 2.0.6 - 2019-04-27
 ### Added
-- **<Table />** and its child components accept IDs now.
+- **&lt;Table /&gt;** and its child components accept IDs now.
 
 ## 2.0.5 - 2019-04-27
 ### Fixed
