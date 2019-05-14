@@ -61,12 +61,12 @@ ModalHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.string,
-    titleTruncate: PropTypes.bool
+    titleTruncate: PropTypes.bool,
 };
 
 class Modal extends Component {
@@ -80,7 +80,7 @@ class Modal extends Component {
             maxWidth: 'none',
             minHeight: 'auto',
             minWidth: '320px',
-            width: '100%'
+            width: '100%',
         };
 
         this.state = {
@@ -91,7 +91,7 @@ class Modal extends Component {
             maxWidth: this._defaultDimensions.maxWidth,
             minHeight: this._defaultDimensions.minHeight,
             minWidth: this._defaultDimensions.minWidth,
-            width: this._defaultDimensions.width
+            width: this._defaultDimensions.width,
         };
 
         this._mounted = false;
@@ -214,11 +214,20 @@ class Modal extends Component {
     }
 
     componentDidMount() {
+        const { isOpen } = this.props;
         this._mounted = true;
 
         window.addEventListener('resize', this._onResize);
 
         this._onResize();
+
+        if (isOpen) {
+            this.setState({
+                isOpen,
+            }, () => {
+                this._onOpen();
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -307,9 +316,8 @@ class Modal extends Component {
         const modalLength = document.querySelectorAll('.ui.modal').length;
         this._modalContainer = nodePortal.querySelector('.modal-container');
         const modalDimmer = nodePortal.querySelector('.modal-dimmer');
-        const layeredOffset = 11;
         const animationEvent = this._animationProps(this._modalContainer);
-        let zIndex = 10002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+        let zIndex = 11002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
 
         this._modalContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -338,7 +346,7 @@ class Modal extends Component {
                     maxWidth :
                     null;
         } else {
-            this._modalContainer.style.maxWidth = 768 - (layeredOffset * (modalLength - 1)) + 'px';
+            this._modalContainer.style.maxWidth = '768px';
         }
 
         if (autoHeight) {
