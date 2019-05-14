@@ -317,7 +317,7 @@ class Modal extends Component {
         this._modalContainer = nodePortal.querySelector('.modal-container');
         const modalDimmer = nodePortal.querySelector('.modal-dimmer');
         const animationEvent = this._animationProps(this._modalContainer);
-        let zIndex = 11002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+        let zIndex = 12002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
 
         this._modalContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
 
