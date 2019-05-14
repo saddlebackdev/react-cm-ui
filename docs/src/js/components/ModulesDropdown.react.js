@@ -6,14 +6,12 @@ import 'images/avatar3.jpg';
 import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from 'components/UI/Block.react';
-import Highlighter from 'components/UI/Highlighter.react';
-import Main from 'components/UI/Main.react';
+import Block from 'components/UI/Block.react.js';
+import Highlighter from 'components/UI/Highlighter.react.js';
+import Main from 'components/UI/Main.react.js';
+import PropTypes from 'prop-types';
+import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
@@ -289,7 +287,7 @@ export default class DisableSample extends React.Component {
 
         return (
             <div>
-                <Dropdown button={true} disable={true} placeholder="Disabled Button Dropdown">
+                <Dropdown button disable placeholder="Disabled Button Dropdown">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                     <Dropdown.Item label="Option 3" />
@@ -297,23 +295,23 @@ export default class DisableSample extends React.Component {
                 </Dropdown><br /><br />
 
                 <Dropdown
-                    disable={true}
+                    disable
                     onChange={this._onSelectionCustomOptionsChange.bind(this)}
                     selectionOptionComponent={SelectionCustomComponent}
                     options={selectionCustomOptions}
-                    placeholder="Select a status"
-                    selection={true}
+                    placeholder="Select a user"
+                    selection
                     value={this.state.selectionCustomOptionsValue}
                 /><br /><br />
 
                 <Dropdown
-                    disable={true}
+                    disable
                     onChange={this._onSelectionMultipleDisableChange.bind(this)}
                     options={selectionMultipleOptions}
                     placeholder="Select some tags"
-                    selection={true}
-                    selectionMultiple={true}
-                    selectionCreatable={true}
+                    selection
+                    selectionMultiple
+                    selectionCreatable
                     value={this.state.selectionMultipleDisableValue}
                 />
             </div>
@@ -390,7 +388,7 @@ export default class MenuHeightSample extends React.Component {
                 onChange={this._onSelectionChange.bind(this)}
                 options={selectionOptions}
                 placeholder="Select a user"
-                selection={true}
+                selection
                 menuMaxHeight={100}
                 value={this.state.selectionValue}
             />
@@ -485,9 +483,9 @@ export default class SelectionCreatableSample extends React.Component {
                 onChange={this._onSelectionMultipleCreatableChange.bind(this)}
                 options={selectionMultipleOptions}
                 placeholder="Select some tags"
-                selection={true}
-                selectionMultiple={true}
-                selectionCreatable={true}
+                selection
+                selectionMultiple
+                selectionCreatable
                 value={this.state.selectionMultipleCreatableValue}
             />
         );
@@ -519,8 +517,8 @@ export default class SelectionMobileSample extends React.Component {
                 onChange={this._onSelectionChange.bind(this)}
                 options={selectionOptions}
                 placeholder="Select a user"
-                selection={true}
-                selectionMobile={true}
+                selection
+                selectionMobile
                 value={this.state.selectionValue}
             />
         );
@@ -552,8 +550,8 @@ export default class SelectionMultipleSample extends React.Component {
                 onChange={this._onSelectionMultipleChange.bind(this)}
                 options={selectionMultipleOptions}
                 placeholder="Select some tags"
-                selection={true}
-                selectionMultiple={true}
+                selection
+                selectionMultiple
                 value={this.state.selectionMultipleValue}
             />
         );
@@ -619,8 +617,8 @@ export default class SelectionOptionComponentSample extends React.Component {
                 onChange={this._onSelectionCustomOptionsChange.bind(this)}
                 selectionOptionComponent={SelectionCustomComponent}
                 options={selectionCustomOptions}
-                placeholder="Select a status"
-                selection={true}
+                placeholder="Select a user"
+                selection
                 value={this.state.selectionCustomOptionsValue}
             />
         );
@@ -633,7 +631,6 @@ export default class SelectionOptionComponentSample extends React.Component {
     }
 
 }`;
-
 
 const selectionUnderlineSample = `import React from 'react';
 
@@ -686,7 +683,7 @@ export default class SelectionUnderlineSample extends React.Component {
             <Dropdown
                 onChange={this._onSelectionCustomOptionsChange.bind(this)}
                 options={selectionCustomOptions}
-                placeholder="Select a status"
+                placeholder="Select a user"
                 selection
                 selectionUnderline
                 value={this.state.selectionCustomOptionsValue}
@@ -710,7 +707,7 @@ export default class ThemeSample extends React.Component {
 
     render() {
         return (
-            <Dropdown button={true} placeholder="Button Dropdown" theme="dark">
+            <Dropdown button placeholder="Button Dropdown" theme="dark">
                 <Dropdown.Item label="Option 1" />
                 <Dropdown.Item label="Option 2" />
                 <Dropdown.Item label="Option 3" />
@@ -729,7 +726,7 @@ export default class ItemIconSample extends React.Component {
 
     render() {
         return (
-            <Dropdown button={true} placeholder="Button Dropdown">
+            <Dropdown button placeholder="Button Dropdown">
                 <Dropdown.Item iconType="block" label="Option 1" />
                 <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
                 <Dropdown.Item iconType="circle" label="Option 3" />
@@ -740,8 +737,40 @@ export default class ItemIconSample extends React.Component {
 
 }`;
 
-class SelectionCustomComponent extends React.Component {
+const itemDisabledSample = `import React from 'react';
 
+import { Dropdown } from 'react-cm-ui';
+
+export default class ItemIconSample extends React.Component {
+    constructor(props) {
+        super(props);
+        this._onButtonDropDownMenuChange = this._onButtonDropDownMenuChange.bind(this);
+    }
+
+    render() {
+        return (
+            <Dropdown
+                button
+                collapseMenuOnChange
+                onChange={this._onButtonDropDownMenuChange}
+                placeholder="Button Dropdown"
+            >
+                <Dropdown.Item iconType="block" label="Option 1" />
+                <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
+                <Dropdown.Item disabled iconType="circle" label="Option 3" />
+                <Dropdown.Item iconColor="alert" iconType="reassign" label="Option 4" />
+            </Dropdown>
+        );
+    }
+
+    _onButtonDropDownMenuChange(selectedOption) {
+        // TODO: Do whatever it is you want to do with the selected option
+        console.log('This got selected:', selectedOption);
+    }
+
+}`;
+
+class SelectionCustomComponent extends React.Component {
     render() {
         const { option } = this.props;
 
@@ -750,7 +779,7 @@ class SelectionCustomComponent extends React.Component {
                 className="Select-option"
                 onMouseDown={this._onMouseDown.bind(this)}
                 onMouseEnter={this._onMouseEnter.bind(this)}
-				onMouseMove={this._onMouseMove.bind(this)}
+                onMouseMove={this._onMouseMove.bind(this)}
                 title={option.label}
             >
                 <div
@@ -758,7 +787,7 @@ class SelectionCustomComponent extends React.Component {
                         alignItems: 'center',
                         display: 'flex',
                         justifyContent: 'flex-start',
-                        width: '100%'
+                        width: '100%',
                     }}
                 >
                     {option.avatar ? (
@@ -770,7 +799,7 @@ class SelectionCustomComponent extends React.Component {
                                 height: '33px',
                                 marginRight: '11px',
                                 maxWidth: '33px',
-                                minWidth: '33px'
+                                minWidth: '33px',
                             }}
                         />
                     ) : null}
@@ -806,18 +835,16 @@ class SelectionCustomComponent extends React.Component {
 
         this.props.onFocus(this.props.option, event);
     }
-
-};
+}
 
 SelectionCustomComponent.propTypes = {
     isFocused: PropTypes.bool,
     onFocus: PropTypes.func,
     onSelect: PropTypes.func,
-    option: PropTypes.object.isRequired
+    option: PropTypes.object.isRequired,
 };
 
 export default class ModulesDropdown extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -825,10 +852,10 @@ export default class ModulesDropdown extends React.Component {
             dropdownValue: null,
             selectionValue: null,
             selectionCustomOptionsValue: null,
-            selectionMultipleDisableValue: [0, 1, 2],
+            selectionMultipleDisableValue: [ 0, 1, 2 ],
             selectionMultipleValue: null,
             selectionMultipleCreatableValue: null,
-            subNavIndex: 0
+            subNavIndex: 0,
         };
 
         this._onSampleOnChange = this._onSampleOnChange.bind(this);
@@ -843,200 +870,200 @@ export default class ModulesDropdown extends React.Component {
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown can take on the look of a Button.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'buttonColor',
                 type: 'enum',
                 default: '',
                 description: 'Color of the button Dropdown.',
-                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, transparent, warning'
+                allowedTypes: 'alert, alternate, disable, light, outline, primary, success, transparent, warning',
             }, {
                 name: 'buttonCompact',
                 type: 'bool',
                 default: '',
                 description: 'A button can reduce its padding.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'collapseMenuOnChange',
                 type: 'bool',
                 default: '',
-                description: 'Whether or not to automatically collapse the menu when an option is selected (regardless of whether or not the value changes).  it is a good idea to set this prop to true if you\'re handing onChange but not updating the value (e.g. if you\'re using a button dropdown as an aciton menu).',
-                allowedTypes: ''
+                description: 'Whether or not to automatically collapse the menu when an option is selected (regardless of whether or not the value changes).  it is a good idea to set this prop to true if you\'re handing onChange but not updating the value (e.g. if you\'re using a button dropdown as an action menu).',
+                allowedTypes: '',
             },{
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'disabled',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown can be disabled',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconColor',
                 type: 'enum',
                 default: '',
                 description: 'Change the color of the icon inside of the Dropdown.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconInverse',
                 type: 'bool',
                 default: '',
                 description: 'Change the icon inside of the Dropdown to inverse.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconPosition',
                 type: 'enum',
                 default: '',
                 description: 'Change the position of the icon.',
-                allowedTypes: 'left, right'
+                allowedTypes: 'left, right',
             }, {
                 name: 'iconSize',
                 type: 'enum',
                 default: '',
                 description: 'Change the size of the icon inside of the Dropdown.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconTitle',
                 type: 'string',
                 default: '',
                 description: 'Set the title (tooltip) of the icon inside of the Dropdown menu.  If not specified, placeholder or text value is used instead.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconType',
                 type: 'string',
                 default: '',
                 description: 'Change the icon inside of the Dropdown.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'id',
                 type: 'string',
                 default: '',
                 description: 'Assign the Dropdown an id attribute value.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown can be formatted to appear on dark backgrounds better.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'menuMaxHeight',
                 type: 'number',
                 default: '',
                 description: 'Supply a maximum height for a Dropdown Selection\'s menu.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'menuMinHeight',
                 type: 'number',
                 default: '',
                 description: 'Supply a minimum height for a Dropdown Selection\'s menu.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onChange',
                 type: 'func',
                 default: '',
                 description: 'The onChange event handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'The onClose event handler function.  This event is called when dropdown menu is closed.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onOpen',
                 type: 'func',
                 default: '',
                 description: 'The onOpen event handler function.  This event is called when dropdown menu is opened.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'options',
                 type: 'array',
                 default: '',
                 description: 'Supply a list of options that the user can select from.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'placeholder',
                 type: 'string',
                 default: '',
                 description: 'Supply a placeholder text for the best UX.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionCreatable',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown Multiple Selection can be have creatable values.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionMenuContainerStyle',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Dropdown Selection\'s outer menu.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionMatchProp',
                 type: 'enum',
                 default: 'any',
                 description: 'Whether to match the value, label or both values of each selection option when filtering.',
-                allowedTypes: 'any, label, value'
+                allowedTypes: 'any, label, value',
             }, {
                 name: 'selectionMenuStyle',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Dropdown Selection\'s inner menu.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionMobile',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown Selection can be user friendly on mobile devices.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionMultiple',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown Selection can show options as tags.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionOptionComponent',
                 type: 'func',
                 default: '',
                 description: 'Give a Dropdown Selection custom options.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selectionUnderline',
                 type: 'bool',
                 default: '',
                 description: 'Underlined Dropdown selection.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Dropdown\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'text',
                 type: 'string, object',
                 default: '',
                 description: 'Set text of Dropdown; an alternative to placeholder.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'theme',
                 type: 'enum',
                 default: '',
                 description: 'Changes the menu\'s color.',
-                allowedTypes: 'dark, light'
+                allowedTypes: 'dark, light',
             }, {
                 name: 'value',
                 type: 'array, object',
                 default: '',
                 description: 'Changes the value of the Dropdown.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         const dropdownItemProps = [
@@ -1045,44 +1072,50 @@ export default class ModulesDropdown extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
+            }, {
+                name: 'disabled',
+                type: 'bool',
+                default: '',
+                description: 'Whether or not this dropdown item (option) is disabled.',
+                allowedTypes: '',
             }, {
                 name: 'iconColor',
                 type: 'string',
                 default: '',
                 description: 'Color of the icon.',
-                allowedTypes: 'alert, light, outline, primary, static, success'
+                allowedTypes: 'alert, light, outline, primary, static, success',
             }, {
                 name: 'iconInverse',
                 type: 'bool',
                 default: '',
                 description: 'A icon can be formatted to appear on dark backgrounds better.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'iconType',
                 type: 'string',
                 default: '',
                 description: 'Type of icon.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'id',
                 type: 'number || string',
                 default: '',
                 description: 'ID for the item.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'label',
                 type: 'string',
                 default: '',
                 description: 'Label for the item.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
-                name: 'labelStyle',
+                name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the label container.',
-                allowedTypes: ''
-            }
+                description: 'Supply any inline styles to the dropdown item.',
+                allowedTypes: '',
+            },
         ];
 
         const selectionOptions = [
@@ -1111,10 +1144,10 @@ export default class ModulesDropdown extends React.Component {
                 'label': 'Cameron Brewer',
                 'value': 'cameron brewer',
             }, {
-                'id': 39,
+                'id': 55,
                 'label': 'Joe Smoe',
                 'value': 'cameron joe smoe',
-            }
+            },
         ];
 
         const selectionCustomOptions = [
@@ -1122,49 +1155,49 @@ export default class ModulesDropdown extends React.Component {
                 'avatar': '',
                 'id': -1,
                 'label': 'All Users',
-                'value': -1
+                'value': -1,
             }, {
                 'avatar': getImageUrl('avatar1.jpg'),
                 'id': 5,
                 'label': 'Rafi Ghazarian',
-                'value': 5
+                'value': 5,
             }, {
                 'avatar': getImageUrl('avatar2.jpg'),
                 'id': 8,
                 'label': 'Mike Jacobs',
-                'value': 8
+                'value': 8,
             }, {
                 'avatar': getImageUrl('avatar3.jpg'),
                 'id': 13,
                 'label': 'Joseph Lee',
-                'value': 13
+                'value': 13,
             }, {
                 'avatar': getImageUrl('avatar4.jpg'),
                 'id': 21,
                 'label': 'Cameron Brewer',
-                'value': 21
+                'value': 21,
             }, {
                 'avatar': getImageUrl('avatar5.jpg'),
                 'id': 34,
                 'label': 'Geoffrey Roberts',
-                'value': 34
-            }
+                'value': 34,
+            },
         ];
 
         const selectionMultipleOptions = [
             {
                 'id': 1,
                 'label': 'Red',
-                'value': 1
+                'value': 1,
             }, {
                 'id': 2,
                 'label': 'Green',
-                'value': 2
+                'value': 2,
             }, {
                 'id': 3,
                 'label': 'Blue',
-                'value': 3
-            }
+                'value': 3,
+            },
         ];
 
         let examplesJSX;
@@ -1173,7 +1206,7 @@ export default class ModulesDropdown extends React.Component {
             examplesJSX = (
                 <div>
                     {/* Icon */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Icon
                         <Header.Subheader>
                             An Item can have an icon.
@@ -1190,13 +1223,37 @@ export default class ModulesDropdown extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {itemIconSample}
                     </Highlighter>
+
+                    {/* Disabled */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Disabled
+                        <Header.Subheader>
+                            An Item can be be <em>disabled</em>, preventing its selection.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Dropdown
+                        button
+                        collapseMenuOnChange
+                        onChange={this._onDropDownWithDisabledOptionChange.bind(this)}
+                        placeholder="Button Dropdown"
+                    >
+                        <Dropdown.Item iconType="block" label="Option 1" />
+                        <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
+                        <Dropdown.Item disabled iconType="circle" label="Option 3" />
+                        <Dropdown.Item iconColor="alert" iconType="reassign" label="Option 4" />
+                    </Dropdown>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {itemDisabledSample}
+                    </Highlighter>
                 </div>
             );
         } else {
             examplesJSX = (
                 <div>
                     {/* Dropdown */}
-                    <Header anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub>
                         Dropdown
                         <Header.Subheader>
                             A basic Dropdown.
@@ -1228,7 +1285,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Button */}
-                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
                         Button
                         <Header.Subheader>
                             A Dropdown can take on the style of a Button.
@@ -1309,7 +1366,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Button Color */}
-                    <Header anchor="button-color" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="button-color" size="large" style={{ marginTop: '55px' }} sub>
                         Button Color
                         <Header.Subheader>
                             Button Dropdowns can be different colors.
@@ -1411,7 +1468,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Button Compact */}
-                    <Header anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub>
                         Button Compact
                         <Header.Subheader>
                             A Dropdown Button can be made compact.
@@ -1430,14 +1487,14 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Disable */}
-                    <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub>
                         Disable
                         <Header.Subheader>
                             A Dropdown can be disabled.
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button={true} disable={true} placeholder="Disabled Button Dropdown">
+                    <Dropdown button disable placeholder="Disabled Button Dropdown">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1445,23 +1502,23 @@ export default class ModulesDropdown extends React.Component {
                     </Dropdown><br /><br />
 
                     <Dropdown
-                        disable={true}
+                        disable
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}
                         selectionOptionComponent={SelectionCustomComponent}
                         options={selectionCustomOptions}
-                        placeholder="Select a status"
-                        selection={true}
+                        placeholder="Select a user"
+                        selection
                         value={this.state.selectionCustomOptionsValue}
                     /><br /><br />
 
                     <Dropdown
-                        disable={true}
+                        disable
                         onChange={this._onSelectionMultipleDisableChange.bind(this)}
                         options={selectionMultipleOptions}
                         placeholder="Select some tags"
-                        selection={true}
-                        selectionMultiple={true}
-                        selectionCreatable={true}
+                        selection
+                        selectionCreatable
+                        selectionMultiple
                         value={this.state.selectionMultipleDisableValue}
                     />
 
@@ -1470,7 +1527,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Icon */}
-                    <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub>
                         Icon
                         <Header.Subheader>
                             A Dropdown's icon.
@@ -1520,21 +1577,21 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
                         Inverse
                         <Header.Subheader>
                             A Dropdown can be formatted to appear on dark backgrounds better.
                         </Header.Subheader>
                     </Header>
 
-                    <Block inverse={true} style={{ height: '300px', marginTop: '33px' }}>
+                    <Block inverse style={{ height: '300px', marginTop: '33px' }}>
                         <Dropdown
                             id="demo-selection-id"
-                            inverse={true}
+                            inverse
                             onChange={this._onSelectionChange.bind(this)}
                             options={selectionOptions}
                             placeholder="Select a user"
-                            selection={true}
+                            selection
                             value={this.state.selectionValue}
                         />
                     </Block>
@@ -1544,7 +1601,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Menu Height */}
-                    <Header anchor="menu-maximum-height" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="menu-maximum-height" size="large" style={{ marginTop: '55px' }} sub>
                         Menu Height
                         <Header.Subheader>
                             A Dropdown's menu's maximum and minimum height can be set.
@@ -1555,7 +1612,7 @@ export default class ModulesDropdown extends React.Component {
                         onChange={this._onSelectionChange.bind(this)}
                         options={selectionOptions}
                         placeholder="Select a user"
-                        selection={true}
+                        selection
                         menuMaxHeight={100}
                         value={this.state.selectionValue}
                     />
@@ -1565,7 +1622,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* onChange */}
-                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }} sub>
                         onChange
                         <Header.Subheader>
                             onChange event handler.
@@ -1584,7 +1641,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Match Props */}
-                    <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Match Props
                         <Header.Subheader>
                             Whether to match the value, label or both values of each selection option when filtering
@@ -1605,7 +1662,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Creatable */}
-                    <Header anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Creatable
                         <Header.Subheader>
                             A Dropdown can be a select dropdown where you can choose and create items.
@@ -1616,9 +1673,9 @@ export default class ModulesDropdown extends React.Component {
                         onChange={this._onSelectionMultipleCreatableChange.bind(this)}
                         options={selectionMultipleOptions}
                         placeholder="Select some tags"
-                        selection={true}
-                        selectionMultiple={true}
-                        selectionCreatable={true}
+                        selection
+                        selectionCreatable
+                        selectionMultiple
                         value={this.state.selectionMultipleCreatableValue}
                     />
 
@@ -1627,7 +1684,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Mobile */}
-                    <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Mobile
                         <Header.Subheader>
                             A Dropdown Selection can be user friendly on mobile devices. Go ahead, shrink that browser.
@@ -1638,8 +1695,8 @@ export default class ModulesDropdown extends React.Component {
                         onChange={this._onSelectionChange.bind(this)}
                         options={selectionOptions}
                         placeholder="Select a user"
-                        selection={true}
-                        selectionMobile={true}
+                        selection
+                        selectionMobile
                         value={this.state.selectionValue}
                     />
 
@@ -1648,7 +1705,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Multiple */}
-                    <Header anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Multiple
                         <Header.Subheader>
                             A Dropdown can be a select dropdown where you can choose multiple items.
@@ -1659,8 +1716,8 @@ export default class ModulesDropdown extends React.Component {
                         onChange={this._onSelectionMultipleChange.bind(this)}
                         options={selectionMultipleOptions}
                         placeholder="Select some tags"
-                        selection={true}
-                        selectionMultiple={true}
+                        selection
+                        selectionMultiple
                         value={this.state.selectionMultipleValue}
                     />
 
@@ -1669,7 +1726,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Option Component */}
-                    <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Option Component
                         <Header.Subheader>
                             Give a Dropdown Selection custom options.
@@ -1680,8 +1737,8 @@ export default class ModulesDropdown extends React.Component {
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}
                         selectionOptionComponent={SelectionCustomComponent}
                         options={selectionCustomOptions}
-                        placeholder="Select a status"
-                        selection={true}
+                        placeholder="Select a user"
+                        selection
                         value={this.state.selectionCustomOptionsValue}
                     />
 
@@ -1690,7 +1747,7 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Selection Underline */}
-                    <Header anchor="selection-underline" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="selection-underline" size="large" style={{ marginTop: '55px' }} sub>
                         Selection Underline
                         <Header.Subheader>
                             A Dropdown selection can be styled to have an underline.
@@ -1700,7 +1757,7 @@ export default class ModulesDropdown extends React.Component {
                     <Dropdown
                         onChange={this._onSelectionCustomOptionsChange.bind(this)}
                         options={selectionCustomOptions}
-                        placeholder="Select a status"
+                        placeholder="Select a user"
                         selection
                         selectionUnderline
                         value={this.state.selectionCustomOptionsValue}
@@ -1711,14 +1768,14 @@ export default class ModulesDropdown extends React.Component {
                     </Highlighter>
 
                     {/* Theme */}
-                    <Header anchor="theme" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="theme" size="large" style={{ marginTop: '55px' }} sub>
                         Theme
                         <Header.Subheader>
                             Changes the menu's color.
                         </Header.Subheader>
                     </Header>
 
-                    <Dropdown button={true} placeholder="Button Dropdown" theme="dark">
+                    <Dropdown button placeholder="Button Dropdown" theme="dark">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                         <Dropdown.Item label="Option 3" />
@@ -1767,47 +1824,53 @@ export default class ModulesDropdown extends React.Component {
     _onButtonDropDownMenuChange(selectedOption) {
         // TODO: Do whatever it is you want to do with the selected option
         this.setState({ buttonMenuAction: selectedOption.label }, () => {
-            setTimeout(() => { this.setState({ buttonMenuAction: null}); }, 2000);
+            setTimeout(() => {
+                this.setState({ buttonMenuAction: null});
+            }, 2000);
         });
     }
 
     _onDropdownChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ dropdownValue: selectedOption });
     }
 
+    _onDropDownWithDisabledOptionChange(selectedOption) {
+        console.log('This got selected:', selectedOption); // eslint-disable-line no-console
+    }
+
     _onSampleOnChange(selectedOption) {
-        console.log('_onSampleOnChange');
-        console.log('Clicked item value', selectedOption);
+        console.log('_onSampleOnChange'); // eslint-disable-line no-console
+        console.log('Clicked item value', selectedOption); // eslint-disable-line no-console
     }
 
     _onSelectionChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ selectionValue: selectedOption });
     }
 
     _onSelectionCustomOptionsChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ selectionCustomOptionsValue: selectedOption });
     }
 
     _onSelectionMultipleChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ selectionMultipleValue: selectedOption });
     }
 
     _onSelectionMultipleCreatableChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ selectionMultipleCreatableValue: selectedOption });
     }
 
     _onSelectionMultipleDisableChange(selectedOption) {
-        console.log('Parent component has the object now and can do what needs to be done');
+        console.log('Parent component has the object now and can do what needs to be done'); // eslint-disable-line no-console
 
         this.setState({ selectionMultipleDisableValue: selectedOption });
     }
@@ -1815,5 +1878,4 @@ export default class ModulesDropdown extends React.Component {
     _onSubNavClick(index) {
         this.setState({ subNavIndex: index });
     }
-
 }

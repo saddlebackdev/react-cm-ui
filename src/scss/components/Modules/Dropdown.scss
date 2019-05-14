@@ -176,6 +176,11 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 white-space: nowrap;
                 &:hover { background-color: $bkgd-highlight; color: $color-text-inverse; }
             }
+            li.dropdown-item-is-disabled span {
+                color: $color-text-static;
+                cursor: default;
+                pointer-events: none;
+            }
         &.dropdown-menu-columns {
             li { padding: rem(7px) rem(22px); }
                 li > span { border-radius: rem(3px); padding: 0; }
@@ -328,6 +333,9 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                     .icon-use-path { fill: $color-text; }
                 }
             }
+        }
+        li.dropdown-item-is-disabled span {
+            color: $color-text-static;
         }
     }
     .dropdown-selection-mobile-button {

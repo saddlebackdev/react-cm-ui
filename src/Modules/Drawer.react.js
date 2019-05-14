@@ -435,10 +435,14 @@ class Drawer extends Component {
     }
 
     _onCloseAnimationComplete() {
-        const { onCloseComplete, position } = this.props;
+        const { onCloseComplete, position, onClickOutside } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
+
+        if (onClickOutside) {
+            document.removeEventListener('click', this._onClickOutside);
+        }
 
         this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
@@ -479,7 +483,7 @@ class Drawer extends Component {
         const drawerDimmer = nodePortal.querySelector('.drawer-dimmer');
         const layeredOffset = 11;
         const animationEvent = this._transitionProps(this._drawerContainer);
-        let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        let zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         this._drawerContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
 
