@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.16 - 2019-05-14
+### Fixed
+- Fixed a **&lt;Modal /&gt;** bug.
+
 ## 2.0.15 - 2019-05-09
 ### Fixed
 - Second attempt to fix the bug in **&lt;Drawer /&gt;** by ensuring the removal of the
