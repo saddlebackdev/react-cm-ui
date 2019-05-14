@@ -483,7 +483,7 @@ class Drawer extends Component {
         const drawerDimmer = nodePortal.querySelector('.drawer-dimmer');
         const layeredOffset = 11;
         const animationEvent = this._transitionProps(this._drawerContainer);
-        let zIndex = 9002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        let zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         this._drawerContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
 
