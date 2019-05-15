@@ -1,14 +1,12 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
-import Icon from '../Elements/Icon.react';
-
 import DOMUtils from '../utils/DOMUtils.js';
+import Icon from '../Elements/Icon.react.js';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 class AccordionItem extends Component {
     constructor(props) {
@@ -32,7 +30,7 @@ class AccordionItem extends Component {
         const containerClasses = ClassNames('accordion-item', className, {
             'accordion-item-is-active': isSelected,
             'accordion-item-sub-accordion': subAccordion,
-            'accordion-item-no-summary': summary === false
+            'accordion-item-no-summary': summary === false,
         });
 
         return (
@@ -48,8 +46,8 @@ class AccordionItem extends Component {
             'animation': 'animationend',
             'OAnimation': 'oAnimationEnd',
             'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd'
-        }
+            'WebkitAnimation': 'webkitAnimationEnd',
+        };
 
         for (a in animations) {
             if (el.style[a] !== undefined) {
@@ -96,12 +94,12 @@ AccordionItem.propTypes = {
     isSelected: PropTypes.bool,
     scrollContainer: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     scrollContainerMarginHeight: PropTypes.number,
     style: PropTypes.object,
     subAccordion: PropTypes.bool,
-    summary: PropTypes.bool
+    summary: PropTypes.bool,
 };
 
 class AccordionSummary extends Component {
@@ -125,18 +123,17 @@ class AccordionSummary extends Component {
 }
 
 AccordionSummary.propTypes = {
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
 };
 
 class AccordionCheckbox extends Component {
-
     render() {
         return (
             <div
                 className="accordion-checkbox"
                 style={{
                     flex: '0 1 auto',
-                    minWidth: '44px'
+                    minWidth: '44px',
                 }}
             >
                 {this.props.children}
@@ -147,11 +144,10 @@ class AccordionCheckbox extends Component {
 
 AccordionCheckbox.propTypes = {
     className: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 class AccordionContent extends Component {
-
     render() {
         return (
             <div className="accordion-item-content" style={this.props.style}>
@@ -162,11 +158,10 @@ class AccordionContent extends Component {
 }
 
 AccordionContent.propTypes = {
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 class Accordion extends Component {
-
     constructor(props) {
         super(props);
 
@@ -215,11 +210,11 @@ class Accordion extends Component {
         const containerClasses = ClassNames('ui', 'accordion', className, {
             'accordion-basic': basic,
             'accordion-inverse': inverse,
-            'accordion-inclusive': exclusive === false
+            'accordion-inclusive': exclusive === false,
         });
-        const convertChildren = _.isArray(children) ? children : [ children ];
-        let items = _.map(convertChildren, (child, index) => {
-            const { children, className, style, subTitle, subAccordion, summary, title } = child.props;
+        const convertedChildren = _.isArray(children) ? children : [ children ];
+        let items = _.map(convertedChildren, (child, index) => {
+            const { children, onClick, style, subTitle, subAccordion, summary, title } = child.props;
             const isSelected = exclusive === false ? _.includes(selected, index) : selected === index;
 
             if (title) {
@@ -235,10 +230,16 @@ class Accordion extends Component {
                     >
                         <div
                             className="accordion-item-title"
-                            onClick={this._onSummaryClick.bind(this, index)}
+                            onClick={this._onSummaryClick.bind(this, index, onClick)}
                         >
                             <span className="copy">{title}{subTitle ? <span className="padding-left">{subTitle}</span> : null}</span>
-                            <Icon compact={true} inverse={inverse} rotate={isSelected ? 135 : 0} type="plus" />
+                            <Icon
+                                compact
+                                inverse={inverse}
+                                rotate={isSelected ? 135 : 0}
+                                title={isSelected ? 'Collapse' : 'Expand'}
+                                type="plus"
+                            />
                         </div>
 
                         <AccordionContent>
@@ -319,7 +320,6 @@ class Accordion extends Component {
 
         this.setState({ selected: newSelected });
     }
-
 }
 
 Accordion.Content = AccordionContent;
@@ -335,14 +335,14 @@ Accordion.propTypes = {
     inverse: PropTypes.bool,
     scrollContainer: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     scrollContainerMarginHeight: PropTypes.number,
     selected: PropTypes.oneOfType([
         PropTypes.array,
-        PropTypes.number
+        PropTypes.number,
     ]),
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Accordion;
