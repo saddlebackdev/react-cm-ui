@@ -1,16 +1,13 @@
 
 'use strict';
 
-import PropTypes from 'prop-types';
+import { Accordion, Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
+import Block from 'components/UI/Block.react.js';
+import Highlighter from 'components/UI/Highlighter.react.js';
+import Main from 'components/UI/Main.react.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
-import { Accordion, Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from 'components/UI/Block.react';
-import Highlighter from 'components/UI/Highlighter.react';
-import Main from 'components/UI/Main.react';
 import TableProps from 'components/UI/TableProps.react';
 
 const accordionSample = `import React from 'react';
@@ -392,8 +389,7 @@ export default class CustomSummarySample extends React.Component {
             </div>
         );
     }
-}`
-
+}`;
 
 export default class CollectionsAccordion extends React.Component {
     constructor(props) {
@@ -402,10 +398,11 @@ export default class CollectionsAccordion extends React.Component {
         this.state = {
             scrollBarNode: null,
             subNavIndex: 0,
-            controlledExampleSelectedIndex: 0 // first item expanded by default
+            controlledExampleSelectedIndex: 0, // first item expanded by default
         };
 
         this._onClickAccordionItem = this._onClickAccordionItem.bind(this);
+        this._onClickBasicAccordionItem = this._onClickBasicAccordionItem.bind(this);
     }
 
     render() {
@@ -416,38 +413,38 @@ export default class CollectionsAccordion extends React.Component {
                 type: 'bool',
                 default: '',
                 description: 'Simplify an Accordion to a basic pared down style.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'exclusive',
                 type: 'bool',
                 default: 'true',
                 description: 'Only allow one Accordion Item to open at a time.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: '',
                 description: 'Format to appear on dark backgrounds.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selected',
                 type: 'array || number',
                 default: '',
                 description: 'Change the default selected Accordion Item.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Accordion\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         const itemProps = [
@@ -456,26 +453,26 @@ export default class CollectionsAccordion extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Accordion\'s Item container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'subAccordion',
                 type: 'bool',
                 default: '',
                 description: 'Required boolean for Accordion\'s nested inside of Accordion Item container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'summary',
                 type: 'bool',
                 default: 'true',
                 description: 'Use custom content within an Accordion\'s Item.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         let examplesJSX;
@@ -603,7 +600,7 @@ export default class CollectionsAccordion extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub>
                         Accordion
                         <Header.Subheader>
-                            A baisc Accordion can be inverted to appear on darker backgrounds better.
+                            A basic Accordion can be inverted to appear on darker backgrounds better.
                         </Header.Subheader>
                     </Header>
 
@@ -642,11 +639,17 @@ export default class CollectionsAccordion extends React.Component {
                     </Header>
 
                     <Accordion basic>
-                        <Accordion.Item title="Option One">
+                        <Accordion.Item
+                            onClick={() => this._onClickBasicAccordionItem('Option One')}
+                            title="Option One"
+                        >
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
                         </Accordion.Item>
 
-                        <Accordion.Item title="Option Two">
+                        <Accordion.Item
+                            onClick={() => this._onClickBasicAccordionItem('Option Two')}
+                            title="Option Two"
+                        >
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
                         </Accordion.Item>
                     </Accordion><br /><br />
@@ -752,7 +755,12 @@ export default class CollectionsAccordion extends React.Component {
                     </Block><br /><br />
 
                     <Block inverse style={{ height: '205px' }}>
-                        <ScrollBar autoHide ref={scrollBarNode => { this.scrollBarNode = scrollBarNode }}>
+                        <ScrollBar
+                            autoHide
+                            ref={scrollBarNode => {
+                                this.scrollBarNode = scrollBarNode;
+                            }}
+                        >
                             <Accordion basic inverse scrollContainer={scrollBarNode} scrollContainerMarginHeight={15}>
                                 <Accordion.Item title="Option One">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -814,7 +822,7 @@ export default class CollectionsAccordion extends React.Component {
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: `You can use the Accordion as a controlled component via the <strong>selected</strong> prop
-                                    by passing an <strong>onClick</strong> handler function to each item&rsquo;s summary.`
+                                    by passing an <strong>onClick</strong> handler function to each item&rsquo;s summary.`,
                                 }}
                             />
                         </Header.Subheader>
@@ -881,6 +889,10 @@ export default class CollectionsAccordion extends React.Component {
 
     _onClickAccordionItem(newSelectedIndex) {
         this.setState({ controlledExampleSelectedIndex: newSelectedIndex });
+    }
+
+    _onClickBasicAccordionItem(foo) {
+        console.log(`${foo} item was clicked!`); // eslint-disable-line no-console
     }
 
     _onSubNavClick(index) {
