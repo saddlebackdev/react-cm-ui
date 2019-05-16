@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.18 - 2019-05-16
+### Fixed
+- **&lt;Drawer /&gt;** & **&lt;Modal /&gt;** were not cleaning up after themselves when unmounting; they now do.
+
 ## 2.0.17 - 2019-05-14
 ### Fixed
-- Whoops! Forgot to check my work and had the **&lt;Modal /&gt;** ZIndexes incorrect. 
+- Whoops! Forgot to check my work and had the **&lt;Modal /&gt;** ZIndexes incorrect.
 
 ## 2.0.16 - 2019-05-14
 ### Fixed
