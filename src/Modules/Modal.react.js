@@ -234,6 +234,10 @@ class Modal extends Component {
         this._mounted = false;
 
         window.removeEventListener('resize', this._onResize);
+
+        if (this.props.isOpen) {
+            this._onCloseAnimationComplete();
+        }
     }
 
     _animationProps(el) {
