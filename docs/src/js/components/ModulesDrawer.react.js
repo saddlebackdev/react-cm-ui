@@ -2,6 +2,7 @@
 
 import { Button, Card, Container, Drawer, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
 import Highlighter from 'components/UI/Highlighter.react';
+import { Link } from 'react-router';
 import Main from 'components/UI/Main.react';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -1119,6 +1120,8 @@ export default class ModulesDrawer extends React.Component {
                     >
                         <div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
 
                             <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
                         </div>

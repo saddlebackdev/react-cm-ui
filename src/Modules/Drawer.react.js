@@ -401,6 +401,12 @@ class Drawer extends Component {
         }
     }
 
+    componentWillUnmount() {
+        if (this.props.isOpen) {
+            this._onBeforeClose();
+        }
+    }
+
     _onBeforeClose() {
         if (!this.props.isOpen) {
             const animationEvent = this._transitionProps(this._drawerContainer);
