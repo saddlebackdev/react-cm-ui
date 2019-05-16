@@ -1,8 +1,9 @@
 'use strict';
 
+import { Button, Card, Header, Icon, Modal, TitleBar } from 'react-cm-ui';
+import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Card, Modal, Header, Icon, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from 'components/UI/Highlighter.react';
@@ -374,7 +375,7 @@ export default class ModulesModal extends React.Component {
             isDimensionsModalOpen: false,
             isOnClickOutsideModalOpen: false,
             isEmptyTitleModalOpen: false,
-            isFluidContentModalOpen: false
+            isFluidContentModalOpen: false,
         };
 
         this._onAutoHeightModalClick = this._onAutoHeightModalClick.bind(this);
@@ -387,86 +388,86 @@ export default class ModulesModal extends React.Component {
                 type: 'bool',
                 default: 'false',
                 description: 'Automatically adjusts a Modal\'s height according to its content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'closeButton',
                 type: 'bool || string || object',
                 default: '',
                 description: 'A Modal\'s close button can be disabled or or the icon type can be changed using a string or giving custom JSX.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'height',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Modal a height.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'isOpen',
                 type: 'bool',
                 default: 'false',
                 description: 'Required boolean for the Modal\'s open/close state.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'maxHeight',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Modal a maximum height.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'maxWidth',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Modal a maximum width.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'minHeight',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Modal a minimum height.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'minWidth',
                 type: 'number || string',
                 default: '',
                 description: 'Give a Modal a minimum width.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClickOutside',
                 type: 'bool',
                 default: 'false',
                 description: 'Ability to close Modal if clicked outside of container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Modal.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Modal\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'title',
                 type: 'string',
                 default: '',
                 description: 'Optinal string to give a Modal a title. If it is an empty then Modal\'s header (with a close button) will not be shown.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'fluidContent',
                 type: 'bool',
                 default: '',
                 description: 'Optional bool to stretch the Modal\'s inner div.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -480,7 +481,7 @@ export default class ModulesModal extends React.Component {
                 </Card>
 
                 {/* Modal */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Modal
                     <Header.Subheader>
                         A basic Modal.
@@ -505,13 +506,15 @@ export default class ModulesModal extends React.Component {
 
                 <Modal
                     height="auto"
-                    autoHeight={true}
+                    autoHeight
                     isOpen={this.state.isBasicModalOpen}
                     onClose={this._onBasicModalClick.bind(this)}
                     title="The Best Title"
                 >
                     <div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <Link to={{ pathname: '/modules/drawer' }}>Go To The Drawer Page</Link>
 
                         <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
                     </div>
@@ -522,7 +525,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* Close Button */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Close Button
                     <Header.Subheader>
                         A Modal's close button can be changed using a string or giving custom JSX.
@@ -548,7 +551,7 @@ export default class ModulesModal extends React.Component {
                 <Modal
                     closeButton={(
                         <Icon
-                            compact={true}
+                            compact
                             onClick={this._onCustomCloseButtonModalClick.bind(this)}
                             type="times"
                         />
@@ -569,7 +572,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* Auto Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Auto Height
                     <Header.Subheader>
                         A modal's height adjust according to it's content height.
@@ -580,7 +583,7 @@ export default class ModulesModal extends React.Component {
 
                 <Modal
                     height="auto"
-                    autoHeight={true}
+                    autoHeight
                     isOpen={this.state.isAutoHeightModalOpen}
                     onClose={this._onAutoHeightModalClick}
                     title="The Best Title"
@@ -613,7 +616,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* Dimensions */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Dimensions
                     <Header.Subheader>
                         A Modal's dimensions can be changed for anything above 768 pixels.
@@ -629,7 +632,7 @@ export default class ModulesModal extends React.Component {
                 <Modal
                     isOpen={this.state.isDimensionsModalOpen}
                     minHeight="100%"
-                    onClickOutside={true}
+                    onClickOutside
                     onClose={this._onDimensionsModalClick.bind(this)}
                     title="Click Outside of The Modal"
                     width={750}
@@ -682,7 +685,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* On Click Outside */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     On Click Outside
                     <Header.Subheader>
                         A Modal can be closed when click outside of it's container.
@@ -693,7 +696,7 @@ export default class ModulesModal extends React.Component {
 
                 <Modal
                     isOpen={this.state.isOnClickOutsideModalOpen}
-                    onClickOutside={true}
+                    onClickOutside
                     onClose={this._onClickOutsideModalClick.bind(this)}
                     title="Click Outside of The Modal"
                 >
@@ -709,7 +712,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* emptyTitle */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Empty Title
                     <Header.Subheader>
                         A Modal can be shown without a title.
@@ -720,7 +723,7 @@ export default class ModulesModal extends React.Component {
 
                 <Modal
                     isOpen={this.state.isEmptyTitleModalOpen}
-                    onClickOutside={true}
+                    onClickOutside
                     onClose={this._onEmptyTitleModalClick.bind(this)}
                 >
                     <div>
@@ -733,7 +736,7 @@ export default class ModulesModal extends React.Component {
                 </Highlighter>
 
                 {/* Fluid Content */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Fluid Content
                     <Header.Subheader>
                         A Modal's inner div can be stretched to the whole container height (e.g. align buttons to the bottom).
@@ -746,7 +749,7 @@ export default class ModulesModal extends React.Component {
                     isOpen={this.state.isFluidContentModalOpen}
                     onClose={this._onFluidContentModalClick.bind(this)}
                     title="Fluid Content"
-                    fluidContent={true}
+                    fluidContent
                 >
                     <div style={{height: '100%', display: 'flex', flexDirection: 'column-reverse'}}>
                         <Button onClick={this._onFluidContentModalClick.bind(this)}>Close</Button>
@@ -791,5 +794,4 @@ export default class ModulesModal extends React.Component {
     _onFluidContentModalClick(arg) {
         this.setState({ isFluidContentModalOpen: !this.state.isFluidContentModalOpen });
     }
-
 }
