@@ -235,8 +235,20 @@ class Modal extends Component {
 
         window.removeEventListener('resize', this._onResize);
 
-        if (this.props.isOpen) {
-            this._onCloseAnimationComplete();
+        if (document.body.classList.contains('modal-open')) {
+            document.body.classList.remove('modal-open');
+        }
+
+        if (document.body.classList.contains('modal-dimmer')) {
+            document.body.classList.remove('modal-dimmer');
+        }
+
+        if (document.body.classList.contains('modal-open-layered')) {
+            document.body.classList.remove('modal-open-layered');
+        }
+
+        if (document.body.classList.contains('modal-animate-out')) {
+            document.body.classList.remove('modal-animate-out');
         }
     }
 
