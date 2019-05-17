@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.19 - 2019-05-17
+### Fixed
+- Remove `isOpen` from the **&lt;Drawer /&gt;** & **&lt;Modal /&gt;** `componentWillUnmount`. Hoping this catches all
+the different states the drawer can be in. One concern is it removing class names from body when another drawer is 
+to stay open. We'll need to watch for this problem in the future.
+
 ## 2.0.18 - 2019-05-16
 ### Fixed
 - **&lt;Drawer /&gt;** & **&lt;Modal /&gt;** were not cleaning up after themselves when unmounting; they now do.
