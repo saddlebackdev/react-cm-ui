@@ -1075,7 +1075,7 @@ export default class ModulesDrawer extends React.Component {
                 allowedTypes: '',
             }, {
                 name: 'title',
-                type: 'string',
+                type: 'string || object',
                 default: '',
                 description: 'Required string to give a Drawer a title.',
                 allowedTypes: '',

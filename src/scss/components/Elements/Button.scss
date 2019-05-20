@@ -49,6 +49,81 @@
         &transparent { background-color: transparent; }
         &warning { background-color: $bkgd-warning; }
     }
+    &.button-outlined.button-color- {
+        &alert {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button-alert;
+            color: $color-text-alert;
+            .ui.icon {
+                .icon-use-path { fill: $color-text-alert; }
+            }
+        }
+        &alternate {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button-alternate;
+            color: $color-text;
+            .ui.icon {
+                .icon-use-path { fill: $color-text; }
+            }
+        }
+        &disable {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button-disable;
+            color: $color-text-disable;
+            .ui.icon {
+                .icon-use-path { fill: $color-text-disable; }
+            }
+            cursor: default;
+        }
+        &light {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-light;
+            color: $bkgd-light;
+            .ui.icon {
+                .icon-use-path { fill: $bkgd-light; }
+            }
+        }
+        &outline {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $border-inverse;
+            color: $color-text;
+            .ui.icon {
+                .icon-use-path { fill: $color-text; }
+            }
+        }
+        &primary {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button;
+            color: $bkgd-button;
+            .ui.icon {
+                .icon-use-path { fill: $bkgd-button; }
+            }
+        }
+        &secondary {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button-secondary;
+            color: $bkgd-button-secondary;
+            .ui.icon {
+                .icon-use-path { fill: $bkgd-button-secondary; }
+            }
+        }
+        &success {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-button-success;
+            color: $color-text-success;
+            .ui.icon {
+                .icon-use-path { fill: $color-text-success; }
+            }
+        }
+        &warning {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px $bkgd-warning;
+            color: $color-text-warning;
+            .ui.icon {
+                .icon-use-path { fill: $color-text-warning; }
+            }
+        }
+    }
     &.button-inverse.button-color- {
         &alert { background-color: $bkgd-button-alert; }
         &alternate { background-color: $bkgd-button-alternate; }

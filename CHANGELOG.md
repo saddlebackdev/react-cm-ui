@@ -4,10 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.20 - 2019-05-20
+### Added
+- [#48](https://github.com/saddlebackdev/react-cm-ui/pull/48): **&lt;Button /&gt;** `outline` can have different colors now.
+
+### Fixed
+- [#45](https://github.com/saddlebackdev/react-cm-ui/pull/45): **&lt;Avatar /&gt;** (User Icon) Image Fixes/Enhancements
+- [#46](https://github.com/saddlebackdev/react-cm-ui/pull/46): Fixes warnings on passing object as title for drawers.
+
 ## 2.0.19 - 2019-05-17
 ### Fixed
 - Remove `isOpen` from the **&lt;Drawer /&gt;** & **&lt;Modal /&gt;** `componentWillUnmount`. Hoping this catches all
-the different states the drawer can be in. One concern is it removing class names from body when another drawer is 
+the different states the drawer can be in. One concern is it removing class names from body when another drawer is
 to stay open. We'll need to watch for this problem in the future.
 
 ## 2.0.18 - 2019-05-16
