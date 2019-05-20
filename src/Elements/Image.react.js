@@ -1,12 +1,9 @@
 'use strict';
 
-import _ from 'lodash';
-import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
-import Icon from '../Elements/Icon.react';
-
+import ClassNames from 'classnames';
+import Icon from '../Elements/Icon.react.js';
+import PropTypes from 'prop-types';
 import Utils from '../utils/Utils.js';
 
 class Image extends Component {
@@ -21,13 +18,13 @@ class Image extends Component {
 
         const ElementType = Utils.getElementType(newAs, this.props);
         const containerClasses = ClassNames('ui', 'image', className, {
-            'image-avatar': avatar
+            'image-avatar': avatar,
         });
 
         if (ElementType === 'img') {
             newStyle = Object.assign({}, style, {
                 backgroundImage: src ? `url(${src})` : null,
-                width: size
+                width: size,
             });
 
             return (
@@ -39,21 +36,29 @@ class Image extends Component {
             );
         }
 
+        let newInitials, avatarSize = 'xsmall';
+
         if (avatar) {
             newStyle = Object.assign({}, style, {
                 boxShadow: src ? 'none' : null,
                 backgroundImage: src ? `url(${src})` : null,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
-                width: size
+                width: size,
             });
-        }
 
-        let newInitials;
+            if (name) {
+                newInitials = name.match(/\b\w/g) || [];
+                newInitials = ((newInitials.shift() || '') + (newInitials.pop() || '')).toUpperCase();
+            }
 
-        if (name) {
-            newInitials = name.match(/\b\w/g) || [];
-            newInitials = ((newInitials.shift() || '') + (newInitials.pop() || '')).toUpperCase();
+            if (size >= 88) {
+                avatarSize = 'xxlarge';
+            } else if (size >= 66) {
+                avatarSize = 'large';
+            } else if (size >= 44) {
+                avatarSize = 'small';
+            }
         }
 
         return (
@@ -65,7 +70,7 @@ class Image extends Component {
                 {avatar && !src ?
                     name ?
                         newInitials :
-                        ( <Icon color="static" compact size="xsmall" type="user" /> ) :
+                        ( <Icon color="static" compact size={avatarSize} title="This person has no image" type="user" /> ) :
                     null}
             </ElementType>
         );
@@ -81,7 +86,7 @@ Image.propTypes = {
     name: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Image;

@@ -36,6 +36,7 @@
     &-compact { margin: 0; }
     &.icon-disable { color: $color-text-disable; cursor: default; }
     &-size- {
+        &xxlarge, &xxlarge svg { height: rem(32px); width: rem(32px); }
         &xlarge, &xlarge svg { height: rem(24px); width: rem(24px); }
         &large, &large svg { height: rem(20px); width: rem(20px); }
         &medium, &medium svg { height: rem(18px); width: rem(18px); }
