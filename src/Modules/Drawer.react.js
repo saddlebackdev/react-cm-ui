@@ -122,8 +122,12 @@ class DrawerHeader extends Component {
 
         return (
             <header className="drawer-header" ref={ref => this._drawerHeaderRef = ref}>
-                {title ? (
-                    <Header as="h2" className={titleClass} title={title}>{title}</Header>
+                {_.isObject(title) ? (
+                    title
+                ) : title ? (
+                    <Header as="h2" className={titleClass} title={title}>
+                        {title}
+                    </Header>
                 ) : null}
 
                 <CloseButton closeButton={closeButton} inverse={inverse} onClose={onClose} />
