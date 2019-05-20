@@ -17,7 +17,7 @@ class Button extends Component {
 
     render() {
         const { as, children, className, color, compact, disabled, fluid, href,
-            icon, id, inverse, relax, style, width } = this.props;
+            icon, id, inverse, outlined, relax, style, width } = this.props;
 
         const newAs = as || 'button';
         const ElementType = Utils.getElementType(newAs, this.props);
@@ -38,6 +38,7 @@ class Button extends Component {
             'button-fluid': fluid,
             'button-icon': icon,
             'button-fixed-width': width,
+            'button-outlined': outlined,
             'button-relax': relax
         });
         const containerStyle = _.merge(style, {
@@ -81,6 +82,7 @@ Button.propTypes = {
     id: PropTypes.string,
     inverse: PropTypes.bool,
     onClick: PropTypes.func,
+    outlined: PropTypes.bool,
     relax: PropTypes.bool,
     square: PropTypes.bool,
     style: PropTypes.object,
