@@ -483,15 +483,15 @@ export default class ElementsButton extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Button color="alert" outlined>Alert</Button>
-                <Button color="alternate" outlined>Alternate</Button>
-                <Button color="disable" outlined>Disable</Button>
-                <Button color="light" outlined>Light</Button>
-                <Button color="outline" outlined>Outline</Button>
-                <Button color="primary" outlined>Primary</Button>
-                <Button color="secondary" outlined>Secondary</Button>
-                <Button color="success" outlined>Success</Button>
-                <Button color="warning" outlined>Warning</Button>
+                <Button color="alert" outlined><Icon type="envelope"/><span>Alert</span></Button>
+                <Button color="alternate" outlined><Icon type="envelope"/><span>Alternate</span></Button>
+                <Button color="disable" outlined><Icon type="envelope"/><span>Disable</span></Button>
+                <Button color="light" outlined><Icon type="envelope"/><span>Light</span></Button>
+                <Button color="outline" outlined><Icon type="envelope"/><span>Outline</span></Button>
+                <Button color="primary" outlined><Icon type="envelope"/><span>Primary</span></Button>
+                <Button color="secondary" outlined><Icon type="envelope"/><span>Secondary</span></Button>
+                <Button color="success" outlined><Icon type="envelope"/><span>Success</span></Button>
+                <Button color="warning" outlined><Icon type="envelope"/><span>Warning</span></Button>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     { outlinedSample}
