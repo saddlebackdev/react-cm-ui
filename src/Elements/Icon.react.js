@@ -34,8 +34,9 @@ class Icon extends React.Component {
             'icon-size-small': size === 'small',
             'icon-size-xlarge': size === 'xlarge',
             'icon-size-xsmall': size === 'xsmall',
+            'icon-size-xxlarge': size === 'xxlarge',
             'icon-size-xxsmall': size === 'xxsmall',
-            'icon-spin': spin || type === 'spinner'
+            'icon-spin': spin || type === 'spinner',
         });
         const containerStyle = _.merge(style, {
             height: _.isNumber(size) ? `${size / 16}rem` : null,
@@ -675,7 +676,7 @@ class Icon extends React.Component {
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
-                            <polygon id={pathId} transform="translate(12.000000, 12.000000) rotate(180.000000) translate(-12.000000, -12.000000) " points="12 5 24 19 0 19"></polygon>
+                            <polygon id={pathId} transform="translate(12.000000, 12.000000) rotate(180.000000) translate(-12.000000, -12.000000) " points="12 5 24 19 0 19" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -698,7 +699,7 @@ class Icon extends React.Component {
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
-                            <polygon id={pathId} points="5 12 19 0 19 24"></polygon>
+                            <polygon id={pathId} points="5 12 19 0 19 24" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -721,7 +722,7 @@ class Icon extends React.Component {
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
-                            <polygon id={pathId} transform="translate(14.000000, 12.000000) rotate(90.000000) translate(-14.000000, -12.000000) " points="14 5 26 19 2 19"></polygon>
+                            <polygon id={pathId} transform="translate(14.000000, 12.000000) rotate(90.000000) translate(-14.000000, -12.000000)" points="14 5 26 19 2 19" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -767,7 +768,7 @@ class Icon extends React.Component {
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
-                            <polygon id={pathId} points="12 5 24 19 0 19"></polygon>
+                            <polygon id={pathId} points="12 5 24 19 0 19" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -1028,7 +1029,7 @@ class Icon extends React.Component {
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
-                            <circle id={pathId} cx="12" cy="12" r="12"></circle>
+                            <circle id={pathId} cx="12" cy="12" r="12" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -3645,12 +3646,12 @@ Icon.propTypes = {
     rotate: PropTypes.number,
     size: PropTypes.oneOfType([
         PropTypes.oneOf(Utils.sizeEnums()),
-        PropTypes.number
+        PropTypes.number,
     ]),
     spin: PropTypes.bool,
     style: PropTypes.object,
     title: PropTypes.string,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
 };
 
 export default Icon;
