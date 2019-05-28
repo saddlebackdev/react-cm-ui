@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.21 - 2019-05-28
+### Added
+- Added a left border to the **&lt;Drawer.Wing /&gt;**.
+
+### Changed
+- **&lt;Checkbox /&gt;** `label` can either be a string or object.
+- An `id` is now applied to the **&lt;Checkbox /&gt;** container as well to its hidden input.
+
 ## 2.0.20 - 2019-05-20
 ### Added
 - [#48](https://github.com/saddlebackdev/react-cm-ui/pull/48): **&lt;Button /&gt;** `outline` can have different colors now.
