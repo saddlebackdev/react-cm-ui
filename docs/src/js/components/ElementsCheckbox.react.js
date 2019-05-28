@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Checkbox, Card, Header, TitleBar } from 'react-cm-ui';
+import { Card, Checkbox, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from 'components/UI/Block.react';
@@ -159,7 +159,6 @@ export default class ToggleSample extends React.Component {
 }`;
 
 export default class ElementsCheckbox extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -167,93 +166,92 @@ export default class ElementsCheckbox extends React.Component {
     }
 
     render() {
-
         const props = [
             {
                 name: 'align',
                 type: 'enum',
                 default: '',
                 description: 'Aligns the label\'s definition to the left or right.',
-                allowedTypes: 'left, right'
+                allowedTypes: 'left, right',
             }, {
                 name: 'checked',
                 type: 'bool',
                 default: '',
                 description: 'Indicates whether a checkbox is checked or not.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'disabled',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the checkbox is not available for interaction.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'fluid',
                 type: 'bool',
                 default: '',
                 description: 'A checkbox can take on the size of its container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'id',
                 type: 'string',
                 default: '',
                 description: 'Give a checkbox an id.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'label',
                 type: 'string',
                 default: '',
                 description: 'Optional label to display with the checkbox.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'labelClick',
                 type: 'bool',
                 default: '',
                 description: 'Disable the label\'s definition onClick handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'name',
                 type: 'string',
                 default: '',
                 description: 'Radio input\'s name.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onChange',
                 type: 'func',
                 default: '',
                 description: 'Can handle an onChange event from parent.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'size',
                 type: 'enum',
                 default: '',
                 description: 'A checkbox can be small or large.',
-                allowedTypes: 'small, large'
+                allowedTypes: 'small, large',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the checkbox\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'toggle',
                 type: 'bool',
                 default: '',
                 description: 'Styles a checkbox to look like a toggle.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'value',
                 type: 'string',
                 default: '',
                 description: 'Checkbox value.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -267,21 +265,21 @@ export default class ElementsCheckbox extends React.Component {
                 </Card>
 
                 {/* Checkbox */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Checkbox
                     <Header.Subheader>
                         A standard checkbox.
                     </Header.Subheader>
                 </Header>
 
-                <Checkbox />
+                <Checkbox id="ui-checkbox--basic" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {checkboxSample}
                 </Highlighter>
 
                 {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Label
                     <Header.Subheader>
                         A checkbox can have a label defined.
@@ -295,7 +293,7 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Align */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Align
                     <Header.Subheader>
                         A label definition can sit on the right or left side of the checkbox.
@@ -310,21 +308,21 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Checked */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Checked
                     <Header.Subheader>
                         A checkbox can be checked from it's parent.
                     </Header.Subheader>
                 </Header>
 
-                <Checkbox checked={true} label="Do you want to check the box?" />
+                <Checkbox checked label="Do you want to check the box?" />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {checkedSample}
                 </Highlighter>
 
                 {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Disabled
                     <Header.Subheader>
                         Disable a checkbox.
@@ -342,7 +340,7 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Fluid
                     <Header.Subheader>
                         A checkbox can stretch as wide as the parent container.
@@ -350,11 +348,11 @@ export default class ElementsCheckbox extends React.Component {
                 </Header>
 
                 <Block style={{ maxWidth: '400px' }}>
-                    <Checkbox align="left" fluid={true} label="It's better on the right, yeah?" />
+                    <Checkbox align="left" fluid label="It's better on the right, yeah?" />
                 </Block><br />
 
                 <Block style={{ maxWidth: '400px' }}>
-                    <Checkbox align="right" fluid={true} label="It's better on the right, yeah?" />
+                    <Checkbox align="right" fluid label="It's better on the right, yeah?" />
                 </Block>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -362,7 +360,7 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Label Click */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Label Click
                     <Header.Subheader>
                         Sometimes you may want to disable a checkbox from being checked by clicking it's label definition.
@@ -376,7 +374,7 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* OnChange */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     OnChange
                     <Header.Subheader>
                         Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
@@ -394,7 +392,7 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Size */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Size
                     <Header.Subheader>
                         A checkbox can be small or large.
@@ -408,23 +406,23 @@ export default class ElementsCheckbox extends React.Component {
                 </Highlighter>
 
                 {/* Toggle */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Toggle
                     <Header.Subheader>
                         A checkbox can be transformed into a toggle switch.
                     </Header.Subheader>
                 </Header>
 
-                <Checkbox toggle={true} /><br /><br />
-                <Checkbox label="Give me the sweet checkbox!" toggle={true} /><br /><br />
-                <Checkbox align="right" label="It's better on the right, yeah?" toggle={true} /><br /><br />
+                <Checkbox toggle /><br /><br />
+                <Checkbox label="Give me the sweet checkbox!" toggle /><br /><br />
+                <Checkbox align="right" label="It's better on the right, yeah?" toggle /><br /><br />
 
                 <Block style={{ maxWidth: '400px' }}>
-                    <Checkbox align="left" fluid={true} label="It's better on the right, yeah?" toggle={true} />
+                    <Checkbox align="left" fluid label="It's better on the right, yeah?" toggle />
                 </Block><br />
 
                 <Block style={{ maxWidth: '400px' }}>
-                    <Checkbox align="right" fluid={true} label="It's better on the right, yeah?" toggle={true} />
+                    <Checkbox align="right" fluid label="It's better on the right, yeah?" toggle />
                 </Block>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -441,5 +439,4 @@ export default class ElementsCheckbox extends React.Component {
     _onDisabledCheckBoxChange(id, checked) {
         console.log('You should NOT be seeing this console log because the checkbox is disabled!'); // eslint-disable-line no-console
     }
-
 }

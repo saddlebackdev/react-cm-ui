@@ -1634,7 +1634,6 @@ export default class ModulesDrawer extends React.Component {
                     <Button onClick={this._onDrawerWingClick}>Open Drawer</Button>
 
                     <Drawer
-                        color="dark-blue"
                         header={false}
                         isOpen={this.state.isDrawerWingOpen}
                         maxWidth={500}
