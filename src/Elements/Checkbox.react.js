@@ -147,7 +147,10 @@ Checkbox.propTypes = {
     fluid: PropTypes.bool,
     id: PropTypes.string,
     inverse: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string,
+    ]),
     labelClassName: PropTypes.string,
     labelClick: PropTypes.bool,
     labelStyle: PropTypes.object,
