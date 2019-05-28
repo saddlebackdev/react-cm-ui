@@ -1,28 +1,30 @@
 'use strict';
 
+import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import Icon from '../Elements/Icon.react';
+import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { isChecked: props.checked || false }
+        this.state = { isChecked: props.checked || false };
 
         this._onClick = this._onClick.bind(this);
         this._onLabelClick = this._onLabelClick.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { checked: checkedInCurrentProps } = this.props;
-        const { isChecked: checkedInPrevState } = prevState;
+        const { checked, onChange } = this.props;
 
-        if (checkedInCurrentProps !== checkedInPrevState) {
-            this.setState({ isChecked: checkedInCurrentProps });
+        if (_.isFunction(onChange) && prevProps.checked !== checked) {
+            this.setState({
+                isChecked: checked,
+            }, () => {
+                this._inputRef.checked = checked;
+            });
         }
     }
 
@@ -41,34 +43,33 @@ class Checkbox extends Component {
             'checkbox-inverse': inverse,
             'checkbox-is-checked': isChecked,
             'checkbox-size-small': size === 'small',
-            'checkbox-toggle': toggle
+            'checkbox-toggle': toggle,
         });
-
         const labelClasses = ClassNames('checkbox-label', {
-            'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
+            'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false,
         });
-
         const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
             'checkbox-label-text-weight-bold': labelWeight == 'bold',
             'checkbox-label-text-weight-normal': !labelWeight || labelWeight === 'normal',
             'checkbox-label-text-weight-semibold': labelWeight == 'semibold',
         });
-
         const checkSize = size === 'small' ? 8 : 10;
+        const inputId = id ? `${id}_hidden_input` : null;
 
         return (
             <div
                 className={containerClasses}
+                id={id}
                 onClick={this._onClick}
                 style={style}
             >
                 <input
-                    checked={isChecked}
                     className="input"
                     disabled={newDisabled}
-                    id={id}
+                    id={inputId}
                     name={name}
                     readOnly
+                    ref={ref => this._inputRef = ref}
                     type="checkbox"
                     value={newValue}
                 />
@@ -97,16 +98,28 @@ class Checkbox extends Component {
         );
     }
 
+    componentDidMount() {
+        const { checked } = this.props;
+
+        if (checked) {
+            // isChecked is already set by the props.checked in the constructor.
+            this._inputRef.checked = checked;
+        }
+    }
+
     _onClick(event) {
         const { disabled, id, onChange } = this.props;
         const { isChecked } = this.state;
-        const isCheckedNow = !isChecked;
 
         if (!disabled) {
             if (!_.isUndefined(onChange)) {
-                onChange(id, isCheckedNow, event);
+                onChange(id, !isChecked, event);
             } else {
-                this.setState({ isChecked: isCheckedNow });
+                this.setState({
+                    isChecked: !isChecked,
+                }, () => {
+                    this._inputRef.checked = !isChecked;
+                });
             }
         } else {
             event.stopPropagation();
@@ -120,7 +133,6 @@ class Checkbox extends Component {
             event.stopPropagation();
         }
     }
-
 }
 
 const alignEnums = [ 'left', 'right' ];
@@ -136,16 +148,16 @@ Checkbox.propTypes = {
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
-    labelClick: PropTypes.bool,
     labelClassName: PropTypes.string,
-    labelWeight: PropTypes.oneOf(labelWeightEnums),
+    labelClick: PropTypes.bool,
     labelStyle: PropTypes.object,
+    labelWeight: PropTypes.oneOf(labelWeightEnums),
     name: PropTypes.string,
     onChange: PropTypes.func,
     size: PropTypes.oneOf(sizeEnums),
     style: PropTypes.object,
     toggle: PropTypes.bool,
-    value: PropTypes.string
-}
+    value: PropTypes.string,
+};
 
 export default Checkbox;
