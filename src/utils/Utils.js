@@ -24,7 +24,7 @@ class Utils {
             'subject',
             'success',
             'transparent',
-            'warning'
+            'warning',
         ];
     }
 
@@ -37,7 +37,7 @@ class Utils {
     }
 
     static getIncreasingUniqueKey() {
-        var now = (new Date().getTime()).toString();
+        const now = (new Date().getTime()).toString();
         return now.substring(now.length - 6, now.length) + _.uniqueId();
     }
 
@@ -54,7 +54,7 @@ class Utils {
             9: 'nine',
             10: 'ten',
             11: 'eleven',
-            12: 'twelve'
+            12: 'twelve',
         };
 
         return numberToWordMap[num];
@@ -63,19 +63,20 @@ class Utils {
     static sizeEnums() {
         // Sorry, breaking the alphabetical order here in favor of Large to Small. Deal with it!
         return [
+            'xxlarge',
             'xlarge',
             'large',
             'medium',
             'small',
             'xsmall',
-            'xxsmall'
+            'xxsmall',
         ];
     }
 
     static themeEnums() {
         return [
             'dark',
-            'light'
+            'light',
         ];
     }
 }
