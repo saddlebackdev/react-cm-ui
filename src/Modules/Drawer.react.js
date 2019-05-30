@@ -122,8 +122,12 @@ class DrawerHeader extends Component {
 
         return (
             <header className="drawer-header" ref={ref => this._drawerHeaderRef = ref}>
-                {title ? (
-                    <Header as="h2" className={titleClass} title={title}>{title}</Header>
+                {_.isObject(title) ? (
+                    title
+                ) : title ? (
+                    <Header as="h2" className={titleClass} title={title}>
+                        {title}
+                    </Header>
                 ) : null}
 
                 <CloseButton closeButton={closeButton} inverse={inverse} onClose={onClose} />
@@ -402,8 +406,20 @@ class Drawer extends Component {
     }
 
     componentWillUnmount() {
-        if (this.props.isOpen) {
-            this._onBeforeClose();
+        if (document.body.classList.contains('drawer-open')) {
+            document.body.classList.remove('drawer-open');
+        }
+
+        if (document.body.classList.contains('drawer-dimmers')) {
+            document.body.classList.remove('drawer-dimmers');
+        }
+
+        if (document.body.classList.contains('drawer-open-layered')) {
+            document.body.classList.remove('drawer-open-layered');
+        }
+
+        if (document.body.classList.contains('drawer-animate-out')) {
+            document.body.classList.remove('drawer-animate-out');
         }
     }
 

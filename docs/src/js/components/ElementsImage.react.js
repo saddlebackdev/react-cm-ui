@@ -2,15 +2,11 @@
 
 import 'images/marty-mcfly.jpg';
 
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Card, Header, Image, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from 'components/UI/Block.react';
-import Highlighter from 'components/UI/Highlighter.react';
-import Main from 'components/UI/Main.react';
-import TableProps from 'components/UI/TableProps.react';
+import Highlighter from 'components/UI/Highlighter.react.js';
+import Main from 'components/UI/Main.react.js';
+import React from 'react';
+import TableProps from 'components/UI/TableProps.react.js';
 
 const imageSample = `import React from 'react';
 import { Image } from 'react-cm-ui';
@@ -56,7 +52,11 @@ export default class SizeSample extends React.Component {
             <div>
                 <Image src="/images/marty-mcfly.jpg" size={100} /><br /><br />
                 <Image avatar size={44} name="Marty McFly" /><br /><br />
-                <Image avatar size={66} src="/images/marty-mcfly.jpg" />
+                <Image avatar size={66} src="/images/marty-mcfly.jpg" /><br /><br />
+                <Image avatar size={22} /><br /><br />
+                <Image avatar size={44} /><br /><br />
+                <Image avatar size={66} /><br /><br />
+                <Image avatar size={88} />
             </div>
         );
     }
@@ -70,13 +70,13 @@ export default class ElementsImage extends React.Component {
                 type: 'enum',
                 default: 'img',
                 description: 'An element type to render as.',
-                allowedTypes: 'div, img'
+                allowedTypes: 'div, img',
             }, {
                 name: 'avatar',
                 type: 'bool',
                 default: '',
                 description: 'An Image can be shown as a circular avatar.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
@@ -88,20 +88,20 @@ export default class ElementsImage extends React.Component {
                 type: 'number',
                 default: '',
                 description: 'Size of Image.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'src',
                 type: 'string',
                 default: '',
                 description: 'Path to image file.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Image or Image\'s container.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         const martyMcFlyImageSrc = window.location.host.indexOf('localhost') > -1 ?
@@ -119,7 +119,7 @@ export default class ElementsImage extends React.Component {
                 </Card>
 
                 {/* Image */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Image
                     <Header.Subheader>
                         An image.
@@ -133,7 +133,7 @@ export default class ElementsImage extends React.Component {
                 </Highlighter>
 
                 {/* Avatar */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Avatar
                     <Header.Subheader>
                         An image can be an avatar.
@@ -151,7 +151,7 @@ export default class ElementsImage extends React.Component {
                 </Highlighter>
 
                 {/* Size */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Size
                     <Header.Subheader>
                         Passing a size (number) will contrain the image by its width.
@@ -160,7 +160,11 @@ export default class ElementsImage extends React.Component {
 
                 <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
                 <Image avatar size={44} name="Marty McFly" /><br /><br />
-                <Image avatar size={66} src={martyMcFlyImageSrc} />
+                <Image avatar size={66} src={martyMcFlyImageSrc} /><br /><br />
+                <Image avatar size={22} /><br /><br />
+                <Image avatar size={44} /><br /><br />
+                <Image avatar size={66} /><br /><br />
+                <Image avatar size={88} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {sizeSample}
@@ -168,5 +172,4 @@ export default class ElementsImage extends React.Component {
             </Main>
         );
     }
-
 }

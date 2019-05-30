@@ -117,6 +117,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             z-index: -1;
             > div {
                 background-color: $bkgd;
+                border-left: 1px solid $border;
                 height: 100%;
                 position: relative;
                 transform: translate(100%, 0);
