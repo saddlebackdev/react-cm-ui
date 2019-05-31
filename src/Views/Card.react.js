@@ -49,9 +49,12 @@ class Card extends Component {
             isCollapsing: false,
         };
 
+        this._getContentHeight = this._getContentHeight.bind(this);
         this._onClick = this._onClick.bind(this);
         this._onCollapseClick = this._onCollapseClick.bind(this);
+        this._renderCollapsableButton = this._renderCollapsableButton.bind(this);
         this._removeIsCollapsing = this._removeIsCollapsing.bind(this);
+        this._setContentHeight = this._setContentHeight.bind(this);
         this._setContentHeightDebounce = _.debounce(() => this._setContentHeight(), 50);
 
         if (props.collapsable) {
