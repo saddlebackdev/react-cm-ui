@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.22 - 2019-05-31
+### Fixed
+- [#49](https://github.com/saddlebackdev/react-cm-ui/pull/49): Fixes initialization of **&lt;Card /&gt;** View.
+- Fixed **&lt;Icon /&gt;** svg style.
+
 ## 2.0.21 - 2019-05-28
 ### Added
 - Added a left border to the **&lt;Drawer.Wing /&gt;**.
