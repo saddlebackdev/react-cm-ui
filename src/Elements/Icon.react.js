@@ -38,15 +38,15 @@ class Icon extends React.Component {
             'icon-size-xxsmall': size === 'xxsmall',
             'icon-spin': spin || type === 'spinner',
         });
-        const containerStyle = _.merge(style, {
+        const containerStyle = Object.assign({}, style, {
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
         });
-        const svgStyle = _.merge(style, {
+        const svgStyle = {
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
             transform: _.isNumber(rotate) ? `rotate(${rotate}deg)` : null,
-        });
+        };
         const uniqueId = this.uniqueId();
         const gradientId = `icon-svg-gradient-color-${color}-${type}-${uniqueId}`;
         const maskId = `icon-svg-mask-${type}-${uniqueId}`;
