@@ -349,6 +349,7 @@ export default class ElementsButton extends React.Component {
                 types: [
                     'info',
                     'link',
+                    'link-external',
                     'list-category',
                     'question-circle',
                     'quotation',
