@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.23 - 2019-06-07
+### Added
+- Added `link-external` to the **&lt;Icon /&gt;** set.
+
 ## 2.0.22 - 2019-05-31
 ### Fixed
 - [#49](https://github.com/saddlebackdev/react-cm-ui/pull/49): Fixes initialization of **&lt;Card /&gt;** View.
