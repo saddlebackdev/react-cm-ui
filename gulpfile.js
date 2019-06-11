@@ -12,7 +12,8 @@ gulp.task('sass:lib', () => {
         .pipe(gulp.dest(libCSS))
 });
 
-gulp.task('cssComponentsUrl:lib', [ 'sass:lib' ], () => {
+gulp.task('cssComponentsUrl:lib', () => {
+    gulp.series('sass:lib');
     return gulp.src('lib/css/components/**/*.css')
         .pipe(rework(reworkURL(url => {
             const prependPath = '../../';
@@ -22,7 +23,8 @@ gulp.task('cssComponentsUrl:lib', [ 'sass:lib' ], () => {
         .pipe(gulp.dest(libCSS))
 });
 
-gulp.task('cssBaseUrl:lib', [ 'sass:lib' ], () => {
+gulp.task('cssBaseUrl:lib', () => {
+    gulp.series('sass:lib');
     return gulp.src('lib/css/base/**/*.css')
         .pipe(rework(reworkURL(url => {
             const prependPath = '../';
@@ -34,10 +36,11 @@ gulp.task('cssBaseUrl:lib', [ 'sass:lib' ], () => {
         .pipe(gulp.dest(libCSS))
 });
 
-gulp.task('minifyCss:lib', [ 'sass:lib', 'cssComponentsUrl:lib', 'cssBaseUrl:lib' ], () => {
+gulp.task('minifyCss:lib', () => {
+    gulp.series('sass:lib', 'cssComponentsUrl:lib', 'cssBaseUrl:lib');
     return gulp.src('lib/css/**/*.css')
         .pipe(cssMin())
         .pipe(gulp.dest(libCSS))
 });
 
-gulp.task('compile:lib', [ 'minifyCss:lib' ]);
+gulp.task('compile:lib', gulp.series('minifyCss:lib'));
