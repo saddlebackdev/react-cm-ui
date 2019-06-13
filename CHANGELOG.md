@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0 - 2019-06-12
+### Changed
+- Fixed security risks caused by dev dependencies.
+- Upgraded Webpack from v3 to v4.
+- Upgraded Gulp from v3 to v4.
+
 ## 2.0.23 - 2019-06-07
 ### Added
 - Added `link-external` to the **&lt;Icon /&gt;** set.
