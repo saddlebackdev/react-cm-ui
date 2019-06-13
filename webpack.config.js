@@ -1,69 +1,59 @@
-var webpack = require('webpack');
-var path = require('path');
-var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = function (env) {
+module.exports = (env, options) => {
+    const isDevMode = options.mode === 'development';
+
     return {
         entry: {
             bundle: './docs/src/js/components/CoreApp.react.js',
-            commons: [ 'react-syntax-highlighter' ]
+            commons: [ 'react-syntax-highlighter' ],
         },
         devServer: {
             historyApiFallback: true,
             inline: true,
-            port: 8082
+            port: 8082,
         },
         output: {
             path: path.join(__dirname, './docs/build'),
             filename: 'js/[name].[hash].js',
             chunkFilename: 'js/[name].[chunkhash].js',
-            publicPath: '/'
+            publicPath: '/',
         },
         devtool: 'eval',
         module: {
             rules: [
                 {
-                    test: /\.js$/,
-                    exclude: [/node_modules/],
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015', 'react'],
-                        plugins: [ 'add-module-exports' ]
-                    }
-                }, {
-                    test: /\.jsx$/,
-                    include: [
-                        path.resolve(__dirname, 'node_modules', 'react-tree-menu')
-                    ],
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015', 'react'],
-                        plugins: [ 'add-module-exports' ]
-                    }
+                    test: /\.jsx?$/,
+                    exclude: /node_modules/,
+                    use: 'babel-loader',
                 }, {
                     test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: [
-                            'css-loader',
-                            'postcss-loader',
-                            'resolve-url-loader',
-                            'sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, 'docs/src/scss') + '&includePaths[]=' + path.resolve(__dirname, 'src/scss'),
-                        ]
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    require('autoprefixer')(),
+                                ],
+                                sourceMap: isDevMode,
+                            },
+                        },
+                        'resolve-url-loader',
+                        'sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, 'docs/src/scss') + '&includePaths[]=' + path.resolve(__dirname, 'src/scss'),
+                    ],
                 }, {
                     test: /\.(ico|png|jpg|gif|svg|eot|ttf|woff|woff(2)?)(\?[a-z0-9=\.]+)?$/,
-                    loader: 'file-loader?name=[path][name].[ext]?[hash]&context=./src'
+                    loader: 'file-loader?name=[path][name].[ext]?[hash]&context=./src',
                 }, {
                     test: /\.(sketch|pdf?)(\?[a-z0-9=\.]+)?$/,
-                    loader: 'file-loader?name=files/[name].[ext]?[hash]&context=./src'
-                }, {
-                    test: /\.json$/,
-                    loader: 'json-loader'
-                }
-            ]
+                    loader: 'file-loader?name=files/[name].[ext]?[hash]&context=./src',
+                },
+            ],
         },
         resolve: {
             extensions: [
@@ -81,7 +71,7 @@ module.exports = function (env) {
                 '.svg',
                 '.json',
                 '.sketch',
-                '.pdf'
+                '.pdf',
             ],
             modules: [
                 'node_modules',
@@ -92,43 +82,34 @@ module.exports = function (env) {
             ],
             alias: {
                 'react-cm-ui': path.resolve(__dirname, 'src'),
-                'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss')
-            }
+                'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss'),
+            },
+        },
+        optimization: {
+            splitChunks: {
+                minChunks: Infinity,
+                name: 'commons',
+            },
         },
         plugins: [
             new webpack.LoaderOptionsPlugin({
-                options: {
-                    postcss: function () {
-                        return [require('autoprefixer')];
-                    }
-                },
                 proxy: {
-                    '*': 'http://0.0.0.0:5000'
+                    '*': 'http://0.0.0.0:5000',
                 },
-            }),
-            new CommonsChunkPlugin({
-                name: 'commons',
-                minChunks: Infinity
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 title: 'Church Management UI Docs',
-                template: 'docs/template.ejs'
+                template: 'docs/template.ejs',
             }),
-            new ExtractTextPlugin({
+            new MiniCssExtractPlugin({
                 filename: 'css/bundle.css',
-                allChunks: true
-            }),
-            new webpack.optimize.UglifyJsPlugin({
-                minimize: true,
-                compress: {
-                    warnings: false
-                }
+                allChunks: true,
             }),
             new webpack.DefinePlugin({
                 __UI_DOCS_VERSION__: (typeof process.env.CM_UI_DOCS_VERSION === 'undefined') ?
-                    '"?"' : '"' + process.env.CM_UI_DOCS_VERSION + '"'
-            })
-        ]
-    }
+                    '"?"' : '"' + process.env.CM_UI_DOCS_VERSION + '"',
+            }),
+        ],
+    };
 };
