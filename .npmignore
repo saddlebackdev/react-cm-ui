@@ -3,3 +3,5 @@
 .*.yml
 webpack.config.*
 docs
+.git
+.github
