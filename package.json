@@ -24,6 +24,10 @@
     "church management",
     "cm"
   ],
+  "files": [
+    "lib",
+    "src"
+  ],
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "webpack",
