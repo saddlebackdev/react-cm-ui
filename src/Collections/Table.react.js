@@ -25,6 +25,7 @@ class Table extends Component {
             id,
             selectable,
             singleLine,
+            size,
             stretch,
             style,
             stackable,
@@ -47,6 +48,9 @@ class Table extends Component {
                 'table-full-width': fullWidth,
                 'table-selectable': selectable,
                 'table-single-line': singleLine,
+                'table-size-large': !size || size === 'l' || size === 'large',
+                'table-size-medium': !size || size === 'm' || size === 'medium',
+                'table-size-small': !size || size === 's' || size === 'small',
                 'table-stretch': stretch && stretch !== 'very',
                 'table-stretch-very': stretch === 'very',
                 'table-striped': striped,
@@ -74,14 +78,12 @@ Table.Header = TableHeader;
 Table.HeaderCell = TableHeaderCell;
 Table.Row = TableRow;
 
-const colorEnums = [ 'bottom', 'middle', 'top' ];
-
 Table.propTypes = {
     basic: PropTypes.bool,
     celled: PropTypes.bool,
     className: PropTypes.string,
     collapsing: PropTypes.bool,
-    color: PropTypes.oneOf(colorEnums),
+    color: PropTypes.oneOf([ 'bottom', 'middle', 'top' ]),
     definition: PropTypes.bool,
     fixed: PropTypes.bool,
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
@@ -89,6 +91,7 @@ Table.propTypes = {
     id: PropTypes.string,
     selectable: PropTypes.bool,
     singleLine: PropTypes.bool,
+    size: PropTypes.oneOf([ 'l', 'large', 'm', 'medium', 's', 'small' ]),
     stackable: PropTypes.bool,
     stretch: PropTypes.oneOfType([
         PropTypes.bool,
