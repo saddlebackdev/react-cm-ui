@@ -1,6 +1,6 @@
 'use strict';
 
-import 'navigation.scss';
+import './navigation.scss';
 
 import _ from 'lodash';
 import { Link } from 'react-router';
