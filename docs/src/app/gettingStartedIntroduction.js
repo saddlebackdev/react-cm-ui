@@ -1,17 +1,17 @@
 'use strict';
 
-import 'components/Introduction.scss';
+import './introduction.scss';
 
 // Style Guide Files
-import 'style-guide/cm-ui-kit_as_1.6.2.sketch';
-import 'style-guide/cm-ui-kit_as_1.6.2.pdf';
+import './style-guide/cm-ui-kit_as_1.6.2.sketch';
+import './style-guide/cm-ui-kit_as_1.6.2.pdf';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Main from './Main.react';
+import Main from './main.js';
 
 export default class GettingStartedIntroduction extends React.Component {
 

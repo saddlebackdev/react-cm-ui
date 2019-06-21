@@ -5,7 +5,7 @@ import React from 'react';
 import { Grid, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Swatch from './Swatch.react';
+import Swatch from './swatch.js';
 
 export default class StyleGuideColors extends React.Component {
 

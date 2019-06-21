@@ -2,9 +2,9 @@
 'use strict';
 
 import { Accordion, Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-import Block from '../app/Block.react.js';
-import Highlighter from '../app/Highlighter.react.js';
-import Main from '../app/Main.react.js';
+import Block from '../app/block.js';
+import Highlighter from '../app/highlighter.js';
+import Main from '../app/main.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
