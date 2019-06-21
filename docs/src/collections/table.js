@@ -1930,10 +1930,6 @@ export default class CollectionsTable extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <p className="font-size-xsmall color-static">
-                    <span className="font-weight-semibold">Note:</span> Must have <code>fixed</code> enabled.
-                </p>
-
                 <Header size="small">Small</Header>
 
                 <Table basic size="small">
