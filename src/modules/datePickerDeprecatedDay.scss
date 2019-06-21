@@ -1,0 +1,114 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+$day-size: 33px;
+
+.ui.date-picker-deprecated-day {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+    min-height: $day-size;
+    position: relative;
+    user-select: none;
+    width: 1 / 7 * 100%;
+    span {
+        align-items: center;
+        border-radius: $day-size / 2;
+        color: $color-text;
+        cursor: pointer;
+        display: flex;
+        flex: 0 1 auto;
+        font-size: rem(16px);
+        font-weight: $default-font-weight-semibold;
+        justify-content: center;
+        max-height: $day-size;
+        max-width: $day-size;
+        min-height: $day-size;
+        min-width: $day-size;
+        padding-bottom: 2px;
+        position: relative;
+        z-index: 1;
+    }
+    &.date-picker-deprecated-day-has-event span { box-shadow: inset 0 0 0 1px $border; }
+    &:not(.date-picker-deprecated-day-outside-month) span:hover {
+        background-color: $bkgd-highlight;
+        box-shadow: none;
+        color: $color-text-inverse;
+    }
+    &.date-picker-deprecated-day-end-selected, &.date-picker-deprecated-day-start-selected {
+        span { font-weight: $default-font-weight-bold; }
+    }
+    &::after {
+        content: '';
+        height: $day-size;
+        margin-top: -$day-size / 2;
+        position: absolute;
+        top: 50%;
+        z-index: 0;
+    }
+    &.date-picker-deprecated-day-start-selected {
+        &.date-picker-deprecated-day-end-selected, &.date-picker-deprecated-day-no-end-day-selected, &:last-child {
+            &::after { background-color: transparent !important; }
+        }
+        &::after { right: 0; width: 50%; }
+    }
+    &.date-picker-deprecated-day-end-selected {
+        &:first-child::after { background-color: transparent !important; }
+        &::after { left: 0; width: 50%; }
+    }
+    &.date-picker-deprecated-day-in-range {
+        background-color: transparent;
+        &::after { width: 100%; }
+        &:first-child::after { right: 0; width: 50%; }
+        &:last-child::after { left: 0; width: 50%; }
+    }
+    &-today span { color: $color-text-highlight; font-weight: $default-font-weight-bold; }
+    &-outside-month span { color: $color-text-static; cursor: default; font-weight: $default-font-weight-normal; }
+}
+.date-picker-deprecated-week .date-picker-deprecated-day {
+    &:first-of-type.datepicker-day-in-range::after { border-radius: ($day-size / 2) 0 0 ($day-size / 2); }
+    &:last-of-type.datepicker-day-in-range::after { border-radius: 0 ($day-size / 2) ($day-size / 2) 0; }
+}
+.date-picker-deprecated-calendar- {
+    &single-date {
+        .date-picker-deprecated-day-selected span {
+            background-color: $sc-teal-dark;
+            color: $color-text-inverse;
+        }
+    }
+    &date-range {
+        .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
+            span {
+                background-color: $sc-teal-dark;
+                color: $color-text-inverse;
+            }
+        }
+        .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
+            &::after { background-color: $sc-teal; }
+        }
+        .date-picker-deprecated-day-in-range {
+            span { color: $color-text-inverse; }
+            &:first-child, &:last-child {
+                span { background-color: $sc-teal; }
+            }
+        }
+    }
+    &service-period, &service-period-range {
+        .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
+            span {
+                background-color: $sc-purple-dark;
+                color: $color-text-inverse;
+            }
+        }
+        .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
+            &::after { background-color: $sc-purple; }
+        }
+        .date-picker-deprecated-day-in-range {
+            span { color: $color-text-inverse; }
+            &:first-child, &:last-child {
+                span { background-color: $sc-purple; }
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
+
+.ui.card {
+    background-color: $bkgd;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px $border-light;
+    margin: calc(2rem - .14285em) 0 1rem;
+    padding: 22px;
+    position: relative;
+    transition: background-color 150ms ease-out;
+    &.card-active { background-color: $bkgd-inverse-alternate; color: $color-text-inverse; cursor: default; }
+    &.card-attached {
+        border-radius: 0;
+        .card-header-attached { border-radius: 0; }
+    }
+    &.card-compact { padding: 11px; }
+    &.card-clickable {
+        cursor: pointer;
+        &:hover { background-color: $bkgd-nest; }
+        &:active { background-color: $bkgd; }
+    }
+    .card-header {
+        margin-bottom: 16px;
+        &.card-header-attached {
+            align-items: center;
+            border-radius: 3px 3px 0 0;
+            display: flex;
+            height: 44px;
+            margin: -22px -22px 16px;
+            padding: 0 22px;
+        }
+        &.card-header-color {
+            &-blue, &-green, &-pink { color: $color-text-inverse; }
+            &-blue {
+                background: linear-gradient(to left, #54cc86 -66%, #1c93c4 100%);
+            }
+            &-green {
+                background: linear-gradient(to left, #8bbd72 -28%, #329594 94%)
+            }
+            &-pink {
+                background: linear-gradient(to left, #f99e49 -11%, #c33580 62%);
+            }
+        }
+    }
+        &.card-attached .card-header-attached { border-radius: 0; }
+        &.card-compact .card-header-attached { margin: -11px -11px 16px; padding: 0 11px; }
+    .card-collapse-button {
+        position: absolute;
+        right: 22px;
+        top: 26px;
+        z-index: 1;
+    }
+    .card-content {
+        transition: height 166ms linear, opacity 166ms linear;
+        > div > {
+            *:first-child { margin-top: 0; }
+            *:last-child { margin-bottom: 0; }
+        }
+    }
+    &.card-collapsable.card-is-collapsing .card-content { overflow: hidden; }
+    &.card-is-collapsed {
+        padding-bottom: 6px;
+        .card-content { opacity: 0; }
+    }
+    &.card-compact {
+        &.card-is-collapsed { padding-bottom: 0; }
+        .card-collapse-button { right: 11px; top: 15px; }
+    }
+    &.card-nest { border: 0; box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1), 1px 1px 2px 0 rgba(0, 0, 0, .1); }
+    .card-content > {
+        :first-child { margin-top: 0; }
+        :last-child { margin-bottom: 0; }
+    }
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+}
