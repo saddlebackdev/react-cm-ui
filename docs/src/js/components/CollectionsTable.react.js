@@ -7,13 +7,7 @@ import React from 'react';
 import TableProps from 'components/UI/TableProps.react';
 
 const tableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class TableSample extends React.Component {
 
@@ -58,13 +52,7 @@ export default class TableSample extends React.Component {
 }`;
 
 const basicTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class BasicTableSample extends React.Component {
 
@@ -109,13 +97,7 @@ export default class BasicTableSample extends React.Component {
 }`;
 
 const celledTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class CelledTableSample extends React.Component {
 
@@ -160,13 +142,7 @@ export default class CelledTableSample extends React.Component {
 }`;
 
 const celledBasicTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class CelledBasicTableSample extends React.Component {
 
@@ -211,13 +187,7 @@ export default class CelledBasicTableSample extends React.Component {
 }`;
 
 const collapsingTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class CollapsingTableSample extends React.Component {
 
@@ -262,13 +232,7 @@ export default class CollapsingTableSample extends React.Component {
 }`;
 
 const definitionTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class DefinitionTableSample extends React.Component {
 
@@ -313,13 +277,7 @@ export default class DefinitionTableSample extends React.Component {
 }`;
 
 const definitionBasicTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class DefinitionBasicTableSample extends React.Component {
 
@@ -364,13 +322,7 @@ export default class DefinitionBasicTableSample extends React.Component {
 }`;
 
 const fixedTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class FixedTableSample extends React.Component {
 
@@ -415,13 +367,7 @@ export default class FixedTableSample extends React.Component {
 }`;
 
 const fontSizeTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class FontSizeTableSample extends React.Component {
 
@@ -466,13 +412,7 @@ export default class FontSizeTableSample extends React.Component {
 }`;
 
 const fontSizeTableRowSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class fontSizeTableRowSample extends React.Component {
 
@@ -517,13 +457,7 @@ export default class fontSizeTableRowSample extends React.Component {
 }`;
 
 const fontSizeTableCellSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class fontSizeTableCellSample extends React.Component {
 
@@ -568,13 +502,7 @@ export default class fontSizeTableCellSample extends React.Component {
 }`;
 
 const fullWidthTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class FullWidthTableSample extends React.Component {
 
@@ -619,13 +547,7 @@ export default class FullWidthTableSample extends React.Component {
 }`;
 
 const selectableTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class fontSizeTableCellSample extends React.Component {
 
@@ -670,13 +592,7 @@ export default class fontSizeTableCellSample extends React.Component {
 }`;
 
 const singleLineTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class fontSizeTableCellSample extends React.Component {
 
@@ -720,14 +636,98 @@ export default class fontSizeTableCellSample extends React.Component {
 
 }`;
 
-const stretchTableSample = `import React from 'react';
+const sizeSmallTableSample = `import React from 'react';
+import { Table } from 'react-cm-ui';
 
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+export default class SizeSmallTableSample extends React.Component {
+
+    render() {
+        return (
+            <Table basic size="small">
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
+            </Table>
+        );
+    }
+
+}`;
+
+const sizeMediumTableSample = `import React from 'react';
+import { Table } from 'react-cm-ui';
+
+export default class SizeMediumTableSample extends React.Component {
+
+    render() {
+        return (
+            <Table basic size="medium">
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
+            </Table>
+        );
+    }
+
+}`;
+
+const stretchTableSample = `import React from 'react';
+import { Table } from 'react-cm-ui';
 
 export default class StretchTableSample extends React.Component {
 
@@ -772,13 +772,7 @@ export default class StretchTableSample extends React.Component {
 }`;
 
 const stretchVeryTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class fontSizeTableCellSample extends React.Component {
 
@@ -823,13 +817,7 @@ export default class fontSizeTableCellSample extends React.Component {
 }`;
 
 const stripedTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class StripedTableSample extends React.Component {
 
@@ -874,13 +862,7 @@ export default class StripedTableSample extends React.Component {
 }`;
 
 const activeTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class ActiveTableSample extends React.Component {
 
@@ -925,13 +907,7 @@ export default class ActiveTableSample extends React.Component {
 }`;
 
 const disabledTableSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class ActiveTableSample extends React.Component {
 
@@ -976,13 +952,7 @@ export default class ActiveTableSample extends React.Component {
 }`;
 
 const textAlignSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class TextAlignSample extends React.Component {
 
@@ -1027,13 +997,7 @@ export default class TextAlignSample extends React.Component {
 }`;
 
 const verticalAlignSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class VerticalAlignSample extends React.Component {
 
@@ -1078,13 +1042,7 @@ export default class VerticalAlignSample extends React.Component {
 }`;
 
 const TableHeaderCellOnClickSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class TableHeaderCellOnClickSample extends React.Component {
 
@@ -1129,13 +1087,7 @@ export default class TableHeaderCellOnClickSample extends React.Component {
 }`;
 
 const TableRowOnClickSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class TableRowOnClickSample extends React.Component {
 
@@ -1180,13 +1132,7 @@ export default class TableRowOnClickSample extends React.Component {
 }`;
 
 const responsiveWidthSample = `import React from 'react';
-
-import Table from 'components/UI/Collections/Table.react';
-import Table.Body from 'components/UI/Collections/Table.Body.react';
-import Table.Cell from 'components/UI/Collections/Table.Cell.react';
-import Table.Header from 'components/UI/Collections/Table.Header.react';
-import Table.HeaderCell from 'components/UI/Collections/Table.HeaderCell.react';
-import Table.Row from 'components/UI/Collections/Table.Row.react';
+import { Table } from 'react-cm-ui';
 
 export default class ResponsiveWidthSample extends React.Component {
 
@@ -1302,9 +1248,15 @@ export default class CollectionsTable extends React.Component {
             }, {
                 name: 'singleLine',
                 type: 'bool',
-                default: 'false',
+                default: '',
                 description: 'Headers may be formatted with a subheader',
-                allowedTypes: '',
+                allowedTypes: 'medium, small',
+            }, {
+                name: 'size',
+                type: 'enum',
+                default: 'small',
+                description: 'The size of a table\'s body of cells.',
+                allowedTypes: 'medium, small',
             }, {
                 name: 'stackable',
                 type: 'bool',
@@ -1968,6 +1920,98 @@ export default class CollectionsTable extends React.Component {
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {singleLineTableSample}
+                </Highlighter>
+
+                {/* Size */}
+                <Header size="large" style={{ marginTop: '55px' }} sub>
+                    Size
+                    <Header.Subheader>
+                        A table's default cell size can be changed.
+                    </Header.Subheader>
+                </Header>
+
+                <p className="font-size-xsmall color-static">
+                    <span className="font-weight-semibold">Note:</span> Must have <code>fixed</code> enabled.
+                </p>
+
+                <Header size="small">Small</Header>
+
+                <Table basic size="small">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {sizeSmallTableSample}
+                </Highlighter>
+
+                <Header size="small">Medium</Header>
+
+                <Table basic size="medium">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                            <Table.Cell>cell</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {sizeMediumTableSample}
                 </Highlighter>
 
                 {/* Stretch Table */}
