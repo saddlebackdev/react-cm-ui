@@ -56,7 +56,7 @@ $cell-border-color: $border-light;
     &.table-basic {
         .table-cell {
             background-color: inherit;
-            padding: rem(11px);
+            padding: rem(12.375px) rem(11px);
             &:first-child { padding-left: 0; }
             &:last-child { padding-right: 0; }
         }
@@ -92,6 +92,14 @@ $cell-border-color: $border-light;
         + .table-row .table-cell { border-top-color: $border; }
     }
     &.table-single-line .table-cell { overflow: hidden; text-overflow: ellipsis; }
+    &.table-size- {
+        &small .table-cell {
+            padding: rem(12.375px) rem(11px);
+        }
+        &medium .table-cell {
+            padding: rem(25.375px) rem(11px);
+        }
+    }
     &.table-stretch {
         .table-cell {
             padding: rem(11px);
