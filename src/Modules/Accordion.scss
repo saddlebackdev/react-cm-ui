@@ -1,0 +1,97 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+$standard-divider: $border;
+
+.ui.accordion {
+    &.accordion-basic {
+        .accordion-item {
+            border-top: 1px solid $standard-divider;
+            .accordion-item-title, .accordion-item-summary {
+                align-items: center;
+                cursor: pointer;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                min-height: 44px;
+            }
+            .accordion-item-title {
+                .copy { flex: 1 1 auto; font-weight: $default-font-weight-semibold; }
+                .ui.icon { flex: none; width: 16px; }
+            }
+            &:last-child { border-bottom: 1px solid $standard-divider; }
+            .ui.accordion &:last-child { border-bottom: 0; }
+        }
+        .accordion-item-no-summary .accordion-item-content {
+            align-items: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            min-height: 44px;
+        }
+            .accordion-item-content {
+                margin: 11px 0 22px;
+                > {
+                    :first-child { margin-top: 0; }
+                    :last-child { margin-bottom: 0; }
+                }
+            }
+            .accordion-item-no-summary, .accordion-item-sub-accordion > {
+                .accordion-item-content { margin: 0; }
+            }
+        &.accordion-inverse {
+            .accordion-item .accordion-item-title {
+                color: $color-text-inverse;
+            }
+                .accordion-item-content { color: $color-text-inverse; }
+        }
+    }
+    &:not(.accordion-basic) {
+        .accordion-item {
+            margin: rem(5px) 0 0;
+            &:first-child { margin-top: 0; }
+        }
+            .accordion-item-summary {
+                background-color: $bkgd-light;
+                border: 1px solid $bkgd-light;
+                border-radius: rem(3px);
+                cursor: pointer;
+                font-weight: $default-font-weight-semibold;
+                padding: 10px 22px;
+                transition:
+                    background-image 150ms ease-out,
+                    border 150ms ease-out;
+                &:hover {
+                    background-image: linear-gradient(-180deg, $bkgd 0%, $bkgd-nest 98%);
+                    border: 1px solid $border-light
+                }
+            }
+            .accorition-summary:hover, .accordion-item-is-active .accordion-item-summary {
+                background-image: linear-gradient(-180deg, $bkgd 0%, $bkgd-nest 98%);
+                border: 1px solid $border-light
+            }
+        .accordion-item-is-active {
+            .accordion-item-summary {
+                border-radius: rem(3px) rem(3px) 0 0;
+            }
+            .accordion-item-content {
+                border: 1px solid $border-light;
+                border-top: 0;
+                border-radius: 0 0 rem(3px) rem(3px);
+                padding: 22px;
+                :first-child { margin-top: 0; }
+                :last-child { margin-bottom: 0; }
+            }
+        }
+    }
+    > .accordion-item > .accordion-item-content { display: none; }
+    > .accordion-item-no-summary > .accordion-item-content { display: flex; }
+    > .accordion-item-is-active > .accordion-item-content {
+        animation: animateInContent 200ms ease-out forwards;
+        display: block;
+    }
+}
+
+@keyframes animateInContent {
+    0% { opacity: 0; transform: translateY(-16px); }
+    50% { transform: translateY(0); }
+    100% { opacity: 1; }
+}

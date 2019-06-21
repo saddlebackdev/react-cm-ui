@@ -82,7 +82,7 @@ module.exports = (env, options) => {
             ],
             alias: {
                 'react-cm-ui': path.resolve(__dirname, 'src'),
-                'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss'),
+                'css-cm-ui': path.resolve(__dirname, 'src/style.scss'),
             },
         },
         optimization: {
