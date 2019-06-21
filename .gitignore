@@ -3,3 +3,4 @@ npm-debug.log
 build
 lib
 stats.json
+.DS_Store
