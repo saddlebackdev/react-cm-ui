@@ -2,8 +2,8 @@
 
 import ClassNames from 'classnames';
 import DatePickerCalendar from './datePickerCalendar';
-import DatePickerUtils from '../utils/DatePickerUtils.js';
-import DateUtils from '../utils/DateUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
+import DateUtils from '../utils/dateUtils.js';
 import Icon from '../elements/icon';
 import Input from '../elements/input';
 import moment from 'moment-timezone';

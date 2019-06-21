@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import BannerItem from './BannerItem';
 import ClassNames from 'classnames';
-import Header from '../Elements/Header';
+import Header from '../elements/header';
 import Icon from '../elements/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';

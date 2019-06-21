@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from '../Elements/Header';
+import Header from '../elements/header';
 import Input from '../elements/input';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
