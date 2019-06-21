@@ -5,7 +5,7 @@ import ClassNames from 'classnames';
 import DatePickerDropdownMonth from './datePickerDropdownMonth';
 import DatePickerDropdownYear from './datePickerDropdownYear';
 import DatePickerMonth from './datePickerMonth';
-import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 import Icon from '../elements/icon';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';

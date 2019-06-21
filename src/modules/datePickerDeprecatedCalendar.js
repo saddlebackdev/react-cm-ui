@@ -14,7 +14,7 @@ import DatePickerDropdownYear from './datePickerDropdownYear';
 import Grid from '../collections/grid';
 import Icon from '../elements/icon';
 
-import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 
 class DatePickerCalendar extends Component {
     constructor(props) {

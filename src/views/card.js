@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/DOMUtils.js';
-import Header from '../elements/Header';
-import Icon from '../elements/Icon';
+import DOMUtils from '../utils/domUtils.js';
+import Header from '../elements/header';
+import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 

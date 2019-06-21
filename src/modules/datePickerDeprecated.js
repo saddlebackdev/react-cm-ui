@@ -5,7 +5,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import DatePickerCalendar from './datePickerDeprecatedCalendar';
 import DatePickerInput from './datePickerDeprecatedInput';
-import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';

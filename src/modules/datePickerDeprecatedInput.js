@@ -7,12 +7,12 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Grid from '../collections/grid';
-import GridColumn from '../collections/GridColumn';
+import GridColumn from '../collections/gridColumn';
 import Icon from '../elements/icon';
 import Input from '../elements/input';
 
-import DatePickerUtils from '../utils/DatePickerUtils.js';
-import DateUtils from '../utils/DateUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
+import DateUtils from '../utils/dateUtils.js';
 
 class DatePickerInput extends Component {
     constructor(props) {

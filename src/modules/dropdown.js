@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/DOMUtils.js';
+import DOMUtils from '../utils/domUtils.js';
 import DropdownItem from './dropdownItem';
 import Icon from '../elements/icon';
 import MediaQuery from 'react-responsive';

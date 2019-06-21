@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import React, { Component } from 'react';
 
-import DatePickerUtils from '../utils/DatePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 
 class DatePickerDay extends Component {
     render() {
