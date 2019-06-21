@@ -35,7 +35,7 @@
     "build:prod": "npm run build",
     "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "clean:lib": "rimraf lib",
-    "compile": "npm run clean:lib && gulp && cpx \"src/fonts/**\" \"lib/fonts\" && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
+    "compile": "npm run clean:lib && gulp && cpx \"src/images/**\" \"lib/images\" && babel src/ -d lib/",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepare": "npm run compile",
     "start": "npm run build:local"
