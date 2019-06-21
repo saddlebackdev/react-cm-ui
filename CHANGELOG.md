@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.1
+
+- Fixed the compile script to grab images in the new directory.
+
 ## 4.0.0
 
 - Changed file structure to use Feature First (Pods).
