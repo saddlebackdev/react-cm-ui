@@ -2,18 +2,18 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../Elements/Button.react';
+import Button from '../elements/button';
 import ClassNames from 'classnames';
 import DOMUtils from '../utils/DOMUtils.js';
-import DropdownItem from './DropdownItem.react';
-import Icon from '../Elements/Icon.react';
+import DropdownItem from './dropdownItem';
+import Icon from '../elements/icon';
 import MediaQuery from 'react-responsive';
-import Modal from './Modal.react';
+import Modal from './modal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class CustomSelect extends Select {
     renderHiddenField(valueArray) {

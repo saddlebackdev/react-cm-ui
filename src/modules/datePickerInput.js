@@ -1,11 +1,11 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import DatePickerCalendar from './DatePickerCalendar.react';
+import DatePickerCalendar from './datePickerCalendar';
 import DatePickerUtils from '../utils/DatePickerUtils.js';
 import DateUtils from '../utils/DateUtils.js';
-import Icon from '../Elements/Icon.react';
-import Input from '../Elements/Input.react';
+import Icon from '../elements/icon';
+import Input from '../elements/input';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';

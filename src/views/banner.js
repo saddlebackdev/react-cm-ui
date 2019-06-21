@@ -1,10 +1,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import BannerItem from './BannerItem.react';
+import BannerItem from './BannerItem';
 import ClassNames from 'classnames';
-import Header from '../Elements/Header.react';
-import Icon from '../Elements/Icon.react';
+import Header from '../Elements/Header';
+import Icon from '../elements/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';

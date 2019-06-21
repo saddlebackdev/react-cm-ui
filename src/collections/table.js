@@ -3,13 +3,13 @@
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import TableBody from './TableBody.react';
-import TableCell from './TableCell.react';
-import TableHeader from './TableHeader.react';
-import TableHeaderCell from './TableHeaderCell.react';
-import TableRow from './TableRow.react';
+import TableBody from './tableBody';
+import TableCell from './tableCell';
+import TableHeader from './tableHeader';
+import TableHeaderCell from './tableHeaderCell';
+import TableRow from './tableRow';
 
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Table extends Component {
     render() {

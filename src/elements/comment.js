@@ -6,10 +6,10 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Dropdown from '../Modules/Dropdown.react';
-import Image from './Image.react';
-import Prompt from '../Modules/Prompt.react';
-import TextArea from './TextArea.react';
+import Dropdown from '../modules/dropdown';
+import Image from './image';
+import Prompt from '../modules/prompt';
+import TextArea from './textArea';
 
 class Comment extends Component {
     constructor(props) {

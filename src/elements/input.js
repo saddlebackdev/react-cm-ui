@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 
-import Icon from './Icon.react';
+import Icon from './icon';
 
 class Input extends React.PureComponent {
     constructor(props) {

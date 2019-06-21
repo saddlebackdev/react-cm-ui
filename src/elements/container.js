@@ -4,10 +4,10 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import ContainerActionBar from './ContainerActionBar.react';
-import ContainerContent from './ContainerContent.react';
+import ContainerActionBar from './containerActionBar';
+import ContainerContent from './containerContent';
 
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Container extends Component {
 

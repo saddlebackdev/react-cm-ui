@@ -6,9 +6,9 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Dropdown from './Dropdown.react';
-import Icon from '../Elements/Icon.react';
-import Input from '../Elements/Input.react';
+import Dropdown from './dropdown';
+import Icon from '../elements/icon';
+import Input from '../elements/input';
 
 class TimePicker extends Component {
 

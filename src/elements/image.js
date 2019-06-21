@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
-import Icon from '../Elements/Icon.react.js';
+import Icon from '../elements/icon.js';
 import PropTypes from 'prop-types';
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Image extends Component {
     render() {
