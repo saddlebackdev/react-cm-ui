@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerCalendar from './DatePickerDeprecatedCalendar.react';
-import DatePickerInput from './DatePickerDeprecatedInput.react';
+import DatePickerCalendar from './datePickerDeprecatedCalendar';
+import DatePickerInput from './datePickerDeprecatedInput';
 import DatePickerUtils from '../utils/DatePickerUtils.js';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';

@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import CountryTelephoneData from 'country-telephone-data';
-import Dropdown from './Dropdown.react';
-import Input from '../Elements/Input.react';
+import Dropdown from './dropdown';
+import Input from '../elements/input';
 import PropTypes from 'prop-types';
 
 class CountrySelectionOption extends Component {

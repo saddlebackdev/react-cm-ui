@@ -6,10 +6,10 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Grid from '../Collections/Grid.react';
-import GridColumn from '../Collections/GridColumn.react';
-import Icon from '../Elements/Icon.react';
-import Input from '../Elements/Input.react';
+import Grid from '../collections/grid';
+import GridColumn from '../collections/GridColumn';
+import Icon from '../elements/icon';
+import Input from '../elements/input';
 
 import DatePickerUtils from '../utils/DatePickerUtils.js';
 import DateUtils from '../utils/DateUtils.js';

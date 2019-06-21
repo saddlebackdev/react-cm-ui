@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerWeek from './DatePickerWeek.react';
+import DatePickerWeek from './datePickerWeek';
 import PropTypes from 'prop-types';
 import React from 'react';
 

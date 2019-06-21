@@ -4,10 +4,10 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import GridColumn from './GridColumn.react';
-import GridRow from './GridRow.react';
+import GridColumn from './gridColumn';
+import GridRow from './gridRow';
 
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Grid extends Component {
 

@@ -140,7 +140,7 @@ DatePickerDay.propTypes = {
     month: PropTypes.number,
     onClick: PropTypes.func,
     type: PropTypes.string,
-    uxMode: PropTypes.string
+    uxMode: PropTypes.string,
 };
 
 export default DatePickerDay;

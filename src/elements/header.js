@@ -4,10 +4,10 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Icon from './Icon.react';
-import HeaderSubheader from './HeaderSubheader.react';
+import Icon from './icon';
+import HeaderSubheader from './headerSubheader';
 
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Header extends Component {
     render() {

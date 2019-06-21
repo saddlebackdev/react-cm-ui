@@ -5,7 +5,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Utils from '../utils/Utils.js';
+import Utils from '../utils/utils.js';
 
 class Icon extends React.Component {
     constructor() {

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Icon from '../Elements/Icon.react';
+import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
 
 class Checkbox extends Component {

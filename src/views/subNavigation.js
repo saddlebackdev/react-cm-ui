@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import SubNavigationItem from './SubNavigationItem.react';
+import SubNavigationItem from './SubNavigationItem';
 
 class SubNavigation extends Component {
     constructor(props) {

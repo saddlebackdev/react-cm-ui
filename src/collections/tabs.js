@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import TabsItem from './TabsItem.react';
+import TabsItem from './tabsItem';
 
 class Tabs extends Component {
     constructor(props) {

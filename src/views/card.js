@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import DOMUtils from '../utils/DOMUtils.js';
-import Header from '../Elements/Header.react';
-import Icon from '../Elements/Icon.react';
+import Header from '../elements/Header';
+import Icon from '../elements/Icon';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -136,12 +136,12 @@ class Card extends Component {
                 <div
                     className="card-content"
                     ref={outerContent => {
-                        this.outerContent = outerContent; 
+                        this.outerContent = outerContent;
                     }}
                     style={{ height: contentHeight }}
                 >
                     <div ref={innerContent => {
-                        this.innerContent = innerContent; 
+                        this.innerContent = innerContent;
                     }}>
                         {renderContent}
                     </div>
