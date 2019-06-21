@@ -1,0 +1,10 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+.ui.block {
+    background-color: $bkgd;
+    border: 1px solid $border-light;
+    border-radius: 3px;
+    padding: 11px;
+    &.block-inverse { background-color: $bkgd-inverse; border: 0; }
+    &.block-nest { background-color: $bkgd-nest; border: 0; }
+}

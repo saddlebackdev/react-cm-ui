@@ -1,0 +1,14 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+.ui.date-picker-deprecated {
+    width: 274px;
+    .date-picker-presets {
+        align-items: flex-start;
+        display: flex;
+        justify-content: flex-start;
+        list-style: none;
+        margin: 0 -4px;
+        padding: 0;
+        li { flex: 1 0 auto; text-align: center; }
+    }
+}

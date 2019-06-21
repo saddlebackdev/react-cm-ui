@@ -8,7 +8,7 @@ module.exports = (env, options) => {
 
     return {
         entry: {
-            bundle: './docs/src/js/components/CoreApp.react.js',
+            bundle: './docs/src/index.js',
             commons: [ 'react-syntax-highlighter' ],
         },
         devServer: {
@@ -82,7 +82,7 @@ module.exports = (env, options) => {
             ],
             alias: {
                 'react-cm-ui': path.resolve(__dirname, 'src'),
-                'css-cm-ui': path.resolve(__dirname, 'src/scss/Style.scss'),
+                'css-cm-ui': path.resolve(__dirname, 'src/style.scss'),
             },
         },
         optimization: {

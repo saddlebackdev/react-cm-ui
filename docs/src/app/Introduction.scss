@@ -1,0 +1,26 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+$nav-width: 266px;
+
+.page-introduction {
+    .hero {
+        background-color: $bkgd-nest;
+        border-bottom: 1px solid $border;
+        margin: 0 -11px 44px;
+        padding: 33px 0;
+        text-align: center;
+        .logo {
+            display: inline-block;
+            flex: 0 1 auto;
+            height: 186px;
+            margin: 0;
+            width: 184px;
+            path { fill: #00AFEC; }
+        }
+        .subtitle { margin: 16px auto 0; max-width: 398px; }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .page-introduction .hero { margin: 0 -22px 44px; }
+}
