@@ -1,0 +1,135 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+
+$columns: 12;
+$breakpoints: (
+    'mobile' '(max-width: 374px)',
+    'mobile-medium' '(min-width: 375px)',
+    'mobile-large' '(min-width: 425px)',
+    'tablet' '(min-width: 768px)',
+    'laptop' '(min-width: 1024px)',
+    'desktop' '(min-width: 1440px)',
+    'desktop-large' '(min-width: 1720px)'
+);
+$breakpoint-has-widths: (
+    'mobile',
+    'mobile-medium',
+    'mobile-large',
+    'tablet',
+    'laptop',
+    'desktop',
+    'desktop-large'
+);
+$cell-bkgd-color: $bkgd-nest;
+$cell-border-bottom-color: $border;
+$cell-border-side-left-color: $border;
+
+.ui.table .table-header-cell {
+    background-color: $cell-bkgd-color;
+    border-bottom: 1px solid $cell-border-bottom-color;
+    border-left: 0;
+    color: $color-text;
+    font-style: none;
+    font-weight: $default-font-weight-normal;
+    padding: rem(11px);
+    text-align: inherit;
+    text-transform: none;
+    vertical-align: inherit;
+    &.table-header-cell-clickable span { cursor: pointer; }
+    &.table-header-cell-collapsing { white-space: nowrap; width: 1px; }
+    &.table-header-cell-text-align-left { text-align: left; }
+    &.table-header-cell-text-align-center { text-align: center; }
+    &.table-header-cell-text-align-right { text-align: right; }
+}
+.ui.table {
+    &.table-basic .table-header-cell {
+        background-color: inherit;
+        color: $color-text-static;
+        padding: 0 rem(11px) rem(11px);
+        &:first-child { padding-left: 0; }
+        &:last-child { padding-right: 0; }
+    }
+    &.table-celled {
+        .table-header-cell {
+            border-left: 1px solid $cell-border-side-left-color;
+            &:first-child { border-left: 0; }
+        }
+    }
+    &.table-definition:not(.table-full-width) .table-header-cell {
+        &:first-child { background-color: inherit; box-shadow: -1px -1px 0 1px $bkgd; }
+        &:nth-child(2) { border-left: 1px solid $cell-border-side-left-color; }
+    }
+    &.table-font-size- {
+        &large .table-header-cell { font-size: rem(20px); }
+        &medium .table-header-cell { font-size: rem(18px); }
+        &small .table-header-cell { font-size: rem(16px); }
+        &xsmall .table-header-cell { font-size: rem(14px); }
+    }
+    &.table-stretch {
+        .table-header-cell {
+            &:first-child { padding-left: rem(11px); }
+            &:last-child { padding-right: rem(11px); }
+        }
+        &-very .table-header-cell {
+            padding: 0 rem(11px) rem(11px);
+            &:first-child { padding-left: rem(22px); }
+            &:last-child { padding-right: rem(22px); }
+        }
+    }
+    // tr
+    .table-row-font-size- {
+        &large .table-header-cell { font-size: rem(20px); }
+        &medium .table-header-cell { font-size: rem(18px); }
+        &small .table-header-cell { font-size: rem(16px); }
+        &xsmall .table-header-cell { font-size: rem(14px); }
+    }
+}
+
+@mixin device-type($namespace: '') {
+    $prefix: '.table-header-cell-' + $namespace;
+    $columns-width: 1 / $columns * 100%;
+
+    #{$prefix}one { display: table-cell; width: 1 * $columns-width; }
+    #{$prefix}two { display: table-cell; width: 2 * $columns-width; }
+    #{$prefix}three { display: table-cell; width: 3 * $columns-width; }
+    #{$prefix}four { display: table-cell; width: 4 * $columns-width; }
+    #{$prefix}five { display: table-cell; width: 5 * $columns-width; }
+    #{$prefix}six { display: table-cell; width: 6 * $columns-width; }
+    #{$prefix}seven { display: table-cell; width: 7 * $columns-width; }
+    #{$prefix}eight { display: table-cell; width: 8 * $columns-width; }
+    #{$prefix}nine { display: table-cell; width: 9 * $columns-width; }
+    #{$prefix}ten { display: table-cell; width: 10 * $columns-width; }
+    #{$prefix}eleven { display: table-cell; width: 11 * $columns-width; }
+    #{$prefix}twelve { display: table-cell; width: 12 * $columns-width; }
+
+    #{$prefix}hide { display: none; }
+    #{$prefix}show { display: table-cell; }
+}
+
+@include device-type();
+
+@mixin grid-media-query($media-query) {
+    $breakpoint-found: false;
+
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        $declaration: nth($breakpoint, 2);
+
+        @if $media-query == $name and $declaration{
+            $breakpoint-found: true;
+
+            @media only screen and #{$declaration}{
+                @content;
+            }
+        }
+    }
+
+    @if $breakpoint-found == false{
+        @warn "Breakpoint ‘#{$media-query}’ does not exist"
+    }
+}
+
+@each $name in $breakpoint-has-widths {
+    @include grid-media-query($name) {
+        @include device-type('#{$name}-');
+    }
+}
