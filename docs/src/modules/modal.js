@@ -612,7 +612,7 @@ export default class ModulesModal extends React.Component {
                 </Modal>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {modalSample}
+                    {autoHeightSample}
                 </Highlighter>
 
                 {/* Dimensions */}
