@@ -28,7 +28,14 @@ class ModalHeader extends Component {
 
         return (
             <header className="modal-header">
-                <Header as="h2" className={titleClass} title={title}>{title}</Header>
+                <Header
+                    as="h3"
+                    className={titleClass}
+                    title={title}
+                    weight="bold"
+                >
+                    {title}
+                </Header>
 
                 <div className="modal-close-button-container">
                     {_.isUndefined(closeButton) || _.isString(closeButton) ? (
@@ -45,9 +52,7 @@ class ModalHeader extends Component {
 
                 {children ? (
                     <div className="modal-header-children">{children}</div>
-                ) : (
-                    <Divider />
-                )}
+                ) : null}
             </header>
         );
     }

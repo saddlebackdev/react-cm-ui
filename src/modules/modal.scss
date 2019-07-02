@@ -2,6 +2,7 @@
 
 // The modal z-index's starts at 11000
 $zindex: $modal-zindex;
+$padding: 33px;
 
 body {
     &.modal-open {
@@ -47,18 +48,16 @@ body {
     }
         .modal-container-inner {
             color: $color-text-inverse;
-            padding: 66px 11px 22px;
+            padding: 88px 11px $padding;
             position: relative;
             header {
-                align-items: flex-start;
+                align-items: center;
                 background-color: $bkgd-inverse;
-                box-shadow: 0 11px 22px $bkgd-inverse;
-                clip-path: inset(0 0 -33px 0);
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
                 left: 0;
-                padding: 22px 11px 0;
+                padding: $padding 11px;
                 position: fixed;
                 top: 0;
                 width: 100%;
@@ -104,16 +103,18 @@ body {
 
 @media only screen and (min-width: 768px) {
     .ui.modal {
-        padding: 22px;
+        padding: $padding;
         .modal-container { background-color: $bkgd; }
         .modal-container-inner {
             color: inherit;
-            padding: 66px 22px 22px;
+            padding: 88px $padding $padding;
             header {
                 background-color: $bkgd;
-                box-shadow: 0 10px 24px $bkgd;
-                padding: 22px 22px 0;
-                .modal-close-button-container { height: 33px; width: 33px; }
+                padding: $padding $padding 22px;
+                .modal-close-button-container {
+                    height: 33px;
+                    width: 33px;
+                }
             }
         }
     }
