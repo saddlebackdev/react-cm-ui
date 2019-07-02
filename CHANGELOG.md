@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.4
+
+- Just one more **$lt;Modal /$gt;** style fixed.
+
 ## 4.0.3
 
 - Some **$lt;Modal /$gt;** style fixes to match what's in the design toolkit.
