@@ -1,13 +1,24 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.0
+
+- A brand new **&lt;Page /&gt;** component with sub components! We'll be iterating on this and its sub components to help facilitate with building page templates.
+  - Sub Components:
+    - **&lt;Page.ActionBar /&gt;**
+    - **&lt;Page.Container /&gt;**
+      - doesn't really do much just yet, but will be reserved for constraining content.
+    - **&lt;Page.Content /&gt;**
+    - **&lt;Page.FiltersRail /&gt;**
+    - **&lt;Page.FiltersDrawer /&gt;**
+
 ## 4.0.4
 
-- Just one more **$lt;Modal /$gt;** style fixed.
+- Just one more **&lt;Modal /&gt;** style fixed.
 
 ## 4.0.3
 
-- Some **$lt;Modal /$gt;** style fixes to match what's in the design toolkit.
+- Some **&lt;Modal /&gt;** style fixes to match what's in the design toolkit.
 
 ## 4.0.2
 

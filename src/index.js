@@ -16,6 +16,7 @@ export { default as Input } from './elements/input.js';
 export { default as Label } from './elements/label.js';
 export { default as List } from './elements/list.js';
 export { default as Loader } from './elements/loader.js';
+export { default as Page } from './elements/page.js';
 export { default as Radio } from './elements/radio.js';
 export { default as Rail } from './elements/rail.js';
 export { default as TextArea } from './elements/textArea.js';
