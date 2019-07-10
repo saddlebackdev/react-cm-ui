@@ -7,14 +7,19 @@
     border-top: 1px solid $border;
     display: flex;
     justify-content: flex-start;
+    left: 0;
     min-height: 70px;
     padding: 0 22px;
+    position: fixed;
+    right: 0;
+    top: 55px;
     width: auto;
     z-index: 2;
 }
 
 @media only screen and (min-width: 768px) {
     .ui.page--action_bar {
-        &.container-stretch { margin: 0 -22px; }
+        left: 250px;
+        top: 70px;
     }
 }
