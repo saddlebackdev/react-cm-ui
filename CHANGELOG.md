@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.2
+
+- Upgraded lodash from v.4.17.11 to v4.17.14 to remove a high risk vulnerability.
+
 ## 4.1.1
 
 - Whoops, I failed with a SCSS import and couldn't publish. Apologies. The import path is fixed.
