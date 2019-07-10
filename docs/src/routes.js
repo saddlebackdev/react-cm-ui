@@ -25,6 +25,13 @@ const routes = (
                 }}
                 path="colors"
             />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./templates/page.js')
+                        .then(module => callback(null, module.default));
+                }}
+                path="page"
+            />
         </Route>
 
         <Route path="/elements">

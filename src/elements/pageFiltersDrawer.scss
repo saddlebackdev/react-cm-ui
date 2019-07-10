@@ -1,0 +1,33 @@
+@import '../shared/styles/Colors';
+
+.ui.page--filters_drawer {
+    &.ui.drawer .drawer-container-inner {
+        .drawer-close-button-container {
+            top: 16px;
+        }
+        .drawer-header {
+            background-color: $bkgd-light;
+            padding-top: 49px;
+            .title {
+                top: 16px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.page--filters_drawer {
+        .drawer-container-inner {
+            padding-left: 11px !important; // sass-lint:disable-line no-important
+            padding-right: 11px !important; // sass-lint:disable-line no-important
+        }
+        .drawer-header .title {
+            padding-left: 11px !important; // sass-lint:disable-line no-important
+            padding-right: 11px !important; // sass-lint:disable-line no-important
+        }
+        .drawer-close-button-container {
+            right: 11px !important; // sass-lint:disable-line no-important
+            width: 16px !important; // sass-lint:disable-line no-important
+        }
+    }
+}
