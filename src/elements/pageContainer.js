@@ -1,7 +1,6 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const PageContainer = (props) => {
