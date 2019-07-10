@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.3
+
+- Added some styling to **&lt;Page.Container /&gt;**. I guess, it now does something.
+- Made the **&lt;Page.ActionBar /&gt;** sticky.
+
 ## 4.1.2
 
 - Upgraded lodash from v.4.17.11 to v4.17.14 to remove a high risk vulnerability.
