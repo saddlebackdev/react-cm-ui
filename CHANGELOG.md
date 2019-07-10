@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.1
+
+- Whoops, I failed with a SCSS import and couldn't publish. Apologies. The import path is fixed.
+
 ## 4.1.0
 
 - A brand new **&lt;Page /&gt;** component with sub components! We'll be iterating on this and its sub components to help facilitate with building page templates.
