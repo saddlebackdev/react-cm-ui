@@ -1,0 +1,12 @@
+@import '../shared/styles/Colors';
+
+.ui.page {
+    background-color: $bkgd;
+    min-height: 100%;
+    padding: 0 11px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.page { padding: 0 22px; }
+}

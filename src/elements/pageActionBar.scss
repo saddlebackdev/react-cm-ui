@@ -1,0 +1,20 @@
+@import '../shared/styles/Colors';
+
+.ui.page--action_bar {
+    align-items: center;
+    background-color: $bkgd-light;
+    border-bottom: 1px solid $border;
+    border-top: 1px solid $border;
+    display: flex;
+    justify-content: flex-start;
+    min-height: 70px;
+    padding: 0 22px;
+    width: auto;
+    z-index: 2;
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.page--action_bar {
+        &.container-stretch { margin: 0 -22px; }
+    }
+}

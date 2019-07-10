@@ -10,7 +10,6 @@ import ScrollBar from 'react-custom-scrollbars';
 import { DOMUtils, Header } from 'react-cm-ui';
 
 export default class CoreAppNavigation extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -24,7 +23,7 @@ export default class CoreAppNavigation extends React.Component {
         return (
             <nav className="core-app-nav" ref="coreAppNav">
                 <ScrollBar
-                    autoHide={true}
+                    autoHide
                     className="core-app-nav-scrollbar"
                     ref="navigation"
                 >
@@ -257,9 +256,8 @@ export default class CoreAppNavigation extends React.Component {
             this.props.toggleNavigation();
         }
     }
-
 }
 
 CoreAppNavigation.propTypes = {
-    toggleNavigation: PropTypes.func
+    toggleNavigation: PropTypes.func,
 };

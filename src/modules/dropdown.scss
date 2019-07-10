@@ -415,7 +415,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 border-width: 0 $select-arrow-width $select-arrow-width;
                 top: -2px;
             }
-            .Select-value-label { color: $select-text-color-focus !important; }
+            .Select-value-label { color: $select-text-color !important; }
             .Select-arrow-zone, .Select-clear-zone {
                 .ui.icon {
                     .icon-use-path {
