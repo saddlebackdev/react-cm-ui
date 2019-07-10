@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "React UI for Church management (Healthy Church)",
   "main": "lib/",
   "jsnext:main": "src/",
