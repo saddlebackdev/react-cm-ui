@@ -14,6 +14,7 @@
         animation-fill-mode: forwards;
         animation-timing-function: ease-out;
         height: auto;
+        min-height: 100%;
         &::after {
             z-index: -1;
         }
