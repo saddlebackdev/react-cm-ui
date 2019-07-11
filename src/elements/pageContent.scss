@@ -1,7 +1,9 @@
 @import '../shared/styles/Colors';
 
 .ui.page--content {
+    position: relative;
     transition: margin 200ms ease-out;
+    z-index: 2;
     &.page-filters-rail-open {
         margin-left: 250px;
     }

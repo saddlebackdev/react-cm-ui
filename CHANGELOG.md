@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.4
+
+- Fixed some **&lt;Page /&gt;** sub component layer issues. 
+
 ## 4.1.3
 
 - Added some styling to **&lt;Page.Container /&gt;**. I guess, it now does something.
