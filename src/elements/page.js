@@ -6,6 +6,7 @@ import PageContainer from './pageContainer.js';
 import PageContent from './pageContent.js';
 import PageFiltersDrawer from './pageFiltersDrawer.js';
 import PageFiltersRail from './pageFiltersRail.js';
+import PageTable from './pageTable.js';
 import React from 'react';
 
 const Page = (props) => {
@@ -24,5 +25,6 @@ Page.Container = PageContainer;
 Page.Content = PageContent;
 Page.FiltersDrawer = PageFiltersDrawer;
 Page.FiltersRail = PageFiltersRail;
+Page.Table = PageTable;
 
 export default Page;
