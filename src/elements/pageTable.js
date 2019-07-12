@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Table } from 'react-cm-ui';
+import Table from '../collections/table.js';
 
 class PageTableRow extends React.PureComponent {
     constructor() {
