@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.3.1
+
+- Whoops, forgot the **&lt;Page.Grid /&gt;** import.
+
 ## 4.3.0
 
 - New **&lt;Page.Grid /&gt;** sub component!
