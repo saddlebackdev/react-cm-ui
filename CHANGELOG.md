@@ -1,9 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.0
+
+- New **&lt;Page.Table /&gt;** sub component!
+
 ## 4.1.4
 
-- Fixed some **&lt;Page /&gt;** sub component layer issues. 
+- Fixed some **&lt;Page /&gt;** sub component layer issues.
 
 ## 4.1.3
 
