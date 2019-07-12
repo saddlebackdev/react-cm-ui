@@ -42,8 +42,9 @@ class PageTableRow extends React.PureComponent {
 
     _onClick() {
         const { isClickable, row, rowProps } = this.props;
+        const isTextSelect = window.getSelection().toString();
 
-        if (isClickable) {
+        if (isClickable && !isTextSelect) {
             rowProps().onClick(row);
         }
     }
