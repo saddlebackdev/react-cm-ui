@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.3.0
+
+- New **&lt;Page.Grid /&gt;** sub component!
+
 ## 4.2.3
 
 - Fixed **&lt;Page /&gt;** default background color. It should have always been a light grey.
