@@ -1,40 +1,9 @@
-@import '../shared/styles/Colors';
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
 
-.ui.page--filters_rail {
-    margin-left: -22px;
-    min-height: 100%;
-    pointer-events: none;
-    position: absolute;
-    width: 250px;
-    z-index: 1;
-    > span {
-        min-height: 100%;
-    }
-    .ui.rail {
-        animation-duration: 200ms;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease-out;
-        height: auto;
-        min-height: 100%;
-        pointer-events: auto;
-        &::after {
-            z-index: -1;
+.ui.page--table {
+    .ui.table {
+        .table-header-cell {
+            padding-top: rem(11px);
         }
     }
-    .ui.rail.filters-rail-enter {
-        animation-name: showFilterRail;
-    }
-    .ui.rail.filters-rail-leave {
-        animation-name: hideFilterRail;
-    }
-}
-
-@keyframes hideFilterRail {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-}
-
-@keyframes showFilterRail {
-    0% { transform: translate(-100%, 0); }
-    100% { transform: translate(0, 0); }
 }
