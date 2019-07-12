@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.2
+
+- Added **&lt;Page.Table /&gt;** sub component scss!
+
 ## 4.2.1
 
 - Whoops, removed a `.scss` import from a `.js` file which was causing an error when installing.
