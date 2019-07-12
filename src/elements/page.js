@@ -25,6 +25,7 @@ Page.Container = PageContainer;
 Page.Content = PageContent;
 Page.FiltersDrawer = PageFiltersDrawer;
 Page.FiltersRail = PageFiltersRail;
+Page.Grid = PageGrid;
 Page.Table = PageTable;
 
 export default Page;
