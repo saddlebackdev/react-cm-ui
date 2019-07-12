@@ -1,0 +1,26 @@
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
+
+.ui.page--grid {
+    .ui.card {
+        margin: 11px 0;
+    }
+    .page--card-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -11px -27px -22px;
+    }
+    .page--card-column {
+        padding: 0 16px 11px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.page--grid {
+        margin: 0 -11px;
+        .page--card-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -16px -11px;
+        }
+    }
+}
