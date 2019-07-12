@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.3
+
+- Fixed **&lt;Page /&gt;** default background color. It should have always been a light grey.
+- Stopped the **&lt;Page.Table /&gt;** row's onClick event handler when selecting text.
+
 ## 4.2.2
 
 - Added **&lt;Page.Table /&gt;** sub component scss!
