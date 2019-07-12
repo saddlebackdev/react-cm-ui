@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import Rail from './rail.js';
 import React from 'react';
 
-const PaageFiltersRail = (props) => {
+const PageFiltersRail = (props) => {
     const {
         children,
         isOpen,
@@ -45,4 +45,4 @@ const PaageFiltersRail = (props) => {
     );
 };
 
-export default PaageFiltersRail;
+export default PageFiltersRail;

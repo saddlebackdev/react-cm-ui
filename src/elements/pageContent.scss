@@ -3,7 +3,7 @@
 .ui.page--content {
     position: relative;
     transition: margin 200ms ease-out;
-    z-index: 2;
+    z-index: 0;
     &.page-filters-rail-open {
         margin-left: 250px;
     }
