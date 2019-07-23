@@ -1,4 +1,3 @@
-
 import _ from 'lodash';
 import Card from '../views/card.js';
 import ClassNames from 'classnames';
