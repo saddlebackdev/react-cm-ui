@@ -4,6 +4,7 @@ import ClassNames from 'classnames';
 import PageActionBar from './pageActionBar.js';
 import PageContainer from './pageContainer.js';
 import PageContent from './pageContent.js';
+import PageDetails from './pageDetails.js';
 import PageFiltersDrawer from './pageFiltersDrawer.js';
 import PageFiltersRail from './pageFiltersRail.js';
 import PageGrid from './pageGrid.js';
@@ -24,6 +25,7 @@ const Page = (props) => {
 Page.ActionBar = PageActionBar;
 Page.Container = PageContainer;
 Page.Content = PageContent;
+Page.Details = PageDetails;
 Page.FiltersDrawer = PageFiltersDrawer;
 Page.FiltersRail = PageFiltersRail;
 Page.Grid = PageGrid;
