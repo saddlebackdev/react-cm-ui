@@ -27,6 +27,7 @@ export { default as DatePicker } from './modules/datePickerDeprecated.js';
 export { default as DatePickerCalendar } from './modules/datePickerCalendar.js';
 export { default as DatePickerInput } from './modules/datePickerInput.js';
 export { default as Drawer } from './modules/drawer.js';
+export { default as DrawerDeprecated } from './modules/drawerDeprecated.js';
 export { default as Dropdown } from './modules/dropdown.js';
 export { default as DurationPicker } from './modules/durationPicker.js';
 export { default as Modal } from './modules/modal.js';

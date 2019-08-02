@@ -226,12 +226,76 @@ const routes = (
                 }}
                 path="date-picker-input"
             />
+            <Route path="drawer">
+                <IndexRoute
+                    getComponent={(location, callback) => {
+                        import('./modules/drawer.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerActionBar.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="action-bar"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerContent.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="content"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerFiltersDrawer.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="filters-drawer"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerGrid.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="grid"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerNavigation.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="navigation"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerTable.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="table"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerTitleBar.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="title-bar"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerWing.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="wing"
+                />
+            </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./modules/drawer.js')
+                    import('./modules/drawerDeprecated.js')
                         .then(module => callback(null, module.default));
                 }}
-                path="drawer"
+                path="drawer-deprecated"
             />
             <Route
                 getComponent={(location, callback) => {

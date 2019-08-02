@@ -2,12 +2,11 @@
 
 import './app.scss';
 
-import Header from './header.js';
-import Navigation from './navigation.js';
 import { DOMUtils } from 'react-cm-ui';
+import Header from './header.js';
 import MediaQuery from 'react-responsive';
+import Navigation from './navigation.js';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
     history.pushState({}, '', location.hash.substring(2));

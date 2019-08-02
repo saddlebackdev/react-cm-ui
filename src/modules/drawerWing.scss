@@ -1,0 +1,57 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer--wing {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    > div {
+        background-color: $bkgd;
+        border-left: 1px solid $border;
+        height: 100%;
+        position: relative;
+        transform: translate(100%, 0);
+        transition: background-color 200ms ease-in;
+        width: 100%;
+    }
+    .drawer--wing-container {
+        background-color: $bkgd;
+        color: $color-text;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: background-color 200ms ease-in, 200ms ease-in;
+        width: 100%;
+    }
+    &.color-blue {
+        > div {
+            background-color: $bkgd-blue;
+        }
+        .drawer--wing-container {
+            background-color: $bkgd-blue;
+            color: $color-text-inverse;
+        }
+    }
+    &.color-grey {
+        > div {
+            background-color: $bkgd-nest;
+        }
+        .drawer--wing-container {
+            background-color: $bkgd-nest;
+        }
+    }
+    &.left-position {
+        > div {
+            border-left: none;
+            border-right: 1px solid $border;
+            transform: translate(-100%, 0);
+        }
+        .drawer--wing-container {
+            left: inherit;
+            right: 0;
+        }
+    }
+}
