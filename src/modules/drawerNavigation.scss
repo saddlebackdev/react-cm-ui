@@ -1,0 +1,21 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer.has-drawer--navigation .drawer-container-inner {
+    padding-top: $drawer-navigation-height;
+    .ui.drawer--navigation {
+        top: 0;
+    }
+}
+.ui.drawer.has-drawer--title_bar.has-drawer--navigation .drawer-container-inner {
+    padding-top: $drawer-title-bar-height + $drawer-navigation-height;
+    .ui.drawer--navigation {
+        top: $drawer-title-bar-height;
+    }
+}
+.ui.drawer--navigation {
+    height: $drawer-navigation-height;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: $drawer-zindex;
+}

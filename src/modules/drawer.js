@@ -13,6 +13,7 @@ import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ScrollBar from 'react-custom-scrollbars';
 
 class Drawer extends React.PureComponent {
     constructor(props) {
@@ -58,20 +59,29 @@ class Drawer extends React.PureComponent {
         }
 
         const isPositionLeft = position === 'left';
-        const containerClasses = ClassNames('ui', 'drawer', className);
-        const containerInnerClasses = ClassNames('drawer-container', {
+        const drawerClasses = ClassNames('ui', 'drawer', className, {
             'left-position': isPositionLeft,
         });
 
         return (
             <Portal>
-                <div className={containerClasses}>
+                <div className={drawerClasses}>
                     <div
-                        className={containerInnerClasses}
-                        ref={el => this._drawerContainerInnerRef = el}
-                        style={{ transform: isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)' }}
+                        className="drawer-container"
+                        ref={el => this._drawerContainerRef = el}
+                        style={{
+                            transform: isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)',
+                        }}
                     >
-                        {children}
+                        <ScrollBar
+                            autoHide
+                            onScrollStart={this._onScrollStart}
+                            onScrollStop={this._onScrollStop}
+                        >
+                            <div className="drawer-container-inner">
+                                {children}
+                            </div>
+                        </ScrollBar>
                     </div>
 
                     <div className="drawer-dimmer" />
@@ -131,7 +141,7 @@ class Drawer extends React.PureComponent {
     _onClickOutside(event) {
         const { onClickOutside } = this.props;
 
-        if (this._drawerContainerInnerRef.contains(event.target) || !onClickOutside) {
+        if (this._drawerContainerRef.contains(event.target) || !onClickOutside) {
             return;
         }
 
@@ -150,7 +160,7 @@ class Drawer extends React.PureComponent {
 
     _onCloseAnimationComplete() {
         const { onCloseComplete, position, onClickOutside } = this.props;
-        const animationEvent = this._transitionProps(this._drawerContainerInnerRef);
+        const animationEvent = this._transitionProps(this._drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         const isPositionLeft = position === 'left';
@@ -159,7 +169,7 @@ class Drawer extends React.PureComponent {
             document.removeEventListener('click', this._onClickOutside);
         }
 
-        this._drawerContainerInnerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
+        this._drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         if (drawerLength <= 2) {
             body.classList.remove('drawer-open-layered');
@@ -175,7 +185,7 @@ class Drawer extends React.PureComponent {
 
         body.classList.remove('drawer-animate-out');
 
-        this._drawerContainerInnerRef.style.transform = isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)';
+        this._drawerContainerRef.style.transform = isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)';
 
         if (_.isFunction(onCloseComplete)) {
             onCloseComplete(true);
@@ -236,8 +246,8 @@ class Drawer extends React.PureComponent {
     }
 
     _onOpenAnimationComplete() {
-        const animationEvent = this._transitionProps(this._drawerContainerInnerRef);
-        this._drawerContainerInnerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
+        const animationEvent = this._transitionProps(this._drawerContainerRef);
+        this._drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
         const { onOpenComplete } = this.props;
 

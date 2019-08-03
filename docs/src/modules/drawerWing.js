@@ -5,12 +5,10 @@ import Main from '../app/main.js';
 import React from 'react';
 import TableProps from '../app/tableProps.js';
 
-const drawerWingSample = `import React from 'react';
+const drawerWingSample = `import { Button, Drawer } from 'react-cm-ui';
+import React from 'react';
 
-import { Button, Drawer } from 'react-cm-ui';
-
-export default class DrawerSample extends React.Component {
-
+export default class DrawerWingSample extends React.Component {
     constructor(props) {
         super(props);
 

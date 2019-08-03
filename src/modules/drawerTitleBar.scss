@@ -1,0 +1,46 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer.has-drawer--title_bar .drawer-container-inner {
+    padding-top: $drawer-title-bar-height;
+}
+.ui.drawer.has-drawer--title_bar.has-drawer--navigation .drawer--title_bar {
+    border-bottom: 0;
+}
+.ui.drawer--title_bar {
+    background-color: $bkgd;
+    border-bottom: 1px solid $border-light;
+    height: $drawer-title-bar-height;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $drawer-zindex;
+    > div {
+        height: $drawer-title-bar-height;
+        position: relative;
+    }
+    .title {
+        display: block;
+        left: 0;
+        margin: 0;
+        overflow: hidden;
+        padding: 0 88px 0 22px;
+        position: absolute;
+        text-overflow: ellipsis;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        width: 100%;
+    }
+    .close-button {
+        align-items: center;
+        display: flex;
+        height: 44px;
+        justify-content: flex-end;
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+    }
+}
