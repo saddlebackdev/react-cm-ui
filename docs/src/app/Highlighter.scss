@@ -1,13 +1,16 @@
 @import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
 
-.highlighter {
-    background-color: $bkgd !important;
+.highlighter.block {
     border-bottom: 1px solid $border;
     border-top: 1px solid $border;
-    font-size: rem(13.5px);
-    line-height: 20px;
-    margin: 0 -11px;
-    padding: 22px 11px !important;
+    height: 600px;
+    pre {
+        background-color: $bkgd !important;
+        font-size: rem(13.5px);
+        line-height: 20px;
+        padding: 22px 11px !important;
+        margin: 0 !important;
+    }
     code {
         background-color: transparent;
         border-radius: 0;
@@ -15,10 +18,30 @@
         font-size: inherit;
         padding: 0;
     }
-    + .highlighter { margin-top: 33px; }
     &:last-child { margin-bottom: 0 !important; }
+    + .highlighter { margin-top: 33px; }
+}
+.highlighter.inline {
+    margin: 22px 22px 33px;
+    pre {
+        background-color: $bkgd-light !important;
+        border: 0;
+        border-radius: 3px;
+        display: inline-block !important;
+        font-size: rem(13.5px);
+        margin: 0 !important;
+    }
+    code {
+        background-color: transparent;
+        border-radius: 0;
+        color: inherit;
+        font-size: inherit;
+        padding: 0;
+    }
 }
 
 @media only screen and (min-width: 768px) {
-    .highlighter { margin: 0 -22px; padding: 22px !important;}
+    .highlighter {
+        margin: 44px -22px;
+    }
 }

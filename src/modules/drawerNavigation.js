@@ -20,9 +20,10 @@ class DrawerNavigation extends React.PureComponent {
                     border="both"
                     style={{ margin: 0 }}
                 >
-                    {_.map(columns, column => {
+                    {_.map(columns, (column, index) => {
                         return (
                             <SubNavigation.Item
+                                key={`drawer-navigation-item-${index}`}
                                 label={column.label || 'Need A Label'}
                                 onClick={column.onClick}
                             />
@@ -39,20 +40,6 @@ class DrawerNavigation extends React.PureComponent {
 
     componentWillUnmount() {
         this._drawerNavigationRef.closest('.ui.drawer').classList.remove(hasClassName);
-    }
-
-    _onItemClick(index, label, onChildClick, event) {
-        if (!_.isUndefined(this.props.onClick)) {
-            this.props.onClick(index, label);
-        } else {
-            if (!_.isUndefined(onChildClick)) {
-                onChildClick(index, label);
-            }
-
-            this.setState({ selected: index });
-        }
-
-        event.preventDefault();
     }
 }
 

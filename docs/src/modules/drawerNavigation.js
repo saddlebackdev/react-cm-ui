@@ -164,7 +164,7 @@ class ModulesDrawerNavigation extends React.Component {
                     <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Navigation
                         <Header.Subheader>
-                            <span>For those times the UI requires a navigation in the header to populate Drawer with different content.</span>
+                            <span>For those times UI requires a navigation in the header to populate Drawer with different content.</span>
 
                             <p className="font-size-xsmall color-static">
                                 <span className="font-weight-semibold">Note:</span> <code>columns</code> is a required prop.<br />

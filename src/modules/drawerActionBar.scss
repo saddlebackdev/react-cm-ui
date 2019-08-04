@@ -1,0 +1,72 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer.has-drawer--action_bar .drawer-container-inner {
+    padding-top: $drawer-action-bar-height;
+    .ui.drawer--action_bar {
+        top: 0;
+    }
+}
+.ui.drawer.has-drawer--title_bar.has-drawer--action_bar .drawer-container-inner {
+    padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
+    .ui.drawer--action_bar {
+        top: $drawer-title-bar-height;
+    }
+}
+.ui.drawer.has-drawer--title_bar.has-drawer--navigation.has-drawer--action_bar .drawer-container-inner {
+    padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
+    .ui.drawer--action_bar {
+        top: $drawer-title-bar-height + $drawer-navigation-height;
+    }
+}
+.ui.drawer--action_bar {
+    align-items: center;
+    background-color: $bkgd;
+    border-bottom: 1px solid $border;
+    display: flex;
+    height: $drawer-action-bar-height;
+    justify-content: flex-start;
+    left: 0;
+    padding: 0 22px;
+    position: fixed;
+    right: 0;
+    z-index: $drawer-zindex;
+    .ui.grid {
+        margin: 0;
+        width: 100%;
+        > .grid-col {
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+        .ui.list {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            .list-item {
+                align-items: center;
+                align-self: stretch;
+                display: inline-flex;
+                justify-content: center;
+                padding: 0 rem(11px);
+                &::before { height: 88% !important; } // sass-lint:disable-line no-important
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.drawer--action_bar {
+        .ui.grid {
+            flex-wrap: nowrap;
+        }
+    }
+}
