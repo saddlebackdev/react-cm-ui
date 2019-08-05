@@ -1,0 +1,16 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer--filters_drawer {
+    .drawer--filters_drawer-row {
+        margin-bottom: calc(2rem - .14285em);
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .drawer--filters_drawer-item {
+        margin-bottom: 11px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

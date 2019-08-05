@@ -3,8 +3,12 @@
 .ui.drawer.has-drawer--title_bar .drawer-container-inner {
     padding-top: $drawer-title-bar-height;
 }
-.ui.drawer.has-drawer--title_bar.has-drawer--navigation .drawer--title_bar {
-    border-bottom: 0;
+.ui.drawer.has-drawer--title_bar {
+    &.has-drawer--navigation, &.has-drawer--action_bar {
+        .drawer--title_bar {
+            border-bottom: 0;
+        }
+    }
 }
 .ui.drawer--title_bar {
     background-color: $bkgd;

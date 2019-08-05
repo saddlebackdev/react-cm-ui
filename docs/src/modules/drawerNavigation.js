@@ -111,6 +111,15 @@ export default class DrawerNavigationSample extends React.Component {
     }
 }`;
 
+const columnsArrayProps = `[
+    {
+        label: 'Button 1', // type: string. required
+    }, {
+        label: 'Button 2', // type: string. required
+        onClick: this._onClickTest, // type: function. optional
+    },
+]`;
+
 class ModulesDrawerNavigation extends React.Component {
     constructor(props) {
         super(props);
@@ -165,13 +174,27 @@ class ModulesDrawerNavigation extends React.Component {
                         Navigation
                         <Header.Subheader>
                             <span>For those times UI requires a navigation in the header to populate Drawer with different content.</span>
-
-                            <p className="font-size-xsmall color-static">
-                                <span className="font-weight-semibold">Note:</span> <code>columns</code> is a required prop.<br />
-                                Accepted properties in a <code>columns</code> object: <code>label</code> and <code>onClick</code>
-                            </p>
                         </Header.Subheader>
                     </Header>
+
+                    <p>
+                        <span>Optional and Required Properties for <code>columns</code>:</span><br />
+                        <span className="font-size-xsmall color-static">
+                            <span className="font-size-xsmall color-static font-weight-semibold">
+                                Note:
+                            </span> 
+                            <code>columns</code> is a required prop.
+                        </span>
+                    </p>
+
+                    <Highlighter
+                        customStyle={{ marginBottom: '44px', marginTop: '44px' }}
+                        showLineNumbers={false}
+                        theme="light"
+                        type="inline"
+                    >
+                        {columnsArrayProps}
+                    </Highlighter>
 
                     <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
 
