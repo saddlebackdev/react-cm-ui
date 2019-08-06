@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.2
+
+- Fixed a bug in **&lt;Page.ActionBar /&gt;**.
+
 ## 5.0.1
 
 - Fixed a bug in **&lt;DrawerDeprecated /&gt;**.
