@@ -64,13 +64,6 @@ class Drawer extends React.PureComponent {
             'left-position': isPositionLeft,
         });
 
-        console.log('children', children);
-        console.log('_.find(children)', _.find(children, c => c.type === DrawerWing));
-        console.log(_.find(children, _.flow(
-            _.property('props'),
-            _.partialRight(_.some, { type: 'DrawerWing' })
-        )));
-
         return (
             <Portal>
                 <div className={drawerClasses}>
@@ -306,7 +299,7 @@ Drawer.propTypes = {
         PropTypes.string,
     ]),
     onClickOutside: PropTypes.bool,
-    onClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
     position: PropTypes.oneOf([ 'left', 'right' ]),

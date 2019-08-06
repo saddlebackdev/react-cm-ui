@@ -76,7 +76,7 @@ class DrawerTable extends React.PureComponent {
             <div
                 className={containerClasses}
                 style={Object.assign({}, style, {
-                    margin: bleed ? '0 -22px' : null,
+                    margin: bleed ? '-33px -22px 0' : null,
                 })}
             >
                 <Table
@@ -132,7 +132,7 @@ DrawerTable.propTypes = {
     data: PropTypes.array.isRequired,
     fontSize: PropTypes.oneOf([ 'large', 'medium', 'small', 'xlarge', 'xsmall', 'xxsmall' ]),
     rowProps: PropTypes.func,
-    size: PropTypes.oneOf( 'large', 'medium', 'small'),
+    size: PropTypes.oneOf([ 'large', 'medium', 'small' ]),
     style: PropTypes.object,
 };
 

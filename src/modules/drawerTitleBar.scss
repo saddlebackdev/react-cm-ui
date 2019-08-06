@@ -28,7 +28,7 @@
         left: 0;
         margin: 0;
         overflow: hidden;
-        padding: 0 88px 0 22px;
+        padding: 0 88px 0 11px;
         position: absolute;
         text-overflow: ellipsis;
         top: 50%;
@@ -42,9 +42,20 @@
         height: 44px;
         justify-content: flex-end;
         position: absolute;
-        right: 22px;
+        right: 11px;
         top: 50%;
         transform: translateY(-50%);
         width: 44px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.drawer--title_bar {
+        .title {
+            padding: 0 88px 0 22px;
+        }
+        .close-button {
+            right: 22px;
+        }
     }
 }

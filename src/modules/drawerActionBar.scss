@@ -34,11 +34,12 @@
     height: $drawer-action-bar-height;
     justify-content: flex-start;
     left: 0;
-    padding: 0 22px;
+    padding: 0 11px;
     position: fixed;
     right: 0;
     z-index: $drawer-zindex;
     .ui.grid {
+        flex-wrap: nowrap;
         margin: 0;
         width: 100%;
         > .grid-col {
@@ -73,8 +74,6 @@
 
 @media only screen and (min-width: 768px) {
     .ui.drawer--action_bar {
-        .ui.grid {
-            flex-wrap: nowrap;
-        }
+        padding: 0 22px;
     }
 }

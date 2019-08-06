@@ -131,7 +131,7 @@ class DrawerGrid extends React.PureComponent {
 }
 
 DrawerGrid.propTypes = {
-    cardProps: PropTypes.object,
+    cardProps: PropTypes.func,
     className: PropTypes.string,
     columns: PropTypes.array,
     data: PropTypes.array,
