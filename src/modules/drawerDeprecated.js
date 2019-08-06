@@ -502,7 +502,7 @@ class DrawerDeprecated extends Component {
         const scrollPosition = window.pageYOffset;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
-        const drawerDimmer = nodePortal.querySelector('.drawer-dimmer');
+        const drawerDimmer = nodePortal.querySelector('.drawer-dimmer-deprecated');
         const layeredOffset = 11;
         const animationEvent = this._transitionProps(this._drawerContainer);
         let zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
