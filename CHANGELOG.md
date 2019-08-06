@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.1
+
+- Fixed a bug in **&lt;DrawerDeprecated /&gt;**.
+- Duplicated **&lt;Drawer.ActionBar /&gt;** in **&lt;Page.ActionBar /&gt;**.
+
 ## 5.0.0
 
 - Breaking Change: A brand new **&lt;Drawer /&gt;** component with sub components! We'll be iterating on this and its sub components to help facilitate with building drawer templates. Old **&lt;Drawer /&gt;** component has been deprecated and renamed to **&lt;DrawerDeprecated /&gt;**. Please update your **&lt;Drawer /&gt;** components accordingly.
