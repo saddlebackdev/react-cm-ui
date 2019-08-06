@@ -1,0 +1,11 @@
+@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+
+.ui.drawer--content {
+    padding: 33px 11px;
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.drawer--content {
+        padding: 33px 22px;
+    }
+}

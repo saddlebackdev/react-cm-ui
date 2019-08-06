@@ -4,3 +4,5 @@ build
 lib
 stats.json
 .DS_Store
+config.json
+config.local.json

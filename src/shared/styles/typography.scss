@@ -28,6 +28,7 @@ html { font-size: 100%; }
         ::selection { background: $color-text-link; color: $color-text-inverse; }
         // Text Colors
         .color-alert { color: $color-text-alert; }
+        .color-disable { color: $color-text-disable; }
         .color-highlight { color: $color-text-highlight; }
         .color-inverse { color: $color-text-inverse; }
         .color-link { color: $color-text-link; }

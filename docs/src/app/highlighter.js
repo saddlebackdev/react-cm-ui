@@ -1,40 +1,71 @@
-'use strict';
-
 import './Highlighter.scss';
 
-import { atomOneLight } from 'react-syntax-highlighter/dist/styles';
+import { prism, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import ScrollBar from 'react-custom-scrollbars';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export default class Highlighter extends React.Component {
-
     render() {
-
-        return (
+        const { children, className, customStyle, showLineNumbers, theme, type } = this.props;
+        const containerClasses = ClassNames('highlighter', className, {
+            'block': type === 'block',
+            'inline': type === 'inline',
+        });
+        const syntaxHighlighter = (
             <SyntaxHighlighter
-                className="ui highlighter"
-                customStyle={this.props.customStyle}
-                language={this.props.language || 'jsx'}
-                lineNumberContainerStyle={{
+                customStyle={customStyle}
+                language="javascript"
+                lineNumberContainerStyle={showLineNumbers && {
                     color: '#97a4ab',
                     float: 'left',
                     marginLeft: '-22px',
                     padding: '0 22px',
                     textAlign: 'right',
-                    userSelect: 'none'
+                    userSelect: 'none',
                 }}
-                showLineNumbers={true}
-                style={atomOneLight}
+                showLineNumbers={showLineNumbers}
+                style={theme === 'dark' ? tomorrow : prism}
+                wrapLines
             >
-                {this.props.children}
+                {children}
             </SyntaxHighlighter>
         );
-    }
 
+        if (type === 'block') {
+            return (
+                <div className={containerClasses}>
+                    <ScrollBar
+                        autoHide
+                    >
+                        <div className="highlighter-inner-container">
+                            {syntaxHighlighter}
+                        </div>
+                    </ScrollBar>
+                </div>
+            );
+        } else {
+            return (
+                <div className={containerClasses}>
+                    {syntaxHighlighter}
+                </div>
+            );
+        }
+    }
 }
+
+Highlighter.defaultProps = {
+    showLineNumbers: true,
+    theme: 'light',
+    type: 'block',
+};
 
 Highlighter.propTypes = {
     customStyle: PropTypes.object,
-    language: PropTypes.string
+    language: PropTypes.string,
+    showLineNumbers: PropTypes.bool,
+    theme: PropTypes.oneOf([ 'dark', 'light' ]),
+    type: PropTypes.oneOf([ 'block', 'inline' ]),
 };

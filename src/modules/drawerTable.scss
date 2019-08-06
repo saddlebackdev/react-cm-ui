@@ -1,0 +1,9 @@
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
+
+.ui.drawer--table {
+    .ui.table {
+        .table-header-cell {
+            padding-top: rem(11px);
+        }
+    }
+}
