@@ -156,6 +156,21 @@ class ModulesDrawerWing extends React.Component {
                     <Drawer
                         isOpen={isDrawerWingOpen}
                         onClose={this._onDrawerWingToggle}
+                        wing={
+                            <Drawer.Wing
+                                color={wingOpenType}
+                                isOpen={!!wingOpenType}
+                                width={wingOpenType === 'blue' ? '350px' : '100%'}
+                            >
+                                {wingOpenType === 'blue' ? (
+                                    <div>blue wing render drawer wing</div>
+                                ) : wingOpenType === 'grey' ? (
+                                    <div>grey wing render drawer wing</div>
+                                ) : wingOpenType === 'white' ? (
+                                    <div>white wing render drawer wing</div>
+                                ) : null}
+                            </Drawer.Wing>
+                        }
                     >
                         <Button onClick={this._onDrawerWingToggle}>Close Drawer</Button>
 
@@ -166,20 +181,6 @@ class ModulesDrawerWing extends React.Component {
                         <Button onClick={() => this._onOpenWing('blue')}>Blue Wing</Button>
 
                         <Button onClick={() => this._onOpenWing('grey')}>Grey Wing</Button>
-
-                        <Drawer.Wing
-                            color={wingOpenType}
-                            isOpen={!!wingOpenType}
-                            width={wingOpenType === 'blue' ? '350px' : '100%'}
-                        >
-                            {wingOpenType === 'blue' ? (
-                                <div>blue wing render drawer wing</div>
-                            ) : wingOpenType === 'grey' ? (
-                                <div>grey wing render drawer wing</div>
-                            ) : wingOpenType === 'white' ? (
-                                <div>white wing render drawer wing</div>
-                            ) : null}
-                        </Drawer.Wing>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

@@ -44,7 +44,7 @@ export default class DrawerSample extends React.Component {
     }
 }`;
 
-class ModulesDrawerWing extends React.Component {
+class ModulesDrawer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -166,4 +166,4 @@ class ModulesDrawerWing extends React.Component {
     }
 }
 
-export default ModulesDrawerWing;
+export default ModulesDrawer;

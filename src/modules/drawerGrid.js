@@ -10,7 +10,7 @@ class DrawerGridColumn extends React.PureComponent {
         const { columns, data } = this.props;
 
         return _.map(columns, (column, index) => {
-            const accessorClasses = ClassNames('page-card-column-accessor', {
+            const accessorClasses = ClassNames('drawer-card-column-accessor', {
                 'font-size-medium': column.fontSize === 'medium',
                 'font-size-small': !column.fontSize || column.fontSize === 'small',
                 'font-weight-bold': column.fontWeight === 'bold',
@@ -27,8 +27,8 @@ class DrawerGridColumn extends React.PureComponent {
 
             return (
                 <div
-                    className="page--card-column"
-                    key={`pageCardColumn-${index}`}
+                    className="drawer--card-column"
+                    key={`drawerCardColumn-${index}`}
                     style={{
                         marginBottom: column.width ? '11px' : null,
                         width: column.width,
@@ -70,7 +70,7 @@ class DrawerGridItem extends React.PureComponent {
                 onClick={_.isFunction(cardProps().onClick) ? this._onClick : null}
             >
                 <div
-                    className="page--card-container"
+                    className="drawer--card-container"
                 >
                     <DrawerGridColumn
                         columns={columns}
@@ -121,7 +121,7 @@ class DrawerGrid extends React.PureComponent {
                             cardProps={cardProps}
                             columns={columns}
                             data={d}
-                            key={`pageCardItem-${id}`}
+                            key={`drawerCardItem-${id}`}
                         />
                     );
                 })}
@@ -131,15 +131,11 @@ class DrawerGrid extends React.PureComponent {
 }
 
 DrawerGrid.propTypes = {
+    cardProps: PropTypes.object,
     className: PropTypes.string,
-    closeButton: PropTypes.object,
-    closeButtonStyle: PropTypes.object,
+    columns: PropTypes.array,
+    data: PropTypes.array,
     style: PropTypes.object,
-    title: PropTypes.oneOfType([
-        PropTypes.object,
-        PropTypes.string,
-    ]),
-    titleStyle: PropTypes.object,
 };
 
 export default DrawerGrid;

@@ -1,0 +1,29 @@
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
+
+.ui.drawer--grid {
+    .ui.card {
+        margin: 11px 0;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    .drawer--card-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -11px -27px -22px;
+    }
+    .drawer--card-column {
+        padding: 0 16px 11px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.drawer--grid {
+        margin: 0 -11px;
+        .drawer--card-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -16px -11px;
+        }
+    }
+}

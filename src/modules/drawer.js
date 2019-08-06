@@ -51,6 +51,7 @@ class Drawer extends React.PureComponent {
             children,
             className,
             position,
+            wing,
         } = this.props;
         const { isOpen } = this.state;
 
@@ -62,6 +63,13 @@ class Drawer extends React.PureComponent {
         const drawerClasses = ClassNames('ui', 'drawer', className, {
             'left-position': isPositionLeft,
         });
+
+        console.log('children', children);
+        console.log('_.find(children)', _.find(children, c => c.type === DrawerWing));
+        console.log(_.find(children, _.flow(
+            _.property('props'),
+            _.partialRight(_.some, { type: 'DrawerWing' })
+        )));
 
         return (
             <Portal>
@@ -82,6 +90,8 @@ class Drawer extends React.PureComponent {
                                 {children}
                             </div>
                         </ScrollBar>
+
+                        {wing}
                     </div>
 
                     <div className="drawer-dimmer" />
@@ -301,6 +311,7 @@ Drawer.propTypes = {
     onOpenComplete: PropTypes.func,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     style: PropTypes.object,
+    wing: PropTypes.object,
 };
 
 export default Drawer;

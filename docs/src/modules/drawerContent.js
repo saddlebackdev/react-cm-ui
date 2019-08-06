@@ -1,5 +1,4 @@
 import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
-import _ from 'lodash';
 import DrawerSubNavigation from './DrawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
@@ -9,7 +8,7 @@ import TableProps from '../app/tableProps.js';
 const drawerContentSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';
 
-export default class DrawerActionBarSample extends React.Component {
+export default class DrawerContentSample extends React.Component {
     constructor(props) {
         super(props);
 

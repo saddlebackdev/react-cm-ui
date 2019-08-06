@@ -9,7 +9,7 @@ import TableProps from '../app/tableProps.js';
 const drawerFiltersDrawerSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';
 
-export default class DrawerActionBarSample extends React.Component {
+export default class DrawerFiltersDrawerSample extends React.Component {
     constructor(props) {
         super(props);
 
