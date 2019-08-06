@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.0
+
+- Breaking Change: A brand new **&lt;Drawer /&gt;** component with sub components! We'll be iterating on this and its sub components to help facilitate with building drawer templates. Old **&lt;Drawer /&gt;** component has been deprecated and renamed to **&lt;DrawerDeprecated /&gt;**. Please update your **&lt;Drawer /&gt;** components accordingly.
+  - Sub Components:
+    - **&lt;Drawer.ActionBar /&gt;**
+    - **&lt;Drawer.Content /&gt;**
+    - **&lt;Drawer.FiltersDrawer /&gt;**
+    - **&lt;Drawer.Grid /&gt;**
+    - **&lt;Drawer.Navigiation /&gt;**
+    - **&lt;Drawer.Table /&gt;**
+    - **&lt;Drawer.TitleBar /&gt;**
 
 ## 4.4.1
 
