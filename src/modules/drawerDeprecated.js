@@ -186,7 +186,6 @@ class DrawerDeprecated extends Component {
             wing: null,
         };
 
-        this._onBeforeClose = this._onBeforeClose.bind(this);
         this._onClickOutside = this._onClickOutside.bind(this);
         this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
         this._onCloseWingAnimationComplete = this._onCloseWingAnimationComplete.bind(this);
@@ -198,6 +197,7 @@ class DrawerDeprecated extends Component {
         this._onScrollStop = this._onScrollStop.bind(this);
 
         this._drawerContainer = null;
+        this._useComponentWillUnmount = false;
     }
 
     componentDidUpdate(prevProps) {
@@ -406,36 +406,36 @@ class DrawerDeprecated extends Component {
     }
 
     componentWillUnmount() {
-        if (document.body.classList.contains('drawer-open')) {
-            document.body.classList.remove('drawer-open');
-        }
+        const { isOpen } = this.state;
 
-        if (document.body.classList.contains('drawer-dimmers')) {
-            document.body.classList.remove('drawer-dimmers');
-        }
+        if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
+            if (document.body.classList.contains('drawer-open')) {
+                document.body.classList.remove('drawer-open');
+            }
 
-        if (document.body.classList.contains('drawer-open-layered')) {
-            document.body.classList.remove('drawer-open-layered');
-        }
+            if (document.body.classList.contains('drawer-dimmers')) {
+                document.body.classList.remove('drawer-dimmers');
+            }
 
-        if (document.body.classList.contains('drawer-animate-out')) {
-            document.body.classList.remove('drawer-animate-out');
+            if (document.body.classList.contains('drawer-open-layered')) {
+                document.body.classList.remove('drawer-open-layered');
+            }
+
+            if (document.body.classList.contains('drawer-animate-out')) {
+                document.body.classList.remove('drawer-animate-out');
+            }
         }
     }
 
     _onBeforeClose() {
-        if (!this.props.isOpen) {
-            const animationEvent = this._transitionProps(this._drawerContainer);
+        const animationEvent = this._transitionProps(this._drawerContainer);
 
-            document.body.classList.add('drawer-animate-out');
-            this._drawerContainer.classList.add('drawer-animate-out');
-            this._drawerContainer.style.transform = this.props.position === 'right' ?
-                'translate(100%, 0)' :
-                'translate(-100%, 0)';
-            this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
-        } else {
-            document.body.classList.remove('drawer-open', 'drawer-open-layered', 'drawer-dimmers');
-        }
+        document.body.classList.add('drawer-animate-out');
+        this._drawerContainer.classList.add('drawer-animate-out');
+        this._drawerContainer.style.transform = this.props.position === 'right' ?
+            'translate(100%, 0)' :
+            'translate(-100%, 0)';
+        this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
     }
 
     _onClickOutside(event) {
@@ -490,12 +490,15 @@ class DrawerDeprecated extends Component {
             onCloseComplete(true);
         }
 
+        this._useComponentWillUnmount = false;
+
         this.setState({
             isOpen: false,
         });
     }
 
     _onOpen() {
+        this._useComponentWillUnmount = true;
         const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);
@@ -514,7 +517,7 @@ class DrawerDeprecated extends Component {
         }
 
         setTimeout(() => {
-            if (DOMUtils.hasClassName(body, 'drawer-open')) {
+            if (document.body.classList.contains('drawer-open')) {
                 zIndex = zIndex + drawerLength;
                 DOMUtils.addClassName(body, 'drawer-open-layered');
 
