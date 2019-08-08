@@ -1,6 +1,7 @@
 import { Button, Card, Drawer, Header, TitleBar } from 'react-cm-ui';
 import DrawerSubNavigation from './DrawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
+import { Link } from 'react-router';
 import Main from '../app/main.js';
 import React from 'react';
 import TableProps from '../app/tableProps.js';
@@ -13,9 +14,15 @@ export default class DrawerSample extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { isDrawerOpen: false };
+        this.state = {
+            isBarDrawerOpen: false,
+            isDrawerOpen: false,
+            isFooDrawerOpen: false,
+        };
 
         this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this._onBarDrawerToggle = this._onBarDrawerToggle.bind(this);
+        this._onFooDrawerToggle = this._onFooDrawerToggle.bind(this);
     }
 
     render() {
@@ -30,17 +37,51 @@ export default class DrawerSample extends React.Component {
                     onClose={this._onDrawerToggle}
                 >
                     <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
+                    <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                    <Drawer
+                        isOpen={isFooDrawerOpen}
+                        onClose={this._onFooDrawerToggle}
+                    >
+                        <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
+                        <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
+
+                        <p>Foo Drawer</p>
+
+                        <Drawer
+                            isOpen={isBarDrawerOpen}
+                            onClose={this._onBarDrawerToggle}
+                        >
+                            <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
+
+                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+
+                            <p>Bar Drawer</p>
+                        </Drawer>
+                    </Drawer>
                 </Drawer>
             </div>
         );
+    }
+
+    _onBarDrawerToggle() {
+        const { isBarDrawerOpen } = this.state;
+
+        this.setState({ isBarDrawerOpen: !isBarDrawerOpen });
     }
 
     _onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
+    }
+
+    _onFooDrawerToggle() {
+        const { isFooDrawerOpen } = this.state;
+
+        this.setState({ isFooDrawerOpen: !isFooDrawerOpen });
     }
 }`;
 
@@ -49,14 +90,18 @@ class ModulesDrawer extends React.Component {
         super(props);
 
         this.state = {
+            isBarDrawerOpen: false,
             isDrawerOpen: false,
+            isFooDrawerOpen: false,
         };
 
         this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this._onBarDrawerToggle = this._onBarDrawerToggle.bind(this);
+        this._onFooDrawerToggle = this._onFooDrawerToggle.bind(this);
     }
 
     render() {
-        const { isDrawerOpen } = this.state;
+        const { isBarDrawerOpen, isDrawerOpen, isFooDrawerOpen } = this.state;
         const props = [
             {
                 name: 'className',
@@ -147,8 +192,30 @@ class ModulesDrawer extends React.Component {
                         onClose={this._onDrawerToggle}
                     >
                         <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
+                        <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                        <Drawer
+                            isOpen={isFooDrawerOpen}
+                            onClose={this._onFooDrawerToggle}
+                        >
+                            <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
+                            <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
+
+                            <p>Foo Drawer</p>
+
+                            <Drawer
+                                isOpen={isBarDrawerOpen}
+                                onClose={this._onBarDrawerToggle}
+                            >
+                                <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
+
+                                <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+
+                                <p>Bar Drawer</p>
+                            </Drawer>
+                        </Drawer>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -159,10 +226,22 @@ class ModulesDrawer extends React.Component {
         );
     }
 
+    _onBarDrawerToggle() {
+        const { isBarDrawerOpen } = this.state;
+
+        this.setState({ isBarDrawerOpen: !isBarDrawerOpen });
+    }
+
     _onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
+    }
+
+    _onFooDrawerToggle() {
+        const { isFooDrawerOpen } = this.state;
+
+        this.setState({ isFooDrawerOpen: !isFooDrawerOpen });
     }
 }
 

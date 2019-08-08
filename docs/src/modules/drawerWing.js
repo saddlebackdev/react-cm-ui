@@ -31,6 +31,33 @@ export default class DrawerWingSample extends React.Component {
                 <Drawer
                     isOpen={isDrawerWingOpen}
                     onClose={this._onDrawerWingToggle}
+                    wing={
+                        <Drawer.Wing
+                            color={wingOpenType}
+                            isOpen={!!wingOpenType}
+                            width={wingOpenType === 'blue' ? '350px' : '100%'}
+                        >
+                            {wingOpenType === 'blue' ? (
+                                <div>
+                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                    <p>blue wing render drawer win</p>
+                                </div>
+                            ) : wingOpenType === 'grey' ? (
+                                <div>
+                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                    <p>grey wing render drawer wing</p>
+                                </div>
+                            ) : wingOpenType === 'white' ? (
+                                <div>
+                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                    <p>white wing render drawer wing</p>
+                                </div>
+                            ) : null}
+                        </Drawer.Wing>
+                    }
                 >
                     <Button onClick={this._onDrawerWingToggle}>Close Drawer</Button>
 
@@ -41,20 +68,6 @@ export default class DrawerWingSample extends React.Component {
                     <Button onClick={() => this._onOpenWing('blue')}>Blue Wing</Button>
 
                     <Button onClick={() => this._onOpenWing('grey')}>Grey Wing</Button>
-
-                    <Drawer.Wing
-                        color={wingOpenType}
-                        isOpen={!!wingOpenType}
-                        width={wingOpenType === 'blue' ? '350px' : '100%'}
-                    >
-                        {wingOpenType === 'blue' ? (
-                            <div>blue wing render drawer wing</div>
-                        ) : wingOpenType === 'grey' ? (
-                            <div>grey wing render drawer wing</div>
-                        ) : wingOpenType === 'white' ? (
-                            <div>white wing render drawer wing</div>
-                        ) : null}
-                    </Drawer.Wing>
                 </Drawer>
             </div>
         );
@@ -67,10 +80,8 @@ export default class DrawerWingSample extends React.Component {
     }
 
     _onOpenWing(type) {
-        const { wingOpenType } = this.state;
-
         this.setState({
-            wingOpenType: type === wingOpenType ? null : type,
+            wingOpenType: type || null,
         });
     }
 }`;
@@ -163,11 +174,23 @@ class ModulesDrawerWing extends React.Component {
                                 width={wingOpenType === 'blue' ? '350px' : '100%'}
                             >
                                 {wingOpenType === 'blue' ? (
-                                    <div>blue wing render drawer wing</div>
+                                    <div>
+                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                        <p>blue wing render drawer win</p>
+                                    </div>
                                 ) : wingOpenType === 'grey' ? (
-                                    <div>grey wing render drawer wing</div>
+                                    <div>
+                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                        <p>grey wing render drawer wing</p>
+                                    </div>
                                 ) : wingOpenType === 'white' ? (
-                                    <div>white wing render drawer wing</div>
+                                    <div>
+                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+
+                                        <p>white wing render drawer wing</p>
+                                    </div>
                                 ) : null}
                             </Drawer.Wing>
                         }
@@ -198,10 +221,8 @@ class ModulesDrawerWing extends React.Component {
     }
 
     _onOpenWing(type) {
-        const { wingOpenType } = this.state;
-
         this.setState({
-            wingOpenType: type === wingOpenType ? null : type,
+            wingOpenType: type || null,
         });
     }
 }

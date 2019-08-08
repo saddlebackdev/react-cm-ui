@@ -20,13 +20,14 @@ class Drawer extends React.PureComponent {
         super(props);
 
         this.state = {
-            isOpen: props.isOpen,
+            isOpen: props.isOpen, // We put isOpen into state because when closing a drawer we return false in render before the closing animation is complete.
             transformValue: props.position === 'right' ?
                 'translate(100%, 0)' :
                 'translate(-100%, 0)',
         };
 
         this._drawerContainer = null;
+        this._useComponentWillUnmount = false;
 
         this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
         this._onOpenAnimationComplete = this._onOpenAnimationComplete.bind(this);
@@ -106,39 +107,39 @@ class Drawer extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        if (document.body.classList.contains('drawer-open')) {
-            document.body.classList.remove('drawer-open');
-        }
+        const { isOpen } = this.state;
 
-        if (document.body.classList.contains('drawer-dimmers')) {
-            document.body.classList.remove('drawer-dimmers');
-        }
+        if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
+            if (document.body.classList.contains('drawer-open')) {
+                document.body.classList.remove('drawer-open');
+            }
 
-        if (document.body.classList.contains('drawer-open-layered')) {
-            document.body.classList.remove('drawer-open-layered');
-        }
+            if (document.body.classList.contains('drawer-dimmers')) {
+                document.body.classList.remove('drawer-dimmers');
+            }
 
-        if (document.body.classList.contains('drawer-animate-out')) {
-            document.body.classList.remove('drawer-animate-out');
+            if (document.body.classList.contains('drawer-open-layered')) {
+                document.body.classList.remove('drawer-open-layered');
+            }
+
+            if (document.body.classList.contains('drawer-animate-out')) {
+                document.body.classList.remove('drawer-animate-out');
+            }
         }
     }
 
     _onBeforeClose() {
-        const { isOpen, position } = this.props;
+        const { position } = this.props;
 
-        if (!isOpen) {
-            const animationEvent = this._transitionProps(this._drawerContainer);
-            const isPositionLeft = position === 'left';
+        const animationEvent = this._transitionProps(this._drawerContainer);
+        const isPositionLeft = position === 'left';
 
-            document.body.classList.add('drawer-animate-out');
-            this._drawerContainer.classList.add('drawer-animate-out');
-            this._drawerContainer.style.transform = isPositionLeft ?
-                'translate(-100%, 0)' :
-                'translate(100%, 0)';
-            this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
-        } else {
-            document.body.classList.remove('drawer-open', 'drawer-open-layered', 'drawer-dimmers');
-        }
+        document.body.classList.add('drawer-animate-out');
+        this._drawerContainer.classList.add('drawer-animate-out');
+        this._drawerContainer.style.transform = isPositionLeft ?
+            'translate(-100%, 0)' :
+            'translate(100%, 0)';
+        this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
     }
 
     _onClickOutside(event) {
@@ -194,12 +195,15 @@ class Drawer extends React.PureComponent {
             onCloseComplete(true);
         }
 
+        this._useComponentWillUnmount = false;
+
         this.setState({
             isOpen: false,
         });
     }
 
     _onOpen() {
+        this._useComponentWillUnmount = true;
         const { maxWidth, onClickOutside, position } = this.props;
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);

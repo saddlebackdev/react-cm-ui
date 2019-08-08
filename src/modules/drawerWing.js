@@ -2,6 +2,10 @@ import ClassNames from 'classnames';
 import DOMUtils from '../utils/domUtils.js';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+const hasClassName = 'has-drawer--wing';
+const animateOutClassName = 'drawer--wing-animate-out';
 
 class DrawerWing extends React.PureComponent {
     constructor() {
@@ -73,17 +77,16 @@ class DrawerWing extends React.PureComponent {
     }
 
     _onBeforeClose() {
-        const { isOpen } = this.props;
+        const animationEvent = DOMUtils.cssTransitionType(this._closestDrawerContainerEl);
 
-        if (!isOpen) {
-            const animationEvent = DOMUtils.cssTransitionType(this._closestDrawerContainerEl);
-
-            this._closestDrawerContainerEl.style.transform = 'translate(0)';
-            this._closestDrawerContainerEl.addEventListener(animationEvent, this._onCloseAnimationComplete);
-        }
+        this._drawerWingRef.closest('.ui.drawer').classList.add(animateOutClassName);
+        this._closestDrawerContainerEl.style.transform = 'translate(0)';
+        this._closestDrawerContainerEl.addEventListener(animationEvent, this._onCloseAnimationComplete);
     }
 
     _onCloseAnimationComplete() {
+        this._drawerWingRef.closest('.ui.drawer').classList.remove(hasClassName, animateOutClassName);
+
         this.setState({
             isOpen: false,
         }, () => {
@@ -93,6 +96,7 @@ class DrawerWing extends React.PureComponent {
     }
 
     _onOpen() {
+        this._drawerWingRef.closest('.ui.drawer').classList.add(hasClassName);
         this._setWidth();
     }
 
