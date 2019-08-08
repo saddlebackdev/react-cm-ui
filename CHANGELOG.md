@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.3
+
+- Fixed a bug in **&lt;Drawer /&gt;** & **&lt;DrawerDeprecated /&gt;** that caused body class names to be removed when still needed.
+- Fixed mobile styling for **&lt;Drawer.Wing /&gt;**
+
 ## 5.0.2
 
 - Fixed a bug in **&lt;Page.ActionBar /&gt;**.
