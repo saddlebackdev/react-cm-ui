@@ -14,6 +14,8 @@ class PageDetailsColumn extends React.PureComponent {
                 'divide': column.divide,
             });
 
+            let innerContainerKeyNum = 1;
+
             return (
                 <div
                     className={containerClasses}
@@ -27,7 +29,7 @@ class PageDetailsColumn extends React.PureComponent {
                     }, column.style)}
                 >
                     {_.map(column.columns, (column, index) => {
-                        return this._renderColumn(column, true);
+                        return this._renderColumn(column, innerContainerKeyNum++);
                     })}
                 </div>
             );
@@ -36,9 +38,9 @@ class PageDetailsColumn extends React.PureComponent {
         return this._renderColumn(column);
     }
 
-    _renderColumn(column, isInnerContainer) {
+    _renderColumn(column, innerContainerKeyNum) {
         const { columnProps, data } = this.props;
-        const containerClasses = ClassNames(`page--details-column${isInnerContainer ? '-inner' : null}`, {
+        const containerClasses = ClassNames(`page--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
             'divide-left': column.divide || column.divide === 'left',
             'divide-right': column.divide === 'right',
         });
@@ -58,7 +60,7 @@ class PageDetailsColumn extends React.PureComponent {
             accessor = column.accessor(data);
         }
 
-        if (isInnerContainer) {
+        if (!!innerContainerKeyNum) {
             flexBasisInlineStyle = column.flexBasis || 'auto';
             flexGrowInlineStyle = column.flexGrow || 0;
             flexShrinkInlineStyle = column.flexShrink || 0;
@@ -68,6 +70,7 @@ class PageDetailsColumn extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
+                key={`page-details-column-key-${innerContainerKeyNum || 0}`}
                 style={Object.assign({}, {
                     flexBasis: flexBasisInlineStyle,
                     flexGrow: flexGrowInlineStyle,
@@ -114,6 +117,7 @@ class PageDetails extends React.PureComponent {
         const containerClasses = ClassNames('ui', 'page--details', className, {
             'page--details-bleed': bleed,
         });
+        let pageDetailsColumnKeyNum = 1;
 
         return (
             <div
@@ -134,7 +138,7 @@ class PageDetails extends React.PureComponent {
                                     column={column}
                                     columnProps={columnProps}
                                     data={data}
-                                    key={`pageDetailsColumn-${index}`}
+                                    key={`pageDetailsColumn-${pageDetailsColumnKeyNum++}`}
                                 />
                             );
                         })}
