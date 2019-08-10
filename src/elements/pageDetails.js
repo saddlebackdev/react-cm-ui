@@ -56,9 +56,14 @@ class PageDetailsColumn extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
-                style={Object.assign({}, column.style, {
+                style={Object.assign({}, {
+                    flexBasis: column.flexBasis || 'auto',
+                    flexGrow: column.flexGrow || 0,
+                    flexShrink: column.flexShrink || 0,
+                    paddingLeft: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                    paddingRight: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                     width: column.width,
-                })}
+                }, column.style)}
             >
                 {column.header &&
                     <Header size="xsmall" style={{ margin: 0 }}>
@@ -66,9 +71,9 @@ class PageDetailsColumn extends React.PureComponent {
                     </Header>
                 }
 
-                <span className={accessorClasses}>
+                <div className={accessorClasses}>
                     {accessor}
-                </span>
+                </div>
             </div>
         );
     }
@@ -79,6 +84,7 @@ PageDetailsColumn.propTypes = {
         PropTypes.array,
         PropTypes.object,
     ]).isRequired,
+    columnProps: PropTypes.object,
     data: PropTypes.object.isRequired,
 };
 
@@ -88,32 +94,33 @@ class PageDetails extends React.PureComponent {
             bleed,
             className,
             color,
+            columnProps,
             columns,
             data,
             style,
         } = this.props;
-        const containerClasses = ClassNames('ui', 'page--details', className);
+        const containerClasses = ClassNames('ui', 'page--details', className, {
+            'page--details-bleed': bleed,
+        });
 
         return (
             <div
                 className={containerClasses}
-                style={Object.assign({}, style, {
-                    margin: bleed ? '0 -22px' : null,
-                })}
+                style={style}
             >
-                <InfoBar
-                    color={color}
-                    style={{
-                        padding: '22px',
-                    }}
-                >
+                <InfoBar color={color}>
                     <div
                         className="page--details-columns-container"
+                        style={{
+                            marginLeft: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginRight: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                        }}
                     >
                         {_.map(columns, (column, index) => {
                             return (
                                 <PageDetailsColumn
                                     column={column}
+                                    columnProps={columnProps}
                                     data={data}
                                     key={`pageDetailsColumn-${index}`}
                                 />
@@ -134,6 +141,7 @@ PageDetails.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
+    columnProps: PropTypes.object,
     columns: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
     style: PropTypes.object,
