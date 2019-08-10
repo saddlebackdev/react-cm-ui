@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.6
+
+- Fixed a **&lt;Page.Details /&gt;** bug.
+
 ## 5.0.5
 
 - Fixed a **&lt;Page.Details /&gt;** bug.
