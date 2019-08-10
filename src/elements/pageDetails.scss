@@ -18,7 +18,7 @@ $divider-color: rgba(255, 255, 255, .25);
             display: flex;
             margin-left: 16px;
             position: relative;
-            .page--details-column {
+            .page--details-column-inner {
                 padding: 0 16px;
             }
             &::before {

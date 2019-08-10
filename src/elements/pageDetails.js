@@ -7,7 +7,7 @@ import React from 'react';
 
 class PageDetailsColumn extends React.PureComponent {
     render() {
-        const { column } = this.props;
+        const { column, columnProps } = this.props;
 
         if (!column.accessor && column.columns && _.isArray(column.columns)) {
             const containerClasses = ClassNames('page--details-column', {
@@ -17,12 +17,17 @@ class PageDetailsColumn extends React.PureComponent {
             return (
                 <div
                     className={containerClasses}
-                    style={Object.assign({}, column.style, {
+                    style={Object.assign({}, {
+                        flexBasis: column.flexBasis || 'auto',
+                        flexGrow: column.flexGrow || 0,
+                        flexShrink: column.flexShrink || 0,
+                        paddingLeft: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                        paddingRight: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                         width: column.width,
-                    })}
+                    }, column.style)}
                 >
                     {_.map(column.columns, (column, index) => {
-                        return this._renderColumn(column);
+                        return this._renderColumn(column, true);
                     })}
                 </div>
             );
@@ -31,9 +36,9 @@ class PageDetailsColumn extends React.PureComponent {
         return this._renderColumn(column);
     }
 
-    _renderColumn(column) {
-        const { data } = this.props;
-        const containerClasses = ClassNames('page--details-column', {
+    _renderColumn(column, isInnerContainer) {
+        const { columnProps, data } = this.props;
+        const containerClasses = ClassNames(`page--details-column${isInnerContainer ? '-inner' : null}`, {
             'divide-left': column.divide || column.divide === 'left',
             'divide-right': column.divide === 'right',
         });
@@ -45,7 +50,7 @@ class PageDetailsColumn extends React.PureComponent {
             'font-weight-normal': column.fontWeight === 'normal',
             'font-weight-semibold': column.fontWeight === 'semibold',
         });
-        let accessor;
+        let accessor, flexBasisInlineStyle, flexGrowInlineStyle, flexShrinkInlineStyle, horizontalSpacingInlineStyle;
 
         if (_.isString(column.accessor)) {
             accessor = _.get(data, column.accessor);
@@ -53,15 +58,22 @@ class PageDetailsColumn extends React.PureComponent {
             accessor = column.accessor(data);
         }
 
+        if (isInnerContainer) {
+            flexBasisInlineStyle = column.flexBasis || 'auto';
+            flexGrowInlineStyle = column.flexGrow || 0;
+            flexShrinkInlineStyle = column.flexShrink || 0;
+            horizontalSpacingInlineStyle = columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
+        }
+
         return (
             <div
                 className={containerClasses}
                 style={Object.assign({}, {
-                    flexBasis: column.flexBasis || 'auto',
-                    flexGrow: column.flexGrow || 0,
-                    flexShrink: column.flexShrink || 0,
-                    paddingLeft: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                    paddingRight: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                    flexBasis: flexBasisInlineStyle,
+                    flexGrow: flexGrowInlineStyle,
+                    flexShrink: flexShrinkInlineStyle,
+                    paddingLeft: horizontalSpacingInlineStyle,
+                    paddingRight: horizontalSpacingInlineStyle,
                     width: column.width,
                 }, column.style)}
             >
