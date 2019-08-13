@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import BannerItem from './BannerItem';
+import BannerItem from './bannerItem';
 import ClassNames from 'classnames';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
