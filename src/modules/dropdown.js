@@ -194,7 +194,12 @@ class Dropdown extends Component {
                                                 <span className="label">{this.state.value.label}</span>
                                             )}
 
-                                            <Icon color={disable ? 'disable' : null} compact title={dropdownIconTitle} type="arrows-alt" />
+                                            <Icon
+                                                color={disable ? 'disable' : null}
+                                                compact
+                                                title={dropdownIconTitle}
+                                                type="arrows-alt"
+                                            />
                                         </div>
 
                                         <Modal
@@ -224,7 +229,7 @@ class Dropdown extends Component {
                                                     <div>
                                                         <Icon
                                                             compact
-                                                            size={selectionUnderline ? 10 : 16}
+                                                            size={selectionUnderline ? 10 : iconSize || 16}
                                                             title={dropdownIconTitle}
                                                             type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
                                                         />
@@ -236,7 +241,7 @@ class Dropdown extends Component {
                                                     <div>
                                                         <Icon
                                                             compact
-                                                            size={selectionUnderline ? 10 : 16}
+                                                            size={selectionUnderline ? 10 : iconSize || 16}
                                                             title={'Clear Selection'}
                                                             type="times"
                                                         />
