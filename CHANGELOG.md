@@ -3,7 +3,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 5.1.0
 
-- Applied the `v4.1.4-hotfix` to this release.
+- Applied the **&lt;PhoneInput /&gt;** from `v4.1.4-hotfix` to this release.
 
 ## 5.0.6
 
