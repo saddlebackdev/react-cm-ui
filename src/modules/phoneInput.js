@@ -1,14 +1,16 @@
-'use strict';
-
-import React, { Component } from 'react';
+import ReactPhoneInput, {
+    formatPhoneNumberIntl,
+    isValidPhoneNumber,
+    parsePhoneNumber,
+} from 'react-phone-number-input/max';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import CountryTelephoneData from 'country-telephone-data';
+import Divider from '../elements/divider';
 import Dropdown from './dropdown';
-import Input from '../elements/input';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-class CountrySelectionOption extends Component {
+class CountryDropdownItem extends React.Component {
     constructor() {
         super();
 
@@ -17,9 +19,28 @@ class CountrySelectionOption extends Component {
         this._onMouseMove = this._onMouseMove.bind(this);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        const { option } = this.props;
+
+        return option.value !== nextProps.option.value;
+    }
+
     render() {
-        const { className, option } = this.props;
-        const containerClasses = ClassNames('Select-option', className);
+        const { option } = this.props;
+        const isDivider = option && option.divider;
+
+        if (isDivider) {
+            return (
+                <Divider />
+            );
+        }
+
+        const {
+            icon: FlagIcon,
+            label: title,
+            value: countryCode,
+        } = option;
+        const containerClasses = ClassNames('Select-option');
 
         return (
             <div
@@ -28,7 +49,7 @@ class CountrySelectionOption extends Component {
                 onMouseEnter={this._onMouseEnter}
                 onMouseMove={this._onMouseMove}
                 style={{ padding: '7px 11px' }}
-                title={option.label}
+                title={title}
             >
                 <div
                     style={{
@@ -37,24 +58,20 @@ class CountrySelectionOption extends Component {
                         justifyContent: 'flex-start',
                     }}
                 >
-                    <span
-                        className={`flag-icon flag-icon-${option.iso2}`}
-                        style={{
-                            display: 'inline-block',
-                            flex: '0 1 20px',
-                        }}
-                    />
+                    <FlagIcon value={countryCode} />
+
                     <span
                         className="country-name"
                         style={{ display: 'inline-block', flex: '0 1 auto', margin: '0 11px' }}
                     >
-                        {option.name}
+                        {title}
                     </span>
+
                     <span
                         className="phone color-static"
                         style={{ display: 'inline-block', flex: '0 1 1px' }}
                     >
-                        {`+${option.dialCode}`}
+                        {/*{`+${option.dialCode}`}*/}
                     </span>
                 </div>
             </div>
@@ -77,79 +94,117 @@ class CountrySelectionOption extends Component {
     }
 
     _onMouseMove(event) {
-        const { isFocused, onFocus, option } = this.props;
-
-        if (isFocused) {
-            return;
-        }
+        const { onFocus, option } = this.props;
 
         onFocus(option, event);
     }
 }
 
-CountrySelectionOption.propTypes = {
-    className: PropTypes.string,
-    isFocused: PropTypes.bool,
-    isSelected: PropTypes.bool,
-    onFocus: PropTypes.func,
-    onSelect: PropTypes.func,
+CountryDropdownItem.propTypes = {
+    onFocus: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     option: PropTypes.object.isRequired,
 };
 
-class CountrySelectionValue extends Component {
-    render() {
-        const { value } = this.props;
-        const containerClasses = ClassNames('Select-value');
+const CountryDropdownValue = (selectedOption) => {
+    const containerClasses = ClassNames('Select-value');
+    const countryCode = selectedOption.value;
+    const FlagIcon = selectedOption.icon;
 
-        return (
-            <div
-                className={containerClasses}
-                title={value.name}
-            >
-                <span className={`flag-icon flag-icon-${value.iso2}`} />
-            </div>
-        );
-    }
-}
-
-CountrySelectionValue.propTypes = {
-    value: PropTypes.object,
+    return (
+        <div
+            className={containerClasses}
+            title={selectedOption.label}
+        >
+            <FlagIcon value={countryCode} />
+        </div>
+    );
 };
 
-class PhoneInput extends Component {
+class CountryDropdown extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        const iso2 = props.iso2 || 'us';
-        const countrySelection = _.find(this._getCountriesOptions(), co => co.iso2 === iso2);
-
         this.state = {
-            countriesOptions: this._getCountriesOptions(),
-            countrySelection,
-            inputMask: this._getCountryInputMask(countrySelection),
-            inputPlaceholder: this._getCountryInputPlaceholder(countrySelection),
-            inputValue: props.value || '',
+            selectedOption: _.find(props.options, o => !o.divider && o.value === props.value),
         };
 
-        this._onDropdownChange = this._onDropdownChange.bind(this);
-        this._onInputChange = this._onInputChange.bind(this);
+        this._onChange = this._onChange.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value !== nextProps.value) {
-            this.setState({ inputValue: nextProps.value });
+    componentDidUpdate(prevProps, prevState) {
+        const { onChange, options, value } = this.props;
+
+        if (prevProps.value !== value && prevState.selectedOption.value !== value) {
+            this.setState({
+                selectedOption: _.find(options, o => !o.divider && o.value === value),
+            }, () => {
+                onChange(value);
+            });
         }
     }
 
     render() {
-        const { disable, dropdownIconType, id, label, labelStyle, required, style, tabIndex } = this.props;
-        const { countriesOptions, countrySelection, inputMask, inputPlaceholder } = this.state;
-        let { inputValue } = this.state;
-        const containerClasses = ClassNames('ui', 'phone-input');
+        const {
+            disabled,
+            options,
+        } = this.props;
+        const { selectedOption } = this.state;
 
-        if (!_.startsWith(inputValue, '+')) {
-            inputValue = `+${countrySelection.dialCode}${inputValue}`;
-        }
+        return (
+            <Dropdown
+                clearable={false}
+                disabled={disabled}
+                iconSize={10}
+                iconType="caret-down"
+                onChange={this._onChange}
+                options={options}
+                selection
+                selectionMenuContainerStyle={{ width: 'auto' }}
+                selectionOptionComponent={CountryDropdownItem}
+                selectionValueComponent={() => CountryDropdownValue(selectedOption)}
+                value={selectedOption}
+            />
+        );
+    }
+
+    _onChange(selectedOption) {
+        const { onChange } = this.props;
+
+        this.setState({
+            selectedOption,
+        }, () => {
+            onChange(selectedOption.value);
+        });
+    }
+}
+
+class PhoneInput extends React.PureComponent {
+    constructor() {
+        super();
+
+        this._onChange = this._onChange.bind(this);
+    }
+
+    render() {
+        const {
+            className,
+            countryOptions,
+            disabled,
+            error,
+            fluid,
+            id,
+            label,
+            labelStyle,
+            required,
+            style,
+            value,
+        } = this.props;
+        const containerClasses = ClassNames('ui', 'phone-input', className, {
+            'phone-input--disabled': disabled,
+            'phone-input--error': error,
+            'phone-input--fluid': fluid,
+        });
 
         return (
             <div
@@ -161,166 +216,61 @@ class PhoneInput extends Component {
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
-                        {required && !this.state.value ? (
-                            <span className="phone-input-required-indicator">*</span>
+                        {required && !value ? (
+                            <span className="phone-input--required_indicator">*</span>
                         ) : null}
                     </label>
                 ) : null}
 
-                <div className="phone-input-fields">
-                    <Dropdown
-                        clearable={false}
-                        disable={disable}
-                        iconType={dropdownIconType}
-                        onChange={this._onDropdownChange}
-                        options={countriesOptions}
-                        selection
-                        selectionMenuContainerStyle={{ width: 'auto' }}
-                        selectionOptionComponent={CountrySelectionOption}
-                        selectionValueComponent={CountrySelectionValue}
-                        value={countrySelection}
-                    />
-                    <Input
-                        disabled={disable}
-                        guide
-                        keepCharPositions
-                        mask={inputMask}
-                        onChange={this._onInputChange}
-                        placeholder={inputPlaceholder}
-                        required={required}
-                        style={{ width: '144px' }}
-                        tabIndex={tabIndex}
-                        type="tel"
-                        value={inputValue}
-                    />
-                </div>
+                <ReactPhoneInput
+                    {...this.props}
+                    className=""
+                    countryOptions={countryOptions}
+                    countrySelectComponent={CountryDropdown}
+                    onChange={this._onChange}
+                    style={{}}
+                />
+
+                {error && _.isString(error) ? (
+                    <p className="input-error-message">{error}</p>
+                ) : null}
             </div>
         );
     }
 
-    _getCountriesOptions() {
-        return _.map(CountryTelephoneData.allCountries, (c, i) => {
-            return {
-                dialCode: c.dialCode,
-                format: c.format,
-                iso2: c.iso2,
-                label: `${c.name} (${c.iso2}) (+${c.dialCode})`,
-                name: c.name,
-                priority: c.priority,
-                value: i,
-            };
-        });
-    }
-
-    _getCountryInputMask(selectionOption) {
-        let mask = [];
-
-        if (_.isUndefined(selectionOption)) {
-            return mask;
-        }
-
-        const dialCode = selectionOption.dialCode;
-        const format = selectionOption.format;
-        const formatArray = format.split('');
-        // Sample RegEx Array
-        // ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
-        mask = _.map(formatArray, (fa, i) => {
-            if (fa === '+') {
-                return '+';
-            } else if (i !== 0 && i <= dialCode.length) {
-                return dialCode[i - 1];
-            } else if (fa === '(') {
-                return '(';
-            } else if (fa === ')') {
-                return ')';
-            } else if (fa === ' ') {
-                return ' ';
-            } else if (fa === '.') {
-                return /\d/;
-            } else if (fa === '-') {
-                return '-';
-            }
-        });
-
-        return mask;
-    }
-
-    _getCountryInputPlaceholder(selectionOption) {
-        let placeholder = '';
-
-        if (_.isUndefined(selectionOption)) {
-            return placeholder;
-        }
-
-        const dialCode = selectionOption.dialCode;
-        const format = selectionOption.format;
-        const formatArray = format.split('');
-        placeholder = _.map(formatArray, (fa, i) => {
-            if (i !== 0 && i <= dialCode.length) {
-                return dialCode[i - 1];
-            } else if (fa === '.') {
-                return Math.floor(Math.random() * 10);
-            } else {
-                return fa;
-            }
-        });
-        const placeholderString = _.join(placeholder, '');
-
-        return placeholderString;
-    }
-
-    _onDropdownChange(selectionOption) {
-        this.setState({
-            countrySelection: selectionOption,
-            inputMask: this._getCountryInputMask(selectionOption),
-            inputPlaceholder: this._getCountryInputPlaceholder(selectionOption),
-        });
-
-        const { onCountryChange } = this.props;
-
-        if (_.isFunction(onCountryChange)) {
-            onCountryChange(selectionOption.iso2);
-        }
-    }
-
-    _onInputChange(value) {
+    _onChange(value) {
         const { onChange } = this.props;
+        const number = value || '';
+        const phoneNumberObj = number && parsePhoneNumber(number);
+        const countryCode = phoneNumberObj && phoneNumberObj.country || '';
+        const dialCode = phoneNumberObj && phoneNumberObj.countryCallingCode;
+        const formattedNumber = number && formatPhoneNumberIntl(number) || '';
+        const isValid = number && isValidPhoneNumber(number) || false;
 
-        if (!_.isUndefined(onChange)) {
-            const { countrySelection: { iso2, dialCode } } = this.state;
-            const isValueComplete = !_.isEmpty(value) && !_.some(value, c => c === '_');
-
-            onChange(value, iso2, dialCode, isValueComplete);
-        } else {
-            this.setState({ inputValue: value });
-        }
+        onChange(number, formattedNumber, dialCode, countryCode, isValid);
     }
 }
 
+PhoneInput.defaultProps = {
+    country: 'US',
+    countryOptions: [ 'US', '|' ],
+};
+
 PhoneInput.propTypes = {
     className: PropTypes.string,
-    disable: PropTypes.bool,
-    dropdownIconType: PropTypes.string,
+    country: PropTypes.string,
+    countryOptions: PropTypes.array,
+    disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
     ]),
+    fluid: PropTypes.bool,
     id: PropTypes.string,
-    iso2: PropTypes.string,
     label: PropTypes.string,
     labelStyle: PropTypes.object,
-    onChange: PropTypes.func,
-    onCountryChange: PropTypes.func,
-    required: PropTypes.bool,
-    style: PropTypes.object,
-    tabIndex: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
 };
 
 export default PhoneInput;

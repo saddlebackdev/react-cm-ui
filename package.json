@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "5.0.6",
+  "version": "5.1.0",
   "description": "React UI for Church management (Healthy Church)",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -50,6 +50,7 @@
     "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^16.8.6",
     "react-onclickoutside": "^5.7.1",
+    "react-phone-number-input": "^2.3.21",
     "react-portal": "^4.1.1",
     "react-responsive": "^1.2.7",
     "react-router": "^3.0.0",
