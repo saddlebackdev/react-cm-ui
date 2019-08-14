@@ -872,6 +872,8 @@ export default class ModulesDrawer extends React.Component {
             isDrawerWingOpen: false,
             isDrawerHeaderOpen: false,
             isDrawerInverseOpen: false,
+            isBarDrawerOpen: false,
+            isFooDrawerOpen: false,
             isMaxWidthDrawerOpen: false,
             isOnClickOutsideDrawerOpen: false,
             isOnOpenAndCloseCompleteDrawerOpen: false,
@@ -1126,6 +1128,42 @@ export default class ModulesDrawer extends React.Component {
                             <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
 
                             <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                            <Button onClick={this._onFooDrawerClick.bind(this)}>Open Foo Drawer</Button>
+
+                            <Drawer
+                                isOpen={this.state.isFooDrawerOpen}
+                                onClose={this._onFooDrawerClick.bind(this)}
+                                scrollBar={false}
+                                title="Foo Title"
+                            >
+                                <div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                                    <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+
+                                    <Button onClick={this._onBarDrawerClick.bind(this)}>Open Bar Drawer</Button>
+
+                                    <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+
+                                    <Drawer
+                                        isOpen={this.state.isBarDrawerOpen}
+                                        onClose={this._onBarDrawerClick.bind(this)}
+                                        scrollBar={false}
+                                        title="Bar Title"
+                                    >
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+
+                                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+
+                                            <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
+
+                                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
+                                        </div>
+                                    </Drawer>
+                                </div>
+                            </Drawer>
                         </div>
                     </Drawer>
 
@@ -1434,6 +1472,18 @@ export default class ModulesDrawer extends React.Component {
                 </div>
             );
         }
+    }
+
+    _onBarDrawerClick() {
+        this.setState({
+            isBarDrawerOpen: !this.state.isBarDrawerOpen,
+        });
+    }
+
+    _onFooDrawerClick() {
+        this.setState({
+            isFooDrawerOpen: !this.state.isFooDrawerOpen,
+        });
     }
 
     _renderHeader() {
