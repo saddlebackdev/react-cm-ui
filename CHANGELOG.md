@@ -1,9 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.4-hotfix
+
+- Added new **&lt;Phone.Input /&gt;** component.
+- Applied the fix from the **&lt;DrawerDeprecated /&gt;** in `v5.0.3` to **&lt;Drawer /&gt;** to this release.
+
 ## 4.1.4
 
-- Fixed some **&lt;Page /&gt;** sub component layer issues. 
+- Fixed some **&lt;Page /&gt;** sub component layer issues.
 
 ## 4.1.3
 
