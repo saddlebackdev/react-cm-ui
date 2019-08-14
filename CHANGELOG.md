@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.0
+
+- Applied the **&lt;PhoneInput /&gt;** from `v4.1.4-hotfix` to this release.
+
 ## 5.0.6
 
 - Fixed a **&lt;Page.Details /&gt;** bug.
@@ -71,6 +75,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 4.2.0
 
 - New **&lt;Page.Table /&gt;** sub component!
+
+## 4.1.4-hotfix
+
+- Added new **&lt;Phone.Input /&gt;** component.
+- Applied the fix from the **&lt;DrawerDeprecated /&gt;** in `v5.0.3` to **&lt;Drawer /&gt;** to this release.
 
 ## 4.1.4
 

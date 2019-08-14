@@ -6,25 +6,84 @@ $width: 65px;
     color: $color-text;
     display: inline-block;
     font-size: em(16px);
-    .label { margin-bottom: em(8px); }
-        .input-required-indicator {
-            color: $color-text-alert;
-            display: inline-block;
-            font-size: rem(14px);
-            margin-left: 3px;
+    position: relative;
+    .label {
+        margin-bottom: em(8px);
+    }
+    .phone-input--required_indicator {
+        color: $color-text-alert;
+        display: inline-block;
+        font-size: rem(14px);
+        margin-left: 3px;
+    }
+    > div::before {
+        background-color: $bkgd-light;
+        border-right: 1px solid $border;
+        bottom: 1px;
+        content: '';
+        left: 1px;
+        position: absolute;
+        top: 1px;
+        width: $width;
+        z-index: 1;
+    }
+    .react-phone-number-input {
+        position: relative;
+    }
+    .ui.dropdown {
+        display: inline-block;
+        flex: 0 1 $width;
+        max-width: $width;
+        min-width: $width;
+        position: absolute;
+        z-index: 2;
+        .Select-input {
+            max-width: 38px;
+            overflow: hidden;
         }
-    .phone-input-fields {
-        align-items: flex-start;
+        .Select-control {
+            background-color: transparent;
+            border: 0;
+        }
+        .icon-use-path { fill: $color-text !important; }
+    }
+    .react-phone-number-input__icon {
+        align-items: center;
         display: inline-flex;
-        justify-content: flex-start;
-        .ui.dropdown {
-            display: inline-block;
-            flex: 0 1 $width;
-            max-width: $width;
-            min-width: $width;
-            .Select-input { overflow: hidden; max-width: 38px; }
+        height: 100%;
+        justify-content: center;
+        width: 20px;
+        .react-phone-number-input__icon-image {
+            height: 16px;
         }
-            .flag-icon { with: 20px; }
-        .ui.input { flex: 1 1 auto; margin: 0 0 0 11px; }
+    }
+    .react-phone-number-input__input {
+        background-color: $bkgd;
+        border: 1px solid $border;
+        border-radius: 3px;
+        line-height: em(42px);
+        margin: 0;
+        outline: none;
+        padding: 0 em(11px) 0 $width + 11px;
+        text-align: left;
+        transition: border-color 150ms ease-out;
+        width: 100%;
+        &::placeholder { color: $color-text-static; }
+    }
+    .react-phone-number-input--focus input {
+        border-color: $bkgd-highlight;
+    }
+    &.phone-input--disabled input {
+        background-color: $bkgd-disable;
+    }
+    &.phone-input--error {
+        input { border-color: $bkgd-highlight; }
+        .input-error-message {
+            color: $color-text-alert;
+            font-size: em(14px);
+        }
+    }
+    + * {
+        margin-top: em(33px);
     }
 }
