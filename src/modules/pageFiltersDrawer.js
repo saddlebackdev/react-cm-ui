@@ -20,10 +20,20 @@ const PaageFiltersDrawer = (props) => {
             onClose={onClose}
         >
             <Drawer.TitleBar
-                closeButton={<Icon compact onClick={onClose} type="times" />}
+                closeButton={
+                    <Icon
+                        compact
+                        onClick={onClose}
+                        type="times"
+                    />
+                }
                 title={
                     <div className="ui header title" title="Filters">
-                        <Icon size="medium" type="filter" />
+                        <Icon
+                            color="static"
+                            size="medium"
+                            type="filter"
+                        />
                     </div>
                 }
             />

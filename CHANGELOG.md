@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.1
+
+- Moved **&lt;Page /&gt;** components to the modules directory.
+- Changes to **&lt;Page.FiltersDrawer /&gt;**:
+  - Fixed the header in this component which broke when we refactored the **&lt;Drawer /&gt;** component.
+
 ## 5.1.0
 
 - Applied the **&lt;PhoneInput /&gt;** from `v4.1.4-hotfix` to this release.
