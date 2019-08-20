@@ -3,7 +3,7 @@
 import ClassNames from 'classnames';
 import { CSSTransitionGroup } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
-import Rail from './rail.js';
+import Rail from '../elements/rail.js';
 import React from 'react';
 
 const PageFiltersRail = (props) => {

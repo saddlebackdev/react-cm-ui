@@ -2,7 +2,7 @@
 
 import ClassNames from 'classnames';
 import Drawer from '../modules/drawer.js';
-import Icon from './icon.js';
+import Icon from '../elements/icon.js';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 
@@ -16,18 +16,21 @@ const PaageFiltersDrawer = (props) => {
     const RenderDrawer = (
         <Drawer
             className={containerClasses}
-            closeButton={<Icon compact onClick={onClose} type="times" />}
             isOpen={isOpen}
             onClose={onClose}
-            title={
-                <div className="ui header title" title="Filters">
-                    <Icon size="medium" type="filter" />
-                </div>
-            }
         >
-            <React.Fragment>
+            <Drawer.TitleBar
+                closeButton={<Icon compact onClick={onClose} type="times" />}
+                title={
+                    <div className="ui header title" title="Filters">
+                        <Icon size="medium" type="filter" />
+                    </div>
+                }
+            />
+
+            <Drawer.Content>
                 {children}
-            </React.Fragment>
+            </Drawer.Content>
         </Drawer>
     );
 

@@ -25,13 +25,6 @@ const routes = (
                 }}
                 path="colors"
             />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./templates/page.js')
-                        .then(module => callback(null, module.default));
-                }}
-                path="page"
-            />
         </Route>
 
         <Route path="/elements">
@@ -297,6 +290,21 @@ const routes = (
                 }}
                 path="drawer-deprecated"
             />
+            <Route path="page">
+                <IndexRoute
+                    getComponent={(location, callback) => {
+                        import('./modules/page.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageDemo.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="demo"
+                />
+            </Route>
             <Route
                 getComponent={(location, callback) => {
                     import('./modules/dropdown.js')

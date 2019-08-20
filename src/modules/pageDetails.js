@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from './header.js';
+import Header from '../elements/header.js';
 import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,8 +23,8 @@ class PageDetailsColumn extends React.PureComponent {
                         flexBasis: column.flexBasis || 'auto',
                         flexGrow: column.flexGrow || 0,
                         flexShrink: column.flexShrink || 0,
-                        paddingLeft: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        paddingRight: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                        paddingLeft: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                        paddingRight: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                         width: column.width,
                     }, column.style)}
                 >
@@ -64,7 +64,7 @@ class PageDetailsColumn extends React.PureComponent {
             flexBasisInlineStyle = column.flexBasis || 'auto';
             flexGrowInlineStyle = column.flexGrow || 0;
             flexShrinkInlineStyle = column.flexShrink || 0;
-            horizontalSpacingInlineStyle = columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
+            horizontalSpacingInlineStyle = columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
         }
 
         return (
@@ -128,8 +128,8 @@ class PageDetails extends React.PureComponent {
                     <div
                         className="page--details-columns-container"
                         style={{
-                            marginLeft: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
-                            marginRight: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginLeft: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginRight: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
                         }}
                     >
                         {_.map(columns, (column, index) => {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Card from '../views/card.js';
 import ClassNames from 'classnames';
-import Header from './header.js';
+import Header from '../elements/header.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 
