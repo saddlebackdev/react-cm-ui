@@ -346,16 +346,6 @@ class ModulesDrawerFiltersDrawer extends React.Component {
             isFiltersDrawerOpen,
             searchValue,
         } = this.state;
-        // className: PropTypes.string,
-        // isDirty: PropTypes.bool,
-        // isFiltering: PropTypes.bool,
-        // isOpen: PropTypes.bool,
-        // onApply: PropTypes.func.isRequired,
-        // onClear: PropTypes.func.isRequired,
-        // onClose: PropTypes.func.isRequired,
-        // position: PropTypes.oneOf([ 'left', 'right' ]),
-        // rows: PropTypes.array.isRequired,
-        // style: PropTypes.object,
         const props = [
             {
                 name: 'className',
