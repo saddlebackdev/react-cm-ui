@@ -1,4 +1,4 @@
-@import '../shared/styles/Colors';
+@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
 
 .ui.page--filters_drawer {
     &.ui.drawer .drawer-container-inner {
@@ -13,6 +13,21 @@
             .ui.header.title {
                 display: flex;
             }
+        }
+    }
+    .page--filters_drawer-row {
+        margin-bottom: rem(44px);
+        .ui.header {
+            margin-bottom: rem(22px);
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .page--filters_drawer-item {
+        margin-bottom: 11px;
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }

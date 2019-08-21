@@ -15,14 +15,22 @@ class PageDemo extends React.Component {
         super();
 
         this.state = {
+            multiSelectValue: [],
             isFiltersOpen: false,
         };
 
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
+        this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
+        this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
     }
 
     render() {
-        const { isFiltersOpen } = this.state;
+        const {
+            isFiltersOpen,
+            labels,
+            multiSelectValue,
+            sort,
+        } = this.state;
         const isMobile = 700;
 
         return (
@@ -50,9 +58,73 @@ class PageDemo extends React.Component {
                         <Page.FiltersDrawer
                             isOpen={isFiltersOpen}
                             onClose={this._onFiltersToggle}
-                        >
-                            FilterDrawer
-                        </Page.FiltersDrawer>
+                            rows={[
+                                {
+                                    header: 'Keywords',
+                                    items: [
+                                        {
+                                            multiSelect: {
+                                                placeholder: 'Add Keyword',
+                                                onChange: this._onKeywordsMultiSelectChange,
+                                                options: [
+                                                    {
+                                                        label: 'Foo',
+                                                        value: 1,
+                                                    }, {
+                                                        label: 'Bar',
+                                                        value: 2,
+                                                    }, {
+                                                        label: 'Baz',
+                                                        value: 3,
+                                                    }, {
+                                                        label: 'Qux',
+                                                        value: 4,
+                                                    },
+                                                ],
+                                                value: multiSelectValue,
+                                            },
+                                        },
+                                    ],
+                                }, {
+                                    header: 'Sort',
+                                    items: [
+                                        {
+                                            dropdown: {
+                                                onChange: this._onSortDropdownChange,
+                                                options: [
+                                                    {
+                                                        label: 'Name (Ascending)',
+                                                        value: 'Name (Ascending)',
+                                                    }, {
+                                                        label: 'Name (Descending)',
+                                                        value: 'Name (Descending)',
+                                                    }, {
+                                                        label: 'Create Date (Ascending)',
+                                                        value: 'Create Date (Ascending)',
+                                                    }, {
+                                                        label: 'Create Date (Descending)',
+                                                        value: 'Create Date (Descending)',
+                                                    },
+                                                ],
+                                                value: sort,
+                                            },
+                                        },
+                                    ],
+                                }, {
+                                    header: 'Filters',
+                                    items: [
+                                        {
+                                            labels: {
+                                                selected: _.includes(labels, '1'),
+                                                id: '1',
+                                                label: 'Attended',
+                                                onChange: this._onFiltersCheckboxChange,
+                                            },
+                                        },
+                                    ],
+                                },
+                            ]}
+                        />
 
                         <Page.FiltersRail
                             isOpen={isFiltersOpen}
@@ -263,6 +335,18 @@ class PageDemo extends React.Component {
 
         this.setState({
             isFiltersOpen: !isFiltersOpen,
+        });
+    }
+
+    _onKeywordsMultiSelectChange(selectedOptions) {
+        this.setState({
+            multiSelectValue: selectedOptions,
+        });
+    }
+
+    _onSortDropdownChange(selectedOption) {
+        this.setState({
+            sort: selectedOption,
         });
     }
 }
