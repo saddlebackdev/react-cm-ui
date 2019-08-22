@@ -1,6 +1,6 @@
 'use strict';
 
-import './introduction.scss';
+import './Introduction.scss';
 
 // Style Guide Files
 import './style-guide/cm-ui-kit_as_1.6.2.sketch';
@@ -14,13 +14,11 @@ import { Header, TitleBar } from 'react-cm-ui';
 import Main from './main.js';
 
 export default class GettingStartedIntroduction extends React.Component {
-
     constructor(props) {
         super(props);
     }
 
     render() {
-
         return (
             <Main page="introduction">
                 <TitleBar title="Getting Started" />
@@ -70,5 +68,4 @@ export default class GettingStartedIntroduction extends React.Component {
             </Main>
         );
     }
-
 }
