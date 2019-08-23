@@ -1,24 +1,21 @@
 $divider-color: rgba(255, 255, 255, .25);
 
-.ui.page--details {
-    &.details-bleed {
-        margin: 0 -11px;
-    }
+.ui.drawer--details {
     .ui.info-bar {
         padding: 11px;
     }
-    .page--details-columns-container {
+    .drawer--details-columns-container {
         display: flex;
         flex-wrap: wrap;
         margin: 0 -16px;
     }
-    .page--details-columns-container > .page--details-column {
+    .drawer--details-columns-container > .drawer--details-column {
         padding: 0 16px 11px;
         &.divide {
             display: flex;
             margin-left: 16px;
             position: relative;
-            .page--details-column-inner {
+            .drawer--details-column-inner {
                 padding: 0 16px;
             }
             &::before {
@@ -35,10 +32,7 @@ $divider-color: rgba(255, 255, 255, .25);
 }
 
 @media only screen and (min-width: 768px) {
-    .ui.page--details {
-        &.details-bleed {
-            margin: 0 -22px;
-        }
+    .ui.drawer--details {
         .ui.info-bar {
             padding: 22px;
         }

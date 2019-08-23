@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import Details from './details';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const PageDetails = (props) => {
+const DrawerDetails = (props) => {
     const {
         bleed,
         className,
@@ -24,13 +23,13 @@ const PageDetails = (props) => {
                 columns={columns}
                 data={data}
                 style={style}
-                moduleType="page"
+                moduleType="drawer"
             />
         </React.Fragment>
     );
 };
 
-PageDetails.propTypes = {
+DrawerDetails.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
@@ -40,4 +39,4 @@ PageDetails.propTypes = {
     style: PropTypes.object,
 };
 
-export default PageDetails;
+export default DrawerDetails;
