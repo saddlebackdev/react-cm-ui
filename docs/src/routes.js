@@ -6,13 +6,13 @@ const routes = (
     <Route path="/" component={App}>
         <IndexRoute
             getComponent={(location, callback) => {
-                import('./app/GettingStartedIntroduction.js')
+                import('./app/gettingStartedIntroduction.js')
                     .then(module => callback(null, module.default));
             }}
         />
         <Route
             getComponent={(location, callback) => {
-                import('./app/GettingStartedIntroduction.js')
+                import('./app/gettingStartedIntroduction.js')
                     .then(module => callback(null, module.default));
             }}
             path="/introduction"
