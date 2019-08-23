@@ -15,20 +15,22 @@ class PageDemo extends React.Component {
         super();
 
         this.state = {
-            multiSelectValue: [],
             isFiltersOpen: false,
+            multiSelectValue: [],
+            nestedTogglesValue: [],
         };
 
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
+        this._onNestedTogglesChange = this._onNestedTogglesChange.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
     }
 
     render() {
         const {
             isFiltersOpen,
-            labels,
             multiSelectValue,
+            nestedTogglesValue,
             sort,
         } = this.state;
         const isMobile = 700;
@@ -114,11 +116,25 @@ class PageDemo extends React.Component {
                                     header: 'Filters',
                                     items: [
                                         {
-                                            labels: {
-                                                selected: _.includes(labels, '1'),
-                                                id: '1',
-                                                label: 'Attended',
-                                                onChange: this._onFiltersCheckboxChange,
+                                            nestedToggles: {
+                                                label: 'Filters',
+                                                onChange: this._onNestedTogglesChange,
+                                                options: [
+                                                    {
+                                                        label: 'Foo',
+                                                        value: 1,
+                                                    }, {
+                                                        label: 'Bar',
+                                                        value: 2,
+                                                    }, {
+                                                        label: 'Baz',
+                                                        value: 3,
+                                                    }, {
+                                                        label: 'Qux',
+                                                        value: 4,
+                                                    },
+                                                ],
+                                                value: nestedTogglesValue,
                                             },
                                         },
                                     ],
@@ -341,6 +357,14 @@ class PageDemo extends React.Component {
     _onKeywordsMultiSelectChange(selectedOptions) {
         this.setState({
             multiSelectValue: selectedOptions,
+        });
+    }
+
+    _onNestedTogglesChange(selectedOptions) {
+        console.log('_onNestedTogglesChange');
+        console.log('selectedOptions', selectedOptions);
+        this.setState({
+            nestedTogglesValue: selectedOptions,
         });
     }
 

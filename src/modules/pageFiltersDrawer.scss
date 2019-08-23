@@ -1,7 +1,7 @@
-@import '../shared/styles/Colors', '../shared/styles/FontSizeCalculator';
+@import '../shared/styles/colors', '../shared/styles/fontSizeCalculator';
 
 .ui.page--filters_drawer {
-    &.ui.drawer .drawer-container-inner {
+    &.ui.drawer .drawer-container-inner, .ui.drawer--wing .drawer-container-inner {
         padding-top: 49px;
         .ui.drawer--title_bar {
             background-color: $bkgd-light;

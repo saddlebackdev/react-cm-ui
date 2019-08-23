@@ -30,26 +30,107 @@ class MultiSelectLabel extends React.PureComponent {
     }
 
     _onClearClick() {
-        const { itemOnChange, selectedOption, value } = this.props;
+        const { onItemChange, selectedOption, value } = this.props;
         const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
 
-        itemOnChange(filteredOptions);
+        onItemChange(filteredOptions);
     }
 }
 
 MultiSelectLabel.propTypes = {
-    itemOnChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
+    onItemChange: PropTypes.func.isRequired,
     selectedOption: PropTypes.object.isRequired,
     value: PropTypes.array.isRequired,
+};
+
+class NestedTogglesLabel extends React.PureComponent {
+    constructor() {
+        super();
+
+        this._onClick = this._onClick.bind(this);
+    }
+
+    render() {
+        const { nestedTogglesData: { label } } = this.props;
+
+        return (
+            <div
+                onClick={this._onClick}
+            >
+                {label}
+            </div>
+        );
+    }
+
+    _onClick() {
+        const { nestedTogglesData, onClick } = this.props;
+
+        onClick(nestedTogglesData);
+    }
+}
+
+NestedTogglesLabel.propTypes = {
+    nestedTogglesData: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
+};
+
+class NestedTogglesWingOptionLabel extends React.PureComponent {
+    constructor() {
+        super();
+
+        this._onClick = this._onClick.bind(this);
+    }
+
+    render() {
+        const { option: { label } } = this.props;
+
+        return (
+            <div
+                onClick={this._onClick}
+            >
+                {label}
+            </div>
+        );
+    }
+
+    _onClick() {
+        const { onClick, option } = this.props;
+
+        onClick(option);
+    }
+}
+
+NestedTogglesWingOptionLabel.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    option: PropTypes.object.isRequired,
 };
 
 class PageFiltersDrawer extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            nestedTogglesData: {}, // This object is only to be populated when props.rows.items.nestedToggles is true and a label onClick event handler is triggered.
+        };
+
         this._onMultiSelectLabelClearClick = this._onMultiSelectLabelClearClick.bind(this);
         this._onMultiSelectChange = this._onMultiSelectChange.bind(this);
+        this._onNestedTogglesCloseWingClick = this._onNestedTogglesCloseWingClick.bind(this);
+        this._onNestedTogglesLabelClick = this._onNestedTogglesLabelClick.bind(this);
+        this._onNestedTogglesWingOptionLabelClick = this._onNestedTogglesWingOptionLabelClick.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate');
+        const { rows: nextPropsRows } = this.props;
+
+        if (!_.isEmpty(nextPropsRows) && !_.isEqual(prevProps.rows, nextPropsRows)) {
+            console.log('reset nestedTogglesData');
+            this.setState({
+                nestedTogglesData: {},
+            });
+        }
     }
 
     render() {
@@ -65,12 +146,17 @@ class PageFiltersDrawer extends React.Component {
             rows,
             style,
         } = this.props;
+        const { nestedTogglesData } = this.state;
         const containerClasses = ClassNames('ui', 'page--filters_drawer', className);
         const isClearFiltersDisabled = isFiltering || isDirty;
         const clearFiltersClasses = ClassNames('clear-filters', 'font-size-xsmall', 'font-weight-semibold');
+        const isNestedTogglesOptionsEmpty = _.isEmpty(nestedTogglesData);
 
         let rowKeyNum = 1;
         let itemKeyNum = 1;
+        let multiSelectLabelKeyNum = 1;
+        let nestedTogglesValueKeyNum = 1;
+        let nestedTogglesOptionLabelKeyNum = 1;
 
         return (
             <MediaQuery
@@ -81,6 +167,33 @@ class PageFiltersDrawer extends React.Component {
                     isOpen={isOpen}
                     onClose={onClose}
                     style={style}
+                    wing={
+                        <Drawer.Wing isOpen={!isNestedTogglesOptionsEmpty}>
+                            <Drawer.TitleBar
+                                title={
+                                    <div className="ui header title" title="Filters">
+                                        <Icon
+                                            onClick={this._onNestedTogglesCloseWingClick}
+                                            size="medium"
+                                            type="chevron-left"
+                                        />
+                                    </div>
+                                }
+                            />
+
+                            <Drawer.Content>
+                                {!isNestedTogglesOptionsEmpty && _.map(nestedTogglesData.options, option => {
+                                    return (
+                                        <NestedTogglesWingOptionLabel
+                                            key={nestedTogglesOptionLabelKeyNum++}
+                                            onClick={this._onNestedTogglesWingOptionLabelClick}
+                                            option={option}
+                                        />
+                                    );
+                                })}
+                            </Drawer.Content>
+                        </Drawer.Wing>
+                    }
                 >
                     <Drawer.TitleBar
                         closeButton={
@@ -121,19 +234,22 @@ class PageFiltersDrawer extends React.Component {
                                     {row.header && <Header weight="bold">{row.header}</Header>}
 
                                     {_.isArray(row.items) && _.map(row.items, item => {
+                                        const {
+                                            dropdown,
+                                            jsx,
+                                            multiSelect,
+                                            nestedToggles,
+                                        } = item;
                                         const className = 'page--filters_drawer-item';
                                         const itemKey = `page--filters-drawer-row-item-${itemKeyNum++}`;
 
-                                        if (!item.jsx && !item.dropdown && !item.label && !item.multiSelect) {
+                                        if (!jsx && !dropdown && !nestedToggles && !multiSelect) {
                                             console.warn(
                                                 '<Page.FiltersDrawer>\'s rows.items must have one of the ' +
                                                 'following properties: dropdown, labels, multiSelect or jsx.'
                                             );
-
+                                        } else if (!jsx && dropdown && !nestedToggles && !multiSelect) {
                                             // Dropdown
-                                        } else if (!item.jsx && item.dropdown && !item.label && !item.multiSelect) {
-                                            const { dropdown } = item;
-
                                             return (
                                                 <div
                                                     className={className}
@@ -154,19 +270,35 @@ class PageFiltersDrawer extends React.Component {
                                                     />
                                                 </div>
                                             );
-                                        } else if (!item.jsx && !item.dropdown && item.labels && !item.multiSelect) { // Label
+                                        } else if (!jsx && !dropdown && nestedToggles && !multiSelect) {
+                                            // Nested Toggles
+                                            console.log('render');
+                                            console.log('nestedToggles', nestedToggles);
                                             return (
                                                 <div
                                                     className={className}
                                                     key={itemKey}
                                                 >
-                                                    Labels
+                                                    <NestedTogglesLabel
+                                                        onClick={this._onNestedTogglesLabelClick}
+                                                        nestedTogglesData={nestedToggles}
+                                                    />
+
+                                                {!_.isEmpty(nestedToggles.value) &&
+                                                        _.map(nestedToggles.value, option => {
+                                                            return (
+                                                                <div
+                                                                    key={`nested-toggles-selected-filter-${nestedTogglesValueKeyNum++}`}
+                                                                >
+                                                                    {option.label}
+                                                                </div>
+                                                            );
+                                                        })
+                                                    }
                                                 </div>
                                             );
-
+                                        } else if (!jsx && !dropdown && !nestedToggles && multiSelect) {
                                             // Multi Select
-                                        } else if (!item.jsx && !item.dropdown && !item.label && item.multiSelect) {
-                                            const { multiSelect } = item;
                                             const modifiedOptions = _.differenceBy(
                                                 multiSelect.options,
                                                 multiSelect.value,
@@ -207,8 +339,8 @@ class PageFiltersDrawer extends React.Component {
 
                                                             return (
                                                                 <MultiSelectLabel
-                                                                    key={`multi-select-label-${itemKey}`}
-                                                                    itemOnChange={multiSelect.onChange}
+                                                                    key={`multi-select-label-${multiSelectLabelKeyNum++}`}
+                                                                    onItemChange={multiSelect.onChange}
                                                                     label={v.label}
                                                                     selectedOption={selectedOption}
                                                                     value={multiSelect.value}
@@ -220,13 +352,13 @@ class PageFiltersDrawer extends React.Component {
                                             );
 
                                             // JSX
-                                        } else if (item.jsx && !item.dropdown && !item.label && !item.multiSelect) {
+                                        } else if (jsx && !dropdown && !nestedToggles && !multiSelect) {
                                             return (
                                                 <div
                                                     className={className}
                                                     key={itemKey}
                                                 >
-                                                    {item.jsx}
+                                                    {jsx}
                                                 </div>
                                             );
                                         }
@@ -242,16 +374,52 @@ class PageFiltersDrawer extends React.Component {
         );
     }
 
-    _onMultiSelectLabelClearClick(itemOnChange, value, selectedOption) {
+    _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
         const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
 
-        itemOnChange(filteredOptions);
+        onItemChange(filteredOptions);
     }
 
-    _onMultiSelectChange(itemOnChange, value, selectedOption) {
+    _onMultiSelectChange(onItemChange, value, selectedOption) {
         const filteredOptions = _.union(value, [ selectedOption ]);
 
-        itemOnChange(filteredOptions);
+        onItemChange(filteredOptions);
+    }
+
+    _onNestedTogglesCloseWingClick() {
+        console.log('_onNestedTogglesCloseWingClick');
+        const { nestedTogglesData } = this.state;
+
+        nestedTogglesData.onChange(nestedTogglesData.value);
+    }
+
+    _onNestedTogglesLabelClick(nestedTogglesData) {
+        this.setState({
+            nestedTogglesData: _.cloneDeep(nestedTogglesData),
+        });
+    }
+
+    _onNestedTogglesWingOptionLabelClick(selectedOption) {
+        const { nestedTogglesData } = this.state;
+        let selectedOptions;
+
+        if (_.some(nestedTogglesData.value, selectedOption)) { // Subtract
+            selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
+        } else { // Add
+            selectedOptions = _.sortBy([ ...nestedTogglesData.value, selectedOption ], [ 'value' ]);
+        }
+
+        const newNestedTogglesData = _.mapValues(nestedTogglesData, (d, key) => {
+            if (key === 'value') {
+                d = selectedOptions;
+            }
+
+            return d;
+        });
+
+        this.setState({
+            nestedTogglesData: _.cloneDeep(newNestedTogglesData),
+        });
     }
 }
 
