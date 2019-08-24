@@ -17,12 +17,14 @@ class PageDemo extends React.Component {
         this.state = {
             isFiltersOpen: false,
             multiSelectValue: [],
-            nestedTogglesValue: [],
+            nestedTogglesBarValue: [],
+            nestedTogglesFooValue: [],
         };
 
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
-        this._onNestedTogglesChange = this._onNestedTogglesChange.bind(this);
+        this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
+        this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
     }
 
@@ -30,7 +32,8 @@ class PageDemo extends React.Component {
         const {
             isFiltersOpen,
             multiSelectValue,
-            nestedTogglesValue,
+            nestedTogglesBarValue,
+            nestedTogglesFooValue,
             sort,
         } = this.state;
         const isMobile = 700;
@@ -117,8 +120,8 @@ class PageDemo extends React.Component {
                                     items: [
                                         {
                                             nestedToggles: {
-                                                label: 'Filters',
-                                                onChange: this._onNestedTogglesChange,
+                                                label: 'Foo Filters',
+                                                onChange: this._onNestedTogglesFooChange,
                                                 options: [
                                                     {
                                                         label: 'Foo',
@@ -134,7 +137,25 @@ class PageDemo extends React.Component {
                                                         value: 4,
                                                     },
                                                 ],
-                                                value: nestedTogglesValue,
+                                                value: nestedTogglesFooValue,
+                                            },
+                                        }, {
+                                            nestedToggles: {
+                                                label: 'Bar Filters',
+                                                onChange: this._onNestedTogglesBarChange,
+                                                options: [
+                                                    {
+                                                        label: 'Bar',
+                                                        value: 1,
+                                                    }, {
+                                                        label: 'Baz',
+                                                        value: 2,
+                                                    }, {
+                                                        label: 'Qux',
+                                                        value: 3,
+                                                    },
+                                                ],
+                                                value: nestedTogglesBarValue,
                                             },
                                         },
                                     ],
@@ -360,11 +381,15 @@ class PageDemo extends React.Component {
         });
     }
 
-    _onNestedTogglesChange(selectedOptions) {
-        console.log('_onNestedTogglesChange');
-        console.log('selectedOptions', selectedOptions);
+    _onNestedTogglesBarChange(selectedOptions) {
         this.setState({
-            nestedTogglesValue: selectedOptions,
+            nestedTogglesBarValue: selectedOptions,
+        });
+    }
+
+    _onNestedTogglesFooChange(selectedOptions) {
+        this.setState({
+            nestedTogglesFooValue: selectedOptions,
         });
     }
 
