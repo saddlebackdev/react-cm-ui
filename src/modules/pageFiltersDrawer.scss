@@ -12,8 +12,20 @@
                 height: 49px;
             }
             .ui.header.title {
+                align-items: center;
                 display: flex;
+                padding-right: 38px;
+                z-index: 1;
+                > div {
+                    align-items: center;
+                    display: flex;
+                    flex-grow: 1;
+                }
             }
+        }
+        .ui.drawer--title_bar .close-button {
+            width: 16px;
+            z-index: 2;
         }
     }
     .page--filters_drawer-row {
@@ -70,6 +82,9 @@
         min-height: 24px;
     }
     .filters_drawer--nested_toggles--wing--option_label {
+        &:first-child {
+            border-top: 1px solid $border;
+        }
         &.is-selected {
             background-color: $bkgd-highlight;
             color: $color-text-inverse;

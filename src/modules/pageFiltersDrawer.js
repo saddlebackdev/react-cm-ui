@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import Button from '../elements/button.js';
 import ClassNames from 'classnames';
 import Drawer from '../modules/drawer.js';
 import Dropdown from './dropdown.js';
@@ -161,9 +162,12 @@ class PageFiltersDrawer extends React.Component {
         super();
 
         this.state = {
+            isClearing: false,
             nestedTogglesData: {}, // This object is only to be populated when props.rows.items.nestedToggles is true and a label onClick event handler is triggered.
         };
 
+        this._onApplyClick = this._onApplyClick.bind(this);
+        this._onClearClick = this._onClearClick.bind(this);
         this._onMultiSelectLabelClearClick = this._onMultiSelectLabelClearClick.bind(this);
         this._onMultiSelectChange = this._onMultiSelectChange.bind(this);
         this._onNestedTogglesCloseWingClick = this._onNestedTogglesCloseWingClick.bind(this);
@@ -179,15 +183,14 @@ class PageFiltersDrawer extends React.Component {
             isDirty,
             isFiltering,
             isOpen,
-            onApply,
-            onClear,
             onClose,
             rows,
             style,
         } = this.props;
-        const { nestedTogglesData } = this.state;
+        const { isClearing, nestedTogglesData } = this.state;
         const containerClasses = ClassNames('ui', 'page--filters_drawer', className);
-        const isClearFiltersDisabled = isFiltering || isDirty;
+        // const canClear = (!isClearing && isFiltering || isDirty) || (isClearing && isFiltering || isDirty);
+        const canClear = isFiltering || isDirty;
         const clearFiltersClasses = ClassNames('clear-filters', 'font-size-xsmall', 'font-weight-semibold');
         const isNestedTogglesOptionsEmpty = _.isEmpty(nestedTogglesData);
 
@@ -251,21 +254,45 @@ class PageFiltersDrawer extends React.Component {
                         }
                         title={
                             <div className="ui header title" title="Filters">
-                                {isClearFiltersDisabled ? (
-                                    <a
-                                        className={clearFiltersClasses}
-                                        onClick={onClear}
+                                <div>
+                                    {canClear ? (
+                                        <a
+                                            className={clearFiltersClasses}
+                                            onClick={this._onClearClick}
+                                        >
+                                            Clear Filters
+                                        </a>
+                                    ) : (
+                                        <Icon
+                                            color="static"
+                                            compact
+                                            size="medium"
+                                            type="filter"
+                                        />
+                                    )}
+                                </div>
+
+                                {isDirty &&
+                                    <Button
+                                        color="success"
+                                        icon
+                                        innerStyle={{
+                                            height: '32px',
+                                            width: '32px',
+                                        }}
+                                        onClick={this._onApplyClick}
+                                        style={{
+                                            height: '32px',
+                                            minHeight: '32px',
+                                            width: '32px',
+                                        }}
                                     >
-                                        Clear Filters
-                                    </a>
-                                ) : (
-                                    <Icon
-                                        color="static"
-                                        onClick={onApply}
-                                        size="medium"
-                                        type="filter"
-                                    />
-                                )}
+                                        <Icon
+                                            compact
+                                            type="check"
+                                        />
+                                    </Button>
+                                }
                             </div>
                         }
                     />
@@ -279,7 +306,7 @@ class PageFiltersDrawer extends React.Component {
                                 >
                                     {row.header && <Header weight="bold">{row.header}</Header>}
 
-                                        <div>
+                                    <div>
                                         {_.isArray(row.items) && _.map(row.items, item => {
                                             const {
                                                 dropdown,
@@ -426,6 +453,26 @@ class PageFiltersDrawer extends React.Component {
                 </Drawer>
             </MediaQuery>
         );
+    }
+
+    _onApplyClick() {
+        const { onApply } = this.props;
+
+        this.setState({
+            isClearing: false,
+        }, () => {
+            onApply();
+        });
+    }
+
+    _onClearClick() {
+        const { onClear } = this.props;
+
+        this.setState({
+            isClearing: true,
+        }, () => {
+            onClear();
+        });
     }
 
     _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
