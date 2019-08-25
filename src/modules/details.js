@@ -117,7 +117,8 @@ class Details extends React.PureComponent {
             moduleType,
         } = this.props;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
-            'details-bleed' : bleed,
+            'page-details-bleed' : bleed && moduleType=='page',
+            'drawer-details-bleed' : bleed && moduleType=='drawer',
         });
         let detailsColumnKeyNum = 1;
 

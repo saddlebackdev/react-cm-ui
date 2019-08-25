@@ -3,29 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const DrawerDetails = (props) => {
-    const {
-        bleed,
-        className,
-        color,
-        columnProps,
-        columns,
-        data,
-        style,
-    } = props;
-
     return (
-        <React.Fragment>
-            <Details
-                bleed={bleed}
-                className={className}
-                color={color}
-                columnProps={columnProps}
-                columns={columns}
-                data={data}
-                style={style}
-                moduleType="drawer"
-            />
-        </React.Fragment>
+        <Details
+            {...props}
+            moduleType="drawer"
+        />
     );
 };
 

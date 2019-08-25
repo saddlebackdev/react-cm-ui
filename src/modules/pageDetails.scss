@@ -1,7 +1,7 @@
 $divider-color: rgba(255, 255, 255, .25);
 
 .ui.page--details {
-    &.details-bleed {
+    &.page-details-bleed {
         margin: 0 -11px;
     }
     .ui.info-bar {
@@ -36,7 +36,7 @@ $divider-color: rgba(255, 255, 255, .25);
 
 @media only screen and (min-width: 768px) {
     .ui.page--details {
-        &.details-bleed {
+        &.page-details-bleed {
             margin: 0 -22px;
         }
         .ui.info-bar {
