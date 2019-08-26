@@ -83,8 +83,11 @@
                 &:hover { box-shadow: inset 1px 0 0 $bkgd-alert-dark; }
             }
             &highlight .label-clearable-button {
-                background-color: $bkgd-highlight-dark;
-                &:hover { box-shadow: inset 1px 0 0 $bkgd-highlight-dark; }
+                background-color: $bkgd-highlight;
+                box-shadow: inset 1px 0 0 $bkgd-highlight-dark;
+                &:hover {
+                    background-color: $bkgd-highlight-dark;
+                }
             }
             &primary .label-clearable-button {
                 background-color: $bkgd-static;

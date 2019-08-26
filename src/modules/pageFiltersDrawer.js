@@ -18,12 +18,16 @@ class MultiSelectLabel extends React.PureComponent {
     }
 
     render() {
-        const { label } = this.props;
+        const { color, label } = this.props;
 
         return (
             <Label
-                color="success"
+                color={color || 'highlight'}
                 onClearClick={this._onClearClick}
+                style={{
+                    marginRight: '5px',
+                    marginTop: '11px',
+                }}
             >
                 {label}
             </Label>
@@ -39,6 +43,7 @@ class MultiSelectLabel extends React.PureComponent {
 }
 
 MultiSelectLabel.propTypes = {
+    color: PropTypes.string,
     label: PropTypes.string.isRequired,
     onItemChange: PropTypes.func.isRequired,
     selectedOption: PropTypes.object.isRequired,
@@ -162,7 +167,6 @@ class PageFiltersDrawer extends React.Component {
         super();
 
         this.state = {
-            isClearing: false,
             nestedTogglesData: {}, // This object is only to be populated when props.rows.items.nestedToggles is true and a label onClick event handler is triggered.
         };
 
@@ -187,9 +191,8 @@ class PageFiltersDrawer extends React.Component {
             rows,
             style,
         } = this.props;
-        const { isClearing, nestedTogglesData } = this.state;
+        const { nestedTogglesData } = this.state;
         const containerClasses = ClassNames('ui', 'page--filters_drawer', className);
-        // const canClear = (!isClearing && isFiltering || isDirty) || (isClearing && isFiltering || isDirty);
         const canClear = isFiltering || isDirty;
         const clearFiltersClasses = ClassNames('clear-filters', 'font-size-xsmall', 'font-weight-semibold');
         const isNestedTogglesOptionsEmpty = _.isEmpty(nestedTogglesData);
@@ -419,6 +422,7 @@ class PageFiltersDrawer extends React.Component {
 
                                                                 return (
                                                                     <MultiSelectLabel
+                                                                        color={multiSelect.labelColor}
                                                                         key={`multi-select-label-${multiSelectLabelKeyNum++}`}
                                                                         onItemChange={multiSelect.onChange}
                                                                         label={v.label}
@@ -458,21 +462,13 @@ class PageFiltersDrawer extends React.Component {
     _onApplyClick() {
         const { onApply } = this.props;
 
-        this.setState({
-            isClearing: false,
-        }, () => {
-            onApply();
-        });
+        onApply();
     }
 
     _onClearClick() {
         const { onClear } = this.props;
 
-        this.setState({
-            isClearing: true,
-        }, () => {
-            onClear();
-        });
+        onClear();
     }
 
     _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
