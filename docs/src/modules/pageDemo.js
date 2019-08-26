@@ -14,23 +14,39 @@ class PageDemo extends React.Component {
     constructor() {
         super();
 
-        this.state = {
+        this._defaultFilters = {
             multiSelectValue: [],
-            isFiltersOpen: false,
+            nestedTogglesBarValue: [],
+            nestedTogglesFooValue: [],
+            sort: {
+                label: 'Name (Ascending)',
+                value: 'Name (Ascending)',
+            },
         };
 
+        this.state = {
+            appliedFilters: _.cloneDeep(this._defaultFilters),
+            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            isFiltersDrawerOpen: false,
+        };
+
+        this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
+        this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
+        this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
+        this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
     }
 
     render() {
         const {
-            isFiltersOpen,
-            labels,
-            multiSelectValue,
-            sort,
+            appliedFilters,
+            dirtyFilters,
+            isFiltersDrawerOpen,
         } = this.state;
+        const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
+        const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
         const isMobile = 700;
 
         return (
@@ -56,7 +72,11 @@ class PageDemo extends React.Component {
 
                     <Page.Container>
                         <Page.FiltersDrawer
-                            isOpen={isFiltersOpen}
+                            isDirty={isDirty}
+                            isFiltering={isFiltering}
+                            isOpen={isFiltersDrawerOpen}
+                            onApply={this._onApplyFiltersDrawerClick}
+                            onClear={this._onClearFiltersDrawerClick}
                             onClose={this._onFiltersToggle}
                             rows={[
                                 {
@@ -81,7 +101,7 @@ class PageDemo extends React.Component {
                                                         value: 4,
                                                     },
                                                 ],
-                                                value: multiSelectValue,
+                                                value: dirtyFilters.multiSelectValue,
                                             },
                                         },
                                     ],
@@ -106,7 +126,7 @@ class PageDemo extends React.Component {
                                                         value: 'Create Date (Descending)',
                                                     },
                                                 ],
-                                                value: sort,
+                                                value: dirtyFilters.sort,
                                             },
                                         },
                                     ],
@@ -114,11 +134,43 @@ class PageDemo extends React.Component {
                                     header: 'Filters',
                                     items: [
                                         {
-                                            labels: {
-                                                selected: _.includes(labels, '1'),
-                                                id: '1',
-                                                label: 'Attended',
-                                                onChange: this._onFiltersCheckboxChange,
+                                            nestedToggles: {
+                                                label: 'Foo Filters',
+                                                onChange: this._onNestedTogglesFooChange,
+                                                options: [
+                                                    {
+                                                        label: 'Foo',
+                                                        value: 1,
+                                                    }, {
+                                                        label: 'Bar',
+                                                        value: 2,
+                                                    }, {
+                                                        label: 'Baz',
+                                                        value: 3,
+                                                    }, {
+                                                        label: 'Qux',
+                                                        value: 4,
+                                                    },
+                                                ],
+                                                value: dirtyFilters.nestedTogglesFooValue,
+                                            },
+                                        }, {
+                                            nestedToggles: {
+                                                label: 'Bar Filters',
+                                                onChange: this._onNestedTogglesBarChange,
+                                                options: [
+                                                    {
+                                                        label: 'Bar',
+                                                        value: 1,
+                                                    }, {
+                                                        label: 'Baz',
+                                                        value: 2,
+                                                    }, {
+                                                        label: 'Qux',
+                                                        value: 3,
+                                                    },
+                                                ],
+                                                value: dirtyFilters.nestedTogglesBarValue,
                                             },
                                         },
                                     ],
@@ -127,7 +179,7 @@ class PageDemo extends React.Component {
                         />
 
                         <Page.FiltersRail
-                            isOpen={isFiltersOpen}
+                            isOpen={isFiltersDrawerOpen}
                             onClose={this._onFiltersToggle}
                         >
                             <Header weight="bold">Sort By</Header>
@@ -183,7 +235,7 @@ class PageDemo extends React.Component {
 
                         <Page.Content
                             className="page-content-class-name"
-                            isFiltersRailOpen={isFiltersOpen}
+                            isFiltersRailOpen={isFiltersDrawerOpen}
                         >
                             <Page.Details
                                 color={11}
@@ -330,23 +382,61 @@ class PageDemo extends React.Component {
         );
     }
 
-    _onFiltersToggle() {
-        const { isFiltersOpen } = this.state;
+    _onApplyFiltersDrawerClick() {
+        console.log('_onApplyFiltersDrawerClick');
+        const { dirtyFilters } = this.state;
 
         this.setState({
-            isFiltersOpen: !isFiltersOpen,
+            appliedFilters: _.cloneDeep(dirtyFilters),
+            isFiltersDrawerOpen: false,
+            isFiltering: true,
+        });
+    }
+
+    _onClearFiltersDrawerClick() {
+        this.setState({
+            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            isFiltering: false,
+        });
+    }
+
+    _onFiltersToggle() {
+        const { isFiltersDrawerOpen } = this.state;
+
+        this.setState({
+            isFiltersDrawerOpen: !isFiltersDrawerOpen,
         });
     }
 
     _onKeywordsMultiSelectChange(selectedOptions) {
+        const { dirtyFilters } = this.state;
+
         this.setState({
-            multiSelectValue: selectedOptions,
+            dirtyFilters: _.cloneDeep({ ...dirtyFilters, multiSelectValue: selectedOptions }),
+        });
+    }
+
+    _onNestedTogglesBarChange(selectedOptions) {
+        const { dirtyFilters } = this.state;
+
+        this.setState({
+            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesBarValue: selectedOptions }),
+        });
+    }
+
+    _onNestedTogglesFooChange(selectedOptions) {
+        const { dirtyFilters } = this.state;
+
+        this.setState({
+            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesFooValue: selectedOptions }),
         });
     }
 
     _onSortDropdownChange(selectedOption) {
+        const { dirtyFilters } = this.state;
+
         this.setState({
-            sort: selectedOption,
+            dirtyFilters: _.cloneDeep({ ...dirtyFilters, sort: selectedOption }),
         });
     }
 }

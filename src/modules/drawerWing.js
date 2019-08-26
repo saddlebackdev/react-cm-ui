@@ -2,7 +2,7 @@ import ClassNames from 'classnames';
 import DOMUtils from '../utils/domUtils.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ScrollBar from 'react-custom-scrollbars';
 
 const hasClassName = 'has-drawer--wing';
 const animateOutClassName = 'drawer--wing-animate-out';
@@ -69,7 +69,13 @@ class DrawerWing extends React.PureComponent {
                             width: width || null,
                         }}
                     >
-                        {children}
+                        <ScrollBar
+                            autoHide
+                        >
+                            <div className="drawer--wing-container-inner">
+                                {children}
+                            </div>
+                        </ScrollBar>
                     </div>
                 </div>
             </div>

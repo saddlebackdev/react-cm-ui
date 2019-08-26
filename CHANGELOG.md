@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Moved **&lt;Page /&gt;** components to the modules directory.
 - Changes to **&lt;Page.FiltersDrawer /&gt;**:
   - Fixed the header in this component which broke when we refactored the **&lt;Drawer /&gt;** component.
+  - New `rows.items.multiSelect` property!
 
 ## 5.1.0
 

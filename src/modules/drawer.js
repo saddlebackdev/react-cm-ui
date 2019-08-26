@@ -78,8 +78,6 @@ class Drawer extends React.PureComponent {
                     >
                         <ScrollBar
                             autoHide
-                            onScrollStart={this._onScrollStart}
-                            onScrollStop={this._onScrollStop}
                         >
                             <div className="drawer-container-inner">
                                 {children}

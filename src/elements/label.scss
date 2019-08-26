@@ -92,8 +92,11 @@
                 &:hover { background-color: transparent; box-shadow: inset 1px 0 0 $border; color: $color-text-static; }
             }
             &success .label-clearable-button {
-                background-color: $bkgd-success-dark;
-                &:hover { box-shadow: inset 1px 0 0 $bkgd-success-dark; }
+                background-color: $bkgd-success;
+                box-shadow: inset 1px 0 0 $bkgd-success-dark;
+                &:hover {
+                    background-color: $bkgd-success-dark;
+                }
             }
             &transparent .label-clearable-button {
                 background-color: transparent;

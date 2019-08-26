@@ -8,7 +8,6 @@ import React, { Component } from 'react';
 import Utils from '../utils/utils.js';
 
 class Button extends Component {
-
     constructor(props) {
         super(props);
 
@@ -16,8 +15,24 @@ class Button extends Component {
     }
 
     render() {
-        const { as, children, className, color, compact, disabled, fluid, href,
-            icon, id, inverse, outlined, relax, style, width } = this.props;
+        const {
+            as,
+            children,
+            className,
+            color,
+            compact,
+            disabled,
+            fluid,
+            href,
+            icon,
+            id,
+            innerStyle,
+            inverse,
+            outlined,
+            relax,
+            style,
+            width,
+        } = this.props;
 
         const newAs = as || 'button';
         const ElementType = Utils.getElementType(newAs, this.props);
@@ -39,11 +54,11 @@ class Button extends Component {
             'button-icon': icon,
             'button-fixed-width': width,
             'button-outlined': outlined,
-            'button-relax': relax
+            'button-relax': relax,
         });
-        const containerStyle = _.merge(style, {
-            width: _.isNumber(width) ? `${width}px` : _.isString(width) ? width : null
-        });
+        const containerStyle = Object.assign({}, {
+            width: _.isNumber(width) ? `${width}px` : _.isString(width) ? width : null,
+        }, style);
 
         return (
             <ElementType
@@ -54,17 +69,21 @@ class Button extends Component {
                 style={containerStyle}
                 disabled={disabled}
             >
-                <span className="button-inner-container">{children}</span>
+                <span
+                    className="button-inner-container"
+                    style={innerStyle}
+                >
+                    {children}
+                </span>
             </ElementType>
         );
     }
 
     _onClick(event) {
-        if(_.isFunction(this.props.onClick)) {
+        if (_.isFunction(this.props.onClick)) {
             this.props.onClick(event);
         }
     }
-
 }
 
 const asEnums = [ 'button', 'a' ];
@@ -80,6 +99,7 @@ Button.propTypes = {
     href: PropTypes.string,
     icon: PropTypes.bool,
     id: PropTypes.string,
+    innerStyle: PropTypes.object,
     inverse: PropTypes.bool,
     onClick: PropTypes.func,
     outlined: PropTypes.bool,
@@ -88,8 +108,8 @@ Button.propTypes = {
     style: PropTypes.object,
     width: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
-    ])
-}
+        PropTypes.string,
+    ]),
+};
 
 export default Button;
