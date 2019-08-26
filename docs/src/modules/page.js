@@ -85,7 +85,7 @@ export default class DrawerSample extends React.Component {
     }
 }`;
 
-class ModulesDrawer extends React.Component {
+class ModulesPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -162,7 +162,7 @@ class ModulesDrawer extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
+                <TitleBar title="Page" />
 
                 <DrawerSubNavigation />
 
@@ -245,4 +245,4 @@ class ModulesDrawer extends React.Component {
     }
 }
 
-export default ModulesDrawer;
+export default ModulesPage;

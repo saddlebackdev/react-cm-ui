@@ -1,4 +1,4 @@
-@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator';
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
 .ui.label {
     align-items: center;
@@ -83,8 +83,11 @@
                 &:hover { box-shadow: inset 1px 0 0 $bkgd-alert-dark; }
             }
             &highlight .label-clearable-button {
-                background-color: $bkgd-highlight-dark;
-                &:hover { box-shadow: inset 1px 0 0 $bkgd-highlight-dark; }
+                background-color: $bkgd-highlight;
+                box-shadow: inset 1px 0 0 $bkgd-highlight-dark;
+                &:hover {
+                    background-color: $bkgd-highlight-dark;
+                }
             }
             &primary .label-clearable-button {
                 background-color: $bkgd-static;
@@ -92,8 +95,11 @@
                 &:hover { background-color: transparent; box-shadow: inset 1px 0 0 $border; color: $color-text-static; }
             }
             &success .label-clearable-button {
-                background-color: $bkgd-success-dark;
-                &:hover { box-shadow: inset 1px 0 0 $bkgd-success-dark; }
+                background-color: $bkgd-success;
+                box-shadow: inset 1px 0 0 $bkgd-success-dark;
+                &:hover {
+                    background-color: $bkgd-success-dark;
+                }
             }
             &transparent .label-clearable-button {
                 background-color: transparent;

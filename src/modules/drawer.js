@@ -3,6 +3,7 @@ import ClassNames from 'classnames';
 import DOMUtils from '../utils/domUtils.js';
 import DrawerActionBar from './drawerActionBar.js';
 import DrawerContent from './drawerContent.js';
+import DrawerDetails from './drawerDetails.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js';
 import DrawerGrid from './drawerGrid.js';
 import DrawerNavigation from './drawerNavigation.js';
@@ -77,8 +78,6 @@ class Drawer extends React.PureComponent {
                     >
                         <ScrollBar
                             autoHide
-                            onScrollStart={this._onScrollStart}
-                            onScrollStop={this._onScrollStop}
                         >
                             <div className="drawer-container-inner">
                                 {children}
@@ -285,6 +284,7 @@ class Drawer extends React.PureComponent {
 Drawer.ActionBar = DrawerActionBar;
 Drawer.Content = DrawerContent;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
+Drawer.Details = DrawerDetails;
 Drawer.Grid = DrawerGrid;
 Drawer.Navigation = DrawerNavigation;
 Drawer.Table = DrawerTable;

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const hasClassName = 'has-drawer--title_bar';
+const hasWingClassName = 'has-drawer--wing--title_bar';
 
 class DrawerTitleBar extends React.PureComponent {
     render() {
@@ -37,7 +38,14 @@ class DrawerTitleBar extends React.PureComponent {
     }
 
     componentDidMount() {
-        this._drawerTitleBarRef.closest('.ui.drawer').classList.add(hasClassName);
+        const closestDrawer = this._drawerTitleBarRef.closest('.ui.drawer');
+        const closestWing = this._drawerTitleBarRef.closest('.ui.drawer--wing');
+
+        if (closestWing) {
+            closestWing.classList.add(hasWingClassName);
+        } else {
+            closestDrawer.classList.add(hasClassName);
+        }
     }
 
     componentWillUnmount() {

@@ -50,6 +50,10 @@ class ModulesDrawerSubNavigation extends React.Component {
                 itemSelected = 8;
 
                 break;
+            case 'details':
+                itemSelected = 9;
+
+                break;
             default:
                 itemSelected = 0;
         }
@@ -69,6 +73,7 @@ class ModulesDrawerSubNavigation extends React.Component {
                 <SubNavigation.Item label="Table" />
                 <SubNavigation.Item label="Title Bar" />
                 <SubNavigation.Item label="Wing" />
+                <SubNavigation.Item label="Details" />
             </SubNavigation>
         );
     }
@@ -112,6 +117,10 @@ class ModulesDrawerSubNavigation extends React.Component {
                 break;
             case 8:
                 browserHistory.push(`${drawerLocation}/wing`);
+
+                break;
+            case 9:
+                browserHistory.push(`${drawerLocation}/details`);
 
                 break;
         }

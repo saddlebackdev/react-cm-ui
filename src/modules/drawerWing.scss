@@ -1,4 +1,8 @@
-@import '../shared/styles/Colors', '../shared/styles/Fonts', '../shared/styles/FontSizeCalculator', '../shared/styles/Variables';
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
+
+.ui.drawer--wing.has-drawer--wing--title_bar .drawer--wing-container-inner {
+    padding-top: $drawer-title-bar-height;
+}
 
 .ui.drawer--wing {
     bottom: 0;

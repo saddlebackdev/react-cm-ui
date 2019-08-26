@@ -1,5 +1,5 @@
 import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
-import DrawerSubNavigation from './DrawerSubNavigation.js';
+import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import moment from 'moment-timezone';

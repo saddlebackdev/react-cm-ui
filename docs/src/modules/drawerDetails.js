@@ -5,10 +5,10 @@ import Main from '../app/main.js';
 import React from 'react';
 import TableProps from '../app/tableProps.js';
 
-const drawerActionBarSample = `import { Button, Drawer } from 'react-cm-ui';
+const drawerDetailsSample = `import { Button, Drawer, InfoBar } from 'react-cm-ui';
 import React from 'react';
 
-export default class DrawerActionBarSample extends React.Component {
+export default class DrawerDetailsSample extends React.Component {
     constructor(props) {
         super(props);
 
@@ -113,6 +113,35 @@ export default class DrawerActionBarSample extends React.Component {
                             },
                         ]}
                     />
+
+                    <Drawer.Details
+                            color={11}
+                            columnProps={{
+                                horizontalSpacing: 11,
+                            }}
+                            columns={[
+                                {
+                                    accessor: 'activeTemplates',
+                                    header: 'Active Templates',
+                                }, {
+                                    accessor: 'inactiveTemplates',
+                                    header: 'Inactive Templates',
+                                }, {
+                                    columns: [
+                                        {
+                                            accessor: 'activeTemplates',
+                                            header: 'Active Templates',
+                                        }, {
+                                            accessor: 'inactiveTemplates',
+                                            header: 'Inactive Templates',
+                                        },
+                                    ],
+                                    divide: true,
+                                },
+                            ]}
+                            data={{
+                            }}
+                        />
 
                     <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
@@ -242,23 +271,7 @@ export default class DrawerActionBarSample extends React.Component {
     }
 }`;
 
-const columnsArrayProps = `[
-    {
-        flexBasis: 'auto', // defaults to auto
-        flexGrow: 1, // defaults to 0
-        flexBasis: 0, // defaults to 0
-        jsx: <Icon type="plus" />, // type: object. required if no columns property
-        style: {},
-    }, {
-        columns: [ // type: array. required if no jsx property.
-            {
-                jsx: <Icon type="plus" />, // type: object.
-            }
-        ]
-    }
-]`;
-
-class ModulesDrawerActionBar extends React.Component {
+class ModulesDrawerDetails extends React.Component {
     constructor(props) {
         super(props);
 
@@ -281,16 +294,40 @@ class ModulesDrawerActionBar extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
+                name: 'bleed',
+                type: 'bool',
+                default: '',
+                description: 'Horizontally extend Drawer.Details all the way to the edges of the parent Drawer..',
+                allowedTypes: '',
+            }, {
+                name: 'color',
+                type: 'number',
+                default: '',
+                description: 'Info bar color number can be chosen from 1 to 11',
+                allowedTypes: '1,2,3,4,5,6,7,8,9,10,11',
+            }, {
                 name: 'columns',
                 type: 'array',
                 default: '',
-                description: 'A consistent way to display actionable UI in a Drawer.ActionBar.',
+                description: 'A consistent way to display Info bar details UI in a Drawer.Details.',
+                allowedTypes: '',
+            }, {
+                name: 'columnProps',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the Drawer.Details\'s container. Mainly used for padding and margins.',
+                allowedTypes: '',
+            }, {
+                name: 'data',
+                type: 'array',
+                default: '',
+                description: 'Required for Drawer.Details to feed columns.',
                 allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.TitleBar\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.Details\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             },
         ];
@@ -308,24 +345,13 @@ class ModulesDrawerActionBar extends React.Component {
                         <TableProps props={props} />
                     </Card>
 
-                    {/* Action Bar */}
+                    {/* Drawer Infobar Details */}
                     <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Action Bar
+                        Drawer Banner Details
                         <Header.Subheader>
-                            For those times the UI requires an Action Bar.
+                            For those times the UI requires an Drawer Infobar Details.
                         </Header.Subheader>
                     </Header>
-
-                    Optional and Required Properties for <code>columns</code>:
-
-                    <Highlighter
-                        customStyle={{ marginBottom: '44px', marginTop: '44px' }}
-                        showLineNumbers={false}
-                        theme="light"
-                        type="inline"
-                    >
-                        {columnsArrayProps}
-                    </Highlighter>
 
                     <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
 
@@ -336,21 +362,6 @@ class ModulesDrawerActionBar extends React.Component {
                         <Drawer.TitleBar
                             closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
                             title="Don't Pay Attention to the TitleBar, But to the Navigation"
-                        />
-
-                        <Drawer.Navigation
-                            columns={[
-                                {
-                                    label: 'Button 1',
-                                }, {
-                                    label: 'Button 2',
-                                }, {
-                                    label: 'Button 3',
-                                }, {
-                                    label: 'Button 4',
-                                    onClick: this._onClickTest,
-                                },
-                            ]}
                         />
 
                         <Drawer.ActionBar
@@ -415,6 +426,35 @@ class ModulesDrawerActionBar extends React.Component {
                                     ),
                                 },
                             ]}
+                        />
+
+                        <Drawer.Details
+                            color={11}
+                            columnProps={{
+                                horizontalSpacing: 11,
+                            }}
+                            columns={[
+                                {
+                                    accessor: 'activeTemplates',
+                                    header: 'Active Templates',
+                                }, {
+                                    accessor: 'inactiveTemplates',
+                                    header: 'Inactive Templates',
+                                }, {
+                                    columns: [
+                                        {
+                                            accessor: 'activeTemplates',
+                                            header: 'Active Templates',
+                                        }, {
+                                            accessor: 'inactiveTemplates',
+                                            header: 'Inactive Templates',
+                                        },
+                                    ],
+                                    divide: true,
+                                },
+                            ]}
+                            data={{
+                            }}
                         />
 
                         <p>
@@ -536,7 +576,7 @@ class ModulesDrawerActionBar extends React.Component {
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {drawerActionBarSample}
+                        {drawerDetailsSample}
                     </Highlighter>
                 </div>
             </Main>
@@ -554,4 +594,4 @@ class ModulesDrawerActionBar extends React.Component {
     }
 }
 
-export default ModulesDrawerActionBar;
+export default ModulesDrawerDetails;

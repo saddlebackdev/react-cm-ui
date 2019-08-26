@@ -1,6 +1,6 @@
 import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
 import _ from 'lodash';
-import DrawerSubNavigation from './DrawerSubNavigation.js';
+import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
@@ -346,16 +346,6 @@ class ModulesDrawerFiltersDrawer extends React.Component {
             isFiltersDrawerOpen,
             searchValue,
         } = this.state;
-        // className: PropTypes.string,
-        // isDirty: PropTypes.bool,
-        // isFiltering: PropTypes.bool,
-        // isOpen: PropTypes.bool,
-        // onApply: PropTypes.func.isRequired,
-        // onClear: PropTypes.func.isRequired,
-        // onClose: PropTypes.func.isRequired,
-        // position: PropTypes.oneOf([ 'left', 'right' ]),
-        // rows: PropTypes.array.isRequired,
-        // style: PropTypes.object,
         const props = [
             {
                 name: 'className',

@@ -78,20 +78,20 @@ class DrawerFiltersDrawer extends React.PureComponent {
                         return (
                             <div
                                 className="drawer--filters_drawer-row"
-                                key={`drawer-filters-drawer-row-${rowKeyNum++}`}
+                                key={`drawer--filters-drawer-row-${rowKeyNum++}`}
                             >
                                 {row.header && <Header weight="bold">{row.header}</Header>}
 
                                 {_.isArray(row.items) && _.map(row.items, item => {
                                     const className = 'drawer--filters_drawer-item';
-                                    const itemKey = `drawer-filters-drawer-row-item-${itemKeyNum++}`;
+                                    const itemKey = `drawer--filters-drawer-row-item-${itemKeyNum++}`;
 
                                     if (!item.jsx && !item.checkbox && !item.dropdown) {
                                         console.warn(
                                             '<Drawer.FiltersDrawer>\'s rows.items must have one of the ' +
                                             'following properties: checkbox, dropdown or jsx.'
                                         );
-                                    } else if (!item.jsx && item.checkbox && !item.dropdown) { // Checkboxdir
+                                    } else if (!item.jsx && item.checkbox && !item.dropdown) { // Checkbox
                                         return (
                                             <div
                                                 className={className}
