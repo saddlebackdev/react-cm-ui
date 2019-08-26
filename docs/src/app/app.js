@@ -3,6 +3,8 @@
 import './app.scss';
 
 import { Button, DOMUtils, Icon } from 'react-cm-ui';
+import _ from 'lodash';
+import breakpointActions from '../shared/breakpointActions.js';
 import Header from './header.js';
 import { Link } from 'react-router';
 import MediaQuery from 'react-responsive';
@@ -18,6 +20,16 @@ export default class CoreApp extends React.Component {
         super(props);
 
         this._curScrollPos = null;
+        this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this._onResizeDebounce);
+        this._onResize();
+    }
+
+    componentWillMount() {
+        document.querySelector('html').classList.add(DOMUtils.browserDetect());
     }
 
     render() {
@@ -68,8 +80,8 @@ export default class CoreApp extends React.Component {
         }
     }
 
-    componentWillMount() {
-        document.querySelector('html').classList.add(DOMUtils.browserDetect());
+    _onResize() {
+        breakpointActions.update();
     }
 
     _onToggleNavigation(event) {
