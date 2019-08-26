@@ -8,7 +8,7 @@ import Utils from '../utils/utils.js';
 
 class Image extends Component {
     render() {
-        const { as, className, name, size, src, style, type } = this.props;
+        const { as, className, name, size, src, style, type, border, borderInverse } = this.props;
         let newAs = as || 'img';
         let newStyle = style;
 
@@ -42,11 +42,12 @@ class Image extends Component {
 
         if (type) {
             newStyle = Object.assign({}, {
-                boxShadow: src ? 'none' : null,
+                boxShadow: src ? 'none' : (!border? 'inset 0 0 0 1px #dbe0e3' : null),
                 backgroundImage: src ? `url(${src})` : null,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size,
+                border: border ? (borderInverse ? `${border}px solid #fff` : `${border}px solid #dbe0e3`) : 'none',
             }, style );
 
             if (name) {
@@ -84,6 +85,8 @@ const typeEnums = [ 'person', 'user' ];
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
+    border: PropTypes.number,
+    borderInverse: PropTypes.bool,
     className: PropTypes.string,
     name: PropTypes.string,
     size: PropTypes.number,

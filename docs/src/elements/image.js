@@ -73,11 +73,17 @@ export default class ElementsImage extends React.Component {
                 description: 'An element type to render as.',
                 allowedTypes: 'div, img',
             }, {
-                name: 'type',
+                name: 'border',
+                type: 'number',
+                default: '',
+                description: 'Determines width of border',
+                allowedTypes: '',
+            }, {
+                name: 'borderInverse',
                 type: 'bool',
                 default: '',
-                description: 'An Image can be shown as a circular & rectangular avatar',
-                allowedTypes: 'person, user',
+                description: 'If set to true, border color set to white',
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
@@ -102,6 +108,12 @@ export default class ElementsImage extends React.Component {
                 default: '',
                 description: 'Supply any inline styles to the Image or Image\'s container.',
                 allowedTypes: '',
+            }, {
+                name: 'type',
+                type: 'enum',
+                default: '',
+                description: 'An Image can be shown as a circular & square avatar',
+                allowedTypes: 'person, user',
             },
         ];
 

@@ -15,7 +15,6 @@
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
-        box-shadow: inset 0 0 0 1px $border;
         color: $bkgd-inverse-alternate;
         display: inline-flex;
         font-weight: $default-font-weight-semibold;
@@ -30,7 +29,7 @@
         }
 
         &.image-avatar-user {
-            border-radius: 500em;
+            border-radius: 50%;
         }
     }
 }
