@@ -383,7 +383,6 @@ class PageDemo extends React.Component {
     }
 
     _onApplyFiltersDrawerClick() {
-        console.log('_onApplyFiltersDrawerClick');
         const { dirtyFilters } = this.state;
 
         this.setState({
