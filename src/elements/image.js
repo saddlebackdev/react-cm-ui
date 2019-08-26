@@ -8,17 +8,19 @@ import Utils from '../utils/utils.js';
 
 class Image extends Component {
     render() {
-        const { as, avatar, className, name, size, src, style } = this.props;
+        const { as, className, name, size, src, style, type } = this.props;
         let newAs = as || 'img';
         let newStyle = style;
 
-        if (avatar) {
+        if (type) {
             newAs = 'div';
         }
 
         const ElementType = Utils.getElementType(newAs, this.props);
         const containerClasses = ClassNames('ui', 'image', className, {
-            'image-avatar': avatar,
+            'image-avatar': type==='person' || type==='user',
+            'image-avatar-person': type==='person',
+            'image-avatar-user': type==='user',
         });
 
         if (ElementType === 'img') {
@@ -38,14 +40,14 @@ class Image extends Component {
 
         let newInitials, avatarSize = 'xsmall';
 
-        if (avatar) {
-            newStyle = Object.assign({}, style, {
+        if (type) {
+            newStyle = Object.assign({}, {
                 boxShadow: src ? 'none' : null,
                 backgroundImage: src ? `url(${src})` : null,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size,
-            });
+            }, style );
 
             if (name) {
                 newInitials = name.match(/\b\w/g) || [];
@@ -64,10 +66,10 @@ class Image extends Component {
         return (
             <ElementType
                 className={containerClasses}
-                src={!avatar ? src : null}
+                src={!type ? src : null}
                 style={newStyle}
             >
-                {avatar && !src ?
+                {type && !src ?
                     name ?
                         newInitials :
                         ( <Icon color="static" compact size={avatarSize} title="This person has no image" type="user" /> ) :
@@ -78,15 +80,16 @@ class Image extends Component {
 }
 
 const asEnums = [ 'div', 'img' ];
+const typeEnums = [ 'person', 'user' ];
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
-    avatar: PropTypes.bool,
     className: PropTypes.string,
     name: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
     style: PropTypes.object,
+    type: PropTypes.oneOf(typeEnums),
 };
 
 export default Image;

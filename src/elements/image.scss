@@ -15,7 +15,6 @@
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 500em;
         box-shadow: inset 0 0 0 1px $border;
         color: $bkgd-inverse-alternate;
         display: inline-flex;
@@ -25,6 +24,13 @@
         width: 32px;
         &.image-size- {
             &xxsmall { height: 32px; }
+        }
+        &.image-avatar-person {
+            border-radius: 10%;
+        }
+
+        &.image-avatar-user {
+            border-radius: 500em;
         }
     }
 }

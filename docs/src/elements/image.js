@@ -29,12 +29,15 @@ export default class AvatarSample extends React.Component {
     render() {
         return (
             <div>
-                <Image avatar /><br /><br />
-                <Image avatar src="/images/marty-mcfly.jpg" /><br /><br />
-                <Image avatar name="Marty McFly" /><br /><br />
-
-                {/* If you pass both name AND image src it won't render the image AND the initials ... only the image! :-) */}
-                <Image avatar name="Marty McFly" src="/images/marty-mcfly.jpg" />
+                <Image type="person" /><br /><br />
+                <Image type="user" /><br /><br />
+                <Image type="person" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="person" name="Marty McFly" /><br /><br />
+                <Image type="user" name="Marty McFly" /><br /><br />
+                {/* Test Name AND Image Source -- shouldn't render image AND initials ... only image :-) */}
+                <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
             </div>
         );
     }
@@ -48,13 +51,13 @@ export default class SizeSample extends React.Component {
     render() {
         return (
             <div>
-                <Image src="/images/marty-mcfly.jpg" size={100} /><br /><br />
-                <Image avatar size={44} name="Marty McFly" /><br /><br />
-                <Image avatar size={66} src="/images/marty-mcfly.jpg" /><br /><br />
-                <Image avatar size={22} /><br /><br />
-                <Image avatar size={44} /><br /><br />
-                <Image avatar size={66} /><br /><br />
-                <Image avatar size={88} />
+                <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
+                <Image type="user" size={44} name="Marty McFly" /><br /><br />
+                <Image type="user" size={66} src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" size={22} /><br /><br />
+                <Image type="user" size={44} /><br /><br />
+                <Image type="user" size={66} /><br /><br />
+                <Image type="user" size={88} />
             </div>
         );
     }
@@ -70,11 +73,11 @@ export default class ElementsImage extends React.Component {
                 description: 'An element type to render as.',
                 allowedTypes: 'div, img',
             }, {
-                name: 'avatar',
+                name: 'type',
                 type: 'bool',
                 default: '',
-                description: 'An Image can be shown as a circular avatar.',
-                allowedTypes: '',
+                description: 'An Image can be shown as a circular & rectangular avatar',
+                allowedTypes: 'person, user',
             }, {
                 name: 'className',
                 type: 'string',
@@ -138,11 +141,15 @@ export default class ElementsImage extends React.Component {
                     </Header.Subheader>
                 </Header>
 
-                <Image avatar /><br /><br />
-                <Image avatar src={martyMcFlyImageSrc} /><br /><br />
-                <Image avatar name="Marty McFly" /><br /><br />
+                <Image type="person" /><br /><br />
+                <Image type="user" /><br /><br />
+                <Image type="person" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="person" name="Marty McFly" /><br /><br />
+                <Image type="user" name="Marty McFly" /><br /><br />
                 {/* Test Name AND Image Source -- shouldn't render image AND initials ... only image :-) */}
-                <Image avatar name="Marty McFly" src={martyMcFlyImageSrc} />
+                <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {avatarSample}
@@ -157,12 +164,12 @@ export default class ElementsImage extends React.Component {
                 </Header>
 
                 <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
-                <Image avatar size={44} name="Marty McFly" /><br /><br />
-                <Image avatar size={66} src={martyMcFlyImageSrc} /><br /><br />
-                <Image avatar size={22} /><br /><br />
-                <Image avatar size={44} /><br /><br />
-                <Image avatar size={66} /><br /><br />
-                <Image avatar size={88} />
+                <Image type="user" size={44} name="Marty McFly" /><br /><br />
+                <Image type="user" size={66} src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" size={22} /><br /><br />
+                <Image type="user" size={44} /><br /><br />
+                <Image type="user" size={66} /><br /><br />
+                <Image type="user" size={88} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {sizeSample}
