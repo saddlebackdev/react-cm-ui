@@ -282,6 +282,13 @@ const routes = (
                     }}
                     path="wing"
                 />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerDetails.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="details"
+                />
             </Route>
             <Route
                 getComponent={(location, callback) => {
