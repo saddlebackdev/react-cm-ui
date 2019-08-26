@@ -1,16 +1,16 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from './header.js';
+import Header from '../elements/header.js';
 import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class PageDetailsColumn extends React.PureComponent {
+class DetailsColumn extends React.PureComponent {
     render() {
-        const { column, columnProps } = this.props;
+        const { column, columnProps, moduleType } = this.props;
 
         if (!column.accessor && column.columns && _.isArray(column.columns)) {
-            const containerClasses = ClassNames('page--details-column', {
+            const containerClasses = ClassNames(`${moduleType}--details-column`, {
                 'divide': column.divide,
             });
 
@@ -23,8 +23,8 @@ class PageDetailsColumn extends React.PureComponent {
                         flexBasis: column.flexBasis || 'auto',
                         flexGrow: column.flexGrow || 0,
                         flexShrink: column.flexShrink || 0,
-                        paddingLeft: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        paddingRight: columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                        paddingLeft: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
+                        paddingRight: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                         width: column.width,
                     }, column.style)}
                 >
@@ -39,12 +39,12 @@ class PageDetailsColumn extends React.PureComponent {
     }
 
     _renderColumn(column, innerContainerKeyNum) {
-        const { columnProps, data } = this.props;
-        const containerClasses = ClassNames(`page--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
+        const { columnProps, data, moduleType } = this.props;
+        const containerClasses = ClassNames(`${moduleType}--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
             'divide-left': column.divide || column.divide === 'left',
             'divide-right': column.divide === 'right',
         });
-        const accessorClasses = ClassNames('page--details-column-accessor', {
+        const accessorClasses = ClassNames(`${moduleType}--details-column-accessor`, {
             'font-size-large': column.fontSize === 'large',
             'font-size-medium': column.fontSize === 'medium',
             'font-size-small': !column.fontSize || column.fontSize === 'small',
@@ -64,13 +64,13 @@ class PageDetailsColumn extends React.PureComponent {
             flexBasisInlineStyle = column.flexBasis || 'auto';
             flexGrowInlineStyle = column.flexGrow || 0;
             flexShrinkInlineStyle = column.flexShrink || 0;
-            horizontalSpacingInlineStyle = columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
+            horizontalSpacingInlineStyle = columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
         }
 
         return (
             <div
                 className={containerClasses}
-                key={`page-details-column-key-${innerContainerKeyNum || 0}`}
+                key={`${moduleType}-details-column-key-${innerContainerKeyNum || 0}`}
                 style={Object.assign({}, {
                     flexBasis: flexBasisInlineStyle,
                     flexGrow: flexGrowInlineStyle,
@@ -94,16 +94,17 @@ class PageDetailsColumn extends React.PureComponent {
     }
 }
 
-PageDetailsColumn.propTypes = {
+DetailsColumn.propTypes = {
     column: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.object,
     ]).isRequired,
     columnProps: PropTypes.object,
     data: PropTypes.object.isRequired,
+    moduleType: PropTypes.string,
 };
 
-class PageDetails extends React.PureComponent {
+class Details extends React.PureComponent {
     render() {
         const {
             bleed,
@@ -113,11 +114,13 @@ class PageDetails extends React.PureComponent {
             columns,
             data,
             style,
+            moduleType,
         } = this.props;
-        const containerClasses = ClassNames('ui', 'page--details', className, {
-            'page--details-bleed': bleed,
+        const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
+            'page--details-bleed' : bleed && moduleType=='page',
+            'drawer--details-bleed' : bleed && moduleType=='drawer',
         });
-        let pageDetailsColumnKeyNum = 1;
+        let detailsColumnKeyNum = 1;
 
         return (
             <div
@@ -126,19 +129,20 @@ class PageDetails extends React.PureComponent {
             >
                 <InfoBar color={color}>
                     <div
-                        className="page--details-columns-container"
+                        className={`${moduleType}--details-columns-container`}
                         style={{
-                            marginLeft: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
-                            marginRight: columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginLeft: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginRight: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
                         }}
                     >
                         {_.map(columns, (column, index) => {
                             return (
-                                <PageDetailsColumn
+                                <DetailsColumn
                                     column={column}
                                     columnProps={columnProps}
                                     data={data}
-                                    key={`pageDetailsColumn-${pageDetailsColumnKeyNum++}`}
+                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum++}`}
+                                    moduleType={moduleType}
                                 />
                             );
                         })}
@@ -149,18 +153,19 @@ class PageDetails extends React.PureComponent {
     }
 }
 
-PageDetails.defaultProps = {
+Details.defaultProps = {
     bleed: true,
 };
 
-PageDetails.propTypes = {
+Details.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
     columnProps: PropTypes.object,
     columns: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
+    moduleType: PropTypes.string,
     style: PropTypes.object,
 };
 
-export default PageDetails;
+export default Details;
