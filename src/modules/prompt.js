@@ -20,9 +20,9 @@ class Prompt extends Component {
         this._onYesClick = this._onYesClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.show !== nextProps.show) {
-            this.setState({ show: nextProps.show });
+    componentDidUpdate(prevProps) {
+        if (this.props.show !== prevProps.show) {
+            this.setState({ show: this.props.show });
         }
     }
 

@@ -35,18 +35,18 @@ class DatePickerCalendar extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!DatePickerUtils.isSameDay(nextProps.date, this.props.date) ||
-            !DatePickerUtils.isSameDay(nextProps.dateStart, this.props.dateStart)
+    componentDidUpdate(prevProps) {
+        if (!DatePickerUtils.isSameDay(prevProps.date, this.props.date) ||
+            !DatePickerUtils.isSameDay(prevProps.dateStart, this.props.dateStart)
         ) {
             this.setState({
                 dateInView: this._localizeMoment(
                     this._getDateInView(
-                        nextProps.date,
-                        nextProps.dateStart,
-                        nextProps.dateSecondaryStart,
-                        nextProps.maxDate,
-                        nextProps.minDate
+                        this.props.date,
+                        this.props.dateStart,
+                        this.props.dateSecondaryStart,
+                        this.props.maxDate,
+                        this.props.minDate
                     )
                 )
             });

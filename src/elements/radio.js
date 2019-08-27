@@ -73,9 +73,9 @@ class Radio extends Component {
         this._onLabelClick = this._onLabelClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.checked, nextProps.checked)) {
-            this.setState({ isChecked: nextProps.checked });
+    componentDidUpdate(prevProps) {
+        if (!_.isEqual(this.props.checked, prevProps.checked)) {
+            this.setState({ isChecked: this.props.checked });
         }
     }
 
