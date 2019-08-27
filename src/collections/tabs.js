@@ -13,9 +13,9 @@ class Tabs extends Component {
         this.state = { selected: props.selected || 0 };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.selected !== nextProps.selected) {
-            this.setState({ selected: nextProps.selected });
+    componentDidUpdate(prevProps) {
+        if (this.props.selected !== prevProps.selected) {
+            this.setState({ selected: this.props.selected });
         }
     }
 

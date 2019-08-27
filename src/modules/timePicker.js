@@ -35,14 +35,14 @@ class TimePicker extends Component {
         this._onClickOutsideRef = this._onClickOutside.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!_.isEqual(this.props.value, nextProps.value)) {
+    componentDidUpdate(prevProps) {
+        if (!_.isEqual(this.props.value, prevProps.value)) {
             let isDirty = false;
-            let newValue = _.clone(nextProps.value);
+            let newValue = _.clone(this.props.value);
 
-            if (nextProps.value) {
-                if (!nextProps.value.timeDisplay) {
-                    newValue.timeDisplay = nextProps.range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
+            if (this.props.value) {
+                if (!this.props.value.timeDisplay) {
+                    newValue.timeDisplay = this.props.range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
                     isDirty = true;
                 }
             }
