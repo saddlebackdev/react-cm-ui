@@ -8,7 +8,7 @@
 
 html { font-size: 100%; }
     body {
-        color: $color-text;
+        color: color(colorText);
         font-family: $default-font-family;
         font-size: em(16px);
         -moz-osx-font-smoothing: grayscale;
@@ -19,23 +19,23 @@ html { font-size: 100%; }
     }
         //Links
         a {
-            color: $color-text-link;
+            color: color(colorTextLink);
             cursor: pointer;
             font-weight: $default-font-weight-semibold;
             text-decoration: none;
         }
         // Text/Element Selection Highlight
-        ::selection { background: $color-text-link; color: $color-text-inverse; }
+        ::selection { background: color(colorTextLink); color: color(colorTextInverse); }
         // Text Colors
-        .color-alert { color: $color-text-alert; }
-        .color-disable { color: $color-text-disable; }
-        .color-highlight { color: $color-text-highlight; }
-        .color-inverse { color: $color-text-inverse; }
-        .color-link { color: $color-text-link; }
-        .color-static { color: $color-text-static; }
-        .color-success { color: $color-text-success; }
-        .color-text { color: $color-text; }
-        .color-warning { color: $color-text-warning; }
+        .color-alert { color: color(colorTextAlert); }
+        .color-disable { color: color(colorTextDisable); }
+        .color-highlight { color: color(colorTextHighlight); }
+        .color-inverse { color: color(colorTextInverse); }
+        .color-link { color: color(colorTextLink); }
+        .color-static { color: color(colorTextStatic); }
+        .color-success { color: color(colorTextSuccess); }
+        .color-text { color: color(colorText); }
+        .color-warning { color: color(colorTextWarning); }
         // Font Sizes
         .font-size-xlarge { font-size: em(24px); }
         .font-size-large { font-size: em(20px); }
@@ -48,15 +48,15 @@ html { font-size: 100%; }
         .font-weight-semibold { font-weight: $default-font-weight-semibold; }
         .font-weight-bold { font-weight: $default-font-weight-bold; }
         // Text Decoration
-        .text-decoration-underline { border-bottom: 2px solid $border-inverse-alternate; display: inline-block; padding: 0 0 5px; }
-        a.text-decoration-underline { border-bottom-color: $border-highlight; }
+        .text-decoration-underline { border-bottom: 2px solid color(borderColorQuinary); display: inline-block; padding: 0 0 5px; }
+        a.text-decoration-underline { border-bottom-color: color(borderColorHighlight); }
         // Label
-        .label { color: $color-text-static; display: block; font-size: em(14px); }
+        .label { color: color(colorTextStatic); display: block; font-size: em(14px); }
         // Code e.g. .im-a-selector
         code {
             background-color: #f9f0ed;
             border-radius: 4px;
-            color: $color-text-code;
+            color: color(colorTextCode);
             font-size: 90%;
             padding: 2px 4px;
         }

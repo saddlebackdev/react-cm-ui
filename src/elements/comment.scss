@@ -11,12 +11,12 @@
         font-weight: $default-font-weight-semibold;
     }
     .comment-time {
-        color: $color-text-static;
+        color: color(colorTextStatic);
         display: block;
         font-size: rem(14px);
     }
     .comment-bubble {
-        background: $bkgd;
+        background: color(backgroundColor);
         border-radius: 3px;
         box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .10), 1px 1px 2px 0 rgba(0, 0, 0, .10);
         font-size: rem(14px);

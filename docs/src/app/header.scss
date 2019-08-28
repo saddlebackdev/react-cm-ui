@@ -2,7 +2,7 @@
 
 .core-app-header {
     align-items: center;
-    background-color: $bkgd-inverse;
+    background-color: color(backgroundColorInverse);
     display: flex;
     height: 55px;
     justify-content: center;
@@ -11,7 +11,7 @@
     .button-menu {
         background-color: transparent;
         border: 0;
-        color: $color-text-inverse;
+        color: color(colorTextInverse);
         font-size: rem(14px);
         font-weight: $default-font-weight-semibold;
         height: 55px;
@@ -34,10 +34,10 @@
             height: 31px;
             margin: 0;
             width: 130px;
-            path { fill: $color-text-inverse; }
+            path { fill: color(colorTextInverse); }
         }
     }
 }
 .pushed-right .core-app-header .button-menu {
-    background-color: $bkgd-button-alternate;
+    background-color: color(backgroundColorButtonAlternate);
 }

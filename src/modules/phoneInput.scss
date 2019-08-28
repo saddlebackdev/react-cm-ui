@@ -3,7 +3,7 @@
 $width: 65px;
 
 .ui.phone-input {
-    color: $color-text;
+    color: color(colorText);
     display: inline-block;
     font-size: em(16px);
     position: relative;
@@ -11,14 +11,14 @@ $width: 65px;
         margin-bottom: em(8px);
     }
     .phone-input--required_indicator {
-        color: $color-text-alert;
+        color: color(colorTextAlert);
         display: inline-block;
         font-size: rem(14px);
         margin-left: 3px;
     }
     > div::before {
-        background-color: $bkgd-light;
-        border-right: 1px solid $border;
+        background-color: color(backgroundColorLight);
+        border-right: 1px solid color(borderColor);
         bottom: 1px;
         content: '';
         left: 1px;
@@ -45,7 +45,7 @@ $width: 65px;
             background-color: transparent;
             border: 0;
         }
-        .icon-use-path { fill: $color-text !important; }
+        .icon-use-path { fill: color(colorText) !important; }
     }
     .react-phone-number-input__icon {
         align-items: center;
@@ -58,8 +58,8 @@ $width: 65px;
         }
     }
     .react-phone-number-input__input {
-        background-color: $bkgd;
-        border: 1px solid $border;
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColor);
         border-radius: 3px;
         line-height: em(42px);
         margin: 0;
@@ -68,18 +68,18 @@ $width: 65px;
         text-align: left;
         transition: border-color 150ms ease-out;
         width: 100%;
-        &::placeholder { color: $color-text-static; }
+        &::placeholder { color: color(colorTextStatic); }
     }
     .react-phone-number-input--focus input {
-        border-color: $bkgd-highlight;
+        border-color: color(backgroundColorHighlight);
     }
     &.phone-input--disabled input {
-        background-color: $bkgd-disable;
+        background-color: color(backgroundColorDisable);
     }
     &.phone-input--error {
-        input { border-color: $bkgd-highlight; }
+        input { border-color: color(backgroundColorHighlight); }
         .input-error-message {
-            color: $color-text-alert;
+            color: color(colorTextAlert);
             font-size: em(14px);
         }
     }

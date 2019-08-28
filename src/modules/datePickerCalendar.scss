@@ -13,7 +13,7 @@ $pointer-size: 8px;
         width: 1px;
     }
     &::before {
-        border-bottom-color: $bkgd;
+        border-bottom-color: color(backgroundColor);
         border-width: $pointer-size;
         content: '';
         left: -$pointer-size;
@@ -24,15 +24,15 @@ $pointer-size: 8px;
     @extend %triangle-pointer;
     margin-top: -$pointer-size;
     top: 0;
-    &, &::before { border-bottom-color: $bkgd; border-top: 0; }
-    &::before { border-bottom-color: $border; top: -1px; }
+    &, &::before { border-bottom-color: color(backgroundColor); border-top: 0; }
+    &::before { border-bottom-color: color(borderColor); top: -1px; }
 }
 %triangle-pointer-down {
     @extend %triangle-pointer;
     bottom: 0;
     margin-bottom: -$pointer-size;
-    &, &::before { border-bottom: 0; border-top-color: $bkgd; }
-    &::before { border-top-color: $border; bottom: -1px; }
+    &, &::before { border-bottom: 0; border-top-color: color(backgroundColor); }
+    &::before { border-top-color: color(borderColor); bottom: -1px; }
 }
 
 .date-picker-tether-element {
@@ -42,8 +42,8 @@ $pointer-size: 8px;
     &-attached-bottom .date-picker-pointer { @extend %triangle-pointer-down; }
     &-attached-top.datepicker-tether-element .date-picker-pointer { margin-top: -20px; }
     .ui.date-picker-calendar {
-        background-color: $bkgd;
-        border: 1px solid $border;
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColor);
         border-radius: 3px;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
         max-width: 232px;
@@ -84,12 +84,12 @@ $pointer-size: 8px;
                 width: 100%;
                 .date-picker-selected- {
                     &month, &year {
-                        color: $color-text-link;
+                        color: color(colorTextLink);
                         cursor: pointer;
                         font-size: rem(16px);
                         font-weight: $default-font-weight-bold;
                         position: relative;
-                        i { color: $color-text; }
+                        i { color: color(colorText); }
                     }
                 }
                 .date-picker-selected-month { margin-right: auto; }

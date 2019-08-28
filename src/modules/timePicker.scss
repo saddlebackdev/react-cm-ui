@@ -10,10 +10,10 @@
     .time-picker-input { width: 100%; }
     .time-picker-zone-dropdown { margin-top: 11px; min-width: 0; width: 100%; }
     .time-picker-popover {
-        background-color: $bkgd;
+        background-color: color(backgroundColor);
         border: rem(3px);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
-        border: 1px solid $border-light;
+        border: 1px solid color(borderColorSecondary);
         margin-top: 0;
         padding: 11px;
         position: absolute;
@@ -40,14 +40,14 @@
             width: 0;
         }
         &::before {
-            border-bottom: 9px solid $border-light;
+            border-bottom: 9px solid color(borderColorSecondary);
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
             left: 60px;
             top: -9px;
         }
         &::after {
-            border-bottom: 8px solid $bkgd;
+            border-bottom: 8px solid color(backgroundColor);
             border-left: 9px solid transparent;
             border-right: 9px solid transparent;
             left: 61px;
@@ -56,7 +56,7 @@
     }
     &.time-picker-nest .time-picker-popover {
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
-        &::before { border-bottom-color: $bkgd; }
+        &::before { border-bottom-color: color(backgroundColor); }
         &::after { display: none; }
     }
     // &.time-picker-range {

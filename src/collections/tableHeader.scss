@@ -20,9 +20,9 @@ $breakpoint-has-widths: (
 );
 
 .ui.table {
-    background-color: $bkgd;
-    border: 1px solid $border;
-    color: $color-text;
+    background-color: color(backgroundColor);
+    border: 1px solid color(borderColor);
+    color: color(colorText);
     text-align: left;
     width: 100%;
 }

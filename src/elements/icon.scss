@@ -18,23 +18,23 @@
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert { .icon-use-path { fill: $color-text-alert; } }
-        &-highlight { .icon-use-path { fill: $color-text-highlight; } }
-        &-primary { .icon-use-path { fill: $color-text; } }
-        &-static { .icon-use-path { fill: $color-text-static; } }
-        &-success { .icon-use-path { fill: $color-text-success; } }
-        &-warning { .icon-use-path { fill: $color-text-warning; } }
+        &-alert { .icon-use-path { fill: color(colorTextAlert); } }
+        &-highlight { .icon-use-path { fill: color(colorTextHighlight); } }
+        &-primary { .icon-use-path { fill: color(colorText); } }
+        &-static { .icon-use-path { fill: color(colorTextStatic); } }
+        &-success { .icon-use-path { fill: color(colorTextSuccess); } }
+        &-warning { .icon-use-path { fill: color(colorTextWarning); } }
     }
     &-inverse {
-        &.icon-color-alert { .icon-use-path { fill: $color-text-alert; } }
-        &.icon-color-highlight { .icon-use-path { fill: $color-text-highlight; } }
-        &.icon-color-primary { .icon-use-path { fill: $color-text-inverse; } }
-        &.icon-color-static { .icon-use-path { fill: $color-text-static; } }
-        &.icon-color-success { .icon-use-path { fill: $color-text-success; } }
-        &.icon-color-warning { .icon-use-path { fill: $color-text-warning; } }
+        &.icon-color-alert { .icon-use-path { fill: color(colorTextAlert); } }
+        &.icon-color-highlight { .icon-use-path { fill: color(colorTextHighlight); } }
+        &.icon-color-primary { .icon-use-path { fill: color(colorTextInverse); } }
+        &.icon-color-static { .icon-use-path { fill: color(colorTextStatic); } }
+        &.icon-color-success { .icon-use-path { fill: color(colorTextSuccess); } }
+        &.icon-color-warning { .icon-use-path { fill: color(colorTextWarning); } }
     }
     &-compact { margin: 0; }
-    &.icon-disable { color: $color-text-disable; cursor: default; }
+    &.icon-disable { color: color(colorTextDisable); cursor: default; }
     &-size- {
         &xxlarge, &xxlarge svg { height: rem(32px); width: rem(32px); }
         &xlarge, &xlarge svg { height: rem(24px); width: rem(24px); }

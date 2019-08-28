@@ -15,7 +15,7 @@ $day-size: 33px;
     span {
         align-items: center;
         border-radius: $day-size / 2;
-        color: $color-text;
+        color: color(colorText);
         cursor: pointer;
         display: flex;
         flex: 0 1 auto;
@@ -30,11 +30,11 @@ $day-size: 33px;
         position: relative;
         z-index: 1;
     }
-    &.date-picker-deprecated-day-has-event span { box-shadow: inset 0 0 0 1px $border; }
+    &.date-picker-deprecated-day-has-event span { box-shadow: inset 0 0 0 1px color(borderColor); }
     &:not(.date-picker-deprecated-day-outside-month) span:hover {
-        background-color: $bkgd-highlight;
+        background-color: color(backgroundColorHighlight);
         box-shadow: none;
-        color: $color-text-inverse;
+        color: color(colorTextInverse);
     }
     &.date-picker-deprecated-day-end-selected, &.date-picker-deprecated-day-start-selected {
         span { font-weight: $default-font-weight-bold; }
@@ -63,8 +63,8 @@ $day-size: 33px;
         &:first-child::after { right: 0; width: 50%; }
         &:last-child::after { left: 0; width: 50%; }
     }
-    &-today span { color: $color-text-highlight; font-weight: $default-font-weight-bold; }
-    &-outside-month span { color: $color-text-static; cursor: default; font-weight: $default-font-weight-normal; }
+    &-today span { color: color(colorTextHighlight); font-weight: $default-font-weight-bold; }
+    &-outside-month span { color: color(colorTextStatic); cursor: default; font-weight: $default-font-weight-normal; }
 }
 .date-picker-deprecated-week .date-picker-deprecated-day {
     &:first-of-type.datepicker-day-in-range::after { border-radius: ($day-size / 2) 0 0 ($day-size / 2); }
@@ -74,21 +74,21 @@ $day-size: 33px;
     &single-date {
         .date-picker-deprecated-day-selected span {
             background-color: $sc-teal-dark;
-            color: $color-text-inverse;
+            color: color(colorTextInverse);
         }
     }
     &date-range {
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
             span {
                 background-color: $sc-teal-dark;
-                color: $color-text-inverse;
+                color: color(colorTextInverse);
             }
         }
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
             &::after { background-color: $sc-teal; }
         }
         .date-picker-deprecated-day-in-range {
-            span { color: $color-text-inverse; }
+            span { color: color(colorTextInverse); }
             &:first-child, &:last-child {
                 span { background-color: $sc-teal; }
             }
@@ -98,14 +98,14 @@ $day-size: 33px;
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
             span {
                 background-color: $sc-purple-dark;
-                color: $color-text-inverse;
+                color: color(colorTextInverse);
             }
         }
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
             &::after { background-color: $sc-purple; }
         }
         .date-picker-deprecated-day-in-range {
-            span { color: $color-text-inverse; }
+            span { color: color(colorTextInverse); }
             &:first-child, &:last-child {
                 span { background-color: $sc-purple; }
             }

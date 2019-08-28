@@ -1,12 +1,12 @@
 @import '../shared/styles/colors', '../shared/styles/fontSizeCalculator';
 
 .ui.table {
-    background-color: $bkgd;
-    border: 1px solid $border;
+    background-color: color(backgroundColor);
+    border: 1px solid color(borderColor);
     border-collapse: separate;
     border-radius: 3px;
     border-spacing: 0;
-    color: $color-text;
+    color: color(colorText);
     margin: calc(2rem - .14285em) 0 1rem;
     text-align: left;
     width: 100%;
@@ -15,7 +15,7 @@
     &.table-basic { border: 0; }
     &.table-collapsing { width: auto; }
     &.table-color- {
-        &grey-xxlight { background-color: $bkgd-nest; }
+        &grey-xxlight { background-color: color(backgroundColorNest); }
     }
     &.table-fixed { table-layout: fixed; }
     &.table-single-line { white-space: nowrap; }

@@ -2,9 +2,9 @@
 
 .ui.page--action_bar {
     align-items: center;
-    background-color: $bkgd-light;
-    border-bottom: 1px solid $border;
-    border-top: 1px solid $border;
+    background-color: color(backgroundColorLight);
+    border-bottom: 1px solid color(borderColor);
+    border-top: 1px solid color(borderColor);
     display: flex;
     justify-content: flex-start;
     left: 0;

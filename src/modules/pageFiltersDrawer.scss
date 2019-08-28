@@ -5,8 +5,8 @@
     &.ui.drawer .drawer-container-inner, .ui.drawer--wing .drawer--wing-container-inner {
         padding-top: 49px;
         .ui.drawer--title_bar {
-            background-color: $bkgd-light;
-            border-bottom-color: $border;
+            background-color: color(backgroundColorLight);
+            border-bottom-color: color(borderColor);
             height: 49px;
             > div {
                 height: 49px;
@@ -44,11 +44,11 @@
         }
         &.filters_drawer--nested_toggles {
             &:first-child .filters_drawer--nested_toggles--label {
-                border-top: 1px solid $border;
+                border-top: 1px solid color(borderColor);
             }
             &:not(:last-child) .filters_drawer--nested_toggles--label {
                 + div {
-                    border-bottom: 1px solid $border;
+                    border-bottom: 1px solid color(borderColor);
                 }
             }
         }
@@ -65,7 +65,7 @@
         }
     }
     .filters_drawer--nested_toggles--label, .filters_drawer--nested_toggles--wing--option_label {
-        border-bottom: 1px solid $border;
+        border-bottom: 1px solid color(borderColor);
         cursor: pointer;
         font-weight: $default-font-weight-semibold;
         margin: 0 -11px;
@@ -83,11 +83,11 @@
     }
     .filters_drawer--nested_toggles--wing--option_label {
         &:first-child {
-            border-top: 1px solid $border;
+            border-top: 1px solid color(borderColor);
         }
         &.is-selected {
-            background-color: $bkgd-highlight;
-            color: $color-text-inverse;
+            background-color: color(backgroundColorHighlight);
+            color: color(colorTextInverse);
         }
     }
     .ui.drawer--wing .ui.drawer--content .ui.header {

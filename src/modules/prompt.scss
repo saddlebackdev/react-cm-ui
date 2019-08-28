@@ -8,7 +8,7 @@
             align-items: center;
             border-radius: 3px;
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .43);
-            color: $color-text-inverse;
+            color: color(colorTextInverse);
             display: none;
             flex: 0 1 auto;
             font-size: rem(14px);
@@ -19,23 +19,23 @@
             .prompt- {
                 &message, &no-btn, &yes-btn { white-space: nowrap; }
                 &message {
-                    background-color: $bkgd-static;
+                    background-color: color(backgroundColorStatic);
                     border-bottom-left-radius: 3px;
                     border-top-left-radius: 3px;
                     line-height: 33px;
                     padding: 0 11px;
-                    &.promp-message-alert { background-color: $bkgd-alert; }
-                    &.promp-message-success { background-color: $bkgd-success; }
+                    &.promp-message-alert { background-color: color(backgroundColorAlert); }
+                    &.promp-message-success { background-color: color(backgroundColorSuccess); }
                 }
 
             }
             .prompt- {
                 &no-btn, &yes-btn {
                     align-items: center;
-                    background-color: $bkgd-button-alternate;
+                    background-color: color(backgroundColorButtonAlternate);
                     border: 0;
-                    box-shadow: inset 0 0 0 1px $border-inverse-alternate;
-                    color: $color-text-inverse;
+                    box-shadow: inset 0 0 0 1px color(borderColorQuinary);
+                    color: color(colorTextInverse);
                     cursor: pointer;
                     display: inline-flex;
                     height: 33px;

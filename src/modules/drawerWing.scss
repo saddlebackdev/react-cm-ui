@@ -12,8 +12,8 @@
     top: 0;
     z-index: -1 !important;
     > div {
-        background-color: $bkgd;
-        border-left: 1px solid $border;
+        background-color: color(backgroundColor);
+        border-left: 1px solid color(borderColor);
         height: 100%;
         position: relative;
         transform: translate(100%, 0);
@@ -21,8 +21,8 @@
         width: 100%;
     }
     .drawer--wing-container {
-        background-color: $bkgd;
-        color: $color-text;
+        background-color: color(backgroundColor);
+        color: color(colorText);
         height: 100%;
         left: 0;
         position: absolute;
@@ -32,19 +32,19 @@
     }
     &.color-blue {
         .drawer--wing-container {
-            background-color: $bkgd-blue;
-            color: $color-text-inverse;
+            background-color: color(backgroundBlue);
+            color: color(colorTextInverse);
         }
     }
     &.color-grey {
         .drawer--wing-container {
-            background-color: $bkgd-nest;
+            background-color: color(backgroundColorNest);
         }
     }
     &.left-position {
         > div {
             border-left: none;
-            border-right: 1px solid $border;
+            border-right: 1px solid color(borderColor);
             transform: translate(-100%, 0);
         }
         .drawer--wing-container {

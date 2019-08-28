@@ -11,7 +11,7 @@ $size-dot: 14px;
     text-align: left;
     .input { display: none; }
     label {
-        color: $color-text;
+        color: color(colorText);
         cursor: pointer;
         display: block;
         font-size: rem(14px);
@@ -27,12 +27,12 @@ $size-dot: 14px;
             width: $size;
         }
         &::before { // faux input
-            background: $bkgd;
-            border: 1px solid $border;
+            background: color(backgroundColor);
+            border: 1px solid color(borderColor);
             border-radius: rem(11px);
         }
         &::after { // dot/check
-            background-color: $bkgd-highlight;
+            background-color: color(backgroundColorHighlight);
             border-radius: rem($size-dot / 2);
             height: $size-dot;
             margin: ($size - $size-dot) / 2;
@@ -67,8 +67,8 @@ $size-dot: 14px;
         .radio-item {
             display: inline-block;
             label {
-                background-color: $bkgd;
-                border: 1px solid $border;
+                background-color: color(backgroundColor);
+                border: 1px solid color(borderColor);
                 border-right: 0;
                 cursor: pointer;
                 display: inline-block;
@@ -83,38 +83,38 @@ $size-dot: 14px;
                 &::before, &::after { display: none; }
             }
             .input:checked + label {
-                background-color: $bkgd-highlight;
-                border-color: $border-highlight;
-                color: $color-text-inverse;
+                background-color: color(backgroundColorHighlight);
+                border-color: color(borderColorHighlight);
+                color: color(colorTextInverse);
             }
             &:first-child {
                 label { border-radius: 15.5px 0 0 15.5px; }
             }
             &:last-child {
-                label { border-right: 1px solid $border; border-radius: 0 15.5px 15.5px 0; }
-                .input:checked + label { border-right: 1px solid $border-highlight; }
+                label { border-right: 1px solid color(borderColor); border-radius: 0 15.5px 15.5px 0; }
+                .input:checked + label { border-right: 1px solid color(borderColorHighlight); }
             }
-            &.radio-item-is-checked + .radio-item label { border-left: 1px solid $border-highlight; }
+            &.radio-item-is-checked + .radio-item label { border-left: 1px solid color(borderColorHighlight); }
         }
     }
     &-disabled {
         label {
-            color: $color-text-static;
+            color: color(colorTextStatic);
             cursor: auto;
-            &::before { background: $bkgd-disable; }
-            &::after { background-color: $bkgd-static; }
+            &::before { background: color(backgroundColorDisable); }
+            &::after { background-color: color(backgroundColorStatic); }
         }
         &.radio-pill {
             .radio-item {
                 label { cursor: default; }
                 .input:checked + label {
-                    background-color: $bkgd-static;
-                    border-color: $border-alternate;
+                    background-color: color(backgroundColorStatic);
+                    border-color: color(borderColorTertiary);
                 }
                 &:last-child {
-                    .input:checked + label { border-right: 1px solid $border-alternate; }
+                    .input:checked + label { border-right: 1px solid color(borderColorTertiary); }
                 }
-                &.radio-item-is-checked + .radio-item label { border-left: 1px solid $border-alternate; }
+                &.radio-item-is-checked + .radio-item label { border-left: 1px solid color(borderColorTertiary); }
             }
         }
     }

@@ -13,7 +13,7 @@ $padding-label-toggle: 63px;
     text-align: left;
     .input { display: none; }
     label {
-        color: $color-text;
+        color: color(colorText);
         cursor: pointer;
         display: block;
         position: relative;
@@ -34,8 +34,8 @@ $padding-label-toggle: 63px;
                 opacity 150ms ease;
         }
         &::before { // faux input
-            background: $bkgd;
-            border: 1px solid $border;
+            background: color(backgroundColor);
+            border: 1px solid color(borderColor);
             border-radius: 3px;
             content: '';
             height: $size;
@@ -65,7 +65,7 @@ $padding-label-toggle: 63px;
         }
     }
     .input:checked + {
-        label::before { background-color: $bkgd-highlight; border: 1px solid $border-highlight; }
+        label::before { background-color: color(backgroundColorHighlight); border: 1px solid color(borderColorHighlight); }
         .ui.icon-check { opacity: 1; }
     }
     &-align-right {
@@ -81,14 +81,14 @@ $padding-label-toggle: 63px;
     }
     &-disabled {
         label {
-            color: $color-text-static;
+            color: color(colorTextStatic);
             cursor: auto;
-            &::before { background: $bkgd-disable; }
-            .ui.icon-check { color: $bkgd-static; }
+            &::before { background: color(backgroundColorDisable); }
+            .ui.icon-check { color: color(backgroundColorStatic); }
         }
     }
     &-full-width { display: block; margin-right: 0; }
-    &-inverse label { color: $color-text-inverse; }
+    &-inverse label { color: color(colorTextInverse); }
     &-toggle {
         label {
             > span { padding-left: rem($padding-label-toggle); }
@@ -100,7 +100,7 @@ $padding-label-toggle: 63px;
                 z-index: 1;
             }
             &::after {
-                background-color: $bkgd-button-alternate;
+                background-color: color(backgroundColorButtonAlternate);
                 border: 0;
                 border-radius: rem(12.5px);
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.30);
@@ -134,7 +134,7 @@ $padding-label-toggle: 63px;
                 z-index: 2;
             }
                 .checkbox-toggle-text-on, .checkbox-toggle-text-off { flex: 1 0 auto; }
-                .checkbox-toggle-text-on { color: $color-text-inverse; }
+                .checkbox-toggle-text-on { color: color(colorTextInverse); }
                 .checkbox-toggle-text-off { text-align: right; }
         }
         .input:checked + {

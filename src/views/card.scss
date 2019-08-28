@@ -1,14 +1,14 @@
 @import '../shared/styles/colors', '../shared/styles/fontSizeCalculator';
 
 .ui.card {
-    background-color: $bkgd;
+    background-color: color(backgroundColor);
     border-radius: 3px;
-    box-shadow: inset 0 0 0 1px $border-light;
+    box-shadow: inset 0 0 0 1px color(borderColorSecondary);
     margin: calc(2rem - .14285em) 0 1rem;
     padding: 22px;
     position: relative;
     transition: background-color 150ms ease-out;
-    &.card-active { background-color: $bkgd-inverse-alternate; color: $color-text-inverse; cursor: default; }
+    &.card-active { background-color: color(backgroundColorInverseAlternate); color: color(colorTextInverse); cursor: default; }
     &.card-attached {
         border-radius: 0;
         .card-header-attached { border-radius: 0; }
@@ -16,8 +16,8 @@
     &.card-compact { padding: 11px; }
     &.card-clickable {
         cursor: pointer;
-        &:hover { background-color: $bkgd-nest; }
-        &:active { background-color: $bkgd; }
+        &:hover { background-color: color(backgroundColorNest); }
+        &:active { background-color: color(backgroundColor); }
     }
     .card-header {
         margin-bottom: 16px;
@@ -30,7 +30,7 @@
             padding: 0 22px;
         }
         &.card-header-color {
-            &-blue, &-green, &-pink { color: $color-text-inverse; }
+            &-blue, &-green, &-pink { color: color(colorTextInverse); }
             &-blue {
                 background: linear-gradient(to left, #54cc86 -66%, #1c93c4 100%);
             }

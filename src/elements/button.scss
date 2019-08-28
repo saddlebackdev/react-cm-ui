@@ -1,10 +1,10 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
 .ui.button {
-    background-color: $bkgd-button;
+    background-color: color(backgroundColorButton);
     border: 0;
     border-radius: 3px;
-    color: $color-text-inverse;
+    color: color(colorTextInverse);
     cursor: pointer;
     display: inline-block;
     font-size: rem(14px);
@@ -27,121 +27,121 @@
         display: flex;
         justify-content: center;
         > .ui.icon {
-            .icon-use-path { fill: $color-text-inverse; }
+            .icon-use-path { fill: color(colorTextInverse); }
         }
     }
     &.button-color- {
-        &alert { background-color: $bkgd-button-alert; }
-        &alternate { background-color: $bkgd-button-alternate; }
-        &disable { background-color: $bkgd-button-disable; cursor: default; }
-        &light { background-color: $bkgd-light; color: $color-text; }
+        &alert { background-color: color(backgroundColorButtonAlert); }
+        &alternate { background-color: color(backgroundColorButtonAlternate); }
+        &disable { background-color: color(backgroundColorButtonDisable); cursor: default; }
+        &light { background-color: color(backgroundColorLight); color: color(colorText); }
         &outline {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $border-inverse;
-            color: $color-text;
+            box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
+            color: color(colorText);
             > .ui.icon {
-                .icon-use-path { fill: $color-text; }
+                .icon-use-path { fill: color(colorText); }
             }
         }
-        &primary { background-color: $bkgd-button; }
-        &secondary { background-color: $bkgd-button-secondary; }
-        &success { background-color: $bkgd-button-success; }
+        &primary { background-color: color(backgroundColorButton); }
+        &secondary { background-color: color(backgroundColorButtonSecondary); }
+        &success { background-color: color(backgroundColorButtonSuccess); }
         &transparent { background-color: transparent; }
-        &warning { background-color: $bkgd-warning; }
+        &warning { background-color: color(backgroundColorWarning); }
     }
     &.button-outlined.button-color- {
         &alert {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button-alert;
-            color: $color-text-alert;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlert);
+            color: color(colorTextAlert);
             .ui.icon {
-                .icon-use-path { fill: $color-text-alert; }
+                .icon-use-path { fill: color(colorTextAlert); }
             }
         }
         &alternate {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button-alternate;
-            color: $color-text;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlternate);
+            color: color(colorText);
             .ui.icon {
-                .icon-use-path { fill: $color-text; }
+                .icon-use-path { fill: color(colorText); }
             }
         }
         &disable {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button-disable;
-            color: $color-text-disable;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonDisable);
+            color: color(colorTextDisable);
             .ui.icon {
-                .icon-use-path { fill: $color-text-disable; }
+                .icon-use-path { fill: color(colorTextDisable); }
             }
             cursor: default;
         }
         &light {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-light;
-            color: $bkgd-light;
+            box-shadow: inset 0 0 0 1px color(backgroundColorLight);
+            color: color(backgroundColorLight);
             .ui.icon {
-                .icon-use-path { fill: $bkgd-light; }
+                .icon-use-path { fill: color(backgroundColorLight); }
             }
         }
         &outline {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $border-inverse;
-            color: $color-text;
+            box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
+            color: color(colorText);
             .ui.icon {
-                .icon-use-path { fill: $color-text; }
+                .icon-use-path { fill: color(colorText); }
             }
         }
         &primary {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button;
-            color: $bkgd-button;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButton);
+            color: color(backgroundColorButton);
             .ui.icon {
-                .icon-use-path { fill: $bkgd-button; }
+                .icon-use-path { fill: color(backgroundColorButton); }
             }
         }
         &secondary {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button-secondary;
-            color: $bkgd-button-secondary;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonSecondary);
+            color: color(backgroundColorButtonSecondary);
             .ui.icon {
-                .icon-use-path { fill: $bkgd-button-secondary; }
+                .icon-use-path { fill: color(backgroundColorButtonSecondary); }
             }
         }
         &success {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-button-success;
-            color: $color-text-success;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonSuccess);
+            color: color(colorTextSuccess);
             .ui.icon {
-                .icon-use-path { fill: $color-text-success; }
+                .icon-use-path { fill: color(colorTextSuccess); }
             }
         }
         &warning {
             background-color: transparent;
-            box-shadow: inset 0 0 0 1px $bkgd-warning;
-            color: $color-text-warning;
+            box-shadow: inset 0 0 0 1px color(backgroundColorWarning);
+            color: color(colorTextWarning);
             .ui.icon {
-                .icon-use-path { fill: $color-text-warning; }
+                .icon-use-path { fill: color(colorTextWarning); }
             }
         }
     }
     &.button-inverse.button-color- {
-        &alert { background-color: $bkgd-button-alert; }
-        &alternate { background-color: $bkgd-button-alternate; }
-        &disable { background-color: $bkgd-button-disable; cursor: default;  }
-        &light { background-color: $bkgd-light; color: $color-text; }
+        &alert { background-color: color(backgroundColorButtonAlert); }
+        &alternate { background-color: color(backgroundColorButtonAlternate); }
+        &disable { background-color: color(backgroundColorButtonDisable); cursor: default;  }
+        &light { background-color: color(backgroundColorLight); color: color(colorText); }
         &outline {
             background-color: rgba(255, 255, 255, .30);
-            box-shadow: inset 0 0 0 1px $border-light;
-            color: $color-text-inverse;
+            box-shadow: inset 0 0 0 1px color(borderColorSecondary);
+            color: color(colorTextInverse);
             > .ui.icon {
-                .icon-use-path { fill: $color-text; }
+                .icon-use-path { fill: color(colorText); }
             }
         }
-        &primary { background-color: $bkgd-button; }
-        &success { background-color: $bkgd-button-success; }
-        &secondary { background-color: $bkgd-button-secondary; }
+        &primary { background-color: color(backgroundColorButton); }
+        &success { background-color: color(backgroundColorButtonSuccess); }
+        &secondary { background-color: color(backgroundColorButtonSecondary); }
         &transparent { background-color: transparent; }
-        &warning { background-color: $bkgd-warning; }
+        &warning { background-color: color(backgroundColorWarning); }
     }
     &.button-icon {
         height: 44px;

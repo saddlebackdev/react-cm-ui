@@ -317,7 +317,7 @@ export default class ModulesTimePicker extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Nest
                     <Header.Subheader>
-                        A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
+                        A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
                     </Header.Subheader>
                 </Header>
 
