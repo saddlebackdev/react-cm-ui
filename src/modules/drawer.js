@@ -29,7 +29,7 @@ class Drawer extends React.PureComponent {
         super(props);
 
         this.state = {
-            isOpen: props.isOpen, // We put isOpen into state because when closing a drawer we return false in render before the closing animation is complete.
+            isOpen: props.isOpen, // We put props.isOpen into state because when closing a drawer we return false in render before the closing animation is complete.
         };
 
         this._drawerContainer = null;
@@ -69,7 +69,8 @@ class Drawer extends React.PureComponent {
     componentWillUnmount() {
         const { isOpen } = this.state;
 
-        if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
+        // We only want to clean up classes here if the drawer isOpen and the closing animation never happens.
+        if (isOpen && this._useComponentWillUnmount) {
             if (BODY.classList.contains('drawer-open')) {
                 BODY.classList.remove('drawer-open');
             }
@@ -92,7 +93,6 @@ class Drawer extends React.PureComponent {
         const {
             children,
             className,
-            dimmer,
             positionYOffset,
             wing,
         } = this.props;
