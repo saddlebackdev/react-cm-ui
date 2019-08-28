@@ -8,19 +8,14 @@ import Utils from '../utils/utils.js';
 
 class Image extends Component {
     render() {
-        const { as, className, name, size, src, style, type, border, borderInverse } = this.props;
-        let newAs = as || 'img';
+        const { as, border, borderInverse, className, name, size, src, style, type } = this.props;
         let newStyle = style;
 
-        if (type) {
-            newAs = 'div';
-        }
-
-        const ElementType = Utils.getElementType(newAs, this.props);
+        const ElementType = Utils.getElementType(!type ? as : 'div', this.props);
         const containerClasses = ClassNames('ui', 'image', className, {
-            'image-avatar': type==='person' || type==='user',
-            'image-avatar-person': type==='person',
-            'image-avatar-user': type==='user',
+            'image-avatar': type === 'person' || type === 'user',
+            'image-avatar-person': type === 'person',
+            'image-avatar-user': type === 'user',
         });
 
         if (ElementType === 'img') {
@@ -41,13 +36,15 @@ class Image extends Component {
         let newInitials, avatarSize = 'xsmall';
 
         if (type) {
+            const boxShadowStyle = src ? 'none' : (!border ? 'inset 0 0 0 1px #dbe0e3' : null);
+            const borderStyle = border ? (borderInverse ? `${border}px solid #fff` : `${border}px solid #dbe0e3`) : 'none';
             newStyle = Object.assign({}, {
-                boxShadow: src ? 'none' : (!border? 'inset 0 0 0 1px #dbe0e3' : null),
+                boxShadow: boxShadowStyle,
                 backgroundImage: src ? `url(${src})` : null,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size,
-                border: border ? (borderInverse ? `${border}px solid #fff` : `${border}px solid #dbe0e3`) : 'none',
+                border: borderStyle,
             }, style );
 
             if (name) {
@@ -82,6 +79,10 @@ class Image extends Component {
 
 const asEnums = [ 'div', 'img' ];
 const typeEnums = [ 'person', 'user' ];
+
+Image.defaultProps = {
+    as: 'img',
+};
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
