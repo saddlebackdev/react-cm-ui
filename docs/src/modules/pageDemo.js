@@ -7,10 +7,11 @@ import {
     Page,
     TitleBar,
 } from 'react-cm-ui';
+import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import React from 'react';
 
-class PageDemo extends React.Component {
+class PageDemo extends React.PureComponent {
     constructor() {
         super();
 
@@ -18,6 +19,7 @@ class PageDemo extends React.Component {
             multiSelectValue: [],
             nestedTogglesBarValue: [],
             nestedTogglesFooValue: [],
+            searchValue: '',
             sort: {
                 label: 'Name (Ascending)',
                 value: 'Name (Ascending)',
@@ -31,23 +33,96 @@ class PageDemo extends React.Component {
         };
 
         this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
+        this._onBackClick = this._onBackClick.bind(this);
         this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
         this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
         this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
+        this._onNewTemplateClick = this._onNewTemplateClick.bind(this);
+        this._onSearchChange = this._onSearchChange.bind(this);
+        this._onSearchKeyDown = this._onSearchKeyDown.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
+        this._onViewGridClick = this._onViewGridClick.bind(this);
+        this._onViewTableClick = this._onViewTableClick.bind(this);
     }
 
     render() {
+        const { isMobile } = this.props;
         const {
             appliedFilters,
             dirtyFilters,
             isFiltersDrawerOpen,
+            searchValue,
         } = this.state;
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
         const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
-        const isMobile = 700;
+        const viewType = 'table';
+        let actionsBarColumns = [
+            {
+                list: [
+                    {
+                        iconFilter: {
+                            selected: isFiltersDrawerOpen,
+                            isFiltering,
+                            onClick: this._onFiltersToggle,
+                        },
+                    }, {
+                        iconGrid: {
+                            selected: false,
+                            onClick: this._onViewGridClick,
+                        },
+                    }, {
+                        iconTable: {
+                            selected: false,
+                            onClick: this._onViewTableClick,
+                        },
+                    },
+                ],
+            }, {
+                search: {
+                    onChange: this._onSearchChange,
+                    onKeyDown: this._onSearchKeyDown,
+                    value: searchValue,
+                },
+            }, {
+                button: {
+                    color: 'success',
+                    label: 'New Template',
+                    labelIconType: 'plus',
+                    onClick: this._onNewTemplateClick,
+                },
+            },
+        ];
+
+        if (isMobile) {
+            actionsBarColumns = [
+                {
+                    flexGrow: 1,
+                    list: [
+                        {
+                            iconBack: {
+                                onClick: this._onBackClick,
+                            },
+                        },
+                    ],
+                    flexGrow: 1,
+                }, {
+                    search: actionsBarColumns[1].search,
+                }, {
+                    actionsButton: {
+                        header: 'Foo Title',
+                        options: [
+                            {
+                                iconType: actionsBarColumns[2].button.labelIconType,
+                                label: actionsBarColumns[2].button.label,
+                                onClick: actionsBarColumns[2].button.onClick,
+                            },
+                        ],
+                    },
+                },
+            ];
+        }
 
         return (
             <React.Fragment>
@@ -63,12 +138,9 @@ class PageDemo extends React.Component {
                         minHeight: 'calc(100vh - 140px)',
                     }}
                 >
-                    <Page.ActionBar>
-                        <Icon
-                            onClick={this._onFiltersToggle}
-                            type="filter"
-                        />
-                    </Page.ActionBar>
+                    <Page.ActionBar
+                        columns={actionsBarColumns}
+                    />
 
                     <Page.Container>
                         <Page.FiltersDrawer
@@ -383,61 +455,95 @@ class PageDemo extends React.Component {
     }
 
     _onApplyFiltersDrawerClick() {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            appliedFilters: _.cloneDeep(dirtyFilters),
+        this.setState(prevState => ({
+            appliedFilters: { ...prevState.dirtyFilters },
             isFiltersDrawerOpen: false,
             isFiltering: true,
-        });
+        }));
+    }
+
+    _onBackClick() {
+
     }
 
     _onClearFiltersDrawerClick() {
         this.setState({
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            dirtyFilters: { ...this._defaultFilters },
             isFiltering: false,
         });
     }
 
     _onFiltersToggle() {
-        const { isFiltersDrawerOpen } = this.state;
-
-        this.setState({
-            isFiltersDrawerOpen: !isFiltersDrawerOpen,
-        });
+        this.setState(prevState => ({
+            isFiltersDrawerOpen: !prevState.isFiltersDrawerOpen,
+        }));
     }
 
     _onKeywordsMultiSelectChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, multiSelectValue: selectedOptions }),
-        });
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                multiSelectValue: selectedOptions,
+            },
+        }));
     }
 
     _onNestedTogglesBarChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesBarValue: selectedOptions }),
-        });
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesBarValue: selectedOptions,
+            },
+        }));
     }
 
     _onNestedTogglesFooChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesFooValue: selectedOptions,
+            },
+        }));
+    }
 
+    _onNewTemplateClick() {
+
+    }
+
+    _onSearchChange(value) {
         this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesFooValue: selectedOptions }),
+            searchValue: value,
         });
+    }
+
+    _onSearchKeyDown(event) {
+
     }
 
     _onSortDropdownChange(selectedOption) {
-        const { dirtyFilters } = this.state;
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                sort: selectedOption,
+            },
+        }));
+    }
 
-        this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, sort: selectedOption }),
-        });
+    _onViewGridClick() {
+
+    }
+
+    _onViewTableClick() {
+
     }
 }
 
-export default PageDemo;
+const mapStateToProps = state => {
+    const { breakpoint: { isMobile } } = state;
+
+    return {
+        isMobile,
+    };
+};
+
+export default connect(mapStateToProps)(PageDemo);
