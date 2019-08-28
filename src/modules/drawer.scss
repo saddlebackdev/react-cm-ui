@@ -40,8 +40,26 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         transform: translate(100%, 0);
         transition: max-width 200ms ease-in-out, transform 333ms ease-in-out;
         width: 100%;
-
-        > div > div:last-child { z-index: $zindex; }
+        .shadow_container {
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: calc(100% + 30px);
+            z-index: -1;
+            > div {
+                background-color: $bkgd;
+                height: 100%;
+                width: calc(100% - 30px);
+            }
+        }
+        > div:first-child {
+            background-color: $bkgd;
+            > div:last-child { z-index: $zindex; }
+        }
     }
     &.left-position .drawer-container {
         left: 0;
