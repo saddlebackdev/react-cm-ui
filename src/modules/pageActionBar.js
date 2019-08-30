@@ -51,6 +51,7 @@ class ActionsButtonDrawerOption extends React.Component {
             >
                 <div
                     className={iconContainerClasses}
+                    id={option.id}
                     style={{
                         backgroundColor: option.iconDiscColor,
                         height: !option.iconDisc && option.iconSize,
@@ -109,6 +110,7 @@ class ActionsButton extends React.PureComponent {
     render() {
         const {
             header,
+            id,
             options,
             style,
         } = this.props;
@@ -121,6 +123,7 @@ class ActionsButton extends React.PureComponent {
                     className="action_bar--actions_button"
                     color={isDrawerOpen ? 'highlight' : 'alternate'}
                     icon
+                    id={id}
                     onClick={this._onDrawerToggle}
                     style={style}
                 >
@@ -179,6 +182,7 @@ class Search extends React.Component {
 
     render() {
         const {
+            id,
             style,
             value,
         } = this.props;
@@ -199,6 +203,7 @@ class Search extends React.Component {
                         type="search"
                     />
                 }
+                id={id}
                 onChange={this._onChange}
                 onKeyDown={this._onKeyDown}
                 placeholder="Search"
@@ -283,6 +288,7 @@ class PageActionBar extends React.Component {
                                             }, column.style)}
                                         >
                                             <ActionsButton
+                                                id={actionsButton.id}
                                                 header={actionsButton.header}
                                                 options={actionsButton.options}
                                                 style={actionsButton.style}
@@ -304,6 +310,7 @@ class PageActionBar extends React.Component {
                                         >
                                             <Button
                                                 color={button.color}
+                                                id={button.id}
                                                 onClick={button.onClick}
                                                 style={button.style}
                                             >
@@ -349,6 +356,7 @@ class PageActionBar extends React.Component {
 
                                                         if (iconBack) {
                                                             const {
+                                                                id,
                                                                 onClick,
                                                                 selected,
                                                                 title,
@@ -364,6 +372,7 @@ class PageActionBar extends React.Component {
                                                                             'highlight' :
                                                                             null
                                                                         }
+                                                                        id={id}
                                                                         onClick={onClick}
                                                                         title={title || 'Back'}
                                                                         type="chevron-left"
@@ -372,6 +381,7 @@ class PageActionBar extends React.Component {
                                                             );
                                                         } else if (iconFilter) {
                                                             const {
+                                                                id,
                                                                 isFiltering,
                                                                 onClick,
                                                                 selected,
@@ -388,6 +398,7 @@ class PageActionBar extends React.Component {
                                                                             'highlight' :
                                                                             null
                                                                         }
+                                                                        id={id}
                                                                         onClick={onClick}
                                                                         title={title || 'Filter'}
                                                                         type="filter"
@@ -396,6 +407,7 @@ class PageActionBar extends React.Component {
                                                             );
                                                         } else if (iconGrid) {
                                                             const {
+                                                                id,
                                                                 onClick,
                                                                 selected,
                                                                 title,
@@ -411,6 +423,7 @@ class PageActionBar extends React.Component {
                                                                             'highlight' :
                                                                             null
                                                                         }
+                                                                        id={id}
                                                                         onClick={onClick}
                                                                         title={title || 'Grid View'}
                                                                         type="grid"
@@ -419,6 +432,7 @@ class PageActionBar extends React.Component {
                                                             );
                                                         } else if (iconTable) {
                                                             const {
+                                                                id,
                                                                 onClick,
                                                                 selected,
                                                                 title,
@@ -434,6 +448,7 @@ class PageActionBar extends React.Component {
                                                                             'highlight' :
                                                                             null
                                                                         }
+                                                                        id={id}
                                                                         onClick={onClick}
                                                                         title={title || 'Table View'}
                                                                         type="list"
@@ -476,6 +491,7 @@ class PageActionBar extends React.Component {
                                             }, column.style)}
                                         >
                                             <Search
+                                                id={search.id}
                                                 onChange={search.onChange}
                                                 onKeyDown={search.onKeyDown}
                                                 value={search.value}
