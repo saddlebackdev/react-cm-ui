@@ -1,0 +1,142 @@
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
+
+// ######## //
+// TODO: Remove !important when we refactor <List /> naming convention to BEM.
+//       Remove .ui when we refactor <Drawer />, <Grid />, and <List /> naming convention to BEM
+//       Rename file or move to a better position.
+// ######## //
+
+.ui {
+    &.drawer.has-drawer-- { // sass-lint:disable-line class-name-format
+        &action_bar { // sass-lint:disable-line class-name-format
+            .drawer-container-inner {
+                padding-top: $drawer-action-bar-height;
+                .action_bar-drawer {
+                    top: 0;
+                }
+            }
+            &.has-drawer--title_bar { // sass-lint:disable-line class-name-format
+                .drawer-container-inner {
+                    padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
+                    .action_bar-drawer {
+                        top: $drawer-title-bar-height;
+                    }
+                }
+                &:not(.has-drawer--navigation) .drawer-container-inner {
+                    .action_bar-drawer {
+                        background-color: color(backgroundColorLight);
+                        border-top: 1px solid color(borderColor);
+                    }
+                }
+                &.has-drawer--navigation .drawer-container-inner { // sass-lint:disable-line class-name-format
+                    padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
+                    .action_bar-drawer {
+                        top: $drawer-title-bar-height + $drawer-navigation-height;
+                    }
+                }
+            }
+        }
+    }
+    &.action_bar {
+        align-items: center;
+        border-bottom: 1px solid color(borderColor);
+        display: flex;
+        justify-content: flex-start;
+        left: 0;
+        position: fixed;
+        right: 0;
+    }
+    .action_bar-page {
+        background-color: color(backgroundColorLight);
+        border-top: 1px solid color(borderColor);
+        min-height: 70px;
+        padding: 0 22px;
+        top: 55px;
+        width: auto;
+        z-index: 3;
+    }
+    .action_bar-drawer {
+        background-color: color(backgroundColor);
+        height: $drawer-action-bar-height;
+        padding: 0 11px;
+        z-index: $drawer-zindex;
+    }
+    &.action_bar--grid {
+        flex-wrap: nowrap;
+        margin: 0;
+        width: 100%;
+    }
+    .action_bar--grid_column {
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+    &.action_bar--list {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .action_bar--list_item {
+        align-items: center;
+        align-self: stretch;
+        display: inline-flex;
+        justify-content: center;
+        padding: 0 rem(11px) !important; // sass-lint:disable-line no-important
+        &::before { height: 88% !important; } // sass-lint:disable-line no-important
+        &:first-child {
+            padding-left: 0 !important; // sass-lint:disable-line no-important
+        }
+        &:last-child {
+            padding-right: 0 !important; // sass-lint:disable-line no-important
+        }
+    }
+    .action_bar--actions_button_drawer_content {
+        padding: 22px 11px;
+    }
+    .action_bar--actions_button_drawer_option {
+        align-items: center;
+        border-bottom: 1px solid color(borderColor);
+        cursor: pointer;
+        display: flex;
+        font-size: rem(14px);
+        font-weight: $default-font-weight-semibold;
+        margin: 0 -11px;
+        min-height: 55px;
+        padding: 11px;
+        &-disabled {
+            cursor: default;
+        }
+        &:first-child {
+            border-top: 1px solid color(borderColor);
+        }
+    }
+    .actions_button_drawer_option--icon_container {
+        height: 24px;
+        margin-right: 11px;
+        &-disc {
+            align-items: center;
+            background-color: color(backgroundColorInverse);
+            border-radius: 50%;
+            display: inline-flex;
+            height: 32px;
+            justify-content: center;
+            margin-right: 16px;
+            width: 32px;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui {
+        &.action_bar-page {
+            left: 250px;
+            top: 70px;
+        }
+        &.action_bar-drawer {
+            padding: 0 22px;
+        }
+    }
+}

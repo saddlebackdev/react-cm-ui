@@ -61,15 +61,17 @@ class ActionsButton extends React.PureComponent {
 
     render() {
         const {
-            drawerHeader,
+            header,
             options,
             style,
         } = this.props;
         const { isDrawerOpen } = this.state;
+        let optionKeyNum = 1;
 
         return (
             <React.Fragment>
                 <Button
+                    className="action_bar--actions_button"
                     color={isDrawerOpen ? 'highlight' : 'alternate'}
                     icon
                     onClick={this._onDrawerToggle}
@@ -79,6 +81,7 @@ class ActionsButton extends React.PureComponent {
                 </Button>
 
                 <Drawer
+                    className="action_bar--actions_button_drawer"
                     dimmer={false}
                     isOpen={isDrawerOpen}
                     maxWidth={224}
@@ -86,17 +89,59 @@ class ActionsButton extends React.PureComponent {
                     positionYOffset={55 + 70}
                     shadowSize="xsmall"
                 >
-                    <Header>{drawerHeader}</Header>
+                    <Drawer.Content className="action_bar--actions_button_drawer_content">
+                        <Header size="small" fontWeight="bold">{header}</Header>
 
-                    {_.map(options, option => {
-                        return (
-                            <div
-                                onClick={option.onClick}
-                            >
-                                {option.label}
-                            </div>
-                        );
-                    })}
+                        <div className="action_bar--actions_button_drawer_options">
+                            {_.map(options, option => {
+                                const containerClasses = ClassNames('action_bar--actions_button_drawer_option', {
+                                    'action_bar--actions_button_drawer_option-disable': option.disable,
+                                });
+                                const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container', {
+                                    'actions_button_drawer_option--icon_container-disc': option.iconDisc,
+                                });
+
+                                return (
+                                    <div
+                                        className={containerClasses}
+                                        key={`action_bar--actions_button_drawer_option-${optionKeyNum++}`}
+                                        onClick={option.onClick}
+                                    >
+                                        <div
+                                            className={iconContainerClasses}
+                                            style={{
+                                                backgroundColor: option.iconDiscColor,
+                                                height: !option.iconDisc && option.iconSize,
+                                            }}
+                                        >
+                                            <Icon
+                                                color={option.iconColor}
+                                                className="actions_button_drawer_option--icon"
+                                                inverse={option.iconDisc}
+                                                size={
+                                                    !option.iconDisc && option.iconSize ||
+                                                    (
+                                                        option.iconDisc &&
+                                                        option.iconSize &&
+                                                        option.iconSize <= 24 &&
+                                                        option.iconSize
+                                                    ) ||
+                                                    (option.iconDisc ? 16 : 24)
+                                                }
+                                                type={option.iconType}
+                                            />
+                                        </div>
+
+                                        <div
+                                            className="actions_button_drawer_option--label"
+                                        >
+                                            {option.label}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </Drawer.Content>
                 </Drawer>
             </React.Fragment>
         );
@@ -112,7 +157,7 @@ class ActionsButton extends React.PureComponent {
 }
 
 ActionsButton.propTypes = {
-    drawerHeader: PropTypes.string.isRequired,
+    header: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     style: PropTypes.object,
 };
@@ -127,10 +172,11 @@ class ListItem extends React.PureComponent {
             onClick,
             selected,
         } = this.props;
+        const containerClasses = ClassNames('action_bar--list_item', className);
 
         return (
             <List.Item
-                className={className}
+                className={containerClasses}
             >
                 {!children ? (
                     <Icon
@@ -232,7 +278,7 @@ class PageActionBar extends React.Component {
 
     render() {
         const { children, className, columns, style } = this.props;
-        const containerClasses = ClassNames('ui', 'page--action_bar', className);
+        const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
         let columnKeyNum = 1;
         let listItemKeyNum = 1;
 
@@ -240,7 +286,10 @@ class PageActionBar extends React.Component {
             <header className={containerClasses} style={style}>
                 <div style={{ width: '100%' }}>
                     {columns && (
-                        <Grid verticalAlign="middle">
+                        <Grid
+                            className="action_bar--grid"
+                            verticalAlign="middle"
+                        >
                             {_.map(columns, (column, index) => {
                                 const {
                                     actionsButton,
@@ -249,6 +298,7 @@ class PageActionBar extends React.Component {
                                     list,
                                     search,
                                 } = column;
+                                const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
 
                                 if (!jsx && !actionsButton && !button && !list && !search) {
                                     console.warn(
@@ -259,7 +309,7 @@ class PageActionBar extends React.Component {
                                     // Button
                                     return (
                                         <Grid.Column
-                                            className={column.className}
+                                            className={gridColumnClasses}
                                             key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
@@ -269,7 +319,9 @@ class PageActionBar extends React.Component {
                                             }, column.style)}
                                         >
                                             <ActionsButton
-
+                                                header={actionsButton.header}
+                                                options={actionsButton.options}
+                                                style={actionsButton.style}
                                             />
                                         </Grid.Column>
                                     );
@@ -277,7 +329,7 @@ class PageActionBar extends React.Component {
                                     // Button
                                     return (
                                         <Grid.Column
-                                            className={column.className}
+                                            className={gridColumnClasses}
                                             key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
@@ -291,7 +343,7 @@ class PageActionBar extends React.Component {
                                                 onClick={button.onClick}
                                                 style={button.style}
                                             >
-                                                {button.labelIconType && <Icon type={button.labelIconType} />}
+                                                {button.iconType && <Icon type={button.iconType} />}
                                                 {button.label && <span>{button.label}</span>}
                                             </Button>
                                         </Grid.Column>
@@ -300,7 +352,7 @@ class PageActionBar extends React.Component {
                                     // List
                                     return (
                                         <Grid.Column
-                                            className={column.className}
+                                            className={gridColumnClasses}
                                             key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
@@ -310,7 +362,11 @@ class PageActionBar extends React.Component {
                                             }, column.style)}
                                         >
                                             {_.isArray(column.list) && (
-                                                <List divide horizontal>
+                                                <List
+                                                    className="action_bar--list"
+                                                    divide
+                                                    horizontal
+                                                >
                                                     {_.map(column.list, item => {
                                                         const {
                                                             jsx,
@@ -425,7 +481,7 @@ class PageActionBar extends React.Component {
                                     // Search
                                     return (
                                         <Grid.Column
-                                            className={column.className}
+                                            className={gridColumnClasses}
                                             key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
@@ -445,7 +501,7 @@ class PageActionBar extends React.Component {
                                     // JSX
                                     return (
                                         <Grid.Column
-                                            className={column.className}
+                                            className={gridColumnClasses}
                                             key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',

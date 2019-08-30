@@ -7,9 +7,12 @@ import {
     Page,
     TitleBar,
 } from 'react-cm-ui';
+import { backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import React from 'react';
+
+const nop = () => {};
 
 class PageDemo extends React.PureComponent {
     constructor() {
@@ -39,7 +42,6 @@ class PageDemo extends React.PureComponent {
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
         this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
         this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
-        this._onNewTemplateClick = this._onNewTemplateClick.bind(this);
         this._onSearchChange = this._onSearchChange.bind(this);
         this._onSearchKeyDown = this._onSearchKeyDown.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
@@ -88,9 +90,9 @@ class PageDemo extends React.PureComponent {
             }, {
                 button: {
                     color: 'success',
+                    iconType: 'plus',
                     label: 'New Template',
-                    labelIconType: 'plus',
-                    onClick: this._onNewTemplateClick,
+                    onClick: nop,
                 },
             },
         ];
@@ -114,9 +116,15 @@ class PageDemo extends React.PureComponent {
                         header: 'Foo Title',
                         options: [
                             {
-                                iconType: actionsBarColumns[2].button.labelIconType,
+                                iconType: actionsBarColumns[2].button.iconType,
                                 label: actionsBarColumns[2].button.label,
                                 onClick: actionsBarColumns[2].button.onClick,
+                            }, {
+                                iconDisc: true,
+                                iconDiscColor: backgroundColorSuccess,
+                                iconType: 'envelope',
+                                label: 'Email',
+                                onClick: nop,
                             },
                         ],
                     },
@@ -504,10 +512,6 @@ class PageDemo extends React.PureComponent {
                 nestedTogglesFooValue: selectedOptions,
             },
         }));
-    }
-
-    _onNewTemplateClick() {
-
     }
 
     _onSearchChange(value) {
