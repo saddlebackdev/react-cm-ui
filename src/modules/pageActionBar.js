@@ -7,6 +7,7 @@ import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 import Input from '../elements/input.js';
 import List from '../elements/list.js';
+import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -165,42 +166,6 @@ ActionsButton.propTypes = {
     header: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     style: PropTypes.object,
-};
-
-const ListItemFunc = props => {
-    const {
-        children,
-        className,
-        iconTitle,
-        iconType,
-        onClick,
-        selected,
-    } = props;
-    console.log('className', className);
-
-    return (
-        <List.Item
-            className={className}
-        >
-            {!children ? (
-                <Icon
-                    color={selected ? 'highlight' : null}
-                    onClick={onClick}
-                    title={iconTitle}
-                    type={iconType}
-                />
-            ) : children}
-        </List.Item>
-    );
-};
-
-ListItemFunc.propTypes = {
-    children: PropTypes.object,
-    className: PropTypes.string.isRequired,
-    iconTitle: PropTypes.string.isRequired,
-    iconType: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    selected: PropTypes.bool,
 };
 
 class Search extends React.Component {
@@ -396,6 +361,7 @@ class PageActionBar extends React.Component {
                                                             return (
                                                                 <List.Item
                                                                     className={className}
+                                                                    key={itemKey}
                                                                 >
                                                                     <Icon
                                                                         color={selected ?
@@ -419,6 +385,7 @@ class PageActionBar extends React.Component {
                                                             return (
                                                                 <List.Item
                                                                     className={className}
+                                                                    key={itemKey}
                                                                 >
                                                                     <Icon
                                                                         color={selected || isFiltering ?
@@ -441,6 +408,7 @@ class PageActionBar extends React.Component {
                                                             return (
                                                                 <List.Item
                                                                     className={className}
+                                                                    key={itemKey}
                                                                 >
                                                                     <Icon
                                                                         color={selected ?
@@ -463,6 +431,7 @@ class PageActionBar extends React.Component {
                                                             return (
                                                                 <List.Item
                                                                     className={className}
+                                                                    key={itemKey}
                                                                 >
                                                                     <Icon
                                                                         color={selected ?
@@ -479,6 +448,7 @@ class PageActionBar extends React.Component {
                                                             return (
                                                                 <List.Item
                                                                     className={className}
+                                                                    key={itemKey}
                                                                 >
                                                                     {jsx}
                                                                 </List.Item>

@@ -105,6 +105,7 @@ class PageDemo extends React.PureComponent {
                     iconBack: {
                         onClick: this._onBackClick,
                     },
+                    flexGrow: 1,
                 }, {
                     search: actionBarSearch,
                 }, {
