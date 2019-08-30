@@ -247,8 +247,8 @@ class PageActionBar extends React.Component {
     render() {
         const { children, className, columns, style } = this.props;
         const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
-        let columnKeyNum = 1;
-        let listItemKeyNum = 1;
+        let gridColumnKeyNum = 1;
+        let gridColumnListItemKeyNum = 1;
 
         return (
             <header className={containerClasses} style={style}>
@@ -267,13 +267,14 @@ class PageActionBar extends React.Component {
                                     search,
                                 } = column;
                                 const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
+                                const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`;
 
                                 if (actionsButton) {
                                     // Button
                                     return (
                                         <Grid.Column
                                             className={gridColumnClasses}
-                                            key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
+                                            key={gridColumnKey}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
                                                 flexGrow: column.flexGrow || 0,
@@ -293,7 +294,7 @@ class PageActionBar extends React.Component {
                                     return (
                                         <Grid.Column
                                             className={gridColumnClasses}
-                                            key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
+                                            key={gridColumnKey}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
                                                 flexGrow: column.flexGrow || 0,
@@ -316,7 +317,7 @@ class PageActionBar extends React.Component {
                                     return (
                                         <Grid.Column
                                             className={gridColumnClasses}
-                                            key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
+                                            key={gridColumnKey}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
                                                 flexGrow: column.flexGrow || 0,
@@ -344,7 +345,7 @@ class PageActionBar extends React.Component {
                                                             'action_bar--list_item-icon_grid': iconGrid,
                                                             'action_bar--list_item-icon_table': iconTable,
                                                         });
-                                                        const itemKey = `action_bar--list_item-${listItemKeyNum++}`;
+                                                        const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`;
 
                                                         if (iconBack) {
                                                             const {
@@ -466,7 +467,7 @@ class PageActionBar extends React.Component {
                                     return (
                                         <Grid.Column
                                             className={gridColumnClasses}
-                                            key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
+                                            key={gridColumnKey}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
                                                 flexGrow: column.flexGrow || 1,
@@ -486,7 +487,7 @@ class PageActionBar extends React.Component {
                                     return (
                                         <Grid.Column
                                             className={gridColumnClasses}
-                                            key={`drawer--action_bar--grid_column-${columnKeyNum++}`}
+                                            key={gridColumnKey}
                                             style={Object.assign({}, {
                                                 flexBasis: column.flexBasis || 'auto',
                                                 flexGrow: column.flexGrow || 0,
