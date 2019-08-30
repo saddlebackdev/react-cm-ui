@@ -39,9 +39,9 @@ $standard-divider: color(borderColor);
             }
         &.accordion-inverse {
             .accordion-item .accordion-item-title {
-                color: color(colorTextInverse);
+                color: color(colorInverse);
             }
-                .accordion-item-content { color: color(colorTextInverse); }
+                .accordion-item-content { color: color(colorInverse); }
         }
     }
     &:not(.accordion-basic) {

@@ -23,7 +23,7 @@ $cell-border-color: color(borderColorSecondary);
 
 .ui.table .table-cell {
     border-top: 1px solid $cell-border-color;
-    color: color(colorText);
+    color: color(color);
     font-weight: $default-font-weight-normal;
     padding: rem(11px);
     text-align: inherit;
@@ -32,7 +32,7 @@ $cell-border-color: color(borderColorSecondary);
         border-top-color 150ms linear;
     &.table-cell-active { background-color: color(backgroundColorNest); }
     &.table-cell-collapsing { white-space: nowrap; width: 1px; }
-    &.table-cell-disabled { color: color(colorTextStatic); pointer-events: none; }
+    &.table-cell-disabled { color: color(colorStatic); pointer-events: none; }
     &.table-cell-font-size-large { font-size: rem(20px) !important; }
     &.table-cell-font-size-medium { font-size: rem(18px) !important; }
     &.table-cell-font-size-small { font-size: rem(16px) !important; }
@@ -121,7 +121,7 @@ $cell-border-color: color(borderColorSecondary);
     // tr
     .table-row- {
         &active .table-cell { background-color: color(backgroundColorNest); }
-        &disabled .table-cell { color: color(colorTextStatic); pointer-events: none; }
+        &disabled .table-cell { color: color(colorStatic); pointer-events: none; }
         &font-size-large .table-cell { font-size: rem(20px) !important; }
         &font-size-medium .table-cell { font-size: rem(18px) !important; }
         &font-size-small .table-cell { font-size: rem(16px) !important; }

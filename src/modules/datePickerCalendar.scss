@@ -84,12 +84,12 @@ $pointer-size: 8px;
                 width: 100%;
                 .date-picker-selected- {
                     &month, &year {
-                        color: color(colorTextLink);
+                        color: color(colorLink);
                         cursor: pointer;
                         font-size: rem(16px);
                         font-weight: $default-font-weight-bold;
                         position: relative;
-                        i { color: color(colorText); }
+                        i { color: color(color); }
                     }
                 }
                 .date-picker-selected-month { margin-right: auto; }

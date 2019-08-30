@@ -5,7 +5,7 @@
     background-color: color(backgroundColorLight);
     box-shadow: inset 0 0 0 1px color(borderColor);
     border-radius: 3px;
-    color: color(colorText);
+    color: color(color);
     display: inline-flex;
     font-size: rem(14px);
     font-weight: $default-font-weight-normal;
@@ -26,7 +26,7 @@
         &alert, &highlight, &success,
         &warning {
             box-shadow: none;
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             font-weight: $default-font-weight-semibold;
         }
         &alert { background-color: color(backgroundColorAlert); }
@@ -40,14 +40,14 @@
         &alert, &highlight, &success,
         &warning {
             box-shadow: none;
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             font-weight: $default-font-weight-semibold;
         }
         &alert { background-color: color(backgroundColorAlert); }
         &highlight { background-color: color(backgroundColorHighlight); }
         &primary { background-color: color(backgroundColorLight); box-shadow: inset 0 0 0 1px color(borderColor); }
         &success { background-color: color(backgroundColorSuccess); }
-        &transparent { background-color: transparent; color: color(colorTextInverse); font-weight: $default-font-weight-semibold; }
+        &transparent { background-color: transparent; color: color(colorInverse); font-weight: $default-font-weight-semibold; }
         &warning { background-color: color(backgroundColorWarning); }
     }
     &.label-clearable {
@@ -57,7 +57,7 @@
             background-color: color(backgroundColorStatic);
             border-radius: 0 3px 3px 0;
             box-shadow: inset 1px 0 0 color(borderColorTertiary);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             cursor: pointer;
             display: inline-flex;
             height: 30px;
@@ -69,13 +69,13 @@
                 color 75ms linear;
             width: 20px;
             .ui.icon { color: inherit; }
-            &:hover { background-color: transparent; box-shadow: inset 1px 0 0 color(borderColor); color: color(colorTextStatic); }
+            &:hover { background-color: transparent; box-shadow: inset 1px 0 0 color(borderColor); color: color(colorStatic); }
         }
         &.label-color- {
             &alert, &highlight, &success, &warning {
                 .label-clearable-button {
                     box-shadow: none;
-                    &:hover { background-color: transparent; color: color(colorTextInverse); }
+                    &:hover { background-color: transparent; color: color(colorInverse); }
                 }
             }
             &alert .label-clearable-button {
@@ -92,7 +92,7 @@
             &primary .label-clearable-button {
                 background-color: color(backgroundColorStatic);
                 box-shadow: inset 1px 0 0 color(borderColorTertiary);
-                &:hover { background-color: transparent; box-shadow: inset 1px 0 0 color(borderColor); color: color(colorTextStatic); }
+                &:hover { background-color: transparent; box-shadow: inset 1px 0 0 color(borderColor); color: color(colorStatic); }
             }
             &success .label-clearable-button {
                 background-color: color(backgroundColorSuccess);
@@ -104,7 +104,7 @@
             &transparent .label-clearable-button {
                 background-color: transparent;
                 box-shadow: none;
-                color: color(colorTextStatic);
+                color: color(colorStatic);
             }
             &warning .label-clearable-button {
                 background-color: color(backgroundColorWarningDark);

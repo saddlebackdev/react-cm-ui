@@ -11,7 +11,7 @@ $size-dot: 14px;
     text-align: left;
     .input { display: none; }
     label {
-        color: color(colorText);
+        color: color(color);
         cursor: pointer;
         display: block;
         font-size: rem(14px);
@@ -85,7 +85,7 @@ $size-dot: 14px;
             .input:checked + label {
                 background-color: color(backgroundColorHighlight);
                 border-color: color(borderColorHighlight);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
             }
             &:first-child {
                 label { border-radius: 15.5px 0 0 15.5px; }
@@ -99,7 +99,7 @@ $size-dot: 14px;
     }
     &-disabled {
         label {
-            color: color(colorTextStatic);
+            color: color(colorStatic);
             cursor: auto;
             &::before { background: color(backgroundColorDisable); }
             &::after { background-color: color(backgroundColorStatic); }

@@ -64,7 +64,7 @@ $height: 55px;
                 justify-content: center;
                 width: 100%;
             }
-            .copy { color: color(colorTextStatic); transition: color 250ms linear; }
+            .copy { color: color(colorStatic); transition: color 250ms linear; }
             .button-is-active-indicator {
                 background-color: color(backgroundColorHighlight);
                 bottom: 10px;
@@ -79,10 +79,10 @@ $height: 55px;
             &.is-active {
                 cursor: auto;
                 z-index: 2;
-                .copy { color: color(colorText); }
+                .copy { color: color(color); }
                 .button-is-active-indicator { opacity: 1; visibility: visible; }
             }
-            &:hover .copy { color: color(colorText); }
+            &:hover .copy { color: color(color); }
             &:first-child { margin-left: 11px; }
             &:last-child { margin-right: 11px; }
         }

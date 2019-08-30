@@ -13,7 +13,7 @@ $padding-label-toggle: 63px;
     text-align: left;
     .input { display: none; }
     label {
-        color: color(colorText);
+        color: color(color);
         cursor: pointer;
         display: block;
         position: relative;
@@ -81,14 +81,14 @@ $padding-label-toggle: 63px;
     }
     &-disabled {
         label {
-            color: color(colorTextStatic);
+            color: color(colorStatic);
             cursor: auto;
             &::before { background: color(backgroundColorDisable); }
             .ui.icon-check { color: color(backgroundColorStatic); }
         }
     }
     &-full-width { display: block; margin-right: 0; }
-    &-inverse label { color: color(colorTextInverse); }
+    &-inverse label { color: color(colorInverse); }
     &-toggle {
         label {
             > span { padding-left: rem($padding-label-toggle); }
@@ -134,7 +134,7 @@ $padding-label-toggle: 63px;
                 z-index: 2;
             }
                 .checkbox-toggle-text-on, .checkbox-toggle-text-off { flex: 1 0 auto; }
-                .checkbox-toggle-text-on { color: color(colorTextInverse); }
+                .checkbox-toggle-text-on { color: color(colorInverse); }
                 .checkbox-toggle-text-off { text-align: right; }
         }
         .input:checked + {

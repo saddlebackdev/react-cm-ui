@@ -50,7 +50,7 @@
         background-color: color(backgroundColorLight);
         border-top: 1px solid color(borderColor);
         min-height: 70px;
-        padding: 0 22px;
+        padding: 0 11px;
         top: 55px;
         width: auto;
         z-index: 3;
@@ -106,25 +106,32 @@
         margin: 0 -11px;
         min-height: 55px;
         padding: 11px;
+        transition: background-color 150ms ease-in, color 150ms ease-in;
         &-disabled {
             cursor: default;
+        }
+        &-hover {
+            background-color: color(backgroundColorHighlight);
+            color: color(colorInverse);
         }
         &:first-child {
             border-top: 1px solid color(borderColor);
         }
     }
     .actions_button_drawer_option--icon_container {
-        height: 24px;
-        margin-right: 11px;
+        align-items: center;
+        display: inline-flex;
+        height: 32px;
+        justify-content: center;
+        margin-right: 16px;
+        transition: background-color 200ms ease-in;
+        width: 32px;
         &-disc {
-            align-items: center;
             background-color: color(backgroundColorInverse);
             border-radius: 50%;
-            display: inline-flex;
-            height: 32px;
-            justify-content: center;
-            margin-right: 16px;
-            width: 32px;
+        }
+        &-hover {
+            background-color: color(backgroundColor);
         }
     }
 }
@@ -133,6 +140,7 @@
     .ui {
         &.action_bar-page {
             left: 250px;
+            padding: 0 22px;
             top: 70px;
         }
         &.action_bar-drawer {

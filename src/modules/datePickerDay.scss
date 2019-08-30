@@ -15,7 +15,7 @@ $day-size: 30px;
     span {
         align-items: center;
         border-radius: $day-size / 2;
-        color: color(colorText);
+        color: color(color);
         cursor: pointer;
         display: flex;
         flex: 0 1 auto;
@@ -29,11 +29,11 @@ $day-size: 30px;
         position: relative;
         z-index: 1;
     }
-    &.date-picker-day-has-event span { color: color(colorTextLink); font-weight: $default-font-weight-bold; }
+    &.date-picker-day-has-event span { color: color(colorLink); font-weight: $default-font-weight-bold; }
     &:not(.date-picker-day-outside-month):not(.date-picker-day-disabled) span:hover {
         background-color: color(backgroundColorHighlight);
         box-shadow: none;
-        color: color(colorTextInverse);
+        color: color(colorInverse);
     }
     &.date-picker-day-end-selected, &.date-picker-day-start-selected {
         span { font-weight: $default-font-weight-bold; }
@@ -68,7 +68,7 @@ $day-size: 30px;
         &:last-child::after { left: 0; width: 50%; }
     }
     &-outside-month, &.date-picker-day-disabled {
-        span { color: color(colorTextStatic); cursor: default; }
+        span { color: color(colorStatic); cursor: default; }
     }
 }
 .date-picker-week .date-picker-day {
@@ -79,21 +79,21 @@ $day-size: 30px;
     &single-date {
         .date-picker-day-selected span {
             background-color: color(backgroundColorHighlight);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
         }
     }
     &date-range {
         .date-picker-day-end-selected, .date-picker-day-start-selected {
             span {
                 background-color: color(backgroundColorHighlight);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
             }
         }
         .date-picker-day-end-selected, .date-picker-day-start-selected, .date-picker-day-in-range {
             &::after { background-color: color(backgroundSky); }
         }
         .date-picker-day-in-range {
-            span { color: color(colorTextInverse); }
+            span { color: color(colorInverse); }
             &:first-child, &:last-child {
                 span { background-color: color(backgroundSky); }
             }

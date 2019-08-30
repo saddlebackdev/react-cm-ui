@@ -36,19 +36,19 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         width: 100%;
         &.drawer-container-inverse {
             background: color(backgroundColorInverseAlternate);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             .drawer-container-inner .drawer-header {
                 background: color(backgroundColorInverseAlternate);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
             }
         }
         &.color {
             &-dark-blue {
                 background: color(backgroundBlue);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
                 .drawer-container-inner .drawer-header {
                     background: color(backgroundBlue);
-                    color: color(colorTextInverse);
+                    color: color(colorInverse);
                 }
             }
         }
@@ -129,7 +129,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
         .drawer-wing {
             background-color: color(backgroundColor);
-            color: color(colorText);
+            color: color(color);
             height: 100%;
             left: 0;
             padding: 22px;
@@ -138,7 +138,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             width: 100%;
             &.color-dark-blue {
                 background-color: color(backgroundBlue);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
             }
             &.color-grey { background-color: color(backgroundColorNest); }
         }

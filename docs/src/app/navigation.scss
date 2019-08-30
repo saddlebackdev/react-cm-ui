@@ -4,7 +4,7 @@ $nav-width: 250px;
 
 .core-app-nav {
     background-color: color(backgroundColorInverse);
-    color: color(colorTextInverse);
+    color: color(colorInverse);
     height: 100%;
     left: 0;
     opacity: 0;
@@ -38,7 +38,7 @@ $nav-width: 250px;
                 height: 31px;
                 margin: 0;
                 width: 130px;
-                path { fill: color(colorTextInverse); }
+                path { fill: color(colorInverse); }
             }
             .doc-version {
                 border-left: 1px solid;
@@ -56,10 +56,10 @@ $nav-width: 250px;
             margin: 0;
             padding: 0;
             a {
-                color: color(colorTextStatic);
+                color: color(colorStatic);
                 font-size: em(14px);
                 transition: color 300ms ease-out;
-                &.is-active { color: color(colorTextInverse); }
+                &.is-active { color: color(colorInverse); }
             }
         }
 

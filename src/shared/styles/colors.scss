@@ -76,17 +76,17 @@ $colors-map: (
     'borderColorHighlight':         $sc-cyan,
     'borderColorInverse':           $pcn-white,
     // Colors
-    'colorText':               $pcn-grey-six,
-    'colorTextInverse':        $pcn-white,
-    'colorTextDisable':        $pcn-grey-three,
-    'colorTextHighlight':      $sc-cyan,
-    'colorTextLink':           $sc-cyan,
-    'colorTextStatic':         $pcn-grey-four,
-    'colorTextAlert':          $sc-red,
-    'colorTextWarning':        $sc-orange,
-    'colorTextSecondary':      $sc-teal-dark,
-    'colorTextCode':           $sc-red-orange-dark,
-    'colorTextSuccess':        $sc-green,
+    'color':               $pcn-grey-six,
+    'colorInverse':        $pcn-white,
+    'colorDisable':        $pcn-grey-three,
+    'colorHighlight':      $sc-cyan,
+    'colorLink':           $sc-cyan,
+    'colorStatic':         $pcn-grey-four,
+    'colorAlert':          $sc-red,
+    'colorWarning':        $sc-orange,
+    'colorSecondary':      $sc-teal-dark,
+    'colorCode':           $sc-red-orange-dark,
+    'colorSuccess':        $sc-green,
 );
 
 @function color($key) {

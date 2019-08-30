@@ -12,41 +12,87 @@ import React from 'react';
 
 const nop = () => {};
 
-// class ActionsButtonDrawerOption extends React.PureComponent {
-//     constructor() {
-//         super();
-//
-//         this.state = {
-//             isDrawerOpen: false,
-//         };
-//
-//         this._onClick = this._onClick.bind(this);
-//     }
-//
-//     render() {
-//         const {
-//             label,
-//         } = this.props;
-//
-//         return (
-//             <div
-//                 onClick={this._onClick}
-//             >
-//                 {label}
-//             </div>
-//         );
-//     }
-//
-//     _onClick() {
-//         const { onClick } = this.props;
-//
-//         onClick();
-//     }
-// }
-//
-// ActionsButton.propTypes = {
-//     label: PropTypes.string.isRequired,
-// };
+class ActionsButtonDrawerOption extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            isHover: false,
+        };
+
+        this._onOptionToggle = this._onOptionToggle.bind(this);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        const { props: prevProps, state: prevState } = this;
+
+        return !_.isEqual(prevProps.option, nextProps.option) || prevState.isHover !== nextState.isHover;
+    }
+
+    render() {
+        const { option } = this.props;
+        const { isHover } = this.state;
+        const containerClasses = ClassNames('action_bar--actions_button_drawer_option', {
+            'action_bar--actions_button_drawer_option-disable': option.disable,
+            'action_bar--actions_button_drawer_option-hover': isHover,
+        });
+        const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container', {
+            'actions_button_drawer_option--icon_container-disc': option.iconDisc,
+            'actions_button_drawer_option--icon_container-hover': option.iconDisc && isHover,
+        });
+
+        return (
+            <div
+                className={containerClasses}
+                onClick={option.onClick}
+                onMouseOut={this._onOptionToggle}
+                onMouseOver={this._onOptionToggle}
+            >
+                <div
+                    className={iconContainerClasses}
+                    style={{
+                        backgroundColor: option.iconDiscColor,
+                        height: !option.iconDisc && option.iconSize,
+                    }}
+                >
+                    <Icon
+                        color={option.iconColor}
+                        compact
+                        className="actions_button_drawer_option--icon"
+                        inverse={isHover || option.iconDisc}
+                        size={
+                            !option.iconDisc && option.iconSize ||
+                            (
+                                option.iconDisc &&
+                                option.iconSize &&
+                                option.iconSize <= 24 &&
+                                option.iconSize
+                            ) ||
+                            (option.iconDisc ? 16 : 24)
+                        }
+                        type={option.iconType}
+                    />
+                </div>
+
+                <div
+                    className="actions_button_drawer_option--label"
+                >
+                    {option.label}
+                </div>
+            </div>
+        );
+    }
+
+    _onOptionToggle() {
+        this.setState(prevState => ({
+            isHover: !prevState.isHover,
+        }));
+    }
+}
+
+ActionsButtonDrawerOption.propsTypes = {
+    option: PropTypes.object.isRequired,
+};
 
 class ActionsButton extends React.PureComponent {
     constructor() {
@@ -94,50 +140,11 @@ class ActionsButton extends React.PureComponent {
 
                         <div className="action_bar--actions_button_drawer_options">
                             {_.map(options, option => {
-                                const containerClasses = ClassNames('action_bar--actions_button_drawer_option', {
-                                    'action_bar--actions_button_drawer_option-disable': option.disable,
-                                });
-                                const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container', {
-                                    'actions_button_drawer_option--icon_container-disc': option.iconDisc,
-                                });
-
                                 return (
-                                    <div
-                                        className={containerClasses}
+                                    <ActionsButtonDrawerOption
                                         key={`action_bar--actions_button_drawer_option-${optionKeyNum++}`}
-                                        onClick={option.onClick}
-                                    >
-                                        <div
-                                            className={iconContainerClasses}
-                                            style={{
-                                                backgroundColor: option.iconDiscColor,
-                                                height: !option.iconDisc && option.iconSize,
-                                            }}
-                                        >
-                                            <Icon
-                                                color={option.iconColor}
-                                                className="actions_button_drawer_option--icon"
-                                                inverse={option.iconDisc}
-                                                size={
-                                                    !option.iconDisc && option.iconSize ||
-                                                    (
-                                                        option.iconDisc &&
-                                                        option.iconSize &&
-                                                        option.iconSize <= 24 &&
-                                                        option.iconSize
-                                                    ) ||
-                                                    (option.iconDisc ? 16 : 24)
-                                                }
-                                                type={option.iconType}
-                                            />
-                                        </div>
-
-                                        <div
-                                            className="actions_button_drawer_option--label"
-                                        >
-                                            {option.label}
-                                        </div>
-                                    </div>
+                                        option={option}
+                                    />
                                 );
                             })}
                         </div>
@@ -148,11 +155,9 @@ class ActionsButton extends React.PureComponent {
     }
 
     _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({
-            isDrawerOpen: !isDrawerOpen,
-        });
+        this.setState(prevState => ({
+            isDrawerOpen: !prevState.isDrawerOpen,
+        }));
     }
 }
 
@@ -162,36 +167,34 @@ ActionsButton.propTypes = {
     style: PropTypes.object,
 };
 
-class ListItem extends React.PureComponent {
-    render() {
-        const {
-            children,
-            className,
-            iconTitle,
-            iconType,
-            onClick,
-            selected,
-        } = this.props;
-        const containerClasses = ClassNames('action_bar--list_item', className);
+const ListItemFunc = props => {
+    const {
+        children,
+        className,
+        iconTitle,
+        iconType,
+        onClick,
+        selected,
+    } = props;
+    console.log('className', className);
 
-        return (
-            <List.Item
-                className={containerClasses}
-            >
-                {!children ? (
-                    <Icon
-                        color={selected ? 'highlight' : null}
-                        onClick={onClick}
-                        title={iconTitle}
-                        type={iconType}
-                    />
-                ) : children}
-            </List.Item>
-        );
-    }
-}
+    return (
+        <List.Item
+            className={className}
+        >
+            {!children ? (
+                <Icon
+                    color={selected ? 'highlight' : null}
+                    onClick={onClick}
+                    title={iconTitle}
+                    type={iconType}
+                />
+            ) : children}
+        </List.Item>
+    );
+};
 
-ListItem.propTypes = {
+ListItemFunc.propTypes = {
     children: PropTypes.object,
     className: PropTypes.string.isRequired,
     iconTitle: PropTypes.string.isRequired,
@@ -375,20 +378,15 @@ class PageActionBar extends React.Component {
                                                             iconGrid,
                                                             iconTable,
                                                         } = item;
-                                                        const className = ClassNames('drawer--action_bar--grid_column--list_item', {
-                                                            'action_bar--jsx': jsx,
-                                                            'action_bar--icon_filter': iconFilter,
-                                                            'action_bar--icon_grid': iconGrid,
-                                                            'action_bar--icon_table': iconTable,
+                                                        const className = ClassNames('action_bar--list_item', {
+                                                            'action_bar--list_item-jsx': jsx,
+                                                            'action_bar--list_item-icon_filter': iconFilter,
+                                                            'action_bar--list_item-icon_grid': iconGrid,
+                                                            'action_bar--list_item-icon_table': iconTable,
                                                         });
-                                                        const itemKey = `drawer--action_bar--grid_column--list_item-${listItemKeyNum++}`;
+                                                        const itemKey = `action_bar--list_item-${listItemKeyNum++}`;
 
-                                                        if (!jsx && !iconBack && !iconFilter && !iconGrid && !iconTable) {
-                                                            console.warn(
-                                                                '<Page.ActionsBar>\'s column.list object must have one of the ' +
-                                                                'following properties: iconFilter, iconGrid, or iconTable.'
-                                                            );
-                                                        } else if (!jsx && iconBack && !iconFilter && !iconGrid && !iconTable) {
+                                                        if (iconBack) {
                                                             const {
                                                                 onClick,
                                                                 selected,
@@ -396,16 +394,21 @@ class PageActionBar extends React.Component {
                                                             } = iconBack;
 
                                                             return (
-                                                                <ListItem
+                                                                <List.Item
                                                                     className={className}
-                                                                    iconType="chevron-left"
-                                                                    iconTitle={title || 'Back'}
-                                                                    key={itemKey}
-                                                                    onClick={onClick}
-                                                                    selected={selected}
-                                                                />
+                                                                >
+                                                                    <Icon
+                                                                        color={selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        onClick={onClick}
+                                                                        title={title || 'Back'}
+                                                                        type="chevron-left"
+                                                                    />
+                                                                </List.Item>
                                                             );
-                                                        } else if (!jsx && !iconBack && iconFilter && !iconGrid && !iconTable) {
+                                                        } else if (iconFilter) {
                                                             const {
                                                                 isFiltering,
                                                                 onClick,
@@ -414,18 +417,21 @@ class PageActionBar extends React.Component {
                                                             } = iconFilter;
 
                                                             return (
-                                                                <ListItem
+                                                                <List.Item
                                                                     className={className}
-                                                                    iconType="filter"
-                                                                    iconTitle={title || 'Filter'}
-                                                                    key={itemKey}
-                                                                    onClick={onClick}
-                                                                    selected={
-                                                                        selected || isFiltering
-                                                                    }
-                                                                />
+                                                                >
+                                                                    <Icon
+                                                                        color={selected || isFiltering ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        onClick={onClick}
+                                                                        title={title || 'Filter'}
+                                                                        type="filter"
+                                                                    />
+                                                                </List.Item>
                                                             );
-                                                        } else if (!jsx && !iconBack && !iconFilter && iconGrid && !iconTable) {
+                                                        } else if (iconGrid) {
                                                             const {
                                                                 onClick,
                                                                 selected,
@@ -433,16 +439,21 @@ class PageActionBar extends React.Component {
                                                             } = iconGrid;
 
                                                             return (
-                                                                <ListItem
+                                                                <List.Item
                                                                     className={className}
-                                                                    iconType="grid"
-                                                                    iconTitle={title || 'Grid View'}
-                                                                    key={itemKey}
-                                                                    onClick={onClick}
-                                                                    selected={selected}
-                                                                />
+                                                                >
+                                                                    <Icon
+                                                                        color={selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        onClick={onClick}
+                                                                        title={title || 'Grid View'}
+                                                                        type="grid"
+                                                                    />
+                                                                </List.Item>
                                                             );
-                                                        } else if (!jsx && !iconBack && !iconFilter && !iconGrid && iconTable) {
+                                                        } else if (iconTable) {
                                                             const {
                                                                 onClick,
                                                                 selected,
@@ -450,27 +461,35 @@ class PageActionBar extends React.Component {
                                                             } = iconTable;
 
                                                             return (
-                                                                <ListItem
+                                                                <List.Item
                                                                     className={className}
-                                                                    iconType="list"
-                                                                    iconTitle={title || 'Table View'}
-                                                                    key={itemKey}
-                                                                    onClick={onClick}
-                                                                    selected={selected}
-                                                                />
+                                                                >
+                                                                    <Icon
+                                                                        color={selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        onClick={onClick}
+                                                                        title={title || 'Table View'}
+                                                                        type="list"
+                                                                    />
+                                                                </List.Item>
                                                             );
-                                                        } else if (jsx && !iconBack && !iconFilter && !iconGrid && !iconTable) {
+                                                        } else if (jsx) {
                                                             return (
-                                                                <ListItem
+                                                                <List.Item
                                                                     className={className}
-                                                                    iconType=""
-                                                                    iconTitle=""
-                                                                    onClick={nop}
-                                                                    key={itemKey}
                                                                 >
                                                                     {jsx}
-                                                                </ListItem>
+                                                                </List.Item>
                                                             );
+                                                        } else {
+                                                            console.warn(
+                                                                '<Page.ActionsBar>\'s column.list object must have one of the ' +
+                                                                'following properties: iconFilter, iconGrid, or iconTable.'
+                                                            );
+
+                                                            return false;
                                                         }
                                                     })}
                                                 </List>

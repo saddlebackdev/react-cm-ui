@@ -11,7 +11,7 @@
     .button-menu {
         background-color: transparent;
         border: 0;
-        color: color(colorTextInverse);
+        color: color(colorInverse);
         font-size: rem(14px);
         font-weight: $default-font-weight-semibold;
         height: 55px;
@@ -34,7 +34,7 @@
             height: 31px;
             margin: 0;
             width: 130px;
-            path { fill: color(colorTextInverse); }
+            path { fill: color(colorInverse); }
         }
     }
 }

@@ -10,12 +10,12 @@ $select-input-border-color:         color(borderColor) !default;
 $select-input-border-radius:        rem(3px) !default;
 $select-input-border-focus:         color(borderColorHighlight) !default;
 $select-input-border-width:         1px !default;
-$select-input-arrow-color-focus:    color(colorTextInverse);
+$select-input-arrow-color-focus:    color(colorInverse);
 $select-input-height:               44px !default;
 $select-input-internal-height:      ($select-input-height - ($select-input-border-width * 2)) !default;
-$select-input-placeholder:          color(colorTextStatic) !default;
-$select-text-color:                 color(colorText) !default;
-$select-text-color-focus:           color(colorTextInverse);
+$select-input-placeholder:          color(colorStatic) !default;
+$select-text-color:                 color(color) !default;
+$select-text-color-focus:           color(colorInverse);
 $select-link-hover-color:           $select-input-border-focus !default;
 
 $select-padding-horizontal:         11px !default;
@@ -29,17 +29,17 @@ $select-menu-padding-vertical:      11px;
 $select-menu-zindex:                1000 !default;
 
 $select-option-bg:                  $select-menu-bg !default;
-$select-option-color:               color(colorTextInverse);
-$select-option-focused-color:       color(colorText) !default;
+$select-option-color:               color(colorInverse);
+$select-option-focused-color:       color(color) !default;
 $select-option-focused-bg:          color(backgroundColor) !default;
-$select-option-selected-color:      color(colorText) !default;
+$select-option-selected-color:      color(color) !default;
 $select-option-selected-bg:         color(backgroundColor) !default;
-$select-option-disabled-color:      color(colorTextStatic) !default;
+$select-option-disabled-color:      color(colorStatic) !default;
 $select-option-margin-vertical:     4px;
 $select-option-padding-horizontal:  22px;
 $select-option-padding-vertical:    7px;
 
-$select-noresults-color:            color(colorTextInverse);
+$select-noresults-color:            color(colorInverse);
 
 // clear "x" button
 $select-clear-size:                 floor(($select-input-height / 2)) !default;
@@ -132,13 +132,13 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
     position: relative;
     > .label { margin-bottom: em(8px); }
         .input-required-indicator {
-            color: color(colorTextAlert);
+            color: color(colorAlert);
             display: inline-block;
             font-size: rem(14px);
             margin-left: 3px;
         }
     .dropdown-selection-value {
-        color: color(colorTextSecondary);
+        color: color(colorSecondary);
         cursor: pointer;
         font-size: rem(16px);
         font-weight: $default-font-weight-bold;
@@ -164,7 +164,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         }
             li > span {
                 align-items: center;
-                color: color(colorText);
+                color: color(color);
                 cursor: pointer;
                 display: flex;
                 font-size: rem(14px);
@@ -174,10 +174,10 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 text-align: left;
                 transition: color 150ms ease-out;
                 white-space: nowrap;
-                &:hover { background-color: color(backgroundColorHighlight); color: color(colorTextInverse); }
+                &:hover { background-color: color(backgroundColorHighlight); color: color(colorInverse); }
             }
             li.dropdown-item-is-disabled span {
-                color: color(colorTextStatic);
+                color: color(colorStatic);
                 cursor: default;
                 pointer-events: none;
             }
@@ -187,14 +187,14 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         }
     }
     &:not(.dropdown-menu-theme-dark) .dropdown-menu li > span:hover .ui.icon {
-        .icon-use-path { fill: color(colorTextInverse); }
+        .icon-use-path { fill: color(colorInverse); }
     }
     &.dropdown-button {
         align-items: center;
         background-color: color(backgroundColorButton);
         border: 0;
         border-radius: 3px;
-        color: color(colorTextInverse);
+        color: color(colorInverse);
         cursor: pointer;
         display: inline-flex;
         height: 44px;
@@ -220,92 +220,92 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         &.dropdown-disable {
             background-color: color(backgroundColorDisable) !important;
             cursor: default;
-            .dropdown-selection-value { color: color(colorTextStatic); cursor: inherit; }
+            .dropdown-selection-value { color: color(colorStatic); cursor: inherit; }
             .ui.icon {
                 cursor: inherit;
-                .icon-use-path { fill: color(colorTextStatic); }
+                .icon-use-path { fill: color(colorStatic); }
             }
         }
         &.dropdown-color- {
             &alert {
                 background-color: color(backgroundColorButtonAlert);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
             &alternate {
                 background-color: color(backgroundColorButtonAlternate);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
             &disable {
                 background-color: color(backgroundColorButtonDisable) !important;
-                color: color(colorTextStatic);
+                color: color(colorStatic);
                 cursor: default;
-                > .ui.icon .icon-use-path { fill: color(colorTextStatic); }
+                > .ui.icon .icon-use-path { fill: color(colorStatic); }
             }
             &light {
                 background-color: color(backgroundColorLight);
-                color: color(colorText);
-                > .ui.icon .icon-use-path { fill: color(colorText); }
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
             }
             &outline {
                 background-color: transparent;
                 box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
-                color: color(colorText);
-                > .ui.icon .icon-use-path { fill: color(colorText); }
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
             }
             &primary {
                 background-color: color(backgroundColorButton);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
             &secondary {
                 background-color: color(backgroundColorButtonSecondary);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
             &success {
                 background-color: color(backgroundColorButtonSuccess);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
             &transparent {
                 background-color: transparent;
-                > .ui.icon.icon-color-primary .icon-use-path { fill: color(colorText); }
+                > .ui.icon.icon-color-primary .icon-use-path { fill: color(color); }
             }
             &warning {
                 background-color: color(backgroundColorWarning);
-                > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
             }
         }
         &.dropdown-is-active {
             background-color: color(backgroundColorHighlight);
-            color: color(colorTextInverse);
-            &:not(.dropdown-color-transparent) > .ui.icon .icon-use-path { fill: color(colorTextInverse); }
+            color: color(colorInverse);
+            &:not(.dropdown-color-transparent) > .ui.icon .icon-use-path { fill: color(colorInverse); }
             &.dropdown-color-disable {
                 background-color: color(backgroundColorButtonDisable) !important;
-                color: color(colorTextStatic);
+                color: color(colorStatic);
                 cursor: default;
-                > .ui.icon .icon-use-path { fill: color(colorTextStatic); }
+                > .ui.icon .icon-use-path { fill: color(colorStatic); }
             }
             &.dropdown-color-outline {
                 background-color: transparent;
                 box-shadow: inset 0 0 0 1px color(borderColorHighlight);
-                color: color(colorText);
-                > .ui.icon .icon-use-path { fill: color(colorText); }
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
             }
             &.dropdown-color-transparent {
                 background-color: transparent;
-                color: color(colorText);
-                > .ui.icon.icon-color-primary .icon-use-path { fill: color(colorText); }
+                color: color(color);
+                > .ui.icon.icon-color-primary .icon-use-path { fill: color(color); }
             }
         }
         &.dropdown-inverse.dropdown-color- {
             &alert { background-color: color(backgroundColorButtonAlert); }
             &alternate { background-color: color(backgroundColorButtonAlternate); }
             &disable { background-color: color(backgroundColorButtonDisable); cursor: default;  }
-            &light { background-color: color(backgroundColorLight); color: color(colorText); }
+            &light { background-color: color(backgroundColorLight); color: color(color); }
             &outline {
                 background-color: transparent;
                 box-shadow: inset 0 0 0 1px color(borderColorSecondary);
-                color: color(colorTextInverse);
+                color: color(colorInverse);
                 > .ui.icon {
-                    .icon-use-path { fill: color(colorTextInverse); }
+                    .icon-use-path { fill: color(colorInverse); }
                 }
             }
             &primary { background-color: color(backgroundColorButton); }
@@ -325,17 +325,17 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         border-radius: rem(3px);
         box-shadow: $dark-theme-box-shadow;
         li > span {
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             &:hover {
                 background-color: color(backgroundColor);
-                color: color(colorText);
+                color: color(color);
                 .ui.icon-color-primary.icon-inverse {
-                    .icon-use-path { fill: color(colorText); }
+                    .icon-use-path { fill: color(color); }
                 }
             }
         }
         li.dropdown-item-is-disabled span {
-            color: color(colorTextStatic);
+            color: color(colorStatic);
         }
     }
     .dropdown-selection-mobile-button {
@@ -350,8 +350,8 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
         padding: 0 11px;
         position: relative;
         .placeholder, .label { flex: 1 0 auto; text-transform: capitalize; }
-        .placeholder { color: color(colorTextStatic); }
-        .label { color: color(colorText); font-size: rem(16px); }
+        .placeholder { color: color(colorStatic); }
+        .label { color: color(color); font-size: rem(16px); }
         .ui.icon {
             flex: 0 1 auto;
             height: 16px;
@@ -361,7 +361,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
     }
     &.dropdown-disabled .dropdown-selection-mobile-button {
         background-color: color(backgroundColorDisable);
-        .placeholder, .label { color: color(colorTextStatic); }
+        .placeholder, .label { color: color(colorStatic); }
     }
     // CSS grabbed from react-select's src https://github.com/JedWatson/react-select/tree/v1.0.0-rc.3/scss
     // HIGHLY EDITED - DON'T JUST COPY AND PASTE TO OVERWRITE.
@@ -378,7 +378,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             cursor: default;
             pointer-events: none;
             .ui.icon {
-                .icon-use-path { fill: color(colorTextStatic); }
+                .icon-use-path { fill: color(colorStatic); }
             }
         }
     }
@@ -609,7 +609,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 background-color: color(backgroundColorLight);
                 border: 1px solid color(borderColor);
                 border-radius: $select-item-border-radius;
-                color: color(colorText);
+                color: color(color);
                 display: inline-flex;
                 flex-direction: row-reverse;
                 font-size: $select-item-font-size;
@@ -642,7 +642,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 .Select-value-icon {
                     @include border-right-radius($select-item-border-radius);
                     border: 1px solid color(borderColor);
-                    color: color(colorTextStatic);
+                    color: color(colorStatic);
                     cursor: pointer;
                     line-height: 1;
                     margin: -1px -1px -1px 0;
@@ -657,13 +657,13 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                     &:hover, &:focus {
                         background-color: color(backgroundColorStatic);
                         border-color: color(borderColorTertiary);
-                        color: color(colorTextInverse);
+                        color: color(colorInverse);
                     }
                     &:active { background-color: $select-item-border-color; }
                 }
         &.is-open > .Select-control .Select-arrow-zone .ui.icon {
             .icon-use-path {
-                fill: color(colorTextHighlight);
+                fill: color(colorHighlight);
             }
         }
     }
@@ -687,20 +687,20 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             background-color: color(backgroundColor);
             .Select-arrow-zone, .Select-clear-zone {
                 .ui.icon {
-                    .icon-use-path { fill: color(colorText); }
+                    .icon-use-path { fill: color(color); }
                 }
             }
-            .Select-value-label { color: color(colorText) !important; }
+            .Select-value-label { color: color(color) !important; }
         }
         .Select-menu-outer { background-color: color(backgroundColor); }
             .Select-option {
                 background-color: color(backgroundColor);
-                color: color(colorText);
-                &.is-selected, &.is-focused, &:hover { background-color: color(backgroundColorHighlight); color: color(colorTextInverse); }
+                color: color(color);
+                &.is-selected, &.is-focused, &:hover { background-color: color(backgroundColorHighlight); color: color(colorInverse); }
                 &.is-disabled { color: $select-option-disabled-color; }
             }
-            .Select-noresults { color: color(colorText); }
-        .Select-input > input { color: color(colorText); }
+            .Select-noresults { color: color(color); }
+        .Select-input > input { color: color(color); }
     }
     &.dropdown-selection-underline  {
         .Select--single .Select-control {
@@ -717,7 +717,7 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
                 height: 32px;
                 padding-left: 0;
                 > input {
-                    color: color(colorText);
+                    color: color(color);
                     padding: 7px 0 11px;
                 }
             }
@@ -728,8 +728,8 @@ $select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !defau
             background-color: color(backgroundColor);
             border-bottom-color: $select-input-border-color;
             box-shadow: none;
-            color: color(colorText);
-            .Select-arrow-zone .icon-use-path { fill: color(colorTextHighlight); }
+            color: color(color);
+            .Select-arrow-zone .icon-use-path { fill: color(colorHighlight); }
         }
     }
 }

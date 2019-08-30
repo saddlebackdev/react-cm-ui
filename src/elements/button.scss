@@ -4,7 +4,7 @@
     background-color: color(backgroundColorButton);
     border: 0;
     border-radius: 3px;
-    color: color(colorTextInverse);
+    color: color(colorInverse);
     cursor: pointer;
     display: inline-block;
     font-size: rem(14px);
@@ -27,20 +27,20 @@
         display: flex;
         justify-content: center;
         > .ui.icon {
-            .icon-use-path { fill: color(colorTextInverse); }
+            .icon-use-path { fill: color(colorInverse); }
         }
     }
     &.button-color- {
         &alert { background-color: color(backgroundColorButtonAlert); }
         &alternate { background-color: color(backgroundColorButtonAlternate); }
         &disable { background-color: color(backgroundColorButtonDisable); cursor: default; }
-        &light { background-color: color(backgroundColorLight); color: color(colorText); }
+        &light { background-color: color(backgroundColorLight); color: color(color); }
         &outline {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
-            color: color(colorText);
+            color: color(color);
             > .ui.icon {
-                .icon-use-path { fill: color(colorText); }
+                .icon-use-path { fill: color(color); }
             }
         }
         &primary { background-color: color(backgroundColorButton); }
@@ -53,25 +53,25 @@
         &alert {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlert);
-            color: color(colorTextAlert);
+            color: color(colorAlert);
             .ui.icon {
-                .icon-use-path { fill: color(colorTextAlert); }
+                .icon-use-path { fill: color(colorAlert); }
             }
         }
         &alternate {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlternate);
-            color: color(colorText);
+            color: color(color);
             .ui.icon {
-                .icon-use-path { fill: color(colorText); }
+                .icon-use-path { fill: color(color); }
             }
         }
         &disable {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(backgroundColorButtonDisable);
-            color: color(colorTextDisable);
+            color: color(colorDisable);
             .ui.icon {
-                .icon-use-path { fill: color(colorTextDisable); }
+                .icon-use-path { fill: color(colorDisable); }
             }
             cursor: default;
         }
@@ -86,9 +86,9 @@
         &outline {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
-            color: color(colorText);
+            color: color(color);
             .ui.icon {
-                .icon-use-path { fill: color(colorText); }
+                .icon-use-path { fill: color(color); }
             }
         }
         &primary {
@@ -110,17 +110,17 @@
         &success {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(backgroundColorButtonSuccess);
-            color: color(colorTextSuccess);
+            color: color(colorSuccess);
             .ui.icon {
-                .icon-use-path { fill: color(colorTextSuccess); }
+                .icon-use-path { fill: color(colorSuccess); }
             }
         }
         &warning {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(backgroundColorWarning);
-            color: color(colorTextWarning);
+            color: color(colorWarning);
             .ui.icon {
-                .icon-use-path { fill: color(colorTextWarning); }
+                .icon-use-path { fill: color(colorWarning); }
             }
         }
     }
@@ -128,13 +128,13 @@
         &alert { background-color: color(backgroundColorButtonAlert); }
         &alternate { background-color: color(backgroundColorButtonAlternate); }
         &disable { background-color: color(backgroundColorButtonDisable); cursor: default;  }
-        &light { background-color: color(backgroundColorLight); color: color(colorText); }
+        &light { background-color: color(backgroundColorLight); color: color(color); }
         &outline {
             background-color: rgba(255, 255, 255, .30);
             box-shadow: inset 0 0 0 1px color(borderColorSecondary);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             > .ui.icon {
-                .icon-use-path { fill: color(colorText); }
+                .icon-use-path { fill: color(color); }
             }
         }
         &primary { background-color: color(backgroundColorButton); }

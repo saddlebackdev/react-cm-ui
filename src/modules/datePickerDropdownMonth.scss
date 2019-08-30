@@ -27,7 +27,7 @@
             &:last-child { margin-bottom: 7px; }
         }
             a {
-                color: color(colorText);
+                color: color(color);
                 display: block;
                 font-size: rem(14px);
                 font-weight: $default-font-weight-semibold;
@@ -35,7 +35,7 @@
                 text-align: left;
                 transition: color 150ms ease-out;
             }
-            .date-picker-month-option-is-selected a, a:hover { color: color(colorTextHighlight); }
+            .date-picker-month-option-is-selected a, a:hover { color: color(colorHighlight); }
             ul {
                 &:first-child a { padding-right: 11px; }
                 &:last-child a { padding-left: 11px; }

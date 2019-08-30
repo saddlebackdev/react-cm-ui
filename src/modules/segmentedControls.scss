@@ -9,7 +9,7 @@ $size-tablet: 33px;
     .segmented-controls-buttons {
         align-items: flex-start;
         border-radius: rem(3px);
-        color: color(colorTextInverse);
+        color: color(colorInverse);
         display: flex;
         flex-direction: row;
         font-size: rem(14px);
@@ -19,7 +19,7 @@ $size-tablet: 33px;
             background-color: color(backgroundColorButtonAlternate);
             border: 0;
             border-right: 1px solid color(backgroundColorInverse);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             cursor: pointer;
             display: inline-block;
             font-size: rem(14px);

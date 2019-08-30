@@ -22,7 +22,7 @@
     }
     .drawer--wing-container {
         background-color: color(backgroundColor);
-        color: color(colorText);
+        color: color(color);
         height: 100%;
         left: 0;
         position: absolute;
@@ -33,7 +33,7 @@
     &.color-blue {
         .drawer--wing-container {
             background-color: color(backgroundBlue);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
         }
     }
     &.color-grey {

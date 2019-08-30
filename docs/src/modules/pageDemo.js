@@ -60,15 +60,21 @@ class PageDemo extends React.PureComponent {
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
         const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
         const viewType = 'table';
+        const actionBarIconFilter = {
+            selected: isFiltersDrawerOpen,
+            isFiltering,
+            onClick: this._onFiltersToggle,
+        };
+        const actionBarSearch = {
+            onChange: this._onSearchChange,
+            onKeyDown: this._onSearchKeyDown,
+            value: searchValue,
+        };
         let actionsBarColumns = [
             {
                 list: [
                     {
-                        iconFilter: {
-                            selected: isFiltersDrawerOpen,
-                            isFiltering,
-                            onClick: this._onFiltersToggle,
-                        },
+                        iconFilter: actionBarIconFilter,
                     }, {
                         iconGrid: {
                             selected: false,
@@ -82,11 +88,7 @@ class PageDemo extends React.PureComponent {
                     },
                 ],
             }, {
-                search: {
-                    onChange: this._onSearchChange,
-                    onKeyDown: this._onSearchKeyDown,
-                    value: searchValue,
-                },
+                search: actionBarSearch,
             }, {
                 button: {
                     color: 'success',
@@ -100,17 +102,13 @@ class PageDemo extends React.PureComponent {
         if (isMobile) {
             actionsBarColumns = [
                 {
-                    flexGrow: 1,
-                    list: [
-                        {
-                            iconBack: {
-                                onClick: this._onBackClick,
-                            },
-                        },
-                    ],
-                    flexGrow: 1,
+                    iconBack: {
+                        onClick: this._onBackClick,
+                    },
                 }, {
-                    search: actionsBarColumns[1].search,
+                    search: actionBarSearch,
+                }, {
+                    iconFilter: actionBarIconFilter,
                 }, {
                     actionsButton: {
                         header: 'Foo Title',

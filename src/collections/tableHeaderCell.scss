@@ -27,7 +27,7 @@ $cell-border-side-left-color: color(borderColor);
     background-color: $cell-bkgd-color;
     border-bottom: 1px solid $cell-border-bottom-color;
     border-left: 0;
-    color: color(colorText);
+    color: color(color);
     font-style: none;
     font-weight: $default-font-weight-normal;
     padding: rem(11px);
@@ -43,7 +43,7 @@ $cell-border-side-left-color: color(borderColor);
 .ui.table {
     &.table-basic .table-header-cell {
         background-color: inherit;
-        color: color(colorTextStatic);
+        color: color(colorStatic);
         padding: 0 rem(11px) rem(11px);
         &:first-child { padding-left: 0; }
         &:last-child { padding-right: 0; }

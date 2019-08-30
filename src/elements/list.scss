@@ -6,6 +6,7 @@
         list-style-type: none;
         margin: 0; // need to think about the top and bottom margin. Moved it to 0 for the time being. ******
         padding: 0;
+        .icon { margin: 0; }
     }
     &.list-fluid { display: block; }
     &.list-divide:not(.list-horizontal) .list--item {
@@ -50,11 +51,10 @@
         }
     }
     &.list-inverse {
-        color: color(colorTextInverse);
+        color: color(colorInverse);
         &.list-horizontal.list-divide .list--item, .list--item-divide {
-            &:not(:first-child)::before { background-color: color(colorTextInverse); }
+            &:not(:first-child)::before { background-color: color(colorInverse); }
         }
     }
     .list--item { display: list-item; }
-    &.icon { margin: 0; }
 }

@@ -21,7 +21,7 @@ $shadow: rgba(0, 0, 0, .17);
             background-color: color(backgroundColorButtonAlternate);
             border: 0;
             border-radius: 3px 3px 0 0;
-            color: color(colorTextInverse);
+            color: color(colorInverse);
             display: inline-flex;
             font-size: em(14px);
             font-weight: $default-font-weight-semibold;
@@ -65,7 +65,7 @@ $shadow: rgba(0, 0, 0, .17);
                 box-shadow:
                     inset 1px 1px 0 0 color(borderColorSecondary),
                     inset -1px 0 0 0 color(borderColorSecondary);
-                color: color(colorText);
+                color: color(color);
                 cursor: auto;
                 z-index: 2;
                 i { color: color(backgroundColorHighlight); }

@@ -1,7 +1,7 @@
 @import '../shared/styles/colors';
 
 .ui.info-bar {
-    color: color(colorTextInverse);
+    color: color(colorInverse);
     display: block;
     padding: 22px 33px;
     position: relative;
@@ -28,7 +28,7 @@
         .inner-container {
             background-color: rgba(255, 255, 255, .7);
             bottom: 0;
-            color: color(colorText);
+            color: color(color);
             left: 0;
             position: absolute;
             transform: translate(0, 100%);

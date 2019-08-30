@@ -22,7 +22,7 @@ $breakpoint-has-widths: (
 .ui.table {
     background-color: color(backgroundColor);
     border: 1px solid color(borderColor);
-    color: color(colorText);
+    color: color(color);
     text-align: left;
     width: 100%;
 }

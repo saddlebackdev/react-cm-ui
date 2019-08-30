@@ -60,8 +60,8 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
             width: $nav-width;
             z-index: $z-index-navigation;
             .ui.button {
-                color: color(colorTextStatic);
-                .button-inner-container .ui.icon .icon-use-path { fill: color(colorTextStatic); }
+                color: color(colorStatic);
+                .button-inner-container .ui.icon .icon-use-path { fill: color(colorStatic); }
             }
         }
         .demo--layout {

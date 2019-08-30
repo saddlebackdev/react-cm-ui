@@ -25,7 +25,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        &.header-subheader .subheader { color: color(colorTextStatic); font-weight: $default-font-weight-semibold; }
+        &.header-subheader .subheader { color: color(colorStatic); font-weight: $default-font-weight-semibold; }
     }
     .title-bar-children { flex: none; text-align: right; }
 }

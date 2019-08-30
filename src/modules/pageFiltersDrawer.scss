@@ -87,7 +87,7 @@
         }
         &.is-selected {
             background-color: color(backgroundColorHighlight);
-            color: color(colorTextInverse);
+            color: color(colorInverse);
         }
     }
     .ui.drawer--wing .ui.drawer--content .ui.header {
