@@ -10,7 +10,6 @@ import Icon from './icon';
 import Utils from '../utils/utils.js';
 
 class Label extends Component {
-
     render() {
         const { children, className, color, disabled, fluid, inverse, onClick, onClearClick, style } = this.props;
         const containerClasses = ClassNames('ui', 'label', className, {
@@ -23,7 +22,7 @@ class Label extends Component {
             'label-color-warning': color === 'warning',
             'label-fluid': fluid,
             'label-inverse': inverse,
-            'label-clearable': onClearClick
+            'label-clearable': onClearClick,
         });
 
         return (
@@ -39,8 +38,8 @@ class Label extends Component {
                     {onClearClick ? (
                         <span className="label-clearable-button" onClick={this._onClearClick.bind(this)}>
                             <Icon
-                                compact={true}
-                                inverse={true}
+                                compact
+                                inverse
                                 size="xxsmall"
                                 type="times"
                             />
@@ -62,7 +61,6 @@ class Label extends Component {
             this.props.onClick();
         }
     }
-
 }
 
 Label.propTypes = {
@@ -71,7 +69,7 @@ Label.propTypes = {
     fluid: PropTypes.bool,
     onClearClick: PropTypes.func,
     onClick: PropTypes.func,
-    style: PropTypes.object
-}
+    style: PropTypes.object,
+};
 
 export default Label;

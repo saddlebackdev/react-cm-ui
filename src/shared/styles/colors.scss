@@ -12,26 +12,26 @@ $pcn-grey-four:      #97a4ab;
 $pcn-grey-five:      #38424d;
 $pcn-grey-six:       #1c2530;
 // Secondary Colors
-$sc-blue:           #134174;
-$sc-blue-dark:      #00254d;
-$sc-cyan:           #00aeef;
-$sc-cyan-dark:      #1c93c4;
-$sc-sky:            #6dcff6;
-$sc-sky-dark:       #4095b6;
-$sc-teal:           #56c4c4;
-$sc-teal-dark:      #329594;
-$sc-green:          #54cd86;
-$sc-green-dark:     #398f5d;
-$sc-orange:         #f99e49;
-$sc-orange-dark:    #c96d20;
-$sc-red-orange:     #f27a4d;
-$sc-red-orange-dark:#d94710;
-$sc-red:            #ee4334;
-$sc-red-dark:       #c2241a;
-$sc-pink:           #eb4ea1;
-$sc-pink-dark:      #c23680;
-$sc-purple:         #c68ef6;
-$sc-purple-dark:    #9958d2;
+$sc-blue:            #134174;
+$sc-blue-dark:       #00254d;
+$sc-cyan:            #00aeef;
+$sc-cyan-dark:       #1c93c4;
+$sc-sky:             #6dcff6;
+$sc-sky-dark:        #4095b6;
+$sc-teal:            #56c4c4;
+$sc-teal-dark:       #329594;
+$sc-green:           #54cd86;
+$sc-green-dark:      #398f5d;
+$sc-orange:          #f99e49;
+$sc-orange-dark:     #c96d20;
+$sc-red-orange:      #f27a4d;
+$sc-red-orange-dark: #d94710;
+$sc-red:             #ee4334;
+$sc-red-dark:        #c2241a;
+$sc-pink:            #eb4ea1;
+$sc-pink-dark:       #c23680;
+$sc-purple:          #c68ef6;
+$sc-purple-dark:     #9958d2;
 
 // ######## //
 // Types //
@@ -87,7 +87,56 @@ $color-text-secondary:      $sc-teal-dark;
 $color-text-code:           $sc-red-orange-dark;
 $color-text-success:        $sc-green;
 
+$theme-colors: (
+    'bkgd':                    $bkgd,
+    'bkgdDisable':             $bkgd-disable,
+    'bkgdAlert':               $bkgd-alert,
+    'bkgdAlertDark':           $bkgd-alert-dark,
+    'bkgdHighlight':           $bkgd-highlight,
+    'bkgdHighlightDark':       $bkgd-highlight-dark,
+    'bkgdInverse':             $bkgd-inverse,
+    'bkgdInverseAlternate':    $bkgd-inverse-alternate,
+    'bkgdLight':               $bkgd-light,
+    'bkgdNest':                $bkgd-nest,
+    'bkgdStatic':              $bkgd-static,
+    'bkgdSuccess':             $bkgd-success,
+    'bkgdSuccessDark':         $bkgd-success-dark,
+    'bkgdWarning':             $bkgd-warning,
+    'bkgdWarningDark':         $bkgd-warning-dark,
+    'bkgdButton':              $bkgd-button,
+    'bkgdButtonDisable':       $bkgd-button-disable,
+    'bkgdButtonAlert':         $bkgd-button-alert,
+    'bkgdButtonAlternate':     $bkgd-button-alternate,
+    'bkgdButtonSecondary':     $bkgd-button-secondary,
+    'bkgdButtonSuccess':       $bkgd-button-success,
+    'bkgdPurple':              $bkgd-purple,
+    'bkgdTeal':                $bkgd-teal,
+    'bkgdBlue':                $bkgd-blue,
+    'bkgdSky':                 $bkgd-sky,
+    // Borders
+    'border':                  $border,
+    'borderAlternate':         $border-alternate,
+    'borderHighlight':         $border-highlight,
+    'borderInverse':           $border-inverse,
+    'borderInverseAlternate':  $border-inverse-alternate,
+    'borderLight':             $border-light,
+    // Color
+    'colorText':               $color-text,
+    'colorTextInverse':        $color-text-inverse,
+    'colorTextDisable':        $color-text-disable,
+    'colorTextCta':            $color-text-cta,
+    'colorTextHighlight':      $color-text-highlight,
+    'colorTextLink':           $color-text-link,
+    'colorTextStatic':         $color-text-static,
+    'colorTextAlert':          $color-text-alert,
+    'colorTextWarning':        $color-text-warning,
+    'colorTextSecondary':      $color-text-secondary,
+    'colorTextCode':           $color-text-code,
+    'colorTextSuccess':        $color-text-success,
+);
+
 :export {
-    borderColor: $border;
-    borderColorInverse: $pcn-white;
+    @each $key, $value in $theme-colors {
+        #{unquote($key)}: $value;
+    }
 }

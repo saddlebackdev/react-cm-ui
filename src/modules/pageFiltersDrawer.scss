@@ -1,0 +1,96 @@
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+
+
+.ui.page--filters_drawer {
+    &.ui.drawer .drawer-container-inner, .ui.drawer--wing .drawer--wing-container-inner {
+        padding-top: 49px;
+        .ui.drawer--title_bar {
+            background-color: $bkgd-light;
+            border-bottom-color: $border;
+            height: 49px;
+            > div {
+                height: 49px;
+            }
+            .ui.header.title {
+                align-items: center;
+                display: flex;
+                padding-right: 38px;
+                z-index: 1;
+                > div {
+                    align-items: center;
+                    display: flex;
+                    flex-grow: 1;
+                }
+            }
+        }
+        .ui.drawer--title_bar .close-button {
+            width: 16px;
+            z-index: 2;
+        }
+    }
+    .page--filters_drawer-row {
+        margin-bottom: rem(44px);
+        .ui.header {
+            margin-bottom: rem(22px);
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .page--filters_drawer-item {
+        margin-bottom: 11px;
+        &.filters_drawer--nested_toggles, &:last-child {
+            margin-bottom: 0;
+        }
+        &.filters_drawer--nested_toggles {
+            &:first-child .filters_drawer--nested_toggles--label {
+                border-top: 1px solid $border;
+            }
+            &:not(:last-child) .filters_drawer--nested_toggles--label {
+                + div {
+                    border-bottom: 1px solid $border;
+                }
+            }
+        }
+    }
+    .filters_drawer--nested_toggles--label,
+    .filters_drawer--nested_toggles--value_label,
+    .filters_drawer--nested_toggles--wing--option_label {
+        align-items: center;
+        display: flex;
+        font-size: rem(14px);
+        padding: 0 11px;
+        > span {
+            flex-grow: 1;
+        }
+    }
+    .filters_drawer--nested_toggles--label, .filters_drawer--nested_toggles--wing--option_label {
+        border-bottom: 1px solid $border;
+        cursor: pointer;
+        font-weight: $default-font-weight-semibold;
+        margin: 0 -11px;
+        min-height: 43px;
+        transition: background-color 200ms ease-in;
+    }
+    .filters_drawer--nested_toggles--label {
+        + div {
+            margin: 0 -11px;
+            padding: 22px 11px 33px;
+        }
+    }
+    .filters_drawer--nested_toggles--value_label {
+        min-height: 24px;
+    }
+    .filters_drawer--nested_toggles--wing--option_label {
+        &:first-child {
+            border-top: 1px solid $border;
+        }
+        &.is-selected {
+            background-color: $bkgd-highlight;
+            color: $color-text-inverse;
+        }
+    }
+    .ui.drawer--wing .ui.drawer--content .ui.header {
+        margin-bottom: 22px;
+    }
+}

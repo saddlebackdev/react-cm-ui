@@ -2,8 +2,11 @@
 
 import './app.scss';
 
-import { DOMUtils } from 'react-cm-ui';
+import { Button, DOMUtils, Icon } from 'react-cm-ui';
+import _ from 'lodash';
+import breakpointActions from '../shared/breakpointActions.js';
 import Header from './header.js';
+import { Link } from 'react-router';
 import MediaQuery from 'react-responsive';
 import Navigation from './navigation.js';
 import React from 'react';
@@ -17,26 +20,68 @@ export default class CoreApp extends React.Component {
         super(props);
 
         this._curScrollPos = null;
+        this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
     }
 
-    render() {
-        return (
-            <section className="core-app-root">
-                <Navigation toggleNavigation={this._onToggleNavigation.bind(this)} />
-
-                <div className="layout">
-                    <MediaQuery maxWidth={767}>
-                        <Header onToggleNavigation={this._onToggleNavigation.bind(this)} />
-                    </MediaQuery>
-
-                    {this.props.children}
-                </div>
-            </section>
-        );
+    componentDidMount() {
+        window.addEventListener('resize', this._onResizeDebounce);
+        this._onResize();
     }
 
     componentWillMount() {
         document.querySelector('html').classList.add(DOMUtils.browserDetect());
+    }
+
+    render() {
+        const { children } = this.props;
+        const isExample = this.props.location.pathname.split('/').pop() === 'demo';
+
+        if (isExample) {
+            return (
+                <div className="demo">
+                    <div className="demo--navigation">
+                        <div>
+                            <Link to={{ pathname: '/' }}>
+                                <Button
+                                    color="transparent"
+                                    compact
+                                    style={{
+                                        margin: '11px 0',
+                                    }}
+                                >
+                                    <Icon type="chevron-left" />
+                                    <span>Back to Docs</span>
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="demo--layout">
+                        <div className="page-content">
+                            {children}
+                        </div>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <section className="core-app-root">
+                    <Navigation toggleNavigation={this._onToggleNavigation.bind(this)} />
+
+                    <div className="layout">
+                        <MediaQuery maxWidth={767}>
+                            <Header onToggleNavigation={this._onToggleNavigation.bind(this)} />
+                        </MediaQuery>
+
+                        {children}
+                    </div>
+                </section>
+            );
+        }
+    }
+
+    _onResize() {
+        breakpointActions.update();
     }
 
     _onToggleNavigation(event) {

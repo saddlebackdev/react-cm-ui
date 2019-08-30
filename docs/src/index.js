@@ -7,6 +7,8 @@ import 'regenerator-runtime/runtime';
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
+import { appReduxStore } from './shared/configureReduxStore.js';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import routes from './routes.js';
@@ -30,7 +32,13 @@ const onUpdate = () => {
 
 const render = () => {
     ReactDOM.render(
-        <Router history={browserHistory} onUpdate={onUpdate} routes={routes} />,
+        <Provider store={appReduxStore}>
+            <Router
+                history={browserHistory}
+                onUpdate={onUpdate}
+                routes={routes}
+            />
+        </Provider>,
         document.getElementById('coreApp')
     );
 };

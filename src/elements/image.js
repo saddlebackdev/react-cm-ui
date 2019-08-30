@@ -1,6 +1,6 @@
 'use strict';
 
-import { borderColor, borderColorInverse } from '../shared/styles/colors.scss';
+import { border as borderColor, bkgd as borderColorInverse } from '../shared/styles/colors.scss';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';

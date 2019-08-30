@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.1
+
+- Moved **&lt;Page /&gt;** component and its sub components to the `./src/modules` directory.
+- Started a demo for how the **&lt;Page /&gt;** component and its sub components are to look like. It's a work in progress. Please give some grace.
+- Changes to **&lt;Page.FiltersDrawer /&gt;**:
+  - Fixed the header in this component which broke when we refactored the **&lt;Drawer /&gt;** component.
+  - New `rows.items.dropdown` property!
+  - New `rows.items.multiSelect` property!
+  - New `rows.items.nestedToggles` property!
+- New **&lt;Drawer.Details /&gt;** component!
+- Exported our `./src/shared/styles/colors.scss` so that we can use the variables in JS. The plan is to remove the hyphenated case variables in this file soon. I decided to forgo for a while due to regressions it would cause.
+
 ## 5.1.0
 
 - Applied the **&lt;PhoneInput /&gt;** from `v4.1.4-hotfix` to this release.
