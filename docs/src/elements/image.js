@@ -76,8 +76,8 @@ export default class ElementsImage extends React.Component {
                 name: 'border',
                 type: 'number',
                 default: '',
-                description: 'Determines width of border',
-                allowedTypes: '',
+                description: 'Determines width of border, If set to true border width is set to 1. Also, setting it to number would set same border width',
+                allowedTypes: 'bool, number',
             }, {
                 name: 'borderInverse',
                 type: 'bool',

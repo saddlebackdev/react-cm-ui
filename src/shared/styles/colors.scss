@@ -86,3 +86,8 @@ $color-text-warning:        $sc-orange;
 $color-text-secondary:      $sc-teal-dark;
 $color-text-code:           $sc-red-orange-dark;
 $color-text-success:        $sc-green;
+
+:export {
+    borderColor: $border;
+    borderColorInverse: $pcn-white;
+}

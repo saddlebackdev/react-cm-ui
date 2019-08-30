@@ -1,5 +1,7 @@
 'use strict';
 
+import { borderColor, borderColorInverse } from '../shared/styles/colors.scss';
+
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import Icon from '../elements/icon.js';
@@ -10,7 +12,6 @@ class Image extends Component {
     render() {
         const { as, border, borderInverse, className, name, size, src, style, type } = this.props;
         let newStyle = style;
-
         const ElementType = Utils.getElementType(!type ? as : 'div', this.props);
         const containerClasses = ClassNames('ui', 'image', className, {
             'image-avatar': type === 'person' || type === 'user',
@@ -36,15 +37,17 @@ class Image extends Component {
         let newInitials, avatarSize = 'xsmall';
 
         if (type) {
-            const boxShadowStyle = src ? 'none' : (!border ? 'inset 0 0 0 1px #dbe0e3' : null);
-            const borderStyle = border ? (borderInverse ? `${border}px solid #fff` : `${border}px solid #dbe0e3`) : 'none';
+            const boxShadowStyle = src ? 'none' : (!border ? `inset 0 0 0 1px ${borderColor}` : null);
+            const borderColorStyle = borderInverse ? borderColorInverse : borderColor;
+            const borderWidth = border === true ? '1' : border; 
+
             newStyle = Object.assign({}, {
-                boxShadow: boxShadowStyle,
                 backgroundImage: src ? `url(${src})` : null,
+                border: border ? `${borderWidth}px solid ${borderColorStyle}` : null,
+                boxShadow: boxShadowStyle,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size,
-                border: borderStyle,
             }, style );
 
             if (name) {
@@ -86,7 +89,10 @@ Image.defaultProps = {
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
-    border: PropTypes.number,
+    border: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number,
+    ]),
     borderInverse: PropTypes.bool,
     className: PropTypes.string,
     name: PropTypes.string,
