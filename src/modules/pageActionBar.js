@@ -268,12 +268,7 @@ class PageActionBar extends React.Component {
                                 } = column;
                                 const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
 
-                                if (!jsx && !actionsButton && !button && !list && !search) {
-                                    console.warn(
-                                        '<Page.ActionsBar>\'s column object must have one of the ' +
-                                        'following properties: button, jsx, list, or search.'
-                                    );
-                                } else if (!jsx && actionsButton && !button && !list && !search) {
+                                if (actionsButton) {
                                     // Button
                                     return (
                                         <Grid.Column
@@ -293,7 +288,7 @@ class PageActionBar extends React.Component {
                                             />
                                         </Grid.Column>
                                     );
-                                } else if (!jsx && !actionsButton && button && !list && !search) {
+                                } else if (button) {
                                     // Button
                                     return (
                                         <Grid.Column
@@ -316,7 +311,7 @@ class PageActionBar extends React.Component {
                                             </Button>
                                         </Grid.Column>
                                     );
-                                } else if (!jsx && !actionsButton && !button && list && !search) {
+                                } else if (list) {
                                     // List
                                     return (
                                         <Grid.Column
@@ -466,7 +461,7 @@ class PageActionBar extends React.Component {
                                             )}
                                         </Grid.Column>
                                     );
-                                } else if (!jsx && !actionsButton && !button && !list && search) {
+                                } else if (search) {
                                     // Search
                                     return (
                                         <Grid.Column
@@ -486,7 +481,7 @@ class PageActionBar extends React.Component {
                                             />
                                         </Grid.Column>
                                     );
-                                } else if (jsx && !actionsButton && !button && !list && !search) {
+                                } else if (jsx) {
                                     // JSX
                                     return (
                                         <Grid.Column
@@ -502,6 +497,13 @@ class PageActionBar extends React.Component {
                                             {jsx}
                                         </Grid.Column>
                                     );
+                                } else {
+                                    console.warn(
+                                        '<Page.ActionsBar>\'s column object must have one of the ' +
+                                        'following properties: button, jsx, list, or search.'
+                                    );
+
+                                    return false;
                                 }
                             })}
                         </Grid>
