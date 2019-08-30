@@ -167,6 +167,7 @@ class ActionsButton extends React.PureComponent {
 
 ActionsButton.propTypes = {
     header: PropTypes.string.isRequired,
+    id: PropTypes.string,
     options: PropTypes.array.isRequired,
     style: PropTypes.object,
 };
@@ -235,6 +236,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
+    id: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
     style: PropTypes.object,
@@ -250,13 +252,17 @@ class PageActionBar extends React.Component {
     }
 
     render() {
-        const { children, className, columns, style } = this.props;
+        const { children, className, columns, id, style } = this.props;
         const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
         let gridColumnKeyNum = 1;
         let gridColumnListItemKeyNum = 1;
 
         return (
-            <header className={containerClasses} style={style}>
+            <header
+                className={containerClasses}
+                id={id}
+                style={style}
+            >
                 <div style={{ width: '100%' }}>
                     {columns && (
                         <Grid
@@ -548,6 +554,7 @@ class PageActionBar extends React.Component {
 PageActionBar.propTypes = {
     className: PropTypes.string,
     columns: PropTypes.array,
+    id: PropTypes.string,
     style: PropTypes.object,
 };
 
