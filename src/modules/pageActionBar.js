@@ -99,6 +99,7 @@ ActionsButtonDrawerOption.propsTypes = {
 class ActionsButton extends React.PureComponent {
     constructor() {
         super();
+        console.log('ActionsButton constructor');
 
         this.state = {
             isDrawerOpen: false,
@@ -111,10 +112,13 @@ class ActionsButton extends React.PureComponent {
         const {
             header,
             id,
+            isMobileSearchVisible,
             options,
             style,
         } = this.props;
         const { isDrawerOpen } = this.state;
+        const headerHeight = 55;
+        const actionBarHeight = isMobileSearchVisible ? 105 : 50;
         let optionKeyNum = 1;
 
         return (
@@ -127,7 +131,7 @@ class ActionsButton extends React.PureComponent {
                     onClick={this._onDrawerToggle}
                     style={style}
                 >
-                    <Icon size="medium" type="ellipsis-h" />
+                    <Icon size="small" type="ellipsis-h" />
                 </Button>
 
                 <Drawer
@@ -136,7 +140,7 @@ class ActionsButton extends React.PureComponent {
                     isOpen={isDrawerOpen}
                     maxWidth={224}
                     onClose={this._onDrawerToggle}
-                    positionYOffset={55 + 70}
+                    positionYOffset={headerHeight + actionBarHeight}
                     shadowSize="xsmall"
                 >
                     <Drawer.Content className="action_bar--actions_button_drawer_content">
@@ -168,6 +172,7 @@ class ActionsButton extends React.PureComponent {
 ActionsButton.propTypes = {
     header: PropTypes.string.isRequired,
     id: PropTypes.string,
+    isMobileSearchVisible: PropTypes.bool,
     options: PropTypes.array.isRequired,
     style: PropTypes.object,
 };
@@ -179,38 +184,74 @@ class Search extends React.Component {
         this._onClearClick = this._onClearClick.bind(this);
         this._onChange = this._onChange.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
+        this._onMobileSearchIconToggle = this._onMobileSearchIconToggle.bind(this);
     }
 
     render() {
         const {
             id,
+            isMobileSearchVisible,
             style,
+            type,
             value,
         } = this.props;
+        const isGridColumn = type === 'gridColumn';
 
         return (
-            <Input
-                fluid
-                icon={value ?
-                    <Icon
-                        compact
-                        onClick={this._onClearClick}
-                        title="Clear Search"
-                        type="times"
-                    /> :
-                    <Icon
-                        compact
-                        title="Search"
-                        type="search"
-                    />
-                }
-                id={id}
-                onChange={this._onChange}
-                onKeyDown={this._onKeyDown}
-                placeholder="Search"
-                value={value}
-                style={style}
-            />
+            <MediaQuery maxWidth={767}>
+                {isMobile => {
+                    const inputContainerClasses = ClassNames('action_bar--search', {
+                        'action_bar--search-mobile': isMobile,
+                        'action_bar--search-mobile-show': isMobile && isMobileSearchVisible,
+                    });
+
+                    if (isMobile && isGridColumn) {
+                        return (
+                            <Icon
+                                className="action_bar--search_icon"
+                                color={isMobileSearchVisible ?
+                                    'highlight' :
+                                    null
+                                }
+                                id={id}
+                                onClick={this._onMobileSearchIconToggle}
+                                title="Search"
+                                type="search"
+                            />
+                        );
+                    }
+
+                    return (
+                        <div
+                            className={inputContainerClasses}
+                        >
+                            <Input
+                                className="action_bar--search_input"
+                                fluid
+                                icon={value ?
+                                    <Icon
+                                        compact
+                                        onClick={this._onClearClick}
+                                        title="Clear Search"
+                                        type="times"
+                                    /> :
+                                    <Icon
+                                        compact
+                                        title="Search"
+                                        type="search"
+                                    />
+                                }
+                                id={id}
+                                onChange={this._onChange}
+                                onKeyDown={this._onKeyDown}
+                                placeholder="Search"
+                                value={value}
+                                style={style}
+                            />
+                        </div>
+                    );
+                }}
+            </MediaQuery>
         );
     }
 
@@ -233,29 +274,47 @@ class Search extends React.Component {
             onKeyDown(event);
         }
     }
+
+    _onMobileSearchIconToggle() {
+        const { onMobileSearchIconToggle } = this.props;
+
+        if (_.isFunction(onMobileSearchIconToggle)) {
+            onMobileSearchIconToggle();
+        }
+    }
 }
 
 Search.propTypes = {
     id: PropTypes.string,
+    isMobileSearchVisible: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
+    onMobileSearchIconToggle: PropTypes.func,
     style: PropTypes.object,
+    type: PropTypes.oneOf([ 'gridColumn', 'mobileSearch' ]).isRequired,
 };
 
 class PageActionBar extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            isMobileSearchVisible: false,
+        };
+
         this._onClearSearchClick = this._onClearSearchClick.bind(this);
+        this._onMobileSearchIconToggle = this._onMobileSearchIconToggle.bind(this);
         this._onSearchChange = this._onSearchChange.bind(this);
         this._onSearchKeyDown = this._onSearchKeyDown.bind(this);
     }
 
     render() {
         const { children, className, columns, id, style } = this.props;
+        const { isMobileSearchVisible } = this.state;
         const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
         let gridColumnKeyNum = 1;
         let gridColumnListItemKeyNum = 1;
+        let searchDataForMobile = _.find(columns, column => column.search);
 
         return (
             <header
@@ -269,7 +328,7 @@ class PageActionBar extends React.Component {
                             className="action_bar--grid"
                             verticalAlign="middle"
                         >
-                            {_.map(columns, (column, index) => {
+                            {_.map(columns, column => {
                                 const {
                                     actionsButton,
                                     button,
@@ -295,6 +354,7 @@ class PageActionBar extends React.Component {
                                         >
                                             <ActionsButton
                                                 id={actionsButton.id}
+                                                isMobileSearchVisible={isMobileSearchVisible}
                                                 header={actionsButton.header}
                                                 options={actionsButton.options}
                                                 style={actionsButton.style}
@@ -500,7 +560,9 @@ class PageActionBar extends React.Component {
                                                 id={search.id}
                                                 onChange={search.onChange}
                                                 onKeyDown={search.onKeyDown}
+                                                onMobileSearchIconToggle={this._onMobileSearchIconToggle}
                                                 value={search.value}
+                                                type="gridColumn"
                                             />
                                         </Grid.Column>
                                     );
@@ -532,6 +594,14 @@ class PageActionBar extends React.Component {
                         </Grid>
                     )}
 
+                    {searchDataForMobile.search &&
+                        <Search
+                            {...searchDataForMobile.search}
+                            isMobileSearchVisible={isMobileSearchVisible}
+                            type="mobileSearch"
+                        />
+                    }
+
                     {children}
                 </div>
             </header>
@@ -548,6 +618,12 @@ class PageActionBar extends React.Component {
 
     _onSearchKeyDown() {
 
+    }
+
+    _onMobileSearchIconToggle() {
+        this.setState(prevState => ({
+            isMobileSearchVisible: !prevState.isMobileSearchVisible,
+        }));
     }
 }
 

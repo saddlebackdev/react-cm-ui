@@ -49,8 +49,8 @@
     .action_bar-page {
         background-color: color(backgroundColorLight);
         border-top: 1px solid color(borderColor);
-        min-height: 70px;
-        padding: 0 11px;
+        min-height: 50px;
+        padding: 8px 11px;
         top: 55px;
         width: auto;
         z-index: 3;
@@ -67,6 +67,8 @@
         width: 100%;
     }
     .action_bar--grid_column {
+        padding-bottom: 0;
+        padding-top: 0;
         &:first-child {
             padding-left: 0;
         }
@@ -134,17 +136,53 @@
             background-color: color(backgroundColor);
         }
     }
+    .action_bar--search-mobile {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0;
+        transition: height 300ms ease, opacity 300ms ease, padding-top 300ms ease;
+        &-show {
+            height: 55px;
+            opacity: 1;
+            padding-top: 11px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .ui {
+        &.action_bar {
+            .button {
+                height: 32px;
+                min-height: 32px;
+                &-icon {
+                    width: 32px;
+                    .button-inner-container {
+                        width: 32px;
+                    }
+                }
+                .button-inner-container {
+                    height: 32px;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) {
     .ui {
-        &.action_bar-page {
-            left: 250px;
+        &.action_bar {
             padding: 0 22px;
-            top: 70px;
-        }
-        &.action_bar-drawer {
-            padding: 0 22px;
+            &-page {
+                left: 250px;
+                min-height: 70px;
+                padding: 0 22px;
+                top: 70px;
+            }
+            &-drawer {
+                padding: 0 22px;
+            }
         }
     }
 }
