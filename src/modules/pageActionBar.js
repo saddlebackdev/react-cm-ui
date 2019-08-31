@@ -99,7 +99,6 @@ ActionsButtonDrawerOption.propsTypes = {
 class ActionsButton extends React.PureComponent {
     constructor() {
         super();
-        console.log('ActionsButton constructor');
 
         this.state = {
             isDrawerOpen: false,
@@ -117,7 +116,6 @@ class ActionsButton extends React.PureComponent {
             style,
         } = this.props;
         const { isDrawerOpen } = this.state;
-        console.log('isDrawerOpen', isDrawerOpen);
         const headerHeight = 55;
         const actionBarHeight = isMobileSearchVisible ? 105 : 50;
         let optionKeyNum = 1;
