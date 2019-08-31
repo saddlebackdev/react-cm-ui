@@ -141,7 +141,7 @@
         opacity: 0;
         overflow: hidden;
         padding-top: 0;
-        transition: height 300ms ease, opacity 300ms ease, padding-top 300ms ease;
+        transition: height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out;
         &-show {
             height: 55px;
             opacity: 1;

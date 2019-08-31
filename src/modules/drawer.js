@@ -24,7 +24,7 @@ const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
 const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
 
-class Drawer extends React.PureComponent {
+class Drawer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -41,16 +41,24 @@ class Drawer extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.isOpen && this.props.isOpen) {
+        const { props: nextProps } = this;
+
+        if (!prevProps.isOpen && nextProps.isOpen) {
             this.setState({
-                isOpen: this.props.isOpen,
+                isOpen: nextProps.isOpen,
             }, () => {
                 this._onOpen();
             });
         }
 
-        if (prevProps.isOpen && !this.props.isOpen) {
+        if (prevProps.isOpen && !nextProps.isOpen) {
             this._onBeforeClose();
+        }
+
+        if (prevProps.isOpen && nextProps.isOpen && prevProps.positionYOffset !== nextProps.positionYOffset) {
+            this._drawerContainerRef.style.transform = _.isNumber(nextProps.positionYOffset) ?
+                `${TRANSLATE_X_END} translateY(${nextProps.positionYOffset}px)` :
+                TRANSLATE_X_END;
         }
     }
 
@@ -117,7 +125,7 @@ class Drawer extends React.PureComponent {
                         ref={el => this._drawerContainerRef = el}
                         style={{
                             height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
-                            transform: this._getTransform(),
+                            // transform: this._setStartOfTransform(),
                         }}
                     >
                         <ScrollBar
@@ -147,11 +155,13 @@ class Drawer extends React.PureComponent {
         );
     }
 
-    _getTransform() {
+    _setStartOfTransform() {
         const { positionYOffset } = this.props;
         const translateX = this._isPositionX('left') ? TRANSLATE_X_LEFT_START : TRANSLATE_X_RIGHT_START;
 
-        return _.isNumber(positionYOffset) ? `${translateX} translateY(${positionYOffset}px)` : translateX;
+        this._drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
+            `${translateX} translateY(${positionYOffset}px)` :
+            translateX;
     }
 
     _isPositionX(position) {
@@ -165,7 +175,7 @@ class Drawer extends React.PureComponent {
 
         BODY.classList.add('drawer-animate-out');
         this._drawerContainer.classList.add('drawer-animate-out');
-        this._drawerContainer.style.transform = this._getTransform();
+        this._drawerContainer.style.transform = this._setStartOfTransform();
         this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
     }
 
@@ -214,7 +224,7 @@ class Drawer extends React.PureComponent {
 
         BODY.classList.remove('drawer-animate-out');
 
-        this._drawerContainerRef.style.transform = this._getTransform();
+        this._drawerContainerRef.style.transform = this._setStartOfTransform();
 
         if (_.isFunction(onCloseComplete)) {
             onCloseComplete(true);
@@ -229,6 +239,7 @@ class Drawer extends React.PureComponent {
 
     _onOpen() {
         this._useComponentWillUnmount = true;
+        this._setStartOfTransform();
 
         const nodePortal = ReactDOM.findDOMNode(this);
         this._drawerContainer = nodePortal.querySelector('.drawer-container');

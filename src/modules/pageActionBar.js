@@ -117,6 +117,7 @@ class ActionsButton extends React.PureComponent {
             style,
         } = this.props;
         const { isDrawerOpen } = this.state;
+        console.log('isDrawerOpen', isDrawerOpen);
         const headerHeight = 55;
         const actionBarHeight = isMobileSearchVisible ? 105 : 50;
         let optionKeyNum = 1;
