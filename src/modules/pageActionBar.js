@@ -181,74 +181,49 @@ class Search extends React.Component {
         this._onClearClick = this._onClearClick.bind(this);
         this._onChange = this._onChange.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
-        this._onMobileSearchIconToggle = this._onMobileSearchIconToggle.bind(this);
     }
 
     render() {
         const {
             id,
+            isMobileSearch,
             isMobileSearchVisible,
             style,
-            type,
             value,
         } = this.props;
-        const isGridColumn = type === 'gridColumn';
+        const inputContainerClasses = ClassNames('action_bar--search', {
+            'action_bar--search-mobile': isMobileSearch,
+            'action_bar--search-mobile-show': isMobileSearch && isMobileSearchVisible,
+        });
 
         return (
-            <MediaQuery maxWidth={767}>
-                {isMobile => {
-                    const inputContainerClasses = ClassNames('action_bar--search', {
-                        'action_bar--search-mobile': isMobile,
-                        'action_bar--search-mobile-show': isMobile && isMobileSearchVisible,
-                    });
-
-                    if (isMobile && isGridColumn) {
-                        return (
-                            <Icon
-                                className="action_bar--search_icon"
-                                color={isMobileSearchVisible ?
-                                    'highlight' :
-                                    null
-                                }
-                                id={id}
-                                onClick={this._onMobileSearchIconToggle}
-                                title="Search"
-                                type="search"
-                            />
-                        );
+            <div
+                className={inputContainerClasses}
+            >
+                <Input
+                    className="action_bar--search_input"
+                    fluid
+                    icon={value ?
+                        <Icon
+                            compact
+                            onClick={this._onClearClick}
+                            title="Clear Search"
+                            type="times"
+                        /> :
+                        <Icon
+                            compact
+                            title="Search"
+                            type="search"
+                        />
                     }
-
-                    return (
-                        <div
-                            className={inputContainerClasses}
-                        >
-                            <Input
-                                className="action_bar--search_input"
-                                fluid
-                                icon={value ?
-                                    <Icon
-                                        compact
-                                        onClick={this._onClearClick}
-                                        title="Clear Search"
-                                        type="times"
-                                    /> :
-                                    <Icon
-                                        compact
-                                        title="Search"
-                                        type="search"
-                                    />
-                                }
-                                id={id}
-                                onChange={this._onChange}
-                                onKeyDown={this._onKeyDown}
-                                placeholder="Search"
-                                value={value}
-                                style={style}
-                            />
-                        </div>
-                    );
-                }}
-            </MediaQuery>
+                    id={id}
+                    onChange={this._onChange}
+                    onKeyDown={this._onKeyDown}
+                    placeholder="Search"
+                    value={value}
+                    style={style}
+                />
+            </div>
         );
     }
 
@@ -271,24 +246,15 @@ class Search extends React.Component {
             onKeyDown(event);
         }
     }
-
-    _onMobileSearchIconToggle() {
-        const { onMobileSearchIconToggle } = this.props;
-
-        if (_.isFunction(onMobileSearchIconToggle)) {
-            onMobileSearchIconToggle();
-        }
-    }
 }
 
 Search.propTypes = {
     id: PropTypes.string,
+    isMobileSearch: PropTypes.bool,
     isMobileSearchVisible: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
-    onMobileSearchIconToggle: PropTypes.func,
     style: PropTypes.object,
-    type: PropTypes.oneOf([ 'gridColumn', 'mobileSearch' ]).isRequired,
 };
 
 class PageActionBar extends React.Component {
@@ -306,7 +272,7 @@ class PageActionBar extends React.Component {
         const { children, className, columns, id, style } = this.props;
         const { isMobileSearchVisible } = this.state;
         const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
-        const searchDataForMobile = columns && _.find(columns, column => column.search);
+        let searchDataForMobile = null;
         let gridColumnKeyNum = 1;
         let gridColumnListItemKeyNum = 1;
 
@@ -325,7 +291,6 @@ class PageActionBar extends React.Component {
                             >
                                 {_.map(columns, column => {
                                     const {
-                                        actionsButton,
                                         button,
                                         jsx,
                                         list,
@@ -334,41 +299,28 @@ class PageActionBar extends React.Component {
                                     const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
                                     const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`;
 
-                                    if (actionsButton) {
-                                        // Button
-                                        return (
-                                            <Grid.Column
-                                                className={gridColumnClasses}
-                                                key={gridColumnKey}
-                                                style={Object.assign({}, {
-                                                    flexBasis: column.flexBasis || 'auto',
-                                                    flexGrow: column.flexGrow || 0,
-                                                    flexShrink: column.flexShrink || 0,
-                                                    width: 'auto',
-                                                }, column.style)}
-                                            >
-                                                <ActionsButton
-                                                    id={actionsButton.id}
-                                                    isMobileSearchVisible={isMobileSearchVisible}
-                                                    header={actionsButton.header}
-                                                    options={actionsButton.options}
-                                                    style={actionsButton.style}
-                                                />
-                                            </Grid.Column>
+                                    if (!button && !jsx && !list && !search) {
+                                        console.warn(
+                                            '<Page.ActionsBar>\'s column object must have one of the ' +
+                                            'following properties: button, jsx, or list.' +
+                                            'Please check this column object ' + JSON.stringify(column)
                                         );
-                                    } else if (button) {
-                                        // Button
-                                        return (
-                                            <Grid.Column
-                                                className={gridColumnClasses}
-                                                key={gridColumnKey}
-                                                style={Object.assign({}, {
-                                                    flexBasis: column.flexBasis || 'auto',
-                                                    flexGrow: column.flexGrow || 0,
-                                                    flexShrink: column.flexShrink || 0,
-                                                    width: 'auto',
-                                                }, column.style)}
-                                            >
+
+                                        return false;
+                                    }
+
+                                    return (
+                                        <Grid.Column
+                                            className={gridColumnClasses}
+                                            key={gridColumnKey}
+                                            style={Object.assign({}, {
+                                                flexBasis: column.flexBasis || 'auto',
+                                                flexGrow: column.flexGrow || 0,
+                                                flexShrink: column.flexShrink || 0,
+                                                width: 'auto',
+                                            }, column.style)}
+                                        >
+                                            {button &&
                                                 <Button
                                                     color={button.color}
                                                     id={button.id}
@@ -378,225 +330,172 @@ class PageActionBar extends React.Component {
                                                     {button.iconType && <Icon type={button.iconType} />}
                                                     {button.label && <span>{button.label}</span>}
                                                 </Button>
-                                            </Grid.Column>
-                                        );
-                                    } else if (list) {
-                                        // List
-                                        return (
-                                            <Grid.Column
-                                                className={gridColumnClasses}
-                                                key={gridColumnKey}
-                                                style={Object.assign({}, {
-                                                    flexBasis: column.flexBasis || 'auto',
-                                                    flexGrow: column.flexGrow || 0,
-                                                    flexShrink: column.flexShrink || 0,
-                                                    width: 'auto',
-                                                }, column.style)}
-                                            >
-                                                {_.isArray(column.list) && (
-                                                    <List
-                                                        className="action_bar--list"
-                                                        divide
-                                                        horizontal
-                                                    >
-                                                        {_.map(column.list, item => {
-                                                            const {
-                                                                jsx,
-                                                                iconBack,
-                                                                iconFilter,
-                                                                iconGrid,
-                                                                iconTable,
-                                                            } = item;
-                                                            const className = ClassNames('action_bar--list_item', {
-                                                                'action_bar--list_item-jsx': jsx,
-                                                                'action_bar--list_item-icon_filter': iconFilter,
-                                                                'action_bar--list_item-icon_grid': iconGrid,
-                                                                'action_bar--list_item-icon_table': iconTable,
-                                                            });
-                                                            const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`;
+                                            }
 
-                                                            if (iconBack) {
-                                                                const {
-                                                                    id,
-                                                                    onClick,
-                                                                    selected,
-                                                                    title,
-                                                                } = iconBack;
+                                            {list && _.isArray(list) &&
+                                                <List
+                                                    className="action_bar--list"
+                                                    horizontal
+                                                >
+                                                    {_.map(column.list, item => {
+                                                        const {
+                                                            actionsButton,
+                                                            jsx,
+                                                            iconBack,
+                                                            iconFilter,
+                                                            iconGrid,
+                                                            iconSearch,
+                                                            iconTable,
+                                                        } = item;
+                                                        const divide = _.isUndefined(item.divide) || item.divide;
+                                                        const className = ClassNames('action_bar--list_item', {
+                                                            'action_bar--list_item-jsx': jsx,
+                                                            'action_bar--list_item-icon_filter': iconFilter,
+                                                            'action_bar--list_item-icon_grid': iconGrid,
+                                                            'action_bar--list_item-icon_table': iconTable,
+                                                        });
+                                                        const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`;
 
-                                                                return (
-                                                                    <List.Item
-                                                                        className={className}
-                                                                        key={itemKey}
-                                                                    >
-                                                                        <Icon
-                                                                            color={selected ?
-                                                                                'highlight' :
-                                                                                null
-                                                                            }
-                                                                            id={id}
-                                                                            onClick={onClick}
-                                                                            title={title || 'Back'}
-                                                                            type="chevron-left"
-                                                                        />
-                                                                    </List.Item>
-                                                                );
-                                                            } else if (iconFilter) {
-                                                                const {
-                                                                    id,
-                                                                    isFiltering,
-                                                                    onClick,
-                                                                    selected,
-                                                                    title,
-                                                                } = iconFilter;
+                                                        if (!actionsButton &&
+                                                            !jsx &&
+                                                            !iconBack &&
+                                                            !iconFilter &&
+                                                            !iconGrid &&
+                                                            !iconSearch &&
+                                                            !iconTable
+                                                        ) {
+                                                            console.warn(
+                                                                '<Page.ActionsBar>\'s column.list object must have one of the ' +
+                                                                'following properties: actionsButton, iconBack, iconFilter, iconGrid, or iconTable.' +
+                                                                'Please check this column.list object ' + JSON.stringify(item)
+                                                            );
 
-                                                                return (
-                                                                    <List.Item
-                                                                        className={className}
-                                                                        key={itemKey}
-                                                                    >
-                                                                        <Icon
-                                                                            color={selected || isFiltering ?
-                                                                                'highlight' :
-                                                                                null
-                                                                            }
-                                                                            id={id}
-                                                                            onClick={onClick}
-                                                                            title={title || 'Filter'}
-                                                                            type="filter"
-                                                                        />
-                                                                    </List.Item>
-                                                                );
-                                                            } else if (iconGrid) {
-                                                                const {
-                                                                    id,
-                                                                    onClick,
-                                                                    selected,
-                                                                    title,
-                                                                } = iconGrid;
+                                                            return false;
+                                                        }
 
-                                                                return (
-                                                                    <List.Item
-                                                                        className={className}
-                                                                        key={itemKey}
-                                                                    >
-                                                                        <Icon
-                                                                            color={selected ?
-                                                                                'highlight' :
-                                                                                null
-                                                                            }
-                                                                            id={id}
-                                                                            onClick={onClick}
-                                                                            title={title || 'Grid View'}
-                                                                            type="grid"
-                                                                        />
-                                                                    </List.Item>
-                                                                );
-                                                            } else if (iconTable) {
-                                                                const {
-                                                                    id,
-                                                                    onClick,
-                                                                    selected,
-                                                                    title,
-                                                                } = iconTable;
+                                                        if (iconSearch) {
+                                                            searchDataForMobile = (
+                                                                <Search
+                                                                    {...iconSearch}
+                                                                    isMobileSearch
+                                                                    isMobileSearchVisible={isMobileSearchVisible}
+                                                                    type="mobileSearch"
+                                                                />
+                                                            );
+                                                        }
 
-                                                                return (
-                                                                    <List.Item
-                                                                        className={className}
-                                                                        key={itemKey}
-                                                                    >
-                                                                        <Icon
-                                                                            color={selected ?
-                                                                                'highlight' :
-                                                                                null
-                                                                            }
-                                                                            id={id}
-                                                                            onClick={onClick}
-                                                                            title={title || 'Table View'}
-                                                                            type="list"
-                                                                        />
-                                                                    </List.Item>
-                                                                );
-                                                            } else if (jsx) {
-                                                                return (
-                                                                    <List.Item
-                                                                        className={className}
-                                                                        key={itemKey}
-                                                                    >
-                                                                        {jsx}
-                                                                    </List.Item>
-                                                                );
-                                                            } else {
-                                                                console.warn(
-                                                                    '<Page.ActionsBar>\'s column.list object must have one of the ' +
-                                                                    'following properties: iconBack, iconFilter, iconGrid, or iconTable.' +
-                                                                    'Please check this column.list object ' + JSON.stringify(item)
-                                                                );
+                                                        return (
+                                                            <List.Item
+                                                                className={className}
+                                                                divide={divide}
+                                                                key={itemKey}
+                                                                style={Object.assign({}, {
+                                                                    alignItems: item.alignItems || 'flex-start',
+                                                                    flexBasis: item.flexBasis || 'auto',
+                                                                    flexGrow: item.flexGrow || 0,
+                                                                    flexShrink: item.flexShrink || 0,
+                                                                    width: 'auto',
+                                                                }, list.style)}
+                                                            >
+                                                                {actionsButton &&
+                                                                    <ActionsButton
+                                                                        id={actionsButton.id}
+                                                                        isMobileSearchVisible={isMobileSearchVisible}
+                                                                        header={actionsButton.header}
+                                                                        options={actionsButton.options}
+                                                                        style={actionsButton.style}
+                                                                    />
+                                                                }
 
-                                                                return false;
-                                                            }
-                                                        })}
-                                                    </List>
-                                                )}
-                                            </Grid.Column>
-                                        );
-                                    } else if (search) {
-                                        // Search
-                                        return (
-                                            <Grid.Column
-                                                className={gridColumnClasses}
-                                                key={gridColumnKey}
-                                                style={Object.assign({}, {
-                                                    flexBasis: column.flexBasis || 'auto',
-                                                    flexGrow: column.flexGrow || 1,
-                                                    flexShrink: column.flexShrink || 0,
-                                                    width: 'auto',
-                                                }, column.style)}
-                                            >
+                                                                {iconBack &&
+                                                                    <Icon
+                                                                        color={iconBack.selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        id={iconBack.id}
+                                                                        onClick={iconBack.onClick}
+                                                                        title={iconBack.title || 'Back'}
+                                                                        type="chevron-left"
+                                                                    />
+                                                                }
+
+                                                                {iconFilter &&
+                                                                    <Icon
+                                                                        color={iconFilter.selected || iconFilter.isFiltering ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        id={iconFilter.id}
+                                                                        onClick={iconFilter.onClick}
+                                                                        title={iconFilter.title || 'Filter'}
+                                                                        type="filter"
+                                                                    />
+                                                                }
+
+                                                                {iconGrid &&
+                                                                    <Icon
+                                                                        color={iconGrid.selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        id={iconGrid.id}
+                                                                        onClick={iconGrid.onClick}
+                                                                        title={iconGrid.title || 'Grid View'}
+                                                                        type="grid"
+                                                                    />
+                                                                }
+
+                                                                {iconSearch &&
+                                                                    <Icon
+                                                                        className="action_bar--search_icon"
+                                                                        color={isMobileSearchVisible ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        id={iconSearch.id}
+                                                                        onClick={this._onMobileSearchIconToggle}
+                                                                        title={iconSearch.title || 'Search'}
+                                                                        type="search"
+                                                                    />
+                                                                }
+
+                                                                {iconTable &&
+                                                                    <Icon
+                                                                        color={iconTable.selected ?
+                                                                            'highlight' :
+                                                                            null
+                                                                        }
+                                                                        id={iconTable.id}
+                                                                        onClick={iconTable.onClick}
+                                                                        title={iconTable.title || 'Table View'}
+                                                                        type="list"
+                                                                    />
+                                                                }
+
+                                                                {jsx}
+                                                            </List.Item>
+                                                        );
+                                                    })}
+                                                </List>
+                                            }
+
+                                            {search &&
                                                 <Search
                                                     id={search.id}
                                                     onChange={search.onChange}
                                                     onKeyDown={search.onKeyDown}
-                                                    onMobileSearchIconToggle={this._onMobileSearchIconToggle}
                                                     value={search.value}
-                                                    type="gridColumn"
                                                 />
-                                            </Grid.Column>
-                                        );
-                                    } else if (jsx) {
-                                        // JSX
-                                        return (
-                                            <Grid.Column
-                                                className={gridColumnClasses}
-                                                key={gridColumnKey}
-                                                style={Object.assign({}, {
-                                                    flexBasis: column.flexBasis || 'auto',
-                                                    flexGrow: column.flexGrow || 0,
-                                                    flexShrink: column.flexShrink || 0,
-                                                    width: 'auto',
-                                                }, column.style)}
-                                            >
-                                                {jsx}
-                                            </Grid.Column>
-                                        );
-                                    } else {
-                                        console.warn(
-                                            '<Page.ActionsBar>\'s column object must have one of the ' +
-                                            'following properties: button, jsx, list, or search.' +
-                                            'Please check this column object ' + JSON.stringify(column)
-                                        );
+                                            }
 
-                                        return false;
-                                    }
+                                            {jsx}
+                                        </Grid.Column>
+                                    );
                                 })}
                             </Grid>
 
-                            {searchDataForMobile.search &&
-                                <Search
-                                    {...searchDataForMobile.search}
-                                    isMobileSearchVisible={isMobileSearchVisible}
-                                    type="mobileSearch"
-                                />
-                            }
+                            {searchDataForMobile}
                         </React.Fragment>
                     )}
 

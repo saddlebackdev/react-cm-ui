@@ -88,6 +88,7 @@ class PageDemo extends React.PureComponent {
                     },
                 ],
             }, {
+                flexGrow: 1,
                 search: actionBarSearch,
             }, {
                 button: {
@@ -102,31 +103,37 @@ class PageDemo extends React.PureComponent {
         if (isMobile) {
             actionsBarColumns = [
                 {
-                    iconBack: {
-                        onClick: this._onBackClick,
-                    },
                     flexGrow: 1,
-                }, {
-                    search: actionBarSearch,
-                }, {
-                    iconFilter: actionBarIconFilter,
-                }, {
-                    actionsButton: {
-                        header: 'Foo Title',
-                        options: [
-                            {
-                                iconType: actionsBarColumns[2].button.iconType,
-                                label: actionsBarColumns[2].button.label,
-                                onClick: actionsBarColumns[2].button.onClick,
-                            }, {
-                                iconDisc: true,
-                                iconDiscColor: backgroundColorSuccess,
-                                iconType: 'envelope',
-                                label: 'Email',
-                                onClick: nop,
+                    list: [
+                        {
+                            iconBack: {
+                                onClick: this._onBackClick,
                             },
-                        ],
-                    },
+                            flexGrow: 1,
+                        }, {
+                            divide: false,
+                            iconSearch: actionBarSearch,
+                        }, {
+                            iconFilter: actionBarIconFilter,
+                        }, {
+                            actionsButton: {
+                                header: 'Foo Title',
+                                options: [
+                                    {
+                                        iconType: actionsBarColumns[2].button.iconType,
+                                        label: actionsBarColumns[2].button.label,
+                                        onClick: actionsBarColumns[2].button.onClick,
+                                    }, {
+                                        iconDisc: true,
+                                        iconDiscColor: backgroundColorSuccess,
+                                        iconType: 'envelope',
+                                        label: 'Email',
+                                        onClick: nop,
+                                    },
+                                ],
+                            },
+                        },
+                    ],
                 },
             ];
         }
