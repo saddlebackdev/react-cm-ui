@@ -23,6 +23,7 @@ export default class CoreApp extends React.Component {
         this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
 
         document.querySelector('html').classList.add(DOMUtils.browserDetect());
+        breakpointActions.update();
     }
 
     componentDidMount() {
