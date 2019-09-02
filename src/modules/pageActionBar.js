@@ -7,69 +7,35 @@ import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 import Input from '../elements/input.js';
 import List from '../elements/list.js';
-import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 class ActionsButtonDrawerOption extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            isHover: false,
-        };
-
-        this._onOptionToggle = this._onOptionToggle.bind(this);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        const { props: prevProps, state: prevState } = this;
-
-        return !_.isEqual(prevProps.option, nextProps.option) || prevState.isHover !== nextState.isHover;
-    }
-
     render() {
         const { option } = this.props;
-        const { isHover } = this.state;
         const containerClasses = ClassNames('action_bar--actions_button_drawer_option', {
             'action_bar--actions_button_drawer_option-disable': option.disable,
-            'action_bar--actions_button_drawer_option-hover': isHover,
         });
-        const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container', {
-            'actions_button_drawer_option--icon_container-disc': option.iconDisc,
-            'actions_button_drawer_option--icon_container-hover': option.iconDisc && isHover,
-        });
+        const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container');
 
         return (
             <div
                 className={containerClasses}
                 onClick={option.onClick}
-                onMouseOut={this._onOptionToggle}
-                onMouseOver={this._onOptionToggle}
             >
                 <div
                     className={iconContainerClasses}
                     id={option.id}
                     style={{
-                        backgroundColor: option.iconDiscColor,
-                        height: !option.iconDisc && option.iconSize,
+                        backgroundColor: option.iconBackgroundColor,
                     }}
                 >
                     <Icon
                         color={option.iconColor}
                         compact
                         className="actions_button_drawer_option--icon"
-                        inverse={isHover || option.iconDisc}
-                        size={
-                            !option.iconDisc && option.iconSize ||
-                            (
-                                option.iconDisc &&
-                                option.iconSize &&
-                                option.iconSize <= 24 &&
-                                option.iconSize
-                            ) ||
-                            (option.iconDisc ? 16 : 24)
-                        }
+                        inverse
+                        size={option.iconSize || 16}
                         type={option.iconType}
                     />
                 </div>
@@ -81,12 +47,6 @@ class ActionsButtonDrawerOption extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    _onOptionToggle() {
-        this.setState(prevState => ({
-            isHover: !prevState.isHover,
-        }));
     }
 }
 

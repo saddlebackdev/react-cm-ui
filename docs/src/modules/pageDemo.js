@@ -125,7 +125,7 @@ class PageDemo extends React.PureComponent {
                                         onClick: actionsBarColumns[2].button.onClick,
                                     }, {
                                         iconDisc: true,
-                                        iconDiscColor: backgroundColorSuccess,
+                                        iconBackgroundColor: backgroundColorSuccess,
                                         iconType: 'envelope',
                                         label: 'Email',
                                         onClick: nop,

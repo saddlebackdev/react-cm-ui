@@ -123,19 +123,14 @@
     }
     .actions_button_drawer_option--icon_container {
         align-items: center;
+        background-color: color(backgroundColorInverse);
+        border-radius: 50%;
         display: inline-flex;
         height: 32px;
         justify-content: center;
         margin-right: 16px;
         transition: background-color 200ms ease-in;
         width: 32px;
-        &-disc {
-            background-color: color(backgroundColorInverse);
-            border-radius: 50%;
-        }
-        &-hover {
-            background-color: color(backgroundColor);
-        }
     }
     .action_bar--search-mobile {
         height: 0;
