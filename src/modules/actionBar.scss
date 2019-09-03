@@ -6,6 +6,39 @@
 //       Rename file or move to a better position.
 // ######## //
 
+// Forwards
+// Step 1
+$fade-out-opacity-duration: 200ms;
+// Step 2
+$highlight-option-delay: 250ms;
+$highlight-option-duration: 300ms;
+// Step 3
+$move-option-up-delay: $fade-out-opacity-duration + $highlight-option-delay + $highlight-option-duration;
+$move-option-up-duration: $highlight-option-duration;
+// Step 4
+$move-sub-option-down-delay: $move-option-up-delay + $move-option-up-duration;
+$move-sub-option-down-duration: $highlight-option-duration;
+$fade-in-sub-option-delay: $move-sub-option-down-delay;
+$fade-in-sub-option-duration: $highlight-option-duration;
+// Backwards
+// Step 1
+// move sub options up and fade out
+$move-sub-option-up-duration: $highlight-option-duration;
+$fade-in-sub-option-duration: $highlight-option-duration;
+// move selected option back down
+$move-option-down-duration: $highlight-option-duration;
+// Step 2
+// remove highlight on selected option
+$remove-highlight-option-delay: $move-option-down-duration + 50ms;
+$remove-highlight-option-duration: $highlight-option-duration;
+// Step 3
+// fade in drawer title
+$fade-in-options-delay: $remove-highlight-option-delay + $remove-highlight-option-duration;
+$fade-in-options-duration: $fade-out-opacity-duration;
+// stagger options down and fade in
+$move-options-down-delay: $fade-in-options-delay;
+$move-options-down-duration: $highlight-option-duration;
+
 .ui {
     &.drawer.has-drawer-- { // sass-lint:disable-line class-name-format
         &action_bar { // sass-lint:disable-line class-name-format
@@ -99,38 +132,118 @@
     .action_bar--actions_button_drawer_content {
         padding: 22px 11px;
     }
+    .action_bar--actions_button_drawer_title {
+        opacity: 1;
+        transition: opacity $fade-in-options-duration ease-in-out $fade-in-options-delay;
+        &-hide {
+            transition: opacity $fade-out-opacity-duration ease-in-out;
+            opacity: 0;
+        }
+    }
     .action_bar--actions_button_drawer_option {
-        align-items: center;
-        border-bottom: 1px solid color(borderColor);
-        cursor: pointer;
-        display: flex;
         font-size: rem(14px);
         font-weight: $default-font-weight-semibold;
         margin: 0 -11px;
-        min-height: 55px;
-        padding: 11px;
-        transition: background-color 150ms ease-in, color 150ms ease-in;
-        &-disabled {
-            cursor: default;
+        &-hide {
+            opacity: 0;
+            transition: opacity $fade-out-opacity-duration ease-in-out;
         }
-        &-hover {
-            background-color: color(backgroundColorHighlight);
-            color: color(colorInverse);
+        &-selected {
+            transform: translateY(-61px);
+            transition: transform $move-option-up-duration ease-in-out $move-option-up-delay;
         }
         &:first-child {
             border-top: 1px solid color(borderColor);
         }
+        &-selected:first-child {
+            border-top: 0;
+        }
     }
-    .actions_button_drawer_option--icon_container {
+    .actions_button_drawer_option--parent, .actions_button_drawer_sub_option {
         align-items: center;
-        background-color: color(backgroundColorInverse);
-        border-radius: 50%;
-        display: inline-flex;
-        height: 32px;
-        justify-content: center;
-        margin-right: 16px;
-        transition: background-color 200ms ease-in;
-        width: 32px;
+        border-bottom: 1px solid color(borderColor);
+        cursor: pointer;
+        display: flex;
+        min-height: 55px;
+        opacity: 1;
+        padding: 11px;
+        position: relative;
+    }
+    .actions_button_drawer_option {
+        &--parent {
+            transition: background-color 150ms ease-in, color 150ms ease-in, opacity $fade-out-opacity-duration ease-in-out;
+            z-index: 1;
+            &-disabled {
+                cursor: default;
+            }
+            &::before {
+                background-color: color(backgroundColorHighlight);
+                content: '';
+                height: 54px;
+                left: 0;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                transition: width $highlight-option-duration ease-in-out $highlight-option-delay;
+                width: 0;
+                z-index: 0;
+            }
+            &-selected {
+                border-bottom: 0;
+                color: color(colorInverse);
+                &::before {
+                    opacity: 1;
+                    width: 100%;
+                }
+            }
+        }
+        &--sub_options {
+            height: auto;
+            opacity: 1;
+            &-hide {
+                height: 0;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+    }
+    .actions_button_drawer {
+        &_option_parent, &_sub_option {
+            &--icon_container, &--label {
+                z-index: 1;
+            }
+            &--icon_container {
+                align-items: center;
+                display: inline-flex;
+                height: 32px;
+                justify-content: center;
+                margin-right: 16px;
+                transition: background-color 200ms ease-in;
+                width: 32px;
+                z-index: 1;
+            }
+        }
+        &_option_parent {
+            &--icon_container {
+                background-color: color(backgroundColorInverse);
+                border-radius: 50%;
+            }
+        }
+        &_sub_option {
+            opacity: 0;
+            transform: translateY(-55px);
+            @for $i from 1 through 11 {
+                &-#{$i} {
+                    transition:
+                        opacity $fade-in-sub-option-duration ease-in-out $fade-in-sub-option-delay + $i * 50ms,
+                        transform $move-sub-option-down-duration ease-in-out $move-sub-option-down-delay + $i * 50ms;
+                }
+            }
+            &-show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     }
     .action_bar--search-mobile {
         height: 0;

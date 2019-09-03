@@ -11,46 +11,130 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class ActionsButtonDrawerOption extends React.Component {
+    constructor() {
+        super();
+
+        this._onParentClick = this._onParentClick.bind(this);
+        this._onSubOptionClick = this._onSubOptionClick.bind(this);
+    }
+
     render() {
-        const { option } = this.props;
+        const {
+            hide,
+            isSelected,
+            option,
+        } = this.props;
         const containerClasses = ClassNames('action_bar--actions_button_drawer_option', {
-            'action_bar--actions_button_drawer_option-disable': option.disable,
+            'action_bar--actions_button_drawer_option-hide': hide,
+            'action_bar--actions_button_drawer_option-selected': isSelected,
         });
-        const iconContainerClasses = ClassNames('actions_button_drawer_option--icon_container');
+        const parentOptionClasses = ClassNames('actions_button_drawer_option--parent', {
+            'actions_button_drawer_option--parent-selected': isSelected,
+            'actions_button_drawer_option--parent-disable': option.disable,
+        });
+        const subOptionsClasses = ClassNames('actions_button_drawer_option--sub_options', {
+            'actions_button_drawer_option--sub_options-hide': !isSelected,
+        });
+        let subOptionClassNameNum = 1;
+        let subOptionKeyNum = 1;
 
         return (
             <div
                 className={containerClasses}
-                onClick={option.onClick}
             >
                 <div
-                    className={iconContainerClasses}
-                    id={option.id}
-                    style={{
-                        backgroundColor: option.iconBackgroundColor,
-                    }}
+                    className={parentOptionClasses}
+                    onClick={this._onParentClick}
                 >
-                    <Icon
-                        color={option.iconColor}
-                        compact
-                        className="actions_button_drawer_option--icon"
-                        inverse
-                        size={option.iconSize || 16}
-                        type={option.iconType}
-                    />
+                    <div
+                        className="actions_button_drawer_option_parent--icon_container"
+                        id={option.id}
+                        style={{
+                            backgroundColor: option.iconBackgroundColor,
+                        }}
+                    >
+                        <Icon
+                            color={option.iconColor}
+                            compact
+                            className="actions_button_drawer_option_parent--icon"
+                            inverse
+                            size={option.iconSize || 16}
+                            type={option.iconType}
+                        />
+                    </div>
+
+                    <div
+                        className="actions_button_drawer_option_parent--label"
+                    >
+                        {option.label}
+                    </div>
                 </div>
 
-                <div
-                    className="actions_button_drawer_option--label"
-                >
-                    {option.label}
-                </div>
+                {option.options &&
+                    <div className={subOptionsClasses}>
+                        {_.map(option.options, subOption => {
+                            const subOptionClasses = ClassNames(
+                                'actions_button_drawer_sub_option',
+                                `actions_button_drawer_sub_option-${subOptionClassNameNum++}`,
+                                {
+                                    'actions_button_drawer_sub_option-show': isSelected,
+                                }
+                            );
+
+                            return (
+                                <div
+                                    className={subOptionClasses}
+                                    key={`actions_button_drawer_sub_option-${subOptionKeyNum++}`}
+                                    onClick={this._onSubOptionClick}
+                                >
+                                    <div
+                                        className="actions_button_drawer_sub_option--icon_container"
+                                        id={subOption.id}
+                                    >
+                                        <Icon
+                                            color={subOption.iconColor}
+                                            compact
+                                            className="actions_button_drawer_sub_option--icon"
+                                            size={subOption.iconSize || 16}
+                                            type={subOption.iconType}
+                                        />
+                                    </div>
+
+                                    <div
+                                        className="actions_button_drawer_option--label"
+                                    >
+                                        {subOption.label}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                }
             </div>
         );
+    }
+
+    _onSubOptionClick(onClick) {
+
+    }
+
+    _onParentClick() {
+        const { isSelected, onClick, option } = this.props;
+
+        if (_.isFunction(option.onClick)) {
+            option.onClick();
+
+            return false;
+        }
+
+        onClick(isSelected ? {} : option);
     }
 }
 
 ActionsButtonDrawerOption.propsTypes = {
+    hide: PropTypes.bool,
+    isSelected: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
     option: PropTypes.object.isRequired,
 };
 
@@ -60,9 +144,12 @@ class ActionsButton extends React.PureComponent {
 
         this.state = {
             isDrawerOpen: false,
+            selectedOption: {},
         };
 
+        this._onDrawerCloseComplete = this._onDrawerCloseComplete.bind(this);
         this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this._onOptionClick = this._onOptionClick.bind(this);
     }
 
     render() {
@@ -73,7 +160,11 @@ class ActionsButton extends React.PureComponent {
             options,
             style,
         } = this.props;
-        const { isDrawerOpen } = this.state;
+        const { isDrawerOpen, selectedOption } = this.state;
+        const isSelectedOption = !_.isEmpty(selectedOption);
+        const titleClasses = ClassNames('action_bar--actions_button_drawer_title', {
+            'action_bar--actions_button_drawer_title-hide': isSelectedOption,
+        });
         const headerHeight = 55;
         const actionBarHeight = isMobileSearchVisible ? 105 : 50;
         let optionKeyNum = 1;
@@ -97,17 +188,30 @@ class ActionsButton extends React.PureComponent {
                     isOpen={isDrawerOpen}
                     maxWidth={224}
                     onClose={this._onDrawerToggle}
+                    onCloseComplete={this._onDrawerCloseComplete}
                     positionYOffset={headerHeight + actionBarHeight}
                     shadowSize="xsmall"
                 >
                     <Drawer.Content className="action_bar--actions_button_drawer_content">
-                        <Header size="small" fontWeight="bold">{header}</Header>
+                        <Header
+                            className={titleClasses}
+                            size="small"
+                            fontWeight="bold"
+                        >
+                            {header}
+                        </Header>
 
                         <div className="action_bar--actions_button_drawer_options">
                             {_.map(options, option => {
+                                const isSelected = isSelectedOption && selectedOption.label === option.label;
+                                const hide = isSelectedOption && selectedOption.label !== option.label || false;
+
                                 return (
                                     <ActionsButtonDrawerOption
+                                        hide={hide}
+                                        isSelected={isSelected}
                                         key={`action_bar--actions_button_drawer_option-${optionKeyNum++}`}
+                                        onClick={this._onOptionClick}
                                         option={option}
                                     />
                                 );
@@ -119,10 +223,22 @@ class ActionsButton extends React.PureComponent {
         );
     }
 
-    _onDrawerToggle() {
+    _onDrawerCloseComplete() {
+        this.setState({
+            selectedOption: {},
+        });
+    }
+
+    _onDrawerToggle(option) {
         this.setState(prevState => ({
             isDrawerOpen: !prevState.isDrawerOpen,
         }));
+    }
+
+    _onOptionClick(option) {
+        this.setState({
+            selectedOption: option || {},
+        });
     }
 }
 

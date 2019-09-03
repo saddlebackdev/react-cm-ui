@@ -120,12 +120,21 @@ class PageDemo extends React.PureComponent {
                                 header: 'Foo Title',
                                 options: [
                                     {
+                                        iconBackgroundColor: backgroundColorSuccess,
                                         iconType: actionsBarColumns[2].button.iconType,
                                         label: actionsBarColumns[2].button.label,
-                                        onClick: actionsBarColumns[2].button.onClick,
+                                        options: [
+                                            {
+                                                iconType: 'archive',
+                                                label: 'Foo Template',
+                                                onClick: nop,
+                                            }, {
+                                                iconType: 'broadcast',
+                                                label: 'Bar Template',
+                                                onClick: nop,
+                                            },
+                                        ],
                                     }, {
-                                        iconDisc: true,
-                                        iconBackgroundColor: backgroundColorSuccess,
                                         iconType: 'envelope',
                                         label: 'Email',
                                         onClick: nop,
