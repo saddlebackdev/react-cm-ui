@@ -146,7 +146,6 @@ $move-options-down-duration: $highlight-option-duration;
         margin: 0 -11px;
         &-hide {
             opacity: 0;
-            transition: opacity $fade-out-opacity-duration ease-in-out;
         }
         &-selected {
             transform: translateY(-61px);
