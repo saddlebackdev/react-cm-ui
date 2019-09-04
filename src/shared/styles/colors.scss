@@ -86,6 +86,7 @@ $color-text-warning:        $sc-orange;
 $color-text-secondary:      $sc-teal-dark;
 $color-text-code:           $sc-red-orange-dark;
 $color-text-success:        $sc-green;
+$color-text-subnav-blue:    $sc-blue-dark;
 
 $theme-colors: (
     'bkgd':                    $bkgd,
@@ -133,6 +134,7 @@ $theme-colors: (
     'colorTextSecondary':      $color-text-secondary,
     'colorTextCode':           $color-text-code,
     'colorTextSuccess':        $color-text-success,
+    'colorTextSubnavBlue':     $color-text-subnav-blue,
 );
 
 :export {
