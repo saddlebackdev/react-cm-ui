@@ -23,12 +23,15 @@ const PageFiltersRail = (props) => {
                 transitionEnterTimeout={200}
                 transitionLeaveTimeout={200}
                 transitionName={{
-                    enter: 'filters-rail-enter',
-                    leave: 'filters-rail-leave',
+                    enter: 'page--filters_rail-enter',
+                    leave: 'page--filters_rail-leave',
                 }}
             >
                 {isOpen &&
-                    <Rail position="left">
+                    <Rail
+                        className="page--inner_container"
+                        position="left"
+                    >
                         {children}
                     </Rail>
                 }

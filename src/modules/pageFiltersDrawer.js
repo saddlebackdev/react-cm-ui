@@ -59,7 +59,7 @@ class NestedTogglesLabel extends React.PureComponent {
 
     render() {
         const { nestedTogglesData: { label } } = this.props;
-        const containerClasses = ClassNames('filters_drawer--nested_toggles--label');
+        const containerClasses = ClassNames('page_filters_drawer--nested_toggles_label');
 
         return (
             <div
@@ -94,8 +94,8 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
 
     render() {
         const { isSelected, option: { label } } = this.props;
-        const containerClasses = ClassNames('filters_drawer--nested_toggles--wing--option_label', {
-            'is-selected': isSelected,
+        const containerClasses = ClassNames('page_filters_drawer_wing--option', {
+            'page_filters_drawer_wing--option-selected': isSelected,
         });
 
         return (
@@ -132,7 +132,7 @@ class NestedTogglesValueLabel extends React.PureComponent {
 
     render() {
         const { option: { label } } = this.props;
-        const containerClasses = ClassNames('filters_drawer--nested_toggles--value_label');
+        const containerClasses = ClassNames('page_filters_drawer--nested_toggles_value_label');
 
         return (
             <div
@@ -213,23 +213,36 @@ class PageFiltersDrawer extends React.Component {
                     onClose={onClose}
                     style={style}
                     wing={
-                        <Drawer.Wing isOpen={!isNestedTogglesOptionsEmpty}>
+                        <Drawer.Wing
+                            className="page_filters_drawer--nested_toggles_wing"
+                            isOpen={!isNestedTogglesOptionsEmpty}
+                        >
                             <Drawer.TitleBar
+                                className="nested_toggles_wing--title_bar"
                                 title={
-                                    <div className="ui header title" title="Filters">
-                                        <Icon
-                                            onClick={this._onNestedTogglesCloseWingClick}
-                                            size="medium"
-                                            type="chevron-left"
-                                        />
-                                    </div>
+                                    <Icon
+                                        className="nested_toggles_wing--close_button"
+                                        onClick={this._onNestedTogglesCloseWingClick}
+                                        size="medium"
+                                        type="chevron-left"
+                                    />
                                 }
                             />
 
-                            <Drawer.Content>
-                                <Header size="small" weight="bold">{nestedTogglesData.label}</Header>
+                            <Drawer.Content
+                                className="nested_toggles_wing--content"
+                            >
+                                <Header
+                                    className="nested_toggles_wing--title"
+                                    size="small"
+                                    weight="bold"
+                                >
+                                    {nestedTogglesData.label}
+                                </Header>
 
-                                <div>
+                                <div
+                                    className="nested_toggles_wing--options"
+                                >
                                     {!isNestedTogglesOptionsEmpty && _.map(nestedTogglesData.options, option => {
                                         const isSelected = _.some(nestedTogglesData.value, option);
 
@@ -248,16 +261,20 @@ class PageFiltersDrawer extends React.Component {
                     }
                 >
                     <Drawer.TitleBar
+                        className="page_filters_drawer--title_bar"
                         closeButton={
                             <Icon
+                                className="page_filters_drawer--close_button"
                                 compact
                                 onClick={onClose}
                                 type="times"
                             />
                         }
                         title={
-                            <div className="ui header title" title="Filters">
-                                <div>
+                            <div className="page_filters_drawer--actions" title="Filters">
+                                <div
+                                    className="page_filters_drawer--clear_column"
+                                >
                                     {canClear ? (
                                         <a
                                             className={clearFiltersClasses}
@@ -275,27 +292,31 @@ class PageFiltersDrawer extends React.Component {
                                     )}
                                 </div>
 
-                                {isDirty &&
-                                    <Button
-                                        color="success"
-                                        icon
-                                        innerStyle={{
-                                            height: '32px',
-                                            width: '32px',
-                                        }}
-                                        onClick={this._onApplyClick}
-                                        style={{
-                                            height: '32px',
-                                            minHeight: '32px',
-                                            width: '32px',
-                                        }}
-                                    >
-                                        <Icon
-                                            compact
-                                            type="check"
-                                        />
-                                    </Button>
-                                }
+                                <div
+                                    className="page_filters_drawer--apply_column"
+                                >
+                                    {isDirty &&
+                                        <Button
+                                            color="success"
+                                            icon
+                                            innerStyle={{
+                                                height: '32px',
+                                                width: '32px',
+                                            }}
+                                            onClick={this._onApplyClick}
+                                            style={{
+                                                height: '32px',
+                                                minHeight: '32px',
+                                                width: '32px',
+                                            }}
+                                        >
+                                            <Icon
+                                                compact
+                                                type="check"
+                                            />
+                                        </Button>
+                                    }
+                                </div>
                             </div>
                         }
                     />
@@ -304,12 +325,21 @@ class PageFiltersDrawer extends React.Component {
                         {_.map(rows, row => {
                             return (
                                 <div
-                                    className="page--filters_drawer-row"
+                                    className="page_filters_drawer--row"
                                     key={`page--filters-drawer-row-${rowKeyNum++}`}
                                 >
-                                    {row.header && <Header weight="bold">{row.header}</Header>}
+                                    {row.header &&
+                                        <Header
+                                            className="page_filters_drawer--header"
+                                            weight="bold"
+                                        >
+                                            {row.header}
+                                        </Header>
+                                    }
 
-                                    <div>
+                                    <div
+                                        className="page_filters_drawer--items"
+                                    >
                                         {_.isArray(row.items) && _.map(row.items, item => {
                                             const {
                                                 dropdown,
@@ -317,13 +347,13 @@ class PageFiltersDrawer extends React.Component {
                                                 multiSelect,
                                                 nestedToggles,
                                             } = item;
-                                            const className = ClassNames('page--filters_drawer-item', {
-                                                'filters_drawer--dropdown': dropdown,
-                                                'filters_drawer--jsx': jsx,
-                                                'filters_drawer--multi_select': multiSelect,
-                                                'filters_drawer--nested_toggles': nestedToggles,
+                                            const className = ClassNames('page_filters_drawer--item', {
+                                                'page_filters_drawer--item-dropdown': dropdown,
+                                                'page_filters_drawer--item-jsx': jsx,
+                                                'page_filters_drawer--item-multi_select': multiSelect,
+                                                'page_filters_drawer--item-nested_toggles': nestedToggles,
                                             });
-                                            const itemKey = `page--filters-drawer-row-item-${itemKeyNum++}`;
+                                            const itemKey = `page_filters_drawer--item-${itemKeyNum++}`;
 
                                             if (!jsx && !dropdown && !nestedToggles && !multiSelect) {
                                                 console.warn(

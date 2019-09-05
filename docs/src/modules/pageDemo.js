@@ -33,6 +33,7 @@ class PageDemo extends React.PureComponent {
             appliedFilters: _.cloneDeep(this._defaultFilters),
             dirtyFilters: _.cloneDeep(this._defaultFilters),
             isFiltersDrawerOpen: false,
+            viewType: 'table',
         };
 
         this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
@@ -56,10 +57,10 @@ class PageDemo extends React.PureComponent {
             dirtyFilters,
             isFiltersDrawerOpen,
             searchValue,
+            viewType,
         } = this.state;
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
         const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
-        const viewType = 'table';
         const actionBarIconFilter = {
             selected: isFiltersDrawerOpen,
             isFiltering,
@@ -70,6 +71,7 @@ class PageDemo extends React.PureComponent {
             onKeyDown: this._onSearchKeyDown,
             value: searchValue,
         };
+        console.log('viewType', viewType);
         let actionsBarColumns = [
             {
                 list: [
@@ -77,12 +79,12 @@ class PageDemo extends React.PureComponent {
                         iconFilter: actionBarIconFilter,
                     }, {
                         iconGrid: {
-                            selected: false,
+                            selected: viewType === 'grid',
                             onClick: this._onViewGridClick,
                         },
                     }, {
                         iconTable: {
-                            selected: false,
+                            selected: viewType === 'table',
                             onClick: this._onViewTableClick,
                         },
                     },
@@ -549,11 +551,15 @@ class PageDemo extends React.PureComponent {
     }
 
     _onViewGridClick() {
-
+        this.setState({
+            viewType: 'grid',
+        });
     }
 
     _onViewTableClick() {
-
+        this.setState({
+            viewType: 'table',
+        });
     }
 }
 

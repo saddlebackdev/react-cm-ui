@@ -321,15 +321,15 @@ $backwards-step4-duration: $standard-fifth-timing;
     .ui {
         &.drawer--action_bar, &.page--action_bar {
             padding: 0 22px;
-            &-page {
-                left: 250px;
-                min-height: 70px;
-                padding: 0 22px;
-                top: 70px;
-            }
-            &-drawer {
-                padding: 0 22px;
-            }
+        }
+        &.page--action_bar {
+            left: 250px;
+            min-height: 70px;
+            padding: 0 22px;
+            top: 70px;
+        }
+        &.drawer--action_bar {
+            padding: 0 22px;
         }
     }
 }
