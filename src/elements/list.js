@@ -16,8 +16,8 @@ class Item extends Component {
 
     render() {
         const { as, children, className, divide, style } = this.props;
-        const containerClasses = ClassNames('list-item', className, {
-            'list-item-divide': divide
+        const containerClasses = ClassNames('list--item', className, {
+            'list--item-divide': divide,
         });
         let ElementType;
 
@@ -54,7 +54,7 @@ Item.propTypes = {
     className: PropTypes.string,
     divide: PropTypes.bool,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 class List extends Component {
@@ -64,13 +64,13 @@ class List extends Component {
             'list-divide': divide,
             'list-horizontal': horizontal,
             'list-fluid': fluid,
-            'list-inverse': inverse
+            'list-inverse': inverse,
         });
         const ElementType = Utils.getElementType(as || 'div', this.props);
         const items = React.Children.map(children, (child, index) => {
             if (!_.isNil(child)) {
                 return (
-                    <Item as={as} key={'list-item' + index} {...child.props} />
+                    <Item as={as} key={'list--item' + index} {...child.props} />
                 );
             }
         });
@@ -102,7 +102,7 @@ List.propTypes = {
     fluid: PropTypes.bool,
     horizontal: PropTypes.bool,
     inverse: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default List;

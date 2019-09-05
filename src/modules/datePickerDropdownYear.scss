@@ -1,8 +1,8 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
 .date-picker-dropdown-year {
-    background-color: $bkgd;
-    border: 1px solid $border;
+    background-color: color(backgroundColor);
+    border: 1px solid color(borderColor);
     border-radius: 3px;
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .06);
     height: 236px;
@@ -18,7 +18,7 @@
             &:last-child { margin-bottom: 7px; }
         }
             a {
-                color: $color-text;
+                color: color(color);
                 display: block;
                 font-size: rem(14px);
                 font-weight: $default-font-weight-semibold;
@@ -26,5 +26,5 @@
                 text-align: left;
                 transition: color 150ms ease-out;
             }
-            .date-picker-year-option-is-selected a, a:hover { color: $color-text-highlight; }
+            .date-picker-year-option-is-selected a, a:hover { color: color(colorHighlight); }
 }

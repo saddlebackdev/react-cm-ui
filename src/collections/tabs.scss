@@ -8,7 +8,7 @@ $shadow: rgba(0, 0, 0, .17);
         height: 39px;
         position: relative;
         &::after {
-            background-color: $bkgd;
+            background-color: color(backgroundColor);
             bottom: 0;
             content: '';
             height: 1px;
@@ -18,10 +18,10 @@ $shadow: rgba(0, 0, 0, .17);
         }
         button {
             align-items: center;
-            background-color: $bkgd-button-alternate;
+            background-color: color(backgroundColorButtonAlternate);
             border: 0;
             border-radius: 3px 3px 0 0;
-            color: $color-text-inverse;
+            color: color(colorInverse);
             display: inline-flex;
             font-size: em(14px);
             font-weight: $default-font-weight-semibold;
@@ -61,26 +61,26 @@ $shadow: rgba(0, 0, 0, .17);
                 width: 100%;
             }
             &.is-active {
-                background-color: $bkgd;
+                background-color: color(backgroundColor);
                 box-shadow:
-                    inset 1px 1px 0 0 $border-light,
-                    inset -1px 0 0 0 $border-light;
-                color: $color-text;
+                    inset 1px 1px 0 0 color(borderColorSecondary),
+                    inset -1px 0 0 0 color(borderColorSecondary);
+                color: color(color);
                 cursor: auto;
                 z-index: 2;
-                i { color: $bkgd-highlight; }
+                i { color: color(backgroundColorHighlight); }
                 &::before, &::after { opacity: 1; visibility: visible; }
                 &:last-child { box-shadow: none; }
             }
             i { margin-right: 11px; }
             &:first-child::before { display: none; }
-            &:not(:first-child) { box-shadow: inset 1px 0px 0 0 $border-inverse-alternate; margin-left: -3px; }
+            &:not(:first-child) { box-shadow: inset 1px 0px 0 0 color(borderColorQuinary); margin-left: -3px; }
             &:not(:first-child):not(.is-active) { border-radius: 0 3px 0 0; }
         }
     }
     .tabs-content {
-        background-color: $bkgd;
-        border: 1px solid $border-light;
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColorSecondary);
         border-radius: 0 3px 3px;
         border-top: 0;
         padding: 22px;
@@ -96,7 +96,7 @@ $shadow: rgba(0, 0, 0, .17);
             box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1);
             button.is-active {
                 box-shadow:
-                    inset -1px 0 0 0 $border-light,
+                    inset -1px 0 0 0 color(borderColorSecondary),
                     1px 1px 2px 0 $shadow;
             }
         }

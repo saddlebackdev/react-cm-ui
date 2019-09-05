@@ -10,7 +10,7 @@ const hasClassName = 'has-drawer--action_bar';
 class DrawerActionBar extends React.PureComponent {
     render() {
         const { children, className, columns, style } = this.props;
-        const containerClasses = ClassNames('ui', 'drawer--action_bar', className);
+        const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-drawer', className);
 
         return (
             <div
@@ -19,12 +19,17 @@ class DrawerActionBar extends React.PureComponent {
                 style={style}
             >
                 {columns && (
-                    <Grid verticalAlign="middle">
+                    <Grid
+                        className="action_bar--grid"
+                        verticalAlign="middle"
+                    >
                         {_.map(columns, (column, index) => {
+                            const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
+
                             return (
                                 <Grid.Column
-                                    className={column.className}
-                                    key={`drawer-action-bar-grid-column-${index}`}
+                                    className={gridColumnClasses}
+                                    key={`action_bar--grid_column-${index}`}
                                     style={Object.assign({}, {
                                         flexBasis: column.flexBasis || 'auto',
                                         flexGrow: column.flexGrow || 0,
@@ -35,10 +40,17 @@ class DrawerActionBar extends React.PureComponent {
                                     {!column.columns && column.jsx}
 
                                     {_.isArray(column.columns) && !column.jsx && (
-                                        <List divide horizontal>
+                                        <List
+                                            className="action_bar--list"
+                                            divide
+                                            horizontal
+                                        >
                                             {_.map(column.columns, (listItem, index) => {
+                                                const containerClasses = ClassNames('action_bar--list_item', className);
+
                                                 return (
                                                     <List.Item
+                                                        className={containerClasses}
                                                         key={`drawer-action-bar-grid-column-list-item-${index}`}
                                                     >
                                                         {listItem.jsx}

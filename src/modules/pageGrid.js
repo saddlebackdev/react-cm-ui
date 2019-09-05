@@ -27,7 +27,7 @@ class PageGridColumn extends React.PureComponent {
 
             return (
                 <div
-                    className="page--card-column"
+                    className="page_card--column"
                     key={`pageCardColumn-${index}`}
                     style={{
                         marginBottom: column.width ? '11px' : null,
@@ -66,11 +66,12 @@ class PageGridItem extends React.PureComponent {
 
         return (
             <Card
+                className="page_grid--card"
                 nest
                 onClick={_.isFunction(cardProps().onClick) ? this._onClick : null}
             >
                 <div
-                    className="page--card-container"
+                    className="page_grid--card_container"
                 >
                     <PageGridColumn
                         columns={columns}

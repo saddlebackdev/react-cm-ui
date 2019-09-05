@@ -1,7 +1,7 @@
 @import '../shared/styles/colors';
 
 .ui.page {
-    background-color: $bkgd-nest;
+    background-color: color(backgroundColorNest);
     min-height: 100%;
     padding: 0 11px;
     position: relative;
