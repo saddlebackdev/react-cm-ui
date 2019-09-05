@@ -16,81 +16,50 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 
-class Drawer extends React.PureComponent {
+const BODY = document.body;
+const TRANSLATE_X_END = 'translateX(0)';
+const TRANSLATE_X_LEFT_START = 'translateX(-100%)';
+const TRANSLATE_X_RIGHT_START = 'translateX(100%)';
+const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
+const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
+const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
+
+class Drawer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isOpen: props.isOpen, // We put isOpen into state because when closing a drawer we return false in render before the closing animation is complete.
-            transformValue: props.position === 'right' ?
-                'translate(100%, 0)' :
-                'translate(-100%, 0)',
+            isOpen: props.isOpen, // We put props.isOpen into state because when closing a drawer we return false in render before the closing animation is complete.
         };
 
         this._drawerContainer = null;
         this._useComponentWillUnmount = false;
 
+        this._onClickOutside = this._onClickOutside.bind(this);
         this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
         this._onOpenAnimationComplete = this._onOpenAnimationComplete.bind(this);
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.isOpen && this.props.isOpen) {
+        const { props: nextProps } = this;
+
+        if (!prevProps.isOpen && nextProps.isOpen) {
             this.setState({
-                isOpen: this.props.isOpen,
+                isOpen: nextProps.isOpen,
             }, () => {
                 this._onOpen();
             });
         }
 
-        if (prevProps.isOpen && !this.props.isOpen) {
+        if (prevProps.isOpen && !nextProps.isOpen) {
             this._onBeforeClose();
         }
-    }
 
-    render() {
-        const {
-            children,
-            className,
-            position,
-            wing,
-        } = this.props;
-        const { isOpen } = this.state;
-
-        if (!isOpen) {
-            return false;
+        if (prevProps.isOpen && nextProps.isOpen && prevProps.positionYOffset !== nextProps.positionYOffset) {
+            this._drawerContainerRef.style.transform = _.isNumber(nextProps.positionYOffset) ?
+                `${TRANSLATE_X_END} translateY(${nextProps.positionYOffset}px)` :
+                TRANSLATE_X_END;
         }
-
-        const isPositionLeft = position === 'left';
-        const drawerClasses = ClassNames('ui', 'drawer', className, {
-            'left-position': isPositionLeft,
-        });
-
-        return (
-            <Portal>
-                <div className={drawerClasses}>
-                    <div
-                        className="drawer-container"
-                        ref={el => this._drawerContainerRef = el}
-                        style={{
-                            transform: isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)',
-                        }}
-                    >
-                        <ScrollBar
-                            autoHide
-                        >
-                            <div className="drawer-container-inner">
-                                {children}
-                            </div>
-                        </ScrollBar>
-
-                        {wing}
-                    </div>
-
-                    <div className="drawer-dimmer" />
-                </div>
-            </Portal>
-        );
     }
 
     componentDidMount() {
@@ -108,36 +77,105 @@ class Drawer extends React.PureComponent {
     componentWillUnmount() {
         const { isOpen } = this.state;
 
-        if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
-            if (document.body.classList.contains('drawer-open')) {
-                document.body.classList.remove('drawer-open');
+        // We only want to clean up classes here if the drawer isOpen and the closing animation never happens.
+        if (isOpen && this._useComponentWillUnmount) {
+            if (BODY.classList.contains('drawer-open')) {
+                BODY.classList.remove('drawer-open');
             }
 
-            if (document.body.classList.contains('drawer-dimmers')) {
-                document.body.classList.remove('drawer-dimmers');
+            if (BODY.classList.contains('drawer-dimmers')) {
+                BODY.classList.remove('drawer-dimmers');
             }
 
-            if (document.body.classList.contains('drawer-open-layered')) {
-                document.body.classList.remove('drawer-open-layered');
+            if (BODY.classList.contains('drawer-open-layered')) {
+                BODY.classList.remove('drawer-open-layered');
             }
 
-            if (document.body.classList.contains('drawer-animate-out')) {
-                document.body.classList.remove('drawer-animate-out');
+            if (BODY.classList.contains('drawer-animate-out')) {
+                BODY.classList.remove('drawer-animate-out');
             }
         }
     }
 
+    render() {
+        const {
+            children,
+            className,
+            positionYOffset,
+            wing,
+        } = this.props;
+        const { isOpen } = this.state;
+
+        if (!isOpen) {
+            return false;
+        }
+
+        const drawerClasses = ClassNames('ui', 'drawer', className, {
+            'left-position': this._isPositionX('left'),
+        });
+
+        return (
+            <Portal>
+                <div
+                    className={drawerClasses}
+                    ref={el => this._drawerRef = el}
+                >
+                    <div
+                        className="drawer-container"
+                        ref={el => this._drawerContainerRef = el}
+                        style={{
+                            height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
+                            // transform: this._setStartOfTransform(),
+                        }}
+                    >
+                        <ScrollBar
+                            autoHide
+                        >
+                            <div className="drawer-container-inner">
+                                {children}
+                            </div>
+                        </ScrollBar>
+
+                        {wing}
+
+                        <div
+                            className="shadow_container"
+                            ref={el => this._shadowContainerRef = el}
+                        >
+                            <div ref={el => this._shadowRef = el} />
+                        </div>
+                    </div>
+
+                    <div
+                        className="drawer-dimmer"
+                        ref={el => this._drawerDimmerRef = el}
+                    />
+                </div>
+            </Portal>
+        );
+    }
+
+    _setStartOfTransform() {
+        const { positionYOffset } = this.props;
+        const translateX = this._isPositionX('left') ? TRANSLATE_X_LEFT_START : TRANSLATE_X_RIGHT_START;
+
+        this._drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
+            `${translateX} translateY(${positionYOffset}px)` :
+            translateX;
+    }
+
+    _isPositionX(position) {
+        const { positionX } = this.props;
+
+        return positionX === position;
+    }
+
     _onBeforeClose() {
-        const { position } = this.props;
-
         const animationEvent = this._transitionProps(this._drawerContainer);
-        const isPositionLeft = position === 'left';
 
-        document.body.classList.add('drawer-animate-out');
+        BODY.classList.add('drawer-animate-out');
         this._drawerContainer.classList.add('drawer-animate-out');
-        this._drawerContainer.style.transform = isPositionLeft ?
-            'translate(-100%, 0)' :
-            'translate(100%, 0)';
+        this._drawerContainer.style.transform = this._setStartOfTransform();
         this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
     }
 
@@ -162,11 +200,9 @@ class Drawer extends React.PureComponent {
     }
 
     _onCloseAnimationComplete() {
-        const { onCloseComplete, position, onClickOutside } = this.props;
+        const { onCloseComplete, onClickOutside } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainerRef);
-        const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
-        const isPositionLeft = position === 'left';
 
         if (onClickOutside) {
             document.removeEventListener('click', this._onClickOutside);
@@ -175,20 +211,20 @@ class Drawer extends React.PureComponent {
         this._drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         if (drawerLength <= 2) {
-            body.classList.remove('drawer-open-layered');
+            BODY.classList.remove('drawer-open-layered');
         }
 
         if (drawerLength <= 1) {
-            const scrollPosition = parseInt(body.style.top, 10);
+            const scrollPosition = parseInt(BODY.style.top, 10);
 
-            body.classList.remove('drawer-open', 'drawer-dimmers');
+            BODY.classList.remove('drawer-open', 'drawer-dimmers');
             window.scroll(0, Math.abs(scrollPosition));
-            body.style.top = null;
+            BODY.style.top = null;
         }
 
-        body.classList.remove('drawer-animate-out');
+        BODY.classList.remove('drawer-animate-out');
 
-        this._drawerContainerRef.style.transform = isPositionLeft ? 'translate(-100%, 0)' : 'translate(100%, 0)';
+        this._drawerContainerRef.style.transform = this._setStartOfTransform();
 
         if (_.isFunction(onCloseComplete)) {
             onCloseComplete(true);
@@ -203,16 +239,18 @@ class Drawer extends React.PureComponent {
 
     _onOpen() {
         this._useComponentWillUnmount = true;
-        const { maxWidth, onClickOutside, position } = this.props;
-        const body = document.body;
+        this._setStartOfTransform();
+
         const nodePortal = ReactDOM.findDOMNode(this);
-        const scrollPosition = window.pageYOffset;
-        const drawerLength = document.querySelectorAll('.ui.drawer').length;
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
-        const drawerDimmer = nodePortal.querySelector('.drawer-dimmer');
-        const layeredOffset = 11;
+
+        const { dimmer, maxWidth, onClickOutside, positionYOffset, shadowSize } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainer);
-        let zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        const boxShadowPositionX = this._isPositionX('right') ? '-' : '';
+        const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const layeredOffset = 11;
+        const scrollPosition = window.pageYOffset;
+        const zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         this._drawerContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -221,18 +259,57 @@ class Drawer extends React.PureComponent {
         }
 
         setTimeout(() => {
-            if (DOMUtils.hasClassName(body, 'drawer-open')) {
-                zIndex = zIndex + drawerLength;
-                DOMUtils.addClassName(body, 'drawer-open-layered');
-
-                nodePortal.style.zIndex = zIndex;
-                this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
-                this._drawerContainer.style.zIndex = zIndex;
-                drawerDimmer.style.display = 'none';
+            if (this._isPositionX('left')) {
+                this._shadowContainerRef.style.right = '-30px';
+                this._shadowRef.style.marginRight = '30px';
             } else {
-                body.style.top = `-${scrollPosition}px`;
-                DOMUtils.addClassName(body, 'drawer-open');
-                this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
+                this._shadowContainerRef.style.left = '-30px';
+                this._shadowRef.style.marginLeft = '30px';
+            }
+
+            if (!dimmer || DOMUtils.hasClassName(BODY, 'drawer-open')) {
+                this._drawerRef.style.pointerEvents = 'none';
+                this._drawerContainer.style.pointerEvents = 'auto';
+                this._drawerDimmerRef.style.display = 'none';
+            }
+
+            if (DOMUtils.hasClassName(BODY, 'drawer-open')) {
+                const newZIndex = zIndex + drawerLength;
+                let boxShadow = BOX_SHADOW_SMALL;
+
+                switch (shadowSize) {
+                    case 'large':
+                        boxShadow = BOX_SHADOW_LARGE;
+
+                        break;
+                    case 'xsmall':
+                        boxShadow = BOX_SHADOW_XSMALL;
+
+                        break;
+                }
+
+                DOMUtils.addClassName(BODY, 'drawer-open-layered');
+
+                nodePortal.style.zIndex = newZIndex;
+                this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
+                this._drawerContainer.style.zIndex = newZIndex;
+            } else {
+                let boxShadow = BOX_SHADOW_LARGE;
+
+                switch (shadowSize) {
+                    case 'small':
+                        boxShadow = BOX_SHADOW_SMALL;
+
+                        break;
+                    case 'xsmall':
+                        boxShadow = BOX_SHADOW_XSMALL;
+
+                        break;
+                }
+
+                BODY.style.top = `-${scrollPosition}px`;
+                DOMUtils.addClassName(BODY, 'drawer-open');
+                this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
             }
@@ -247,11 +324,14 @@ class Drawer extends React.PureComponent {
                 this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
             }
 
-            this._drawerContainer.style.transform = 'translate(0, 0)';
+            this._drawerContainer.style.transform = _.isNumber(positionYOffset) ?
+                `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
+                TRANSLATE_X_END;
         }, 30);
     }
 
     _onOpenAnimationComplete() {
+        const { dimmer } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainerRef);
         this._drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -261,7 +341,9 @@ class Drawer extends React.PureComponent {
             onOpenComplete();
         }
 
-        document.body.classList.add('drawer-dimmers');
+        if (dimmer) {
+            BODY.classList.add('drawer-dimmers');
+        }
     }
 
     _transitionProps(el) {
@@ -292,11 +374,13 @@ Drawer.TitleBar = DrawerTitleBar;
 Drawer.Wing = DrawerWing;
 
 Drawer.defaultProps = {
-    position: 'right',
+    dimmer: true,
+    positionX: 'right',
 };
 
 Drawer.propTypes = {
     className: PropTypes.string,
+    dimmer: PropTypes.bool,
     isOpen: PropTypes.bool,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
@@ -306,7 +390,9 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
-    position: PropTypes.oneOf([ 'left', 'right' ]),
+    positionX: PropTypes.oneOf([ 'left', 'right' ]),
+    positionYOffset: PropTypes.number,
+    shadowSize: PropTypes.oneOf([ 'large', 'small', 'xsmall' ]),
     style: PropTypes.object,
     wing: PropTypes.object,
 };

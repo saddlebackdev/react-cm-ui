@@ -18,23 +18,23 @@
     &-align-right { margin-left: 11px; margin-right: 0; }
     &-clickable { cursor: pointer; }
     &-color {
-        &-alert { .icon-use-path { fill: $color-text-alert; } }
-        &-highlight { .icon-use-path { fill: $color-text-highlight; } }
-        &-primary { .icon-use-path { fill: $color-text; } }
-        &-static { .icon-use-path { fill: $color-text-static; } }
-        &-success { .icon-use-path { fill: $color-text-success; } }
-        &-warning { .icon-use-path { fill: $color-text-warning; } }
+        &-alert { .icon-use-path { fill: color(colorAlert); } }
+        &-highlight { .icon-use-path { fill: color(colorHighlight); } }
+        &-primary { .icon-use-path { fill: color(color); } }
+        &-static { .icon-use-path { fill: color(colorStatic); } }
+        &-success { .icon-use-path { fill: color(colorSuccess); } }
+        &-warning { .icon-use-path { fill: color(colorWarning); } }
     }
     &-inverse {
-        &.icon-color-alert { .icon-use-path { fill: $color-text-alert; } }
-        &.icon-color-highlight { .icon-use-path { fill: $color-text-highlight; } }
-        &.icon-color-primary { .icon-use-path { fill: $color-text-inverse; } }
-        &.icon-color-static { .icon-use-path { fill: $color-text-static; } }
-        &.icon-color-success { .icon-use-path { fill: $color-text-success; } }
-        &.icon-color-warning { .icon-use-path { fill: $color-text-warning; } }
+        &.icon-color-alert { .icon-use-path { fill: color(colorAlert); } }
+        &.icon-color-highlight { .icon-use-path { fill: color(colorHighlight); } }
+        &.icon-color-primary { .icon-use-path { fill: color(colorInverse); } }
+        &.icon-color-static { .icon-use-path { fill: color(colorStatic); } }
+        &.icon-color-success { .icon-use-path { fill: color(colorSuccess); } }
+        &.icon-color-warning { .icon-use-path { fill: color(colorWarning); } }
     }
     &-compact { margin: 0; }
-    &.icon-disable { color: $color-text-disable; cursor: default; }
+    &.icon-disable { color: color(colorDisable); cursor: default; }
     &-size- {
         &xxlarge, &xxlarge svg { height: rem(32px); width: rem(32px); }
         &xlarge, &xlarge svg { height: rem(24px); width: rem(24px); }

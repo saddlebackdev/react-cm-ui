@@ -82,12 +82,12 @@ h6.ui.header {
         > div { display: block; }
             .icon { padding-top: em(3px); }
     }
-    &.header-color-static { color: $color-text-static; }
-    &.header-color-text { color: $color-text; }
+    &.header-color-static { color: color(colorStatic); }
+    &.header-color-text { color: color(color); }
     &.header-color-inverse {
-        color: $color-text-inverse;
-        &.header-color-static { color: $color-text-static; }
-        &.header-color-text { color: $color-text-inverse; }
+        color: color(colorInverse);
+        &.header-color-static { color: color(colorStatic); }
+        &.header-color-text { color: color(colorInverse); }
     }
     &.header-anchor {
         .header-anchor-icon {

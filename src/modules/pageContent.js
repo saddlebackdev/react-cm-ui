@@ -9,7 +9,7 @@ const PageContent = (props) => {
     const winWidth = window.innerWidth;
     const isMobile = winWidth <= 767;
     const containerClasses = ClassNames('ui', 'page--content', className, {
-        'page-filters-rail-open': !isMobile && isFiltersRailOpen,
+        'page--content-filters_rail_open': !isMobile && isFiltersRailOpen,
     });
     const ElementType = Utils.getElementType(as || 'section', props);
 

@@ -1,14 +1,14 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
 
 .ui.container {
-    background-color: $bkgd;
+    background-color: color(backgroundColor);
     min-height: 100%;
     padding: 0 11px;
     width: 100%;
     &.container-color {
-        &-inverse { background-color: $bkgd-inverse; }
-        &-light { background-color: $bkgd-light; }
-        &-nest { background-color: $bkgd-nest; }
+        &-inverse { background-color: color(backgroundColorInverse); }
+        &-light { background-color: color(backgroundColorLight); }
+        &-nest { background-color: color(backgroundColorNest); }
         &-transparent { background-color: transparent; }
     }
     .container-content {
@@ -23,19 +23,19 @@
 }
 .container-action-bar {
     align-items: center;
-    background-color: $bkgd;
-    border-bottom: 1px solid $border;
-    border-top: 1px solid $border;
+    background-color: color(backgroundColor);
+    border-bottom: 1px solid color(borderColor);
+    border-top: 1px solid color(borderColor);
     display: flex;
     justify-content: flex-start;
     min-height: 70px;
     padding: 0 22px;
     width: auto;
     &.container-action-bar-color {
-        &-inverse { background-color: $bkgd-inverse; }
-        &-light { background-color: $bkgd-light; }
-        &-nest { background-color: $bkgd-nest; }
-        &-primary { background-color: $bkgd; }
+        &-inverse { background-color: color(backgroundColorInverse); }
+        &-light { background-color: color(backgroundColorLight); }
+        &-nest { background-color: color(backgroundColorNest); }
+        &-primary { background-color: color(backgroundColor); }
         &-transparent { background-color: transparent; }
     }
     &.container-action-bar-stretch { margin: 0 -11px; }

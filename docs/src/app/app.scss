@@ -5,7 +5,7 @@ $nav-width: 250px;
 html, body, #coreApp, .core-app-root, .layout { height: 100%; }
     *, *::after, *::before { box-sizing: border-box; }
     body {
-        background-color: $bkgd-light;
+        background-color: color(backgroundColorLight);
         .layout { position: relative; right: 0; transition: right 166ms linear; }
         &.pushed-right {
             overflow-x: hidden;
@@ -14,7 +14,7 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
     }
     .core-app-root { min-width: 320px; }
         .main {
-            background-color: $bkgd;
+            background-color: color(backgroundColor);
             max-width: 1120px;
             min-height: 100%;
             padding: 0 11px 22px;
@@ -47,7 +47,7 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
     .main { margin-left: $nav-width; padding: 0 22px 22px; }
     .demo {
         .demo--navigation {
-            background-color: $bkgd-inverse;
+            background-color: color(backgroundColorInverse);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -60,8 +60,8 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
             width: $nav-width;
             z-index: $z-index-navigation;
             .ui.button {
-                color: $color-text-static;
-                .button-inner-container .ui.icon .icon-use-path { fill: $color-text-static; }
+                color: color(colorStatic);
+                .button-inner-container .ui.icon .icon-use-path { fill: color(colorStatic); }
             }
         }
         .demo--layout {

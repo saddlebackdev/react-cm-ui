@@ -1,10 +1,12 @@
 @import '../shared/styles/colors';
 
-.ui.page--content {
-    position: relative;
-    transition: margin 200ms ease-out;
-    z-index: 0;
-    &.page-filters-rail-open {
+.ui {
+    &.page--content {
+        position: relative;
+        transition: margin 200ms ease-out;
+        z-index: 0;
+    }
+    &.page--content-filters_rail_open {
         margin-left: 250px;
     }
 }

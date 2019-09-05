@@ -11,8 +11,8 @@
     }
 }
 .ui.drawer--title_bar {
-    background-color: $bkgd;
-    border-bottom: 1px solid $border-light;
+    background-color: color(backgroundColor);
+    border-bottom: 1px solid color(borderColorSecondary);
     height: $drawer-title-bar-height;
     left: 0;
     position: fixed;

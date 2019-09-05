@@ -9,8 +9,8 @@
 .ui.drawer.has-drawer--title_bar.has-drawer--action_bar {
     &:not(.has-drawer--navigation) .drawer-container-inner {
         .ui.drawer--action_bar {
-            background-color: $bkgd-light;
-            border-top: 1px solid $border;
+            background-color: color(backgroundColorLight);
+            border-top: 1px solid color(borderColor);
         }
     }
     .drawer-container-inner {
@@ -28,8 +28,8 @@
 }
 .ui.drawer--action_bar {
     align-items: center;
-    background-color: $bkgd;
-    border-bottom: 1px solid $border;
+    background-color: color(backgroundColor);
+    border-bottom: 1px solid color(borderColor);
     display: flex;
     height: $drawer-action-bar-height;
     justify-content: flex-start;
