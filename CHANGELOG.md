@@ -1,6 +1,35 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.2.0
+
+- [#54](https://github.com/saddlebackdev/react-cm-ui/pull/54): Fixes ReactJS `componentWillReceiveProps` warnings about needing to switch to `componentDidUpdate`.
+- Upgraded react-reponsive dependency to `7.0.0`.
+- Breaking change: updated how we implement our colors in SCSS and JS.
+  - You can no longer use `$bkgd` to achieve a hex value from `colors.scss`. Instead, import the same way, and use the function `color(backgroundColor)`.
+  - In JS, you can now use our `colors.scss` variables by importing the desired color variable. e.g. `import { backgroundColor } from 'colors.scss'`.
+- Breaking change: moved a handful components to the BEM naming convention.
+  - **&lt;Drawer.ActionBar /&gt;**
+  - **&lt;List /&gt;**
+  - **&lt;Page.ActionBar /&gt;**
+  - **&lt;Page.Container /&gt;**
+  - **&lt;Page.Content /&gt;**
+  - **&lt;Page.Details /&gt;**
+  - **&lt;Page.FiltersDrawer /&gt;**
+  - **&lt;Page.FiltersRail /&gt;**
+  - **&lt;Page.Grid /&gt;**
+  - **&lt;Page.Table /&gt;**
+- **&lt;Page.ActionBar /&gt;** `columns` updates:
+  - New `button` property
+  - New `list` property
+    - New `actionsButton` property
+    - New `iconBack` property
+    - New `iconFilter` property
+    - New `iconGrid` property
+    - New `iconSearch` property
+    - New `iconTable` property
+  - New `search` property
+
 ## 5.1.1
 
 - Moved **&lt;Page /&gt;** component and its sub components to the `./src/modules` directory.
