@@ -18,9 +18,9 @@ class AccordionItem extends Component {
         this._onClick = this._onClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.isSelected !== nextProps.isSelected) {
-            this.setState({ isSelected: nextProps.isSelected });
+    componentDidUpdate(prevProps) {
+        if (this.props.isSelected !== prevProps.isSelected) {
+            this.setState({ isSelected: this.props.isSelected });
         }
     }
 

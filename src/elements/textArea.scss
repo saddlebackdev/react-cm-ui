@@ -2,22 +2,22 @@
 
 .ui.text-area {
     align-items: flex-start;
-    color: $color-text;
+    color: color(color);
     display: inline-flex;
     flex-direction: column;
     font-size: em(16px);
     justify-content: flex-start;
     .label { margin-bottom: em(6px); }
         .text-area-required-indicator {
-            color: $color-text-alert;
+            color: color(colorAlert);
             display: inline-block;
             font-size: rem(14px);
             margin-left: 3px;
         }
     .text-area-container { position: relative; }
         textarea {
-            background-color: $bkgd;
-            border: 1px solid $border;
+            background-color: color(backgroundColor);
+            border: 1px solid color(borderColor);
             border-radius: 3px;
             display: block;
             margin: 0;
@@ -26,14 +26,14 @@
             text-align: left;
             transition: border-color 150ms ease-out;
             width: 100%;
-            &::placeholder { color: $color-text-static; }
+            &::placeholder { color: color(colorStatic); }
         }
-    &.text-area-disabled textarea { background-color: $bkgd-disable; }
+    &.text-area-disabled textarea { background-color: color(backgroundColorDisable); }
     &.text-area-error {
-        textarea { border-color: $bkgd-alert !important; }
-        .text-area-error-message { color: $color-text-alert; font-size: em(14px); }
+        textarea { border-color: color(backgroundColorAlert) !important; }
+        .text-area-error-message { color: color(colorAlert); font-size: em(14px); }
     }
     &.text-area-fluid { display: block; }
-    &.text-area-focused textarea { border-color: $bkgd-highlight; }
+    &.text-area-focused textarea { border-color: color(backgroundColorHighlight); }
     + * { margin-top: em(33px); }
 }

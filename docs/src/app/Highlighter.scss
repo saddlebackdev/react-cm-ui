@@ -1,11 +1,11 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
 .highlighter.block {
-    border-bottom: 1px solid $border;
-    border-top: 1px solid $border;
+    border-bottom: 1px solid color(borderColor);
+    border-top: 1px solid color(borderColor);
     height: 600px;
     pre {
-        background-color: $bkgd !important;
+        background-color: color(backgroundColor) !important;
         font-size: rem(13.5px);
         line-height: 20px;
         padding: 22px 11px !important;
@@ -24,7 +24,7 @@
 .highlighter.inline {
     margin: 22px 22px 33px;
     pre {
-        background-color: $bkgd-light !important;
+        background-color: color(backgroundColorLight) !important;
         border: 0;
         border-radius: 3px;
         display: inline-block !important;

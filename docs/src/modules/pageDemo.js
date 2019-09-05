@@ -7,10 +7,14 @@ import {
     Page,
     TitleBar,
 } from 'react-cm-ui';
+import { backgroundColorSuccess } from 'shared/styles/colors.scss';
+import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import React from 'react';
 
-class PageDemo extends React.Component {
+const nop = () => {};
+
+class PageDemo extends React.PureComponent {
     constructor() {
         super();
 
@@ -18,6 +22,7 @@ class PageDemo extends React.Component {
             multiSelectValue: [],
             nestedTogglesBarValue: [],
             nestedTogglesFooValue: [],
+            searchValue: '',
             sort: {
                 label: 'Name (Ascending)',
                 value: 'Name (Ascending)',
@@ -28,26 +33,121 @@ class PageDemo extends React.Component {
             appliedFilters: _.cloneDeep(this._defaultFilters),
             dirtyFilters: _.cloneDeep(this._defaultFilters),
             isFiltersDrawerOpen: false,
+            viewType: 'table',
         };
 
         this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
+        this._onBackClick = this._onBackClick.bind(this);
         this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
         this._onFiltersToggle = this._onFiltersToggle.bind(this);
         this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
         this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
         this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
+        this._onSearchChange = this._onSearchChange.bind(this);
+        this._onSearchKeyDown = this._onSearchKeyDown.bind(this);
         this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
+        this._onViewGridClick = this._onViewGridClick.bind(this);
+        this._onViewTableClick = this._onViewTableClick.bind(this);
     }
 
     render() {
+        const { isMobile } = this.props;
         const {
             appliedFilters,
             dirtyFilters,
             isFiltersDrawerOpen,
+            searchValue,
+            viewType,
         } = this.state;
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
         const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
-        const isMobile = 700;
+        const actionBarIconFilter = {
+            selected: isFiltersDrawerOpen,
+            isFiltering,
+            onClick: this._onFiltersToggle,
+        };
+        const actionBarSearch = {
+            onChange: this._onSearchChange,
+            onKeyDown: this._onSearchKeyDown,
+            value: searchValue,
+        };
+        console.log('viewType', viewType);
+        let actionsBarColumns = [
+            {
+                list: [
+                    {
+                        iconFilter: actionBarIconFilter,
+                    }, {
+                        iconGrid: {
+                            selected: viewType === 'grid',
+                            onClick: this._onViewGridClick,
+                        },
+                    }, {
+                        iconTable: {
+                            selected: viewType === 'table',
+                            onClick: this._onViewTableClick,
+                        },
+                    },
+                ],
+            }, {
+                flexGrow: 1,
+                search: actionBarSearch,
+            }, {
+                button: {
+                    color: 'success',
+                    iconType: 'plus',
+                    label: 'New Template',
+                    onClick: nop,
+                },
+            },
+        ];
+
+        if (isMobile) {
+            actionsBarColumns = [
+                {
+                    flexGrow: 1,
+                    list: [
+                        {
+                            iconBack: {
+                                onClick: this._onBackClick,
+                            },
+                            flexGrow: 1,
+                        }, {
+                            divide: false,
+                            iconSearch: actionBarSearch,
+                        }, {
+                            iconFilter: actionBarIconFilter,
+                        }, {
+                            actionsButton: {
+                                header: 'Foo Title',
+                                options: [
+                                    {
+                                        iconBackgroundColor: backgroundColorSuccess,
+                                        iconType: actionsBarColumns[2].button.iconType,
+                                        label: actionsBarColumns[2].button.label,
+                                        options: [
+                                            {
+                                                iconType: 'archive',
+                                                label: 'Foo Template',
+                                                onClick: nop,
+                                            }, {
+                                                iconType: 'broadcast',
+                                                label: 'Bar Template',
+                                                onClick: nop,
+                                            },
+                                        ],
+                                    }, {
+                                        iconType: 'envelope',
+                                        label: 'Email',
+                                        onClick: nop,
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                },
+            ];
+        }
 
         return (
             <React.Fragment>
@@ -63,12 +163,9 @@ class PageDemo extends React.Component {
                         minHeight: 'calc(100vh - 140px)',
                     }}
                 >
-                    <Page.ActionBar>
-                        <Icon
-                            onClick={this._onFiltersToggle}
-                            type="filter"
-                        />
-                    </Page.ActionBar>
+                    <Page.ActionBar
+                        columns={actionsBarColumns}
+                    />
 
                     <Page.Container>
                         <Page.FiltersDrawer
@@ -383,61 +480,95 @@ class PageDemo extends React.Component {
     }
 
     _onApplyFiltersDrawerClick() {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            appliedFilters: _.cloneDeep(dirtyFilters),
+        this.setState(prevState => ({
+            appliedFilters: { ...prevState.dirtyFilters },
             isFiltersDrawerOpen: false,
             isFiltering: true,
-        });
+        }));
+    }
+
+    _onBackClick() {
+
     }
 
     _onClearFiltersDrawerClick() {
         this.setState({
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            dirtyFilters: { ...this._defaultFilters },
             isFiltering: false,
         });
     }
 
     _onFiltersToggle() {
-        const { isFiltersDrawerOpen } = this.state;
-
-        this.setState({
-            isFiltersDrawerOpen: !isFiltersDrawerOpen,
-        });
+        this.setState(prevState => ({
+            isFiltersDrawerOpen: !prevState.isFiltersDrawerOpen,
+        }));
     }
 
     _onKeywordsMultiSelectChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, multiSelectValue: selectedOptions }),
-        });
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                multiSelectValue: selectedOptions,
+            },
+        }));
     }
 
     _onNestedTogglesBarChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesBarValue: selectedOptions }),
-        });
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesBarValue: selectedOptions,
+            },
+        }));
     }
 
     _onNestedTogglesFooChange(selectedOptions) {
-        const { dirtyFilters } = this.state;
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesFooValue: selectedOptions,
+            },
+        }));
+    }
 
+    _onSearchChange(value) {
         this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, nestedTogglesFooValue: selectedOptions }),
+            searchValue: value,
         });
     }
 
-    _onSortDropdownChange(selectedOption) {
-        const { dirtyFilters } = this.state;
+    _onSearchKeyDown(event) {
 
+    }
+
+    _onSortDropdownChange(selectedOption) {
+        this.setState(prevState => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                sort: selectedOption,
+            },
+        }));
+    }
+
+    _onViewGridClick() {
         this.setState({
-            dirtyFilters: _.cloneDeep({ ...dirtyFilters, sort: selectedOption }),
+            viewType: 'grid',
+        });
+    }
+
+    _onViewTableClick() {
+        this.setState({
+            viewType: 'table',
         });
     }
 }
 
-export default PageDemo;
+const mapStateToProps = state => {
+    const { breakpoint: { isMobile } } = state;
+
+    return {
+        isMobile,
+    };
+};
+
+export default connect(mapStateToProps)(PageDemo);

@@ -489,12 +489,12 @@ export default class ModulesModal extends React.Component {
                 </Header>
 
                 <p>
-                    <span className="font-weight-semibold">Mobile first:</span> A Modal's background color is set to <code>$bkgd-inverse</code>, which is a dark grey.<br />
+                    <span className="font-weight-semibold">Mobile first:</span> A Modal's background color is set to <code>color(backgroundColorInverse)</code>, which is a dark grey.<br />
                     <span className="font-weight-semibold">Default dimensions:</span> fullscreen
                 </p>
 
                 <p>
-                    <span className="font-weight-semibold">Tablet & Beyond:</span> A Modal's background color is set to <code>$bkgd</code>, which is a white.<br />
+                    <span className="font-weight-semibold">Tablet & Beyond:</span> A Modal's background color is set to <code>color(backgroundColor)</code>, which is a white.<br />
                     <span className="font-weight-semibold">Default dimensions:</span> <code>height: 500px; minHeight: 305px; width: 640px;</code>
                 </p>
 

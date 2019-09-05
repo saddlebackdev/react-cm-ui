@@ -1,7 +1,7 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
 .ui.divider {
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid color(borderColor);
     height: 0;
     letter-spacing: .05em;
     line-height: 1;
@@ -11,18 +11,18 @@
     &.divider-compact { margin: 0; }
     &.divider-hidden { border: 0; }
     &.divider-color- {
-        &alternate { border-color: $border-alternate; }
-        &highlight { border-color: $border-highlight; }
-        &inverse { border-color: $border-inverse; }
-        &inverse-alternate { border-color: $border-inverse-alternate; }
-        &primary { border-color: $border-light; }
+        &alternate { border-color: color(borderColorTertiary); }
+        &highlight { border-color: color(borderColorHighlight); }
+        &inverse { border-color: color(borderColorQuaternary); }
+        &inverse-alternate { border-color: color(borderColorQuinary); }
+        &primary { border-color: color(borderColorSecondary); }
     }
     &.divider-inverse.divider-color- {
-        &alternate { border-color: $border-alternate; }
-        &highlight { border-color: $border-highlight; }
-        &inverse { border-color: $border-inverse; }
-        &inverse-alternate { border-color: $border-inverse-alternate; }
-        &primary { border-color: $border-alternate; }
+        &alternate { border-color: color(borderColorTertiary); }
+        &highlight { border-color: color(borderColorHighlight); }
+        &inverse { border-color: color(borderColorQuaternary); }
+        &inverse-alternate { border-color: color(borderColorQuinary); }
+        &primary { border-color: color(borderColorTertiary); }
     }
     &.divider-relaxed {
         margin: rem(22px) 0;

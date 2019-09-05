@@ -21,7 +21,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     z-index: $zindex;
     .drawer-container {
         backface-visibility: hidden;
-        background-color: $bkgd;
+        background-color: color(backgroundColor);
         height: 100%;
         position: absolute;
         right: 0;
@@ -35,20 +35,20 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         transition: max-width 200ms ease-in-out, transform 333ms ease-in-out;
         width: 100%;
         &.drawer-container-inverse {
-            background: $bkgd-inverse-alternate;
-            color: $color-text-inverse;
+            background: color(backgroundColorInverseAlternate);
+            color: color(colorInverse);
             .drawer-container-inner .drawer-header {
-                background: $bkgd-inverse-alternate;
-                color: $color-text-inverse;
+                background: color(backgroundColorInverseAlternate);
+                color: color(colorInverse);
             }
         }
         &.color {
             &-dark-blue {
-                background: $bkgd-blue;
-                color: $color-text-inverse;
+                background: color(backgroundBlue);
+                color: color(colorInverse);
                 .drawer-container-inner .drawer-header {
-                    background: $bkgd-blue;
-                    color: $color-text-inverse;
+                    background: color(backgroundBlue);
+                    color: color(colorInverse);
                 }
             }
         }
@@ -66,7 +66,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             position: relative;
             .drawer-header {
                 align-items: flex-start;
-                background-color: $bkgd;
+                background-color: color(backgroundColor);
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
@@ -116,8 +116,8 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             width: 100%;
             z-index: -1;
             > div {
-                background-color: $bkgd;
-                border-left: 1px solid $border;
+                background-color: color(backgroundColor);
+                border-left: 1px solid color(borderColor);
                 height: 100%;
                 position: relative;
                 transform: translate(100%, 0);
@@ -128,8 +128,8 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
         .drawer-wing {
-            background-color: $bkgd;
-            color: $color-text;
+            background-color: color(backgroundColor);
+            color: color(color);
             height: 100%;
             left: 0;
             padding: 22px;
@@ -137,10 +137,10 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             top: 0;
             width: 100%;
             &.color-dark-blue {
-                background-color: $bkgd-blue;
-                color: $color-text-inverse;
+                background-color: color(backgroundBlue);
+                color: color(colorInverse);
             }
-            &.color-grey { background-color: $bkgd-nest; }
+            &.color-grey { background-color: color(backgroundColorNest); }
         }
 
         .drawer-wing-container.left-position .drawer-wing {

@@ -328,7 +328,7 @@ export default class ViewsTitleBar extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
                         Nested Card
                         <Header.Subheader>
-                            A card can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
+                            A card can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
                         </Header.Subheader>
                     </Header>
 

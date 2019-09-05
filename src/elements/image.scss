@@ -11,13 +11,13 @@
     }
     &.image-avatar {
         align-items: center;
-        background-color: $bkgd-nest;
+        background-color: color(backgroundColorNest);
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 500em;
-        box-shadow: inset 0 0 0 1px $border;
-        color: $bkgd-inverse-alternate;
+        box-shadow: inset 0 0 0 1px color(borderColor);
+        color: color(backgroundColorInverseAlternate);
         display: inline-flex;
         font-weight: $default-font-weight-semibold;
         height: 32px;
