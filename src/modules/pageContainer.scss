@@ -1,11 +1,11 @@
 @import '../shared/styles/colors';
 
-.ui.page_container {
+.ui.page--container {
     margin-top: 50px;
 }
 
 @media only screen and (min-width: 768px) {
-    .ui.page_container {
+    .ui.page--container {
         margin-top: 70px;
     }
 }

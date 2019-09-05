@@ -5,7 +5,7 @@ import React from 'react';
 
 const PageContainer = (props) => {
     const { children, className, style } = props;
-    const containerClasses = ClassNames('ui', 'page_container', className);
+    const containerClasses = ClassNames('ui', 'page--container', className);
 
     return (
         <div className={containerClasses} style={style}>

@@ -357,7 +357,7 @@ class PageActionBar extends React.Component {
     render() {
         const { children, className, columns, id, style } = this.props;
         const { isMobileSearchVisible } = this.state;
-        const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-page', className);
+        const containerClasses = ClassNames('ui', 'page--action_bar', 'action_bar-page', className);
         let searchDataForMobile = null;
         let gridColumnKeyNum = 1;
         let gridColumnListItemKeyNum = 1;
