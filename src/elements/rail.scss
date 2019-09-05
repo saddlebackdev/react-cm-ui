@@ -1,7 +1,7 @@
 @import '../shared/styles/colors';
 
 .ui.rail {
-    background-color: $bkgd;
+    background-color: color(backgroundColor);
     height: 100%;
     padding: 22px;
     position: absolute;
@@ -15,7 +15,7 @@
             width: 15px;
         }
         &-left {
-            box-shadow: inset -1px 0 0 0 $border;
+            box-shadow: inset -1px 0 0 0 color(borderColor);
             left: 0;
             top: 0;
             &::after {
@@ -24,7 +24,7 @@
             }
         }
         &-right {
-            box-shadow: inset 1px 0 0 0 $border;
+            box-shadow: inset 1px 0 0 0 color(borderColor);
             right: 0;
             top: 0;
             &::after {

@@ -17,7 +17,7 @@
         }
             p { margin: 0; }
             .allowed-types {
-                color: $color-text-static;
+                color: color(colorStatic);
                 margin-top: 4px;
                 .type { font-weight: $default-font-weight-semibold; text-transform: capitalize; }
             }
@@ -28,7 +28,7 @@
                 padding: 0;
                 dd, dt { margin: 0; padding: 0; }
                 dt {
-                    color: $color-text-static;
+                    color: color(colorStatic);
                     font-size: em(14px);
                     font-weight: $default-font-weight-semibold;
                     margin: 11px 0 1px;

@@ -10,7 +10,7 @@ body {
         position: fixed;
         width: 100%;
         #coreApp::after {
-            background: $bkgd-disable;
+            background: color(backgroundColorDisable);
             content: '';
             height: 100%;
             left: 0;
@@ -41,18 +41,18 @@ body {
     .modal-container {
         animation: slideInModal 200ms ease-out forwards;
         backface-visibility: hidden;
-        background-color: $bkgd-inverse;
+        background-color: color(backgroundColorInverse);
         border-radius: rem(3px);
         box-shadow: 0 15px 28px 0 rgba(0, 0, 0, 0.13);
         overflow-x: hidden;
     }
         .modal-container-inner {
-            color: $color-text-inverse;
+            color: color(colorInverse);
             padding: 88px 11px $padding;
             position: relative;
             header {
                 align-items: center;
-                background-color: $bkgd-inverse;
+                background-color: color(backgroundColorInverse);
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
@@ -104,12 +104,12 @@ body {
 @media only screen and (min-width: 768px) {
     .ui.modal {
         padding: $padding;
-        .modal-container { background-color: $bkgd; }
+        .modal-container { background-color: color(backgroundColor); }
         .modal-container-inner {
             color: inherit;
             padding: 88px $padding $padding;
             header {
-                background-color: $bkgd;
+                background-color: color(backgroundColor);
                 padding: $padding $padding 22px;
                 .modal-close-button-container {
                     height: 33px;

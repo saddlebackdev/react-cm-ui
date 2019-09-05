@@ -1,9 +1,7 @@
 @import '../shared/styles/colors', '../shared/styles/fontSizeCalculator';
 
-.ui.page--table {
-    .ui.table {
-        .table-header-cell {
-            padding-top: rem(11px);
-        }
+.ui {
+    .page--table_header_cell {
+        padding-top: rem(11px) !important; // sass-lint:disable-line no-important
     }
 }

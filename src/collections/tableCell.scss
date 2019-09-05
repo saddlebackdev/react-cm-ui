@@ -19,25 +19,25 @@ $breakpoint-has-widths: (
     'desktop',
     'desktop-large'
 );
-$cell-border-color: $border-light;
+$cell-border-color: color(borderColorSecondary);
 
 .ui.table .table-cell {
     border-top: 1px solid $cell-border-color;
-    color: $color-text;
+    color: color(color);
     font-weight: $default-font-weight-normal;
     padding: rem(11px);
     text-align: inherit;
     transition:
         background-color 150ms linear,
         border-top-color 150ms linear;
-    &.table-cell-active { background-color: $bkgd-nest; }
+    &.table-cell-active { background-color: color(backgroundColorNest); }
     &.table-cell-collapsing { white-space: nowrap; width: 1px; }
-    &.table-cell-disabled { color: $color-text-static; pointer-events: none; }
+    &.table-cell-disabled { color: color(colorStatic); pointer-events: none; }
     &.table-cell-font-size-large { font-size: rem(20px) !important; }
     &.table-cell-font-size-medium { font-size: rem(18px) !important; }
     &.table-cell-font-size-small { font-size: rem(16px) !important; }
     &.table-cell-font-size-xsmall { font-size: rem(14px) !important; }
-    &.table-cell-selectable:hover { background-color: $bkgd-nest; }
+    &.table-cell-selectable:hover { background-color: color(backgroundColorNest); }
     &.table-cell-single-line {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -69,11 +69,11 @@ $cell-border-color: $border-light;
     }
     &.table-definition {
         &:not(.table-basic) .table-cell:first-child {
-            background-color: $bkgd-nest;
-            border-right: 1px solid $border;
-            border-top: 1px solid $border;
+            background-color: color(backgroundColorNest);
+            border-right: 1px solid color(borderColor);
+            border-top: 1px solid color(borderColor);
         }
-        &.table-basic .table-cell:nth-child(2) { border-left: 1px solid $border; }
+        &.table-basic .table-cell:nth-child(2) { border-left: 1px solid color(borderColor); }
         .table-cell:first-child { font-weight: $default-font-weight-semibold; }
         .table-row:first-child .table-cell { border-top: 0; }
         &.table-basic .table-cell:first-child { padding-left: rem(11px); }
@@ -86,11 +86,11 @@ $cell-border-color: $border-light;
     }
     &.table-selectable .table-body .table-row:hover, &.table-selectable .table-body .table-row-selected {
         .table-cell {
-            background-color: $bkgd-nest;
-            border-top-color: $border;
+            background-color: color(backgroundColorNest);
+            border-top-color: color(borderColor);
             cursor: pointer;
         }
-        + .table-row .table-cell { border-top-color: $border; }
+        + .table-row .table-cell { border-top-color: color(borderColor); }
     }
     &.table-single-line .table-cell { overflow: hidden; text-overflow: ellipsis; }
     &.table-size- {
@@ -114,14 +114,14 @@ $cell-border-color: $border-light;
         }
     }
     &.table-striped .table-row:nth-child(2) .table-cell {
-        background-color: $bkgd-light;
+        background-color: color(backgroundColorLight);
     }
     // tbody
     .table-body-celled .table-cell { border-left: 1px solid $cell-border-color; }
     // tr
     .table-row- {
-        &active .table-cell { background-color: $bkgd-nest; }
-        &disabled .table-cell { color: $color-text-static; pointer-events: none; }
+        &active .table-cell { background-color: color(backgroundColorNest); }
+        &disabled .table-cell { color: color(colorStatic); pointer-events: none; }
         &font-size-large .table-cell { font-size: rem(20px) !important; }
         &font-size-medium .table-cell { font-size: rem(18px) !important; }
         &font-size-small .table-cell { font-size: rem(16px) !important; }

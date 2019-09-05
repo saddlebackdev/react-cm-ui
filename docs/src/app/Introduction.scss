@@ -2,8 +2,8 @@
 
 .page-introduction {
     .hero {
-        background-color: $bkgd-nest;
-        border-bottom: 1px solid $border;
+        background-color: color(backgroundColorNest);
+        border-bottom: 1px solid color(borderColor);
         margin: 0 -11px 44px;
         padding: 33px 0;
         text-align: center;
