@@ -86,7 +86,7 @@ $backwards-step4-duration: $standard-fifth-timing;
             }
         }
     }
-    &.page--action_bar, &.drawer--action_bar {
+    &.drawer--action_bar, &.page--action_bar {
         align-items: center;
         border-bottom: 1px solid color(borderColor);
         display: flex;
@@ -94,6 +94,12 @@ $backwards-step4-duration: $standard-fifth-timing;
         left: 0;
         position: fixed;
         right: 0;
+    }
+    .drawer--action_bar {
+        background-color: color(backgroundColor);
+        height: $drawer-action-bar-height;
+        padding: 0 11px;
+        z-index: $drawer-zindex;
     }
     .page--action_bar {
         background-color: color(backgroundColorLight);
@@ -103,12 +109,6 @@ $backwards-step4-duration: $standard-fifth-timing;
         top: 55px;
         width: auto;
         z-index: 3;
-    }
-    .drawer--action_bar {
-        background-color: color(backgroundColor);
-        height: $drawer-action-bar-height;
-        padding: 0 11px;
-        z-index: $drawer-zindex;
     }
     &.action_bar--grid {
         flex-wrap: nowrap;
@@ -299,7 +299,7 @@ $backwards-step4-duration: $standard-fifth-timing;
 
 @media only screen and (max-width: 767px) {
     .ui {
-        &.action_bar {
+        &.drawer--action_bar, &.page--action_bar {
             .button {
                 height: 32px;
                 min-height: 32px;
@@ -319,7 +319,7 @@ $backwards-step4-duration: $standard-fifth-timing;
 
 @media only screen and (min-width: 768px) {
     .ui {
-        &.action_bar {
+        &.drawer--action_bar, &.page--action_bar {
             padding: 0 22px;
             &-page {
                 left: 250px;
