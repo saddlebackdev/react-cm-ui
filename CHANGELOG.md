@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 6.0.1
 
 #### Bug Fix
-- Removed the `.scss` extension on the color import in **&lt;Image /&gt;**. 
+- Removed the `.scss` extension on the color import in **&lt;Image /&gt;**.
 
 ## 6.0.0
 
