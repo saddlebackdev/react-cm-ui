@@ -87,6 +87,7 @@ $colors-map: (
     'colorSecondary':      $sc-teal-dark,
     'colorCode':           $sc-red-orange-dark,
     'colorSuccess':        $sc-green,
+    'colorTextSubnavBlue': $sc-blue-dark,
 );
 
 @function color($key) {
