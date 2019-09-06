@@ -60,26 +60,26 @@ $backwards-step4-duration: $standard-fifth-timing;
         &action_bar { // sass-lint:disable-line class-name-format
             .drawer-container-inner {
                 padding-top: $drawer-action-bar-height;
-                .action_bar-drawer {
+                .drawer--action_bar {
                     top: 0;
                 }
             }
             &.has-drawer--title_bar { // sass-lint:disable-line class-name-format
                 .drawer-container-inner {
                     padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
-                    .action_bar-drawer {
+                    .drawer--action_bar-drawer {
                         top: $drawer-title-bar-height;
                     }
                 }
                 &:not(.has-drawer--navigation) .drawer-container-inner {
-                    .action_bar-drawer {
+                    .drawer--action_bar {
                         background-color: color(backgroundColorLight);
                         border-top: 1px solid color(borderColor);
                     }
                 }
                 &.has-drawer--navigation .drawer-container-inner { // sass-lint:disable-line class-name-format
                     padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
-                    .action_bar-drawer {
+                    .drawer--action_bar {
                         top: $drawer-title-bar-height + $drawer-navigation-height;
                     }
                 }
