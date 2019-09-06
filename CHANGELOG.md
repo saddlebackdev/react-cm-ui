@@ -1,6 +1,24 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.0
+
+#### Feature
+- [PR #53](https://github.com/saddlebackdev/react-cm-ui/pull/53): Adds some new functionality to the **&lt;Image /&gt;**.
+  - New Prop: `border`. This prop checks for one of the following types: `bool` or `number`.
+  - New Prop: `borderInverse`. This prop checks for `bool`
+  - New Prop: `type`. This prop checks for one of the following strings: `person` or `user`. Leaving this prop as `undefined` gives you the ability to use the component as a basic **&lt;img /&gt;**.
+
+  ##### Breaking Change
+
+    - Removed of **&lt;Image /&gt;**'s `avatar` prop to favor the new `type` prop.
+
+
+- New color, `colorSubNav`, name added to our `color` function.
+
+#### Bug Fix
+- **&lt;Drawer.ActionBar /&gt;** got into a bad state with the last BEM name changes. All fixed.
+
 ## 5.2.0
 
 - [#54](https://github.com/saddlebackdev/react-cm-ui/pull/54): Fixes ReactJS `componentWillReceiveProps` warnings about needing to switch to `componentDidUpdate`.
