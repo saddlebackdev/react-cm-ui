@@ -1,0 +1,335 @@
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
+
+// ######## //
+// TODO: Remove !important when we refactor <List /> naming convention to BEM.
+//       Remove .ui when we refactor <Drawer />, <Grid />, and <List /> naming convention to BEM
+//       Rename file or move to a better position.
+// ######## //
+
+$standard-third-timing: 300ms;
+$standard-fifth-timing: 200ms;
+$standard-quarter-timing: 250ms;
+
+// ######## //
+// Forwards
+// Step 1: Fade out title and non-selected parent options
+// ######## //
+$forwards-step1-duration: $standard-fifth-timing;
+// ######## //
+// Step 2: Reveal selected parent option by highlighting it.
+// ######## //
+$forwards-step2-delay: $forwards-step1-duration + 50ms;
+$forwards-step2-duration: $standard-third-timing;
+// ######## //
+// Step 3: Move selected parent option to top of drawer and show --sub_options
+// ######## //
+$forwards-step3-delay: $forwards-step1-duration + $forwards-step2-delay + $forwards-step2-duration;
+$forwards-step3-duration: $standard-third-timing;
+// ######## //
+// Step 4: By staggering, fade in and move down sub options.
+// ######## //
+$forwards-step4-delay: $forwards-step3-delay + $forwards-step3-duration;
+$forwards-step4-duration: $standard-third-timing;
+
+// ######## //
+// Backwards
+// Step 1: These will happen right away, in otherwords, no delay.
+//         Move sub options up and fade out
+//         Move selected option back down
+// ######## //
+$backwards-step1-duration: $standard-fifth-timing;
+// ######## //
+// Step 2: Move selected parent option back down and hide --sub_options
+// ######## //
+$backwards-step2-delay: $backwards-step1-duration + 50ms;
+$backwards-step2-duration: $standard-third-timing;
+// ######## //
+// Step 3: Remove highlight on selected option
+// ######## //
+$backwards-step3-delay: $backwards-step2-delay + $backwards-step2-duration;
+$backwards-step3-duration: $standard-third-timing;
+// ######## //
+// Step 4: Fade in drawer title
+//         By staggering, fade in and move down options.
+// ######## //
+$backwards-step4-delay: $backwards-step3-delay + $backwards-step3-duration;
+$backwards-step4-duration: $standard-fifth-timing;
+
+.ui {
+    &.drawer.has-drawer-- { // sass-lint:disable-line class-name-format
+        &action_bar { // sass-lint:disable-line class-name-format
+            .drawer-container-inner {
+                padding-top: $drawer-action-bar-height;
+                .action_bar-drawer {
+                    top: 0;
+                }
+            }
+            &.has-drawer--title_bar { // sass-lint:disable-line class-name-format
+                .drawer-container-inner {
+                    padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
+                    .action_bar-drawer {
+                        top: $drawer-title-bar-height;
+                    }
+                }
+                &:not(.has-drawer--navigation) .drawer-container-inner {
+                    .action_bar-drawer {
+                        background-color: color(backgroundColorLight);
+                        border-top: 1px solid color(borderColor);
+                    }
+                }
+                &.has-drawer--navigation .drawer-container-inner { // sass-lint:disable-line class-name-format
+                    padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
+                    .action_bar-drawer {
+                        top: $drawer-title-bar-height + $drawer-navigation-height;
+                    }
+                }
+            }
+        }
+    }
+    &.drawer--action_bar, &.page--action_bar {
+        align-items: center;
+        border-bottom: 1px solid color(borderColor);
+        display: flex;
+        justify-content: flex-start;
+        left: 0;
+        position: fixed;
+        right: 0;
+    }
+    .drawer--action_bar {
+        background-color: color(backgroundColor);
+        height: $drawer-action-bar-height;
+        padding: 0 11px;
+        z-index: $drawer-zindex;
+    }
+    .page--action_bar {
+        background-color: color(backgroundColorLight);
+        border-top: 1px solid color(borderColor);
+        min-height: 50px;
+        padding: 8px 11px;
+        top: 55px;
+        width: auto;
+        z-index: 3;
+    }
+    &.action_bar--grid {
+        flex-wrap: nowrap;
+        margin: 0;
+        width: 100%;
+    }
+    .action_bar--grid_column {
+        padding-bottom: 0;
+        padding-top: 0;
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+    &.action_bar--list {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .action_bar--list_item {
+        align-items: center;
+        align-self: stretch;
+        display: inline-flex;
+        justify-content: center;
+        margin-left: 0 !important; // sass-lint:disable-line no-important
+        padding: 0 rem(11px) !important; // sass-lint:disable-line no-important
+        &::before { height: 88% !important; } // sass-lint:disable-line no-important
+        &:first-child {
+            padding-left: 0 !important; // sass-lint:disable-line no-important
+        }
+        &:last-child {
+            padding-right: 0 !important; // sass-lint:disable-line no-important
+        }
+    }
+    .actions_button_drawer {
+        &--content {
+            padding: 22px 11px;
+        }
+        &--title {
+            &-hide {
+                opacity: 0;
+                transition: opacity $forwards-step1-duration ease-in-out;
+            }
+            &-show {
+                opacity: 1;
+                transition: opacity $backwards-step4-duration ease-in-out $backwards-step4-delay;
+            }
+        }
+        &--option_container {
+            font-size: rem(14px);
+            font-weight: $default-font-weight-semibold;
+            margin: 0 -11px;
+            position: relative;
+            @for $i from 1 through 11 {
+                &-#{$i}-hide {
+                    opacity: 0;
+                    transition: opacity $forwards-step1-duration ease-in-out;
+                }
+                &-#{$i}-show {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: opacity $backwards-step4-duration ease-in-out $backwards-step4-delay + $i * 50ms,
+                                transform $backwards-step2-duration ease-in-out $backwards-step2-delay; // sass-lint:disable-line indentation
+                }
+            }
+            &-selected {
+                transform: translateY(-61px);
+                transition: transform $forwards-step3-duration ease-in-out $forwards-step3-delay;
+            }
+            &:first-child {
+                border-top: 1px solid color(borderColor);
+            }
+            &-selected:first-child {
+                border-top: 0;
+            }
+        }
+        &--option, &--sub_option {
+            align-items: center;
+            border-bottom: 1px solid color(borderColor);
+            color: color(color);
+            cursor: pointer;
+            display: flex;
+            min-height: 55px;
+            opacity: 1;
+            padding: 11px;
+            position: relative;
+        }
+        &--option {
+            transition: color $backwards-step3-duration / 2 ease-in $backwards-step3-delay;
+            z-index: 1;
+            &-disabled {
+                cursor: default;
+            }
+            &::before {
+                background-color: color(backgroundColorHighlight);
+                content: '';
+                height: 54px;
+                left: 0;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                transition: opacity 1ms ease-in-out $backwards-step3-delay + $backwards-step3-duration,
+                            width $backwards-step3-duration ease-in-out $backwards-step3-delay; // sass-lint:disable-line indentation
+                width: 0;
+                z-index: 0;
+            }
+            &-selected {
+                border-bottom: 0;
+                color: color(colorInverse);
+                transition: color $forwards-step2-duration / 2 ease-in $forwards-step2-delay;
+                &::before {
+                    opacity: 1;
+                    transition: width $forwards-step2-duration ease-in-out $forwards-step2-delay;
+                    width: 100%;
+                }
+            }
+        }
+        &--sub_options {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            &-hide {
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity $backwards-step3-duration ease-in-out $backwards-step3-delay;
+            }
+            &-show {
+                opacity: 1;
+                padding-top: 55px;
+                transition: opacity 1ms ease-in-out $forwards-step3-delay,
+                            padding-top 1ms ease-in-out $forwards-step3-delay; // sass-lint:disable-line indentation
+            }
+        }
+        &_option, &_sub_option {
+            &--icon_container, &--label {
+                z-index: 1;
+            }
+            &--icon_container {
+                align-items: center;
+                display: inline-flex;
+                height: 32px;
+                justify-content: center;
+                margin-right: 16px;
+                transition: background-color 200ms ease-in;
+                width: 32px;
+                z-index: 1;
+            }
+        }
+        &_option {
+            &--icon_container {
+                background-color: color(backgroundColorInverse);
+                border-radius: 50%;
+            }
+        }
+        &--sub_option {
+            @for $i from 1 through 11 {
+                &-#{$i} {
+                    opacity: 0;
+                    transform: translateY(-55px);
+                    transition: opacity $backwards-step1-duration ease-in-out 0ms,
+                                transform $backwards-step1-duration ease-in-out 0ms; // sass-lint:disable-line indentation
+                }
+                &-#{$i}-show {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: opacity $forwards-step4-duration ease-in-out $forwards-step4-delay + $i * 50ms,
+                                transform $forwards-step4-duration ease-in-out $forwards-step4-delay + $i * 50ms; // sass-lint:disable-line indentation
+                }
+            }
+        }
+    }
+    .action_bar--search-mobile {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0;
+        transition: height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out;
+        &-show {
+            height: 55px;
+            opacity: 1;
+            padding-top: 11px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .ui {
+        &.drawer--action_bar, &.page--action_bar {
+            .button {
+                height: 32px;
+                min-height: 32px;
+                &-icon {
+                    width: 32px;
+                    .button-inner-container {
+                        width: 32px;
+                    }
+                }
+                .button-inner-container {
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui {
+        &.drawer--action_bar, &.page--action_bar {
+            padding: 0 22px;
+        }
+        &.page--action_bar {
+            left: 250px;
+            min-height: 70px;
+            padding: 0 22px;
+            top: 70px;
+        }
+        &.drawer--action_bar {
+            padding: 0 22px;
+        }
+    }
+}

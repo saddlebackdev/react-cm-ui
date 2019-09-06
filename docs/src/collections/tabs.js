@@ -137,7 +137,7 @@ export default class CollectionsTabs extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Nested Tabs
                     <Header.Subheader>
-                        Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>$bkgd-nest</code>.
+                        Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
                     </Header.Subheader>
                 </Header>
 

@@ -18,7 +18,9 @@ class DrawerTitleBar extends React.PureComponent {
                 ref={ref => this._drawerTitleBarRef = ref}
                 style={style}
             >
-                <div>
+                <div
+                    className="drawer--title_bar_inner"
+                >
                     {_.isObject(title) ? (
                         title
                     ) : _.isString(title) ? (

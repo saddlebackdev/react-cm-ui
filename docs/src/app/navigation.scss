@@ -3,8 +3,8 @@
 $nav-width: 250px;
 
 .core-app-nav {
-    background-color: $bkgd-inverse;
-    color: $color-text-inverse;
+    background-color: color(backgroundColorInverse);
+    color: color(colorInverse);
     height: 100%;
     left: 0;
     opacity: 0;
@@ -20,9 +20,9 @@ $nav-width: 250px;
     }
         .logo-wrapper {
             align-items: center;
-            background-color: $bkgd-inverse;
-            border-bottom: 1px solid $border-inverse;
-            box-shadow: 0 10px 24px $bkgd-inverse;
+            background-color: color(backgroundColorInverse);
+            border-bottom: 1px solid color(borderColorQuaternary);
+            box-shadow: 0 10px 24px color(backgroundColorInverse);
             clip-path: inset(0 0 -26px 0);
             display: flex;
             justify-content: flex-start;
@@ -38,7 +38,7 @@ $nav-width: 250px;
                 height: 31px;
                 margin: 0;
                 width: 130px;
-                path { fill: $color-text-inverse; }
+                path { fill: color(colorInverse); }
             }
             .doc-version {
                 border-left: 1px solid;
@@ -50,16 +50,16 @@ $nav-width: 250px;
             }
         }
         .ui.header.header-size-small { margin-bottom: 5px; z-index: -1; }
-        ul + .ui.header.header-size-small { border-top: 1px solid $border-inverse; margin-top: 22px !important; padding-top: 22px; }
+        ul + .ui.header.header-size-small { border-top: 1px solid color(borderColorQuaternary); margin-top: 22px !important; padding-top: 22px; }
         ul {
             list-style: none;
             margin: 0;
             padding: 0;
             a {
-                color: $color-text-static;
+                color: color(colorStatic);
                 font-size: em(14px);
                 transition: color 300ms ease-out;
-                &.is-active { color: $color-text-inverse; }
+                &.is-active { color: color(colorInverse); }
             }
         }
 

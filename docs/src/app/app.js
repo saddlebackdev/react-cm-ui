@@ -21,15 +21,14 @@ export default class CoreApp extends React.Component {
 
         this._curScrollPos = null;
         this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
+
+        document.querySelector('html').classList.add(DOMUtils.browserDetect());
+        breakpointActions.update();
     }
 
     componentDidMount() {
         window.addEventListener('resize', this._onResizeDebounce);
         this._onResize();
-    }
-
-    componentWillMount() {
-        document.querySelector('html').classList.add(DOMUtils.browserDetect());
     }
 
     render() {

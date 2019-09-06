@@ -25,7 +25,7 @@ const positionEnums = [ 'left', 'right' ];
 Rail.propTypes = {
     className: PropTypes.string,
     position: PropTypes.oneOf(positionEnums).isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Rail;

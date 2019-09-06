@@ -1,7 +1,7 @@
 // ######## //
 // Color Names
 // NOTE: Don't use the color names in .scss files.
-//       Only use the Types variables below.
+//       Only use the color(keyName) function below.
 // ######## //
 // Primary Nutrual Colors
 $pcn-white:          #fff;
@@ -34,111 +34,73 @@ $sc-purple:          #c68ef6;
 $sc-purple-dark:     #9958d2;
 
 // ######## //
-// Types //
-// NOTE: Use common names when creating new variables.
-//       Try as hard as posible to stay away from element specific names.
-//       Don't use color names as a variable names. e.g. $bkgd-pink <--- DON'T DO
-//       The whole philosophy behind this is to not have a growing list of variable names.
+// Colors Map //
+// NOTE: Use common names when creating new keys.
+//       Try hard as posible to stay away from specific element names.
+//       Don't use color names as a key names. e.g. 'backgroundColorPink <--- DON'T DO
+//       The methodology for this pattern is to not have a growing list of key names in our map.
 // ######## //
-// Backgrounds
-$bkgd:                      $pcn-white;
-$bkgd-disable:              $pcn-grey-two;
-$bkgd-alert:                $sc-red;
-$bkgd-alert-dark:           $sc-red-dark;
-$bkgd-highlight:            $sc-cyan;
-$bkgd-highlight-dark:       $sc-cyan-dark;
-$bkgd-inverse:              $pcn-grey-six;
-$bkgd-inverse-alternate:    $pcn-grey-five;
-$bkgd-light:                $pcn-grey-one;
-$bkgd-nest:                 $pcn-grey-two;
-$bkgd-static:               $pcn-grey-four;
-$bkgd-success:              $sc-green;
-$bkgd-success-dark:         $sc-green-dark;
-$bkgd-warning:              $sc-orange;
-$bkgd-warning-dark:         $sc-orange-dark;
-$bkgd-button:               $sc-cyan-dark;
-$bkgd-button-disable:       $pcn-grey-three;
-$bkgd-button-alert:         $sc-red;
-$bkgd-button-alternate:     $pcn-grey-five;
-$bkgd-button-secondary:     $sc-blue;
-$bkgd-button-success:       $sc-green;
-$bkgd-purple:               $sc-purple; // Rename when better defined
-$bkgd-teal:                 $sc-teal; // Rename when better defined
-$bkgd-blue:                 $sc-blue; // Remove when better defined
-$bkgd-sky:                  $sc-sky; // Remove when better defined
-// Borders
-$border:                    $pcn-grey-three;
-$border-alternate:          $pcn-grey-four;
-$border-highlight:          $sc-cyan;
-$border-inverse:            $pcn-grey-five;
-$border-inverse-alternate:  $pcn-grey-six;
-$border-light:              $pcn-grey-two;
-// Color
-$color-text:                $pcn-grey-six;
-$color-text-inverse:        $pcn-white;
-$color-text-disable:        $pcn-grey-three;
-$color-text-cta:            $sc-cyan;
-$color-text-highlight:      $sc-cyan;
-$color-text-link:           $sc-cyan;
-$color-text-static:         $pcn-grey-four;
-$color-text-alert:          $sc-red;
-$color-text-warning:        $sc-orange;
-$color-text-secondary:      $sc-teal-dark;
-$color-text-code:           $sc-red-orange-dark;
-$color-text-success:        $sc-green;
-$color-text-subnav-blue:    $sc-blue-dark;
-
-$theme-colors: (
-    'bkgd':                    $bkgd,
-    'bkgdDisable':             $bkgd-disable,
-    'bkgdAlert':               $bkgd-alert,
-    'bkgdAlertDark':           $bkgd-alert-dark,
-    'bkgdHighlight':           $bkgd-highlight,
-    'bkgdHighlightDark':       $bkgd-highlight-dark,
-    'bkgdInverse':             $bkgd-inverse,
-    'bkgdInverseAlternate':    $bkgd-inverse-alternate,
-    'bkgdLight':               $bkgd-light,
-    'bkgdNest':                $bkgd-nest,
-    'bkgdStatic':              $bkgd-static,
-    'bkgdSuccess':             $bkgd-success,
-    'bkgdSuccessDark':         $bkgd-success-dark,
-    'bkgdWarning':             $bkgd-warning,
-    'bkgdWarningDark':         $bkgd-warning-dark,
-    'bkgdButton':              $bkgd-button,
-    'bkgdButtonDisable':       $bkgd-button-disable,
-    'bkgdButtonAlert':         $bkgd-button-alert,
-    'bkgdButtonAlternate':     $bkgd-button-alternate,
-    'bkgdButtonSecondary':     $bkgd-button-secondary,
-    'bkgdButtonSuccess':       $bkgd-button-success,
-    'bkgdPurple':              $bkgd-purple,
-    'bkgdTeal':                $bkgd-teal,
-    'bkgdBlue':                $bkgd-blue,
-    'bkgdSky':                 $bkgd-sky,
-    // Borders
-    'border':                  $border,
-    'borderAlternate':         $border-alternate,
-    'borderHighlight':         $border-highlight,
-    'borderInverse':           $border-inverse,
-    'borderInverseAlternate':  $border-inverse-alternate,
-    'borderLight':             $border-light,
-    // Color
-    'colorText':               $color-text,
-    'colorTextInverse':        $color-text-inverse,
-    'colorTextDisable':        $color-text-disable,
-    'colorTextCta':            $color-text-cta,
-    'colorTextHighlight':      $color-text-highlight,
-    'colorTextLink':           $color-text-link,
-    'colorTextStatic':         $color-text-static,
-    'colorTextAlert':          $color-text-alert,
-    'colorTextWarning':        $color-text-warning,
-    'colorTextSecondary':      $color-text-secondary,
-    'colorTextCode':           $color-text-code,
-    'colorTextSuccess':        $color-text-success,
-    'colorTextSubnavBlue':     $color-text-subnav-blue,
+$colors-map: (
+    // Background Colors
+    'backgroundColor':                    $pcn-white,
+    'backgroundColorDisable':             $pcn-grey-two,
+    'backgroundColorAlert':               $sc-red,
+    'backgroundColorAlertDark':           $sc-red-dark,
+    'backgroundColorHighlight':           $sc-cyan,
+    'backgroundColorHighlightDark':       $sc-cyan-dark,
+    'backgroundColorInverse':             $pcn-grey-six,
+    'backgroundColorInverseAlternate':    $pcn-grey-five,
+    'backgroundColorLight':               $pcn-grey-one,
+    'backgroundColorNest':                $pcn-grey-two,
+    'backgroundColorStatic':              $pcn-grey-four,
+    'backgroundColorSuccess':             $sc-green,
+    'backgroundColorSuccessDark':         $sc-green-dark,
+    'backgroundColorWarning':             $sc-orange,
+    'backgroundColorWarningDark':         $sc-orange-dark,
+    'backgroundColorButton':              $sc-cyan-dark,
+    'backgroundColorButtonDisable':       $pcn-grey-three,
+    'backgroundColorButtonAlert':         $sc-red,
+    'backgroundColorButtonAlternate':     $pcn-grey-five,
+    'backgroundColorButtonSecondary':     $sc-blue,
+    'backgroundColorButtonSuccess':       $sc-green,
+    'backgroundColorPurple':              $sc-purple, // Rename when better define,
+    'backgroundColorTeal':                $sc-teal, // Rename when better define,
+    'backgroundColorBlue':                $sc-blue, // Remove when better define,
+    'backgroundColorSky':                 $sc-sky, // Remove when better define,
+    // Border Colors
+    'borderColor':                  $pcn-grey-three,
+    'borderColorSecondary':         $pcn-grey-two,
+    'borderColorTertiary':          $pcn-grey-four,
+    'borderColorQuaternary':        $pcn-grey-five,
+    'borderColorQuinary':           $pcn-grey-six,
+    'borderColorHighlight':         $sc-cyan,
+    'borderColorInverse':           $pcn-white,
+    // Colors
+    'color':               $pcn-grey-six,
+    'colorInverse':        $pcn-white,
+    'colorDisable':        $pcn-grey-three,
+    'colorHighlight':      $sc-cyan,
+    'colorLink':           $sc-cyan,
+    'colorStatic':         $pcn-grey-four,
+    'colorAlert':          $sc-red,
+    'colorWarning':        $sc-orange,
+    'colorSecondary':      $sc-teal-dark,
+    'colorCode':           $sc-red-orange-dark,
+    'colorSuccess':        $sc-green,
+    'colorTextSubnavBlue': $sc-blue-dark,
 );
 
+@function color($key) {
+    @return map-get($colors-map, $key);
+}
+
+// ######## //
+// Exported Colors Map //
+// NOTE: To be used in JS files. e.g. 'style={{ backgroundColor: backgroundColorInverse }}'
+//       Kind of cool.
+// ######## //
 :export {
-    @each $key, $value in $theme-colors {
+    @each $key, $value in $colors-map {
         #{unquote($key)}: $value;
     }
 }

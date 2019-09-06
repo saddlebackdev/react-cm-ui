@@ -1,16 +1,24 @@
 @import '../shared/styles/colors';
 
-.ui.page--filters_rail {
-    margin-left: -22px;
-    min-height: 100%;
-    pointer-events: none;
-    position: absolute;
-    width: 250px;
-    z-index: 1;
-    > span {
+.ui {
+    &.page--filters_rail {
+        margin-left: -22px;
         min-height: 100%;
+        pointer-events: none;
+        position: absolute;
+        width: 250px;
+        z-index: 1;
+        > span {
+            min-height: 100%;
+        }
+        &-enter {
+            animation-name: showFilterRail;
+        }
+        &-leave {
+            animation-name: hideFilterRail;
+        }
     }
-    .ui.rail {
+    .page--inner_container {
         animation-duration: 200ms;
         animation-fill-mode: forwards;
         animation-timing-function: ease-out;
@@ -20,12 +28,6 @@
         &::after {
             z-index: -1;
         }
-    }
-    .ui.rail.filters-rail-enter {
-        animation-name: showFilterRail;
-    }
-    .ui.rail.filters-rail-leave {
-        animation-name: hideFilterRail;
     }
 }
 
