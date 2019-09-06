@@ -1,5 +1,7 @@
 'use strict';
 
+import { border as borderColor, bkgd as borderColorInverse } from '../shared/styles/colors.scss';
+
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import Icon from '../elements/icon.js';
@@ -8,17 +10,13 @@ import Utils from '../utils/utils.js';
 
 class Image extends Component {
     render() {
-        const { as, avatar, className, name, size, src, style } = this.props;
-        let newAs = as || 'img';
+        const { as, border, borderInverse, className, name, size, src, style, type } = this.props;
         let newStyle = style;
-
-        if (avatar) {
-            newAs = 'div';
-        }
-
-        const ElementType = Utils.getElementType(newAs, this.props);
+        const ElementType = Utils.getElementType(!type ? as : 'div', this.props);
         const containerClasses = ClassNames('ui', 'image', className, {
-            'image-avatar': avatar,
+            'image-avatar': type === 'person' || type === 'user',
+            'image-avatar-person': type === 'person',
+            'image-avatar-user': type === 'user',
         });
 
         if (ElementType === 'img') {
@@ -38,14 +36,19 @@ class Image extends Component {
 
         let newInitials, avatarSize = 'xsmall';
 
-        if (avatar) {
-            newStyle = Object.assign({}, style, {
-                boxShadow: src ? 'none' : null,
+        if (type) {
+            const boxShadowStyle = src ? 'none' : (!border ? `inset 0 0 0 1px ${borderColor}` : null);
+            const borderColorStyle = borderInverse ? borderColorInverse : borderColor;
+            const borderWidth = border === true ? '1' : border; 
+
+            newStyle = Object.assign({}, {
                 backgroundImage: src ? `url(${src})` : null,
+                border: border ? `${borderWidth}px solid ${borderColorStyle}` : null,
+                boxShadow: boxShadowStyle,
                 fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
                 height: size,
                 width: size,
-            });
+            }, style );
 
             if (name) {
                 newInitials = name.match(/\b\w/g) || [];
@@ -64,10 +67,10 @@ class Image extends Component {
         return (
             <ElementType
                 className={containerClasses}
-                src={!avatar ? src : null}
+                src={!type ? src : null}
                 style={newStyle}
             >
-                {avatar && !src ?
+                {type && !src ?
                     name ?
                         newInitials :
                         ( <Icon color="static" compact size={avatarSize} title="This person has no image" type="user" /> ) :
@@ -78,15 +81,25 @@ class Image extends Component {
 }
 
 const asEnums = [ 'div', 'img' ];
+const typeEnums = [ 'person', 'user' ];
+
+Image.defaultProps = {
+    as: 'img',
+};
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
-    avatar: PropTypes.bool,
+    border: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number,
+    ]),
+    borderInverse: PropTypes.bool,
     className: PropTypes.string,
     name: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
     style: PropTypes.object,
+    type: PropTypes.oneOf(typeEnums),
 };
 
 export default Image;
