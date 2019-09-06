@@ -10,7 +10,7 @@ const hasClassName = 'has-drawer--action_bar';
 class DrawerActionBar extends React.PureComponent {
     render() {
         const { children, className, columns, style } = this.props;
-        const containerClasses = ClassNames('ui', 'action_bar', 'action_bar-drawer', className);
+        const containerClasses = ClassNames('ui', 'action_bar', 'drawer--action_bar', className);
 
         return (
             <div
