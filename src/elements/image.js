@@ -1,6 +1,6 @@
 'use strict';
 
-import { border as borderColor, bkgd as borderColorInverse } from '../shared/styles/colors.scss';
+import { border as borderColor, bkgd as borderColorInverse } from '../shared/styles/colors';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
@@ -39,7 +39,7 @@ class Image extends Component {
         if (type) {
             const boxShadowStyle = src ? 'none' : (!border ? `inset 0 0 0 1px ${borderColor}` : null);
             const borderColorStyle = borderInverse ? borderColorInverse : borderColor;
-            const borderWidth = border === true ? '1' : border; 
+            const borderWidth = border === true ? '1' : border;
 
             newStyle = Object.assign({}, {
                 backgroundImage: src ? `url(${src})` : null,
