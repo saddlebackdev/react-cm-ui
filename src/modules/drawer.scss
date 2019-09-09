@@ -30,6 +30,85 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     top: 0;
     width: 100%;
     z-index: $zindex;
+    // ####
+    // Header Items
+    // ####
+    // Only One Header Item Showing
+    &.has-drawer--action_bar:not(.has-drawer--navigation):not(.has-drawer--title_bar) .drawer-container-inner {
+        padding-top: $drawer-action-bar-height;
+        .drawer--action_bar {
+            background-color: color(backgroundColorLight);
+            border-top: 1px solid color(borderColor);
+            top: 0;
+        }
+    }
+    &:not(.has-drawer--action_bar).has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+        padding-top: $drawer-navigation-height;
+        .drawer--navigation {
+            top: 0;
+        }
+    }
+    &:not(.has-drawer--action_bar):not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+        padding-top: $drawer-title-bar-height;
+        .drawer--title_bar {
+            top: 0;
+        }
+    }
+    // Two Header Items Showing
+    &.has-drawer--action_bar.has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+        padding-top: $drawer-action-bar-height + $drawer-navigation-height;
+        .drawer {
+            &--action_bar {
+                top: $drawer-navigation-height;
+            }
+            &--navigation {
+                top: 0;
+            }
+        }
+    }
+    &.has-drawer--action_bar:not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+        padding-top: $drawer-action-bar-height + $drawer-title-bar-height;
+        .drawer {
+            &--action_bar {
+                background-color: color(backgroundColorLight);
+                border-top: 1px solid color(borderColor);
+                top: $drawer-title-bar-height;
+            }
+            &--title_bar {
+                top: 0;
+            }
+        }
+    }
+    &:not(.has-drawer--action_bar).has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+        padding-top: $drawer-navigation-height + $drawer-title-bar-height;
+        .drawer {
+            &--navigation {
+                border-bottom: 0;
+                top: $drawer-title-bar-height;
+            }
+            &--title_bar {
+                top: 0;
+            }
+        }
+    }
+    // Three Header Items Showing
+    &.has-drawer--action_bar.has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+        padding-top: $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height;
+        .drawer {
+            &--action_bar {
+                top: $drawer-navigation-height + $drawer-title-bar-height;
+            }
+            &--navigation {
+                top: $drawer-title-bar-height;
+            }
+            &--title_bar {
+                top: 0;
+            }
+        }
+    }
+    // #####
+    // End of Header Items
+    // #####
     .drawer-container {
         backface-visibility: hidden;
         background-color: color(backgroundColor);

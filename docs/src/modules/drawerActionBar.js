@@ -264,6 +264,8 @@ class ModulesDrawerActionBar extends React.Component {
 
         this.state = {
             isDrawerOpen: false,
+            isNavigation: true,
+            isTitleBar: true,
             searchValue: '',
         };
 
@@ -272,7 +274,12 @@ class ModulesDrawerActionBar extends React.Component {
     }
 
     render() {
-        const { isDrawerOpen, searchValue } = this.state;
+        const {
+            isDrawerOpen,
+            isNavigation,
+            isTitleBar,
+            searchValue,
+        } = this.state;
         const props = [
             {
                 name: 'className',
@@ -327,31 +334,49 @@ class ModulesDrawerActionBar extends React.Component {
                         {columnsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                        Open Drawer with TitleBar & Navigation
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                        Open Drawer without TitleBar & Navigation
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                        Open Drawer without TitleBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                        Open Drawer without Navigation
+                    </Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
                         onClose={this._onDrawerToggle}
                     >
-                        <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
-                            title="Don't Pay Attention to the TitleBar, But to the Navigation"
-                        />
+                        {isTitleBar &&
+                            <Drawer.TitleBar
+                                closeButton={<Icon compact onClick={() => this._onDrawerToggle(isTitleBar, isNavigation)} type="times" />}
+                                title="Don't Pay Attention to the TitleBar, But to the Navigation"
+                            />
+                        }
 
-                        <Drawer.Navigation
-                            columns={[
-                                {
-                                    label: 'Button 1',
-                                }, {
-                                    label: 'Button 2',
-                                }, {
-                                    label: 'Button 3',
-                                }, {
-                                    label: 'Button 4',
-                                    onClick: this._onClickTest,
-                                },
-                            ]}
-                        />
+                        {isNavigation &&
+                            <Drawer.Navigation
+                                columns={[
+                                    {
+                                        label: 'Button 1',
+                                    }, {
+                                        label: 'Button 2',
+                                    }, {
+                                        label: 'Button 3',
+                                    }, {
+                                        label: 'Button 4',
+                                        onClick: this._onClickTest,
+                                    },
+                                ]}
+                            />
+                        }
 
                         <Drawer.ActionBar
                             columns={[
@@ -416,6 +441,14 @@ class ModulesDrawerActionBar extends React.Component {
                                 },
                             ]}
                         />
+
+                        <p>
+                            <Button
+                                onClick={() => this._onDrawerToggle(isTitleBar, isNavigation)}
+                            >
+                                Close Drawer
+                            </Button>
+                        </p>
 
                         <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
@@ -547,10 +580,12 @@ class ModulesDrawerActionBar extends React.Component {
         window.alert('You just clicked the fourth column!');
     }
 
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
+    _onDrawerToggle(isTitleBar, isNavigation) {
+        this.setState(prevState => ({
+            isDrawerOpen: !prevState.isDrawerOpen,
+            isNavigation,
+            isTitleBar,
+        }));
     }
 }
 
