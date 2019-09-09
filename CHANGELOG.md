@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.2
+
+#### Bug Fix
+- All **&lt;Drawer /&gt;** header and content sub components now are positioned correctly.
+
 ## 6.0.1
 
 #### Bug Fix
