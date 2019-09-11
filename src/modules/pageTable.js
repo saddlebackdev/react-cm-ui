@@ -93,7 +93,7 @@ class PageTable extends React.PureComponent {
                                 return (
                                     <Table.HeaderCell
                                         className="page--table_header_cell"
-                                        key={`tableBodyRow-${column.header ? _.kebabCase(column.header) : index}`}
+                                        key={`tableBodyRow-${index}`}
                                     >
                                         {column.header}
                                     </Table.HeaderCell>
