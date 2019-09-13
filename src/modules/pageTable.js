@@ -139,7 +139,7 @@ PageTable.propTypes = {
 };
 
 const PageTableContainer = props => {
-    if (props.stickyColumn) {
+    if (props.stickyColumns > 0) {
         return (
             <div className="ui page--table_container">
                 <div className="page--table_fixed_body">
@@ -148,7 +148,7 @@ const PageTableContainer = props => {
                 <div className="page--table_fixed_column">
                     <PageTable
                         {...props}
-                        columns={[ props.columns[0] ]}
+                        columns={_.slice(props.columns, 0, props.stickyColumns)}
                     />
                 </div>
             </div>
@@ -160,6 +160,7 @@ const PageTableContainer = props => {
 
 PageTableContainer.defaultProps = {
     minWidth: 800,
+    stickyColumns: 0,
 };
 
 PageTableContainer.propTypes = {
@@ -171,7 +172,7 @@ PageTableContainer.propTypes = {
     minWidth: PropTypes.number,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
-    stickyColumn: PropTypes.bool,
+    stickyColumns: PropTypes.number,
     style: PropTypes.object,
 };
 
