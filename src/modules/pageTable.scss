@@ -5,3 +5,17 @@
         padding-top: rem(11px) !important; // sass-lint:disable-line no-important
     }
 }
+
+.ui {
+    .page--table_container {
+        position: relative;
+        .page--table_fixed_column {
+            left: 0;
+            position: absolute;
+            top: 0;
+        }
+        .page--table_fixed_body {
+            overflow: auto;
+        }
+    }
+}

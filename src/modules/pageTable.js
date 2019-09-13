@@ -138,4 +138,41 @@ PageTable.propTypes = {
     style: PropTypes.object,
 };
 
-export default PageTable;
+const PageTableContainer = props => {
+    if (props.stickyColumn) {
+        return (
+            <div className="ui page--table_container">
+                <div className="page--table_fixed_body">
+                    <PageTable {...props} style={{minWidth: props.minWidth}}/>
+                </div>
+                <div className="page--table_fixed_column">
+                    <PageTable
+                        {...props}
+                        columns={[ props.columns[0] ]}
+                    />
+                </div>
+            </div>
+        );
+    } else {
+        return <PageTable {...props} />;
+    }
+};
+
+PageTableContainer.defaultProps = {
+    minWidth: 800,
+};
+
+PageTableContainer.propTypes = {
+    bleed: PropTypes.bool,
+    className: PropTypes.string,
+    columns: PropTypes.array.isRequired,
+    data: PropTypes.array.isRequired,
+    fontSize: PropTypes.string,
+    minWidth: PropTypes.number,
+    rowProps: PropTypes.func,
+    small: PropTypes.bool,
+    stickyColumn: PropTypes.bool,
+    style: PropTypes.object,
+};
+
+export default PageTableContainer;
