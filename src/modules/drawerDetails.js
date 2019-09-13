@@ -1,4 +1,4 @@
-import Details from './details';
+import Details from './details.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 

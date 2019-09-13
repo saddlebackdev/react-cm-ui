@@ -250,7 +250,7 @@ class ModulesDrawerNavigation extends React.Component {
                             <Drawer.ActionBar
                                 columns={[
                                     {
-                                        columns: [
+                                        list: [
                                             {
                                                 jsx: (
                                                     <Icon

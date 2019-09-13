@@ -196,7 +196,11 @@ class Drawer extends React.Component {
             document.removeEventListener('click', this._onClickOutside);
         }
 
-        onClose(...arguments);
+        if (_.isFunction(onClose)) {
+            onClose(...arguments);
+        } else {
+            console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
+        }
     }
 
     _onCloseAnimationComplete() {
@@ -375,13 +379,14 @@ Drawer.Wing = DrawerWing;
 
 Drawer.defaultProps = {
     dimmer: true,
+    isOpen: false,
     positionX: 'right',
 };
 
 Drawer.propTypes = {
     className: PropTypes.string,
     dimmer: PropTypes.bool,
-    isOpen: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,

@@ -110,7 +110,7 @@ class ModulesDrawer extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
-                name: 'isOpen',
+                name: '*isOpen',
                 type: 'bool',
                 default: 'false',
                 description: 'Boolean for the Drawer\'s open/close state.',
@@ -128,7 +128,7 @@ class ModulesDrawer extends React.Component {
                 description: 'Ability to close Drawer if clicked outside of container.',
                 allowedTypes: '',
             }, {
-                name: '*onClose',
+                name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Drawer.',
@@ -180,7 +180,7 @@ class ModulesDrawer extends React.Component {
                             <span>A basic drawer.</span>
 
                             <p className="font-size-xsmall color-static">
-                                <span className="font-weight-semibold">Note:</span> <code>onClose</code> is a required prop.
+                                <span className="font-weight-semibold">Note:</span> <code>isOpen</code> is a required prop.
                             </p>
                         </Header.Subheader>
                     </Header>
@@ -189,7 +189,6 @@ class ModulesDrawer extends React.Component {
 
                     <Drawer
                         isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
                     >
                         <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
                         <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
