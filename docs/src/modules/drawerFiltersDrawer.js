@@ -76,7 +76,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                     <Drawer.ActionBar
                         columns={[
                             {
-                                columns: [
+                                list: [
                                     {
                                         jsx: (
                                             <Icon
@@ -467,7 +467,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                         <Drawer.ActionBar
                             columns={[
                                 {
-                                    columns: [
+                                    list: [
                                         {
                                             jsx: (
                                                 <Icon
