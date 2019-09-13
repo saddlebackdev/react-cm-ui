@@ -1,4 +1,4 @@
-import { Button, Card, Drawer, Header, Icon, TitleBar } from 'react-cm-ui';
+import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
@@ -125,7 +125,10 @@ class ModulesDrawerNavigation extends React.Component {
         super(props);
 
         this.state = {
+            isActionBar: true,
             isDrawerOpen: false,
+            isTitleBar: true,
+            searchValue: '',
         };
 
         this._onClickTest = this._onClickTest.bind(this);
@@ -133,7 +136,12 @@ class ModulesDrawerNavigation extends React.Component {
     }
 
     render() {
-        const { isDrawerOpen } = this.state;
+        const {
+            isActionBar,
+            isDrawerOpen,
+            isTitleBar,
+            searchValue,
+        } = this.state;
         const props = [
             {
                 name: 'className',
@@ -182,7 +190,7 @@ class ModulesDrawerNavigation extends React.Component {
                         <span className="font-size-xsmall color-static">
                             <span className="font-size-xsmall color-static font-weight-semibold">
                                 Note:
-                            </span> 
+                            </span>
                             <code>columns</code> is a required prop.
                         </span>
                     </p>
@@ -196,16 +204,32 @@ class ModulesDrawerNavigation extends React.Component {
                         {columnsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                        Open Drawer with TitleBar & ActionBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                        Open Drawer without TitleBar & ActionBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                        Open Drawer without TitleBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                        Open Drawer without ActionBar
+                    </Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
                         onClose={this._onDrawerToggle}
                     >
-                        <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
-                            title="Don't Pay Attention to the TitleBar, But to the Navigation"
-                        />
+                        {isTitleBar &&
+                            <Drawer.TitleBar
+                                closeButton={<Icon compact onClick={() => this._onDrawerToggle(isTitleBar, isActionBar)} type="times" />}
+                                title="Don't Pay Attention to the TitleBar, But to the Navigation"
+                            />
+                        }
 
                         <Drawer.Navigation
                             columns={[
@@ -221,6 +245,80 @@ class ModulesDrawerNavigation extends React.Component {
                                 },
                             ]}
                         />
+
+                        {isActionBar &&
+                            <Drawer.ActionBar
+                                columns={[
+                                    {
+                                        list: [
+                                            {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onFilterClick}
+                                                        title="Filter"
+                                                        type="arrow-sort"
+                                                    />
+                                                ),
+                                            }, {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onViewGridClick}
+                                                        title="Grid View"
+                                                        type="grid"
+                                                    />
+                                                ),
+                                            }, {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onViewTableClick}
+                                                        title="List View"
+                                                        type="list"
+                                                    />
+                                                ),
+                                            },
+                                        ],
+                                    }, {
+                                        jsx: (
+                                            <Input
+                                                fluid
+                                                icon={searchValue ?
+                                                    <Icon
+                                                        compact
+                                                        onClick={this._onClearSearchClick}
+                                                        title="Clear Search"
+                                                        type="times"
+                                                    /> : null
+                                                }
+                                                onChange={this._onSearchChange}
+                                                onKeyDown={this._onSearchKeyDown}
+                                                placeholder="Search"
+                                                value={searchValue}
+                                            />
+                                        ),
+                                        flexGrow: 1,
+                                    }, {
+                                        jsx: (
+                                            <Button
+                                                color="success"
+                                                onClick={this._onNewTemplateClick}
+                                                style={{ margin: 0 }}
+                                            >
+                                                <Icon type="plus" />
+                                                <span>New Template</span>
+                                            </Button>
+                                        ),
+                                    },
+                                ]}
+                            />
+                        }
+
+                        <p>
+                            <Button
+                                onClick={() => this._onDrawerToggle(isTitleBar, isActionBar)}
+                            >
+                                Close Drawer
+                            </Button>
+                        </p>
 
                         <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
@@ -285,10 +383,12 @@ class ModulesDrawerNavigation extends React.Component {
         window.alert('You just clicked the fourth column!');
     }
 
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
+    _onDrawerToggle(isTitleBar, isActionBar) {
+        this.setState(prevState => ({
+            isActionBar,
+            isDrawerOpen: !prevState.isDrawerOpen,
+            isTitleBar,
+        }));
     }
 }
 

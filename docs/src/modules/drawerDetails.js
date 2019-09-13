@@ -53,7 +53,7 @@ export default class DrawerDetailsSample extends React.Component {
                     <Drawer.ActionBar
                         columns={[
                             {
-                                columns: [
+                                list: [
                                     {
                                         jsx: (
                                             <Icon
@@ -127,7 +127,7 @@ export default class DrawerDetailsSample extends React.Component {
                                     accessor: 'inactiveTemplates',
                                     header: 'Inactive Templates',
                                 }, {
-                                    columns: [
+                                    list: [
                                         {
                                             accessor: 'activeTemplates',
                                             header: 'Active Templates',
@@ -367,7 +367,7 @@ class ModulesDrawerDetails extends React.Component {
                         <Drawer.ActionBar
                             columns={[
                                 {
-                                    columns: [
+                                    list: [
                                         {
                                             jsx: (
                                                 <Icon
@@ -441,7 +441,7 @@ class ModulesDrawerDetails extends React.Component {
                                     accessor: 'inactiveTemplates',
                                     header: 'Inactive Templates',
                                 }, {
-                                    columns: [
+                                    list: [
                                         {
                                             accessor: 'activeTemplates',
                                             header: 'Active Templates',

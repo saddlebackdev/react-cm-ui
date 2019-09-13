@@ -56,36 +56,6 @@ $backwards-step4-delay: $backwards-step3-delay + $backwards-step3-duration;
 $backwards-step4-duration: $standard-fifth-timing;
 
 .ui {
-    &.drawer.has-drawer-- { // sass-lint:disable-line class-name-format
-        &action_bar { // sass-lint:disable-line class-name-format
-            .drawer-container-inner {
-                padding-top: $drawer-action-bar-height;
-                .drawer--action_bar {
-                    top: 0;
-                }
-            }
-            &.has-drawer--title_bar { // sass-lint:disable-line class-name-format
-                .drawer-container-inner {
-                    padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
-                    .drawer--action_bar-drawer {
-                        top: $drawer-title-bar-height;
-                    }
-                }
-                &:not(.has-drawer--navigation) .drawer-container-inner {
-                    .drawer--action_bar {
-                        background-color: color(backgroundColorLight);
-                        border-top: 1px solid color(borderColor);
-                    }
-                }
-                &.has-drawer--navigation .drawer-container-inner { // sass-lint:disable-line class-name-format
-                    padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
-                    .drawer--action_bar {
-                        top: $drawer-title-bar-height + $drawer-navigation-height;
-                    }
-                }
-            }
-        }
-    }
     &.drawer--action_bar, &.page--action_bar {
         align-items: center;
         border-bottom: 1px solid color(borderColor);
@@ -327,9 +297,6 @@ $backwards-step4-duration: $standard-fifth-timing;
             min-height: 70px;
             padding: 0 22px;
             top: 70px;
-        }
-        &.drawer--action_bar {
-            padding: 0 22px;
         }
     }
 }

@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.1.0
+
+#### Feature
+- [PR #57](https://github.com/saddlebackdev/react-cm-ui/pull/57): Adds some new functionality to the **&lt;Page.Container /&gt;**.
+    - New prop: `scrollable`. This props adds the ability to horizontally scroll. it sets us up for the new mobile **&lt;Table /&gt;** functionality.
+- Refactored how the prop, `id`, was being rendered for **&lt;TimePicker /&gt;**.
+- Added a security check around the `onClose` function in **&lt;Drawer /&gt;**.
+- **&lt;Drawer.ActionBar /&gt;** and **&lt;Page.ActionBar /&gt;** now use the same ol' code.
+
+#### Bug Fix
+- [PR #56](https://github.com/saddlebackdev/react-cm-ui/pull/56): Fixes generating the key for the Page.Table header cell.
+
 ## 6.0.2
 
 #### Bug Fix

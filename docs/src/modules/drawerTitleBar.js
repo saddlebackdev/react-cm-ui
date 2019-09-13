@@ -1,4 +1,4 @@
-import { Button, Card, Drawer, Header, Icon, TitleBar } from 'react-cm-ui';
+import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
@@ -101,14 +101,22 @@ class ModulesDrawerTitleBar extends React.Component {
         super(props);
 
         this.state = {
+            isActionBar: true,
             isDrawerOpen: false,
+            isNavigation: true,
+            searchValue: '',
         };
 
         this._onDrawerToggle = this._onDrawerToggle.bind(this);
     }
 
     render() {
-        const { isDrawerOpen } = this.state;
+        const {
+            isActionBar,
+            isDrawerOpen,
+            isNavigation,
+            searchValue,
+        } = this.state;
         const props = [
             {
                 name: 'className',
@@ -175,16 +183,121 @@ class ModulesDrawerTitleBar extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                        Open Drawer with Navigation & ActionBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                        Open Drawer without Navigation & ActionBar
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                        Open Drawer without Navigation
+                    </Button><br /><br />
+
+                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                        Open Drawer without ActionBar
+                    </Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
                         onClose={this._onDrawerToggle}
                     >
                         <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                            closeButton={<Icon compact onClick={() => this._onDrawerToggle(isNavigation, isActionBar)} type="times" />}
                             title="The Coolest Title Bar Ever"
                         />
+
+                        {isNavigation &&
+                            <Drawer.Navigation
+                                columns={[
+                                    {
+                                        label: 'Button 1',
+                                    }, {
+                                        label: 'Button 2',
+                                    }, {
+                                        label: 'Button 3',
+                                    }, {
+                                        label: 'Button 4',
+                                        onClick: this._onClickTest,
+                                    },
+                                ]}
+                            />
+                        }
+
+                        {isActionBar &&
+                            <Drawer.ActionBar
+                                columns={[
+                                    {
+                                        list: [
+                                            {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onFilterClick}
+                                                        title="Filter"
+                                                        type="arrow-sort"
+                                                    />
+                                                ),
+                                            }, {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onViewGridClick}
+                                                        title="Grid View"
+                                                        type="grid"
+                                                    />
+                                                ),
+                                            }, {
+                                                jsx: (
+                                                    <Icon
+                                                        onClick={this._onViewTableClick}
+                                                        title="List View"
+                                                        type="list"
+                                                    />
+                                                ),
+                                            },
+                                        ],
+                                    }, {
+                                        jsx: (
+                                            <Input
+                                                fluid
+                                                icon={searchValue ?
+                                                    <Icon
+                                                        compact
+                                                        onClick={this._onClearSearchClick}
+                                                        title="Clear Search"
+                                                        type="times"
+                                                    /> : null
+                                                }
+                                                onChange={this._onSearchChange}
+                                                onKeyDown={this._onSearchKeyDown}
+                                                placeholder="Search"
+                                                value={searchValue}
+                                            />
+                                        ),
+                                        flexGrow: 1,
+                                    }, {
+                                        jsx: (
+                                            <Button
+                                                color="success"
+                                                onClick={this._onNewTemplateClick}
+                                                style={{ margin: 0 }}
+                                            >
+                                                <Icon type="plus" />
+                                                <span>New Template</span>
+                                            </Button>
+                                        ),
+                                    },
+                                ]}
+                            />
+                        }
+
+                        <p>
+                            <Button
+                                onClick={() => this._onDrawerToggle(isNavigation, isActionBar)}
+                            >
+                                Close Drawer
+                            </Button>
+                        </p>
 
                         <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
@@ -245,10 +358,12 @@ class ModulesDrawerTitleBar extends React.Component {
         );
     }
 
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
+    _onDrawerToggle(isNavigation, isActionBar) {
+        this.setState(prevState => ({
+            isActionBar,
+            isDrawerOpen: !prevState.isDrawerOpen,
+            isNavigation,
+        }));
     }
 }
 
