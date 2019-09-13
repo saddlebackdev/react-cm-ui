@@ -12,7 +12,8 @@ class PageTableRow extends React.PureComponent {
     }
 
     render() {
-        const { columns, isClickable, row } = this.props;
+        const { columns, idPrefix, isClickable, row, rowIndex } = this.props;
+        const sizes = this.props.sizes || [];
 
         return (
             <Table.Row
@@ -27,10 +28,23 @@ class PageTableRow extends React.PureComponent {
                         accessor = column.accessor(row);
                     }
 
+                    const style = {};
+
+                    if (idPrefix === 'column') {
+                        const size = (sizes[rowIndex] || [])[index];
+
+                        if (size) {
+                            style.height = `${size.h}px`;
+                            style.width = `${size.w}px`;
+                        }
+                    }
+
                     return (
                         <Table.Cell
+                            id={`tableCell-${idPrefix}-${rowIndex}-${index}`}
                             key={`tableCell-${index}`}
                             textAlign={column.textAlign}
+                            style={style}
                         >
                             {accessor}
                         </Table.Cell>
@@ -52,12 +66,32 @@ class PageTableRow extends React.PureComponent {
 
 PageTableRow.propTypes = {
     columns: PropTypes.array.isRequired,
+    idPrefix: PropTypes.string.isRequired,
     isClickable: PropTypes.bool,
     row: PropTypes.object.isRequired,
+    rowIndex: PropTypes.number.isRequired,
     rowProps: PropTypes.func,
+    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
 };
 
 class PageTable extends React.PureComponent {
+    constructor() {
+        super();
+        this._onResize = this._onResize.bind(this);
+        this.state = {
+            sizes: [],
+        };
+    }
+
+    componentDidMount() {
+        this._onResize();
+        window.addEventListener('resize', this._onResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this._onResize);
+    }
+
     render() {
         const {
             bleed,
@@ -65,10 +99,12 @@ class PageTable extends React.PureComponent {
             columns,
             data,
             fontSize,
+            idPrefix,
             rowProps,
             small,
             style,
         } = this.props;
+        const { sizes } = this.state;
         const containerClasses = ClassNames('ui', 'page--table', className);
         const isSelectable = _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
 
@@ -107,10 +143,13 @@ class PageTable extends React.PureComponent {
                             return (
                                 <PageTableRow
                                     columns={columns}
+                                    idPrefix={idPrefix}
                                     isClickable={isSelectable}
                                     key={`tableBodyRow-${row.id || index}`}
                                     row={row}
+                                    rowIndex={index}
                                     rowProps={rowProps}
+                                    sizes={sizes}
                                 />
                             );
                         })}
@@ -119,11 +158,30 @@ class PageTable extends React.PureComponent {
             </div>
         );
     }
+
+    _onResize() {
+        const { columns, data } = this.props;
+        const sizes = [];
+
+        for (let i=0; i<data.length; i++) {
+            const row = [];
+
+            for (let j=0; j<columns.length; j++) {
+                const el = document.querySelector(`#tableCell-body-${i}-${j}`);
+                row.push({ h: el.clientHeight, w: el.clientWidth });
+            }
+
+            sizes.push(row);
+        }
+
+        this.setState({ sizes });
+    }
 }
 
 PageTable.defaultProps = {
     bleed: true,
     fontSize: 'xsmall',
+    idPrefix: 'body',
     small: true,
 };
 
@@ -133,6 +191,7 @@ PageTable.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
     fontSize: PropTypes.string,
+    idPrefix: PropTypes.string,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
     style: PropTypes.object,
@@ -143,12 +202,17 @@ const PageTableContainer = props => {
         return (
             <div className="ui page--table_container">
                 <div className="page--table_fixed_body">
-                    <PageTable {...props} style={{minWidth: props.minWidth}}/>
+                    <PageTable
+                        {...props}
+                        idPrefix="body"
+                        style={{minWidth: props.minWidth}}
+                    />
                 </div>
                 <div className="page--table_fixed_column">
                     <PageTable
                         {...props}
                         columns={_.slice(props.columns, 0, props.stickyColumns)}
+                        idPrefix="column"
                     />
                 </div>
             </div>
