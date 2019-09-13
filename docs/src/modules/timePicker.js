@@ -287,6 +287,7 @@ export default class ModulesTimePicker extends React.Component {
                 </Header>
 
                 <TimePicker
+                    id="foo_time_picker"
                     onChange={this._onTimePickerChange.bind(this)}
                     value={this.state.value}
                 />

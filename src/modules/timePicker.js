@@ -11,7 +11,6 @@ import Icon from '../elements/icon';
 import Input from '../elements/input';
 
 class TimePicker extends Component {
-
     constructor(props) {
         super(props);
 
@@ -27,9 +26,9 @@ class TimePicker extends Component {
                 timeDisplay: null,
                 timeFrom: null,
                 timeTo: null,
-                timeZone: _.find(zoneOptions, o => o.value === guessedTimeZone)
+                timeZone: _.find(zoneOptions, o => o.value === guessedTimeZone),
             },
-            zoneOptions
+            zoneOptions,
         };
 
         this._onClickOutsideRef = this._onClickOutside.bind(this);
@@ -62,7 +61,7 @@ class TimePicker extends Component {
             'time-picker-disable': disable,
             'time-picker-error': error,
             'time-picker-nest': nest,
-            'time-picker-range': range
+            'time-picker-range': range,
         });
         const hourFromDropdownValue = value && value.timeFrom ? _.find(hourOptions, o => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString()) : null;
         const minuteFromDropdownValue = value && value.timeFrom ? _.find(minuteOptions, o => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString()) : null;
@@ -76,7 +75,12 @@ class TimePicker extends Component {
         }
 
         return (
-            <div className={containerClasses} ref="timePicker" style={style}>
+            <div
+                className={containerClasses}
+                id={id}
+                ref="timePicker"
+                style={style}
+            >
                 <Input
                     className="time-picker-input"
                     disabled={disable}
@@ -90,7 +94,7 @@ class TimePicker extends Component {
                             onClick={this._onTimePopoverToggle.bind(this)}
                         />
                     )}
-                    id={id}
+                    id={id ? `${id}-input` : null}
                     keepCharPositions
                     label={label}
                     mask={this._onInputMask.bind(this)}
@@ -106,6 +110,7 @@ class TimePicker extends Component {
                     className="time-picker-zone-dropdown"
                     clearable={false}
                     disable={disable}
+                    id={id ? `${id}-zone_dropdown` : null}
                     onChange={this._onZoneDropdownChange.bind(this)}
                     options={zoneOptions}
                     placeholder={zonePlaceholderText || 'Select a Time Zone'}
@@ -117,7 +122,10 @@ class TimePicker extends Component {
                 />
 
                 {isTimePopoverActive ? (
-                    <div className="time-picker-popover">
+                    <div
+                        className="time-picker-popover"
+                        id={id ? `${id}-popover` : null}
+                    >
                         {this.props.range ? (
                             <label className="label">From</label>
                         ) : null}
@@ -125,13 +133,14 @@ class TimePicker extends Component {
                         <div>
                             <Dropdown
                                 clearable={false}
+                                id={id ? `${id}-hour_dropdown` : null}
                                 onChange={this._onTimeDropdownChange.bind(this, 'hour')}
                                 options={hourOptions}
                                 placeholder="hh"
                                 selection
                                 menuMaxHeight={448}
                                 style={{
-                                    minWidth: 72
+                                    minWidth: 72,
                                 }}
                                 tabIndex={2}
                                 value={hourFromDropdownValue}
@@ -141,6 +150,7 @@ class TimePicker extends Component {
 
                             <Dropdown
                                 clearable={false}
+                                id={id ? `${id}-minute_dropdown` : null}
                                 onChange={this._onTimeDropdownChange.bind(this, 'minute')}
                                 options={minuteOptions}
                                 placeholder="mm"
@@ -148,7 +158,7 @@ class TimePicker extends Component {
                                 menuMaxHeight={448}
                                 selectionCreatable
                                 style={{
-                                    minWidth: 72
+                                    minWidth: 72,
                                 }}
                                 tabIndex={3}
                                 value={minuteFromDropdownValue}
@@ -156,13 +166,14 @@ class TimePicker extends Component {
 
                             <Dropdown
                                 clearable={false}
+                                id={id ? `${id}-period_dropdown` : null}
                                 onChange={this._onTimeDropdownChange.bind(this, 'period')}
                                 options={periodOptions}
                                 placeholder="AM"
                                 selection
                                 menuMaxHeight={448}
                                 style={{
-                                    minWidth: 72
+                                    minWidth: 72,
                                 }}
                                 tabIndex={4}
                                 value={periodFromDropdownValue}
@@ -175,13 +186,14 @@ class TimePicker extends Component {
                             <div>
                                 <Dropdown
                                     clearable={false}
+                                    id={id ? `${id}-hour_to_dropdown` : null}
                                     onChange={this._onTimeDropdownChange.bind(this, 'hourTo')}
                                     options={hourOptions}
                                     placeholder="hh"
                                     selection
                                     menuMaxHeight={448}
                                     style={{
-                                        minWidth: 72
+                                        minWidth: 72,
                                     }}
                                     tabIndex={2}
                                     value={hourToDropdownValue}
@@ -191,6 +203,7 @@ class TimePicker extends Component {
 
                                 <Dropdown
                                     clearable={false}
+                                    id={id ? `${id}-minute_to_dropdown` : null}
                                     onChange={this._onTimeDropdownChange.bind(this, 'minuteTo')}
                                     options={minuteOptions}
                                     placeholder="mm"
@@ -198,7 +211,7 @@ class TimePicker extends Component {
                                     menuMaxHeight={448}
                                     selectionCreatable
                                     style={{
-                                        minWidth: 72
+                                        minWidth: 72,
                                     }}
                                     tabIndex={3}
                                     value={minuteToDropdownValue}
@@ -206,13 +219,14 @@ class TimePicker extends Component {
 
                                 <Dropdown
                                     clearable={false}
+                                    id={id ? `${id}-period_to_dropdown` : null}
                                     onChange={this._onTimeDropdownChange.bind(this, 'periodTo')}
                                     options={periodOptions}
                                     placeholder="PM"
                                     selection
                                     menuMaxHeight={448}
                                     style={{
-                                        minWidth: 72
+                                        minWidth: 72,
                                     }}
                                     tabIndex={4}
                                     value={periodToDropdownValue}
@@ -280,7 +294,7 @@ class TimePicker extends Component {
 
             newValue.timeDisplay = range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
         } else {
-            let valueUpperCase = value.toUpperCase()
+            let valueUpperCase = value.toUpperCase();
             newValue.timeDisplay = valueUpperCase;
             newValue.timeFrom = range ? _.trim(valueUpperCase.split('-')[0]) : valueUpperCase;
             newValue.timeTo = range ? _.trim(valueUpperCase.split('-')[1]) : null;
@@ -326,7 +340,7 @@ class TimePicker extends Component {
                 /[0-9]/,
                 ' ',
                 /[A,P]/i,
-                /[M]/i
+                /[M]/i,
             ];
         }
     }
@@ -374,8 +388,8 @@ class TimePicker extends Component {
                 value: 0,
             }, {
                 label: 'PM',
-                value: 1
-            }
+                value: 1,
+            },
         ];
     }
 
@@ -386,7 +400,7 @@ class TimePicker extends Component {
             return zoneOptions;
         } else {
             const zoneNames = Object.keys(moment.tz._zones)
-                .map(function(k) {
+                .map(function (k) {
                     // At some point _zones turns into an array of objects instead of strings.
                     if (typeof moment.tz._zones[k] === 'string') {
                         return moment.tz._zones[k].split('|')[0];
@@ -394,7 +408,9 @@ class TimePicker extends Component {
                         return moment.tz._zones[k].name;
                     }
                 })
-                .filter(function(z) { return z.indexOf('/') >= 0; });
+                .filter(function (z) {
+                    return z.indexOf('/') >= 0;
+                });
             return _.chain(zoneNames)
                 .map(name => {
                     const zone = moment.tz(name);
@@ -403,10 +419,12 @@ class TimePicker extends Component {
                         abbr: zone.zoneAbbr(),
                         label: `(${zone.format('Z z')}) ${name.split('/')[0].replace('_', ' ')} (${name.split('/').slice(-1)[0].replace('_', ' ')})`,
                         offset: zone.format('Z'),
-                        value: name
+                        value: name,
                     };
                 })
-                .sortBy(o => { return o.offset; }).value();
+                .sortBy(o => {
+                    return o.offset;
+                }).value();
         }
     }
 }
@@ -416,7 +434,7 @@ TimePicker.propTypes = {
     disable: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
     label: PropTypes.string,
@@ -430,12 +448,12 @@ TimePicker.propTypes = {
         timeTo: PropTypes.string,
         timeZone: PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.object
-        ])
+            PropTypes.object,
+        ]),
     }),
     zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
     zoneOptions: PropTypes.array,
-    zonePlaceholderText: PropTypes.string
+    zonePlaceholderText: PropTypes.string,
 };
 
 export default TimePicker;
