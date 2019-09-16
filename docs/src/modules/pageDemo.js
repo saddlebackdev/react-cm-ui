@@ -71,7 +71,7 @@ class PageDemo extends React.PureComponent {
             onKeyDown: this._onSearchKeyDown,
             value: searchValue,
         };
-        console.log('viewType', viewType);
+
         let actionsBarColumns = [
             {
                 list: [
