@@ -40,8 +40,8 @@ class PageTableRow extends React.PureComponent {
                         const size = (sizes[rowIndex] || [])[index];
 
                         if (size) {
-                            style.height = `${size.h}px`;
-                            style.width = `${size.w}px`;
+                            style.height = size.h;
+                            style.width = size.w;
                         }
 
                         if (splitter && _.last(columns) === column) {
@@ -196,9 +196,12 @@ class PageTable extends React.PureComponent {
 
             for (let j = 0; j < columns.length; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
-                const size = { h: el.clientHeight, w: el.clientWidth };
+                const size = {
+                    h: `${el.clientHeight}px`,
+                    w: `${el.clientWidth}px`,
+                };
 
-                if (splitter && j === columns.length-1) {
+                if (splitter && j === columns.length - 1) {
                     if (collapsed === true) {
                         size.w = stickyColumnWidths[0];
                     } else if (collapsed === false) {
@@ -216,16 +219,19 @@ class PageTable extends React.PureComponent {
     }
 
     _onSplitterClick() {
-        this.setState(prev => ({
-            collapsed:
-                prev.collapsed === true ?
-                    false :
-                    prev.collapsed === false ?
-                        null :
-                        true,
-        }), () => {
-            this._onResize();
-        });
+        this.setState(
+            prev => ({
+                collapsed:
+                    prev.collapsed === true ?
+                        false :
+                        prev.collapsed === false ?
+                            null :
+                            true,
+            }),
+            () => {
+                this._onResize();
+            }
+        );
     }
 }
 
@@ -291,7 +297,7 @@ PageTableContainer.propTypes = {
     rowProps: PropTypes.func,
     small: PropTypes.bool,
     splitter: PropTypes.bool,
-    stickyColumnWidths: PropTypes.arrayOf(PropTypes.number),
+    stickyColumnWidths: PropTypes.arrayOf(PropTypes.string),
     stickyColumns: PropTypes.number,
     style: PropTypes.object,
 };

@@ -355,7 +355,7 @@ class ModulesPage extends React.Component {
                     columns={columns}
                     data={members}
                     splitter
-                    stickyColumnWidths={[ 20, 150 ]}
+                    stickyColumnWidths={[ '20px', '200px' ]}
                     stickyColumns={2}
                 />
             </Main>
