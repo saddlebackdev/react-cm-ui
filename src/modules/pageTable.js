@@ -147,7 +147,7 @@ class PageTable extends React.PureComponent {
                                         key={`tableBodyRow-${index}`}
                                     >
                                         {column.header}
-                                        {hasSplitter && <img src={SplitterSvg} style={{float: 'right'}}/>}
+                                        {hasSplitter && <img className="table-header-splitter" src={SplitterSvg}/>}
                                     </Table.HeaderCell>
                                 );
                             })}

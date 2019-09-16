@@ -19,6 +19,10 @@
                 }
                 .table-header-cell:last-child {
                     padding-right: inherit;
+                    .table-header-splitter {
+                        cursor: pointer;
+                        float: right;
+                    }
                 }
             }
         }
