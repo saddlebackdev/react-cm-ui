@@ -12,7 +12,7 @@ class PageTableRow extends React.PureComponent {
     }
 
     render() {
-        const { columns, idPrefix, isClickable, row, rowIndex } = this.props;
+        const { columns, idPrefix, isClickable, row, rowIndex, splitter } = this.props;
         const sizes = this.props.sizes || [];
 
         return (
@@ -36,6 +36,10 @@ class PageTableRow extends React.PureComponent {
                         if (size) {
                             style.height = `${size.h}px`;
                             style.width = `${size.w}px`;
+                        }
+
+                        if (splitter && _.last(columns) === column) {
+                            style.borderRight = '1px solid #edf1f5';
                         }
                     }
 
@@ -72,6 +76,7 @@ PageTableRow.propTypes = {
     rowIndex: PropTypes.number.isRequired,
     rowProps: PropTypes.func,
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+    splitter: PropTypes.bool,
 };
 
 class PageTable extends React.PureComponent {
@@ -102,6 +107,7 @@ class PageTable extends React.PureComponent {
             idPrefix,
             rowProps,
             small,
+            splitter,
             style,
         } = this.props;
         const { sizes } = this.state;
@@ -150,6 +156,7 @@ class PageTable extends React.PureComponent {
                                     rowIndex={index}
                                     rowProps={rowProps}
                                     sizes={sizes}
+                                    splitter={splitter}
                                 />
                             );
                         })}
@@ -183,6 +190,7 @@ PageTable.defaultProps = {
     fontSize: 'xsmall',
     idPrefix: 'body',
     small: true,
+    splitter: false,
 };
 
 PageTable.propTypes = {
@@ -194,6 +202,7 @@ PageTable.propTypes = {
     idPrefix: PropTypes.string,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
+    splitter: PropTypes.bool,
     style: PropTypes.object,
 };
 
@@ -224,6 +233,7 @@ const PageTableContainer = props => {
 
 PageTableContainer.defaultProps = {
     minWidth: 800,
+    splitter: false,
     stickyColumns: 0,
 };
 
@@ -236,6 +246,7 @@ PageTableContainer.propTypes = {
     minWidth: PropTypes.number,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
+    splitter: PropTypes.bool,
     stickyColumns: PropTypes.number,
     style: PropTypes.object,
 };

@@ -351,7 +351,7 @@ class ModulesPage extends React.Component {
         return (
             <Main page="headers">
                 <TitleBar title="Page" />
-                <Page.Table columns={columns} data={members} stickyColumns={2}/>
+                <Page.Table columns={columns} data={members} splitter stickyColumns={2}/>
             </Main>
         );
     }
