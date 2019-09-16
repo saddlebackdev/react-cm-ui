@@ -57,7 +57,7 @@ export default class DrawerGridSample extends React.Component {
                     <Drawer.ActionBar
                         columns={[
                             {
-                                columns: [
+                                list: [
                                     {
                                         jsx: (
                                             <Icon
@@ -283,7 +283,7 @@ class ModulesDrawerGrid extends React.Component {
                         <Drawer.ActionBar
                             columns={[
                                 {
-                                    columns: [
+                                    list: [
                                         {
                                             jsx: (
                                                 <Icon

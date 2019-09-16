@@ -229,7 +229,7 @@ class ModulesDrawerTitleBar extends React.Component {
                             <Drawer.ActionBar
                                 columns={[
                                     {
-                                        columns: [
+                                        list: [
                                             {
                                                 jsx: (
                                                     <Icon

@@ -53,7 +53,7 @@ export default class DrawerActionBarSample extends React.Component {
                     <Drawer.ActionBar
                         columns={[
                             {
-                                columns: [
+                                list: [
                                     {
                                         jsx: (
                                             <Icon
@@ -250,7 +250,7 @@ const columnsArrayProps = `[
         jsx: <Icon type="plus" />, // type: object. required if no columns property
         style: {},
     }, {
-        columns: [ // type: array. required if no jsx property.
+        list: [ // type: array. required if no jsx property.
             {
                 jsx: <Icon type="plus" />, // type: object.
             }
@@ -381,7 +381,7 @@ class ModulesDrawerActionBar extends React.Component {
                         <Drawer.ActionBar
                             columns={[
                                 {
-                                    columns: [
+                                    list: [
                                         {
                                             jsx: (
                                                 <Icon
