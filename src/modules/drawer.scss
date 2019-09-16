@@ -21,7 +21,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         z-index: $zindex + 2;
     }
 }
-.ui.drawer {
+.ui.drawer:not(.deprecated) {
     backface-visibility: hidden;
     height: 100%;
     left: 0;
