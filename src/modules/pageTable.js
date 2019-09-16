@@ -89,7 +89,9 @@ class PageTable extends React.PureComponent {
     constructor() {
         super();
         this._onResize = this._onResize.bind(this);
+        this._onSplitterClick = this._onSplitterClick.bind(this);
         this.state = {
+            collapsed: null,
             sizes: [],
         };
     }
@@ -139,15 +141,23 @@ class PageTable extends React.PureComponent {
                     <Table.Header>
                         <Table.Row>
                             {_.map(columns, (column, index) => {
-                                const hasSplitter = idPrefix === 'column' &&
-                                    splitter && _.last(columns) === column;
+                                const hasSplitter =
+                                    idPrefix === 'column' &&
+                                    splitter &&
+                                    _.last(columns) === column;
                                 return (
                                     <Table.HeaderCell
                                         className="page--table_header_cell"
                                         key={`tableBodyRow-${index}`}
                                     >
                                         {column.header}
-                                        {hasSplitter && <img className="table-header-splitter" src={SplitterSvg}/>}
+                                        {hasSplitter && (
+                                            <img
+                                                className="table-header-splitter"
+                                                onClick={this._onSplitterClick}
+                                                src={SplitterSvg}
+                                            />
+                                        )}
                                     </Table.HeaderCell>
                                 );
                             })}
@@ -177,7 +187,8 @@ class PageTable extends React.PureComponent {
     }
 
     _onResize() {
-        const { columns, data } = this.props;
+        const { columns, data, splitter, stickyColumnWidths } = this.props;
+        const { collapsed } = this.state;
         const sizes = [];
 
         for (let i = 0; i < data.length; i++) {
@@ -185,13 +196,36 @@ class PageTable extends React.PureComponent {
 
             for (let j = 0; j < columns.length; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
-                row.push({ h: el.clientHeight, w: el.clientWidth });
+                const size = { h: el.clientHeight, w: el.clientWidth };
+
+                if (splitter && j === columns.length-1) {
+                    if (collapsed === true) {
+                        size.w = stickyColumnWidths[0];
+                    } else if (collapsed === false) {
+                        size.w = stickyColumnWidths[1];
+                    }
+                }
+
+                row.push(size);
             }
 
             sizes.push(row);
         }
 
         this.setState({ sizes });
+    }
+
+    _onSplitterClick() {
+        this.setState(prev => ({
+            collapsed:
+                prev.collapsed === true ?
+                    false :
+                    prev.collapsed === false ?
+                        null :
+                        true,
+        }), () => {
+            this._onResize();
+        });
     }
 }
 
@@ -257,6 +291,7 @@ PageTableContainer.propTypes = {
     rowProps: PropTypes.func,
     small: PropTypes.bool,
     splitter: PropTypes.bool,
+    stickyColumnWidths: PropTypes.arrayOf(PropTypes.number),
     stickyColumns: PropTypes.number,
     style: PropTypes.object,
 };
