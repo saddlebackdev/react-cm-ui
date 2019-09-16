@@ -13,8 +13,13 @@
             left: 0;
             position: absolute;
             top: 0;
-            .ui.table.table-stretch-very .table-cell:last-child {
-                padding-right: inherit;
+            .ui.table.table-stretch-very {
+                .table-cell:last-child {
+                    padding-right: inherit;
+                }
+                .table-header-cell:last-child {
+                    padding-right: inherit;
+                }
             }
         }
         .page--table_fixed_body {

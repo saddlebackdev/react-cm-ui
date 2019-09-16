@@ -2,6 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SplitterSvg from './splitter.svg';
 import Table from '../collections/table.js';
 
 class PageTableRow extends React.PureComponent {
@@ -12,13 +13,18 @@ class PageTableRow extends React.PureComponent {
     }
 
     render() {
-        const { columns, idPrefix, isClickable, row, rowIndex, splitter } = this.props;
+        const {
+            columns,
+            idPrefix,
+            isClickable,
+            row,
+            rowIndex,
+            splitter,
+        } = this.props;
         const sizes = this.props.sizes || [];
 
         return (
-            <Table.Row
-                onClick={isClickable ? this._onClick : null}
-            >
+            <Table.Row onClick={isClickable ? this._onClick : null}>
                 {_.map(columns, (column, index) => {
                     let accessor = null;
 
@@ -112,7 +118,8 @@ class PageTable extends React.PureComponent {
         } = this.props;
         const { sizes } = this.state;
         const containerClasses = ClassNames('ui', 'page--table', className);
-        const isSelectable = _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
+        const isSelectable =
+            _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
 
         return (
             <div
@@ -132,12 +139,15 @@ class PageTable extends React.PureComponent {
                     <Table.Header>
                         <Table.Row>
                             {_.map(columns, (column, index) => {
+                                const hasSplitter = idPrefix === 'column' &&
+                                    splitter && _.last(columns) === column;
                                 return (
                                     <Table.HeaderCell
                                         className="page--table_header_cell"
                                         key={`tableBodyRow-${index}`}
                                     >
                                         {column.header}
+                                        {hasSplitter && <img src={SplitterSvg} style={{float: 'right'}}/>}
                                     </Table.HeaderCell>
                                 );
                             })}
@@ -170,10 +180,10 @@ class PageTable extends React.PureComponent {
         const { columns, data } = this.props;
         const sizes = [];
 
-        for (let i=0; i<data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const row = [];
 
-            for (let j=0; j<columns.length; j++) {
+            for (let j = 0; j < columns.length; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
                 row.push({ h: el.clientHeight, w: el.clientWidth });
             }
@@ -214,7 +224,7 @@ const PageTableContainer = props => {
                     <PageTable
                         {...props}
                         idPrefix="body"
-                        style={{minWidth: props.minWidth}}
+                        style={{ minWidth: props.minWidth }}
                     />
                 </div>
                 <div className="page--table_fixed_column">
