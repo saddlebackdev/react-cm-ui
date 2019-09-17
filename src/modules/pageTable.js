@@ -2,6 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SplitterSvg from './splitter.svg';
 import Table from '../collections/table.js';
 
@@ -240,6 +241,7 @@ class PageTableContainer extends React.Component {
                             collapsed={collapsed}
                             idPrefix="body"
                             onScrollColumn={this._onScrollColumn}
+                            ref={ref => this._bodyTable = ref}
                             sizes={sizes}
                             style={{ minWidth }}
                         />
@@ -298,6 +300,17 @@ class PageTableContainer extends React.Component {
     }
 
     _onScrollColumn() {
+        if (!this._bodyTable) {
+            return;
+        }
+
+        const elContainer = document.querySelector('.ui.page--table_container');
+        const elFixedBody = ReactDOM.findDOMNode(this._bodyTable);
+        const scroll = elFixedBody.clientWidth - elContainer.clientWidth;
+
+        if (scroll > 0) {
+            elFixedBody.scrollLeft = scroll;
+        }
     }
 
     _onSplitterClick() {
