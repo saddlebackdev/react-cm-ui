@@ -254,12 +254,16 @@ class PageTableContainer extends React.Component {
     }
 
     _onResize() {
-        const { data, splitter, stickyColumns, stickyColumnWidths } = this.props;
+        const { data, splitter, stickyColumns, stickyColumnWidth } = this.props;
         const { collapsed } = this.state;
         const sizes = [];
 
+        const elContainer = document.querySelector('.ui.page--table_container');
+        const totalWidth = elContainer.clientWidth;
+
         for (let i = 0; i < data.length; i++) {
             const row = [];
+            let rowWidth = 0;
 
             for (let j = 0; j < stickyColumns; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
@@ -270,12 +274,13 @@ class PageTableContainer extends React.Component {
 
                 if (splitter && j === stickyColumns - 1) {
                     if (collapsed === true) {
-                        size.w = stickyColumnWidths[0];
+                        size.w = `${Math.min(stickyColumnWidth, totalWidth)}px`;
                     } else if (collapsed === false) {
-                        size.w = stickyColumnWidths[1];
+                        size.w = `${Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth - rowWidth)}px`;
                     }
                 }
 
+                rowWidth += el.clientHeight;
                 row.push(size);
             }
 
@@ -306,6 +311,7 @@ PageTableContainer.defaultProps = {
     minWidth: 800,
     splitter: false,
     stickyColumns: 0,
+    stickyColumnWidth: 30,
 };
 
 PageTableContainer.propTypes = {
@@ -318,7 +324,7 @@ PageTableContainer.propTypes = {
     rowProps: PropTypes.func,
     small: PropTypes.bool,
     splitter: PropTypes.bool,
-    stickyColumnWidths: PropTypes.arrayOf(PropTypes.string),
+    stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
     style: PropTypes.object,
 };
