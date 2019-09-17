@@ -208,13 +208,14 @@ PageTable.propTypes = {
 };
 
 class PageTableContainer extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this._onResize = this._onResize.bind(this);
         this._onScrollColumn = this._onScrollColumn.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this.state = {
             collapsed: null,
+            minWidth: props.minWidth,
             sizes: [],
         };
     }
@@ -229,8 +230,8 @@ class PageTableContainer extends React.Component {
     }
 
     render() {
-        const { columns, minWidth, stickyColumns } = this.props;
-        const { collapsed, sizes } = this.state;
+        const { columns, stickyColumns } = this.props;
+        const { collapsed, minWidth, sizes } = this.state;
 
         if (stickyColumns > 0) {
             return (
@@ -263,7 +264,7 @@ class PageTableContainer extends React.Component {
     }
 
     _onResize() {
-        const { data, splitter, stickyColumns, stickyColumnWidth } = this.props;
+        const { data, minWidth, splitter, stickyColumns, stickyColumnWidth } = this.props;
         const { collapsed } = this.state;
         const sizes = [];
 
@@ -286,6 +287,8 @@ class PageTableContainer extends React.Component {
                         size.w = `${Math.min(stickyColumnWidth, totalWidth)}px`;
                     } else if (collapsed === false) {
                         size.w = `${Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth - rowWidth)}px`;
+                    } else {
+                        size.w = `${(totalWidth - stickyColumnWidth - rowWidth)/2}px`;
                     }
                 }
 
@@ -296,7 +299,25 @@ class PageTableContainer extends React.Component {
             sizes.push(row);
         }
 
-        this.setState({ sizes });
+        const newState = { sizes };
+
+        if (collapsed === true) {
+            newState.minWidth = minWidth;
+        } else if (collapsed === false) {
+            const diff = totalWidth - stickyColumnWidth;
+
+            if (diff > 0) {
+                newState.minWidth = minWidth + diff;
+            }
+        } else { 
+            const diff = (totalWidth - stickyColumnWidth)/2;
+
+            if (diff > 0) {
+                newState.minWidth = minWidth + diff;
+            }
+        }
+
+        this.setState(newState);
     }
 
     _onScrollColumn() {
