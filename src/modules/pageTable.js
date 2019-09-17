@@ -16,7 +16,6 @@ class PageTableRow extends React.PureComponent {
         const {
             columns,
             idPrefix,
-            isClickable,
             row,
             rowIndex,
             splitter,
@@ -24,7 +23,7 @@ class PageTableRow extends React.PureComponent {
         const sizes = this.props.sizes || [];
 
         return (
-            <Table.Row onClick={isClickable ? this._onClick : null}>
+            <Table.Row onClick={this._onClick}>
                 {_.map(columns, (column, index) => {
                     let accessor = null;
 
@@ -64,10 +63,12 @@ class PageTableRow extends React.PureComponent {
     }
 
     _onClick() {
-        const { isClickable, row, rowProps } = this.props;
+        const { isClickable, onClick, row, rowProps } = this.props;
         const isTextSelect = window.getSelection().toString();
 
-        if (isClickable && !isTextSelect) {
+        if (_.isFunction(onClick)) {
+            onClick();
+        } else if (isClickable && !isTextSelect) {
             rowProps().onClick(row);
         }
     }
@@ -77,6 +78,7 @@ PageTableRow.propTypes = {
     columns: PropTypes.array.isRequired,
     idPrefix: PropTypes.string.isRequired,
     isClickable: PropTypes.bool,
+    onClick: PropTypes.func,
     row: PropTypes.object.isRequired,
     rowIndex: PropTypes.number.isRequired,
     rowProps: PropTypes.func,
@@ -98,6 +100,7 @@ class PageTable extends React.PureComponent {
             data,
             fontSize,
             idPrefix,
+            onScrollColumn,
             rowProps,
             sizes,
             small,
@@ -157,6 +160,7 @@ class PageTable extends React.PureComponent {
                                     idPrefix={idPrefix}
                                     isClickable={isSelectable}
                                     key={`tableBodyRow-${row.id || index}`}
+                                    onClick={idPrefix === 'body' ? onScrollColumn : null}
                                     row={row}
                                     rowIndex={index}
                                     rowProps={rowProps}
@@ -180,7 +184,7 @@ class PageTable extends React.PureComponent {
 PageTable.defaultProps = {
     bleed: true,
     fontSize: 'xsmall',
-    idPrefix: 'body',
+    idPrefix: 'base',
     small: true,
     splitter: false,
 };
@@ -193,6 +197,7 @@ PageTable.propTypes = {
     data: PropTypes.array.isRequired,
     fontSize: PropTypes.string,
     idPrefix: PropTypes.string,
+    onScrollColumn: PropTypes.func,
     onSplitter: PropTypes.func,
     rowProps: PropTypes.func,
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
@@ -205,6 +210,7 @@ class PageTableContainer extends React.Component {
     constructor() {
         super();
         this._onResize = this._onResize.bind(this);
+        this._onScrollColumn = this._onScrollColumn.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this.state = {
             collapsed: null,
@@ -233,6 +239,7 @@ class PageTableContainer extends React.Component {
                             {...this.props}
                             collapsed={collapsed}
                             idPrefix="body"
+                            onScrollColumn={this._onScrollColumn}
                             sizes={sizes}
                             style={{ minWidth }}
                         />
@@ -288,6 +295,9 @@ class PageTableContainer extends React.Component {
         }
 
         this.setState({ sizes });
+    }
+
+    _onScrollColumn() {
     }
 
     _onSplitterClick() {
