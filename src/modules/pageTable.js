@@ -278,7 +278,6 @@ class PageTableContainer extends React.Component {
             for (let j = 0; j < stickyColumns; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
                 const size = {
-                    h: `${el.clientHeight}px`,
                     w: `${el.clientWidth}px`,
                 };
 
