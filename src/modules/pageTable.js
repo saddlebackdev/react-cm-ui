@@ -256,30 +256,34 @@ PageTable.propTypes = {
     style: PropTypes.object,
 };
 
-const PageTableContainer = props => {
-    if (props.stickyColumns > 0) {
-        return (
-            <div className="ui page--table_container">
-                <div className="page--table_fixed_body">
-                    <PageTable
-                        {...props}
-                        idPrefix="body"
-                        style={{ minWidth: props.minWidth }}
-                    />
+class PageTableContainer extends React.Component {
+    render() {
+        const { columns, minWidth, stickyColumns } = this.props;
+
+        if (stickyColumns > 0) {
+            return (
+                <div className="ui page--table_container">
+                    <div className="page--table_fixed_body">
+                        <PageTable
+                            {...this.props}
+                            idPrefix="body"
+                            style={{ minWidth }}
+                        />
+                    </div>
+                    <div className="page--table_fixed_column">
+                        <PageTable
+                            {...this.props}
+                            columns={_.slice(columns, 0, stickyColumns)}
+                            idPrefix="column"
+                        />
+                    </div>
                 </div>
-                <div className="page--table_fixed_column">
-                    <PageTable
-                        {...props}
-                        columns={_.slice(props.columns, 0, props.stickyColumns)}
-                        idPrefix="column"
-                    />
-                </div>
-            </div>
-        );
-    } else {
-        return <PageTable {...props} />;
+            );
+        } else {
+            return <PageTable {...this.props} />;
+        }
     }
-};
+}
 
 PageTableContainer.defaultProps = {
     minWidth: 800,
