@@ -35,15 +35,14 @@ class PageTableRow extends React.PureComponent {
                     }
 
                     const style = {};
+                    const size = (sizes[rowIndex] || [])[index];
+
+                    if (size) {
+                        style.height = size.h;
+                        style.width = size.w;
+                    }
 
                     if (idPrefix === 'column') {
-                        const size = (sizes[rowIndex] || [])[index];
-
-                        if (size) {
-                            style.height = size.h;
-                            style.width = size.w;
-                        }
-
                         if (splitter && _.last(columns) === column) {
                             style.borderRight = '1px solid #edf1f5';
                         }
@@ -255,21 +254,21 @@ class PageTableContainer extends React.Component {
     }
 
     _onResize() {
-        const { columns, data, splitter, stickyColumnWidths } = this.props;
+        const { data, splitter, stickyColumns, stickyColumnWidths } = this.props;
         const { collapsed } = this.state;
         const sizes = [];
 
         for (let i = 0; i < data.length; i++) {
             const row = [];
 
-            for (let j = 0; j < columns.length; j++) {
+            for (let j = 0; j < stickyColumns; j++) {
                 const el = document.querySelector(`#tableCell-body-${i}-${j}`);
                 const size = {
                     h: `${el.clientHeight}px`,
                     w: `${el.clientWidth}px`,
                 };
 
-                if (splitter && j === columns.length - 1) {
+                if (splitter && j === stickyColumns - 1) {
                     if (collapsed === true) {
                         size.w = stickyColumnWidths[0];
                     } else if (collapsed === false) {
