@@ -88,21 +88,7 @@ PageTableRow.propTypes = {
 class PageTable extends React.PureComponent {
     constructor() {
         super();
-        this._onResize = this._onResize.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
-        this.state = {
-            collapsed: null,
-            sizes: [],
-        };
-    }
-
-    componentDidMount() {
-        this._onResize();
-        window.addEventListener('resize', this._onResize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this._onResize);
     }
 
     render() {
@@ -114,11 +100,11 @@ class PageTable extends React.PureComponent {
             fontSize,
             idPrefix,
             rowProps,
+            sizes,
             small,
             splitter,
             style,
         } = this.props;
-        const { sizes } = this.state;
         const containerClasses = ClassNames('ui', 'page--table', className);
         const isSelectable =
             _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
@@ -186,6 +172,88 @@ class PageTable extends React.PureComponent {
         );
     }
 
+    _onSplitterClick() {
+        const { onSplitter } = this.props;
+        onSplitter();
+    }
+}
+
+PageTable.defaultProps = {
+    bleed: true,
+    fontSize: 'xsmall',
+    idPrefix: 'body',
+    small: true,
+    splitter: false,
+};
+
+PageTable.propTypes = {
+    bleed: PropTypes.bool,
+    className: PropTypes.string,
+    collapsed: PropTypes.bool,
+    columns: PropTypes.array.isRequired,
+    data: PropTypes.array.isRequired,
+    fontSize: PropTypes.string,
+    idPrefix: PropTypes.string,
+    onSplitter: PropTypes.func,
+    rowProps: PropTypes.func,
+    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+    small: PropTypes.bool,
+    splitter: PropTypes.bool,
+    style: PropTypes.object,
+};
+
+class PageTableContainer extends React.Component {
+    constructor() {
+        super();
+        this._onResize = this._onResize.bind(this);
+        this._onSplitterClick = this._onSplitterClick.bind(this);
+        this.state = {
+            collapsed: null,
+            sizes: [],
+        };
+    }
+
+    componentDidMount() {
+        this._onResize();
+        window.addEventListener('resize', this._onResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this._onResize);
+    }
+
+    render() {
+        const { columns, minWidth, stickyColumns } = this.props;
+        const { collapsed, sizes } = this.state;
+
+        if (stickyColumns > 0) {
+            return (
+                <div className="ui page--table_container">
+                    <div className="page--table_fixed_body">
+                        <PageTable
+                            {...this.props}
+                            collapsed={collapsed}
+                            idPrefix="body"
+                            sizes={sizes}
+                            style={{ minWidth }}
+                        />
+                    </div>
+                    <div className="page--table_fixed_column">
+                        <PageTable
+                            {...this.props}
+                            columns={_.slice(columns, 0, stickyColumns)}
+                            idPrefix="column"
+                            sizes={sizes}
+                            onSplitter={this._onSplitterClick}
+                        />
+                    </div>
+                </div>
+            );
+        } else {
+            return <PageTable {...this.props} />;
+        }
+    }
+
     _onResize() {
         const { columns, data, splitter, stickyColumnWidths } = this.props;
         const { collapsed } = this.state;
@@ -232,56 +300,6 @@ class PageTable extends React.PureComponent {
                 this._onResize();
             }
         );
-    }
-}
-
-PageTable.defaultProps = {
-    bleed: true,
-    fontSize: 'xsmall',
-    idPrefix: 'body',
-    small: true,
-    splitter: false,
-};
-
-PageTable.propTypes = {
-    bleed: PropTypes.bool,
-    className: PropTypes.string,
-    columns: PropTypes.array.isRequired,
-    data: PropTypes.array.isRequired,
-    fontSize: PropTypes.string,
-    idPrefix: PropTypes.string,
-    rowProps: PropTypes.func,
-    small: PropTypes.bool,
-    splitter: PropTypes.bool,
-    style: PropTypes.object,
-};
-
-class PageTableContainer extends React.Component {
-    render() {
-        const { columns, minWidth, stickyColumns } = this.props;
-
-        if (stickyColumns > 0) {
-            return (
-                <div className="ui page--table_container">
-                    <div className="page--table_fixed_body">
-                        <PageTable
-                            {...this.props}
-                            idPrefix="body"
-                            style={{ minWidth }}
-                        />
-                    </div>
-                    <div className="page--table_fixed_column">
-                        <PageTable
-                            {...this.props}
-                            columns={_.slice(columns, 0, stickyColumns)}
-                            idPrefix="column"
-                        />
-                    </div>
-                </div>
-            );
-        } else {
-            return <PageTable {...this.props} />;
-        }
     }
 }
 
