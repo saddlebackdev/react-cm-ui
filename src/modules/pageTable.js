@@ -269,6 +269,11 @@ class PageTableContainer extends React.Component {
         const sizes = [];
 
         const elContainer = document.querySelector('.ui.page--table_container');
+
+        if (!elContainer) {
+            return;
+        }
+
         const totalWidth = elContainer.clientWidth;
 
         for (let i = 0; i < data.length; i++) {
