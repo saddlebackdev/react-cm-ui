@@ -357,7 +357,7 @@ class PageTableContainer extends React.Component {
 
 PageTableContainer.defaultProps = {
     minWidth: 800,
-    splitter: false,
+    splitter: true,
     stickyColumns: 0,
     stickyColumnWidth: 30,
 };
