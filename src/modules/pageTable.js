@@ -229,12 +229,23 @@ class PageTableContainer extends React.Component {
     }
 
     render() {
-        const { columns, stickyColumns } = this.props;
+        const { bleed, className, columns, stickyColumns, style } = this.props;
         const { collapsed, minWidth, sizes } = this.state;
 
-        if (stickyColumns > 0) {
+        const isStickyColumns = stickyColumns > 0;
+        const containerClasses = ClassNames('ui', 'page--table', className, {
+            'page--table-sticky_columns': isStickyColumns,
+        });
+        const newStyle = Object.assign({}, style, {
+            margin: bleed ? '0 -22px' : null,
+        });
+
+        if (isStickyColumns) {
             return (
-                <div className="ui page--table_container">
+                <div
+                    className={containerClasses}
+                    style={newStyle}
+                >
                     <div className="page--table_fixed_body">
                         <PageTable
                             {...this.props}
@@ -257,7 +268,14 @@ class PageTableContainer extends React.Component {
                 </div>
             );
         } else {
-            return <PageTable {...this.props} />;
+            return (
+                <div
+                    className={containerClasses}
+                    style={newStyle}
+                >
+                    <PageTable {...this.props} />
+                </div>
+            );
         }
     }
 
@@ -266,7 +284,7 @@ class PageTableContainer extends React.Component {
         const { collapsed } = this.state;
         const sizes = [];
 
-        const elContainer = document.querySelector('.ui.page--table_container');
+        const elContainer = document.querySelector('.ui.page--table-sticky_columns');
 
         if (!elContainer) {
             return;
