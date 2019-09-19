@@ -2,14 +2,12 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import SplitterSvg from './splitter.svg';
 import Table from '../collections/table.js';
 
 class PageTableRow extends React.PureComponent {
     constructor() {
         super();
-
         this._onClick = this._onClick.bind(this);
     }
 
@@ -20,9 +18,9 @@ class PageTableRow extends React.PureComponent {
             isClickable,
             row,
             rowIndex,
+            sizes,
             splitter,
         } = this.props;
-        const sizes = this.props.sizes || [];
 
         return (
             <Table.Row
@@ -38,7 +36,7 @@ class PageTableRow extends React.PureComponent {
                     }
 
                     const style = {};
-                    const size = (sizes[rowIndex] || [])[index];
+                    const size = _.isEmpty(sizes) ? null : sizes[rowIndex][index];
 
                     if (size) {
                         style.height = size.h;
