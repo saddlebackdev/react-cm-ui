@@ -210,7 +210,7 @@ PageTable.propTypes = {
 class PageTableContainer extends React.Component {
     constructor(props) {
         super(props);
-        this._onResize = this._onResize.bind(this);
+        this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this.state = {
             collapsed: null,
@@ -221,11 +221,11 @@ class PageTableContainer extends React.Component {
 
     componentDidMount() {
         this._onResize();
-        window.addEventListener('resize', this._onResize);
+        window.addEventListener('resize', this._onResizeDebounce);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this._onResize);
+        window.removeEventListener('resize', this._onResizeDebounce);
     }
 
     render() {
