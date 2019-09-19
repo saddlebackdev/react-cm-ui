@@ -308,7 +308,7 @@ class PageTableContainer extends React.Component {
                     } else if (collapsed === false) {
                         size.w = `${Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth - rowWidth)}px`;
                     } else {
-                        size.w = `${(totalWidth - stickyColumnWidth - rowWidth)/2}px`;
+                        size.w = `${totalWidth/2}px`;
                     }
                 }
 
