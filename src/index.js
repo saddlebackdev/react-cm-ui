@@ -4,6 +4,7 @@ export { default as Table } from './collections/table.js';
 export { default as Tabs } from './collections/tabs.js';
 
 // Elements
+export { default as ActivityIndicator } from './elements/activityIndicator.js';
 export { default as Button } from './elements/button.js';
 export { default as Checkbox } from './elements/checkbox.js';
 export { default as Comment } from './elements/comment.js';
