@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SplitterSvg from './splitter.svg';
 import Table from '../collections/table.js';
 
 class PageTableRow extends React.PureComponent {
@@ -140,10 +140,13 @@ class PageTable extends React.PureComponent {
                                     >
                                         {column.header}
                                         {hasSplitter && (
-                                            <img
+                                            <Icon
                                                 className="table-header-splitter"
+                                                color="static"
+                                                compact
                                                 onClick={this._onSplitterClick}
-                                                src={SplitterSvg}
+                                                size="small"
+                                                type="splitter"
                                             />
                                         )}
                                     </Table.HeaderCell>
