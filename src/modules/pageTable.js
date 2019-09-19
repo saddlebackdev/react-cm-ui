@@ -49,10 +49,12 @@ class PageTableRow extends React.PureComponent {
                         }
                     }
 
+                    const id = `table--table_cell-${idPrefix}-${rowIndex}-${index}`;
+
                     return (
                         <Table.Cell
-                            id={`tableCell-${idPrefix}-${rowIndex}-${index}`}
-                            key={`tableCell-${index}`}
+                            id={id}
+                            key={id}
                             textAlign={column.textAlign}
                             style={style}
                         >
@@ -274,7 +276,7 @@ class PageTableContainer extends React.Component {
             let rowWidth = 0;
 
             for (let j = 0; j < stickyColumns; j++) {
-                const el = document.querySelector(`#tableCell-body-${i}-${j}`);
+                const el = document.querySelector(`#table--table_cell-body-${i}-${j}`);
                 const size = {
                     w: `${el.clientWidth}px`,
                 };
