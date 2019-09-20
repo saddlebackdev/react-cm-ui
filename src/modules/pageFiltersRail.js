@@ -27,14 +27,14 @@ const PageFiltersRail = (props) => {
                     leave: 'page--filters_rail-leave',
                 }}
             >
-                {isOpen &&
+                {isOpen && (
                     <Rail
                         className="page--inner_container"
                         position="left"
                     >
                         {children}
                     </Rail>
-                }
+                )}
             </CSSTransitionGroup>
         </div>
     );

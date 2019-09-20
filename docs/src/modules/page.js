@@ -1,161 +1,130 @@
-import { Button, Card, Drawer, Header, TitleBar } from 'react-cm-ui';
-import DrawerSubNavigation from './drawerSubNavigation.js';
+import { Button, Card, Header, TitleBar } from 'react-cm-ui';
 import Highlighter from '../app/highlighter.js';
-import { Link } from 'react-router';
 import Main from '../app/main.js';
+import PageSubNavigation from './pageSubNavigation.js';
 import React from 'react';
 import TableProps from '../app/tableProps.js';
 
-const drawerSample = `import { Button, Drawer } from 'react-cm-ui';
+const drawerSample = `import { Page } from 'react-cm-ui';
 import React from 'react';
 
-export default class DrawerSample extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isBarDrawerOpen: false,
-            isDrawerOpen: false,
-            isFooDrawerOpen: false,
-        };
-
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
-        this._onBarDrawerToggle = this._onBarDrawerToggle.bind(this);
-        this._onFooDrawerToggle = this._onFooDrawerToggle.bind(this);
-    }
-
+class DrawerSample extends React.PureComponent {
     render() {
-        const { isDrawerOpen } = this.state;
-
         return (
-            <div>
-                <Button onClick={this._onDrawerToggle}>Open The Drawer</Button>
-
-                <Drawer
-                    isOpen={isDrawerOpen}
-                    onClose={this._onDrawerToggle}
-                >
-                    <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
-                    <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                    <Drawer
-                        isOpen={isFooDrawerOpen}
-                        onClose={this._onFooDrawerToggle}
-                    >
-                        <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
-                        <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
-
-                        <p>Foo Drawer</p>
-
-                        <Drawer
-                            isOpen={isBarDrawerOpen}
-                            onClose={this._onBarDrawerToggle}
-                        >
-                            <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
-
-                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
-
-                            <p>Bar Drawer</p>
-                        </Drawer>
-                    </Drawer>
-                </Drawer>
-            </div>
+            <Page>
+                // code here.
+            </Page>
         );
     }
+}
 
-    _onBarDrawerToggle() {
-        const { isBarDrawerOpen } = this.state;
+export default DrawerSample;`;
 
-        this.setState({ isBarDrawerOpen: !isBarDrawerOpen });
+const classNameSample = `import { Page } from 'react-cm-ui';
+import React from 'react';
+
+class ClassNameSample extends React.PureComponent {
+    render() {
+        return (
+            <Page className="foo_block_name">
+                // code here.
+            </Page>
+        );
     }
+}
 
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
+export default ClassNameSample;`;
 
-        this.setState({ isDrawerOpen: !isDrawerOpen });
+const idSample = `import { Page } from 'react-cm-ui';
+import React from 'react';
+
+class IDSample extends React.PureComponent {
+    render() {
+        return (
+            <Page id="foo_block_name">
+                // code here.
+            </Page>
+        );
     }
+}
 
-    _onFooDrawerToggle() {
-        const { isFooDrawerOpen } = this.state;
+export default IDSample;`;
 
-        this.setState({ isFooDrawerOpen: !isFooDrawerOpen });
+const isDataFetchingSample = `import { connect } from 'redux';
+import { Page } from 'react-cm-ui';
+import React from 'react';
+
+class IsDataFetchingSample extends React.PureComponent {
+    render() {
+        const { isFetching } = this.state;
+
+        return (
+            <Page isDataFetching={isFetching}>
+                // children here won't show until isFetching is false.
+            </Page>
+        );
     }
-}`;
+}
+
+const mapStateToProps = state => {
+    const {
+        foo: { isFetching },
+    } = state;
+
+    return {
+        isFetching,
+    };
+};
+
+export default connect(mapStateToProps)(IsDataFetchingSample);`;
+
+const styleSample = `import { Page } from 'react-cm-ui';
+import React from 'react';
+
+class StyleSample extends React.PureComponent {
+    render() {
+        const { isFetching } = this.state;
+
+        return (
+            <Page
+                style={{
+                    margin: '22px', // hopefully you never need to do this! But here it is. :)
+                }}
+            >
+                // code here.
+            </Page>
+        );
+    }
+}
+
+export default StyleSample;`;
 
 class ModulesPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isBarDrawerOpen: false,
-            isDrawerOpen: false,
-            isFooDrawerOpen: false,
-        };
-
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
-        this._onBarDrawerToggle = this._onBarDrawerToggle.bind(this);
-        this._onFooDrawerToggle = this._onFooDrawerToggle.bind(this);
-    }
-
     render() {
-        const { isBarDrawerOpen, isDrawerOpen, isFooDrawerOpen } = this.state;
         const props = [
             {
                 name: 'className',
                 type: 'string',
                 default: '',
-                description: 'Additional classes.',
+                description: 'Assign additional class names to the container.',
                 allowedTypes: '',
             }, {
-                name: 'isOpen',
-                type: 'bool',
-                default: 'false',
-                description: 'Boolean for the Drawer\'s open/close state.',
-                allowedTypes: '',
-            }, {
-                name: 'maxWidth',
-                type: 'number || string',
-                default: '',
-                description: 'Give a Drawer a maximum width.',
-                allowedTypes: '',
-            }, {
-                name: 'onClickOutside',
-                type: 'bool',
-                default: 'false',
-                description: 'Ability to close Drawer if clicked outside of container.',
-                allowedTypes: '',
-            }, {
-                name: '*onClose',
-                type: 'func',
-                default: '',
-                description: 'Required function to change the state of the Drawer.',
-                allowedTypes: '',
-            }, {
-                name: 'onCloseComplete',
-                type: 'func',
-                default: '',
-                description: 'Alerts the parent component that the closing animation is complete.',
-                allowedTypes: '',
-            }, {
-                name: 'onOpenComplete',
-                type: 'func',
-                default: '',
-                description: 'Alerts the parent component that the opening animation is complete.',
-                allowedTypes: '',
-            }, {
-                name: 'position',
+                name: 'id',
                 type: 'string',
-                default: 'right',
-                description: 'The position of the Drawer.',
-                allowedTypes: 'left, right',
+                default: '',
+                description: 'Assign an ID to the container.',
+                allowedTypes: '',
+            }, {
+                name: 'isDataFetching',
+                type: 'bool',
+                default: 'false',
+                description: 'Show an Activity Indicator before showing its children.',
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
-                default: '',
-                description: 'Supply any inline styles to the Drawer\'s container. Mainly used for padding and margins.',
+                default: '{}',
+                description: 'Assign inline styles the container.',
                 allowedTypes: '',
             },
         ];
@@ -164,84 +133,108 @@ class ModulesPage extends React.Component {
             <Main page="headers">
                 <TitleBar title="Page" />
 
-                <DrawerSubNavigation />
+                <PageSubNavigation />
 
                 <div>
                     <Card>
                         <Header size="large">Props</Header>
 
                         <TableProps props={props} />
-                    </Card>
+                    </Card><br /><br />
 
-                    {/* Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Drawer
+                    <Button href={`${window.location.pathname}/demo`} target="_blank">Demo Page</Button>
+
+                    {/* Page */}
+                    <Header anchor="page" size="large" style={{ marginTop: '55px' }} sub>
+                        Page
                         <Header.Subheader>
-                            <span>A basic drawer.</span>
+                            <span>
+                                <p style={{ marginTop: 0 }}>
+                                    This is a template component, meaning it facilitates in styling a basic page,
+                                    excluding the side navigation and TitleBar, by using its sub components.
+                                </p>
 
-                            <p className="font-size-xsmall color-static">
-                                <span className="font-weight-semibold">Note:</span> <code>onClose</code> is a required prop.
-                            </p>
+                                <p>
+                                    It can also wrap other atoms, molecules, and organisms that are non Page sub
+                                    components to build up a page. But by using these types of components, Page may not
+                                    neccearily know how to apply logic and styling to them.
+                                </p>
+                            </span>
                         </Header.Subheader>
                     </Header>
-
-                    <Button onClick={this._onDrawerToggle}>Open The Drawer</Button>
-
-                    <Drawer
-                        isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
-                    >
-                        <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
-                        <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                        <Drawer
-                            isOpen={isFooDrawerOpen}
-                            onClose={this._onFooDrawerToggle}
-                        >
-                            <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
-                            <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
-
-                            <p>Foo Drawer</p>
-
-                            <Drawer
-                                isOpen={isBarDrawerOpen}
-                                onClose={this._onBarDrawerToggle}
-                            >
-                                <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
-
-                                <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
-
-                                <p>Bar Drawer</p>
-                            </Drawer>
-                        </Drawer>
-                    </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerSample}
                     </Highlighter>
+
+                    {/* className */}
+                    <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                        className
+                        <Header.Subheader>
+                            <p style={{ marginTop: 0 }}>
+                                Use the <code>className</code> prop to pass a block class name to Page. This needs to
+                                be unique and always implemented.
+                            </p>
+                        </Header.Subheader>
+                    </Header>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {classNameSample}
+                    </Highlighter>
+
+                    {/* id */}
+                    <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                        id
+                        <Header.Subheader>
+                            <p style={{ marginTop: 0 }}>
+                                Use the <code>id</code> prop to pass a block id name to Page. Because our QA automation
+                                looks for these, this needs to be unique and always implemented.
+                            </p>
+                        </Header.Subheader>
+                    </Header>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {idSample}
+                    </Highlighter>
+
+                    {/* isDataFetching */}
+                    <Header anchor="isDataFetching" size="large" style={{ marginTop: '55px' }} sub>
+                        isDataFetching
+                        <Header.Subheader>
+                            <p style={{ marginTop: 0 }}>
+                                While loading or synchronizing data is being performed don't show Page's children. Use <code>isFetching</code> from
+                                Redux state to pass a boolean into Page's <code>isDataFetching</code> prop.
+                            </p>
+
+                            <p>
+                                Children won't animate in. This is to be handled, for right now, case-by-case. The
+                                Activity Indicator will fade in upon mount and out upon <code>isDataFetching</code> being
+                                toggled to <code>false</code>.
+                            </p>
+                        </Header.Subheader>
+                    </Header>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {isDataFetchingSample}
+                    </Highlighter>
+
+                    {/* style */}
+                    <Header anchor="style" size="large" style={{ marginTop: '55px' }} sub>
+                        style
+                        <Header.Subheader>
+                            <p style={{ marginTop: 0 }}>
+                                Use the <code>style</code> prop to pass some inline styles to the container. Only to be used
+                                when needed based on its relavant location within the app.
+                            </p>
+                        </Header.Subheader>
+                    </Header>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {styleSample}
+                    </Highlighter>
                 </div>
             </Main>
         );
-    }
-
-    _onBarDrawerToggle() {
-        const { isBarDrawerOpen } = this.state;
-
-        this.setState({ isBarDrawerOpen: !isBarDrawerOpen });
-    }
-
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
-    }
-
-    _onFooDrawerToggle() {
-        const { isFooDrawerOpen } = this.state;
-
-        this.setState({ isFooDrawerOpen: !isFooDrawerOpen });
     }
 }
 
