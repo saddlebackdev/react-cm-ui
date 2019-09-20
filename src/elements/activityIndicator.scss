@@ -1,7 +1,9 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
+$circleSize: 16px;
+$barHeight: 68px;
+
 %bar_properties {
-    background-color: color(backgroundColorHighlight);
     border-radius: $circleSize / 2;
     height: $circleSize;
     position: absolute;
@@ -22,11 +24,7 @@
         position: relative;
         width: $circleSize;
     }
-    &--circle {
+    &--circle, &--bar {
         @extend %bar_properties;
-    }
-    &--bar {
-        @extend %bar_properties;
-        opacity: 0;
     }
 }
