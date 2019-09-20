@@ -82,8 +82,8 @@ rules:
       - convention: hyphenatedlowercase
     variable-name-format:
       - 1
-      - allow-leading-underscore: true
-      - convention: hyphenatedlowercase
+      - allow-leading-underscore: false
+      - convention: camelcase
 
     # Style Guide
     attribute-quotes: 1

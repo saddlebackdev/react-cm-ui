@@ -38,6 +38,9 @@ export default class Highlighter extends React.Component {
             return (
                 <div className={containerClasses}>
                     <ScrollBar
+                        autoHeight
+                        autoHeightMin={328}
+                        autoHeightMax={600}
                         autoHide
                     >
                         <div className="highlighter-inner-container">

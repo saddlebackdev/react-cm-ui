@@ -30,6 +30,13 @@ const routes = (
         <Route path="/elements">
             <Route
                 getComponent={(location, callback) => {
+                    import('./elements/activityIndicator.js')
+                        .then(module => callback(null, module.default));
+                }}
+                path="activity-indicator"
+            />
+            <Route
+                getComponent={(location, callback) => {
                     import('./elements/button.js')
                         .then(module => callback(null, module.default));
                 }}

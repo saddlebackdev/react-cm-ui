@@ -60,6 +60,10 @@ export default class CoreAppNavigation extends React.Component {
 
                         <ul>
                             <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/elements/activity-indicator' }} activeClassName={isActive}>Activity Indicator</Link>
+                            </li>
+
+                            <li>
                                 <Link className="core-app-nav-item" to={{ pathname: '/elements/button' }} activeClassName={isActive}>Button</Link>
                             </li>
 
@@ -184,6 +188,10 @@ export default class CoreAppNavigation extends React.Component {
 
                             <li>
                                 <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/modal' }} activeClassName={isActive}>Modal</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/modules/page' }} activeClassName={isActive}>Page</Link>
                             </li>
 
                             <li>
