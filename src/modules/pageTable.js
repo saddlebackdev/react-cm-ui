@@ -99,6 +99,7 @@ class PageTable extends React.PureComponent {
             className,
             columns,
             data,
+            dropShadow,
             fontSize,
             idPrefix,
             rowProps,
@@ -108,6 +109,7 @@ class PageTable extends React.PureComponent {
             style,
         } = this.props;
         const containerClasses = ClassNames('ui', 'page--table', className);
+        const bodyClasses = ClassNames({'drop-shadow': dropShadow});
         const isSelectable =
             _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
 
@@ -155,7 +157,7 @@ class PageTable extends React.PureComponent {
                         </Table.Row>
                     </Table.Header>
 
-                    <Table.Body>
+                    <Table.Body className={bodyClasses}>
                         {_.map(data, (row, index) => {
                             return (
                                 <PageTableRow
@@ -185,6 +187,7 @@ class PageTable extends React.PureComponent {
 
 PageTable.defaultProps = {
     bleed: true,
+    dropShadow: false,
     fontSize: 'xsmall',
     idPrefix: 'base',
     small: true,
@@ -197,6 +200,7 @@ PageTable.propTypes = {
     collapsed: PropTypes.bool,
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
+    dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
     idPrefix: PropTypes.string,
     onSplitter: PropTypes.func,
@@ -211,10 +215,12 @@ class PageTableContainer extends React.Component {
     constructor(props) {
         super(props);
         this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
+        this._onScroll = this._onScroll.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this.state = {
             collapsed: null,
             minWidth: props.minWidth,
+            scrolledRight: false,
             sizes: [],
         };
     }
@@ -230,7 +236,7 @@ class PageTableContainer extends React.Component {
 
     render() {
         const { bleed, className, columns, stickyColumns, style } = this.props;
-        const { collapsed, minWidth, sizes } = this.state;
+        const { collapsed, minWidth, scrolledRight, sizes } = this.state;
 
         const isStickyColumns = stickyColumns > 0;
         const containerClasses = ClassNames('ui', 'page--table', className, {
@@ -246,7 +252,10 @@ class PageTableContainer extends React.Component {
                     className={containerClasses}
                     style={newStyle}
                 >
-                    <div className="page--table_fixed_body">
+                    <div
+                        className="page--table_fixed_body"
+                        onScroll={this._onScroll}
+                    >
                         <PageTable
                             {...this.props}
                             collapsed={collapsed}
@@ -260,9 +269,10 @@ class PageTableContainer extends React.Component {
                         <PageTable
                             {...this.props}
                             columns={_.slice(columns, 0, stickyColumns)}
+                            dropShadow={scrolledRight}
                             idPrefix="column"
-                            sizes={sizes}
                             onSplitter={this._onSplitterClick}
+                            sizes={sizes}
                         />
                     </div>
                 </div>
@@ -338,6 +348,10 @@ class PageTableContainer extends React.Component {
         }
 
         this.setState(newState);
+    }
+
+    _onScroll(e) {
+        this.setState({ scrolledRight: e.nativeEvent.target.scrollLeft > 0 });
     }
 
     _onSplitterClick() {
