@@ -12,7 +12,8 @@ import List from '../elements/list.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const HAS_CLASS_NAME = 'has-drawer--action_bar';
+const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer--has_action_bar';
+const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page--has_action_bar';
 
 class ActionsButtonDrawerOption extends React.Component {
     constructor() {
@@ -362,7 +363,11 @@ class ActionBar extends React.Component {
         const { moduleType } = this.props;
 
         if (moduleType === 'drawer') {
-            this._actionBarRef.closest('.ui.drawer').classList.add(HAS_CLASS_NAME);
+            this._actionBarRef.closest('.ui.drawer').classList.add(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
+        }
+
+        if (moduleType === 'page') {
+            this._actionBarRef.closest('.ui.page').classList.add(HAS_PAGE_ACTION_BAR_CLASS_NAME);
         }
     }
 
@@ -370,7 +375,7 @@ class ActionBar extends React.Component {
         const { moduleType } = this.props;
 
         if (moduleType === 'drawer') {
-            this._actionBarRef.closest('.ui.drawer').classList.remove(HAS_CLASS_NAME);
+            this._actionBarRef.closest('.ui.drawer').classList.remove(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
         }
     }
 
