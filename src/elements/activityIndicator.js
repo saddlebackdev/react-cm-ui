@@ -172,7 +172,7 @@ class ActivityIndicator extends React.PureComponent {
                 className={containerClasses}
                 id={id}
                 style={Object.assign({}, style, {
-                    transform: `scale(${1 / 68 * size})`,
+                    transform: `scale(${1 / 68 * size}) ${style && style.transform}`,
                 })}
             >
                 <div
@@ -242,7 +242,7 @@ ActivityIndicator.propTypes = {
 };
 
 ActivityIndicator.defaultProps = {
-    className: '',
+    className: undefined,
     color: 'backgroundColorHighlight',
     id: 'PropTypes.string',
     size: 68,

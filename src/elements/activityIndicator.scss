@@ -15,6 +15,7 @@ $barHeight: 68px;
     flex-direction: row;
     height: 70px;
     justify-content: space-between;
+    pointer-events: none;
     position: relative;
     width: 70px;
     &--left, &--middle, &--right {
