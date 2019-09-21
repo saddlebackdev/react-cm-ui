@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -27,6 +28,16 @@ class DragListener extends React.PureComponent {
     }
 
     _onTouchEnd() {
+        const { onDragEnd } = this.props;
+
+        if (_.isFunction(onDragEnd)) {
+            onDragEnd({
+                ...this.startDragPos,
+                deltaX: 0,
+                deltaY: 0,
+            });
+        }
+
         this.startDragPos = null;
     }
 
@@ -45,13 +56,19 @@ class DragListener extends React.PureComponent {
     }
 
     _onTouchStart(e) {
+        const { onDragStart } = this.props;
         const touch = e.touches[0];
         this.startDragPos = {
             clientX: touch.clientX,
             clientY: touch.clientY,
+            deltaX: 0,
+            deltaY: 0,
             screenX: touch.screenX,
             screenY: touch.screenY,
         };
+        if (_.isFunction(onDragStart)) {
+            onDragStart(this.startDragPos);
+        }
     }
 }
 
@@ -59,6 +76,8 @@ DragListener.propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
     onDrag: PropTypes.func.isRequired,
+    onDragEnd: PropTypes.func,
+    onDragStart: PropTypes.func,
     style: PropTypes.object,
 };
 
