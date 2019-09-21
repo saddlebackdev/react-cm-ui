@@ -5,6 +5,8 @@ import React from 'react';
 class DragListener extends React.PureComponent {
     constructor() {
         super();
+        this._onDragEnd = this._onDragEnd.bind(this);
+        this._onDragStart = this._onDragStart.bind(this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchMove = this._onTouchMove.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
@@ -17,7 +19,10 @@ class DragListener extends React.PureComponent {
         return (
             <div
                 className={className}
+                draggable
                 onClick={onClick}
+                onDragEnd={this._onDragEnd}
+                onDragStart={this._onDragStart}
                 onTouchEnd={this._onTouchEnd}
                 onTouchMove={this._onTouchMove}
                 onTouchStart={this._onTouchStart}
@@ -26,6 +31,38 @@ class DragListener extends React.PureComponent {
                 {children}
             </div>
         );
+    }
+
+    _onDragEnd(e) {
+        const { onDragEnd } = this.props;
+
+        if (_.isFunction(onDragEnd)) {
+            onDragEnd({
+                clientX: e.clientX,
+                clientY: e.clientY,
+                deltaX: e.screenX - this.startDragPos.screenX,
+                deltaY: e.screenY - this.startDragPos.screenY,
+                screenX: e.screenX,
+                screenY: e.screenY,
+            });
+        }
+
+        this.startDragPos = null;
+    }
+
+    _onDragStart(e) {
+        const { onDragStart } = this.props;
+        this.startDragPos = {
+            clientX: e.clientX,
+            clientY: e.clientY,
+            deltaX: 0,
+            deltaY: 0,
+            screenX: e.screenX,
+            screenY: e.screenY,
+        };
+        if (_.isFunction(onDragStart)) {
+            onDragStart(this.startDragPos);
+        }
     }
 
     _onTouchEnd() {
