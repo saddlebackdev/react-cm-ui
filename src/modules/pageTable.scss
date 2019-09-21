@@ -19,11 +19,14 @@
                 }
                 .table-header-cell:last-child {
                     padding-right: inherit;
-                    .table-header-splitter.ui.icon-size-small {
+                    .table-header-splitter {
                         float: right;
-                        width: 5px;
-                        svg {
+                        position: relative;
+                        .ui.icon-size-small {
                             width: 5px;
+                            svg {
+                                width: 5px;
+                            }
                         }
                     }
                 }

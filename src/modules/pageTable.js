@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import DragListener from '../utils/dragListener.js';
 import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Table from '../collections/table.js';
 
 class PageTableRow extends React.PureComponent {
@@ -91,17 +93,7 @@ class PageTable extends React.PureComponent {
     constructor() {
         super();
         this._onSplitterClick = this._onSplitterClick.bind(this);
-        this._onSplitterTouchEnd = this._onSplitterTouchEnd.bind(this);
-        this._onSplitterTouchMove = this._onSplitterTouchMove.bind(this);
-        this._onSplitterTouchStart = this._onSplitterTouchStart.bind(this);
-    }
-
-    componentWillUnmount() {
-        if (this.state.splitter && this._splitterRef) {
-            this._splitterRef.removeEventListener('touchstart', this._onSplitterTouchStart);
-            this._splitterRef.removeEventListener('touchmove', this._onSplitterTouchMove);
-            this._splitterRef.removeEventListener('touchend', this._onSplitterTouchEnd);
-        }
+        this._onSplitterDrag = this._onSplitterDrag.bind(this);
     }
 
     render() {
@@ -153,14 +145,19 @@ class PageTable extends React.PureComponent {
                                     >
                                         {column.header}
                                         {hasSplitter && (
-                                            <Icon
+                                            <DragListener
                                                 className="table-header-splitter"
-                                                color="static"
-                                                compact
                                                 onClick={this._onSplitterClick}
-                                                size="small"
-                                                type="splitter"
-                                            />
+                                                onDrag={this._onSplitterDrag}
+                                                ref={ref => this._splitter = ref}
+                                            >
+                                                <Icon
+                                                    color="static"
+                                                    compact
+                                                    size="small"
+                                                    type="splitter"
+                                                />
+                                            </DragListener>
                                         )}
                                     </Table.HeaderCell>
                                 );
@@ -190,34 +187,18 @@ class PageTable extends React.PureComponent {
         );
     }
 
-    _initTouchEvents(ref) {
-        if (!this.state.splitter || !ref) {
-            return;
-        }
-
-        this._splitterRef = ref;
-        this._splitterRef.addEventListener('touchstart', this._onSplitterTouchStart);
-        this._splitterRef.addEventListener('touchmove', this._onSplitterTouchMove, {
-            passive: false,
-        });
-        this._splitterRef.addEventListener('touchend', this._onSplitterTouchEnd);
-    }
-
     _onSplitterClick() {
         const { onSplitter } = this.props;
+        const splitter = ReactDOM.findDOMNode(this._splitter);
+        splitter.style.left = 0;
         onSplitter();
     }
 
-    _onSplitterTouchEnd() {
-        
-    }
-
-    _onSplitterTouchMove(e) {
-        e.preventDefault();
-    }
-
-    _onSplitterTouchStart(e) {
-        
+    _onSplitterDrag({ deltaX }) {
+        requestAnimationFrame(() => {
+            const splitter = ReactDOM.findDOMNode(this._splitter);
+            splitter.style.left = `${Math.ceil(deltaX)}px`;
+        });
     }
 }
 
