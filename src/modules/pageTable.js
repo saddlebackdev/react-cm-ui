@@ -94,6 +94,7 @@ class PageTable extends React.PureComponent {
         super();
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this._onSplitterDrag = this._onSplitterDrag.bind(this);
+        this._onSplitterDragEnd = this._onSplitterDragEnd.bind(this);
     }
 
     render() {
@@ -149,6 +150,7 @@ class PageTable extends React.PureComponent {
                                                 className="table-header-splitter"
                                                 onClick={this._onSplitterClick}
                                                 onDrag={this._onSplitterDrag}
+                                                onDragEnd={this._onSplitterDragEnd}
                                                 ref={ref => this._splitter = ref}
                                             >
                                                 <Icon
@@ -191,7 +193,9 @@ class PageTable extends React.PureComponent {
         const { onSplitter } = this.props;
         const splitter = ReactDOM.findDOMNode(this._splitter);
         splitter.style.left = 0;
-        onSplitter();
+        if (_.isFunction(onSplitter)) {
+            onSplitter();
+        }
     }
 
     _onSplitterDrag({ deltaX }) {
@@ -199,6 +203,16 @@ class PageTable extends React.PureComponent {
             const splitter = ReactDOM.findDOMNode(this._splitter);
             splitter.style.left = `${Math.ceil(deltaX)}px`;
         });
+    }
+
+    _onSplitterDragEnd({ deltaX }) {
+        const { onSplitterDragEnd } = this.props;
+
+        if (_.isFunction(onSplitterDragEnd)) {
+            const splitter = ReactDOM.findDOMNode(this._splitter);
+            splitter.style.left = 0;
+            onSplitterDragEnd(deltaX);
+        }
     }
 }
 
@@ -221,6 +235,7 @@ PageTable.propTypes = {
     fontSize: PropTypes.string,
     idPrefix: PropTypes.string,
     onSplitter: PropTypes.func,
+    onSplitterDragEnd: PropTypes.func,
     rowProps: PropTypes.func,
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
     small: PropTypes.bool,
@@ -234,6 +249,7 @@ class PageTableContainer extends React.Component {
         this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
         this._onScroll = this._onScroll.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
+        this._onSplitterDragEnd = this._onSplitterDragEnd.bind(this);
         this.state = {
             collapsed: null,
             minWidth: props.minWidth,
@@ -290,6 +306,7 @@ class PageTableContainer extends React.Component {
                             dropShadow={scrolledRight}
                             idPrefix="column"
                             onSplitter={this._onSplitterClick}
+                            onSplitterDragEnd={this._onSplitterDragEnd}
                             sizes={sizes}
                         />
                     </div>
@@ -387,6 +404,17 @@ class PageTableContainer extends React.Component {
                 this._onResize();
             }
         );
+    }
+
+    _onSplitterDragEnd(dx) {
+        this.setState(prev => {
+            return {
+                collapsed: null,
+                currentStickyColumnWidth: prev.currentStickyColumnWidth + dx,
+            };
+        }, () => {
+            this._onResize();
+        });
     }
 }
 

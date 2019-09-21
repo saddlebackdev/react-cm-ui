@@ -8,6 +8,7 @@ class DragListener extends React.PureComponent {
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchMove = this._onTouchMove.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
+        this.currentDragPos = null;
         this.startDragPos = null;
     }
 
@@ -31,13 +32,10 @@ class DragListener extends React.PureComponent {
         const { onDragEnd } = this.props;
 
         if (_.isFunction(onDragEnd)) {
-            onDragEnd({
-                ...this.startDragPos,
-                deltaX: 0,
-                deltaY: 0,
-            });
+            onDragEnd(this.currentDragPos);
         }
 
+        this.currentDragPos = null;
         this.startDragPos = null;
     }
 
@@ -45,20 +43,21 @@ class DragListener extends React.PureComponent {
         const { onDrag } = this.props;
         e.persist();
         const touch = e.touches[0];
-        onDrag({
+        this.currentDragPos = {
             clientX: touch.clientX,
             clientY: touch.clientY,
             deltaX: touch.screenX - this.startDragPos.screenX,
             deltaY: touch.screenY - this.startDragPos.screenY,
             screenX: touch.screenX,
             screenY: touch.screenY,
-        });
+        };
+        onDrag(this.currentDragPos);
     }
 
     _onTouchStart(e) {
         const { onDragStart } = this.props;
         const touch = e.touches[0];
-        this.startDragPos = {
+        this.currentDragPos = this.startDragPos = {
             clientX: touch.clientX,
             clientY: touch.clientY,
             deltaX: 0,
