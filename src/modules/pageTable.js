@@ -239,6 +239,7 @@ class PageTableContainer extends React.Component {
             minWidth: props.minWidth,
             scrolledRight: false,
             sizes: [],
+            currentStickyColumnWidth: null,
         };
     }
 
@@ -310,7 +311,6 @@ class PageTableContainer extends React.Component {
         const { data, minWidth, splitter, stickyColumns, stickyColumnWidth } = this.props;
         const { collapsed } = this.state;
         const sizes = [];
-
         const elContainer = document.querySelector('.ui.page--table-sticky_columns');
 
         if (!elContainer) {
@@ -318,10 +318,19 @@ class PageTableContainer extends React.Component {
         }
 
         const totalWidth = elContainer.clientWidth;
+        let { currentStickyColumnWidth } = this.state;
+        let width = currentStickyColumnWidth;
+
+        if (collapsed === true) {
+            width = Math.min(stickyColumnWidth, totalWidth);
+        } else if (collapsed === false) {
+            width = Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth);
+        } else if (!_.isFinite(currentStickyColumnWidth)) {
+            width = currentStickyColumnWidth = totalWidth/2;
+        }
 
         for (let i = 0; i < data.length; i++) {
             const row = [];
-            let rowWidth = 0;
 
             for (let j = 0; j < stickyColumns; j++) {
                 const el = document.querySelector(`#table--table_cell-body-${i}-${j}`);
@@ -330,23 +339,16 @@ class PageTableContainer extends React.Component {
                 };
 
                 if (splitter && j === stickyColumns - 1) {
-                    if (collapsed === true) {
-                        size.w = `${Math.min(stickyColumnWidth, totalWidth)}px`;
-                    } else if (collapsed === false) {
-                        size.w = `${Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth - rowWidth)}px`;
-                    } else {
-                        size.w = `${totalWidth/2}px`;
-                    }
+                    size.w = `${width}px`;
                 }
 
-                rowWidth += el.clientHeight;
                 row.push(size);
             }
 
             sizes.push(row);
         }
 
-        const newState = { sizes };
+        const newState = { currentStickyColumnWidth, sizes };
 
         if (collapsed === true) {
             newState.minWidth = minWidth;
@@ -357,7 +359,7 @@ class PageTableContainer extends React.Component {
                 newState.minWidth = minWidth + diff;
             }
         } else { 
-            const diff = (totalWidth - stickyColumnWidth)/2;
+            const diff = (totalWidth - width)/2;
 
             if (diff > 0) {
                 newState.minWidth = minWidth + diff;
