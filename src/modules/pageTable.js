@@ -191,8 +191,10 @@ class PageTable extends React.PureComponent {
 
     _onSplitterClick() {
         const { onSplitter } = this.props;
-        const splitter = ReactDOM.findDOMNode(this._splitter);
-        splitter.style.left = 0;
+        requestAnimationFrame(() => {
+            const splitter = ReactDOM.findDOMNode(this._splitter);
+            splitter.style.left = 0;
+        });
         if (_.isFunction(onSplitter)) {
             onSplitter();
         }
@@ -209,8 +211,10 @@ class PageTable extends React.PureComponent {
         const { onSplitterDragEnd } = this.props;
 
         if (_.isFunction(onSplitterDragEnd)) {
-            const splitter = ReactDOM.findDOMNode(this._splitter);
-            splitter.style.left = 0;
+            requestAnimationFrame(() => {
+                const splitter = ReactDOM.findDOMNode(this._splitter);
+                splitter.style.left = 0;
+            });
             onSplitterDragEnd(deltaX);
         }
     }
