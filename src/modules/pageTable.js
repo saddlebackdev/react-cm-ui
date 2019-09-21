@@ -91,6 +91,17 @@ class PageTable extends React.PureComponent {
     constructor() {
         super();
         this._onSplitterClick = this._onSplitterClick.bind(this);
+        this._onSplitterTouchEnd = this._onSplitterTouchEnd.bind(this);
+        this._onSplitterTouchMove = this._onSplitterTouchMove.bind(this);
+        this._onSplitterTouchStart = this._onSplitterTouchStart.bind(this);
+    }
+
+    componentWillUnmount() {
+        if (this.state.splitter && this._splitterRef) {
+            this._splitterRef.removeEventListener('touchstart', this._onSplitterTouchStart);
+            this._splitterRef.removeEventListener('touchmove', this._onSplitterTouchMove);
+            this._splitterRef.removeEventListener('touchend', this._onSplitterTouchEnd);
+        }
     }
 
     render() {
@@ -179,9 +190,34 @@ class PageTable extends React.PureComponent {
         );
     }
 
+    _initTouchEvents(ref) {
+        if (!this.state.splitter || !ref) {
+            return;
+        }
+
+        this._splitterRef = ref;
+        this._splitterRef.addEventListener('touchstart', this._onSplitterTouchStart);
+        this._splitterRef.addEventListener('touchmove', this._onSplitterTouchMove, {
+            passive: false,
+        });
+        this._splitterRef.addEventListener('touchend', this._onSplitterTouchEnd);
+    }
+
     _onSplitterClick() {
         const { onSplitter } = this.props;
         onSplitter();
+    }
+
+    _onSplitterTouchEnd() {
+        
+    }
+
+    _onSplitterTouchMove(e) {
+        e.preventDefault();
+    }
+
+    _onSplitterTouchStart(e) {
+        
     }
 }
 
