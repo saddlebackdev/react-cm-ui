@@ -250,7 +250,7 @@ PageTable.propTypes = {
 class PageTableContainer extends React.Component {
     constructor(props) {
         super(props);
-        this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
+        this._onResizeDebounce = _.debounce(() => this._onResizeWindow(), 80);
         this._onScroll = this._onScroll.bind(this);
         this._onSplitterClick = this._onSplitterClick.bind(this);
         this._onSplitterDragEnd = this._onSplitterDragEnd.bind(this);
@@ -390,6 +390,12 @@ class PageTableContainer extends React.Component {
         this.setState(newState);
     }
 
+    _onResizeWindow() {
+        this.setState({ collapsed: null, currentStickyColumnWidth: null }, () => {
+            this._onResize();
+        });
+    }
+
     _onScroll(e) {
         this.setState({ scrolledRight: e.nativeEvent.target.scrollLeft > 0 });
     }
@@ -411,10 +417,29 @@ class PageTableContainer extends React.Component {
     }
 
     _onSplitterDragEnd(dx) {
-        this.setState(prev => {
+        this.setState((prevState, prevProps) => {
+            const elContainer = document.querySelector('.ui.page--table-sticky_columns');
+
+            if (!elContainer) {
+                return;
+            }
+
+            const totalWidth = elContainer.clientWidth;
+            const { stickyColumnWidth } = prevProps;
+            const { collapsed, currentStickyColumnWidth } = prevState;
+            let width = currentStickyColumnWidth;
+
+            if (collapsed === true) {
+                width = Math.min(stickyColumnWidth, totalWidth);
+            } else if (collapsed === false) {
+                width = Math.max(stickyColumnWidth, totalWidth - stickyColumnWidth);
+            } else if (!_.isFinite(currentStickyColumnWidth)) {
+                width = totalWidth/2;
+            }
+
             return {
                 collapsed: null,
-                currentStickyColumnWidth: prev.currentStickyColumnWidth + dx,
+                currentStickyColumnWidth: width + dx,
             };
         }, () => {
             this._onResize();
