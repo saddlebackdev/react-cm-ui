@@ -94,6 +94,10 @@ class Drawer extends React.Component {
             if (BODY.classList.contains('drawer-animate-out')) {
                 BODY.classList.remove('drawer-animate-out');
             }
+
+            if (BODY.classList.contains('drawer-sticky-mode')) {
+                BODY.classList.remove('drawer-sticky-mode');
+            }
         }
     }
 
@@ -103,6 +107,7 @@ class Drawer extends React.Component {
             className,
             positionYOffset,
             wing,
+            isSticky,
         } = this.props;
         const { isOpen } = this.state;
 
@@ -112,6 +117,7 @@ class Drawer extends React.Component {
 
         const drawerClasses = ClassNames('ui', 'drawer', className, {
             'left-position': this._isPositionX('left'),
+            'drawer-sticky': isSticky,
         });
 
         return (
@@ -221,7 +227,7 @@ class Drawer extends React.Component {
         if (drawerLength <= 1) {
             const scrollPosition = parseInt(BODY.style.top, 10);
 
-            BODY.classList.remove('drawer-open', 'drawer-dimmers');
+            BODY.classList.remove('drawer-open', 'drawer-dimmers', 'drawer-sticky-mode');
             window.scroll(0, Math.abs(scrollPosition));
             BODY.style.top = null;
         }
@@ -248,7 +254,7 @@ class Drawer extends React.Component {
         const nodePortal = ReactDOM.findDOMNode(this);
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
 
-        const { dimmer, maxWidth, onClickOutside, positionYOffset, shadowSize } = this.props;
+        const { dimmer, maxWidth, maxHeight, onClickOutside, positionYOffset, shadowSize } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainer);
         const boxShadowPositionX = this._isPositionX('right') ? '-' : '';
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -328,6 +334,14 @@ class Drawer extends React.Component {
                 this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
             }
 
+            if (!_.isUndefined(maxHeight)) {
+                this._drawerContainer.style.maxHeight = _.isNumber(maxHeight) ?
+                    `${maxHeight}px` :
+                    _.isString(maxHeight) ?
+                        maxHeight :
+                        '700px';
+            }
+
             this._drawerContainer.style.transform = _.isNumber(positionYOffset) ?
                 `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
                 TRANSLATE_X_END;
@@ -335,7 +349,7 @@ class Drawer extends React.Component {
     }
 
     _onOpenAnimationComplete() {
-        const { dimmer } = this.props;
+        const { dimmer, isSticky } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainerRef);
         this._drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -347,6 +361,10 @@ class Drawer extends React.Component {
 
         if (dimmer) {
             BODY.classList.add('drawer-dimmers');
+        }
+
+        if (isSticky) {
+            BODY.classList.add('drawer-sticky-mode');
         }
     }
 
@@ -387,6 +405,11 @@ Drawer.propTypes = {
     className: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
+    isSticky: PropTypes.bool,
+    maxHeight: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,

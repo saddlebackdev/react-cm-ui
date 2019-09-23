@@ -20,6 +20,9 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         width: 100%;
         z-index: $zindex + 2;
     }
+    &.drawer-sticky-mode{
+        position: unset !important; // sass-lint:disable-line no-important
+    }
 }
 .ui.drawer:not(.deprecated) {
     backface-visibility: hidden;
@@ -109,6 +112,21 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // #####
     // End of Header Items
     // #####
+    // Sticky Drawer
+    &.drawer-sticky {
+        bottom: 0;
+        top: unset;
+        .drawer-container { 
+            bottom: 0;
+            top: unset;       
+            > div:first-child {
+                border-top-left-radius: 5px;
+            }
+        }
+        .shadow_container > div { 
+            box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important;
+        }
+    }
     .drawer-container {
         backface-visibility: hidden;
         background-color: color(backgroundColor);
