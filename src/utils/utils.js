@@ -29,7 +29,7 @@ class Utils {
     }
 
     static getElementType(as, props) {
-        if (_.has(props, 'href')) {
+        if (props && props.href) {
             return 'a';
         }
 

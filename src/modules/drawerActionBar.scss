@@ -1,12 +1,12 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
 
-.ui.drawer.has-drawer--action_bar .drawer-container-inner {
+.ui.drawer.drawer--has_action_bar .drawer-container-inner {
     padding-top: $drawer-action-bar-height;
     .ui.drawer--action_bar {
         top: 0;
     }
 }
-.ui.drawer.has-drawer--title_bar.has-drawer--action_bar {
+.ui.drawer.has-drawer--title_bar.drawer--has_action_bar {
     &:not(.has-drawer--navigation) .drawer-container-inner {
         .ui.drawer--action_bar {
             background-color: color(backgroundColorLight);
@@ -20,7 +20,7 @@
         }
     }
 }
-.ui.drawer.has-drawer--title_bar.has-drawer--navigation.has-drawer--action_bar .drawer-container-inner {
+.ui.drawer.has-drawer--title_bar.has-drawer--navigation.drawer--has_action_bar .drawer-container-inner {
     padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
     .ui.drawer--action_bar {
         top: $drawer-title-bar-height + $drawer-navigation-height;

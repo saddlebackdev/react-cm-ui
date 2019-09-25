@@ -3,11 +3,10 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
+import React from 'react';
 import Utils from '../utils/utils.js';
 
-class Button extends Component {
+class Button extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -31,11 +30,11 @@ class Button extends Component {
             outlined,
             relax,
             style,
+            target,
             width,
         } = this.props;
 
-        const newAs = as || 'button';
-        const ElementType = Utils.getElementType(newAs, this.props);
+        const ElementType = Utils.getElementType(as, this.props);
         const containerClasses = ClassNames('ui', 'button', className, {
             'button-inverse': inverse,
             'button-color-alert': !disabled && color === 'alert',
@@ -63,11 +62,12 @@ class Button extends Component {
         return (
             <ElementType
                 className={containerClasses}
+                disabled={disabled}
                 id={id}
                 href={href}
                 onClick={this._onClick}
                 style={containerStyle}
-                disabled={disabled}
+                target={target}
             >
                 <span
                     className="button-inner-container"
@@ -86,11 +86,10 @@ class Button extends Component {
     }
 }
 
-const asEnums = [ 'button', 'a' ];
+const asEnums = [ 'a', 'button' ];
 
 Button.propTypes = {
     as: PropTypes.oneOf(asEnums),
-    circle: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.oneOf(Utils.colorEnums()),
     compact: PropTypes.bool,
@@ -106,10 +105,32 @@ Button.propTypes = {
     relax: PropTypes.bool,
     square: PropTypes.bool,
     style: PropTypes.object,
+    target: PropTypes.oneOf([ '_blank' ]),
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+};
+
+Button.defaultProps = {
+    as: 'button',
+    className: undefined,
+    color: 'primary',
+    compact: false,
+    disabled: false,
+    fluid: false,
+    href: undefined,
+    icon: false,
+    id: undefined,
+    innerStyle: {},
+    inverse: false,
+    onClick: undefined,
+    outlined: false,
+    relax: false,
+    square: false,
+    style: {},
+    target: undefined,
+    width: undefined,
 };
 
 export default Button;

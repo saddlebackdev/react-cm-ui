@@ -33,6 +33,7 @@ class PageDemo extends React.PureComponent {
             appliedFilters: _.cloneDeep(this._defaultFilters),
             dirtyFilters: _.cloneDeep(this._defaultFilters),
             isFiltersDrawerOpen: false,
+            isFetching: true,
             viewType: 'table',
         };
 
@@ -50,12 +51,21 @@ class PageDemo extends React.PureComponent {
         this._onViewTableClick = this._onViewTableClick.bind(this);
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState(prevState => ({
+                isFetching: !prevState.isFetching,
+            }));
+        }, 3500);
+    }
+
     render() {
         const { isMobile } = this.props;
         const {
             appliedFilters,
             dirtyFilters,
             isFiltersDrawerOpen,
+            isFetching,
             searchValue,
             viewType,
         } = this.state;
@@ -71,7 +81,7 @@ class PageDemo extends React.PureComponent {
             onKeyDown: this._onSearchKeyDown,
             value: searchValue,
         };
-        console.log('viewType', viewType);
+
         let actionsBarColumns = [
             {
                 list: [
@@ -158,10 +168,8 @@ class PageDemo extends React.PureComponent {
                 </div>
 
                 <Page
-                    className="page-class-name"
-                    style={{
-                        minHeight: 'calc(100vh - 140px)',
-                    }}
+                    className="page_class_name"
+                    isDataFetching={isFetching}
                 >
                     <Page.ActionBar
                         columns={actionsBarColumns}

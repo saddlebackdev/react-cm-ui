@@ -1,17 +1,28 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
+import HeaderSubheader from './headerSubheader.js';
 import Icon from './icon';
-import HeaderSubheader from './headerSubheader';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import Utils from '../utils/utils.js';
 
-class Header extends Component {
+class Header extends React.PureComponent {
     render() {
-        const { anchor, as, children, className, color, icon, inverse, size, style, sub, title, weight } = this.props;
+        const {
+            anchor,
+            as,
+            children,
+            className,
+            color,
+            icon,
+            inverse,
+            size,
+            style,
+            sub,
+            title,
+            weight,
+        } = this.props;
         const ElementType = Utils.getElementType(as);
         const containerClasses = ClassNames('ui', 'header', className, {
             'header-anchor': anchor,
@@ -28,33 +39,39 @@ class Header extends Component {
             'header-subheader': sub,
             'header-weight-bold': weight === 'bold',
             'header-weight-normal': weight === 'normal',
-            'header-weight-semibold': weight === 'semibold'
+            'header-weight-semibold': weight === 'semibold',
         });
+        let anchorIcon;
 
-        const anchorJSX = () => {
-            if (anchor) {
-                return (
-                    <Icon
-                        className="header-anchor-icon"
-                        color="static"
-                        compact
-                        onClick={this._onAnchorClick.bind(this)}
-                        size="small"
-                        type="link"
-                    />
-                );
-            }
-        };
+        if (anchor) {
+            anchorIcon = (
+                <Icon
+                    className="header-anchor-icon"
+                    color="static"
+                    compact
+                    onClick={this._onAnchorClick.bind(this)}
+                    size="small"
+                    type="link"
+                />
+            );
+        }
 
         if (icon && sub) {
             return (
                 <ElementType className={containerClasses} id={anchor} style={style}>
-                    {children[0]}
+                    <span
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {children[0]}
+
+                        {anchorIcon}
+                    </span>
 
                     <div>
                         {children[1]}
-
-                        {anchorJSX()}
 
                         {children[2]}
                     </div>
@@ -66,9 +83,24 @@ class Header extends Component {
             <ElementType className={containerClasses} id={anchor} style={style} title={title}>
                 {anchor ? (
                     <span>
-                        {children}
+                        {React.Children.map(children, (child, index) => {
+                            if (index === 0) {
+                                return (
+                                    <span
+                                        style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        {child}
 
-                        {anchorJSX()}
+                                        {anchorIcon}
+                                    </span>
+                                );
+                            } else {
+                                return child;
+                            }
+                        })}
                     </span>
                 ) : children}
             </ElementType>
@@ -97,7 +129,21 @@ Header.propTypes = {
     style: PropTypes.object,
     sub: PropTypes.bool,
     title: PropTypes.string,
-    weight: PropTypes.oneOf(weightEnums)
+    weight: PropTypes.oneOf(weightEnums),
+};
+
+Header.defaultTypes = {
+    anchor: undefined,
+    as: undefined,
+    className: undefined,
+    color: 'text',
+    icon: false,
+    inverse: false,
+    size: undefined,
+    style: {},
+    sub: false,
+    title: undefined,
+    weight: undefined,
 };
 
 export default Header;

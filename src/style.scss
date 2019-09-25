@@ -20,6 +20,7 @@
 @import './collections/tabs';
 
 // Elements
+@import './elements/activityIndicator';
 @import './elements/button';
 @import './elements/checkbox';
 @import './elements/comment';
@@ -52,7 +53,6 @@
 @import './modules/datePickerDeprecatedWeek';
 @import './modules/details';
 @import './modules/drawer';
-// @import './modules/drawerActionBar';
 @import './modules/drawerContent';
 @import './modules/drawerFiltersDrawer';
 @import './modules/drawerGrid';

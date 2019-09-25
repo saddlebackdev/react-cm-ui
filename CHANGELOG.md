@@ -1,6 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
 ## 6.1.1
 
 #### Bug Fix
@@ -8,6 +9,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 inputs to define the 'from' and 'to' dates for a date range.  When typing out
 either 'from' date or 'to' date (versus using the calendar to select it) both
 dates would be cleared due to incorrect logic in the `_onInputChange()` function.
+
+## 6.2.0
+
+#### Feature
+- New **&lt;ActivityIndicator /&gt;** component! Whoopee!
+- **&lt;Page /&gt;**
+  - New Prop: `id`. This prop checks for a `string`.
+  - New Prop: `isDataFetching`. This prop checks for `bool`
+- New class names based on BEM for when our **&lt;Drawer /&gt;** and **&lt;Page /&gt;** components have an Action Bar.
+
+#### Bug Fix
+- Fixed the placement of the anchor icon in **&lt;Header /&gt;**.
+- Fixed the `href` prop logic for **&lt;Button /&gt;**.
+
+#### Docs
+- New **&lt;ActivityIndicator /&gt;** component documentation.
+- New **&lt;Page /&gt;** component documentation.
+    - Includes a demo page.
+- Removed some of our documentation block code highlighter's height problems.
 
 ## 6.1.0
 
