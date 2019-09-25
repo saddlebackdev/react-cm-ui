@@ -1,6 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.2.1
+
+#### Bug Fix
+- Same bug fix in **&lt;DatePickerInput /&gt;** as in `6.1.1`.
+
+## 6.1.1
+
+#### Bug Fix
+- Fix an issue in **&lt;DatePickerInput /&gt;** component when using two such
+inputs to define the 'from' and 'to' dates for a date range.  When typing out
+either 'from' date or 'to' date (versus using the calendar to select it) both
+dates would be cleared due to incorrect logic in the `_onInputChange()` function.
+
 ## 6.2.0
 
 #### Feature

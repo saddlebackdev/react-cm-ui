@@ -68,22 +68,22 @@ rules:
         convention-explanation: 'Class should be written in BEM (Block Element Modifier) format. e.g. block_name--elem_name-mod_name-mod_val'
     function-name-format:
       - 1
-      - allow-leading-underscore: true
-      - convention: hyphenatedlowercase
+      - allow-leading-underscore: false
+        convention: camelcase
     id-name-format:
       - 1
       - convention: hyphenatedlowercases
     mixin-name-format:
       - 1
-      - allow-leading-underscore: true
-      - convention: hyphenatedlowercase
+      - allow-leading-underscore: false
+        convention: hyphenatedlowercase
     placeholder-name-format:
       - 1
       - convention: hyphenatedlowercase
     variable-name-format:
       - 1
       - allow-leading-underscore: false
-      - convention: camelcase
+        convention: camelcase
 
     # Style Guide
     attribute-quotes: 1
