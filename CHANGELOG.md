@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.2.1
+
+#### Bug Fix
+- Same bug fix in **&lt;DatePickerInput /&gt;** as in `6.1.1`.
 
 ## 6.1.1
 
