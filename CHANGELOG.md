@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.2.2
+
+#### Bug Fix
+- Same bug fix for SCSS background colors as in `6.1.2`.
+
 ## 6.1.2
 
 #### Bug Fix
