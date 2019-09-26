@@ -1,6 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.2.3
+
+#### Feature
+- Same added feature for **Drawer.Navigation** as in `6.1.3`.
+
+## 6.1.3
+
+#### Feature
+- Added a new prop, `selectedColumnIndex` to **Drawer.Navigation** to fix a state issue.
+
+#### Bug Fix
+- Fixed a **Drawer** style bug that was overwriting DrawerDeprecated's styles.
+
 ## 6.2.2
 
 #### Bug Fix
