@@ -7,7 +7,12 @@ const hasClassName = 'has-drawer--navigation';
 
 class DrawerNavigation extends React.PureComponent {
     render() {
-        const { columns, className, style } = this.props;
+        const {
+            columns,
+            className,
+            selectedColumnIndex,
+            style,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'drawer--navigation', className);
 
         return (
@@ -18,6 +23,7 @@ class DrawerNavigation extends React.PureComponent {
             >
                 <SubNavigation
                     border="both"
+                    selected={selectedColumnIndex}
                     style={{ margin: 0 }}
                 >
                     {_.map(columns, (column, index) => {
@@ -46,7 +52,14 @@ class DrawerNavigation extends React.PureComponent {
 DrawerNavigation.propTypes = {
     className: PropTypes.string,
     columns: PropTypes.array.isRequired,
+    selectedColumnIndex: PropTypes.number,
     style: PropTypes.object,
+};
+
+DrawerNavigation.defaultProps = {
+    className: undefined,
+    selectedColumnIndex: 0,
+    style: {},
 };
 
 export default DrawerNavigation;
