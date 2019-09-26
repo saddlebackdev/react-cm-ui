@@ -16,12 +16,12 @@ class PageTableRow extends React.PureComponent {
     render() {
         const {
             columns,
+            handle,
             idPrefix,
             isClickable,
             row,
             rowIndex,
             sizes,
-            splitter,
         } = this.props;
 
         return (
@@ -46,7 +46,7 @@ class PageTableRow extends React.PureComponent {
                     }
 
                     if (idPrefix === 'column') {
-                        if (splitter && _.last(columns) === column) {
+                        if (handle && _.last(columns) === column) {
                             style.borderRight = '1px solid #edf1f5';
                         }
                     }
@@ -80,13 +80,13 @@ class PageTableRow extends React.PureComponent {
 
 PageTableRow.propTypes = {
     columns: PropTypes.array.isRequired,
+    handle: PropTypes.bool,
     idPrefix: PropTypes.string.isRequired,
     isClickable: PropTypes.bool,
     row: PropTypes.object.isRequired,
     rowIndex: PropTypes.number.isRequired,
     rowProps: PropTypes.func,
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
-    splitter: PropTypes.bool,
 };
 
 class PageTable extends React.PureComponent {
@@ -105,11 +105,11 @@ class PageTable extends React.PureComponent {
             data,
             dropShadow,
             fontSize,
+            handle,
             idPrefix,
             rowProps,
             sizes,
             small,
-            splitter,
             style,
         } = this.props;
         const containerClasses = ClassNames('ui', 'page--table', className);
@@ -137,7 +137,7 @@ class PageTable extends React.PureComponent {
                             {_.map(columns, (column, index) => {
                                 const hasSplitter =
                                     idPrefix === 'column' &&
-                                    splitter &&
+                                    handle &&
                                     _.last(columns) === column;
                                 return (
                                     <Table.HeaderCell
@@ -147,11 +147,11 @@ class PageTable extends React.PureComponent {
                                         {column.header}
                                         {hasSplitter && (
                                             <DragListener
-                                                className="table-header-splitter"
+                                                className="table-header-handle"
                                                 onClick={this._onSplitterClick}
                                                 onDrag={this._onSplitterDrag}
                                                 onDragEnd={this._onSplitterDragEnd}
-                                                ref={ref => this._splitter = ref}
+                                                ref={ref => this._handle = ref}
                                             >
                                                 <Icon
                                                     color="static"
@@ -172,6 +172,7 @@ class PageTable extends React.PureComponent {
                             return (
                                 <PageTableRow
                                     columns={columns}
+                                    handle={handle}
                                     idPrefix={idPrefix}
                                     isClickable={isSelectable}
                                     key={`tableBodyRow-${row.id || index}`}
@@ -179,7 +180,6 @@ class PageTable extends React.PureComponent {
                                     rowIndex={index}
                                     rowProps={rowProps}
                                     sizes={sizes}
-                                    splitter={splitter}
                                 />
                             );
                         })}
@@ -192,8 +192,8 @@ class PageTable extends React.PureComponent {
     _onSplitterClick() {
         const { onSplitter } = this.props;
         requestAnimationFrame(() => {
-            const splitter = ReactDOM.findDOMNode(this._splitter);
-            splitter.style.left = 0;
+            const handle = ReactDOM.findDOMNode(this._handle);
+            handle.style.left = 0;
         });
         if (_.isFunction(onSplitter)) {
             onSplitter();
@@ -202,8 +202,8 @@ class PageTable extends React.PureComponent {
 
     _onSplitterDrag({ deltaX }) {
         requestAnimationFrame(() => {
-            const splitter = ReactDOM.findDOMNode(this._splitter);
-            splitter.style.left = `${Math.ceil(deltaX)}px`;
+            const handle = ReactDOM.findDOMNode(this._handle);
+            handle.style.left = `${Math.ceil(deltaX)}px`;
         });
     }
 
@@ -212,8 +212,8 @@ class PageTable extends React.PureComponent {
 
         if (_.isFunction(onSplitterDragEnd)) {
             requestAnimationFrame(() => {
-                const splitter = ReactDOM.findDOMNode(this._splitter);
-                splitter.style.left = 0;
+                const handle = ReactDOM.findDOMNode(this._handle);
+                handle.style.left = 0;
             });
             onSplitterDragEnd(deltaX);
         }
@@ -224,9 +224,9 @@ PageTable.defaultProps = {
     bleed: true,
     dropShadow: false,
     fontSize: 'xsmall',
+    handle: false,
     idPrefix: 'base',
     small: true,
-    splitter: false,
 };
 
 PageTable.propTypes = {
@@ -237,13 +237,13 @@ PageTable.propTypes = {
     data: PropTypes.array.isRequired,
     dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
+    handle: PropTypes.bool,
     idPrefix: PropTypes.string,
     onSplitter: PropTypes.func,
     onSplitterDragEnd: PropTypes.func,
     rowProps: PropTypes.func,
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
     small: PropTypes.bool,
-    splitter: PropTypes.bool,
     style: PropTypes.object,
 };
 
@@ -329,7 +329,7 @@ class PageTableContainer extends React.Component {
     }
 
     _onResize() {
-        const { data, minWidth, splitter, stickyColumns, stickyColumnWidth } = this.props;
+        const { data, handle, minWidth, stickyColumns, stickyColumnWidth } = this.props;
         const { collapsed } = this.state;
         const sizes = [];
         const elContainer = document.querySelector('.ui.page--table-sticky_columns');
@@ -359,7 +359,7 @@ class PageTableContainer extends React.Component {
                     w: `${el.clientWidth}px`,
                 };
 
-                if (splitter && j === stickyColumns - 1) {
+                if (handle && j === stickyColumns - 1) {
                     size.w = `${width}px`;
                 }
 
@@ -448,8 +448,8 @@ class PageTableContainer extends React.Component {
 }
 
 PageTableContainer.defaultProps = {
+    handle: true,
     minWidth: 800,
-    splitter: true,
     stickyColumns: 0,
     stickyColumnWidth: 30,
 };
@@ -460,10 +460,10 @@ PageTableContainer.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
     fontSize: PropTypes.string,
+    handle: PropTypes.bool,
     minWidth: PropTypes.number,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
-    splitter: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
     style: PropTypes.object,
