@@ -48,10 +48,10 @@ $top: 88px;
     }
     &.banner-level- {
         &error .banner-container { background: color(backgroundColorAlert); }
-        &purple .banner-container { background: color(backgroundPurple); } // Rename when better defined
+        &purple .banner-container { background: color(backgroundColorPurple); } // Rename when better defined
         &secondary .banner-container { background: color(backgroundColorHighlight); }
         &success .banner-container { background: color(backgroundColorSuccess); }
-        &teal .banner-container { background: color(backgroundTeal); } // Rename when better defined
+        &teal .banner-container { background: color(backgroundColorTeal); } // Rename when better defined
         &warning .banner-container { background: color(backgroundColorWarning); }
     }
 }
