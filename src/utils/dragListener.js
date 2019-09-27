@@ -50,7 +50,7 @@ class DragListener extends React.PureComponent {
             screenX: e.screenX,
             screenY: e.screenY,
         };
-        if (this.currentDragPos !== 0) {
+        if (this.currentDragPos.deltaX !== 0) {
             onDrag(this.currentDragPos);
         }
     }
@@ -74,7 +74,7 @@ class DragListener extends React.PureComponent {
 
     _onDragStart(e) {
         const { onDragStart } = this.props;
-        this.startDragPos = {
+        this.startDragPos = this.currentDragPos = {
             clientX: e.clientX,
             clientY: e.clientY,
             deltaX: 0,
