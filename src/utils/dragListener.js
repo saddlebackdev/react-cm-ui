@@ -45,8 +45,8 @@ class DragListener extends React.PureComponent {
         this.currentDragPos = {
             clientX: e.clientX,
             clientY: e.clientY,
-            deltaX: e.screenX - this.startDragPos.screenX,
-            deltaY: e.screenY - this.startDragPos.screenY,
+            deltaX: e.screenX - this.currentDragPos.screenX,
+            deltaY: e.screenY - this.currentDragPos.screenY,
             screenX: e.screenX,
             screenY: e.screenY,
         };
@@ -62,8 +62,8 @@ class DragListener extends React.PureComponent {
             onDragEnd({
                 clientX: e.clientX,
                 clientY: e.clientY,
-                deltaX: e.screenX - this.startDragPos.screenX,
-                deltaY: e.screenY - this.startDragPos.screenY,
+                deltaX: e.screenX - this.currentDragPos.screenX,
+                deltaY: e.screenY - this.currentDragPos.screenY,
                 screenX: e.screenX,
                 screenY: e.screenY,
             });
@@ -110,8 +110,8 @@ class DragListener extends React.PureComponent {
         this.currentDragPos = {
             clientX: touch.clientX,
             clientY: touch.clientY,
-            deltaX: touch.screenX - this.startDragPos.screenX,
-            deltaY: touch.screenY - this.startDragPos.screenY,
+            deltaX: touch.screenX - this.currentDragPos.screenX,
+            deltaY: touch.screenY - this.currentDragPos.screenY,
             screenX: touch.screenX,
             screenY: touch.screenY,
         };

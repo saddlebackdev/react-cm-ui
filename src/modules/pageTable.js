@@ -201,10 +201,13 @@ class PageTable extends React.PureComponent {
     }
 
     _onSplitterDrag({ deltaX }) {
+        const { onSplitterDragEnd } = this.props;
+
         requestAnimationFrame(() => {
             const handle = ReactDOM.findDOMNode(this._handle);
-            handle.style.left = `${Math.ceil(deltaX)}px`;
+            handle.style.left = 0;
         });
+        onSplitterDragEnd(deltaX);
     }
 
     _onSplitterDragEnd({ deltaX }) {
@@ -378,13 +381,13 @@ class PageTableContainer extends React.Component {
             const diff = totalWidth - stickyColumnWidth;
 
             if (diff > 0) {
-                newState.minWidth = minWidth + diff;
+                //newState.minWidth = minWidth + diff;
             }
         } else { 
             const diff = (totalWidth - width)/2;
 
             if (diff > 0) {
-                newState.minWidth = minWidth + diff;
+                //newState.minWidth = minWidth + diff;
             }
         }
 
