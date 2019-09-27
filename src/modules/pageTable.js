@@ -314,6 +314,7 @@ class PageTableContainer extends React.Component {
                             sizes={sizes}
                         />
                     </div>
+                    <div className="page--table_fixed_bottom" />
                 </div>
             );
         } else {

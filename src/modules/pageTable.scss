@@ -39,5 +39,11 @@
         .page--table_fixed_body {
             overflow: auto;
         }
+        .page--table_fixed_bottom {
+            background-color: color(backgroundColorLight);
+            height: 10px;
+            margin-left: -22px;
+            position: relative; 
+        }
     }
 }
