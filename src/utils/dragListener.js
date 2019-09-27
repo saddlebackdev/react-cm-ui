@@ -5,6 +5,7 @@ import React from 'react';
 class DragListener extends React.PureComponent {
     constructor() {
         super();
+        this._onDrag = this._onDrag.bind(this);
         this._onDragEnd = this._onDragEnd.bind(this);
         this._onDragStart = this._onDragStart.bind(this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
@@ -21,6 +22,7 @@ class DragListener extends React.PureComponent {
                 className={className}
                 draggable
                 onClick={onClick}
+                onDrag={this._onDrag}
                 onDragEnd={this._onDragEnd}
                 onDragStart={this._onDragStart}
                 onTouchEnd={this._onTouchEnd}
@@ -31,6 +33,26 @@ class DragListener extends React.PureComponent {
                 {children}
             </div>
         );
+    }
+
+    _onDrag(e) {
+        const { onDrag } = this.props;
+
+        if (!this.startDragPos) {
+            return;
+        }
+
+        this.currentDragPos = {
+            clientX: e.clientX,
+            clientY: e.clientY,
+            deltaX: e.screenX - this.startDragPos.screenX,
+            deltaY: e.screenY - this.startDragPos.screenY,
+            screenX: e.screenX,
+            screenY: e.screenY,
+        };
+        if (this.currentDragPos !== 0) {
+            onDrag(this.currentDragPos);
+        }
     }
 
     _onDragEnd(e) {
