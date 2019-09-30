@@ -5,3 +5,45 @@
         padding-top: rem(11px) !important; // sass-lint:disable-line no-important
     }
 }
+
+.ui {
+    .page--table-sticky_columns {
+        position: relative;
+        .page--table_fixed_column {
+            left: 0;
+            position: absolute;
+            top: 0;
+            .ui.table.table-stretch-very {
+                .table-cell:last-child {
+                    padding-right: inherit;
+                }
+                .table-header-cell:last-child {
+                    padding-right: inherit;
+                    .table-header-handle {
+                        cursor: pointer;
+                        float: right;
+                        position: relative;
+                        .ui.icon-size-small {
+                            width: 5px;
+                            svg {
+                                width: 5px;
+                            }
+                        }
+                    }
+                }
+                .table-body.drop-shadow {
+                    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .5);
+                }
+            }
+        }
+        .page--table_fixed_body {
+            overflow: auto;
+        }
+        .page--table_fixed_bottom {
+            background-color: color(backgroundColorLight);
+            height: 10px;
+            margin-left: -22px;
+            position: relative; 
+        }
+    }
+}
