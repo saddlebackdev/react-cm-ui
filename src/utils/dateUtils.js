@@ -104,6 +104,18 @@ const DateUtils = {
         }
     },
 
+    formatTimeOnly(data) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().format('L LT z');
+        } else {
+            return moment(data, 'HH:mm').format('hh:mm a');
+        }
+    },
+
     formatShort(data) {
         if (data === null || typeof data === 'undefined') {
             return null;
@@ -115,6 +127,16 @@ const DateUtils = {
             }
 
             return moment.unix(data).utc().format('MM/DD/YY');
+        }
+    },
+
+    formatDayOfWeek(data) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().format('dddd');
         }
     },
 
@@ -177,6 +199,23 @@ const DateUtils = {
         }
 
         return formats;
+    },
+
+    getLocalDateTime(date) {
+        return moment.utc(date).local().format('MM/DD/YYYY h:mm a');
+    },
+
+    getWeekNum(date) {
+        const fullDate = moment.unix(date).utc();
+        const currentDate = fullDate.clone();
+        let weeksToStart = 0;
+
+        while (currentDate.month() === fullDate.month()) {
+            currentDate.subtract(1, 'week');
+            weeksToStart++;
+        }
+
+        return weeksToStart;
     },
 
     fromNow(date) {
