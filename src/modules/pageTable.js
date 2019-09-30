@@ -381,13 +381,13 @@ class PageTableContainer extends React.Component {
             const diff = totalWidth - stickyColumnWidth;
 
             if (diff > 0) {
-                //newState.minWidth = minWidth + diff;
+                newState.minWidth = minWidth + diff;
             }
         } else { 
             const diff = (totalWidth - width)/2;
 
             if (diff > 0) {
-                //newState.minWidth = minWidth + diff;
+                newState.minWidth = minWidth + diff;
             }
         }
 
