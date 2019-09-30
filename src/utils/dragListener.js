@@ -5,37 +5,18 @@ import React from 'react';
 class DragListener extends React.PureComponent {
     constructor() {
         super();
-        this._onDrag = this._onDrag.bind(this);
-        this._onDragEnd = this._onDragEnd.bind(this);
-        this._onDragStart = this._onDragStart.bind(this);
-        this._onTouchEnd = this._onTouchEnd.bind(this);
-        this._onTouchMove = this._onTouchMove.bind(this);
-        this._onTouchStart = this._onTouchStart.bind(this);
+
+        this.onDrag = this.onDrag.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onTouchEnd = this.onTouchEnd.bind(this);
+        this.onTouchMove = this.onTouchMove.bind(this);
+        this.onTouchStart = this.onTouchStart.bind(this);
         this.currentDragPos = null;
         this.startDragPos = null;
     }
 
-    render() {
-        const { children, className, onClick, style } = this.props;
-        return (
-            <div
-                className={className}
-                draggable
-                onClick={onClick}
-                onDrag={this._onDrag}
-                onDragEnd={this._onDragEnd}
-                onDragStart={this._onDragStart}
-                onTouchEnd={this._onTouchEnd}
-                onTouchMove={this._onTouchMove}
-                onTouchStart={this._onTouchStart}
-                style={style}
-            >
-                {children}
-            </div>
-        );
-    }
-
-    _onDrag(e) {
+    onDrag(e) {
         const { onDrag } = this.props;
 
         if (!this.startDragPos) {
@@ -55,7 +36,7 @@ class DragListener extends React.PureComponent {
         }
     }
 
-    _onDragEnd(e) {
+    onDragEnd(e) {
         const { onDragEnd } = this.props;
 
         if (_.isFunction(onDragEnd)) {
@@ -72,8 +53,9 @@ class DragListener extends React.PureComponent {
         this.startDragPos = null;
     }
 
-    _onDragStart(e) {
+    onDragStart(e) {
         const { onDragStart } = this.props;
+
         this.startDragPos = this.currentDragPos = {
             clientX: e.clientX,
             clientY: e.clientY,
@@ -82,12 +64,13 @@ class DragListener extends React.PureComponent {
             screenX: e.screenX,
             screenY: e.screenY,
         };
+
         if (_.isFunction(onDragStart)) {
             onDragStart(this.startDragPos);
         }
     }
 
-    _onTouchEnd() {
+    onTouchEnd() {
         const { onDragEnd } = this.props;
 
         if (_.isFunction(onDragEnd) && !_.isEqual(this.startDragPos, this.currentDragPos)) {
@@ -98,7 +81,7 @@ class DragListener extends React.PureComponent {
         this.startDragPos = null;
     }
 
-    _onTouchMove(e) {
+    onTouchMove(e) {
         const { onDrag } = this.props;
 
         if (!this.startDragPos) {
@@ -118,9 +101,10 @@ class DragListener extends React.PureComponent {
         onDrag(this.currentDragPos);
     }
 
-    _onTouchStart(e) {
+    onTouchStart(e) {
         const { onDragStart } = this.props;
         const touch = e.touches[0];
+
         this.currentDragPos = this.startDragPos = {
             clientX: touch.clientX,
             clientY: touch.clientY,
@@ -129,9 +113,36 @@ class DragListener extends React.PureComponent {
             screenX: touch.screenX,
             screenY: touch.screenY,
         };
+
         if (_.isFunction(onDragStart)) {
             onDragStart(this.startDragPos);
         }
+    }
+
+    render() {
+        const {
+            children,
+            className,
+            onClick,
+            style,
+        } = this.props;
+
+        return (
+            <div
+                className={className}
+                draggable
+                onClick={onClick}
+                onDrag={this.onDrag}
+                onDragEnd={this.onDragEnd}
+                onDragStart={this.onDragStart}
+                onTouchEnd={this.onTouchEnd}
+                onTouchMove={this.onTouchMove}
+                onTouchStart={this.onTouchStart}
+                style={style}
+            >
+                {children}
+            </div>
+        );
     }
 }
 
