@@ -191,6 +191,7 @@ class ElementsIconSet extends React.PureComponent {
                     'check',
                     'cog',
                     'droplet',
+                    'expand',
                     'exclamation',
                     'flag',
                     'hand-help',
