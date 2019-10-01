@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -7,22 +6,51 @@ import React from 'react';
 
 import Utils from '../utils/utils.js';
 
-class Icon extends React.Component {
+function uniqueId() {
+    const now = (new Date().getTime()).toString();
+
+    return now.substring(now.length - 6, now.length) + _.uniqueId();
+}
+
+class Icon extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(event) {
+        const { disable, onClick } = this.props;
+
+        if (!_.isUndefined(onClick) && !disable) {
+            onClick(event);
+        }
     }
 
     render() {
-        const { align, color, compact, disable, id, inverse, onClick, rotate, size, spin, style, type, title } = this.props;
-        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, this.props.className, {
-            'icon-align-left': !align && !compact || align === 'left',
+        const {
+            align,
+            className,
+            color,
+            compact,
+            disable,
+            id,
+            inverse,
+            onClick,
+            rotate,
+            size,
+            spin,
+            style,
+            type,
+            title,
+        } = this.props;
+        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
+            'icon-align-left': (!align && !compact) || align === 'left',
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
             'icon-color-alert': color === 'alert',
             'icon-color-highlight': color === 'highlight',
-            'icon-color-primary': _.isNil(color) && !disable || color === 'primary',
+            'icon-color-primary': (_.isNil(color) && !disable) || color === 'primary',
             'icon-color-static': color === 'static',
             'icon-color-success': color === 'success',
             'icon-color-warning': color === 'warning',
@@ -38,19 +66,19 @@ class Icon extends React.Component {
             'icon-size-xxsmall': size === 'xxsmall',
             'icon-spin': spin || type === 'spinner',
         });
-        const containerStyle = Object.assign({}, style, {
+        const containerStyle = {
+            ...style,
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
-        });
+        };
         const svgStyle = {
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
             transform: _.isNumber(rotate) ? `rotate(${rotate}deg)` : null,
         };
-        const uniqueId = this.uniqueId();
-        const gradientId = `icon-svg-gradient-color-${color}-${type}-${uniqueId}`;
-        const maskId = `icon-svg-mask-${type}-${uniqueId}`;
-        const pathId = `icon-svg-path-${type}-${uniqueId}`;
+        const gradientId = `icon-svg-gradient-color-${color}-${type}-${uniqueId()}`;
+        const maskId = `icon-svg-mask-${type}-${uniqueId()}`;
+        const pathId = `icon-svg-path-${type}-${uniqueId()}`;
         let renderGradientColor;
         let renderSVG;
 
@@ -92,6 +120,7 @@ class Icon extends React.Component {
                 );
 
                 break;
+            default:
         }
 
         switch (type) {
@@ -1239,6 +1268,29 @@ class Icon extends React.Component {
                         <title>{title || type}</title>
                         <defs>
                             <path id={pathId} d="M18,0.99077794 C18,0.443586393 18.4509752,0 18.990778,0 L23.009222,0 C23.5564136,0 24,0.450975166 24,0.99077794 L24,5.00922188 C24,5.55641343 23.5490248,5.99999982 23.009222,5.99999982 L18.990778,5.99999982 C18.4435864,5.99999982 18,5.54902465 18,5.00922188 L18,0.99077794 Z M18,9.99077803 C18,9.44358648 18.4509752,9.00000009 18.990778,9.00000009 L23.009222,9.00000009 C23.5564136,9.00000009 24,9.45097526 24,9.99077803 L24,14.009222 C24,14.5564135 23.5490248,14.9999999 23.009222,14.9999999 L18.990778,14.9999999 C18.4435864,14.9999999 18,14.5490247 18,14.009222 L18,9.99077803 Z M18,18.9907781 C18,18.4435866 18.4509752,18.0000002 18.990778,18.0000002 L23.009222,18.0000002 C23.5564136,18.0000002 24,18.4509753 24,18.9907781 L24,23.0092221 C24,23.5564136 23.5490248,24 23.009222,24 L18.990778,24 C18.4435864,24 18,23.5490248 18,23.0092221 L18,18.9907781 Z M2.27373675e-13,0.99077794 C2.27373675e-13,0.443586393 0.45097518,0 0.990777969,0 L5.00922203,0 C5.55641359,0 6,0.450975166 6,0.99077794 L6,5.00922188 C6,5.55641343 5.54902482,5.99999982 5.00922203,5.99999982 L0.990777969,5.99999982 C0.443586406,5.99999982 2.27373675e-13,5.54902465 2.27373675e-13,5.00922188 L2.27373675e-13,0.99077794 Z M2.27373675e-13,9.99077803 C2.27373675e-13,9.44358648 0.45097518,9.00000009 0.990777969,9.00000009 L5.00922203,9.00000009 C5.55641359,9.00000009 6,9.45097526 6,9.99077803 L6,14.009222 C6,14.5564135 5.54902482,14.9999999 5.00922203,14.9999999 L0.990777969,14.9999999 C0.443586406,14.9999999 2.27373675e-13,14.5490247 2.27373675e-13,14.009222 L2.27373675e-13,9.99077803 Z M2.27373675e-13,18.9907781 C2.27373675e-13,18.4435866 0.45097518,18.0000002 0.990777969,18.0000002 L5.00922203,18.0000002 C5.55641359,18.0000002 6,18.4509753 6,18.9907781 L6,23.0092221 C6,23.5564136 5.54902482,24 5.00922203,24 L0.990777969,24 C0.443586406,24 2.27373675e-13,23.5490248 2.27373675e-13,23.0092221 L2.27373675e-13,18.9907781 Z M9,0.99077794 C9,0.443586393 9.45097518,0 9.99077797,0 L14.009222,0 C14.5564136,0 15,0.450975166 15,0.99077794 L15,5.00922188 C15,5.55641343 14.5490248,5.99999982 14.009222,5.99999982 L9.99077797,5.99999982 C9.44358641,5.99999982 9,5.54902465 9,5.00922188 L9,0.99077794 Z M9,9.99077803 C9,9.44358648 9.45097518,9.00000009 9.99077797,9.00000009 L14.009222,9.00000009 C14.5564136,9.00000009 15,9.45097526 15,9.99077803 L15,14.009222 C15,14.5564135 14.5490248,14.9999999 14.009222,14.9999999 L9.99077797,14.9999999 C9.44358641,14.9999999 9,14.5490247 9,14.009222 L9,9.99077803 Z M9,18.9907781 C9,18.4435866 9.45097518,18.0000002 9.99077797,18.0000002 L14.009222,18.0000002 C14.5564136,18.0000002 15,18.4509753 15,18.9907781 L15,23.0092221 C15,23.5564136 14.5490248,24 14.009222,24 L9.99077797,24 C9.44358641,24 9,23.5490248 9,23.0092221 L9,18.9907781 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
+            case 'droplet':
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 14 24">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} d="M7.00171396,0 C7.00171396,0 6.48117521,2.64650124 4.91955897,5.35323972 C4.86173839,5.35323972 0.639607833,13.653688 0.639607833,13.653688 C0.639607833,13.653688 -0.0544438298,15.2774863 0.00342792121,16.7813423 C0.0612485035,16.7813423 0.00342792121,23.8186708 7.00171396,23.9991164 C7.00171396,23.9991164 13.4216407,24.239693 14,16.7813423 C13.9421794,16.7813423 14.1735129,14.9167546 12.9589225,12.7514064 C13.0167943,12.8717212 9.08381778,5.59376302 9.08381778,5.59376302 C9.08381778,5.59376302 7.69556095,2.64650124 7.00171396,0 Z" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -3632,7 +3684,7 @@ class Icon extends React.Component {
 
                 break;
             default:
-                console.warn(`Whoops, you have something wrong with the <Icon> type, '${type}', you passed in.`);
+                console.warn(`Whoops, you have something wrong with the <Icon> type, '${type}', you passed in.`); // eslint-disable-line no-console
 
                 renderSVG = (
                     <div />
@@ -3644,41 +3696,28 @@ class Icon extends React.Component {
                 <button
                     className={containerClasses}
                     id={id}
-                    onClick={this._onClick}
+                    onClick={this.onClick}
                     style={containerStyle}
+                    type="button"
                 >
                     {renderSVG}
                 </button>
             );
-        } else {
-            return (
-                <div
-                    className={containerClasses}
-                    id={id}
-                    style={containerStyle}
-                >
-                    {renderSVG}
-                </div>
-            );
         }
-    }
 
-    uniqueId() {
-        let now = (new Date().getTime()).toString();
-
-        return now.substring(now.length - 6, now.length) + _.uniqueId();
-    }
-
-    _onClick(event) {
-        const { disable, onClick } = this.props;
-
-        if (!_.isUndefined(onClick) && !disable) {
-            onClick(event);
-        }
+        return (
+            <div
+                className={containerClasses}
+                id={id}
+                style={containerStyle}
+            >
+                {renderSVG}
+            </div>
+        );
     }
 }
 
-const alignEnums = [ 'left', 'right' ];
+const alignEnums = ['left', 'right'];
 
 Icon.propTypes = {
     align: PropTypes.oneOf(alignEnums),
@@ -3695,9 +3734,25 @@ Icon.propTypes = {
         PropTypes.number,
     ]),
     spin: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
     type: PropTypes.string.isRequired,
+};
+
+Icon.defaultProps = {
+    align: 'left',
+    className: undefined,
+    color: 'primary',
+    compact: false,
+    disable: false,
+    id: undefined,
+    inverse: false,
+    onClick: undefined,
+    rotate: undefined,
+    size: undefined,
+    spin: false,
+    style: {},
+    title: undefined,
 };
 
 export default Icon;
