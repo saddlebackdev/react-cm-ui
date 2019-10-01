@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -7,22 +6,51 @@ import React from 'react';
 
 import Utils from '../utils/utils.js';
 
-class Icon extends React.Component {
+function uniqueId() {
+    const now = (new Date().getTime()).toString();
+
+    return now.substring(now.length - 6, now.length) + _.uniqueId();
+}
+
+class Icon extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(event) {
+        const { disable, onClick } = this.props;
+
+        if (!_.isUndefined(onClick) && !disable) {
+            onClick(event);
+        }
     }
 
     render() {
-        const { align, color, compact, disable, id, inverse, onClick, rotate, size, spin, style, type, title } = this.props;
-        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, this.props.className, {
-            'icon-align-left': !align && !compact || align === 'left',
+        const {
+            align,
+            className,
+            color,
+            compact,
+            disable,
+            id,
+            inverse,
+            onClick,
+            rotate,
+            size,
+            spin,
+            style,
+            type,
+            title,
+        } = this.props;
+        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
+            'icon-align-left': (!align && !compact) || align === 'left',
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
             'icon-color-alert': color === 'alert',
             'icon-color-highlight': color === 'highlight',
-            'icon-color-primary': _.isNil(color) && !disable || color === 'primary',
+            'icon-color-primary': (_.isNil(color) && !disable) || color === 'primary',
             'icon-color-static': color === 'static',
             'icon-color-success': color === 'success',
             'icon-color-warning': color === 'warning',
@@ -38,19 +66,19 @@ class Icon extends React.Component {
             'icon-size-xxsmall': size === 'xxsmall',
             'icon-spin': spin || type === 'spinner',
         });
-        const containerStyle = Object.assign({}, style, {
+        const containerStyle = {
+            ...style,
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
-        });
+        };
         const svgStyle = {
             height: _.isNumber(size) ? `${size / 16}rem` : null,
             width: _.isNumber(size) ? `${size / 16}rem` : null,
             transform: _.isNumber(rotate) ? `rotate(${rotate}deg)` : null,
         };
-        const uniqueId = this.uniqueId();
-        const gradientId = `icon-svg-gradient-color-${color}-${type}-${uniqueId}`;
-        const maskId = `icon-svg-mask-${type}-${uniqueId}`;
-        const pathId = `icon-svg-path-${type}-${uniqueId}`;
+        const gradientId = `icon-svg-gradient-color-${color}-${type}-${uniqueId()}`;
+        const maskId = `icon-svg-mask-${type}-${uniqueId()}`;
+        const pathId = `icon-svg-path-${type}-${uniqueId()}`;
         let renderGradientColor;
         let renderSVG;
 
@@ -92,6 +120,7 @@ class Icon extends React.Component {
                 );
 
                 break;
+            default:
         }
 
         switch (type) {
@@ -1256,58 +1285,35 @@ class Icon extends React.Component {
                 );
 
                 break;
+            case 'droplet':
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 14 24">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} d="M7.00171396,0 C7.00171396,0 6.48117521,2.64650124 4.91955897,5.35323972 C4.86173839,5.35323972 0.639607833,13.653688 0.639607833,13.653688 C0.639607833,13.653688 -0.0544438298,15.2774863 0.00342792121,16.7813423 C0.0612485035,16.7813423 0.00342792121,23.8186708 7.00171396,23.9991164 C7.00171396,23.9991164 13.4216407,24.239693 14,16.7813423 C13.9421794,16.7813423 14.1735129,14.9167546 12.9589225,12.7514064 C13.0167943,12.8717212 9.08381778,5.59376302 9.08381778,5.59376302 C9.08381778,5.59376302 7.69556095,2.64650124 7.00171396,0 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
             case 'duplicate':
                 renderSVG = (
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
                         <defs>
                             <path id={pathId} d="M19.5,16.5 L19.5,6.49028552 C19.5,5.38711166 18.6089188,4.5 17.5097145,4.5 L7.5,4.5 L7.5,1.99028552 C7.5,0.891081181 8.38711166,0 9.49028552,0 L22.0097145,0 C23.1089188,0 24,0.887111664 24,1.99028552 L24,14.5097145 C24,15.6089188 23.1128883,16.5 22.0097145,16.5 L19.5,16.5 Z M0,9.49028552 C0,8.39108118 0.887111664,7.5 1.99028552,7.5 L14.5097145,7.5 C15.6089188,7.5 16.5,8.38711166 16.5,9.49028552 L16.5,22.0097145 C16.5,23.1089188 15.6128883,24 14.5097145,24 L1.99028552,24 C0.891081181,24 0,23.1128883 0,22.0097145 L0,9.49028552 Z" />
-                            {renderGradientColor}
-                        </defs>
-                        <g fill="none" fillRule="evenodd">
-                            {renderGradientColor ? (
-                                <mask id={maskId} fill="white">
-                                    <use xlinkHref={`#${pathId}`} />
-                                </mask>
-                            ) : null}
-                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
-                            {renderGradientColor ? (
-                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
-                            ) : null}
-                        </g>
-                    </svg>
-                );
-
-                break;
-            case 'hand-select':
-                renderSVG = (
-                    <svg style={svgStyle} viewBox="0 0 24 24">
-                        <title>{title || type}</title>
-                        <defs>
-                            <path id={pathId} d="M15.6708075,24 L14.6729247,24 C13.0200556,24 11.5429361,23.3626459 10.5654448,22.3622667 C10.5022584,22.318387 8.35494622,19.9639754 4.12350823,15.2990321 C3.57683659,14.6945788 3.70089691,13.8217379 4.40060469,13.3494873 C5.10031247,12.8772367 6.11070263,12.9844081 6.65737426,13.5888613 L9.3437322,16.5591594 L9.3437322,6.61179258 C9.3437322,5.8596953 10.0635513,5.25 10.9514933,5.25 C11.8394352,5.25 12.5592543,5.8596953 12.5592543,6.61179258 L12.5592543,11.9610266 C12.8538542,11.6783114 13.2848801,11.5 13.7650752,11.5 C14.5764705,11.5 15.2474802,12.0091066 15.3571414,12.6707591 C15.6520148,12.3791992 16.089863,12.1944444 16.578657,12.1944444 C17.3900523,12.1944444 18.0610621,12.703551 18.1707233,13.3652035 C18.4655967,13.0736436 18.9034448,12.8888889 19.3922389,12.8888889 C20.2801808,12.8888889 21,13.4985842 21,14.2506815 L21,19.5132074 C20.9615684,22.0114537 18.5903576,24 15.6708075,24 Z M3.75,6.75 L6.16304348,6.75 C6.57725704,6.75 6.91304348,7.08578644 6.91304348,7.5 C6.91304348,7.91421356 6.57725704,8.25 6.16304348,8.25 L3.75,8.25 C3.33578644,8.25 3,7.91421356 3,7.5 C3,7.08578644 3.33578644,6.75 3.75,6.75 Z M11.6086957,0.75 L11.6086957,3 C11.6086957,3.41421356 11.2583098,3.75 10.826087,3.75 C10.3938641,3.75 10.0434783,3.41421356 10.0434783,3 L10.0434783,0.75 C10.0434783,0.335786438 10.3938641,0 10.826087,0 C11.2583098,0 11.6086957,0.335786438 11.6086957,0.75 Z M6.22538114,2.03033009 L7.88554489,3.62132034 C8.19117259,3.91421356 8.19117259,4.3890873 7.88554489,4.68198052 C7.57991718,4.97487373 7.08439676,4.97487373 6.77876905,4.68198052 L5.11860531,3.09099026 C4.8129776,2.79809704 4.8129776,2.3232233 5.11860531,2.03033009 C5.42423301,1.73743687 5.91975343,1.73743687 6.22538114,2.03033009 Z M15.4891304,6.75 L17.9021739,6.75 C18.3163875,6.75 18.6521739,7.08578644 18.6521739,7.5 C18.6521739,7.91421356 18.3163875,8.25 17.9021739,8.25 L15.4891304,8.25 C15.0749169,8.25 14.7391304,7.91421356 14.7391304,7.5 C14.7391304,7.08578644 15.0749169,6.75 15.4891304,6.75 Z M14.5099097,3.62132034 L16.1700734,2.03033009 C16.4757011,1.73743687 16.9712215,1.73743687 17.2768492,2.03033009 C17.5824769,2.3232233 17.5824769,2.79809704 17.2768492,3.09099026 L15.6166855,4.68198052 C15.3110578,4.97487373 14.8155374,4.97487373 14.5099097,4.68198052 C14.2042819,4.3890873 14.2042819,3.91421356 14.5099097,3.62132034 Z" />
-                            {renderGradientColor}
-                        </defs>
-                        <g fill="none" fillRule="evenodd">
-                            {renderGradientColor ? (
-                                <mask id={maskId} fill="white">
-                                    <use xlinkHref={`#${pathId}`} />
-                                </mask>
-                            ) : null}
-                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
-                            {renderGradientColor ? (
-                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
-                            ) : null}
-                        </g>
-                    </svg>
-                );
-
-                break;
-            case 'hourglass':
-                renderSVG = (
-                    <svg style={svgStyle} viewBox="0 0 24 24">
-                        <title>{title || type}</title>
-                        <defs>
-                            <path id={pathId} d="M17.8181818,6.72229253 C17.8181818,7.43445353 17.4363216,8.11472265 16.763601,8.60098751 L12.0612542,12 L7.26201899,8.60323701 C6.57377999,8.11612092 6.18181818,7.42776796 6.18181818,6.70621695 L6.18181818,4.28571429 C6.18181818,3.57563389 6.9260721,3 7.84415584,3 L16.1558442,3 C17.0739279,3 17.8181818,3.57563389 17.8181818,4.28571429 L17.8181818,6.72229253 Z M17.8181818,17.2777075 L17.8181818,19.7142857 C17.8181818,20.4243661 17.0739279,21 16.1558442,21 L7.84415584,21 C6.9260721,21 6.18181818,20.4243661 6.18181818,19.7142857 L6.18181818,17.2937831 C6.18181818,16.572232 6.57377999,15.8838791 7.26201899,15.396763 L12.0612542,12 L16.763601,15.3990125 C17.4363216,15.8852773 17.8181818,16.5655465 17.8181818,17.2777075 Z M5.125,0 L18.875,0 C19.4963203,-1.14134695e-16 20,0.503679656 20,1.125 C20,1.74632034 19.4963203,2.25 18.875,2.25 L5.125,2.25 C4.50367966,2.25 4,1.74632034 4,1.125 C4,0.503679656 4.50367966,1.14134695e-16 5.125,0 Z M5.125,21.75 L18.875,21.75 C19.4963203,21.75 20,22.2536797 20,22.875 C20,23.4963203 19.4963203,24 18.875,24 L5.125,24 C4.50367966,24 4,23.4963203 4,22.875 C4,22.2536797 4.50367966,21.75 5.125,21.75 Z" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -1579,7 +1585,7 @@ class Icon extends React.Component {
 
                 break;
             case 'envelope':
-            case 'email': // temp alias
+            case 'email': // Alias
                 renderSVG = (
                     <svg style={svgStyle} viewBox="0 0 24 24">
                         <title>{title || type}</title>
@@ -1631,6 +1637,30 @@ class Icon extends React.Component {
                         <title>{title || type}</title>
                         <defs>
                             <path id={pathId} d="M8.5,3.50359317 C8.5,1.56861209 10.0709366,0 12,0 C13.9329966,0 15.5,1.56571558 15.5,3.50359317 L15.5,10.380699 C15.5,12.3156801 13.9290634,13.8842922 12,13.8842922 C10.0670034,13.8842922 8.5,12.3185766 8.5,10.380699 L8.5,3.50359317 Z M12,24 C10.0670034,24 8.5,22.4329966 8.5,20.5 C8.5,18.5670034 10.0670034,17 12,17 C13.9329966,17 15.5,18.5670034 15.5,20.5 C15.5,22.4329966 13.9329966,24 12,24 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
+            case 'expand':
+            case 'contract': // Alias name
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 24 24">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} d="M10.1542464,11.7333478 L18.9127257,2.97038611 L16.0954582,2.97188554 C15.2888111,2.97038611 14.6350971,2.3181307 14.6350971,1.51143321 C14.6350971,0.704735724 15.2888111,0.0509808822 16.0954582,0.0509808822 L22.2367714,0.0509808822 C22.3207347,0.0344870673 22.3987006,0.00149943771 22.4886612,0 C22.5636284,0 22.6146061,0.0704735724 22.688074,0.0839685118 C22.966952,0.115456704 23.2308365,0.20992128 23.4557381,0.401849307 C23.4782283,0.421341997 23.5067158,0.422841434 23.5456988,0.454329626 C23.5516961,0.460327377 23.5531955,0.467824566 23.5891797,0.521804323 C23.8245767,0.784205923 23.9505216,1.10358616 23.9685138,1.43496189 C23.9700131,1.46495064 24,1.48144446 24,1.51143321 C24,1.5984006 23.9640157,1.67337249 23.947523,1.757341 L23.947523,7.90353617 C23.9460236,8.71023366 23.293809,9.3639885 22.4871619,9.3639885 C21.6820141,9.3639885 21.0283001,8.71023366 21.0283001,7.90503561 L21.0283001,5.08609272 L11.64069,14.4740082 C11.64069,14.4740082 11.6294099,14.485289 11.6080149,14.5043546 L5.08727432,21.0281145 L7.90454176,21.0281145 C8.71118885,21.0281145 9.36490286,21.6818693 9.36490286,22.4870673 C9.36490286,23.2952643 8.71118885,23.9475197 7.90454176,23.9475197 L1.76322859,23.9490191 C1.67926532,23.9640135 1.60129943,23.9985006 1.51133879,24 C1.43487224,24 1.38539389,23.928027 1.31192603,23.9160315 C1.03304804,23.8845433 0.769163491,23.7900787 0.544261885,23.5966513 C0.521771725,23.578658 0.493284188,23.5771586 0.454301243,23.5456704 C0.448303867,23.5381732 0.446804523,23.530676 0.410820266,23.4781957 C0.175423252,23.2157941 0.0494783532,22.8949144 0.0314862248,22.5635387 C0.0299868807,22.5350494 0,22.5170561 0,22.4885668 C0,22.4015994 0.0359842569,22.3251281 0.0524770413,22.242659 L0.0524770413,16.0949644 C0.0539763853,15.2882669 0.706191041,14.6360115 1.51283813,14.6345121 C2.31798588,14.6345121 2.97169988,15.2882669 2.97169988,16.093465 L2.97169988,18.9139073 L10.10931,11.7744924 C10.10931,11.7744924 10.1249212,11.7588802 10.1542464,11.7333478 L10.1542464,11.7333478 Z" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -1832,6 +1862,29 @@ class Icon extends React.Component {
                 );
 
                 break;
+            case 'hand-select':
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 24 24">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} d="M15.6708075,24 L14.6729247,24 C13.0200556,24 11.5429361,23.3626459 10.5654448,22.3622667 C10.5022584,22.318387 8.35494622,19.9639754 4.12350823,15.2990321 C3.57683659,14.6945788 3.70089691,13.8217379 4.40060469,13.3494873 C5.10031247,12.8772367 6.11070263,12.9844081 6.65737426,13.5888613 L9.3437322,16.5591594 L9.3437322,6.61179258 C9.3437322,5.8596953 10.0635513,5.25 10.9514933,5.25 C11.8394352,5.25 12.5592543,5.8596953 12.5592543,6.61179258 L12.5592543,11.9610266 C12.8538542,11.6783114 13.2848801,11.5 13.7650752,11.5 C14.5764705,11.5 15.2474802,12.0091066 15.3571414,12.6707591 C15.6520148,12.3791992 16.089863,12.1944444 16.578657,12.1944444 C17.3900523,12.1944444 18.0610621,12.703551 18.1707233,13.3652035 C18.4655967,13.0736436 18.9034448,12.8888889 19.3922389,12.8888889 C20.2801808,12.8888889 21,13.4985842 21,14.2506815 L21,19.5132074 C20.9615684,22.0114537 18.5903576,24 15.6708075,24 Z M3.75,6.75 L6.16304348,6.75 C6.57725704,6.75 6.91304348,7.08578644 6.91304348,7.5 C6.91304348,7.91421356 6.57725704,8.25 6.16304348,8.25 L3.75,8.25 C3.33578644,8.25 3,7.91421356 3,7.5 C3,7.08578644 3.33578644,6.75 3.75,6.75 Z M11.6086957,0.75 L11.6086957,3 C11.6086957,3.41421356 11.2583098,3.75 10.826087,3.75 C10.3938641,3.75 10.0434783,3.41421356 10.0434783,3 L10.0434783,0.75 C10.0434783,0.335786438 10.3938641,0 10.826087,0 C11.2583098,0 11.6086957,0.335786438 11.6086957,0.75 Z M6.22538114,2.03033009 L7.88554489,3.62132034 C8.19117259,3.91421356 8.19117259,4.3890873 7.88554489,4.68198052 C7.57991718,4.97487373 7.08439676,4.97487373 6.77876905,4.68198052 L5.11860531,3.09099026 C4.8129776,2.79809704 4.8129776,2.3232233 5.11860531,2.03033009 C5.42423301,1.73743687 5.91975343,1.73743687 6.22538114,2.03033009 Z M15.4891304,6.75 L17.9021739,6.75 C18.3163875,6.75 18.6521739,7.08578644 18.6521739,7.5 C18.6521739,7.91421356 18.3163875,8.25 17.9021739,8.25 L15.4891304,8.25 C15.0749169,8.25 14.7391304,7.91421356 14.7391304,7.5 C14.7391304,7.08578644 15.0749169,6.75 15.4891304,6.75 Z M14.5099097,3.62132034 L16.1700734,2.03033009 C16.4757011,1.73743687 16.9712215,1.73743687 17.2768492,2.03033009 C17.5824769,2.3232233 17.5824769,2.79809704 17.2768492,3.09099026 L15.6166855,4.68198052 C15.3110578,4.97487373 14.8155374,4.97487373 14.5099097,4.68198052 C14.2042819,4.3890873 14.2042819,3.91421356 14.5099097,3.62132034 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
             case 'hand-stop':
                 renderSVG = (
                     <svg style={svgStyle} viewBox="0 0 24 24">
@@ -1861,6 +1914,29 @@ class Icon extends React.Component {
                         <title>{title || type}</title>
                         <defs>
                             <path id={pathId} d="M11.9995557,24 C12.945672,22.9641578 18.3496117,17.0522781 21.7277086,13.361143 C24.7543578,10.0515009 24.6895143,5.2285187 21.937931,2.23720863 C19.1852987,-0.756552109 14.7381841,-0.744116549 11.9995557,2.26499952 C9.26108566,-0.744058458 4.81411612,-0.75649419 2.06164185,2.23720863 C-0.689941404,5.2285187 -0.753631187,10.0515009 2.27186429,13.361143 C5.65019193,17.0522781 11.0534393,22.9641578 11.9995557,24 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" height="24" width="24" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
+            case 'hourglass':
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 24 24">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} d="M17.8181818,6.72229253 C17.8181818,7.43445353 17.4363216,8.11472265 16.763601,8.60098751 L12.0612542,12 L7.26201899,8.60323701 C6.57377999,8.11612092 6.18181818,7.42776796 6.18181818,6.70621695 L6.18181818,4.28571429 C6.18181818,3.57563389 6.9260721,3 7.84415584,3 L16.1558442,3 C17.0739279,3 17.8181818,3.57563389 17.8181818,4.28571429 L17.8181818,6.72229253 Z M17.8181818,17.2777075 L17.8181818,19.7142857 C17.8181818,20.4243661 17.0739279,21 16.1558442,21 L7.84415584,21 C6.9260721,21 6.18181818,20.4243661 6.18181818,19.7142857 L6.18181818,17.2937831 C6.18181818,16.572232 6.57377999,15.8838791 7.26201899,15.396763 L12.0612542,12 L16.763601,15.3990125 C17.4363216,15.8852773 17.8181818,16.5655465 17.8181818,17.2777075 Z M5.125,0 L18.875,0 C19.4963203,-1.14134695e-16 20,0.503679656 20,1.125 C20,1.74632034 19.4963203,2.25 18.875,2.25 L5.125,2.25 C4.50367966,2.25 4,1.74632034 4,1.125 C4,0.503679656 4.50367966,1.14134695e-16 5.125,0 Z M5.125,21.75 L18.875,21.75 C19.4963203,21.75 20,22.2536797 20,22.875 C20,23.4963203 19.4963203,24 18.875,24 L5.125,24 C4.50367966,24 4,23.4963203 4,22.875 C4,22.2536797 4.50367966,21.75 5.125,21.75 Z" />
                             {renderGradientColor}
                         </defs>
                         <g fill="none" fillRule="evenodd">
@@ -3608,8 +3684,31 @@ class Icon extends React.Component {
                 );
 
                 break;
+            case 'splitter':
+                renderSVG = (
+                    <svg style={svgStyle} viewBox="0 0 5 14">
+                        <title>{title || type}</title>
+                        <defs>
+                            <path id={pathId} transform="translate(-1.000000, -16.000000)" d="M2,18 C1.44771525,18 1,17.5522847 1,17 C1,16.4477153 1.44771525,16 2,16 C2.55228475,16 3,16.4477153 3,17 C3,17.5522847 2.55228475,18 2,18 Z M2,21 C1.44771525,21 1,20.5522847 1,20 C1,19.4477153 1.44771525,19 2,19 C2.55228475,19 3,19.4477153 3,20 C3,20.5522847 2.55228475,21 2,21 Z M2,24 C1.44771525,24 1,23.5522847 1,23 C1,22.4477153 1.44771525,22 2,22 C2.55228475,22 3,22.4477153 3,23 C3,23.5522847 2.55228475,24 2,24 Z M2,27 C1.44771525,27 1,26.5522847 1,26 C1,25.4477153 1.44771525,25 2,25 C2.55228475,25 3,25.4477153 3,26 C3,26.5522847 2.55228475,27 2,27 Z M2,30 C1.44771525,30 1,29.5522847 1,29 C1,28.4477153 1.44771525,28 2,28 C2.55228475,28 3,28.4477153 3,29 C3,29.5522847 2.55228475,30 2,30 Z M5,18 C4.44771525,18 4,17.5522847 4,17 C4,16.4477153 4.44771525,16 5,16 C5.55228475,16 6,16.4477153 6,17 C6,17.5522847 5.55228475,18 5,18 Z M5,21 C4.44771525,21 4,20.5522847 4,20 C4,19.4477153 4.44771525,19 5,19 C5.55228475,19 6,19.4477153 6,20 C6,20.5522847 5.55228475,21 5,21 Z M5,24 C4.44771525,24 4,23.5522847 4,23 C4,22.4477153 4.44771525,22 5,22 C5.55228475,22 6,22.4477153 6,23 C6,23.5522847 5.55228475,24 5,24 Z M5,27 C4.44771525,27 4,26.5522847 4,26 C4,25.4477153 4.44771525,25 5,25 C5.55228475,25 6,25.4477153 6,26 C6,26.5522847 5.55228475,27 5,27 Z M5,30 C4.44771525,30 4,29.5522847 4,29 C4,28.4477153 4.44771525,28 5,28 C5.55228475,28 6,28.4477153 6,29 C6,29.5522847 5.55228475,30 5,30 Z" />
+                            {renderGradientColor}
+                        </defs>
+                        <g fill="none" fillRule="evenodd">
+                            {renderGradientColor ? (
+                                <mask id={maskId} fill="white">
+                                    <use xlinkHref={`#${pathId}`} />
+                                </mask>
+                            ) : null}
+                            <use className="icon-use-path" xlinkHref={`#${pathId}`} />
+                            {renderGradientColor ? (
+                                <rect fill={`url(#${gradientId})`} mask={`url(#${maskId})`} x="0" y="0" width="5px" height="14px" />
+                            ) : null}
+                        </g>
+                    </svg>
+                );
+
+                break;
             default:
-                console.warn(`Whoops, you have something wrong with the <Icon> type, '${type}', you passed in.`);
+                console.warn(`Whoops, you have something wrong with the <Icon> type, '${type}', you passed in.`); // eslint-disable-line no-console
 
                 renderSVG = (
                     <div />
@@ -3621,41 +3720,28 @@ class Icon extends React.Component {
                 <button
                     className={containerClasses}
                     id={id}
-                    onClick={this._onClick}
+                    onClick={this.onClick}
                     style={containerStyle}
+                    type="button"
                 >
                     {renderSVG}
                 </button>
             );
-        } else {
-            return (
-                <div
-                    className={containerClasses}
-                    id={id}
-                    style={containerStyle}
-                >
-                    {renderSVG}
-                </div>
-            );
         }
-    }
 
-    uniqueId() {
-        let now = (new Date().getTime()).toString();
-
-        return now.substring(now.length - 6, now.length) + _.uniqueId();
-    }
-
-    _onClick(event) {
-        const { disable, onClick } = this.props;
-
-        if (!_.isUndefined(onClick) && !disable) {
-            onClick(event);
-        }
+        return (
+            <div
+                className={containerClasses}
+                id={id}
+                style={containerStyle}
+            >
+                {renderSVG}
+            </div>
+        );
     }
 }
 
-const alignEnums = [ 'left', 'right' ];
+const alignEnums = ['left', 'right'];
 
 Icon.propTypes = {
     align: PropTypes.oneOf(alignEnums),
@@ -3672,9 +3758,25 @@ Icon.propTypes = {
         PropTypes.number,
     ]),
     spin: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
     type: PropTypes.string.isRequired,
+};
+
+Icon.defaultProps = {
+    align: 'left',
+    className: undefined,
+    color: 'primary',
+    compact: false,
+    disable: false,
+    id: undefined,
+    inverse: false,
+    onClick: undefined,
+    rotate: undefined,
+    size: undefined,
+    spin: false,
+    style: {},
+    title: undefined,
 };
 
 export default Icon;

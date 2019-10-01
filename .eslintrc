@@ -1,87 +1,139 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "parser": "babel-eslint",
-  "rules": {
-    "array-bracket-spacing": ["warn", "always", { "objectsInArrays": false }],
-    "brace-style": ["warn", "1tbs", {
-        "allowSingleLine": false
-    }],
-    "camelcase": ["warn", {"properties": "always"}],
-    "comma-dangle": ["warn", "always-multiline"],
-    "comma-style": [2, "last"],
-    "curly": "warn",
-    "eol-last": [0],
-    "func-call-spacing": ["warn", "never"],
-    "indent": ["warn", 4, {"SwitchCase": 1}],
-    "jsx-quotes": ["warn", "prefer-double"],
-    "keyword-spacing": ["warn", { "before": true }],
-    "lines-between-class-members": ["warn", "always"],
-    "no-console": ["error", { allow: ["warn", "error"] }],
-    "no-debugger": "error",
-    "no-extra-semi": "warn",
-    "no-mixed-requires": [0],
-    "no-multiple-empty-lines": ["warn", {"max": 1}],
-    "no-multi-spaces": ["warn", {
-      "exceptions": {
-          "VariableDeclarator": true
-      }
-    }],
-    "no-process-exit": [0],
-    "no-redeclare": "error",
-    "no-underscore-dangle": [0],
-    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
-    "no-var": "warn",
-    "operator-linebreak": ["warn", "after"],
-    "padded-blocks": ["warn", {
-        "blocks": "never",
-        "classes": "never",
-        "switches": "never"
-    }],
-    "padding-line-between-statements": ["warn", {
-        blankLine: "always",
-        prev: [ "block-like", "class", "function" ],
-        next: "*"
-    }, {
-        blankLine: "always",
-        prev: [ "const", "let" ],
-        next: [ "block-like" ]
-    }],
-    "quotes": ["warn", "single"],
-    "react/display-name": 0,
-    "react/jsx-boolean-value": 1,
-    "react/jsx-no-undef": 1,
-    "react/jsx-wrap-multilines": 1,
-    "react/jsx-sort-props": 0,
-    "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1,
-    "react/no-multi-comp": 0,
-    "react/no-unknown-property": 1,
-    "react/prop-types": 0,
-    "react/react-in-jsx-scope": 1,
-    "react/self-closing-comp": 1,
-    "react/sort-comp": 0,
-    "react/sort-prop-types": 1,
-    "semi": ["warn", "always", { "omitLastInOneLineBlock": false }],
-    "sort-imports": ["warn", {
-        "ignoreCase": true,
-        "memberSyntaxSortOrder": ['none', 'multiple', 'all', 'single']
-    }],
-    "space-before-function-paren": ["warn", {
-        "anonymous": "always",
-        "named": "never",
-        "asyncArrow": "always"
-    }],
-    "space-before-blocks": "warn",
-    "template-curly-spacing": "warn"
-  },
-  "plugins": [
-    "react"
-  ]
+    "extends": [
+        "airbnb",
+        "airbnb/hooks"
+    ],
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        # Overwriting eslint-config-airbnb-base/rules/style.js
+        'indent': ["error", 4, {
+            SwitchCase: 1,
+            VariableDeclarator: 1,
+            outerIIFEBody: 1,
+            FunctionDeclaration: {
+                parameters: 1,
+                body: 1
+            },
+            FunctionExpression: {
+                parameters: 1,
+                body: 1
+            },
+            CallExpression: {
+                arguments: 1
+            },
+            ArrayExpression: 1,
+            ObjectExpression: 1,
+            ImportDeclaration: 1,
+            flatTernaryExpressions: false,
+            ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+            ignoreComments: false
+        }],
+        # "no-underscore-dangle": [0],
+        "operator-linebreak": ["error", "after"],
+        # Overwriting eslint-config-airbnb-base/rules/imports.js
+        'import/extensions': ['error', 'ignorePackages', {
+            js: 'always',
+            jsx: 'never',
+            mjs: 'never',
+            ignorePackages: true,
+        }],
+        'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
+        'import/no-unresolved': [0],
+        # Overwriting eslint-config-airbnb/rules/react.js
+        'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+        'react/jsx-fragments': ['error', 'element'],
+        'react/jsx-indent': ['error', 4],
+        'react/jsx-indent-props': ['error', 4],
+        'react/no-did-update-set-state': 'off',
+        ##
+        # Old School
+        # Don't want to delete just yet.        #
+        ##
+        # "array-bracket-spacing": ["warn", "always", { "objectsInArrays": false }],
+        # "brace-style": ["warn", "1tbs", {
+        #     "allowSingleLine": false
+        # }],
+        # "camelcase": ["warn", {"properties": "always"}],
+        # "comma-dangle": ["warn", "always-multiline"],
+        # "comma-style": [2, "last"],
+        # "curly": "warn",
+        # "eol-last": [0],
+        # "func-call-spacing": ["warn", "never"],
+        #
+        # "jsx-quotes": ["warn", "prefer-double"],
+        # "keyword-spacing": ["warn", { "before": true }],
+        # "lines-between-class-members": ["warn", "always"],
+        # "no-console": ["error", { allow: ["warn", "error"] }],
+        # "no-debugger": "error",
+        # "no-extra-semi": "warn",
+        # "no-mixed-requires": [0],
+        # "no-multiple-empty-lines": ["warn", {"max": 1}],
+        # "no-multi-spaces": ["warn", {
+        #     "exceptions": {
+        #         "VariableDeclarator": true
+        #     }
+        # }],
+        # "no-process-exit": [0],
+        # "no-redeclare": "error",
+        # "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+        #
+        # "no-var": "warn",
+
+        # "padded-blocks": ["warn", {
+        #     "blocks": "never",
+        #     "classes": "never",
+        #     "switches": "never"
+        # }],
+        # "padding-line-between-statements": ["warn", {
+        #     blankLine: "always",
+        #     prev: [ "block-like", "class", "function" ],
+        #     next: "*"
+        # }, {
+        #     blankLine: "always",
+        #     prev: [ "const", "let" ],
+        #     next: [ "block-like" ]
+        # }],
+        # "quotes": ["warn", "single"],
+        # "react/display-name": 0,
+        # "react/jsx-boolean-value": 1,
+        # "react/jsx-no-undef": 1,
+        # "react/jsx-wrap-multilines": 1,
+        # "react/jsx-sort-props": 1,
+        # "react/jsx-uses-react": 1,
+        # "react/jsx-uses-vars": 1,
+        # "react/no-multi-comp": 0,
+        # "react/no-unknown-property": 1,
+        # "react/prop-types": 0,
+        # "react/react-in-jsx-scope": 1,
+        # "react/self-closing-comp": 1,
+        # "react/sort-comp": 0,
+        # "react/sort-prop-types": 1,
+        # "semi": ["warn", "always", { "omitLastInOneLineBlock": false }],
+        # "sort-destructure-keys/sort-destructure-keys": ["warn", {
+        #     "caseSensitive": true
+        # }],
+        # "sort-keys": ["warn", "asc", {
+        #     "caseSensitive": true,
+        #     "natural": false
+        # }],
+        # "sort-imports": ["warn", {
+        #     "ignoreCase": true,
+        #     "memberSyntaxSortOrder": ['none', 'multiple', 'all', 'single']
+        # }],
+        # "space-before-function-paren": ["warn", {
+        #     "anonymous": "always",
+        #     "named": "never",
+        #     "asyncArrow": "always"
+        # }],
+        # "space-before-blocks": "warn",
+        # "template-curly-spacing": "warn"
+    },
+    "plugins": [
+        "react",
+        "sort-destructure-keys"
+    ]
 }
