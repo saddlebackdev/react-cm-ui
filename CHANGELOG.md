@@ -1,6 +1,25 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.3.0
+
+#### Feature
+- [PR #58](https://github.com/saddlebackdev/react-cm-ui/pull/58): Adds some new sticky column(s) functionality to **Page.Table**.
+    - New props: `handle`, `stickyColumnWidth`, and `stickyColumns`.
+- New `droplet` icon added to the **Icon** component.
+- New `expand` (alias: `contract`) icon added to the **Icon** component.
+- New **ActionBar** search `onClearClick` event handler.
+- We're now using Airbnb's eslint config rules!
+
+#### Bug Fix
+- Fixed our exported dateUtils class to not throw errors when using certain utility functions it has to offer.
+- Added dateUtils functions not in react-cm-ui's class from HC's dateUtils file to sync up. HC is now supposed to be using react-cm-ui's dateUtils functions instead of the now deprecated HC dateUtils functions.
+- **Button** only has one height now. No more `44px` for desktop.
+
+#### Doc
+- Split up the `./docs/src/elements/icon.js` file into two, `./docs/src/elements/iconSet.js` and `./docs/src/elements/iconExamples.js` and added routes to those specific pages. We can now link directly to the exact location.
+- Added a sort dropdown to our `./docs/src/elements/iconSet.js`. We can now sort our icons by "category" or "alphabetically (asc)."
+
 ## 6.1.4
 
 #### Feature
