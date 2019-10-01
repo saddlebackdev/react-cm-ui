@@ -12,7 +12,7 @@
     letter-spacing: 1px;
     line-height: 1;
     margin: 0 11px 0 0;
-    min-height: 44px;
+    min-height: 32px;
     outline: none;
     overflow: hidden;
     padding: 0 rem(22px) 1px;
@@ -26,7 +26,7 @@
         align-items: center;
         display: flex;
         justify-content: center;
-        min-height: 44px;
+        min-height: 32px;
         > .ui.icon {
             .icon-use-path { fill: color(colorInverse); }
         }
@@ -164,21 +164,4 @@
     &.button-relax { padding-left: rem(33px); padding-right: rem(33px); }
     &.button-fixed-width { padding-left: 0; padding-right: 0; }
     &:last-child { margin-right: 0; }
-}
-
-@media only screen and (min-width: 768px) {
-    .ui.button {
-        min-height: 33px;
-        .button-inner-container {
-            min-height: 33px;
-        }
-        &.button-icon {
-            height: 33px;
-            width: 33px;
-            .button-inner-container {
-                height: 33px;
-                width: 33px;
-            }
-        }
-    }
 }
