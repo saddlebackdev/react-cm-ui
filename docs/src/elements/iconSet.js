@@ -15,10 +15,6 @@ class ElementsIconSet extends React.PureComponent {
     constructor() {
         super();
 
-        this.state = {
-            sort: 'Category',
-        };
-
         this.icons = [
             {
                 category: 'Actions',
@@ -233,23 +229,36 @@ class ElementsIconSet extends React.PureComponent {
                 ],
             },
         ];
+        this.sortByOptions = [
+            {
+                id: 'category',
+                label: 'Category',
+            }, {
+                id: 'alphabetical_asc',
+                label: 'Alphabetical (asc)',
+            },
+        ];
+
+        this.state = {
+            sortSelectedOption: this.sortByOptions[0],
+        };
 
         this.onSortAscendingClick = this.onSortAscendingClick.bind(this);
     }
 
     onSortAscendingClick(selectedOption) {
         this.setState({
-            sort: selectedOption.label,
+            sortSelectedOption: selectedOption,
         });
     }
 
     render() {
-        const { sort } = this.state;
+        const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
         let renderCategories;
 
-        if (sort === 'Ascending') {
+        if (sortSelectedOption.id === 'alphabetical_asc') {
             renderCategories = _.chain(this.icons)
                 .map((iconSet) => iconSet.types)
                 .flatten()
@@ -297,11 +306,17 @@ class ElementsIconSet extends React.PureComponent {
                             button
                             collapseMenuOnChange
                             onChange={this.onSortAscendingClick}
-                            placeholder="Sort By"
+                            options={this.sortByOptions}
                             style={{ margin: 0 }}
+                            text={`Sort by: ${sortSelectedOption.label}`}
                         >
-                            <Dropdown.Item id={1} label="Category" />
-                            <Dropdown.Item id={2} label="Ascending" />
+                            {_.map(this.sortByOptions, (option) => (
+                                <Dropdown.Item
+                                    key={option.id}
+                                    id={option.id}
+                                    label={option.label}
+                                />
+                            ))}
                         </Dropdown>
                     </Grid.Column>
                 </Grid>
