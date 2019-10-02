@@ -1,7 +1,18 @@
-[*.js]
-indent_style = space
-indent_size = 4
+; indicate this is the root of the project
+root = true
 
-[*.{scss,css}]
+; A newline ending every file
+[*]
+insert_final_newline = true
+
+[*.{js,scss,css}]
 indent_style = space
 indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+end_of_line = lf
+# editorconfig-tools is unable to ignore longs strings or urls
+max_line_length = off
+
+[CHANGELOG.md]
+indent_size = false
