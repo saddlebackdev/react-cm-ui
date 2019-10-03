@@ -107,7 +107,6 @@ class Drawer extends React.Component {
             className,
             positionYOffset,
             wing,
-            isSticky,
         } = this.props;
         const { isOpen } = this.state;
 
@@ -117,7 +116,8 @@ class Drawer extends React.Component {
 
         const drawerClasses = ClassNames('ui', 'drawer', className, {
             'left-position': this._isPositionX('left'),
-            'drawer-sticky': isSticky,
+            'top-position': this._isPositionY('top'),
+            'bottom-position': this._isPositionY('bottom'),
         });
 
         return (
@@ -174,6 +174,12 @@ class Drawer extends React.Component {
         const { positionX } = this.props;
 
         return positionX === position;
+    }
+
+    _isPositionY(position) {
+        const { positionY } = this.props;
+
+        return positionY === position;
     }
 
     _onBeforeClose() {
@@ -335,11 +341,7 @@ class Drawer extends React.Component {
             }
 
             if (!_.isUndefined(maxHeight)) {
-                this._drawerContainer.style.maxHeight = _.isNumber(maxHeight) ?
-                    `${maxHeight}px` :
-                    _.isString(maxHeight) ?
-                        maxHeight :
-                        '700px';
+                this._drawerContainer.style.maxHeight = maxHeight ? `${maxHeight}px` : '700px';
             }
 
             this._drawerContainer.style.transform = _.isNumber(positionYOffset) ?
@@ -349,7 +351,7 @@ class Drawer extends React.Component {
     }
 
     _onOpenAnimationComplete() {
-        const { dimmer, isSticky } = this.props;
+        const { dimmer, positionY } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainerRef);
         this._drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -363,7 +365,7 @@ class Drawer extends React.Component {
             BODY.classList.add('drawer-dimmers');
         }
 
-        if (isSticky) {
+        if (positionY) {
             BODY.classList.add('drawer-sticky-mode');
         }
     }
@@ -399,17 +401,14 @@ Drawer.defaultProps = {
     dimmer: true,
     isOpen: false,
     positionX: 'right',
+    positionY: 'top',
 };
 
 Drawer.propTypes = {
     className: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
-    isSticky: PropTypes.bool,
-    maxHeight: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    maxHeight: PropTypes.number,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -418,9 +417,10 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
-    positionX: PropTypes.oneOf([ 'left', 'right' ]),
+    positionX: PropTypes.oneOf(['left', 'right']),
+    positionY: PropTypes.oneOf(['bottom', 'top']),
     positionYOffset: PropTypes.number,
-    shadowSize: PropTypes.oneOf([ 'large', 'small', 'xsmall' ]),
+    shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
     style: PropTypes.object,
     wing: PropTypes.object,
 };

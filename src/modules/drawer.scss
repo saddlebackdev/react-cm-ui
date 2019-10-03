@@ -21,7 +21,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         z-index: $zindex + 2;
     }
     &.drawer-sticky-mode{
-        position: unset !important; // sass-lint:disable-line no-important
+        position: initial !important; // sass-lint:disable-line no-important
     }
 }
 .ui.drawer:not(.deprecated) {
@@ -112,19 +112,22 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // #####
     // End of Header Items
     // #####
-    // Sticky Drawer
-    &.drawer-sticky {
+    &.bottom-position .drawer-container {
+        border-top-left-radius: 5px;
         bottom: 0;
-        top: unset;
-        .drawer-container { 
-            bottom: 0;
-            top: unset;       
-            > div:first-child {
-                border-top-left-radius: 5px;
-            }
+        box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important; // sass-lint:disable-line no-important
+        overflow: hidden;
+        top: initial;
+        .shadow_container { 
+            visibility: hidden;
         }
-        .shadow_container > div { 
-            box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important;
+    }
+    &.top-position .drawer-container {
+        border-bottom-left-radius: 5px;
+        box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important; // sass-lint:disable-line no-important
+        overflow: hidden;
+        .shadow_container { 
+            visibility: hidden;
         }
     }
     .drawer-container {

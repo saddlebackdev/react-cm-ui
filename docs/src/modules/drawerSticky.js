@@ -35,10 +35,10 @@ export default class DrawerStickySample extends React.Component {
                 <Drawer
                     dimmer={false}
                     isOpen={isDrawerOpen}
-                    isSticky
                     maxWidth="320px"
                     maxHeight="700px"
                     onClose={this._onDrawerToggle}
+                    positionY="bottom"
                 >
                     <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
                     <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
@@ -121,7 +121,7 @@ class ModulesDrawerSticky extends React.Component {
                 allowedTypes: '',
             }, {
                 name: 'maxHeight',
-                type: 'number || string',
+                type: 'number',
                 default: '',
                 description: 'Give a Drawer a maximum height (Used only for sticky drawer)',
                 allowedTypes: '',
@@ -156,11 +156,17 @@ class ModulesDrawerSticky extends React.Component {
                 description: 'Alerts the parent component that the opening animation is complete.',
                 allowedTypes: '',
             }, {
-                name: 'position',
+                name: 'positionX',
                 type: 'string',
                 default: 'right',
                 description: 'The position of the Drawer.',
                 allowedTypes: 'left, right',
+            }, {
+                name: 'positionY',
+                type: 'string',
+                default: 'top',
+                description: 'The position of the Drawer.',
+                allowedTypes: 'top, bottom',
             }, {
                 name: 'style',
                 type: 'object',
@@ -200,9 +206,10 @@ class ModulesDrawerSticky extends React.Component {
                     <Drawer
                         isOpen={isDrawerOpen}
                         maxWidth="320px"
-                        maxHeight="700px"
+                        maxHeight={700}
                         isSticky
                         dimmer={false}
+                        positionY="bottom"
                     >
                         <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
                         <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
