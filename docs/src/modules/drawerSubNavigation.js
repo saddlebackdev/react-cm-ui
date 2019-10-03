@@ -1,18 +1,58 @@
-'use strict';
-
 import { browserHistory } from 'react-router';
 import React from 'react';
 import { SubNavigation } from 'react-cm-ui';
 
-class ModulesDrawerSubNavigation extends React.Component {
-    constructor(props) {
-        super(props);
+class ModulesDrawerSubNavigation extends React.PureComponent {
+    static onSubNavClick(index) {
+        const drawerLocation = '/modules/drawer';
 
-        this._onSubNavClick = this._onSubNavClick.bind(this);
+        switch (index) {
+            case 1:
+                browserHistory.push(`${drawerLocation}/action-bar`);
+
+                break;
+            case 2:
+                browserHistory.push(`${drawerLocation}/content`);
+
+                break;
+            case 3:
+                browserHistory.push(`${drawerLocation}/filters-drawer`);
+
+                break;
+            case 4:
+                browserHistory.push(`${drawerLocation}/grid`);
+
+                break;
+            case 5:
+                browserHistory.push(`${drawerLocation}/navigation`);
+
+                break;
+            case 6:
+                browserHistory.push(`${drawerLocation}/table`);
+
+                break;
+            case 7:
+                browserHistory.push(`${drawerLocation}/title-bar`);
+
+                break;
+            case 8:
+                browserHistory.push(`${drawerLocation}/wing`);
+
+                break;
+            case 9:
+                browserHistory.push(`${drawerLocation}/details`);
+
+                break;
+            case 0:
+            default:
+                browserHistory.push(`${drawerLocation}/`);
+
+                break;
+        }
     }
 
     render() {
-        const pathname = window.location.pathname;
+        const { pathname } = window.location;
         const pathnameSegments = pathname.split('/');
         const pathnameThirdSegment = pathnameSegments[3];
         let itemSelected;
@@ -64,7 +104,7 @@ class ModulesDrawerSubNavigation extends React.Component {
 
         return (
             <SubNavigation
-                onClick={this._onSubNavClick}
+                onClick={ModulesDrawerSubNavigation.onSubNavClick}
                 selected={itemSelected}
                 style={{ marginBottom: '33px' }}
             >

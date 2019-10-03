@@ -75,14 +75,14 @@ $day-size: 30px;
     &:first-of-type.datepicker-day-in-range::after { border-radius: ($day-size / 2) 0 0 ($day-size / 2); }
     &:last-of-type.datepicker-day-in-range::after { border-radius: 0 ($day-size / 2) ($day-size / 2) 0; }
 }
-.date-picker-calendar- {
-    &single-date {
+.date-picker-calendar {
+    &-single-date {
         .date-picker-day-selected span {
             background-color: color(backgroundColorHighlight);
             color: color(colorInverse);
         }
     }
-    &date-range {
+    &-date-range {
         .date-picker-day-end-selected, .date-picker-day-start-selected {
             span {
                 background-color: color(backgroundColorHighlight);
@@ -90,12 +90,12 @@ $day-size: 30px;
             }
         }
         .date-picker-day-end-selected, .date-picker-day-start-selected, .date-picker-day-in-range {
-            &::after { background-color: color(backgroundSky); }
+            &::after { background-color: color(backgroundColorSky); }
         }
         .date-picker-day-in-range {
             span { color: color(colorInverse); }
             &:first-child, &:last-child {
-                span { background-color: color(backgroundSky); }
+                span { background-color: color(backgroundColorSky); }
             }
         }
     }

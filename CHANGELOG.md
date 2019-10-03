@@ -1,6 +1,66 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.3.0
+
+#### Feature
+- [PR #58](https://github.com/saddlebackdev/react-cm-ui/pull/58): Adds some new sticky column(s) functionality to **Page.Table**.
+    - New props: `handle`, `stickyColumnWidth`, and `stickyColumns`.
+- New `droplet` icon added to the **Icon** component.
+- New `expand` (alias: `contract`) icon added to the **Icon** component.
+- New **ActionBar** search `onClearClick` event handler.
+- We're now using Airbnb's eslint config rules!
+
+#### Bug Fix
+- Fixed our exported dateUtils class to not throw errors when using certain utility functions it has to offer.
+- Added dateUtils functions not in react-cm-ui's class from HC's dateUtils file to sync up. HC is now supposed to be using react-cm-ui's dateUtils functions instead of the now deprecated HC dateUtils functions.
+- **Button** only has one height now. No more `44px` for desktop.
+
+#### Doc
+- Split up the `./docs/src/elements/icon.js` file into two, `./docs/src/elements/iconSet.js` and `./docs/src/elements/iconExamples.js` and added routes to those specific pages. We can now link directly to the exact location.
+- Added a sort dropdown to our `./docs/src/elements/iconSet.js`. We can now sort our icons by "category" or "alphabetically (asc)."
+
+## 6.1.4
+
+#### Feature
+- Added a new prop, `selectedColumnIndex` to **Drawer.Navigation** to fix a state issue.
+
+#### Bug Fix
+- Fixed a **Drawer** style bug that was overwriting DrawerDeprecated's styles.
+
+## 6.2.3
+
+#### Feature
+- Same added feature for **Drawer.Navigation** as in `6.1.4`.
+
+## 6.1.3
+
+- Don't ask.
+
+## 6.2.2
+
+#### Bug Fix
+- Same bug fix for SCSS background colors as in `6.1.2`.
+
+## 6.1.2
+
+#### Bug Fix
+- Fix an issue where some of the SCSS background colors were incorrectly set
+(not using the correct color name).
+
+## 6.2.1
+
+#### Bug Fix
+- Same bug fix in **&lt;DatePickerInput /&gt;** as in `6.1.1`.
+
+## 6.1.1
+
+#### Bug Fix
+- Fix an issue in **&lt;DatePickerInput /&gt;** component when using two such
+inputs to define the 'from' and 'to' dates for a date range.  When typing out
+either 'from' date or 'to' date (versus using the calendar to select it) both
+dates would be cleared due to incorrect logic in the `_onInputChange()` function.
+
 ## 6.2.0
 
 #### Feature

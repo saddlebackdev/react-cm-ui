@@ -1,5 +1,7 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
+$buttonSize: 32px;
+
 .ui.button {
     background-color: color(backgroundColorButton);
     border: 0;
@@ -12,7 +14,7 @@
     letter-spacing: 1px;
     line-height: 1;
     margin: 0 11px 0 0;
-    min-height: 44px;
+    min-height: $buttonSize;
     outline: none;
     overflow: hidden;
     padding: 0 rem(22px) 1px;
@@ -26,7 +28,7 @@
         align-items: center;
         display: flex;
         justify-content: center;
-        min-height: 44px;
+        min-height: $buttonSize;
         > .ui.icon {
             .icon-use-path { fill: color(colorInverse); }
         }
@@ -145,15 +147,15 @@
         &warning { background-color: color(backgroundColorWarning); }
     }
     &.button-icon {
-        height: 44px;
+        height: $buttonSize;
         padding: 0;
-        width: 44px;
+        width: $buttonSize;
         .button-inner-container {
             align-items: center;
             display: inline-flex;
-            height: 44px;
+            height: $buttonSize;
             justify-content: center;
-            width: 44px;
+            width: $buttonSize;
             .ui.icon { float: none; font-size: 16px; }
         }
     }
@@ -164,21 +166,4 @@
     &.button-relax { padding-left: rem(33px); padding-right: rem(33px); }
     &.button-fixed-width { padding-left: 0; padding-right: 0; }
     &:last-child { margin-right: 0; }
-}
-
-@media only screen and (min-width: 768px) {
-    .ui.button {
-        min-height: 33px;
-        .button-inner-container {
-            min-height: 33px;
-        }
-        &.button-icon {
-            height: 33px;
-            width: 33px;
-            .button-inner-container {
-                height: 33px;
-                width: 33px;
-            }
-        }
-    }
 }

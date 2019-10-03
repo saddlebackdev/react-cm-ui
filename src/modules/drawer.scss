@@ -21,7 +21,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         z-index: $zindex + 2;
     }
     &.drawer-sticky {
-        position: initial !important; // sass-lint:disable-line no-important
+        position: static !important; // sass-lint:disable-line no-important
     }
 }
 .ui.drawer:not(.deprecated) {

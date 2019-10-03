@@ -44,10 +44,10 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
         &.color {
             &-dark-blue {
-                background: color(backgroundBlue);
+                background: color(backgroundColorBlue);
                 color: color(colorInverse);
                 .drawer-container-inner .drawer-header {
-                    background: color(backgroundBlue);
+                    background: color(backgroundColorBlue);
                     color: color(colorInverse);
                 }
             }
@@ -137,7 +137,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             top: 0;
             width: 100%;
             &.color-dark-blue {
-                background-color: color(backgroundBlue);
+                background-color: color(backgroundColorBlue);
                 color: color(colorInverse);
             }
             &.color-grey { background-color: color(backgroundColorNest); }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { Card, DatePickerInput, Header, TitleBar } from 'react-cm-ui';
+import { Card, DatePickerInput, Grid, Header, TitleBar } from 'react-cm-ui';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import moment from 'moment-timezone';
@@ -289,133 +289,133 @@ export default class ModulesDatePickerInput extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'date',
                 type: 'object',
                 default: '',
                 description: 'Single date timestamp.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'dateFrom',
                 type: 'object',
                 default: '',
                 description: 'Moment object for date range',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'dateTo',
                 type: 'object',
                 default: '',
                 description: 'Moment object for date range',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'disabled',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the date input is not available for interaction.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'events',
                 type: 'array',
                 default: '',
                 description: 'Accepts an array of moment objects.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'excludeDates',
                 type: 'array',
                 default: '',
                 description: 'Sets a range of dates that are not selectable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'filterDates',
                 type: 'func',
                 default: '',
                 description: 'Filters out dates that are to not be selectable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'id',
                 type: 'string',
                 default: '',
                 description: 'Give an input an id.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'includeDates',
                 type: 'array',
                 default: '',
                 description: 'Sets a range of dates that are selectable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'label',
                 type: 'string',
                 default: '',
                 description: 'Optional Label to display with the Input.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'locale',
                 type: 'string',
                 default: '',
                 description: 'Custom locale.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'maxDate',
                 type: 'object',
                 default: '',
                 description: 'Maxium date\'s in range that are selectable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'minDate',
                 type: 'object',
                 default: '',
                 description: 'Minumum date\'s in range that are selectable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onBlur',
                 type: 'func',
                 default: '',
                 description: 'Can handle an onBlur event from parent.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onChange',
                 type: 'func',
                 default: '',
                 description: 'Can handle an onChange event from parent.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onFocus',
                 type: 'func',
                 default: '',
                 description: 'Can handle an onFocus event from parent.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'rangeFrom',
                 type: 'bool',
                 default: '',
                 description: 'Specifies whether the input is the from in the date range or not.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'rangeTo',
                 type: 'bool',
                 default: '',
                 description: 'Specifies whether the input is the to in the date range or not.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'required',
                 type: 'bool',
                 default: '',
                 description: 'Specifies that the user must fill in a value before submitting a form.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the DatePickerInput\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'tabIndex',
                 type: 'number',
                 default: '',
                 description: 'An Input can receive focus.',
-                allowedTypes: ''
+                allowedTypes: '',
             },
         ];
         const {
@@ -607,20 +607,28 @@ export default class ModulesDatePickerInput extends React.Component {
                     Range
                 </Header>
 
-                <DatePickerInput
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeFrom
-                    label="From"
-                />
-                <DatePickerInput
-                    dateFrom={dateRangeFrom}
-                    dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
-                    rangeTo
-                    label="To"
-                />
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
+                            <DatePickerInput
+                                dateFrom={dateRangeFrom}
+                                dateTo={dateRangeTo}
+                                onChange={this._onRangeChange}
+                                rangeFrom
+                                label="From"
+                            />
+                        </Grid.Column>
+                        <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
+                            <DatePickerInput
+                                dateFrom={dateRangeFrom}
+                                dateTo={dateRangeTo}
+                                onChange={this._onRangeChange}
+                                rangeTo
+                                label="To"
+                            />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {rangeSample}

@@ -1,13 +1,9 @@
 'use strict';
 
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Button, Card, Dropdown, Grid, Header, Prompt, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from '../app/block.js';
+import { Button, Card, Dropdown, Header, Prompt, TitleBar } from 'react-cm-ui';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
+import React from 'react';
 import TableProps from '../app/tableProps.js';
 
 const inlineSample = `import React from 'react';
@@ -111,7 +107,6 @@ export default class OptionalPromptSample extends React.Component {
 }`;
 
 export default class ModulesPrompt extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = { showPrompt: false };
@@ -124,56 +119,56 @@ export default class ModulesPrompt extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inline',
                 type: 'bool',
                 default: '',
                 description: 'Prompts will be handled inline with the action.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inlineMessageColor',
                 type: 'enum',
                 default: '',
                 description: 'Give an inline Prompt\'s action message a custom background color.',
-                allowedTypes: 'alert, success'
+                allowedTypes: 'alert, success',
             }, {
                 name: 'inlineHorizontalAlign',
                 type: 'enum',
                 default: 'left',
                 description: 'An inline Prompt can be horizontal aligned to the left or the right.',
-                allowedTypes: 'left, right'
+                allowedTypes: 'left, right',
             }, {
                 name: 'message',
                 type: 'string',
                 default: '',
                 description: 'Supply a Prompt a custom message.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
                 description: 'Prompts can handle an onClick event.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onNoClick',
                 type: 'func',
                 default: '',
                 description: 'An onClick event handler for the no button.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onYesClick',
                 type: 'func',
                 default: '',
                 description: 'An onClick event handler for the yes button.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Prompt\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -187,7 +182,7 @@ export default class ModulesPrompt extends React.Component {
                 </Card>
 
                 {/* Inline */}
-                <Header anchor="inline" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="inline" size="large" style={{ marginTop: '55px' }} sub>
                     Inline Prompt
                     <Header.Subheader>
                         A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
@@ -200,18 +195,18 @@ export default class ModulesPrompt extends React.Component {
                     (<code>onClick</code>, <code>onYesClick</code> and <code>onNoClick</code>).
                 </p>
 
-                <Prompt inline={true}>
+                <Prompt inline>
                     <Button color="success">Save Me!</Button>
                 </Prompt><br /><br />
 
-                <Prompt inline={true}>
+                <Prompt inline>
                     <Dropdown button buttonColor="alert" collapseMenuOnChange placeholder="Remove Me!">
                         <Dropdown.Item label="Option 1" />
                         <Dropdown.Item label="Option 2" />
                     </Dropdown>
                 </Prompt><br /><br />
 
-                <Prompt inline={true}>
+                <Prompt inline>
                     <a>Simple Link</a>
                 </Prompt>
 
@@ -220,7 +215,7 @@ export default class ModulesPrompt extends React.Component {
                 </Highlighter>
 
                 {/* Dropdown with only some items prompting */}
-                <Header anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub>
                     Selective Prompting for Dropdown Options
                     <Header.Subheader>
                         Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
@@ -271,20 +266,20 @@ export default class ModulesPrompt extends React.Component {
     }
 
     _onClick(option) {
-        console.log('option:', option);
+        console.log('option:', option); // eslint-disable-line no-console
     }
 
     _onPromptClick(option) {
-        console.log('Prompt got clicked!  Option:', option);
+        console.log('Prompt got clicked!  Option:', option); // eslint-disable-line no-console
 
         switch (option.id) {
             case 'delete':
-                console.log('Showing delete prompt...');
+                console.log('Showing delete prompt...'); // eslint-disable-line no-console
                 this.setState({ showPrompt: true }); // show the prompt
                 break;
 
             case 'edit':
-                console.log('Proceeding with edit action (with no prompt) ...');
+                console.log('Proceeding with edit action (with no prompt) ...'); // eslint-disable-line no-console
                 // TODO: Do whatever edit is supposed to do
                 break;
 
@@ -293,12 +288,12 @@ export default class ModulesPrompt extends React.Component {
     }
 
     _onYesClick() {
-        console.log('Yes!  Delete it!');
+        console.log('Yes!  Delete it!'); // eslint-disable-line no-console
         this.setState({ showPrompt: false });
     }
 
     _onNoClick() {
-        console.log('No ... just kidding.  Don\'t delete it!');
+        console.log('No ... just kidding.  Don\'t delete it!'); // eslint-disable-line no-console
         this.setState({ showPrompt: false });
     }
 }

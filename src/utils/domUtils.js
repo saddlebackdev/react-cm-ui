@@ -1,4 +1,3 @@
-'use strict';
 
 class DOMUtils {
     static addClassName(el, cls) {
@@ -13,39 +12,53 @@ class DOMUtils {
         const isFirefox = typeof InstallTrigger !== 'undefined';
         const isChrome = !!window.chrome && !!window.chrome.webstore && navigator.userAgent.toLowerCase().indexOf('googlebot') === -1;
         const isSafari = !isChrome && navigator.userAgent.toLowerCase().indexOf('safari') !== -1;
-        const isIE = /*@cc_on!@*/false || !!document.documentMode;
+        const isIE = /* @cc_on!@ */false || !!document.documentMode;
         const isEdge = !(isIE) && !!window.StyleMedia;
         const isBlink = (isChrome || isOpera) && !!window.CSS;
         const isGoogleBot = navigator.userAgent.toLowerCase().indexOf('googlebot') !== -1;
 
         if (isOpera) {
             return 'opera';
-        } else if (isFirefox) {
-            return 'firefox';
-        } else if (isSafari) {
-            return 'safari';
-        } else if (isIE) {
-            return 'ie';
-        } else if (isEdge) {
-            return 'edge';
-        } else if (isChrome) {
-            return 'chrome';
-        } else if (isBlink) {
-            return 'blink';
-        } else if (isGoogleBot) {
-            return 'googlebot';
-        } else {
-            return 'unknown';
         }
+
+        if (isFirefox) {
+            return 'firefox';
+        }
+
+        if (isSafari) {
+            return 'safari';
+        }
+
+        if (isIE) {
+            return 'ie';
+        }
+
+        if (isEdge) {
+            return 'edge';
+        }
+
+        if (isChrome) {
+            return 'chrome';
+        }
+
+        if (isBlink) {
+            return 'blink';
+        }
+
+        if (isGoogleBot) {
+            return 'googlebot';
+        }
+
+        return 'unknown';
     }
 
     static cssAnimationType(el) {
         let a;
         const animations = {
-            'animation': 'animationend',
-            'OAnimation': 'oAnimationEnd',
-            'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd'
+            animation: 'animationend',
+            OAnimation: 'oAnimationEnd',
+            MozAnimation: 'animationend',
+            WebkitAnimation: 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -58,10 +71,10 @@ class DOMUtils {
     static cssTransitionType(el) {
         let t;
         const transitions = {
-            'transition': 'transitionend',
-            'OTransition': 'oTransitionEnd otransitionend',
-            'MozTransition': 'transitionend',
-            'WebkitTransition': 'webkitTransitionEnd'
+            transition: 'transitionend',
+            OTransition: 'oTransitionEnd otransitionend',
+            MozTransition: 'transitionend',
+            WebkitTransition: 'webkitTransitionEnd',
         };
 
         for (t in transitions) {
@@ -81,7 +94,8 @@ class DOMUtils {
             const parentElRect = parentEl.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-            let isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias;
+            let isInTop; let isInRight; let isInBottom; let isInLeft; let topBias; let
+                bottomBias;
 
             if (!parentEl) {
                 isInTop = elRect.top >= 0;
@@ -99,10 +113,11 @@ class DOMUtils {
                 bottomBias = windowHeight - parentElRect.bottom;
             }
 
-            return { isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias }
-        } else {
-            return false;
+            return {
+                isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias,
+            };
         }
+        return false;
     }
 
     static removeClassName(el, cls) {
@@ -112,36 +127,39 @@ class DOMUtils {
     static scrollPos(el) {
         if (el) {
             return el.scrollTop;
-        } else {
-            return window.scrollY || window.pageYOffset;
         }
+        return window.scrollY || window.pageYOffset;
     }
 
     static scrollTo(to, duration, parentEl) {
         // Defaults
-        let o = {
+        const o = {
             duration: duration || duration === 0 ? 0 : 250,
             parentEl: parentEl || null,
-            to: to || 0
+            to: to || 0,
         };
 
         const SCROLL_INCREMENT_MS = 10;
 
-        let currentViewPortPosistion = !o.parentEl ? document.body.scrollTop || document.documentElement.scrollTop : o.parentEl.scrollTop;
+        let currentViewPortPosistion = !o.parentEl ?
+            document.body.scrollTop || document.documentElement.scrollTop :
+            o.parentEl.scrollTop;
         // console.log('currentViewPortPosistion: ' + currentViewPortPosistion);
         let difference = o.to - currentViewPortPosistion;
-        let numSteps = o.duration / SCROLL_INCREMENT_MS;
-        let increment = difference / numSteps;
+        const numSteps = o.duration / SCROLL_INCREMENT_MS;
+        const increment = difference / numSteps;
 
-        let startTime = Date.now();
+        // const startTime = Date.now();
         // console.log('start: ' + startTime);
 
-        let scrollInterval = setInterval(() => {
-            currentViewPortPosistion = !o.parentEl ? document.body.scrollTop || document.documentElement.scrollTop : o.parentEl.scrollTop;
+        const scrollInterval = setInterval(() => {
+            currentViewPortPosistion = !o.parentEl ?
+                document.body.scrollTop || document.documentElement.scrollTop :
+                o.parentEl.scrollTop;
             difference = o.to - currentViewPortPosistion;
 
-            let interval = Math.abs(difference) < Math.abs(increment) ? difference : increment;
-            let newViewPortPosistion = currentViewPortPosistion + interval;
+            const interval = Math.abs(difference) < Math.abs(increment) ? difference : increment;
+            const newViewPortPosistion = currentViewPortPosistion + interval;
 
             if (!parentEl) {
                 document.body.scrollTop = newViewPortPosistion;
@@ -150,7 +168,13 @@ class DOMUtils {
                 parentEl.scrollTop = newViewPortPosistion;
             }
 
-            if (newViewPortPosistion === o.to || (!parentEl && (window.innerHeight + (window.scrollY || window.pageYOffset) >= document.body.scrollHeight))) {
+            if (
+                newViewPortPosistion === o.to ||
+                (!parentEl &&
+                    (window.innerHeight +
+                        (window.scrollY || window.pageYOffset) >= document.body.scrollHeight)
+                )
+            ) {
                 // console.log('ellapsed: ' + parseInt(startTime - Date.now()));
                 clearInterval(scrollInterval);
             }

@@ -261,13 +261,33 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onInputChange(value) {
-        const { disabled, locale } = this.props;
+        const { disabled, locale, rangeFrom, rangeTo } = this.props;
+        const { dateFrom, dateTo } = this.state;
         const date = moment(value, this._dateFormats, locale || moment.locale(), true);
 
-        if (!disabled && date.isValid() && !DatePickerUtils.isDayDisabled(date, this.props)) {
-            this._onCalendarChange({ date });
-        } else if (!disabled && value === '' || value === '__/__/____') {
-            this._onCalendarChange({ date: null });
+        const isValidValueChange = !disabled &&
+            date.isValid() &&
+            !DatePickerUtils.isDayDisabled(date, this.props);
+
+        const isValidUpdateToNull = !isValidValueChange &&
+            !disabled &&
+            value === '' || value === '__/__/____';
+
+        let onChangeParam = {};
+        const updatedDateValue = isValidValueChange ? date : null;
+
+        if (rangeFrom) {
+            onChangeParam.dateFrom = updatedDateValue;
+            onChangeParam.dateTo = dateTo;
+        } else if (rangeTo) {
+            onChangeParam.dateFrom = dateFrom;
+            onChangeParam.dateTo = updatedDateValue;
+        } else {
+            onChangeParam.date = updatedDateValue;
+        }
+
+        if (isValidValueChange || isValidUpdateToNull) {
+            this._onCalendarChange(onChangeParam);
         }
     }
 
