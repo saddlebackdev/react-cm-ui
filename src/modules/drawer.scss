@@ -20,7 +20,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         width: 100%;
         z-index: $zindex + 2;
     }
-    &.drawer-sticky-mode{
+    &.drawer-sticky {
         position: initial !important; // sass-lint:disable-line no-important
     }
 }

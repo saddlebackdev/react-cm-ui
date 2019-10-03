@@ -95,8 +95,8 @@ class Drawer extends React.Component {
                 BODY.classList.remove('drawer-animate-out');
             }
 
-            if (BODY.classList.contains('drawer-sticky-mode')) {
-                BODY.classList.remove('drawer-sticky-mode');
+            if (BODY.classList.contains('drawer-sticky')) {
+                BODY.classList.remove('drawer-sticky');
             }
         }
     }
@@ -233,7 +233,7 @@ class Drawer extends React.Component {
         if (drawerLength <= 1) {
             const scrollPosition = parseInt(BODY.style.top, 10);
 
-            BODY.classList.remove('drawer-open', 'drawer-dimmers', 'drawer-sticky-mode');
+            BODY.classList.remove('drawer-open', 'drawer-dimmers', 'drawer-sticky');
             window.scroll(0, Math.abs(scrollPosition));
             BODY.style.top = null;
         }
@@ -366,7 +366,7 @@ class Drawer extends React.Component {
         }
 
         if (positionY) {
-            BODY.classList.add('drawer-sticky-mode');
+            BODY.classList.add('drawer-sticky');
         }
     }
 
@@ -417,10 +417,10 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
-    positionX: PropTypes.oneOf(['left', 'right']),
-    positionY: PropTypes.oneOf(['bottom', 'top']),
+    positionX: PropTypes.oneOf([ 'left', 'right' ]),
+    positionY: PropTypes.oneOf([ 'bottom', 'top' ]),
     positionYOffset: PropTypes.number,
-    shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
+    shadowSize: PropTypes.oneOf([ 'large', 'small', 'xsmall' ]),
     style: PropTypes.object,
     wing: PropTypes.object,
 };
