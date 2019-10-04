@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption.js';
 import Button from '../elements/button.js';
-import Drawer from './drawer.js';
+import Drawer from './drawer.js'; // eslint-disable-line import/no-cycle
 import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 
