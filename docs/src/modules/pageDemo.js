@@ -1,5 +1,3 @@
-'use strict';
-
 import {
     Dropdown,
     Header,
@@ -7,9 +5,11 @@ import {
     Page,
     TitleBar,
 } from 'react-cm-ui';
+import _ from 'lodash';
 import { backgroundColorSuccess } from 'shared/styles/colors.scss';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const nop = () => {};
@@ -18,7 +18,7 @@ class PageDemo extends React.PureComponent {
     constructor() {
         super();
 
-        this._defaultFilters = {
+        this.defaultFilters = {
             multiSelectValue: [],
             nestedTogglesBarValue: [],
             nestedTogglesFooValue: [],
@@ -30,33 +30,122 @@ class PageDemo extends React.PureComponent {
         };
 
         this.state = {
-            appliedFilters: _.cloneDeep(this._defaultFilters),
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            appliedFilters: _.cloneDeep(this.defaultFilters),
+            dirtyFilters: _.cloneDeep(this.defaultFilters),
             isFiltersDrawerOpen: false,
             isFetching: true,
             viewType: 'table',
         };
 
-        this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
-        this._onBackClick = this._onBackClick.bind(this);
-        this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
-        this._onFiltersToggle = this._onFiltersToggle.bind(this);
-        this._onKeywordsMultiSelectChange = this._onKeywordsMultiSelectChange.bind(this);
-        this._onNestedTogglesBarChange = this._onNestedTogglesBarChange.bind(this);
-        this._onNestedTogglesFooChange = this._onNestedTogglesFooChange.bind(this);
-        this._onSearchChange = this._onSearchChange.bind(this);
-        this._onSearchKeyDown = this._onSearchKeyDown.bind(this);
-        this._onSortDropdownChange = this._onSortDropdownChange.bind(this);
-        this._onViewGridClick = this._onViewGridClick.bind(this);
-        this._onViewTableClick = this._onViewTableClick.bind(this);
+        this.onApplyFiltersDrawerClick = this.onApplyFiltersDrawerClick.bind(this);
+        this.onBackClick = this.onBackClick.bind(this);
+        this.onClearFiltersDrawerClick = this.onClearFiltersDrawerClick.bind(this);
+        this.onFiltersToggle = this.onFiltersToggle.bind(this);
+        this.onKeywordsMultiSelectChange = this.onKeywordsMultiSelectChange.bind(this);
+        this.onNestedTogglesBarChange = this.onNestedTogglesBarChange.bind(this);
+        this.onNestedTogglesFooChange = this.onNestedTogglesFooChange.bind(this);
+        this.onSearchClear = this.onSearchClear.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
+        this.onSearchKeyDown = this.onSearchKeyDown.bind(this);
+        this.onSortDropdownChange = this.onSortDropdownChange.bind(this);
+        this.onViewGridClick = this.onViewGridClick.bind(this);
+        this.onViewTableClick = this.onViewTableClick.bind(this);
     }
 
     componentDidMount() {
         setTimeout(() => {
-            this.setState(prevState => ({
+            this.setState((prevState) => ({
                 isFetching: !prevState.isFetching,
             }));
         }, 3500);
+    }
+
+    onApplyFiltersDrawerClick() {
+        this.setState((prevState) => ({
+            appliedFilters: { ...prevState.dirtyFilters },
+            isFiltersDrawerOpen: false,
+        }));
+    }
+
+    onBackClick() { // eslint-disable-line class-methods-use-this
+        console.log('Mobile Back button clicked!'); // eslint-disable-line no-console
+    }
+
+    onClearFiltersDrawerClick() {
+        this.setState({
+            dirtyFilters: { ...this.defaultFilters },
+        });
+    }
+
+    onFiltersToggle() {
+        this.setState((prevState) => ({
+            isFiltersDrawerOpen: !prevState.isFiltersDrawerOpen,
+        }));
+    }
+
+    onKeywordsMultiSelectChange(selectedOptions) {
+        this.setState((prevState) => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                multiSelectValue: selectedOptions,
+            },
+        }));
+    }
+
+    onNestedTogglesBarChange(selectedOptions) {
+        this.setState((prevState) => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesBarValue: selectedOptions,
+            },
+        }));
+    }
+
+    onNestedTogglesFooChange(selectedOptions) {
+        this.setState((prevState) => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                nestedTogglesFooValue: selectedOptions,
+            },
+        }));
+    }
+
+    onSearchClear() {
+        console.log('Clearing the search...'); // eslint-disable-line no-console
+        this.setState({
+            searchValue: '',
+        });
+    }
+
+    onSearchChange(value) {
+        this.setState({
+            searchValue: value,
+        });
+    }
+
+    onSearchKeyDown(event) { // eslint-disable-line class-methods-use-this,no-unused-vars
+        // console.log('Search onKeyDown.  event:', event); // eslint-disable-line no-console
+    }
+
+    onSortDropdownChange(selectedOption) {
+        this.setState((prevState) => ({
+            dirtyFilters: {
+                ...prevState.dirtyFilters,
+                sort: selectedOption,
+            },
+        }));
+    }
+
+    onViewGridClick() {
+        this.setState({
+            viewType: 'grid',
+        });
+    }
+
+    onViewTableClick() {
+        this.setState({
+            viewType: 'table',
+        });
     }
 
     render() {
@@ -70,15 +159,16 @@ class PageDemo extends React.PureComponent {
             viewType,
         } = this.state;
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
-        const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
+        const isFiltering = !_.isEqual(this.defaultFilters, appliedFilters);
         const actionBarIconFilter = {
             selected: isFiltersDrawerOpen,
             isFiltering,
-            onClick: this._onFiltersToggle,
+            onClick: this.onFiltersToggle,
         };
         const actionBarSearch = {
-            onChange: this._onSearchChange,
-            onKeyDown: this._onSearchKeyDown,
+            onClearClick: this.onSearchClear,
+            onChange: this.onSearchChange,
+            onKeyDown: this.onSearchKeyDown,
             value: searchValue,
         };
 
@@ -90,12 +180,12 @@ class PageDemo extends React.PureComponent {
                     }, {
                         iconGrid: {
                             selected: viewType === 'grid',
-                            onClick: this._onViewGridClick,
+                            onClick: this.onViewGridClick,
                         },
                     }, {
                         iconTable: {
                             selected: viewType === 'table',
-                            onClick: this._onViewTableClick,
+                            onClick: this.onViewTableClick,
                         },
                     },
                 ],
@@ -119,7 +209,7 @@ class PageDemo extends React.PureComponent {
                     list: [
                         {
                             iconBack: {
-                                onClick: this._onBackClick,
+                                onClick: this.onBackClick,
                             },
                             flexGrow: 1,
                         }, {
@@ -138,18 +228,31 @@ class PageDemo extends React.PureComponent {
                                         options: [
                                             {
                                                 iconType: 'archive',
+                                                id: 'sub-option-foo',
                                                 label: 'Foo Template',
-                                                onClick: nop,
+                                                onClick: () => { console.log('Foo Template was clicked!'); /* eslint-disable-line no-console */ },
                                             }, {
                                                 iconType: 'broadcast',
+                                                id: 'sub-option-bar',
                                                 label: 'Bar Template',
-                                                onClick: nop,
+                                                onClick: () => { console.log('Bar Template was clicked!'); /* eslint-disable-line no-console */ },
+                                            }, {
+                                                disabled: true,
+                                                iconType: 'save',
+                                                id: 'sub-option-baz',
+                                                label: 'Baz Template',
+                                                onClick: () => { console.log('Bar Template was clicked!'); /* eslint-disable-line no-console */ },
                                             },
                                         ],
                                     }, {
                                         iconType: 'envelope',
                                         label: 'Email',
-                                        onClick: nop,
+                                        onClick: () => { console.log('Email was clicked!'); /* eslint-disable-line no-console */ },
+                                    }, {
+                                        disabled: true,
+                                        iconType: 'comment-lines',
+                                        label: 'SMS',
+                                        onClick: () => { console.log('SMS was clicked!'); /* eslint-disable-line no-console */ },
                                     },
                                 ],
                             },
@@ -180,9 +283,9 @@ class PageDemo extends React.PureComponent {
                             isDirty={isDirty}
                             isFiltering={isFiltering}
                             isOpen={isFiltersDrawerOpen}
-                            onApply={this._onApplyFiltersDrawerClick}
-                            onClear={this._onClearFiltersDrawerClick}
-                            onClose={this._onFiltersToggle}
+                            onApply={this.onApplyFiltersDrawerClick}
+                            onClear={this.onClearFiltersDrawerClick}
+                            onClose={this.onFiltersToggle}
                             rows={[
                                 {
                                     header: 'Keywords',
@@ -190,7 +293,7 @@ class PageDemo extends React.PureComponent {
                                         {
                                             multiSelect: {
                                                 placeholder: 'Add Keyword',
-                                                onChange: this._onKeywordsMultiSelectChange,
+                                                onChange: this.onKeywordsMultiSelectChange,
                                                 options: [
                                                     {
                                                         label: 'Foo',
@@ -215,7 +318,7 @@ class PageDemo extends React.PureComponent {
                                     items: [
                                         {
                                             dropdown: {
-                                                onChange: this._onSortDropdownChange,
+                                                onChange: this.onSortDropdownChange,
                                                 options: [
                                                     {
                                                         label: 'Name (Ascending)',
@@ -241,7 +344,7 @@ class PageDemo extends React.PureComponent {
                                         {
                                             nestedToggles: {
                                                 label: 'Foo Filters',
-                                                onChange: this._onNestedTogglesFooChange,
+                                                onChange: this.onNestedTogglesFooChange,
                                                 options: [
                                                     {
                                                         label: 'Foo',
@@ -262,7 +365,7 @@ class PageDemo extends React.PureComponent {
                                         }, {
                                             nestedToggles: {
                                                 label: 'Bar Filters',
-                                                onChange: this._onNestedTogglesBarChange,
+                                                onChange: this.onNestedTogglesBarChange,
                                                 options: [
                                                     {
                                                         label: 'Bar',
@@ -285,7 +388,7 @@ class PageDemo extends React.PureComponent {
 
                         <Page.FiltersRail
                             isOpen={isFiltersDrawerOpen}
-                            onClose={this._onFiltersToggle}
+                            onClose={this.onFiltersToggle}
                         >
                             <Header weight="bold">Sort By</Header>
 
@@ -346,9 +449,7 @@ class PageDemo extends React.PureComponent {
                                 color={11}
                                 columns={[
                                     {
-                                        accessor: () => {
-                                            return 'Super Cool Info Bar - Color: 11';
-                                        },
+                                        accessor: () => 'Super Cool Info Bar - Color: 11',
                                         fontSize: 'large',
                                         fontWeight: 'semibold',
                                         header: null,
@@ -357,11 +458,7 @@ class PageDemo extends React.PureComponent {
                                         },
                                         width: '100%',
                                     }, {
-                                        accessor: d => {
-                                            return (
-                                                <div>Chart</div>
-                                            );
-                                        },
+                                        accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
                                         fontWeight: 'bold',
                                         header: null,
                                     }, {
@@ -400,9 +497,7 @@ class PageDemo extends React.PureComponent {
                                             accessor: 'campus',
                                             header: 'Campus',
                                         }, {
-                                            accessor: d => {
-                                                return moment.unix(d.createdOn).utc().format('L');
-                                            },
+                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
                                             header: 'Created On',
                                         }, {
                                             accessor: () => <Icon compact size="xxsmall" type="chevron-right" />,
@@ -428,19 +523,15 @@ class PageDemo extends React.PureComponent {
                                             name: 'Class 101 Invite',
                                         },
                                     ]}
-                                    rowProps={() => {
-                                        return {
-                                            onClick: this._onTableRowClick,
-                                        };
-                                    }}
+                                    rowProps={() => ({
+                                        onClick: this.onTableRowClick,
+                                    })}
                                 />
                             ) : (
                                 <Page.Grid
-                                    cardProps={() => {
-                                        return {
-                                            onClick: this._onCardClick,
-                                        };
-                                    }}
+                                    cardProps={() => ({
+                                        onClick: this.onCardClick,
+                                    })}
                                     columns={[
                                         {
                                             accessor: 'name',
@@ -453,9 +544,7 @@ class PageDemo extends React.PureComponent {
                                             fontWeight: 'bold',
                                             header: 'Campus',
                                         }, {
-                                            accessor: d => {
-                                                return moment.unix(d.createdOn).utc().format('L');
-                                            },
+                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
                                             fontWeight: 'bold',
                                             header: 'Created On',
                                         },
@@ -486,92 +575,13 @@ class PageDemo extends React.PureComponent {
             </React.Fragment>
         );
     }
-
-    _onApplyFiltersDrawerClick() {
-        this.setState(prevState => ({
-            appliedFilters: { ...prevState.dirtyFilters },
-            isFiltersDrawerOpen: false,
-            isFiltering: true,
-        }));
-    }
-
-    _onBackClick() {
-
-    }
-
-    _onClearFiltersDrawerClick() {
-        this.setState({
-            dirtyFilters: { ...this._defaultFilters },
-            isFiltering: false,
-        });
-    }
-
-    _onFiltersToggle() {
-        this.setState(prevState => ({
-            isFiltersDrawerOpen: !prevState.isFiltersDrawerOpen,
-        }));
-    }
-
-    _onKeywordsMultiSelectChange(selectedOptions) {
-        this.setState(prevState => ({
-            dirtyFilters: {
-                ...prevState.dirtyFilters,
-                multiSelectValue: selectedOptions,
-            },
-        }));
-    }
-
-    _onNestedTogglesBarChange(selectedOptions) {
-        this.setState(prevState => ({
-            dirtyFilters: {
-                ...prevState.dirtyFilters,
-                nestedTogglesBarValue: selectedOptions,
-            },
-        }));
-    }
-
-    _onNestedTogglesFooChange(selectedOptions) {
-        this.setState(prevState => ({
-            dirtyFilters: {
-                ...prevState.dirtyFilters,
-                nestedTogglesFooValue: selectedOptions,
-            },
-        }));
-    }
-
-    _onSearchChange(value) {
-        this.setState({
-            searchValue: value,
-        });
-    }
-
-    _onSearchKeyDown(event) {
-
-    }
-
-    _onSortDropdownChange(selectedOption) {
-        this.setState(prevState => ({
-            dirtyFilters: {
-                ...prevState.dirtyFilters,
-                sort: selectedOption,
-            },
-        }));
-    }
-
-    _onViewGridClick() {
-        this.setState({
-            viewType: 'grid',
-        });
-    }
-
-    _onViewTableClick() {
-        this.setState({
-            viewType: 'table',
-        });
-    }
 }
 
-const mapStateToProps = state => {
+PageDemo.propTypes = {
+    isMobile: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => {
     const { breakpoint: { isMobile } } = state;
 
     return {

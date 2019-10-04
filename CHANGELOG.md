@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.3.1
+
+#### Bug Fix
+- [PR #62](https://github.com/saddlebackdev/react-cm-ui/pull/62): Bug Fixes in **Page.ActionBar** and various sub-components:
+    - Add a missing piece to wire up new **ActionBar** search `onClearClick` event handler
+    - Fix a couple of issues with the **ActionBar** mobile drawer options and sub-options, having to do with clickability and disabled state.
+    - Fix up some ESLINT issues highlighted using Airbnb's ESLINT config rules in the Demo Page and a few components.  Demo Page now organized
+    as Airbnb Style guide recommends for React components.
+
 ## 6.3.0
 
 #### Feature
@@ -12,8 +21,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - We're now using Airbnb's eslint config rules!
 
 #### Bug Fix
-- Fixed our exported dateUtils class to not throw errors when using certain utility functions it has to offer.
-- Added dateUtils functions not in react-cm-ui's class from HC's dateUtils file to sync up. HC is now supposed to be using react-cm-ui's dateUtils functions instead of the now deprecated HC dateUtils functions.
+- Fixed our exported `dateUtils` class to not throw errors when using certain utility functions it has to offer.
+- Added `dateUtils` functions not in react-cm-ui's class from HC's `dateUtils` file to sync up. HC is now supposed to be using react-cm-ui's `dateUtils` functions instead of the now deprecated HC `dateUtils` functions.
 - **Button** only has one height now. No more `44px` for desktop.
 
 #### Doc

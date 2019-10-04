@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActionBarActionsButton from './actionBarActionsButton.js';
+import ActionBarActionsButton from './actionBarActionsButton.js'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch.js';
 import Button from '../elements/button.js';
 import Grid from '../collections/grid.js';
@@ -81,22 +81,22 @@ class ActionBar extends React.PureComponent {
                                 {_.map(columns, (column) => {
                                     const {
                                         button,
-                                        columns,
+                                        columns, // eslint-disable-line no-shadow
                                         jsx,
                                         search,
                                     } = column;
                                     let { list } = column;
                                     const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
-                                    const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`;
+                                    const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`; // eslint-disable-line no-plusplus
 
                                     if (columns) {
-                                        console.warn('ActionsBar\'s columns.columns is deprecated. Please use columns.list instead.');
+                                        console.warn('ActionsBar\'s columns.columns is deprecated. Please use columns.list instead.'); // eslint-disable-line no-console
 
                                         list = [...columns];
                                     }
 
                                     if (!button && !jsx && !list && !search) {
-                                        console.warn(
+                                        console.warn( // eslint-disable-line no-console
                                             `${'<Page.ActionsBar>\'s column object must have one of the ' +
                                             'following properties: button, jsx, or list.' +
                                             'Please check this column object '}${JSON.stringify(column)}`,
@@ -137,21 +137,25 @@ class ActionBar extends React.PureComponent {
                                                 {_.map(list, (item) => {
                                                     const {
                                                         actionsButton,
-                                                        jsx,
+                                                        jsx, // eslint-disable-line no-shadow
                                                         iconBack,
                                                         iconFilter,
                                                         iconGrid,
                                                         iconSearch,
                                                         iconTable,
                                                     } = item;
-                                                    const divide = _.isUndefined(item.divide) || item.divide;
-                                                    const className = ClassNames('action_bar--list_item', {
+
+                                                    const divide = _.isUndefined(item.divide) ||
+                                                        item.divide;
+
+                                                    const listItemClassName = ClassNames('action_bar--list_item', {
                                                         'action_bar--list_item-jsx': jsx,
                                                         'action_bar--list_item-icon_filter': iconFilter,
                                                         'action_bar--list_item-icon_grid': iconGrid,
                                                         'action_bar--list_item-icon_table': iconTable,
                                                     });
-                                                    const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`;
+
+                                                    const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`; // eslint-disable-line no-plusplus
 
                                                     if (!actionsButton &&
                                                             !jsx &&
@@ -161,7 +165,7 @@ class ActionBar extends React.PureComponent {
                                                             !iconSearch &&
                                                             !iconTable
                                                     ) {
-                                                        console.warn(
+                                                        console.warn( // eslint-disable-line no-console, max-len
                                                             `${'<Page.ActionsBar>\'s column.list object must have one of the ' +
                                                                 'following properties: actionsButton, iconBack, iconFilter, iconGrid, or iconTable.' +
                                                                 'Please check this column.list object '}${JSON.stringify(item)}`,
@@ -171,6 +175,8 @@ class ActionBar extends React.PureComponent {
                                                     }
 
                                                     if (iconSearch) {
+                                                        /* eslint-disable max-len */
+                                                        /* eslint-disable react/jsx-props-no-spreading */
                                                         searchDataForMobile = (
                                                             <ActionBarSearch
                                                                 {...iconSearch}
@@ -179,11 +185,13 @@ class ActionBar extends React.PureComponent {
                                                                 type="mobileSearch"
                                                             />
                                                         );
+                                                        /* eslint-enable react/jsx-props-no-spreading */
+                                                        /* eslint-enable max-len */
                                                     }
 
                                                     return (
                                                         <List.Item
-                                                            className={className}
+                                                            className={listItemClassName}
                                                             divide={divide}
                                                             key={itemKey}
                                                             style={({
@@ -195,6 +203,7 @@ class ActionBar extends React.PureComponent {
                                                                 ...list.style,
                                                             })}
                                                         >
+                                                            {/* eslint-disable max-len */}
                                                             {actionsButton && (
                                                             <ActionBarActionsButton
                                                                 id={actionsButton.id}
@@ -204,6 +213,7 @@ class ActionBar extends React.PureComponent {
                                                                 style={actionsButton.style}
                                                             />
                                                             )}
+                                                            {/* eslint-enable max-len */}
 
                                                             {iconBack && (
                                                             <Icon
@@ -217,6 +227,7 @@ class ActionBar extends React.PureComponent {
                                                             />
                                                             )}
 
+                                                            {/* eslint-disable max-len */}
                                                             {iconFilter && (
                                                             <Icon
                                                                 color={iconFilter.selected || iconFilter.isFiltering ?
@@ -228,6 +239,7 @@ class ActionBar extends React.PureComponent {
                                                                 type="filter"
                                                             />
                                                             )}
+                                                            {/* eslint-enable max-len */}
 
                                                             {iconGrid && (
                                                             <Icon
@@ -241,6 +253,7 @@ class ActionBar extends React.PureComponent {
                                                             />
                                                             )}
 
+                                                            {/* eslint-disable max-len */}
                                                             {iconSearch && (
                                                             <Icon
                                                                 className="action_bar--search_icon"
@@ -253,6 +266,7 @@ class ActionBar extends React.PureComponent {
                                                                 type="search"
                                                             />
                                                             )}
+                                                            {/* eslint-enable max-len */}
 
                                                             {iconTable && (
                                                             <Icon
@@ -277,6 +291,7 @@ class ActionBar extends React.PureComponent {
                                             <ActionBarSearch
                                                 id={search.id}
                                                 onChange={search.onChange}
+                                                onClearClick={search.onClearClick}
                                                 onKeyDown={search.onKeyDown}
                                                 value={search.value}
                                             />
