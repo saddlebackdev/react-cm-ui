@@ -20,9 +20,6 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         width: 100%;
         z-index: $zindex + 2;
     }
-    &.drawer-sticky {
-        position: static !important; // sass-lint:disable-line no-important
-    }
 }
 .ui.drawer:not(.deprecated) {
     backface-visibility: hidden;

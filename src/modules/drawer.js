@@ -95,9 +95,6 @@ class Drawer extends React.Component {
                 BODY.classList.remove('drawer-animate-out');
             }
 
-            if (BODY.classList.contains('drawer-sticky')) {
-                BODY.classList.remove('drawer-sticky');
-            }
         }
     }
 
@@ -232,12 +229,12 @@ class Drawer extends React.Component {
 
         if (drawerLength <= 1) {
             const scrollPosition = parseInt(BODY.style.top, 10);
-
-            BODY.classList.remove('drawer-open', 'drawer-dimmers', 'drawer-sticky');
             window.scroll(0, Math.abs(scrollPosition));
+            BODY.classList.remove('drawer-open', 'drawer-dimmers');
             BODY.style.top = null;
         }
 
+        BODY.style.position = null;
         BODY.classList.remove('drawer-animate-out');
 
         this._drawerContainerRef.style.transform = this._setStartOfTransform();
@@ -260,7 +257,7 @@ class Drawer extends React.Component {
         const nodePortal = ReactDOM.findDOMNode(this);
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
 
-        const { dimmer, maxWidth, maxHeight, onClickOutside, positionYOffset, shadowSize } = this.props;
+        const { dimmer, maxWidth, maxHeight, onClickOutside, positionYOffset, positionY, shadowSize } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainer);
         const boxShadowPositionX = this._isPositionX('right') ? '-' : '';
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -305,7 +302,6 @@ class Drawer extends React.Component {
                 }
 
                 DOMUtils.addClassName(BODY, 'drawer-open-layered');
-
                 nodePortal.style.zIndex = newZIndex;
                 this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this._drawerContainer.style.zIndex = newZIndex;
@@ -322,9 +318,12 @@ class Drawer extends React.Component {
 
                         break;
                 }
-
                 BODY.style.top = `-${scrollPosition}px`;
+
                 DOMUtils.addClassName(BODY, 'drawer-open');
+                if (positionY && maxHeight) {
+                    BODY.style.position = 'inherit';
+                }
                 this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
@@ -351,7 +350,7 @@ class Drawer extends React.Component {
     }
 
     _onOpenAnimationComplete() {
-        const { dimmer, positionY } = this.props;
+        const { dimmer } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainerRef);
         this._drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -363,10 +362,6 @@ class Drawer extends React.Component {
 
         if (dimmer) {
             BODY.classList.add('drawer-dimmers');
-        }
-
-        if (positionY) {
-            BODY.classList.add('drawer-sticky');
         }
     }
 
@@ -417,10 +412,10 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
-    positionX: PropTypes.oneOf([ 'left', 'right' ]),
-    positionY: PropTypes.oneOf([ 'bottom', 'top' ]),
+    positionX: PropTypes.oneOf(['left', 'right']),
+    positionY: PropTypes.oneOf(['bottom', 'top']),
     positionYOffset: PropTypes.number,
-    shadowSize: PropTypes.oneOf([ 'large', 'small', 'xsmall' ]),
+    shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
     style: PropTypes.object,
     wing: PropTypes.object,
 };

@@ -43,6 +43,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 browserHistory.push(`${drawerLocation}/details`);
 
                 break;
+            case 10:
+                browserHistory.push(`${drawerLocation}/sticky`);
+
+                break;
             case 0:
             default:
                 browserHistory.push(`${drawerLocation}/`);
