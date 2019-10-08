@@ -304,6 +304,13 @@ const routes = (
                     }}
                     path="details"
                 />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerSticky.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="sticky"
+                />
             </Route>
             <Route
                 getComponent={(location, callback) => {

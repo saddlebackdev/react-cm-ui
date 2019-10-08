@@ -43,6 +43,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 browserHistory.push(`${drawerLocation}/details`);
 
                 break;
+            case 10:
+                browserHistory.push(`${drawerLocation}/sticky`);
+
+                break;
             case 0:
             default:
                 browserHistory.push(`${drawerLocation}/`);
@@ -94,6 +98,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 itemSelected = 9;
 
                 break;
+            case 'sticky':
+                itemSelected = 10;
+
+                break;
             default:
                 itemSelected = 0;
         }
@@ -114,8 +122,61 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 <SubNavigation.Item label="Title Bar" />
                 <SubNavigation.Item label="Wing" />
                 <SubNavigation.Item label="Details" />
+                <SubNavigation.Item label="Sticky" />
             </SubNavigation>
         );
+    }
+
+    _onSubNavClick(index) {
+        const drawerLocation = '/modules/drawer';
+
+        switch (index) {
+            case 0:
+                browserHistory.push(`${drawerLocation}/`);
+
+                break;
+
+            case 1:
+                browserHistory.push(`${drawerLocation}/action-bar`);
+
+                break;
+            case 2:
+                browserHistory.push(`${drawerLocation}/content`);
+
+                break;
+            case 3:
+                browserHistory.push(`${drawerLocation}/filters-drawer`);
+
+                break;
+            case 4:
+                browserHistory.push(`${drawerLocation}/grid`);
+
+                break;
+            case 5:
+                browserHistory.push(`${drawerLocation}/navigation`);
+
+                break;
+            case 6:
+                browserHistory.push(`${drawerLocation}/table`);
+
+                break;
+            case 7:
+                browserHistory.push(`${drawerLocation}/title-bar`);
+
+                break;
+            case 8:
+                browserHistory.push(`${drawerLocation}/wing`);
+
+                break;
+            case 9:
+                browserHistory.push(`${drawerLocation}/details`);
+
+                break;
+            case 10:
+                browserHistory.push(`${drawerLocation}/sticky`);
+
+                break;
+        }
     }
 }
 
