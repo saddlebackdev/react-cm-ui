@@ -1,20 +1,20 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
-import DrawerActionBar from './drawerActionBar.js';
-import DrawerContent from './drawerContent.js';
-import DrawerDetails from './drawerDetails.js';
-import DrawerFiltersDrawer from './drawerFiltersDrawer.js';
-import DrawerGrid from './drawerGrid.js';
-import DrawerNavigation from './drawerNavigation.js';
-import DrawerTable from './drawerTable.js';
-import DrawerTitleBar from './drawerTitleBar.js';
-import DrawerWing from './drawerWing.js';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import DOMUtils from '../utils/domUtils.js';
+import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
+import DrawerContent from './drawerContent.js';
+import DrawerDetails from './drawerDetails.js';
+import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
+import DrawerGrid from './drawerGrid.js';
+import DrawerNavigation from './drawerNavigation.js';
+import DrawerTable from './drawerTable.js';
+import DrawerTitleBar from './drawerTitleBar.js';
+import DrawerWing from './drawerWing.js';
 
 const BODY = document.body;
 const TRANSLATE_X_END = 'translateX(0)';
@@ -321,9 +321,11 @@ class Drawer extends React.Component {
                 BODY.style.top = `-${scrollPosition}px`;
 
                 DOMUtils.addClassName(BODY, 'drawer-open');
+
                 if (positionY && maxHeight) {
                     BODY.style.position = 'inherit';
                 }
+
                 this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;

@@ -126,58 +126,6 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
             </SubNavigation>
         );
     }
-
-    _onSubNavClick(index) {
-        const drawerLocation = '/modules/drawer';
-
-        switch (index) {
-            case 0:
-                browserHistory.push(`${drawerLocation}/`);
-
-                break;
-
-            case 1:
-                browserHistory.push(`${drawerLocation}/action-bar`);
-
-                break;
-            case 2:
-                browserHistory.push(`${drawerLocation}/content`);
-
-                break;
-            case 3:
-                browserHistory.push(`${drawerLocation}/filters-drawer`);
-
-                break;
-            case 4:
-                browserHistory.push(`${drawerLocation}/grid`);
-
-                break;
-            case 5:
-                browserHistory.push(`${drawerLocation}/navigation`);
-
-                break;
-            case 6:
-                browserHistory.push(`${drawerLocation}/table`);
-
-                break;
-            case 7:
-                browserHistory.push(`${drawerLocation}/title-bar`);
-
-                break;
-            case 8:
-                browserHistory.push(`${drawerLocation}/wing`);
-
-                break;
-            case 9:
-                browserHistory.push(`${drawerLocation}/details`);
-
-                break;
-            case 10:
-                browserHistory.push(`${drawerLocation}/sticky`);
-
-                break;
-        }
-    }
 }
 
 export default ModulesDrawerSubNavigation;
