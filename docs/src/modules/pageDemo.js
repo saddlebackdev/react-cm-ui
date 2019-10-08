@@ -250,7 +250,7 @@ class PageDemo extends React.PureComponent {
                                                 promptColor: 'success',
                                                 promptMessage: 'Create a new Quux Template?  For reals?',
                                                 requiresPrompt: true,
-                                            }
+                                            },
                                         ],
                                     }, {
                                         iconType: 'envelope',
