@@ -248,7 +248,7 @@ class PageDemo extends React.PureComponent {
                                                 label: 'Quux Template',
                                                 onClick: () => { console.log('Quux Template was clicked!'); /* eslint-disable-line no-console */ },
                                                 promptColor: 'success',
-                                                promptMessage: 'Create a new Quuz Template?  For reals?',
+                                                promptMessage: 'Create a new Quux Template?  For reals?',
                                                 requiresPrompt: true,
                                             }
                                         ],
