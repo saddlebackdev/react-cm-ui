@@ -80,7 +80,8 @@ class Prompt extends Component {
         const { children } = this.props;
         const { show } = this.state;
 
-        const promptActionClasses = ClassNames('prompt-action', {
+        const childClasses = (children && children.props.className) || null;
+        const promptActionClasses = ClassNames('prompt-action', childClasses, {
             'prompt-action-disable': show,
         });
 
