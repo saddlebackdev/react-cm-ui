@@ -447,6 +447,7 @@ class PageTableContainer extends React.Component {
 }
 
 PageTableContainer.defaultProps = {
+    bleed: true,
     handle: true,
     minWidth: 800,
     stickyColumns: 0,
