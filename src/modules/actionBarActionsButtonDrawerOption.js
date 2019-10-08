@@ -3,77 +3,10 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ActionBarActionsButtonDrawerSubOption, {
+    singleOptionPropTypeShape,
+} from './actionBarActionsButtonDrawerSubOption.js';
 import Icon from '../elements/icon.js';
-import Utils from '../utils/utils.js';
-
-const nop = () => {};
-
-function ActionBarActionsButtonDrawerSubOption({
-    isSelected,
-    subOption,
-    subOptionClassNameNum,
-}) {
-    const classNameNumber = subOptionClassNameNum;
-    const subOptionClasses = ClassNames(
-        'actions_button_drawer--sub_option',
-        `actions_button_drawer--sub_option-${classNameNumber}`,
-        `${isSelected ? `actions_button_drawer--sub_option-${classNameNumber}-show` : ''}`,
-        `${subOption.disabled ? `actions_button_drawer--sub_option-${classNameNumber}-disabled` : ''}`,
-    );
-
-    const subOptionOnClick = _.isFunction(subOption.onClick) && !subOption.disabled ?
-        subOption.onClick :
-        nop;
-
-    /* eslint-disable jsx-a11y/interactive-supports-focus,jsx-a11y/click-events-have-key-events */
-    return (
-        <div
-            className={subOptionClasses}
-            onClick={subOptionOnClick}
-            role="menuitem"
-        >
-            <div
-                className="actions_button_drawer_sub_option--icon_container"
-                id={subOption.id}
-            >
-                <Icon
-                    color={subOption.disabled ? 'static' : subOption.iconColor}
-                    compact
-                    className="actions_button_drawer_sub_option--icon"
-                    size={subOption.iconSize || 16}
-                    type={subOption.iconType}
-                />
-            </div>
-
-            <div
-                className="actions_button_drawer_sub_option--label"
-            >
-                {subOption.label}
-            </div>
-        </div>
-    );
-    /* eslint-enable jsx-a11y/interactive-supports-focus,jsx-a11y/click-events-have-key-events */
-}
-
-const singleOptionPropTypeShape = {
-    disable: PropTypes.bool,
-    id: PropTypes.string,
-    iconBackgroundColor: PropTypes.string,
-    iconColor: PropTypes.string,
-    iconSize: PropTypes.oneOfType([
-        PropTypes.oneOf(Utils.sizeEnums()),
-        PropTypes.number,
-    ]),
-    iconType: PropTypes.string,
-    label: PropTypes.string,
-    onClick: PropTypes.func,
-};
-
-ActionBarActionsButtonDrawerSubOption.propTypes = {
-    isSelected: PropTypes.bool.isRequired,
-    subOption: PropTypes.shape(singleOptionPropTypeShape).isRequired,
-    subOptionClassNameNum: PropTypes.number.isRequired,
-};
 
 class ActionBarActionsButtonDrawerOption extends React.PureComponent {
     constructor() {
@@ -83,11 +16,23 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
     }
 
     onParentClick() {
-        const { isSelected, onClick, option } = this.props;
+        const {
+            isSelected,
+            onClick,
+            onRequestPrompt,
+            option,
+        } = this.props;
 
         if (_.isFunction(option.onClick)) {
             if (option.disabled) {
                 return false;
+            }
+
+            if (option.requiresPrompt) {
+                if (_.isFunction(onRequestPrompt)) {
+                    onRequestPrompt(option);
+                    return false;
+                }
             }
 
             option.onClick();
@@ -103,6 +48,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             hide,
             idNumber,
             isSelected,
+            onRequestPrompt,
             option,
         } = this.props;
 
@@ -175,6 +121,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                                 <ActionBarActionsButtonDrawerSubOption
                                     isSelected={isSelected}
                                     key={`actions_button_drawer_sub_option-${subOptionKeyNum++/* eslint-disable-line no-plusplus */}`}
+                                    onRequestPrompt={onRequestPrompt}
                                     subOption={subOption}
                                     subOptionClassNameNum={classNameNumber}
                                 />
@@ -198,6 +145,7 @@ ActionBarActionsButtonDrawerOption.propTypes = {
     idNumber: PropTypes.number,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+    onRequestPrompt: PropTypes.func,
     option: PropTypes.shape(rootOptionPropTypeShape).isRequired,
 };
 
@@ -205,6 +153,7 @@ ActionBarActionsButtonDrawerOption.defaultProps = {
     hide: false,
     idNumber: false,
     isSelected: false,
+    onRequestPrompt: undefined,
 };
 
 export default ActionBarActionsButtonDrawerOption;
