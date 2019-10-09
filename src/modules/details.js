@@ -1,171 +1,282 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from '../elements/header.js';
-import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Header from '../elements/header.js';
+import InfoBar from '../views/infoBar.js';
 
-class DetailsColumn extends React.PureComponent {
-    render() {
-        const { column, columnProps, moduleType } = this.props;
+const columnPropTypesShape = PropTypes.shape({
+    accessor: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string,
+    ]),
+    divide: PropTypes.bool,
+    flexBasis: PropTypes.string,
+    flexGrow: PropTypes.number,
+    flexShrink: PropTypes.number,
+    fontSize: PropTypes.oneOf(['large', 'medium', 'small']),
+    fontWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
+    header: PropTypes.string,
+    style: PropTypes.object,
+    width: PropTypes.string,
+});
+const columnPropsPropTypesShape = PropTypes.shape({
+    horizontalSpacing: PropTypes.number,
+});
 
-        if (!column.accessor && column.columns && _.isArray(column.columns)) {
-            const containerClasses = ClassNames(`${moduleType}--details-column`, {
-                'divide': column.divide,
-            });
+function ColumnContainer(props) {
+    const {
+        column: {
+            accessor,
+            divide,
+            flexBasis,
+            flexGrow,
+            flexShrink,
+            fontSize,
+            fontWeight,
+            header,
+            style,
+            width,
+        },
+        columnNumber,
+        columnProps,
+        data,
+        moduleType,
+    } = props;
+    const containerClasses = ClassNames(`${moduleType}--details-column${columnNumber ? '-inner' : ''}`, {
+        'divide-left': divide || divide === 'left',
+        'divide-right': divide === 'right',
+    });
+    const accessorClasses = ClassNames(`${moduleType}--details-column-accessor`, {
+        'font-size-large': fontSize === 'large',
+        'font-size-medium': fontSize === 'medium',
+        'font-size-small': !fontSize || fontSize === 'small',
+        'font-weight-bold': !fontWeight || fontWeight === 'bold',
+        'font-weight-normal': fontWeight === 'normal',
+        'font-weight-semibold': fontWeight === 'semibold',
+    });
+    let horizontalSpacing;
 
-            let innerContainerKeyNum = 1;
-
-            return (
-                <div
-                    className={containerClasses}
-                    style={Object.assign({}, {
-                        flexBasis: column.flexBasis || 'auto',
-                        flexGrow: column.flexGrow || 0,
-                        flexShrink: column.flexShrink || 0,
-                        paddingLeft: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        paddingRight: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        width: column.width,
-                    }, column.style)}
-                >
-                    {_.map(column.columns, (column, index) => {
-                        return this._renderColumn(column, innerContainerKeyNum++);
-                    })}
-                </div>
-            );
-        }
-
-        return this._renderColumn(column);
+    if (columnProps) {
+        horizontalSpacing = columnProps.horizontalSpacing;
     }
 
-    _renderColumn(column, innerContainerKeyNum) {
-        const { columnProps, data, moduleType } = this.props;
-        const containerClasses = ClassNames(`${moduleType}--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
-            'divide-left': column.divide || column.divide === 'left',
-            'divide-right': column.divide === 'right',
-        });
-        const accessorClasses = ClassNames(`${moduleType}--details-column-accessor`, {
-            'font-size-large': column.fontSize === 'large',
-            'font-size-medium': column.fontSize === 'medium',
-            'font-size-small': !column.fontSize || column.fontSize === 'small',
-            'font-weight-bold': !column.fontWeight || column.fontWeight === 'bold',
-            'font-weight-normal': column.fontWeight === 'normal',
-            'font-weight-semibold': column.fontWeight === 'semibold',
-        });
-        let accessor, flexBasisInlineStyle, flexGrowInlineStyle, flexShrinkInlineStyle, horizontalSpacingInlineStyle;
+    let newAccessor;
+    let flexBasisInlineStyleValue;
+    let flexGrowInlineStyleValue;
+    let flexShrinkInlineStyleValue;
+    let horizontalSpacingInlineStyleValue;
 
-        if (_.isString(column.accessor)) {
-            accessor = _.get(data, column.accessor);
-        } else if (_.isFunction(column.accessor)) {
-            accessor = column.accessor(data);
-        }
+    if (_.isString(accessor)) {
+        newAccessor = _.get(data, accessor);
+    } else if (_.isFunction(accessor)) {
+        newAccessor = accessor(data);
+    }
 
-        if (!!innerContainerKeyNum) {
-            flexBasisInlineStyle = column.flexBasis || 'auto';
-            flexGrowInlineStyle = column.flexGrow || 0;
-            flexShrinkInlineStyle = column.flexShrink || 0;
-            horizontalSpacingInlineStyle = columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
-        }
+    if (columnNumber) {
+        flexBasisInlineStyleValue = flexBasis || 'auto';
+        flexGrowInlineStyleValue = flexGrow || 0;
+        flexShrinkInlineStyleValue = flexShrink || 0;
+        horizontalSpacingInlineStyleValue = horizontalSpacing ?
+            `${horizontalSpacing}px` :
+            null;
+    }
+
+    return (
+        <div
+            className={containerClasses}
+            style={({
+                flexBasis: flexBasisInlineStyleValue,
+                flexGrow: flexGrowInlineStyleValue,
+                flexShrink: flexShrinkInlineStyleValue,
+                paddingLeft: horizontalSpacingInlineStyleValue,
+                paddingRight: horizontalSpacingInlineStyleValue,
+                width: `${width}`,
+                ...style,
+            })}
+        >
+            {header && (
+                <Header size="xsmall" style={{ margin: 0 }}>
+                    {header}
+                </Header>
+            )}
+
+            <div className={accessorClasses}>
+                {newAccessor}
+            </div>
+        </div>
+    );
+}
+
+ColumnContainer.propTypes = {
+    column: columnPropTypesShape.isRequired,
+    columnNumber: PropTypes.number,
+    columnProps: columnPropsPropTypesShape,
+    data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    moduleType: PropTypes.string,
+};
+
+ColumnContainer.defaultProps = {
+    columnNumber: undefined,
+    columnProps: undefined,
+    data: undefined,
+    moduleType: undefined,
+};
+
+function DetailsColumn(props) {
+    const {
+        column,
+        column: {
+            accessor,
+            columns,
+            divide: isDivided,
+            flexBasis,
+            flexGrow,
+            flexShrink,
+            style,
+            width,
+        },
+        columnProps,
+        data,
+        moduleType,
+    } = props;
+    let horizontalSpacing;
+
+    if (columnProps) {
+        horizontalSpacing = columnProps.horizontalSpacing;
+    }
+
+    if (!accessor && columns && _.isArray(columns)) {
+        const containerClasses = ClassNames(`${moduleType}--details-column`, {
+            divide: isDivided,
+        });
+        let innerColumnKeyNum = 1;
 
         return (
             <div
                 className={containerClasses}
-                key={`${moduleType}-details-column-key-${innerContainerKeyNum || 0}`}
-                style={Object.assign({}, {
-                    flexBasis: flexBasisInlineStyle,
-                    flexGrow: flexGrowInlineStyle,
-                    flexShrink: flexShrinkInlineStyle,
-                    paddingLeft: horizontalSpacingInlineStyle,
-                    paddingRight: horizontalSpacingInlineStyle,
-                    width: column.width,
-                }, column.style)}
+                style={({
+                    flexBasis: flexBasis || 'auto',
+                    flexGrow: flexGrow || 0,
+                    flexShrink: flexShrink || 0,
+                    paddingLeft: horizontalSpacing ? `${horizontalSpacing}px` : null,
+                    paddingRight: horizontalSpacing ? `${horizontalSpacing}px` : null,
+                    width: `${width}`,
+                    ...style,
+                })}
             >
-                {column.header &&
-                    <Header size="xsmall" style={{ margin: 0 }}>
-                        {column.header}
-                    </Header>
-                }
+                {_.map(columns, (innerColumn) => {
+                    innerColumnKeyNum += 1;
 
-                <div className={accessorClasses}>
-                    {accessor}
-                </div>
+                    return (
+                        <ColumnContainer
+                            column={innerColumn}
+                            columnNumber={innerColumnKeyNum}
+                            columnProps={columnProps}
+                            data={data}
+                            key={innerColumnKeyNum}
+                            moduleType={moduleType}
+                        />
+                    );
+                })}
             </div>
         );
     }
+
+    return (
+        <ColumnContainer
+            column={column}
+        />
+    );
 }
 
 DetailsColumn.propTypes = {
     column: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object,
+        PropTypes.arrayOf(columnPropTypesShape),
+        columnPropTypesShape,
     ]).isRequired,
-    columnProps: PropTypes.object,
-    data: PropTypes.object.isRequired,
+    columnProps: columnPropsPropTypesShape,
+    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     moduleType: PropTypes.string,
 };
 
-class Details extends React.PureComponent {
-    render() {
-        const {
-            bleed,
-            className,
-            color,
-            columnProps,
-            columns,
-            data,
-            style,
-            moduleType,
-        } = this.props;
-        const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
-            'page--details-bleed' : bleed && moduleType=='page',
-            'drawer--details-bleed' : bleed && moduleType=='drawer',
-        });
-        let detailsColumnKeyNum = 1;
-
-        return (
-            <div
-                className={containerClasses}
-                style={style}
-            >
-                <InfoBar color={color}>
-                    <div
-                        className={`${moduleType}--details-columns-container`}
-                        style={{
-                            marginLeft: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
-                            marginRight: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
-                        }}
-                    >
-                        {_.map(columns, (column, index) => {
-                            return (
-                                <DetailsColumn
-                                    column={column}
-                                    columnProps={columnProps}
-                                    data={data}
-                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum++}`}
-                                    moduleType={moduleType}
-                                />
-                            );
-                        })}
-                    </div>
-                </InfoBar>
-            </div>
-        );
-    }
-}
-
-Details.defaultProps = {
-    bleed: true,
+DetailsColumn.defaultProps = {
+    columnProps: undefined,
+    moduleType: undefined,
 };
+
+function Details(props) {
+    const {
+        bleed,
+        className,
+        color,
+        columnProps,
+        columns,
+        data,
+        style,
+        moduleType,
+    } = props;
+    const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
+        'page--details-bleed': bleed && moduleType === 'page',
+        'drawer--details-bleed': bleed && moduleType === 'drawer',
+    });
+    let detailsColumnKeyNum = 1;
+    let horizontalSpacing;
+
+    if (columnProps) {
+        horizontalSpacing = columnProps.horizontalSpacing;
+    }
+
+    return (
+        <div
+            className={containerClasses}
+            style={style}
+        >
+            <InfoBar color={color}>
+                <div
+                    className={`${moduleType}--details-columns-container`}
+                    style={{
+                        marginLeft: horizontalSpacing ? `-${horizontalSpacing}px` : null,
+                        marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
+                    }}
+                >
+                    {_.map(columns, (column) => {
+                        detailsColumnKeyNum += 1;
+
+                        return (
+                            <DetailsColumn
+                                column={column}
+                                columnProps={columnProps}
+                                data={data}
+                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
+                                moduleType={moduleType}
+                            />
+                        );
+                    })}
+                </div>
+            </InfoBar>
+        </div>
+    );
+}
 
 Details.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
-    columnProps: PropTypes.object,
-    columns: PropTypes.array.isRequired,
-    data: PropTypes.object.isRequired,
+    color: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+    columnProps: columnPropsPropTypesShape,
+    columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
+    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     moduleType: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+Details.defaultProps = {
+    bleed: true,
+    className: undefined,
+    color: undefined,
+    columnProps: undefined,
+    moduleType: undefined,
+    style: {},
 };
 
 export default Details;
