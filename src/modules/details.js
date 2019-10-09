@@ -163,21 +163,21 @@ class Details extends React.PureComponent {
                                 />
                             );
                         })}
-                        <Button
-                            className={`${moduleType}--expand-button`}
-                            color="light"
-                            icon
-                            onClick={this.onInfoBarExpandToggle}
-                            outlined
-                        >
-                            <Icon
-                                compact
-                                rotate={isInfoBarExpanded ? 180 : null}
-                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
-                                type="chevron-down"
-                            />
-                        </Button>
                     </div>
+                    <Button
+                        className={`${moduleType}--expand-button`}
+                        color="light"
+                        icon
+                        onClick={this.onInfoBarExpandToggle}
+                        outlined
+                    >
+                        <Icon
+                            compact
+                            rotate={isInfoBarExpanded ? 180 : null}
+                            title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                            type="chevron-down"
+                        />
+                    </Button>
                 </InfoBar>
             </div>
         );
