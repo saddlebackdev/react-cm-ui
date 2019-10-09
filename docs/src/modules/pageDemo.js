@@ -262,7 +262,7 @@ class PageDemo extends React.PureComponent {
             ];
         }
 
-        const bannerColumns = [
+        const statsColumns = [
             {
                 accessor: () => 'Super Cool Info Bar - Color: 11',
                 fontSize: 'large',
@@ -285,8 +285,7 @@ class PageDemo extends React.PureComponent {
             },
         ];
 
-        const bannerDetailedColumns = [
-            ...bannerColumns,
+        const statsExtraColumns = [
             {
                 columns: [
                     {
@@ -300,6 +299,9 @@ class PageDemo extends React.PureComponent {
                 divide: true,
             },
         ];
+
+        const bannerColumns = isMobile ? statsColumns : [...statsColumns, ...statsExtraColumns];
+        const bannerDetailedColumns = isMobile ? [...statsColumns, ...statsExtraColumns] : null;
 
         return (
             <React.Fragment>
