@@ -133,7 +133,7 @@ class Details extends React.PureComponent {
         } = this.props;
         const { isInfoBarExpanded } = this.state;
         const hasDetailedColumns = !!this.props.detailedColumns;
-        const columns = isInfoBarExpanded ? this.props.detailedColumns : this.props.columns;
+        const columns = isInfoBarExpanded && hasDetailedColumns ? this.props.detailedColumns : this.props.columns;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
             'page--details-bleed' : bleed && moduleType=='page',
             'drawer--details-bleed' : bleed && moduleType=='drawer',
