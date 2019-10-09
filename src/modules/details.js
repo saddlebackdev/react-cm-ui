@@ -282,6 +282,7 @@ class Details extends React.PureComponent {
                         <Button
                             color="light"
                             icon
+                            id={`${moduleType}--details_expand_toggle_button`}
                             onClick={this.onInfoBarExpandToggle}
                             outlined
                         >
