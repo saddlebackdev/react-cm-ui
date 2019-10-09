@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import Button from '../elements/button.js';
 import Header from '../elements/header.js';
+import Icon from '../elements/icon.js';
 import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -105,6 +107,20 @@ DetailsColumn.propTypes = {
 };
 
 class Details extends React.PureComponent {
+    constructor() {
+        super();
+        this.onInfoBarExpandToggle = this.onInfoBarExpandToggle.bind(this);
+        this.state = {
+            isInfoBarExpanded: false,
+        };
+    }
+
+    onInfoBarExpandToggle() {
+        this.setState(prev => ({
+            isInfoBarExpanded: !prev.isInfoBarExpanded,
+        }));
+    }
+
     render() {
         const {
             bleed,
@@ -116,6 +132,7 @@ class Details extends React.PureComponent {
             style,
             moduleType,
         } = this.props;
+        const { isInfoBarExpanded } = this.state;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
             'page--details-bleed' : bleed && moduleType=='page',
             'drawer--details-bleed' : bleed && moduleType=='drawer',
@@ -146,6 +163,20 @@ class Details extends React.PureComponent {
                                 />
                             );
                         })}
+                        <Button
+                            className={`${moduleType}--expand-button`}
+                            color="light"
+                            icon
+                            onClick={this.onInfoBarExpandToggle}
+                            outlined
+                        >
+                            <Icon
+                                compact
+                                rotate={isInfoBarExpanded ? 180 : null}
+                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                                type="chevron-down"
+                            />
+                        </Button>
                     </div>
                 </InfoBar>
             </div>
