@@ -211,15 +211,17 @@ DetailsColumn.defaultProps = {
 class Details extends React.PureComponent {
     constructor() {
         super();
-        this.onInfoBarExpandToggle = this.onInfoBarExpandToggle.bind(this);
+
         this.state = {
-            isInfoBarExpanded: false,
+            isExpanded: false,
         };
+
+        this.onExpandButtonToggle = this.onExpandButtonToggle.bind(this);
     }
 
-    onInfoBarExpandToggle() {
+    onExpandButtonToggle() {
         this.setState((prevState) => ({
-            isInfoBarExpanded: !prevState.isInfoBarExpanded,
+            isExpanded: !prevState.isExpanded,
         }));
     }
 
@@ -231,19 +233,32 @@ class Details extends React.PureComponent {
             columnProps,
             columns,
             data,
-            detailedColumns,
+            expandableColumns,
             style,
             moduleType,
+            showExpandableColumns,
         } = this.props;
-        const { isInfoBarExpanded } = this.state;
-        const hasDetailedColumns = !_.isEmpty(detailedColumns);
-        const newColumns = isInfoBarExpanded && hasDetailedColumns ? detailedColumns : columns;
+        const { isExpanded } = this.state;
+        const hasExpandableColumns = !_.isEmpty(expandableColumns);
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
             'page--details-bleed': bleed && moduleType === 'page',
             'drawer--details-bleed': bleed && moduleType === 'drawer',
         });
-
+        const shouldShowExpanded = showExpandableColumns || isExpanded;
+        const expandableColumnsContainerName = `${moduleType}--exapndable_columns_container`;
+        const expandedContainerClassName = shouldShowExpanded ?
+            `${expandableColumnsContainerName}-expanded` :
+            null;
+        const contractedContainerClassName = !shouldShowExpanded ?
+            `${expandableColumnsContainerName}-contracted` :
+            null;
+        const expandableContainerClasses = ClassNames(
+            expandableColumnsContainerName,
+            expandedContainerClassName,
+            contractedContainerClassName,
+        );
         let detailsColumnKeyNum = 1;
+        let detailsColumnKeyNumExpanded = 1;
         let horizontalSpacing;
 
         if (columnProps) {
@@ -263,33 +278,55 @@ class Details extends React.PureComponent {
                             marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
                         }}
                     >
-                        {_.map(newColumns, (column) => {
-                            detailsColumnKeyNum += 1;
+                        <React.Fragment>
+                            {_.map(columns, (column) => {
+                                detailsColumnKeyNum += 1;
 
-                            return (
-                                <DetailsColumn
-                                    column={column}
-                                    columnProps={columnProps}
-                                    data={data}
-                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
-                                    moduleType={moduleType}
-                                />
-                            );
-                        })}
+                                return (
+                                    <DetailsColumn
+                                        column={column}
+                                        columnProps={columnProps}
+                                        data={data}
+                                        key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
+                                        moduleType={moduleType}
+                                    />
+                                );
+                            })}
+
+                            {hasExpandableColumns && (
+                                <div
+                                    className={expandableContainerClasses}
+                                >
+                                    {_.map(expandableColumns, (column) => {
+                                        detailsColumnKeyNumExpanded += 1;
+
+                                        return (
+                                            <DetailsColumn
+                                                column={column}
+                                                columnProps={columnProps}
+                                                data={data}
+                                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNumExpanded}`}
+                                                moduleType={moduleType}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </React.Fragment>
                     </div>
 
-                    {hasDetailedColumns && (
+                    {hasExpandableColumns && !showExpandableColumns && (
                         <Button
                             color="light"
                             icon
-                            id={`${moduleType}--details_expand_toggle_button`}
-                            onClick={this.onInfoBarExpandToggle}
+                            id={`${moduleType}_details--expandable_toggle_button`}
+                            onClick={this.onExpandButtonToggle}
                             outlined
                         >
                             <Icon
                                 compact
-                                rotate={isInfoBarExpanded ? 180 : null}
-                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                                rotate={isExpanded ? 180 : null}
+                                title={isExpanded ? 'Collapse' : 'Expand'}
                                 type="chevron-down"
                             />
                         </Button>
@@ -307,8 +344,9 @@ Details.propTypes = {
     columnProps: columnPropsPropTypesShape,
     columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
     data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    detailedColumns: PropTypes.arrayOf(columnPropTypesShape),
+    expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     moduleType: PropTypes.string,
+    showExpandableColumns: PropTypes.bool,
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
@@ -317,8 +355,9 @@ Details.defaultProps = {
     className: undefined,
     color: undefined,
     columnProps: undefined,
-    detailedColumns: undefined,
+    expandableColumns: undefined,
     moduleType: undefined,
+    showExpandableColumns: false,
     style: {},
 };
 

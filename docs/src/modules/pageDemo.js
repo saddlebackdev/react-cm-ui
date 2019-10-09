@@ -301,7 +301,7 @@ class PageDemo extends React.PureComponent {
             },
         ];
 
-        const statsExtraColumns = [
+        const statsExpandableColumns = [
             {
                 columns: [
                     {
@@ -319,8 +319,8 @@ class PageDemo extends React.PureComponent {
             },
         ];
 
-        const bannerColumns = isMobile ? statsColumns : [...statsColumns, ...statsExtraColumns];
-        const bannerDetailedColumns = isMobile ? [...statsColumns, ...statsExtraColumns] : null;
+        // const bannerColumns = isMobile ? statsColumns : [...statsColumns, ...statsExpandableColumns];
+        // const bannerDetailedColumns = isMobile ? [...statsColumns, ...statsExpandableColumns] : null;
 
         return (
             <React.Fragment>
@@ -507,7 +507,7 @@ class PageDemo extends React.PureComponent {
                         >
                             <Page.Details
                                 color={11}
-                                columns={bannerColumns}
+                                columns={statsColumns}
                                 data={{
                                     notContacted: 4,
                                     contacted: 5,
@@ -515,7 +515,8 @@ class PageDemo extends React.PureComponent {
                                     secondContact: 1,
                                     pending: 3,
                                 }}
-                                detailedColumns={bannerDetailedColumns}
+                                expandableColumns={statsExpandableColumns}
+                                showExpandableColumns={!isMobile}
                             />
 
                             {!isMobile && viewType === 'table' ? (
