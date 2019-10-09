@@ -127,12 +127,13 @@ class Details extends React.PureComponent {
             className,
             color,
             columnProps,
-            columns,
             data,
             style,
             moduleType,
         } = this.props;
         const { isInfoBarExpanded } = this.state;
+        const hasDetailedColumns = !!this.props.detailedColumns;
+        const columns = isInfoBarExpanded ? this.props.detailedColumns : this.props.columns;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
             'page--details-bleed' : bleed && moduleType=='page',
             'drawer--details-bleed' : bleed && moduleType=='drawer',
@@ -164,20 +165,21 @@ class Details extends React.PureComponent {
                             );
                         })}
                     </div>
-                    <Button
-                        className={`${moduleType}--expand-button`}
-                        color="light"
-                        icon
-                        onClick={this.onInfoBarExpandToggle}
-                        outlined
-                    >
-                        <Icon
-                            compact
-                            rotate={isInfoBarExpanded ? 180 : null}
-                            title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
-                            type="chevron-down"
-                        />
-                    </Button>
+                    {hasDetailedColumns && (
+                        <Button
+                            color="light"
+                            icon
+                            onClick={this.onInfoBarExpandToggle}
+                            outlined
+                        >
+                            <Icon
+                                compact
+                                rotate={isInfoBarExpanded ? 180 : null}
+                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                                type="chevron-down"
+                            />
+                        </Button>
+                    )}
                 </InfoBar>
             </div>
         );
@@ -195,6 +197,7 @@ Details.propTypes = {
     columnProps: PropTypes.object,
     columns: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
+    detailedColumns: PropTypes.array,
     moduleType: PropTypes.string,
     style: PropTypes.object,
 };
