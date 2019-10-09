@@ -11,11 +11,11 @@ $prefixPageDetails: page--details;
             &-columns-container {
                 display: flex;
                 flex-wrap: wrap;
-                margin: 0 -16px;
+                margin: 0 -11px;
                 > {
                     .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
                         &-column {
-                            padding: 0 16px 11px;
+                            padding: 0 11px 11px;
                             &.divide {
                                 display: flex;
                                 margin-left: 16px;
@@ -46,6 +46,16 @@ $prefixPageDetails: page--details;
         &.#{$prefixDrawerDetails}, &.#{$prefixPageDetails} {
             .ui.info-bar {
                 padding: 22px;
+            }
+            &-columns-container {
+                margin: 0 -16px;
+            }
+            > {
+                .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
+                    &-column {
+                        padding: 0 16px 11px;
+                    }
+                }
             }
         }
     }

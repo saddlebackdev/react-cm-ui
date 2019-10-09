@@ -271,6 +271,9 @@ $backwards-step4-duration: $standard-fifth-timing;
             padding-top: 11px;
         }
     }
+    .action_bar--actions_button {
+        margin-right: 0;
+    }
 }
 
 @media only screen and (max-width: 767px) {

@@ -6,7 +6,7 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
-import { backgroundColorSuccess } from 'shared/styles/colors.scss';
+import { backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -242,6 +242,14 @@ class PageDemo extends React.PureComponent {
                                                 id: 'sub-option-baz',
                                                 label: 'Baz Template',
                                                 onClick: () => { console.log('Bar Template was clicked!'); /* eslint-disable-line no-console */ },
+                                            }, {
+                                                iconType: 'wrench-screwdriver',
+                                                id: 'sub-option-quux',
+                                                label: 'Quux Template',
+                                                onClick: () => { console.log('Quux Template was clicked!'); /* eslint-disable-line no-console */ },
+                                                promptColor: 'success',
+                                                promptMessage: 'Create a new Quux Template?  For reals?',
+                                                requiresPrompt: true,
                                             },
                                         ],
                                     }, {
@@ -253,6 +261,14 @@ class PageDemo extends React.PureComponent {
                                         iconType: 'comment-lines',
                                         label: 'SMS',
                                         onClick: () => { console.log('SMS was clicked!'); /* eslint-disable-line no-console */ },
+                                    }, {
+                                        iconType: 'times',
+                                        label: 'Delete Stuff',
+                                        iconBackgroundColor: backgroundColorAlert,
+                                        onClick: () => { console.log('Deleting all the things!'); /* eslint-disable-line no-console */ },
+                                        promptColor: 'alert',
+                                        promptMessage: 'Really delete all the things?  No joke?',
+                                        requiresPrompt: true,
                                     },
                                 ],
                             },

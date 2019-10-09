@@ -7,6 +7,7 @@ import Button from '../elements/button.js';
 import Drawer from './drawer.js'; // eslint-disable-line import/no-cycle
 import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
+import Prompt from './prompt.js';
 
 class ActionBarActionsButton extends React.PureComponent {
     constructor() {
@@ -14,12 +15,17 @@ class ActionBarActionsButton extends React.PureComponent {
 
         this.state = {
             isDrawerOpen: false,
+            isPromptVisible: false,
+            promptingOption: null,
             selectedOption: {},
         };
 
         this.onDrawerCloseComplete = this.onDrawerCloseComplete.bind(this);
         this.onDrawerToggle = this.onDrawerToggle.bind(this);
         this.onOptionClick = this.onOptionClick.bind(this);
+        this.onPromptNoClick = this.onPromptNoClick.bind(this);
+        this.onPromptRequested = this.onPromptRequested.bind(this);
+        this.onPromptYesClick = this.onPromptYesClick.bind(this);
     }
 
     onDrawerCloseComplete() {
@@ -40,6 +46,35 @@ class ActionBarActionsButton extends React.PureComponent {
         });
     }
 
+    onPromptNoClick() {
+        this.setState({
+            isDrawerOpen: true,
+            isPromptVisible: false,
+            promptingOption: null,
+        });
+    }
+
+    onPromptRequested(option) {
+        this.setState({
+            isDrawerOpen: false,
+            isPromptVisible: true,
+            promptingOption: option,
+        });
+    }
+
+    onPromptYesClick() {
+        const { promptingOption } = this.state;
+
+        if (!_.isEmpty(promptingOption) && _.isFunction(promptingOption.onClick)) {
+            promptingOption.onClick();
+        }
+
+        this.setState({
+            isPromptVisible: false,
+            promptingOption: null,
+        });
+    }
+
     render() {
         const {
             header,
@@ -48,28 +83,55 @@ class ActionBarActionsButton extends React.PureComponent {
             options,
             style,
         } = this.props;
-        const { isDrawerOpen, selectedOption } = this.state;
-        const isSelectedOption = !_.isEmpty(selectedOption);
+
+        const {
+            isDrawerOpen,
+            isPromptVisible,
+            promptingOption,
+            selectedOption,
+        } = this.state;
+
+        const hasSelectedOption = !_.isEmpty(selectedOption);
         const titleClasses = ClassNames('actions_button_drawer--title', {
-            'actions_button_drawer--title-hide': isSelectedOption,
-            'actions_button_drawer--title-show': !isSelectedOption,
+            'actions_button_drawer--title-hide': hasSelectedOption,
+            'actions_button_drawer--title-show': !hasSelectedOption,
         });
+
         const headerHeight = 55;
         const actionBarHeight = isMobileSearchVisible ? 105 : 50;
+
+        const promptMessage = !_.isEmpty(promptingOption) ?
+            promptingOption.promptMessage :
+            undefined;
+
+        const promptColor = !_.isEmpty(promptingOption) ?
+            promptingOption.promptColor :
+            undefined;
+
         let optionKeyNum = 1;
 
         return (
             <React.Fragment>
-                <Button
-                    className="action_bar--actions_button"
-                    color={isDrawerOpen ? 'highlight' : 'alternate'}
-                    icon
-                    id={id}
+                <Prompt
+                    inline
+                    inlineHorizontalAlign="right"
+                    inlineMessageColor={promptColor}
+                    message={promptMessage}
                     onClick={this.onDrawerToggle}
-                    style={style}
+                    onNoClick={this.onPromptNoClick}
+                    onYesClick={this.onPromptYesClick}
+                    show={isPromptVisible}
                 >
-                    <Icon size="small" type="ellipsis-h" />
-                </Button>
+                    <Button
+                        className="action_bar--actions_button"
+                        color={isDrawerOpen ? 'highlight' : 'alternate'}
+                        icon
+                        id={id}
+                        style={style}
+                    >
+                        <Icon size="small" type="ellipsis-h" />
+                    </Button>
+                </Prompt>
 
                 <Drawer
                     className="action_bar--actions_button_drawer"
@@ -93,9 +155,9 @@ class ActionBarActionsButton extends React.PureComponent {
                         <div className="actions_button_drawer--options">
                             {_.map(options, (option) => {
                                 optionKeyNum += 1;
-                                const isSelected = isSelectedOption &&
+                                const isSelected = hasSelectedOption &&
                                     selectedOption.label === option.label;
-                                const hide = (isSelectedOption &&
+                                const hide = (hasSelectedOption &&
                                     selectedOption.label !== option.label) || false;
 
                                 return (
@@ -105,6 +167,7 @@ class ActionBarActionsButton extends React.PureComponent {
                                         isSelected={isSelected}
                                         key={`actions_button_drawer--option-${optionKeyNum}`}
                                         onClick={this.onOptionClick}
+                                        onRequestPrompt={this.onPromptRequested}
                                         option={option}
                                     />
                                 );

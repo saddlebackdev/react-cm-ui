@@ -6,6 +6,7 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
     *, *::after, *::before { box-sizing: border-box; }
     body {
         background-color: color(backgroundColorLight);
+        overflow-y: scroll;
         .layout { position: relative; right: 0; transition: right 166ms linear; }
         &.pushed-right {
             overflow-x: hidden;
