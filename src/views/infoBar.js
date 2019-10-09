@@ -24,7 +24,7 @@ function InfoBar(props) {
         'info-bar-color-ten': color === 10,
         'info-bar-color-eleven': color === 11,
     });
-    const ElementType = Utils.getElementType(as || 'div', props);
+    const ElementType = Utils.getElementType(as, props);
 
     return (
         <ElementType
