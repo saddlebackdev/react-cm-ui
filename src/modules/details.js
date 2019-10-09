@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
 import Header from '../elements/header.js';
 import InfoBar from '../views/infoBar.js';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 class DetailsColumn extends React.PureComponent {
     render() {
@@ -11,7 +11,7 @@ class DetailsColumn extends React.PureComponent {
 
         if (!column.accessor && column.columns && _.isArray(column.columns)) {
             const containerClasses = ClassNames(`${moduleType}--details-column`, {
-                divide: column.divide,
+                'divide': column.divide,
             });
 
             let innerContainerKeyNum = 1;
@@ -19,17 +19,18 @@ class DetailsColumn extends React.PureComponent {
             return (
                 <div
                     className={containerClasses}
-                    style={({
+                    style={Object.assign({}, {
                         flexBasis: column.flexBasis || 'auto',
                         flexGrow: column.flexGrow || 0,
                         flexShrink: column.flexShrink || 0,
                         paddingLeft: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                         paddingRight: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
                         width: column.width,
-                        ...column.style,
-                    })}
+                    }, column.style)}
                 >
-                    {_.map(column.columns, (column, index) => this._renderColumn(column, innerContainerKeyNum++))}
+                    {_.map(column.columns, (column, index) => {
+                        return this._renderColumn(column, innerContainerKeyNum++);
+                    })}
                 </div>
             );
         }
@@ -39,7 +40,7 @@ class DetailsColumn extends React.PureComponent {
 
     _renderColumn(column, innerContainerKeyNum) {
         const { columnProps, data, moduleType } = this.props;
-        const containerClasses = ClassNames(`${moduleType}--details-column${innerContainerKeyNum ? '-inner' : ''}`, {
+        const containerClasses = ClassNames(`${moduleType}--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
             'divide-left': column.divide || column.divide === 'left',
             'divide-right': column.divide === 'right',
         });
@@ -51,8 +52,7 @@ class DetailsColumn extends React.PureComponent {
             'font-weight-normal': column.fontWeight === 'normal',
             'font-weight-semibold': column.fontWeight === 'semibold',
         });
-        let accessor; let flexBasisInlineStyle; let flexGrowInlineStyle; let flexShrinkInlineStyle; let
-            horizontalSpacingInlineStyle;
+        let accessor, flexBasisInlineStyle, flexGrowInlineStyle, flexShrinkInlineStyle, horizontalSpacingInlineStyle;
 
         if (_.isString(column.accessor)) {
             accessor = _.get(data, column.accessor);
@@ -60,7 +60,7 @@ class DetailsColumn extends React.PureComponent {
             accessor = column.accessor(data);
         }
 
-        if (innerContainerKeyNum) {
+        if (!!innerContainerKeyNum) {
             flexBasisInlineStyle = column.flexBasis || 'auto';
             flexGrowInlineStyle = column.flexGrow || 0;
             flexShrinkInlineStyle = column.flexShrink || 0;
@@ -71,21 +71,20 @@ class DetailsColumn extends React.PureComponent {
             <div
                 className={containerClasses}
                 key={`${moduleType}-details-column-key-${innerContainerKeyNum || 0}`}
-                style={({
+                style={Object.assign({}, {
                     flexBasis: flexBasisInlineStyle,
                     flexGrow: flexGrowInlineStyle,
                     flexShrink: flexShrinkInlineStyle,
                     paddingLeft: horizontalSpacingInlineStyle,
                     paddingRight: horizontalSpacingInlineStyle,
                     width: column.width,
-                    ...column.style,
-                })}
+                }, column.style)}
             >
-                {column.header && (
-                <Header size="xsmall" style={{ margin: 0 }}>
-                    {column.header}
-                </Header>
-                )}
+                {column.header &&
+                    <Header size="xsmall" style={{ margin: 0 }}>
+                        {column.header}
+                    </Header>
+                }
 
                 <div className={accessorClasses}>
                     {accessor}
@@ -118,8 +117,8 @@ class Details extends React.PureComponent {
             moduleType,
         } = this.props;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
-            'page--details-bleed': bleed && moduleType == 'page',
-            'drawer--details-bleed': bleed && moduleType == 'drawer',
+            'page--details-bleed' : bleed && moduleType=='page',
+            'drawer--details-bleed' : bleed && moduleType=='drawer',
         });
         let detailsColumnKeyNum = 1;
 
@@ -136,15 +135,17 @@ class Details extends React.PureComponent {
                             marginRight: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
                         }}
                     >
-                        {_.map(columns, (column, index) => (
-                            <DetailsColumn
-                                column={column}
-                                columnProps={columnProps}
-                                data={data}
-                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNum++}`}
-                                moduleType={moduleType}
-                            />
-                        ))}
+                        {_.map(columns, (column, index) => {
+                            return (
+                                <DetailsColumn
+                                    column={column}
+                                    columnProps={columnProps}
+                                    data={data}
+                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum++}`}
+                                    moduleType={moduleType}
+                                />
+                            );
+                        })}
                     </div>
                 </InfoBar>
             </div>
@@ -159,7 +160,7 @@ Details.defaultProps = {
 Details.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    color: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+    color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
     columnProps: PropTypes.object,
     columns: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
