@@ -5,11 +5,13 @@ $prefixPageDetails: page--details;
 .ui {
     &.#{$prefixDrawerDetails}, &.#{$prefixPageDetails} {
         .ui.info-bar {
+            display: flex;
             padding: 11px;
         }
         .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
             &-columns-container {
                 display: flex;
+                flex: 1;
                 flex-wrap: wrap;
                 margin: 0 -11px;
                 > {

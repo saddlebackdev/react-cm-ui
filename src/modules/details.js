@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import Button from '../elements/button.js';
 import Header from '../elements/header.js';
+import Icon from '../elements/icon.js';
 import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -105,17 +107,33 @@ DetailsColumn.propTypes = {
 };
 
 class Details extends React.PureComponent {
+    constructor() {
+        super();
+        this.onInfoBarExpandToggle = this.onInfoBarExpandToggle.bind(this);
+        this.state = {
+            isInfoBarExpanded: false,
+        };
+    }
+
+    onInfoBarExpandToggle() {
+        this.setState(prev => ({
+            isInfoBarExpanded: !prev.isInfoBarExpanded,
+        }));
+    }
+
     render() {
         const {
             bleed,
             className,
             color,
             columnProps,
-            columns,
             data,
             style,
             moduleType,
         } = this.props;
+        const { isInfoBarExpanded } = this.state;
+        const hasDetailedColumns = !!this.props.detailedColumns;
+        const columns = isInfoBarExpanded && hasDetailedColumns ? this.props.detailedColumns : this.props.columns;
         const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
             'page--details-bleed' : bleed && moduleType=='page',
             'drawer--details-bleed' : bleed && moduleType=='drawer',
@@ -147,6 +165,21 @@ class Details extends React.PureComponent {
                             );
                         })}
                     </div>
+                    {hasDetailedColumns && (
+                        <Button
+                            color="light"
+                            icon
+                            onClick={this.onInfoBarExpandToggle}
+                            outlined
+                        >
+                            <Icon
+                                compact
+                                rotate={isInfoBarExpanded ? 180 : null}
+                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                                type="chevron-down"
+                            />
+                        </Button>
+                    )}
                 </InfoBar>
             </div>
         );
@@ -164,6 +197,7 @@ Details.propTypes = {
     columnProps: PropTypes.object,
     columns: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
+    detailedColumns: PropTypes.array,
     moduleType: PropTypes.string,
     style: PropTypes.object,
 };

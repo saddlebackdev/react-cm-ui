@@ -278,6 +278,50 @@ class PageDemo extends React.PureComponent {
             ];
         }
 
+        const statsColumns = [
+            {
+                accessor: () => 'Super Cool Info Bar - Color: 11',
+                fontSize: 'large',
+                fontWeight: 'semibold',
+                header: null,
+                style: {
+                    marginBottom: '11px',
+                },
+                width: '100%',
+            }, {
+                accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
+                fontWeight: 'bold',
+                header: null,
+            }, {
+                accessor: 'notContacted',
+                header: 'Not Contacted',
+            }, {
+                accessor: 'contacted',
+                header: 'Contacted',
+            },
+        ];
+
+        const statsExtraColumns = [
+            {
+                columns: [
+                    {
+                        accessor: 'firstContact',
+                        header: '1st Contact',
+                    }, {
+                        accessor: 'secondContact',
+                        header: '2nd Contact',
+                    }, {
+                        accessor: 'pending',
+                        header: 'Pending',
+                    },
+                ],
+                divide: true,
+            },
+        ];
+
+        const bannerColumns = isMobile ? statsColumns : [...statsColumns, ...statsExtraColumns];
+        const bannerDetailedColumns = isMobile ? [...statsColumns, ...statsExtraColumns] : null;
+
         return (
             <React.Fragment>
                 <div>
@@ -463,44 +507,15 @@ class PageDemo extends React.PureComponent {
                         >
                             <Page.Details
                                 color={11}
-                                columns={[
-                                    {
-                                        accessor: () => 'Super Cool Info Bar - Color: 11',
-                                        fontSize: 'large',
-                                        fontWeight: 'semibold',
-                                        header: null,
-                                        style: {
-                                            marginBottom: '11px',
-                                        },
-                                        width: '100%',
-                                    }, {
-                                        accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
-                                        fontWeight: 'bold',
-                                        header: null,
-                                    }, {
-                                        accessor: 'activeTemplates',
-                                        header: 'Active Templates',
-                                    }, {
-                                        accessor: 'inactiveTemplates',
-                                        header: 'Inactive Templates',
-                                    }, {
-                                        columns: [
-                                            {
-                                                accessor: 'activeTemplates',
-                                                header: 'Active Templates',
-                                            }, {
-                                                accessor: 'inactiveTemplates',
-                                                header: 'Inactive Templates',
-                                            },
-                                        ],
-                                        divide: true,
-                                    },
-                                ]}
+                                columns={bannerColumns}
                                 data={{
-                                    activeTemplates: 4,
-                                    id: 1,
-                                    inactiveTemplates: 2,
+                                    notContacted: 4,
+                                    contacted: 5,
+                                    firstContact: 4,
+                                    secondContact: 1,
+                                    pending: 3,
                                 }}
+                                detailedColumns={bannerDetailedColumns}
                             />
 
                             {!isMobile && viewType === 'table' ? (
