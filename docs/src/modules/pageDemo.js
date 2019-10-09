@@ -277,11 +277,11 @@ class PageDemo extends React.PureComponent {
                 fontWeight: 'bold',
                 header: null,
             }, {
-                accessor: 'activeTemplates',
-                header: 'Active Templates',
+                accessor: 'notContacted',
+                header: 'Not Contacted',
             }, {
-                accessor: 'inactiveTemplates',
-                header: 'Inactive Templates',
+                accessor: 'contacted',
+                header: 'Contacted',
             },
         ];
 
@@ -289,11 +289,14 @@ class PageDemo extends React.PureComponent {
             {
                 columns: [
                     {
-                        accessor: 'activeTemplates',
-                        header: 'Active Templates',
+                        accessor: 'firstContact',
+                        header: '1st Contact',
                     }, {
-                        accessor: 'inactiveTemplates',
-                        header: 'Inactive Templates',
+                        accessor: 'secondContact',
+                        header: '2nd Contact',
+                    }, {
+                        accessor: 'pending',
+                        header: 'Pending',
                     },
                 ],
                 divide: true,
@@ -490,9 +493,11 @@ class PageDemo extends React.PureComponent {
                                 color={11}
                                 columns={bannerColumns}
                                 data={{
-                                    activeTemplates: 4,
-                                    id: 1,
-                                    inactiveTemplates: 2,
+                                    notContacted: 4,
+                                    contacted: 5,
+                                    firstContact: 4,
+                                    secondContact: 1,
+                                    pending: 3,
                                 }}
                                 detailedColumns={bannerDetailedColumns}
                             />
