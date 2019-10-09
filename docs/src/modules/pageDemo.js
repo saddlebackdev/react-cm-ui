@@ -262,6 +262,45 @@ class PageDemo extends React.PureComponent {
             ];
         }
 
+        const bannerColumns = [
+            {
+                accessor: () => 'Super Cool Info Bar - Color: 11',
+                fontSize: 'large',
+                fontWeight: 'semibold',
+                header: null,
+                style: {
+                    marginBottom: '11px',
+                },
+                width: '100%',
+            }, {
+                accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
+                fontWeight: 'bold',
+                header: null,
+            }, {
+                accessor: 'activeTemplates',
+                header: 'Active Templates',
+            }, {
+                accessor: 'inactiveTemplates',
+                header: 'Inactive Templates',
+            },
+        ];
+
+        const bannerDetailedColumns = [
+            ...bannerColumns,
+            {
+                columns: [
+                    {
+                        accessor: 'activeTemplates',
+                        header: 'Active Templates',
+                    }, {
+                        accessor: 'inactiveTemplates',
+                        header: 'Inactive Templates',
+                    },
+                ],
+                divide: true,
+            },
+        ];
+
         return (
             <React.Fragment>
                 <div>
@@ -447,44 +486,13 @@ class PageDemo extends React.PureComponent {
                         >
                             <Page.Details
                                 color={11}
-                                columns={[
-                                    {
-                                        accessor: () => 'Super Cool Info Bar - Color: 11',
-                                        fontSize: 'large',
-                                        fontWeight: 'semibold',
-                                        header: null,
-                                        style: {
-                                            marginBottom: '11px',
-                                        },
-                                        width: '100%',
-                                    }, {
-                                        accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
-                                        fontWeight: 'bold',
-                                        header: null,
-                                    }, {
-                                        accessor: 'activeTemplates',
-                                        header: 'Active Templates',
-                                    }, {
-                                        accessor: 'inactiveTemplates',
-                                        header: 'Inactive Templates',
-                                    }, {
-                                        columns: [
-                                            {
-                                                accessor: 'activeTemplates',
-                                                header: 'Active Templates',
-                                            }, {
-                                                accessor: 'inactiveTemplates',
-                                                header: 'Inactive Templates',
-                                            },
-                                        ],
-                                        divide: true,
-                                    },
-                                ]}
+                                columns={bannerColumns}
                                 data={{
                                     activeTemplates: 4,
                                     id: 1,
                                     inactiveTemplates: 2,
                                 }}
+                                detailedColumns={bannerDetailedColumns}
                             />
 
                             {!isMobile && viewType === 'table' ? (
