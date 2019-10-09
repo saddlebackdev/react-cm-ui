@@ -2,7 +2,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Button from '../elements/button.js';
 import Header from '../elements/header.js';
+import Icon from '../elements/icon.js';
 import InfoBar from '../views/infoBar.js';
 
 const columnPropTypesShape = PropTypes.shape({
@@ -112,14 +114,13 @@ ColumnContainer.propTypes = {
     column: columnPropTypesShape.isRequired,
     columnNumber: PropTypes.number,
     columnProps: columnPropsPropTypesShape,
-    data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     moduleType: PropTypes.string,
 };
 
 ColumnContainer.defaultProps = {
     columnNumber: undefined,
     columnProps: undefined,
-    data: undefined,
     moduleType: undefined,
 };
 
@@ -186,6 +187,8 @@ function DetailsColumn(props) {
     return (
         <ColumnContainer
             column={column}
+            data={data}
+            moduleType={moduleType}
         />
     );
 }
@@ -205,58 +208,95 @@ DetailsColumn.defaultProps = {
     moduleType: undefined,
 };
 
-function Details(props) {
-    const {
-        bleed,
-        className,
-        color,
-        columnProps,
-        columns,
-        data,
-        style,
-        moduleType,
-    } = props;
-    const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
-        'page--details-bleed': bleed && moduleType === 'page',
-        'drawer--details-bleed': bleed && moduleType === 'drawer',
-    });
-    let detailsColumnKeyNum = 1;
-    let horizontalSpacing;
-
-    if (columnProps) {
-        horizontalSpacing = columnProps.horizontalSpacing;
+class Details extends React.PureComponent {
+    constructor() {
+        super();
+        this.onInfoBarExpandToggle = this.onInfoBarExpandToggle.bind(this);
+        this.state = {
+            isInfoBarExpanded: false,
+        };
     }
 
-    return (
-        <div
-            className={containerClasses}
-            style={style}
-        >
-            <InfoBar color={color}>
-                <div
-                    className={`${moduleType}--details-columns-container`}
-                    style={{
-                        marginLeft: horizontalSpacing ? `-${horizontalSpacing}px` : null,
-                        marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
-                    }}
-                >
-                    {_.map(columns, (column) => {
-                        detailsColumnKeyNum += 1;
+    onInfoBarExpandToggle() {
+        this.setState((prevState) => ({
+            isInfoBarExpanded: !prevState.isInfoBarExpanded,
+        }));
+    }
 
-                        return (
-                            <DetailsColumn
-                                column={column}
-                                columnProps={columnProps}
-                                data={data}
-                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
-                                moduleType={moduleType}
+    render() {
+        const {
+            bleed,
+            className,
+            color,
+            columnProps,
+            columns,
+            data,
+            detailedColumns,
+            style,
+            moduleType,
+        } = this.props;
+        const { isInfoBarExpanded } = this.state;
+        const hasDetailedColumns = !_.isEmpty(detailedColumns);
+        const newColumns = isInfoBarExpanded && hasDetailedColumns ? detailedColumns : columns;
+        const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
+            'page--details-bleed': bleed && moduleType === 'page',
+            'drawer--details-bleed': bleed && moduleType === 'drawer',
+        });
+
+        let detailsColumnKeyNum = 1;
+        let horizontalSpacing;
+
+        if (columnProps) {
+            horizontalSpacing = columnProps.horizontalSpacing;
+        }
+
+        return (
+            <div
+                className={containerClasses}
+                style={style}
+            >
+                <InfoBar color={color}>
+                    <div
+                        className={`${moduleType}--details-columns-container`}
+                        style={{
+                            marginLeft: horizontalSpacing ? `-${horizontalSpacing}px` : null,
+                            marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
+                        }}
+                    >
+                        {_.map(newColumns, (column) => {
+                            detailsColumnKeyNum += 1;
+
+                            return (
+                                <DetailsColumn
+                                    column={column}
+                                    columnProps={columnProps}
+                                    data={data}
+                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
+                                    moduleType={moduleType}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {hasDetailedColumns && (
+                        <Button
+                            color="light"
+                            icon
+                            onClick={this.onInfoBarExpandToggle}
+                            outlined
+                        >
+                            <Icon
+                                compact
+                                rotate={isInfoBarExpanded ? 180 : null}
+                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
+                                type="chevron-down"
                             />
-                        );
-                    })}
-                </div>
-            </InfoBar>
-        </div>
-    );
+                        </Button>
+                    )}
+                </InfoBar>
+            </div>
+        );
+    }
 }
 
 Details.propTypes = {
@@ -266,6 +306,7 @@ Details.propTypes = {
     columnProps: columnPropsPropTypesShape,
     columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
     data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    detailedColumns: PropTypes.arrayOf(columnPropTypesShape),
     moduleType: PropTypes.string,
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
@@ -275,6 +316,7 @@ Details.defaultProps = {
     className: undefined,
     color: undefined,
     columnProps: undefined,
+    detailedColumns: undefined,
     moduleType: undefined,
     style: {},
 };
