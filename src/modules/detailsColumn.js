@@ -64,16 +64,16 @@ class DetailsColumn extends React.PureComponent {
             horizontalSpacing = columnProps.horizontalSpacing;
         }
 
-        let newAccessor;
+        let accessedData;
         let flexBasisInlineStyleValue;
         let flexGrowInlineStyleValue;
         let flexShrinkInlineStyleValue;
         let horizontalSpacingInlineStyleValue;
 
         if (_.isString(accessor)) {
-            newAccessor = _.get(data, accessor);
+            accessedData = _.get(data, accessor);
         } else if (_.isFunction(accessor)) {
-            newAccessor = accessor(data);
+            accessedData = accessor(data);
         }
 
         if (columnNumber) {
@@ -124,7 +124,7 @@ class DetailsColumn extends React.PureComponent {
                 )}
 
                 <div className={accessorClasses}>
-                    {newAccessor}
+                    {accessedData}
                 </div>
             </div>
         );
