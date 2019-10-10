@@ -167,6 +167,7 @@ class Details extends React.PureComponent {
                     </div>
                     {hasDetailedColumns && (
                         <Button
+                            className={`${moduleType}--expand-button`}
                             color="light"
                             icon
                             onClick={this.onInfoBarExpandToggle}
