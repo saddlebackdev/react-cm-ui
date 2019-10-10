@@ -305,17 +305,24 @@ class PageDemo extends React.PureComponent {
             {
                 columns: [
                     {
+                        style: isMobile ? { width: '50px' } : { padding: 0, width: 0 },
+                    }, {
                         accessor: 'firstContact',
                         header: '1st Contact',
+                        style: { padding: '0 11px' },
                     }, {
                         accessor: 'secondContact',
                         header: '2nd Contact',
+                        style: { padding: '0 11px' },
                     }, {
                         accessor: 'pending',
                         header: 'Pending',
+                        style: { padding: '0 11px' },
                     },
                 ],
-                divide: true,
+                divide: !isMobile,
+                style: { display: 'flex' },
+                width: isMobile ? '100%' : undefined,
             },
         ];
 
