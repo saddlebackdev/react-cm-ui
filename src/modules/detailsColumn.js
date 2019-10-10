@@ -61,10 +61,14 @@ class DetailsColumn extends React.PureComponent {
             onExpandButtonToggle,
             moduleType,
         } = this.props;
-        const containerClasses = ClassNames(`${moduleType}_details--column${columnNumber ? '_inner' : ''}`, {
-            'divide-left': divide || divide === 'left',
-            'divide-right': divide === 'right',
-        });
+        const containerClassName = `${moduleType}_details--column${columnNumber ? '_inner' : ''}`;
+        const containerClasses = ClassNames(
+            containerClassName,
+            {
+                [`${containerClassName}-divide_left`]: divide === true || divide === 'left',
+                [`${containerClassName}-divide_right`]: divide === 'right',
+            },
+        );
         const accessorClasses = ClassNames(`${moduleType}_details--column_accessor`, {
             'font-size-large': fontSize === 'large',
             'font-size-medium': fontSize === 'medium',

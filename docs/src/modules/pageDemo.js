@@ -277,16 +277,12 @@ class PageDemo extends React.PureComponent {
                 },
             ];
         }
-
-        const statsColumns = [
+        let statsColumns = [
             {
                 accessor: () => 'Super Cool Info Bar - Color: 11',
                 fontSize: 'large',
                 fontWeight: 'semibold',
                 header: null,
-                style: {
-                    marginBottom: '11px',
-                },
                 width: '100%',
             }, {
                 accessor: () => (
@@ -316,19 +312,12 @@ class PageDemo extends React.PureComponent {
             }, {
                 accessor: 'contacted',
                 header: 'Contacted',
-            }, {
-                expandedButton: isMobile,
-                expandedButtonId: 'page_demo--details_expanded_button_unique_id',
-                header: null,
             },
         ];
 
-        const statsExpandableColumns = [
+        let statsExpandableColumns = [
             {
-                accessor: null,
-                header: null,
-                width: '67px',
-            }, {
+                divide: !isMobile,
                 accessor: 'firstContact',
                 header: '1st Contact',
             }, {
@@ -339,6 +328,31 @@ class PageDemo extends React.PureComponent {
                 header: 'Pending',
             },
         ];
+
+        if (!isMobile) {
+            statsColumns = [
+                ...statsColumns,
+                ...statsExpandableColumns,
+            ];
+            statsExpandableColumns = [];
+        } else {
+            statsColumns = [
+                ...statsColumns,
+                {
+                    expandedButton: isMobile,
+                    expandedButtonId: 'page_demo--details_expanded_button_unique_id',
+                    header: null,
+                },
+            ];
+            statsExpandableColumns = [
+                {
+                    accessor: null,
+                    header: null,
+                    width: '67px',
+                },
+                ...statsExpandableColumns,
+            ];
+        }
 
         return (
             <React.Fragment>
@@ -534,7 +548,6 @@ class PageDemo extends React.PureComponent {
                                     pending: 3,
                                 }}
                                 expandableColumns={statsExpandableColumns}
-                                showExpandableColumns={!isMobile}
                             />
 
                             {!isMobile && viewType === 'table' ? (

@@ -36,7 +36,7 @@ function DetailsColumnContainer(props) {
         column: {
             accessor,
             columns,
-            divide: isDivided,
+            divide,
             flexBasis,
             flexGrow,
             flexShrink,
@@ -57,9 +57,9 @@ function DetailsColumnContainer(props) {
     }
 
     if (!accessor && columns && _.isArray(columns)) {
-        const foo = `${moduleType}_details--column`;
-        const bar = isDivided ? `${foo}-divide` : null;
-        const containerClasses = ClassNames(foo, bar);
+        const columnClassName = `${moduleType}_details--column`;
+        const columnDivideModifierClassName = divide ? `${columnClassName}-divide` : null;
+        const containerClasses = ClassNames(columnClassName, columnDivideModifierClassName);
         let innerColumnKeyNum = 1;
 
         return (

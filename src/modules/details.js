@@ -114,7 +114,6 @@ class Details extends React.PureComponent {
             expandableColumns,
             style,
             moduleType,
-            showExpandableColumns,
         } = this.props;
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
@@ -122,7 +121,7 @@ class Details extends React.PureComponent {
             'page--details-bleed': bleed && moduleType === 'page',
             'drawer--details-bleed': bleed && moduleType === 'drawer',
         });
-        const shouldShowExpanded = showExpandableColumns || isExpanded;
+        const shouldShowExpanded = isExpanded;
         const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
         const expandedContainerClassName = shouldShowExpanded ?
             `${expandableColumnsContainerName}-expanded` :
@@ -209,7 +208,6 @@ Details.propTypes = {
     data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     moduleType: PropTypes.string,
-    showExpandableColumns: PropTypes.bool,
     style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
@@ -220,7 +218,6 @@ Details.defaultProps = {
     columnProps: undefined,
     expandableColumns: undefined,
     moduleType: undefined,
-    showExpandableColumns: false,
     style: {},
 };
 
