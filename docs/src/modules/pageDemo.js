@@ -306,7 +306,7 @@ class PageDemo extends React.PureComponent {
             {
                 columns: [
                     {
-                        style: isMobile ? { width: '50px' } : { padding: 0, width: 0 },
+                        style: isMobile ? { width: '50px' } : { padding: 0, width: 0 }, // the placeholder for mobile mode
                     }, {
                         accessor: 'firstContact',
                         header: '1st Contact',
@@ -321,9 +321,9 @@ class PageDemo extends React.PureComponent {
                         style: { padding: '0 11px' },
                     },
                 ],
-                divide: !isMobile,
+                divide: !isMobile, // show divider for desktop mode only
                 style: { display: 'flex' },
-                width: isMobile ? '100%' : undefined,
+                width: isMobile ? '100%' : undefined, // extra columns should be placed in their own row for mobile mode
             },
         ];
 
