@@ -3,30 +3,10 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
 import InfoBar from '../views/infoBar.js';
 import DetailsColumnContainer from './detailsColumnContainer.js';
 import domUtils from '../utils/domUtils.js';
-
-const columnPropTypesShape = PropTypes.shape({
-    accessor: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.string,
-    ]),
-    divide: PropTypes.bool,
-    expandedButton: PropTypes.bool,
-    expandedButtonId: PropTypes.string,
-    flexBasis: PropTypes.string,
-    flexGrow: PropTypes.number,
-    flexShrink: PropTypes.number,
-    fontSize: PropTypes.oneOf(['large', 'medium', 'small']),
-    fontWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
-    header: PropTypes.string,
-    style: PropTypes.object,
-    width: PropTypes.string,
-});
-const columnPropsPropTypesShape = PropTypes.shape({
-    horizontalSpacing: PropTypes.number,
-});
 
 class Details extends React.PureComponent {
     constructor() {
@@ -78,7 +58,6 @@ class Details extends React.PureComponent {
     }
 
     setColumnContainerHeight(height) {
-        console.log('setColumnContainerHeight', height);
         if (!this.expandableContainerHeight || this.expandableContainerHeight > height) {
             this.expandableContainerHeight = height;
         }
@@ -123,16 +102,12 @@ class Details extends React.PureComponent {
         });
         const shouldShowExpanded = isExpanded;
         const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
-        const expandedContainerClassName = shouldShowExpanded ?
-            `${expandableColumnsContainerName}-expanded` :
-            null;
-        const contractedContainerClassName = !shouldShowExpanded ?
-            `${expandableColumnsContainerName}-contracted` :
-            null;
         const expandableContainerClasses = ClassNames(
-            contractedContainerClassName,
             expandableColumnsContainerName,
-            expandedContainerClassName,
+            {
+                [`${expandableColumnsContainerName}-expanded`]: shouldShowExpanded,
+                [`${expandableColumnsContainerName}-contracted`]: !shouldShowExpanded,
+            },
         );
         let detailsColumnKeyNum = 1;
         let detailsColumnKeyNumExpanded = 1;

@@ -2,33 +2,8 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../elements/button.js';
-import Header from '../elements/header.js';
-import Icon from '../elements/icon.js';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
 import DetailsColumn from './detailsColumn.js';
-
-const nop = () => {};
-
-const columnPropTypesShape = PropTypes.shape({
-    accessor: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.string,
-    ]),
-    divide: PropTypes.bool,
-    expandedButton: PropTypes.bool,
-    expandedButtonId: PropTypes.string,
-    flexBasis: PropTypes.string,
-    flexGrow: PropTypes.number,
-    flexShrink: PropTypes.number,
-    fontSize: PropTypes.oneOf(['large', 'medium', 'small']),
-    fontWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
-    header: PropTypes.string,
-    style: PropTypes.object,
-    width: PropTypes.string,
-});
-const columnPropsPropTypesShape = PropTypes.shape({
-    horizontalSpacing: PropTypes.number,
-});
 
 function DetailsColumnContainer(props) {
     const {
@@ -58,8 +33,12 @@ function DetailsColumnContainer(props) {
 
     if (!accessor && columns && _.isArray(columns)) {
         const columnClassName = `${moduleType}_details--column`;
-        const columnDivideModifierClassName = divide ? `${columnClassName}-divide` : null;
-        const containerClasses = ClassNames(columnClassName, columnDivideModifierClassName);
+        const containerClasses = ClassNames(
+            columnClassName,
+            {
+                [`${columnClassName}-divide`]: divide,
+            },
+        );
         let innerColumnKeyNum = 1;
 
         return (
