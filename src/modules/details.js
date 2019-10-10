@@ -25,22 +25,24 @@ class Details extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.setExpandableContainerHeight();
+        this.toggleExpandableContainer();
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { isExpanded } = this.state;
-        const { isExpanded: prevIsExpanded } = prevState;
+        const { expandableColumns } = this.props;
+        const { expandableColumns: prevExpandableColumns } = prevProps;
 
-        if (prevIsExpanded !== isExpanded) {
-            this.setExpandableContainerHeight();
+        if (_.isEmpty(prevExpandableColumns) && !_.isEmpty(expandableColumns)) {
+            this.toggleExpandableContainer();
         }
     }
 
     onExpandButtonToggle() {
         this.setState((prevState) => ({
             isExpanded: !prevState.isExpanded,
-        }));
+        }), () => {
+            this.toggleExpandableContainer();
+        });
     }
 
     onExpandTransitionComplete() {
@@ -58,12 +60,12 @@ class Details extends React.PureComponent {
     }
 
     setColumnContainerHeight(height) {
-        if (!this.expandableContainerHeight || this.expandableContainerHeight > height) {
+        if (_.isNil(this.expandableContainerHeight) || this.expandableContainerHeight > height) {
             this.expandableContainerHeight = height;
         }
     }
 
-    setExpandableContainerHeight() {
+    toggleExpandableContainer() {
         const { expandableColumns, moduleType } = this.props;
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
@@ -100,21 +102,48 @@ class Details extends React.PureComponent {
             'page--details-bleed': bleed && moduleType === 'page',
             'drawer--details-bleed': bleed && moduleType === 'drawer',
         });
-        const shouldShowExpanded = isExpanded;
-        const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
-        const expandableContainerClasses = ClassNames(
-            expandableColumnsContainerName,
-            {
-                [`${expandableColumnsContainerName}-expanded`]: shouldShowExpanded,
-                [`${expandableColumnsContainerName}-contracted`]: !shouldShowExpanded,
-            },
-        );
         let detailsColumnKeyNum = 1;
         let detailsColumnKeyNumExpanded = 1;
         let horizontalSpacing;
 
         if (columnProps) {
             horizontalSpacing = columnProps.horizontalSpacing;
+        }
+
+        let foo;
+
+        if (hasExpandableColumns) {
+            const shouldShowExpanded = isExpanded;
+            const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
+            const expandableContainerClasses = ClassNames(
+                expandableColumnsContainerName,
+                {
+                    [`${expandableColumnsContainerName}-expanded`]: shouldShowExpanded,
+                    [`${expandableColumnsContainerName}-contracted`]: !shouldShowExpanded,
+                },
+            );
+
+            foo = (
+                <div
+                    className={expandableContainerClasses}
+                    ref={(ref) => { this.exandableContainerRef = ref; }}
+                >
+                    {_.map(expandableColumns, (column) => {
+                        detailsColumnKeyNumExpanded += 1;
+
+                        return (
+                            <DetailsColumnContainer
+                                column={column}
+                                columnProps={columnProps}
+                                data={data}
+                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNumExpanded}`}
+                                moduleType={moduleType}
+                                setColumnContainerHeight={this.setColumnContainerHeight}
+                            />
+                        );
+                    })}
+                </div>
+            );
         }
 
         return (
@@ -147,27 +176,7 @@ class Details extends React.PureComponent {
                         })}
                     </div>
 
-                    {hasExpandableColumns && (
-                        <div
-                            className={expandableContainerClasses}
-                            ref={(ref) => { this.exandableContainerRef = ref; }}
-                        >
-                            {_.map(expandableColumns, (column) => {
-                                detailsColumnKeyNumExpanded += 1;
-
-                                return (
-                                    <DetailsColumnContainer
-                                        column={column}
-                                        columnProps={columnProps}
-                                        data={data}
-                                        key={`${moduleType}DetailsColumn-${detailsColumnKeyNumExpanded}`}
-                                        moduleType={moduleType}
-                                        setColumnContainerHeight={this.setColumnContainerHeight}
-                                    />
-                                );
-                            })}
-                        </div>
-                    )}
+                    {foo}
                 </InfoBar>
             </div>
         );
