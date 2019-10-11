@@ -1,6 +1,31 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.0
+
+### Feature
+- [PR #59](https://github.com/saddlebackdev/react-cm-ui/pull/59)
+    - Added ability to make **Drawer** component sticky and set `max-height` for those sticky drawers
+- [PR #63](https://github.com/saddlebackdev/react-cm-ui/pull/63)
+    - Improvements for **Page.ActionBar**
+        - Added the ability to disable an action bar button
+        - Better view for icon buttons
+- [PR #64](https://github.com/saddlebackdev/react-cm-ui/pull/64)
+    - Fixes margins for **Page.Table** on desktop/mobile modes
+- [PR #65](https://github.com/saddlebackdev/react-cm-ui/pull/65)
+    - Build Prompt functionality into **&lt;Page.ActionsBar /&gt;** (specifically
+    the **&lt;ActionBarActionsButton /&gt;** for the mobile actions menu) so that
+    various options or sub-options can request and configure a confirmation
+    **Prompt** before their `onClick` action is actually fired.
+- [PR #66](https://github.com/saddlebackdev/react-cm-ui/pull/66)
+    - Additional updates to **Page.Details**
+- [PR #67](https://github.com/saddlebackdev/react-cm-ui/pull/67)
+    - Added Contract Icon
+- [PR #70](https://github.com/saddlebackdev/react-cm-ui/pull/70)
+    - **Page.Details** Expandable Columns
+    - Improve mobile expand/contract behavior, add CSS animation, and generally
+    fix up the **Page.Details** component so it's ready for prime-time.
+
 ## 6.3.1
 
 #### Bug Fix
