@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.2
+
+#### Bug Fix
+- [PR #72](https://github.com/saddlebackdev/react-cm-ui/pull/72)
+    - Fix possible dereference of `undefined` during **Page.TableRow** render.
+    The logic trying to fetch the size of the cell was failing to take into
+    that the size data for that cell might not be available yet.  This was
+    happening in the Healthy Church client app when using the **PageTable** in
+    combination with our "load more" / "infinite scroll" component.  So we added
+    an additional safety check to prevent the error.
+
 ## 6.4.1
 
 #### Bug Fix
