@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.1
+
+#### Bug Fix
+- [PR #71](https://github.com/saddlebackdev/react-cm-ui/pull/71)
+    - Fixed regression in certain nested **Drawer** scenarios caused by a default
+    value of "top" for the new `positionY` prop. `positionY` prop should only be
+    set to "top" or "bottom" if the new sticky drawer behavior is desired.
+    It must default to not being set at all. Having it default to "top" was
+    preventing the "nested toggles" in the page mobile filters drawer from being
+    visible, due to `overflow: hidden;` in the CSS for the sticky drawer.
+
 ## 6.4.0
 
 ### Feature
