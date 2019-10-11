@@ -4,6 +4,9 @@
     .page--table_header_cell {
         padding-top: rem(11px) !important; // sass-lint:disable-line no-important
     }
+    .page--table-bleed {
+        margin: 0 -11px;
+    }
 }
 
 .ui {
@@ -41,9 +44,17 @@
         }
         .page--table_fixed_bottom {
             background-color: color(backgroundColorLight);
+            bottom: -8px;
             height: 10px;
-            margin-left: -22px;
-            position: relative; 
+            left: 0;
+            position: absolute;
+            right: 0;
         }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.page--table-bleed {
+        margin: 0 -22px;
     }
 }

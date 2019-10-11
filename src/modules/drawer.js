@@ -1,20 +1,20 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
-import DrawerActionBar from './drawerActionBar.js';
-import DrawerContent from './drawerContent.js';
-import DrawerDetails from './drawerDetails.js';
-import DrawerFiltersDrawer from './drawerFiltersDrawer.js';
-import DrawerGrid from './drawerGrid.js';
-import DrawerNavigation from './drawerNavigation.js';
-import DrawerTable from './drawerTable.js';
-import DrawerTitleBar from './drawerTitleBar.js';
-import DrawerWing from './drawerWing.js';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import DOMUtils from '../utils/domUtils.js';
+import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
+import DrawerContent from './drawerContent.js';
+import DrawerDetails from './drawerDetails.js';
+import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
+import DrawerGrid from './drawerGrid.js';
+import DrawerNavigation from './drawerNavigation.js';
+import DrawerTable from './drawerTable.js';
+import DrawerTitleBar from './drawerTitleBar.js';
+import DrawerWing from './drawerWing.js';
 
 const BODY = document.body;
 const TRANSLATE_X_END = 'translateX(0)';
@@ -94,6 +94,7 @@ class Drawer extends React.Component {
             if (BODY.classList.contains('drawer-animate-out')) {
                 BODY.classList.remove('drawer-animate-out');
             }
+
         }
     }
 
@@ -112,6 +113,8 @@ class Drawer extends React.Component {
 
         const drawerClasses = ClassNames('ui', 'drawer', className, {
             'left-position': this._isPositionX('left'),
+            'top-position': this._isPositionY('top'),
+            'bottom-position': this._isPositionY('bottom'),
         });
 
         return (
@@ -170,6 +173,12 @@ class Drawer extends React.Component {
         return positionX === position;
     }
 
+    _isPositionY(position) {
+        const { positionY } = this.props;
+
+        return positionY === position;
+    }
+
     _onBeforeClose() {
         const animationEvent = this._transitionProps(this._drawerContainer);
 
@@ -220,12 +229,12 @@ class Drawer extends React.Component {
 
         if (drawerLength <= 1) {
             const scrollPosition = parseInt(BODY.style.top, 10);
-
-            BODY.classList.remove('drawer-open', 'drawer-dimmers');
             window.scroll(0, Math.abs(scrollPosition));
+            BODY.classList.remove('drawer-open', 'drawer-dimmers');
             BODY.style.top = null;
         }
 
+        BODY.style.position = null;
         BODY.classList.remove('drawer-animate-out');
 
         this._drawerContainerRef.style.transform = this._setStartOfTransform();
@@ -248,7 +257,7 @@ class Drawer extends React.Component {
         const nodePortal = ReactDOM.findDOMNode(this);
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
 
-        const { dimmer, maxWidth, onClickOutside, positionYOffset, shadowSize } = this.props;
+        const { dimmer, maxWidth, maxHeight, onClickOutside, positionYOffset, positionY, shadowSize } = this.props;
         const animationEvent = this._transitionProps(this._drawerContainer);
         const boxShadowPositionX = this._isPositionX('right') ? '-' : '';
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
@@ -293,7 +302,6 @@ class Drawer extends React.Component {
                 }
 
                 DOMUtils.addClassName(BODY, 'drawer-open-layered');
-
                 nodePortal.style.zIndex = newZIndex;
                 this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this._drawerContainer.style.zIndex = newZIndex;
@@ -310,9 +318,14 @@ class Drawer extends React.Component {
 
                         break;
                 }
-
                 BODY.style.top = `-${scrollPosition}px`;
+
                 DOMUtils.addClassName(BODY, 'drawer-open');
+
+                if (positionY && maxHeight) {
+                    BODY.style.position = 'inherit';
+                }
+
                 this._shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
@@ -326,6 +339,10 @@ class Drawer extends React.Component {
                         '768px';
             } else {
                 this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
+            }
+
+            if (!_.isUndefined(maxHeight)) {
+                this._drawerContainer.style.maxHeight = maxHeight ? `${maxHeight}px` : '700px';
             }
 
             this._drawerContainer.style.transform = _.isNumber(positionYOffset) ?
@@ -381,12 +398,14 @@ Drawer.defaultProps = {
     dimmer: true,
     isOpen: false,
     positionX: 'right',
+    positionY: 'top',
 };
 
 Drawer.propTypes = {
     className: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
+    maxHeight: PropTypes.number,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -395,9 +414,10 @@ Drawer.propTypes = {
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
-    positionX: PropTypes.oneOf([ 'left', 'right' ]),
+    positionX: PropTypes.oneOf(['left', 'right']),
+    positionY: PropTypes.oneOf(['bottom', 'top']),
     positionYOffset: PropTypes.number,
-    shadowSize: PropTypes.oneOf([ 'large', 'small', 'xsmall' ]),
+    shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
     style: PropTypes.object,
     wing: PropTypes.object,
 };

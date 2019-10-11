@@ -109,6 +109,24 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // #####
     // End of Header Items
     // #####
+    &.bottom-position .drawer-container {
+        border-top-left-radius: 5px;
+        bottom: 0;
+        box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important; // sass-lint:disable-line no-important
+        overflow: hidden;
+        top: initial;
+        .shadow_container { 
+            visibility: hidden;
+        }
+    }
+    &.top-position .drawer-container {
+        border-bottom-left-radius: 5px;
+        box-shadow: -9px 0 17px 0 rgba(0, 0, 0, 0.1) !important; // sass-lint:disable-line no-important
+        overflow: hidden;
+        .shadow_container { 
+            visibility: hidden;
+        }
+    }
     .drawer-container {
         backface-visibility: hidden;
         background-color: color(backgroundColor);

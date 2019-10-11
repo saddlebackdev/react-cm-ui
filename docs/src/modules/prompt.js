@@ -101,7 +101,7 @@ export default class OptionalPromptSample extends React.Component {
     }
 
     _onNoClick() {
-        console.log('No ... just kidding.  Don\'t delete it!');
+        console.log('No ... just kidding.  Don\\'t delete it!');
         this.setState({ showPrompt: false });
     }
 }`;

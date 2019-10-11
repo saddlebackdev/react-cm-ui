@@ -6,7 +6,7 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
-import { backgroundColorSuccess } from 'shared/styles/colors.scss';
+import { backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -242,6 +242,14 @@ class PageDemo extends React.PureComponent {
                                                 id: 'sub-option-baz',
                                                 label: 'Baz Template',
                                                 onClick: () => { console.log('Bar Template was clicked!'); /* eslint-disable-line no-console */ },
+                                            }, {
+                                                iconType: 'wrench-screwdriver',
+                                                id: 'sub-option-quux',
+                                                label: 'Quux Template',
+                                                onClick: () => { console.log('Quux Template was clicked!'); /* eslint-disable-line no-console */ },
+                                                promptColor: 'success',
+                                                promptMessage: 'Create a new Quux Template?  For reals?',
+                                                requiresPrompt: true,
                                             },
                                         ],
                                     }, {
@@ -253,12 +261,96 @@ class PageDemo extends React.PureComponent {
                                         iconType: 'comment-lines',
                                         label: 'SMS',
                                         onClick: () => { console.log('SMS was clicked!'); /* eslint-disable-line no-console */ },
+                                    }, {
+                                        iconType: 'times',
+                                        label: 'Delete Stuff',
+                                        iconBackgroundColor: backgroundColorAlert,
+                                        onClick: () => { console.log('Deleting all the things!'); /* eslint-disable-line no-console */ },
+                                        promptColor: 'alert',
+                                        promptMessage: 'Really delete all the things?  No joke?',
+                                        requiresPrompt: true,
                                     },
                                 ],
                             },
                         },
                     ],
                 },
+            ];
+        }
+        let statsColumns = [
+            {
+                accessor: () => 'Super Cool Info Bar - Color: 11',
+                fontSize: 'large',
+                fontWeight: 'semibold',
+                header: null,
+                width: '100%',
+            }, {
+                accessor: () => (
+                    <svg width="35px" height="35px" viewBox="0 0 35 35">
+                        <defs>
+                            <path d="M45.9957644,28.1111111 C45.7889536,18.6257181 38.0350177,11 28.5,11 L28.5,18 C34.1687932,18 38.788356,22.4922893 38.9929318,28.1111111 L45.9957644,28.1111111 Z" id="path-1" />
+                        </defs>
+                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                            <g id="Group" transform="translate(-11.000000, -11.000000)">
+                                <rect id="Rectangle" fill="#000000" opacity="0" x="0" y="0" width="57" height="57" />
+                                <path d="M28.5,11 C38.1649831,11 46,18.8350169 46,28.5 C46,38.1649831 38.1649831,46 28.5,46 C18.8350169,46 11,38.1649831 11,28.5 C11,18.8350169 18.8350169,11 28.5,11 Z M28.5,18 C22.7010101,18 18,22.7010101 18,28.5 C18,34.2989899 22.7010101,39 28.5,39 C34.2989899,39 39,34.2989899 39,28.5 C39,22.7010101 34.2989899,18 28.5,18 Z" id="Oval" fillOpacity="0.3" fill="#FFFFFF" />
+                                <mask id="mask-2" fill="white">
+                                    <use xlinkHref="#path-1" />
+                                </mask>
+                                <use id="Oval-Copy" fill="#56C4C4" xlinkHref="#path-1" />
+                                <rect id="Rectangle-2" fill="#FFFFFF" mask="url(#mask-2)" x="0" y="0" width="57" height="57" />
+                            </g>
+                        </g>
+                    </svg>
+                ), // eslint-disable-line no-unused-vars,max-len
+                fontWeight: 'bold',
+                header: null,
+                width: '67px',
+            }, {
+                accessor: 'notContacted',
+                header: 'Not Contacted',
+            }, {
+                accessor: 'contacted',
+                header: 'Contacted',
+            },
+        ];
+
+        let statsExpandableColumns = [
+            {
+                divide: !isMobile,
+                accessor: 'firstContact',
+                header: '1st Contact',
+            }, {
+                accessor: 'secondContact',
+                header: '2nd Contact',
+            }, {
+                accessor: 'pending',
+                header: 'Pending',
+            },
+        ];
+
+        if (!isMobile) {
+            statsColumns = [
+                ...statsColumns,
+                ...statsExpandableColumns,
+            ];
+            statsExpandableColumns = [];
+        } else {
+            statsColumns = [
+                ...statsColumns,
+                {
+                    expandedButton: isMobile,
+                    expandedButtonId: 'page_demo--details_expanded_button_unique_id',
+                    header: null,
+                },
+            ];
+            statsExpandableColumns = [
+                {
+                    accessor: null,
+                    header: null,
+                    width: '67px',
+                },
+                ...statsExpandableColumns,
             ];
         }
 
@@ -447,44 +539,15 @@ class PageDemo extends React.PureComponent {
                         >
                             <Page.Details
                                 color={11}
-                                columns={[
-                                    {
-                                        accessor: () => 'Super Cool Info Bar - Color: 11',
-                                        fontSize: 'large',
-                                        fontWeight: 'semibold',
-                                        header: null,
-                                        style: {
-                                            marginBottom: '11px',
-                                        },
-                                        width: '100%',
-                                    }, {
-                                        accessor: (d) => (<div>Chart</div>), // eslint-disable-line no-unused-vars,max-len
-                                        fontWeight: 'bold',
-                                        header: null,
-                                    }, {
-                                        accessor: 'activeTemplates',
-                                        header: 'Active Templates',
-                                    }, {
-                                        accessor: 'inactiveTemplates',
-                                        header: 'Inactive Templates',
-                                    }, {
-                                        columns: [
-                                            {
-                                                accessor: 'activeTemplates',
-                                                header: 'Active Templates',
-                                            }, {
-                                                accessor: 'inactiveTemplates',
-                                                header: 'Inactive Templates',
-                                            },
-                                        ],
-                                        divide: true,
-                                    },
-                                ]}
+                                columns={statsColumns}
                                 data={{
-                                    activeTemplates: 4,
-                                    id: 1,
-                                    inactiveTemplates: 2,
+                                    notContacted: 4,
+                                    contacted: 5,
+                                    firstContact: 4,
+                                    secondContact: 1,
+                                    pending: 3,
                                 }}
+                                expandableColumns={statsExpandableColumns}
                             />
 
                             {!isMobile && viewType === 'table' ? (
