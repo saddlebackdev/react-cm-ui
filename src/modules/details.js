@@ -1,124 +1,87 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Button from '../elements/button.js';
-import Header from '../elements/header.js';
-import Icon from '../elements/icon.js';
-import InfoBar from '../views/infoBar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-class DetailsColumn extends React.PureComponent {
-    render() {
-        const { column, columnProps, moduleType } = this.props;
-
-        if (!column.accessor && column.columns && _.isArray(column.columns)) {
-            const containerClasses = ClassNames(`${moduleType}--details-column`, {
-                'divide': column.divide,
-            });
-
-            let innerContainerKeyNum = 1;
-
-            return (
-                <div
-                    className={containerClasses}
-                    style={Object.assign({}, {
-                        flexBasis: column.flexBasis || 'auto',
-                        flexGrow: column.flexGrow || 0,
-                        flexShrink: column.flexShrink || 0,
-                        paddingLeft: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        paddingRight: columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null,
-                        width: column.width,
-                    }, column.style)}
-                >
-                    {_.map(column.columns, (column, index) => {
-                        return this._renderColumn(column, innerContainerKeyNum++);
-                    })}
-                </div>
-            );
-        }
-
-        return this._renderColumn(column);
-    }
-
-    _renderColumn(column, innerContainerKeyNum) {
-        const { columnProps, data, moduleType } = this.props;
-        const containerClasses = ClassNames(`${moduleType}--details-column${!!innerContainerKeyNum ? '-inner' : ''}`, {
-            'divide-left': column.divide || column.divide === 'left',
-            'divide-right': column.divide === 'right',
-        });
-        const accessorClasses = ClassNames(`${moduleType}--details-column-accessor`, {
-            'font-size-large': column.fontSize === 'large',
-            'font-size-medium': column.fontSize === 'medium',
-            'font-size-small': !column.fontSize || column.fontSize === 'small',
-            'font-weight-bold': !column.fontWeight || column.fontWeight === 'bold',
-            'font-weight-normal': column.fontWeight === 'normal',
-            'font-weight-semibold': column.fontWeight === 'semibold',
-        });
-        let accessor, flexBasisInlineStyle, flexGrowInlineStyle, flexShrinkInlineStyle, horizontalSpacingInlineStyle;
-
-        if (_.isString(column.accessor)) {
-            accessor = _.get(data, column.accessor);
-        } else if (_.isFunction(column.accessor)) {
-            accessor = column.accessor(data);
-        }
-
-        if (!!innerContainerKeyNum) {
-            flexBasisInlineStyle = column.flexBasis || 'auto';
-            flexGrowInlineStyle = column.flexGrow || 0;
-            flexShrinkInlineStyle = column.flexShrink || 0;
-            horizontalSpacingInlineStyle = columnProps && columnProps.horizontalSpacing ? `${columnProps.horizontalSpacing}px` : null;
-        }
-
-        return (
-            <div
-                className={containerClasses}
-                key={`${moduleType}-details-column-key-${innerContainerKeyNum || 0}`}
-                style={Object.assign({}, {
-                    flexBasis: flexBasisInlineStyle,
-                    flexGrow: flexGrowInlineStyle,
-                    flexShrink: flexShrinkInlineStyle,
-                    paddingLeft: horizontalSpacingInlineStyle,
-                    paddingRight: horizontalSpacingInlineStyle,
-                    width: column.width,
-                }, column.style)}
-            >
-                {column.header &&
-                    <Header size="xsmall" style={{ margin: 0 }}>
-                        {column.header}
-                    </Header>
-                }
-
-                <div className={accessorClasses}>
-                    {accessor}
-                </div>
-            </div>
-        );
-    }
-}
-
-DetailsColumn.propTypes = {
-    column: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object,
-    ]).isRequired,
-    columnProps: PropTypes.object,
-    data: PropTypes.object.isRequired,
-    moduleType: PropTypes.string,
-};
+import ReactDOM from 'react-dom';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
+import InfoBar from '../views/infoBar.js';
+import DetailsColumnContainer from './detailsColumnContainer.js';
+import domUtils from '../utils/domUtils.js';
 
 class Details extends React.PureComponent {
     constructor() {
         super();
-        this.onInfoBarExpandToggle = this.onInfoBarExpandToggle.bind(this);
+
         this.state = {
-            isInfoBarExpanded: false,
+            isExpanded: false,
         };
+
+        this.expandableContainerHeight = null;
+        this.previousExpandableContainerHeight = null;
+
+        this.onExpandButtonToggle = this.onExpandButtonToggle.bind(this);
+        this.onExpandTransitionComplete = this.onExpandTransitionComplete.bind(this);
+        this.setColumnContainerHeight = this.setColumnContainerHeight.bind(this);
     }
 
-    onInfoBarExpandToggle() {
-        this.setState(prev => ({
-            isInfoBarExpanded: !prev.isInfoBarExpanded,
-        }));
+    componentDidMount() {
+        this.toggleExpandableContainer();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { expandableColumns } = this.props;
+        const { expandableColumns: prevExpandableColumns } = prevProps;
+
+        if (_.isEmpty(prevExpandableColumns) && !_.isEmpty(expandableColumns)) {
+            this.toggleExpandableContainer();
+        }
+    }
+
+    onExpandButtonToggle() {
+        this.setState((prevState) => ({
+            isExpanded: !prevState.isExpanded,
+        }), () => {
+            this.toggleExpandableContainer();
+        });
+    }
+
+    onExpandTransitionComplete() {
+        const { moduleType } = this.props;
+        const exandableContainer = ReactDOM.findDOMNode(this.exandableContainerRef); // eslint-disable-line react/no-find-dom-node, max-len
+
+        exandableContainer.classList.remove(
+            `${moduleType}_details--exapndable_columns_container-contracted-active`,
+            `${moduleType}_details--exapndable_columns_container-expanded-active`,
+        );
+        exandableContainer.removeEventListener(
+            domUtils.cssTransitionType(exandableContainer),
+            this.onExpandTransitionComplete,
+        );
+    }
+
+    setColumnContainerHeight(height) {
+        if (_.isNil(this.expandableContainerHeight) || this.expandableContainerHeight > height) {
+            this.expandableContainerHeight = height;
+        }
+    }
+
+    toggleExpandableContainer() {
+        const { expandableColumns, moduleType } = this.props;
+        const { isExpanded } = this.state;
+        const hasExpandableColumns = !_.isEmpty(expandableColumns);
+
+        if (hasExpandableColumns && this.exandableContainerRef) {
+            const exandableContainer = ReactDOM.findDOMNode(this.exandableContainerRef); // eslint-disable-line react/no-find-dom-node, max-len
+
+            exandableContainer.style.height = `${isExpanded ? this.expandableContainerHeight : 0}px`;
+            exandableContainer.classList.add(
+                `${moduleType}_details--exapndable_columns_container-${isExpanded ? 'expanded' : 'contracted'}-active`,
+            );
+            exandableContainer.addEventListener(
+                domUtils.cssTransitionType(exandableContainer),
+                this.onExpandTransitionComplete,
+            );
+        }
     }
 
     render() {
@@ -127,18 +90,61 @@ class Details extends React.PureComponent {
             className,
             color,
             columnProps,
+            columns,
             data,
+            expandableColumns,
             style,
             moduleType,
         } = this.props;
-        const { isInfoBarExpanded } = this.state;
-        const hasDetailedColumns = !!this.props.detailedColumns;
-        const columns = isInfoBarExpanded && hasDetailedColumns ? this.props.detailedColumns : this.props.columns;
-        const containerClasses = ClassNames('ui', `${moduleType}--details`, className, {
-            'page--details-bleed' : bleed && moduleType=='page',
-            'drawer--details-bleed' : bleed && moduleType=='drawer',
+        const { isExpanded } = this.state;
+        const hasExpandableColumns = !_.isEmpty(expandableColumns);
+        const containerClasses = ClassNames('ui', `${moduleType}_details`, className, {
+            'page--details-bleed': bleed && moduleType === 'page',
+            'drawer--details-bleed': bleed && moduleType === 'drawer',
         });
         let detailsColumnKeyNum = 1;
+        let detailsColumnKeyNumExpanded = 1;
+        let horizontalSpacing;
+
+        if (columnProps) {
+            horizontalSpacing = columnProps.horizontalSpacing;
+        }
+
+        let expandableJSX;
+
+        if (hasExpandableColumns) {
+            const shouldShowExpanded = isExpanded;
+            const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
+            const expandableContainerClasses = ClassNames(
+                expandableColumnsContainerName,
+                {
+                    [`${expandableColumnsContainerName}-expanded`]: shouldShowExpanded,
+                    [`${expandableColumnsContainerName}-contracted`]: !shouldShowExpanded,
+                },
+            );
+
+            expandableJSX = (
+                <div
+                    className={expandableContainerClasses}
+                    ref={(ref) => { this.exandableContainerRef = ref; }}
+                >
+                    {_.map(expandableColumns, (column) => {
+                        detailsColumnKeyNumExpanded += 1;
+
+                        return (
+                            <DetailsColumnContainer
+                                column={column}
+                                columnProps={columnProps}
+                                data={data}
+                                key={`${moduleType}DetailsColumn-${detailsColumnKeyNumExpanded}`}
+                                moduleType={moduleType}
+                                setColumnContainerHeight={this.setColumnContainerHeight}
+                            />
+                        );
+                    })}
+                </div>
+            );
+        }
 
         return (
             <div
@@ -147,59 +153,56 @@ class Details extends React.PureComponent {
             >
                 <InfoBar color={color}>
                     <div
-                        className={`${moduleType}--details-columns-container`}
+                        className={`${moduleType}_details--columns_container`}
                         style={{
-                            marginLeft: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
-                            marginRight: columnProps && columnProps.horizontalSpacing ? `-${columnProps.horizontalSpacing}px` : null,
+                            marginLeft: horizontalSpacing ? `-${horizontalSpacing}px` : null,
+                            marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
                         }}
                     >
-                        {_.map(columns, (column, index) => {
+                        {_.map(columns, (column) => {
+                            detailsColumnKeyNum += 1;
+
                             return (
-                                <DetailsColumn
+                                <DetailsColumnContainer
                                     column={column}
                                     columnProps={columnProps}
                                     data={data}
-                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum++}`}
+                                    isExpanded={isExpanded}
+                                    key={`${moduleType}DetailsColumn-${detailsColumnKeyNum}`}
                                     moduleType={moduleType}
+                                    onExpandButtonToggle={this.onExpandButtonToggle}
                                 />
                             );
                         })}
                     </div>
-                    {hasDetailedColumns && (
-                        <Button
-                            color="light"
-                            icon
-                            onClick={this.onInfoBarExpandToggle}
-                            outlined
-                        >
-                            <Icon
-                                compact
-                                rotate={isInfoBarExpanded ? 180 : null}
-                                title={isInfoBarExpanded ? 'Collapse' : 'Expand'}
-                                type="chevron-down"
-                            />
-                        </Button>
-                    )}
+
+                    {expandableJSX}
                 </InfoBar>
             </div>
         );
     }
 }
 
-Details.defaultProps = {
-    bleed: true,
-};
-
 Details.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    color: PropTypes.oneOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]),
-    columnProps: PropTypes.object,
-    columns: PropTypes.array.isRequired,
-    data: PropTypes.object.isRequired,
-    detailedColumns: PropTypes.array,
+    color: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+    columnProps: columnPropsPropTypesShape,
+    columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
+    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     moduleType: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+Details.defaultProps = {
+    bleed: true,
+    className: undefined,
+    color: undefined,
+    columnProps: undefined,
+    expandableColumns: undefined,
+    moduleType: undefined,
+    style: {},
 };
 
 export default Details;

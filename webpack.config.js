@@ -9,7 +9,7 @@ module.exports = (env, options) => {
     return {
         entry: {
             bundle: './docs/src/index.js',
-            commons: [ 'react-syntax-highlighter' ],
+            commons: ['react-syntax-highlighter'],
         },
         devServer: {
             historyApiFallback: true,
@@ -22,7 +22,8 @@ module.exports = (env, options) => {
             chunkFilename: 'js/[name].[chunkhash].js',
             publicPath: '/',
         },
-        devtool: 'eval',
+        devtool: 'source-map',
+        mode: isDevMode ? 'development' : 'production',
         module: {
             rules: [
                 {
@@ -40,7 +41,7 @@ module.exports = (env, options) => {
                                 plugins: [
                                     require('autoprefixer')(),
                                 ],
-                                sourceMap: isDevMode,
+                                sourceMap: true,
                             },
                         },
                         'resolve-url-loader',
