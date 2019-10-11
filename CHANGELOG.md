@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.3
+
+#### Bug Fix
+- [PR #73](https://github.com/saddlebackdev/react-cm-ui/pull/73)
+    - Fix up a few functions in **DateUtils** that were ported over from Healthy
+    Church.  In particular, fix it so we do not introduce the "UNIX Epoch Bug",
+    where a functions expecting a numeric timestamp would incorrectly return `null`
+    upon encountering a value of zero, as opposed to 1 January 1970 as they should.
+    This bug was patched in HC's corresponding **DateUtils** functions a while
+    back, but was inadvertantly reintroduced to the React CM UI versions.
+
 ## 6.4.2
 
 #### Bug Fix
