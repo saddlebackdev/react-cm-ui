@@ -398,7 +398,7 @@ Drawer.defaultProps = {
     dimmer: true,
     isOpen: false,
     positionX: 'right',
-    positionY: 'top',
+    positionY: undefined,
 };
 
 Drawer.propTypes = {
