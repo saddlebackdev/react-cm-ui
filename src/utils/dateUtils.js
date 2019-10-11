@@ -3,29 +3,25 @@ import moment from 'moment-timezone';
 
 const DateUtils = {
     formatWithTz(data, userTimeZoneId) {
-        let timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
 
         return DateUtils.formatWithSpecifiedTz(data, timeZoneId);
     },
 
     formatWithSpecifiedTz(data, timeZoneId) {
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
         if (_.isNumber(data)) {
-            if (data === 0) {
-                return null;
-            }
-
             return moment.unix(data).utc().tz(timeZoneId).format('L LT z');
-        } else {
-            return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').tz(timeZoneId).format('L LT z');
         }
+
+        return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').tz(timeZoneId).format('L LT z');
     },
 
     formatForCommentsWithTz(data, userTimeZoneId) {
-        let timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
 
         if (data === null || typeof data === 'undefined') {
             return null;
@@ -43,8 +39,8 @@ const DateUtils = {
             dataMoment = moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').tz(timeZoneId);
         }
 
-        let today = moment().startOf('day');
-        let dataDate = moment(dataMoment).startOf('day');
+        const today = moment().startOf('day');
+        const dataDate = moment(dataMoment).startOf('day');
         let dateString = null;
 
         switch (today.diff(dataDate, 'day')) {
@@ -63,45 +59,39 @@ const DateUtils = {
     },
 
     formatDaysFromToday(data) {
-        if (data === null || typeof data === 'undefined') {
-            return null;
-        }
-
         if (_.isNumber(data)) {
-            if (data === 0) {
-                return null;
-            }
-
-            let momentObj = DateUtils.unixToTz(data);
+            const momentObj = DateUtils.unixToTz(data);
             let returnText = momentObj.fromNow().toLowerCase();
 
             switch (returnText) {
                 case 'in a day':
                     returnText = 'Tomorrow';
+
                     break;
                 case 'a day ago':
                     returnText = 'Yesterday';
+
+                    break;
+                default:
                     break;
             }
 
             return returnText;
         }
+
+        return null;
     },
 
     format(data) {
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
         if (_.isNumber(data)) {
-            if (data === 0) {
-                return null;
-            }
-
             return moment.unix(data).utc().format('L');
-        } else {
-            return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').format('L');
         }
+
+        return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').format('L');
     },
 
     formatTimeOnly(data) {
@@ -111,9 +101,9 @@ const DateUtils = {
 
         if (_.isNumber(data)) {
             return moment.unix(data).utc().format('L LT z');
-        } else {
-            return moment(data, 'HH:mm').format('hh:mm a');
         }
+
+        return moment(data, 'HH:mm').format('hh:mm a');
     },
 
     formatShort(data) {
@@ -122,25 +112,25 @@ const DateUtils = {
         }
 
         if (_.isNumber(data)) {
-            if (data === 0) {
-                return null;
-            }
-
             return moment.unix(data).utc().format('MM/DD/YY');
         }
+
+        return moment(data).format('MM/DD/YY');
     },
 
     formatDayOfWeek(data) {
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().format('dddd');
+        }
+
+        return null;
+    },
+
+    toUnixTimestamp(data) {
         if (_.isNil(data)) {
             return null;
         }
 
-        if (_.isNumber(data)) {
-            return moment.unix(data).utc().format('dddd');
-        }
-    },
-
-    toUnixTimestamp(data) {
         return moment.utc(data, 'MM/DD/YYYY').unix();
     },
 
@@ -149,7 +139,7 @@ const DateUtils = {
     },
 
     getAllowedDateFormats() {
-        let formats = [
+        const formats = [
             moment.ISO_8601,
             'MM/DD/YYYY',
             'MM-DD-YYYY',
@@ -185,14 +175,14 @@ const DateUtils = {
             'DD.MM.YY',
         ];
 
-        let localeData = moment.localeData();
-        let longDateFormat1 = localeData.longDateFormat('L');
+        const localeData = moment.localeData();
+        const longDateFormat1 = localeData.longDateFormat('L');
 
         if (_.indexOf(formats, longDateFormat1) < 0) {
             formats.unshift(longDateFormat1);
         }
 
-        let longDateFormat2 = localeData.longDateFormat('LL');
+        const longDateFormat2 = localeData.longDateFormat('LL');
 
         if (_.indexOf(formats, longDateFormat2) < 0) {
             formats.unshift(longDateFormat2);
@@ -212,19 +202,17 @@ const DateUtils = {
 
         while (currentDate.month() === fullDate.month()) {
             currentDate.subtract(1, 'week');
-            weeksToStart++;
+            weeksToStart += 1;
         }
 
         return weeksToStart;
     },
 
+    /**
+     * Display a day relative to a given param.
+     * @returns {String} Returns the formatted string.
+     */
     fromNow(date) {
-        /**
-         * Display a day relative to a given param.
-         *
-         * @returns {String} Returns the formatted string.
-         */
-
         return DateUtils.unixToTz(date).calendar(null, {
             sameDay: '[Today] - MM/DD/YY',
             nextDay: '[Tomorrow] - MM/DD/YY',
@@ -237,6 +225,7 @@ const DateUtils = {
 
     unixToTz(date, userTimeZoneId) {
         const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+
         return moment.unix(date).utc().tz(timeZoneId);
     },
 };
