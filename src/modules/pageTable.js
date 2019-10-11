@@ -38,7 +38,7 @@ class PageTableRow extends React.PureComponent {
                     }
 
                     const style = {};
-                    const size = _.isEmpty(sizes) ? null : sizes[rowIndex][index];
+                    const size = _.isEmpty(sizes) || _.isEmpty(sizes[rowIndex]) ? null : sizes[rowIndex][index];
 
                     if (size) {
                         style.height = size.h;
