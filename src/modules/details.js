@@ -110,7 +110,7 @@ class Details extends React.PureComponent {
             horizontalSpacing = columnProps.horizontalSpacing;
         }
 
-        let foo;
+        let expandableJSX;
 
         if (hasExpandableColumns) {
             const shouldShowExpanded = isExpanded;
@@ -123,7 +123,7 @@ class Details extends React.PureComponent {
                 },
             );
 
-            foo = (
+            expandableJSX = (
                 <div
                     className={expandableContainerClasses}
                     ref={(ref) => { this.exandableContainerRef = ref; }}
@@ -176,7 +176,7 @@ class Details extends React.PureComponent {
                         })}
                     </div>
 
-                    {foo}
+                    {expandableJSX}
                 </InfoBar>
             </div>
         );
