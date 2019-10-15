@@ -2,7 +2,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from './icon.js';
-import colorStyles from '../shared/styles/colors.scss';
+import colorStyles from '../colors';
 import Utils from '../utils/utils.js';
 
 function Image(props) {

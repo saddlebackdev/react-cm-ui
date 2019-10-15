@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.5
+
+#### Bug Fix
+- Changed the way we import our css exported color variables into JS for some Jest research.
+
 ## 6.4.4
 
 #### Bug Fix
