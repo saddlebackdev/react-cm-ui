@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -12,18 +10,104 @@ class Prompt extends Component {
 
         this.state = {
             show: props.show || false,
-            inlineVerticalAlign: 0
+            inlineVerticalAlign: 0,
         };
 
-        this._onClick = this._onClick.bind(this);
-        this._onNoClick = this._onNoClick.bind(this);
-        this._onYesClick = this._onYesClick.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.onNoClick = this.onNoClick.bind(this);
+        this.onYesClick = this.onYesClick.bind(this);
+    }
+
+    componentDidMount() {
+        const { inline } = this.props;
+
+        if (inline) {
+            this.findInlineVerticalPosition();
+        }
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.show !== prevProps.show) {
-            this.setState({ show: this.props.show });
+        const { show: nextShowProp } = this.props;
+        const { show: prevShowProp } = prevProps;
+
+        if (nextShowProp !== prevShowProp) {
+            this.setState({ show: nextShowProp });
         }
+    }
+
+    onClick(option) {
+        const { onClick } = this.props;
+        const { show } = this.state;
+
+        if (show) { return false; }
+
+        if (!_.isUndefined(onClick)) {
+            onClick(option);
+        } else {
+            this.setState({ show: true });
+        }
+
+        return false;
+    }
+
+    onNoClick() {
+        const { onNoClick } = this.props;
+
+        if (!_.isUndefined(onNoClick)) {
+            onNoClick();
+        } else {
+            this.setState({ show: false });
+        }
+    }
+
+    onYesClick() {
+        const { onYesClick } = this.props;
+
+        if (!_.isUndefined(onYesClick)) {
+            onYesClick();
+        } else {
+            this.setState({ show: false });
+        }
+    }
+
+    findInlineVerticalPosition() {
+        const childHeight = ReactDOM.findDOMNode(this.promptAction).offsetHeight; // eslint-disable-line max-len, react/no-find-dom-node
+        const negativeSpace = 5;
+        this.setState({ inlineVerticalAlign: `${childHeight + negativeSpace}px` });
+    }
+
+    renderAction() {
+        const { children } = this.props;
+        const { show } = this.state;
+
+        const childClasses = (children && children.props.className) || null;
+        const promptActionClasses = ClassNames('prompt-action', childClasses, {
+            'prompt-action-disable': show,
+        });
+
+        if (children && children.type.name === 'Button') {
+            return React.cloneElement(children, {
+                className: promptActionClasses,
+                color: show ? 'disable' : children.props.color,
+                onClick: this.onClick,
+                ref: (promptAction) => { this.promptAction = promptAction; },
+            });
+        }
+
+        if (children && children.type.name === 'Dropdown') {
+            return React.cloneElement(children, {
+                className: promptActionClasses,
+                buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
+                onChange: this.onClick,
+                ref: (promptAction) => { this.promptAction = promptAction; },
+            });
+        }
+
+        return React.cloneElement(children, {
+            className: `${promptActionClasses} ${show ? 'color-static' : null}`,
+            onClick: this.onClick,
+            ref: (promptAction) => { this.promptAction = promptAction; },
+        });
     }
 
     render() {
@@ -35,117 +119,56 @@ class Prompt extends Component {
             inlineHorizontalAlign,
             inlineMessageColor,
             message,
-            style
+            style,
         } = this.props;
+
         const { show, inlineVerticalAlign } = this.state;
         const containerClasses = ClassNames('ui', 'prompt', className, {
             'prompt-show': show,
-            'prompt-inline': inline
+            'prompt-inline': inline,
         });
+
         const messageClasses = ClassNames('prompt-message', {
             'promp-message-alert': inlineMessageColor === 'alert' || children.props.color === 'alert' || children.props.buttonColor === 'alert',
-            'promp-message-success': inlineMessageColor === 'success' || children.props.color === 'success' || children.props.buttonColor === 'success'
+            'promp-message-success': inlineMessageColor === 'success' || children.props.color === 'success' || children.props.buttonColor === 'success',
         });
+
         const promptActionsStyle = {
             left: !inlineHorizontalAlign || inlineHorizontalAlign === 'left' ? 0 : null,
             right: inlineHorizontalAlign === 'right' ? 0 : null,
-            top: inlineVerticalAlign
+            top: inlineVerticalAlign,
         };
 
         return (
             <div className={containerClasses} id={id} style={style}>
-                {this._renderAction()}
+                {this.renderAction()}
 
                 <div className="prompt-actions" style={promptActionsStyle}>
-                    <div className={messageClasses}>{message || 'Are you sure?'}</div>
-                    <a className="prompt-yes-btn" onClick={this._onYesClick}>{'Yes'}</a>
-                    <a className="prompt-no-btn" onClick={this._onNoClick}>{'No'}</a>
+                    <div className={messageClasses}>{message}</div>
+                    {/* eslint-disable max-len */}
+                    {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
+                    <a className="prompt-yes-btn" onClick={this.onYesClick}>Yes</a>
+                    <a className="prompt-no-btn" onClick={this.onNoClick}>No</a>
+                    {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
+                    {/* eslint-enable max-len */}
                 </div>
             </div>
         );
     }
-
-    componentDidMount() {
-        if (this.props.inline) {
-            this._findInlineVerticalPosition();
-        }
-    }
-
-    _findInlineVerticalPosition() {
-        const childHeight = ReactDOM.findDOMNode(this.promptAction).offsetHeight;
-        const negativeSpace = 5;
-        this.setState({ inlineVerticalAlign: childHeight + negativeSpace + 'px' });
-    }
-
-    _onClick(option) {
-        const { onClick } = this.props;
-        const { show } = this.state;
-
-        if (show) { return false; }
-
-        if (!_.isUndefined(onClick)) {
-            onClick(option);
-        } else {
-            this.setState({ show: true });
-        }
-    }
-
-    _onNoClick() {
-        const { onNoClick } = this.props;
-
-        if (!_.isUndefined(onNoClick)) {
-            onNoClick();
-        } else {
-            this.setState({ show: false });
-        }
-    }
-
-    _onYesClick() {
-        const { onYesClick } = this.props;
-
-        if (!_.isUndefined(onYesClick)) {
-            onYesClick();
-        } else {
-            this.setState({ show: false });
-        }
-    }
-
-    _renderAction() {
-        const { children } = this.props;
-        const { show } = this.state;
-        const promptActionClasses = ClassNames('prompt-action', {
-            'prompt-action-disable': show
-        });
-
-        if (children && children.type.name === 'Button') {
-            return React.cloneElement(children, {
-                className: promptActionClasses,
-                color: show ? 'disable' : children.props.color,
-                onClick: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction; },
-            });
-        } else if (children && children.type.name === 'Dropdown') {
-            return React.cloneElement(children, {
-                className: promptActionClasses,
-                buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
-                onChange: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction; },
-            });
-        } else {
-            return React.cloneElement(children, {
-                className: `${promptActionClasses} ${show ? 'color-static' : null}`,
-                onClick: this._onClick.bind(this),
-                ref: promptAction => { this.promptAction = promptAction; },
-            });
-        }
-    }
 }
 
-const inlineHorizontalAlign = [ 'left', 'right' ];
-const inlineMessageColor = [ 'alert', 'success' ];
+const inlineHorizontalAlign = ['left', 'right'];
+const inlineMessageColor = ['alert', 'success'];
 
 Prompt.propTypes = {
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({}),
+    ]),
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
+    ]),
     id: PropTypes.string,
     inline: PropTypes.bool,
     inlineHorizontalAlign: PropTypes.oneOf(inlineHorizontalAlign),
@@ -154,7 +177,23 @@ Prompt.propTypes = {
     onClick: PropTypes.func,
     onNoClick: PropTypes.func,
     onYesClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    show: PropTypes.bool,
+};
+
+Prompt.defaultProps = {
+    className: undefined,
+    children: null,
+    id: undefined,
+    inline: false,
+    inlineHorizontalAlign: 'left',
+    inlineMessageColor: undefined,
+    message: 'Are you sure?',
+    onClick: undefined,
+    onNoClick: undefined,
+    onYesClick: undefined,
+    style: undefined,
+    show: undefined,
 };
 
 export default Prompt;

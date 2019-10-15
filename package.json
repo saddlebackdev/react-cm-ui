@@ -1,7 +1,7 @@
 {
   "name": "react-cm-ui",
-  "version": "6.3.0",
-  "description": "React UI for Church management (Healthy Church)",
+  "version": "6.4.4",
+  "description": "React UI for Healthy Church",
   "main": "lib/",
   "jsnext:main": "src/",
   "repository": {
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "webpack",
-    "build:local": "webpack-dev-server --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+    "build:local": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "build:prod": "npm run build",
     "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
     "clean:lib": "rimraf lib",

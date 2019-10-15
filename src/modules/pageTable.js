@@ -38,7 +38,7 @@ class PageTableRow extends React.PureComponent {
                     }
 
                     const style = {};
-                    const size = _.isEmpty(sizes) ? null : sizes[rowIndex][index];
+                    const size = _.isEmpty(sizes) || _.isEmpty(sizes[rowIndex]) ? null : sizes[rowIndex][index];
 
                     if (size) {
                         style.height = size.h;
@@ -120,9 +120,7 @@ class PageTable extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
-                style={Object.assign({}, style, {
-                    margin: bleed ? '0 -22px' : null,
-                })}
+                style={style}
             >
                 <Table
                     basic
@@ -280,16 +278,14 @@ class PageTableContainer extends React.Component {
         const isStickyColumns = stickyColumns > 0;
         const containerClasses = ClassNames('ui', 'page--table', className, {
             'page--table-sticky_columns': isStickyColumns,
-        });
-        const newStyle = Object.assign({}, style, {
-            margin: bleed ? '0 -22px' : null,
+            'page--table-bleed': bleed,
         });
 
         if (isStickyColumns) {
             return (
                 <div
                     className={containerClasses}
-                    style={newStyle}
+                    style={style}
                 >
                     <div
                         className="page--table_fixed_body"
@@ -322,7 +318,7 @@ class PageTableContainer extends React.Component {
             return (
                 <div
                     className={containerClasses}
-                    style={newStyle}
+                    style={style}
                 >
                     <PageTable {...this.props} />
                 </div>
@@ -451,6 +447,7 @@ class PageTableContainer extends React.Component {
 }
 
 PageTableContainer.defaultProps = {
+    bleed: true,
     handle: true,
     minWidth: 800,
     stickyColumns: 0,

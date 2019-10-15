@@ -137,6 +137,7 @@ $backwards-step4-duration: $standard-fifth-timing;
             @for $i from 1 through 11 {
                 &-#{$i}-hide {
                     opacity: 0;
+                    pointer-events: none;
                     transition: opacity $forwards-step1-duration ease-in-out;
                 }
                 &-#{$i}-show {
@@ -172,6 +173,7 @@ $backwards-step4-duration: $standard-fifth-timing;
             transition: color $backwards-step3-duration / 2 ease-in $backwards-step3-delay;
             z-index: 1;
             &-disabled {
+                color: color(colorStatic);
                 cursor: default;
             }
             &::before {
@@ -250,6 +252,10 @@ $backwards-step4-duration: $standard-fifth-timing;
                     transition: opacity $forwards-step4-duration ease-in-out $forwards-step4-delay + $i * 50ms,
                                 transform $forwards-step4-duration ease-in-out $forwards-step4-delay + $i * 50ms; // sass-lint:disable-line indentation
                 }
+                &-#{$i}-disabled {
+                    color: color(colorStatic);
+                    cursor: default;
+                }
             }
         }
     }
@@ -264,6 +270,9 @@ $backwards-step4-duration: $standard-fifth-timing;
             opacity: 1;
             padding-top: 11px;
         }
+    }
+    .action_bar--actions_button {
+        margin-right: 0;
     }
 }
 

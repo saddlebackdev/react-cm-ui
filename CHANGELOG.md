@@ -1,6 +1,78 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.4
+
+#### Bug Fix
+- Changed the way we import our css exported color variables into JS for some Jest research.
+
+## 6.4.3
+
+#### Bug Fix
+- [PR #73](https://github.com/saddlebackdev/react-cm-ui/pull/73)
+    - Fix up a few functions in **DateUtils** that were ported over from Healthy
+    Church.  In particular, fix it so we do not introduce the "UNIX Epoch Bug",
+    where a functions expecting a numeric timestamp would incorrectly return `null`
+    upon encountering a value of zero, as opposed to 1 January 1970 as they should.
+    This bug was patched in HC's corresponding **DateUtils** functions a while
+    back, but was inadvertantly reintroduced to the React CM UI versions.
+
+## 6.4.2
+
+#### Bug Fix
+- [PR #72](https://github.com/saddlebackdev/react-cm-ui/pull/72)
+    - Fix possible dereference of `undefined` during **Page.TableRow** render.
+    The logic trying to fetch the size of the cell was failing to take into
+    that the size data for that cell might not be available yet.  This was
+    happening in the Healthy Church client app when using the **PageTable** in
+    combination with our "load more" / "infinite scroll" component.  So we added
+    an additional safety check to prevent the error.
+
+## 6.4.1
+
+#### Bug Fix
+- [PR #71](https://github.com/saddlebackdev/react-cm-ui/pull/71)
+    - Fixed regression in certain nested **Drawer** scenarios caused by a default
+    value of "top" for the new `positionY` prop. `positionY` prop should only be
+    set to "top" or "bottom" if the new sticky drawer behavior is desired.
+    It must default to not being set at all. Having it default to "top" was
+    preventing the "nested toggles" in the page mobile filters drawer from being
+    visible, due to `overflow: hidden;` in the CSS for the sticky drawer.
+
+## 6.4.0
+
+### Feature
+- [PR #59](https://github.com/saddlebackdev/react-cm-ui/pull/59)
+    - Added ability to make **Drawer** component sticky and set `max-height` for those sticky drawers
+- [PR #63](https://github.com/saddlebackdev/react-cm-ui/pull/63)
+    - Improvements for **Page.ActionBar**
+        - Added the ability to disable an action bar button
+        - Better view for icon buttons
+- [PR #64](https://github.com/saddlebackdev/react-cm-ui/pull/64)
+    - Fixes margins for **Page.Table** on desktop/mobile modes
+- [PR #65](https://github.com/saddlebackdev/react-cm-ui/pull/65)
+    - Build Prompt functionality into **&lt;Page.ActionsBar /&gt;** (specifically
+    the **&lt;ActionBarActionsButton /&gt;** for the mobile actions menu) so that
+    various options or sub-options can request and configure a confirmation
+    **Prompt** before their `onClick` action is actually fired.
+- [PR #66](https://github.com/saddlebackdev/react-cm-ui/pull/66)
+    - Additional updates to **Page.Details**
+- [PR #67](https://github.com/saddlebackdev/react-cm-ui/pull/67)
+    - Added Contract Icon
+- [PR #70](https://github.com/saddlebackdev/react-cm-ui/pull/70)
+    - **Page.Details** Expandable Columns
+    - Improve mobile expand/contract behavior, add CSS animation, and generally
+    fix up the **Page.Details** component so it's ready for prime-time.
+
+## 6.3.1
+
+#### Bug Fix
+- [PR #62](https://github.com/saddlebackdev/react-cm-ui/pull/62): Bug Fixes in **Page.ActionBar** and various sub-components:
+    - Add a missing piece to wire up new **ActionBar** search `onClearClick` event handler
+    - Fix a couple of issues with the **ActionBar** mobile drawer options and sub-options, having to do with clickability and disabled state.
+    - Fix up some ESLINT issues highlighted using Airbnb's ESLINT config rules in the Demo Page and a few components.  Demo Page now organized
+    as Airbnb Style guide recommends for React components.
+
 ## 6.3.0
 
 #### Feature
@@ -12,8 +84,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - We're now using Airbnb's eslint config rules!
 
 #### Bug Fix
-- Fixed our exported dateUtils class to not throw errors when using certain utility functions it has to offer.
-- Added dateUtils functions not in react-cm-ui's class from HC's dateUtils file to sync up. HC is now supposed to be using react-cm-ui's dateUtils functions instead of the now deprecated HC dateUtils functions.
+- Fixed our exported `dateUtils` class to not throw errors when using certain utility functions it has to offer.
+- Added `dateUtils` functions not in react-cm-ui's class from HC's `dateUtils` file to sync up. HC is now supposed to be using react-cm-ui's `dateUtils` functions instead of the now deprecated HC `dateUtils` functions.
 - **Button** only has one height now. No more `44px` for desktop.
 
 #### Doc

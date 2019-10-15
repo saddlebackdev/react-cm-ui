@@ -1,91 +1,110 @@
-'use strict';
-
-import { border as borderColor, bkgd as borderColorInverse } from '../shared/styles/colors';
-
-import React, { Component } from 'react';
 import ClassNames from 'classnames';
-import Icon from '../elements/icon.js';
 import PropTypes from 'prop-types';
+import React from 'react';
+import Icon from './icon.js';
+import colorStyles from '../shared/styles/colors.scss';
 import Utils from '../utils/utils.js';
 
-class Image extends Component {
-    render() {
-        const { as, border, borderInverse, className, name, size, src, style, type } = this.props;
-        let newStyle = style;
-        const ElementType = Utils.getElementType(!type ? as : 'div', this.props);
-        const containerClasses = ClassNames('ui', 'image', className, {
-            'image-avatar': type === 'person' || type === 'user',
-            'image-avatar-person': type === 'person',
-            'image-avatar-user': type === 'user',
-        });
+function Image(props) {
+    const {
+        as,
+        border,
+        borderInverse,
+        className,
+        name,
+        size,
+        src,
+        style,
+        type,
+    } = props;
+    let newStyle = style;
+    const ElementType = Utils.getElementType(!type ? as : 'div', props);
+    const containerClasses = ClassNames('ui', 'image', className, {
+        'image-avatar': type === 'person' || type === 'user',
+        'image-avatar-person': type === 'person',
+        'image-avatar-user': type === 'user',
+    });
 
-        if (ElementType === 'img') {
-            newStyle = Object.assign({}, style, {
-                backgroundImage: src ? `url(${src})` : null,
-                width: size,
-            });
-
-            return (
-                <ElementType
-                    className={containerClasses}
-                    src={src}
-                    style={newStyle}
-                />
-            );
-        }
-
-        let newInitials, avatarSize = 'xsmall';
-
-        if (type) {
-            const boxShadowStyle = src ? 'none' : (!border ? `inset 0 0 0 1px ${borderColor}` : null);
-            const borderColorStyle = borderInverse ? borderColorInverse : borderColor;
-            const borderWidth = border === true ? '1' : border;
-
-            newStyle = Object.assign({}, {
-                backgroundImage: src ? `url(${src})` : null,
-                border: border ? `${borderWidth}px solid ${borderColorStyle}` : null,
-                boxShadow: boxShadowStyle,
-                fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
-                height: size,
-                width: size,
-            }, style );
-
-            if (name) {
-                newInitials = name.match(/\b\w/g) || [];
-                newInitials = ((newInitials.shift() || '') + (newInitials.pop() || '')).toUpperCase();
-            }
-
-            if (size >= 88) {
-                avatarSize = 'xxlarge';
-            } else if (size >= 66) {
-                avatarSize = 'large';
-            } else if (size >= 44) {
-                avatarSize = 'small';
-            }
-        }
+    if (ElementType === 'img') {
+        newStyle = {
+            ...style,
+            backgroundImage: src ? `url(${src})` : null,
+            width: size,
+        };
 
         return (
             <ElementType
                 className={containerClasses}
-                src={!type ? src : null}
+                src={src}
                 style={newStyle}
-            >
-                {type && !src ?
-                    name ?
-                        newInitials :
-                        ( <Icon color="static" compact size={avatarSize} title="This person has no image" type="user" /> ) :
-                    null}
-            </ElementType>
+            />
         );
     }
+
+    let newInitials;
+    let avatarSize = 'xsmall';
+
+    if (type) {
+        let boxShadowStyle;
+
+        if (src) {
+            boxShadowStyle = 'none';
+        } else {
+            boxShadowStyle = !border ? `inset 0 0 0 1px ${colorStyles.borderColor}` : null;
+        }
+
+        const borderColorStyle = borderInverse ?
+            colorStyles.borderColorInverse :
+            colorStyles.borderColor;
+        const borderWidth = border === true ? '1' : border;
+
+        newStyle = {
+            backgroundImage: src ? `url(${src})` : null,
+            border: border ? `${borderWidth}px solid ${borderColorStyle}` : null,
+            boxShadow: boxShadowStyle,
+            fontSize: !size || size < 44 ? '.75rem' : '1.125rem',
+            height: size,
+            width: size,
+            ...style,
+        };
+
+        if (name) {
+            newInitials = name.match(/\b\w/g) || [];
+            newInitials = ((newInitials.shift() || '') + (newInitials.pop() || '')).toUpperCase();
+        }
+
+        if (size >= 88) {
+            avatarSize = 'xxlarge';
+        } else if (size >= 66) {
+            avatarSize = 'large';
+        } else if (size >= 44) {
+            avatarSize = 'small';
+        }
+    }
+
+    return (
+        <ElementType
+            className={containerClasses}
+            src={!type ? src : null}
+            style={newStyle}
+        >
+            {type && !src && name && newInitials}
+
+            {type && !src && !name && (
+                <Icon
+                    color="static"
+                    compact
+                    size={avatarSize}
+                    title="This person has no image"
+                    type="user"
+                />
+            )}
+        </ElementType>
+    );
 }
 
-const asEnums = [ 'div', 'img' ];
-const typeEnums = [ 'person', 'user' ];
-
-Image.defaultProps = {
-    as: 'img',
-};
+const asEnums = ['div', 'img'];
+const typeEnums = ['person', 'user'];
 
 Image.propTypes = {
     as: PropTypes.oneOf(asEnums),
@@ -98,8 +117,20 @@ Image.propTypes = {
     name: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     type: PropTypes.oneOf(typeEnums),
+};
+
+Image.defaultProps = {
+    as: 'img',
+    border: undefined,
+    borderInverse: undefined,
+    className: undefined,
+    name: undefined,
+    size: undefined,
+    src: undefined,
+    style: {},
+    type: undefined,
 };
 
 export default Image;
