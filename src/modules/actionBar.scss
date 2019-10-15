@@ -271,6 +271,15 @@ $backwards-step4-duration: $standard-fifth-timing;
             padding-top: 11px;
         }
     }
+    .action_bar--clear_search {
+        align-items: center;
+        cursor: pointer;
+        display: inline-flex;
+        height: 33px;
+        justify-content: center;
+        transform: translate(8px, -8px);
+        width: 33px;
+    }
     .action_bar--actions_button {
         margin-right: 0;
     }
