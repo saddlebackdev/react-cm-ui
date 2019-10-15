@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.4.6
+
+#### Bug Fix
+- Updated **ActionBar's** search clear icon to match design's UI library.
+- Removed **ActionBar's** magnification icon when in mobile view.
+
 ## 6.4.5
 
 #### Bug Fix
