@@ -9,8 +9,9 @@ class ActionBarSearch extends React.PureComponent {
     constructor() {
         super();
 
-        this.onClearClick = this.onClearClick.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onClearClick = this.onClearClick.bind(this);
+        this.onClearKeyDown = this.onClearKeyDown.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
     }
 
@@ -27,6 +28,12 @@ class ActionBarSearch extends React.PureComponent {
             onClearClick();
         } else {
             onChange('');
+        }
+    }
+
+    onClearKeyDown(event) {
+        if (event.keyCode === 13) {
+            this.onClearClick();
         }
     }
 
@@ -50,6 +57,17 @@ class ActionBarSearch extends React.PureComponent {
             'action_bar--search-mobile': isMobileSearch,
             'action_bar--search-mobile-show': isMobileSearch && isMobileSearchVisible,
         });
+        let magnificationIcon = null;
+
+        if (!isMobileSearch) {
+            magnificationIcon = (
+                <Icon
+                    compact
+                    title="Search"
+                    type="search"
+                />
+            );
+        }
 
         return (
             <div
@@ -59,19 +77,21 @@ class ActionBarSearch extends React.PureComponent {
                     className="action_bar--search_input"
                     fluid
                     icon={value ? (
-                        <Icon
-                            compact
+                        <div
+                            className="action_bar--clear_search"
                             onClick={this.onClearClick}
-                            title="Clear Search"
-                            type="times"
-                        />
-                    ) : (
-                        <Icon
-                            compact
-                            title="Search"
-                            type="search"
-                        />
-                    )}
+                            onKeyDown={this.onClearKeyDown}
+                            role="button"
+                            tabIndex={0}
+                        >
+                            <Icon
+                                compact
+
+                                title="Clear Search"
+                                type="times-circle"
+                            />
+                        </div>
+                    ) : magnificationIcon}
                     id={id}
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
