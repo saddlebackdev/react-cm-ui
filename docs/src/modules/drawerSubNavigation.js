@@ -47,6 +47,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 browserHistory.push(`${drawerLocation}/sticky`);
 
                 break;
+            case 11:
+                browserHistory.push(`${drawerLocation}/data-groups`);
+
+                break;
             case 0:
             default:
                 browserHistory.push(`${drawerLocation}/`);
@@ -102,6 +106,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 itemSelected = 10;
 
                 break;
+            case 'data-groups':
+                itemSelected = 11;
+
+                break;
             default:
                 itemSelected = 0;
         }
@@ -123,6 +131,7 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
                 <SubNavigation.Item label="Wing" />
                 <SubNavigation.Item label="Details" />
                 <SubNavigation.Item label="Sticky" />
+                <SubNavigation.Item label="Data Groups" />
             </SubNavigation>
         );
     }

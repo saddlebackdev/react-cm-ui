@@ -12,7 +12,7 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const nop = () => {};
+const nop = () => { };
 
 class PageDemo extends React.PureComponent {
     constructor() {
@@ -591,47 +591,95 @@ class PageDemo extends React.PureComponent {
                                     })}
                                 />
                             ) : (
-                                <Page.Grid
-                                    cardProps={() => ({
-                                        onClick: this.onCardClick,
-                                    })}
-                                    columns={[
-                                        {
-                                            accessor: 'name',
-                                            fontSize: 'medium',
-                                            fontWeight: 'semibold',
-                                            header: false,
-                                            width: '100%',
-                                        }, {
-                                            accessor: 'campus',
-                                            fontWeight: 'bold',
-                                            header: 'Campus',
-                                        }, {
-                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                            fontWeight: 'bold',
-                                            header: 'Created On',
-                                        },
-                                    ]}
-                                    data={[
-                                        {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1259668810,
-                                            id: 1,
-                                            name: 'First Time Visitor',
-                                        }, {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1159668810,
-                                            id: 2,
-                                            name: 'Second Time Visitor',
-                                        }, {
-                                            campus: 'Anaheim',
-                                            createdOn: 1152668810,
-                                            id: 3,
-                                            name: 'Class 101 Invite',
-                                        },
-                                    ]}
-                                />
-                            )}
+                                    <Page.Grid
+                                        cardProps={() => ({
+                                            onClick: this.onCardClick,
+                                        })}
+                                        columns={[
+                                            {
+                                                accessor: 'name',
+                                                fontSize: 'medium',
+                                                fontWeight: 'semibold',
+                                                header: false,
+                                                width: '100%',
+                                            }, {
+                                                accessor: 'campus',
+                                                fontWeight: 'bold',
+                                                header: 'Campus',
+                                            }, {
+                                                accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
+                                                fontWeight: 'bold',
+                                                header: 'Created On',
+                                            },
+                                        ]}
+                                        data={[
+                                            {
+                                                campus: 'Lake Forest',
+                                                createdOn: 1259668810,
+                                                id: 1,
+                                                name: 'First Time Visitor',
+                                            }, {
+                                                campus: 'Lake Forest',
+                                                createdOn: 1159668810,
+                                                id: 2,
+                                                name: 'Second Time Visitor',
+                                            }, {
+                                                campus: 'Anaheim',
+                                                createdOn: 1152668810,
+                                                id: 3,
+                                                name: 'Class 101 Invite',
+                                            },
+                                        ]}
+                                    />
+                                )}
+                            <Page.DataGroups
+                                bleed
+                                header="Personal (Simple Page Data Groups Example)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+
+                            <Page.DataGroups
+                                bleed
+                                header="Personal (Page Data Groups Example With Icon)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                        header: 'Training',
+                                        iconType: 'chair',
+                                        iconColor: 'alert',
+                                        iconSize: 22,
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                        header: "Campus",
+                                        iconType: 'church',
+                                        iconSize: 22,
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
                         </Page.Content>
                     </Page.Container>
                 </Page>

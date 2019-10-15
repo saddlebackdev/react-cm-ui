@@ -1,0 +1,36 @@
+@import '../shared/styles/colors';
+$prefixDrawerDataGroups: drawer_data_groups;
+$prefixPageDataGroups: page_data_groups;
+
+.ui {
+    .#{$prefixDrawerDataGroups}, .#{$prefixPageDataGroups} {
+        padding: 22px;
+        background: color(backgroundColor);
+        &_header_title {
+            margin-bottom: 33px;
+        }
+        &-bleed {
+            margin: 0 -22px;
+        }
+       .ui.list {
+           width: 100%;
+           .list--item {
+                &_section {
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 22px;
+               }
+               &_section:not(.header_icon) {
+                    justify-content: space-between;
+                    margin-bottom: 22px;
+               }
+               &_data_fieldname {
+                   margin-top: 10px;
+               }
+           }
+           > div:last-child {
+                margin-bottom: 0;
+           }
+       }
+    }
+}

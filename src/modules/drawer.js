@@ -9,6 +9,7 @@ import DOMUtils from '../utils/domUtils.js';
 import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
 import DrawerContent from './drawerContent.js';
 import DrawerDetails from './drawerDetails.js';
+import DrawerDataGroups from './drawerDataGroups.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
 import DrawerGrid from './drawerGrid.js';
 import DrawerNavigation from './drawerNavigation.js';
@@ -387,6 +388,7 @@ class Drawer extends React.Component {
 Drawer.ActionBar = DrawerActionBar;
 Drawer.Content = DrawerContent;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
+Drawer.DataGroups = DrawerDataGroups;
 Drawer.Details = DrawerDetails;
 Drawer.Grid = DrawerGrid;
 Drawer.Navigation = DrawerNavigation;
