@@ -73,41 +73,41 @@ $day-size: 33px;
 .date-picker-deprecated-calendar- {
     &single-date {
         .date-picker-deprecated-day-selected span {
-            background-color: $sc-teal-dark;
+            background-color: color(backgroundColorTealDark);
             color: color(colorInverse);
         }
     }
     &date-range {
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
             span {
-                background-color: $sc-teal-dark;
+                background-color: color(backgroundColorTealDark);
                 color: color(colorInverse);
             }
         }
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
-            &::after { background-color: $sc-teal; }
+            &::after { background-color: color(backgroundColorTeal); }
         }
         .date-picker-deprecated-day-in-range {
             span { color: color(colorInverse); }
             &:first-child, &:last-child {
-                span { background-color: $sc-teal; }
+                span { background-color: color(backgroundColorTeal); }
             }
         }
     }
     &service-period, &service-period-range {
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected {
             span {
-                background-color: $sc-purple-dark;
+                background-color: color(backgroundColorPurpleDark);
                 color: color(colorInverse);
             }
         }
         .date-picker-deprecated-day-end-selected, .date-picker-deprecated-day-start-selected, .date-picker-deprecated-day-in-range {
-            &::after { background-color: $sc-purple; }
+            &::after { background-color: color(backgroundColorPurple); }
         }
         .date-picker-deprecated-day-in-range {
             span { color: color(colorInverse); }
             &:first-child, &:last-child {
-                span { background-color: $sc-purple; }
+                span { background-color: color(backgroundColorPurple); }
             }
         }
     }

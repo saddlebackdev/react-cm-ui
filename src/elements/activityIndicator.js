@@ -2,7 +2,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TimelineMax } from 'gsap';
-import colorStyles from '../shared/styles/colors.scss';
+import colorStyles from '../colors';
 
 const BLOCK_CLASS = 'activity_indicator';
 const BAR_CLASS = `${BLOCK_CLASS}--bar`;

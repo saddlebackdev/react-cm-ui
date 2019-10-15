@@ -1,0 +1,12 @@
+@import './shared/styles/colors';
+
+// ######## //
+// Exported Colors Map //
+// NOTE: To be used in JS files. e.g. 'style={{ backgroundColor: backgroundColorInverse }}'
+//       Kind of cool.
+// ######## //
+:export {
+    @each $key, $value in $colorsMap {
+        #{unquote($key)}: $value;
+    }
+}
