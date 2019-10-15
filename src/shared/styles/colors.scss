@@ -4,34 +4,34 @@
 //       Only use the color(keyName) function below.
 // ######## //
 // Primary Nutrual Colors
-$pcn-white:          #fff;
-$pcn-grey-one:       #f6f7f8;
-$pcn-grey-two:       #edf1f5;
-$pcn-grey-three:     #dbe0e3;
-$pcn-grey-four:      #97a4ab;
-$pcn-grey-five:      #38424d;
-$pcn-grey-six:       #1c2530;
+$pcnWhite:          #fff;
+$pcnGreyOne:       #f6f7f8;
+$pcnGreyTwo:       #edf1f5;
+$pcnGreyThree:     #dbe0e3;
+$pcnGreyFour:      #97a4ab;
+$pcnGreyFive:      #38424d;
+$pcnGreySix:       #1c2530;
 // Secondary Colors
-$sc-blue:            #134174;
-$sc-blue-dark:       #00254d;
-$sc-cyan:            #00aeef;
-$sc-cyan-dark:       #1c93c4;
-$sc-sky:             #6dcff6;
-$sc-sky-dark:        #4095b6;
-$sc-teal:            #56c4c4;
-$sc-teal-dark:       #329594;
-$sc-green:           #54cd86;
-$sc-green-dark:      #398f5d;
-$sc-orange:          #f99e49;
-$sc-orange-dark:     #c96d20;
-$sc-red-orange:      #f27a4d;
-$sc-red-orange-dark: #d94710;
-$sc-red:             #ee4334;
-$sc-red-dark:        #c2241a;
-$sc-pink:            #eb4ea1;
-$sc-pink-dark:       #c23680;
-$sc-purple:          #c68ef6;
-$sc-purple-dark:     #9958d2;
+$scBlue:            #134174;
+$scBlueDark:       #00254d;
+$scCyan:            #00aeef;
+$scCyanDark:       #1c93c4;
+$scSky:             #6dcff6;
+$scSkyDark:        #4095b6;
+$scTeal:            #56c4c4;
+$scTealDark:       #329594;
+$scGreen:           #54cd86;
+$scGreenDark:      #398f5d;
+$scOrange:          #f99e49;
+$scOrangeDark:     #c96d20;
+$scRedOrange:      #f27a4d;
+$scRedOrangeDark: #d94710;
+$scRed:             #ee4334;
+$scRedDark:        #c2241a;
+$scPink:            #eb4ea1;
+$scPinkDark:       #c23680;
+$scPurple:          #c68ef6;
+$scPurpleDark:     #9958d2;
 
 // ######## //
 // Colors Map //
@@ -40,67 +40,58 @@ $sc-purple-dark:     #9958d2;
 //       Don't use color names as a key names. e.g. 'backgroundColorPink <--- DON'T DO
 //       The methodology for this pattern is to not have a growing list of key names in our map.
 // ######## //
-$colors-map: (
+$colorsMap: (
     // Background Colors
-    'backgroundColor':                  $pcn-white,
-    'backgroundColorDisable':           $pcn-grey-two,
-    'backgroundColorAlert':             $sc-red,
-    'backgroundColorAlertDark':         $sc-red-dark,
-    'backgroundColorHighlight':         $sc-cyan,
-    'backgroundColorHighlightDark':     $sc-cyan-dark,
-    'backgroundColorInverse':           $pcn-grey-six,
-    'backgroundColorInverseAlternate':  $pcn-grey-five,
-    'backgroundColorLight':             $pcn-grey-one,
-    'backgroundColorNest':              $pcn-grey-two,
-    'backgroundColorStatic':            $pcn-grey-four,
-    'backgroundColorSuccess':           $sc-green,
-    'backgroundColorSuccessDark':       $sc-green-dark,
-    'backgroundColorWarning':           $sc-orange,
-    'backgroundColorWarningDark':       $sc-orange-dark,
-    'backgroundColorButton':            $sc-cyan-dark,
-    'backgroundColorButtonDisable':     $pcn-grey-three,
-    'backgroundColorButtonAlert':       $sc-red,
-    'backgroundColorButtonAlternate':   $pcn-grey-five,
-    'backgroundColorButtonSecondary':   $sc-blue,
-    'backgroundColorButtonSuccess':     $sc-green,
-    'backgroundColorPurple':            $sc-purple, // Rename when better define,
-    'backgroundColorTeal':              $sc-teal, // Rename when better define,
-    'backgroundColorBlue':              $sc-blue, // Remove when better define,
-    'backgroundColorSky':               $sc-sky, // Remove when better define,
+    'backgroundColor':                  $pcnWhite,
+    'backgroundColorDisable':           $pcnGreyTwo,
+    'backgroundColorAlert':             $scRed,
+    'backgroundColorAlertDark':         $scRedDark,
+    'backgroundColorHighlight':         $scCyan,
+    'backgroundColorHighlightDark':     $scCyanDark,
+    'backgroundColorInverse':           $pcnGreySix,
+    'backgroundColorInverseAlternate':  $pcnGreyFive,
+    'backgroundColorLight':             $pcnGreyOne,
+    'backgroundColorNest':              $pcnGreyTwo,
+    'backgroundColorStatic':            $pcnGreyFour,
+    'backgroundColorSuccess':           $scGreen,
+    'backgroundColorSuccessDark':       $scGreenDark,
+    'backgroundColorWarning':           $scOrange,
+    'backgroundColorWarningDark':       $scOrangeDark,
+    'backgroundColorButton':            $scCyanDark,
+    'backgroundColorButtonDisable':     $pcnGreyThree,
+    'backgroundColorButtonAlert':       $scRed,
+    'backgroundColorButtonAlternate':   $pcnGreyFive,
+    'backgroundColorButtonSecondary':   $scBlue,
+    'backgroundColorButtonSuccess':     $scGreen,
+    'backgroundColorPurple':            $scPurple, // Rename when better define,
+    'backgroundColorPurpleDark':        $scPurpleDark, // Rename when better define,
+    'backgroundColorTeal':              $scTeal, // Rename when better define,
+    'backgroundColorTealDark':          $scTealDark, // Rename when better define,
+    'backgroundColorBlue':              $scBlue, // Remove when better define,
+    'backgroundColorSky':               $scSky, // Remove when better define,
     // Border Colors
-    'borderColor':                      $pcn-grey-three,
-    'borderColorHighlight':             $sc-cyan,
-    'borderColorInverse':               $pcn-white,
-    'borderColorSecondary':             $pcn-grey-two,
-    'borderColorTertiary':              $pcn-grey-four,
-    'borderColorQuaternary':            $pcn-grey-five,
-    'borderColorQuinary':               $pcn-grey-six,
+    'borderColor':                      $pcnGreyThree,
+    'borderColorHighlight':             $scCyan,
+    'borderColorInverse':               $pcnWhite,
+    'borderColorSecondary':             $pcnGreyTwo,
+    'borderColorTertiary':              $pcnGreyFour,
+    'borderColorQuaternary':            $pcnGreyFive,
+    'borderColorQuinary':               $pcnGreySix,
     // Colors
-    'color':                            $pcn-grey-six,
-    'colorAlert':                       $sc-red,
-    'colorDisable':                     $pcn-grey-three,
-    'colorCode':                        $sc-red-orange-dark,
-    'colorHighlight':                   $sc-cyan,
-    'colorInverse':                     $pcn-white,
-    'colorLink':                        $sc-cyan,
-    'colorStatic':                      $pcn-grey-four,
-    'colorSecondary':                   $sc-teal-dark,
-    'colorSubNav':                      $sc-blue-dark,
-    'colorSuccess':                     $sc-green,
-    'colorWarning':                     $sc-orange,
+    'color':                            $pcnGreySix,
+    'colorAlert':                       $scRed,
+    'colorDisable':                     $pcnGreyThree,
+    'colorCode':                        $scRedOrangeDark,
+    'colorHighlight':                   $scCyan,
+    'colorInverse':                     $pcnWhite,
+    'colorLink':                        $scCyan,
+    'colorStatic':                      $pcnGreyFour,
+    'colorSecondary':                   $scTealDark,
+    'colorSubNav':                      $scBlueDark,
+    'colorSuccess':                     $scGreen,
+    'colorWarning':                     $scOrange,
 );
 
 @function color($key) {
-    @return map-get($colors-map, $key);
-}
-
-// ######## //
-// Exported Colors Map //
-// NOTE: To be used in JS files. e.g. 'style={{ backgroundColor: backgroundColorInverse }}'
-//       Kind of cool.
-// ######## //
-:export {
-    @each $key, $value in $colors-map {
-        #{unquote($key)}: $value;
-    }
+    @return map-get($colorsMap, $key);
 }
