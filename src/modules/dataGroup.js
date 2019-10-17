@@ -7,7 +7,7 @@ import Header from '../elements/header.js';
 import List from '../elements/list.js';
 import Utils from '../utils/utils.js'
 
-class DataGroupsRow extends React.PureComponent {
+class DataGroupRow extends React.PureComponent {
     constructor() {
         super();
     }
@@ -80,7 +80,7 @@ class DataGroupsRow extends React.PureComponent {
     }
 }
 
-DataGroupsRow.propTypes = {
+DataGroupRow.propTypes = {
     data: PropTypes.object.isRequired,
     row: PropTypes.object.isRequired,
     header: PropTypes.string,
@@ -92,7 +92,7 @@ DataGroupsRow.propTypes = {
     ]),
 };
 
-class DataGroups extends React.PureComponent {
+class DataGroup extends React.PureComponent {
     constructor() {
         super();
     }
@@ -107,9 +107,9 @@ class DataGroups extends React.PureComponent {
             rows,
             style,
         } = this.props;
-        const containerClasses = ClassNames('ui', `${moduleType}_data_groups`, className, {
-            'page--data_groups-bleed': bleed && moduleType === 'page',
-            'drawer--data_groups-bleed': bleed && moduleType === 'drawer',
+        const containerClasses = ClassNames('ui', `${moduleType}_data_group`, className, {
+            'page--data_group-bleed': bleed && moduleType === 'page',
+            'drawer--data_group-bleed': bleed && moduleType === 'drawer',
         });
 
         return (
@@ -118,7 +118,7 @@ class DataGroups extends React.PureComponent {
                 style={style}
             >
                 {header && (
-                    <Header className={`${moduleType}_data_groups_header_title`} weight="bold" size="large">
+                    <Header className={`${moduleType}_data_group_header_title`} weight="bold" size="large">
                         {header}
                     </Header>
                 )}
@@ -128,7 +128,7 @@ class DataGroups extends React.PureComponent {
                         <List.Item
                             key={`dataGroupRow-${index}`}
                         >
-                            <DataGroupsRow
+                            <DataGroupRow
                                 data={data}
                                 row={row}
                             />
@@ -140,14 +140,14 @@ class DataGroups extends React.PureComponent {
     }
 }
 
-DataGroups.defaultProps = {
+DataGroup.defaultProps = {
     bleed: true,
     className: undefined,
     moduleType: undefined,
     style: {},
 };
 
-DataGroups.propTypes = {
+DataGroup.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     data: PropTypes.object.isRequired,
@@ -157,4 +157,4 @@ DataGroups.propTypes = {
     style: PropTypes.object,
 };
 
-export default DataGroups;
+export default DataGroup;

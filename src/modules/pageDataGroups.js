@@ -1,23 +1,17 @@
-import DataGroups from './dataGroups.js';
-import PropTypes from 'prop-types';
+'use strict';
+
+import ClassNames from 'classnames';
 import React from 'react';
 
 const PageDataGroups = (props) => {
-    return (
-        <DataGroups
-            {...props}
-            moduleType="page"
-        />
-    );
-};
+    const { children, className, style } = props;
+    const containerClasses = ClassNames('ui', 'page--data_groups', className);
 
-PageDataGroups.propTypes = {
-    bleed: PropTypes.bool,
-    className: PropTypes.string,
-    data: PropTypes.object.isRequired,
-    header: PropTypes.string,
-    rows: PropTypes.array.isRequired,
-    style: PropTypes.object,
+    return (
+        <div className={containerClasses} style={style}>
+            {children}
+        </div>
+    );
 };
 
 export default PageDataGroups;

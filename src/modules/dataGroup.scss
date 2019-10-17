@@ -1,9 +1,9 @@
 @import '../shared/styles/colors';
-$prefixDrawerDataGroups: drawer_data_groups;
-$prefixPageDataGroups: page_data_groups;
+$prefixDrawerDataGroup: drawer_data_group;
+$prefixPageDataGroup: page_data_group;
 
 .ui {
-    .#{$prefixDrawerDataGroups}, .#{$prefixPageDataGroups} {
+    .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
         padding: 22px;
         background: color(backgroundColor);
         &_header_title {
