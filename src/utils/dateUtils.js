@@ -8,6 +8,46 @@ const DateUtils = {
         return DateUtils.formatWithSpecifiedTz(data, timeZoneId);
     },
 
+    timeFromNow(
+        date,
+        future = 'in %s',
+        past = '%s ago',
+        s = 'a few seconds',
+        ss = '%d seconds',
+        m = 'a minute',
+        mm = '%d minutes',
+        h = 'an hour',
+        hh = '%d hours',
+        d = 'a day',
+        dd = '%d days',
+        M = 'a month',
+        MM = '%d months',
+        y = 'a year',
+        yy = '%d years',
+    ) {
+        // Customizing moment's relativeTime
+        moment.updateLocale('en', {
+            relativeTime: {
+                future,
+                past,
+                s,
+                ss,
+                m,
+                mm,
+                h,
+                hh,
+                d,
+                dd,
+                M,
+                MM,
+                y,
+                yy,
+            },
+        });
+
+        return moment(date).fromNow(true);
+    },
+
     formatWithSpecifiedTz(data, timeZoneId) {
         if (_.isNil(data)) {
             return null;
