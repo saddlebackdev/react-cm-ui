@@ -143,54 +143,54 @@ export default class DrawerDataGroupsSample extends React.Component {
                             }}
                         />
 
-                        <Drawer.DataGroups
-                            bleed
-                            header="Personal (Simple Drawer Data Groups Example)"
-                            rows={[
-                                {
-                                    accessor: 'birthday',
-                                    fieldName: 'Birthday',
-                                }, {
-                                    accessor: 'homeCampus',
-                                    fieldName: 'Home Campus',
-                                }
-                            ]}
-                            data={{
-                                birthday: '23/01/1990',
-                                homeCampus: 'Lake Forest',
-                            }}
-                            style={{
-                                marginTop: '10px'
-                            }}
-                        />
+                        <Drawer.DataGroups>
+                            <Drawer.DataGroup
+                                header="Personal (Simple Drawer Data Groups Example)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
 
-                        <Drawer.DataGroups
-                            bleed
-                            header="Personal (Drawer Data Groups Example With Icon)"
-                            rows={[
-                                {
-                                    accessor: 'birthday',
-                                    fieldName: 'Birthday',
-                                    header: 'Training',
-                                    iconType: 'chair',
-                                    iconColor: 'alert',
-                                    iconSize: 22,
-                                }, {
-                                    accessor: 'homeCampus',
-                                    fieldName: 'Home Campus',
-                                    header: "Campus",
-                                    iconType: 'church',
-                                    iconSize: 22,
-                                }
-                            ]}
-                            data={{
-                                birthday: '23/01/1990',
-                                homeCampus: 'Lake Forest',
-                            }}
-                            style={{
-                                marginTop: '10px'
-                            }}
-                        />
+                            <Drawer.DataGroup
+                                header="Personal (Drawer Data Groups Example With Icon)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                        header: 'Training',
+                                        iconType: 'chair',
+                                        iconColor: 'alert',
+                                        iconSize: 22,
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                        header: "Campus",
+                                        iconType: 'church',
+                                        iconSize: 22,
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+                        </Drawer.DataGroups>
 
                     <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
                 </Drawer>
@@ -384,54 +384,54 @@ class ModulesDrawerDataGroups extends React.Component {
                             data={{
                             }}
                         />
+                        <Drawer.DataGroups>
+                            <Drawer.DataGroup
+                                header="Personal (Simple Drawer Data Groups Example)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
 
-                        <Drawer.DataGroups
-                            header="Personal (Simple Drawer Data Groups Example)"
-                            rows={[
-                                {
-                                    accessor: 'birthday',
-                                    fieldName: 'Birthday',
-                                }, {
-                                    accessor: 'homeCampus',
-                                    fieldName: 'Home Campus',
-                                }
-                            ]}
-                            data={{
-                                birthday: '23/01/1990',
-                                homeCampus: 'Lake Forest',
-                            }}
-                            style={{
-                                marginTop: '10px'
-                            }}
-                        />
-
-                        <Drawer.DataGroups
-                            header="Personal (Drawer Data Groups Example With Icon)"
-                            rows={[
-                                {
-                                    accessor: 'birthday',
-                                    fieldName: 'Birthday',
-                                    header: 'Training',
-                                    iconType: 'chair',
-                                    iconColor: 'alert',
-                                    iconSize: 22,
-                                }, {
-                                    accessor: 'homeCampus',
-                                    fieldName: 'Home Campus',
-                                    header: "Campus",
-                                    iconType: 'church',
-                                    iconSize: 22,
-                                }
-                            ]}
-                            data={{
-                                birthday: '23/01/1990',
-                                homeCampus: 'Lake Forest',
-                            }}
-                            style={{
-                                marginTop: '10px'
-                            }}
-                        />
-
+                            <Drawer.DataGroup
+                                header="Personal (Drawer Data Groups Example With Icon)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                        header: 'Training',
+                                        iconType: 'chair',
+                                        iconColor: 'alert',
+                                        iconSize: 22,
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                        header: "Campus",
+                                        iconType: 'church',
+                                        iconSize: 22,
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+                        </Drawer.DataGroups>
                         <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
                     </Drawer>
 
