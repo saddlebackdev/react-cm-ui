@@ -16,7 +16,7 @@ export default class DrawerDataGroupsSample extends React.Component {
             isDrawerOpen: false,
         };
 
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
     }
 
     render() {
@@ -24,14 +24,14 @@ export default class DrawerDataGroupsSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
-                    onClose={this._onDrawerToggle}
+                    onClose={this.onDrawerToggle}
                 >
                     <Drawer.TitleBar
-                        closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                        closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                         title="Don't Pay Attention to the TitleBar, But to the Navigation"
                     />
 
@@ -192,13 +192,13 @@ export default class DrawerDataGroupsSample extends React.Component {
                             />
                         </Drawer.DataGroups>
 
-                    <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                    <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
     }
 
-    _onDrawerToggle() {
+    onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
@@ -214,8 +214,8 @@ class ModulesDrawerDataGroups extends React.Component {
             searchValue: '',
         };
 
-        this._onClickTest = this._onClickTest.bind(this);
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onClickTest = this.onClickTest.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
     }
 
     render() {
@@ -281,14 +281,14 @@ class ModulesDrawerDataGroups extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
+                        onClose={this.onDrawerToggle}
                     >
                         <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                            closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                             title="Don't Pay Attention to the TitleBar, But to the Navigation"
                         />
 
@@ -432,7 +432,7 @@ class ModulesDrawerDataGroups extends React.Component {
                                 }}
                             />
                         </Drawer.DataGroups>
-                        <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -443,11 +443,11 @@ class ModulesDrawerDataGroups extends React.Component {
         );
     }
 
-    _onClickTest() {
+    onClickTest() {
         window.alert('You just clicked the fourth column!');
     }
 
-    _onDrawerToggle() {
+    onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
