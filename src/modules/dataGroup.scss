@@ -12,25 +12,25 @@ $prefixPageDataGroup: page_data_group;
         &-bleed {
             margin: 0 -22px;
         }
-       .ui.list {
-           width: 100%;
-           .list--item {
-                &_section {
-                    display: flex;
-                    flex-direction: row;
-                    margin-bottom: 22px;
-               }
-               &_section:not(.header_icon) {
-                    justify-content: space-between;
-                    margin-bottom: 22px;
-               }
-               &_data_fieldname {
-                   margin-top: 10px;
-               }
-           }
-           > div:last-child {
-                margin-bottom: 0;
-           }
+        > div:last-child {
+            margin-bottom: 0;
+        }
+        .ui.list {
+            width: 100%;
+        }
+        .data_group {
+            &--row {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 22px; 
+            }
+            &--row:not(.data_group--row-header_icon) {
+                justify-content: space-between;
+                margin-bottom: 22px;
+            }
+            &--field_name_and_value {
+                margin-top: 10px; 
+            }
        }
     }
 }

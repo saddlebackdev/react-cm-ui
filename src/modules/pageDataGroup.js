@@ -1,8 +1,9 @@
 import DataGroups from './dataGroup.js';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Utils from '../utils/utils.js';
 
-const PageDataGroup = (props) => {
+function PageDataGroup(props) {
     return (
         <DataGroups
             {...props}
@@ -11,13 +12,32 @@ const PageDataGroup = (props) => {
     );
 };
 
+PageDataGroup.defaultProps = {
+    bleed: false,
+    className: '',
+    header: '',
+    style: {},
+};
+
 PageDataGroup.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    data: PropTypes.object.isRequired,
+    data: PropTypes.shape({}).isRequired,
     header: PropTypes.string,
-    rows: PropTypes.array.isRequired,
-    style: PropTypes.object,
+    rows: PropTypes.arrayOf(
+        PropTypes.shape({
+            accessor: PropTypes.string.isRequired,
+            fieldName: PropTypes.string.isRequired,
+            header: PropTypes.string,
+            iconType: PropTypes.string,
+            iconColor: PropTypes.string,
+            iconSize: PropTypes.oneOfType([
+                PropTypes.oneOf(Utils.sizeEnums()),
+                PropTypes.number,
+            ]),
+        })
+    ).isRequired,
+    style: PropTypes.shape({}),
 };
 
 export default PageDataGroup;
