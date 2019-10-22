@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
 import List from '../elements/list.js';
 import DataGroupRow from './dataGroupRow.js';
+import Utils from '../utils/utils.js';
 
 function DataGroup(props) {
     const {
@@ -60,11 +60,22 @@ DataGroup.defaultProps = {
 DataGroup.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    data: PropTypes.object.isRequired,
+    data: PropTypes.shape({}).isRequired,
     header: PropTypes.string,
     moduleType: PropTypes.string,
-    rows: PropTypes.array.isRequired,
-    style: PropTypes.object,
+    rows: PropTypes.arrayOf(
+        PropTypes.shape({
+            accessor: PropTypes.string.isRequired,
+            fieldName: PropTypes.string.isRequired,
+            header: PropTypes.string,
+            iconType: PropTypes.string,
+            iconColor: PropTypes.string,
+            iconSize: PropTypes.oneOfType([
+                PropTypes.oneOf(Utils.sizeEnums()),
+                PropTypes.number,
+            ]),
+        })).isRequired,
+    style: PropTypes.shape({}),
 };
 
 export default DataGroup;
