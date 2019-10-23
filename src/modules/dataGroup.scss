@@ -5,7 +5,6 @@ $prefixPageDataGroup: page_data_group;
 .ui {
     .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
         padding: 22px;
-        background: color(backgroundColor);
         &_header_title {
             margin-bottom: 33px;
         }
