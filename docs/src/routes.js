@@ -311,6 +311,13 @@ const routes = (
                     }}
                     path="sticky"
                 />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerDataGroups.js')
+                            .then(module => callback(null, module.default));
+                    }}
+                    path="data-groups"
+                />
             </Route>
             <Route
                 getComponent={(location, callback) => {

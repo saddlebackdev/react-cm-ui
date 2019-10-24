@@ -1,0 +1,11 @@
+$prefixPageDataGroup: page--data_group;
+
+.ui.#{$prefixPageDataGroup}-bleed {
+    margin: 0 -11px;
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.#{$prefixPageDataGroup}-bleed {
+        margin: 0 -22px;
+    }
+}

@@ -1,0 +1,15 @@
+import ClassNames from 'classnames';
+import React from 'react';
+
+function PageDataGroups(props) {
+    const { children, className, style } = props;
+    const containerClasses = ClassNames('ui', 'page--data_groups', className);
+
+    return (
+        <div className={containerClasses} style={style}>
+            {children}
+        </div>
+    );
+};
+
+export default PageDataGroups;
