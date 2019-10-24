@@ -8,7 +8,7 @@ import ScrollBar from 'react-custom-scrollbars';
 import DOMUtils from '../utils/domUtils.js';
 import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
 import DrawerContent from './drawerContent.js';
-import DrawerDetails from './drawerDetails.js';
+import DrawerDetailsWindow from './DrawerDetailsWindow.js';
 import DrawerDataGroup from './drawerDataGroup.js';
 import DrawerDataGroups from './drawerDataGroups.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
@@ -391,7 +391,8 @@ Drawer.Content = DrawerContent;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
 Drawer.DataGroup = DrawerDataGroup;
 Drawer.DataGroups = DrawerDataGroups;
-Drawer.Details = DrawerDetails;
+Drawer.Details = DrawerDetailsWindow; // TODO: Deprecated. Alias name for Drawer.DetailsWindow. Remove in next major release.
+Drawer.DetailsWindow = DrawerDetailsWindow;
 Drawer.Grid = DrawerGrid;
 Drawer.Navigation = DrawerNavigation;
 Drawer.Table = DrawerTable;
