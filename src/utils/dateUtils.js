@@ -225,8 +225,7 @@ const DateUtils = {
 
     timeFromNow(
         date,
-        future = 'in %s',
-        past = '%s ago',
+        locale = 'en',
         s = 'a few seconds',
         ss = '%d seconds',
         m = 'a minute',
@@ -240,11 +239,11 @@ const DateUtils = {
         y = 'a year',
         yy = '%d years',
     ) {
+        const originalRelativeTime = moment().locale(locale).localeData()._relativeTime; // eslint-disable-line no-underscore-dangle, max-len
+
         // Customizing moment's relativeTime
-        moment.updateLocale('en', {
+        moment.updateLocale(locale, {
             relativeTime: {
-                future,
-                past,
                 s,
                 ss,
                 m,
@@ -260,7 +259,13 @@ const DateUtils = {
             },
         });
 
-        return moment(date).fromNow(true);
+        // Setting fromNow string with customized relativeTime
+        const fromNowTime = moment(date).fromNow(true);
+
+        // Reverting moment's relativeTime.
+        moment.updateLocale(locale, { relativeTime: originalRelativeTime });
+
+        return fromNowTime;
     },
 
     unixToTz(date, userTimeZoneId) {
