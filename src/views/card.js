@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
@@ -158,7 +158,7 @@ class Card extends Component {
             const innerContent = ReactDOM.findDOMNode(this.innerContent);
 
             window.addEventListener('resize', this._setContentHeightDebounce);
-            outerContent.addEventListener(DOMUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
+            outerContent.addEventListener(domUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
             this._observer.observe(innerContent, {
                 childList: true,
                 characterData: true,
@@ -176,7 +176,7 @@ class Card extends Component {
             const outerContent = ReactDOM.findDOMNode(this.outerContent);
 
             window.removeEventListener('resize', this._setContentHeightDebounce);
-            outerContent.removeEventListener(DOMUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
+            outerContent.removeEventListener(domUtils.cssTransitionType(outerContent), this._removeIsCollapsing);
             this._observer.disconnect();
         }
     }

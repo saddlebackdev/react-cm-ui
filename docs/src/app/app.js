@@ -2,7 +2,7 @@
 
 import './app.scss';
 
-import { Button, DOMUtils, Icon } from 'react-cm-ui';
+import { Button, domUtils, Icon } from 'react-cm-ui';
 import _ from 'lodash';
 import breakpointActions from '../shared/breakpointActions.js';
 import Header from './header.js';
@@ -22,7 +22,7 @@ export default class CoreApp extends React.Component {
         this._curScrollPos = null;
         this._onResizeDebounce = _.debounce(() => this._onResize(), 80);
 
-        document.querySelector('html').classList.add(DOMUtils.browserDetect());
+        document.querySelector('html').classList.add(domUtils.browserDetect());
         breakpointActions.update();
     }
 
@@ -84,10 +84,10 @@ export default class CoreApp extends React.Component {
     }
 
     _onToggleNavigation(event) {
-        if (DOMUtils.hasClassName(document.body, 'pushed-right')) {
+        if (domUtils.hasClassName(document.body, 'pushed-right')) {
             document.body.classList.remove('pushed-right');
         } else {
-            this._curScrollPos = DOMUtils.scrollPos();
+            this._curScrollPos = domUtils.scrollPos();
 
             document.body.classList.add('pushed-right');
         }

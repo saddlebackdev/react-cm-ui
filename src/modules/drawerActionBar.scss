@@ -37,6 +37,7 @@
     padding: 0 11px;
     position: fixed;
     right: 0;
+    transform: translateZ(0);
     z-index: $drawer-zindex;
     .ui.grid {
         flex-wrap: nowrap;
