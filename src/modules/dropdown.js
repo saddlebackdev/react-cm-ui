@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import DropdownItem from './dropdownItem';
 import Icon from '../elements/icon';
 import MediaQuery from 'react-responsive';
@@ -508,7 +508,7 @@ class Dropdown extends Component {
     _onDropdownMenuReposition() {
         const dropdownContainerEl = ReactDOM.findDOMNode(this.dropdownContainer);
         const dropdownMenuEl = ReactDOM.findDOMNode(this.dropdownMenu);
-        const dropdownMenuObj = DOMUtils.isInViewport(dropdownMenuEl, dropdownContainerEl);
+        const dropdownMenuObj = domUtils.isInViewport(dropdownMenuEl, dropdownContainerEl);
         const isInTop = dropdownMenuObj.isInTop;
         const isInRight = dropdownMenuObj.isInRight;
         const isInBottom = dropdownMenuObj.isInBottom;

@@ -5,7 +5,7 @@ import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
 import Divider from '../elements/divider';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 import { Portal } from 'react-portal';
@@ -346,16 +346,16 @@ class Modal extends Component {
             document.addEventListener('click', this._onClickOutside);
         }
 
-        if (DOMUtils.hasClassName(body, 'modal-open')) {
+        if (domUtils.hasClassName(body, 'modal-open')) {
             zIndex = zIndex + modalLength;
-            DOMUtils.addClassName(body, 'modal-open-layered');
+            domUtils.addClassName(body, 'modal-open-layered');
 
             nodePortal.style.zIndex = zIndex;
             this._modalContainer.style.zIndex = zIndex;
             modalDimmer.style.display = 'none';
         } else {
             body.style.top = `-${scrollPosition}px`;
-            DOMUtils.addClassName(body, 'modal-open');
+            domUtils.addClassName(body, 'modal-open');
             nodePortal.style.zIndex = zIndex - 1;
             this._modalContainer.style.zIndex = zIndex + modalLength;
         }
