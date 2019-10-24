@@ -23,7 +23,7 @@ const DateUtils = {
     formatForCommentsWithTz(data, userTimeZoneId) {
         const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
 
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
@@ -107,15 +107,27 @@ const DateUtils = {
     },
 
     formatShort(data) {
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
         if (_.isNumber(data)) {
-            return moment.unix(data).utc().format('MM/DD/YY');
+            return moment.unix(data).utc().format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
         }
 
-        return moment(data).format('MM/DD/YY');
+        return moment(data).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
+    },
+
+    formatShortWithSpecifiedTz(data, timeZoneId) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().tz(timeZoneId).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
+        }
+
+        return moment(data).tz(timeZoneId).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
     },
 
     formatDayOfWeek(data) {
