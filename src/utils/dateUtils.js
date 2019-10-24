@@ -235,6 +235,51 @@ const DateUtils = {
         });
     },
 
+    timeFromNow(
+        date,
+        locale = 'en',
+        s = 'a few seconds',
+        ss = '%d seconds',
+        m = 'a minute',
+        mm = '%d minutes',
+        h = 'an hour',
+        hh = '%d hours',
+        d = 'a day',
+        dd = '%d days',
+        M = 'a month',
+        MM = '%d months',
+        y = 'a year',
+        yy = '%d years',
+    ) {
+        const originalRelativeTime = moment().locale(locale).localeData()._relativeTime; // eslint-disable-line no-underscore-dangle, max-len
+
+        // Customizing moment's relativeTime
+        moment.updateLocale(locale, {
+            relativeTime: {
+                s,
+                ss,
+                m,
+                mm,
+                h,
+                hh,
+                d,
+                dd,
+                M,
+                MM,
+                y,
+                yy,
+            },
+        });
+
+        // Setting fromNow string with customized relativeTime
+        const fromNowTime = moment(date).fromNow(true);
+
+        // Reverting moment's relativeTime.
+        moment.updateLocale(locale, { relativeTime: originalRelativeTime });
+
+        return fromNowTime;
+    },
+
     unixToTz(date, userTimeZoneId) {
         const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
 
