@@ -537,7 +537,7 @@ class PageDemo extends React.PureComponent {
                             className="page-content-class-name"
                             isFiltersRailOpen={isFiltersDrawerOpen}
                         >
-                            <Page.Details
+                            <Page.DetailsWindow
                                 color={11}
                                 columns={statsColumns}
                                 data={{
