@@ -350,7 +350,6 @@ class Drawer extends React.Component {
                         ref={(ref) => { this.drawerContainerRef = ref; }}
                         style={{
                             height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
-                            // transform: this.setStartOfTransform(),
                         }}
                     >
                         <ScrollBar
