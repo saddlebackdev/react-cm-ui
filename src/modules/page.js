@@ -1,57 +1,21 @@
-'use strict';
-
-import ActivityIndicator from '../elements/activityIndicator.js';
 import ClassNames from 'classnames';
 import { CSSTransitionGroup } from 'react-transition-group';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ActivityIndicator from '../elements/activityIndicator.js';
 import PageActionBar from './pageActionBar.js';
 import PageContainer from './pageContainer.js';
 import PageContent from './pageContent.js';
-import PageDetails from './pageDetails.js';
+import PageDetailsWindow from './pageDetailsWindow.js';
 import PageDataGroup from './pageDataGroup.js';
 import PageDataGroups from './pageDataGroups.js';
+import PageDelayChildren from './pageDelayChildren.js';
 import PageFiltersDrawer from './pageFiltersDrawer.js';
 import PageFiltersRail from './pageFiltersRail.js';
 import PageGrid from './pageGrid.js';
 import PageTable from './pageTable.js';
-import PropTypes from 'prop-types';
-import React from 'react';
 
 const ACTIVITY_INDICATOR_DURATION = 200;
-
-class DelayChildren extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isDataFetching: props.isDataFetching,
-        };
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { props: nextProps } = this;
-
-        if (prevProps.isDataFetching && !nextProps.isDataFetching) {
-            setTimeout(() => {
-                this.setState(prevState => ({
-                    isDataFetching: !prevState.isDataFetching,
-                }));
-            }, ACTIVITY_INDICATOR_DURATION / 2);
-        }
-    }
-
-    render() {
-        const { children } = this.props;
-        const { isDataFetching } = this.state;
-
-        if (isDataFetching) {
-            return (
-                <div />
-            );
-        }
-
-        return children;
-    }
-}
 
 class Page extends React.PureComponent {
     constructor(props) {
@@ -63,7 +27,13 @@ class Page extends React.PureComponent {
     }
 
     render() {
-        const { children, className, id, isDataFetching, style } = this.props;
+        const {
+            children,
+            className,
+            id,
+            isDataFetching,
+            style,
+        } = this.props;
         const { hasActivityIndicator } = this.state;
         const containerClasses = ClassNames('ui', 'page', className);
 
@@ -92,11 +62,11 @@ class Page extends React.PureComponent {
                 </CSSTransitionGroup>
 
                 {hasActivityIndicator && (
-                    <DelayChildren
+                    <PageDelayChildren
                         isDataFetching={isDataFetching}
                     >
                         {children}
-                    </DelayChildren>
+                    </PageDelayChildren>
                 )}
 
                 {!hasActivityIndicator && !isDataFetching && children}
@@ -108,7 +78,8 @@ class Page extends React.PureComponent {
 Page.ActionBar = PageActionBar;
 Page.Container = PageContainer;
 Page.Content = PageContent;
-Page.Details = PageDetails;
+Page.Details = PageDetailsWindow; // TODO: Deprecated. Alias name for Page.DetailsWindow. Remove in next major release.
+Page.DetailsWindow = PageDetailsWindow;
 Page.DataGroup = PageDataGroup;
 Page.DataGroups = PageDataGroups;
 Page.FiltersDrawer = PageFiltersDrawer;
@@ -117,10 +88,11 @@ Page.Grid = PageGrid;
 Page.Table = PageTable;
 
 Page.propTypes = {
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
     id: PropTypes.string,
     isDataFetching: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 Page.defaultProps = {
