@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import Icon from '../elements/icon.js';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -65,7 +65,7 @@ class AccordionItem extends Component {
         const { scrollContainer, scrollContainerMarginHeight } = this.props;
         const scrollContainerEl = _.isString(scrollContainer) ? ReactDOM.findDOMNode(document.querySelector(scrollContainer)) : _.isObject(scrollContainer) ? scrollContainer : null;
         const containerHeight = scrollContainerEl ? scrollContainerEl.offsetHeight - (scrollContainerMarginHeight || 0) : window.innerHeight;
-        const scrollPosition = DOMUtils.scrollPos(scrollContainerEl);
+        const scrollPosition = domUtils.scrollPos(scrollContainerEl);
         const containerBottom = containerHeight + scrollPosition;
         const itemElHeight = itemElement.offsetHeight;
         const itemElTopYPosition = itemElement.offsetTop;
@@ -73,7 +73,7 @@ class AccordionItem extends Component {
         const belowFold = itemElBottomYPosition - (containerHeight + scrollPosition);
 
         if (containerBottom < itemElBottomYPosition) {
-            DOMUtils.scrollTo(scrollPosition + belowFold, null, scrollContainerEl);
+            domUtils.scrollTo(scrollPosition + belowFold, null, scrollContainerEl);
         }
     }
 
