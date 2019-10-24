@@ -119,7 +119,7 @@ export default class DrawerGridSample extends React.Component {
                     />
 
                     <Drawer.Content>
-                        <Drawer.Grid
+                        <Drawer.DataCard
                             cardProps={() => {
                                 return {
                                     onClick: this._onCardClick,
@@ -229,7 +229,7 @@ class ModulesDrawerTable extends React.Component {
                 name: 'rowProps',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.Grid\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.DataCard\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             }, {
                 name: 'size',
@@ -241,7 +241,7 @@ class ModulesDrawerTable extends React.Component {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.Grid\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.DataCard\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             },
         ];
@@ -263,7 +263,7 @@ class ModulesDrawerTable extends React.Component {
                     <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Table
                         <Header.Subheader>
-                            UI for displaying a data in a table. Users can usualy toggle between this and the Drawer.Grid sub-components.
+                            UI for displaying a data in a table. Users can usualy toggle between this and the Drawer.DataCard sub-components.
                         </Header.Subheader>
                     </Header>
 
