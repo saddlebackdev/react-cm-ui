@@ -1,55 +1,63 @@
 import _ from 'lodash';
-import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataCardItem from './dataCardItem.js';
+import Card from '../views/card.js';
+import DataCardColumn from './dataCardColumn.js';
 
-function DataCard(props) {
-    const {
-        cardProps,
-        className,
-        columns,
-        data,
-        moduleType,
-        style,
-    } = props;
-    const containerClasses = ClassNames('ui', `${moduleType}--data_card`, className);
+class DataCard extends React.PureComponent {
+    constructor() {
+        super();
 
-    return (
-        <div
-            className={containerClasses}
-            style={style}
-        >
-            {_.map(data, (d, index) => {
-                const id = d.id ? _.kebabCase(d.id) : index;
+        this.onClick = this.onClick.bind(this);
+    }
 
-                return (
-                    <DataCardItem
-                        cardProps={cardProps}
+    onClick() {
+        const { cardProps, data } = this.props;
+        const isTextSelect = window.getSelection().toString();
+
+        if (!isTextSelect && _.isFunction(cardProps().onClick)) {
+            cardProps().onClick(data);
+        }
+    }
+
+    render() {
+        const {
+            cardProps,
+            columns,
+            data,
+            moduleType,
+        } = this.props;
+        const elementClassName = `${moduleType}--data_card`;
+
+        return (
+            <Card
+                className={`${elementClassName}`}
+                nest
+                onClick={_.isFunction(cardProps().onClick) ? this.onClick : null}
+            >
+                <div
+                    className={`${elementClassName}_inner_container`}
+                >
+                    <DataCardColumn
                         columns={columns}
-                        data={d}
-                        key={`${moduleType}CardItem-${id}`}
+                        data={data}
                         moduleType={moduleType}
                     />
-                );
-            })}
-        </div>
-    );
+                </div>
+            </Card>
+        );
+    }
 }
 
 DataCard.propTypes = {
     cardProps: PropTypes.func,
-    className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
-    style: PropTypes.shape({}),
 };
 
 DataCard.defaultProps = {
     cardProps: undefined,
-    className: undefined,
-    style: {},
 };
 
 export default DataCard;

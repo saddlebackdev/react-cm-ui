@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataCard from './dataCard.js';
+import DataCards from './dataCards.js';
 
-function DrawerDataCard(props) {
+function PageDataCards(props) {
     return (
-        <DataCard
+        <DataCards
             {...props}
-            moduleType="drawer"
+            moduleType="page"
         />
     );
 }
 
-DrawerDataCard.propTypes = {
+PageDataCards.propTypes = {
     cardProps: PropTypes.func,
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -19,10 +19,10 @@ DrawerDataCard.propTypes = {
     style: PropTypes.shape({}),
 };
 
-DrawerDataCard.defaultProps = {
+PageDataCards.defaultProps = {
     cardProps: undefined,
     className: undefined,
     style: {},
 };
 
-export default DrawerDataCard;
+export default PageDataCards;

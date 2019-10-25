@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
 
-function DataCardItemColumn(props) {
+function DataCardColumn(props) {
     const { columns, data, moduleType } = props;
-    const elementClassName = `${moduleType}--data_card_item_column`;
+    const elementClassName = `${moduleType}--data_card_column`;
 
     return _.map(columns, (column, index) => {
         const accessorClasses = ClassNames(`${elementClassName}_accessor`, {
@@ -51,10 +51,10 @@ function DataCardItemColumn(props) {
     });
 }
 
-DataCardItemColumn.propTypes = {
+DataCardColumn.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
 };
 
-export default DataCardItemColumn;
+export default DataCardColumn;

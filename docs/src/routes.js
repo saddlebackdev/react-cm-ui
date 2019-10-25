@@ -264,10 +264,10 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerGrid.js')
+                        import('./modules/drawerDataCards.js')
                             .then((module) => callback(null, module.default));
                     }}
-                    path="grid"
+                    path="data-cards"
                 />
                 <Route
                     getComponent={(location, callback) => {
@@ -278,10 +278,10 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerTable.js')
+                        import('./modules/drawerDataGrid.js')
                             .then((module) => callback(null, module.default));
                     }}
-                    path="table"
+                    path="data-grid"
                 />
                 <Route
                     getComponent={(location, callback) => {
@@ -299,10 +299,10 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDetails.js')
+                        import('./modules/drawerDetailsWindow.js')
                             .then((module) => callback(null, module.default));
                     }}
-                    path="details"
+                    path="details-window"
                 />
                 <Route
                     getComponent={(location, callback) => {

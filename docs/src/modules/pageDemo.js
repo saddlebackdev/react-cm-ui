@@ -551,7 +551,7 @@ class PageDemo extends React.PureComponent {
                             />
 
                             {!isMobile && viewType === 'table' ? (
-                                <Page.Table
+                                <Page.DataGrid
                                     columns={[
                                         {
                                             accessor: 'name',
@@ -591,50 +591,51 @@ class PageDemo extends React.PureComponent {
                                     })}
                                 />
                             ) : (
-                                    <Page.Grid
-                                        cardProps={() => ({
-                                            onClick: this.onCardClick,
-                                        })}
-                                        columns={[
-                                            {
-                                                accessor: 'name',
-                                                fontSize: 'medium',
-                                                fontWeight: 'semibold',
-                                                header: false,
-                                                width: '100%',
-                                            }, {
-                                                accessor: 'campus',
-                                                fontWeight: 'bold',
-                                                header: 'Campus',
-                                            }, {
-                                                accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                                fontWeight: 'bold',
-                                                header: 'Created On',
-                                            },
-                                        ]}
-                                        data={[
-                                            {
-                                                campus: 'Lake Forest',
-                                                createdOn: 1259668810,
-                                                id: 1,
-                                                name: 'First Time Visitor',
-                                            }, {
-                                                campus: 'Lake Forest',
-                                                createdOn: 1159668810,
-                                                id: 2,
-                                                name: 'Second Time Visitor',
-                                            }, {
-                                                campus: 'Anaheim',
-                                                createdOn: 1152668810,
-                                                id: 3,
-                                                name: 'Class 101 Invite',
-                                            },
-                                        ]}
-                                    />
-                                )}
+                                <Page.DataCards
+                                    cardProps={() => ({
+                                        onClick: this.onCardClick,
+                                    })}
+                                    columns={[
+                                        {
+                                            accessor: 'name',
+                                            fontSize: 'medium',
+                                            fontWeight: 'semibold',
+                                            header: false,
+                                            width: '100%',
+                                        }, {
+                                            accessor: 'campus',
+                                            fontWeight: 'bold',
+                                            header: 'Campus',
+                                        }, {
+                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
+                                            fontWeight: 'bold',
+                                            header: 'Created On',
+                                        },
+                                    ]}
+                                    data={[
+                                        {
+                                            campus: 'Lake Forest',
+                                            createdOn: 1259668810,
+                                            id: 1,
+                                            name: 'First Time Visitor',
+                                        }, {
+                                            campus: 'Lake Forest',
+                                            createdOn: 1159668810,
+                                            id: 2,
+                                            name: 'Second Time Visitor',
+                                        }, {
+                                            campus: 'Anaheim',
+                                            createdOn: 1152668810,
+                                            id: 3,
+                                            name: 'Class 101 Invite',
+                                        },
+                                    ]}
+                                />
+                            )}
+
                             <Page.DataGroups
                                 style={{
-                                    margin: '22px 0'
+                                    margin: '22px 0',
                                 }}
                             >
                                 <Page.DataGroup
@@ -647,7 +648,7 @@ class PageDemo extends React.PureComponent {
                                         }, {
                                             accessor: 'homeCampus',
                                             fieldName: 'Home Campus',
-                                        }
+                                        },
                                     ]}
                                     data={{
                                         birthday: '23/01/1990',
@@ -669,17 +670,17 @@ class PageDemo extends React.PureComponent {
                                         }, {
                                             accessor: 'homeCampus',
                                             fieldName: 'Home Campus',
-                                            header: "Campus",
+                                            header: 'Campus',
                                             iconType: 'church',
                                             iconSize: 22,
-                                        }
+                                        },
                                     ]}
                                     data={{
                                         birthday: '23/01/1990',
                                         homeCampus: 'Lake Forest',
                                     }}
                                     style={{
-                                        marginTop: '10px'
+                                        marginTop: '10px',
                                     }}
                                 />
                             </Page.DataGroups>

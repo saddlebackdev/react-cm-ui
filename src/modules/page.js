@@ -8,12 +8,12 @@ import PageContainer from './pageContainer.js';
 import PageContent from './pageContent.js';
 import PageDetailsWindow from './pageDetailsWindow.js';
 import PageDataGroup from './pageDataGroup.js';
-import PageDataCard from './PageDataCard.js';
+import PageDataCards from './pageDataCards.js';
+import PageDataGrid from './pageDataGrid.js';
 import PageDataGroups from './pageDataGroups.js';
 import PageDelayChildren from './pageDelayChildren.js';
 import PageFiltersDrawer from './pageFiltersDrawer.js';
 import PageFiltersRail from './pageFiltersRail.js';
-import PageTable from './pageTable.js';
 
 const ACTIVITY_INDICATOR_DURATION = 200;
 
@@ -78,15 +78,16 @@ class Page extends React.PureComponent {
 Page.ActionBar = PageActionBar;
 Page.Container = PageContainer;
 Page.Content = PageContent;
-Page.DataCard = PageDataCard;
+Page.DataCards = PageDataCards;
+Page.DataGrid = PageDataGrid;
 Page.DataGroup = PageDataGroup;
 Page.DataGroups = PageDataGroups;
 Page.Details = PageDetailsWindow; // TODO: Deprecated. Alias name for Page.DetailsWindow. Remove in next major release.
 Page.DetailsWindow = PageDetailsWindow;
 Page.FiltersDrawer = PageFiltersDrawer;
 Page.FiltersRail = PageFiltersRail;
-Page.Grid = PageDataCard; // TODO: Deprecated. Alias name for Page.DataCard. Remove in next major release.
-Page.Table = PageTable;
+Page.Grid = PageDataCards; // TODO: Deprecated. Alias name for Page.DataCard. Remove in next major release.
+Page.Table = PageDataGrid; // TODO: Deprecated. Alias name for Page.DataGrid. Remove in next major release.
 
 Page.propTypes = {
     children: PropTypes.node.isRequired,
