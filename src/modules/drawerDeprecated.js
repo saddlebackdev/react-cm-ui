@@ -5,7 +5,7 @@ import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
 import Divider from '../elements/divider';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 import { Portal } from 'react-portal';
@@ -519,7 +519,7 @@ class DrawerDeprecated extends Component {
         setTimeout(() => {
             if (document.body.classList.contains('drawer-open')) {
                 zIndex = zIndex + drawerLength;
-                DOMUtils.addClassName(body, 'drawer-open-layered');
+                domUtils.addClassName(body, 'drawer-open-layered');
 
                 nodePortal.style.zIndex = zIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
@@ -527,7 +527,7 @@ class DrawerDeprecated extends Component {
                 drawerDimmer.style.display = 'none';
             } else {
                 body.style.top = `-${scrollPosition}px`;
-                DOMUtils.addClassName(body, 'drawer-open');
+                domUtils.addClassName(body, 'drawer-open');
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;

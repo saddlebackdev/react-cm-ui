@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import { DOMUtils, Header } from 'react-cm-ui';
+import { domUtils, Header } from 'react-cm-ui';
 
 export default class CoreAppNavigation extends React.Component {
     constructor(props) {
@@ -33,14 +33,14 @@ export default class CoreAppNavigation extends React.Component {
     toggleNavigation(event) {
         const { toggleNavigation } = this.props;
         const isCoreAppNav = this.coreAppNavRef.contains(event.target);
-        const isPushedRight = DOMUtils.hasClassName(document.body, 'pushed-right');
+        const isPushedRight = domUtils.hasClassName(document.body, 'pushed-right');
 
         if (
-            DOMUtils.hasClassName(event.target, 'button-menu') ||
+            domUtils.hasClassName(event.target, 'button-menu') ||
             (
                 isPushedRight &&
                 isCoreAppNav &&
-                !DOMUtils.hasClassName(event.target, 'core-app-nav-item')
+                !domUtils.hasClassName(event.target, 'core-app-nav-item')
             ) ||
             (!isPushedRight && !isCoreAppNav)
         ) {

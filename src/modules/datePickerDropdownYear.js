@@ -1,7 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
@@ -91,7 +91,7 @@ class DatePickerDropdownYear extends React.PureComponent {
             const selectedElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-year-option-is-selected'));
             const selectedPosistion = selectedElement.offsetTop - 11;
 
-            DOMUtils.scrollTo(selectedPosistion, 0, datePickerWrapElement);
+            domUtils.scrollTo(selectedPosistion, 0, datePickerWrapElement);
         }
     }
 

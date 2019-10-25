@@ -39,8 +39,8 @@ export { default as TimePicker } from './modules/timePicker.js';
 
 // utils
 export { default as DatePickerUtils } from './utils/datePickerUtils.js';
-export { default as DateUtils } from './utils/dateUtils.js';
-export { default as DOMUtils } from './utils/domUtils.js';
+export { default as dateUtils } from './utils/dateUtils.js';
+export { default as domUtils } from './utils/domUtils.js';
 export { default as Utils } from './utils/utils.js';
 
 // Views

@@ -119,7 +119,7 @@ export default class DrawerGridSample extends React.Component {
                     />
 
                     <Drawer.Content>
-                        <Drawer.Grid
+                        <Drawer.DataCard
                             cardProps={() => {
                                 return {
                                     onClick: this._onCardClick,
@@ -216,19 +216,19 @@ class ModulesDrawerGrid extends React.Component {
                 name: '*columns',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to know where to place data.',
+                description: 'Required for Drawer.DataCard to know where to place data.',
                 allowedTypes: '',
             }, {
                 name: 'data',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to feed columns.',
+                description: 'Required for Drawer.DataCard to feed columns.',
                 allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.Grid\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.DataCard\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             },
         ];
@@ -345,7 +345,7 @@ class ModulesDrawerGrid extends React.Component {
                         />
 
                         <Drawer.Content>
-                            <Drawer.Grid
+                            <Drawer.DataCard
                                 cardProps={() => {
                                     return {
                                         onClick: this._onCardClick,

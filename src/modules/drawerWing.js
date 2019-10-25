@@ -1,5 +1,5 @@
 import ClassNames from 'classnames';
-import DOMUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
@@ -83,7 +83,7 @@ class DrawerWing extends React.PureComponent {
     }
 
     _onBeforeClose() {
-        const animationEvent = DOMUtils.cssTransitionType(this._closestDrawerContainerEl);
+        const animationEvent = domUtils.cssTransitionType(this._closestDrawerContainerEl);
 
         this._drawerWingRef.closest('.ui.drawer').classList.add(animateOutClassName);
         this._closestDrawerContainerEl.style.transform = 'translate(0)';
@@ -96,7 +96,7 @@ class DrawerWing extends React.PureComponent {
         this.setState({
             isOpen: false,
         }, () => {
-            const animationEvent = DOMUtils.cssTransitionType(this._closestDrawerContainerEl);
+            const animationEvent = domUtils.cssTransitionType(this._closestDrawerContainerEl);
             this._closestDrawerContainerEl.removeEventListener(animationEvent, this._onCloseAnimationComplete);
         });
     }
