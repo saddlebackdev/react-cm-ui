@@ -30,6 +30,8 @@ function DataGroupRow(props) {
 
     if (_.isString(accessor)) {
         accessedData = _.get(data, accessor);
+    } else if (_.isFunction(accessor)) {
+        accessedData = accessor(data);
     }
 
     return (
@@ -100,7 +102,10 @@ DataGroupRow.propTypes = {
     bemClassName: PropTypes.string.isRequired,
     data: PropTypes.shape({}).isRequired,
     row: PropTypes.shape({
-        accessor: PropTypes.string.isRequired,
+        accessor: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.func,
+        ]).isRequired,
         className: PropTypes.string,
         fieldName: PropTypes.string.isRequired,
         id: PropTypes.string,

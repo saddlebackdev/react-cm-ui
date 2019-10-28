@@ -69,7 +69,10 @@ DataGroup.propTypes = {
         header: PropTypes.string,
         rows: PropTypes.arrayOf(
             PropTypes.shape({
-                accessor: PropTypes.string.isRequired,
+                accessor: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.func,
+                ]).isRequired,
                 className: PropTypes.string,
                 fieldName: PropTypes.string.isRequired,
                 id: PropTypes.string,

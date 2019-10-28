@@ -639,7 +639,9 @@ class PageDemo extends React.PureComponent {
                                         header: 'Column 1 (Simple Page Data Groups Example)',
                                         rows: [
                                             {
-                                                accessor: 'birthday',
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
                                                 fieldName: 'Birthday',
                                             }, {
                                                 accessor: 'homeCampus',
@@ -650,7 +652,9 @@ class PageDemo extends React.PureComponent {
                                         header: 'Column 2 (Page Data Groups Example With Icon)',
                                         rows: [
                                             {
-                                                accessor: 'birthday',
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
                                                 fieldName: 'Birthday',
                                                 header: 'Training',
                                                 iconType: 'chair',
@@ -668,7 +672,9 @@ class PageDemo extends React.PureComponent {
                                         header: 'Column 3',
                                         rows: [
                                             {
-                                                accessor: 'birthday',
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
                                                 fieldName: 'Birthday',
                                                 header: 'Training',
                                                 iconType: 'chair',
@@ -686,7 +692,9 @@ class PageDemo extends React.PureComponent {
                                         header: 'Column 4',
                                         rows: [
                                             {
-                                                accessor: 'birthday',
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
                                                 fieldName: 'Birthday',
                                                 header: 'Training',
                                                 iconType: 'chair',
@@ -703,7 +711,7 @@ class PageDemo extends React.PureComponent {
                                     },
                                 ]}
                                 data={{
-                                    birthday: '23/01/1990',
+                                    birthday: '1990-01-23',
                                     homeCampus: 'Lake Forest',
                                 }}
                             />
