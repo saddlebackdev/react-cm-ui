@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
 import List from '../elements/list.js';
-import DataGroupRow from './DataGroupRow.js';
+import DataGroupRow from './dataGroupRow.js';
 import Utils from '../utils/utils.js';
 
 function DataGroup(props) {
