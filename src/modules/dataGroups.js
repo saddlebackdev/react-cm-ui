@@ -37,8 +37,15 @@ class DataGroups extends React.PureComponent {
     }
 
     resizeWindow() {
+        const { columns } = this.props;
+        const columnLength = columns.length;
         let columnCount = Math.floor(this.dataGroups.offsetWidth / 298);
-        columnCount = columnCount >= 1 ? columnCount : 1;
+
+        if (columnCount < 1) {
+            columnCount = 1;
+        } else if (columnCount > columnLength) {
+            columnCount = columnLength;
+        }
 
         this.reorderColumns(columnCount);
     }
