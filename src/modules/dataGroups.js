@@ -52,20 +52,19 @@ class DataGroups extends React.PureComponent {
 
     reorderColumns(columnCount) {
         const { columns } = this.props;
-        const cols = columnCount;
         const newColumns = [];
-        let col = 0;
+        let columnNum = 0;
 
-        while (col < cols) {
-            for (let i = 0; i < columns.length; i += cols) {
-                const val = columns[i + col];
+        while (columnNum < columnCount) {
+            for (let i = 0; i < columns.length; i += columnCount) {
+                const column = columns[i + columnNum];
 
-                if (val !== undefined) {
-                    newColumns.push(val);
+                if (column !== undefined) {
+                    newColumns.push(column);
                 }
             }
 
-            col += 1;
+            columnNum += 1;
         }
 
         this.setState({
