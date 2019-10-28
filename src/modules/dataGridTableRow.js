@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Table from '../collections/table.js';
 
-class DataTableRow extends React.PureComponent {
+class DataGridTableRow extends React.PureComponent {
     constructor() {
         super();
 
@@ -80,7 +80,7 @@ class DataTableRow extends React.PureComponent {
     }
 }
 
-DataTableRow.propTypes = {
+DataGridTableRow.propTypes = {
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     handle: PropTypes.bool,
@@ -92,11 +92,11 @@ DataTableRow.propTypes = {
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
 };
 
-DataTableRow.defaultProps = {
+DataGridTableRow.defaultProps = {
     handle: undefined,
     isClickable: undefined,
     rowProps: undefined,
     sizes: undefined,
 };
 
-export default DataTableRow;
+export default DataGridTableRow;

@@ -8,7 +8,7 @@ import DragListener from '../utils/dragListener.js';
 import Icon from '../elements/icon';
 import Table from '../collections/table.js';
 
-class DataTable extends React.PureComponent {
+class DataGridTable extends React.PureComponent {
     constructor() {
         super();
 
@@ -145,7 +145,7 @@ class DataTable extends React.PureComponent {
     }
 }
 
-DataTable.propTypes = {
+DataGridTable.propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
@@ -163,7 +163,7 @@ DataTable.propTypes = {
     style: PropTypes.shape({}),
 };
 
-DataTable.defaultProps = {
+DataGridTable.defaultProps = {
     bleed: true,
     className: undefined,
     dropShadow: false,
@@ -178,4 +178,4 @@ DataTable.defaultProps = {
     style: undefined,
 };
 
-export default DataTable;
+export default DataGridTable;
