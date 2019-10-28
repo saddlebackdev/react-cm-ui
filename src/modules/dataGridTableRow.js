@@ -89,7 +89,7 @@ DataGridTableRow.propTypes = {
     row: PropTypes.shape({}).isRequired,
     rowIndex: PropTypes.number.isRequired,
     rowProps: PropTypes.func,
-    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
 };
 
 DataGridTableRow.defaultProps = {
