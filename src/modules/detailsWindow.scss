@@ -1,6 +1,6 @@
 $dividerColor: rgba(255, 255, 255, .25);
-$prefixDrawerDetails: drawer_details;
-$prefixPageDetails: page_details;
+$prefixDrawerDetails: drawer--details_window;
+$prefixPageDetails: page--details_window;
 
 .ui {
     &.#{$prefixDrawerDetails}, &.#{$prefixPageDetails} {
@@ -12,12 +12,12 @@ $prefixPageDetails: page_details;
         }
     }
     .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
-        &--columns_container, &--exapndable_columns_container {
+        &_columns_container, &_exapndable_columns_container {
             display: flex;
             flex-wrap: wrap;
             margin: -11px;
         }
-        &--exapndable_columns_container {
+        &_exapndable_columns_container {
             transition: height 333ms ease-in-out, margin 333ms ease-in-out, opacity 333ms ease-in-out;
             &-contracted {
                 margin: 0 -11px;
@@ -33,7 +33,7 @@ $prefixPageDetails: page_details;
                 visibility: visible;
             }
         }
-        &--column, {
+        &_column, {
             padding: 11px;
             &-divide, &-divide_left {
                 display: flex;
@@ -56,10 +56,10 @@ $prefixPageDetails: page_details;
                 padding-left: 32px;
             }
         }
-        &--column_inner {
+        &_column_inner {
             padding: 0 16px;
         }
-        &--expandable_toggle_button {
+        &_expandable_toggle_button {
             margin: 0;
         }
     }
@@ -76,10 +76,10 @@ $prefixPageDetails: page_details;
             }
         }
         .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
-            &--columns_container, &--exapndable_columns_container {
+            &_columns_container, &_exapndable_columns_container {
                 margin: 0 -16px;
             }
-            &--column {
+            &_column {
                 padding: 0 16px 11px;
                 &-divide_left {
                     padding-left: 32px;
