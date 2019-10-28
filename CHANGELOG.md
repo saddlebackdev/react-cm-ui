@@ -1,6 +1,32 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.0
+
+### Feature
+- BREAKING: [PR #80](https://github.com/saddlebackdev/react-cm-ui/pull/80)
+    - Renanmed Page/Drawer **Details** sub component to **DetailsWindow**
+        - Moved the sub component into one file. **Page/Drawer** component uses the same sub component file now.
+        - Class names have changed as well.
+    - Renanmed Page/Drawer **Grid** sub component to **DataCards**
+        - Class names have changed as well.
+    - Renanmed Page/Drawer **Table** sub component to **DataGrid**
+        - Class names have changed as well.
+    - New Page/Drawer **DataGroup** sub component!
+- BREAKING: [PR #78](https://github.com/saddlebackdev/react-cm-ui/pull/78)
+    - Changed **DOMUtils** case type to **domUtils** and how we export the file. We will need to
+    update this in HC.
+    - Changed **DateUtils** case type to **dateUtils**.
+- [PR #76](https://github.com/saddlebackdev/react-cm-ui/pull/76)
+    - Added `timeFromNow` function to `dateUtils`.
+- Added `formatShortWithSpecifiedTz` function to `dateUtils`.
+
+#### Bug Fix
+- [PR #78](https://github.com/saddlebackdev/react-cm-ui/pull/78)
+    - There was a 'position: fixed' iOS bug that caused our **Drawer's** **TitleBar**,
+    **Navigation**, and **ActionBar** sub components to disappears when scrolling down. The fix
+    works on iOS 11 and 13. However, for iOS 12 it does not work.
+
 ## 6.4.6
 
 #### Bug Fix
