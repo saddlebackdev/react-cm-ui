@@ -111,6 +111,9 @@ rules:
       - include: false
     max-line-length: 0
     max-file-line-count: 0
+    mixin-name-format:
+        - 1
+        - convention: camelCase
     nesting-depth:
       - 2
       - max-depth: 4

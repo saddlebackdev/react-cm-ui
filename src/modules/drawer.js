@@ -8,12 +8,11 @@ import domUtils from '../utils/domUtils.js';
 import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
 import DrawerContent from './drawerContent.js';
 import DrawerDetailsWindow from './DrawerDetailsWindow.js';
-import DrawerDataGroup from './drawerDataGroup.js';
+import DrawerDataCards from './drawerDataCards.js';
 import DrawerDataGroups from './drawerDataGroups.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
-import DrawerGrid from './drawerGrid.js';
 import DrawerNavigation from './drawerNavigation.js';
-import DrawerTable from './drawerTable.js';
+import DrawerDataGrid from './drawerDataGrid.js';
 import DrawerTitleBar from './drawerTitleBar.js';
 import DrawerWing from './drawerWing.js';
 
@@ -383,13 +382,14 @@ class Drawer extends React.Component {
 Drawer.ActionBar = DrawerActionBar;
 Drawer.Content = DrawerContent;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
-Drawer.DataGroup = DrawerDataGroup;
+Drawer.DataCards = DrawerDataCards;
+Drawer.DataGrid = DrawerDataGrid;
 Drawer.DataGroups = DrawerDataGroups;
 Drawer.Details = DrawerDetailsWindow; // TODO: Deprecated. Alias name for Drawer.DetailsWindow. Remove in next major release.
 Drawer.DetailsWindow = DrawerDetailsWindow;
-Drawer.Grid = DrawerGrid;
+Drawer.Grid = DrawerDataCards; // TODO: Deprecated. Alias name for Drawer.DataGrid. Remove in next major release.
 Drawer.Navigation = DrawerNavigation;
-Drawer.Table = DrawerTable;
+Drawer.Table = DrawerDataGrid; // TODO: Deprecated. Alias name for Drawer.DataGrid. Remove in next major release.
 Drawer.TitleBar = DrawerTitleBar;
 Drawer.Wing = DrawerWing;
 

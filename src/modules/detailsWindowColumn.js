@@ -2,14 +2,14 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes.js';
 import Button from '../elements/button.js';
 import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 
 const nop = () => {};
 
-class DetailsColumn extends React.PureComponent {
+class DetailsWindowColumn extends React.PureComponent {
     componentDidMount() {
         const { setColumnContainerHeight } = this.props;
 
@@ -41,7 +41,8 @@ class DetailsColumn extends React.PureComponent {
             onExpandButtonToggle,
             moduleType,
         } = this.props;
-        const containerClassName = `${moduleType}_details--column${columnNumber ? '_inner' : ''}`;
+        const bemClassName = `${moduleType}--details_window_column`;
+        const containerClassName = `${bemClassName}${columnNumber ? '_inner' : ''}`;
         const containerClasses = ClassNames(
             containerClassName,
             {
@@ -49,7 +50,7 @@ class DetailsColumn extends React.PureComponent {
                 [`${containerClassName}-divide_right`]: divide === 'right',
             },
         );
-        const accessorClasses = ClassNames(`${moduleType}_details--column_accessor`, {
+        const accessorClasses = ClassNames(`${bemClassName}_accessor`, {
             'font-size-large': fontSize === 'large',
             'font-size-medium': fontSize === 'medium',
             'font-size-small': !fontSize || fontSize === 'small',
@@ -101,7 +102,7 @@ class DetailsColumn extends React.PureComponent {
             >
                 {expandedButton && (
                     <Button
-                        className={`${moduleType}_details--expandable_toggle_button`}
+                        className={`${bemClassName}_expandable_toggle_button`}
                         color="light"
                         icon
                         id={expandedButtonId}
@@ -131,18 +132,18 @@ class DetailsColumn extends React.PureComponent {
     }
 }
 
-DetailsColumn.propTypes = {
+DetailsWindowColumn.propTypes = {
     column: columnPropTypesShape.isRequired,
     columnNumber: PropTypes.number,
     columnProps: columnPropsPropTypesShape,
-    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.shape({}).isRequired,
     isExpanded: PropTypes.bool,
     onExpandButtonToggle: PropTypes.func,
     moduleType: PropTypes.string,
     setColumnContainerHeight: PropTypes.func,
 };
 
-DetailsColumn.defaultProps = {
+DetailsWindowColumn.defaultProps = {
     columnNumber: undefined,
     columnProps: undefined,
     isExpanded: false,
@@ -151,4 +152,4 @@ DetailsColumn.defaultProps = {
     setColumnContainerHeight: undefined,
 };
 
-export default DetailsColumn;
+export default DetailsWindowColumn;

@@ -2,10 +2,10 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
-import DetailsColumn from './detailsColumn.js';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes.js';
+import DetailsWindowColumn from './detailsWindowColumn.js';
 
-function DetailsColumnContainer(props) {
+function DetailsWindowColumnContainer(props) {
     const {
         column,
         column: {
@@ -32,11 +32,11 @@ function DetailsColumnContainer(props) {
     }
 
     if (!accessor && columns && _.isArray(columns)) {
-        const columnClassName = `${moduleType}_details--column`;
+        const bemClassName = `${moduleType}--details_window_column`;
         const containerClasses = ClassNames(
-            columnClassName,
+            bemClassName,
             {
-                [`${columnClassName}-divide`]: divide,
+                [`${bemClassName}-divide`]: divide,
             },
         );
         let innerColumnKeyNum = 1;
@@ -58,7 +58,7 @@ function DetailsColumnContainer(props) {
                     innerColumnKeyNum += 1;
 
                     return (
-                        <DetailsColumn
+                        <DetailsWindowColumn
                             column={innerColumn}
                             columnNumber={innerColumnKeyNum}
                             columnProps={columnProps}
@@ -76,7 +76,7 @@ function DetailsColumnContainer(props) {
     }
 
     return (
-        <DetailsColumn
+        <DetailsWindowColumn
             column={column}
             data={data}
             isExpanded={isExpanded}
@@ -87,20 +87,20 @@ function DetailsColumnContainer(props) {
     );
 }
 
-DetailsColumnContainer.propTypes = {
+DetailsWindowColumnContainer.propTypes = {
     column: PropTypes.oneOfType([
         PropTypes.arrayOf(columnPropTypesShape),
         columnPropTypesShape,
     ]).isRequired,
     columnProps: columnPropsPropTypesShape,
-    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.shape({}).isRequired,
     isExpanded: PropTypes.bool,
     onExpandButtonToggle: PropTypes.func,
     moduleType: PropTypes.string,
     setColumnContainerHeight: PropTypes.func,
 };
 
-DetailsColumnContainer.defaultProps = {
+DetailsWindowColumnContainer.defaultProps = {
     columnProps: undefined,
     isExpanded: false,
     moduleType: undefined,
@@ -108,4 +108,4 @@ DetailsColumnContainer.defaultProps = {
     setColumnContainerHeight: undefined,
 };
 
-export default DetailsColumnContainer;
+export default DetailsWindowColumnContainer;

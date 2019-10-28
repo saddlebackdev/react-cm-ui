@@ -1,9 +1,17 @@
-import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
+import {
+    Button,
+    Card,
+    Drawer,
+    Header,
+    Icon,
+    Input,
+    TitleBar,
+} from 'react-cm-ui';
+import moment from 'moment-timezone';
+import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
-import moment from 'moment-timezone';
-import React from 'react';
 import TableProps from '../app/tableProps.js';
 
 const drawerGridSample = `import { Button, Drawer } from 'react-cm-ui';
@@ -17,7 +25,13 @@ export default class DrawerGridSample extends React.Component {
             isDrawerOpen: false,
         };
 
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
+    }
+
+    onDrawerToggle() {
+        const { isDrawerOpen } = this.state;
+
+        this.setState({ isDrawerOpen: !isDrawerOpen });
     }
 
     render() {
@@ -28,14 +42,14 @@ export default class DrawerGridSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
-                    onClose={this._onDrawerToggle}
+                    onClose={this.onDrawerToggle}
                 >
                     <Drawer.TitleBar
-                        closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                        closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                         title="Don't Pay Attention to the TitleBar, But to the Navigation"
                     />
 
@@ -49,7 +63,7 @@ export default class DrawerGridSample extends React.Component {
                                 label: 'Button 3',
                             }, {
                                 label: 'Button 4',
-                                onClick: this._onClickTest,
+                                onClick: this.onClickTest,
                             },
                         ]}
                     />
@@ -61,7 +75,7 @@ export default class DrawerGridSample extends React.Component {
                                     {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onFiltersDrawerToggle}
+                                                onClick={this.onFiltersDrawerToggle}
                                                 title="Filter"
                                                 type="arrow-sort"
                                             />
@@ -69,7 +83,7 @@ export default class DrawerGridSample extends React.Component {
                                     }, {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onViewGridClick}
+                                                onClick={this.onViewGridClick}
                                                 title="Grid View"
                                                 type="grid"
                                             />
@@ -77,7 +91,7 @@ export default class DrawerGridSample extends React.Component {
                                     }, {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onViewTableClick}
+                                                onClick={this.onViewTableClick}
                                                 title="List View"
                                                 type="list"
                                             />
@@ -88,16 +102,16 @@ export default class DrawerGridSample extends React.Component {
                                 jsx: (
                                     <Input
                                         fluid
-                                        icon={searchValue ?
+                                        icon={searchValue && (
                                             <Icon
                                                 compact
-                                                onClick={this._onClearSearchClick}
+                                                onClick={this.onClearSearchClick}
                                                 title="Clear Search"
                                                 type="times"
-                                            /> : null
-                                        }
-                                        onChange={this._onSearchChange}
-                                        onKeyDown={this._onSearchKeyDown}
+                                            />
+                                        )}
+                                        onChange={this.onSearchChange}
+                                        onKeyDown={this.onSearchKeyDown}
                                         placeholder="Search"
                                         value={searchValue}
                                     />
@@ -107,7 +121,7 @@ export default class DrawerGridSample extends React.Component {
                                 jsx: (
                                     <Button
                                         color="success"
-                                        onClick={this._onNewTemplateClick}
+                                        onClick={this.onNewTemplateClick}
                                         style={{ margin: 0 }}
                                     >
                                         <Icon type="plus" />
@@ -119,7 +133,7 @@ export default class DrawerGridSample extends React.Component {
                     />
 
                     <Drawer.Content>
-                        <Drawer.Grid
+                        <Drawer.DataGrid
                             cardProps={() => {
                                 return {
                                     onClick: this._onCardClick,
@@ -168,15 +182,13 @@ export default class DrawerGridSample extends React.Component {
             </div>
         );
     }
-
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
-    }
 }`;
 
-class ModulesDrawerGrid extends React.Component {
+function onClickTest() {
+    console.log('You just clicked the fourth column!'); // eslint-disable-line no-console
+}
+
+class ModulesDrawerDataGrid extends React.Component {
     constructor(props) {
         super(props);
 
@@ -185,8 +197,13 @@ class ModulesDrawerGrid extends React.Component {
             searchValue: '',
         };
 
-        this._onClickTest = this._onClickTest.bind(this);
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
+    }
+
+    onDrawerToggle() {
+        const { isDrawerOpen } = this.state;
+
+        this.setState({ isDrawerOpen: !isDrawerOpen });
     }
 
     render() {
@@ -194,17 +211,12 @@ class ModulesDrawerGrid extends React.Component {
             isDrawerOpen,
             searchValue,
         } = this.state;
-        // cardProps: PropTypes.object,
-        // className: PropTypes.string,
-        // columns: PropTypes.array,
-        // data: PropTypes.array,
-        // style: PropTypes.object,
         const props = [
             {
-                name: 'cardProps',
-                type: 'object',
-                default: '',
-                description: 'Handles properties like onClick events and etc.',
+                name: 'bleed',
+                type: 'bool',
+                default: 'true',
+                description: 'Horizontally extend Drawer.DataGrid all the way to the edges of the parent Drawer.',
                 allowedTypes: '',
             }, {
                 name: 'className',
@@ -216,19 +228,37 @@ class ModulesDrawerGrid extends React.Component {
                 name: '*columns',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to know where to place data.',
+                description: 'Required for Drawer.DataGrid to know where to place data.',
                 allowedTypes: '',
             }, {
-                name: 'data',
+                name: '*data',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to feed columns.',
+                description: 'Required for Drawer.DataGrid to feed columns.',
                 allowedTypes: '',
+            }, {
+                name: 'fontSize',
+                type: 'enum',
+                default: '',
+                description: 'The size of a Table\'s default font size.',
+                allowedTypes: 'large, medium, small, xlarge, xsmall, xxsmall',
+            }, {
+                name: 'rowProps',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the Drawer.DataGrid\'s container. Mainly used for padding and margins.',
+                allowedTypes: '',
+            }, {
+                name: 'size',
+                type: 'enum',
+                default: '',
+                description: 'The vertical size of a table\'s body of cells.',
+                allowedTypes: 'large, medium, small',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.Grid\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.DataGrid\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             },
         ];
@@ -246,22 +276,23 @@ class ModulesDrawerGrid extends React.Component {
                         <TableProps props={props} />
                     </Card>
 
-                    {/* Grid */}
+                    {/* Data Grid */}
                     <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Grid
+                        Data Grid
                         <Header.Subheader>
-                            UI for displaying a data in a grid. Users can usualy toggle between this and the Drawer.Table sub-components.
+                            UI for displaying a data in a table. Users can usualy toggle between
+                            this and the Drawer.DataCards sub-components.
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
+                        onClose={this.onDrawerToggle}
                     >
                         <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                            closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                             title="Don't Pay Attention to the TitleBar, But to the Navigation"
                         />
 
@@ -275,7 +306,7 @@ class ModulesDrawerGrid extends React.Component {
                                     label: 'Button 3',
                                 }, {
                                     label: 'Button 4',
-                                    onClick: this._onClickTest,
+                                    onClick: onClickTest,
                                 },
                             ]}
                         />
@@ -287,7 +318,7 @@ class ModulesDrawerGrid extends React.Component {
                                         {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onFiltersDrawerToggle}
+                                                    onClick={this.onFiltersDrawerToggle}
                                                     title="Filter"
                                                     type="arrow-sort"
                                                 />
@@ -295,7 +326,7 @@ class ModulesDrawerGrid extends React.Component {
                                         }, {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onViewGridClick}
+                                                    onClick={this.onViewGridClick}
                                                     title="Grid View"
                                                     type="grid"
                                                 />
@@ -303,7 +334,7 @@ class ModulesDrawerGrid extends React.Component {
                                         }, {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onViewTableClick}
+                                                    onClick={this.onViewTableClick}
                                                     title="List View"
                                                     type="list"
                                                 />
@@ -314,16 +345,16 @@ class ModulesDrawerGrid extends React.Component {
                                     jsx: (
                                         <Input
                                             fluid
-                                            icon={searchValue ?
+                                            icon={searchValue && (
                                                 <Icon
                                                     compact
-                                                    onClick={this._onClearSearchClick}
+                                                    onClick={this.onClearSearchClick}
                                                     title="Clear Search"
                                                     type="times"
-                                                /> : null
-                                            }
-                                            onChange={this._onSearchChange}
-                                            onKeyDown={this._onSearchKeyDown}
+                                                />
+                                            )}
+                                            onChange={this.onSearchChange}
+                                            onKeyDown={this.onSearchKeyDown}
                                             placeholder="Search"
                                             value={searchValue}
                                         />
@@ -333,7 +364,7 @@ class ModulesDrawerGrid extends React.Component {
                                     jsx: (
                                         <Button
                                             color="success"
-                                            onClick={this._onNewTemplateClick}
+                                            onClick={this.onNewTemplateClick}
                                             style={{ margin: 0 }}
                                         >
                                             <Icon type="plus" />
@@ -345,29 +376,23 @@ class ModulesDrawerGrid extends React.Component {
                         />
 
                         <Drawer.Content>
-                            <Drawer.Grid
-                                cardProps={() => {
-                                    return {
-                                        onClick: this._onCardClick,
-                                    };
-                                }}
+                            <Drawer.DataGrid
                                 columns={[
                                     {
                                         accessor: 'name',
-                                        fontSize: 'medium',
-                                        fontWeight: 'semibold',
-                                        header: false,
-                                        width: '100%',
+                                        header: 'Names',
                                     }, {
                                         accessor: 'campus',
-                                        fontWeight: 'bold',
                                         header: 'Campus',
                                     }, {
-                                        accessor: d => {
-                                            return moment.unix(d.createdOn).utc().format('L');
-                                        },
-                                        fontWeight: 'bold',
+                                        accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
                                         header: 'Created On',
+                                    }, {
+                                        accessor: () => (
+                                            <Icon compact size="xxsmall" type="chevron-right" />
+                                        ),
+                                        header: null,
+                                        textAlign: 'right',
                                     },
                                 ]}
                                 data={[
@@ -388,6 +413,9 @@ class ModulesDrawerGrid extends React.Component {
                                         name: 'Class 101 Invite',
                                     },
                                 ]}
+                                rowProps={() => ({
+                                    onClick: this.onTableRowClick,
+                                })}
                             />
                         </Drawer.Content>
                     </Drawer>
@@ -399,16 +427,6 @@ class ModulesDrawerGrid extends React.Component {
             </Main>
         );
     }
-
-    _onClickTest() {
-        window.alert('You just clicked the fourth column!');
-    }
-
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
-    }
 }
 
-export default ModulesDrawerGrid;
+export default ModulesDrawerDataGrid;
