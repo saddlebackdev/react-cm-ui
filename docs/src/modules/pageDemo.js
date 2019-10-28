@@ -12,7 +12,7 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const nop = () => {};
+const nop = () => { };
 
 class PageDemo extends React.PureComponent {
     constructor() {
@@ -537,7 +537,7 @@ class PageDemo extends React.PureComponent {
                             className="page-content-class-name"
                             isFiltersRailOpen={isFiltersDrawerOpen}
                         >
-                            <Page.Details
+                            <Page.DetailsWindow
                                 color={11}
                                 columns={statsColumns}
                                 data={{
@@ -551,7 +551,7 @@ class PageDemo extends React.PureComponent {
                             />
 
                             {!isMobile && viewType === 'table' ? (
-                                <Page.Table
+                                <Page.DataGrid
                                     columns={[
                                         {
                                             accessor: 'name',
@@ -591,7 +591,7 @@ class PageDemo extends React.PureComponent {
                                     })}
                                 />
                             ) : (
-                                <Page.Grid
+                                <Page.DataCards
                                     cardProps={() => ({
                                         onClick: this.onCardClick,
                                     })}
@@ -632,6 +632,89 @@ class PageDemo extends React.PureComponent {
                                     ]}
                                 />
                             )}
+
+                            <Page.DataGroups
+                                columns={[
+                                    {
+                                        header: 'Column 1 (Simple Page Data Groups Example)',
+                                        rows: [
+                                            {
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
+                                                fieldName: 'Birthday',
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 2 (Page Data Groups Example With Icon)',
+                                        rows: [
+                                            {
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 3',
+                                        rows: [
+                                            {
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 4',
+                                        rows: [
+                                            {
+                                                accessor: (d) => (
+                                                    moment(d.birthday).format('MM/DD/YYYY')
+                                                ),
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    },
+                                ]}
+                                data={{
+                                    birthday: '1990-01-23',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                            />
                         </Page.Content>
                     </Page.Container>
                 </Page>

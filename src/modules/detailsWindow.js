@@ -3,9 +3,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsPropTypes.js';
+import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes.js';
 import InfoBar from '../views/infoBar.js';
-import DetailsColumnContainer from './detailsColumnContainer.js';
+import DetailsWindowColumnContainer from './detailsWindowColumnContainer.js';
 import domUtils from '../utils/domUtils.js';
 
 class Details extends React.PureComponent {
@@ -28,7 +28,7 @@ class Details extends React.PureComponent {
         this.toggleExpandableContainer();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         const { expandableColumns } = this.props;
         const { expandableColumns: prevExpandableColumns } = prevProps;
 
@@ -47,11 +47,12 @@ class Details extends React.PureComponent {
 
     onExpandTransitionComplete() {
         const { moduleType } = this.props;
+        const bemClassName = `${moduleType}--details_window`;
         const exandableContainer = ReactDOM.findDOMNode(this.exandableContainerRef); // eslint-disable-line react/no-find-dom-node, max-len
 
         exandableContainer.classList.remove(
-            `${moduleType}_details--exapndable_columns_container-contracted-active`,
-            `${moduleType}_details--exapndable_columns_container-expanded-active`,
+            `${bemClassName}_exapndable_columns_container-contracted-active`,
+            `${bemClassName}_exapndable_columns_container-expanded-active`,
         );
         exandableContainer.removeEventListener(
             domUtils.cssTransitionType(exandableContainer),
@@ -67,6 +68,7 @@ class Details extends React.PureComponent {
 
     toggleExpandableContainer() {
         const { expandableColumns, moduleType } = this.props;
+        const bemClassName = `${moduleType}--details_window`;
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
 
@@ -75,7 +77,7 @@ class Details extends React.PureComponent {
 
             exandableContainer.style.height = `${isExpanded ? this.expandableContainerHeight : 0}px`;
             exandableContainer.classList.add(
-                `${moduleType}_details--exapndable_columns_container-${isExpanded ? 'expanded' : 'contracted'}-active`,
+                `${bemClassName}_exapndable_columns_container-${isExpanded ? 'expanded' : 'contracted'}-active`,
             );
             exandableContainer.addEventListener(
                 domUtils.cssTransitionType(exandableContainer),
@@ -98,9 +100,9 @@ class Details extends React.PureComponent {
         } = this.props;
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
-        const containerClasses = ClassNames('ui', `${moduleType}_details`, className, {
-            'page--details-bleed': bleed && moduleType === 'page',
-            'drawer--details-bleed': bleed && moduleType === 'drawer',
+        const bemClassName = `${moduleType}--details_window`;
+        const containerClasses = ClassNames('ui', bemClassName, className, {
+            [`${bemClassName}-bleed`]: bleed,
         });
         let detailsColumnKeyNum = 1;
         let detailsColumnKeyNumExpanded = 1;
@@ -114,7 +116,7 @@ class Details extends React.PureComponent {
 
         if (hasExpandableColumns) {
             const shouldShowExpanded = isExpanded;
-            const expandableColumnsContainerName = `${moduleType}_details--exapndable_columns_container`;
+            const expandableColumnsContainerName = `${bemClassName}_exapndable_columns_container`;
             const expandableContainerClasses = ClassNames(
                 expandableColumnsContainerName,
                 {
@@ -132,7 +134,7 @@ class Details extends React.PureComponent {
                         detailsColumnKeyNumExpanded += 1;
 
                         return (
-                            <DetailsColumnContainer
+                            <DetailsWindowColumnContainer
                                 column={column}
                                 columnProps={columnProps}
                                 data={data}
@@ -153,7 +155,7 @@ class Details extends React.PureComponent {
             >
                 <InfoBar color={color}>
                     <div
-                        className={`${moduleType}_details--columns_container`}
+                        className={`${bemClassName}_columns_container`}
                         style={{
                             marginLeft: horizontalSpacing ? `-${horizontalSpacing}px` : null,
                             marginRight: horizontalSpacing ? `-${horizontalSpacing}px` : null,
@@ -163,7 +165,7 @@ class Details extends React.PureComponent {
                             detailsColumnKeyNum += 1;
 
                             return (
-                                <DetailsColumnContainer
+                                <DetailsWindowColumnContainer
                                     column={column}
                                     columnProps={columnProps}
                                     data={data}
@@ -189,10 +191,10 @@ Details.propTypes = {
     color: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
     columnProps: columnPropsPropTypesShape,
     columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
-    data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.shape({}).isRequired,
     expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     moduleType: PropTypes.string,
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}),
 };
 
 Details.defaultProps = {

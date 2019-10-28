@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import moment from 'moment-timezone';
 
-const DateUtils = {
+const dateUtils = {
     formatWithTz(data, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
-        return DateUtils.formatWithSpecifiedTz(data, timeZoneId);
+        return dateUtils.formatWithSpecifiedTz(data, timeZoneId);
     },
 
     formatWithSpecifiedTz(data, timeZoneId) {
@@ -21,9 +21,9 @@ const DateUtils = {
     },
 
     formatForCommentsWithTz(data, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
@@ -60,7 +60,7 @@ const DateUtils = {
 
     formatDaysFromToday(data) {
         if (_.isNumber(data)) {
-            const momentObj = DateUtils.unixToTz(data);
+            const momentObj = dateUtils.unixToTz(data);
             let returnText = momentObj.fromNow().toLowerCase();
 
             switch (returnText) {
@@ -107,15 +107,27 @@ const DateUtils = {
     },
 
     formatShort(data) {
-        if (data === null || typeof data === 'undefined') {
+        if (_.isNil(data)) {
             return null;
         }
 
         if (_.isNumber(data)) {
-            return moment.unix(data).utc().format('MM/DD/YY');
+            return moment.unix(data).utc().format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
         }
 
-        return moment(data).format('MM/DD/YY');
+        return moment(data).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
+    },
+
+    formatShortWithSpecifiedTz(data, timeZoneId) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().tz(timeZoneId).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
+        }
+
+        return moment(data).tz(timeZoneId).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
     },
 
     formatDayOfWeek(data) {
@@ -213,7 +225,7 @@ const DateUtils = {
      * @returns {String} Returns the formatted string.
      */
     fromNow(date) {
-        return DateUtils.unixToTz(date).calendar(null, {
+        return dateUtils.unixToTz(date).calendar(null, {
             sameDay: '[Today] - MM/DD/YY',
             nextDay: '[Tomorrow] - MM/DD/YY',
             lastDay: '[Yesterday] - MM/DD/YY',
@@ -223,11 +235,56 @@ const DateUtils = {
         });
     },
 
+    timeFromNow(
+        date,
+        locale = 'en',
+        s = 'a few seconds',
+        ss = '%d seconds',
+        m = 'a minute',
+        mm = '%d minutes',
+        h = 'an hour',
+        hh = '%d hours',
+        d = 'a day',
+        dd = '%d days',
+        M = 'a month',
+        MM = '%d months',
+        y = 'a year',
+        yy = '%d years',
+    ) {
+        const originalRelativeTime = moment().locale(locale).localeData()._relativeTime; // eslint-disable-line no-underscore-dangle, max-len
+
+        // Customizing moment's relativeTime
+        moment.updateLocale(locale, {
+            relativeTime: {
+                s,
+                ss,
+                m,
+                mm,
+                h,
+                hh,
+                d,
+                dd,
+                M,
+                MM,
+                y,
+                yy,
+            },
+        });
+
+        // Setting fromNow string with customized relativeTime
+        const fromNowTime = moment(date).fromNow(true);
+
+        // Reverting moment's relativeTime.
+        moment.updateLocale(locale, { relativeTime: originalRelativeTime });
+
+        return fromNowTime;
+    },
+
     unixToTz(date, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
         return moment.unix(date).utc().tz(timeZoneId);
     },
 };
 
-export default DateUtils;
+export default dateUtils;

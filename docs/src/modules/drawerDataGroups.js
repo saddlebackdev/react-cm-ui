@@ -2,14 +2,13 @@ import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
-import moment from 'moment-timezone';
 import React from 'react';
 import TableProps from '../app/tableProps.js';
 
-const drawerGridSample = `import { Button, Drawer } from 'react-cm-ui';
+const drawerDataGroupsSample = `import { Button, Drawer, InfoBar } from 'react-cm-ui';
 import React from 'react';
 
-export default class DrawerGridSample extends React.Component {
+export default class DrawerDataGroupsSample extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,25 +16,22 @@ export default class DrawerGridSample extends React.Component {
             isDrawerOpen: false,
         };
 
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
     }
 
     render() {
-        const {
-            isDrawerOpen,
-            searchValue,
-        } = this.state;
+        const { isDrawerOpen } = this.state;
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
-                    onClose={this._onDrawerToggle}
+                    onClose={this.onDrawerToggle}
                 >
                     <Drawer.TitleBar
-                        closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                        closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                         title="Don't Pay Attention to the TitleBar, But to the Navigation"
                     />
 
@@ -61,7 +57,7 @@ export default class DrawerGridSample extends React.Component {
                                     {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onFiltersDrawerToggle}
+                                                onClick={this._onFilterClick}
                                                 title="Filter"
                                                 type="arrow-sort"
                                             />
@@ -118,65 +114,98 @@ export default class DrawerGridSample extends React.Component {
                         ]}
                     />
 
-                    <Drawer.Content>
-                        <Drawer.Grid
-                            cardProps={() => {
-                                return {
-                                    onClick: this._onCardClick,
-                                };
+                    <Drawer.Details
+                            color={11}
+                            columnProps={{
+                                horizontalSpacing: 11,
                             }}
                             columns={[
                                 {
-                                    accessor: 'name',
-                                    fontSize: 'medium',
-                                    fontWeight: 'semibold',
-                                    header: false,
-                                    width: '100%',
+                                    accessor: 'activeTemplates',
+                                    header: 'Active Templates',
                                 }, {
-                                    accessor: 'campus',
-                                    fontWeight: 'bold',
-                                    header: 'Campus',
+                                    accessor: 'inactiveTemplates',
+                                    header: 'Inactive Templates',
                                 }, {
-                                    accessor: d => {
-                                        return moment.unix(d.createdOn).utc().format('L');
-                                    },
-                                    fontWeight: 'bold',
-                                    header: 'Created On',
+                                    list: [
+                                        {
+                                            accessor: 'activeTemplates',
+                                            header: 'Active Templates',
+                                        }, {
+                                            accessor: 'inactiveTemplates',
+                                            header: 'Inactive Templates',
+                                        },
+                                    ],
+                                    divide: true,
                                 },
                             ]}
-                            data={[
-                                {
-                                    campus: 'Lake Forest',
-                                    createdOn: 1259668810,
-                                    id: 1,
-                                    name: 'First Time Visitor',
-                                }, {
-                                    campus: 'Lake Forest',
-                                    createdOn: 1159668810,
-                                    id: 2,
-                                    name: 'Second Time Visitor',
-                                }, {
-                                    campus: 'Anaheim',
-                                    createdOn: 1152668810,
-                                    id: 3,
-                                    name: 'Class 101 Invite',
-                                },
-                            ]}
+                            data={{
+                            }}
                         />
-                    </Drawer.Content>
+
+                        <Drawer.DataGroups>
+                            <Drawer.DataGroup
+                                header="Personal (Simple Drawer Data Groups Example)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+
+                            <Drawer.DataGroup
+                                header="Personal (Drawer Data Groups Example With Icon)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                        header: 'Training',
+                                        iconType: 'chair',
+                                        iconColor: 'alert',
+                                        iconSize: 22,
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                        header: "Campus",
+                                        iconType: 'church',
+                                        iconSize: 22,
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+                        </Drawer.DataGroups>
+
+                    <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
     }
 
-    _onDrawerToggle() {
+    onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
     }
 }`;
 
-class ModulesDrawerGrid extends React.Component {
+class ModulesDrawerDataGroups extends React.Component {
     constructor(props) {
         super(props);
 
@@ -185,50 +214,48 @@ class ModulesDrawerGrid extends React.Component {
             searchValue: '',
         };
 
-        this._onClickTest = this._onClickTest.bind(this);
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
+        this.onClickTest = this.onClickTest.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
     }
 
     render() {
-        const {
-            isDrawerOpen,
-            searchValue,
-        } = this.state;
-        // cardProps: PropTypes.object,
-        // className: PropTypes.string,
-        // columns: PropTypes.array,
-        // data: PropTypes.array,
-        // style: PropTypes.object,
+        const { isDrawerOpen, searchValue } = this.state;
         const props = [
             {
-                name: 'cardProps',
-                type: 'object',
-                default: '',
-                description: 'Handles properties like onClick events and etc.',
-                allowedTypes: '',
-            }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
-                name: '*columns',
+                name: 'bleed',
+                type: 'bool',
+                default: '',
+                description: 'Horizontally extend Drawer.DataGroups all the way to the edges of the parent Drawer..',
+                allowedTypes: '',
+            }, {
+                name: 'header',
+                type: 'string',
+                default: '',
+                description: 'Provide header title to Drawer.DataGroups row UI',
+                allowedTypes: '',
+            }, {
+                name: 'rows',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to know where to place data.',
+                description: 'A consistent way to display data rows UI in a Drawer.DataGroups.',
                 allowedTypes: '',
             }, {
                 name: 'data',
                 type: 'array',
                 default: '',
-                description: 'Required for Drawer.Grid to feed columns.',
+                description: 'Required for Drawer.DataGroups to feed rows.',
                 allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
-                description: 'Supply any inline styles to the Drawer.Grid\'s container. Mainly used for padding and margins.',
+                description: 'Supply any inline styles to the Drawer.DataGroup\'s container. Mainly used for padding and margins.',
                 allowedTypes: '',
             },
         ];
@@ -246,38 +273,23 @@ class ModulesDrawerGrid extends React.Component {
                         <TableProps props={props} />
                     </Card>
 
-                    {/* Grid */}
+                    {/* Drawer Infobar Details */}
                     <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Grid
+                        Drawer Data Groups
                         <Header.Subheader>
-                            UI for displaying a data in a grid. Users can usualy toggle between this and the Drawer.Table sub-components.
+                            For those times the UI requires an Drawer Data Groups Section.
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
+                        onClose={this.onDrawerToggle}
                     >
                         <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                            closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                             title="Don't Pay Attention to the TitleBar, But to the Navigation"
-                        />
-
-                        <Drawer.Navigation
-                            columns={[
-                                {
-                                    label: 'Button 1',
-                                }, {
-                                    label: 'Button 2',
-                                }, {
-                                    label: 'Button 3',
-                                }, {
-                                    label: 'Button 4',
-                                    onClick: this._onClickTest,
-                                },
-                            ]}
                         />
 
                         <Drawer.ActionBar
@@ -287,7 +299,7 @@ class ModulesDrawerGrid extends React.Component {
                                         {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onFiltersDrawerToggle}
+                                                    onClick={this._onFilterClick}
                                                     title="Filter"
                                                     type="arrow-sort"
                                                 />
@@ -344,71 +356,102 @@ class ModulesDrawerGrid extends React.Component {
                             ]}
                         />
 
-                        <Drawer.Content>
-                            <Drawer.Grid
-                                cardProps={() => {
-                                    return {
-                                        onClick: this._onCardClick,
-                                    };
-                                }}
-                                columns={[
-                                    {
-                                        accessor: 'name',
-                                        fontSize: 'medium',
-                                        fontWeight: 'semibold',
-                                        header: false,
-                                        width: '100%',
-                                    }, {
-                                        accessor: 'campus',
-                                        fontWeight: 'bold',
-                                        header: 'Campus',
-                                    }, {
-                                        accessor: d => {
-                                            return moment.unix(d.createdOn).utc().format('L');
+                        <Drawer.Details
+                            color={11}
+                            columnProps={{
+                                horizontalSpacing: 11,
+                            }}
+                            columns={[
+                                {
+                                    accessor: 'activeTemplates',
+                                    header: 'Active Templates',
+                                }, {
+                                    accessor: 'inactiveTemplates',
+                                    header: 'Inactive Templates',
+                                }, {
+                                    list: [
+                                        {
+                                            accessor: 'activeTemplates',
+                                            header: 'Active Templates',
+                                        }, {
+                                            accessor: 'inactiveTemplates',
+                                            header: 'Inactive Templates',
                                         },
-                                        fontWeight: 'bold',
-                                        header: 'Created On',
-                                    },
-                                ]}
-                                data={[
+                                    ],
+                                    divide: true,
+                                },
+                            ]}
+                            data={{
+                            }}
+                        />
+                        <Drawer.DataGroups>
+                            <Drawer.DataGroup
+                                header="Personal (Simple Drawer Data Groups Example)"
+                                rows={[
                                     {
-                                        campus: 'Lake Forest',
-                                        createdOn: 1259668810,
-                                        id: 1,
-                                        name: 'First Time Visitor',
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
                                     }, {
-                                        campus: 'Lake Forest',
-                                        createdOn: 1159668810,
-                                        id: 2,
-                                        name: 'Second Time Visitor',
-                                    }, {
-                                        campus: 'Anaheim',
-                                        createdOn: 1152668810,
-                                        id: 3,
-                                        name: 'Class 101 Invite',
-                                    },
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                    }
                                 ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
                             />
-                        </Drawer.Content>
+
+                            <Drawer.DataGroup
+                                header="Personal (Drawer Data Groups Example With Icon)"
+                                rows={[
+                                    {
+                                        accessor: 'birthday',
+                                        fieldName: 'Birthday',
+                                        header: 'Training',
+                                        iconType: 'chair',
+                                        iconColor: 'alert',
+                                        iconSize: 22,
+                                    }, {
+                                        accessor: 'homeCampus',
+                                        fieldName: 'Home Campus',
+                                        header: "Campus",
+                                        iconType: 'church',
+                                        iconSize: 22,
+                                    }
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
+                                }}
+                                style={{
+                                    marginTop: '10px'
+                                }}
+                            />
+                        </Drawer.DataGroups>
+                        <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {drawerGridSample}
+                        {drawerDataGroupsSample}
                     </Highlighter>
                 </div>
             </Main>
         );
     }
 
-    _onClickTest() {
+    onClickTest() {
         window.alert('You just clicked the fourth column!');
     }
 
-    _onDrawerToggle() {
+    onDrawerToggle() {
         const { isDrawerOpen } = this.state;
 
         this.setState({ isDrawerOpen: !isDrawerOpen });
     }
 }
 
-export default ModulesDrawerGrid;
+export default ModulesDrawerDataGroups;

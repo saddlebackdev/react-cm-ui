@@ -1,16 +1,21 @@
-
-class DOMUtils {
-    static addClassName(el, cls) {
-        if (!this.hasClassName(el, cls)) {
+const domUtils = {
+    addClassName(el, cls) {
+        if (!domUtils.hasClassName(el, cls)) {
             el.classList.add(cls);
         }
-    }
+    },
 
-    static browserDetect() {
+    browserDetect() {
         // https://github.com/mbasso/react-browser-detection/blob/master/src/index.js
-        const isOpera = (!!window.opr && !!window.opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        const isOpera =
+            (!!window.opr && !!window.opr.addons) ||
+            !!window.opera ||
+            navigator.userAgent.indexOf(' OPR/') >= 0;
         const isFirefox = typeof InstallTrigger !== 'undefined';
-        const isChrome = !!window.chrome && !!window.chrome.webstore && navigator.userAgent.toLowerCase().indexOf('googlebot') === -1;
+        const isChrome =
+            !!window.chrome &&
+            !!window.chrome.webstore &&
+            navigator.userAgent.toLowerCase().indexOf('googlebot') === -1;
         const isSafari = !isChrome && navigator.userAgent.toLowerCase().indexOf('safari') !== -1;
         const isIE = /* @cc_on!@ */false || !!document.documentMode;
         const isEdge = !(isIE) && !!window.StyleMedia;
@@ -50,45 +55,49 @@ class DOMUtils {
         }
 
         return 'unknown';
-    }
+    },
 
-    static cssAnimationType(el) {
-        let a;
+    cssAnimationType(element) {
         const animations = {
             animation: 'animationend',
             OAnimation: 'oAnimationEnd',
             MozAnimation: 'animationend',
             WebkitAnimation: 'webkitAnimationEnd',
         };
+        let propValue;
 
-        for (a in animations) {
-            if (el.style[a] !== undefined) {
-                return animations[a];
+        Object.keys(animations).forEach((key) => {
+            if (!propValue && element.style[key] !== undefined) {
+                propValue = animations[key];
             }
-        }
-    }
+        });
 
-    static cssTransitionType(el) {
-        let t;
+        return propValue;
+    },
+
+    cssTransitionType(element) {
         const transitions = {
             transition: 'transitionend',
             OTransition: 'oTransitionEnd otransitionend',
             MozTransition: 'transitionend',
             WebkitTransition: 'webkitTransitionEnd',
         };
+        let propValue;
 
-        for (t in transitions) {
-            if (el.style[t] !== undefined) {
-                return transitions[t];
+        Object.keys(transitions).forEach((key) => {
+            if (!propValue && element.style[key] !== undefined) {
+                propValue = transitions[key];
             }
-        }
-    }
+        });
 
-    static hasClassName(el, cls) {
+        return propValue;
+    },
+
+    hasClassName(el, cls) {
         return el.classList.contains(cls);
-    }
+    },
 
-    static isInViewport(el, parentEl) {
+    isInViewport(el, parentEl) {
         if (el) {
             const elRect = el.getBoundingClientRect();
             const parentElRect = parentEl.getBoundingClientRect();
@@ -118,35 +127,35 @@ class DOMUtils {
             };
         }
         return false;
-    }
+    },
 
-    static removeClassName(el, cls) {
+    removeClassName(el, cls) {
         el.classList.remove(cls);
-    }
+    },
 
-    static scrollPos(el) {
+    scrollPos(el) {
         if (el) {
             return el.scrollTop;
         }
-        return window.scrollY || window.pageYOffset;
-    }
 
-    static scrollTo(to, duration, parentEl) {
+        return window.scrollY || window.pageYOffset;
+    },
+
+    scrollTo(to, duration, parentEl) {
         // Defaults
         const o = {
             duration: duration || duration === 0 ? 0 : 250,
             parentEl: parentEl || null,
             to: to || 0,
         };
-
-        const SCROLL_INCREMENT_MS = 10;
+        const scrollIncrementMS = 10;
 
         let currentViewPortPosistion = !o.parentEl ?
             document.body.scrollTop || document.documentElement.scrollTop :
             o.parentEl.scrollTop;
         // console.log('currentViewPortPosistion: ' + currentViewPortPosistion);
         let difference = o.to - currentViewPortPosistion;
-        const numSteps = o.duration / SCROLL_INCREMENT_MS;
+        const numSteps = o.duration / scrollIncrementMS;
         const increment = difference / numSteps;
 
         // const startTime = Date.now();
@@ -157,20 +166,23 @@ class DOMUtils {
                 document.body.scrollTop || document.documentElement.scrollTop :
                 o.parentEl.scrollTop;
             difference = o.to - currentViewPortPosistion;
-
             const interval = Math.abs(difference) < Math.abs(increment) ? difference : increment;
             const newViewPortPosistion = currentViewPortPosistion + interval;
+            let newParentEl = parentEl;
 
-            if (!parentEl) {
+            if (!newParentEl) {
                 document.body.scrollTop = newViewPortPosistion;
                 document.documentElement.scrollTop = newViewPortPosistion;
             } else {
-                parentEl.scrollTop = newViewPortPosistion;
+                newParentEl = {
+                    ...newParentEl,
+                    scrollTop: newViewPortPosistion,
+                };
             }
 
             if (
                 newViewPortPosistion === o.to ||
-                (!parentEl &&
+                (!newParentEl &&
                     (window.innerHeight +
                         (window.scrollY || window.pageYOffset) >= document.body.scrollHeight)
                 )
@@ -178,8 +190,8 @@ class DOMUtils {
                 // console.log('ellapsed: ' + parseInt(startTime - Date.now()));
                 clearInterval(scrollInterval);
             }
-        }, SCROLL_INCREMENT_MS);
-    }
-}
+        }, scrollIncrementMS);
+    },
+};
 
-export default DOMUtils;
+export default domUtils;
