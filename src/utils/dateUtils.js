@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import moment from 'moment-timezone';
 
-const DateUtils = {
+const dateUtils = {
     formatWithTz(data, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
-        return DateUtils.formatWithSpecifiedTz(data, timeZoneId);
+        return dateUtils.formatWithSpecifiedTz(data, timeZoneId);
     },
 
     formatWithSpecifiedTz(data, timeZoneId) {
@@ -21,7 +21,7 @@ const DateUtils = {
     },
 
     formatForCommentsWithTz(data, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
         if (_.isNil(data)) {
             return null;
@@ -60,7 +60,7 @@ const DateUtils = {
 
     formatDaysFromToday(data) {
         if (_.isNumber(data)) {
-            const momentObj = DateUtils.unixToTz(data);
+            const momentObj = dateUtils.unixToTz(data);
             let returnText = momentObj.fromNow().toLowerCase();
 
             switch (returnText) {
@@ -225,7 +225,7 @@ const DateUtils = {
      * @returns {String} Returns the formatted string.
      */
     fromNow(date) {
-        return DateUtils.unixToTz(date).calendar(null, {
+        return dateUtils.unixToTz(date).calendar(null, {
             sameDay: '[Today] - MM/DD/YY',
             nextDay: '[Tomorrow] - MM/DD/YY',
             lastDay: '[Yesterday] - MM/DD/YY',
@@ -281,10 +281,10 @@ const DateUtils = {
     },
 
     unixToTz(date, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || DateUtils.getDetectedTimeZone();
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
         return moment.unix(date).utc().tz(timeZoneId);
     },
 };
 
-export default DateUtils;
+export default dateUtils;
