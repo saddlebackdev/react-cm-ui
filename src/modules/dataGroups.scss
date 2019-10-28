@@ -1,0 +1,63 @@
+@import '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+
+$prefixDrawerDataGroup: drawer--data_group;
+$prefixPageDataGroup: page--data_group;
+$prefixDrawerDataGroups: drawer--data_groups;
+$prefixPageDataGroups: page--data_groups;
+
+.ui {
+    &.#{$prefixDrawerDataGroups}, &.#{$prefixPageDataGroups} {
+        column-gap: 44px;
+    }
+    .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+        display: inline-block;
+        max-width: 643px;
+        min-width: 298px;
+        padding: 22px 0;
+        width: 100%;
+        &_header_title {
+            margin-bottom: 26px;
+        }
+        &_list {
+            width: 100%;
+        }
+        &_row {
+            display: flex;
+            flex-direction: row;
+            &:not(.#{$prefixDrawerDataGroup}_header_icon), &:not(.#{$prefixPageDataGroup}_header_icon) {
+                justify-content: space-between;
+            }
+            &_data {
+                flex-grow: 1;
+            }
+            &_value, &_field_name, &_field_name_and_value {
+                font-weight: $default-font-weight-semibold;
+            }
+            &_value {
+                font-size: rem(16px);
+            }
+            &_field_name_and_value {
+                font-size: rem(14px);
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui {
+        .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+            &_row {
+                &_value, &_field_name, &_field_name_and_value {
+                    font-weight: $default-font-weight-normal;
+                }
+                &_value {
+                    font-size: rem(14px);
+                }
+                &_field_name {
+                    font-size: rem(12px);
+                }
+            }
+        }
+    }
+}

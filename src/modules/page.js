@@ -7,7 +7,6 @@ import PageActionBar from './pageActionBar.js';
 import PageContainer from './pageContainer.js';
 import PageContent from './pageContent.js';
 import PageDetailsWindow from './pageDetailsWindow.js';
-import PageDataGroup from './pageDataGroup.js';
 import PageDataCards from './pageDataCards.js';
 import PageDataGrid from './pageDataGrid.js';
 import PageDataGroups from './pageDataGroups.js';
@@ -80,7 +79,6 @@ Page.Container = PageContainer;
 Page.Content = PageContent;
 Page.DataCards = PageDataCards;
 Page.DataGrid = PageDataGrid;
-Page.DataGroup = PageDataGroup;
 Page.DataGroups = PageDataGroups;
 Page.Details = PageDetailsWindow; // TODO: Deprecated. Alias name for Page.DetailsWindow. Remove in next major release.
 Page.DetailsWindow = PageDetailsWindow;

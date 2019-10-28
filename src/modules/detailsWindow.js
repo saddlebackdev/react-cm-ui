@@ -99,8 +99,7 @@ class Details extends React.PureComponent {
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
         const containerClasses = ClassNames('ui', `${moduleType}_details`, className, {
-            'page--details-bleed': bleed && moduleType === 'page',
-            'drawer--details-bleed': bleed && moduleType === 'drawer',
+            [`${moduleType}_details-bleed`]: bleed,
         });
         let detailsColumnKeyNum = 1;
         let detailsColumnKeyNumExpanded = 1;

@@ -4,78 +4,94 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
 import List from '../elements/list.js';
-import DataGroupRow from './dataGroupRow.js';
+import DataGroupRow from './DataGroupRow.js';
 import Utils from '../utils/utils.js';
 
 function DataGroup(props) {
     const {
-        bleed,
-        className,
+        column: {
+            className,
+            id,
+            header,
+            rows,
+            style,
+        },
         data,
-        header,
         moduleType,
-        rows,
-        style,
     } = props;
-
-    const containerClasses = ClassNames('ui', `${moduleType}_data_group`, className, {
-        'page--data_group-bleed': bleed && moduleType === 'page',
-        'drawer--data_group-bleed': bleed && moduleType === 'drawer',
-    });
+    const bemClassName = `${moduleType}--data_group`;
+    const containerClasses = ClassNames(bemClassName, className);
 
     return (
         <div
             className={containerClasses}
+            id={id}
             style={style}
         >
-            {header && (
-                <Header className={`${moduleType}_data_group_header_title`} weight="bold" size="large">
-                    {header}
-                </Header>
-            )}
-
-            <List>
-                {_.map(rows, (row, index) => (
-                    <List.Item
-                        key={`dataGroupRow-${index}`}
+            <div
+                className={`${bemClassName}_inner_container`}
+            >
+                {header && (
+                    <Header
+                        className={`${bemClassName}_header_title`}
+                        weight="bold"
+                        size="large"
                     >
-                        <DataGroupRow
-                            data={data}
-                            row={row}
-                        />
-                    </List.Item>
-                ))}
-            </List>
+                        {header}
+                    </Header>
+                )}
+
+                <List
+                    className={`${bemClassName}_list`}
+                    divide
+                >
+                    {_.map(rows, (row, index) => (
+                        <List.Item
+                            key={`${bemClassName}_list_item-${index}`}
+                        >
+                            <DataGroupRow
+                                bemClassName={bemClassName}
+                                data={data}
+                                row={row}
+                            />
+                        </List.Item>
+                    ))}
+                </List>
+            </div>
         </div>
     );
 }
 
-DataGroup.defaultProps = {
-    bleed: true,
-    className: undefined,
-    moduleType: undefined,
-    style: {},
+DataGroup.propTypes = {
+    column: PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        header: PropTypes.string,
+        rows: PropTypes.arrayOf(
+            PropTypes.shape({
+                accessor: PropTypes.string.isRequired,
+                className: PropTypes.string,
+                fieldName: PropTypes.string.isRequired,
+                id: PropTypes.string,
+                header: PropTypes.string,
+                iconType: PropTypes.string,
+                iconColor: PropTypes.string,
+                iconSize: PropTypes.oneOfType([
+                    PropTypes.oneOf(Utils.sizeEnums()),
+                    PropTypes.number,
+                ]),
+                style: PropTypes.shape({}),
+            }),
+        ).isRequired,
+        style: PropTypes.shape({}),
+    }).isRequired,
+    data: PropTypes.shape({}).isRequired,
+    moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
+    style: PropTypes.shape({}),
 };
 
-DataGroup.propTypes = {
-    bleed: PropTypes.bool,
-    className: PropTypes.string,
-    data: PropTypes.shape({}).isRequired,
-    header: PropTypes.string,
-    moduleType: PropTypes.string,
-    rows: PropTypes.arrayOf(
-        PropTypes.shape({
-            accessor: PropTypes.string.isRequired,
-            fieldName: PropTypes.string.isRequired,
-            header: PropTypes.string,
-            iconType: PropTypes.string,
-            iconColor: PropTypes.string,
-            iconSize: PropTypes.oneOfType([
-                PropTypes.oneOf(Utils.sizeEnums()),
-                PropTypes.number,
-            ]),
-        })).isRequired,
-    style: PropTypes.shape({}),
+DataGroup.defaultProps = {
+    style: {},
 };
 
 export default DataGroup;

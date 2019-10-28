@@ -9,7 +9,6 @@ import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line impor
 import DrawerContent from './drawerContent.js';
 import DrawerDetailsWindow from './DrawerDetailsWindow.js';
 import DrawerDataCards from './drawerDataCards.js';
-import DrawerDataGroup from './drawerDataGroup.js';
 import DrawerDataGroups from './drawerDataGroups.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
 import DrawerNavigation from './drawerNavigation.js';
@@ -385,7 +384,6 @@ Drawer.Content = DrawerContent;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
 Drawer.DataCards = DrawerDataCards;
 Drawer.DataGrid = DrawerDataGrid;
-Drawer.DataGroup = DrawerDataGroup;
 Drawer.DataGroups = DrawerDataGroups;
 Drawer.Details = DrawerDetailsWindow; // TODO: Deprecated. Alias name for Drawer.DetailsWindow. Remove in next major release.
 Drawer.DetailsWindow = DrawerDetailsWindow;

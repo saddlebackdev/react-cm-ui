@@ -634,56 +634,79 @@ class PageDemo extends React.PureComponent {
                             )}
 
                             <Page.DataGroups
-                                style={{
-                                    margin: '22px 0',
+                                columns={[
+                                    {
+                                        header: 'Column 1 (Simple Page Data Groups Example)',
+                                        rows: [
+                                            {
+                                                accessor: 'birthday',
+                                                fieldName: 'Birthday',
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 2 (Page Data Groups Example With Icon)',
+                                        rows: [
+                                            {
+                                                accessor: 'birthday',
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 3',
+                                        rows: [
+                                            {
+                                                accessor: 'birthday',
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    }, {
+                                        header: 'Column 4',
+                                        rows: [
+                                            {
+                                                accessor: 'birthday',
+                                                fieldName: 'Birthday',
+                                                header: 'Training',
+                                                iconType: 'chair',
+                                                iconColor: 'alert',
+                                                iconSize: 22,
+                                            }, {
+                                                accessor: 'homeCampus',
+                                                fieldName: 'Home Campus',
+                                                header: 'Campus',
+                                                iconType: 'church',
+                                                iconSize: 22,
+                                            },
+                                        ],
+                                    },
+                                ]}
+                                data={{
+                                    birthday: '23/01/1990',
+                                    homeCampus: 'Lake Forest',
                                 }}
-                            >
-                                <Page.DataGroup
-                                    bleed
-                                    header="Personal (Simple Page Data Groups Example)"
-                                    rows={[
-                                        {
-                                            accessor: 'birthday',
-                                            fieldName: 'Birthday',
-                                        }, {
-                                            accessor: 'homeCampus',
-                                            fieldName: 'Home Campus',
-                                        },
-                                    ]}
-                                    data={{
-                                        birthday: '23/01/1990',
-                                        homeCampus: 'Lake Forest',
-                                    }}
-                                />
-
-                                <Page.DataGroup
-                                    bleed
-                                    header="Personal (Page Data Groups Example With Icon)"
-                                    rows={[
-                                        {
-                                            accessor: 'birthday',
-                                            fieldName: 'Birthday',
-                                            header: 'Training',
-                                            iconType: 'chair',
-                                            iconColor: 'alert',
-                                            iconSize: 22,
-                                        }, {
-                                            accessor: 'homeCampus',
-                                            fieldName: 'Home Campus',
-                                            header: 'Campus',
-                                            iconType: 'church',
-                                            iconSize: 22,
-                                        },
-                                    ]}
-                                    data={{
-                                        birthday: '23/01/1990',
-                                        homeCampus: 'Lake Forest',
-                                    }}
-                                    style={{
-                                        marginTop: '10px',
-                                    }}
-                                />
-                            </Page.DataGroups>
+                            />
                         </Page.Content>
                     </Page.Container>
                 </Page>
