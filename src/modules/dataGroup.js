@@ -3,69 +3,191 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
+import Icon from '../elements/icon.js';
 import List from '../elements/list.js';
+import ActivityIndicator from '../elements/activityIndicator.js';
 import DataGroupRow from './dataGroupRow.js';
 import Utils from '../utils/utils.js';
+import DataGroupExpandedRow from './dataGroupExpandedRow.js';
 
-function DataGroup(props) {
-    const {
-        column: {
-            className,
-            id,
-            header,
-            rows,
-            style,
-        },
-        data,
-        moduleType,
-    } = props;
-    const bemClassName = `${moduleType}--data_group`;
-    const containerClasses = ClassNames(bemClassName, className);
+class DataGroup extends React.Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <div
-            className={containerClasses}
-            id={id}
-            style={style}
-        >
-            <div
-                className={`${bemClassName}_inner_container`}
+        this.state = {
+            isExpanded: false,
+        };
+
+        this.onToggleExpand = this.onToggleExpand.bind(this);
+    }
+
+    onToggleExpand() {
+        this.setState((prevState) => ({
+            isExpanded: !prevState.isExpanded,
+        }));
+    }
+
+    render() {
+        const {
+            column: {
+                className,
+                expandableSections,
+                id,
+                isExpandable,
+                header,
+                rows,
+                style,
+            },
+            data,
+            moduleType,
+        } = this.props;
+        const { isExpanded } = this.state;
+        const bemClassName = `${moduleType}--data_group`;
+        const containerClasses = ClassNames(bemClassName, className, {
+            expanded: isExpandable && isExpanded,
+        });
+
+        let expandableJSX;
+
+        const rowJSX = (
+            <List
+                className={`${bemClassName}_list`}
+                divide
             >
-                {header && (
-                    <Header
-                        className={`${bemClassName}_header_title`}
-                        weight="bold"
-                        size="large"
+                {_.map(rows, (row, index) => (
+                    <List.Item
+                        key={`${bemClassName}_list_item-${index}`}
                     >
-                        {header}
-                    </Header>
-                )}
+                        <DataGroupRow
+                            bemClassName={bemClassName}
+                            data={data}
+                            row={row}
+                            showExpandedColumn={isExpandable && isExpanded}
+                        />
+                    </List.Item>
+                ))}
+            </List>
+        );
 
-                <List
-                    className={`${bemClassName}_list`}
-                    divide
+        if (isExpandable && isExpanded && !_.isEmpty(expandableSections)) {
+            expandableJSX = (
+                <div
+                    className={`${bemClassName}_expand_section`}
                 >
-                    {_.map(rows, (row, index) => (
-                        <List.Item
-                            key={`${bemClassName}_list_item-${index}`}
+                    {_.map(expandableSections, (expandRow, expandIndex) => (
+                        <div
+                            className={`${bemClassName}_expand_section_list`}
+                            key={`${bemClassName}_expand_section_list-${expandIndex}`}
                         >
-                            <DataGroupRow
-                                bemClassName={bemClassName}
-                                data={data}
-                                row={row}
-                            />
-                        </List.Item>
+                            {
+                                expandRow.header && (
+                                    <Header
+                                        className={`${bemClassName}_header`}
+                                        size="medium"
+                                        style={{
+                                            marginBottom: '22px',
+                                            lineHeight: '16px',
+                                        }}
+                                        weight="semibold"
+                                    >
+                                        {expandRow.header}
+                                    </Header>
+                                )
+                            }
+                            <List
+                                className={`${bemClassName}_list`}
+                            >
+                                {_.map(expandRow.rows, (row, index) => (
+                                    <List.Item
+                                        key={`${bemClassName}_list_item-${index}`}
+                                    >
+                                        <DataGroupExpandedRow
+                                            bemClassName={bemClassName}
+                                            data={data}
+                                            row={row}
+                                        />
+                                    </List.Item>
+                                ))}
+                            </List>
+                        </div>
                     ))}
-                </List>
+                </div>
+            );
+        }
+
+        return (
+            <div
+                className={containerClasses}
+                id={id}
+                onClick={this.onToggleExpand}
+                role="presentation"
+                style={style}
+            >
+                {isExpandable && isExpanded && !_.isEmpty(expandableSections) && (
+                    <div className={`${bemClassName}_inner_container_loader`}>
+                        <ActivityIndicator
+                            color="backgroundColorStatic"
+                            size={32}
+                        />
+                    </div>
+                )}
+                <div
+                    className={`${bemClassName}_inner_container`}
+                >
+                    <div
+                        className={`${bemClassName}_header_section`}
+                        style={{
+                            marginBottom: '33px',
+                        }}
+                    >
+                        {header && (
+                            <Header
+                                className={`${bemClassName}_header_title`}
+                                weight="bold"
+                                size="large"
+                                style={{
+                                    margin: '0',
+                                    lineHeight: '16px',
+                                }}
+                            >
+                                {header}
+                            </Header>
+                        )}
+
+                        {isExpandable && !_.isEmpty(expandableSections) && (
+                            <div
+                                className={`${bemClassName}_header_icon_section`}
+                            >
+                                <Icon
+                                    className={`${bemClassName}_header_icon`}
+                                    type={isExpanded ? 'contract' : 'expand'}
+                                />
+                            </div>
+                        )}
+                    </div>
+                    {isExpandable && isExpanded && !_.isEmpty(expandableSections) ?
+                        expandableJSX : rowJSX}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 DataGroup.propTypes = {
     column: PropTypes.shape({
         className: PropTypes.string,
+        expandableSections: PropTypes.arrayOf(
+            PropTypes.shape({
+                header: PropTypes.string,
+                iconType: PropTypes.string,
+                iconColor: PropTypes.string,
+                rows: PropTypes.arrayOf(
+                    PropTypes.shape({}),
+                ),
+            }),
+        ),
         id: PropTypes.string,
+        isExpandable: PropTypes.bool,
         header: PropTypes.string,
         rows: PropTypes.arrayOf(
             PropTypes.shape({
