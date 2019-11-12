@@ -7,7 +7,7 @@ import ScrollBar from 'react-custom-scrollbars';
 import domUtils from '../utils/domUtils.js';
 import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line import/no-cycle
 import DrawerContent from './drawerContent.js';
-import DrawerDetailsWindow from './DrawerDetailsWindow.js';
+import DrawerDetailsWindow from './drawerDetailsWindow.js';
 import DrawerDataCards from './drawerDataCards.js';
 import DrawerDataGroups from './drawerDataGroups.js';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle

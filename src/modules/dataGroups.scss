@@ -10,11 +10,13 @@ $prefixPageDataGroups: page--data_groups;
         column-gap: 44px;
     }
     .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
-        display: inline-block;
-        max-width: 643px;
-        min-width: 298px;
-        padding: 22px 0;
-        width: 100%;
+        &_inner_container {
+            display: inline-block;
+            max-width: 643px;
+            min-width: 298px;
+            padding: 22px 0;
+            width: 100%;
+        }
         &_header_title {
             margin-bottom: 26px;
         }
