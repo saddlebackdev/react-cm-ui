@@ -49,6 +49,7 @@ class Icon extends React.PureComponent {
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
             'icon-color-alert': color === 'alert',
+            'icon-color-disable': color === 'disable',
             'icon-color-highlight': color === 'highlight',
             'icon-color-primary': (_.isNil(color) && !disable) || color === 'primary',
             'icon-color-static': color === 'static',
