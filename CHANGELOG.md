@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.1.0
+
+### Feature
+- [PR #83](https://github.com/saddlebackdev/react-cm-ui/pull/83)
+    - New `child` and `home` icons.
+- [PR #84](https://github.com/saddlebackdev/react-cm-ui/pull/84)
+    - New **Icon** color, `disable`.
+
+#### Bug Fix
+- [PR #81](https://github.com/saddlebackdev/react-cm-ui/pull/81)
+    - Fixes a **DataGroups** style bug in Chrome.
+
 ## 7.0.0
 
 ### Feature
