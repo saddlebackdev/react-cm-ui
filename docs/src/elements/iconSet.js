@@ -196,6 +196,7 @@ class ElementsIconSet extends React.PureComponent {
                     'exclamation',
                     'flag',
                     'hand-help',
+                    'home',
                     'shield',
                     'sliders',
                     'stairs',
@@ -208,6 +209,7 @@ class ElementsIconSet extends React.PureComponent {
                 types: [
                     'address-book',
                     'briefcase-user',
+                    'child',
                     'hand-stop',
                     'user',
                     'user-circle',
