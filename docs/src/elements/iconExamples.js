@@ -331,6 +331,7 @@ prop is required.
                 </Header>
 
                 <Icon color="alert" type="activity" />
+                <Icon color="disable" type="heart" />
                 <Icon color="highlight" type="caret-down" />
                 <Icon color="primary" type="calendar" />
                 <Icon color="static" type="cards" />
@@ -358,6 +359,7 @@ prop is required.
 
                 <Block inverse>
                     <Icon color="alert" inverse type="activity" />
+                    <Icon color="disable" inverse type="heart" />
                     <Icon color="highlight" inverse type="caret-down" />
                     <Icon color="primary" inverse type="calendar" />
                     <Icon color="static" inverse type="cards" />

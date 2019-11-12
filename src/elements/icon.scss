@@ -19,6 +19,7 @@
     &-clickable { cursor: pointer; }
     &-color {
         &-alert { .icon-use-path { fill: color(colorAlert); } }
+        &-disable { .icon-use-path { fill: color(colorDisable); } }
         &-highlight { .icon-use-path { fill: color(colorHighlight); } }
         &-primary { .icon-use-path { fill: color(color); } }
         &-static { .icon-use-path { fill: color(colorStatic); } }
@@ -27,6 +28,7 @@
     }
     &-inverse {
         &.icon-color-alert { .icon-use-path { fill: color(colorAlert); } }
+        &.icon-color-disable { .icon-use-path { fill: color(colorDisableInverse); } }
         &.icon-color-highlight { .icon-use-path { fill: color(colorHighlight); } }
         &.icon-color-primary { .icon-use-path { fill: color(colorInverse); } }
         &.icon-color-static { .icon-use-path { fill: color(colorStatic); } }
