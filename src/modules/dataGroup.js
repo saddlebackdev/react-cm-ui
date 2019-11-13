@@ -10,7 +10,7 @@ import DataGroupRow from './dataGroupRow.js';
 import Utils from '../utils/utils.js';
 import DataGroupExpandedRow from './dataGroupExpandedRow.js';
 
-class DataGroup extends React.Component {
+class DataGroup extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -50,26 +50,27 @@ class DataGroup extends React.Component {
         let expandableJSX;
 
         const rowJSX = (
-            <List
-                className={`${bemClassName}_list`}
-                divide
-            >
-                {_.map(rows, (row, index) => (
-                    <List.Item
-                        key={`${bemClassName}_list_item-${index}`}
-                    >
-                        <DataGroupRow
-                            bemClassName={bemClassName}
-                            data={data}
-                            row={row}
-                            showExpandedColumn={isExpandable && isExpanded}
-                        />
-                    </List.Item>
-                ))}
-            </List>
+            <div className={`${bemClassName}_contract_section`}>
+                <List
+                    className={`${bemClassName}_list`}
+                    divide
+                >
+                    {_.map(rows, (row, index) => (
+                        <List.Item
+                            key={`${bemClassName}_list_item-${index}`}
+                        >
+                            <DataGroupRow
+                                bemClassName={bemClassName}
+                                data={data}
+                                row={row}
+                            />
+                        </List.Item>
+                    ))}
+                </List>
+            </div>
         );
 
-        if (isExpandable && isExpanded && !_.isEmpty(expandableSections)) {
+        if (isExpandable && !_.isEmpty(expandableSections)) {
             expandableJSX = (
                 <div
                     className={`${bemClassName}_expand_section`}
@@ -165,8 +166,10 @@ class DataGroup extends React.Component {
                             </div>
                         )}
                     </div>
-                    {isExpandable && isExpanded && !_.isEmpty(expandableSections) ?
-                        expandableJSX : rowJSX}
+                    {rowJSX}
+                    {isExpandable && !_.isEmpty(expandableSections) && (
+                        expandableJSX
+                    )}
                 </div>
             </div>
         );

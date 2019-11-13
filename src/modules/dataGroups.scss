@@ -30,6 +30,12 @@ $prefixPageDataGroups: page--data_groups;
                 animation-duration: 600ms;
                 animation-fill-mode: both;
             }
+            .#{$prefixDrawerDataGroup}_expand_section, .#{$prefixPageDataGroup}_expand_section {
+                display: block;
+            }
+            .#{$prefixDrawerDataGroup}_contract_section, .#{$prefixPageDataGroup}_contract_section {
+                display: none;
+            }
         }
         
         &_inner_container {
@@ -55,6 +61,9 @@ $prefixPageDataGroups: page--data_groups;
         }
         &_header_icon svg:hover path {
             fill: color(backgroundColorHighlightDark);
+        }
+        &_contract_section {
+            display: block;
         }
         &_list {
             width: 100%;
@@ -84,16 +93,19 @@ $prefixPageDataGroups: page--data_groups;
                 margin-top: 4px;
             }
         }
-        &_expand_section_list {
-            margin-bottom: 55px;
-            .list--item {
-                margin-bottom: 22px;
+        &_expand_section {
+            display: none;
+            &_list {
+                margin-bottom: 55px;
+                .list--item {
+                    margin-bottom: 22px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
                 &:last-child {
                     margin-bottom: 0;
                 }
-            }
-            &:last-child {
-                margin-bottom: 0;
             }
         }
         &_inner_container_loader {
