@@ -592,51 +592,52 @@ class PageDemo extends React.PureComponent {
                                 />
                             ) : (
                                 <Page.DataCards
-                                    cardProps={() => ({
-                                        onClick: this.onCardClick,
-                                    })}
-                                    columns={[
-                                        {
-                                            accessor: 'name',
-                                            fontSize: 'medium',
-                                            fontWeight: 'semibold',
-                                            header: false,
-                                            width: '100%',
-                                        }, {
-                                            accessor: 'campus',
-                                            fontWeight: 'bold',
-                                            header: 'Campus',
-                                        }, {
-                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                            fontWeight: 'bold',
-                                            header: 'Created On',
-                                        },
-                                    ]}
-                                    data={[
-                                        {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1259668810,
-                                            id: 1,
-                                            name: 'First Time Visitor',
-                                        }, {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1159668810,
-                                            id: 2,
-                                            name: 'Second Time Visitor',
-                                        }, {
-                                            campus: 'Anaheim',
-                                            createdOn: 1152668810,
-                                            id: 3,
-                                            name: 'Class 101 Invite',
-                                        },
-                                    ]}
-                                />
+                                        cardProps={() => ({
+                                            onClick: this.onCardClick,
+                                        })}
+                                        columns={[
+                                            {
+                                                accessor: 'name',
+                                                fontSize: 'medium',
+                                                fontWeight: 'semibold',
+                                                header: false,
+                                                width: '100%',
+                                            }, {
+                                                accessor: 'campus',
+                                                fontWeight: 'bold',
+                                                header: 'Campus',
+                                            }, {
+                                                accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
+                                                fontWeight: 'bold',
+                                                header: 'Created On',
+                                            },
+                                        ]}
+                                        data={[
+                                            {
+                                                campus: 'Lake Forest',
+                                                createdOn: 1259668810,
+                                                id: 1,
+                                                name: 'First Time Visitor',
+                                            }, {
+                                                campus: 'Lake Forest',
+                                                createdOn: 1159668810,
+                                                id: 2,
+                                                name: 'Second Time Visitor',
+                                            }, {
+                                                campus: 'Anaheim',
+                                                createdOn: 1152668810,
+                                                id: 3,
+                                                name: 'Class 101 Invite',
+                                            },
+                                        ]}
+                                    />
                             )}
 
                             <Page.DataGroups
                                 columns={[
                                     {
-                                        header: 'Column 1 (Simple Page Data Groups Example)',
+                                        header: 'Column 1',
+                                        isExpandable: true,
                                         rows: [
                                             {
                                                 accessor: (d) => (
@@ -646,6 +647,45 @@ class PageDemo extends React.PureComponent {
                                             }, {
                                                 accessor: 'homeCampus',
                                                 fieldName: 'Home Campus',
+                                            },
+                                        ],
+                                        expandableSections: [
+                                            {
+                                                header: 'Basic',
+                                                rows: [
+                                                    {
+                                                        accessor: 'title',
+                                                        fieldName: 'Title',
+                                                        iconType: 'user',
+                                                        iconColor: 'alert',
+                                                    },
+                                                    {
+                                                        accessor: 'firstName',
+                                                        fieldName: 'First Name',
+                                                    },
+                                                    {
+                                                        accessor: 'birthday',
+                                                        fieldName: 'BirthDay',
+                                                        iconType: 'edit',
+                                                        iconColor: 'alert',
+                                                    },
+                                                ],
+                                            }, {
+                                                header: 'Misc',
+                                                rows: [
+                                                    {
+                                                        accessor: 'homeCampus',
+                                                        fieldName: 'Home Campus',
+                                                        iconType: 'church',
+                                                        iconColor: 'warning',
+                                                    },
+                                                    {
+                                                        accessor: 'preferredService',
+                                                        fieldName: 'Preferred Service',
+                                                        iconType: 'notes',
+                                                        iconColor: 'warning',
+                                                    },
+                                                ],
                                             },
                                         ],
                                     }, {
@@ -713,6 +753,13 @@ class PageDemo extends React.PureComponent {
                                 data={{
                                     birthday: '1990-01-23',
                                     homeCampus: 'Lake Forest',
+                                    firstName: 'Shane',
+                                    preferredService: 'Anaheim',
+                                    title: 'Mr.',
+                                }}
+                                style={{
+                                    backgroundColor: '#fff',
+                                    padding: '22px',
                                 }}
                             />
                         </Page.Content>
