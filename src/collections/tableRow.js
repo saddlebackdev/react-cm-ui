@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
@@ -20,7 +19,8 @@ class TableRow extends Component {
     }
 
     render() {
-        const { active,
+        const {
+            active,
             className,
             disabled,
             fontSize,
@@ -50,7 +50,7 @@ class TableRow extends Component {
                 'table-row-vertical-align-middle': verticalAlign === 'middle',
                 'table-row-vertical-align-top': verticalAlign === 'top',
             },
-            className
+            className,
         );
 
         return (
@@ -66,14 +66,16 @@ class TableRow extends Component {
     }
 
     _onClick() {
-        if (_.isFunction(this.props.onClick)) {
-            this.props.onClick();
+        const { onClick } = this.props;
+        const isTextHighlighted = window.getSelection().toString();
+        if (!isTextHighlighted && _.isFunction(onClick)) {
+            onClick();
         }
     }
 }
 
-const textAlignEnums = [ 'center', 'left', 'right' ];
-const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
+const textAlignEnums = ['center', 'left', 'right'];
+const verticalAlignEnums = ['bottom', 'middle', 'top'];
 
 TableRow.propTypes = {
     active: PropTypes.bool,
