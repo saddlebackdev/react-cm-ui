@@ -483,9 +483,9 @@ class PageDemo extends React.PureComponent {
         }
 
         let mainData = {
-            birthday: birthDate ? moment(birthDate).format('MM/DD/YYYY') : 'N/A',
+            birthday: birthDate ? moment.unix(birthDate).utc().format('MM/DD/YYYY') : 'N/A',
             cell: personContactInfo && personContactInfo.displayPhoneNumber ? personContactInfo.displayPhoneNumber : 'N/A',
-            deceasedDate: deceasedDate ? moment(deceasedDate).format('MM/DD/YYYY') : 'N/A',
+            deceasedDate: deceasedDate ? moment.unix(deceasedDate).utc().format('MM/DD/YYYY') : 'N/A',
             email: personEmailInfo && personEmailInfo.email ? personEmailInfo.email : 'N/A',
             homeCampus: churchEntityName,
             preferredMethod: personPreferredContactMethodText,
@@ -523,7 +523,7 @@ class PageDemo extends React.PureComponent {
                     accessor: 'preferredService',
                     fieldName: 'Preferred Service',
                 }, {
-                    accessor: 'deceased',
+                    accessor: 'deceasedDate',
                     fieldName: 'Deceased',
                 },
             ],
