@@ -422,7 +422,6 @@ class PageDemo extends React.PureComponent {
         };
 
         const {
-            personalData,
             personalData: {
                 addresses,
                 birthDate,
@@ -449,8 +448,6 @@ class PageDemo extends React.PureComponent {
         const personEmailInfo = _.find(emails, 'isPrimary');
         const personAddressInfo = _.find(addresses, 'isPrimary');
         const personOccupationInfo = _.find(occupations, 'isPrimary');
-        const personFullTimeOccupationInfo = _.filter(occupations, { typeId: 1 });
-        const personPartTimeOccupationInfo = _.filter(occupations, { typeId: 2 });
 
         switch (contactPreferences.preferredMethod) {
             case 'email':
@@ -510,7 +507,6 @@ class PageDemo extends React.PureComponent {
         };
 
 
-        // TODO: column & data distribution is going to be changed once exapnd/contract feature is introduced
         const mainCoulumn = [];
 
         const personalColumnInfo = {
@@ -725,7 +721,6 @@ class PageDemo extends React.PureComponent {
                 },
             ],
         };
-        console.log('Contact Column Info', contactColumnInfo);
         mainCoulumn.push(contactColumnInfo);
 
         if (!_.isEmpty(personOccupationInfo)) {
@@ -806,10 +801,7 @@ class PageDemo extends React.PureComponent {
             };
 
             mainCoulumn.push(occupationColumnInfo);
-
-            console.log('mainData', mainData);
         }
-        /** ***************************************************************************** */
 
         return (
             <React.Fragment>
@@ -1098,136 +1090,6 @@ class PageDemo extends React.PureComponent {
                                     padding: '22px',
                                 }}
                             />
-
-                            {/* <Page.DataGroups
-                                columns={[
-                                    {
-                                        header: 'Column 1',
-                                        isExpandable: true,
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                            },
-                                        ],
-                                        expandableSections: [
-                                            {
-                                                header: 'Basic',
-                                                rows: [
-                                                    {
-                                                        accessor: 'title',
-                                                        fieldName: 'Title',
-                                                        iconType: 'user',
-                                                        iconColor: 'alert',
-                                                    },
-                                                    {
-                                                        accessor: 'firstName',
-                                                        fieldName: 'First Name',
-                                                    },
-                                                    {
-                                                        accessor: 'birthday',
-                                                        fieldName: 'BirthDay',
-                                                        iconType: 'edit',
-                                                        iconColor: 'alert',
-                                                    },
-                                                ],
-                                            }, {
-                                                header: 'Misc',
-                                                rows: [
-                                                    {
-                                                        accessor: 'homeCampus',
-                                                        fieldName: 'Home Campus',
-                                                        iconType: 'church',
-                                                        iconColor: 'warning',
-                                                    },
-                                                    {
-                                                        accessor: 'preferredService',
-                                                        fieldName: 'Preferred Service',
-                                                        iconType: 'notes',
-                                                        iconColor: 'warning',
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 2 (Page Data Groups Example With Icon)',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 3',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 4',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    },
-                                ]}
-                                data={{
-                                    birthday: '1990-01-23',
-                                    homeCampus: 'Lake Forest',
-                                    firstName: 'Shane',
-                                    preferredService: 'Anaheim',
-                                    title: 'Mr.',
-                                }}
-                                style={{
-                                    backgroundColor: '#fff',
-                                    padding: '22px',
-                                }}
-                            /> */}
                         </Page.Content>
                     </Page.Container>
                 </Page>
