@@ -83,7 +83,7 @@ function DataGroupExpandedRow(props) {
                     <div
                         className={`${bemClassName}_field_value`}
                     >
-                        {`${accessedData}`}
+                        {accessedData}
                     </div>
                 </div>
             </React.Fragment>
