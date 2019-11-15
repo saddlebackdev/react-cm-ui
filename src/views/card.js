@@ -1,17 +1,18 @@
-'use strict';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import domUtils from '../utils/domUtils.js';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 class CardHeader extends Component {
     render() {
-        const { attached, children, className, color, style, title } = this.props;
+        const {
+            attached, children, className, color, style, title,
+        } = this.props;
         const containerClasses = ClassNames('card-header', className, {
             'card-header-attached': attached,
             'card-header-color-blue': color === 'blue',
@@ -29,7 +30,7 @@ class CardHeader extends Component {
     }
 }
 
-const colorEnums = [ 'blue', 'green', 'pink' ];
+const colorEnums = ['blue', 'green', 'pink'];
 
 CardHeader.propTypes = {
     attached: PropTypes.bool,
@@ -60,8 +61,8 @@ class Card extends Component {
         if (props.collapsable) {
             this._prevContentHeight = 0;
 
-            this._observer = new MutationObserver(mutations => {
-                _.forEach(mutations, m => {
+            this._observer = new MutationObserver((mutations) => {
+                _.forEach(mutations, (m) => {
                     this._setContentHeight();
                 });
             });
@@ -94,10 +95,8 @@ class Card extends Component {
             'card-compact': compact,
             'card-nest': nest,
         });
-        const convertChildren = _.isArray(children) ? children : [ children ];
-        const customHeaderObj = _.find(convertChildren, child => {
-            return child && _.isFunction(child.type) && child.type.name === 'CardHeader';
-        });
+        const convertChildren = _.isArray(children) ? children : [children];
+        const customHeaderObj = _.find(convertChildren, (child) => child && _.isFunction(child.type) && child.type.name === 'CardHeader');
         let renderHeader;
 
         if (header && customHeaderObj) {
@@ -110,7 +109,7 @@ class Card extends Component {
             );
         }
 
-        let renderContent = _.map(convertChildren, (child, index) => {
+        const renderContent = _.map(convertChildren, (child, index) => {
             const isCardHeader = child && _.isFunction(child.type) && child.type.name === 'CardHeader';
 
             if (!isCardHeader) {
@@ -135,14 +134,15 @@ class Card extends Component {
 
                 <div
                     className="card-content"
-                    ref={outerContent => {
+                    ref={(outerContent) => {
                         this.outerContent = outerContent;
                     }}
                     style={{ height: contentHeight }}
                 >
-                    <div ref={innerContent => {
+                    <div ref={(innerContent) => {
                         this.innerContent = innerContent;
-                    }}>
+                    }}
+                    >
                         {renderContent}
                     </div>
                 </div>
@@ -186,17 +186,16 @@ class Card extends Component {
 
         if (innerHeight <= 0) {
             return this._prevContentHeight;
-        } else {
-            this._prevContentHeight = innerHeight;
-
-            return innerHeight;
         }
+        this._prevContentHeight = innerHeight;
+
+        return innerHeight;
     }
 
     _onClick() {
         const { onClick } = this.props;
-
-        if (_.isFunction(this.props.onClick)) {
+        const isTextHighlighted = window.getSelection().toString();
+        if (!isTextHighlighted && _.isFunction(onClick)) {
             onClick();
         }
     }
