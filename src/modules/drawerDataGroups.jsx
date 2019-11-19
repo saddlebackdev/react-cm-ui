@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataGroups from './dataGroups.jsx';
+import DataGroups from './dataGroups';
 import { groupPropTypes } from './dataGroupsPropTypes.js';
 
 const propTypes = {

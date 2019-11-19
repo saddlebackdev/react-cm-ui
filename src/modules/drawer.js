@@ -9,7 +9,7 @@ import DrawerActionBar from './drawerActionBar.js'; // eslint-disable-line impor
 import DrawerContent from './drawerContent.js';
 import DrawerDetailsWindow from './drawerDetailsWindow.js';
 import DrawerDataCards from './drawerDataCards.js';
-import DrawerDataGroups from './drawerDataGroups.jsx';
+import DrawerDataGroups from './drawerDataGroups';
 import DrawerFiltersDrawer from './drawerFiltersDrawer.js'; // eslint-disable-line import/no-cycle
 import DrawerNavigation from './drawerNavigation.js';
 import DrawerDataGrid from './drawerDataGrid.js';
