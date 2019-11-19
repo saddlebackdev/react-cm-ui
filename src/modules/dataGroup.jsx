@@ -6,8 +6,8 @@ import ActivityIndicator from '../elements/activityIndicator.js';
 import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 import List from '../elements/list.js';
-import DataGroupExpandedRow from './dataGroupExpandedRow.jsx';
-import DataGroupRow from './dataGroupRow.jsx';
+import DataGroupExpandedRow from './dataGroupExpandedRow';
+import DataGroupRow from './dataGroupRow';
 import { groupPropTypes } from './dataGroupsPropTypes.js';
 
 const propTypes = {

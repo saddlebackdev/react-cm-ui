@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.2.1
+
+#### Bug Fix
+- Removed `.jsx` extensions.
+
 ## 7.2.0
 
 ### Feature

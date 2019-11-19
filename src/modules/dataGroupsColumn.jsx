@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataGroup from './dataGroup.jsx';
+import DataGroup from './dataGroup';
 import { groupPropTypes } from './dataGroupsPropTypes.js';
 
 const propTypes = {
