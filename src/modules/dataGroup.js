@@ -10,6 +10,52 @@ import DataGroupRow from './dataGroupRow.js';
 import Utils from '../utils/utils.js';
 import DataGroupExpandedRow from './dataGroupExpandedRow.js';
 
+const propTypes = {
+    group: PropTypes.shape({
+        className: PropTypes.string,
+        expandableSections: PropTypes.arrayOf(
+            PropTypes.shape({
+                header: PropTypes.string,
+                iconType: PropTypes.string,
+                iconColor: PropTypes.string,
+                rows: PropTypes.arrayOf(
+                    PropTypes.shape({}),
+                ),
+            }),
+        ),
+        id: PropTypes.string,
+        isExpandable: PropTypes.bool,
+        header: PropTypes.string,
+        rows: PropTypes.arrayOf(
+            PropTypes.shape({
+                accessor: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.func,
+                ]).isRequired,
+                className: PropTypes.string,
+                fieldName: PropTypes.string.isRequired,
+                id: PropTypes.string,
+                header: PropTypes.string,
+                iconType: PropTypes.string,
+                iconColor: PropTypes.string,
+                iconSize: PropTypes.oneOfType([
+                    PropTypes.oneOf(Utils.sizeEnums()),
+                    PropTypes.number,
+                ]),
+                style: PropTypes.shape({}),
+            }),
+        ).isRequired,
+        style: PropTypes.shape({}),
+    }).isRequired,
+    data: PropTypes.shape({}).isRequired,
+    moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
+    style: PropTypes.shape({}),
+};
+
+const defaultProps = {
+    style: {},
+};
+
 class DataGroup extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -18,18 +64,22 @@ class DataGroup extends React.PureComponent {
             isExpanded: false,
         };
 
-        this.onToggleExpand = this.onToggleExpand.bind(this);
+        this.onToggleExpandClick = this.onToggleExpandClick.bind(this);
     }
 
-    onToggleExpand() {
-        this.setState((prevState) => ({
-            isExpanded: !prevState.isExpanded,
-        }));
+    onToggleExpandClick() {
+        const isElementHighlighted = window.getSelection().toString();
+
+        if (!isElementHighlighted) {
+            this.setState((prevState) => ({
+                isExpanded: !prevState.isExpanded,
+            }));
+        }
     }
 
     render() {
         const {
-            column: {
+            group: {
                 className,
                 expandableSections,
                 id,
@@ -44,7 +94,7 @@ class DataGroup extends React.PureComponent {
         const { isExpanded } = this.state;
         const bemClassName = `${moduleType}--data_group`;
         const containerClasses = ClassNames(bemClassName, className, {
-            expanded: isExpandable && isExpanded,
+            [`${bemClassName}-expanded`]: isExpandable && isExpanded,
         });
 
         let expandableJSX;
@@ -120,7 +170,7 @@ class DataGroup extends React.PureComponent {
             <div
                 className={containerClasses}
                 id={id}
-                onClick={this.onToggleExpand}
+                onClick={this.onToggleExpandClick}
                 role="presentation"
                 style={style}
             >
@@ -176,50 +226,7 @@ class DataGroup extends React.PureComponent {
     }
 }
 
-DataGroup.propTypes = {
-    column: PropTypes.shape({
-        className: PropTypes.string,
-        expandableSections: PropTypes.arrayOf(
-            PropTypes.shape({
-                header: PropTypes.string,
-                iconType: PropTypes.string,
-                iconColor: PropTypes.string,
-                rows: PropTypes.arrayOf(
-                    PropTypes.shape({}),
-                ),
-            }),
-        ),
-        id: PropTypes.string,
-        isExpandable: PropTypes.bool,
-        header: PropTypes.string,
-        rows: PropTypes.arrayOf(
-            PropTypes.shape({
-                accessor: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.func,
-                ]).isRequired,
-                className: PropTypes.string,
-                fieldName: PropTypes.string.isRequired,
-                id: PropTypes.string,
-                header: PropTypes.string,
-                iconType: PropTypes.string,
-                iconColor: PropTypes.string,
-                iconSize: PropTypes.oneOfType([
-                    PropTypes.oneOf(Utils.sizeEnums()),
-                    PropTypes.number,
-                ]),
-                style: PropTypes.shape({}),
-            }),
-        ).isRequired,
-        style: PropTypes.shape({}),
-    }).isRequired,
-    data: PropTypes.shape({}).isRequired,
-    moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
-    style: PropTypes.shape({}),
-};
-
-DataGroup.defaultProps = {
-    style: {},
-};
+DataGroup.propTypes = propTypes;
+DataGroup.defaultProps = defaultProps;
 
 export default DataGroup;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataGroup from './dataGroup.js';
+import DataGroupsColumn from './dataGroupsColumn.js';
 import Utils from '../utils/utils.js';
 
 class DataGroups extends React.PureComponent {
@@ -10,9 +10,7 @@ class DataGroups extends React.PureComponent {
         super(props);
 
         this.state = {
-            columnCount: 1,
-            columns: props.columns,
-            shouldShow: false,
+            columns: [],
         };
 
         this.resizeWindow = this.resizeWindow.bind(this);
@@ -37,40 +35,47 @@ class DataGroups extends React.PureComponent {
     }
 
     resizeWindow() {
-        const { columns } = this.props;
-        const columnLength = columns.length;
-        let columnCount = Math.floor(this.dataGroups.offsetWidth / 298);
-
-        if (columnCount < 1) {
-            columnCount = 1;
-        } else if (columnCount > columnLength) {
-            columnCount = columnLength;
-        }
-
-        this.reorderColumns(columnCount);
+        this.reorderColumns();
     }
 
-    reorderColumns(columnCount) {
+    reorderColumns() {
         const { columns } = this.props;
-        const newColumns = [];
+        const blockSize = this.dataGroups.offsetWidth;
+        const columnMinWidth = 300;
+        const columnsLength = columns.length;
+        let amountOfColumns = Math.floor(blockSize / columnMinWidth);
+        let newColumns = [];
+
+        if (amountOfColumns === 1 || amountOfColumns < 1) {
+            amountOfColumns = 1;
+        } else if (amountOfColumns > columnsLength) {
+            amountOfColumns = columnsLength;
+        }
+
         let columnNum = 0;
 
-        while (columnNum < columnCount) {
-            for (let i = 0; i < columns.length; i += columnCount) {
+        while (columnNum < amountOfColumns) {
+            for (let i = 0; i < columns.length; i += amountOfColumns) {
                 const column = columns[i + columnNum];
 
                 if (column !== undefined) {
-                    newColumns.push(column);
+                    newColumns = [
+                        ...newColumns,
+                        {
+                            ...column,
+                            columnIndex: columnNum,
+                        },
+                    ];
                 }
             }
 
             columnNum += 1;
         }
 
+        newColumns = _.groupBy(newColumns, 'columnIndex');
+
         this.setState({
-            columnCount,
             columns: newColumns,
-            shouldShow: true,
         });
     }
 
@@ -81,7 +86,7 @@ class DataGroups extends React.PureComponent {
             moduleType,
             style,
         } = this.props;
-        const { columnCount, columns, shouldShow } = this.state;
+        const { columns } = this.state;
         const bemClassName = `${moduleType}--data_groups`;
         const containerClasses = ClassNames('ui', bemClassName, className);
 
@@ -89,23 +94,16 @@ class DataGroups extends React.PureComponent {
             <div
                 className={containerClasses}
                 ref={(ref) => { this.dataGroups = ref; }}
-                style={{
-                    ...style,
-                    columnCount,
-                }}
+                style={style}
             >
-                {shouldShow && _.map(columns, (column, index) => {
-                    const id = column.id ? _.kebabCase(column.id) : index;
-
-                    return (
-                        <DataGroup
-                            column={column}
-                            data={data}
-                            key={`${bemClassName}_group-${id}`}
-                            moduleType={moduleType}
-                        />
-                    );
-                })}
+                {!_.isEmpty(columns) && _.map(columns, (column, index) => (
+                    <DataGroupsColumn
+                        column={column}
+                        data={data}
+                        key={`${bemClassName}_group-${index}`}
+                        moduleType={moduleType}
+                    />
+                ))}
             </div>
         );
     }

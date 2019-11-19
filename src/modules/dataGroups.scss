@@ -7,11 +7,36 @@ $prefixPageDataGroups: page--data_groups;
 
 .ui {
     &.#{$prefixDrawerDataGroups}, &.#{$prefixPageDataGroups} {
-        column-gap: 22px;
+        display: flex;
+        margin: 0 -11px;
+    }
+    .#{$prefixDrawerDataGroups}, .#{$prefixPageDataGroups} {
+        &_column {
+            max-width: 643px;
+            min-width: 300px;
+            padding: 0 11px;
+            width: 100%;
+
+        }
     }
     .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+        margin-top: 11px;
+        padding: 22px 11px;
         position: relative;
-        &.expanded {
+        transition: box-shadow 250ms ease-out;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:hover {
+            border-radius: 3px;
+            box-shadow: inset 0 0 1px 1px color(backgroundColorLight);
+            .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+                &_header_icon .icon-use-path {
+                    fill: color(backgroundColorHighlightDark);
+                }
+            }
+        }
+        &-expanded {
             animation-name: bckFadeInOut;
             animation-timing-function: ease-in-out;
             animation-duration: 1s;
@@ -37,36 +62,25 @@ $prefixPageDataGroups: page--data_groups;
                 display: none;
             }
         }
-        
-        &_inner_container {
-            display: inline-block;
-            max-width: 643px;
-            min-width: 298px;
-            padding: 22px 11px;
-            width: 100%;
-            &:hover {
-                border-radius: 5px;
-                box-shadow:0 0 1px 1px color(backgroundColorLight);
-                .#{$prefixDrawerDataGroup}_header_icon svg path, .#{$prefixPageDataGroup}_header_icon svg path {
-                    fill: color(backgroundColorHighlightDark);
-                }
-            }
-        }
         &_header_section {
             display: flex;
             justify-content: space-between;
         }
         &_header_icon {
+            cursor: pointer;
             margin-right: 0;
-        }
-        &_header_icon svg:hover path {
-            fill: color(backgroundColorHighlightDark);
         }
         &_contract_section {
             display: block;
         }
         &_list {
             width: 100%;
+            .list--item {
+                border-top: 1px solid color(borderColorSecondary) !important; // sass-lint:disable-line no-important
+                &:first-child {
+                    border-top: none !important; // sass-lint:disable-line no-important
+                }
+            }
         }
         &_row {
             display: flex;
@@ -98,6 +112,7 @@ $prefixPageDataGroups: page--data_groups;
             &_list {
                 margin-bottom: 55px;
                 .list--item {
+                    border-top: none !important; // sass-lint:disable-line no-important
                     margin-bottom: 22px;
                     &:last-child {
                         margin-bottom: 0;
