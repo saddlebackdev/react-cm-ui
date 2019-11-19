@@ -43,19 +43,19 @@ class DataGroups extends React.PureComponent {
         const blockSize = this.dataGroups.offsetWidth;
         const columnMinWidth = 300;
         const columnsLength = columns.length;
-        let amountOfColumns = Math.floor(blockSize / columnMinWidth);
+        let numberOfColumns = Math.floor(blockSize / columnMinWidth);
         let newColumns = [];
 
-        if (amountOfColumns === 1 || amountOfColumns < 1) {
-            amountOfColumns = 1;
-        } else if (amountOfColumns > columnsLength) {
-            amountOfColumns = columnsLength;
+        if (numberOfColumns === 1 || numberOfColumns < 1) {
+            numberOfColumns = 1;
+        } else if (numberOfColumns > columnsLength) {
+            numberOfColumns = columnsLength;
         }
 
         let columnNum = 0;
 
-        while (columnNum < amountOfColumns) {
-            for (let i = 0; i < columns.length; i += amountOfColumns) {
+        while (columnNum < numberOfColumns) {
+            for (let i = 0; i < columns.length; i += numberOfColumns) {
                 const column = columns[i + columnNum];
 
                 if (column !== undefined) {
