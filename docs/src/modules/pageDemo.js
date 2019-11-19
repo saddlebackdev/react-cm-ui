@@ -709,15 +709,15 @@ class PageDemo extends React.PureComponent {
             expandableSections: [
                 {
                     header: 'Phone',
-                    rows: { ...personPhonesExpandableRows },
+                    rows: [...personPhonesExpandableRows],
                 },
                 {
                     header: 'Email',
-                    rows: { ...personEmailsExpandableRows },
+                    rows: [...personEmailsExpandableRows],
                 },
                 {
                     header: 'Addresses',
-                    rows: { ...personAddressesExpandableRows },
+                    rows: [...personAddressesExpandableRows],
                 },
             ],
         };

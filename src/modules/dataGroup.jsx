@@ -2,53 +2,18 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ActivityIndicator from '../elements/activityIndicator.js';
 import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
 import List from '../elements/list.js';
-import ActivityIndicator from '../elements/activityIndicator.js';
-import DataGroupRow from './dataGroupRow.js';
-import Utils from '../utils/utils.js';
-import DataGroupExpandedRow from './dataGroupExpandedRow.js';
+import DataGroupExpandedRow from './dataGroupExpandedRow.jsx';
+import DataGroupRow from './dataGroupRow.jsx';
+import { groupPropTypes } from './dataGroupsPropTypes.js';
 
 const propTypes = {
-    group: PropTypes.shape({
-        className: PropTypes.string,
-        expandableSections: PropTypes.arrayOf(
-            PropTypes.shape({
-                header: PropTypes.string,
-                iconType: PropTypes.string,
-                iconColor: PropTypes.string,
-                rows: PropTypes.arrayOf(
-                    PropTypes.shape({}),
-                ),
-            }),
-        ),
-        id: PropTypes.string,
-        isExpandable: PropTypes.bool,
-        header: PropTypes.string,
-        rows: PropTypes.arrayOf(
-            PropTypes.shape({
-                accessor: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.func,
-                ]).isRequired,
-                className: PropTypes.string,
-                fieldName: PropTypes.string.isRequired,
-                id: PropTypes.string,
-                header: PropTypes.string,
-                iconType: PropTypes.string,
-                iconColor: PropTypes.string,
-                iconSize: PropTypes.oneOfType([
-                    PropTypes.oneOf(Utils.sizeEnums()),
-                    PropTypes.number,
-                ]),
-                style: PropTypes.shape({}),
-            }),
-        ).isRequired,
-        style: PropTypes.shape({}),
-    }).isRequired,
+    group: groupPropTypes.isRequired,
     data: PropTypes.shape({}).isRequired,
-    moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
+    moduleType: PropTypes.string.isRequired,
     style: PropTypes.shape({}),
 };
 
@@ -130,21 +95,20 @@ class DataGroup extends React.PureComponent {
                             className={`${bemClassName}_expand_section_list`}
                             key={`${bemClassName}_expand_section_list-${expandIndex}`}
                         >
-                            {
-                                expandRow.header && (
-                                    <Header
-                                        className={`${bemClassName}_header`}
-                                        size="medium"
-                                        style={{
-                                            marginBottom: '22px',
-                                            lineHeight: '16px',
-                                        }}
-                                        weight="semibold"
-                                    >
-                                        {expandRow.header}
-                                    </Header>
-                                )
-                            }
+                            {expandRow.header && (
+                                <Header
+                                    className={`${bemClassName}_header`}
+                                    size="medium"
+                                    style={{
+                                        marginBottom: '22px',
+                                        lineHeight: '16px',
+                                    }}
+                                    weight="semibold"
+                                >
+                                    {expandRow.header}
+                                </Header>
+                            )}
+
                             <List
                                 className={`${bemClassName}_list`}
                             >

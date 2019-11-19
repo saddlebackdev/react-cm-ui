@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../elements/header.js';
 import Icon from '../elements/icon';
-import Utils from '../utils/utils.js';
+import { rowPropTypes } from './dataGroupsPropTypes.js';
+
+const propTypes = {
+    bemClassName: PropTypes.string.isRequired,
+    data: PropTypes.shape({}).isRequired,
+    row: rowPropTypes.isRequired,
+};
 
 function DataGroupRow(props) {
     const {
@@ -98,38 +104,6 @@ function DataGroupRow(props) {
     );
 }
 
-DataGroupRow.propTypes = {
-    bemClassName: PropTypes.string.isRequired,
-    data: PropTypes.shape({}).isRequired,
-    row: PropTypes.shape({
-        accessor: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]).isRequired,
-        className: PropTypes.string,
-        fieldName: PropTypes.string.isRequired,
-        id: PropTypes.string,
-        header: PropTypes.string,
-        iconType: PropTypes.string,
-        iconColor: PropTypes.string,
-        iconSize: PropTypes.oneOfType([
-            PropTypes.oneOf(Utils.sizeEnums()),
-            PropTypes.number,
-        ]),
-        style: PropTypes.shape({}),
-    }),
-};
-
-DataGroupRow.defaultProps = {
-    row: {
-        className: undefined,
-        id: undefined,
-        header: undefined,
-        iconType: undefined,
-        iconColor: undefined,
-        iconSize: 22,
-        style: {},
-    },
-};
+DataGroupRow.propTypes = propTypes;
 
 export default DataGroupRow;

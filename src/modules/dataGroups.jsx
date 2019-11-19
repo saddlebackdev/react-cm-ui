@@ -2,8 +2,21 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataGroupsColumn from './dataGroupsColumn.js';
-import Utils from '../utils/utils.js';
+import DataGroupsColumn from './dataGroupsColumn.jsx';
+import { groupPropTypes } from './dataGroupsPropTypes.js';
+
+const propTypes = {
+    className: PropTypes.string,
+    columns: PropTypes.arrayOf(groupPropTypes).isRequired,
+    data: PropTypes.shape({}).isRequired,
+    moduleType: PropTypes.string.isRequired,
+    style: PropTypes.shape({}),
+};
+
+const defaultProps = {
+    className: undefined,
+    style: {},
+};
 
 class DataGroups extends React.PureComponent {
     constructor(props) {
@@ -109,43 +122,7 @@ class DataGroups extends React.PureComponent {
     }
 }
 
-DataGroups.propTypes = {
-    className: PropTypes.string,
-    columns: PropTypes.arrayOf(
-        PropTypes.shape({
-            className: PropTypes.string,
-            id: PropTypes.string,
-            header: PropTypes.string,
-            rows: PropTypes.arrayOf(
-                PropTypes.shape({
-                    accessor: PropTypes.oneOfType([
-                        PropTypes.string,
-                        PropTypes.func,
-                    ]).isRequired,
-                    className: PropTypes.string,
-                    fieldName: PropTypes.string.isRequired,
-                    id: PropTypes.string,
-                    header: PropTypes.string,
-                    iconType: PropTypes.string,
-                    iconColor: PropTypes.string,
-                    iconSize: PropTypes.oneOfType([
-                        PropTypes.oneOf(Utils.sizeEnums()),
-                        PropTypes.number,
-                    ]),
-                }),
-            ).isRequired,
-            style: PropTypes.shape({}),
-        }),
-    ).isRequired,
-    data: PropTypes.shape({}).isRequired,
-    moduleType: PropTypes.string,
-    style: PropTypes.shape({}),
-};
-
-DataGroups.defaultProps = {
-    className: undefined,
-    moduleType: undefined,
-    style: {},
-};
+DataGroups.propTypes = propTypes;
+DataGroups.defaultProps = defaultProps;
 
 export default DataGroups;
