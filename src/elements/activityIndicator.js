@@ -181,10 +181,11 @@ class ActivityIndicator extends React.PureComponent {
             <div
                 className={containerClasses}
                 id={id}
-                style={({
+                style={{
                     ...style,
-                    transform: `scale(${(1 / 68) * size}) ${style && style.transform}`,
-                })}
+                    transform: `scale(${(1 / 68) * size})`,
+                    transformOrigin: 0,
+                }}
             >
                 <div
                     className={`${BLOCK_CLASS}--left`}
@@ -249,15 +250,13 @@ ActivityIndicator.propTypes = {
     color: PropTypes.oneOf(['backgroundColorHighlight', 'backgroundColorStatic']),
     id: PropTypes.string,
     size: PropTypes.number,
-    style: PropTypes.shape({
-        transform: PropTypes.string,
-    }),
+    style: PropTypes.shape({}),
 };
 
 ActivityIndicator.defaultProps = {
     className: undefined,
     color: 'backgroundColorHighlight',
-    id: 'PropTypes.string',
+    id: undefined,
     size: 68,
     style: {},
 };
