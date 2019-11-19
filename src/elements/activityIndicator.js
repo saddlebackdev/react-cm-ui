@@ -161,6 +161,7 @@ class ActivityIndicator extends React.PureComponent {
             style,
         } = this.props;
         const containerClasses = ClassNames('ui', BLOCK_CLASS, className);
+        const transformScaleDecimal = (1 / 68) * size;
         let backgroundColorStyle;
 
         switch (color) {
@@ -183,7 +184,7 @@ class ActivityIndicator extends React.PureComponent {
                 id={id}
                 style={{
                     ...style,
-                    transform: `scale(${(1 / 68) * size})`,
+                    transform: `scale(${transformScaleDecimal})`,
                     transformOrigin: 0,
                 }}
             >
