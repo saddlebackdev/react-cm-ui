@@ -2,9 +2,16 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../elements/header.js';
 import Button from '../elements/button.js';
+import Header from '../elements/header.js';
 import Icon from '../elements/icon.js';
+import { rowPropTypes } from './dataGroupsPropTypes.js';
+
+const propTypes = {
+    bemClassName: PropTypes.string.isRequired,
+    data: PropTypes.shape({}).isRequired,
+    row: rowPropTypes.isRequired,
+};
 
 function DataGroupExpandedRow(props) {
     const {
@@ -91,33 +98,6 @@ function DataGroupExpandedRow(props) {
     );
 }
 
-DataGroupExpandedRow.propTypes = {
-    bemClassName: PropTypes.string.isRequired,
-    data: PropTypes.shape({}).isRequired,
-    row: PropTypes.shape({
-        accessor: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-        ]).isRequired,
-        className: PropTypes.string,
-        fieldName: PropTypes.string.isRequired,
-        id: PropTypes.string,
-        header: PropTypes.string,
-        iconType: PropTypes.string,
-        iconColor: PropTypes.string,
-        style: PropTypes.shape({}),
-    }),
-};
-
-DataGroupExpandedRow.defaultProps = {
-    row: {
-        className: undefined,
-        id: undefined,
-        header: undefined,
-        iconType: undefined,
-        iconColor: undefined,
-        style: {},
-    },
-};
+DataGroupExpandedRow.propTypes = propTypes;
 
 export default DataGroupExpandedRow;

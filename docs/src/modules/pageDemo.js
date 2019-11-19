@@ -6,7 +6,7 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
-import { backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
+import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -511,7 +511,7 @@ class PageDemo extends React.PureComponent {
 
         const personalColumnInfo = {
             isExpandable: true,
-            header: 'Personal',
+            header: '1 Personal',
             rows: [
                 {
                     accessor: 'birthday',
@@ -676,7 +676,7 @@ class PageDemo extends React.PureComponent {
         }
 
         const contactColumnInfo = {
-            header: 'Contact',
+            header: '2 Contact',
             isExpandable: true,
             rows: [
                 {
@@ -709,15 +709,15 @@ class PageDemo extends React.PureComponent {
             expandableSections: [
                 {
                     header: 'Phone',
-                    rows: { ...personPhonesExpandableRows },
+                    rows: [...personPhonesExpandableRows],
                 },
                 {
                     header: 'Email',
-                    rows: { ...personEmailsExpandableRows },
+                    rows: [...personEmailsExpandableRows],
                 },
                 {
                     header: 'Addresses',
-                    rows: { ...personAddressesExpandableRows },
+                    rows: [...personAddressesExpandableRows],
                 },
             ],
         };
@@ -773,7 +773,7 @@ class PageDemo extends React.PureComponent {
             }
 
             const occupationColumnInfo = {
-                header: 'Occupation',
+                header: '3 Occupation',
                 isExpandable: true,
                 rows: [
                     {
@@ -801,6 +801,30 @@ class PageDemo extends React.PureComponent {
             };
 
             mainCoulumn.push(occupationColumnInfo);
+
+            const fooColumnInfo = {
+                header: '4 Column',
+                rows: [
+                    {
+                        accessor: 'placeOfEmployment',
+                        fieldName: 'Place of Employment',
+                    },
+                ],
+            };
+
+            mainCoulumn.push(fooColumnInfo);
+
+            const barColumnInfo = {
+                header: '5 Column',
+                rows: [
+                    {
+                        accessor: 'placeOfEmployment',
+                        fieldName: 'Place of Employment',
+                    },
+                ],
+            };
+
+            mainCoulumn.push(barColumnInfo);
         }
 
         return (
@@ -1041,55 +1065,58 @@ class PageDemo extends React.PureComponent {
                                 />
                             ) : (
                                 <Page.DataCards
-                                        cardProps={() => ({
-                                            onClick: this.onCardClick,
-                                        })}
-                                        columns={[
-                                            {
-                                                accessor: 'name',
-                                                fontSize: 'medium',
-                                                fontWeight: 'semibold',
-                                                header: false,
-                                                width: '100%',
-                                            }, {
-                                                accessor: 'campus',
-                                                fontWeight: 'bold',
-                                                header: 'Campus',
-                                            }, {
-                                                accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                                fontWeight: 'bold',
-                                                header: 'Created On',
-                                            },
-                                        ]}
-                                        data={[
-                                            {
-                                                campus: 'Lake Forest',
-                                                createdOn: 1259668810,
-                                                id: 1,
-                                                name: 'First Time Visitor',
-                                            }, {
-                                                campus: 'Lake Forest',
-                                                createdOn: 1159668810,
-                                                id: 2,
-                                                name: 'Second Time Visitor',
-                                            }, {
-                                                campus: 'Anaheim',
-                                                createdOn: 1152668810,
-                                                id: 3,
-                                                name: 'Class 101 Invite',
-                                            },
-                                        ]}
-                                    />
+                                    cardProps={() => ({
+                                        onClick: this.onCardClick,
+                                    })}
+                                    columns={[
+                                        {
+                                            accessor: 'name',
+                                            fontSize: 'medium',
+                                            fontWeight: 'semibold',
+                                            header: false,
+                                            width: '100%',
+                                        }, {
+                                            accessor: 'campus',
+                                            fontWeight: 'bold',
+                                            header: 'Campus',
+                                        }, {
+                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
+                                            fontWeight: 'bold',
+                                            header: 'Created On',
+                                        },
+                                    ]}
+                                    data={[
+                                        {
+                                            campus: 'Lake Forest',
+                                            createdOn: 1259668810,
+                                            id: 1,
+                                            name: 'First Time Visitor',
+                                        }, {
+                                            campus: 'Lake Forest',
+                                            createdOn: 1159668810,
+                                            id: 2,
+                                            name: 'Second Time Visitor',
+                                        }, {
+                                            campus: 'Anaheim',
+                                            createdOn: 1152668810,
+                                            id: 3,
+                                            name: 'Class 101 Invite',
+                                        },
+                                    ]}
+                                />
                             )}
 
-                            <Page.DataGroups
-                                columns={mainCoulumn}
-                                data={mainData}
+                            <div
                                 style={{
                                     backgroundColor: '#fff',
-                                    padding: '22px',
+                                    margin: '0 -22px',
                                 }}
-                            />
+                            >
+                                <Page.DataGroups
+                                    columns={mainCoulumn}
+                                    data={mainData}
+                                />
+                            </div>
                         </Page.Content>
                     </Page.Container>
                 </Page>

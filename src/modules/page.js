@@ -9,7 +9,7 @@ import PageContent from './pageContent.js';
 import PageDetailsWindow from './pageDetailsWindow.js';
 import PageDataCards from './pageDataCards.js';
 import PageDataGrid from './pageDataGrid.js';
-import PageDataGroups from './pageDataGroups.js';
+import PageDataGroups from './pageDataGroups.jsx';
 import PageDelayChildren from './pageDelayChildren.js';
 import PageFiltersDrawer from './pageFiltersDrawer.js';
 import PageFiltersRail from './pageFiltersRail.js';
