@@ -6,7 +6,7 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
-import { backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
+import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -354,6 +354,479 @@ class PageDemo extends React.PureComponent {
             ];
         }
 
+        /** ***************************************************************************** */
+
+        const newProps = {
+            personalData: {
+                id: 204093,
+                profilePictureUrl: null,
+                profilePhotoUrl: null,
+                churchEntityKnown: true,
+                churchEntityId: 2,
+                churchEntityName: 'San Clemente',
+                firstName: 'Cameron',
+                lastName: 'Brewer',
+                prefix: 'Mr.',
+                middleName: 'Cool',
+                suffix: null,
+                nickName: null,
+                gender: 'M',
+                maritalStatusId: 1,
+                maritalStatus: 'Married',
+                membershipStatusId: 2,
+                membershipStatus: 'Member',
+                disengagementReason: null,
+                birthDate: 413251200,
+                deceasedDate: null,
+                allergies: null,
+                gradeLevel: 'None',
+                departmentId: null,
+                departmentName: null,
+                departmentChurchEntityId: null,
+                departmentChurchEntityName: null,
+                preferredServiceEventId: null,
+                modifiedDate: 1571261666,
+                isAdult: true,
+                isChild: false,
+                milestones: [],
+                addresses: [{
+                    address1: '1 Dodger Ln', address2: '', city: 'Los Angeles', region: 'California', regionCode: 'CA', postalCode: '91210', country: 'United States of America', countryAlpha2: 'US', countryAlpha3: 'USA', id: 32676, personId: 204093, title: '', isPrimary: true, isValidated: false, isBadContact: false,
+                }, {
+                    address1: '754 Dorothy Anna Dr', address2: null, city: 'Banning', region: 'Connecticut', regionCode: 'CT', postalCode: '92220', country: 'United States of America', countryAlpha2: 'US', countryAlpha3: 'USA', id: 32674, personId: 204093, title: '', isPrimary: false, isValidated: false, isBadContact: false,
+                }],
+                emails: [{
+                    email: 'morethanfire@icloud.com', isPublic: false, id: 31580, personId: 204093, title: null, isPrimary: true, isValidated: false, isBadContact: false,
+                }, {
+                    email: 'test123@teswsakdflkasdf.com', isPublic: false, id: 31590, personId: 204093, title: null, isPrimary: false, isValidated: false, isBadContact: false,
+                }],
+                phones: [{
+                    phoneTypeId: 2, phoneType: 'Work Phone', phoneNumber: '+16265900764', isPublic: false, displayPhoneNumber: '(626) 590-0764 ext. 123', countryCode: 'us', extension: '123', id: 57740, personId: 204093, title: null, isPrimary: true, isValidated: false, isBadContact: false,
+                }, {
+                    phoneTypeId: 2, phoneType: 'Work Phone', phoneNumber: '+16265900002', isPublic: true, displayPhoneNumber: '(626) 590-0002', countryCode: 'us', extension: '', id: 57723, personId: 204093, title: null, isPrimary: false, isValidated: false, isBadContact: false,
+                }, {
+                    phoneTypeId: 1, phoneType: 'Home Phone', phoneNumber: '+16265900764', isPublic: false, displayPhoneNumber: '(626) 590-0764', countryCode: 'us', extension: '', id: 57736, personId: 204093, title: null, isPrimary: false, isValidated: false, isBadContact: false,
+                }, {
+                    phoneTypeId: 3, phoneType: 'Cell Phone', phoneNumber: '+16265900763', isPublic: false, displayPhoneNumber: '(626) 590-0763', countryCode: 'us', extension: '', id: 57739, personId: 204093, title: null, isPrimary: false, isValidated: false, isBadContact: false,
+                }],
+                occupations: [{
+                    id: 105, personId: 204093, typeId: 1, type: 'Full Time', categoryId: 18, category: 'Other', company: 'Saddleback Church', title: 'Web Developer', isPrimary: false, isStaff: false, departmentId: null, departmentName: null, departmentChurchEntityId: null, departmentChurchEntityName: null,
+                }, {
+                    id: 108, personId: 204093, typeId: 2, type: 'Part Time', categoryId: 18, category: 'Other', company: 'Free The People', title: 'Stuff And Things', isPrimary: true, isStaff: false, departmentId: null, departmentName: null, departmentChurchEntityId: null, departmentChurchEntityName: null,
+                }],
+                contactPreferences: {
+                    id: 42, personId: 204093, preferredMethod: 'text-message', doNotMail: true, doNotPhone: true, doNotText: false, doNotEmail: false, doNotContact: false,
+                },
+                preferredService: null,
+                firstContact: null,
+            },
+        };
+
+        const {
+            personalData: {
+                addresses,
+                birthDate,
+                churchEntityName,
+                contactPreferences,
+                deceasedDate,
+                emails,
+                occupations,
+                phones,
+                preferredService,
+                gender,
+                prefix,
+                firstName,
+                lastName,
+                nickName,
+                suffix,
+                maritalStatus,
+            },
+        } = newProps;
+
+        let genderText;
+        let personPreferredContactMethodText;
+        const personContactInfo = _.find(phones, 'isPrimary');
+        const personEmailInfo = _.find(emails, 'isPrimary');
+        const personAddressInfo = _.find(addresses, 'isPrimary');
+        const personOccupationInfo = _.find(occupations, 'isPrimary');
+
+        switch (contactPreferences.preferredMethod) {
+            case 'email':
+                personPreferredContactMethodText = 'Email';
+
+                break;
+            case 'phone':
+                personPreferredContactMethodText = 'Phone';
+
+                break;
+            case 'text-message':
+                personPreferredContactMethodText = 'Text';
+
+                break;
+            default:
+                personPreferredContactMethodText = 'No Contact Preference';
+
+                break;
+        }
+
+        switch (gender) {
+            case 'F':
+                genderText = 'Female';
+
+                break;
+            case 'M':
+                genderText = 'Male';
+
+                break;
+
+            default:
+                genderText = '';
+        }
+
+        let mainData = {
+            birthday: birthDate ? moment.unix(birthDate).utc().format('MM/DD/YYYY') : 'N/A',
+            cell: personContactInfo && personContactInfo.displayPhoneNumber ? personContactInfo.displayPhoneNumber : 'N/A',
+            deceasedDate: deceasedDate ? moment.unix(deceasedDate).utc().format('MM/DD/YYYY') : 'N/A',
+            email: personEmailInfo && personEmailInfo.email ? personEmailInfo.email : 'N/A',
+            homeCampus: churchEntityName,
+            preferredMethod: personPreferredContactMethodText,
+            preferredService: preferredService && preferredService.name ? preferredService.name : 'N/A',
+            addresses: personAddressInfo,
+            placeOfEmployment: personOccupationInfo && personOccupationInfo.company ? personOccupationInfo.company : 'N/A',
+            occupationCategory: personOccupationInfo && personOccupationInfo.category ? personOccupationInfo.category : 'N/A',
+            occupationTitle: personOccupationInfo && personOccupationInfo.title ? personOccupationInfo.title : 'N/A',
+            occupationType: personOccupationInfo && personOccupationInfo.type ? personOccupationInfo.type : 'N/A',
+            isOccupationPrimary: personOccupationInfo && personOccupationInfo.isPrimary ? 'Yes' : 'No',
+            isStaff: personOccupationInfo && personOccupationInfo.isStaff ? 'Yes' : 'No',
+            prefix: prefix || '',
+            firstName: firstName || '',
+            lastName: lastName || '',
+            nickName: nickName || '',
+            suffix: suffix || '',
+            gender: genderText,
+            maritalStatus: maritalStatus || '',
+        };
+
+
+        const mainCoulumn = [];
+
+        const personalColumnInfo = {
+            isExpandable: true,
+            header: '1 Personal',
+            rows: [
+                {
+                    accessor: 'birthday',
+                    fieldName: 'Birthday',
+                }, {
+                    accessor: 'homeCampus',
+                    fieldName: 'Home Campus',
+                }, {
+                    accessor: 'preferredService',
+                    fieldName: 'Preferred Service',
+                }, {
+                    accessor: 'deceasedDate',
+                    fieldName: 'Deceased',
+                },
+            ],
+            expandableSections: [
+                {
+                    header: 'Basic',
+                    rows: [
+                        {
+                            accessor: 'prefix',
+                            fieldName: 'Title',
+                            iconType: 'user',
+                            iconColor: 'alert',
+                        },
+                        {
+                            accessor: 'firstName',
+                            fieldName: 'First Name',
+                        },
+                        {
+                            accessor: 'lastName',
+                            fieldName: 'Last Name',
+                        },
+                        {
+                            accessor: 'nickName',
+                            fieldName: 'Nick Name',
+                        },
+                        {
+                            accessor: 'suffix',
+                            fieldName: 'Suffix',
+                        },
+                        {
+                            accessor: 'gender',
+                            fieldName: 'Gender',
+                            iconType: 'gender',
+                            iconColor: 'alert',
+                        },
+                        {
+                            accessor: 'maritalStatus',
+                            fieldName: 'Marital Status',
+                            iconType: 'award',
+                            iconColor: 'alert',
+                        },
+                        {
+                            accessor: 'birthday',
+                            fieldName: 'BirthDay',
+                            iconType: 'birthday-cake',
+                            iconColor: 'alert',
+                        },
+                    ],
+                }, {
+                    header: 'Misc',
+                    rows: [
+                        {
+                            accessor: 'homeCampus',
+                            fieldName: 'Home Campus',
+                            iconType: 'church',
+                            iconColor: 'warning',
+                        },
+                        {
+                            accessor: 'preferredService',
+                            fieldName: 'Preferred Service',
+                            iconType: 'notes',
+                            iconColor: 'warning',
+                        },
+                    ],
+                },
+            ],
+        };
+
+        mainCoulumn.push(personalColumnInfo);
+
+
+        let personPhonesExpandableRows;
+        if (!_.isEmpty(phones)) {
+            personPhonesExpandableRows = _.map(phones, (item) => (
+                {
+                    accessor: `phone-${item.id}`,
+                    fieldName: item.phoneType,
+                    iconType: item.phoneTypeId === 1 ? 'phone-home' : (item.phoneTypeId === 2 ? 'phone-work' : 'phone-cell'),
+                    iconColor: 'primary',
+                }
+            ));
+
+            _.map(phones, (item) => {
+                const personPhoneExpandableData = {
+                    [`phone-${item.id}`]: item && item.displayPhoneNumber ? item.displayPhoneNumber : 'N/A',
+                };
+                mainData = {
+                    ...mainData,
+                    ...personPhoneExpandableData,
+                };
+            });
+        }
+
+        let personEmailsExpandableRows;
+        if (!_.isEmpty(emails)) {
+            personEmailsExpandableRows = _.map(emails, (item) => (
+                {
+                    accessor: `email-${item.id}`,
+                    fieldName: item.isPrimary ? 'Primary' : 'Additional',
+                    iconType: 'email',
+                    iconColor: 'warning',
+                }
+            ));
+
+            _.map(emails, (item) => {
+                const personEmailExpandableData = {
+                    [`email-${item.id}`]: item && item.email ? item.email : 'N/A',
+                };
+                mainData = {
+                    ...mainData,
+                    ...personEmailExpandableData,
+                };
+            });
+        }
+
+        let personAddressesExpandableRows;
+        if (!_.isEmpty(addresses)) {
+            personAddressesExpandableRows = _.map(addresses, (item) => (
+                {
+                    accessor: (d) => {
+                        const addressInfo = d[`address-${item.id}`];
+                        return (
+                            <p className="no-margin-top person-record-address">
+                                <span>{addressInfo.address1}</span>
+                                <br />
+                                {addressInfo.address2 && (
+                                    <span>{addressInfo.address2}</span>
+                                )}
+                                <span>{`${addressInfo.city}, ${addressInfo.countryAlpha2 === 'US' ? addressInfo.regionCode : addressInfo.region} ${addressInfo.postalCode || ''}`}</span>
+                                <br />
+                                <span>{addressInfo.country}</span>
+                            </p>
+                        );
+                    },
+                    fieldName: item.isPrimary ? 'Primary' : 'Additional',
+                    iconType: 'map-marker',
+                    iconColor: 'warning',
+                }
+            ));
+
+            _.map(addresses, (item) => {
+                const personAddressExpandableData = {
+                    [`address-${item.id}`]: item,
+                };
+                mainData = {
+                    ...mainData,
+                    ...personAddressExpandableData,
+                };
+            });
+        }
+
+        const contactColumnInfo = {
+            header: '2 Contact',
+            isExpandable: true,
+            rows: [
+                {
+                    accessor: 'cell',
+                    fieldName: 'Cell',
+                }, {
+                    accessor: 'email',
+                    fieldName: 'Email',
+                }, {
+                    accessor: 'preferredMethod',
+                    fieldName: 'Preferred Method',
+                }, {
+                    accessor: (d) => (
+                        d.addresses ? (
+                            <p className="no-margin-top person-record-address">
+                                <span>{d.addresses.address1}</span>
+                                <br />
+                                {d.addresses.address2 && (
+                                    <span>{d.addresses.address2}</span>
+                                )}
+                                <span>{`${d.addresses.city}, ${d.addresses.countryAlpha2 === 'US' ? d.addresses.regionCode : d.addresses.region} ${d.addresses.postalCode || ''}`}</span>
+                                <br />
+                                <span>{d.addresses.country}</span>
+                            </p>
+                        ) : 'N/A'
+                    ),
+                    fieldName: 'Address',
+                },
+            ],
+            expandableSections: [
+                {
+                    header: 'Phone',
+                    rows: [...personPhonesExpandableRows],
+                },
+                {
+                    header: 'Email',
+                    rows: [...personEmailsExpandableRows],
+                },
+                {
+                    header: 'Addresses',
+                    rows: [...personAddressesExpandableRows],
+                },
+            ],
+        };
+        mainCoulumn.push(contactColumnInfo);
+
+        if (!_.isEmpty(personOccupationInfo)) {
+            let occupationsExpandableSection;
+
+            if (!_.isEmpty(occupations)) {
+                occupationsExpandableSection = _.map(occupations, (item) => (
+                    {
+                        header: item.type,
+                        rows: [
+                            {
+                                accessor: `placeOfEmployment-${item.id}`,
+                                fieldName: 'Place of Employment',
+                                iconType: 'briefcase',
+                                iconColor: 'warning',
+                            }, {
+                                accessor: `occupationCategory-${item.id}`,
+                                fieldName: 'Industry',
+                            }, {
+                                accessor: `occupationTitle-${item.id}`,
+                                fieldName: 'Job Title',
+                            }, {
+                                accessor: `occupationType-${item.id}`,
+                                fieldName: 'Type',
+                            }, {
+                                accessor: `isOccupationPrimary-${item.id}`,
+                                fieldName: 'Primary',
+                            }, {
+                                accessor: `isStaff-${item.id}`,
+                                fieldName: 'Staff',
+                            },
+                        ],
+                    }
+                ));
+
+                _.map(occupations, (item) => {
+                    const occupationExpandableData = {
+                        [`placeOfEmployment-${item.id}`]: item && item.company ? item.company : 'N/A',
+                        [`occupationCategory-${item.id}`]: item && item.category ? item.category : 'N/A',
+                        [`occupationTitle-${item.id}`]: item && item.title ? item.title : 'N/A',
+                        [`occupationType-${item.id}`]: item && item.type ? item.type : 'N/A',
+                        [`isOccupationPrimary-${item.id}`]: item && item.isPrimary ? 'Yes' : 'No',
+                        [`isStaff-${item.id}`]: item && item.isStaff ? 'Yes' : 'No',
+                    };
+                    mainData = {
+                        ...mainData,
+                        ...occupationExpandableData,
+                    };
+                });
+            }
+
+            const occupationColumnInfo = {
+                header: '3 Occupation',
+                isExpandable: true,
+                rows: [
+                    {
+                        accessor: 'placeOfEmployment',
+                        fieldName: 'Place of Employment',
+                    }, {
+                        accessor: 'occupationCategory',
+                        fieldName: 'Industry',
+                    }, {
+                        accessor: 'occupationTitle',
+                        fieldName: 'Job Title',
+                    }, {
+                        accessor: 'occupationType',
+                        fieldName: 'Type',
+                    },
+                    {
+                        accessor: 'isOccupationPrimary',
+                        fieldName: 'Primary',
+                    }, {
+                        accessor: 'isStaff',
+                        fieldName: 'Staff',
+                    },
+                ],
+                expandableSections: occupationsExpandableSection,
+            };
+
+            mainCoulumn.push(occupationColumnInfo);
+
+            const fooColumnInfo = {
+                header: '4 Column',
+                rows: [
+                    {
+                        accessor: 'placeOfEmployment',
+                        fieldName: 'Place of Employment',
+                    },
+                ],
+            };
+
+            mainCoulumn.push(fooColumnInfo);
+
+            const barColumnInfo = {
+                header: '5 Column',
+                rows: [
+                    {
+                        accessor: 'placeOfEmployment',
+                        fieldName: 'Place of Employment',
+                    },
+                ],
+            };
+
+            mainCoulumn.push(barColumnInfo);
+        }
+
         return (
             <React.Fragment>
                 <div>
@@ -633,88 +1106,17 @@ class PageDemo extends React.PureComponent {
                                 />
                             )}
 
-                            <Page.DataGroups
-                                columns={[
-                                    {
-                                        header: 'Column 1 (Simple Page Data Groups Example)',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 2 (Page Data Groups Example With Icon)',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 3',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    }, {
-                                        header: 'Column 4',
-                                        rows: [
-                                            {
-                                                accessor: (d) => (
-                                                    moment(d.birthday).format('MM/DD/YYYY')
-                                                ),
-                                                fieldName: 'Birthday',
-                                                header: 'Training',
-                                                iconType: 'chair',
-                                                iconColor: 'alert',
-                                                iconSize: 22,
-                                            }, {
-                                                accessor: 'homeCampus',
-                                                fieldName: 'Home Campus',
-                                                header: 'Campus',
-                                                iconType: 'church',
-                                                iconSize: 22,
-                                            },
-                                        ],
-                                    },
-                                ]}
-                                data={{
-                                    birthday: '1990-01-23',
-                                    homeCampus: 'Lake Forest',
+                            <div
+                                style={{
+                                    backgroundColor: '#fff',
+                                    margin: '0 -22px',
                                 }}
-                            />
+                            >
+                                <Page.DataGroups
+                                    columns={mainCoulumn}
+                                    data={mainData}
+                                />
+                            </div>
                         </Page.Content>
                     </Page.Container>
                 </Page>
