@@ -6,4 +6,4 @@ stats.json
 .DS_Store
 config.json
 config.local.json
-.tgz
+*.tgz
