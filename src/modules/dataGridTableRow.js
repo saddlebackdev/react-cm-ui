@@ -61,7 +61,6 @@ class DataGridTableRow extends React.PureComponent {
                         }
                     }
 
-                    // const id = `table--table_cell-${idPrefix}-${rowIndex}-${index}`;
                     const id = `${classNamePrefix}_table_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (

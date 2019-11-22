@@ -69,7 +69,7 @@ class DataGrid extends React.Component {
             const row = [];
 
             for (let j = 0; j < stickyColumns; j += 1) {
-                const el = document.querySelector(`#table--table_cell-body-${i}-${j}`);
+                const el = document.querySelector(`#page--data_grid_table_cell_column-${i}_${j}`);
                 const size = {
                     h: `${el.clientHeight}px`,
                     w: `${el.clientWidth}px`,
