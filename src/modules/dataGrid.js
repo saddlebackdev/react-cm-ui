@@ -69,7 +69,7 @@ class DataGrid extends React.Component {
             const row = [];
 
             for (let j = 0; j < stickyColumns; j += 1) {
-                const el = document.querySelector(`#table--table_cell-body-${i}-${j}`);
+                const el = document.querySelector(`#${this.classNamePrefix}_table_cell_column-${i}_${j}`);
                 const size = {
                     h: `${el.clientHeight}px`,
                     w: `${el.clientWidth}px`,
@@ -118,7 +118,7 @@ class DataGrid extends React.Component {
 
     onSplitterClick() {
         this.setState((prevState) => {
-            const { prevCollapsed } = prevState;
+            const { collapsed: prevCollapsed } = prevState;
             let updatedCollapsed;
 
             switch (prevCollapsed) {

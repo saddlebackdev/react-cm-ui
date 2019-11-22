@@ -26,18 +26,25 @@ $blackAlpha: rgba(0, 0, 0, .5);
         }
         &_table_component {
             .table-cell:last-child {
-                padding-right: inherit;
+                padding-right: 11px !important; // eslint-disable-line no-important
             }
             .table-header-cell:last-child {
-                padding-right: inherit;
-                .table-header-handle {
-                    cursor: pointer;
-                    float: right;
-                    position: relative;
-                    .ui.icon-size-small {
-                        width: 5px;
-                        svg {
+                padding-right: 11px !important; // eslint-disable-line no-important
+                position: relative;
+                .#{$prefixDrawerDataGrid}, .#{$prefixPageDataGrid}  {
+                    &_table_header_handle {
+                        cursor: col-resize;
+                        height: 14px;
+                        left: auto !important; // eslint-disable-line no-important
+                        margin-top: -7px;
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        .ui.icon-size-small {
                             width: 5px;
+                            svg {
+                                width: 5px;
+                            }
                         }
                     }
                 }

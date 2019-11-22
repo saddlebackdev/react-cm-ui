@@ -95,6 +95,7 @@ class DataGridTable extends React.PureComponent {
                                     idPrefix === 'column' &&
                                     handle &&
                                     _.last(columns) === column;
+
                                 return (
                                     <Table.HeaderCell
                                         className={`${classNamePrefix}_table_header_cell`}
