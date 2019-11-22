@@ -33,7 +33,7 @@ $blackAlpha: rgba(0, 0, 0, .5);
                 position: relative;
                 .#{$prefixDrawerDataGrid}, .#{$prefixPageDataGrid}  {
                     &_table_header_handle {
-                        cursor: ew-resize;
+                        cursor: col-resize;
                         height: 14px;
                         left: auto !important; // eslint-disable-line no-important
                         margin-top: -7px;
