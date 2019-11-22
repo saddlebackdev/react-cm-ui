@@ -118,7 +118,7 @@ class DataGrid extends React.Component {
 
     onSplitterClick() {
         this.setState((prevState) => {
-            const { prevCollapsed } = prevState;
+            const { collapsed: prevCollapsed } = prevState;
             let updatedCollapsed;
 
             switch (prevCollapsed) {
