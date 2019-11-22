@@ -1062,6 +1062,8 @@ class PageDemo extends React.PureComponent {
                                     rowProps={() => ({
                                         onClick: this.onTableRowClick,
                                     })}
+                                    stickyColumnWidth={50}
+                                    stickyColumns={2}
                                 />
                             ) : (
                                 <Page.DataCards
