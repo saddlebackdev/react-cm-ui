@@ -4,8 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 7.2.2
 
 #### Bug Fix
+- [PR #91](https://github.com/saddlebackdev/react-cm-ui/pull/91)
 - [PR #90](https://github.com/saddlebackdev/react-cm-ui/pull/90)
-    - Fixes the **DataGrid** `id` bug.
+    - PR #90 and #91 fix the **DataGrid** `id` bug.
 
 ## 7.2.1
 
