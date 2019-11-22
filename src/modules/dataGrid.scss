@@ -26,16 +26,16 @@ $blackAlpha: rgba(0, 0, 0, .5);
         }
         &_table_component {
             .table-cell:last-child {
-                padding-right: 11px !important;
+                padding-right: 11px !important; // eslint-disable-line no-important
             }
             .table-header-cell:last-child {
-                padding-right: 11px !important;
+                padding-right: 11px !important; // eslint-disable-line no-important
                 position: relative;
                 .#{$prefixDrawerDataGrid}, .#{$prefixPageDataGrid}  {
                     &_table_header_handle {
-                        cursor: pointer;
+                        cursor: ew-resize;
                         height: 14px;
-                        left: auto !important;
+                        left: auto !important; // eslint-disable-line no-important
                         margin-top: -7px;
                         position: absolute;
                         top: 50%;
