@@ -31,6 +31,7 @@
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "build": "webpack",
+    "build:clean": "rimraf docs/build",
     "build:local": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
     "build:prod": "npm run build",
     "build:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
@@ -38,7 +39,8 @@
     "compile": "npm run clean:lib && gulp && cpx \"src/shared/images/**\" \"lib/shared/images\" && babel src/ -d lib/",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepare": "npm run compile",
-    "start": "npm run build:local"
+    "start": "npm run build:local",
+    "start:prod": "webpack-dev-server --mode production --content-base docs/build/  --progress --colors --host 0.0.0.0"
   },
   "dependencies": {
     "autosize": "^3.0.17",
