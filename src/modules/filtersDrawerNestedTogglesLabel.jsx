@@ -10,7 +10,7 @@ const propTypes = {
     onClick: PropTypes.func.isRequired,
 };
 
-class NestedTogglesLabel extends React.PureComponent {
+class FiltersDrawerNestedTogglesLabel extends React.PureComponent {
     constructor() {
         super();
 
@@ -54,6 +54,6 @@ class NestedTogglesLabel extends React.PureComponent {
     }
 }
 
-NestedTogglesLabel.propTypes = propTypes;
+FiltersDrawerNestedTogglesLabel.propTypes = propTypes;
 
-export default NestedTogglesLabel;
+export default FiltersDrawerNestedTogglesLabel;

@@ -15,7 +15,7 @@ const defaultProps = {
     color: undefined,
 };
 
-class MultiSelectLabel extends React.PureComponent {
+class FiltersDrawerMultiSelectLabel extends React.PureComponent {
     constructor() {
         super();
 
@@ -47,7 +47,7 @@ class MultiSelectLabel extends React.PureComponent {
     }
 }
 
-MultiSelectLabel.propTypes = propTypes;
-MultiSelectLabel.defaultProps = defaultProps;
+FiltersDrawerMultiSelectLabel.propTypes = propTypes;
+FiltersDrawerMultiSelectLabel.defaultProps = defaultProps;
 
-export default MultiSelectLabel;
+export default FiltersDrawerMultiSelectLabel;

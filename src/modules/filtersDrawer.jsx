@@ -35,7 +35,7 @@ const defaultProps = {
     style: {},
 };
 
-class PageFiltersDrawer extends React.Component {
+class FiltersDrawer extends React.Component {
     static onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
         const filteredOptions = _.differenceBy(value, [selectedOption], 'value');
 
@@ -504,7 +504,7 @@ class PageFiltersDrawer extends React.Component {
     }
 }
 
-PageFiltersDrawer.propTypes = propTypes;
-PageFiltersDrawer.defaultProps = defaultProps;
+FiltersDrawer.propTypes = propTypes;
+FiltersDrawer.defaultProps = defaultProps;
 
-export default PageFiltersDrawer;
+export default FiltersDrawer;

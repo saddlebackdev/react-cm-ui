@@ -15,7 +15,7 @@ const defaultProps = {
     isSelected: undefined,
 };
 
-class NestedTogglesWingOptionLabel extends React.PureComponent {
+class FiltersDrawerNestedTogglesWingOptionLabel extends React.PureComponent {
     constructor() {
         super();
 
@@ -59,7 +59,7 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
     }
 }
 
-NestedTogglesWingOptionLabel.propTypes = propTypes;
-NestedTogglesWingOptionLabel.defaultProps = defaultProps;
+FiltersDrawerNestedTogglesWingOptionLabel.propTypes = propTypes;
+FiltersDrawerNestedTogglesWingOptionLabel.defaultProps = defaultProps;
 
-export default NestedTogglesWingOptionLabel;
+export default FiltersDrawerNestedTogglesWingOptionLabel;
