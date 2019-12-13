@@ -1,3 +1,4 @@
+const fs = require('fs-extra');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +9,7 @@ module.exports = (env, options) => {
 
     return {
         entry: {
-            bundle: './docs/src/index.js',
+            bundle: './src/index.js',
             commons: ['react-syntax-highlighter'],
         },
         devServer: {
@@ -17,7 +18,7 @@ module.exports = (env, options) => {
             port: 8082,
         },
         output: {
-            path: path.join(__dirname, './docs/build'),
+            path: path.join(__dirname, './build'),
             filename: 'js/[name].[hash].js',
             chunkFilename: 'js/[name].[chunkhash].js',
             publicPath: '/',
@@ -27,9 +28,14 @@ module.exports = (env, options) => {
         module: {
             rules: [
                 {
-                    test: /\.jsx?$/,
+                    test: /\.(js|jsx)?$/,
                     exclude: /node_modules/,
-                    use: 'babel-loader',
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            root: path.join(__dirname, '..'),
+                        },
+                    },
                 }, {
                     test: /\.scss$/,
                     use: [
@@ -45,7 +51,7 @@ module.exports = (env, options) => {
                             },
                         },
                         'resolve-url-loader',
-                        'sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, 'docs/src/scss') + '&includePaths[]=' + path.resolve(__dirname, 'src/scss'),
+                        `sass-loader?outputStyle=expanded&includePaths[]=${path.resolve(__dirname, 'src/scss')}&includePaths[]=${path.resolve(__dirname, '../src/scss')}`,
                     ],
                 }, {
                     test: /\.(ico|png|jpg|gif|svg|eot|ttf|woff|woff(2)?)(\?[a-z0-9=\.]+)?$/,
@@ -76,14 +82,13 @@ module.exports = (env, options) => {
             ],
             modules: [
                 'node_modules',
-                'docs/src',
-                'docs/src/js',
-                'docs/src/scss',
                 'src',
+                '../src',
             ],
             alias: {
-                'react-cm-ui': path.resolve(__dirname, 'src'),
-                'css-cm-ui': path.resolve(__dirname, 'src/style.scss'),
+                react: path.resolve('./node_modules/react'),
+                'react-cm-ui': path.resolve(__dirname, '../src/index.js'),
+                'css-cm-ui': path.resolve(__dirname, '../src/style.scss'),
             },
         },
         optimization: {
@@ -101,7 +106,7 @@ module.exports = (env, options) => {
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 title: 'Church Management UI Docs',
-                template: 'docs/template.ejs',
+                template: 'template.ejs',
             }),
             new MiniCssExtractPlugin({
                 filename: 'css/bundle.css',
@@ -109,7 +114,7 @@ module.exports = (env, options) => {
             }),
             new webpack.DefinePlugin({
                 __UI_DOCS_VERSION__: (typeof process.env.CM_UI_DOCS_VERSION === 'undefined') ?
-                    '"?"' : '"' + process.env.CM_UI_DOCS_VERSION + '"',
+                    '"?"' : `"${process.env.CM_UI_DOCS_VERSION}"`,
             }),
         ],
     };

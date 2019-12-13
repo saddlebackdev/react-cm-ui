@@ -1,5 +1,3 @@
-'use strict';
-
 import './header.scss';
 
 import { Link } from 'react-router';

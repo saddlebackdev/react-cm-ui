@@ -1,9 +1,6 @@
-'use strict';
-
 import '@babel/register';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
@@ -39,9 +36,8 @@ const render = () => {
                 routes={routes}
             />
         </Provider>,
-        document.getElementById('coreApp')
+        document.getElementById('coreApp'),
     );
 };
 
-//Render the app
 render();
