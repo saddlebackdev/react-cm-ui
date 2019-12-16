@@ -43,12 +43,6 @@
         }],
         "operator-linebreak": ["error", "after"],
         # Overwriting eslint-config-airbnb-base/rules/imports.js
-        "import/extensions": ["error", "ignorePackages", {
-            "js": "always",
-            "jsx": "never",
-            "mjs": "never",
-            "ignorePackages": true
-        }],
         "import/order": ["error", { groups: [["builtin", "external", "internal"]] }],
         "import/no-unresolved": [0],
         # Overwriting eslint-config-airbnb/rules/react.js
