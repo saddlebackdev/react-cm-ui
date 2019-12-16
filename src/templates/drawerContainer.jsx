@@ -16,7 +16,7 @@ const defaultProps = {
     style: {},
 };
 
-function PageContainer(props) {
+function DrawerContainer(props) {
     const {
         children,
         className,
@@ -36,7 +36,7 @@ function PageContainer(props) {
     );
 }
 
-PageContainer.propTypes = propTypes;
-PageContainer.defaultProps = defaultProps;
+DrawerContainer.propTypes = propTypes;
+DrawerContainer.defaultProps = defaultProps;
 
-export default PageContainer;
+export default DrawerContainer;

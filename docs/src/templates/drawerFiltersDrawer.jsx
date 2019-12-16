@@ -598,7 +598,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                             ]}
                         />
 
-                        <Drawer.Content>
+                        <Drawer.Container>
                             <Drawer.FiltersDrawer
                                 isDirty={isDirty}
                                 isFiltering={isFiltering}
@@ -659,22 +659,26 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                 test
                             </Drawer.FiltersRail>
 
-                            <p>
-                            Click the filters icon above in the Drawers.ActionBar (upper left).
-                            </p>
+                            <Drawer.Content
+                                isFiltersRailOpen={isFiltersDrawerOpen}
+                            >
+                                <p>
+                                Click the filters icon above in the Drawers.ActionBar (upper left).
+                                </p>
 
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
-                            maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl
-                            efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit
-                            pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet
-                            orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad
-                            litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non
-                            tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
-                            </p>
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
+                                maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl
+                                efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit
+                                pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet
+                                orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad
+                                litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non
+                                tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
+                                </p>
 
-                            <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
-                        </Drawer.Content>
+                                <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
+                            </Drawer.Content>
+                        </Drawer.Container>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

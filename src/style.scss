@@ -61,13 +61,13 @@
 
 // Templates
 @import './templates/actionBar';
+@import './templates/container';
 @import './templates/content';
 @import './templates/dataCards';
 @import './templates/dataGrid';
 @import './templates/dataGroups';
 @import './templates/detailsWindow';
 @import './templates/drawer';
-@import './templates/drawerContent';
 @import './templates/drawerFiltersDrawer';
 @import './templates/drawerNavigation';
 @import './templates/drawerTitleBar';
@@ -75,7 +75,6 @@
 @import './templates/filtersDrawer';
 @import './templates/FiltersRail';
 @import './templates/page';
-@import './templates/pageContainer';
 @import './templates/pageDeprecatedFiltersDrawer';
 
 // Views

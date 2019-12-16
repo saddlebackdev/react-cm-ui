@@ -1,11 +1,12 @@
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Container from './container';
 
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
+    moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
     style: PropTypes.shape({}),
 };
 
@@ -21,18 +22,16 @@ function PageContainer(props) {
         children,
         className,
         id,
+        moduleType,
         style,
     } = props;
+    const bemName = `${moduleType}--content`;
+    const containerClasses = ClassNames('ui', bemName, className);
 
     return (
-        <Container
-            className={className}
-            id={id}
-            moduleType="page"
-            style={style}
-        >
+        <div className={containerClasses} id={id} style={style}>
             {children}
-        </Container>
+        </div>
     );
 }
 
