@@ -36,12 +36,6 @@ const defaultProps = {
 };
 
 class FiltersDrawer extends React.Component {
-    static onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
-        const filteredOptions = _.differenceBy(value, [selectedOption], 'value');
-
-        onItemChange(filteredOptions);
-    }
-
     static onMultiSelectChange(onItemChange, value, selectedOption) {
         const filteredOptions = _.union(value, [selectedOption]);
 
@@ -69,13 +63,10 @@ class FiltersDrawer extends React.Component {
 
         this.onApplyClick = this.onApplyClick.bind(this);
         this.onClearClick = this.onClearClick.bind(this);
-        this.onMultiSelectLabelClearClick = this.onMultiSelectLabelClearClick.bind(this);
-        this.onMultiSelectChange = this.onMultiSelectChange.bind(this);
         this.onNestedTogglesCloseWingClick = this.onNestedTogglesCloseWingClick.bind(this);
         this.onNestedTogglesLabelClick = this.onNestedTogglesLabelClick.bind(this);
         this.onNestedTogglesWingOptionLabelClick =
             this.onNestedTogglesWingOptionLabelClick.bind(this);
-        this.onNestedTogglesValueLabelClick = this.onNestedTogglesValueLabelClick.bind(this);
     }
 
     onApplyClick() {
@@ -390,7 +381,7 @@ class FiltersDrawer extends React.Component {
                                                                             <FiltersDrawerNestedTogglesValueLabel
                                                                                 key={`nested-toggles-selected-filter-${nestedTogglesValueLabelKeyNum}`}
                                                                                 nestedTogglesData={nestedToggles}
-                                                                                onClick={this.onNestedTogglesValueLabelClick}
+                                                                                onClick={FiltersDrawer.onNestedTogglesValueLabelClick}
                                                                                 option={option}
                                                                             />
                                                                         );
@@ -427,7 +418,7 @@ class FiltersDrawer extends React.Component {
                                                             iconType="plus"
                                                             id={multiSelect.id}
                                                             onChange={(selectedOption) => {
-                                                                this.onMultiSelectChange(
+                                                                FiltersDrawer.onMultiSelectChange(
                                                                     multiSelect.onChange,
                                                                     multiSelect.value,
                                                                     selectedOption,
