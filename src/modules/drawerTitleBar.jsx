@@ -45,7 +45,14 @@ class DrawerTitleBar extends React.PureComponent {
     }
 
     render() {
-        const { className, closeButton, closeButtonStyle, style, title, titleStyle } = this.props;
+        const { 
+            className,
+            closeButton,
+            closeButtonStyle,
+            style,
+            title,
+            titleStyle,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'drawer--title_bar', className);
 
         return (
@@ -57,13 +64,13 @@ class DrawerTitleBar extends React.PureComponent {
                 <div
                     className="drawer--title_bar_inner"
                 >
-                    {_.isObject(title) ? (
-                        title
-                    ) : _.isString(title) ? (
+                    {_.isObject(title) && title}
+
+                    {_.isString(title) && (
                         <Header as="h2" className="title" style={titleStyle}>
                             {title}
                         </Header>
-                    ) : null}
+                    )}
 
                     {_.isObject(closeButton) ? (
                         <div className="close-button" style={closeButtonStyle}>
