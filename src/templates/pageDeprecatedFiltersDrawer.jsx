@@ -16,10 +16,10 @@ class MultiSelectLabel extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClearClick = this._onClearClick.bind(this);
+        this.onClearClick = this.onClearClick.bind(this);
     }
 
-    _onClearClick() {
+    onClearClick() {
         const { onItemChange, selectedOption, value } = this.props;
         const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
 
@@ -32,7 +32,7 @@ class MultiSelectLabel extends React.PureComponent {
         return (
             <Label
                 color={color || 'highlight'}
-                onClearClick={this._onClearClick}
+                onClearClick={this.onClearClick}
                 style={{
                     marginRight: '5px',
                     marginTop: '11px',
@@ -56,10 +56,10 @@ class NestedTogglesLabel extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
-    _onClick() {
+    onClick() {
         const { nestedTogglesData, onClick } = this.props;
 
         onClick(nestedTogglesData);
@@ -72,7 +72,7 @@ class NestedTogglesLabel extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
-                onClick={this._onClick}
+                onClick={this.onClick}
             >
                 <span>{label}</span>
 
@@ -91,10 +91,10 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
-    _onClick() {
+    onClick() {
         const { onClick, option } = this.props;
 
         onClick(option);
@@ -109,7 +109,7 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
-                onClick={this._onClick}
+                onClick={this.onClick}
             >
                 <span>{label}</span>
 
@@ -129,10 +129,10 @@ class NestedTogglesValueLabel extends React.PureComponent {
     constructor() {
         super();
 
-        this._onClick = this._onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
-    _onClick() {
+    onClick() {
         const { nestedTogglesData, onClick, option } = this.props;
 
         onClick(nestedTogglesData, option);
@@ -149,7 +149,7 @@ class NestedTogglesValueLabel extends React.PureComponent {
                 <span>{label}</span>
 
                 <Icon
-                    onClick={this._onClick}
+                    onClick={this.onClick}
                     size="xsmall"
                     type="times"
                 />
@@ -172,41 +172,41 @@ class PageFiltersDrawer extends React.Component {
             nestedTogglesData: {}, // This object is only to be populated when props.rows.items.nestedToggles is true and a label onClick event handler is triggered.
         };
 
-        this._onApplyClick = this._onApplyClick.bind(this);
-        this._onClearClick = this._onClearClick.bind(this);
-        this._onMultiSelectLabelClearClick = this._onMultiSelectLabelClearClick.bind(this);
-        this._onMultiSelectChange = this._onMultiSelectChange.bind(this);
-        this._onNestedTogglesCloseWingClick = this._onNestedTogglesCloseWingClick.bind(this);
-        this._onNestedTogglesLabelClick = this._onNestedTogglesLabelClick.bind(this);
-        this._onNestedTogglesWingOptionLabelClick = this._onNestedTogglesWingOptionLabelClick.bind(this);
-        this._onNestedTogglesValueLabelClick = this._onNestedTogglesValueLabelClick.bind(this);
+        this.onApplyClick = this.onApplyClick.bind(this);
+        this.onClearClick = this.onClearClick.bind(this);
+        this.onMultiSelectLabelClearClick = this.onMultiSelectLabelClearClick.bind(this);
+        this.onMultiSelectChange = this.onMultiSelectChange.bind(this);
+        this.onNestedTogglesCloseWingClick = this.onNestedTogglesCloseWingClick.bind(this);
+        this.onNestedTogglesLabelClick = this.onNestedTogglesLabelClick.bind(this);
+        this.onNestedTogglesWingOptionLabelClick = this.onNestedTogglesWingOptionLabelClick.bind(this);
+        this.onNestedTogglesValueLabelClick = this.onNestedTogglesValueLabelClick.bind(this);
     }
 
-    _onApplyClick() {
+    onApplyClick() {
         const { onApply } = this.props;
 
         onApply();
     }
 
-    _onClearClick() {
+    onClearClick() {
         const { onClear } = this.props;
 
         onClear();
     }
 
-    _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
+    onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
         const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
 
         onItemChange(filteredOptions);
     }
 
-    _onMultiSelectChange(onItemChange, value, selectedOption) {
+    onMultiSelectChange(onItemChange, value, selectedOption) {
         const filteredOptions = _.union(value, [ selectedOption ]);
 
         onItemChange(filteredOptions);
     }
 
-    _onNestedTogglesCloseWingClick() {
+    onNestedTogglesCloseWingClick() {
         const { nestedTogglesData } = this.state;
 
         this.setState({
@@ -216,19 +216,19 @@ class PageFiltersDrawer extends React.Component {
         });
     }
 
-    _onNestedTogglesLabelClick(nestedTogglesData) {
+    onNestedTogglesLabelClick(nestedTogglesData) {
         this.setState({
             nestedTogglesData: _.cloneDeep(nestedTogglesData),
         });
     }
 
-    _onNestedTogglesValueLabelClick(nestedTogglesData, selectedOption) {
+    onNestedTogglesValueLabelClick(nestedTogglesData, selectedOption) {
         const selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
 
         nestedTogglesData.onChange(selectedOptions);
     }
 
-    _onNestedTogglesWingOptionLabelClick(selectedOption) {
+    onNestedTogglesWingOptionLabelClick(selectedOption) {
         const { nestedTogglesData } = this.state;
         let selectedOptions;
 
@@ -293,7 +293,7 @@ class PageFiltersDrawer extends React.Component {
                                 title={
                                     <Icon
                                         className="nested_toggles_wing--close_button"
-                                        onClick={this._onNestedTogglesCloseWingClick}
+                                        onClick={this.onNestedTogglesCloseWingClick}
                                         size="medium"
                                         type="chevron-left"
                                     />
@@ -321,7 +321,7 @@ class PageFiltersDrawer extends React.Component {
                                             <NestedTogglesWingOptionLabel
                                                 key={nestedTogglesOptionLabelKeyNum++}
                                                 isSelected={isSelected}
-                                                onClick={this._onNestedTogglesWingOptionLabelClick}
+                                                onClick={this.onNestedTogglesWingOptionLabelClick}
                                                 option={option}
                                             />
                                         );
@@ -349,7 +349,7 @@ class PageFiltersDrawer extends React.Component {
                                     {canClear ? (
                                         <a
                                             className={clearFiltersClasses}
-                                            onClick={this._onClearClick}
+                                            onClick={this.onClearClick}
                                         >
                                             Clear Filters
                                         </a>
@@ -374,7 +374,7 @@ class PageFiltersDrawer extends React.Component {
                                                 height: '32px',
                                                 width: '32px',
                                             }}
-                                            onClick={this._onApplyClick}
+                                            onClick={this.onApplyClick}
                                             style={{
                                                 height: '32px',
                                                 minHeight: '32px',
@@ -461,7 +461,7 @@ class PageFiltersDrawer extends React.Component {
                                                         key={itemKey}
                                                     >
                                                         <NestedTogglesLabel
-                                                            onClick={this._onNestedTogglesLabelClick}
+                                                            onClick={this.onNestedTogglesLabelClick}
                                                             nestedTogglesData={nestedToggles}
                                                         />
 
@@ -472,7 +472,7 @@ class PageFiltersDrawer extends React.Component {
                                                                         <NestedTogglesValueLabel
                                                                             key={`nested-toggles-selected-filter-${nestedTogglesValueLabelKeyNum++}`}
                                                                             nestedTogglesData={nestedToggles}
-                                                                            onClick={this._onNestedTogglesValueLabelClick}
+                                                                            onClick={this.onNestedTogglesValueLabelClick}
                                                                             option={option}
                                                                         />
                                                                     );
@@ -502,7 +502,7 @@ class PageFiltersDrawer extends React.Component {
                                                             id={multiSelect.id}
                                                             onChange={
                                                                 (selectedOption) =>
-                                                                    this._onMultiSelectChange(
+                                                                    this.onMultiSelectChange(
                                                                         multiSelect.onChange,
                                                                         multiSelect.value,
                                                                         selectedOption
