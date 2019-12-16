@@ -1,56 +1,42 @@
-import ClassNames from 'classnames';
-import { CSSTransitionGroup } from 'react-transition-group';
-import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Rail from '../elements/rail';
+import FiltersRail from './filtersRail';
 
 const propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
+    id: PropTypes.string,
     isOpen: PropTypes.bool,
+    style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     children: undefined,
+    className: undefined,
+    id: undefined,
     isOpen: undefined,
+    style: {},
 };
 
 function PageFiltersRail(props) {
     const {
         children,
+        className,
+        id,
         isOpen,
+        style,
     } = props;
-    const containerClasses = ClassNames('ui', 'page--filters_rail', {
-        'hide-rail': !isOpen,
-        'show-rail': isOpen,
-    });
 
     return (
-        <MediaQuery
-            minWidth={768}
+        <FiltersRail
+            className={className}
+            id={id}
+            isOpen={isOpen}
+            moduleType="page"
+            style={style}
         >
-            <div
-                className={containerClasses}
-            >
-                <CSSTransitionGroup
-                    transitionEnterTimeout={200}
-                    transitionLeaveTimeout={200}
-                    transitionName={{
-                        enter: 'page--filters_rail-enter',
-                        leave: 'page--filters_rail-leave',
-                    }}
-                >
-                    {isOpen && (
-                        <Rail
-                            className="page--inner_container"
-                            position="left"
-                        >
-                            {children}
-                        </Rail>
-                    )}
-                </CSSTransitionGroup>
-            </div>
-        </MediaQuery>
+            {children}
+        </FiltersRail>
     );
 }
 

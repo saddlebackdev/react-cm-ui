@@ -1,0 +1,27 @@
+$prefixDrawerContent: drawer--content;
+$prefixPageContent: page--content;
+
+.ui {
+    &.#{$prefixDrawerContent} {
+        padding: 33px 11px;
+    }
+    &.#{$prefixPageContent} {
+        position: relative;
+        transition: margin 200ms ease-out;
+        z-index: 0;
+    }
+    &.#{$prefixDrawerContent}, &.#{$prefixPageContent} {
+        &-filters_rail_open {
+            margin-left: 250px;
+        }
+        &-scrollable {
+            overflow-x: scroll;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.#{$prefixDrawerContent} {
+        padding: 33px 22px;
+    }
+}

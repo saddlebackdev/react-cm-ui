@@ -11,6 +11,8 @@ import DrawerDetailsWindow from './drawerDetailsWindow';
 import DrawerDataCards from './drawerDataCards';
 import DrawerDataGroups from './drawerDataGroups';
 import DrawerFiltersDrawer from './drawerFiltersDrawer'; // eslint-disable-line import/no-cycle
+import DrawerDeprecatedFiltersDrawer from './drawerDeprecatedFiltersDrawer'; // eslint-disable-line import/no-cycle
+import DrawerFiltersRail from './drawerFiltersRail'; // eslint-disable-line import/no-cycle
 import DrawerNavigation from './drawerNavigation';
 import DrawerDataGrid from './drawerDataGrid';
 import DrawerTitleBar from './drawerTitleBar';
@@ -421,7 +423,9 @@ class Drawer extends React.Component {
 
 Drawer.ActionBar = DrawerActionBar;
 Drawer.Content = DrawerContent;
+Drawer.DeprecatedFiltersDrawer = DrawerDeprecatedFiltersDrawer;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
+Drawer.FiltersRail = DrawerFiltersRail;
 Drawer.DataCards = DrawerDataCards;
 Drawer.DataGrid = DrawerDataGrid;
 Drawer.DataGroups = DrawerDataGroups;

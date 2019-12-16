@@ -1,54 +1,46 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Content from './content';
+import FiltersRail from './filtersRail';
 
 const propTypes = {
-    as: PropTypes.oneOf(['div', 'header', 'main', 'section']),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
-    isFiltersRailOpen: PropTypes.bool,
-    scrollable: PropTypes.bool,
+    isOpen: PropTypes.bool,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
-    as: 'section',
     children: undefined,
     className: undefined,
     id: undefined,
-    isFiltersRailOpen: false,
-    scrollable: false,
+    isOpen: undefined,
     style: {},
 };
 
-function PageContent(props) {
+function DrawerFiltersRail(props) {
     const {
-        as,
         children,
         className,
         id,
-        isFiltersRailOpen,
-        scrollable,
+        isOpen,
         style,
     } = props;
 
     return (
-        <Content
-            as={as}
+        <FiltersRail
             className={className}
             id={id}
-            isFiltersRailOpen={isFiltersRailOpen}
+            isOpen={isOpen}
             moduleType="drawer"
-            scrollable={scrollable}
             style={style}
         >
             {children}
-        </Content>
+        </FiltersRail>
     );
 }
 
-PageContent.propTypes = propTypes;
-PageContent.defaultProps = defaultProps;
+DrawerFiltersRail.propTypes = propTypes;
+DrawerFiltersRail.defaultProps = defaultProps;
 
-export default PageContent;
+export default DrawerFiltersRail;

@@ -1,7 +1,10 @@
 @import '../shared/styles/colors';
 
+$prefixDrawerFiltersRail: drawer--filters_rail;
+$prefixPageFiltersRail: page--filters_rail;
+
 .ui {
-    &.page--filters_rail {
+    &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {
         margin-left: -22px;
         min-height: 100%;
         pointer-events: none;
@@ -18,15 +21,17 @@
             animation-name: hideFilterRail;
         }
     }
-    .page--inner_container {
-        animation-duration: 200ms;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease-out;
-        height: auto;
-        min-height: 100%;
-        pointer-events: auto;
-        &::after {
-            z-index: -1;
+    .#{$prefixDrawerFiltersRail}, .#{$prefixPageFiltersRail} {
+        &_inner_container {
+            animation-duration: 200ms;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-out;
+            height: auto;
+            min-height: 100%;
+            pointer-events: auto;
+            &::after {
+                z-index: -1;
+            }
         }
     }
 }

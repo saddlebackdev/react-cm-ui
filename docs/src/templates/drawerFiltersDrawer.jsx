@@ -1,19 +1,31 @@
-import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
+import {
+    Button,
+    Card,
+    Drawer,
+    Header,
+    Icon,
+    Input,
+    TitleBar,
+} from 'react-cm-ui';
 import _ from 'lodash';
-import DrawerSubNavigation from './drawerSubNavigation.js';
-import Highlighter from '../app/highlighter.js';
-import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import DrawerSubNavigation from '../modules/drawerSubNavigation';
+import Highlighter from '../app/highlighter';
+import Main from '../app/main';
+import TableProps from '../app/tableProps';
 
 const drawerFiltersDrawerSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';
 
 export default class DrawerFiltersDrawerSample extends React.Component {
+    static onClickTest() {
+        window.alert('You just clicked the fourth column!');
+    }
+
     constructor(props) {
         super(props);
 
-        this._defaultFilters = {
+        this.defaultFilters = {
             filtersCheckbox: [],
             filtersDropdownValue: {
                 label: 'Name (Ascending)',
@@ -22,18 +34,72 @@ export default class DrawerFiltersDrawerSample extends React.Component {
         };
 
         this.state = {
-            appliedFilters: _.cloneDeep(this._defaultFilters),
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
+            appliedFilters: _.cloneDeep(this.defaultFilters),
+            dirtyFilters: _.cloneDeep(this.defaultFilters),
             isDrawerOpen: false,
             isFiltersDrawerOpen: false,
         };
 
-        this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
-        this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
-        this._onFiltersCheckboxChange = this._onFiltersCheckboxChange.bind(this);
-        this._onFiltersDropdownChange = this._onFiltersDropdownChange.bind(this);
-        this._onFiltersDrawerToggle = this._onFiltersDrawerToggle.bind(this);
+        this.onApplyFiltersDrawerClick = this.onApplyFiltersDrawerClick.bind(this);
+        this.onClearFiltersDrawerClick = this.onClearFiltersDrawerClick.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
+        this.onFiltersCheckboxChange = this.onFiltersCheckboxChange.bind(this);
+        this.onFiltersDropdownChange = this.onFiltersDropdownChange.bind(this);
+        this.onFiltersDrawerToggle = this.onFiltersDrawerToggle.bind(this);
+    }
+
+    onApplyFiltersDrawerClick() {
+        const { dirtyFilters } = this.state;
+
+        this.setState({
+            appliedFilters: _.cloneDeep(dirtyFilters),
+            isFiltersDrawerOpen: false,
+            isFiltering: true,
+        });
+    }
+
+    onClearFiltersDrawerClick() {
+        this.setState({
+            dirtyFilters: _.cloneDeep(this.defaultFilters),
+            isFiltering: false,
+        });
+    }
+
+    onDrawerToggle() {
+        const { isDrawerOpen } = this.state;
+
+        this.setState({ isDrawerOpen: !isDrawerOpen });
+    }
+
+    onFiltersCheckboxChange(id) {
+        let { dirtyFilters } = this.state;
+
+        if (_.includes(dirtyFilters.filtersCheckbox, _.toString(id))) { // Subtract
+            dirtyFilters.filtersCheckbox = _.pull(dirtyFilters.filtersCheckbox, _.toString(id));
+        } else { // Add
+            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [ _.toString(id) ]);
+        }
+
+        this.setState({
+            dirtyFilters: _.cloneDeep(dirtyFilters),
+        });
+    }
+
+    onFiltersDropdownChange(selectedOption) {
+        let { dirtyFilters } = this.state;
+        dirtyFilters.filtersDropdownValue = selectedOption;
+
+        this.setState({
+            dirtyFilters: _.cloneDeep(dirtyFilters),
+        });
+    }
+
+    onFiltersDrawerToggle() {
+        const { isFiltersDrawerOpen } = this.state;
+
+        this.setState({
+            isFiltersDrawerOpen: !isFiltersDrawerOpen,
+        });
     }
 
     render() {
@@ -47,14 +113,14 @@ export default class DrawerFiltersDrawerSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
-                    onClose={this._onDrawerToggle}
+                    onClose={this.onDrawerToggle}
                 >
                     <Drawer.TitleBar
-                        closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                        closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                         title="Don't Pay Attention to the TitleBar, But to the Navigation"
                     />
 
@@ -68,7 +134,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                 label: 'Button 3',
                             }, {
                                 label: 'Button 4',
-                                onClick: this._onClickTest,
+                                onClick: DrawerFiltersDrawerSample.onClickTest,
                             },
                         ]}
                     />
@@ -81,7 +147,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                         jsx: (
                                             <Icon
                                                 color={isFiltersDrawerOpen || isFiltering ? 'highlight' : null}
-                                                onClick={this._onFiltersDrawerToggle}
+                                                onClick={this.onFiltersDrawerToggle}
                                                 title="Filter"
                                                 type="arrow-sort"
                                             />
@@ -89,7 +155,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                     }, {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onViewGridClick}
+                                                onClick={this.onViewGridClick}
                                                 title="Grid View"
                                                 type="grid"
                                             />
@@ -97,7 +163,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                     }, {
                                         jsx: (
                                             <Icon
-                                                onClick={this._onViewTableClick}
+                                                onClick={this.onViewTableClick}
                                                 title="List View"
                                                 type="list"
                                             />
@@ -111,13 +177,13 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                         icon={searchValue ?
                                             <Icon
                                                 compact
-                                                onClick={this._onClearSearchClick}
+                                                onClick={this.onClearSearchClick}
                                                 title="Clear Search"
                                                 type="times"
                                             /> : null
                                         }
-                                        onChange={this._onSearchChange}
-                                        onKeyDown={this._onSearchKeyDown}
+                                        onChange={this.onSearchChange}
+                                        onKeyDown={this.onSearchKeyDown}
                                         placeholder="Search"
                                         value={searchValue}
                                     />
@@ -127,7 +193,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                 jsx: (
                                     <Button
                                         color="success"
-                                        onClick={this._onNewTemplateClick}
+                                        onClick={this.onNewTemplateClick}
                                         style={{ margin: 0 }}
                                     >
                                         <Icon type="plus" />
@@ -143,16 +209,16 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                             isDirty={isDirty}
                             isFiltering={isFiltering}
                             isOpen={isFiltersDrawerOpen}
-                            onApply={this._onApplyFiltersDrawerClick}
-                            onClear={this._onClearFiltersDrawerClick}
-                            onClose={this._onFiltersDrawerToggle}
+                            onApply={this.onApplyFiltersDrawerClick}
+                            onClear={this.onClearFiltersDrawerClick}
+                            onClose={this.onFiltersDrawerToggle}
                             rows={[
                                 {
                                     header: 'Sort',
                                     items: [
                                         {
                                             dropdown: {
-                                                onChange: this._onFiltersDropdownChange,
+                                                onChange: this.onFiltersDropdownChange,
                                                 options: [
                                                     {
                                                         label: 'Name (Ascending)',
@@ -180,14 +246,14 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                                 checked: _.includes(dirtyFilters.filtersCheckbox, '1'),
                                                 id: '1',
                                                 label: 'Attended',
-                                                onChange: this._onFiltersCheckboxChange,
+                                                onChange: this.onFiltersCheckboxChange,
                                             },
                                         }, {
                                             checkbox: {
                                                 checked: _.includes(dirtyFilters.filtersCheckbox, '2'),
                                                 id: '2',
                                                 label: 'Unattended',
-                                                onChange: this._onFiltersCheckboxChange,
+                                                onChange: this.onFiltersCheckboxChange,
                                             },
                                         },
                                     ],
@@ -209,65 +275,11 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                         tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
                         </p>
 
-                        <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                     </Drawer.Content>
                 </Drawer>
             </div>
         );
-    }
-
-    _onApplyFiltersDrawerClick() {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            appliedFilters: _.cloneDeep(dirtyFilters),
-            isFiltersDrawerOpen: false,
-            isFiltering: true,
-        });
-    }
-
-    _onClearFiltersDrawerClick() {
-        this.setState({
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
-            isFiltering: false,
-        });
-    }
-
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
-    }
-
-    _onFiltersCheckboxChange(id) {
-        let { dirtyFilters } = this.state;
-
-        if (_.includes(dirtyFilters.filtersCheckbox, _.toString(id))) { // Subtract
-            dirtyFilters.filtersCheckbox = _.pull(dirtyFilters.filtersCheckbox, _.toString(id));
-        } else { // Add
-            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [ _.toString(id) ]);
-        }
-
-        this.setState({
-            dirtyFilters: _.cloneDeep(dirtyFilters),
-        });
-    }
-
-    _onFiltersDropdownChange(selectedOption) {
-        let { dirtyFilters } = this.state;
-        dirtyFilters.filtersDropdownValue = selectedOption;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep(dirtyFilters),
-        });
-    }
-
-    _onFiltersDrawerToggle() {
-        const { isFiltersDrawerOpen } = this.state;
-
-        this.setState({
-            isFiltersDrawerOpen: !isFiltersDrawerOpen,
-        });
     }
 }`;
 
@@ -280,10 +292,10 @@ const rowsArrayProps = `[
                     checked: _.includes(dirtyFilters.filtersCheckbox, '1'),
                     id: '1',
                     label: 'Attended',
-                    onChange: this._onFiltersCheckboxChange,
+                    onChange: this.onFiltersCheckboxChange,
                 },
                 dropdown: { // type: object. required if no checkbox or jsx property,
-                    onChange: this._onFiltersDropdownChange,
+                    onChange: this.onFiltersDropdownChange,
                     options: [
                         {
                             label: 'Name (Ascending)',
@@ -308,10 +320,14 @@ const rowsArrayProps = `[
 ]`;
 
 class ModulesDrawerFiltersDrawer extends React.Component {
+    static onClickTest() {
+        window.alert('You just clicked the fourth column!');
+    }
+
     constructor(props) {
         super(props);
 
-        this._defaultFilters = {
+        this.defaultFilters = {
             filtersCheckbox: [],
             filtersDropdownValue: {
                 label: 'Name (Ascending)',
@@ -320,22 +336,75 @@ class ModulesDrawerFiltersDrawer extends React.Component {
         };
 
         this.state = {
-            appliedFilters: _.cloneDeep(this._defaultFilters),
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
-            isDrawerOpen: false,
+            appliedFilters: _.cloneDeep(this.defaultFilters),
+            dirtyFilters: _.cloneDeep(this.defaultFilters),
             isDirty: false,
+            isDrawerOpen: false,
             isFiltering: false,
             isFiltersDrawerOpen: false,
             searchValue: '',
         };
 
-        this._onApplyFiltersDrawerClick = this._onApplyFiltersDrawerClick.bind(this);
-        this._onClearFiltersDrawerClick = this._onClearFiltersDrawerClick.bind(this);
-        this._onClickTest = this._onClickTest.bind(this);
-        this._onDrawerToggle = this._onDrawerToggle.bind(this);
-        this._onFiltersCheckboxChange = this._onFiltersCheckboxChange.bind(this);
-        this._onFiltersDropdownChange = this._onFiltersDropdownChange.bind(this);
-        this._onFiltersDrawerToggle = this._onFiltersDrawerToggle.bind(this);
+        this.onApplyFiltersDrawerClick = this.onApplyFiltersDrawerClick.bind(this);
+        this.onClearFiltersDrawerClick = this.onClearFiltersDrawerClick.bind(this);
+        this.onDrawerToggle = this.onDrawerToggle.bind(this);
+        this.onFiltersCheckboxChange = this.onFiltersCheckboxChange.bind(this);
+        this.onFiltersDropdownChange = this.onFiltersDropdownChange.bind(this);
+        this.onFiltersDrawerToggle = this.onFiltersDrawerToggle.bind(this);
+    }
+
+    onApplyFiltersDrawerClick() {
+        const { dirtyFilters } = this.state;
+
+        this.setState({
+            appliedFilters: _.cloneDeep(dirtyFilters),
+            isFiltersDrawerOpen: false,
+            isFiltering: true,
+        });
+    }
+
+    onClearFiltersDrawerClick() {
+        this.setState({
+            dirtyFilters: _.cloneDeep(this.defaultFilters),
+            isFiltering: false,
+        });
+    }
+
+    onDrawerToggle() {
+        const { isDrawerOpen } = this.state;
+
+        this.setState({ isDrawerOpen: !isDrawerOpen });
+    }
+
+    onFiltersCheckboxChange(id) {
+        let { dirtyFilters } = this.state;
+
+        if (_.includes(dirtyFilters.filtersCheckbox, _.toString(id))) { // Subtract
+            dirtyFilters.filtersCheckbox = _.pull(dirtyFilters.filtersCheckbox, _.toString(id));
+        } else { // Add
+            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [ _.toString(id) ]);
+        }
+
+        this.setState({
+            dirtyFilters: _.cloneDeep(dirtyFilters),
+        });
+    }
+
+    onFiltersDropdownChange(selectedOption) {
+        let { dirtyFilters } = this.state;
+        dirtyFilters.filtersDropdownValue = selectedOption;
+
+        this.setState({
+            dirtyFilters: _.cloneDeep(dirtyFilters),
+        });
+    }
+
+    onFiltersDrawerToggle() {
+        const { isFiltersDrawerOpen } = this.state;
+
+        this.setState({
+            isFiltersDrawerOpen: !isFiltersDrawerOpen,
+        });
     }
 
     render() {
@@ -404,7 +473,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
             },
         ];
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
-        const isFiltering = !_.isEqual(this._defaultFilters, appliedFilters);
+        const isFiltering = !_.isEqual(this.defaultFilters, appliedFilters);
 
         return (
             <Main page="headers">
@@ -438,14 +507,14 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                         {rowsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
-                        onClose={this._onDrawerToggle}
+                        onClose={this.onDrawerToggle}
                     >
                         <Drawer.TitleBar
-                            closeButton={<Icon compact onClick={this._onDrawerToggle} type="times" />}
+                            closeButton={<Icon compact onClick={this.onDrawerToggle} type="times" />}
                             title="Don't Pay Attention to the TitleBar, But to the Navigation"
                         />
 
@@ -459,7 +528,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                     label: 'Button 3',
                                 }, {
                                     label: 'Button 4',
-                                    onClick: this._onClickTest,
+                                    onClick: ModulesDrawerFiltersDrawer.onClickTest,
                                 },
                             ]}
                         />
@@ -472,7 +541,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                             jsx: (
                                                 <Icon
                                                     color={isFiltersDrawerOpen || isFiltering ? 'highlight' : null}
-                                                    onClick={this._onFiltersDrawerToggle}
+                                                    onClick={this.onFiltersDrawerToggle}
                                                     title="Filter"
                                                     type="arrow-sort"
                                                 />
@@ -480,7 +549,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                         }, {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onViewGridClick}
+                                                    onClick={this.onViewGridClick}
                                                     title="Grid View"
                                                     type="grid"
                                                 />
@@ -488,7 +557,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                         }, {
                                             jsx: (
                                                 <Icon
-                                                    onClick={this._onViewTableClick}
+                                                    onClick={this.onViewTableClick}
                                                     title="List View"
                                                     type="list"
                                                 />
@@ -502,13 +571,13 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                             icon={searchValue ?
                                                 <Icon
                                                     compact
-                                                    onClick={this._onClearSearchClick}
+                                                    onClick={this.onClearSearchClick}
                                                     title="Clear Search"
                                                     type="times"
                                                 /> : null
                                             }
-                                            onChange={this._onSearchChange}
-                                            onKeyDown={this._onSearchKeyDown}
+                                            onChange={this.onSearchChange}
+                                            onKeyDown={this.onSearchKeyDown}
                                             placeholder="Search"
                                             value={searchValue}
                                         />
@@ -518,7 +587,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                     jsx: (
                                         <Button
                                             color="success"
-                                            onClick={this._onNewTemplateClick}
+                                            onClick={this.onNewTemplateClick}
                                             style={{ margin: 0 }}
                                         >
                                             <Icon type="plus" />
@@ -534,16 +603,16 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                 isDirty={isDirty}
                                 isFiltering={isFiltering}
                                 isOpen={isFiltersDrawerOpen}
-                                onApply={this._onApplyFiltersDrawerClick}
-                                onClear={this._onClearFiltersDrawerClick}
-                                onClose={this._onFiltersDrawerToggle}
+                                onApply={this.onApplyFiltersDrawerClick}
+                                onClear={this.onClearFiltersDrawerClick}
+                                onClose={this.onFiltersDrawerToggle}
                                 rows={[
                                     {
                                         header: 'Sort',
                                         items: [
                                             {
                                                 dropdown: {
-                                                    onChange: this._onFiltersDropdownChange,
+                                                    onChange: this.onFiltersDropdownChange,
                                                     options: [
                                                         {
                                                             label: 'Name (Ascending)',
@@ -571,20 +640,24 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                                     checked: _.includes(dirtyFilters.filtersCheckbox, '1'),
                                                     id: '1',
                                                     label: 'Attended',
-                                                    onChange: this._onFiltersCheckboxChange,
+                                                    onChange: this.onFiltersCheckboxChange,
                                                 },
                                             }, {
                                                 checkbox: {
                                                     checked: _.includes(dirtyFilters.filtersCheckbox, '2'),
                                                     id: '2',
                                                     label: 'Unattended',
-                                                    onChange: this._onFiltersCheckboxChange,
+                                                    onChange: this.onFiltersCheckboxChange,
                                                 },
                                             },
                                         ],
                                     },
                                 ]}
                             />
+
+                            <Drawer.FiltersRail isOpen={isFiltersDrawerOpen}>
+                                test
+                            </Drawer.FiltersRail>
 
                             <p>
                             Click the filters icon above in the Drawers.ActionBar (upper left).
@@ -600,7 +673,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                             tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
                             </p>
 
-                            <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                            <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
                         </Drawer.Content>
                     </Drawer>
 
@@ -610,64 +683,6 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                 </div>
             </Main>
         );
-    }
-
-    _onApplyFiltersDrawerClick() {
-        const { dirtyFilters } = this.state;
-
-        this.setState({
-            appliedFilters: _.cloneDeep(dirtyFilters),
-            isFiltersDrawerOpen: false,
-            isFiltering: true,
-        });
-    }
-
-    _onClearFiltersDrawerClick() {
-        this.setState({
-            dirtyFilters: _.cloneDeep(this._defaultFilters),
-            isFiltering: false,
-        });
-    }
-
-    _onClickTest() {
-        window.alert('You just clicked the fourth column!');
-    }
-
-    _onDrawerToggle() {
-        const { isDrawerOpen } = this.state;
-
-        this.setState({ isDrawerOpen: !isDrawerOpen });
-    }
-
-    _onFiltersCheckboxChange(id) {
-        let { dirtyFilters } = this.state;
-
-        if (_.includes(dirtyFilters.filtersCheckbox, _.toString(id))) { // Subtract
-            dirtyFilters.filtersCheckbox = _.pull(dirtyFilters.filtersCheckbox, _.toString(id));
-        } else { // Add
-            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [ _.toString(id) ]);
-        }
-
-        this.setState({
-            dirtyFilters: _.cloneDeep(dirtyFilters),
-        });
-    }
-
-    _onFiltersDropdownChange(selectedOption) {
-        let { dirtyFilters } = this.state;
-        dirtyFilters.filtersDropdownValue = selectedOption;
-
-        this.setState({
-            dirtyFilters: _.cloneDeep(dirtyFilters),
-        });
-    }
-
-    _onFiltersDrawerToggle() {
-        const { isFiltersDrawerOpen } = this.state;
-
-        this.setState({
-            isFiltersDrawerOpen: !isFiltersDrawerOpen,
-        });
     }
 }
 

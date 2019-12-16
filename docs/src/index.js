@@ -4,9 +4,9 @@ import 'regenerator-runtime/runtime';
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
-import { appReduxStore } from './shared/configureReduxStore.js';
 import { Provider } from 'react-redux';
 import React from 'react';
+import { appReduxStore } from './shared/configureReduxStore.js';
 import ReactDOM from 'react-dom';
 import routes from './routes.js';
 
