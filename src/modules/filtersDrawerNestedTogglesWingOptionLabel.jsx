@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../elements/icon.js';
+import Icon from '../elements/icon';
 
 const propTypes = {
     isSelected: PropTypes.bool,

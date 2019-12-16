@@ -2,13 +2,13 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActivityIndicator from '../elements/activityIndicator.js';
-import Header from '../elements/header.js';
-import Icon from '../elements/icon.js';
-import List from '../elements/list.js';
+import ActivityIndicator from '../elements/activityIndicator';
+import Header from '../elements/header';
+import Icon from '../elements/icon';
+import List from '../elements/list';
 import DataGroupExpandedRow from './dataGroupExpandedRow';
 import DataGroupRow from './dataGroupRow';
-import { groupPropTypes } from './dataGroupsPropTypes.js';
+import { groupPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     group: groupPropTypes.isRequired,

@@ -1,11 +1,9 @@
-'use strict';
-
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
 import Divider from '../elements/divider';
-import domUtils from '../utils/domUtils.js';
+import domUtils from '../utils/domUtils';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 import { Portal } from 'react-portal';

@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import DataGroupsColumn from './dataGroupsColumn';
-import { groupPropTypes } from './dataGroupsPropTypes.js';
+import { groupPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     className: PropTypes.string,

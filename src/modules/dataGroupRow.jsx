@@ -2,9 +2,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../elements/header.js';
+import Header from '../elements/header';
 import Icon from '../elements/icon';
-import { rowPropTypes } from './dataGroupsPropTypes.js';
+import { rowPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     bemClassName: PropTypes.string.isRequired,

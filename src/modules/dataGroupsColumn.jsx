@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import DataGroup from './dataGroup';
-import { groupPropTypes } from './dataGroupsPropTypes.js';
+import { groupPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     column: PropTypes.arrayOf(groupPropTypes).isRequired,

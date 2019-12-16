@@ -3,15 +3,15 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../elements/button.js';
-import Drawer from './drawer.js';
-import Dropdown from './dropdown.js';
-import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel.jsx';
-import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel.jsx';
-import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel.jsx';
-import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel.jsx';
-import Header from '../elements/header.js';
-import Icon from '../elements/icon.js';
+import Button from '../elements/button';
+import Drawer from './drawer';
+import Dropdown from './dropdown';
+import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
+import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
+import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
+import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
+import Header from '../elements/header';
+import Icon from '../elements/icon';
 
 const propTypes = {
     children: PropTypes.node,

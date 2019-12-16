@@ -844,7 +844,7 @@ class PageDemo extends React.PureComponent {
                     />
 
                     <Page.Container>
-                        <Page.FiltersDrawer
+                        <Page.DeprecatedFiltersDrawer
                             isDirty={isDirty}
                             isFiltering={isFiltering}
                             isOpen={isFiltersDrawerOpen}
