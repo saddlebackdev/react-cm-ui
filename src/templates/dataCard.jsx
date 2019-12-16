@@ -9,10 +9,12 @@ const propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
+    style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     cardProps: undefined,
+    style: {},
 };
 
 class DataCard extends React.PureComponent {

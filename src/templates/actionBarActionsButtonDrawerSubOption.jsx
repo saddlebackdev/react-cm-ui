@@ -36,6 +36,7 @@ const defaultProps = {
 class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
     constructor() {
         super();
+
         this.onClick = this.onClick.bind(this);
     }
 

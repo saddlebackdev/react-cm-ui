@@ -17,16 +17,28 @@ const defaultProps = {
     style: {},
 };
 
-function DrawerDataGroups(props) {
+function PageDataGroups(props) {
+    const {
+        bleed,
+        className,
+        columns,
+        data,
+        style,
+    } = props;
+
     return (
         <DataGroups
-            {...props}
+            bleed={bleed}
+            className={className}
+            columns={columns}
+            data={data}
             moduleType="drawer"
+            style={style}
         />
     );
 }
 
-DrawerDataGroups.propTypes = propTypes;
-DrawerDataGroups.defaultProps = defaultProps;
+PageDataGroups.propTypes = propTypes;
+PageDataGroups.defaultProps = defaultProps;
 
-export default DrawerDataGroups;
+export default PageDataGroups;

@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 import _ from 'lodash';
 import Button from '../elements/button';
 import ClassNames from 'classnames';
 import Drawer from '../modules/drawer';
-import Dropdown from './dropdown';
+import Dropdown from '../modules/dropdown';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 import Label from '../elements/label';
@@ -15,6 +17,13 @@ class MultiSelectLabel extends React.PureComponent {
         super();
 
         this._onClearClick = this._onClearClick.bind(this);
+    }
+
+    _onClearClick() {
+        const { onItemChange, selectedOption, value } = this.props;
+        const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
+
+        onItemChange(filteredOptions);
     }
 
     render() {
@@ -33,13 +42,6 @@ class MultiSelectLabel extends React.PureComponent {
             </Label>
         );
     }
-
-    _onClearClick() {
-        const { onItemChange, selectedOption, value } = this.props;
-        const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
-
-        onItemChange(filteredOptions);
-    }
 }
 
 MultiSelectLabel.propTypes = {
@@ -57,6 +59,12 @@ class NestedTogglesLabel extends React.PureComponent {
         this._onClick = this._onClick.bind(this);
     }
 
+    _onClick() {
+        const { nestedTogglesData, onClick } = this.props;
+
+        onClick(nestedTogglesData);
+    }
+
     render() {
         const { nestedTogglesData: { label } } = this.props;
         const containerClasses = ClassNames('page_filters_drawer--nested_toggles_label');
@@ -72,12 +80,6 @@ class NestedTogglesLabel extends React.PureComponent {
             </div>
         );
     }
-
-    _onClick() {
-        const { nestedTogglesData, onClick } = this.props;
-
-        onClick(nestedTogglesData);
-    }
 }
 
 NestedTogglesLabel.propTypes = {
@@ -90,6 +92,12 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
         super();
 
         this._onClick = this._onClick.bind(this);
+    }
+
+    _onClick() {
+        const { onClick, option } = this.props;
+
+        onClick(option);
     }
 
     render() {
@@ -109,12 +117,6 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
             </div>
         );
     }
-
-    _onClick() {
-        const { onClick, option } = this.props;
-
-        onClick(option);
-    }
 }
 
 NestedTogglesWingOptionLabel.propTypes = {
@@ -128,6 +130,12 @@ class NestedTogglesValueLabel extends React.PureComponent {
         super();
 
         this._onClick = this._onClick.bind(this);
+    }
+
+    _onClick() {
+        const { nestedTogglesData, onClick, option } = this.props;
+
+        onClick(nestedTogglesData, option);
     }
 
     render() {
@@ -147,12 +155,6 @@ class NestedTogglesValueLabel extends React.PureComponent {
                 />
             </div>
         );
-    }
-
-    _onClick() {
-        const { nestedTogglesData, onClick, option } = this.props;
-
-        onClick(nestedTogglesData, option);
     }
 }
 
@@ -178,6 +180,75 @@ class PageFiltersDrawer extends React.Component {
         this._onNestedTogglesLabelClick = this._onNestedTogglesLabelClick.bind(this);
         this._onNestedTogglesWingOptionLabelClick = this._onNestedTogglesWingOptionLabelClick.bind(this);
         this._onNestedTogglesValueLabelClick = this._onNestedTogglesValueLabelClick.bind(this);
+    }
+
+    _onApplyClick() {
+        const { onApply } = this.props;
+
+        onApply();
+    }
+
+    _onClearClick() {
+        const { onClear } = this.props;
+
+        onClear();
+    }
+
+    _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
+        const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
+
+        onItemChange(filteredOptions);
+    }
+
+    _onMultiSelectChange(onItemChange, value, selectedOption) {
+        const filteredOptions = _.union(value, [ selectedOption ]);
+
+        onItemChange(filteredOptions);
+    }
+
+    _onNestedTogglesCloseWingClick() {
+        const { nestedTogglesData } = this.state;
+
+        this.setState({
+            nestedTogglesData: {},
+        }, () => {
+            nestedTogglesData.onChange(nestedTogglesData.value);
+        });
+    }
+
+    _onNestedTogglesLabelClick(nestedTogglesData) {
+        this.setState({
+            nestedTogglesData: _.cloneDeep(nestedTogglesData),
+        });
+    }
+
+    _onNestedTogglesValueLabelClick(nestedTogglesData, selectedOption) {
+        const selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
+
+        nestedTogglesData.onChange(selectedOptions);
+    }
+
+    _onNestedTogglesWingOptionLabelClick(selectedOption) {
+        const { nestedTogglesData } = this.state;
+        let selectedOptions;
+
+        if (_.some(nestedTogglesData.value, selectedOption)) { // Subtract
+            selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
+        } else { // Add
+            selectedOptions = _.sortBy([ ...nestedTogglesData.value, selectedOption ], [ 'value' ]);
+        }
+
+        const newNestedTogglesData = _.mapValues(nestedTogglesData, (d, key) => {
+            if (key === 'value') {
+                d = selectedOptions;
+            }
+
+            return d;
+        });
+
+        this.setState({
+            nestedTogglesData: _.cloneDeep(newNestedTogglesData),
+        });
     }
 
     render() {
@@ -487,75 +558,6 @@ class PageFiltersDrawer extends React.Component {
                 </Drawer>
             </MediaQuery>
         );
-    }
-
-    _onApplyClick() {
-        const { onApply } = this.props;
-
-        onApply();
-    }
-
-    _onClearClick() {
-        const { onClear } = this.props;
-
-        onClear();
-    }
-
-    _onMultiSelectLabelClearClick(onItemChange, value, selectedOption) {
-        const filteredOptions = _.differenceBy(value, [ selectedOption ], 'value');
-
-        onItemChange(filteredOptions);
-    }
-
-    _onMultiSelectChange(onItemChange, value, selectedOption) {
-        const filteredOptions = _.union(value, [ selectedOption ]);
-
-        onItemChange(filteredOptions);
-    }
-
-    _onNestedTogglesCloseWingClick() {
-        const { nestedTogglesData } = this.state;
-
-        this.setState({
-            nestedTogglesData: {},
-        }, () => {
-            nestedTogglesData.onChange(nestedTogglesData.value);
-        });
-    }
-
-    _onNestedTogglesLabelClick(nestedTogglesData) {
-        this.setState({
-            nestedTogglesData: _.cloneDeep(nestedTogglesData),
-        });
-    }
-
-    _onNestedTogglesValueLabelClick(nestedTogglesData, selectedOption) {
-        const selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
-
-        nestedTogglesData.onChange(selectedOptions);
-    }
-
-    _onNestedTogglesWingOptionLabelClick(selectedOption) {
-        const { nestedTogglesData } = this.state;
-        let selectedOptions;
-
-        if (_.some(nestedTogglesData.value, selectedOption)) { // Subtract
-            selectedOptions = _.filter(nestedTogglesData.value, d => d.value !== selectedOption.value);
-        } else { // Add
-            selectedOptions = _.sortBy([ ...nestedTogglesData.value, selectedOption ], [ 'value' ]);
-        }
-
-        const newNestedTogglesData = _.mapValues(nestedTogglesData, (d, key) => {
-            if (key === 'value') {
-                d = selectedOptions;
-            }
-
-            return d;
-        });
-
-        this.setState({
-            nestedTogglesData: _.cloneDeep(newNestedTogglesData),
-        });
     }
 }
 

@@ -7,7 +7,7 @@ import Button from '../elements/button';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
 import Header from '../elements/header';
 import Icon from '../elements/icon';
-import Prompt from './prompt';
+import Prompt from '../modules/prompt';
 
 const propTypes = {
     header: PropTypes.string.isRequired,

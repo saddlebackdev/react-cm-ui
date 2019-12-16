@@ -208,7 +208,14 @@ class DataGrid extends React.Component {
             bleed,
             className,
             columns,
+            data,
+            fontSize,
+            handle,
+            moduleType,
+            rowProps,
+            small,
             stickyColumns,
+            stickyColumnWidth,
             style,
         } = this.props;
         const {
@@ -236,26 +243,49 @@ class DataGrid extends React.Component {
                         onScroll={this.onScroll}
                     >
                         <DataGridTable
-                            {...this.props}
+                            bleed={bleed}
+                            className={className}
                             classNamePrefix={classNamePrefix}
                             collapsed={collapsed}
+                            columns={columns}
+                            data={data}
+                            fontSize={fontSize}
+                            handle={handle}
                             idPrefix="body"
+                            minWidth={minWidth}
+                            moduleType={moduleType}
                             ref={(ref) => { this.bodyTable = ref; }}
+                            rowProps={rowProps}
                             sizes={sizes}
-                            style={{ minWidth }}
+                            small={small}
+                            stickyColumnWidth={stickyColumnWidth}
+                            stickyColumns={stickyColumns}
+                            style={{
+                                minWidth,
+                            }}
                         />
                     </div>
 
                     <div className={`${classNamePrefix}_fixed_column`}>
                         <DataGridTable
-                            {...this.props}
+                            bleed={bleed}
+                            className={className}
                             classNamePrefix={classNamePrefix}
                             columns={_.slice(columns, 0, stickyColumns)}
+                            data={data}
                             dropShadow={scrolledRight}
+                            fontSize={fontSize}
+                            handle={handle}
                             idPrefix="column"
+                            minWidth={minWidth}
+                            moduleType={moduleType}
                             onSplitter={this.onSplitterClick}
                             onSplitterDragEnd={this.onSplitterDragEnd}
+                            rowProps={rowProps}
                             sizes={sizes}
+                            small={small}
+                            stickyColumnWidth={stickyColumnWidth}
+                            stickyColumns={stickyColumns}
                         />
                     </div>
 
@@ -270,8 +300,19 @@ class DataGrid extends React.Component {
                 style={style}
             >
                 <DataGridTable
-                    {...this.props}
+                    bleed={bleed}
+                    className={className}
                     classNamePrefix={classNamePrefix}
+                    columns={columns}
+                    data={data}
+                    fontSize={fontSize}
+                    handle={handle}
+                    minWidth={minWidth}
+                    moduleType={moduleType}
+                    rowProps={rowProps}
+                    small={small}
+                    stickyColumnWidth={stickyColumnWidth}
+                    stickyColumns={stickyColumns}
                 />
             </div>
         );

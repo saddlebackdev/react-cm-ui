@@ -16,16 +16,28 @@ const defaultProps = {
     style: {},
 };
 
-function PageDataCards(props) {
+function DrawerDataCards(props) {
+    const {
+        cardProps,
+        className,
+        columns,
+        data,
+        style,
+    } = props;
+
     return (
         <DataCards
-            {...props}
-            moduleType="page"
+            cardProps={cardProps}
+            className={className}
+            columns={columns}
+            data={data}
+            moduleType="drawer"
+            style={style}
         />
     );
 }
 
-PageDataCards.propTypes = propTypes;
-PageDataCards.defaultProps = defaultProps;
+DrawerDataCards.propTypes = propTypes;
+DrawerDataCards.defaultProps = defaultProps;
 
-export default PageDataCards;
+export default DrawerDataCards;

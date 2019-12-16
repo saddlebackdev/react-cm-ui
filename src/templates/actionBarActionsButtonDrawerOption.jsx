@@ -8,6 +8,11 @@ import ActionBarActionsButtonDrawerSubOption, {
 } from './actionBarActionsButtonDrawerSubOption';
 import Icon from '../elements/icon';
 
+const rootOptionPropTypeShape = {
+    ...singleOptionPropTypeShape,
+    options: PropTypes.arrayOf(PropTypes.shape(singleOptionPropTypeShape)),
+};
+
 const propTypes = {
     hide: PropTypes.bool,
     idNumber: PropTypes.number,
@@ -150,11 +155,6 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
         /* eslint-enable jsx-a11y/click-events-have-key-events */
     }
 }
-
-const rootOptionPropTypeShape = {
-    ...singleOptionPropTypeShape,
-    options: PropTypes.arrayOf(PropTypes.shape(singleOptionPropTypeShape)),
-};
 
 ActionBarActionsButtonDrawerOption.propTypes = propTypes;
 ActionBarActionsButtonDrawerOption.defaultProps = defaultProps;

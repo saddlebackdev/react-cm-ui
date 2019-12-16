@@ -65,7 +65,10 @@ class DrawerWing extends React.PureComponent {
 
         this.drawerWingRef.closest('.ui.drawer').classList.add(animateOutClassName);
         this.closestDrawerContainerEl.style.transform = 'translate(0)';
-        this.closestDrawerContainerEl.addEventListener(animationEvent, this.onCloseAnimationComplete);
+        this.closestDrawerContainerEl.addEventListener(
+            animationEvent,
+            this.onCloseAnimationComplete,
+        );
     }
 
     onCloseAnimationComplete() {
@@ -75,7 +78,10 @@ class DrawerWing extends React.PureComponent {
             isOpen: false,
         }, () => {
             const animationEvent = domUtils.cssTransitionType(this.closestDrawerContainerEl);
-            this.closestDrawerContainerEl.removeEventListener(animationEvent, this.onCloseAnimationComplete);
+            this.closestDrawerContainerEl.removeEventListener(
+                animationEvent,
+                this.onCloseAnimationComplete,
+            );
         });
     }
 
@@ -89,7 +95,9 @@ class DrawerWing extends React.PureComponent {
         const isPositionLeft = position === 'left';
 
         this.closestDrawerContainerEl = this.drawerWingRef.closest('.drawer-container');
-        this.closestDrawerContainerEl.style.transform = `translate(${isPositionLeft ? width : '-' + width}, 0)`;
+        this.closestDrawerContainerEl.style.transform = `
+            translate(${isPositionLeft ? width : `-${width}`}, 0)
+        `;
     }
 
     render() {

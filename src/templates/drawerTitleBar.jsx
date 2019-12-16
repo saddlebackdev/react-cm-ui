@@ -45,7 +45,7 @@ class DrawerTitleBar extends React.PureComponent {
     }
 
     render() {
-        const { 
+        const {
             className,
             closeButton,
             closeButtonStyle,

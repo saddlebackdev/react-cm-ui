@@ -47,15 +47,13 @@ class DrawerNavigation extends React.PureComponent {
                     selected={selectedColumnIndex}
                     style={{ margin: 0 }}
                 >
-                    {_.map(columns, (column, index) => {
-                        return (
-                            <SubNavigation.Item
-                                key={`drawer-navigation-item-${index}`}
-                                label={column.label || 'Need A Label'}
-                                onClick={column.onClick}
-                            />
-                        );
-                    })}
+                    {_.map(columns, (column, index) => (
+                        <SubNavigation.Item
+                            key={`drawer-navigation-item-${index}`}
+                            label={column.label || 'Need A Label'}
+                            onClick={column.onClick}
+                        />
+                    ))}
                 </SubNavigation>
             </div>
         );

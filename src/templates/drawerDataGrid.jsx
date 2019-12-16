@@ -30,16 +30,42 @@ const defaultProps = {
     style: {},
 };
 
-function PageDataGrid(props) {
+function DrawerDataGrid(props) {
+    const {
+        bleed,
+        className,
+        columns,
+        data,
+        fontSize,
+        handle,
+        minWidth,
+        rowProps,
+        small,
+        stickyColumnWidth,
+        stickyColumns,
+        style,
+    } = props;
+
     return (
         <DataGrid
-            {...props}
-            moduleType="page"
+            bleed={bleed}
+            className={className}
+            columns={columns}
+            data={data}
+            fontSize={fontSize}
+            handle={handle}
+            minWidth={minWidth}
+            moduleType="drawer"
+            rowProps={rowProps}
+            small={small}
+            stickyColumnWidth={stickyColumnWidth}
+            stickyColumns={stickyColumns}
+            style={style}
         />
     );
 }
 
-PageDataGrid.propTypes = propTypes;
-PageDataGrid.defaultProps = defaultProps;
+DrawerDataGrid.propTypes = propTypes;
+DrawerDataGrid.defaultProps = defaultProps;
 
-export default PageDataGrid;
+export default DrawerDataGrid;

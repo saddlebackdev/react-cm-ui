@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FiltersDrawer from './filtersDrawer';
+import FiltersDrawer from './filtersDrawer'; // eslint-disable-line import/no-cycle
 
 const propTypes = {
     children: PropTypes.node,

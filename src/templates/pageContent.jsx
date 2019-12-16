@@ -11,6 +11,7 @@ const propTypes = {
     scrollable: PropTypes.bool,
     style: PropTypes.shape({}),
 };
+
 const defaultProps = {
     as: 'section',
     children: undefined,
@@ -21,12 +22,12 @@ const defaultProps = {
 };
 
 function PageContent(props) {
-    const { 
-        as, 
-        children, 
-        className, 
-        isFiltersRailOpen, 
-        scrollable, 
+    const {
+        as,
+        children,
+        className,
+        isFiltersRailOpen,
+        scrollable,
         style,
     } = props;
     const winWidth = window.innerWidth;
