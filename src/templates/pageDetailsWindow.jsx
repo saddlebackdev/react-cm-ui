@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { columnPropTypesShape } from './detailsWindowPropTypes';
 import DetailsWindow from './detailsWindow';
 
 const propTypes = {
@@ -9,6 +10,7 @@ const propTypes = {
     columnProps: PropTypes.shape({}),
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.shape({}).isRequired,
+    expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     style: PropTypes.shape({}),
 };
 
@@ -17,14 +19,33 @@ const defaultProps = {
     className: undefined,
     color: undefined,
     columnProps: undefined,
+    expandableColumns: undefined,
     style: {},
 };
 
 function PageDetailsWindow(props) {
+    const {
+        bleed,
+        className,
+        color,
+        columnProps,
+        columns,
+        data,
+        expandableColumns,
+        style,
+    } = props;
+
     return (
         <DetailsWindow
-            {...props}
-            moduleType="page"
+            bleed={bleed}
+            className={className}
+            color={color}
+            columnProps={columnProps}
+            columns={columns}
+            data={data}
+            expandableColumns={expandableColumns}
+            style={style}
+            moduleType="drawer"
         />
     );
 }

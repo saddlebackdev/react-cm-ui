@@ -54,7 +54,7 @@ class DataGridTable extends React.PureComponent {
         const { onSplitter } = this.props;
 
         requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle);
+            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
             handle.style.left = 0;
         });
 
@@ -67,7 +67,7 @@ class DataGridTable extends React.PureComponent {
         const { onSplitterDragEnd } = this.props;
 
         requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle);
+            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
             handle.style.left = 0;
         });
 
@@ -78,7 +78,7 @@ class DataGridTable extends React.PureComponent {
         const { onSplitterDragEnd } = this.props;
 
         requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle);
+            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
             handle.style.left = 0;
         });
 

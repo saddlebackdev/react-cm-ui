@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../elements/button';
-import Drawer from './drawer';
+import Drawer from './drawer'; // eslint-disable-line import/no-cycle
 import Dropdown from '../modules/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';

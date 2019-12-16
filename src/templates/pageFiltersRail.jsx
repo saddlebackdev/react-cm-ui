@@ -1,8 +1,19 @@
 import ClassNames from 'classnames';
 import { CSSTransitionGroup } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Rail from '../elements/rail';
+
+const propTypes = {
+    children: PropTypes.node,
+    isOpen: PropTypes.bool,
+};
+
+const defaultProps = {
+    children: undefined,
+    isOpen: undefined,
+};
 
 function PageFiltersRail(props) {
     const {
@@ -42,5 +53,8 @@ function PageFiltersRail(props) {
         </MediaQuery>
     );
 }
+
+PageFiltersRail.propTypes = propTypes;
+PageFiltersRail.defaultProps = defaultProps;
 
 export default PageFiltersRail;
