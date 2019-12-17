@@ -50,6 +50,9 @@
         }
         &--item {
             margin-bottom: 11px;
+            &-checkbox, &-toggle {
+                margin-bottom: 22px;
+            }
             &-nested_toggles, &:last-child {
                 margin-bottom: 0;
             }
@@ -61,6 +64,16 @@
                     + div {
                         border-bottom: 1px solid color(borderColor);
                     }
+                }
+            }
+            &-toggle {
+                .ui.checkbox-toggle.checkbox-align-right label > span {
+                    text-align: left;
+                    width: 100%;
+                }
+                .item_toggle--label_with_icon {
+                    align-items: center;
+                    display: flex;
                 }
             }
         }

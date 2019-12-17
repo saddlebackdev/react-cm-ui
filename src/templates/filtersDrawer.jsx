@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../elements/button';
+import Checkbox from '../elements/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
 import Dropdown from '../modules/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
@@ -23,7 +24,90 @@ const propTypes = {
     onApply: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    rows: PropTypes.arrayOf(PropTypes.shape({})),
+    rows: PropTypes.arrayOf(PropTypes.shape({
+        header: PropTypes.string,
+        items: PropTypes.arrayOf(PropTypes.shape({
+            checkbox: {
+                checked: PropTypes.bool,
+                className: PropTypes.string,
+                disabled: PropTypes.bool,
+                id: PropTypes.string,
+                label: PropTypes.oneOfType([
+                    PropTypes.object,
+                    PropTypes.string,
+                ]),
+                name: PropTypes.string,
+                onChange: PropTypes.func,
+                style: PropTypes.object,
+            },
+            dropdown: {
+                onChange: PropTypes.func,
+                options: PropTypes.arrayOf(PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                })),
+                value: PropTypes.arrayOf(PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                })),
+            },
+            jsx: PropTypes.node,
+            multiSelect: PropTypes.arrayOf(PropTypes.shape({
+                placeholder: PropTypes.string,
+                onChange: PropTypes.func,
+                options: PropTypes.arrayOf(PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                })),
+                value: PropTypes.PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                }),
+            })),
+            nestedToggles: PropTypes.arrayOf(PropTypes.shape({
+                label: PropTypes.string,
+                onChange: PropTypes.func,
+                options: PropTypes.arrayOf(PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                })),
+                value: PropTypes.PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                }),
+            })),
+            toggle: {
+                checked: PropTypes.bool,
+                className: PropTypes.string,
+                disabled: PropTypes.bool,
+                id: PropTypes.string,
+                label: PropTypes.string,
+                labelIconColor: PropTypes.string,
+                labelIconType: PropTypes.string,
+                name: PropTypes.string,
+                onChange: PropTypes.func,
+                style: PropTypes.object,
+            },
+        })),
+    })),
     style: PropTypes.shape({}),
 };
 
@@ -175,8 +259,6 @@ class FiltersDrawer extends React.Component {
                                 )}
                             />
 
-                            qwerty
-
                             <Drawer.Content
                                 className="nested_toggles_wing--content"
                             >
@@ -306,16 +388,20 @@ class FiltersDrawer extends React.Component {
                                         {/* eslint-disable max-len */}
                                         {_.isArray(row.items) && _.map(row.items, (item) => {
                                             const {
+                                                checkbox,
                                                 dropdown,
                                                 jsx,
                                                 multiSelect,
                                                 nestedToggles,
+                                                toggle,
                                             } = item;
                                             const itemClassName = ClassNames('page_filters_drawer--item', {
+                                                'page_filters_drawer--item-checkbox': checkbox,
                                                 'page_filters_drawer--item-dropdown': dropdown,
                                                 'page_filters_drawer--item-jsx': jsx,
                                                 'page_filters_drawer--item-multi_select': multiSelect,
                                                 'page_filters_drawer--item-nested_toggles': nestedToggles,
+                                                'page_filters_drawer--item-toggle': toggle,
                                             });
 
                                             itemKeyNum += 1;
@@ -323,10 +409,41 @@ class FiltersDrawer extends React.Component {
                                             const itemKey = `page_filters_drawer--item-${itemKeyNum}`;
 
                                             if (
+                                                !dropdown &&
                                                 !jsx &&
-                                                dropdown &&
+                                                !multiSelect &&
                                                 !nestedToggles &&
-                                                !multiSelect
+                                                !toggle &&
+                                                checkbox
+                                            ) {
+                                                // Checkbox
+                                                return (
+                                                    <div
+                                                        className={itemClassName}
+                                                        key={itemKey}
+                                                    >
+                                                        <Checkbox
+                                                            checked={checkbox.checked}
+                                                            className={checkbox.className}
+                                                            disabled={checkbox.disabled}
+                                                            fluid
+                                                            id={checkbox.id}
+                                                            label={checkbox.label}
+                                                            name={checkbox.name}
+                                                            onChange={checkbox.onChange}
+                                                            style={checkbox.style}
+                                                        />
+                                                    </div>
+                                                );
+                                            }
+
+                                            if (
+                                                !checkbox &&
+                                                !jsx &&
+                                                !multiSelect &&
+                                                !nestedToggles &&
+                                                !toggle &&
+                                                dropdown
                                             ) {
                                                 // Dropdown
                                                 return (
@@ -356,49 +473,29 @@ class FiltersDrawer extends React.Component {
                                             }
 
                                             if (
-                                                !jsx &&
+                                                !checkbox &&
                                                 !dropdown &&
-                                                nestedToggles &&
-                                                !multiSelect
+                                                !multiSelect &&
+                                                !nestedToggles &&
+                                                !toggle &&
+                                                jsx
                                             ) {
-                                                // Nested Toggles
                                                 return (
                                                     <div
                                                         className={className}
                                                         key={itemKey}
                                                     >
-                                                        <FiltersDrawerNestedTogglesLabel
-                                                            onClick={this.onNestedTogglesLabelClick}
-                                                            nestedTogglesData={nestedToggles}
-                                                        />
-
-                                                        {!_.isEmpty(nestedToggles.value) && (
-                                                            <div>
-                                                                {_.map(
-                                                                    nestedToggles.value,
-                                                                    (option) => {
-                                                                        nestedTogglesValueLabelKeyNum += 1;
-
-                                                                        return (
-                                                                            <FiltersDrawerNestedTogglesValueLabel
-                                                                                key={`nested-toggles-selected-filter-${nestedTogglesValueLabelKeyNum}`}
-                                                                                nestedTogglesData={nestedToggles}
-                                                                                onClick={FiltersDrawer.onNestedTogglesValueLabelClick}
-                                                                                option={option}
-                                                                            />
-                                                                        );
-                                                                    },
-                                                                )}
-                                                            </div>
-                                                        )}
+                                                        {jsx}
                                                     </div>
                                                 );
                                             }
 
                                             if (
-                                                !jsx &&
+                                                !checkbox &&
                                                 !dropdown &&
+                                                !jsx &&
                                                 !nestedToggles &&
+                                                !toggle &&
                                                 multiSelect
                                             ) {
                                                 // Multi Select
@@ -460,17 +557,91 @@ class FiltersDrawer extends React.Component {
                                             }
 
                                             if (
-                                                jsx &&
+                                                !checkbox &&
                                                 !dropdown &&
-                                                !nestedToggles &&
-                                                !multiSelect
+                                                !jsx &&
+                                                !multiSelect &&
+                                                !toggle &&
+                                                nestedToggles
                                             ) {
+                                                // Nested Toggles
                                                 return (
                                                     <div
                                                         className={className}
                                                         key={itemKey}
                                                     >
-                                                        {jsx}
+                                                        <FiltersDrawerNestedTogglesLabel
+                                                            onClick={this.onNestedTogglesLabelClick}
+                                                            nestedTogglesData={nestedToggles}
+                                                        />
+
+                                                        {!_.isEmpty(nestedToggles.value) && (
+                                                            <div>
+                                                                {_.map(
+                                                                    nestedToggles.value,
+                                                                    (option) => {
+                                                                        nestedTogglesValueLabelKeyNum += 1;
+
+                                                                        return (
+                                                                            <FiltersDrawerNestedTogglesValueLabel
+                                                                                key={`nested-toggles-selected-filter-${nestedTogglesValueLabelKeyNum}`}
+                                                                                nestedTogglesData={nestedToggles}
+                                                                                onClick={FiltersDrawer.onNestedTogglesValueLabelClick}
+                                                                                option={option}
+                                                                            />
+                                                                        );
+                                                                    },
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            }
+
+                                            if (
+                                                !dropdown &&
+                                                !jsx &&
+                                                !multiSelect &&
+                                                !nestedToggles &&
+                                                !checkbox &&
+                                                toggle
+                                            ) {
+                                                // Toggle
+
+                                                let newLabel = toggle.label;
+
+                                                if (toggle.labelIconType) {
+                                                    newLabel = (
+                                                        <span className="item_toggle--label_with_icon">
+                                                            <Icon
+                                                                color={toggle.labelIconColor || 'highlight'}
+                                                                size={24}
+                                                                type={toggle.labelIconType}
+                                                            />
+
+                                                            {toggle.label}
+                                                        </span>
+                                                    );
+                                                }
+
+                                                return (
+                                                    <div
+                                                        className={itemClassName}
+                                                        key={itemKey}
+                                                    >
+                                                        <Checkbox
+                                                            align="right"
+                                                            checked={toggle.checked}
+                                                            className={toggle.className}
+                                                            disabled={toggle.disabled}
+                                                            fluid
+                                                            id={toggle.id}
+                                                            label={newLabel}
+                                                            name={toggle.name}
+                                                            onChange={toggle.onChange}
+                                                            style={toggle.style}
+                                                            toggle
+                                                        />
                                                     </div>
                                                 );
                                             }

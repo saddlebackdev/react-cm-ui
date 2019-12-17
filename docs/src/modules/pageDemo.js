@@ -844,7 +844,7 @@ class PageDemo extends React.PureComponent {
                     />
 
                     <Page.Container>
-                        <Page.DeprecatedFiltersDrawer
+                        <Page.FiltersDrawer
                             isDirty={isDirty}
                             isFiltering={isFiltering}
                             isOpen={isFiltersDrawerOpen}
@@ -875,6 +875,25 @@ class PageDemo extends React.PureComponent {
                                                     },
                                                 ],
                                                 value: dirtyFilters.multiSelectValue,
+                                            },
+                                        },
+                                    ],
+                                }, {
+                                    header: 'Type',
+                                    items: [
+                                        {
+                                            checkbox: {
+                                                checked: true,
+                                                label: 'Sensitive',
+                                                onChange: () => console.log('test'),
+                                            },
+                                        }, {
+                                            toggle: {
+                                                checked: true,
+                                                label: 'Pinned',
+                                                labelIconColor: 'highlight',
+                                                labelIconType: 'pin',
+                                                onChange: () => console.log('test'),
                                             },
                                         },
                                     ],

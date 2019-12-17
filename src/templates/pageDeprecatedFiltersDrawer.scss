@@ -2,10 +2,10 @@
 
 
 .ui {
-    &.page--filters_drawer .drawer-container-inner, .page_filters_drawer--nested_toggles_wing .drawer--wing-container-inner {
+    &.page--deprecated_filters_drawer .drawer-container-inner, .page_deprecated_filters_drawer--nested_toggles_wing .drawer--wing-container-inner {
         padding-top: 49px !important; // sass-lint:disable-line no-important
     }
-    .page_filters_drawer, .nested_toggles_wing {
+    .page_deprecated_filters_drawer, .nested_toggles_wing {
         &--title_bar {
             background-color: color(backgroundColorLight);
             border-bottom-color: color(borderColor);
@@ -27,7 +27,7 @@
             margin-bottom: 22px;
         }
     }
-    .page_filters_drawer {
+    .page_deprecated_filters_drawer {
         &--actions {
             align-items: center;
             display: flex;
@@ -54,10 +54,10 @@
                 margin-bottom: 0;
             }
             &-nested_toggles {
-                &:first-child .page_filters_drawer--nested_toggles_label {
+                &:first-child .page_deprecated_filters_drawer--nested_toggles_label {
                     border-top: 1px solid color(borderColor);
                 }
-                &:not(:last-child) .page_filters_drawer--nested_toggles_label {
+                &:not(:last-child) .page_deprecated_filters_drawer--nested_toggles_label {
                     + div {
                         border-bottom: 1px solid color(borderColor);
                     }
