@@ -5,12 +5,10 @@ $prefixPageContent: page--content;
     &.#{$prefixDrawerContent} {
         padding: 33px 11px;
     }
-    &.#{$prefixPageContent} {
+    &.#{$prefixDrawerContent}, &.#{$prefixPageContent} {
         position: relative;
         transition: margin 200ms ease-out;
         z-index: 0;
-    }
-    &.#{$prefixDrawerContent}, &.#{$prefixPageContent} {
         &-filters_rail_open {
             margin-left: 250px;
         }

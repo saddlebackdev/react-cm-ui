@@ -2,14 +2,14 @@ $prefixDrawerContainer: drawer--container;
 $prefixPageContainer: page--container;
 
 .ui {
-    &.#{$prefixDrawerContainer}, &.#{$prefixPageContainer} {
+    &.#{$prefixPageContainer} {
         margin-top: 50px;
     }
 }
 
 @media only screen and (min-width: 768px) {
     .ui {
-        &.#{$prefixDrawerContainer}, &.#{$prefixPageContainer} {
+        &.#{$prefixPageContainer} {
             margin-top: 70px;
         }
     }

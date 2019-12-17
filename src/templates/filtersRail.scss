@@ -4,9 +4,11 @@ $prefixDrawerFiltersRail: drawer--filters_rail;
 $prefixPageFiltersRail: page--filters_rail;
 
 .ui {
-    &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {
+    &.#{$prefixPageFiltersRail} {
         margin-left: -22px;
         min-height: 100%;
+    }
+    &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {
         pointer-events: none;
         position: absolute;
         width: 250px;

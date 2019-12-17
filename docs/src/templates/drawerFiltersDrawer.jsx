@@ -2,6 +2,7 @@ import {
     Button,
     Card,
     Drawer,
+    Dropdown,
     Header,
     Icon,
     Input,
@@ -656,7 +657,55 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                             />
 
                             <Drawer.FiltersRail isOpen={isFiltersDrawerOpen}>
-                                test
+                                <Header weight="bold">Sort By</Header>
+
+                                <Dropdown
+                                    clearable={false}
+                                    options={[
+                                        {
+                                            label: 'Name (Ascending)',
+                                            value: 'Name (Ascending)',
+                                        }, {
+                                            label: 'Name (Descending)',
+                                            value: 'Name (Descending)',
+                                        }, {
+                                            label: 'Create Date (Ascending)',
+                                            value: 'Create Date (Ascending)',
+                                        }, {
+                                            label: 'Create Date (Descending)',
+                                            value: 'Create Date (Descending)',
+                                        },
+                                    ]}
+                                    searchable={false}
+                                    selection
+                                    selectionUnderline
+                                    value={{
+                                        label: 'Name (Ascending)',
+                                        value: 'Name (Ascending)',
+                                    }}
+                                />
+
+                                <Header weight="bold">Campus</Header>
+
+                                <Dropdown
+                                    clearable={false}
+                                    options={[
+                                        {
+                                            label: 'All Campuses',
+                                            value: 'All Campuses',
+                                        }, {
+                                            label: 'Lake Forest',
+                                            value: 'Lake Forest',
+                                        },
+                                    ]}
+                                    searchable={false}
+                                    selection
+                                    selectionUnderline
+                                    value={{
+                                        label: 'All Campuses',
+                                        value: 'All Campuses',
+                                    }}
+                                />
                             </Drawer.FiltersRail>
 
                             <Drawer.Content

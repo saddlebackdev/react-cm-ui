@@ -28,7 +28,7 @@ function DrawerContainer(props) {
         <Container
             className={className}
             id={id}
-            moduleType="page"
+            moduleType="drawer"
             style={style}
         >
             {children}

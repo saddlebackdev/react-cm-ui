@@ -1,17 +1,17 @@
-import ClassNames from 'classnames';
 import { CSSTransitionGroup } from 'react-transition-group';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ActivityIndicator from '../elements/activityIndicator';
 import PageActionBar from './pageActionBar';
 import PageContainer from './pageContainer';
 import PageContent from './pageContent';
-import PageDetailsWindow from './pageDetailsWindow';
 import PageDataCards from './pageDataCards';
 import PageDataGrid from './pageDataGrid';
 import PageDataGroups from './pageDataGroups';
 import PageDelayChildren from './pageDelayChildren';
 import PageDeprecatedFiltersDrawer from './pageDeprecatedFiltersDrawer';
+import PageDetailsWindow from './pageDetailsWindow';
 import PageFiltersDrawer from './pageFiltersDrawer';
 import PageFiltersRail from './pageFiltersRail';
 
@@ -96,10 +96,10 @@ Page.Content = PageContent;
 Page.DataCards = PageDataCards;
 Page.DataGrid = PageDataGrid;
 Page.DataGroups = PageDataGroups;
+Page.DeprecatedFiltersDrawer = PageDeprecatedFiltersDrawer; // TODO: Deprecated. Remove in a major release.
 Page.Details = PageDetailsWindow; // TODO: Deprecated. Alias name for Page.DetailsWindow. Remove in a major release.
 Page.DetailsWindow = PageDetailsWindow;
 Page.FiltersDrawer = PageFiltersDrawer; // TODO: Deprecated. Remove in a major release.
-Page.DeprecatedFiltersDrawer = PageDeprecatedFiltersDrawer; // TODO: Deprecated. Remove in a major release.
 Page.FiltersRail = PageFiltersRail;
 Page.Grid = PageDataCards; // TODO: Deprecated. Alias name for Page.DataCard. Remove in a major release.
 Page.Table = PageDataGrid; // TODO: Deprecated. Alias name for Page.DataGrid. Remove in a major release.

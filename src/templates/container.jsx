@@ -25,7 +25,7 @@ function PageContainer(props) {
         moduleType,
         style,
     } = props;
-    const bemName = `${moduleType}--content`;
+    const bemName = `${moduleType}--container`;
     const containerClasses = ClassNames('ui', bemName, className);
 
     return (
