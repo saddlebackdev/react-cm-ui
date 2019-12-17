@@ -52,7 +52,7 @@ class Comment extends Component {
                         }}
                     >
                         <div style={{ flex: 'none' }}>
-                            <Image avatar name={name} size={44} src={avatarSrc} />
+                            <Image type="user" name={name} size={44} src={avatarSrc} />
                         </div>
 
                         <div
