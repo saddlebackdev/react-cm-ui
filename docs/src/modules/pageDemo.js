@@ -885,7 +885,7 @@ class PageDemo extends React.PureComponent {
                                             checkbox: {
                                                 checked: true,
                                                 label: 'Sensitive',
-                                                onChange: () => console.log('test'),
+                                                onChange: () => console.log('Sensitive Toggled'),
                                             },
                                         }, {
                                             toggle: {
@@ -893,7 +893,7 @@ class PageDemo extends React.PureComponent {
                                                 label: 'Pinned',
                                                 labelIconColor: 'highlight',
                                                 labelIconType: 'pin',
-                                                onChange: () => console.log('test'),
+                                                onChange: () => console.log('Pinned Toggled'),
                                             },
                                         },
                                     ],
