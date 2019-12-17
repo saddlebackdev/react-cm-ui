@@ -21,6 +21,7 @@ const propTypes = {
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    moduleType: PropTypes.string.isRequired,
     onApply: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -216,12 +217,15 @@ class FiltersDrawer extends React.Component {
             isDirty,
             isFiltering,
             isOpen,
+            moduleType,
             onClose,
             rows,
             style,
         } = this.props;
         const { nestedTogglesData } = this.state;
-        const containerClasses = ClassNames('ui', 'page--filters_drawer', className);
+        const bemClassName = `${moduleType}--filters_drawer`;
+        const bemBlockClassName = `${moduleType}_filters_drawer`;
+        const containerClasses = ClassNames('ui', bemClassName, className);
         const canClear = isFiltering || isDirty;
         const clearFiltersClasses = ClassNames('clear-filters', 'font-size-xsmall', 'font-weight-semibold');
         const isNestedTogglesOptionsEmpty = _.isEmpty(nestedTogglesData);
@@ -244,7 +248,7 @@ class FiltersDrawer extends React.Component {
                     style={style}
                     wing={(
                         <Drawer.Wing
-                            className="page_filters_drawer--nested_toggles_wing"
+                            className={`${bemBlockClassName}--nested_toggles_wing`}
                             isOpen={!isNestedTogglesOptionsEmpty}
                         >
                             <Drawer.TitleBar
@@ -300,19 +304,22 @@ class FiltersDrawer extends React.Component {
                     )}
                 >
                     <Drawer.TitleBar
-                        className="page_filters_drawer--title_bar"
+                        className={`${bemBlockClassName}--title_bar`}
                         closeButton={(
                             <Icon
-                                className="page_filters_drawer--close_button"
+                                className={`${bemBlockClassName}--close_button`}
                                 compact
                                 onClick={onClose}
                                 type="times"
                             />
                     )}
                         title={(
-                            <div className="page_filters_drawer--actions" title="Filters">
+                            <div
+                                className={`${bemBlockClassName}--actions`}
+                                title="Filters"
+                            >
                                 <div
-                                    className="page_filters_drawer--clear_column"
+                                    className={`${bemBlockClassName}--clear_column`}
                                 >
                                     {/* eslint-disable max-len */}
                                     {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
@@ -336,28 +343,28 @@ class FiltersDrawer extends React.Component {
                                 </div>
 
                                 <div
-                                    className="page_filters_drawer--apply_column"
+                                    className={`${bemBlockClassName}--apply_column`}
                                 >
                                     {isDirty && (
-                                    <Button
-                                        color="success"
-                                        icon
-                                        innerStyle={{
-                                            height: '32px',
-                                            width: '32px',
-                                        }}
-                                        onClick={this.onApplyClick}
-                                        style={{
-                                            height: '32px',
-                                            minHeight: '32px',
-                                            width: '32px',
-                                        }}
-                                    >
-                                        <Icon
-                                            compact
-                                            type="check"
-                                        />
-                                    </Button>
+                                        <Button
+                                            color="success"
+                                            icon
+                                            innerStyle={{
+                                                height: '32px',
+                                                width: '32px',
+                                            }}
+                                            onClick={this.onApplyClick}
+                                            style={{
+                                                height: '32px',
+                                                minHeight: '32px',
+                                                width: '32px',
+                                            }}
+                                        >
+                                            <Icon
+                                                compact
+                                                type="check"
+                                            />
+                                        </Button>
                                     )}
                                 </div>
                             </div>
@@ -370,12 +377,12 @@ class FiltersDrawer extends React.Component {
 
                             return (
                                 <div
-                                    className="page_filters_drawer--row"
-                                    key={`page--filters-drawer-row-${rowKeyNum}`}
+                                    className={`${bemBlockClassName}--row`}
+                                    key={`${bemBlockClassName}--filters-drawer-row-${rowKeyNum}`}
                                 >
                                     {row.header && (
                                         <Header
-                                            className="page_filters_drawer--header"
+                                            className={`${bemBlockClassName}--header`}
                                             weight="bold"
                                         >
                                             {row.header}
@@ -383,7 +390,7 @@ class FiltersDrawer extends React.Component {
                                     )}
 
                                     <div
-                                        className="page_filters_drawer--items"
+                                        className={`${bemBlockClassName}--items`}
                                     >
                                         {/* eslint-disable max-len */}
                                         {_.isArray(row.items) && _.map(row.items, (item) => {
@@ -395,18 +402,18 @@ class FiltersDrawer extends React.Component {
                                                 nestedToggles,
                                                 toggle,
                                             } = item;
-                                            const itemClassName = ClassNames('page_filters_drawer--item', {
-                                                'page_filters_drawer--item-checkbox': checkbox,
-                                                'page_filters_drawer--item-dropdown': dropdown,
-                                                'page_filters_drawer--item-jsx': jsx,
-                                                'page_filters_drawer--item-multi_select': multiSelect,
-                                                'page_filters_drawer--item-nested_toggles': nestedToggles,
-                                                'page_filters_drawer--item-toggle': toggle,
+                                            const itemClassName = ClassNames(`${bemBlockClassName}--item`, {
+                                                [`${bemBlockClassName}--item-checkbox`]: checkbox,
+                                                [`${bemBlockClassName}--item-dropdown`]: dropdown,
+                                                [`${bemBlockClassName}--item-jsx`]: jsx,
+                                                [`${bemBlockClassName}--item-multi_select`]: multiSelect,
+                                                [`${bemBlockClassName}--item-nested_toggles`]: nestedToggles,
+                                                [`${bemBlockClassName}--item-toggle`]: toggle,
                                             });
 
                                             itemKeyNum += 1;
 
-                                            const itemKey = `page_filters_drawer--item-${itemKeyNum}`;
+                                            const itemKey = `${bemBlockClassName}--item-${itemKeyNum}`;
 
                                             if (
                                                 !dropdown &&

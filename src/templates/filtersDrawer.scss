@@ -1,11 +1,20 @@
 @import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
 
+$prefixDrawerFiltersDrawer: drawer--filters_drawer;
+$prefixPageFiltersDrawer: page--filters_drawer;
+$prefixDrawerBlockName: drawer_filters_drawer;
+$prefixPageBlockName: page_filters_drawer;
 
 .ui {
-    &.page--filters_drawer .drawer-container-inner, .page_filters_drawer--nested_toggles_wing .drawer--wing-container-inner {
+    &.#{$prefixDrawerFiltersDrawer} .drawer-container-inner,
+    &.#{$prefixPageFiltersDrawer} .drawer-container-inner,
+    .#{$prefixDrawerBlockName}--nested_toggles_wing .drawer--wing-container-inner,
+    .#{$prefixPageBlockName}--nested_toggles_wing .drawer--wing-container-inner {
         padding-top: 49px !important; // sass-lint:disable-line no-important
     }
-    .page_filters_drawer, .nested_toggles_wing {
+    .#{$prefixDrawerBlockName},
+    .#{$prefixPageBlockName},
+    .nested_toggles_wing {
         &--title_bar {
             background-color: color(backgroundColorLight);
             border-bottom-color: color(borderColor);
@@ -27,7 +36,7 @@
             margin-bottom: 22px;
         }
     }
-    .page_filters_drawer {
+    .#{$prefixDrawerBlockName}, .#{$prefixPageBlockName} {
         &--actions {
             align-items: center;
             display: flex;
@@ -57,12 +66,20 @@
                 margin-bottom: 0;
             }
             &-nested_toggles {
-                &:first-child .page_filters_drawer--nested_toggles_label {
-                    border-top: 1px solid color(borderColor);
+                &:first-child {
+                    .#{$prefixDrawerBlockName}, .#{$prefixPageBlockName} {
+                        &--nested_toggles_label {
+                            border-top: 1px solid color(borderColor);
+                        }
+                    }
                 }
-                &:not(:last-child) .page_filters_drawer--nested_toggles_label {
-                    + div {
-                        border-bottom: 1px solid color(borderColor);
+                &:not(:last-child) {
+                    .#{$prefixDrawerBlockName}, .#{$prefixPageBlockName} {
+                        &--nested_toggles_label {
+                            + div {
+                                border-bottom: 1px solid color(borderColor);
+                            }
+                        }
                     }
                 }
             }
