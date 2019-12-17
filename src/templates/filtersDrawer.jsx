@@ -204,7 +204,7 @@ class FiltersDrawer extends React.Component {
         });
 
         this.setState({
-            nestedTogglesData: _.cloneDeep(newNestedTogglesData),
+            nestedTogglesData: newNestedTogglesData,
         });
     }
 
