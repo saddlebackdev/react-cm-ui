@@ -22,7 +22,7 @@ const defaultProps = {
     style: {},
 };
 
-function PageContent(props) {
+function DrawerContent(props) {
     const {
         as,
         children,
@@ -48,7 +48,7 @@ function PageContent(props) {
     );
 }
 
-PageContent.propTypes = propTypes;
-PageContent.defaultProps = defaultProps;
+DrawerContent.propTypes = propTypes;
+DrawerContent.defaultProps = defaultProps;
 
-export default PageContent;
+export default DrawerContent;
