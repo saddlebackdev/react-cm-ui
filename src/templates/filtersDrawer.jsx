@@ -312,7 +312,7 @@ class FiltersDrawer extends React.Component {
                                 onClick={onClose}
                                 type="times"
                             />
-                    )}
+                        )}
                         title={(
                             <div
                                 className={`${bemBlockClassName}--actions`}
