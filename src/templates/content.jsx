@@ -24,7 +24,7 @@ const defaultProps = {
     style: {},
 };
 
-function PageContent(props) {
+function Content(props) {
     const {
         as,
         children,
@@ -51,7 +51,7 @@ function PageContent(props) {
     );
 }
 
-PageContent.propTypes = propTypes;
-PageContent.defaultProps = defaultProps;
+Content.propTypes = propTypes;
+Content.defaultProps = defaultProps;
 
-export default PageContent;
+export default Content;
