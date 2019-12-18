@@ -1,0 +1,49 @@
+@import '../shared/styles/colors';
+
+$prefixDrawerFiltersRail: drawer--filters_rail;
+$prefixPageFiltersRail: page--filters_rail;
+
+.ui {
+    &.#{$prefixPageFiltersRail} {
+        margin-left: -22px;
+        min-height: 100%;
+    }
+    &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {
+        pointer-events: none;
+        position: absolute;
+        width: 250px;
+        z-index: 1;
+        > span {
+            min-height: 100%;
+        }
+        &-enter {
+            animation-name: showFilterRail;
+        }
+        &-leave {
+            animation-name: hideFilterRail;
+        }
+    }
+    .#{$prefixDrawerFiltersRail}, .#{$prefixPageFiltersRail} {
+        &_inner_container {
+            animation-duration: 200ms;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-out;
+            height: auto;
+            min-height: 100%;
+            pointer-events: auto;
+            &::after {
+                z-index: -1;
+            }
+        }
+    }
+}
+
+@keyframes hideFilterRail {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+@keyframes showFilterRail {
+    0% { transform: translate(-100%, 0); }
+    100% { transform: translate(0, 0); }
+}

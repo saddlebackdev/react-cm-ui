@@ -1,4 +1,4 @@
-node_modules/**
+node_modules/
 npm-debug.log
 build
 lib
@@ -6,3 +6,4 @@ stats.json
 .DS_Store
 config.json
 config.local.json
+*.tgz

@@ -1,0 +1,91 @@
+$prefixDrawerDataGrid: drawer--data_grid;
+$prefixPageDataGrid: page--data_grid;
+$blackAlpha: rgba(0, 0, 0, .5);
+
+@mixin drawerDataGrid {
+    margin-top: -33px;
+}
+
+.ui {
+    &.#{$prefixDrawerDataGrid}, &.#{$prefixPageDataGrid}  {
+        &-bleed {
+            margin: 0 -11px;
+        }
+        &-sticky_columns {
+            position: relative;
+        }
+    }
+    &.#{$prefixDrawerDataGrid} {
+        @include drawerDataGrid;
+    }
+    .#{$prefixDrawerDataGrid}, .#{$prefixPageDataGrid}  {
+        &_fixed_column {
+            left: 0;
+            position: absolute;
+            top: 0;
+        }
+        &_table_component {
+            .table-cell:last-child {
+                padding-right: 11px !important; // eslint-disable-line no-important
+            }
+            .table-header-cell:last-child {
+                padding-right: 11px !important; // eslint-disable-line no-important
+                position: relative;
+                .#{$prefixDrawerDataGrid}, .#{$prefixPageDataGrid}  {
+                    &_table_header_handle {
+                        cursor: col-resize;
+                        height: 14px;
+                        left: auto !important; // eslint-disable-line no-important
+                        margin-top: -7px;
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        .ui.icon-size-small {
+                            width: 5px;
+                            svg {
+                                width: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &_drop_shadow {
+            box-shadow: 0 4px 5px 0 $blackAlpha;
+        }
+        &_fixed_body {
+            overflow: auto;
+        }
+        &_fixed_bottom {
+            background-color: color(backgroundColorLight);
+            bottom: -8px;
+            height: 10px;
+            left: 0;
+            position: absolute;
+            right: 0;
+        }
+        &_table_header_cell {
+            padding-top: rem(11px) !important; // sass-lint:disable-line no-important
+        }
+    }
+    .#{$prefixDrawerDataGrid} {
+        &_table_component {
+            .table-header-cell {
+                padding-top: rem(11px);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui {
+        &.#{$prefixDrawerDataGrid}, &.#{$prefixPageDataGrid}  {
+            &-bleed {
+                margin: 0 -22px;
+            }
+        }
+        &.#{$prefixDrawerDataGrid} {
+            @include drawerDataGrid;
+        }
+    }
+}

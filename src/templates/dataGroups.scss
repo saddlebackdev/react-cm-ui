@@ -1,0 +1,194 @@
+@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+
+$prefixDrawerDataGroup: drawer--data_group;
+$prefixPageDataGroup: page--data_group;
+$prefixDrawerDataGroups: drawer--data_groups;
+$prefixPageDataGroups: page--data_groups;
+
+.ui {
+    &.#{$prefixDrawerDataGroups}, &.#{$prefixPageDataGroups} {
+        display: flex;
+        margin: 0 -11px;
+    }
+    .#{$prefixDrawerDataGroups}, .#{$prefixPageDataGroups} {
+        &_column {
+            max-width: 643px;
+            min-width: 300px;
+            padding: 0 11px;
+            width: 100%;
+
+        }
+    }
+    .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+        margin-top: 11px;
+        padding: 22px 11px;
+        position: relative;
+        transition: box-shadow 250ms ease-out;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:hover {
+            border-radius: 3px;
+            box-shadow: inset 0 0 1px 1px color(backgroundColorLight);
+            .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+                &_header_icon .icon-use-path {
+                    fill: color(backgroundColorHighlightDark);
+                }
+            }
+        }
+        &-expanded {
+            animation-name: bckFadeInOut;
+            animation-timing-function: ease-in-out;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            .#{$prefixDrawerDataGroup}_inner_container, .#{$prefixPageDataGroup}_inner_container {
+                animation-name: fadeIn;
+                animation-timing-function: ease-in;
+                animation-delay: 500ms;
+                animation-duration: 500ms;
+                animation-fill-mode: both;
+            }
+            .#{$prefixDrawerDataGroup}_inner_container_loader, .#{$prefixPageDataGroup}_inner_container_loader {
+                animation-name: fadeOut;
+                animation-timing-function: ease-out;
+                animation-delay: 300ms;
+                animation-duration: 600ms;
+                animation-fill-mode: both;
+            }
+            .#{$prefixDrawerDataGroup}_expand_section, .#{$prefixPageDataGroup}_expand_section {
+                display: block;
+            }
+            .#{$prefixDrawerDataGroup}_contract_section, .#{$prefixPageDataGroup}_contract_section {
+                display: none;
+            }
+        }
+        &_header_section {
+            display: flex;
+            justify-content: space-between;
+        }
+        &_header_icon {
+            cursor: pointer;
+            margin-right: 0;
+        }
+        &_contract_section {
+            display: block;
+        }
+        &_list {
+            width: 100%;
+            .list--item {
+                border-top: 1px solid color(borderColorSecondary) !important; // sass-lint:disable-line no-important
+                &:first-child {
+                    border-top: none !important; // sass-lint:disable-line no-important
+                }
+            }
+        }
+        &_row {
+            display: flex;
+            flex-direction: row;
+            &:not(.#{$prefixDrawerDataGroup}_header_icon), &:not(.#{$prefixPageDataGroup}_header_icon) {
+                justify-content: space-between;
+            }
+            &_data {
+                flex-grow: 1;
+            }
+            &_value, &_field_name, &_field_name_and_value, &_field_value {
+                font-weight: $default-font-weight-semibold;
+            }
+            &_value {
+                font-size: rem(16px);
+            }
+            &_field_name_and_value {
+                font-size: rem(14px);
+                margin-top: 10px;
+            }
+            &_field_value {
+                font-size: rem(16px);
+                line-height: 14px;
+                margin-top: 4px;
+            }
+        }
+        &_expand_section {
+            display: none;
+            &_list {
+                margin-bottom: 55px;
+                .list--item {
+                    border-top: none !important; // sass-lint:disable-line no-important
+                    margin-bottom: 22px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &_inner_container_loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui {
+        .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
+            &_row {
+                &_value, &_field_name, &_field_name_and_value {
+                    font-weight: $default-font-weight-normal;
+                }
+                &_value {
+                    font-size: rem(14px);
+                }
+                &_field_name {
+                    font-size: rem(12px);
+                }
+            }
+        }
+    }
+}
+
+@keyframes bckFadeInOut {
+    0% {
+      backGround-color:rgba(237, 241, 245, 1);
+    }
+    50% {
+      backGround-color:rgba(237, 241, 245, 1);
+    }
+    100% {
+      backGround-color:rgba(237, 241, 245, 0);
+    }
+  }
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+}

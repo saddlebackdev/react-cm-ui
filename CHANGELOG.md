@@ -1,6 +1,36 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.2.2
+
+#### Bug Fix
+- [PR #91](https://github.com/saddlebackdev/react-cm-ui/pull/91)
+- [PR #90](https://github.com/saddlebackdev/react-cm-ui/pull/90)
+    - PR #90 and #91 fix the **DataGrid** `id` bug.
+
+## 7.2.1
+
+#### Bug Fix
+- Removed `.jsx` extensions.
+
+## 7.2.0
+
+### Feature
+- [PR #82](https://github.com/saddlebackdev/react-cm-ui/pull/82)
+    - Added a expand feature to **DataGroups**.
+- [PR #86](https://github.com/saddlebackdev/react-cm-ui/pull/86)
+    - Documentation additions.
+- [PR #87](https://github.com/saddlebackdev/react-cm-ui/pull/87)
+    - Prevents click when highlighting elements for **Card** and **TableRow**.
+- [PR #88](https://github.com/saddlebackdev/react-cm-ui/pull/88)
+    - Added icons: `marital-status` and `preferred-service`.
+
+#### Bug Fix
+- [PR #85](https://github.com/saddlebackdev/react-cm-ui/pull/85)
+    - Fixed `accessedData` function.
+- [PR #89](https://github.com/saddlebackdev/react-cm-ui/pull/89)
+    - Fixes the DataGroups column style bug.
+
 ## 7.1.0
 
 ### Feature

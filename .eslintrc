@@ -9,53 +9,47 @@
     },
     "parser": "babel-eslint",
     "rules": {
-        ## Overwriting eslint-config-airbnb-base/rules/style.js
-        'indent': ["error", 4, {
-            SwitchCase: 1,
-            VariableDeclarator: 1,
-            outerIIFEBody: 1,
-            FunctionDeclaration: {
-                parameters: 1,
-                body: 1
+        # Overwriting eslint-config-airbnb-base/rules/style.js
+        "indent": ["error", 4, {
+            "SwitchCase": 1,
+            "VariableDeclarator": 1,
+            "outerIIFEBody": 1,
+            "FunctionDeclaration": {
+                "parameters": 1,
+                "body": 1
             },
-            FunctionExpression: {
-                parameters: 1,
-                body: 1
+            "FunctionExpression": {
+                "parameters": 1,
+                "body": 1
             },
-            CallExpression: {
-                arguments: 1
+            "CallExpression": {
+                "arguments": 1
             },
-            ArrayExpression: 1,
-            ObjectExpression: 1,
-            ImportDeclaration: 1,
-            flatTernaryExpressions: false,
-            ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
-            ignoreComments: false
+            "ArrayExpression": 1,
+            "ObjectExpression": 1,
+            "ImportDeclaration": 1,
+            "flatTernaryExpressions": false,
+            "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
+            "ignoreComments": false
         }],
-        'max-len': ['error', 100, 2, {
-          ignoreUrls: true,
-          ignoreComments: false,
-          ignoreRegExpLiterals: true,
-          ignoreStrings: true,
-          ignoreTemplateLiterals: true,
-          ignoreTrailingComments: true,
+        # Added ignoreTemplateLiterals
+        "max-len": ["error", 100, 2, {
+            "ignoreUrls": true,
+            "ignoreComments": false,
+            "ignoreTrailingComments": true,
+            "ignoreRegExpLiterals": true,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true
         }],
         "operator-linebreak": ["error", "after"],
-        ## Overwriting eslint-config-airbnb-base/rules/imports.js
-        'import/extensions': ['error', 'ignorePackages', {
-            js: 'always',
-            jsx: 'never',
-            mjs: 'never',
-            ignorePackages: true,
-        }],
-        'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
-        'import/no-unresolved': [0],
-        ## Overwriting eslint-config-airbnb/rules/react.js
-        'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
-        'react/jsx-fragments': ['error', 'element'],
-        'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': ['error', 4],
-        'react/no-did-update-set-state': 'off',
+        # Overwriting eslint-config-airbnb-base/rules/imports.js
+        "import/order": ["error", { groups: [["builtin", "external", "internal"]] }],
+        "import/no-unresolved": [0],
+        # Overwriting eslint-config-airbnb/rules/react.js
+        "react/jsx-fragments": ["error", "element"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/no-did-update-set-state": "off",
     },
     "plugins": [
         "react",
