@@ -257,10 +257,17 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerFiltersDrawer.js')
+                        import('./templates/drawerFiltersDrawer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="filters-drawer"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/drawerDeprecatedFiltersDrawer.js')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="deprecated-filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {

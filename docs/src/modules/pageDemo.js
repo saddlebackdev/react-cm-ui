@@ -879,6 +879,25 @@ class PageDemo extends React.PureComponent {
                                         },
                                     ],
                                 }, {
+                                    header: 'Type',
+                                    items: [
+                                        {
+                                            checkbox: {
+                                                checked: true,
+                                                label: 'Sensitive',
+                                                onChange: () => console.log('Sensitive Toggled'),
+                                            },
+                                        }, {
+                                            toggle: {
+                                                checked: true,
+                                                label: 'Pinned',
+                                                labelIconColor: 'highlight',
+                                                labelIconType: 'pin',
+                                                onChange: () => console.log('Pinned Toggled'),
+                                            },
+                                        },
+                                    ],
+                                }, {
                                     header: 'Sort',
                                     items: [
                                         {

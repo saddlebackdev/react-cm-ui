@@ -26,16 +26,18 @@ export { default as Accordion } from './modules/accordion.js';
 export { default as DatePicker } from './modules/datePickerDeprecated.js';
 export { default as DatePickerCalendar } from './modules/datePickerCalendar.js';
 export { default as DatePickerInput } from './modules/datePickerInput.js';
-export { default as Drawer } from './modules/drawer.js';
 export { default as DrawerDeprecated } from './modules/drawerDeprecated.js';
 export { default as Dropdown } from './modules/dropdown.js';
 export { default as DurationPicker } from './modules/durationPicker.js';
 export { default as Modal } from './modules/modal.js';
-export { default as Page } from './modules/page.js';
 export { default as PhoneInput } from './modules/phoneInput.js';
 export { default as Prompt } from './modules/prompt.js';
 export { default as SegmentedControls } from './modules/segmentedControls.js';
 export { default as TimePicker } from './modules/timePicker.js';
+
+// Templates
+export { default as Drawer } from './templates/drawer';
+export { default as Page } from './templates/page';
 
 // utils
 export { default as DatePickerUtils } from './utils/datePickerUtils.js';
