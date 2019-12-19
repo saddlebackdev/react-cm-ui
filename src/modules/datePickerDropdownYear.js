@@ -74,7 +74,7 @@ class DatePickerDropdownYear extends React.PureComponent {
                 <ScrollBar
                     autoHide
                     className="date-picker-dropdown-year-scrollbar"
-                    ref={ref => this.scrollComponent = ref}
+                    ref={(ref) => { this.scrollComponent = ref; }}
                 >
                     <ul>
                         {options}
