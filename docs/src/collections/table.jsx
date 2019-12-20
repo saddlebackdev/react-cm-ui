@@ -1,10 +1,13 @@
-'use strict';
-
-import { Card, Header, Table, TitleBar } from 'react-cm-ui';
-import Highlighter from '../app/highlighter.js';
-import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import {
+    Card,
+    Header,
+    Table,
+    TitleBar,
+} from 'react-cm-ui';
+import Highlighter from '../app/highlighter';
+import Main from '../app/main';
+import TableProps from '../app/tableProps';
 
 const tableSample = `import React from 'react';
 import { Table } from 'react-cm-ui';
@@ -1045,16 +1048,24 @@ const TableHeaderCellOnClickSample = `import React from 'react';
 import { Table } from 'react-cm-ui';
 
 export default class TableHeaderCellOnClickSample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        // ... do whatever the clicks are supposed to do ...
+    }
 
     render() {
         return (
             <Table>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 1</Table.HeaderCell>
-                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 2</Table.HeaderCell>
-                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 3</Table.HeaderCell>
-                        <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 4</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this.onClick}>Header 1</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this.onClick}>Header 2</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this.onClick}>Header 3</Table.HeaderCell>
+                        <Table.HeaderCell onClick={this.onClick}>Header 4</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -1104,7 +1115,7 @@ export default class TableRowOnClickSample extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    <Table.Row onClick={this._onClick.bind(this)}>
+                    <Table.Row onClick={this.onClick}>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
@@ -1177,6 +1188,17 @@ export default class ResponsiveWidthSample extends React.Component {
 }`;
 
 export default class CollectionsTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    /* eslint-disable class-methods-use-this */
+    onClick() {
+        window.alert('Clayton Kershaw!'); // eslint-disable-line no-alert
+    }
+    /* eslint-enable class-methods-use-this */
+
     render() {
         const props = [
             {
@@ -1390,7 +1412,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Celled Table
                     <Header.Subheader>
-                        A table's cells can be devided.
+                        A table&rsquo;s cells can be devided.
                     </Header.Subheader>
                 </Header>
 
@@ -1520,7 +1542,8 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Definition Table
                     <Header.Subheader>
-                        A table may be formatted to emphasize a first column that defines a row content.
+                        A table may be formatted to emphasize a first column
+                        that defines a row content.
                     </Header.Subheader>
                 </Header>
 
@@ -1604,7 +1627,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Fixed Table
                     <Header.Subheader>
-                        A table column's width can be evenly spaced.
+                        A table column&rsquo;s width can be evenly spaced.
                     </Header.Subheader>
                 </Header>
 
@@ -1621,7 +1644,11 @@ export default class CollectionsTable extends React.Component {
                     <Table.Body>
                         <Table.Row>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                         </Table.Row>
@@ -1629,7 +1656,11 @@ export default class CollectionsTable extends React.Component {
                         <Table.Row>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                         </Table.Row>
 
@@ -1637,7 +1668,11 @@ export default class CollectionsTable extends React.Component {
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                         </Table.Row>
                     </Table.Body>
                 </Table>
@@ -1650,7 +1685,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Font Size
                     <Header.Subheader>
-                        A table's default font size can be changed.
+                        A table&rsquo;s default font size can be changed.
                     </Header.Subheader>
                 </Header>
 
@@ -1784,7 +1819,10 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Full Width Table
                     <Header.Subheader>
-                        A table, along with <code>definition</code> enabled, can have a full width header, filling in the gap left by the first column.
+                        A table, along with
+                        <code>definition</code>
+                        enabled, can have a full width header, filling in the
+                        gap left by the first column.
                     </Header.Subheader>
                 </Header>
 
@@ -1830,7 +1868,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Selectable Table
                     <Header.Subheader>
-                        A table's rows can appear to be selectable when rolling over them.
+                        A table&rsquo;s rows can appear to be selectable when rolling over them.
                     </Header.Subheader>
                 </Header>
 
@@ -1876,12 +1914,15 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Single Line Table
                     <Header.Subheader>
-                        A table's cells will not wrap content in them.
+                        A table&rsquo;s cells will not wrap content in them.
                     </Header.Subheader>
                 </Header>
 
                 <p className="font-size-xsmall color-static">
-                    <span className="font-weight-semibold">Note:</span> Must have <code>fixed</code> enabled.
+                    <span className="font-weight-semibold">Note:</span>
+                    Must have
+                    <code>fixed</code>
+                    enabled.
                 </p>
 
                 <Table basic fixed singleLine>
@@ -1904,7 +1945,11 @@ export default class CollectionsTable extends React.Component {
 
                         <Table.Row>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                         </Table.Row>
@@ -1926,7 +1971,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Size
                     <Header.Subheader>
-                        A table's default cell size can be changed.
+                        A table&rsqup;s default cell size can be changed.
                     </Header.Subheader>
                 </Header>
 
@@ -2026,7 +2071,12 @@ export default class CollectionsTable extends React.Component {
                 </Header>
 
                 <p className="font-size-xsmall color-static">
-                    <span className="font-weight-semibold">Note:</span> Wrap the <code>Table</code> in a block container and pass <code>margin: 0 -11px;</code> to the container to go edge-to-edge.
+                    <span className="font-weight-semibold">Note:</span>
+                    Wrap the
+                    <code>Table</code>
+                    in a block container and pass
+                    <code>margin: 0 -11px;</code>
+                    to the container to go edge-to-edge.
                 </p>
 
                 <Table basic stretch>
@@ -2075,7 +2125,12 @@ export default class CollectionsTable extends React.Component {
                 </Header>
 
                 <p className="font-size-xsmall color-static">
-                    <span className="font-weight-semibold">Note:</span> Wrap the <code>Table</code> in a block container and pass <code>margin: 0 -22px;</code> to the container to go edge-to-edge.
+                    <span className="font-weight-semibold">Note:</span>
+                    Wrap the
+                    <code>Table</code>
+                    in a block container and pass
+                    <code>margin: 0 -22px;</code>
+                    to the container to go edge-to-edge.
                 </p>
 
                 <Table basic stretch="very">
@@ -2120,7 +2175,8 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Striped Table
                     <Header.Subheader>
-                        A table's rows can be striped, alternating rows with slightly darker background color.
+                        A table&rsquo;s rows can be striped, alternating rows
+                        with slightly darker background color.
                     </Header.Subheader>
                 </Header>
 
@@ -2166,7 +2222,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Active
                     <Header.Subheader>
-                        A table's row or cell can be active.
+                        A table&rsquo;s row or cell can be active.
                     </Header.Subheader>
                 </Header>
 
@@ -2212,7 +2268,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Disabled
                     <Header.Subheader>
-                        A table's row or cell can be disabled.
+                        A table&rsquo;s row or cell can be disabled.
                     </Header.Subheader>
                 </Header>
 
@@ -2258,7 +2314,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Text Align
                     <Header.Subheader>
-                        A table's row or cell's text alignment can be changed.
+                        A table&rsquo;s row or cell&rsquo;s text alignment can be changed.
                     </Header.Subheader>
                 </Header>
 
@@ -2304,7 +2360,7 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Vertical Align
                     <Header.Subheader>
-                        A table's row or cell's vertical alignment can be changed.
+                        A table&rsquo;s row or cell&rsquo;s vertical alignment can be changed.
                     </Header.Subheader>
                 </Header>
 
@@ -2321,21 +2377,33 @@ export default class CollectionsTable extends React.Component {
                     <Table.Body>
                         <Table.Row>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell verticalAlign="bottom">cell</Table.Cell>
                         </Table.Row>
 
                         <Table.Row verticalAlign="top">
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell verticalAlign="bottom">cell</Table.Cell>
                         </Table.Row>
 
                         <Table.Row>
                             <Table.Cell>cell</Table.Cell>
-                            <Table.Cell>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Table.Cell>
+                            <Table.Cell>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell verticalAlign="bottom">cell</Table.Cell>
                         </Table.Row>
@@ -2357,10 +2425,10 @@ export default class CollectionsTable extends React.Component {
                 <Table>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 1</Table.HeaderCell>
-                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 2</Table.HeaderCell>
-                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 3</Table.HeaderCell>
-                            <Table.HeaderCell onClick={this._onClick.bind(this)}>Header 4</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this.onClick}>Header 1</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this.onClick}>Header 2</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this.onClick}>Header 3</Table.HeaderCell>
+                            <Table.HeaderCell onClick={this.onClick}>Header 4</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
@@ -2411,7 +2479,7 @@ export default class CollectionsTable extends React.Component {
                     </Table.Header>
 
                     <Table.Body>
-                        <Table.Row onClick={this._onClick.bind(this)}>
+                        <Table.Row onClick={this.onClick}>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
                             <Table.Cell>cell</Table.Cell>
@@ -2442,7 +2510,8 @@ export default class CollectionsTable extends React.Component {
                 <Header size="large" style={{ marginTop: '55px' }} sub>
                     Responsive Width
                     <Header.Subheader>
-                        A table header cell and table ceel can specify a width for a specific device.
+                        A table header cell and table ceel can specify a width
+                        for a specific device.
                     </Header.Subheader>
                 </Header>
 
@@ -2485,9 +2554,5 @@ export default class CollectionsTable extends React.Component {
                 </Highlighter>
             </Main>
         );
-    }
-
-    _onClick() {
-        window.alert('Clayton Kershaw!');
     }
 }

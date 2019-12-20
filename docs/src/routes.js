@@ -153,7 +153,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./collections/table.js')
+                    import('./collections/table.jsx')
                         .then((module) => callback(null, module.default));
                 }}
                 path="table"
