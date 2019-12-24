@@ -13,6 +13,7 @@ import TableSampleCelled from './tableSampleCelled';
 import TableSampleCollapsing from './tableSampleCollapsing';
 import TableSampleDefinition from './tableSampleDefinition';
 import TableSampleDisabled from './tableSampleDisabled';
+import TableSampleDragAndDropRowReordering from './tableSampleDragAndDropRowReordering';
 import TableSampleFixed from './tableSampleFixed';
 import TableSampleFontSize from './tableSampleFontSize';
 import TableSampleFullWidth from './tableSampleFullWidth';
@@ -199,6 +200,9 @@ export default function CollectionsTable() {
 
             {/* Responsive Width */}
             <TableSampleResponsiveWidth />
+
+            {/* Drag and Drop Row Reordering */}
+            <TableSampleDragAndDropRowReordering />
         </Main>
     );
 }

@@ -9,10 +9,13 @@ class TableRow extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { selected: props.selected };
+        this.state = { isDragging: false, selected: props.selected };
 
         this.onClick = this.onClick.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -29,6 +32,18 @@ class TableRow extends Component {
         const isTextHighlighted = window.getSelection().toString();
         if (!isTextHighlighted && _.isFunction(onClick)) {
             onClick();
+        }
+    }
+
+    onDragEnd(event) {
+        const { draggable, onDragEnd } = this.props;
+
+        if (draggable) {
+            this.setState({ isDragging: false });
+
+            if (_.isFunction(onDragEnd)) {
+                onDragEnd(event);
+            }
         }
     }
 
@@ -51,6 +66,8 @@ class TableRow extends Component {
         const { draggable, onDragStart } = this.props;
 
         if (draggable) {
+            this.setState({ isDragging: true });
+
             if (!_.isFunction(onDragStart)) {
                 console.warn('Table Row is draggable but onDragStart event is not handled!'); // eslint-disable-line no-console
             } else {
@@ -86,7 +103,7 @@ class TableRow extends Component {
             verticalAlign,
         } = this.props;
 
-        const { selected } = this.state;
+        const { isDragging, selected } = this.state;
 
         const containerClasses = ClassNames(
             'table-row',
@@ -107,6 +124,7 @@ class TableRow extends Component {
                 'table-row-vertical-align-bottom': verticalAlign === 'bottom',
                 'table-row-vertical-align-middle': verticalAlign === 'middle',
                 'table-row-vertical-align-top': verticalAlign === 'top',
+                'table-row-dragging': isDragging,
             },
             className,
         );
@@ -116,7 +134,8 @@ class TableRow extends Component {
                 className={containerClasses}
                 draggable={draggable}
                 id={id}
-                onClick={this.onClick.bind(this)}
+                onClick={this.onClick}
+                onDragEnd={draggable ? this.onDragEnd : undefined}
                 onDragOver={draggable ? this.onDragOver : undefined}
                 onDragStart={draggable ? this.onDragStart : undefined}
                 onDrop={draggable ? this.onDrop : undefined}
@@ -143,6 +162,7 @@ TableRow.propTypes = {
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
     id: PropTypes.string,
     onClick: PropTypes.func,
+    onDragEnd: PropTypes.func,
     onDragOver: PropTypes.func,
     onDragStart: PropTypes.func,
     onDrop: PropTypes.func,
@@ -160,6 +180,7 @@ TableRow.defaultProps = {
     fontSize: undefined,
     id: undefined,
     onClick: undefined,
+    onDragEnd: undefined,
     onDragOver: undefined,
     onDragStart: undefined,
     onDrop: undefined,
