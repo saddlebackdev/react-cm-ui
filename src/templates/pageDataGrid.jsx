@@ -9,6 +9,7 @@ const propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     fontSize: PropTypes.string,
     handle: PropTypes.bool,
+    id: PropTypes.string,
     minWidth: PropTypes.number,
     rowProps: PropTypes.func,
     small: PropTypes.bool,
@@ -22,6 +23,7 @@ const defaultProps = {
     className: undefined,
     fontSize: undefined,
     handle: true,
+    id: 'page',
     minWidth: 800,
     rowProps: undefined,
     small: undefined,
@@ -38,6 +40,7 @@ function PageDataGrid(props) {
         data,
         fontSize,
         handle,
+        id,
         minWidth,
         rowProps,
         small,
@@ -54,6 +57,7 @@ function PageDataGrid(props) {
             data={data}
             fontSize={fontSize}
             handle={handle}
+            id={id}
             minWidth={minWidth}
             moduleType="page"
             rowProps={rowProps}

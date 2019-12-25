@@ -17,6 +17,7 @@ const propTypes = {
     dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
     handle: PropTypes.bool,
+    id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string,
     onSplitter: PropTypes.func,
     onSplitterDragEnd: PropTypes.func,
@@ -97,6 +98,7 @@ class DataGridTable extends React.PureComponent {
             dropShadow,
             fontSize,
             handle,
+            id,
             idPrefix,
             rowProps,
             sizes,
@@ -163,6 +165,7 @@ class DataGridTable extends React.PureComponent {
                                 classNamePrefix={classNamePrefix}
                                 columns={columns}
                                 handle={handle}
+                                id={id}
                                 idPrefix={idPrefix}
                                 isClickable={isSelectable}
                                 key={`tableBodyRow-${row.id || index}`}
