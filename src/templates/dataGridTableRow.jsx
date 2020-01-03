@@ -72,8 +72,8 @@ class DataGridTableRow extends React.PureComponent {
                             sizes[rowIndex][index];
 
                     if (size) {
-                        style.height = size.h;
-                        style.width = size.w;
+                        style.height = `${size.h}px`;
+                        style.width = `${size.w}px`;
                     }
 
                     if (idPrefix === 'column') {

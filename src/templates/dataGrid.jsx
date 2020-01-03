@@ -100,14 +100,16 @@ class DataGrid extends React.Component {
             const row = [];
 
             for (let j = 0; j < stickyColumns; j += 1) {
-                const el = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_column-${i}_${j}`);
+                const el1 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_column-${i}_${j}`);
+                const el2 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_body-${i}_${j}`);
+
                 const size = {
-                    h: `${el.clientHeight}px`,
-                    w: `${el.clientWidth}px`,
+                    h: Math.max(el1.clientHeight, el2.clientHeight),
+                    w: el1.clientWidth,
                 };
 
                 if (handle && j === stickyColumns - 1) {
-                    size.w = `${width}px`;
+                    size.w = width;
                 }
 
                 row.push(size);
