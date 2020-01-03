@@ -7,6 +7,7 @@ const propTypes = {
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     handle: PropTypes.bool,
+    id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string.isRequired,
     isClickable: PropTypes.bool,
     row: PropTypes.shape({}).isRequired,
@@ -43,6 +44,7 @@ class DataGridTableRow extends React.PureComponent {
             classNamePrefix,
             columns,
             handle,
+            id: tableId,
             idPrefix,
             isClickable,
             row,
@@ -80,7 +82,7 @@ class DataGridTableRow extends React.PureComponent {
                         }
                     }
 
-                    const id = `${classNamePrefix}_table_cell_${idPrefix}-${rowIndex}_${index}`;
+                    const id = `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell

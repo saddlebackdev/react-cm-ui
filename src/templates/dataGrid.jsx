@@ -11,6 +11,7 @@ const propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     fontSize: PropTypes.string,
     handle: PropTypes.bool,
+    id: PropTypes.string.isRequired,
     minWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
     rowProps: PropTypes.func,
@@ -66,6 +67,7 @@ class DataGrid extends React.Component {
         const {
             data,
             handle,
+            id,
             minWidth,
             stickyColumns,
             stickyColumnWidth,
@@ -98,7 +100,7 @@ class DataGrid extends React.Component {
             const row = [];
 
             for (let j = 0; j < stickyColumns; j += 1) {
-                const el = document.querySelector(`#${this.classNamePrefix}_table_cell_column-${i}_${j}`);
+                const el = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_column-${i}_${j}`);
                 const size = {
                     h: `${el.clientHeight}px`,
                     w: `${el.clientWidth}px`,
@@ -211,6 +213,7 @@ class DataGrid extends React.Component {
             data,
             fontSize,
             handle,
+            id,
             moduleType,
             rowProps,
             small,
@@ -251,6 +254,7 @@ class DataGrid extends React.Component {
                             data={data}
                             fontSize={fontSize}
                             handle={handle}
+                            id={id}
                             idPrefix="body"
                             minWidth={minWidth}
                             moduleType={moduleType}
@@ -276,6 +280,7 @@ class DataGrid extends React.Component {
                             dropShadow={scrolledRight}
                             fontSize={fontSize}
                             handle={handle}
+                            id={id}
                             idPrefix="column"
                             minWidth={minWidth}
                             moduleType={moduleType}
@@ -307,6 +312,7 @@ class DataGrid extends React.Component {
                     data={data}
                     fontSize={fontSize}
                     handle={handle}
+                    id={id}
                     minWidth={minWidth}
                     moduleType={moduleType}
                     rowProps={rowProps}
