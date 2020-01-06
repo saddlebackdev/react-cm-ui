@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.2.3
+
+#### Bug Fix
+- [PR #94](https://github.com/saddlebackdev/react-cm-ui/pull/94)
+    - PR #94 fix the **DatePickerInput** year dropdown positioning.
+
 ## 7.2.2
 
 #### Bug Fix
@@ -1336,7 +1342,7 @@ the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
 - Added a `browserDetect` function.
 
 ### Changed
-- Removed the filter blur for when a **Drawer** is open.    
+- Removed the filter blur for when a **Drawer** is open.
 
 ## 1.1.5 - 2017-08-11
 ### Removed
