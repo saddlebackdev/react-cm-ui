@@ -113,7 +113,7 @@ $cell-border-color: color(borderColorSecondary);
             &:last-child { padding-right: rem(22px); }
         }
     }
-    &.table-striped .table-row:nth-child(2) .table-cell {
+    &.table-striped .table-row:nth-child(2n) .table-cell {
         background-color: color(backgroundColorLight);
     }
     // tbody

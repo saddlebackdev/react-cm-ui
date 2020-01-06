@@ -1,6 +1,59 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.0 - 01/06/2020
+
+#### Feature
+- BREAKING: [PR #93](https://github.com/saddlebackdev/react-cm-ui/pull/93)
+    - New ./src/ File Structure Beginnings
+        - Moved all template files to ./src/templates.
+        - ./src/templates JS/JSX files are Eslint free.
+        - Moved ./docs/ package.json dependencies and devDependencies to ./docs/ new package.json
+        - Moved webpack.config to ./docs/
+        - implemented .bablerc settings into new babel.config.js file.
+        - Deleted .babelrc
+    - FiltersDrawer:
+        - Copied old pageFiltersDrawer.js and created filtersDrawer.jsx. Also split its components out into individual files.
+        - Copied old pageFiltersDrawer.scss and created filtersDrawer.scss
+        - Renamed old pageFiltersDrawer.js -> pageDeprectatedFiltersDrawer.jsx
+        - Renamed old pageFiltersDrawer.scss -> pageDeprecatedFiltersDrawer.scss
+        - The components pageFiltersDrawer.jsx and drawerFiltersDrawer.jsx wrap <FiltersDrawer /> now.
+        - Added checkbox and toggle to
+        - Copied/Renamed ./docs/modules/drawerFiltersDrawer.js -> ./docs/tempaltes/drawerFiltersDrawer.jsx.
+        - Created a new Drawer Deprecated Filters Drawer doc page, ./docs/modules/drawerDeprecatedFiltersDrawer.js
+    - Container
+        - Copied pageContainer.js and created container.jsx
+        - Changed pageContainer.js -> pageContainer.jsx and wrapped container.jsx
+        - Created a new drawer.Container.jsx
+    - Content
+        - Created content.jsx
+        - Changed pageContent.js -> pageContent.jsx and wrapped content.jsx
+        - Changed drawerContent.js -> drawerContent.jsx and wrapped content.jsx
+        - Copied drawerContent.scss and implemented into content.scss
+        - Copied pageContent.scss and implemented into content.scss
+        - Created a new drawer.Container.jsx
+- [PR #95](https://github.com/saddlebackdev/react-cm-ui/pull/95)
+    - Table Row Reordering with Drag and Drop.
+
+#### Bug Fix
+- [PR #92](https://github.com/saddlebackdev/react-cm-ui/pull/92)
+    - Update the "avatar" image embedded in **Comment**. We missed this when we refactored **Image** to use type prop rather than avatar prop.
+    - Adds some npm commands to be able to run in production mode.
+- [PR #94](https://github.com/saddlebackdev/react-cm-ui/pull/94)
+    - PR #94 fix the **DatePickerInput** year dropdown positioning.
+- [PR #96](https://github.com/saddlebackdev/react-cm-ui/pull/96)
+    - Fixes a case sensitive issue with one of our SCSS imports.
+- [PR #97](https://github.com/saddlebackdev/react-cm-ui/pull/97)
+    - Adds the ability to specify an own ID for DataGrid. Each cell of the DataGrid now has its own ID.
+- [PR #98](https://github.com/saddlebackdev/react-cm-ui/pull/98)
+    - Fixes getting DataGrid row height on column resize.
+
+## 7.2.3
+
+#### Bug Fix
+- [PR #94](https://github.com/saddlebackdev/react-cm-ui/pull/94)
+    - PR #94 fix the **DatePickerInput** year dropdown positioning.
+
 ## 7.2.2
 
 #### Bug Fix
@@ -1336,7 +1389,7 @@ the middle, e.g. 213, 714, etc.  These phone numbers were being mishandled.
 - Added a `browserDetect` function.
 
 ### Changed
-- Removed the filter blur for when a **Drawer** is open.    
+- Removed the filter blur for when a **Drawer** is open.
 
 ## 1.1.5 - 2017-08-11
 ### Removed

@@ -74,6 +74,7 @@ class DatePickerDropdownYear extends React.PureComponent {
                 <ScrollBar
                     autoHide
                     className="date-picker-dropdown-year-scrollbar"
+                    ref={(ref) => { this.scrollComponent = ref; }}
                 >
                     <ul>
                         {options}
@@ -87,11 +88,10 @@ class DatePickerDropdownYear extends React.PureComponent {
         const { maxDate } = this.props;
 
         if (!maxDate) {
-            const datePickerWrapElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-dropdown-year-scrollbar > div'));
             const selectedElement = ReactDOM.findDOMNode(document.querySelector('.date-picker-year-option-is-selected'));
             const selectedPosistion = selectedElement.offsetTop - 11;
 
-            domUtils.scrollTo(selectedPosistion, 0, datePickerWrapElement);
+            this.scrollComponent.scrollTop(selectedPosistion);
         }
     }
 
