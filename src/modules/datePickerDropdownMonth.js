@@ -28,7 +28,7 @@ class DatePickerDropdownMonth extends React.PureComponent {
                     <li className={month === 8 ? selectedClass : null}><a onClick={this._onClick.bind(this, 8)}>September</a></li>
                     <li className={month === 9 ? selectedClass : null}><a onClick={this._onClick.bind(this, 9)}>October</a></li>
                     <li className={month === 10 ? selectedClass : null}><a onClick={this._onClick.bind(this, 10)}>November</a></li>
-                    <li className={month === 11 ? selectedClass : null}><a onClick={this._onClick.bind(this, 11)}>Decemeber</a></li>
+                    <li className={month === 11 ? selectedClass : null}><a onClick={this._onClick.bind(this, 11)}>December</a></li>
                 </ul>
             </div>
         );
