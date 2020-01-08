@@ -1,5 +1,5 @@
 // Collections
-export { default as Grid } from './collections/grid.js';
+export { default as Grid } from './collections/grid';
 export { default as Table } from './collections/table.js';
 export { default as Tabs } from './collections/tabs.js';
 
