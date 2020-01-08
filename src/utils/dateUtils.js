@@ -2,24 +2,6 @@ import _ from 'lodash';
 import moment from 'moment-timezone';
 
 const dateUtils = {
-    formatWithTz(data, userTimeZoneId) {
-        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
-
-        return dateUtils.formatWithSpecifiedTz(data, timeZoneId);
-    },
-
-    formatWithSpecifiedTz(data, timeZoneId) {
-        if (_.isNil(data)) {
-            return null;
-        }
-
-        if (_.isNumber(data)) {
-            return moment.unix(data).utc().tz(timeZoneId).format('L LT z');
-        }
-
-        return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').tz(timeZoneId).format('L LT z');
-    },
-
     formatForCommentsWithTz(data, userTimeZoneId) {
         const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 
@@ -82,7 +64,7 @@ const dateUtils = {
         return null;
     },
 
-    format(data) {
+    formatDate(data) {
         if (_.isNil(data)) {
             return null;
         }
@@ -94,31 +76,7 @@ const dateUtils = {
         return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').format('L');
     },
 
-    formatTimeOnly(data) {
-        if (_.isNil(data)) {
-            return null;
-        }
-
-        if (_.isNumber(data)) {
-            return moment.unix(data).utc().format('L LT z');
-        }
-
-        return moment(data, 'HH:mm').format('hh:mm a');
-    },
-
-    formatShort(data) {
-        if (_.isNil(data)) {
-            return null;
-        }
-
-        if (_.isNumber(data)) {
-            return moment.unix(data).utc().format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
-        }
-
-        return moment(data).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
-    },
-
-    formatShortWithSpecifiedTz(data, timeZoneId) {
+    formatDateWithSpecifiedTz(data, timeZoneId) {
         if (_.isNil(data)) {
             return null;
         }
@@ -128,6 +86,48 @@ const dateUtils = {
         }
 
         return moment(data).tz(timeZoneId).format('MM/DD/YY'); // TODO/FIXME: Consider using L (although that has a 4 digit year, i.e. YYYY)
+    },
+
+    formatDateAndTime(data) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().format('L LT');
+        }
+
+        return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').format('L LT');
+    },
+
+    formatDateAndTimeWithSpecifiedTz(data, timeZoneId) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().tz(timeZoneId).format('L LT z');
+        }
+
+        return moment.utc(data, 'YYYY-MM-DDTHH:mm:ss').tz(timeZoneId).format('L LT z');
+    },
+
+    formatDateAndTimeWithTz(data, userTimeZoneId) {
+        const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
+
+        return dateUtils.formatDateAndTimeWithSpecifiedTz(data, timeZoneId);
+    },
+
+    formatTime(data) {
+        if (_.isNil(data)) {
+            return null;
+        }
+
+        if (_.isNumber(data)) {
+            return moment.unix(data).utc().format('LT');
+        }
+
+        return moment(data, 'HH:mm').format('hh:mm a');
     },
 
     formatDayOfWeek(data) {
