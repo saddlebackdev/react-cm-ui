@@ -10,7 +10,7 @@ export { default as Checkbox } from './elements/checkbox.js';
 export { default as Comment } from './elements/comment.js';
 export { default as Container } from './elements/container.js';
 export { default as Divider } from './elements/divider.js';
-export { default as Header } from './elements/header.js';
+export { default as Header } from './elements/header';
 export { default as Icon } from './elements/icon.js';
 export { default as Image } from './elements/image.js';
 export { default as Input } from './elements/input.js';
