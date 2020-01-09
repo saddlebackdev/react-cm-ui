@@ -76,7 +76,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/header.js')
+                    import('./atoms/header')
                         .then((module) => callback(null, module.default));
                 }}
                 path="header"

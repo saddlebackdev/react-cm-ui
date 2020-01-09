@@ -3,7 +3,7 @@ import './app.scss';
 import { Button, domUtils, Icon } from 'react-cm-ui';
 import _ from 'lodash';
 import breakpointActions from '../global/breakpointActions.js';
-import Header from './header.js';
+import Header from './header';
 import { Link } from 'react-router';
 import MediaQuery from 'react-responsive';
 import Navigation from './navigation';

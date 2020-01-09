@@ -1,16 +1,12 @@
 import './navigation.scss';
 
 import { domUtils, Header, Icon } from 'react-cm-ui';
-import _ from 'lodash';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 
 const propTypes = {
-    router: PropTypes.shape({
-        push: PropTypes.func.isRequired,
-    }).isRequired,
     selection: PropTypes.bool,
     toggleNavigation: PropTypes.func.isRequired,
 };
@@ -41,6 +37,7 @@ class CoreAppNavigation extends React.PureComponent {
     }
 
     onLogoClick() {
+        console.log('onLogoClick');
         const { router } = this.state;
 
         router.push('/');
@@ -79,20 +76,22 @@ class CoreAppNavigation extends React.PureComponent {
                 >
                     <div className="core-app-nav-scrollbar-inner">
                         <div className="logo-wrapper">
-                            <Header
-                                className="logo"
-                                color="static"
-                                onClick={this.onLogoClick}
-                                size="medium"
-                                weight="semibold"
-                            >
-                                React-CM-UI
-                            </Header>
+                            <Link to={{ pathname: '/' }}>
+                                <Header
+                                    className="logo"
+                                    color="static"
+                                    onClick={this.onLogoClick}
+                                    size="medium"
+                                    weight="semibold"
+                                >
+                                    React-CM-UI
+                                </Header>
+                            </Link>
 
                             <span className="text-xsmall text-semibold text-italics doc-version">{`DOCS V ${version}`}</span>
                         </div>
 
-                        <Header size="small" style={{ marginTop: 0 }}>Getting Started</Header>
+                        <Header inverse size="small" style={{ marginTop: 0 }}>Getting Started</Header>
 
                         <ul>
                             <li>
@@ -122,7 +121,7 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
                         </ul>
 
-                        <Header size="small">Style Guide</Header>
+                        <Header inverse size="small">Style Guide</Header>
 
                         <ul>
                             <li>
@@ -130,7 +129,7 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
                         </ul>
 
-                        <Header size="small">Atoms</Header>
+                        <Header inverse size="small">Atoms</Header>
 
                         <ul>
                             <li>
@@ -194,7 +193,7 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
                         </ul>
 
-                        <Header size="small">Molecules</Header>
+                        <Header inverse size="small">Molecules</Header>
 
                         <ul>
                             <li>
@@ -226,7 +225,7 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
                         </ul>
 
-                        <Header size="small">Organisms</Header>
+                        <Header inverse size="small">Organisms</Header>
 
                         <ul>
                             <li>
@@ -266,7 +265,7 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
                         </ul>
 
-                        <Header size="small">Templates</Header>
+                        <Header inverse size="small">Templates</Header>
 
                         <ul>
                             <li>
