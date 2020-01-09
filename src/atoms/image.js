@@ -1,9 +1,9 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from './icon.js';
+import Icon from './icon';
 import colorStyles from '../colors';
-import Utils from '../utils/utils.js';
+import Utils from '../utils/utils';
 
 function Image(props) {
     const {

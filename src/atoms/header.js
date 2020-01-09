@@ -1,11 +1,9 @@
-'use strict';
-
 import ClassNames from 'classnames';
-import HeaderSubheader from './headerSubheader.js';
+import HeaderSubheader from './headerSubheader';
 import Icon from './icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../utils/utils.js';
+import Utils from '../utils/utils';
 
 class Header extends React.PureComponent {
     render() {

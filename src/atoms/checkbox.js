@@ -1,9 +1,7 @@
-'use strict';
-
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Icon from '../elements/icon';
+import Icon from './icon';
 import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
