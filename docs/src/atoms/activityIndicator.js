@@ -1,11 +1,11 @@
 'use strict';
 
 import { ActivityIndicator, Card, Header, TitleBar } from 'react-cm-ui';
-import { borderColor } from 'shared/styles/colors.scss';
-import Highlighter from '../app/highlighter.js';
+import { borderColor } from 'global/styles/colors.scss';
+import Highlighter from '../global/highlighter.js/index.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js/index.js';
 
 const activityIndicatorSample = `import { ActivityIndicator } from 'react-cm-ui';
 import React from 'react';
@@ -36,7 +36,7 @@ class ClassNameSample extends React.PureComponent {
 export default ClassNameSample;`;
 
 const colorSample = `import { ActivityIndicator } from 'react-cm-ui';
-import { borderColor } from 'shared/styles/colors.scss';
+import { borderColor } from 'global/styles/colors.scss';
 import React from 'react';
 
 class ColorSample extends React.PureComponent {
