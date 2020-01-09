@@ -7,9 +7,9 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../global/block.js';
-import Highlighter from '../global/highlighter.js';
+import Highlighter from '../global/highlighter';
 import IconSubNavigation from './iconSubNavigation.js';
-import Main from '../global/main.js';
+import Main from '../global/main';
 import TableProps from '../global/tableProps.js';
 
 const iconSample = `import React from 'react';

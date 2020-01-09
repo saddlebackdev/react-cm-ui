@@ -1,9 +1,9 @@
 'use strict';
 
 import { Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter.js';
+import Highlighter from '../global/highlighter';
 import { Link } from 'react-router';
-import Main from '../global/main.js';
+import Main from '../global/main';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

@@ -1,12 +1,15 @@
-import PropTypes from 'prop-types';
+import {
+    Card,
+    Checkbox,
+    Header,
+    Rail,
+    TitleBar,
+} from 'react-cm-ui';
 import React from 'react';
-import { Card, Checkbox, Header, Rail, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from '../global/block.js';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
-import TableProps from '../global/tableProps.js';
+import Block from '../global/block';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
+import TableProps from '../global/tableProps';
 
 const positionSample = `import React from 'react';
 import { Rail } from 'react-cm-ui';
@@ -35,9 +38,8 @@ export default class PositionSample extends React.Component {
     }
 }`;
 
-export default class ElementsRail extends React.Component {
+export default class ElementsRail extends React.PureComponent {
     render() {
-
         const props = [
             {
                 name: 'className',

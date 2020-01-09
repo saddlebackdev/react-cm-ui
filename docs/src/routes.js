@@ -6,18 +6,27 @@ const routes = (
     <Route path="/" component={App}>
         <IndexRoute
             getComponent={(location, callback) => {
-                import('./app/gettingStartedIntroduction.js')
+                import('./app/home')
                     .then((module) => callback(null, module.default));
             }}
         />
 
-        <Route
-            getComponent={(location, callback) => {
-                import('./app/gettingStartedIntroduction.js')
-                    .then((module) => callback(null, module.default));
-            }}
-            path="/introduction"
-        />
+        <Route path="/getting-started">
+            <Route
+                getComponent={(location, callback) => {
+                    import('./gettingStarted/installation')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="installation"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./gettingStarted/usage')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="usage"
+            />
+        </Route>
 
         <Route path="/style-guide">
             <Route
@@ -242,7 +251,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/rail.js')
+                    import('./organisms/rail')
                         .then((module) => callback(null, module.default));
                 }}
                 path="rail"

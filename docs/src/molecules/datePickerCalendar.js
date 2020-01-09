@@ -1,6 +1,6 @@
 import { Card, DatePickerCalendar, Header, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import moment from 'moment-timezone';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

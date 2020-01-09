@@ -9,8 +9,8 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps.js';
 
 const drawerDetailsSample = `import { Button, Drawer, InfoBar } from 'react-cm-ui';

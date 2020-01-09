@@ -7,8 +7,8 @@ import React from 'react';
 import { Card, DatePicker, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps.js';
 
 const singleDateInputSample = `import React from 'react';

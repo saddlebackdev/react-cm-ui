@@ -1,8 +1,8 @@
 'use strict';
 
 import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

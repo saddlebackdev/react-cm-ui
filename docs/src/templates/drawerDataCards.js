@@ -10,8 +10,8 @@ import {
 import moment from 'moment-timezone';
 import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps.js';
 
 const drawerGridSample = `import { Button, Drawer } from 'react-cm-ui';

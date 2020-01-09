@@ -32,8 +32,10 @@ $blockMinHeight: 348px; // 14 lines
 }
 .highlighter.inline {
     margin: 22px 22px 33px;
-    pre {
+    &:not(.theme_dark) {
         background-color: color(backgroundColorLight) !important;
+    }
+    pre {
         border: 0;
         border-radius: 3px;
         display: inline-block !important;

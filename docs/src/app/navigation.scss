@@ -33,20 +33,21 @@ $nav-width: 250px;
             top: 0;
             width: $nav-width - 32px;
             .logo {
+                cursor: pointer;
                 display: inline-block;
-                flex: 0 1 auto;
-                height: 31px;
+                letter-spacing: 1px;
                 margin: 0;
-                width: 130px;
-                path { fill: color(colorInverse); }
+                text-transform: uppercase;
             }
             .doc-version {
                 border-left: 1px solid;
-                flex: 1 0 auto;
+                color: color(colorStatic);
+                display: inline-block;
+                flex-grow: 1;
                 font-size: em(9px);
                 font-style: italic;
-                margin: -1px 0 0 25px;
-                text-align: right;
+                padding-left: 16px;
+                margin: 2px 0 0 16px;
             }
         }
         .ui.header.header-size-small { margin-bottom: 5px; z-index: -1; }

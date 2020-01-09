@@ -8,8 +8,8 @@ import 'global/images/avatar5.jpg';
 
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 import Block from '../global/block.js';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

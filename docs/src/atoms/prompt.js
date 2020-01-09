@@ -1,8 +1,8 @@
 'use strict';
 
 import { Button, Card, Dropdown, Header, Prompt, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import React from 'react';
 import TableProps from '../global/tableProps.js';
 

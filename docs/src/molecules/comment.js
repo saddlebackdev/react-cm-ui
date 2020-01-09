@@ -6,8 +6,8 @@ import { Banner, Card, Comment, Header, Image, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
-import Highlighter from '../global/highlighter.js';
-import Main from '../global/main.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps.js';
 
 const commentSample = `import React from 'react';
