@@ -45,7 +45,7 @@ function PageDetailsWindow(props) {
             data={data}
             expandableColumns={expandableColumns}
             style={style}
-            moduleType="drawer"
+            moduleType="page"
         />
     );
 }
