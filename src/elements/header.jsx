@@ -1,13 +1,55 @@
-'use strict';
-
 import ClassNames from 'classnames';
-import HeaderSubheader from './headerSubheader.js';
-import Icon from './icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../utils/utils.js';
+import HeaderSubheader from './headerSubheader';
+import Icon from './icon';
+import Utils from '../utils/utils';
+
+const asEnums = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const colorEnums = ['static', 'text'];
+const weightEnums = ['bold', 'normal', 'semibold'];
+
+const propTypes = {
+    anchor: PropTypes.string,
+    as: PropTypes.oneOf(asEnums),
+    className: PropTypes.string,
+    color: PropTypes.oneOf(colorEnums),
+    icon: PropTypes.bool,
+    inverse: PropTypes.bool,
+    size: PropTypes.oneOf(Utils.sizeEnums()),
+    style: PropTypes.shape({}),
+    sub: PropTypes.bool,
+    title: PropTypes.string,
+    weight: PropTypes.oneOf(weightEnums),
+};
+
+const defaultProps = {
+    anchor: undefined,
+    as: undefined,
+    className: undefined,
+    color: 'text',
+    icon: false,
+    inverse: false,
+    size: undefined,
+    style: {},
+    sub: false,
+    title: undefined,
+    weight: undefined,
+};
 
 class Header extends React.PureComponent {
+    constructor() {
+        super();
+
+        this.onAnchorClick = this.onAnchorClick.bind(this);
+    }
+
+    onAnchorClick() {
+        const { anchor } = this.props;
+
+        window.location.hash = anchor;
+    }
+
     render() {
         const {
             anchor,
@@ -49,7 +91,7 @@ class Header extends React.PureComponent {
                     className="header-anchor-icon"
                     color="static"
                     compact
-                    onClick={this._onAnchorClick.bind(this)}
+                    onClick={this.onAnchorClick}
                     size="small"
                     type="link"
                 />
@@ -80,7 +122,12 @@ class Header extends React.PureComponent {
         }
 
         return (
-            <ElementType className={containerClasses} id={anchor} style={style} title={title}>
+            <ElementType
+                className={containerClasses}
+                id={anchor}
+                style={style}
+                title={title}
+            >
                 {anchor ? (
                     <span>
                         {React.Children.map(children, (child, index) => {
@@ -97,53 +144,20 @@ class Header extends React.PureComponent {
                                         {anchorIcon}
                                     </span>
                                 );
-                            } else {
-                                return child;
                             }
+
+                            return child;
                         })}
                     </span>
                 ) : children}
             </ElementType>
         );
     }
-
-    _onAnchorClick() {
-        window.location.hash = this.props.anchor;
-    }
 }
 
 Header.Subheader = HeaderSubheader;
 
-const asEnums = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
-const colorEnums = [ 'static', 'text' ];
-const weightEnums = [ 'bold', 'normal', 'semibold' ];
-
-Header.propTypes = {
-    anchor: PropTypes.string,
-    as: PropTypes.oneOf(asEnums),
-    className: PropTypes.string,
-    color: PropTypes.oneOf(colorEnums),
-    icon: PropTypes.bool,
-    inverse: PropTypes.bool,
-    size: PropTypes.oneOf(Utils.sizeEnums()),
-    style: PropTypes.object,
-    sub: PropTypes.bool,
-    title: PropTypes.string,
-    weight: PropTypes.oneOf(weightEnums),
-};
-
-Header.defaultTypes = {
-    anchor: undefined,
-    as: undefined,
-    className: undefined,
-    color: 'text',
-    icon: false,
-    inverse: false,
-    size: undefined,
-    style: {},
-    sub: false,
-    title: undefined,
-    weight: undefined,
-};
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default Header;
