@@ -1,6 +1,24 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.0.0 - 01/08/2020
+
+#### Feature
+- Commit 59b9716
+    - Added `className` and `id` to **HeaderSubHeader**.
+- Commit eca4611
+    - Added `form` to the **Grid's** propTypes. This will give a **Grid** the vertical negative space it needs between each **Grid.Column** housing a form field.
+- Commit 0daf4e9
+    - Renamed the dateUtils "format" functions for better use.
+
+#### Bug Fix
+- Commit 0daf4e9
+    - Fixes the list in **ActionBar** from being centered.
+
+#### Bug Fix
+- PR #99
+    - Fixed typo 'Decemeber' in month picker.
+
 ## 8.0.3 - 01/08/2020
 
 #### Bug Fix

@@ -1,8 +1,9 @@
 @import '../shared/styles/fontSizeCalculator';
 
 $columns: 12;
-$gutter-default: 11px;
-$gutter-relaxed: 22px;
+$gutterDefault: 11px;
+$gutterForm: 16.5px;
+$gutterRelaxed: 22px;
 $breakpoints: (
     'mobile' '(max-width: 374px)',
     'mobile-medium' '(min-width: 375px)',
@@ -12,7 +13,7 @@ $breakpoints: (
     'desktop' '(min-width: 1440px)',
     'desktop-large' '(min-width: 1720px)'
 );
-$breakpoint-has-widths: (
+$breakpointHasWidths: (
     'mobile',
     'mobile-medium',
     'mobile-large',
@@ -21,18 +22,18 @@ $breakpoint-has-widths: (
     'desktop',
     'desktop-large'
 );
-$prefix-grid: '.ui.grid';
+$prefixGrid: '.ui.grid';
 
-#{$prefix-grid} {
+#{$prefixGrid} {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: rem(-$gutter-default);
+    margin: rem(-$gutterDefault);
     padding: 0;
     text-align: left;
-    + #{$prefix-grid} { margin-top: 11px; }
+    + #{$prefixGrid} { margin-top: 11px; }
     &.grid-horizontal-center { justify-content: center; }
     &.grid-horizontal-left { justify-content: flex-start; }
     &.grid-horizontal-right { justify-content: flex-end; }
@@ -55,7 +56,7 @@ $prefix-grid: '.ui.grid';
     &.grid-columns-eleven .grid-col { width: 1 / 11 * 100%; }
     &.grid-columns-twelve .grid-col { width: 1 / 12 * 100%; }
 }
-    #{$prefix-grid}-row {
+    #{$prefixGrid}-row {
         align-items: inherit;
         display: flex;
         flex-direction: row;
@@ -87,7 +88,7 @@ $prefix-grid: '.ui.grid';
         .grid-col {
             align-self: auto;
             flex: 0 1 auto;
-            padding: rem($gutter-default);
+            padding: rem($gutterDefault);
             vertical-align: top;
             width: 1 / $columns * 100%;
             &.grid-col-floated-left { margin-right: auto; }
@@ -100,48 +101,61 @@ $prefix-grid: '.ui.grid';
             &.grid-col-vertical-align-center { align-items: center; display: flex; }
             &.grid-col-vertical-align-top { align-items: top; display: flex; }
         }
-#{$prefix-grid}-relaxed {
-    margin-left: rem(-$gutter-relaxed);
-    margin-right: rem(-$gutter-relaxed);
-    #{$prefix-grid}-col { padding-left: rem($gutter-relaxed); padding-right: rem($gutter-relaxed); }
+#{$prefixGrid}-form {
+    margin-bottom: rem(-$gutterForm);
+    margin-top: rem(-$gutterForm);
+    #{$prefixGrid}-col {
+        padding-bottom: rem($gutterForm);
+        padding-top: rem($gutterForm);
+    }
 }
-
-#{$prefix-grid}-stressed, #{$prefix-grid}-row-stressed {
+#{$prefixGrid}-relaxed {
+    margin-left: rem(-$gutterRelaxed);
+    margin-right: rem(-$gutterRelaxed);
+    #{$prefixGrid}-col {
+        padding-left: rem($gutterRelaxed);
+        padding-right: rem($gutterRelaxed);
+    }
+}
+#{$prefixGrid}-stressed, #{$prefixGrid}-row-stressed {
     margin-left: 0;
     margin-right: 0;
-    #{$prefix-grid}-col { padding-left: 0; padding-right: 0; }
+    #{$prefixGrid}-col {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
-@mixin device-type($namespace: '') {
+@mixin deviceType($namespace: '') {
     $prefix: '.grid-col-' + $namespace;
-    $columns-width: 1 / $columns * 100%;
+    $columnsWidth: 1 / $columns * 100%;
 
     #{$prefix}auto { width: auto; }
-    #{$prefix}one { width: 1 * $columns-width; }
-    #{$prefix}two { width: 2 * $columns-width; }
-    #{$prefix}three { width: 3 * $columns-width; }
-    #{$prefix}four { width: 4 * $columns-width; }
-    #{$prefix}five { width: 5 * $columns-width; }
-    #{$prefix}six { width: 6 * $columns-width; }
-    #{$prefix}seven { width: 7 * $columns-width; }
-    #{$prefix}eight { width: 8 * $columns-width; }
-    #{$prefix}nine { width: 9 * $columns-width; }
-    #{$prefix}ten { width: 10 * $columns-width; }
-    #{$prefix}eleven { width: 11 * $columns-width; }
-    #{$prefix}twelve { width: 12 * $columns-width; }
+    #{$prefix}one { width: 1 * $columnsWidth; }
+    #{$prefix}two { width: 2 * $columnsWidth; }
+    #{$prefix}three { width: 3 * $columnsWidth; }
+    #{$prefix}four { width: 4 * $columnsWidth; }
+    #{$prefix}five { width: 5 * $columnsWidth; }
+    #{$prefix}six { width: 6 * $columnsWidth; }
+    #{$prefix}seven { width: 7 * $columnsWidth; }
+    #{$prefix}eight { width: 8 * $columnsWidth; }
+    #{$prefix}nine { width: 9 * $columnsWidth; }
+    #{$prefix}ten { width: 10 * $columnsWidth; }
+    #{$prefix}eleven { width: 11 * $columnsWidth; }
+    #{$prefix}twelve { width: 12 * $columnsWidth; }
 }
 
-@include device-type();
+@include deviceType();
 
-@mixin grid-media-query($media-query) {
-    $breakpoint-found: false;
+@mixin gridMediaQuery($mediaQuery) {
+    $breakpointFound: false;
 
     @each $breakpoint in $breakpoints {
         $name: nth($breakpoint, 1);
         $declaration: nth($breakpoint, 2);
 
-        @if $media-query == $name and $declaration{
-            $breakpoint-found: true;
+        @if $mediaQuery == $name and $declaration{
+            $breakpointFound: true;
 
             @media only screen and #{$declaration}{
                 @content;
@@ -149,13 +163,13 @@ $prefix-grid: '.ui.grid';
         }
     }
 
-    @if $breakpoint-found == false{
-        @warn "Breakpoint ‘#{$media-query}’ does not exist"
+    @if $breakpointFound == false{
+        @warn "Breakpoint ‘#{$mediaQuery}’ does not exist"
     }
 }
 
-@each $name in $breakpoint-has-widths {
-    @include grid-media-query($name) {
-        @include device-type('#{$name}-');
+@each $name in $breakpointHasWidths {
+    @include gridMediaQuery($name) {
+        @include deviceType('#{$name}-');
     }
 }
