@@ -3,16 +3,16 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../elements/button';
-import Checkbox from '../elements/checkbox';
+import Button from '../atoms/button';
+import Checkbox from '../atoms/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../modules/dropdown';
+import Dropdown from '../atoms/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
 
 const propTypes = {
     children: PropTypes.node,

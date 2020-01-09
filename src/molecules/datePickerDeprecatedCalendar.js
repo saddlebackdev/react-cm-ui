@@ -7,14 +7,14 @@ import PropTypes from 'prop-types';
 import onClickOutside from 'react-onclickoutside';
 import React, { Component } from 'react';
 
-import Button from '../elements/button';
+import Button from '../atoms/button';
 import DatePickerMonth from './datePickerDeprecatedMonth';
 import DatePickerDropdownMonth from './datePickerDropdownMonth';
 import DatePickerDropdownYear from './datePickerDropdownYear';
-import Grid from '../collections/grid';
-import Icon from '../elements/icon';
+import Grid from '../organisms/grid';
+import Icon from '../atoms/icon';
 
-import DatePickerUtils from '../utils/datePickerUtils.js';
+import DatePickerUtils from '../global/utils/datePickerUtils.js';
 
 class DatePickerCalendar extends Component {
     constructor(props) {

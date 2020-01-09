@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 class Item extends Component {
     constructor() {

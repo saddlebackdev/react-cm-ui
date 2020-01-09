@@ -9,7 +9,7 @@ import TableHeader from './tableHeader';
 import TableHeaderCell from './tableHeaderCell';
 import TableRow from './tableRow';
 
-import Utils from '../utils/utils.js';
+import Utils from '../global/utils/utils.js';
 
 class Table extends Component {
     render() {

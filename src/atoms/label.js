@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 import Icon from './icon';
 
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 class Label extends Component {
     render() {

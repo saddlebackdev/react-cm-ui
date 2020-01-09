@@ -8,7 +8,7 @@ import {
 import _ from 'lodash';
 import React from 'react';
 import IconSubNavigation from './iconSubNavigation.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 
 
 class ElementsIconSet extends React.PureComponent {

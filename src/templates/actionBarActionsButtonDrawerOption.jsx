@@ -1,4 +1,4 @@
-import { backgroundColorStatic } from 'shared/styles/colors.scss';
+import { backgroundColorStatic } from 'global/styles/colors.scss';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import React from 'react';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
-import Icon from '../elements/icon';
+import Icon from '../atoms/icon';
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,

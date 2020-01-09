@@ -3,7 +3,7 @@
 import { Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
 import Highlighter from '../global/highlighter.js';
 import { Link } from 'react-router';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

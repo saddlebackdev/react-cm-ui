@@ -19,6 +19,7 @@ export { default as TextArea } from './atoms/textArea';
 // Molecules
 export { default as Banner } from './molecules/banner';
 export { default as Comment } from './molecules/comment';
+export { default as DatePicker } from './molecules/datePickerDeprecated';
 export { default as DatePickerCalendar } from './molecules/datePickerCalendar';
 export { default as DatePickerInput } from './molecules/datePickerInput';
 export { default as DurationPicker } from './molecules/durationPicker';
@@ -38,6 +39,7 @@ export { default as Tabs } from './organisms/tabs';
 export { default as TitleBar } from './organisms/titleBar';
 
 // Templates
+export { default as DrawerDeprecated } from './templates/drawerDeprecated';
 export { default as Drawer } from './templates/drawer';
 export { default as Modal } from './templates/modal';
 export { default as Page } from './templates/page';

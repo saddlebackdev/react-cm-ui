@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Utils from '../utils/utils.js';
+import Utils from '../global/utils/utils.js';
 
 class ContainerContent extends Component {
 

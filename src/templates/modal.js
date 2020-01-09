@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../elements/button';
+import Button from '../atoms/button';
 import ClassNames from 'classnames';
-import Divider from '../elements/divider';
-import domUtils from '../utils/domUtils.js';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
+import Divider from '../atoms/divider';
+import domUtils from '../global/utils/domUtils.js';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';

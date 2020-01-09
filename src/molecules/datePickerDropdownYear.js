@@ -1,7 +1,7 @@
 'use strict';
 
 import ClassNames from 'classnames';
-import domUtils from '../utils/domUtils.js';
+import domUtils from '../global/utils/domUtils.js';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';

@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import BannerItem from './bannerItem';
 import ClassNames from 'classnames';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -41,7 +41,7 @@ class Banner extends Component {
         const { isOpen } = this.state;
 
         if (!isOpen) {
-            return false; 
+            return false;
         }
 
         const containerClasses = ClassNames('ui', 'banner', className, {

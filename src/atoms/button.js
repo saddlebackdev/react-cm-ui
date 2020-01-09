@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 class Button extends React.PureComponent {
     constructor(props) {

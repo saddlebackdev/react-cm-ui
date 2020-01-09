@@ -1,15 +1,15 @@
 'use strict';
 
-import 'images/avatar1.jpg';
-import 'images/avatar2.jpg';
-import 'images/avatar3.jpg';
-import 'images/avatar4.jpg';
-import 'images/avatar5.jpg';
+import 'global/images/avatar1.jpg';
+import 'global/images/avatar2.jpg';
+import 'global/images/avatar3.jpg';
+import 'global/images/avatar4.jpg';
+import 'global/images/avatar5.jpg';
 
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableProps from '../global/tableProps.js';

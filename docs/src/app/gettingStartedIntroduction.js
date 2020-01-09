@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Main from './main.js';
+import Main from '../global/main.js';
 
 export default class GettingStartedIntroduction extends React.Component {
     constructor(props) {

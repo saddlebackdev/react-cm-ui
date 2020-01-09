@@ -1,6 +1,6 @@
 'use strict';
 
-import { appReduxStore } from '../shared/configureReduxStore.js';
+import { appReduxStore } from '../global/configureReduxStore.js';
 
 export default class BreakpointActions {
     static update() {

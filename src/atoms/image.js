@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from './icon';
 import colorStyles from '../colors';
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 function Image(props) {
     const {

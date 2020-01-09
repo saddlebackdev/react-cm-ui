@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
-import InfoBar from '../views/infoBar';
+import InfoBar from '../organisms/infoBar';
 import DetailsWindowColumnContainer from './detailsWindowColumnContainer';
-import domUtils from '../utils/domUtils';
+import domUtils from '../global/utils/domUtils';
 
 const propTypes = {
     bleed: PropTypes.bool,

@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import TableProps from '../global/tableProps.js';
 
 const drawerDetailsSample = `import { Button, Drawer, InfoBar } from 'react-cm-ui';

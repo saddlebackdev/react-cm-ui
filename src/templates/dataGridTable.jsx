@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DataGridTableRow from './dataGridTableRow';
-import DragListener from '../utils/dragListener';
-import Icon from '../elements/icon';
-import Table from '../collections/table';
+import DragListener from '../global/utils/dragListener';
+import Icon from '../atoms/icon';
+import Table from '../organisms/table';
 
 const propTypes = {
     bleed: PropTypes.bool,

@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 function uniqueId() {
     const now = (new Date().getTime()).toString();

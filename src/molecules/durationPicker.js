@@ -2,8 +2,8 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from '../elements/header';
-import Input from '../elements/input';
+import Header from '../atoms/header';
+import Input from '../atoms/input';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';

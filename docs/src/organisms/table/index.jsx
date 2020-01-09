@@ -4,8 +4,8 @@ import {
     Header,
     TitleBar,
 } from 'react-cm-ui';
-import Main from '../../app/main';
-import TableProps from '../../app/tableProps';
+import Main from '../../global/main';
+import TableProps from '../../global/tableProps';
 import TableSample from './tableSample';
 import TableSampleActive from './tableSampleActive';
 import TableSampleBasic from './tableSampleBasic';

@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import domUtils from '../utils/domUtils.js';
-import Icon from '../elements/icon.js';
+import domUtils from '../global/utils/domUtils.js';
+import Icon from '../atoms/icon.js';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 

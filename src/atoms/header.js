@@ -3,7 +3,7 @@ import HeaderSubheader from './headerSubheader';
 import Icon from './icon';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 class Header extends React.PureComponent {
     render() {

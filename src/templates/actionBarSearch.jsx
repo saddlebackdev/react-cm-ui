@@ -2,8 +2,8 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../elements/icon';
-import Input from '../elements/input';
+import Icon from '../atoms/icon';
+import Input from '../atoms/input';
 
 const propTypes = {
     id: PropTypes.string,

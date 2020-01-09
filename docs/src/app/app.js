@@ -1,14 +1,12 @@
-'use strict';
-
 import './app.scss';
 
 import { Button, domUtils, Icon } from 'react-cm-ui';
 import _ from 'lodash';
-import breakpointActions from '../shared/breakpointActions.js';
-import Header from '../global/header.js';
+import breakpointActions from '../global/breakpointActions.js';
+import Header from './header.js';
 import { Link } from 'react-router';
 import MediaQuery from 'react-responsive';
-import Navigation from './navigation.js';
+import Navigation from './navigation';
 import React from 'react';
 
 if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {

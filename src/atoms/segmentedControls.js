@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Icon from '../elements/icon';
+import Icon from '../atoms/icon';
 import SegmentedControlsItem from './segmentedControlsItem';
 
 class SegmentedControls extends Component {

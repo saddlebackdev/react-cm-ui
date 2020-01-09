@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 class TableRow extends Component {
     constructor(props) {

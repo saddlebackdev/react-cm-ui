@@ -2,7 +2,7 @@
 
 import { Card, Header, PhoneInput, TitleBar } from 'react-cm-ui';
 import Highlighter from '../global/highlighter.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import React from 'react';
 import TableProps from '../global/tableProps.js';
 

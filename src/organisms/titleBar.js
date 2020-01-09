@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Header from '../elements/header';
+import Header from '../atoms/header';
 
 class TitleBar extends Component {
     render() {

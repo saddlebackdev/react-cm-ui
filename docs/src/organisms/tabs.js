@@ -3,7 +3,7 @@
 import { Card, Header, Tabs, TitleBar } from 'react-cm-ui';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import React from 'react';
 import TableProps from '../global/tableProps.js';
 

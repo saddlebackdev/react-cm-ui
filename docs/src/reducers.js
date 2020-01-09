@@ -1,6 +1,6 @@
 'use strict';
 
-import breakpoint from './shared/breakpointReducer.js';
+import breakpoint from './global/breakpointReducer.js';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({

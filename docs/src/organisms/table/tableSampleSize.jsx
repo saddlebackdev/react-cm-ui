@@ -3,7 +3,7 @@ import {
     Header,
     Table,
 } from 'react-cm-ui';
-import Highlighter from '../../app/highlighter';
+import Highlighter from '../../global/highlighter';
 
 const sizeSmallTableSample = `import React from 'react';
 import { Table } from 'react-cm-ui';

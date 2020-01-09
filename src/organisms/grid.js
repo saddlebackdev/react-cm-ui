@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import GridColumn from './gridColumn';
 import GridRow from './gridRow';
 
-import Utils from '../utils/utils.js';
+import Utils from '../global/utils/utils.js';
 
 class Grid extends Component {
 

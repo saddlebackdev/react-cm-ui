@@ -4,12 +4,12 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../elements/button';
-import Checkbox from '../elements/checkbox';
+import Button from '../atoms/button';
+import Checkbox from '../atoms/checkbox';
 import Drawer from './drawer';
-import Dropdown from '../modules/dropdown';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
+import Dropdown from '../atoms/dropdown';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
 
 class DrawerFiltersDrawer extends React.PureComponent {
     render() {

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../utils/utils.js';
+import Utils from '../global/utils/utils.js';
 
 class TableHeaderCell extends Component {
     render() {

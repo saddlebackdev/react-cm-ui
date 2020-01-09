@@ -7,7 +7,7 @@ import { Card, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 // Docs UI Components
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter.js';
-import Main from '../app/main.js';
+import Main from '../global/main.js';
 import TableProps from '../global/tableProps.js';
 
 const cardSample = `import React from 'react';

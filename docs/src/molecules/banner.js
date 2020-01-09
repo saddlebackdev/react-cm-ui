@@ -5,9 +5,9 @@ import React from 'react';
 import { Banner, Button, Card, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Highlighter from '../app/highlighter.js';
-import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import Highlighter from '../global/highlighter.js';
+import Main from '../global/main.js';
+import TableProps from '../global/tableProps.js';
 
 const bannerSample = `import React from 'react';
 

@@ -3,11 +3,10 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
-import Dropdown from '../modules/dropdown';
-import Image from './image';
-import Prompt from '../modules/prompt';
-import TextArea from './textArea';
+import Dropdown from '../atoms/dropdown';
+import Image from '../atoms/image';
+import Prompt from '../atoms/prompt';
+import TextArea from '../atoms/textArea';
 
 class Comment extends Component {
     constructor(props) {
