@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.2 - 01/08/2020
+
+#### Bug Fix
+- [PR #100](https://github.com/saddlebackdev/react-cm-ui/pull/100)
+    - Fixes problem with **DetailsWindow** column' styling.
+    - Version 8.0.1 was supposed to include this PR, but somehow I missed the one change that was supposed to go into it. Doh!
+
 ## 8.0.1 - 01/08/2020
 
 #### Bug Fix
