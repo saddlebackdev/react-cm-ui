@@ -2,10 +2,10 @@
 
 import { ActivityIndicator, Card, Header, TitleBar } from 'react-cm-ui';
 import { borderColor } from 'global/styles/colors.scss';
-import Highlighter from '../global/highlighter.js/index.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../global/tableProps.js/index.js';
+import TableProps from '../global/tableProps.js';
 
 const activityIndicatorSample = `import { ActivityIndicator } from 'react-cm-ui';
 import React from 'react';

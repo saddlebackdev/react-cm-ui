@@ -5,10 +5,10 @@ import React from 'react';
 import { Card, Header, TextArea, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Block from '../app/block.js';
-import Highlighter from '../app/highlighter.js';
+import Block from '../global/block.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const textAreaSample = `import React from 'react';
 import { TextArea } from 'react-cm-ui';

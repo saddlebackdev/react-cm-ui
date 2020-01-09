@@ -6,11 +6,11 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
-import Block from '../app/block.js';
-import Highlighter from '../app/highlighter.js';
+import Block from '../global/block.js';
+import Highlighter from '../global/highlighter.js';
 import IconSubNavigation from './iconSubNavigation.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const iconSample = `import React from 'react';
 import { Icon } from 'react-cm-ui';

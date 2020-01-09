@@ -5,9 +5,9 @@ import React from 'react';
 import { Card, Grid, Header, TitleBar } from 'react-cm-ui';
 
 // Docs UI Components
-import Highlighter from '../app/highlighter.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const gridSample = `import React from 'react';
 

@@ -1,10 +1,10 @@
 import { Button, Card, Drawer, Header, TitleBar } from 'react-cm-ui';
 import DrawerSubNavigation from './drawerSubNavigation.js';
-import Highlighter from '../app/highlighter.js';
+import Highlighter from '../global/highlighter.js';
 import { Link } from 'react-router';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const drawerSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';

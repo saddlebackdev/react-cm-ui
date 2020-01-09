@@ -7,12 +7,12 @@ import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-import Block from '../app/block.js';
-import Highlighter from '../app/highlighter.js';
+import Block from '../global/block.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
     `/_/docs/src/images/${imageFileName}` :

@@ -1,11 +1,11 @@
 'use strict';
 
 import { Card, Header, Tabs, TitleBar } from 'react-cm-ui';
-import Block from '../app/block.js';
-import Highlighter from '../app/highlighter.js';
+import Block from '../global/block.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const tabsSample = `import React from 'react';
 

@@ -3,10 +3,10 @@
 import 'images/marty-mcfly.jpg';
 
 import { Card, Header, Image, TitleBar } from 'react-cm-ui';
-import Highlighter from '../app/highlighter.js';
+import Highlighter from '../global/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../global/tableProps.js';
 
 const imageSample = `import React from 'react';
 import { Image } from 'react-cm-ui';
