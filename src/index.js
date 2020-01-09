@@ -43,7 +43,7 @@ export { default as Modal } from './templates/modal';
 export { default as Page } from './templates/page';
 
 // Utils
-export { default as DatePickerUtils } from './utils/datePickerUtils';
-export { default as dateUtils } from './utils/dateUtils';
-export { default as domUtils } from './utils/domUtils';
-export { default as Utils } from './utils/utils';
+export { default as DatePickerUtils } from './global/utils/datePickerUtils';
+export { default as dateUtils } from './global/utils/dateUtils';
+export { default as domUtils } from './global/utils/domUtils';
+export { default as Utils } from './global/utils/utils';
