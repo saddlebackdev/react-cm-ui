@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -11,8 +10,8 @@ import GridColumn from '../collections/gridColumn';
 import Icon from '../elements/icon';
 import Input from '../elements/input';
 
-import DatePickerUtils from '../global/utils/datePickerUtils';;
-import DateUtils from '../global/utils/dateUtils';;
+import DatePickerUtils from '../global/utils/datePickerUtils';
+import DateUtils from '../global/utils/dateUtils';
 
 class DatePickerInput extends Component {
     constructor(props) {
@@ -26,8 +25,8 @@ class DatePickerInput extends Component {
                 dateEnd: this._safeDateFormat(props.dateEnd, props.locale),
                 dateSecondaryEnd: this._safeDateFormat(props.dateSecondaryEnd, props.locale),
                 dateSecondaryStart: this._safeDateFormat(props.dateSecondaryStart, props.locale),
-                dateStart: this._safeDateFormat(props.dateStart, props.locale)
-            }
+                dateStart: this._safeDateFormat(props.dateStart, props.locale),
+            },
         };
 
         this._onErrorRef = this._onError.bind(this);
@@ -40,7 +39,9 @@ class DatePickerInput extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { date, dateStart, dateEnd, dateSecondaryStart, dateSecondaryEnd, locale } = this.props;
+        const {
+            date, dateStart, dateEnd, dateSecondaryStart, dateSecondaryEnd, locale,
+        } = this.props;
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
             !DatePickerUtils.isSameDay(dateStart, prevProps.dateStart) ||
@@ -55,14 +56,16 @@ class DatePickerInput extends Component {
                     dateEnd: this._safeDateFormat(dateEnd, locale),
                     dateSecondaryEnd: this._safeDateFormat(dateSecondaryEnd, locale),
                     dateSecondaryStart: this._safeDateFormat(dateSecondaryStart, locale),
-                    dateStart: this._safeDateFormat(dateStart, locale)
-                }
+                    dateStart: this._safeDateFormat(dateStart, locale),
+                },
             });
         }
     }
 
     render() {
-        const { className, open, type, uxMode } = this.props;
+        const {
+            className, open, type, uxMode,
+        } = this.props;
         const disabled = this.props.disabled ||
             type === 'servicePeriod' ||
             type === 'servicePeriodRangeEnd' ||
@@ -73,9 +76,10 @@ class DatePickerInput extends Component {
             'date-picker-input-type-service-period': type === 'servicePeriod',
             'date-picker-input-type-service-period-range': type === 'servicePeriodRange',
             'date-picker-input-type-single-date': type === 'singleDate',
-            'ignore-react-onclickoutside': open
+            'ignore-react-onclickoutside': open,
         }, className);
-        let mask, placeholder, value;
+        let mask; let placeholder; let
+            value;
 
         if (uxMode === 'input' &&
             type === 'dateRange' ||
@@ -86,7 +90,7 @@ class DatePickerInput extends Component {
             mask = [
                 /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
                 ' ', '-', ' ',
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
+                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
             ];
             placeholder = 'mm/dd/yyyy - mm/dd/yyyy';
 
@@ -97,7 +101,7 @@ class DatePickerInput extends Component {
             }
         } else {
             mask = [
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
+                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
             ];
             placeholder = 'mm/dd/yyyy';
             value = this.state.maybeDate;
@@ -110,11 +114,11 @@ class DatePickerInput extends Component {
                     className={containerClasses}
                     data-parsley-error-message={this.props.errorMessage}
                     disabled={disabled}
-                    guide={true}
+                    guide
                     icon={(
                         <Icon
                             color={open ? 'highlight' : null}
-                            compact={true}
+                            compact
                             onClick={this._onClick}
                             type="calendar"
                         />
@@ -135,7 +139,7 @@ class DatePickerInput extends Component {
                     value={value}
                 />
             );
-        } else if (uxMode === 'calendar') {
+        } if (uxMode === 'calendar') {
             return (
                 <Grid columns={2} style={{ marginBottom: '5px', marginTop: '7px' }}>
                     <Grid.Column>
@@ -144,9 +148,9 @@ class DatePickerInput extends Component {
                             className={containerClasses}
                             data-parsley-error-message={this.props.errorMessage}
                             disabled={disabled}
-                            guide={true}
+                            guide
                             id={this.props.id}
-                            keepCharPositions={true}
+                            keepCharPositions
                             label="From"
                             mask={mask}
                             onBlur={this._onBlur}
@@ -168,9 +172,9 @@ class DatePickerInput extends Component {
                             className={containerClasses}
                             data-parsley-error-message={this.props.errorMessage}
                             disabled={disabled}
-                            guide={true}
+                            guide
                             id={this.props.id}
-                            keepCharPositions={true}
+                            keepCharPositions
                             label="To"
                             mask={mask}
                             onBlur={this._onBlur}
@@ -203,7 +207,9 @@ class DatePickerInput extends Component {
     }
 
     _onBlur(value) {
-        const { date, dateEnd, dateStart, locale, type } = this.props;
+        const {
+            date, dateEnd, dateStart, locale, type,
+        } = this.props;
         const isSingleDateOrServicePeriod = type === 'singleDate' || type === 'servicePeriod';
         const isDateRange = type === 'dateRange';
 
@@ -217,8 +223,8 @@ class DatePickerInput extends Component {
             maybeDate: isSingleDateOrServicePeriod ? this._safeDateFormat(date, locale) : this.state.maybeDate,
             maybeDateRange: isDateRange ? {
                 dateEnd: this._safeDateFormat(dateEnd, locale),
-                dateStart: this._safeDateFormat(dateStart, locale)
-            } : this.state.maybeDateRange
+                dateStart: this._safeDateFormat(dateStart, locale),
+            } : this.state.maybeDateRange,
         });
     }
 
@@ -249,8 +255,8 @@ class DatePickerInput extends Component {
             this.setState({
                 maybeDateRange: {
                     dateEnd: value ? datesArray[1].trim() : '',
-                    dateStart: value ? datesArray[0].trim() : ''
-                }
+                    dateStart: value ? datesArray[0].trim() : '',
+                },
             });
         } else if (uxMode === 'calendar' || uxMode === 'input' && type === 'singleDate') {
             const date = moment(value, this._dateFormats, newLocale, true);
@@ -269,8 +275,8 @@ class DatePickerInput extends Component {
                 this.setState({
                     maybeDateRange: {
                         dateEnd: dateType === 'dateEnd' ? value : this.state.maybeDateRange.dateEnd,
-                        dateStart: dateType === 'dateStart' ? value : this.state.maybeDateRange.dateStart
-                    }
+                        dateStart: dateType === 'dateStart' ? value : this.state.maybeDateRange.dateStart,
+                    },
                 });
             }
         }
@@ -285,7 +291,7 @@ class DatePickerInput extends Component {
     }
 
     _onError() {
-        this.setState({ 'hasAnError': ParsleyFormStore.inputHasError(this.props.id) });
+        this.setState({ hasAnError: ParsleyFormStore.inputHasError(this.props.id) });
     }
 
     _onFocus() {
@@ -349,7 +355,7 @@ DatePickerInput.propTypes = {
     required: PropTypes.bool,
     tabIndex: PropTypes.number,
     type: PropTypes.string,
-    uxMode: PropTypes.string
+    uxMode: PropTypes.string,
 };
 
 export default DatePickerInput;

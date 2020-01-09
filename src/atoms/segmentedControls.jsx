@@ -12,7 +12,7 @@ class SegmentedControls extends React.PureComponent {
 
         this.state = {
             buttonWidth: null,
-            selected: props.selected || 0
+            selected: props.selected || 0,
         };
     }
 
@@ -32,7 +32,7 @@ class SegmentedControls extends React.PureComponent {
         const buttons = ReactDOM.findDOMNode(this.refs.buttonsContainer).querySelectorAll('button .inner-container');
         let newButtonWidth = 0;
 
-        _.forEach(buttons, button => {
+        _.forEach(buttons, (button) => {
             if (button.offsetWidth > newButtonWidth) {
                 newButtonWidth = button.offsetWidth;
             }
@@ -58,22 +58,24 @@ class SegmentedControls extends React.PureComponent {
     }
 
     render() {
-        const { children, className, fluid, style } = this.props;
+        const {
+            children, className, fluid, style,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'segmented-controls', className, {
-            'segmented-controls-fluid': fluid
+            'segmented-controls-fluid': fluid,
         });
-        const convertChildren = _.isArray(children) ? children : [ children ];
-        let buttons = _.map(convertChildren, (child, index) => {
+        const convertChildren = _.isArray(children) ? children : [children];
+        const buttons = _.map(convertChildren, (child, index) => {
             const { icon, label, onClick } = child.props;
             const isActiveClass = ClassNames('segmented-controls-button', {
                 'segmented-controls-button-icon': icon,
-                'segmented-controls-button-is-active': this.state.selected === index
+                'segmented-controls-button-is-active': this.state.selected === index,
             });
 
             return (
                 <button
                     className={isActiveClass}
-                    key={'segmented-controls-buttons-' + index}
+                    key={`segmented-controls-buttons-${index}`}
                     onClick={this.onButtonClick.bind(this, index, label, onClick)}
                 >
                     <span
@@ -82,7 +84,7 @@ class SegmentedControls extends React.PureComponent {
                             alignItems: 'center',
                             display: 'inline-flex',
                             justifyContent: 'center',
-                            width: this.state.buttonWidth
+                            width: this.state.buttonWidth,
                         }}
                     >
                         {!_.isUndefined(label) ? (
@@ -92,7 +94,7 @@ class SegmentedControls extends React.PureComponent {
                         ) : null}
 
                         {!_.isUndefined(icon) ? (
-                            <Icon align="right" compact={_.isUndefined(label)} inverse={true} type={icon} />
+                            <Icon align="right" compact={_.isUndefined(label)} inverse type={icon} />
                         ) : null}
                     </span>
                 </button>
@@ -107,7 +109,7 @@ class SegmentedControls extends React.PureComponent {
             </div>
         );
     }
-};
+}
 
 SegmentedControls.Item = SegmentedControlsItem;
 
@@ -116,7 +118,7 @@ SegmentedControls.propTypes = {
     fluid: PropTypes.bool,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default SegmentedControls;

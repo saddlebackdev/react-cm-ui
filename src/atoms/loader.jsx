@@ -33,7 +33,7 @@ function Loader(props) {
 Loader.propTypes = {
     className: PropTypes.string,
     fluid: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Loader;

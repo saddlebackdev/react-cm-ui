@@ -1,10 +1,9 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerWeek from './datePickerWeek';
 import PropTypes from 'prop-types';
 import React from 'react';
+import DatePickerWeek from './datePickerWeek';
 
 class DatePickerMonth extends React.PureComponent {
     constructor() {
@@ -57,7 +56,7 @@ class DatePickerMonth extends React.PureComponent {
         } = this.props;
         const startOfMonth = dateInView.clone().startOf('month').startOf('week');
 
-        return _.map([ 0, 1, 2, 3, 4, 5 ], week => {
+        return _.map([0, 1, 2, 3, 4, 5], (week) => {
             const startOfWeek = startOfMonth.clone().add(week, 'weeks');
 
             return (
@@ -96,7 +95,7 @@ DatePickerMonth.propTypes = {
     includeDates: PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    mode: PropTypes.oneOf([ 'calendar', 'input' ]),
+    mode: PropTypes.oneOf(['calendar', 'input']),
     onDayClick: PropTypes.func.isRequired,
     range: PropTypes.bool,
     rangeFrom: PropTypes.bool,

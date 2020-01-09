@@ -20,7 +20,9 @@ class Item extends React.PureComponent {
     }
 
     render() {
-        const { as, children, className, divide, style } = this.props;
+        const {
+            as, children, className, divide, style,
+        } = this.props;
         const containerClasses = ClassNames('list--item', className, {
             'list--item-divide': divide,
         });
@@ -64,7 +66,9 @@ class List extends React.PureComponent {
     }
 
     render() {
-        const { as, children, className, divide, fluid, horizontal, inverse, style } = this.props;
+        const {
+            as, children, className, divide, fluid, horizontal, inverse, style,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'list', className, {
             'list-divide': divide,
             'list-horizontal': horizontal,
@@ -75,7 +79,7 @@ class List extends React.PureComponent {
         const items = React.Children.map(children, (child, index) => {
             if (!_.isNil(child)) {
                 return (
-                    <Item as={as} key={'list--item' + index} {...child.props} />
+                    <Item as={as} key={`list--item${index}`} {...child.props} />
                 );
             }
         });
@@ -90,7 +94,7 @@ class List extends React.PureComponent {
 
 List.Item = Item;
 
-const asEnums = [ 'div', 'ol', 'ul' ];
+const asEnums = ['div', 'ol', 'ul'];
 
 List.propTypes = {
     as: PropTypes.oneOf(asEnums),

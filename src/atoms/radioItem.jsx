@@ -10,7 +10,9 @@ class RadioItem extends Component {
     }
 
     render() {
-        const { checked, className, id, label, name } = this.props;
+        const {
+            checked, className, id, label, name,
+        } = this.props;
         const containerClasses = ClassNames('radio-item', className, {
             'radio-item-is-checked': checked,
         });
@@ -22,7 +24,7 @@ class RadioItem extends Component {
                     className="input"
                     id={id}
                     name={name}
-                    readOnly={true}
+                    readOnly
                     type="radio"
                 />
 
@@ -37,12 +39,12 @@ RadioItem.propTypes = {
     className: PropTypes.string,
     id: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     index: PropTypes.number,
     label: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default RadioItem;

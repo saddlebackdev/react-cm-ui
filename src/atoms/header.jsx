@@ -11,6 +11,7 @@ class Header extends React.PureComponent {
 
         this.onAnchorClick = this.onAnchorClick.bind(this);
     }
+
     onAnchorClick() {
         window.location.hash = this.props.anchor;
     }
@@ -117,9 +118,9 @@ class Header extends React.PureComponent {
 
 Header.Subheader = HeaderSubheader;
 
-const asEnums = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
-const colorEnums = [ 'static', 'text' ];
-const weightEnums = [ 'bold', 'normal', 'semibold' ];
+const asEnums = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const colorEnums = ['static', 'text'];
+const weightEnums = ['bold', 'normal', 'semibold'];
 
 Header.propTypes = {
     anchor: PropTypes.string,

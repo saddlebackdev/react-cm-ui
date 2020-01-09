@@ -24,7 +24,7 @@ function Divider(props) {
         'divider-hidden': hidden,
         'divider-inverse': inverse,
         'divider-relaxed': relaxed,
-        'divider-relaxed-very': relaxed === 'very'
+        'divider-relaxed-very': relaxed === 'very',
     });
 
     return (
@@ -40,9 +40,9 @@ Divider.propTypes = {
     inverse: PropTypes.bool,
     relaxed: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf([ 'very' ])
+        PropTypes.oneOf(['very']),
     ]),
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default Divider;

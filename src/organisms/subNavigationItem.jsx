@@ -1,10 +1,8 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class SubNavigationItem extends Component {
-
     render() {
         return (
             <div>
@@ -12,13 +10,12 @@ class SubNavigationItem extends Component {
             </div>
         );
     }
-
 }
 
 SubNavigationItem.propTypes = {
     label: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 export default SubNavigationItem;

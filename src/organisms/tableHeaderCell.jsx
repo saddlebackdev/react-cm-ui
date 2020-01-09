@@ -88,7 +88,7 @@ class TableHeaderCell extends Component {
                 'table-header-cell-text-align-left': textAlign === 'left',
                 'table-header-cell-text-align-right': textAlign === 'right',
             },
-            className
+            className,
         );
 
         return (
@@ -110,8 +110,8 @@ class TableHeaderCell extends Component {
     }
 }
 
-const columnNumberEnums = [ 'auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
-const textAlignEnums = [ 'center', 'left', 'right' ];
+const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const textAlignEnums = ['center', 'left', 'right'];
 
 TableHeaderCell.propTypes = {
     className: PropTypes.string,

@@ -59,9 +59,7 @@ class Button extends React.PureComponent {
             'button-outlined': outlined,
             'button-relax': relax,
         });
-        const containerStyle = Object.assign({}, {
-            width: _.isNumber(width) ? `${width}px` : _.isString(width) ? width : null,
-        }, style);
+        const containerStyle = { width: _.isNumber(width) ? `${width}px` : _.isString(width) ? width : null, ...style };
 
         return (
             <ElementType
@@ -84,7 +82,7 @@ class Button extends React.PureComponent {
     }
 }
 
-const asEnums = [ 'a', 'button' ];
+const asEnums = ['a', 'button'];
 
 Button.propTypes = {
     as: PropTypes.oneOf(asEnums),
@@ -103,7 +101,7 @@ Button.propTypes = {
     relax: PropTypes.bool,
     square: PropTypes.bool,
     style: PropTypes.object,
-    target: PropTypes.oneOf([ '_blank' ]),
+    target: PropTypes.oneOf(['_blank']),
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,

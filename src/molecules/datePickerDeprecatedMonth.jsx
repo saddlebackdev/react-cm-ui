@@ -1,4 +1,3 @@
-'use strict';
 
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -34,29 +33,29 @@ class DatePickerMonth extends Component {
         const startOfMonth = this.props.dateInView.clone().startOf('month').startOf('week');
 
         return [0, 1, 2, 3, 4, 5]
-        .map(offset => startOfMonth.clone().add(offset, 'weeks'))
-        .filter(startOfWeek => this._isWeekInMonth(startOfWeek))
-        .map((startOfWeek, offset) =>
-            <DatePickerWeek
-                date={this.props.date}
-                dateEnd={this.props.dateEnd}
-                dateInView={startOfWeek}
-                dateSecondaryEnd={this.props.dateSecondaryEnd}
-                dateSecondaryStart={this.props.dateSecondaryStart}
-                dateStart={this.props.dateStart}
-                events={this.props.events}
-                key={offset}
-                maxDate={this.props.maxDate}
-                minDate={this.props.minDate}
-                month={this.props.dateInView.month()}
-                onDayClick={this._onDayClick.bind(this)}
-                excludeDates={this.props.excludeDates}
-                filterDates={this.props.filterDates}
-                includeDates={this.props.includeDates}
-                type={this.props.type}
-                uxMode={this.props.uxMode}
-            />
-        );
+            .map((offset) => startOfMonth.clone().add(offset, 'weeks'))
+            .filter((startOfWeek) => this._isWeekInMonth(startOfWeek))
+            .map((startOfWeek, offset) => (
+                <DatePickerWeek
+                    date={this.props.date}
+                    dateEnd={this.props.dateEnd}
+                    dateInView={startOfWeek}
+                    dateSecondaryEnd={this.props.dateSecondaryEnd}
+                    dateSecondaryStart={this.props.dateSecondaryStart}
+                    dateStart={this.props.dateStart}
+                    events={this.props.events}
+                    key={offset}
+                    maxDate={this.props.maxDate}
+                    minDate={this.props.minDate}
+                    month={this.props.dateInView.month()}
+                    onDayClick={this._onDayClick.bind(this)}
+                    excludeDates={this.props.excludeDates}
+                    filterDates={this.props.filterDates}
+                    includeDates={this.props.includeDates}
+                    type={this.props.type}
+                    uxMode={this.props.uxMode}
+                />
+            ));
     }
 }
 
@@ -75,7 +74,7 @@ DatePickerMonth.propTypes = {
     minDate: PropTypes.object,
     onDayClick: PropTypes.func,
     type: PropTypes.string,
-    uxMode: PropTypes.string
+    uxMode: PropTypes.string,
 };
 
 export default DatePickerMonth;

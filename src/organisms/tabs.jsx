@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
@@ -27,9 +26,9 @@ class Tabs extends Component {
         const containerClasses = ClassNames('ui', 'tabs', this.props.className, {
             'tabs-nest': this.props.nest,
         });
-        const convertChildren = _.isArray(children) ? children : [ children ];
-        let buttons = _.map(convertChildren, (child, index) => {
-            let isActive = ClassNames({ 'is-active': this.state.selected === index });
+        const convertChildren = _.isArray(children) ? children : [children];
+        const buttons = _.map(convertChildren, (child, index) => {
+            const isActive = ClassNames({ 'is-active': this.state.selected === index });
             const buttonID = id ?
                 `${id}_${_.snakeCase(child.props.label)}` :
                 `tabs_button--${_.snakeCase(child.props.label)}`;
@@ -39,7 +38,7 @@ class Tabs extends Component {
                     className={isActive}
                     id={buttonID}
                     onClick={this._onTabClick.bind(this, index)}
-                    key={'tabs-buttons-' + index}
+                    key={`tabs-buttons-${index}`}
                 >
                     <span className="tab-button-inner">
                         {child.props.label ? <span className="copy">{child.props.label}</span> : null}

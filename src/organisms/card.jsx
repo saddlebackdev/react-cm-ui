@@ -4,7 +4,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import domUtils from '../global/utils/domUtils';;
+import domUtils from '../global/utils/domUtils';
 import Header from '../elements/header';
 import Icon from '../elements/icon';
 

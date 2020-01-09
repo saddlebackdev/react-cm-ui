@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
@@ -13,7 +12,7 @@ class TableBody extends Component {
         } = this.props;
         const containerClasses = ClassNames(
             'table-body',
-            className
+            className,
         );
 
         return (

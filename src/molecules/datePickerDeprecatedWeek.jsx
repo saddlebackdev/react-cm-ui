@@ -1,4 +1,3 @@
-'use strict';
 
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -26,8 +25,8 @@ class DatePickerWeek extends Component {
     _renderDays() {
         const startOfWeek = this.props.dateInView.clone().startOf('week');
 
-        return [0, 1, 2, 3, 4, 5, 6].map(offset => {
-            let dateInView = startOfWeek.clone().add(offset, 'days');
+        return [0, 1, 2, 3, 4, 5, 6].map((offset) => {
+            const dateInView = startOfWeek.clone().add(offset, 'days');
 
             return (
                 <DatePickerDay
@@ -70,7 +69,7 @@ DatePickerWeek.propTypes = {
     month: PropTypes.number,
     onDayClick: PropTypes.func,
     type: PropTypes.string,
-    uxMode: PropTypes.string
+    uxMode: PropTypes.string,
 };
 
 export default DatePickerWeek;

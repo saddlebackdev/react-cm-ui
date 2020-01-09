@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -14,7 +13,7 @@ import DatePickerDropdownYear from './datePickerDropdownYear';
 import Grid from '../collections/grid';
 import Icon from '../elements/icon';
 
-import DatePickerUtils from '../global/utils/datePickerUtils';;
+import DatePickerUtils from '../global/utils/datePickerUtils';
 
 class DatePickerCalendar extends Component {
     constructor(props) {
@@ -27,11 +26,11 @@ class DatePickerCalendar extends Component {
                     props.dateStart,
                     props.dateSecondaryStart,
                     props.maxDate,
-                    props.minDate
-                )
+                    props.minDate,
+                ),
             ),
             showDropdownMonth: false,
-            showDropdownYear: false
+            showDropdownYear: false,
         };
     }
 
@@ -46,9 +45,9 @@ class DatePickerCalendar extends Component {
                         this.props.dateStart,
                         this.props.dateSecondaryStart,
                         this.props.maxDate,
-                        this.props.minDate
-                    )
-                )
+                        this.props.minDate,
+                    ),
+                ),
             });
         }
     }
@@ -65,8 +64,10 @@ class DatePickerCalendar extends Component {
     }
 
     render() {
-        const { buttonClear, date, dateEnd, dateStart, dateSecondaryEnd, dateSecondaryStart, onApplyClick, type, uxMode } = this.props;
-        const dateInView = this.state.dateInView;
+        const {
+            buttonClear, date, dateEnd, dateStart, dateSecondaryEnd, dateSecondaryStart, onApplyClick, type, uxMode,
+        } = this.props;
+        const { dateInView } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-deprecated-calendar', {
             'date-picker-deprecated-calendar-uxmode-input': uxMode === 'input',
             'date-picker-deprecated-calendar-uxmode-calendar': uxMode === 'calendar',
@@ -75,7 +76,7 @@ class DatePickerCalendar extends Component {
             'date-picker-deprecated-calendar-service-period-range': type === 'servicePeriodRange' ||
                 type === 'servicePeriodRangeEnd' ||
                 type === 'servicePeriodRangeStart',
-            'date-picker-deprecated-calendar-single-date': type === 'singleDate'
+            'date-picker-deprecated-calendar-single-date': type === 'singleDate',
         });
 
         return (
@@ -165,8 +166,7 @@ class DatePickerCalendar extends Component {
                                         ((type === 'dateRange' || type === 'servicePeriod') && dateStart && dateEnd) ||
                                         (type === 'servicePeriodRange' && dateStart && dateEnd && dateSecondaryStart && dateSecondaryEnd) ?
                                             'Apply' :
-                                            'Select'
-                                        }
+                                            'Select'}
                                     </Button>
                                 </Grid.Column>
                             ) : null}
@@ -182,19 +182,18 @@ class DatePickerCalendar extends Component {
 
         if (date) {
             return date;
-        } else if (dateStart /*&& (_.isNull(dateSecondaryStart) || dateSecondaryStart)*/) { // I'm 99.9% certain that portion is useless ... it should ALWAYS be either NULL OR truthy, right...?
+        } if (dateStart /* && (_.isNull(dateSecondaryStart) || dateSecondaryStart) */) { // I'm 99.9% certain that portion is useless ... it should ALWAYS be either NULL OR truthy, right...?
             return dateStart;
-        } else if (!dateStart && dateSecondaryStart) {
+        } if (!dateStart && dateSecondaryStart) {
             return dateSecondaryStart;
         }
 
         if (minDate && minDate.isAfter(today)) {
             return minDate;
-        } else if (maxDate && maxDate.isBefore(today)) {
+        } if (maxDate && maxDate.isBefore(today)) {
             return maxDate;
-        } else {
-            return today;
         }
+        return today;
     }
 
     handleClickOutside() {
@@ -204,15 +203,15 @@ class DatePickerCalendar extends Component {
     _headerDays() {
         const startOfWeek = this.state.dateInView.clone().startOf('week');
 
-        return [0, 1, 2, 3, 4, 5, 6].map(offset => {
+        return [0, 1, 2, 3, 4, 5, 6].map((offset) => {
             const day = startOfWeek.clone().add(offset, 'days');
 
             return (
-                <div className="ui date-picker-deprecated-day" key={offset} >
+                <div className="ui date-picker-deprecated-day" key={offset}>
                     {day.localeData().weekdaysMin(day)}
                 </div>
             );
-        })
+        });
     }
 
     _localizeMoment(date) {
@@ -226,19 +225,18 @@ class DatePickerCalendar extends Component {
     }
 
     _onChangeMonth(month) {
-        if (typeof this.props.onMonthChange === 'function')
-            this.props.onMonthChange(month, this.state.dateInView.year());
+        if (typeof this.props.onMonthChange === 'function') this.props.onMonthChange(month, this.state.dateInView.year());
 
         this.setState({
             dateInView: this.state.dateInView.clone().set('month', month),
-            showDropdownMonth: false
+            showDropdownMonth: false,
         });
     }
 
     _onChangeYear(year) {
         this.setState({
             dateInView: this.state.dateInView.clone().set('year', year),
-            showDropdownYear: false
+            showDropdownYear: false,
         });
     }
 
@@ -281,7 +279,7 @@ DatePickerCalendar.propTypes = {
     onMonthChange: PropTypes.func,
     onSelect: PropTypes.func.isRequired,
     type: PropTypes.string,
-    uxMode: PropTypes.string
+    uxMode: PropTypes.string,
 };
 
 export default onClickOutside(DatePickerCalendar);

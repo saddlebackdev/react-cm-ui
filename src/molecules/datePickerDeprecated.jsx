@@ -1,15 +1,14 @@
-'use strict';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerCalendar from './datePickerDeprecatedCalendar';
-import DatePickerInput from './datePickerDeprecatedInput';
-import DatePickerUtils from '../global/utils/datePickerUtils';;
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
+import DatePickerUtils from '../global/utils/datePickerUtils';
+import DatePickerInput from './datePickerDeprecatedInput';
+import DatePickerCalendar from './datePickerDeprecatedCalendar';
 
 class DatePicker extends Component {
     constructor(props) {
@@ -27,14 +26,16 @@ class DatePicker extends Component {
     }
 
     render() {
-        const { buttonClear, className, classNameInput,
+        const {
+            buttonClear, className, classNameInput,
             date, dateEnd, dateFormat,
             dateSecondaryEnd, dateSecondaryStart, dateStart,
             disabled, error, events,
             excludeDates, filterDates, id,
             includeDates, locale, maxDate,
             minDate, required, tabIndex,
-            type, uxMode } = this.props;
+            type, uxMode,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'date-picker-deprecated', className);
         const calendarJSX = (
             <DatePickerCalendar
@@ -66,18 +67,18 @@ class DatePicker extends Component {
             <div className={containerClasses}>
                 {uxMode === 'input' ? (
                     <TetherComponent
-                        attachment={'top left'}
+                        attachment="top left"
                         classPrefix="date-picker-deprecated-tether"
                         constraints={[{
                             to: 'window',
                             attachment: 'together',
                         }]}
-                        renderElement={ref => this.state.isCalendarOpen && (
+                        renderElement={(ref) => this.state.isCalendarOpen && (
                             <div ref={ref}>
                                 {calendarJSX}
                             </div>
                         )}
-                        renderTarget={ref => (
+                        renderTarget={(ref) => (
                             <div ref={ref}>
                                 <DatePickerInput
                                     className={classNameInput}
@@ -112,8 +113,8 @@ class DatePicker extends Component {
                                 />
                             </div>
                         )}
-                        targetAttachment={'bottom left'}
-                        targetOffset={'10px 0'}
+                        targetAttachment="bottom left"
+                        targetOffset="10px 0"
                     />
                 ) : (
                     <div>
@@ -263,10 +264,8 @@ class DatePicker extends Component {
     _onInputBlur(event) {
         if (this.state.isCalendarOpen) {
             ReactDOM.findDOMNode(this.refs.input).focus();
-        } else {
-            if (_.isFunction(this.props.onBlur)) {
-                this.props.onBlur(event);
-            }
+        } else if (_.isFunction(this.props.onBlur)) {
+            this.props.onBlur(event);
         }
     }
 
@@ -320,12 +319,14 @@ class DatePicker extends Component {
     }
 
     _onSelect(date, dateType, clear) {
-        const { dateEnd, dateSecondaryEnd, dateSecondaryStart, dateStart, type } = this.props;
+        const {
+            dateEnd, dateSecondaryEnd, dateSecondaryStart, dateStart, type,
+        } = this.props;
 
         if (type === 'dateRange') {
             const dateObj = {
-                dateEnd: dateEnd,
-                dateStart: dateStart,
+                dateEnd,
+                dateStart,
             };
             const isDateBeforeDateStart = (_.isUndefined(dateType) || dateType === 'dateStart') && date.isBefore(this._convertTimestamp(dateStart));
             const isDateBeforeDateEnd = (_.isUndefined(dateType) || dateType === 'dateEnd') && date.isBefore(this._convertTimestamp(dateEnd));
@@ -417,8 +418,8 @@ class DatePicker extends Component {
     }
 }
 
-const typeEnums = [ 'dateRange', 'servicePeriod', 'servicePeriodRange', 'servicePeriodRangeEnd', 'servicePeriodRangeStart', 'singleDate' ];
-const uxModeEnums = [ 'input', 'calendar' ];
+const typeEnums = ['dateRange', 'servicePeriod', 'servicePeriodRange', 'servicePeriodRangeEnd', 'servicePeriodRangeStart', 'singleDate'];
+const uxModeEnums = ['input', 'calendar'];
 
 DatePicker.propTypes = {
     buttonClear: PropTypes.bool,

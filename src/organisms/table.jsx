@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
@@ -56,7 +55,7 @@ class Table extends Component {
                 'table-stackable': stackable,
                 'table-unstackable': stackable === false,
             },
-            className
+            className,
         );
 
         return (
@@ -82,7 +81,7 @@ Table.propTypes = {
     celled: PropTypes.bool,
     className: PropTypes.string,
     collapsing: PropTypes.bool,
-    color: PropTypes.oneOf([ 'bottom', 'middle', 'top' ]),
+    color: PropTypes.oneOf(['bottom', 'middle', 'top']),
     definition: PropTypes.bool,
     fixed: PropTypes.bool,
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
@@ -90,11 +89,11 @@ Table.propTypes = {
     id: PropTypes.string,
     selectable: PropTypes.bool,
     singleLine: PropTypes.bool,
-    size: PropTypes.oneOf([ 'l', 'large', 'm', 'medium', 's', 'small' ]),
+    size: PropTypes.oneOf(['l', 'large', 'm', 'medium', 's', 'small']),
     stackable: PropTypes.bool,
     stretch: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf([ 'very' ]),
+        PropTypes.oneOf(['very']),
     ]),
     striped: PropTypes.bool,
     style: PropTypes.object,

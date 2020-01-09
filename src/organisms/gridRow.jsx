@@ -1,4 +1,3 @@
-'use strict';
 
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -7,9 +6,10 @@ import React, { Component } from 'react';
 import Utils from '../global/utils';
 
 class GridRow extends Component {
-
     render() {
-        const { className, columns, horizontalAlign, stressed, style, textAlign, verticalAlign } = this.props;
+        const {
+            className, columns, horizontalAlign, stressed, style, textAlign, verticalAlign,
+        } = this.props;
         const containerClasses = ClassNames(
             'ui',
             'grid-row',
@@ -23,9 +23,9 @@ class GridRow extends Component {
                 'grid-row-text-align-right': textAlign === 'right',
                 'grid-row-vertical-bottom': verticalAlign === 'bottom',
                 'grid-row-vertical-middle': verticalAlign === 'middle',
-                'grid-row-vertical-top': verticalAlign === 'top'
+                'grid-row-vertical-top': verticalAlign === 'top',
             },
-            className
+            className,
         );
 
         return (
@@ -34,12 +34,11 @@ class GridRow extends Component {
             </div>
         );
     }
-
 }
 
-const columnNumberEnums = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
-const xAlignEnums = [ 'center', 'left', 'right' ];
-const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
+const columnNumberEnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const xAlignEnums = ['center', 'left', 'right'];
+const verticalAlignEnums = ['bottom', 'middle', 'top'];
 
 GridRow.propTypes = {
     className: PropTypes.string,
@@ -48,7 +47,7 @@ GridRow.propTypes = {
     stressed: PropTypes.bool,
     style: PropTypes.object,
     textAlign: PropTypes.oneOf(xAlignEnums),
-    verticalAlign: PropTypes.oneOf(verticalAlignEnums)
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
 };
 
 export default GridRow;

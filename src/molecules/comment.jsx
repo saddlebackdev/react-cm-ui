@@ -30,7 +30,9 @@ class Comment extends Component {
     }
 
     render() {
-        const { avatarSrc, canDelete, canEdit, children, className, detailsPosition, isEditable, name, style, time } = this.props;
+        const {
+            avatarSrc, canDelete, canEdit, children, className, detailsPosition, isEditable, name, style, time,
+        } = this.props;
         const { isEditMode, showDeleteConfirmation, updatedCommentText } = this.state;
         const containerClasses = ClassNames('ui', 'comment', className);
         const isRightAligned = detailsPosition === 'right';
@@ -46,7 +48,7 @@ class Comment extends Component {
                             alignItems: 'center',
                             display: 'flex',
                             flexDirection: isRightAligned ? 'row-reverse' : 'row',
-                            justifyContent: 'flex-start'
+                            justifyContent: 'flex-start',
                         }}
                     >
                         <div style={{ flex: 'none' }}>
@@ -70,7 +72,7 @@ class Comment extends Component {
                                         flex: '1 0 auto',
                                         margin: 0,
                                         paddingTop: '19px',
-                                        textAlign: editActionMenuAlignment
+                                        textAlign: editActionMenuAlignment,
                                     }}
                                 >
                                     <a
@@ -78,7 +80,7 @@ class Comment extends Component {
                                         onClick={this._onCancelEditClick}
                                         style={{ display: 'inline-block' }}
                                     >
-                                        {'Cancel'}
+                                        Cancel
                                     </a>
                                     <a
                                         className="save-link font-size-xsmall"
@@ -86,7 +88,7 @@ class Comment extends Component {
                                         onClick={this._onSaveClick}
                                         style={{ display: 'inline-block', marginLeft: '22px' }}
                                     >
-                                        {'Save'}
+                                        Save
                                     </a>
                                 </div>
                             ) : (
@@ -94,14 +96,14 @@ class Comment extends Component {
                                     style={{
                                         flex: '1 0 auto',
                                         margin: 0,
-                                        textAlign: editActionMenuAlignment
+                                        textAlign: editActionMenuAlignment,
                                     }}
                                 >
                                     <Prompt
                                         inline
                                         inlineHorizontalAlign={editActionMenuAlignment}
                                         inlineMessageColor="alert"
-                                        message={'Delete?'}
+                                        message="Delete?"
                                         onClick={this._onEditOrDeletePromptClick}
                                         onNoClick={this._onDeletePromptNoClick}
                                         onYesClick={this._onDeletePromptYesClick}
@@ -118,7 +120,7 @@ class Comment extends Component {
                                             iconType="ellipsis-h"
                                             onClose={() => this._onActionMenuClick(false)}
                                             onOpen={() => this._onActionMenuClick(true)}
-                                            style={{ margin: 0, padding: 0  }}
+                                            style={{ margin: 0, padding: 0 }}
                                             theme="dark"
                                         >
                                             { canEdit ? (
@@ -127,7 +129,7 @@ class Comment extends Component {
                                                     iconInverse
                                                     iconType="pencil"
                                                     id="edit"
-                                                    label={'Edit'}
+                                                    label="Edit"
                                                 />
                                             ) : null}
                                             { canDelete ? (
@@ -136,15 +138,14 @@ class Comment extends Component {
                                                     iconInverse
                                                     iconType="trash"
                                                     id="delete"
-                                                    label={'Delete'}
+                                                    label="Delete"
                                                 />
                                             ) : null}
                                         </Dropdown>
                                     </Prompt>
                                 </div>
-                                ) :
-                            null
-                        }
+                            ) :
+                            null}
                     </div>
                 ) : null}
 
@@ -154,10 +155,10 @@ class Comment extends Component {
                             fluid
                             onChange={this._onCommentChange}
                             onKeyDown={this._onEditKeyDown}
-                            ref={ref => this.editableCommentTextArea = ref}
+                            ref={(ref) => this.editableCommentTextArea = ref}
                             value={updatedCommentText}
                         />
-                    ): children}
+                    ) : children}
                 </div>
             </div>
         );
@@ -174,7 +175,7 @@ class Comment extends Component {
     _onCancelEditClick() {
         this.setState({
             isEditMode: false,
-            updatedCommentText: this.props.text || ''
+            updatedCommentText: this.props.text || '',
         });
     }
 
@@ -237,7 +238,7 @@ class Comment extends Component {
             nextDay: 'MMMM D, YYYY - h:mm a',
             lastDay: '[Yesterday] - h:mm a',
             lastWeek: 'MMMM D, YYYY - h:mm a',
-            sameElse: 'MMMM D, YYYY - h:mm a'
+            sameElse: 'MMMM D, YYYY - h:mm a',
         });
     }
 }
@@ -247,7 +248,7 @@ Comment.propTypes = {
     canDelete: PropTypes.bool,
     canEdit: PropTypes.bool,
     className: PropTypes.string,
-    detailsPosition: PropTypes.oneOf([ 'left', 'right' ]),
+    detailsPosition: PropTypes.oneOf(['left', 'right']),
     isEditable: PropTypes.bool,
     name: PropTypes.string,
     onActionMenuClick: PropTypes.func,
@@ -255,14 +256,14 @@ Comment.propTypes = {
     onSaveEdit: PropTypes.func,
     style: PropTypes.object,
     text: PropTypes.string,
-    time: PropTypes.number
+    time: PropTypes.number,
 };
 
 Comment.defaultProps = {
     canDelete: false,
     canEdit: false,
     detailsPosition: 'left',
-    isEditable: false
-}
+    isEditable: false,
+};
 
 export default Comment;

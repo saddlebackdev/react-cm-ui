@@ -37,8 +37,8 @@ class TextArea extends React.Component {
             ReactDOM.findDOMNode(this.textArea).focus();
 
             this.setState({
-                isFocused: true
-            })
+                isFocused: true,
+            });
         }
     }
 
@@ -65,12 +65,12 @@ class TextArea extends React.Component {
     }
 
     onChange(event) {
-        const value = event.target.value;
+        const { value } = event.target;
 
         if (!_.isUndefined(this.props.onChange)) {
             this.props.onChange(value);
         } else {
-            this.setState({ value: value });
+            this.setState({ value });
         }
     }
 
@@ -95,11 +95,13 @@ class TextArea extends React.Component {
     }
 
     render() {
-        const { autoHeight, className, columns,
+        const {
+            autoHeight, className, columns,
             disabled, error, fluid,
             id, inverse, label, labelStyle,
             maxHeight, maxLength, minHeight, minLength, name,
-            placeholder, required, resize, rows, style } = this.props;
+            placeholder, required, resize, rows, style,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
             'text-area-disabled': disabled,
@@ -136,13 +138,13 @@ class TextArea extends React.Component {
                         onFocus={this.onFocus.bind(this)}
                         onKeyDown={this.onKeyDown.bind(this)}
                         placeholder={placeholder}
-                        ref={ref => this.textArea = ref}
+                        ref={(ref) => this.textArea = ref}
                         required={required}
                         rows={rows}
                         style={{
                             maxHeight: _.isNumber(maxHeight) ? `${maxHeight}px` : _.isString(maxHeight) ? maxHeight : null,
                             minHeight: _.isNumber(minHeight) ? `${minHeight}px` : _.isString(minHeight) ? minHeight : '88px',
-                            resize: !_.isUndefined(resize) && !resize ? 'none' : 'auto'
+                            resize: !_.isUndefined(resize) && !resize ? 'none' : 'auto',
                         }}
                         value={this.props.value}
                     />
@@ -164,7 +166,7 @@ TextArea.propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     fluid: PropTypes.bool,
     id: PropTypes.string,
@@ -173,12 +175,12 @@ TextArea.propTypes = {
     labelStyle: PropTypes.object,
     maxHeight: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     maxLength: PropTypes.number,
     minHeight: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     minLength: PropTypes.number,
     name: PropTypes.string,
@@ -193,7 +195,7 @@ TextArea.propTypes = {
     resize: PropTypes.bool,
     rows: PropTypes.number,
     style: PropTypes.object,
-    value: PropTypes.string
+    value: PropTypes.string,
 };
 
 export default TextArea;

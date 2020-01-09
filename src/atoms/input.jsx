@@ -46,8 +46,8 @@ class Input extends React.PureComponent {
             ReactDOM.findDOMNode(this._input).focus();
 
             this.setState({
-                isFocused: true
-            })
+                isFocused: true,
+            });
         }
     }
 
@@ -63,7 +63,7 @@ class Input extends React.PureComponent {
         const { type } = this.props;
         let newType;
 
-        switch(type) {
+        switch (type) {
             case 'email':
                 newType = 'email';
                 break;
@@ -88,7 +88,9 @@ class Input extends React.PureComponent {
     }
 
     onChange(event) {
-        const { disabled, max, min, onChange } = this.props;
+        const {
+            disabled, max, min, onChange,
+        } = this.props;
 
         if (!disabled) {
             const type = this.getType();
@@ -102,7 +104,7 @@ class Input extends React.PureComponent {
                 this.inputTimer = setTimeout(() => {
                     if (_.isEmpty(newValue)) {
                         if (required) {
-                            newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                            newValue = _.isNumber(min) ? min : (_.isNumber(max) ? max : 0);
                         }
                     } else {
                         newValue = +newValue;
@@ -126,12 +128,10 @@ class Input extends React.PureComponent {
                 } else {
                     onChange(newValue);
                 }
+            } else if (_.isUndefined(onChange)) {
+                this._input.value = newValue;
             } else {
-                if (_.isUndefined(onChange)) {
-                    this._input.value = newValue;
-                } else {
-                    onChange(newValue);
-                }
+                onChange(newValue);
             }
 
             this.shouldShowRequiredIndicator(newValue);
@@ -159,8 +159,10 @@ class Input extends React.PureComponent {
     }
 
     onNumberToggleClick(action) {
-        const { disabled, max, min, type, onChange } = this.props;
-        const value = this._input.value;
+        const {
+            disabled, max, min, type, onChange,
+        } = this.props;
+        const { value } = this._input;
 
         if (!disabled) {
             let newValue = value || 0;
@@ -205,14 +207,16 @@ class Input extends React.PureComponent {
     }
 
     render() {
-        const { autoComplete, className, disabled,
+        const {
+            autoComplete, className, disabled,
             error, fluid, guide,
             icon, id, inverse,
             keepCharPositions, label, labelStyle, loading,
             mask, max, maxLength,
             min, minLength, name,
             placeholder, required, style,
-            tabIndex, showSpinners, value } = this.props;
+            tabIndex, showSpinners, value,
+        } = this.props;
         const { inputActionsTopPosition, showRequiredIndicator } = this.state;
         const type = this.getType();
         const labelPosition = this.props.labelPosition || 'top';
@@ -229,7 +233,7 @@ class Input extends React.PureComponent {
             'input-type-number': type === 'number',
             'input-type-password': type === 'password',
             'input-type-tel': type === 'tel',
-            'input-type-text': type === 'text'
+            'input-type-text': type === 'text',
         });
         const labelContainerClassNames = ClassNames('label', {
             'label-bottom': labelPosition === 'bottom',
@@ -270,7 +274,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        ref={ref => { this._input = ref }}
+                        ref={(ref) => { this._input = ref; }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -292,7 +296,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        ref={ref => { this._input = ref }}
+                        ref={(ref) => { this._input = ref; }}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -305,10 +309,10 @@ class Input extends React.PureComponent {
                 {_.isString(icon) || _.isObject(icon) || loading || type === 'number' ? (
                     <div
                         className="input-actions"
-                        ref={ref => { this._inputActions = ref }}
+                        ref={(ref) => { this._inputActions = ref; }}
                         style={{
                             pointerEvents: 'none',
-                            top: inputActionsTopPosition
+                            top: inputActionsTopPosition,
                         }}
                     >
                         {_.isString(icon) || loading ? (
@@ -325,7 +329,7 @@ class Input extends React.PureComponent {
                                     compact
                                     onClick={this.onNumberToggleUpClick}
                                     size="xsmall"
-                                    title={'Increase'}
+                                    title="Increase"
                                     type="caret-up"
                                 />
 
@@ -333,7 +337,7 @@ class Input extends React.PureComponent {
                                     compact
                                     onClick={this.onNumberToggleDownClick}
                                     size="xsmall"
-                                    title={'Decrease'}
+                                    title="Decrease"
                                     type="caret-down"
                                 />
                             </div>
@@ -349,12 +353,12 @@ class Input extends React.PureComponent {
     }
 }
 
-const autoCompleteEnums = [ 'off', 'on' ];
-const labelPosition = [ 'bottom', 'top' ];
-const typeEnums = [ 'email', 'number', 'password', 'tel', 'text' ];
+const autoCompleteEnums = ['off', 'on'];
+const labelPosition = ['bottom', 'top'];
+const typeEnums = ['email', 'number', 'password', 'tel', 'text'];
 
 Input.defaultProps = {
-    showSpinners: true
+    showSpinners: true,
 };
 
 Input.propTypes = {
@@ -364,13 +368,13 @@ Input.propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     fluid: PropTypes.bool,
     guide: PropTypes.bool,
     icon: PropTypes.oneOfType([
         PropTypes.object,
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
@@ -381,7 +385,7 @@ Input.propTypes = {
     loading: PropTypes.bool,
     mask: PropTypes.oneOfType([
         PropTypes.array,
-        PropTypes.func
+        PropTypes.func,
     ]),
     max: PropTypes.number,
     maxLength: PropTypes.number,
@@ -399,13 +403,13 @@ Input.propTypes = {
     style: PropTypes.object,
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     type: PropTypes.oneOf(typeEnums),
     value: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
-    ])
+        PropTypes.string,
+    ]),
 };
 
 export default Input;

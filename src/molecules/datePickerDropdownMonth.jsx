@@ -1,4 +1,3 @@
-'use strict';
 
 import ClassNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
@@ -52,7 +51,7 @@ DatePickerDropdownMonth.propTypes = {
     maxDate: PropTypes.object,
     month: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
 };
 
 export default onClickOutside(DatePickerDropdownMonth);

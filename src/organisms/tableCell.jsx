@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
@@ -104,7 +103,7 @@ class TableCell extends Component {
                 'table-cell-vertical-align-middle': verticalAlign === 'middle',
                 'table-cell-vertical-align-top': verticalAlign === 'top',
             },
-            className
+            className,
         );
 
         return (
@@ -119,10 +118,10 @@ class TableCell extends Component {
     }
 }
 
-const columnNumberEnums = [ 'auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
-const fontSizeEnums = [ 'large', 'medium', 'small', 'xsmall' ];
-const textAlignEnums = [ 'center', 'left', 'right' ];
-const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
+const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const fontSizeEnums = ['large', 'medium', 'small', 'xsmall'];
+const textAlignEnums = ['center', 'left', 'right'];
+const verticalAlignEnums = ['bottom', 'middle', 'top'];
 
 TableCell.propTypes = {
     active: PropTypes.bool,

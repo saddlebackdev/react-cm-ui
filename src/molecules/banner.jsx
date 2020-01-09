@@ -1,13 +1,12 @@
-'use strict';
 
 import React, { Component } from 'react';
-import BannerItem from './bannerItem';
 import ClassNames from 'classnames';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import Icon from '../elements/icon';
+import Header from '../elements/header';
+import BannerItem from './bannerItem';
 
 class Banner extends Component {
     constructor(props) {
@@ -37,11 +36,13 @@ class Banner extends Component {
     }
 
     render() {
-        const { children, className, id, level, levelIcon, message, title, type } = this.props;
+        const {
+            children, className, id, level, levelIcon, message, title, type,
+        } = this.props;
         const { isOpen } = this.state;
 
         if (!isOpen) {
-            return false; 
+            return false;
         }
 
         const containerClasses = ClassNames('ui', 'banner', className, {
@@ -127,11 +128,11 @@ class Banner extends Component {
 
     _animationProps(el) {
         let a;
-        let animations = {
-            'animation': 'animationend',
-            'OAnimation': 'oAnimationEnd',
-            'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd',
+        const animations = {
+            animation: 'animationend',
+            OAnimation: 'oAnimationEnd',
+            MozAnimation: 'animationend',
+            WebkitAnimation: 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -152,7 +153,7 @@ class Banner extends Component {
                 bannersYPosition += el.offsetHeight + 11;
             }
 
-            el.style.top = bannersYPosition + 'px';
+            el.style.top = `${bannersYPosition}px`;
         });
     }
 
@@ -200,8 +201,8 @@ class Banner extends Component {
 
 Banner.Item = BannerItem;
 
-const levelEnums = [ 'error', 'purple', 'secondary', 'success', 'teal', 'warning' ];
-const typeEnums = [ 'alert', 'notification' ];
+const levelEnums = ['error', 'purple', 'secondary', 'success', 'teal', 'warning'];
+const typeEnums = ['alert', 'notification'];
 
 Banner.propTypes = {
     className: PropTypes.string,

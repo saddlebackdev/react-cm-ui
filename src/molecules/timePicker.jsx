@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -22,11 +21,11 @@ class TimePicker extends Component {
             isTimePopoverActive: false,
             minuteOptions: this._renderMinuteOptions(),
             periodOptions: this._renderPeriodOptions(),
-            value:  _.clone(props.value) || {
+            value: _.clone(props.value) || {
                 timeDisplay: null,
                 timeFrom: null,
                 timeTo: null,
-                timeZone: _.find(zoneOptions, o => o.value === guessedTimeZone),
+                timeZone: _.find(zoneOptions, (o) => o.value === guessedTimeZone),
             },
             zoneOptions,
         };
@@ -37,7 +36,7 @@ class TimePicker extends Component {
     componentDidUpdate(prevProps) {
         if (!_.isEqual(this.props.value, prevProps.value)) {
             let isDirty = false;
-            let newValue = _.clone(this.props.value);
+            const newValue = _.clone(this.props.value);
 
             if (this.props.value) {
                 if (!this.props.value.timeDisplay) {
@@ -55,23 +54,28 @@ class TimePicker extends Component {
     }
 
     render() {
-        const { className, disable, error, id, label, nest, range, required, style, zonePlaceholderText } = this.props;
-        const { hourOptions, isTimePopoverActive, minuteOptions, periodOptions, value, zoneMatchProp, zoneOptions } = this.state;
+        const {
+            className, disable, error, id, label, nest, range, required, style, zonePlaceholderText,
+        } = this.props;
+        const {
+            hourOptions, isTimePopoverActive, minuteOptions, periodOptions, value, zoneMatchProp, zoneOptions,
+        } = this.state;
         const containerClasses = ClassNames('ui', 'time-picker', className, {
             'time-picker-disable': disable,
             'time-picker-error': error,
             'time-picker-nest': nest,
             'time-picker-range': range,
         });
-        const hourFromDropdownValue = value && value.timeFrom ? _.find(hourOptions, o => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString()) : null;
-        const minuteFromDropdownValue = value && value.timeFrom ? _.find(minuteOptions, o => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString()) : null;
-        const periodFromDropdownValue = value && value.timeFrom ? _.find(periodOptions, o => o.label === value.timeFrom[6] + value.timeFrom[7]) : null;
-        let hourToDropdownValue, minuteToDropdownValue, periodToDropdownValue;
+        const hourFromDropdownValue = value && value.timeFrom ? _.find(hourOptions, (o) => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString()) : null;
+        const minuteFromDropdownValue = value && value.timeFrom ? _.find(minuteOptions, (o) => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString()) : null;
+        const periodFromDropdownValue = value && value.timeFrom ? _.find(periodOptions, (o) => o.label === value.timeFrom[6] + value.timeFrom[7]) : null;
+        let hourToDropdownValue; let minuteToDropdownValue; let
+            periodToDropdownValue;
 
         if (range) {
-            hourToDropdownValue = value && value.timeTo ? _.find(hourOptions, o => o.label === (value.timeTo[0] + value.timeTo[1]).toString()) : null;
-            minuteToDropdownValue = value && value.timeTo ? _.find(minuteOptions, o => o.label === (value.timeTo[3] + value.timeTo[4]).toString()) : null;
-            periodToDropdownValue = value && value.timeTo ? _.find(periodOptions, o => o.label === value.timeTo[6] + value.timeTo[7]) : null;
+            hourToDropdownValue = value && value.timeTo ? _.find(hourOptions, (o) => o.label === (value.timeTo[0] + value.timeTo[1]).toString()) : null;
+            minuteToDropdownValue = value && value.timeTo ? _.find(minuteOptions, (o) => o.label === (value.timeTo[3] + value.timeTo[4]).toString()) : null;
+            periodToDropdownValue = value && value.timeTo ? _.find(periodOptions, (o) => o.label === value.timeTo[6] + value.timeTo[7]) : null;
         }
 
         return (
@@ -263,7 +267,7 @@ class TimePicker extends Component {
 
     _onChange(value, field) {
         const { range } = this.props;
-        let newValue = this.state.value;
+        const newValue = this.state.value;
 
         if (_.isObject(value)) {
             const mask = '__:__ __';
@@ -271,11 +275,11 @@ class TimePicker extends Component {
             newValue.timeFrom = newValue.timeFrom || mask;
 
             if (field === 'hour') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[0] + newValue.timeFrom[1] + newValue.timeFrom[2], value.label + ':');
+                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[0] + newValue.timeFrom[1] + newValue.timeFrom[2], `${value.label}:`);
             } else if (field === 'minute') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[2] + newValue.timeFrom[3] + newValue.timeFrom[4], ':' + value.label);
+                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[2] + newValue.timeFrom[3] + newValue.timeFrom[4], `:${value.label}`);
             } else if (field === 'period') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[5] + newValue.timeFrom[6] + newValue.timeFrom[7], ' ' + value.label);
+                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[5] + newValue.timeFrom[6] + newValue.timeFrom[7], ` ${value.label}`);
             } else if (field === 'zone') {
                 newValue.timeZone = value;
             }
@@ -284,17 +288,17 @@ class TimePicker extends Component {
                 newValue.timeTo = newValue.timeTo || mask;
 
                 if (field === 'hourTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[0] + newValue.timeTo[1] + newValue.timeTo[2], value.label + ':');
+                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[0] + newValue.timeTo[1] + newValue.timeTo[2], `${value.label}:`);
                 } else if (field === 'minuteTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[2] + newValue.timeTo[3] + newValue.timeTo[4], ':' + value.label);
+                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[2] + newValue.timeTo[3] + newValue.timeTo[4], `:${value.label}`);
                 } else if (field === 'periodTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[5] + newValue.timeTo[6] + newValue.timeTo[7], ' ' + value.label);
+                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[5] + newValue.timeTo[6] + newValue.timeTo[7], ` ${value.label}`);
                 }
             }
 
             newValue.timeDisplay = range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
         } else {
-            let valueUpperCase = value.toUpperCase();
+            const valueUpperCase = value.toUpperCase();
             newValue.timeDisplay = valueUpperCase;
             newValue.timeFrom = range ? _.trim(valueUpperCase.split('-')[0]) : valueUpperCase;
             newValue.timeTo = range ? _.trim(valueUpperCase.split('-')[1]) : null;
@@ -331,18 +335,17 @@ class TimePicker extends Component {
                 /[A,P]/i,
                 /[M]/i,
             ];
-        } else {
-            return [
-                /[0-1]/,
-                value.toString()[0] * 1 === 1 ? /[0-2]/ : /[0-9]/,
-                ':',
-                /[0-5]/,
-                /[0-9]/,
-                ' ',
-                /[A,P]/i,
-                /[M]/i,
-            ];
         }
+        return [
+            /[0-1]/,
+            value.toString()[0] * 1 === 1 ? /[0-2]/ : /[0-9]/,
+            ':',
+            /[0-5]/,
+            /[0-9]/,
+            ' ',
+            /[A,P]/i,
+            /[M]/i,
+        ];
     }
 
     _onInputKeyDown(event) {
@@ -368,15 +371,15 @@ class TimePicker extends Component {
     }
 
     _renderHourOptions() {
-        return _.map(_.range(1, 13), v => {
-            const number = v.toString().length < 2 ? '0' + v : v;
+        return _.map(_.range(1, 13), (v) => {
+            const number = v.toString().length < 2 ? `0${v}` : v;
             return { label: number.toString(), value: number * 1 };
         });
     }
 
     _renderMinuteOptions() {
-        return _.map(_.range(0, 60, 5), v => {
-            const number = v.toString().length < 2 ? '0' + v : v;
+        return _.map(_.range(0, 60, 5), (v) => {
+            const number = v.toString().length < 2 ? `0${v}` : v;
             return { label: number.toString(), value: number * 1 };
         });
     }
@@ -398,34 +401,28 @@ class TimePicker extends Component {
 
         if (zoneOptions && _.isArray(zoneOptions)) {
             return zoneOptions;
-        } else {
-            const zoneNames = Object.keys(moment.tz._zones)
-                .map(function (k) {
-                    // At some point _zones turns into an array of objects instead of strings.
-                    if (typeof moment.tz._zones[k] === 'string') {
-                        return moment.tz._zones[k].split('|')[0];
-                    } else {
-                        return moment.tz._zones[k].name;
-                    }
-                })
-                .filter(function (z) {
-                    return z.indexOf('/') >= 0;
-                });
-            return _.chain(zoneNames)
-                .map(name => {
-                    const zone = moment.tz(name);
-
-                    return {
-                        abbr: zone.zoneAbbr(),
-                        label: `(${zone.format('Z z')}) ${name.split('/')[0].replace('_', ' ')} (${name.split('/').slice(-1)[0].replace('_', ' ')})`,
-                        offset: zone.format('Z'),
-                        value: name,
-                    };
-                })
-                .sortBy(o => {
-                    return o.offset;
-                }).value();
         }
+        const zoneNames = Object.keys(moment.tz._zones)
+            .map((k) => {
+                // At some point _zones turns into an array of objects instead of strings.
+                if (typeof moment.tz._zones[k] === 'string') {
+                    return moment.tz._zones[k].split('|')[0];
+                }
+                return moment.tz._zones[k].name;
+            })
+            .filter((z) => z.indexOf('/') >= 0);
+        return _.chain(zoneNames)
+            .map((name) => {
+                const zone = moment.tz(name);
+
+                return {
+                    abbr: zone.zoneAbbr(),
+                    label: `(${zone.format('Z z')}) ${name.split('/')[0].replace('_', ' ')} (${name.split('/').slice(-1)[0].replace('_', ' ')})`,
+                    offset: zone.format('Z'),
+                    value: name,
+                };
+            })
+            .sortBy((o) => o.offset).value();
     }
 }
 
@@ -451,7 +448,7 @@ TimePicker.propTypes = {
             PropTypes.object,
         ]),
     }),
-    zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
+    zoneMatchProp: PropTypes.oneOf(['any', 'label', 'value']),
     zoneOptions: PropTypes.array,
     zonePlaceholderText: PropTypes.string,
 };

@@ -1,12 +1,11 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Header from '../elements/header';
-import Input from '../elements/input';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Input from '../elements/input';
+import Header from '../elements/header';
 
 const defaultState = {
     years: 0,
@@ -15,7 +14,7 @@ const defaultState = {
     hours: 0,
     minutes: 0,
     seconds: 0,
-    value: null
+    value: null,
 };
 
 const colonJsx = (
@@ -23,12 +22,11 @@ const colonJsx = (
 );
 
 class DurationPicker extends Component {
-
     constructor(props) {
         super(props);
 
         const state = this._getStateFromDurationValue(props.value);
-        this.state = Object.assign({}, state || defaultState);
+        this.state = { ...state || defaultState };
 
         this._areMomentDurationsEqual = this._areMomentDurationsEqual.bind(this);
         this._buildMomentDuration = this._buildMomentDuration.bind(this);
@@ -55,12 +53,15 @@ class DurationPicker extends Component {
     }
 
     render() {
-        const { className, disabled, error, id, nest, required,
-            showDays,showHours, showMinutes, showMonths, showSeconds, showYears,
-            style
+        const {
+            className, disabled, error, id, nest, required,
+            showDays, showHours, showMinutes, showMonths, showSeconds, showYears,
+            style,
         } = this.props;
 
-        const { days, hours, minutes, months, seconds, value, years } = this.state;
+        const {
+            days, hours, minutes, months, seconds, value, years,
+        } = this.state;
 
         const containerClasses = ClassNames('ui', 'duration-picker', className, {
             'duration-picker-disable': disabled,
@@ -77,7 +78,7 @@ class DurationPicker extends Component {
             showSeconds && !showHours && !showMinutes;
 
         const hhMmSsClasses = ClassNames('hh-mm-ss', {
-            'only-one': onlyOne
+            'only-one': onlyOne,
         });
 
         return (
@@ -133,57 +134,57 @@ class DurationPicker extends Component {
                 ) : null}
 
                 <div className={hhMmSsClasses}>
-                  {showHours ? (
-                      <Input
-                          className="duration-picker-input"
-                          disabled={disabled}
-                          id={`${id || 'duration-picker'}-hours`}
-                          label="Hours"
-                          max={23}
-                          min={0}
-                          ref="hoursPicker"
-                          type="number"
-                          value={hours}
-                          onChange={this._onHoursChange}
-                      />
-                  ) : null}
+                    {showHours ? (
+                        <Input
+                            className="duration-picker-input"
+                            disabled={disabled}
+                            id={`${id || 'duration-picker'}-hours`}
+                            label="Hours"
+                            max={23}
+                            min={0}
+                            ref="hoursPicker"
+                            type="number"
+                            value={hours}
+                            onChange={this._onHoursChange}
+                        />
+                    ) : null}
 
-                  {needsHoursToMinutesSeparator ? colonJsx : null}
+                    {needsHoursToMinutesSeparator ? colonJsx : null}
 
-                  {showMinutes ? (
-                      <Input
-                          className="duration-picker-input"
-                          disabled={disabled}
-                          id={`${id || 'duration-picker'}-minutes`}
-                          label="Minutes"
-                          max={59}
-                          min={0}
-                          ref="minutesPicker"
-                          type="number"
-                          value={minutes}
-                          onChange={this._onMinutesChange}
-                      />
-                  ) : null}
+                    {showMinutes ? (
+                        <Input
+                            className="duration-picker-input"
+                            disabled={disabled}
+                            id={`${id || 'duration-picker'}-minutes`}
+                            label="Minutes"
+                            max={59}
+                            min={0}
+                            ref="minutesPicker"
+                            type="number"
+                            value={minutes}
+                            onChange={this._onMinutesChange}
+                        />
+                    ) : null}
 
-                  {needsMinutesToSecondsSeparator ? colonJsx : null}
+                    {needsMinutesToSecondsSeparator ? colonJsx : null}
 
-                  {showSeconds ? (
-                      <Input
-                          className="duration-picker-input"
-                          disabled={disabled}
-                          id={`${id || 'duration-picker'}-seconds`}
-                          label="Seconds"
-                          max={59}
-                          min={0}
-                          ref="secondsPicker"
-                          type="number"
-                          value={seconds}
-                          onChange={this._onSecondsChange}
-                      />
-                  ) : null}
+                    {showSeconds ? (
+                        <Input
+                            className="duration-picker-input"
+                            disabled={disabled}
+                            id={`${id || 'duration-picker'}-seconds`}
+                            label="Seconds"
+                            max={59}
+                            min={0}
+                            ref="secondsPicker"
+                            type="number"
+                            value={seconds}
+                            onChange={this._onSecondsChange}
+                        />
+                    ) : null}
                 </div>
             </div>
-        )
+        );
     }
 
     _areMomentDurationsEqual(durationA, durationB) {
@@ -192,24 +193,25 @@ class DurationPicker extends Component {
 
         if (!durationAHasValue && !durationBHasValue) {
             return true;
-        } else if (!durationAHasValue) {
+        } if (!durationAHasValue) {
             return false;
-        } else if (!durationBHasValue) {
+        } if (!durationBHasValue) {
             return false;
-        } else { // both are valid moment duration objects
-            return durationA.valueOf() === durationB.valueOf();
-        }
+        } // both are valid moment duration objects
+        return durationA.valueOf() === durationB.valueOf();
     }
 
     _buildMomentDuration(updatedState) {
-        const { days, hours, minutes, months, seconds, years } = updatedState;
+        const {
+            days, hours, minutes, months, seconds, years,
+        } = updatedState;
         return moment.duration({
             seconds,
             minutes,
             hours,
             days,
             months,
-            years
+            years,
         });
     }
 
@@ -222,16 +224,15 @@ class DurationPicker extends Component {
                 months: duration.months(),
                 seconds: duration.seconds(),
                 years: duration.years(),
-                value: duration
+                value: duration,
             };
-        } else {
-            return null;
         }
+        return null;
     }
 
     _handleStateChange(updatedState) {
         const updatedMomentDurationValue = this._buildMomentDuration(
-            Object.assign({}, this.state, updatedState)
+            { ...this.state, ...updatedState },
         );
 
         const { onChange } = this.props;
@@ -240,10 +241,11 @@ class DurationPicker extends Component {
             this.setState(updatedState); // update the local state that we do own
             onChange(updatedMomentDurationValue); // call `onChange()` with the updated value
         } else { // uncontrolled component ... we own the complete value state
-            const finalUpdatedState = Object.assign(
-                {},
-                updatedState,
-                { value: updatedMomentDurationValue });
+            const finalUpdatedState = {
+
+                ...updatedState,
+                value: updatedMomentDurationValue,
+            };
 
             this.setState(finalUpdatedState);
         }
@@ -279,7 +281,7 @@ DurationPicker.propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
     onChange: PropTypes.func,
@@ -294,11 +296,11 @@ DurationPicker.propTypes = {
         const theProp = props[propName];
         if (!_.isNil(theProp) && !moment.isDuration(theProp)) {
             return new Error(
-                'Invalid prop `' + propName + '` supplied to' +
-                ' `' + componentName + '`. Validation failed.'
+                `Invalid prop \`${propName}\` supplied to` +
+                ` \`${componentName}\`. Validation failed.`,
             );
         }
-    } // TODO: There is a `react-moment-proptypes` package we can consider [ https://www.npmjs.com/package/react-moment-proptypes ]
+    }, // TODO: There is a `react-moment-proptypes` package we can consider [ https://www.npmjs.com/package/react-moment-proptypes ]
 };
 
 DurationPicker.defaultProps = {
@@ -307,7 +309,7 @@ DurationPicker.defaultProps = {
     showMinutes: false,
     showMonths: false,
     showSeconds: false,
-    showYears: false
-}
+    showYears: false,
+};
 
 export default DurationPicker;

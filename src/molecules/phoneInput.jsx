@@ -5,10 +5,10 @@ import ReactPhoneInput, {
 } from 'react-phone-number-input/max';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Divider from '../elements/divider';
-import Dropdown from './dropdown';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Divider from '../elements/divider';
+import Dropdown from './dropdown';
 
 class CountryDropdownItem extends React.Component {
     constructor() {
@@ -71,7 +71,7 @@ class CountryDropdownItem extends React.Component {
                         className="phone color-static"
                         style={{ display: 'inline-block', flex: '0 1 1px' }}
                     >
-                        {/*{`+${option.dialCode}`}*/}
+                        {/* {`+${option.dialCode}`} */}
                     </span>
                 </div>
             </div>
@@ -126,7 +126,7 @@ class CountryDropdown extends React.PureComponent {
         super(props);
 
         this.state = {
-            selectedOption: _.find(props.options, o => !o.divider && o.value === props.value),
+            selectedOption: _.find(props.options, (o) => !o.divider && o.value === props.value),
         };
 
         this._onChange = this._onChange.bind(this);
@@ -137,7 +137,7 @@ class CountryDropdown extends React.PureComponent {
 
         if (prevProps.value !== value && prevState.selectedOption.value !== value) {
             this.setState({
-                selectedOption: _.find(options, o => !o.divider && o.value === value),
+                selectedOption: _.find(options, (o) => !o.divider && o.value === value),
             }, () => {
                 onChange(value);
             });
@@ -253,7 +253,7 @@ class PhoneInput extends React.PureComponent {
 
 PhoneInput.defaultProps = {
     country: 'US',
-    countryOptions: [ 'US', '|' ],
+    countryOptions: ['US', '|'],
 };
 
 PhoneInput.propTypes = {

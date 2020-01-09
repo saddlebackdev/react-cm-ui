@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
@@ -62,7 +61,7 @@ class TableHeader extends Component {
                 desktopLarge === false ?
                     `${cellPrefix}-desktop-hide` :
                     null,
-            className
+            className,
         );
 
         return (

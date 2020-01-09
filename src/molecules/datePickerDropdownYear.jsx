@@ -1,13 +1,12 @@
-'use strict';
 
 import ClassNames from 'classnames';
-import domUtils from '../global/utils/domUtils';;
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import domUtils from '../global/utils/domUtils';
 
 class ListItem extends React.PureComponent {
     constructor() {
@@ -58,16 +57,14 @@ class DatePickerDropdownYear extends React.PureComponent {
         const { year } = this.props;
         const containerClasses = ClassNames('date-picker-dropdown-year');
 
-        let options = _.map(this._generateYears(), y => {
-            return (
-                <ListItem
-                    isSelected={year === y}
-                    key={y}
-                    onClick={this._onClick}
-                    year={y}
-                />
-            );
-        });
+        const options = _.map(this._generateYears(), (y) => (
+            <ListItem
+                isSelected={year === y}
+                key={y}
+                onClick={this._onClick}
+                year={y}
+            />
+        ));
 
         return (
             <div className={containerClasses}>
@@ -99,9 +96,9 @@ class DatePickerDropdownYear extends React.PureComponent {
         const { maxDate } = this.props;
         const maxYear = maxDate ? moment(maxDate).year() : null;
         const currentYear = moment().year().valueOf();
-        let futureYear = maxYear || currentYear + 100;
-        let listMultiplyYear = maxDate ? 100 : 200;
-        let list = [];
+        const futureYear = maxYear || currentYear + 100;
+        const listMultiplyYear = maxDate ? 100 : 200;
+        const list = [];
 
         for (let i = 0; i < listMultiplyYear; i++) {
             list.push(futureYear - i);
@@ -128,7 +125,7 @@ DatePickerDropdownYear.propTypes = {
     maxDate: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
 };
 
 export default onClickOutside(DatePickerDropdownYear);

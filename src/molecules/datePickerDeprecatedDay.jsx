@@ -1,4 +1,3 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -6,7 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import React, { Component } from 'react';
 
-import DatePickerUtils from '../global/utils/datePickerUtils';;
+import DatePickerUtils from '../global/utils/datePickerUtils';
 
 class DatePickerDay extends Component {
     render() {
@@ -20,7 +19,7 @@ class DatePickerDay extends Component {
             'date-picker-deprecated-day-selected': this._isDaySelected(),
             'date-picker-deprecated-day-start-selected': this._isDayStartSelected(),
             'date-picker-deprecated-day-today': this._isToday(),
-            'date-picker-deprecated-day-weekend': this._isWeekend()
+            'date-picker-deprecated-day-weekend': this._isWeekend(),
         });
 
         return (
@@ -33,7 +32,7 @@ class DatePickerDay extends Component {
     }
 
     _hasEvent() {
-        return _.some(this.props.events, event => moment.unix(event).utc().isSame(this.props.dateInView, 'day'));
+        return _.some(this.props.events, (event) => moment.unix(event).utc().isSame(this.props.dateInView, 'day'));
     }
 
     _isDaySelected() {
@@ -79,7 +78,9 @@ class DatePickerDay extends Component {
     }
 
     _isInRange() {
-        const { dateEnd, dateInView, dateSecondaryEnd, dateSecondaryStart, dateStart, type } = this.props;
+        const {
+            dateEnd, dateInView, dateSecondaryEnd, dateSecondaryStart, dateStart, type,
+        } = this.props;
         const newDateInView = dateInView.clone().startOf('day');
 
         if (!dateStart || !dateEnd) {
@@ -96,9 +97,8 @@ class DatePickerDay extends Component {
             return newDateInView.isBetween(newDateStart, newDateEnd) ||
                 newDateInView.isBetween(newDateEnd, newDateSecondaryStart) ||
                 newDateInView.isBetween(newDateSecondaryStart, newDateSecondaryEnd);
-        } else {
-            return newDateInView.isBetween(newDateStart, newDateEnd);
         }
+        return newDateInView.isBetween(newDateStart, newDateEnd);
     }
 
     _isOutsideMonth() {

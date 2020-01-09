@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
-import Modal from './modal';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Select from 'react-select';
+import Modal from './modal';
 import Button from '../elements/button';
-import domUtils from '../global/utils/domUtils';;
+import domUtils from '../global/utils/domUtils';
 import DropdownItem from './dropdownItem';
 import Icon from '../elements/icon';
 import Utils from '../global/utils';
@@ -17,7 +17,7 @@ class CustomSelect extends Select {
     renderHiddenField(valueArray) {
         const options = this._visibleOptions = this.filterOptions(this.props.multi && this.props.removeSelected ? valueArray : null);
         const menu = this.renderMenu(options, valueArray);
-        const styles = Object.assign({}, this.props.menuContainerStyle, {visibility: 'hidden'});
+        const styles = { ...this.props.menuContainerStyle, visibility: 'hidden' };
 
         return (
             <div className="Select-menu-outer" style={styles}>
@@ -25,7 +25,7 @@ class CustomSelect extends Select {
                     role="listbox"
                     tabIndex={-1}
                     className="Select-menu"
-                    id={this._instancePrefix + '-list'}
+                    id={`${this._instancePrefix}-list`}
                     style={this.props.menuStyle}
                 >
                     {menu}
@@ -35,7 +35,7 @@ class CustomSelect extends Select {
     }
 }
 
-const customCreatableSelect = (props) => <CustomSelect {...props}/>;
+const customCreatableSelect = (props) => <CustomSelect {...props} />;
 
 class Dropdown extends React.PureComponet {
     constructor(props) {
@@ -65,7 +65,8 @@ class Dropdown extends React.PureComponet {
     }
 
     render() {
-        const { button, buttonColor, buttonCompact, children,
+        const {
+            button, buttonColor, buttonCompact, children,
             className, clearable, disable, fluid, iconColor,
             iconInverse, iconPosition, iconSize, iconTitle, iconType,
             id, inverse, label, labelStyle, options, placeholder, searchable,
@@ -107,7 +108,8 @@ class Dropdown extends React.PureComponet {
             dropdownIconTitle = text;
         }
 
-        let items, labelJSX;
+        let items; let
+            labelJSX;
 
         if (label) {
             labelJSX = (
@@ -154,7 +156,7 @@ class Dropdown extends React.PureComponet {
                         <li
                             className={itemClass}
                             id={itemId}
-                            key={'dropdown-menu-item-' + index}
+                            key={`dropdown-menu-item-${index}`}
                         >
                             <span onClick={this._onDropdownMenuItemClick.bind(this, value)}>
                                 {itemIconType ? <Icon inverse={itemIconInverse} color={itemIconColor} title={value.label} type={itemIconType} /> : null}
@@ -170,12 +172,12 @@ class Dropdown extends React.PureComponet {
             if (!selectionCreatable) {
                 return (
                     <MediaQuery maxWidth={767}>
-                        {matches => {
+                        {(matches) => {
                             if (selectionMobile && matches) {
                                 return (
                                     <div
                                         className={containerClasses}
-                                        ref={ref => {
+                                        ref={(ref) => {
                                             this.dropdownContainer = ref;
                                         }}
                                         style={style}
@@ -209,73 +211,68 @@ class Dropdown extends React.PureComponet {
                                         </Modal>
                                     </div>
                                 );
-                            } else {
-                                return (
-                                    <div
-                                        className={containerClasses}
-                                        id={id}
-                                        ref={ref => {
-                                            this.dropdownContainer = ref;
-                                        }}
-                                        style={style}
-                                    >
-                                        {labelJSX}
-
-                                        <CustomSelect
-                                            arrowRenderer={() => {
-                                                return (
-                                                    <div>
-                                                        <Icon
-                                                            compact
-                                                            size={selectionUnderline ? 10 : iconSize || 16}
-                                                            title={dropdownIconTitle}
-                                                            type={iconType ? iconType : selectionUnderline ? 'caret-down' : 'chevron-down'}
-                                                        />
-                                                    </div>
-                                                );
-                                            }}
-                                            clearRenderer={() => {
-                                                return (
-                                                    <div>
-                                                        <Icon
-                                                            compact
-                                                            size={selectionUnderline ? 10 : iconSize || 16}
-                                                            title={'Clear Selection'}
-                                                            type="times"
-                                                        />
-                                                    </div>
-                                                );
-                                            }}
-                                            clearable={!clearable ? clearable : true}
-                                            disabled={disable}
-                                            matchProp={selectionMatchProp || 'any'}
-                                            menuContainerStyle={selectionMenuContainerStyle}
-                                            menuRenderer={this._menuRenderer.bind(this)}
-                                            menuStyle={selectionMenuStyle}
-                                            multi={selectionMultiple}
-                                            name="firstSelect"
-                                            onChange={this._onChange.bind(this)}
-                                            onOpen={this._onSelectionMenuOpen.bind(this)}
-                                            optionComponent={selectionOptionComponent}
-                                            options={options}
-                                            placeholder={placeholder}
-                                            searchable={!searchable ? searchable : true}
-                                            tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
-                                            value={this.state.value}
-                                            valueComponent={selectionValueComponent}
-                                        />
-                                    </div>
-                                );
                             }
+                            return (
+                                <div
+                                    className={containerClasses}
+                                    id={id}
+                                    ref={(ref) => {
+                                        this.dropdownContainer = ref;
+                                    }}
+                                    style={style}
+                                >
+                                    {labelJSX}
+
+                                    <CustomSelect
+                                        arrowRenderer={() => (
+                                            <div>
+                                                <Icon
+                                                    compact
+                                                    size={selectionUnderline ? 10 : iconSize || 16}
+                                                    title={dropdownIconTitle}
+                                                    type={iconType || (selectionUnderline ? 'caret-down' : 'chevron-down')}
+                                                />
+                                            </div>
+                                        )}
+                                        clearRenderer={() => (
+                                            <div>
+                                                <Icon
+                                                    compact
+                                                    size={selectionUnderline ? 10 : iconSize || 16}
+                                                    title="Clear Selection"
+                                                    type="times"
+                                                />
+                                            </div>
+                                        )}
+                                        clearable={!clearable ? clearable : true}
+                                        disabled={disable}
+                                        matchProp={selectionMatchProp || 'any'}
+                                        menuContainerStyle={selectionMenuContainerStyle}
+                                        menuRenderer={this._menuRenderer.bind(this)}
+                                        menuStyle={selectionMenuStyle}
+                                        multi={selectionMultiple}
+                                        name="firstSelect"
+                                        onChange={this._onChange.bind(this)}
+                                        onOpen={this._onSelectionMenuOpen.bind(this)}
+                                        optionComponent={selectionOptionComponent}
+                                        options={options}
+                                        placeholder={placeholder}
+                                        searchable={!searchable ? searchable : true}
+                                        tabIndex={_.isNumber(tabIndex) ? tabIndex.toString() : tabIndex}
+                                        value={this.state.value}
+                                        valueComponent={selectionValueComponent}
+                                    />
+                                </div>
+                            );
                         }}
                     </MediaQuery>
                 );
-            } else if (selectionCreatable) {
+            } if (selectionCreatable) {
                 return (
                     <div
                         className={containerClasses}
                         id={id}
-                        ref={ref => {
+                        ref={(ref) => {
                             this.dropdownContainer = ref;
                         }}
                         style={style}
@@ -283,20 +280,16 @@ class Dropdown extends React.PureComponet {
                         {labelJSX}
 
                         <Select.Creatable
-                            arrowRenderer={() => {
-                                return (
-                                    <div>
-                                        <Icon compact size={16} title={dropdownIconTitle} type="chevron-down" />
-                                    </div>
-                                );
-                            }}
-                            clearRenderer={() => {
-                                return (
-                                    <div>
-                                        <Icon compact size={16} title={'Clear Selection'} type="times" />
-                                    </div>
-                                );
-                            }}
+                            arrowRenderer={() => (
+                                <div>
+                                    <Icon compact size={16} title={dropdownIconTitle} type="chevron-down" />
+                                </div>
+                            )}
+                            clearRenderer={() => (
+                                <div>
+                                    <Icon compact size={16} title="Clear Selection" type="times" />
+                                </div>
+                            )}
                             clearable={!clearable ? clearable : true}
                             disabled={disable}
                             menuContainerStyle={selectionMenuContainerStyle}
@@ -326,7 +319,7 @@ class Dropdown extends React.PureComponet {
                 className={containerClasses}
                 id={id}
                 onClick={this._onDropdownClick.bind(this)}
-                ref={dropdownContainer => {
+                ref={(dropdownContainer) => {
                     this.dropdownContainer = dropdownContainer;
                 }}
                 style={style}
@@ -345,7 +338,7 @@ class Dropdown extends React.PureComponet {
 
                 {placeholder || text || this.state.value ? (
                     <span className="dropdown-selection-value">
-                        {text ? text : this.state.value ? this.state.value.label : placeholder}
+                        {text || (this.state.value ? this.state.value.label : placeholder)}
                     </span>
                 ) : null}
 
@@ -363,8 +356,9 @@ class Dropdown extends React.PureComponet {
                 <ul
                     className="dropdown-menu"
                     onClick={this._onDropdownMenuClick.bind(this)}
-                    ref={el => this.dropdownMenu = el}
-                    style={Object.assign({}, menuPositionStyle, {
+                    ref={(el) => this.dropdownMenu = el}
+                    style={({
+                        ...menuPositionStyle,
                         opacity: menuIsOpen ? 1 : 0,
                         visibility: menuIsOpen ? 'visible' : 'hidden',
                     })}
@@ -423,7 +417,7 @@ class Dropdown extends React.PureComponet {
                 autoHeightMin={this.props.menuMinHeight}
                 autoHide
                 className="select-menu-scrollbar"
-                ref={el => {
+                ref={(el) => {
                     this.dropdownMenu = el;
                 }}
             >
@@ -484,10 +478,8 @@ class Dropdown extends React.PureComponet {
                 if (_.isFunction(onOpen)) {
                     onOpen();
                 }
-            } else {
-                if (_.isFunction(onClose)) {
-                    onClose();
-                }
+            } else if (_.isFunction(onClose)) {
+                onClose();
             }
         }
     }
@@ -507,12 +499,13 @@ class Dropdown extends React.PureComponet {
         const dropdownContainerEl = ReactDOM.findDOMNode(this.dropdownContainer);
         const dropdownMenuEl = ReactDOM.findDOMNode(this.dropdownMenu);
         const dropdownMenuObj = domUtils.isInViewport(dropdownMenuEl, dropdownContainerEl);
-        const isInTop = dropdownMenuObj.isInTop;
-        const isInRight = dropdownMenuObj.isInRight;
-        const isInBottom = dropdownMenuObj.isInBottom;
-        const topBias = dropdownMenuObj.topBias;
-        const bottomBias = dropdownMenuObj.bottomBias;
-        let menuXPosition, menuYPosition;
+        const { isInTop } = dropdownMenuObj;
+        const { isInRight } = dropdownMenuObj;
+        const { isInBottom } = dropdownMenuObj;
+        const { topBias } = dropdownMenuObj;
+        const { bottomBias } = dropdownMenuObj;
+        let menuXPosition; let
+            menuYPosition;
 
         if (isInRight) {
             menuXPosition = 'left';
@@ -524,14 +517,12 @@ class Dropdown extends React.PureComponet {
             menuYPosition = 'top';
         } else if (isInTop) {
             menuYPosition = 'bottom';
+        } else if (topBias < 0) {
+            menuYPosition = 'bottom';
+        } else if (bottomBias < 0) {
+            menuYPosition = 'top';
         } else {
-            if (topBias < 0) {
-                menuYPosition = 'bottom';
-            } else if (bottomBias < 0) {
-                menuYPosition = 'top';
-            } else {
-                menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
-            }
+            menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
         }
 
         this.setState({
@@ -569,25 +560,23 @@ class Dropdown extends React.PureComponet {
     }
 
     _onSelectionMobileItemRenderer() {
-        const items = _.map(this.props.options, (o, i) => {
-            return (
-                <Button
-                    className="Select-option"
-                    color="light"
-                    compact
-                    fluid
-                    inverse
-                    key={`select-option-key-${i}`}
-                    onClick={this._onSelectionMobileItemClick.bind(this, o)}
-                    style={{
-                        margin: '3px 0',
-                        textAlign: 'left',
-                    }}
-                >
-                    {o.label}
-                </Button>
-            );
-        });
+        const items = _.map(this.props.options, (o, i) => (
+            <Button
+                className="Select-option"
+                color="light"
+                compact
+                fluid
+                inverse
+                key={`select-option-key-${i}`}
+                onClick={this._onSelectionMobileItemClick.bind(this, o)}
+                style={{
+                    margin: '3px 0',
+                    textAlign: 'left',
+                }}
+            >
+                {o.label}
+            </Button>
+        ));
 
         return items;
     }
@@ -606,7 +595,7 @@ Dropdown.propTypes = {
     fluid: PropTypes.bool,
     iconColor: PropTypes.oneOf(Utils.colorEnums()),
     iconInverse: PropTypes.bool,
-    iconPosition: PropTypes.oneOf([ 'left', 'right' ]),
+    iconPosition: PropTypes.oneOf(['left', 'right']),
     iconSize: PropTypes.oneOfType([
         PropTypes.oneOf(Utils.sizeEnums()),
         PropTypes.number,
@@ -626,7 +615,7 @@ Dropdown.propTypes = {
     placeholder: PropTypes.string,
     searchable: PropTypes.bool,
     selectionCreatable: PropTypes.bool,
-    selectionMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
+    selectionMatchProp: PropTypes.oneOf(['any', 'label', 'value']),
     selectionMenuContainerStyle: PropTypes.object,
     selectionMenuStyle: PropTypes.object,
     selectionMobile: PropTypes.bool,

@@ -63,9 +63,11 @@ class Checkbox extends Component {
     }
 
     render() {
-        const { align, className, disabled, fluid, id, inverse,
+        const {
+            align, className, disabled, fluid, id, inverse,
             label, labelClassName, labelClick, labelStyle, labelWeight,
-            name, size, style, toggle, value } = this.props;
+            name, size, style, toggle, value,
+        } = this.props;
         const { isChecked } = this.state;
         const newDisabled = disabled || false;
         const newValue = value || '';
@@ -103,7 +105,7 @@ class Checkbox extends Component {
                     id={inputId}
                     name={name}
                     readOnly
-                    ref={ref => this.inputRef = ref}
+                    ref={(ref) => this.inputRef = ref}
                     type="checkbox"
                     value={newValue}
                 />
@@ -133,9 +135,9 @@ class Checkbox extends Component {
     }
 }
 
-const alignEnums = [ 'left', 'right' ];
-const labelWeightEnums = [ 'bold', 'normal', 'semibold' ];
-const sizeEnums = [ 'small', 'large' ];
+const alignEnums = ['left', 'right'];
+const labelWeightEnums = ['bold', 'normal', 'semibold'];
+const sizeEnums = ['small', 'large'];
 
 Checkbox.propTypes = {
     align: PropTypes.oneOf(alignEnums),

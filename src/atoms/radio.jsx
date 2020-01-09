@@ -17,9 +17,11 @@ class RadioItem extends React.PureComponent {
     }
 
     render() {
-        const { checked, className, id, label, name, style } = this.props;
+        const {
+            checked, className, id, label, name, style,
+        } = this.props;
         const containerClasses = ClassNames('radio-item', className, {
-            'radio-item-is-checked': checked
+            'radio-item-is-checked': checked,
         });
 
         return (
@@ -44,12 +46,12 @@ RadioItem.propTypes = {
     className: PropTypes.string,
     id: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     index: PropTypes.number,
     label: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 const isCheckedSingle = (c, i, isChecked) => (
@@ -78,18 +80,18 @@ class Radio extends Component {
     }
 
     onClick(idArg) {
-        const { disabled, id, onChange, pill, multi } = this.props;
+        const {
+            disabled, id, onChange, pill, multi,
+        } = this.props;
         let newValue = _.clone(this.state.isChecked);
 
         if (multi) {
             if (_.includes(newValue, idArg)) {
-                _.remove(newValue, v => v === idArg);
+                _.remove(newValue, (v) => v === idArg);
+            } else if (_.isArray(newValue)) {
+                newValue.push(idArg);
             } else {
-                if (_.isArray(newValue)) {
-                    newValue.push(idArg);
-                } else {
-                    newValue = [ idArg ];
-                }
+                newValue = [idArg];
             }
         } else if (pill) {
             newValue = idArg;
@@ -115,8 +117,10 @@ class Radio extends Component {
     }
 
     render() {
-        const { align, children, className, disabled, fluid, id, label,
-            labelClick, multi, name, pill, style, value } = this.props;
+        const {
+            align, children, className, disabled, fluid, id, label,
+            labelClick, multi, name, pill, style, value,
+        } = this.props;
         const { isChecked } = this.state;
         const containerClasses = ClassNames('ui', 'radio', className, {
             'radio-align-left': align === 'left',
@@ -127,7 +131,7 @@ class Radio extends Component {
             'radio-pill': pill,
         });
         const labelClasses = ClassNames('label', {
-            'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false
+            'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false,
         });
 
         if (pill) {
@@ -138,48 +142,47 @@ class Radio extends Component {
                         index: i,
                         checked: isCheckedItem(c, i, isChecked),
                         name: multi ? null : name,
-                        onClick: this.onClick
+                        onClick: this.onClick,
                     }))}
                 </div>
             );
-        } else {
-            return (
-                <div
-                    className={containerClasses}
-                    onClick={this.onClick}
-                    style={style}
-                >
-                    <input
-                        checked={isChecked}
-                        className="input"
-                        disabled={disabled}
-                        id={id}
-                        name={name}
-                        readOnly
-                        type="radio"
-                        value={value}
-                    />
-
-                    <label className={labelClasses}>
-                        {label ? (
-                            <span onClick={this.onLabelClick}>{label}</span>
-                        ) : null}
-                    </label>
-                </div>
-            );
         }
+        return (
+            <div
+                className={containerClasses}
+                onClick={this.onClick}
+                style={style}
+            >
+                <input
+                    checked={isChecked}
+                    className="input"
+                    disabled={disabled}
+                    id={id}
+                    name={name}
+                    readOnly
+                    type="radio"
+                    value={value}
+                />
+
+                <label className={labelClasses}>
+                    {label ? (
+                        <span onClick={this.onLabelClick}>{label}</span>
+                    ) : null}
+                </label>
+            </div>
+        );
     }
 }
 
 Radio.Item = RadioItem;
 
-const alignEnums = [ 'left', 'right' ];
+const alignEnums = ['left', 'right'];
 
 Radio.propTypes = {
     align: PropTypes.oneOf(alignEnums),
     checked: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.number
+        PropTypes.number,
     ]),
     className: PropTypes.string,
     disabled: PropTypes.bool,

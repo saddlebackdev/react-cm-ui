@@ -1,11 +1,10 @@
-'use strict';
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerUtils from '../global/utils/datePickerUtils';;
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
+import DatePickerUtils from '../global/utils/datePickerUtils';
 
 class DatePickerDay extends React.PureComponent {
     constructor(props) {
@@ -46,7 +45,7 @@ class DatePickerDay extends React.PureComponent {
     _hasEvent() {
         const { dateInView, events } = this.props;
 
-        return _.some(events, event => event.isSame(dateInView, 'day'));
+        return _.some(events, (event) => event.isSame(dateInView, 'day'));
     }
 
     _isDaySelected() {
@@ -66,7 +65,7 @@ class DatePickerDay extends React.PureComponent {
     }
 
     _isDisabled() {
-        const { dateInView } =  this.props;
+        const { dateInView } = this.props;
 
         return DatePickerUtils.isDayDisabled(dateInView, this.props);
     }

@@ -1,10 +1,8 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class BannerItem extends Component {
-
     render() {
         return (
             <div className="accordion-item">
@@ -14,7 +12,7 @@ class BannerItem extends Component {
     }
 }
 
-const levelEnums = [ 'error', 'secondary', 'success', 'warning' ];
+const levelEnums = ['error', 'secondary', 'success', 'warning'];
 
 BannerItem.propTypes = {
     className: PropTypes.string,
@@ -22,7 +20,7 @@ BannerItem.propTypes = {
     levelIcon: PropTypes.string,
     message: PropTypes.string,
     style: PropTypes.object,
-    title: PropTypes.string
+    title: PropTypes.string,
 };
 
 export default BannerItem;

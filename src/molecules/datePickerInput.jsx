@@ -1,17 +1,16 @@
-'use strict';
 
 import ClassNames from 'classnames';
-import DatePickerCalendar from './datePickerCalendar';
-import DatePickerUtils from '../global/utils/datePickerUtils';;
-import DateUtils from '../global/utils/dateUtils';;
-import Icon from '../elements/icon';
-import Input from '../elements/input';
 import moment from 'moment-timezone';
 import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
+import Icon from '../elements/icon';
+import DateUtils from '../global/utils/dateUtils';
+import DatePickerUtils from '../global/utils/datePickerUtils';
+import Input from '../elements/input';
+import DatePickerCalendar from './datePickerCalendar';
 
 class Calendar extends React.PureComponent {
     render() {
@@ -69,7 +68,9 @@ class DatePickerInput extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { date, dateFrom, dateTo, locale, rangeFrom, rangeTo } = this.props;
+        const {
+            date, dateFrom, dateTo, locale, rangeFrom, rangeTo,
+        } = this.props;
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
             !DatePickerUtils.isSameDay(dateFrom, prevProps.dateFrom) ||
@@ -117,19 +118,21 @@ class DatePickerInput extends React.PureComponent {
             style,
             tabIndex,
         } = this.props;
-        const { date, dateFrom, dateTo, isCalendarOpen, inputValue } = this.state;
+        const {
+            date, dateFrom, dateTo, isCalendarOpen, inputValue,
+        } = this.state;
         const containerClasses = ClassNames('ui', 'date-picker-input', className);
 
         return (
             <div className={containerClasses} id={id} style={style}>
                 <TetherComponent
-                    attachment={'top left'}
+                    attachment="top left"
                     classPrefix="date-picker-tether"
                     constraints={[{
                         to: 'window',
                         attachment: 'together',
                     }]}
-                    renderElement={ref => isCalendarOpen && (
+                    renderElement={(ref) => isCalendarOpen && (
                         <div ref={ref}>
                             <CalendarOnClickOutside
                                 controls="dropdowns"
@@ -152,7 +155,7 @@ class DatePickerInput extends React.PureComponent {
                             />
                         </div>
                     )}
-                    renderTarget={ref => (
+                    renderTarget={(ref) => (
                         <div ref={ref}>
                             <Input
                                 autoComplete="off"
@@ -170,22 +173,22 @@ class DatePickerInput extends React.PureComponent {
                                 )}
                                 keepCharPositions
                                 label={label}
-                                mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
+                                mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
                                 onBlur={this._onInputBlur}
                                 onChange={this._onInputChange}
                                 onFocus={this._onInputFocus}
                                 onKeyDown={this._onInputKeyDown}
                                 placeholder="mm/dd/yyyy"
                                 required={required}
-                                ref={ref => this._datePickerInput = ref}
+                                ref={(ref) => this._datePickerInput = ref}
                                 tabIndex={tabIndex}
                                 type="text"
                                 value={inputValue}
                             />
                         </div>
                     )}
-                    targetAttachment={'bottom left'}
-                    targetOffset={'11px 0'}
+                    targetAttachment="bottom left"
+                    targetOffset="11px 0"
                 />
             </div>
         );
@@ -203,7 +206,7 @@ class DatePickerInput extends React.PureComponent {
         let formats = DateUtils.getAllowedDateFormats();
 
         if (_.indexOf(formats, specifiedFormat) < 0) {
-            formats = [ specifiedFormat, ...formats ];
+            formats = [specifiedFormat, ...formats];
         }
 
         return formats;
@@ -226,15 +229,13 @@ class DatePickerInput extends React.PureComponent {
 
         if (!disabled && !_.isUndefined(onChange)) {
             onChange({ date, dateFrom, dateTo });
-        } else {
-            if (!disabled) {
-                const { locale } = this.props;
+        } else if (!disabled) {
+            const { locale } = this.props;
 
-                this.setState({
-                    date,
-                    inputValue: this._safeDateFormat(date, locale),
-                });
-            }
+            this.setState({
+                date,
+                inputValue: this._safeDateFormat(date, locale),
+            });
         }
 
         this._setOpen(false);
@@ -261,7 +262,9 @@ class DatePickerInput extends React.PureComponent {
     }
 
     _onInputChange(value) {
-        const { disabled, locale, rangeFrom, rangeTo } = this.props;
+        const {
+            disabled, locale, rangeFrom, rangeTo,
+        } = this.props;
         const { dateFrom, dateTo } = this.state;
         const date = moment(value, this._dateFormats, locale || moment.locale(), true);
 
@@ -273,7 +276,7 @@ class DatePickerInput extends React.PureComponent {
             !disabled &&
             value === '' || value === '__/__/____';
 
-        let onChangeParam = {};
+        const onChangeParam = {};
         const updatedDateValue = isValidValueChange ? date : null;
 
         if (rangeFrom) {
@@ -335,7 +338,7 @@ DatePickerInput.defaultProps = {
 
 DatePickerInput.propTypes = {
     className: PropTypes.string,
-    controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
+    controls: PropTypes.oneOf(['dropdowns', 'arrows']),
     date: PropTypes.object,
     dateFrom: PropTypes.object,
     dateTo: PropTypes.object,

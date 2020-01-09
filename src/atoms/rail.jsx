@@ -21,7 +21,7 @@ function Rail(props) {
     );
 }
 
-const positionEnums = [ 'left', 'right' ];
+const positionEnums = ['left', 'right'];
 
 Rail.propTypes = {
     className: PropTypes.string,

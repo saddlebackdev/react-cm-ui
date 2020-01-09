@@ -14,7 +14,7 @@ function SegmentedControlsItem(props) {
 SegmentedControlsItem.propTypes = {
     icon: PropTypes.string,
     label: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
 };
 
 export default SegmentedControlsItem;
