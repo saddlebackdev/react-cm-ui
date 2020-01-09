@@ -127,7 +127,7 @@ const dateUtils = {
             return moment.unix(data).utc().format('LT');
         }
 
-        return moment(data, 'HH:mm').format('hh:mm a');
+        return moment(data, 'HH:mm').format('LT');
     },
 
     formatDayOfWeek(data) {
