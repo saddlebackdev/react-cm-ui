@@ -1,4 +1,4 @@
-import { backgroundColorStatic } from 'shared/styles/colors.scss';
+import { backgroundColorStatic } from 'shared/styles/colors';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';

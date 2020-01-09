@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import domUtils from '../utils/domUtils';
+import domUtils from '../global/utils/domUtils';
 import DrawerActionBar from './drawerActionBar'; // eslint-disable-line import/no-cycle
 import DrawerContainer from './drawerContainer';
 import DrawerContent from './drawerContent';

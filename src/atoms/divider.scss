@@ -1,4 +1,6 @@
-@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+@import '../shared/styles/colors';
+@import '../shared/styles/fonts';
+@import '../shared/styles/fontSizeCalculator';
 
 .ui.divider {
     border-bottom: 1px solid color(borderColor);

@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../elements/icon';
-import Utils from '../utils/utils';
+import Utils from '../global/utils';
 
 export const singleOptionPropTypeShape = {
     disabled: PropTypes.bool,
