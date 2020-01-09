@@ -1,13 +1,18 @@
 import './navigation.scss';
 
+import { domUtils, Header } from 'react-cm-ui';
 import _ from 'lodash';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import { domUtils, Header } from 'react-cm-ui';
 
-export default class CoreAppNavigation extends React.Component {
+const propTypes = {
+    selection: PropTypes.bool,
+    toggleNavigation: PropTypes.func.isRequired,
+};
+
+class CoreAppNavigation extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -114,178 +119,155 @@ export default class CoreAppNavigation extends React.Component {
                             </li>
                         </ul>
 
-                        <Header size="small">Elements</Header>
+                        <Header size="small">Atoms</Header>
 
                         <ul>
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/activity-indicator' }} activeClassName={isActive}>Activity Indicator</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/activity-indicator' }} activeClassName={isActive}>Activity Indicator</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/button' }} activeClassName={isActive}>Button</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/button' }} activeClassName={isActive}>Button</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/divider' }} activeClassName={isActive}>Divider</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/checkbox' }} activeClassName={isActive}>Checkbox</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/checkbox' }} activeClassName={isActive}>Checkbox</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/divider' }} activeClassName={isActive}>Divider</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/comment' }} activeClassName={isActive}>Comment</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/dropdown' }} activeClassName={isActive}>Dropdown</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/header' }} activeClassName={isActive}>Header</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/header' }} activeClassName={isActive}>Header</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/icon' }} activeClassName={isActive}>Icon</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/icon' }} activeClassName={isActive}>Icon</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/image' }} activeClassName={isActive}>Image</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/image' }} activeClassName={isActive}>Image</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/input' }} activeClassName={isActive}>Input</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/input' }} activeClassName={isActive}>Input</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/label' }} activeClassName={isActive}>Label</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/label' }} activeClassName={isActive}>Label</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/list' }} activeClassName={isActive}>List</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/list' }} activeClassName={isActive}>List</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/loader' }} activeClassName={isActive}>Loader</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/prompt' }} activeClassName={isActive}>Prompt</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/radio' }} activeClassName={isActive}>Radio</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/radio' }} activeClassName={isActive}>Radio</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/rail' }} activeClassName={isActive}>Rail</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/text-area' }} activeClassName={isActive}>Text Area</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/elements/text-area' }} activeClassName={isActive}>Text Area</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/atoms/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
                             </li>
                         </ul>
 
-                        <Header size="small">Collections</Header>
+                        <Header size="small">Molecules</Header>
 
                         <ul>
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/collections/grid' }} activeClassName={isActive}>Grid</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/banner' }} activeClassName={isActive}>Banner</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/collections/table' }} activeClassName={isActive}>Table</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/comment' }} activeClassName={isActive}>Comment</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/collections/tabs' }} activeClassName={isActive}>Tabs</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/date-picker-calendar' }} activeClassName={isActive}>Date Picker Calendar</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/date-picker-input' }} activeClassName={isActive}>Date Picker Input</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/duration-picker' }} activeClassName={isActive}>Duration Picker</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/phone-input' }} activeClassName={isActive}>Phone Input</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/molecules/time-picker' }} activeClassName={isActive}>Time Picker</Link>
                             </li>
                         </ul>
 
-                        <Header size="small">Views</Header>
+                        <Header size="small">Organisms</Header>
 
                         <ul>
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/views/banner' }} activeClassName={isActive}>Banner</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/accordion' }} activeClassName={isActive}>Accordion</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/views/card' }} activeClassName={isActive}>Card</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/card' }} activeClassName={isActive}>Card</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/views/info-bar' }} activeClassName={isActive}>Info Bar</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/grid' }} activeClassName={isActive}>Grid</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/views/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/info-bar' }} activeClassName={isActive}>Info Bar</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/views/title-bar' }} activeClassName={isActive}>Title Bar</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/rail' }} activeClassName={isActive}>Rail</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/title-bar' }} activeClassName={isActive}>Title Bar</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/table' }} activeClassName={isActive}>Table</Link>
+                            </li>
+
+                            <li>
+                                <Link className="core-app-nav-item" to={{ pathname: '/organisms/tabs' }} activeClassName={isActive}>Tabs</Link>
                             </li>
                         </ul>
 
-                        <Header size="small">Modules</Header>
+                        <Header size="small">Templates</Header>
 
                         <ul>
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/accordion' }} activeClassName={isActive}>Accordion</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/templates/drawer' }} activeClassName={isActive}>Drawer</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/date-picker-calendar' }} activeClassName={isActive}>Date Picker Calendar</Link>
+                                <Link className="core-app-nav-item" to={{ pathname: '/templates/modal' }} activeClassName={isActive}>Modal</Link>
                             </li>
 
                             <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/date-picker-input' }} activeClassName={isActive}>Date Picker Input</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/drawer' }} activeClassName={isActive}>Drawer</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/dropdown' }} activeClassName={isActive}>Dropdown</Link>
-                            </li>
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/duration-picker' }} activeClassName={isActive}>Duration Picker</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/modal' }} activeClassName={isActive}>Modal</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/page' }} activeClassName={isActive}>Page</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/phone-input' }} activeClassName={isActive}>Phone Input</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/prompt' }} activeClassName={isActive}>Prompt</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" to={{ pathname: '/modules/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
-                            </li>
-
-                            <li>
-                                <Link className="core-app-nav-item" className="core-app-nav-item" to={{ pathname: '/modules/time-picker' }} activeClassName={isActive}>Time Picker</Link>
-                            </li>
-                        </ul>
-
-                        <Header size="small">Packages</Header>
-
-                        <ul>
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/malte-wessel/react-custom-scrollbars" target="_blank">react-custom-scrollbars</a>
-                            </li>
-
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/tajo/react-portal" target="_blank">react-portal</a>
-                            </li>
-
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/contra/react-responsive" target="_blank">react-responsive</a>
-                            </li>
-
-                            <li>
-                                <a className="core-app-nav-item" href="https://github.com/JedWatson/react-select" target="_blank">react-select</a>
+                                <Link className="core-app-nav-item" to={{ pathname: '/templates/page' }} activeClassName={isActive}>Page</Link>
                             </li>
                         </ul>
                     </div>
@@ -295,6 +277,6 @@ export default class CoreAppNavigation extends React.Component {
     }
 }
 
-CoreAppNavigation.propTypes = {
-    toggleNavigation: PropTypes.func.isRequired,
-};
+CoreAppNavigation.propTypes = propTypes;
+
+export default CoreAppNavigation;

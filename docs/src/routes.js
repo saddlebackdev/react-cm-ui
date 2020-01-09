@@ -10,6 +10,7 @@ const routes = (
                     .then((module) => callback(null, module.default));
             }}
         />
+
         <Route
             getComponent={(location, callback) => {
                 import('./app/gettingStartedIntroduction.js')
@@ -17,6 +18,7 @@ const routes = (
             }}
             path="/introduction"
         />
+
         <Route path="/style-guide">
             <Route
                 getComponent={(location, callback) => {
@@ -27,45 +29,45 @@ const routes = (
             />
         </Route>
 
-        <Route path="/elements">
+        <Route path="/atoms">
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/activityIndicator.js')
+                    import('./atoms/activityIndicator.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="activity-indicator"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/button.js')
+                    import('./atoms/button.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="button"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/checkbox.js')
+                    import('./atoms/checkbox.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="checkbox"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/comment.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="comment"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./elements/divider.js')
+                    import('./atoms/divider.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="divider"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/header.js')
+                    import('./atoms/dropdown.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="dropdown"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./atoms/header.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="header"
@@ -73,13 +75,13 @@ const routes = (
             <Route path="icon">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./elements/iconSet.js')
+                        import('./atoms/iconSet.js')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./elements/iconExamples.js')
+                        import('./atoms/iconExamples.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="examples"
@@ -87,170 +89,219 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/image.js')
+                    import('./atoms/image.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="image"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/input.js')
+                    import('./atoms/input.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="input"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/label.js')
+                    import('./atoms/label.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="label"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/list.js')
+                    import('./atoms/list.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="list"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/loader.js')
+                    import('./atoms/loader.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="loader"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/radio.js')
+                    import('./atoms/prompt.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="prompt"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./atoms/radio.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="radio"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/rail.js')
+                    import('./atoms/segmentedControls.js')
                         .then((module) => callback(null, module.default));
                 }}
-                path="rail"
+                path="segmented-controls"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./elements/textArea.js')
+                    import('./atoms/textArea.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="text-area"
             />
         </Route>
 
-        <Route path="collections">
+        <Route path="molecules">
             <Route
                 getComponent={(location, callback) => {
-                    import('./collections/grid.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="grid"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./collections/table')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="table"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./collections/tabs.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="tabs"
-            />
-        </Route>
-
-        <Route path="views">
-            <Route
-                getComponent={(location, callback) => {
-                    import('./views/banner.js')
+                    import('./molecules/banner.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="banner"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./views/infoBar.js')
+                    import('./molecules/comment.js')
                         .then((module) => callback(null, module.default));
                 }}
-                path="info-bar"
+                path="comment"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./views/card.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="card"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./views/subNavigation.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="sub-navigation"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./views/titleBar.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="title-bar"
-            />
-        </Route>
-
-        <Route path="modules">
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/accordion.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="accordion"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/datePicker.js')
+                    import('./molecules/datePicker.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="date-picker"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./modules/datePickerCalendar.js')
+                    import('./molecules/datePickerCalendar.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="date-picker-calendar"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./modules/datePickerInput.js')
+                    import('./molecules/datePickerInput.js')
                         .then((module) => callback(null, module.default));
                 }}
                 path="date-picker-input"
             />
+             <Route
+                getComponent={(location, callback) => {
+                    import('./molecules/durationPicker.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="duration-picker"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./molecules/phoneInput.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="phone-input"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./molecules/timePicker.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="time-picker"
+            />
+        </Route>
+
+        <Route path="organisms">
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/accordion.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="accordion"
+            />
+             <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/card.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="card"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/grid.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="grid"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/infoBar.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="info-bar"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/rail.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="rail"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/subNavigation.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="sub-navigation"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/table')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="table"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/tabs.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="tabs"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./organisms/titleBar.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="title-bar"
+            />
+        </Route>
+
+        <Route path="templates">
+            <Route
+                getComponent={(location, callback) => {
+                    import('./templates/drawerDeprecated.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="drawer-deprecated"
+            />
             <Route path="drawer">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./modules/drawer.js')
+                        import('./templates/drawer.js')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerActionBar.js')
+                        import('./templates/drawerActionBar.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="action-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerContent.js')
+                        import('./templates/drawerContent.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="content"
@@ -264,63 +315,63 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDeprecatedFiltersDrawer.js')
+                        import('./templates/drawerDeprecatedFiltersDrawer.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="deprecated-filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDataCards.js')
+                        import('./templates/drawerDataCards.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-cards"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerNavigation.js')
+                        import('./templates/drawerNavigation.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="navigation"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDataGrid.js')
+                        import('./templates/drawerDataGrid.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-grid"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerTitleBar.js')
+                        import('./templates/drawerTitleBar.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="title-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerWing.js')
+                        import('./templates/drawerWing.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="wing"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDetailsWindow.js')
+                        import('./templates/drawerDetailsWindow.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="details-window"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerSticky.js')
+                        import('./templates/drawerSticky.js')
                             .then(module => callback(null, module.default));
                     }}
                     path="sticky"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/drawerDataGroups.js')
+                        import('./templates/drawerDataGroups.js')
                             .then(module => callback(null, module.default));
                     }}
                     path="data-groups"
@@ -328,75 +379,26 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./modules/drawerDeprecated.js')
+                    import('./templates/modal.js')
                         .then((module) => callback(null, module.default));
                 }}
-                path="drawer-deprecated"
+                path="modal"
             />
             <Route path="page">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./modules/page.js')
+                        import('./templates/page.js')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./modules/pageDemo.js')
+                        import('./templates/pageDemo.js')
                             .then((module) => callback(null, module.default));
                     }}
                     path="demo"
                 />
             </Route>
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/dropdown.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="dropdown"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/durationPicker.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="duration-picker"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/modal.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="modal"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/phoneInput.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="phone-input"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/prompt.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="prompt"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/segmentedControls.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="segmented-controls"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./modules/timePicker.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="time-picker"
-            />
         </Route>
     </Route>
 );
