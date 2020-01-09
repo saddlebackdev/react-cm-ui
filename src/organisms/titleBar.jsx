@@ -45,7 +45,7 @@ class TitleBar extends Component {
 
 TitleBar.propTypes = {
     className: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     subTitle: PropTypes.string,
     title: PropTypes.string,
 };

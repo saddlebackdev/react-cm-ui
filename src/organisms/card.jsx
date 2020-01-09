@@ -36,7 +36,7 @@ CardHeader.propTypes = {
     attached: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
 };
 
@@ -254,7 +254,7 @@ Card.propTypes = {
     id: PropTypes.string,
     nest: PropTypes.bool,
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
 };
 

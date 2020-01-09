@@ -261,18 +261,18 @@ class DatePickerCalendar extends Component {
 
 DatePickerCalendar.propTypes = {
     buttonClear: PropTypes.bool,
-    date: PropTypes.object, // Single date moment object. Coverted from timestamp in parent component.
-    dateEnd: PropTypes.object, // Range end date moment object. Coverted from timestamp in parent component.
-    dateSecondaryEnd: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateSecondaryStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    dateStart: PropTypes.object, // Range start date moment object. Coverted from timestamp in parent component.
-    events: PropTypes.array,
-    excludeDates: PropTypes.array,
+    date: PropTypes.shape({}), // Single date moment object. Coverted from timestamp in parent component.
+    dateEnd: PropTypes.shape({}), // Range end date moment object. Coverted from timestamp in parent component.
+    dateSecondaryEnd: PropTypes.shape({}), // Range start date moment object. Coverted from timestamp in parent component.
+    dateSecondaryStart: PropTypes.shape({}), // Range start date moment object. Coverted from timestamp in parent component.
+    dateStart: PropTypes.shape({}), // Range start date moment object. Coverted from timestamp in parent component.
+    events: PropTypes.arrayOf(PropTypes.shape({})),
+    excludeDates: PropTypes.arrayOf(PropTypes.shape({})),
     filterDate: PropTypes.func,
-    includeDates: PropTypes.array,
+    includeDates: PropTypes.arrayOf(PropTypes.shape({})),
     locale: PropTypes.string,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
+    minDate: PropTypes.shape({}),
     onApplyClick: PropTypes.func,
     onClearClick: PropTypes.func,
     onClose: PropTypes.func,

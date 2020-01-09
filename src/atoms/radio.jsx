@@ -51,7 +51,7 @@ RadioItem.propTypes = {
     index: PropTypes.number,
     label: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 const isCheckedSingle = (c, i, isChecked) => (
@@ -194,7 +194,7 @@ Radio.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func,
     pill: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     value: PropTypes.string,
 };
 

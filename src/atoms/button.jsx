@@ -12,8 +12,10 @@ class Button extends React.PureComponent {
     }
 
     onClick(event) {
-        if (_.isFunction(this.props.onClick)) {
-            this.props.onClick(event);
+        const { onClick } = this.props;
+
+        if (_.isFunction(onClick)) {
+            onClick(event);
         }
     }
 
@@ -94,13 +96,13 @@ Button.propTypes = {
     href: PropTypes.string,
     icon: PropTypes.bool,
     id: PropTypes.string,
-    innerStyle: PropTypes.object,
+    innerStyle: PropTypes.shape({}),
     inverse: PropTypes.bool,
     onClick: PropTypes.func,
     outlined: PropTypes.bool,
     relax: PropTypes.bool,
     square: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     target: PropTypes.oneOf(['_blank']),
     width: PropTypes.oneOfType([
         PropTypes.number,

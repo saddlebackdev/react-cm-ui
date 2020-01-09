@@ -81,7 +81,7 @@ Tabs.propTypes = {
     nest: PropTypes.bool,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Tabs;

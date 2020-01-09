@@ -373,7 +373,7 @@ Input.propTypes = {
     fluid: PropTypes.bool,
     guide: PropTypes.bool,
     icon: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     id: PropTypes.string,
@@ -381,10 +381,10 @@ Input.propTypes = {
     keepCharPositions: PropTypes.bool,
     label: PropTypes.string,
     labelPosition: PropTypes.oneOf(labelPosition),
-    labelStyle: PropTypes.object,
+    labelStyle: PropTypes.shape({}),
     loading: PropTypes.bool,
     mask: PropTypes.oneOfType([
-        PropTypes.array,
+        PropTypes.arrayOf(PropTypes.shape({})),
         PropTypes.func,
     ]),
     max: PropTypes.number,
@@ -400,7 +400,7 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     showSpinners: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,

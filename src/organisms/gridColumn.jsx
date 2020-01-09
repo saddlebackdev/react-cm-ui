@@ -64,7 +64,7 @@ GridColumn.propTypes = {
     mobileLarge: PropTypes.oneOf(columnEnums),
     mobileMedium: PropTypes.oneOf(columnEnums),
     only: PropTypes.oneOf(onlyEnums),
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     tablet: PropTypes.oneOf(columnEnums),
     textAlign: PropTypes.oneOf(textAlignEnums),
     verticalAlign: PropTypes.oneOf(verticalAlignEnums),

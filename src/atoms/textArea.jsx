@@ -172,7 +172,7 @@ TextArea.propTypes = {
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
-    labelStyle: PropTypes.object,
+    labelStyle: PropTypes.shape({}),
     maxHeight: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -194,7 +194,7 @@ TextArea.propTypes = {
     required: PropTypes.bool,
     resize: PropTypes.bool,
     rows: PropTypes.number,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     value: PropTypes.string,
 };
 

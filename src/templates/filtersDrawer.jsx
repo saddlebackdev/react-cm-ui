@@ -34,12 +34,12 @@ const propTypes = {
                 disabled: PropTypes.bool,
                 id: PropTypes.string,
                 label: PropTypes.oneOfType([
-                    PropTypes.object,
+                    PropTypes.shape({}),
                     PropTypes.string,
                 ]),
                 name: PropTypes.string,
                 onChange: PropTypes.func,
-                style: PropTypes.object,
+                style: PropTypes.shape({}),
             },
             dropdown: {
                 onChange: PropTypes.func,
@@ -105,7 +105,7 @@ const propTypes = {
                 labelIconType: PropTypes.string,
                 name: PropTypes.string,
                 onChange: PropTypes.func,
-                style: PropTypes.object,
+                style: PropTypes.shape({}),
             },
         })),
     })),

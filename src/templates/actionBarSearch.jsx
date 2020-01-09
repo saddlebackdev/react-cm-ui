@@ -12,7 +12,7 @@ const propTypes = {
     onChange: PropTypes.func.isRequired,
     onClearClick: PropTypes.func,
     onKeyDown: PropTypes.func,
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
 

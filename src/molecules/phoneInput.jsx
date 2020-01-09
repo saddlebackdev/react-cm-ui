@@ -259,7 +259,7 @@ PhoneInput.defaultProps = {
 PhoneInput.propTypes = {
     className: PropTypes.string,
     country: PropTypes.string,
-    countryOptions: PropTypes.array,
+    countryOptions: PropTypes.arrayOf(PropTypes.shape({})),
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
@@ -268,7 +268,7 @@ PhoneInput.propTypes = {
     fluid: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string,
-    labelStyle: PropTypes.object,
+    labelStyle: PropTypes.shape({}),
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
 };

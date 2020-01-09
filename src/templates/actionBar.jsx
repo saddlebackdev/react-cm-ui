@@ -12,10 +12,10 @@ import List from '../elements/list';
 const propTypes = {
     children: PropTypes.element,
     className: PropTypes.string,
-    columns: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+    columns: PropTypes.arrayOf(PropTypes.shape({})), // eslint-disable-line react/forbid-prop-types
     id: PropTypes.string,
     moduleType: PropTypes.oneOf(['drawer', 'page']),
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {

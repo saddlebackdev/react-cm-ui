@@ -69,7 +69,7 @@ Label.propTypes = {
     fluid: PropTypes.bool,
     onClearClick: PropTypes.func,
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Label;

@@ -14,7 +14,7 @@ const propTypes = {
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
     options: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {

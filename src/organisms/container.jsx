@@ -38,7 +38,7 @@ Container.propTypes = {
     as: PropTypes.oneOf(asEnums),
     className: PropTypes.string,
     color: PropTypes.oneOf(Utils.colorEnums()),
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Container;

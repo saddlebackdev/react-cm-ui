@@ -118,7 +118,7 @@ SegmentedControls.propTypes = {
     fluid: PropTypes.bool,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default SegmentedControls;

@@ -14,7 +14,7 @@ export const columnPropTypesShape = PropTypes.shape({
     fontSize: PropTypes.oneOf(['large', 'medium', 'small']),
     fontWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
     header: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     width: PropTypes.string,
 });
 

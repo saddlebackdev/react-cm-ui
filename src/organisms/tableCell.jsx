@@ -156,7 +156,7 @@ TableCell.propTypes = {
     ]),
     selectable: PropTypes.bool,
     singleLine: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     tablet: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.oneOf(columnNumberEnums),

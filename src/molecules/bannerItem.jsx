@@ -19,7 +19,7 @@ BannerItem.propTypes = {
     level: PropTypes.oneOf(levelEnums),
     levelIcon: PropTypes.string,
     message: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
 };
 

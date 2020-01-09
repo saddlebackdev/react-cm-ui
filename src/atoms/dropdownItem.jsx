@@ -24,7 +24,7 @@ DropdownItem.propTypes = {
         PropTypes.string,
     ]),
     label: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DropdownItem;

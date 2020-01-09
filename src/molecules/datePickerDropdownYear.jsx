@@ -122,7 +122,7 @@ class DatePickerDropdownYear extends React.PureComponent {
 }
 
 DatePickerDropdownYear.propTypes = {
-    maxDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     year: PropTypes.number.isRequired,

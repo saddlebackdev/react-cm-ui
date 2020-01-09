@@ -54,7 +54,7 @@ Grid.propTypes = {
     horizontalAlign: PropTypes.oneOf(xAlignEnums),
     relaxed: PropTypes.bool,
     stressed: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     textAlign: PropTypes.oneOf(xAlignEnums),
     verticalAlign: PropTypes.oneOf(yAlignEnums),
 };

@@ -130,7 +130,7 @@ Header.propTypes = {
     icon: PropTypes.bool,
     inverse: PropTypes.bool,
     size: PropTypes.oneOf(Utils.sizeEnums()),
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     sub: PropTypes.bool,
     title: PropTypes.string,
     weight: PropTypes.oneOf(weightEnums),

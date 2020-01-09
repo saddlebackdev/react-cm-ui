@@ -165,7 +165,7 @@ DrawerFiltersDrawer.propTypes = {
     onClose: PropTypes.func.isRequired,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     rows: PropTypes.array.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DrawerFiltersDrawer;

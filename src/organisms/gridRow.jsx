@@ -45,7 +45,7 @@ GridRow.propTypes = {
     columns: PropTypes.oneOf(columnNumberEnums),
     horizontalAlign: PropTypes.oneOf(xAlignEnums),
     stressed: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     textAlign: PropTypes.oneOf(xAlignEnums),
     verticalAlign: PropTypes.oneOf(verticalAlignEnums),
 };

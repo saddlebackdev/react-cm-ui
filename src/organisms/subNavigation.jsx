@@ -99,7 +99,7 @@ SubNavigation.propTypes = {
     id: PropTypes.string,
     onClick: PropTypes.func,
     selected: PropTypes.number,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default SubNavigation;

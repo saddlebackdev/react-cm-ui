@@ -44,7 +44,7 @@ InfoBar.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
 
 InfoBar.defaultProps = {

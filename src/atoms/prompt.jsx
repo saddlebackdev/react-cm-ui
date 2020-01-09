@@ -177,7 +177,7 @@ Prompt.propTypes = {
     onClick: PropTypes.func,
     onNoClick: PropTypes.func,
     onYesClick: PropTypes.func,
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     show: PropTypes.bool,
 };
 

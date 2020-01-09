@@ -254,7 +254,7 @@ Comment.propTypes = {
     onActionMenuClick: PropTypes.func,
     onDelete: PropTypes.func,
     onSaveEdit: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     text: PropTypes.string,
     time: PropTypes.number,
 };

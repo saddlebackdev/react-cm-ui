@@ -96,7 +96,7 @@ Table.propTypes = {
         PropTypes.oneOf(['very']),
     ]),
     striped: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Table;

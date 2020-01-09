@@ -217,7 +217,7 @@ Banner.propTypes = {
     onAfterClose: PropTypes.func,
     onClose: PropTypes.func.isRequired,
     onOpen: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
     topPosition: PropTypes.number,
     type: PropTypes.oneOf(typeEnums),
