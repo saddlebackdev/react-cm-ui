@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.3 - 01/08/2020
+
+- Made 8.0.3, this version, latest.
+
 ## 8.0.2 - 01/08/2020
 
 #### Bug Fix
