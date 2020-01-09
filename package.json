@@ -31,7 +31,7 @@
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
     "clean:lib": "rimraf lib",
-    "compile": "npm run clean:lib && gulp && cpx \"src/shared/images/**\" \"lib/shared/images\" && babel src/ -d lib/",
+    "compile": "npm run clean:lib && gulp && cpx \"src/global/images/**\" \"lib/global/images\" && babel src/ -d lib/",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepare": "npm run compile"
   },
