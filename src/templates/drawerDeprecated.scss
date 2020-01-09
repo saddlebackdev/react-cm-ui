@@ -1,4 +1,4 @@
-@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
 
 // The drawers z-index's starts at 10000
 $zindex: $drawer-zindex;
