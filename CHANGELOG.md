@@ -3,7 +3,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 8.0.3 - 01/08/2020
 
-- Made 8.0.3, this version, latest.
+#### Bug Fix
+- PR #99
+    - Fixed typo 'Decemeber' in month picker.
 
 ## 8.0.2 - 01/08/2020
 
