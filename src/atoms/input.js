@@ -1,5 +1,3 @@
-'use strict';
-
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';

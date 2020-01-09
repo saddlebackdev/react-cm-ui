@@ -1,5 +1,3 @@
-'use strict';
-
 import _ from 'lodash';
 import autosize from 'autosize';
 import ClassNames from 'classnames';
