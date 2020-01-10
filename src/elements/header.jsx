@@ -27,7 +27,7 @@ const defaultProps = {
     anchor: undefined,
     as: undefined,
     className: undefined,
-    color: 'text',
+    color: undefined,
     icon: false,
     inverse: false,
     size: undefined,
