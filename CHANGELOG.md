@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 8.0.4 - 01/10/2020
+
+#### Bug Fix
+- [PR #106](https://github.com/saddlebackdev/react-cm-ui/pull/106)
+    - **Header's** `defaultProp` `color` was changed to `text` accidently while fixing some Eslint issues. The default value should be as `undefined`.
+
 ## 9.0.0 - 01/08/2020
 
 #### Feature
