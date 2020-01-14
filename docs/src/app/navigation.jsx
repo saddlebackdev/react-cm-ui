@@ -7,7 +7,6 @@ import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 
 const propTypes = {
-    selection: PropTypes.bool,
     toggleNavigation: PropTypes.func.isRequired,
 };
 
@@ -20,24 +19,14 @@ class CoreAppNavigation extends React.PureComponent {
     }
 
     componentDidMount() {
-        const { selection } = this.props;
-        console.log('selection', selection);
-
-        if (!selection) {
-            document.addEventListener('click', this.toggleNavigation);
-        }
+        document.addEventListener('click', this.toggleNavigation);
     }
 
     componentWillUnmount() {
-        const { selection } = this.props;
-
-        if (!selection) {
-            document.removeEventListener('click', this.toggleNavigation);
-        }
+        document.removeEventListener('click', this.toggleNavigation);
     }
 
     onLogoClick() {
-        console.log('onLogoClick');
         const { router } = this.state;
 
         router.push('/');
@@ -66,7 +55,7 @@ class CoreAppNavigation extends React.PureComponent {
     render() {
         const navItemClassName = 'core-app-nav-item';
         const isActive = 'is-active';
-        const version = __UI_DOCS_VERSION__; // eslint-disable-line
+        const version = __UI_DOCS_VERSION__; // eslint-disable-line no-undef
 
         return (
             <nav className="core-app-nav" ref={(ref) => { this.coreAppNavRef = ref; }}>
