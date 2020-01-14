@@ -1,6 +1,35 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.0.1 - 01/10/2020
+
+- [PR #106](https://github.com/saddlebackdev/react-cm-ui/pull/106) / Merge Commit 67f158e
+    - **Header's** `defaultProp` `color` was changed to `text` accidently while fixing some Eslint issues. The default value should be `undefined`.
+
+## 8.0.4 - 01/10/2020
+
+#### Bug Fix
+- [PR #106](https://github.com/saddlebackdev/react-cm-ui/pull/106)
+    - **Header's** `defaultProp` `color` was changed to `text` accidently while fixing some Eslint issues. The default value should be `undefined`.
+
+## 9.0.0 - 01/08/2020
+
+#### Feature
+- Commit 59b9716
+    - Added `className` and `id` to **HeaderSubHeader**.
+- Commit eca4611
+    - Added `form` to the **Grid's** propTypes. This will give a **Grid** the vertical negative space it needs between each **Grid.Column** housing a form field.
+- Commit 0daf4e9
+    - Renamed the dateUtils "format" functions for better use.
+
+#### Bug Fix
+- Commit 0daf4e9
+    - Fixes the list in **ActionBar** from being centered.
+
+#### Bug Fix
+- PR #99
+    - Fixed typo 'Decemeber' in month picker.
+
 ## 8.0.3 - 01/08/2020
 
 #### Bug Fix
