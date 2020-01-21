@@ -48,7 +48,6 @@ class DataGridTable extends React.PureComponent {
 
         this.onSplitterClick = this.onSplitterClick.bind(this);
         this.onSplitterDrag = this.onSplitterDrag.bind(this);
-        this.onSplitterDragEnd = this.onSplitterDragEnd.bind(this);
     }
 
     onSplitterClick() {
@@ -75,18 +74,6 @@ class DataGridTable extends React.PureComponent {
         onSplitterDragEnd(deltaX);
     }
 
-    onSplitterDragEnd({ deltaX }) {
-        const { onSplitterDragEnd } = this.props;
-
-        requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
-            handle.style.left = 0;
-        });
-
-        if (_.isFunction(onSplitterDragEnd)) {
-            onSplitterDragEnd(deltaX);
-        }
-    }
 
     render() {
         const {
@@ -142,7 +129,6 @@ class DataGridTable extends React.PureComponent {
                                                 className={`${classNamePrefix}_table_header_handle`}
                                                 onClick={this.onSplitterClick}
                                                 onDrag={this.onSplitterDrag}
-                                                onDragEnd={this.onSplitterDragEnd}
                                                 ref={(ref) => { this.handle = ref; }}
                                             >
                                                 <Icon
