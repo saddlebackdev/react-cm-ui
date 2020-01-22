@@ -4,7 +4,7 @@ import { SubNavigation } from 'react-cm-ui';
 
 class ModulesDrawerSubNavigation extends React.PureComponent {
     static onSubNavClick(index) {
-        const drawerLocation = '/modules/drawer';
+        const drawerLocation = '/templates/drawer';
 
         switch (index) {
             case 1:

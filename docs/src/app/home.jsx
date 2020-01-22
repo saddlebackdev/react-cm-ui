@@ -99,9 +99,9 @@ class Home extends React.PureComponent {
                 </div>
 
                 <div>
-                    <Grid columns={1}>
+                    <Grid>
                         <Grid.Row>
-                            <Grid.Column>
+                            <Grid.Column width={12}>
                                 <Header
                                     color="static"
                                     size="large"
@@ -113,8 +113,12 @@ class Home extends React.PureComponent {
                             </Grid.Column>
                         </Grid.Row>
 
-                        <Grid.Row columns={2}>
-                            <Grid.Column align="stretch">
+                        <Grid.Row>
+                            <Grid.Column
+                                align="stretch"
+                                laptop={6}
+                                width={12}
+                            >
                                 <Card style={{ height: '100%' }}>
                                     <Header size="medium">Installation</Header>
 
@@ -143,7 +147,11 @@ class Home extends React.PureComponent {
                                 </Card>
                             </Grid.Column>
 
-                            <Grid.Column align="stretch">
+                            <Grid.Column
+                                align="stretch"
+                                laptop={6}
+                                width={12}
+                            >
                                 <Card style={{ height: '100%' }}>
                                     <Header size="medium">Usage</Header>
 
