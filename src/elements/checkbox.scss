@@ -43,8 +43,9 @@ $padding-label-toggle: 63px;
             top: 0;
             width: $size;
         }
-        .ui.icon-check { // check
+        .ui.icon-check {
             left: 6px;
+            opacity: 0;
             top: 6px;
         }
         &.label-not-clickable {
@@ -64,8 +65,11 @@ $padding-label-toggle: 63px;
             }
         }
     }
-    .input:checked + {
-        label::before { background-color: color(backgroundColorHighlight); border: 1px solid color(borderColorHighlight); }
+    .input:checked + label {
+        &::before {
+            background-color: color(backgroundColorHighlight);
+            border: 1px solid color(borderColorHighlight);
+        }
         .ui.icon-check { opacity: 1; }
     }
     &-align-right {
@@ -79,12 +83,17 @@ $padding-label-toggle: 63px;
             .ui.icon-check { left: auto; right: 6px; }
         }
     }
-    &-disabled {
-        label {
+    &-disabled .input {
+        + label, &:checked + label {
             color: color(colorStatic);
             cursor: auto;
-            &::before { background: color(backgroundColorDisable); }
-            .ui.icon-check { color: color(backgroundColorStatic); }
+            &::before {
+                background-color: color(backgroundColorDisable);
+                border: 1px solid color(borderColor);
+            }
+        }
+        &:checked + label .ui.icon-check {
+            opacity: 1;
         }
     }
     &-full-width { display: block; margin-right: 0; }
