@@ -15,6 +15,7 @@ const propTypes = {
     className: PropTypes.string,
     desktop: PropTypes.oneOf(columnEnums),
     desktopLarge: PropTypes.oneOf(columnEnums),
+    fieldType: PropTypes.oneOf(['checkbox', 'legend', 'radio']),
     floated: PropTypes.oneOf(floatedEnums),
     id: PropTypes.string,
     laptop: PropTypes.oneOf(columnEnums),
@@ -33,6 +34,7 @@ const defaultProps = {
     className: undefined,
     desktop: undefined,
     desktopLarge: undefined,
+    fieldType: undefined,
     floated: undefined,
     id: undefined,
     laptop: undefined,
@@ -53,6 +55,7 @@ const GridColumn = React.forwardRef((props, ref) => {
         className,
         desktop,
         desktopLarge,
+        fieldType,
         floated,
         id,
         laptop,
@@ -93,6 +96,9 @@ const GridColumn = React.forwardRef((props, ref) => {
         'grid-col-vertical-align-bottom': verticalAlign === 'bottom',
         'grid-col-vertical-align-center': verticalAlign === 'center',
         'grid-col-vertical-align-top': verticalAlign === 'top',
+        'grid-col-form_field_checkbox': fieldType === 'checkbox',
+        'grid-col-form_field_legend': fieldType === 'legend',
+        'grid-col-form_field_radio': fieldType === 'radio',
     });
 
     return (
