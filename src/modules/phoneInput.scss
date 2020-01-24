@@ -73,14 +73,19 @@ $width: 65px;
     .react-phone-number-input--focus input {
         border-color: color(backgroundColorHighlight);
     }
-    &.phone-input--disabled input {
-        background-color: color(backgroundColorDisable);
-    }
-    &.phone-input--error {
-        input { border-color: color(backgroundColorHighlight); }
-        .input-error-message {
-            color: color(colorAlert);
-            font-size: em(14px);
+    &.phone-input {
+        &--disabled input {
+            background-color: color(backgroundColorDisable);
+        }
+        &--fluid {
+            display: block;
+        }
+        &--error {
+            input { border-color: color(backgroundColorHighlight); }
+            .input-error-message {
+                color: color(colorAlert);
+                font-size: em(14px);
+            }
         }
     }
     + * {
