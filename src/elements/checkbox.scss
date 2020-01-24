@@ -85,7 +85,6 @@ $padding-label-toggle: 63px;
     }
     &-disabled .input {
         + label, &:checked + label {
-            color: color(colorStatic);
             cursor: auto;
             &::before {
                 background-color: color(backgroundColorDisable);

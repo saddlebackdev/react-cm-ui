@@ -76,6 +76,7 @@ $width: 65px;
     &.phone-input {
         &--disabled input {
             background-color: color(backgroundColorDisable);
+            color: color(color);
         }
         &--fluid {
             display: block;
