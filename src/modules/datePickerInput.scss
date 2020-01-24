@@ -2,4 +2,9 @@
 
 .ui.date-picker-input {
     display: inline-block;
+    &.date_picker_input {
+        &-fluid {
+            display: block;
+        }
+    }
 }

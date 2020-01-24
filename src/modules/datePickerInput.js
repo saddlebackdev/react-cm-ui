@@ -13,6 +13,47 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
+const propTypes = {
+    className: PropTypes.string,
+    controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
+    date: PropTypes.object,
+    dateFrom: PropTypes.object,
+    dateTo: PropTypes.object,
+    disabled: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    events: PropTypes.array,
+    excludeDates: PropTypes.array,
+    filterDates: PropTypes.func,
+    fluid: PropTypes.bool,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
+    includeDates: PropTypes.array,
+    label: PropTypes.string,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onMonthChange: PropTypes.func,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
+    required: PropTypes.bool,
+    style: PropTypes.object,
+};
+
+const defaultProps = {
+    controls: 'dropdowns',
+    disabled: false,
+    fluid: false,
+    locale: 'en-US',
+    rangeFrom: false,
+    rangeTo: false,
+    required: false,
+};
+
 class Calendar extends React.PureComponent {
     render() {
         return <DatePickerCalendar {...this.props} />;
@@ -107,6 +148,7 @@ class DatePickerInput extends React.PureComponent {
             events,
             excludeDates,
             filterDates,
+            fluid,
             id,
             includeDates,
             label,
@@ -117,8 +159,16 @@ class DatePickerInput extends React.PureComponent {
             style,
             tabIndex,
         } = this.props;
-        const { date, dateFrom, dateTo, isCalendarOpen, inputValue } = this.state;
-        const containerClasses = ClassNames('ui', 'date-picker-input', className);
+        const {
+            date,
+            dateFrom,
+            dateTo,
+            isCalendarOpen,
+            inputValue,
+        } = this.state;
+        const containerClasses = ClassNames('ui', 'date-picker-input', className, {
+            'date_picker_input-fluid': fluid,
+        });
 
         return (
             <div className={containerClasses} id={id} style={style}>
@@ -158,6 +208,7 @@ class DatePickerInput extends React.PureComponent {
                                 autoComplete="off"
                                 data-parsley-error-message={errorMessage}
                                 disabled={disabled}
+                                fluid={fluid}
                                 guide
                                 icon={(
                                     <Icon
@@ -324,43 +375,7 @@ class DatePickerInput extends React.PureComponent {
     }
 }
 
-DatePickerInput.defaultProps = {
-    controls: 'dropdowns',
-    disabled: false,
-    locale: 'en-US',
-    rangeFrom: false,
-    rangeTo: false,
-    required: false,
-};
-
-DatePickerInput.propTypes = {
-    className: PropTypes.string,
-    controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
-    date: PropTypes.object,
-    dateFrom: PropTypes.object,
-    dateTo: PropTypes.object,
-    disabled: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    events: PropTypes.array,
-    excludeDates: PropTypes.array,
-    filterDates: PropTypes.func,
-    id: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    includeDates: PropTypes.array,
-    label: PropTypes.string,
-    locale: PropTypes.string,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onMonthChange: PropTypes.func,
-    rangeFrom: PropTypes.bool,
-    rangeTo: PropTypes.bool,
-    required: PropTypes.bool,
-    style: PropTypes.object,
-};
+DatePickerInput.propTypes = propTypes;
+DatePickerInput.defaultProps = defaultProps;
 
 export default DatePickerInput;
