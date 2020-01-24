@@ -25,7 +25,10 @@ const propTypes = {
     size: PropTypes.oneOf([ 'small', 'large' ]),
     style: PropTypes.object,
     toggle: PropTypes.bool,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
 class Checkbox extends Component {
