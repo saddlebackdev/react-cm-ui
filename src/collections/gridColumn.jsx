@@ -11,7 +11,7 @@ const verticalAlignEnums = ['bottom', 'middle', 'top'];
 
 const propTypes = {
     align: PropTypes.oneOf(alignEnums),
-    children: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
     desktop: PropTypes.oneOf(columnEnums),
     desktopLarge: PropTypes.oneOf(columnEnums),
@@ -46,7 +46,7 @@ const defaultProps = {
     width: undefined,
 };
 
-function GridColumn(props) {
+const GridColumn = React.forwardRef((props, ref) => {
     const {
         align,
         children,
@@ -96,11 +96,16 @@ function GridColumn(props) {
     });
 
     return (
-        <div className={containerClasses} id={id} style={style}>
+        <div
+            className={containerClasses}
+            id={id}
+            ref={ref}
+            style={style}
+        >
             {children}
         </div>
     );
-}
+});
 
 GridColumn.propTypes = propTypes;
 GridColumn.defaultProps = defaultProps;
