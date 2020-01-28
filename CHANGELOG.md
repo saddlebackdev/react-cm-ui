@@ -1,6 +1,32 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.1.0 - 01/27/2020
+
+- [PR #108](https://github.com/saddlebackdev/react-cm-ui/pull/108) / Merge Commit cd51d26f14b41391289f120a3f824808480c0cfd
+    - **Checkbox**
+        - Cleaned up Eslint issues.
+        - Fixed disable styling for when checked or not.
+    - **DatePickerInput**
+        - Added a new `fluid` prop.
+    - **Grid**
+        - Component uses `React.forwardRef`.
+        - Added a new `form` prop.
+    - **Grid.Column**
+        - Component uses `React.forwardRef`.
+        - Added a new `fieldType` prop. Accepts one of the following: `checkbox`, `legend`, `radio`.
+        - Fixed `children` propType warning.
+    - **Grid.Row**
+        - Component uses `React.forwardRef`.
+    - **PhoneInput**
+        - Fixed disabled value label color.
+        - Fixed disabled country dropdown.
+        - Fixed `fluid` styling.
+    - **Radio**
+        - Fixed disabled label color.
+- [PR #107](https://github.com/saddlebackdev/react-cm-ui/pull/107) / Merge Commit 365f81e1953b55f7cdc8bb861ce3861fde69a2a2
+    - No PBI Fixes resizing sticked columns.
+
 ## 9.0.1 - 01/10/2020
 
 - [PR #106](https://github.com/saddlebackdev/react-cm-ui/pull/106) / Merge Commit 67f158e

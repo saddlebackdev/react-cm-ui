@@ -200,7 +200,7 @@ class DataGrid extends React.Component {
 
             return { // eslint-disable-line consistent-return
                 collapsed: null,
-                currentStickyColumnWidth: width + dx,
+                currentStickyColumnWidth: Math.max(stickyColumnWidth, width + dx),
             };
         }, () => {
             this.onResize();

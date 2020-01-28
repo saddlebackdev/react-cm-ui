@@ -11,10 +11,11 @@ const verticalAlignEnums = ['bottom', 'middle', 'top'];
 
 const propTypes = {
     align: PropTypes.oneOf(alignEnums),
-    children: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
     desktop: PropTypes.oneOf(columnEnums),
     desktopLarge: PropTypes.oneOf(columnEnums),
+    fieldType: PropTypes.oneOf(['checkbox', 'legend', 'radio']),
     floated: PropTypes.oneOf(floatedEnums),
     id: PropTypes.string,
     laptop: PropTypes.oneOf(columnEnums),
@@ -33,6 +34,7 @@ const defaultProps = {
     className: undefined,
     desktop: undefined,
     desktopLarge: undefined,
+    fieldType: undefined,
     floated: undefined,
     id: undefined,
     laptop: undefined,
@@ -46,13 +48,14 @@ const defaultProps = {
     width: undefined,
 };
 
-function GridColumn(props) {
+const GridColumn = React.forwardRef((props, ref) => {
     const {
         align,
         children,
         className,
         desktop,
         desktopLarge,
+        fieldType,
         floated,
         id,
         laptop,
@@ -93,14 +96,22 @@ function GridColumn(props) {
         'grid-col-vertical-align-bottom': verticalAlign === 'bottom',
         'grid-col-vertical-align-center': verticalAlign === 'center',
         'grid-col-vertical-align-top': verticalAlign === 'top',
+        'grid-col-form_field_checkbox': fieldType === 'checkbox',
+        'grid-col-form_field_legend': fieldType === 'legend',
+        'grid-col-form_field_radio': fieldType === 'radio',
     });
 
     return (
-        <div className={containerClasses} id={id} style={style}>
+        <div
+            className={containerClasses}
+            id={id}
+            ref={ref}
+            style={style}
+        >
             {children}
         </div>
     );
-}
+});
 
 GridColumn.propTypes = propTypes;
 GridColumn.defaultProps = defaultProps;

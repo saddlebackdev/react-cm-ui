@@ -10,6 +10,28 @@ import Dropdown from './dropdown';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+const propTypes = {
+    className: PropTypes.string,
+    country: PropTypes.string,
+    countryOptions: PropTypes.array,
+    disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+    ]),
+    fluid: PropTypes.bool,
+    id: PropTypes.string,
+    label: PropTypes.string,
+    labelStyle: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+    country: 'US',
+    countryOptions: [ 'US', '|' ],
+};
+
 class CountryDropdownItem extends React.Component {
     constructor() {
         super();
@@ -154,7 +176,7 @@ class CountryDropdown extends React.PureComponent {
         return (
             <Dropdown
                 clearable={false}
-                disabled={disabled}
+                disable={disabled}
                 iconSize={10}
                 iconType="caret-down"
                 onChange={this._onChange}
@@ -227,6 +249,7 @@ class PhoneInput extends React.PureComponent {
                     className=""
                     countryOptions={countryOptions}
                     countrySelectComponent={CountryDropdown}
+                    fluid=""
                     onChange={this._onChange}
                     style={{}}
                 />
@@ -251,26 +274,7 @@ class PhoneInput extends React.PureComponent {
     }
 }
 
-PhoneInput.defaultProps = {
-    country: 'US',
-    countryOptions: [ 'US', '|' ],
-};
-
-PhoneInput.propTypes = {
-    className: PropTypes.string,
-    country: PropTypes.string,
-    countryOptions: PropTypes.array,
-    disabled: PropTypes.bool,
-    error: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.string,
-    ]),
-    fluid: PropTypes.bool,
-    id: PropTypes.string,
-    label: PropTypes.string,
-    labelStyle: PropTypes.object,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-};
+PhoneInput.propTypes = propTypes;
+PhoneInput.defaultProps = defaultProps;
 
 export default PhoneInput;

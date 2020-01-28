@@ -31,7 +31,7 @@ class DragListener extends React.PureComponent {
             screenX: e.screenX,
             screenY: e.screenY,
         };
-        if (this.currentDragPos.deltaX !== 0) {
+        if (this.currentDragPos.deltaX !== 0 && e.screenX !== 0 && e.screenY !== 0) {
             onDrag(this.currentDragPos);
         }
     }

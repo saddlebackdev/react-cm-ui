@@ -36,7 +36,7 @@ const defaultProps = {
     verticalAlign: undefined,
 };
 
-function Grid(props) {
+const Grid = React.forwardRef((props, ref) => {
     const {
         children,
         className,
@@ -67,11 +67,16 @@ function Grid(props) {
     });
 
     return (
-        <div className={containerClasses} id={id} style={style}>
+        <div
+            className={containerClasses}
+            id={id}
+            ref={ref}
+            style={style}
+        >
             {children}
         </div>
     );
-}
+});
 
 Grid.Column = GridColumn;
 Grid.Row = GridRow;

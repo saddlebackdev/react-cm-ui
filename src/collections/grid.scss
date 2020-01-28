@@ -101,12 +101,26 @@ $prefixGrid: '.ui.grid';
             &.grid-col-vertical-align-center { align-items: center; display: flex; }
             &.grid-col-vertical-align-top { align-items: top; display: flex; }
         }
-#{$prefixGrid}-form {
+#{$prefixGrid}-form, #{$prefixGrid}-form #{$prefixGrid} {
     margin-bottom: rem(-$gutterForm);
     margin-top: rem(-$gutterForm);
+}
+#{$prefixGrid}-form {
     #{$prefixGrid}-col {
         padding-bottom: rem($gutterForm);
         padding-top: rem($gutterForm);
+    }
+    #{$prefixGrid}-col-form_field {
+        &_checkbox, &_radio {
+            padding-bottom: rem(5.5px);
+            padding-top: rem(5.5px);
+            &:last-child {
+                padding-bottom: rem(16.5px);
+            }
+        }
+        &_legend {
+            padding-bottom: 0;
+        }
     }
 }
 #{$prefixGrid}-relaxed {
