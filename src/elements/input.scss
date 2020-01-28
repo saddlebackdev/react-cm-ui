@@ -29,7 +29,10 @@
         &::placeholder { color: color(colorStatic); }
     }
     &.input-disabled {
-        input { background-color: color(backgroundColorDisable); }
+        input {
+            background-color: color(backgroundColorDisable);
+            color: color(color);
+        }
         &.input-icon { color: color(colorStatic); }
     }
     &.input-error {
