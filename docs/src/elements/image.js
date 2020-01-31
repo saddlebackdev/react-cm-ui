@@ -6,7 +6,7 @@ import { Card, Header, Image, TitleBar } from 'react-cm-ui';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const imageSample = `import React from 'react';
 import { Image } from 'react-cm-ui';

@@ -8,7 +8,7 @@ import { Card, Header, Loader, TitleBar } from 'react-cm-ui';
 import Block from '../app/block.js';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const fooSample = `import React from 'react';
 

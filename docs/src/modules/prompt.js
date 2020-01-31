@@ -4,7 +4,7 @@ import { Button, Card, Dropdown, Header, Prompt, TitleBar } from 'react-cm-ui';
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const inlineSample = `import React from 'react';
 
