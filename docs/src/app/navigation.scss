@@ -1,4 +1,6 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+@import '../global/styles/colors';
+@import '../global/styles/fonts';
+@import '../global/styles/fontSizeCalculator';
 
 $nav-width: 250px;
 
@@ -14,40 +16,37 @@ $nav-width: 250px;
     transition-property: opacity;
     width: $nav-width;
     .core-app-nav-scrollbar-inner {
-        padding: 95px 16px 22px;
+        padding: 104px 16px 22px;
         position: relative;
         > * { margin-top: 0; }
     }
         .logo-wrapper {
-            align-items: center;
+            align-items: flex-start;
             background-color: color(backgroundColorInverse);
             border-bottom: 1px solid color(borderColorQuaternary);
             box-shadow: 0 10px 24px color(backgroundColorInverse);
             clip-path: inset(0 0 -26px 0);
             display: flex;
-            justify-content: flex-start;
+            flex-direction: column;
+            justify-content: center;
             left: 0;
             margin: 0 16px;
-            padding: 16px 0;
+            padding: 11px 0 16px;
             position: fixed;
             top: 0;
             width: $nav-width - 32px;
             .logo {
                 cursor: pointer;
                 display: inline-block;
+                font-size: rem(20px);
                 letter-spacing: 1px;
-                margin: 0;
                 text-transform: uppercase;
             }
-            .doc-version {
-                border-left: 1px solid;
+            .package-version {
                 color: color(colorStatic);
-                display: inline-block;
-                flex-grow: 1;
-                font-size: em(9px);
+                font-size: rem(12px);
                 font-style: italic;
-                padding-left: 16px;
-                margin: 2px 0 0 16px;
+                margin: 11px 0 0;
             }
         }
         .ui.header.header-size-small { margin-bottom: 5px; z-index: -1; }

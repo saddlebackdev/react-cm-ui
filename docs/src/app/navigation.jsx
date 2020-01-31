@@ -55,7 +55,7 @@ class CoreAppNavigation extends React.PureComponent {
     render() {
         const navItemClassName = 'core-app-nav-item';
         const isActive = 'is-active';
-        const version = __UI_DOCS_VERSION__; // eslint-disable-line no-undef
+        const version = __UI_PACKAGE_VERSION__; // eslint-disable-line no-undef
 
         return (
             <nav className="core-app-nav" ref={(ref) => { this.coreAppNavRef = ref; }}>
@@ -77,7 +77,7 @@ class CoreAppNavigation extends React.PureComponent {
                                 </Header>
                             </Link>
 
-                            <span className="text-xsmall text-semibold text-italics doc-version">{`DOCS V ${version}`}</span>
+                            <div className="text-xsmall text-semibold text-italics package-version">{`v${version}`}</div>
                         </div>
 
                         <Header inverse size="small" style={{ marginTop: 0 }}>Getting Started</Header>
