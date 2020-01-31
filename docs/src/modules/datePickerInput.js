@@ -5,7 +5,7 @@ import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import moment from 'moment-timezone';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const datePickerSample = `import { DatePickerInput } from 'react-cm-ui';
 import React from 'react';

@@ -1,9 +1,15 @@
+@import './pageVariables';
+
 $prefixDrawerContent: drawer--content;
 $prefixPageContent: page--content;
 
 .ui {
     &.#{$prefixDrawerContent} {
         padding: 33px 11px;
+    }
+    &.#{$prefixPageContent} {
+        margin: 0 -#{$pageGutterXsm};
+        padding: 0 #{$pageGutterXsm};
     }
     &.#{$prefixDrawerContent}, &.#{$prefixPageContent} {
         position: relative;
@@ -14,6 +20,15 @@ $prefixPageContent: page--content;
         }
         &-scrollable {
             overflow-x: scroll;
+        }
+    }
+}
+
+@media only screen and (min-width: 508px) {
+    .ui {
+        &.#{$prefixPageContent} {
+            margin: 0 -#{$pageGutterSm};
+            padding: 0 #{$pageGutterSm};
         }
     }
 }

@@ -1,11 +1,12 @@
 @import '../shared/styles/colors';
+@import './pageVariables';
 
 $prefixDrawerFiltersRail: drawer--filters_rail;
 $prefixPageFiltersRail: page--filters_rail;
 
 .ui {
     &.#{$prefixPageFiltersRail} {
-        margin-left: -22px;
+        margin-left: -#{$pageGutterSm};
         min-height: 100%;
     }
     &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {

@@ -1,11 +1,18 @@
+@import './pageVariables';
+
 $prefixDrawerDataCards: drawer--data_cards;
 $prefixPageDataCards: page--data_cards;
 $prefixDrawerDataCard: drawer--data_card;
 $prefixPageDataCard: page--data_card;
 
 .ui {
-    .#{$prefixDrawerDataCards} {
+    &.#{$prefixDrawerDataCards} {
         margin-top: -33px;
+        margin: 11px 0 !important; // sass-lint:disable-line no-important
+    }
+    &.#{$prefixPageDataCards} {
+        margin: 0 -#{$pageGutterXsm};
+        padding: 0 #{$pageGutterXsm};
     }
     .#{$prefixDrawerDataCard}, .#{$prefixPageDataCard} {
         margin: 11px 0 !important; // sass-lint:disable-line no-important
@@ -22,8 +29,12 @@ $prefixPageDataCard: page--data_card;
 
 @media only screen and (min-width: 768px) {
     .ui {
-        .#{$prefixDrawerDataCards}, .#{$prefixPageDataCards} {
+        &.#{$prefixDrawerDataCards} {
             margin: 0 -11px !important; // sass-lint:disable-line no-important
+        }
+        &.#{$prefixPageDataCards} {
+            margin: 0 -#{$pageGutterSm};
+            padding: 0 #{$pageGutterSm};
         }
         .#{$prefixDrawerDataCard}, .#{$prefixPageDataCard} {
             &_inner_container {

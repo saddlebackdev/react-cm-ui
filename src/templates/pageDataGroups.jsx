@@ -32,7 +32,7 @@ function PageDataGroups(props) {
             className={className}
             columns={columns}
             data={data}
-            moduleType="drawer"
+            moduleType="page"
             style={style}
         />
     );
