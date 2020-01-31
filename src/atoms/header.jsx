@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from './icon';
 import HeaderSubheader from './headerSubheader';
+import Icon from './icon';
 import Utils from '../global/utils/utils';
 
 const asEnums = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
@@ -13,12 +12,10 @@ const weightEnums = ['bold', 'normal', 'semibold'];
 const propTypes = {
     anchor: PropTypes.string,
     as: PropTypes.oneOf(asEnums),
-    children: PropTypes.node.isRequired,
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
     icon: PropTypes.bool,
     inverse: PropTypes.bool,
-    onClick: PropTypes.func,
     size: PropTypes.oneOf(Utils.sizeEnums()),
     style: PropTypes.shape({}),
     sub: PropTypes.bool,
@@ -30,12 +27,11 @@ const defaultProps = {
     anchor: undefined,
     as: undefined,
     className: undefined,
-    color: 'text',
+    color: undefined,
     icon: false,
     inverse: false,
-    onClick: undefined,
     size: undefined,
-    style: undefined,
+    style: {},
     sub: false,
     title: undefined,
     weight: undefined,
@@ -46,22 +42,12 @@ class Header extends React.PureComponent {
         super();
 
         this.onAnchorClick = this.onAnchorClick.bind(this);
-        this.onContainerClick = this.onContainerClick.bind(this);
     }
 
     onAnchorClick() {
         const { anchor } = this.props;
 
         window.location.hash = anchor;
-    }
-
-    onContainerClick(event) {
-        console.log('onContainerClick');
-        const { onClick } = this.props;
-
-        if (_.isFunection(onClick)) {
-            onClick(event);
-        }
     }
 
     render() {
@@ -114,12 +100,7 @@ class Header extends React.PureComponent {
 
         if (icon && sub) {
             return (
-                <ElementType
-                    className={containerClasses}
-                    id={anchor}
-                    onClick={this.onContainerClick}
-                    style={style}
-                >
+                <ElementType className={containerClasses} id={anchor} style={style}>
                     <span
                         style={{
                             display: 'inline-flex',
@@ -144,7 +125,6 @@ class Header extends React.PureComponent {
             <ElementType
                 className={containerClasses}
                 id={anchor}
-                onClick={this.onContainerClick}
                 style={style}
                 title={title}
             >

@@ -99,7 +99,6 @@ $size-dot: 14px;
     }
     &-disabled {
         label {
-            color: color(colorStatic);
             cursor: auto;
             &::before { background: color(backgroundColorDisable); }
             &::after { background-color: color(backgroundColorStatic); }
