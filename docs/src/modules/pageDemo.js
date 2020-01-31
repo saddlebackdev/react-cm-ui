@@ -836,6 +836,7 @@ class PageDemo extends React.PureComponent {
                 </div>
 
                 <Page
+                    backgroundColor={!isMobile ? 'white' : 'grey'}
                     className="page_class_name"
                     isDataFetching={isFetching}
                 >
