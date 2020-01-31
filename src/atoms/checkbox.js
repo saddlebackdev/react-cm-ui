@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Icon from '../elements/icon';
 import PropTypes from 'prop-types';
+import Icon from './icon';
 
 const propTypes = {
     align: PropTypes.oneOf([ 'left', 'right' ]),

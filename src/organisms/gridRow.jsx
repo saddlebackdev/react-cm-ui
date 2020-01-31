@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../utils/utils';
+import Utils from '../global/utils/utils';
 
 const columnNumberEnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const xAlignEnums = ['center', 'left', 'right'];
