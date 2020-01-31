@@ -8,7 +8,7 @@ import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 // Docs UI Components
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const subNavigationSample = `import React from 'react';
 

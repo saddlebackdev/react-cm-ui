@@ -12,7 +12,7 @@ import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
     `/_/docs/src/images/${imageFileName}` :

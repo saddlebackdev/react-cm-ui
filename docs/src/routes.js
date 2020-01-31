@@ -336,9 +336,72 @@ const routes = (
             <Route path="page">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./modules/page.js')
+                        import('./modules/page')
                             .then((module) => callback(null, module.default));
                     }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageActionBar')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="action-bar"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageContainer')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="container"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageContent')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="content"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageDataCards')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-cards"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageDataGrid')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-grid"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageDataGroups')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-groups"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageDetailsWindow')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="details-window"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageFiltersDrawer')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="filters-drawer"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./modules/pageFiltersRail')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="filters-rail"
                 />
                 <Route
                     getComponent={(location, callback) => {

@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import Main from '../app/main.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const drawerSample = `import React from 'react';
 

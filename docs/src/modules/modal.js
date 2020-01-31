@@ -8,7 +8,7 @@ import React from 'react';
 // Docs UI Components
 import Highlighter from '../app/highlighter.js';
 import Main from '../app/main.js';
-import TableProps from '../app/tableProps.js';
+import TableProps from '../app/tableProps';
 
 const modalSample = `import React from 'react';
 
