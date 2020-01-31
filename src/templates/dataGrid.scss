@@ -1,3 +1,5 @@
+@import './pageVariables';
+
 $prefixDrawerDataGrid: drawer--data_grid;
 $prefixPageDataGrid: page--data_grid;
 $blackAlpha: rgba(0, 0, 0, .5);
@@ -8,11 +10,18 @@ $blackAlpha: rgba(0, 0, 0, .5);
 
 .ui {
     &.#{$prefixDrawerDataGrid}, &.#{$prefixPageDataGrid}  {
+        &-sticky_columns {
+            position: relative;
+        }
+    }
+    &.#{$prefixDrawerDataGrid}  {
         &-bleed {
             margin: 0 -11px;
         }
-        &-sticky_columns {
-            position: relative;
+    }
+    &.#{$prefixPageDataGrid}  {
+        &-bleed {
+            margin: 0 -#{$pageGutterXsm};
         }
     }
     &.#{$prefixDrawerDataGrid} {
@@ -77,9 +86,19 @@ $blackAlpha: rgba(0, 0, 0, .5);
     }
 }
 
+@media only screen and (min-width: 508px) {
+    .ui {
+        &.#{$prefixPageDataGrid}  {
+            &-bleed {
+                margin: 0 -#{$pageGutterSm};
+            }
+        }
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .ui {
-        &.#{$prefixDrawerDataGrid}, &.#{$prefixPageDataGrid}  {
+        &.#{$prefixDrawerDataGrid} {
             &-bleed {
                 margin: 0 -22px;
             }

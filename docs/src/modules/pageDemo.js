@@ -6,7 +6,7 @@ import {
     TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
-import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'global/styles/colors.scss';
+import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'shared/styles/colors.scss';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';

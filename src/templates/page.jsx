@@ -16,6 +16,7 @@ import PageFiltersDrawer from './pageFiltersDrawer';
 import PageFiltersRail from './pageFiltersRail';
 
 const propTypes = {
+    backgroundColor: PropTypes.oneOf(['white', 'grey']),
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     id: PropTypes.string,
@@ -24,6 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    backgroundColor: 'grey',
     className: undefined,
     id: undefined,
     isDataFetching: false,
@@ -43,6 +45,7 @@ class Page extends React.PureComponent {
 
     render() {
         const {
+            backgroundColor,
             children,
             className,
             id,
@@ -50,7 +53,10 @@ class Page extends React.PureComponent {
             style,
         } = this.props;
         const { hasActivityIndicator } = this.state;
-        const containerClasses = ClassNames('ui', 'page', className);
+        const containerClasses = ClassNames('ui', 'page', className, {
+            'page-background_color_grey': !backgroundColor || backgroundColor === 'grey',
+            'page-background_color_white': backgroundColor === 'white',
+        });
 
         return (
             <main
