@@ -10,7 +10,7 @@
         width: 100%;
     }
         th, td {
-            font-weight: $default-font-weight-bold;
+            font-weight: $fontWeightBold;
             padding: 11px;
             &:first-child { padding-left: 0; }
             &:last-child { padding-right: 0; }
@@ -19,9 +19,9 @@
             .allowed-types {
                 color: color(colorStatic);
                 margin-top: 4px;
-                .type { font-weight: $default-font-weight-semibold; text-transform: capitalize; }
+                .type { font-weight: $fontWeightSemiBold; text-transform: capitalize; }
             }
-        td { font-size: em(14px); font-weight: $default-font-weight-normal; }
+        td { font-size: em(14px); font-weight: $fontWeightRegular; }
             .table-cell-name > code { display: none; }
             .mobile-info {
                 margin: 0;
@@ -30,7 +30,7 @@
                 dt {
                     color: color(colorStatic);
                     font-size: em(14px);
-                    font-weight: $default-font-weight-semibold;
+                    font-weight: $fontWeightSemiBold;
                     margin: 11px 0 1px;
                     &:first-child { margin-top: 0; }
                 }

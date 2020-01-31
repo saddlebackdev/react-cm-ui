@@ -15,7 +15,7 @@ $standard-divider: color(borderColor);
                 min-height: 44px;
             }
             .accordion-item-title {
-                .copy { flex: 1 1 auto; font-weight: $default-font-weight-semibold; }
+                .copy { flex: 1 1 auto; font-weight: $fontWeightSemiBold; }
                 .ui.icon { flex: none; width: 16px; }
             }
             &:last-child { border-bottom: 1px solid $standard-divider; }
@@ -54,7 +54,7 @@ $standard-divider: color(borderColor);
                 border: 1px solid color(backgroundColorLight);
                 border-radius: rem(3px);
                 cursor: pointer;
-                font-weight: $default-font-weight-semibold;
+                font-weight: $fontWeightSemiBold;
                 padding: 10px 22px;
                 transition:
                     background-image 150ms ease-out,

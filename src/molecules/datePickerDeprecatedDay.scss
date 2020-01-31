@@ -20,7 +20,7 @@ $day-size: 33px;
         display: flex;
         flex: 0 1 auto;
         font-size: rem(16px);
-        font-weight: $default-font-weight-semibold;
+        font-weight: $fontWeightSemiBold;
         justify-content: center;
         max-height: $day-size;
         max-width: $day-size;
@@ -37,7 +37,7 @@ $day-size: 33px;
         color: color(colorInverse);
     }
     &.date-picker-deprecated-day-end-selected, &.date-picker-deprecated-day-start-selected {
-        span { font-weight: $default-font-weight-bold; }
+        span { font-weight: $fontWeightBold; }
     }
     &::after {
         content: '';
@@ -63,8 +63,8 @@ $day-size: 33px;
         &:first-child::after { right: 0; width: 50%; }
         &:last-child::after { left: 0; width: 50%; }
     }
-    &-today span { color: color(colorHighlight); font-weight: $default-font-weight-bold; }
-    &-outside-month span { color: color(colorStatic); cursor: default; font-weight: $default-font-weight-normal; }
+    &-today span { color: color(colorHighlight); font-weight: $fontWeightBold; }
+    &-outside-month span { color: color(colorStatic); cursor: default; font-weight: $fontWeightRegular; }
 }
 .date-picker-deprecated-week .date-picker-deprecated-day {
     &:first-of-type.datepicker-day-in-range::after { border-radius: ($day-size / 2) 0 0 ($day-size / 2); }

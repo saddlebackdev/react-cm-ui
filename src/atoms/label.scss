@@ -8,7 +8,7 @@
     color: color(color);
     display: inline-flex;
     font-size: rem(14px);
-    font-weight: $default-font-weight-normal;
+    font-weight: $fontWeightRegular;
     height: 30px;
     justify-content: flex-start;
     letter-spacing: 1px;
@@ -27,7 +27,7 @@
         &warning {
             box-shadow: none;
             color: color(colorInverse);
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
         }
         &alert { background-color: color(backgroundColorAlert); }
         &highlight { background-color: color(backgroundColorHighlight); }
@@ -41,13 +41,13 @@
         &warning {
             box-shadow: none;
             color: color(colorInverse);
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
         }
         &alert { background-color: color(backgroundColorAlert); }
         &highlight { background-color: color(backgroundColorHighlight); }
         &primary { background-color: color(backgroundColorLight); box-shadow: inset 0 0 0 1px color(borderColor); }
         &success { background-color: color(backgroundColorSuccess); }
-        &transparent { background-color: transparent; color: color(colorInverse); font-weight: $default-font-weight-semibold; }
+        &transparent { background-color: transparent; color: color(colorInverse); font-weight: $fontWeightSemiBold; }
         &warning { background-color: color(backgroundColorWarning); }
     }
     &.label-clearable {

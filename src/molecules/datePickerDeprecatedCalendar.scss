@@ -74,7 +74,7 @@ $pointer-size: 8px;
                         color: color(colorSecondary);
                         cursor: pointer;
                         font-size: rem(16px);
-                        font-weight: $default-font-weight-bold;
+                        font-weight: $fontWeightBold;
                         position: relative;
                         i { color: color(color); }
                     }
@@ -87,6 +87,6 @@ $pointer-size: 8px;
                 display: flex;
                 justify-content: center;
                 width: 100%;
-                .date-picker-deprecated-day { font-size: rem(14px); font-weight: $default-font-weight-bold; text-transform: uppercase; }
+                .date-picker-deprecated-day { font-size: rem(14px); font-weight: $fontWeightBold; text-transform: uppercase; }
             }
     }

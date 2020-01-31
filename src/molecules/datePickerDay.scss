@@ -20,7 +20,7 @@ $day-size: 30px;
         display: flex;
         flex: 0 1 auto;
         font-size: rem(14px);
-        font-weight: $default-font-weight-semibold;
+        font-weight: $fontWeightSemiBold;
         justify-content: center;
         max-height: $day-size;
         max-width: $day-size;
@@ -29,14 +29,14 @@ $day-size: 30px;
         position: relative;
         z-index: 1;
     }
-    &.date-picker-day-has-event span { color: color(colorLink); font-weight: $default-font-weight-bold; }
+    &.date-picker-day-has-event span { color: color(colorLink); font-weight: $fontWeightBold; }
     &:not(.date-picker-day-outside-month):not(.date-picker-day-disabled) span:hover {
         background-color: color(backgroundColorHighlight);
         box-shadow: none;
         color: color(colorInverse);
     }
     &.date-picker-day-end-selected, &.date-picker-day-start-selected {
-        span { font-weight: $default-font-weight-bold; }
+        span { font-weight: $fontWeightBold; }
     }
     &::after {
         content: '';

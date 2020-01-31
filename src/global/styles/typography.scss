@@ -9,11 +9,11 @@
 html { font-size: 100%; }
     body {
         color: color(color);
-        font-family: $default-font-family;
+        font-family: $fontFamily;
         font-size: em(16px);
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
-        font-weight: $default-font-weight-normal;
+        font-weight: $fontWeightRegular;
         //letter-spacing: .7px;
         line-height: 1.375;
     }
@@ -21,7 +21,7 @@ html { font-size: 100%; }
         a {
             color: color(colorLink);
             cursor: pointer;
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
             text-decoration: none;
         }
         // Text/Element Selection Highlight
@@ -44,9 +44,9 @@ html { font-size: 100%; }
         .font-size-xsmall { font-size: em(14px); }
         .font-size-xxsmall { font-size: em(12px); }
         // Font Weights
-        .font-weight-normal { font-weight: $default-font-weight-normal; }
-        .font-weight-semibold { font-weight: $default-font-weight-semibold; }
-        .font-weight-bold { font-weight: $default-font-weight-bold; }
+        .font-weight-normal { font-weight: $fontWeightRegular; }
+        .font-weight-semibold { font-weight: $fontWeightSemiBold; }
+        .font-weight-bold { font-weight: $fontWeightBold; }
         // Text Decoration
         .text-decoration-underline { border-bottom: 2px solid color(borderColorQuinary); display: inline-block; padding: 0 0 5px; }
         a.text-decoration-underline { border-bottom-color: color(borderColorHighlight); }

@@ -1,4 +1,6 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+@import '../global/styles/colors';
+@import '../global/styles/fonts';
+@import '../global/styles/fontSizeCalculator';
 
 $size: 22px;
 $size-small: 18px;
@@ -22,9 +24,9 @@ $padding-label-toggle: 63px;
             font-size: rem(14px);
             padding-left: rem(33px);
             padding-top: 2px;
-            &-weight-bold { font-weight: $default-font-weight-bold; }
-            &-weight-normal { font-weight: $default-font-weight-normal; }
-            &-weight-semibold { font-weight: $default-font-weight-semibold; }
+            &-weight-bold { font-weight: $fontWeightBold; }
+            &-weight-normal { font-weight: $fontWeightRegular; }
+            &-weight-semibold { font-weight: $fontWeightSemiBold; }
         }
         &::before, .ui.icon-check {
             position: absolute;
@@ -129,7 +131,7 @@ $padding-label-toggle: 63px;
                 align-items: center;
                 display: inline-flex;
                 font-size: rem(12px);
-                font-weight: $default-font-weight-semibold;
+                font-weight: $fontWeightSemiBold;
                 height: $size;
                 justify-content: center;
                 left: 0;

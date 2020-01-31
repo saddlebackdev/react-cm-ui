@@ -130,7 +130,7 @@ $backwards-step4-duration: $standard-fifth-timing;
         }
         &--option_container {
             font-size: rem(14px);
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
             margin: 0 -11px;
             position: relative;
             @for $i from 1 through 11 {
