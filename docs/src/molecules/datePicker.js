@@ -9,7 +9,7 @@ import { Card, DatePicker, Header, TitleBar } from 'react-cm-ui';
 // Docs UI Components
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const singleDateInputSample = `import React from 'react';
 

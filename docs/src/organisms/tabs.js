@@ -5,7 +5,7 @@ import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const tabsSample = `import React from 'react';
 

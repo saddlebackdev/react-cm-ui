@@ -8,7 +8,7 @@ import { Radio, Card, Header, TitleBar } from 'react-cm-ui';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const radioSample = `import React from 'react';
 

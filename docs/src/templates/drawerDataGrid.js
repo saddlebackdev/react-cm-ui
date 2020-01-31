@@ -12,7 +12,7 @@ import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const drawerGridSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';

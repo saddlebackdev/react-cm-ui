@@ -4,7 +4,7 @@ import Highlighter from '../global/highlighter';
 import { Link } from 'react-router';
 import Main from '../global/main';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const drawerStickySample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';

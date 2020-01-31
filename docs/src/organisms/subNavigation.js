@@ -5,7 +5,7 @@ import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import MediaQuery from 'react-responsive';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const subNavigationSample = `import React from 'react';
 

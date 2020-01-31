@@ -5,7 +5,7 @@ import { borderColor } from 'global/styles/colors.scss';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const activityIndicatorSample = `import { ActivityIndicator } from 'react-cm-ui';
 import React from 'react';

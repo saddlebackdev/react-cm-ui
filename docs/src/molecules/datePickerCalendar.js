@@ -3,7 +3,7 @@ import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import moment from 'moment-timezone';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const datePickerSample = `import { DatePickerCalendar } from 'react-cm-ui';
 import React from 'react';

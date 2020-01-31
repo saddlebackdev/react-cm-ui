@@ -4,7 +4,7 @@ import { Card, Header, PhoneInput, TitleBar } from 'react-cm-ui';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import React from 'react';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const basicSample = `import React from 'react';
 import { PhoneInput } from 'react-cm-ui';

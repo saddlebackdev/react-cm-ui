@@ -396,9 +396,72 @@ const routes = (
             <Route path="page">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./templates/page.js')
+                        import('./templates/page')
                             .then((module) => callback(null, module.default));
                     }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageActionBar')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="action-bar"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageContainer')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="container"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageContent')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="content"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageDataCards')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-cards"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageDataGrid')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-grid"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageDataGroups')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="data-groups"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageDetailsWindow')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="details-window"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageFiltersDrawer')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="filters-drawer"
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./templates/pageFiltersRail')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="filters-rail"
                 />
                 <Route
                     getComponent={(location, callback) => {

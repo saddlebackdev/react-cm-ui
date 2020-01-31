@@ -8,7 +8,7 @@ import { Card, Dropdown, Header, Icon, Image, TitleBar } from 'react-cm-ui';
 // Docs UI Components
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const titleBarSample = `import React from 'react';
 import { TitleBar } from 'react-cm-ui';

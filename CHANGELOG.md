@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.2.0 - 01/30/2020
+
+- [PR #109](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113
+    - New `backgroundColor` prop in our **Page** component. Accepts the values `white` or `grey`.
+    - The **Page** gutter has been fixed according to Design Guidelines.
+
 ## 9.1.0 - 01/27/2020
 
 - [PR #108](https://github.com/saddlebackdev/react-cm-ui/pull/108) / Merge Commit cd51d26f14b41391289f120a3f824808480c0cfd

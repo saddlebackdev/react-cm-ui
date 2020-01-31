@@ -8,7 +8,7 @@ import Main from '../global/main';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const accordionSample = `import React from 'react';
 

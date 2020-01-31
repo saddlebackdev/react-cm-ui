@@ -10,7 +10,7 @@ import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
 import IconSubNavigation from './iconSubNavigation.js';
 import Main from '../global/main';
-import TableProps from '../global/tableProps.js';
+import TableProps from '../global/tableProps';
 
 const iconSample = `import React from 'react';
 import { Icon } from 'react-cm-ui';
