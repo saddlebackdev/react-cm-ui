@@ -1,4 +1,5 @@
 @import '../shared/styles/colors';
+@import './pageVariables';
 
 $desktopActionBarHeight: 70px;
 $desktopTitleBarHeight: 70px;
@@ -7,11 +8,16 @@ $mobileTitleBarHeight: 55px;
 $navWidth: 250px;
 
 .ui.page {
-    background-color: color(backgroundColorNest);
     min-height: calc(100vh - #{$mobileTitleBarHeight}); // Accounts for the mobile TitleBar height
-    padding: 0 11px;
+    padding: 0 $pageGutterXsm;
     position: relative;
     width: 100%;
+    &-background_color_grey {
+        background-color: color(backgroundColorNest);
+    }
+    &-background_color_white {
+        background-color: color(backgroundColor);
+    }
     &--has_action_bar {
         min-height: calc(100vh - 105px); // Accounts for the mobile TitleBar and ActionBar height $mobileTitleBarHeight + 50px
     }
@@ -32,10 +38,15 @@ $navWidth: 250px;
     }
 }
 
+@media only screen and (min-width: 508px) {
+    .ui.page {
+        padding: 0 $pageGutterSm;
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .ui.page {
         min-height: calc(100vh - #{$desktopTitleBarHeight}); // Accounts for the desktop TitleBar height
-        padding: 0 22px;
         &--has_action_bar {
             min-height: calc(100vh - 140px); // Accounts for the desktop TitleBar and ActionBar height: 70px + 70px
         }

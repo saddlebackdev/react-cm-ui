@@ -1,14 +1,23 @@
+@import './pageVariables';
+
 $dividerColor: rgba(255, 255, 255, .25);
 $prefixDrawerDetails: drawer--details_window;
 $prefixPageDetails: page--details_window;
 
 .ui {
     &.#{$prefixDrawerDetails}, &.#{$prefixPageDetails} {
-        &-bleed {
-            margin: 0 -11px;
-        }
         .ui.info-bar {
             padding: 22px 11px;
+        }
+    }
+    &.#{$prefixDrawerDetails} {
+        &-bleed {
+            margin: 0 -#{$pageGutterXsm};
+        }
+    }
+    &.#{$prefixPageDetails} {
+        &-bleed {
+            margin: 0 -22px;
         }
     }
     .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
@@ -65,9 +74,28 @@ $prefixPageDetails: page--details_window;
     }
 }
 
+@media only screen and (min-width: 495px) {
+    .ui.#{$prefixPageDetails} {
+        .ui.info-bar {
+            padding: 22px 22px;
+        }
+    }
+}
+
+@media only screen and (min-width: 508px) {
+    .ui.#{$prefixPageDetails} {
+        &-bleed {
+            margin: 0 -#{$pageGutterSm};
+        }
+        .ui.info-bar {
+            padding: 22px 22px;
+        }
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .ui {
-        &.#{$prefixDrawerDetails}, &.#{$prefixPageDetails} {
+        &.#{$prefixDrawerDetails} {
             &-bleed {
                 margin: 0 -22px;
             }
