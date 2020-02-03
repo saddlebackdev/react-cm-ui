@@ -41,7 +41,7 @@ const routes = (
         <Route path="/atoms">
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/activityIndicator.js')
+                    import('./atoms/activityIndicator')
                         .then((module) => callback(null, module.default));
                 }}
                 path="activity-indicator"

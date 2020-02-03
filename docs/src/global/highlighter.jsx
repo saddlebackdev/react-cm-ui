@@ -11,6 +11,7 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     customStyle: PropTypes.shape({}),
+    language: PropTypes.string,
     showLineNumbers: PropTypes.bool,
     style: PropTypes.shape({}),
     theme: PropTypes.oneOf(['dark', 'light']),
@@ -20,6 +21,7 @@ const propTypes = {
 const defaultProps = {
     className: undefined,
     customStyle: undefined,
+    language: 'javascript',
     showLineNumbers: true,
     style: undefined,
     theme: 'light',
@@ -31,21 +33,22 @@ function Highlighter(props) {
         children,
         className,
         customStyle,
+        language,
         showLineNumbers,
         style,
         theme,
         type,
     } = props;
     const containerClasses = ClassNames('highlighter', className, {
-        'block': type === 'block',
-        'inline': type === 'inline',
-        'theme_dark': theme === 'dark',
-        'theme_light': theme === 'light',
+        block: type === 'block',
+        inline: type === 'inline',
+        theme_dark: theme === 'dark',
+        theme_light: theme === 'light',
     });
     const syntaxHighlighter = (
         <SyntaxHighlighter
             customStyle={customStyle}
-            language="javascript"
+            language={language}
             lineNumberContainerStyle={showLineNumbers && {
                 color: '#97a4ab',
                 float: 'left',
