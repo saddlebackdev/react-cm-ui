@@ -147,56 +147,58 @@ export default class ModulesPhoneInput extends React.Component {
             <Main page="headers">
                 <TitleBar title="Phone Input" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Phone Input */}
-                <Header size="large" style={{ margin: '55px 0 0' }} sub>
-                    Phone Input
-                    <Header.Subheader>
-                        We use <a href="https://github.com/catamphetamine/react-phone-number-input" target="_blank">
-                        react-phone-number-input</a> and wrap it in our own component.
-                    </Header.Subheader>
-                </Header>
+                    {/* Phone Input */}
+                    <Header size="large" style={{ margin: '55px 0 0' }} sub>
+                        Phone Input
+                        <Header.Subheader>
+                            We use <a href="https://github.com/catamphetamine/react-phone-number-input" target="_blank">
+                            react-phone-number-input</a> and wrap it in our own component.
+                        </Header.Subheader>
+                    </Header>
 
-                <div style={{ margin: '22px 0 22px' }}>
-                    <Header size="small" style={{ margin: 0 }} weight="bold">Props Overwritten:</Header>
+                    <div style={{ margin: '22px 0 22px' }}>
+                        <Header size="small" style={{ margin: 0 }} weight="bold">Props Overwritten:</Header>
 
-                    <div>
-                        <code>className</code>, <code>countryOptions</code>, <code>countrySelectComponent</code>,
-                        <code>onChange</code>, and <code>style</code>.
+                        <div>
+                            <code>className</code>, <code>countryOptions</code>, <code>countrySelectComponent</code>,
+                            <code>onChange</code>, and <code>style</code>.
+                        </div>
                     </div>
-                </div>
 
-                <div style={{ margin: '0 0 33px' }}>
-                    <Header size="small" style={{ margin: 0 }} weight="bold">Fake Test Numbers:</Header>
+                    <div style={{ margin: '0 0 33px' }}>
+                        <Header size="small" style={{ margin: 0 }} weight="bold">Fake Test Numbers:</Header>
 
-                    <div className="color-static"><span className="font-weight-bold">Canada:</span> +16135550162</div>
+                        <div className="color-static"><span className="font-weight-bold">Canada:</span> +16135550162</div>
 
-                    <div className="color-static"><span className="font-weight-bold">Philippines:</span> +639176299773</div>
+                        <div className="color-static"><span className="font-weight-bold">Philippines:</span> +639176299773</div>
 
-                    <div className="color-static"><span className="font-weight-bold">United State:</span> +12025550104</div>
-                </div>
+                        <div className="color-static"><span className="font-weight-bold">United State:</span> +12025550104</div>
+                    </div>
 
-                <PhoneInput
-                    onChange={this._onBasicChange}
-                    value={number}
-                />
+                    <PhoneInput
+                        onChange={this._onBasicChange}
+                        value={number}
+                    />
 
-                <p>
-                    <span className="font-weight-bold">Number:</span> {`${number ? `"${number}"` : number}`}<br/ >
-                    <span className="font-weight-bold">Formatted Number:</span> {`${formattedNumber ? `"${formattedNumber}"` : formattedNumber}`}<br/ >
-                    <span className="font-weight-bold">Dial Code:</span> {dialCode}<br/ >
-                    <span className="font-weight-bold">Country Code:</span> {`${countryCode ? `"${countryCode}"` : countryCode}`}<br/ >
-                    <span className="font-weight-bold">isValid:</span> {`${isValid}`}<br/ >
-                </p>
+                    <p>
+                        <span className="font-weight-bold">Number:</span> {`${number ? `"${number}"` : number}`}<br/ >
+                        <span className="font-weight-bold">Formatted Number:</span> {`${formattedNumber ? `"${formattedNumber}"` : formattedNumber}`}<br/ >
+                        <span className="font-weight-bold">Dial Code:</span> {dialCode}<br/ >
+                        <span className="font-weight-bold">Country Code:</span> {`${countryCode ? `"${countryCode}"` : countryCode}`}<br/ >
+                        <span className="font-weight-bold">isValid:</span> {`${isValid}`}<br/ >
+                    </p>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {basicSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {basicSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

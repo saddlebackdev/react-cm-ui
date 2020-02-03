@@ -172,124 +172,126 @@ export default class CollectionsSegmentedControls extends React.Component {
             <Main page="headers">
                 <TitleBar title="Segmented Controls" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Segmented Controls */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Segmented Controls
-                    <Header.Subheader>
-                        A Basic segmented controls with labels.
-                    </Header.Subheader>
-                </Header>
+                    {/* Segmented Controls */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Segmented Controls
+                        <Header.Subheader>
+                            A Basic segmented controls with labels.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls>
-                    <SegmentedControls.Item label="Button 1" />
-                    <SegmentedControls.Item label="Button Number 2" />
-                </SegmentedControls>
+                    <SegmentedControls>
+                        <SegmentedControls.Item label="Button 1" />
+                        <SegmentedControls.Item label="Button Number 2" />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {basicSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {basicSample}
+                    </Highlighter>
 
-                {/* Icons */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Icons
-                    <Header.Subheader>
-                        A segmented control can have an icon either along with a label or by itself.
-                    </Header.Subheader>
-                </Header>
+                    {/* Icons */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Icons
+                        <Header.Subheader>
+                            A segmented control can have an icon either along with a label or by itself.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls>
-                    <SegmentedControls.Item icon="circle" label="Button 1" />
-                    <SegmentedControls.Item icon="block" label="Button 2" />
-                    <SegmentedControls.Item icon="check-circle" label="Button 3" />
-                </SegmentedControls><br /><br />
+                    <SegmentedControls>
+                        <SegmentedControls.Item icon="circle" label="Button 1" />
+                        <SegmentedControls.Item icon="block" label="Button 2" />
+                        <SegmentedControls.Item icon="check-circle" label="Button 3" />
+                    </SegmentedControls><br /><br />
 
-                <SegmentedControls>
-                    <SegmentedControls.Item icon="circle" />
-                    <SegmentedControls.Item icon="block" />
-                    <SegmentedControls.Item icon="check-circle" />
-                </SegmentedControls>
+                    <SegmentedControls>
+                        <SegmentedControls.Item icon="circle" />
+                        <SegmentedControls.Item icon="block" />
+                        <SegmentedControls.Item icon="check-circle" />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {iconsSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconsSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Fluid
-                    <Header.Subheader>
-                        Segmented controls can take on the size of its container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Fluid
+                        <Header.Subheader>
+                            Segmented controls can take on the size of its container.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls fluid={true}>
-                    <SegmentedControls.Item label="Button 1" />
-                    <SegmentedControls.Item label="Button 2" />
-                    <SegmentedControls.Item label="Button 3" />
-                </SegmentedControls>
+                    <SegmentedControls fluid={true}>
+                        <SegmentedControls.Item label="Button 1" />
+                        <SegmentedControls.Item label="Button 2" />
+                        <SegmentedControls.Item label="Button 3" />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fluidSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fluidSample}
+                    </Highlighter>
 
-                {/* Selected */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Selected
-                    <Header.Subheader>
-                        Change the default selected button.
-                    </Header.Subheader>
-                </Header>
+                    {/* Selected */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Selected
+                        <Header.Subheader>
+                            Change the default selected button.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls selected={this.state.selected}>
-                    <SegmentedControls.Item label="Button 1" />
-                    <SegmentedControls.Item label="Button 2" />
-                    <SegmentedControls.Item label="Button 3" />
-                </SegmentedControls>
+                    <SegmentedControls selected={this.state.selected}>
+                        <SegmentedControls.Item label="Button 1" />
+                        <SegmentedControls.Item label="Button 2" />
+                        <SegmentedControls.Item label="Button 3" />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {selectedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {selectedSample}
+                    </Highlighter>
 
-                {/* onClick Parent Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    onClick Parent Handler
-                    <Header.Subheader>
-                        Can handle an onClick event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick Parent Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        onClick Parent Handler
+                        <Header.Subheader>
+                            Can handle an onClick event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
-                    <SegmentedControls.Item label="Button 1" />
-                    <SegmentedControls.Item label="Button 2" />
-                </SegmentedControls>
+                    <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
+                        <SegmentedControls.Item label="Button 1" />
+                        <SegmentedControls.Item label="Button 2" />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickParentSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickParentSample}
+                    </Highlighter>
 
-                {/* onClick Children Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    onClick Children Handler
-                    <Header.Subheader>
-                        Can handle an onClick event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick Children Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        onClick Children Handler
+                        <Header.Subheader>
+                            Can handle an onClick event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <SegmentedControls>
-                    <SegmentedControls.Item label="Button One" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControls.Item label="Button Two" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControls.Item label="Button Three" onClick={this._onChildClick.bind(this)} />
-                    <SegmentedControls.Item label="Button Four" onClick={this._onChildClick.bind(this)} />
-                </SegmentedControls>
+                    <SegmentedControls>
+                        <SegmentedControls.Item label="Button One" onClick={this._onChildClick.bind(this)} />
+                        <SegmentedControls.Item label="Button Two" onClick={this._onChildClick.bind(this)} />
+                        <SegmentedControls.Item label="Button Three" onClick={this._onChildClick.bind(this)} />
+                        <SegmentedControls.Item label="Button Four" onClick={this._onChildClick.bind(this)} />
+                    </SegmentedControls>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickChildrenSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickChildrenSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

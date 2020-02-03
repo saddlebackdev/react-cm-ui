@@ -306,80 +306,82 @@ class ElementsIconSet extends React.PureComponent {
 
                 <IconSubNavigation />
 
-                <Grid columns={1} style={{ marginBottom: '22px' }}>
-                    <Grid.Column style={{ textAlign: 'right' }}>
-                        <Dropdown
-                            button
-                            collapseMenuOnChange
-                            onChange={this.onSortAscendingClick}
-                            options={this.sortByOptions}
-                            style={{ margin: 0 }}
-                            text={`Sort by: ${sortSelectedOption.label}`}
-                        >
-                            {_.map(this.sortByOptions, (option) => (
-                                <Dropdown.Item
-                                    key={option.id}
-                                    id={option.id}
-                                    label={option.label}
-                                />
-                            ))}
-                        </Dropdown>
-                    </Grid.Column>
-                </Grid>
-
-                <Grid textAlign="center">
-                    {renderCategories}
-
-                    <Grid.Row>
-                        <Grid.Column textAlign="left" width={12}>
-                            <Header size="large" style={{ margin: '0 0 22px' }}>
-                                Older Icons
-                            </Header>
+                <Main.Content>
+                    <Grid columns={1} style={{ marginBottom: '22px' }}>
+                        <Grid.Column style={{ textAlign: 'right' }}>
+                            <Dropdown
+                                button
+                                collapseMenuOnChange
+                                onChange={this.onSortAscendingClick}
+                                options={this.sortByOptions}
+                                style={{ margin: 0 }}
+                                text={`Sort by: ${sortSelectedOption.label}`}
+                            >
+                                {_.map(this.sortByOptions, (option) => (
+                                    <Dropdown.Item
+                                        key={option.id}
+                                        id={option.id}
+                                        label={option.label}
+                                    />
+                                ))}
+                            </Dropdown>
                         </Grid.Column>
-                    </Grid.Row>
+                    </Grid>
 
-                    <Grid.Row>
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
-                            <p className="icon-type-name">circle-filled</p>
-                        </Grid.Column>
+                    <Grid textAlign="center">
+                        {renderCategories}
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="text-lines" />
-                            <p className="icon-type-name">text-lines</p>
-                        </Grid.Column>
+                        <Grid.Row>
+                            <Grid.Column textAlign="left" width={12}>
+                                <Header size="large" style={{ margin: '0 0 22px' }}>
+                                    Older Icons
+                                </Header>
+                            </Grid.Column>
+                        </Grid.Row>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="caret-up" />
-                            <p className="icon-type-name">caret-up</p>
-                        </Grid.Column>
+                        <Grid.Row>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
+                                <p className="icon-type-name">circle-filled</p>
+                            </Grid.Column>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="caret-right" />
-                            <p className="icon-type-name">caret-right</p>
-                        </Grid.Column>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="text-lines" />
+                                <p className="icon-type-name">text-lines</p>
+                            </Grid.Column>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="caret-down" />
-                            <p className="icon-type-name">caret-down</p>
-                        </Grid.Column>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="caret-up" />
+                                <p className="icon-type-name">caret-up</p>
+                            </Grid.Column>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="caret-left" />
-                            <p className="icon-type-name">caret-left</p>
-                        </Grid.Column>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="caret-right" />
+                                <p className="icon-type-name">caret-right</p>
+                            </Grid.Column>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
-                            <p className="icon-type-name">arrows-alt</p>
-                        </Grid.Column>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="caret-down" />
+                                <p className="icon-type-name">caret-down</p>
+                            </Grid.Column>
 
-                        <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                            <Icon compact={iconCompact} size={iconSize} type="spinner" />
-                            <p className="icon-type-name">spinner</p>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="caret-left" />
+                                <p className="icon-type-name">caret-left</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
+                                <p className="icon-type-name">arrows-alt</p>
+                            </Grid.Column>
+
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
+                                <Icon compact={iconCompact} size={iconSize} type="spinner" />
+                                <p className="icon-type-name">spinner</p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Main.Content>
             </Main>
         );
     }

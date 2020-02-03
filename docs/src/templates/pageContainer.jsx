@@ -39,13 +39,13 @@ function ModulesPageContainer() {
 
             <PageSubNavigation />
 
-            <div>
+            <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>
 
                     <TableProps props={tableProps} />
                 </Card>
-            </div>
+            </Main.Content>
         </Main>
     );
 }

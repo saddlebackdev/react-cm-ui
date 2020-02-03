@@ -5,7 +5,7 @@ $nav-width: 250px;
 html, body, #coreApp, .core-app-root, .layout { height: 100%; }
     *, *::after, *::before { box-sizing: border-box; }
     body {
-        background-color: color(backgroundColorLight);
+        background-color: color(backgroundColor);
         overflow-y: scroll;
         .layout { position: relative; right: 0; transition: right 166ms linear; }
         &.pushed-right {
@@ -14,14 +14,6 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
         }
     }
     .core-app-root { min-width: 320px; }
-        .main {
-            background-color: color(backgroundColor);
-            max-width: 1120px;
-            min-height: 100%;
-            padding: 0 11px 22px;
-            > h1:first-child { margin-top: 0; }
-            > :last-child { margin-bottom: 0; }
-        }
         .demo {
             height: 100%;
             .demo--navigation {

@@ -123,67 +123,69 @@ export default class ElementsImage extends React.Component {
             <Main page="headers">
                 <TitleBar title="Image" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Image */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Image
-                    <Header.Subheader>
-                        An image.
-                    </Header.Subheader>
-                </Header>
+                    {/* Image */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Image
+                        <Header.Subheader>
+                            An image.
+                        </Header.Subheader>
+                    </Header>
 
-                <Image src={martyMcFlyImageSrc} />
+                    <Image src={martyMcFlyImageSrc} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {imageSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {imageSample}
+                    </Highlighter>
 
-                {/* Avatar */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Avatar
-                    <Header.Subheader>
-                        An image can be an avatar.
-                    </Header.Subheader>
-                </Header>
+                    {/* Avatar */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Avatar
+                        <Header.Subheader>
+                            An image can be an avatar.
+                        </Header.Subheader>
+                    </Header>
 
-                <Image type="person" /><br /><br />
-                <Image type="user" /><br /><br />
-                <Image type="person" src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="user" src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="person" name="Marty McFly" /><br /><br />
-                <Image type="user" name="Marty McFly" /><br /><br />
-                {/* Test Name AND Image Source -- shouldn't render image AND initials ... only image :-) */}
-                <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
+                    <Image type="person" /><br /><br />
+                    <Image type="user" /><br /><br />
+                    <Image type="person" src={martyMcFlyImageSrc} /><br /><br />
+                    <Image type="user" src={martyMcFlyImageSrc} /><br /><br />
+                    <Image type="person" name="Marty McFly" /><br /><br />
+                    <Image type="user" name="Marty McFly" /><br /><br />
+                    {/* Test Name AND Image Source -- shouldn't render image AND initials ... only image :-) */}
+                    <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} /><br /><br />
+                    <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {avatarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {avatarSample}
+                    </Highlighter>
 
-                {/* Size */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Size
-                    <Header.Subheader>
-                        Passing a size (number) will contrain the image by its width.
-                    </Header.Subheader>
-                </Header>
+                    {/* Size */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Size
+                        <Header.Subheader>
+                            Passing a size (number) will contrain the image by its width.
+                        </Header.Subheader>
+                    </Header>
 
-                <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
-                <Image type="user" size={44} name="Marty McFly" /><br /><br />
-                <Image type="user" size={66} src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="user" size={22} /><br /><br />
-                <Image type="user" size={44} /><br /><br />
-                <Image type="user" size={66} /><br /><br />
-                <Image type="user" size={88} />
+                    <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
+                    <Image type="user" size={44} name="Marty McFly" /><br /><br />
+                    <Image type="user" size={66} src={martyMcFlyImageSrc} /><br /><br />
+                    <Image type="user" size={22} /><br /><br />
+                    <Image type="user" size={44} /><br /><br />
+                    <Image type="user" size={66} /><br /><br />
+                    <Image type="user" size={88} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {sizeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {sizeSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

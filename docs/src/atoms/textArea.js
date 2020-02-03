@@ -486,305 +486,307 @@ export default class ElementsTextArea extends React.Component {
             <Main page="headers">
                 <TitleBar title="Text Area" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Text Area */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Text Area
-                    <Header.Subheader>
-                        A standard text area.
-                    </Header.Subheader>
-                </Header>
+                    {/* Text Area */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Text Area
+                        <Header.Subheader>
+                            A standard text area.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea />
+                    <TextArea />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {textAreaSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {textAreaSample}
+                    </Highlighter>
 
-                {/* Auto Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Auto Height
-                    <Header.Subheader>
-                        A text area can auto resize based on it's content.
-                    </Header.Subheader>
-                </Header>
+                    {/* Auto Height */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Auto Height
+                        <Header.Subheader>
+                            A text area can auto resize based on it's content.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea autoHeight onAutoHeightResized={this._onAutoHeightResized.bind(this)} />
+                    <TextArea autoHeight onAutoHeightResized={this._onAutoHeightResized.bind(this)} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {autoHeightSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {autoHeightSample}
+                    </Highlighter>
 
-                {/* Auto Focus */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Auto Focus
-                    <Header.Subheader>
-                        A text area that will be focused upon loading.
-                    </Header.Subheader>
-                </Header>
+                    {/* Auto Focus */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Auto Focus
+                        <Header.Subheader>
+                            A text area that will be focused upon loading.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea autoFocus />
+                    <TextArea autoFocus />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {autoFocusSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {autoFocusSample}
+                    </Highlighter>
 
-                {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Disabled
-                    <Header.Subheader>
-                        Indicates that the text area is not available for interaction.
-                    </Header.Subheader>
-                </Header>
+                    {/* Disabled */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Disabled
+                        <Header.Subheader>
+                            Indicates that the text area is not available for interaction.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea disabled value="So cool!" />
+                    <TextArea disabled value="So cool!" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disabledSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disabledSample}
+                    </Highlighter>
 
-                {/* Error */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Error
-                    <Header.Subheader>
-                        Indicates that the text area has an error. You can either supply a boolean value or a string with a message.
-                    </Header.Subheader>
-                </Header>
+                    {/* Error */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Error
+                        <Header.Subheader>
+                            Indicates that the text area has an error. You can either supply a boolean value or a string with a message.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea error value="No, you did it wrong!" /><br /><br />
+                    <TextArea error value="No, you did it wrong!" /><br /><br />
 
-                <TextArea error="The worst." value="Totally wrong value ..." />
+                    <TextArea error="The worst." value="Totally wrong value ..." />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {errorSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {errorSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Fluid
-                    <Header.Subheader>
-                        A text area can take on the size of its container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Fluid
+                        <Header.Subheader>
+                            A text area can take on the size of its container.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea fluid value="I'm totally the longest string you have ever seen. Ship it!" />
+                    <TextArea fluid value="I'm totally the longest string you have ever seen. Ship it!" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fluidSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fluidSample}
+                    </Highlighter>
 
-                {/* Inverse */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Inverse
-                    <Header.Subheader>
-                        Format to appear on dark backgrounds.
-                    </Header.Subheader>
-                </Header>
+                    {/* Inverse */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Inverse
+                        <Header.Subheader>
+                            Format to appear on dark backgrounds.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block inverse>
-                    <TextArea inverse />
-                </Block>
+                    <Block inverse>
+                        <TextArea inverse />
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {inverseSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {inverseSample}
+                    </Highlighter>
 
-                {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Label
-                    <Header.Subheader>
-                        Optional Label to display on top of the text area.
-                    </Header.Subheader>
-                </Header>
+                    {/* Label */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Label
+                        <Header.Subheader>
+                            Optional Label to display on top of the text area.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Comment" />
+                    <TextArea label="Comment" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {labelSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {labelSample}
+                    </Highlighter>
 
-                {/* Max Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Max Height
-                    <Header.Subheader>
-                        Specifies the maximum number of characters that the user can enter.
-                    </Header.Subheader>
-                </Header>
+                    {/* Max Height */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Max Height
+                        <Header.Subheader>
+                            Specifies the maximum number of characters that the user can enter.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea maxHeight={101} />
+                    <TextArea maxHeight={101} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxHeightSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {maxHeightSample}
+                    </Highlighter>
 
-                {/* Max Length */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Max Length
-                    <Header.Subheader>
-                        Specifies the maximum number of characters that the user can enter.
-                    </Header.Subheader>
-                </Header>
+                    {/* Max Length */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Max Length
+                        <Header.Subheader>
+                            Specifies the maximum number of characters that the user can enter.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Maximum Characters Is 2" maxLength={2} />
+                    <TextArea label="Maximum Characters Is 2" maxLength={2} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxLengthSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {maxLengthSample}
+                    </Highlighter>
 
-                {/* Min Height */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Min Height
-                    <Header.Subheader>
-                        Specifies the minimum number of characters that the user needs to enter.
-                    </Header.Subheader>
-                </Header>
+                    {/* Min Height */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Min Height
+                        <Header.Subheader>
+                            Specifies the minimum number of characters that the user needs to enter.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea minHeight={300} />
+                    <TextArea minHeight={300} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {minHeightSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {minHeightSample}
+                    </Highlighter>
 
-                {/* Min Length */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Min Length
-                    <Header.Subheader>
-                        Specifies the minimum number of characters that the user needs to enter.
-                    </Header.Subheader>
-                </Header>
+                    {/* Min Length */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Min Length
+                        <Header.Subheader>
+                            Specifies the minimum number of characters that the user needs to enter.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Minimum Characters Is 2" minLength={2} />
+                    <TextArea label="Minimum Characters Is 2" minLength={2} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {minLengthSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {minLengthSample}
+                    </Highlighter>
 
-                {/* onBlur Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    onBlur Event Handler
-                    <Header.Subheader>
-                        Can handle an <code>onBlur</code> event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onBlur Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        onBlur Event Handler
+                        <Header.Subheader>
+                            Can handle an <code>onBlur</code> event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Check It!" onBlur={this._onBlur.bind(this)} />
+                    <TextArea label="Check It!" onBlur={this._onBlur.bind(this)} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onBlurSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onBlurSample}
+                    </Highlighter>
 
-                {/* onChange Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    onChange Event Handler
-                    <Header.Subheader>
-                        Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* onChange Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        onChange Event Handler
+                        <Header.Subheader>
+                            Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Check It!" onChange={this._onChange.bind(this)} value={this.state.onChangeValue} />
+                    <TextArea label="Check It!" onChange={this._onChange.bind(this)} value={this.state.onChangeValue} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onChangeSample}
+                    </Highlighter>
 
-                {/* onClick Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    onClick Event Handler
-                    <Header.Subheader>
-                        Can handle an <code>onClick</code> event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        onClick Event Handler
+                        <Header.Subheader>
+                            Can handle an <code>onClick</code> event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Check It!" onClick={this._onClick.bind(this)} />
+                    <TextArea label="Check It!" onClick={this._onClick.bind(this)} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickSample}
+                    </Highlighter>
 
-                {/* onFocus Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    onFocus Event Handler
-                    <Header.Subheader>
-                        Can handle an <code>onFocus</code> event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onFocus Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        onFocus Event Handler
+                        <Header.Subheader>
+                            Can handle an <code>onFocus</code> event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Check It!" onFocus={this._onFocus.bind(this)} />
+                    <TextArea label="Check It!" onFocus={this._onFocus.bind(this)} />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onFocusSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onFocusSample}
+                    </Highlighter>
 
-                {/* onKeyDown Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    onKeyDown Event Handler
-                    <Header.Subheader>
-                        Can handle an <code>onKeyDown</code> event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onKeyDown Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        onKeyDown Event Handler
+                        <Header.Subheader>
+                            Can handle an <code>onKeyDown</code> event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea
-                    autoHeight
-                    label="Check It!"
-                    ref={ref => this.onKeyDownTextArea = ref}
-                    onKeyDown={this._onKeyDown.bind(this)}
-                />
+                    <TextArea
+                        autoHeight
+                        label="Check It!"
+                        ref={ref => this.onKeyDownTextArea = ref}
+                        onKeyDown={this._onKeyDown.bind(this)}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onKeyDownSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onKeyDownSample}
+                    </Highlighter>
 
-                {/* Placeholder */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Placeholder
-                    <Header.Subheader>
-                        A hint to the user of what can be entered in the text area.
-                    </Header.Subheader>
-                </Header>
+                    {/* Placeholder */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Placeholder
+                        <Header.Subheader>
+                            A hint to the user of what can be entered in the text area.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Comment" placeholder="Leave a message..." />
+                    <TextArea label="Comment" placeholder="Leave a message..." />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {placeholderSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {placeholderSample}
+                    </Highlighter>
 
-                {/* Required */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Required
-                    <Header.Subheader>
-                        Specifies that the user must fill in a value before submitting a form.
-                    </Header.Subheader>
-                </Header>
+                    {/* Required */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Required
+                        <Header.Subheader>
+                            Specifies that the user must fill in a value before submitting a form.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea label="Comment" placeholder="Leave a message..." required />
+                    <TextArea label="Comment" placeholder="Leave a message..." required />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {requiredSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {requiredSample}
+                    </Highlighter>
 
-                {/* Resize */}
-                <Header size="large" style={{ marginTop: '55px' }} sub >
-                    Resize
-                    <Header.Subheader>
-                        Specifies that the user must fill in a value before submitting a form.
-                    </Header.Subheader>
-                </Header>
+                    {/* Resize */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        Resize
+                        <Header.Subheader>
+                            Specifies that the user must fill in a value before submitting a form.
+                        </Header.Subheader>
+                    </Header>
 
-                <TextArea
-                    label="Comment"
-                    minHeight={200}
-                    placeholder="Leave a message..."
-                    resize={false}
-                />
+                    <TextArea
+                        label="Comment"
+                        minHeight={200}
+                        placeholder="Leave a message..."
+                        resize={false}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {resizeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {resizeSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

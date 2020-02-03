@@ -1,0 +1,8 @@
+@import '../global/styles/colors';
+
+.main {
+    min-height: 100%;
+    padding: 0 22px 22px;
+    > h1:first-child { margin-top: 0; }
+    > :last-child { margin-bottom: 0; }
+}

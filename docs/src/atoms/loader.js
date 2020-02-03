@@ -54,41 +54,43 @@ export default class ElementsLoader extends React.Component {
             <Main page="headers">
                 <TitleBar title="Loader" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Loader */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Loader
-                    <Header.Subheader>
-                        A standard loader. To be used to alert the user that something is happening.
-                    </Header.Subheader>
-                </Header>
+                    {/* Loader */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Loader
+                        <Header.Subheader>
+                            A standard loader. To be used to alert the user that something is happening.
+                        </Header.Subheader>
+                    </Header>
 
-                <Loader />
+                    <Loader />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fooSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fooSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Fluid
-                    <Header.Subheader>
-                        A Loader's container can take on the size of its parent container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Fluid
+                        <Header.Subheader>
+                            A Loader's container can take on the size of its parent container.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block style={{ maxWidth: '450px' }}>
-                    <Loader fluid={true} />
-                </Block>
+                    <Block style={{ maxWidth: '450px' }}>
+                        <Loader fluid={true} />
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fooSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fooSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

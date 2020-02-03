@@ -263,123 +263,125 @@ export default class ElmentsComment extends React.Component {
             <Main page="headers">
                 <TitleBar title="Comment" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Comment */}
-                <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Comment
-                    <Header.Subheader>
-                        A user's comment.
-                    </Header.Subheader>
-                </Header>
+                    {/* Comment */}
+                    <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Comment
+                        <Header.Subheader>
+                            A user's comment.
+                        </Header.Subheader>
+                    </Header>
 
-                <Comment name="Joe Smith" time={1536941364}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.
-                </Comment>
+                    <Comment name="Joe Smith" time={1536941364}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.
+                    </Comment>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {commentSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {commentSample}
+                    </Highlighter>
 
-                {/* Editable Comment */}
-                <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Editable Comments
-                    <Header.Subheader>
-                        A comment can be editable and deletable.
-                    </Header.Subheader>
-                </Header>
+                    {/* Editable Comment */}
+                    <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Editable Comments
+                        <Header.Subheader>
+                            A comment can be editable and deletable.
+                        </Header.Subheader>
+                    </Header>
 
-                <p>
-                    Use the <code>isEditable</code> prop to set whether or not a comment is editable or deletable
-                    <em>at all</em> (versus simply being read-only).  <code>isEditable</code> defaults to false, so set
-                    it to true for editable comments.
-                </p>
+                    <p>
+                        Use the <code>isEditable</code> prop to set whether or not a comment is editable or deletable
+                        <em>at all</em> (versus simply being read-only).  <code>isEditable</code> defaults to false, so set
+                        it to true for editable comments.
+                    </p>
 
-                <p>
-                    Likely there will be some business rules around <em>who</em> may edit and delete comments.  For
-                    example, let&rsquo;s say the rules are that a comment may only be edited by its original author, but
-                    that certain "moderator" users are authorized to delete comments (e.g. comments deemed
-                    "inappropriate").  You should use the <code>canDelete</code> and <code>canEdit</code> props to drive
-                    these kinds of permissions and selectively make deletion and editing available. The sample below
-                    demonstrates this: Let&rsquo;s say that Joe Smith is the logged in user and has moderation
-                    privileges. Joe Smith&rsquo;s comments are both editable and deleteable whereas Jessica Jones&rsquo;
-                    comment is deletable because Joe is a moderator but not editable because Joe is not the author.
-                </p>
+                    <p>
+                        Likely there will be some business rules around <em>who</em> may edit and delete comments.  For
+                        example, let&rsquo;s say the rules are that a comment may only be edited by its original author, but
+                        that certain "moderator" users are authorized to delete comments (e.g. comments deemed
+                        "inappropriate").  You should use the <code>canDelete</code> and <code>canEdit</code> props to drive
+                        these kinds of permissions and selectively make deletion and editing available. The sample below
+                        demonstrates this: Let&rsquo;s say that Joe Smith is the logged in user and has moderation
+                        privileges. Joe Smith&rsquo;s comments are both editable and deleteable whereas Jessica Jones&rsquo;
+                        comment is deletable because Joe is a moderator but not editable because Joe is not the author.
+                    </p>
 
-                <p>
-                    When the comment details are right-aligned, the edit and delete action menu is left-aligned, and
-                    vice versa.
-                </p>
+                    <p>
+                        When the comment details are right-aligned, the edit and delete action menu is left-aligned, and
+                        vice versa.
+                    </p>
 
-                <Comment
-                    canDelete
-                    canEdit
-                    detailsPosition="right"
-                    isEditable
-                    name="Joe Smith"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(1, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(1)}
-                    onSaveEdit={(updatedCommentText) => this._onSaveComment(1, updatedCommentText)}
-                    text={editableCommentText}
-                    time={1536941364}
-                >
-                    {editableCommentText}
-                </Comment>
+                    <Comment
+                        canDelete
+                        canEdit
+                        detailsPosition="right"
+                        isEditable
+                        name="Joe Smith"
+                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(1, menuIsOpen)}
+                        onDelete={() => this._onRemoveComment(1)}
+                        onSaveEdit={(updatedCommentText) => this._onSaveComment(1, updatedCommentText)}
+                        text={editableCommentText}
+                        time={1536941364}
+                    >
+                        {editableCommentText}
+                    </Comment>
 
-                <Comment
-                    canDelete
-                    canEdit={false}
-                    isEditable
-                    name="Jessica Jones"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(2, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(2)}
-                    time={1536941520}
-                >
-                    {'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
-                </Comment>
+                    <Comment
+                        canDelete
+                        canEdit={false}
+                        isEditable
+                        name="Jessica Jones"
+                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(2, menuIsOpen)}
+                        onDelete={() => this._onRemoveComment(2)}
+                        time={1536941520}
+                    >
+                        {'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+                    </Comment>
 
-                <Comment
-                    canDelete
-                    canEdit
-                    detailsPosition="right"
-                    isEditable
-                    name="Joe Smith"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(3, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(3)}
-                    onSaveEdit={(updatedCommentText) => this._onSaveComment(3, updatedCommentText)}
-                    text={editableComment2Text}
-                    time={1536941640}
-                >
-                    {editableComment2Text}
-                </Comment>
+                    <Comment
+                        canDelete
+                        canEdit
+                        detailsPosition="right"
+                        isEditable
+                        name="Joe Smith"
+                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(3, menuIsOpen)}
+                        onDelete={() => this._onRemoveComment(3)}
+                        onSaveEdit={(updatedCommentText) => this._onSaveComment(3, updatedCommentText)}
+                        text={editableComment2Text}
+                        time={1536941640}
+                    >
+                        {editableComment2Text}
+                    </Comment>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {editableCommentSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {editableCommentSample}
+                    </Highlighter>
 
-                <Banner
-                    id="remove-success"
-                    level="success"
-                    isOpen={isRemoveBannerOpen}
-                    message="Comment Removed!"
-                    onClose={this._onCloseRemoveBanner}
-                    title="Comment Removed"
-                    type="notification"
-                />
+                    <Banner
+                        id="remove-success"
+                        level="success"
+                        isOpen={isRemoveBannerOpen}
+                        message="Comment Removed!"
+                        onClose={this._onCloseRemoveBanner}
+                        title="Comment Removed"
+                        type="notification"
+                    />
 
-                <Banner
-                    id="save-success"
-                    level="success"
-                    isOpen={isSaveBannerOpen}
-                    message="Comment Saved!"
-                    onClose={this._onCloseSaveBanner}
-                    title="Comment Saved"
-                    type="notification"
-                />
+                    <Banner
+                        id="save-success"
+                        level="success"
+                        isOpen={isSaveBannerOpen}
+                        message="Comment Saved!"
+                        onClose={this._onCloseSaveBanner}
+                        title="Comment Saved"
+                        type="notification"
+                    />
+                </Main.Content>
             </Main>
         );
     }

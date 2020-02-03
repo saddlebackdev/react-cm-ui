@@ -181,112 +181,114 @@ export default class ElementsLabel extends React.Component {
             <Main page="headers">
                 <TitleBar title="Label" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Label
-                    <Header.Subheader>
-                        A standard label that can be attached to something, giving information about it.
-                    </Header.Subheader>
-                </Header>
+                    {/* Label */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Label
+                        <Header.Subheader>
+                            A standard label that can be attached to something, giving information about it.
+                        </Header.Subheader>
+                    </Header>
 
-                <Label>Label</Label>
+                    <Label>Label</Label>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {labelSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {labelSample}
+                    </Highlighter>
 
-                {/* Color */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Color
-                    <Header.Subheader>
-                        Labels can have different colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Color
+                        <Header.Subheader>
+                            Labels can have different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Label color="alert">Alert</Label>
-                <Label color="highlight">Highlight</Label>
-                <Label color="success">Success</Label>
-                <Label color="primary">Primary</Label>
-                <Label color="transparent">Transparent</Label>
-                <Label color="warning">Warning</Label>
+                    <Label color="alert">Alert</Label>
+                    <Label color="highlight">Highlight</Label>
+                    <Label color="success">Success</Label>
+                    <Label color="primary">Primary</Label>
+                    <Label color="transparent">Transparent</Label>
+                    <Label color="warning">Warning</Label>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Fluid
-                    <Header.Subheader>
-                        A Label's container can take on the size of its parent container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Fluid
+                        <Header.Subheader>
+                            A Label's container can take on the size of its parent container.
+                        </Header.Subheader>
+                    </Header>
 
-                <Label fluid={true}>A Fluid Label</Label>
+                    <Label fluid={true}>A Fluid Label</Label>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fluidSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fluidSample}
+                    </Highlighter>
 
-                {/* Inverse */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Inverse
-                    <Header.Subheader>
-                        Labels can have different colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Inverse */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Inverse
+                        <Header.Subheader>
+                            Labels can have different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block inverse={true} style={{ marginTop: '33px' }}>
-                    <Label color="alert" inverse={true}>Alert</Label>
-                    <Label color="highlight" inverse={true}>Highlight</Label>
-                    <Label color="success" inverse={true}>Success</Label>
-                    <Label color="primary" inverse={true}>Primary</Label>
-                    <Label color="transparent" inverse={true}>Transparent</Label>
-                    <Label color="warning" inverse={true}>Warning</Label>
-                </Block>
+                    <Block inverse={true} style={{ marginTop: '33px' }}>
+                        <Label color="alert" inverse={true}>Alert</Label>
+                        <Label color="highlight" inverse={true}>Highlight</Label>
+                        <Label color="success" inverse={true}>Success</Label>
+                        <Label color="primary" inverse={true}>Primary</Label>
+                        <Label color="transparent" inverse={true}>Transparent</Label>
+                        <Label color="warning" inverse={true}>Warning</Label>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {inverseSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {inverseSample}
+                    </Highlighter>
 
-                {/* onClick */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    onClick Handler
-                    <Header.Subheader>
-                        A Label can be have a onClick handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        onClick Handler
+                        <Header.Subheader>
+                            A Label can be have a onClick handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <Label onClick={this._onClick.bind(this)}>Click Me</Label>
+                    <Label onClick={this._onClick.bind(this)}>Click Me</Label>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickSample}
+                    </Highlighter>
 
-                {/* onClearClick */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    onClearClick Handler
-                    <Header.Subheader>
-                        A Label can be removed using the onClearClick handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClearClick */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        onClearClick Handler
+                        <Header.Subheader>
+                            A Label can be removed using the onClearClick handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <Label color="alert" onClearClick={this._onClearClick.bind(this)}>Alert</Label>
-                <Label color="highlight" onClearClick={this._onClearClick.bind(this)}>Highlight</Label>
-                <Label color="success" onClearClick={this._onClearClick.bind(this)}>Success</Label>
-                <Label color="primary" onClearClick={this._onClearClick.bind(this)}>Primary</Label>
-                <Label color="transparent" onClearClick={this._onClearClick.bind(this)}>Transparent</Label>
-                <Label color="warning" onClearClick={this._onClearClick.bind(this)}>Warning</Label>
+                    <Label color="alert" onClearClick={this._onClearClick.bind(this)}>Alert</Label>
+                    <Label color="highlight" onClearClick={this._onClearClick.bind(this)}>Highlight</Label>
+                    <Label color="success" onClearClick={this._onClearClick.bind(this)}>Success</Label>
+                    <Label color="primary" onClearClick={this._onClearClick.bind(this)}>Primary</Label>
+                    <Label color="transparent" onClearClick={this._onClearClick.bind(this)}>Transparent</Label>
+                    <Label color="warning" onClearClick={this._onClearClick.bind(this)}>Warning</Label>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClearClickSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClearClickSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

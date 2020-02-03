@@ -175,114 +175,116 @@ export default class ElementsDivider extends React.Component {
             <Main page="headers">
                 <TitleBar title="Divider" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Divider */}
-                <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Divider
-                    <Header.Subheader>
-                        A basic divider.
-                    </Header.Subheader>
-                </Header>
+                    {/* Divider */}
+                    <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Divider
+                        <Header.Subheader>
+                            A basic divider.
+                        </Header.Subheader>
+                    </Header>
 
-                <Divider />
+                    <Divider />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {dividerSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {dividerSample}
+                    </Highlighter>
 
-                {/* Color */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Color
-                    <Header.Subheader>
-                        A Divider's color can be changed.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color */}
+                    <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Color
+                        <Header.Subheader>
+                            A Divider's color can be changed.
+                        </Header.Subheader>
+                    </Header>
 
-                <Divider color="alternate" />
-                <Divider color="highlight" />
-                <Divider color="inverse" />
-                <Divider color="inverse-alternate" />
-                <Divider color="primary" />
+                    <Divider color="alternate" />
+                    <Divider color="highlight" />
+                    <Divider color="inverse" />
+                    <Divider color="inverse-alternate" />
+                    <Divider color="primary" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorSample}
+                    </Highlighter>
 
-                {/* Inverse */}
-                <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Inverse
-                    <Header.Subheader>
-                        A Divider's color can be set to the appropriate color when on a dark background.
-                    </Header.Subheader>
-                </Header>
+                    {/* Inverse */}
+                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Inverse
+                        <Header.Subheader>
+                            A Divider's color can be set to the appropriate color when on a dark background.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block inverse={true}>
-                    <Divider color="alternate" inverse={true} />
-                    <Divider color="highlight" inverse={true} />
-                    <Divider color="inverse" inverse={true} />
-                    <Divider color="inverse-alternate" inverse={true} />
-                    <Divider color="primary" inverse={true} />
-                </Block>
+                    <Block inverse={true}>
+                        <Divider color="alternate" inverse={true} />
+                        <Divider color="highlight" inverse={true} />
+                        <Divider color="inverse" inverse={true} />
+                        <Divider color="inverse-alternate" inverse={true} />
+                        <Divider color="primary" inverse={true} />
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {inverseSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {inverseSample}
+                    </Highlighter>
 
-                {/* Compact */}
-                <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Compact
-                    <Header.Subheader>
-                        A Divider can be compact, not having any margin above or below.
-                    </Header.Subheader>
-                </Header>
+                    {/* Compact */}
+                    <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Compact
+                        <Header.Subheader>
+                            A Divider can be compact, not having any margin above or below.
+                        </Header.Subheader>
+                    </Header>
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
-                <Divider compact={true} />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
+                    <Divider compact={true} />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {compactSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {compactSample}
+                    </Highlighter>
 
-                {/* Hidden */}
-                <Header anchor="hidden" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Hidden
-                    <Header.Subheader>
-                        A Divider can divide content without a line.
-                    </Header.Subheader>
-                </Header>
+                    {/* Hidden */}
+                    <Header anchor="hidden" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Hidden
+                        <Header.Subheader>
+                            A Divider can divide content without a line.
+                        </Header.Subheader>
+                    </Header>
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
-                <Divider hidden={true} />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
+                    <Divider hidden={true} />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {hiddenSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {hiddenSample}
+                    </Highlighter>
 
-                {/* Relaxed */}
-                <Header anchor="relaxed" size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Relaxed
-                    <Header.Subheader>
-                        A Divider can increase it's margin above and below.
-                    </Header.Subheader>
-                </Header>
+                    {/* Relaxed */}
+                    <Header anchor="relaxed" size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Relaxed
+                        <Header.Subheader>
+                            A Divider can increase it's margin above and below.
+                        </Header.Subheader>
+                    </Header>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
-                <Divider relaxed={true} />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
-                <Divider relaxed="very" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
+                    <Divider relaxed={true} />
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
+                    <Divider relaxed="very" />
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {relaxedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {relaxedSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

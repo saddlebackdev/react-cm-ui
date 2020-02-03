@@ -428,211 +428,213 @@ export default class ModulesDatePickerInput extends React.Component {
             <Main page="headers">
                 <TitleBar title="Date Picker" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Date Picker Input */}
-                <Header anchor="date-picker-input" size="large" style={{ marginTop: '55px' }}>
-                    Date Picker Input
-                </Header>
+                    {/* Date Picker Input */}
+                    <Header anchor="date-picker-input" size="large" style={{ marginTop: '55px' }}>
+                        Date Picker Input
+                    </Header>
 
-                <DatePickerInput />
+                    <DatePickerInput />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {datePickerSample}
+                    </Highlighter>
 
-                {/* Disabled */}
-                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }}>
-                    Disabled
-                </Header>
+                    {/* Disabled */}
+                    <Header anchor="disabled" size="large" style={{ marginTop: '55px' }}>
+                        Disabled
+                    </Header>
 
-                <DatePickerInput
-                    date={dateOnChange}
-                    disabled
-                    onChange={this._onChange}
-                />
+                    <DatePickerInput
+                        date={dateOnChange}
+                        disabled
+                        onChange={this._onChange}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disabledSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disabledSample}
+                    </Highlighter>
 
-                {/* Events */}
-                <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
-                    Events
-                </Header>
+                    {/* Events */}
+                    <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
+                        Events
+                    </Header>
 
-                <DatePickerInput
-                    events={[
-                        moment().subtract(1, 'days'),
-                        moment().subtract(2, 'days'),
-                        moment().subtract(3, 'days'),
-                        moment().subtract(4, 'days'),
-                    ]}
-                />
+                    <DatePickerInput
+                        events={[
+                            moment().subtract(1, 'days'),
+                            moment().subtract(2, 'days'),
+                            moment().subtract(3, 'days'),
+                            moment().subtract(4, 'days'),
+                        ]}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {eventsSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {eventsSample}
+                    </Highlighter>
 
-                {/* Exclude Dates */}
-                <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
-                    Exclude Dates
-                </Header>
+                    {/* Exclude Dates */}
+                    <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
+                        Exclude Dates
+                    </Header>
 
-                <DatePickerInput
-                    excludeDates={[
-                        moment().subtract(1, 'days'),
-                        moment().subtract(2, 'days'),
-                        moment().subtract(3, 'days'),
-                        moment().subtract(4, 'days'),
-                    ]}
-                />
+                    <DatePickerInput
+                        excludeDates={[
+                            moment().subtract(1, 'days'),
+                            moment().subtract(2, 'days'),
+                            moment().subtract(3, 'days'),
+                            moment().subtract(4, 'days'),
+                        ]}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {excludeDatesSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {excludeDatesSample}
+                    </Highlighter>
 
-                {/* Filter Dates */}
-                <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
-                    Filter Dates
-                </Header>
+                    {/* Filter Dates */}
+                    <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
+                        Filter Dates
+                    </Header>
 
-                <DatePickerInput
-                    filterDates={this._isWeekend}
-                />
+                    <DatePickerInput
+                        filterDates={this._isWeekend}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {filterDatesSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {filterDatesSample}
+                    </Highlighter>
 
-                {/* Include Dates */}
-                <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
-                    Include Dates
-                </Header>
+                    {/* Include Dates */}
+                    <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
+                        Include Dates
+                    </Header>
 
-                <DatePickerInput
-                    includeDates={[
-                        moment(),
-                        moment().subtract(1, 'days'),
-                    ]}
-                />
+                    <DatePickerInput
+                        includeDates={[
+                            moment(),
+                            moment().subtract(1, 'days'),
+                        ]}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {includeDatesSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {includeDatesSample}
+                    </Highlighter>
 
-                {/* Label */}
-                <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
-                    Label
-                </Header>
+                    {/* Label */}
+                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                        Label
+                    </Header>
 
-                <DatePickerInput label="The Coolest Label Ever"/>
+                    <DatePickerInput label="The Coolest Label Ever"/>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {labelSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {labelSample}
+                    </Highlighter>
 
-                {/* Locale */}
-                <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
-                    Locale
-                </Header>
+                    {/* Locale */}
+                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                        Locale
+                    </Header>
 
-                <DatePickerInput
-                    locale={moment().locale()}
-                />
+                    <DatePickerInput
+                        locale={moment().locale()}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {localeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {localeSample}
+                    </Highlighter>
 
-                {/* Max Date */}
-                <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
-                    Max Date
-                </Header>
+                    {/* Max Date */}
+                    <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
+                        Max Date
+                    </Header>
 
-                <DatePickerInput
-                    maxDate={moment()}
-                />
+                    <DatePickerInput
+                        maxDate={moment()}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxDateSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {maxDateSample}
+                    </Highlighter>
 
-                {/* Min Date */}
-                <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
-                    Min Date
-                </Header>
+                    {/* Min Date */}
+                    <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
+                        Min Date
+                    </Header>
 
-                <DatePickerInput
-                    minDate={moment().subtract(10, 'years')}
-                />
+                    <DatePickerInput
+                        minDate={moment().subtract(10, 'years')}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {minDateSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {minDateSample}
+                    </Highlighter>
 
-                {/* onChange Event Handler */}
-                <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
-                    onChange Event Handler
-                </Header>
+                    {/* onChange Event Handler */}
+                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
+                        onChange Event Handler
+                    </Header>
 
-                <DatePickerInput
-                    date={dateOnChange}
-                    onChange={this._onChange}
-                />
+                    <DatePickerInput
+                        date={dateOnChange}
+                        onChange={this._onChange}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onChangeSample}
+                    </Highlighter>
 
-                {/* onMonthChange */}
-                <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
-                    onMonthChange Event Handler
-                </Header>
+                    {/* onMonthChange */}
+                    <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
+                        onMonthChange Event Handler
+                    </Header>
 
-                <DatePickerInput
-                    onMonthChange={() => window.alert('The month was changed!') }
-                />
+                    <DatePickerInput
+                        onMonthChange={() => window.alert('The month was changed!') }
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onMonthChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onMonthChangeSample}
+                    </Highlighter>
 
-                {/* Range */}
-                <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
-                    Range
-                </Header>
+                    {/* Range */}
+                    <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
+                        Range
+                    </Header>
 
-                <Grid>
-                    <Grid.Row>
-                        <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
-                            <DatePickerInput
-                                dateFrom={dateRangeFrom}
-                                dateTo={dateRangeTo}
-                                onChange={this._onRangeChange}
-                                rangeFrom
-                                label="From"
-                            />
-                        </Grid.Column>
-                        <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
-                            <DatePickerInput
-                                dateFrom={dateRangeFrom}
-                                dateTo={dateRangeTo}
-                                onChange={this._onRangeChange}
-                                rangeTo
-                                label="To"
-                            />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                    <Grid>
+                        <Grid.Row>
+                            <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
+                                <DatePickerInput
+                                    dateFrom={dateRangeFrom}
+                                    dateTo={dateRangeTo}
+                                    onChange={this._onRangeChange}
+                                    rangeFrom
+                                    label="From"
+                                />
+                            </Grid.Column>
+                            <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
+                                <DatePickerInput
+                                    dateFrom={dateRangeFrom}
+                                    dateTo={dateRangeTo}
+                                    onChange={this._onRangeChange}
+                                    rangeTo
+                                    label="To"
+                                />
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {rangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {rangeSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

@@ -269,7 +269,7 @@ class ModulesDrawerDataGrid extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -423,7 +423,7 @@ class ModulesDrawerDataGrid extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerGridSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }

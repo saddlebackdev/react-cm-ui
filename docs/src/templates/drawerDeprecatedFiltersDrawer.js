@@ -412,7 +412,7 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -607,7 +607,7 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerFiltersDrawerSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }

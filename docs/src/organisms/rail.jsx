@@ -66,41 +66,43 @@ export default class ElementsRail extends React.PureComponent {
             <Main page="rail">
                 <TitleBar title="Rail" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Position */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Position
-                    <Header.Subheader>
-                        Position a Rail to either the left or right.
-                    </Header.Subheader>
-                </Header>
+                    {/* Position */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Position
+                        <Header.Subheader>
+                            Position a Rail to either the left or right.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block style={{ height: '400px', position: 'relative' }}>
-                    <Rail position="left">
-                        <Header weight="bold">Select an Option</Header>
+                    <Block style={{ height: '400px', position: 'relative' }}>
+                        <Rail position="left">
+                            <Header weight="bold">Select an Option</Header>
 
-                        <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                        <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                        <Checkbox fluid label="Option 3" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                    </Rail>
+                            <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                            <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                            <Checkbox fluid label="Option 3" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                        </Rail>
 
-                    <Rail position="right">
-                        <Header weight="bold">Select an Option</Header>
+                        <Rail position="right">
+                            <Header weight="bold">Select an Option</Header>
 
-                        <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                        <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                        <Checkbox fluid label="Option 3" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
-                    </Rail>
-                </Block>
+                            <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                            <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                            <Checkbox fluid label="Option 3" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
+                        </Rail>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {positionSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {positionSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

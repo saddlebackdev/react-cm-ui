@@ -1,20 +1,17 @@
-import './main.scss';
+import './mainContent.scss';
 
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import MainContent from './mainContent';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    page: PropTypes.string,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     className: undefined,
-    page: undefined,
     style: undefined,
 };
 
@@ -22,21 +19,16 @@ function Main(props) {
     const {
         children,
         className,
-        page,
         style,
     } = props;
-    const containerClasses = ClassNames('main', className, {
-        [`page-${page}`]: !!page,
-    });
+    const containerClasses = ClassNames('main--content', className);
 
     return (
-        <main className={containerClasses} style={style}>
+        <div className={containerClasses} style={style}>
             {children}
-        </main>
+        </div>
     );
 }
-
-Main.Content = MainContent;
 
 Main.propTypes = propTypes;
 Main.defaultProps = defaultProps;

@@ -240,91 +240,93 @@ export default class ModulesDurationPicker extends React.Component {
             <Main page="headers">
                 <TitleBar title="Duration Picker" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Duration Picker */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Duration Picker
-                    <Header.Subheader>
-                        A basic Duration Picker.
-                    </Header.Subheader>
-                </Header>
+                    {/* Duration Picker */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Duration Picker
+                        <Header.Subheader>
+                            A basic Duration Picker.
+                        </Header.Subheader>
+                    </Header>
 
-                <DurationPicker
-                    onChange={this._onDurationPicker1Change}
-                    value={this.state.value1}
-                />
-
-                <p>
-                    You can use the <code>showXXX</code> props to include or exclude various units of time.<br />
-                    This one has days and hours (by default) and opts in to include minutes and seconds as well.
-                </p>
-
-                <DurationPicker
-                    onChange={this._onDurationPicker2Change}
-                    showMinutes
-                    showSeconds
-                    value={this.state.value2}
-                />
-
-                <p>This one shows years, months and days, opting out of hours</p>
-
-                <DurationPicker
-                    onChange={this._onDurationPicker3Change}
-                    showHours={false}
-                    showMonths
-                    showYears
-                    value={this.state.value3}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {durationPickerSample}
-                </Highlighter>
-
-                {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Disabled
-                    <Header.Subheader>
-                        The <code>disabled</code> prop indicates that the Duration Picker is not available for interaction.
-                    </Header.Subheader>
-                </Header>
-
-                <DurationPicker
-                    disabled
-                    onChange={this._onDuration4PickerChange}
-                    value={this.state.value4}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disabledSample}
-                </Highlighter>
-
-                {/* Nest */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Nest
-                    <Header.Subheader>
-                        A Duration Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
-                    </Header.Subheader>
-                </Header>
-
-                <Block
-                    nest
-                    style={{ height: '175px', padding: '22px' }}
-                >
                     <DurationPicker
-                        nest
-                        onChange={this._onDurationPicker5Change}
-                        value={this.state.value5}
+                        onChange={this._onDurationPicker1Change}
+                        value={this.state.value1}
                     />
-                </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {nestSample}
-                </Highlighter>
+                    <p>
+                        You can use the <code>showXXX</code> props to include or exclude various units of time.<br />
+                        This one has days and hours (by default) and opts in to include minutes and seconds as well.
+                    </p>
+
+                    <DurationPicker
+                        onChange={this._onDurationPicker2Change}
+                        showMinutes
+                        showSeconds
+                        value={this.state.value2}
+                    />
+
+                    <p>This one shows years, months and days, opting out of hours</p>
+
+                    <DurationPicker
+                        onChange={this._onDurationPicker3Change}
+                        showHours={false}
+                        showMonths
+                        showYears
+                        value={this.state.value3}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {durationPickerSample}
+                    </Highlighter>
+
+                    {/* Disabled */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Disabled
+                        <Header.Subheader>
+                            The <code>disabled</code> prop indicates that the Duration Picker is not available for interaction.
+                        </Header.Subheader>
+                    </Header>
+
+                    <DurationPicker
+                        disabled
+                        onChange={this._onDuration4PickerChange}
+                        value={this.state.value4}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disabledSample}
+                    </Highlighter>
+
+                    {/* Nest */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Nest
+                        <Header.Subheader>
+                            A Duration Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Block
+                        nest
+                        style={{ height: '175px', padding: '22px' }}
+                    >
+                        <DurationPicker
+                            nest
+                            onChange={this._onDurationPicker5Change}
+                            value={this.state.value5}
+                        />
+                    </Block>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {nestSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

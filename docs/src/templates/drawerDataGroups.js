@@ -266,7 +266,7 @@ class ModulesDrawerDataGroups extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -438,7 +438,7 @@ class ModulesDrawerDataGroups extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerDataGroupsSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }

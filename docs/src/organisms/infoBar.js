@@ -99,67 +99,69 @@ export default class ViewsInfoBar extends React.Component {
             <Main page="info-bar">
                 <TitleBar title="Info Bar" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Color */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Color
-                    <Header.Subheader>
-                        Info Bars have different colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Color
+                        <Header.Subheader>
+                            Info Bars have different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <InfoBar color={1}>
-                    Super Cool Info Bar - Color: 1
-                </InfoBar><br /><br />
+                    <InfoBar color={1}>
+                        Super Cool Info Bar - Color: 1
+                    </InfoBar><br /><br />
 
-                <InfoBar color={2}>
-                    Super Cool Info Bar - Color: 2
-                </InfoBar><br /><br />
+                    <InfoBar color={2}>
+                        Super Cool Info Bar - Color: 2
+                    </InfoBar><br /><br />
 
-                <InfoBar color={3}>
-                    Super Cool Info Bar - Color: 3
-                </InfoBar><br /><br />
+                    <InfoBar color={3}>
+                        Super Cool Info Bar - Color: 3
+                    </InfoBar><br /><br />
 
-                <InfoBar color={4}>
-                    Super Cool Info Bar - Color: 4
-                </InfoBar><br /><br />
+                    <InfoBar color={4}>
+                        Super Cool Info Bar - Color: 4
+                    </InfoBar><br /><br />
 
-                <InfoBar color={5}>
-                    Super Cool Info Bar - Color: 5
-                </InfoBar><br /><br />
+                    <InfoBar color={5}>
+                        Super Cool Info Bar - Color: 5
+                    </InfoBar><br /><br />
 
-                <InfoBar color={6}>
-                    Super Cool Info Bar - Color: 6
-                </InfoBar><br /><br />
+                    <InfoBar color={6}>
+                        Super Cool Info Bar - Color: 6
+                    </InfoBar><br /><br />
 
-                <InfoBar color={7}>
-                    Super Cool Info Bar - Color: 7
-                </InfoBar><br /><br />
+                    <InfoBar color={7}>
+                        Super Cool Info Bar - Color: 7
+                    </InfoBar><br /><br />
 
-                <InfoBar color={8}>
-                    Super Cool Info Bar - Color: 8
-                </InfoBar><br /><br />
+                    <InfoBar color={8}>
+                        Super Cool Info Bar - Color: 8
+                    </InfoBar><br /><br />
 
-                <InfoBar color={9}>
-                    Super Cool Info Bar - Color: 9
-                </InfoBar><br /><br />
+                    <InfoBar color={9}>
+                        Super Cool Info Bar - Color: 9
+                    </InfoBar><br /><br />
 
-                <InfoBar color={10}>
-                    Super Cool Info Bar - Color: 10
-                </InfoBar><br /><br />
+                    <InfoBar color={10}>
+                        Super Cool Info Bar - Color: 10
+                    </InfoBar><br /><br />
 
-                <InfoBar color={11}>
-                    Super Cool Info Bar - Color: 11
-                </InfoBar>
+                    <InfoBar color={11}>
+                        Super Cool Info Bar - Color: 11
+                    </InfoBar>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

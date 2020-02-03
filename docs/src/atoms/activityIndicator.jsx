@@ -57,116 +57,118 @@ function ElementsActivityIndicator() {
         <Main page="headers">
             <TitleBar title="Activity Indicator" />
 
-            <Card>
-                <Header size="large">Props</Header>
+            <Main.Content>
+                <Card>
+                    <Header size="large">Props</Header>
 
-                <TableProps props={props} />
-            </Card>
+                    <TableProps props={props} />
+                </Card>
 
-            {/* Activity Indicators */}
-            <Header anchor="activityIndicator" size="large" style={{ marginTop: '55px' }} sub>
-                Activity Indicator
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        An activity indicator cycles through bars while loading or synchronizing
-                        data is being performed.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* Activity Indicators */}
+                <Header anchor="activityIndicator" size="large" style={{ marginTop: '55px' }} sub>
+                    Activity Indicator
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            An activity indicator cycles through bars while loading or synchronizing
+                            data is being performed.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorExample />
+                <ActivityIndicatorExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }} language="jsx">
-                {require('!!raw-loader!./activityIndicatorExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }} language="jsx">
+                    {require('!!raw-loader!./activityIndicatorExample').default}
+                </Highlighter>
 
-            {/* className */}
-            <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
-                className
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        Use the <code>className</code> prop to pass a block and element class
-                        name (e.g. <code>foo_block_name--bar_element_name</code>)
-                        to Activity Indicator. This needs to be unique.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* className */}
+                <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                    className
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            Use the <code>className</code> prop to pass a block and element class
+                            name (e.g. <code>foo_block_name--bar_element_name</code>)
+                            to Activity Indicator. This needs to be unique.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorClassNameExample />
+                <ActivityIndicatorClassNameExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                {require('!!raw-loader!./activityIndicatorClassNameExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./activityIndicatorClassNameExample').default}
+                </Highlighter>
 
-            {/* color */}
-            <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                color
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        Use the <code>color</code> prop to better fit how the Activity
-                        Indicator should be displayed relavant location with the webapp.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* color */}
+                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                    color
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            Use the <code>color</code> prop to better fit how the Activity
+                            Indicator should be displayed relavant location with the webapp.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorColorExample />
+                <ActivityIndicatorColorExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                {require('!!raw-loader!./activityIndicatorColorExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./activityIndicatorColorExample').default}
+                </Highlighter>
 
-            {/* id */}
-            <Header anchor="id" size="large" style={{ marginTop: '55px' }} sub>
-                id
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        Use the <code>id</code> prop to pass a block and element class
-                        name (e.g. <code>foo_block_name--bar_element_name</code>)
-                        to Activity Indicator. This needs to be unique and always implemented.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* id */}
+                <Header anchor="id" size="large" style={{ marginTop: '55px' }} sub>
+                    id
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            Use the <code>id</code> prop to pass a block and element class
+                            name (e.g. <code>foo_block_name--bar_element_name</code>)
+                            to Activity Indicator. This needs to be unique and always implemented.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorIdExample />
+                <ActivityIndicatorIdExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                {require('!!raw-loader!./activityIndicatorIdExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./activityIndicatorIdExample').default}
+                </Highlighter>
 
-            {/* size */}
-            <Header anchor="size" size="large" style={{ marginTop: '55px' }} sub>
-                size
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        Use the <code>size</code> prop to change the size of the Activity Indicator
-                        when needed to suit the needs of your relavant location within the app.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* size */}
+                <Header anchor="size" size="large" style={{ marginTop: '55px' }} sub>
+                    size
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            Use the <code>size</code> prop to change the size of the Activity Indicator
+                            when needed to suit the needs of your relavant location within the app.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorSizeExample />
+                <ActivityIndicatorSizeExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                {require('!!raw-loader!./activityIndicatorSizeExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./activityIndicatorSizeExample').default}
+                </Highlighter>
 
-            {/* style */}
-            <Header anchor="style" size="large" style={{ marginTop: '55px' }} sub>
-                style
-                <Header.Subheader>
-                    <p style={{ marginTop: 0 }}>
-                        Use the <code>style</code> prop to pass some inline styles to the
-                        container. Only to be used when needed based on its relavant
-                        location within the app.
-                    </p>
-                </Header.Subheader>
-            </Header>
+                {/* style */}
+                <Header anchor="style" size="large" style={{ marginTop: '55px' }} sub>
+                    style
+                    <Header.Subheader>
+                        <p style={{ marginTop: 0 }}>
+                            Use the <code>style</code> prop to pass some inline styles to the
+                            container. Only to be used when needed based on its relavant
+                            location within the app.
+                        </p>
+                    </Header.Subheader>
+                </Header>
 
-            <ActivityIndicatorStyleExample />
+                <ActivityIndicatorStyleExample />
 
-            <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                {require('!!raw-loader!./activityIndicatorStyleExample').default}
-            </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./activityIndicatorStyleExample').default}
+                </Highlighter>
+            </Main.Content>
         </Main>
     );
 }

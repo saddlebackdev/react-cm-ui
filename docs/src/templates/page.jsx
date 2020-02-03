@@ -140,12 +140,14 @@ function ModulesPage() {
 
             <PageSubNavigation />
 
-            <div>
+            <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>
 
                     <TableProps props={tableProps} />
-                </Card><br /><br />
+                </Card>
+                <br />
+                <br />
 
                 <Button href={`${window.location.pathname}/demo`} target="_blank">Demo Page</Button>
 
@@ -237,7 +239,7 @@ function ModulesPage() {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {styleSample}
                 </Highlighter>
-            </div>
+            </Main.Content>
         </Main>
     );
 }

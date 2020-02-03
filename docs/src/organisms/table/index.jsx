@@ -138,71 +138,73 @@ export default function CollectionsTable() {
         <Main page="headers">
             <TitleBar title="Table" />
 
-            <Card>
-                <Header size="large">Props</Header>
+            <Main.Content>
+                <Card>
+                    <Header size="large">Props</Header>
 
-                <TableProps props={propDefinitions} />
-            </Card>
+                    <TableProps props={propDefinitions} />
+                </Card>
 
-            {/* Table */}
-            <TableSample />
+                {/* Table */}
+                <TableSample />
 
-            {/* Basic Table */}
-            <TableSampleBasic />
+                {/* Basic Table */}
+                <TableSampleBasic />
 
-            {/* Celled Table */}
-            <TableSampleCelled />
+                {/* Celled Table */}
+                <TableSampleCelled />
 
-            {/* Collapsing Table */}
-            <TableSampleCollapsing />
+                {/* Collapsing Table */}
+                <TableSampleCollapsing />
 
-            {/* Definition Table */}
-            <TableSampleDefinition />
+                {/* Definition Table */}
+                <TableSampleDefinition />
 
-            {/* Fixed Table */}
-            <TableSampleFixed />
+                {/* Fixed Table */}
+                <TableSampleFixed />
 
-            {/* Font Size */}
-            <TableSampleFontSize />
+                {/* Font Size */}
+                <TableSampleFontSize />
 
-            {/* Full Width Table */}
-            <TableSampleFullWidth />
+                {/* Full Width Table */}
+                <TableSampleFullWidth />
 
-            {/* Selectable Table */}
-            <TableSampleSelectable />
+                {/* Selectable Table */}
+                <TableSampleSelectable />
 
-            {/* Single Line Table */}
-            <TableSampleSingleLine />
+                {/* Single Line Table */}
+                <TableSampleSingleLine />
 
-            {/* Size */}
-            <TableSampleSize />
+                {/* Size */}
+                <TableSampleSize />
 
-            {/* Stretch Table */}
-            <TableSampleStretch />
+                {/* Stretch Table */}
+                <TableSampleStretch />
 
-            {/* Striped Table */}
-            <TableSampleStriped />
+                {/* Striped Table */}
+                <TableSampleStriped />
 
-            {/* Active */}
-            <TableSampleActive />
+                {/* Active */}
+                <TableSampleActive />
 
-            {/* Disabled */}
-            <TableSampleDisabled />
+                {/* Disabled */}
+                <TableSampleDisabled />
 
-            {/* Text Align */}
-            <TableSampleTextAlign />
+                {/* Text Align */}
+                <TableSampleTextAlign />
 
-            {/* Vertical Align */}
-            <TableSampleVerticalAlign />
+                {/* Vertical Align */}
+                <TableSampleVerticalAlign />
 
-            {/* onClick Event Handler Samples */}
-            <TableSampleOnClick />
+                {/* onClick Event Handler Samples */}
+                <TableSampleOnClick />
 
-            {/* Responsive Width */}
-            <TableSampleResponsiveWidth />
+                {/* Responsive Width */}
+                <TableSampleResponsiveWidth />
 
-            {/* Drag and Drop Row Reordering */}
-            <TableSampleDragAndDropRowReordering />
+                {/* Drag and Drop Row Reordering */}
+                <TableSampleDragAndDropRowReordering />
+            </Main.Content>
         </Main>
     );
 }

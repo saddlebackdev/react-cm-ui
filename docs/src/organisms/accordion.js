@@ -868,17 +868,19 @@ export default class CollectionsAccordion extends React.Component {
                     <SubNavigation.Item label="Accordion.Item" />
                 </SubNavigation>
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    {this.state.subNavIndex === 1 ? (
-                        <TableProps props={itemProps} />
-                    ) : (
-                        <TableProps props={props} />
-                    )}
-                </Card>
+                        {this.state.subNavIndex === 1 ? (
+                            <TableProps props={itemProps} />
+                        ) : (
+                            <TableProps props={props} />
+                        )}
+                    </Card>
 
-                {examplesJSX}
+                    {examplesJSX}
+                </Main.Content>
             </Main>
         );
     }

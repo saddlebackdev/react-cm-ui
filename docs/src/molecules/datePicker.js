@@ -604,197 +604,199 @@ export default class ModulesDatePicker extends React.Component {
             <Main page="headers">
                 <TitleBar title="Date Picker" />
 
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    This component has been deprecated.<br />
-                Please use <Link to={{ pathname: '/modules/date-picker-input' }}>DatePickerInput</Link> or <Link to={{ pathname: '/modules/date-picker-calendar' }}>DatePickerCalendar</Link>
-                </Header>
+                <Main.Content>
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        This component has been deprecated.<br />
+                    Please use <Link to={{ pathname: '/modules/date-picker-input' }}>DatePickerInput</Link> or <Link to={{ pathname: '/modules/date-picker-calendar' }}>DatePickerCalendar</Link>
+                    </Header>
 
-                <Card>
-                    <Header size="large">Props</Header>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Single Date Input */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Single Date Input
-                </Header>
+                    {/* Single Date Input */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Single Date Input
+                    </Header>
 
-                <DatePicker
-                    date={this.state.inputSingleDate}
-                    onChange={this._onChange.bind(this, 'inputSingleDate')}
-                    uxMode="input"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {singleDateInputSample}
-                </Highlighter>
-
-                {/* Date Range Input */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Date Range Input
-                </Header>
-
-                <DatePicker
-                    dateEnd={this.state.inputDateRange.dateEnd}
-                    dateStart={this.state.inputDateRange.dateStart}
-                    onChange={this._onChange.bind(this, 'inputDateRange')}
-                    type="dateRange"
-                    uxMode="input"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {dateRangeInputSample}
-                </Highlighter>
-
-                {/* Service Period Input */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Service Period Input
-                </Header>
-
-                <DatePicker
-                    dateEnd={this.state.inputServicePeriod.dateEnd}
-                    dateStart={this.state.inputServicePeriod.dateStart}
-                    onChange={this._onChange.bind(this, 'inputServicePeriod')}
-                    type="servicePeriod"
-                    uxMode="input"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {servicePeriodInputSample}
-                </Highlighter>
-
-                {/* Service Period Range Input */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Service Period Range Input
-                </Header>
-
-                <DatePicker
-                    dateEnd={this.state.inputServicePeriodRange.dateEnd}
-                    dateSecondaryEnd={this.state.inputServicePeriodRange.dateSecondaryEnd}
-                    dateSecondaryStart={this.state.inputServicePeriodRange.dateSecondaryStart}
-                    dateStart={this.state.inputServicePeriodRange.dateStart}
-                    onChange={this._onChange.bind(this, 'inputServicePeriodRange')}
-                    type="servicePeriodRangeStart"
-                    uxMode="input"
-                /><br /><br />
-
-                <DatePicker
-                    dateEnd={this.state.inputServicePeriodRange.dateEnd}
-                    dateSecondaryEnd={this.state.inputServicePeriodRange.dateSecondaryEnd}
-                    dateSecondaryStart={this.state.inputServicePeriodRange.dateSecondaryStart}
-                    dateStart={this.state.inputServicePeriodRange.dateStart}
-                    onChange={this._onChange.bind(this, 'inputServicePeriodRange')}
-                    type="servicePeriodRangeEnd"
-                    uxMode="input"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {servicePeriodRangeInputSample}
-                </Highlighter>
-
-                {/* Single Date Calendar */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Single Date Calendar
-                </Header>
-
-                <Card style={{ width: '320px' }}>
                     <DatePicker
-                        date={this.state.calendarSingleDate}
-                        onChange={this._onChange.bind(this, 'calendarSingleDate')}
-                        uxMode="calendar"
+                        date={this.state.inputSingleDate}
+                        onChange={this._onChange.bind(this, 'inputSingleDate')}
+                        uxMode="input"
                     />
-                </Card>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {singleDateCalendarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {singleDateInputSample}
+                    </Highlighter>
 
-                {/* Date Range Calendar */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Date Range Calendar
-                </Header>
+                    {/* Date Range Input */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Date Range Input
+                    </Header>
 
-                <Card style={{ width: '320px' }}>
                     <DatePicker
-                        buttonClear={true}
-                        dateEnd={this.state.calendarDateRange.dateEnd}
-                        dateStart={this.state.calendarDateRange.dateStart}
-                        onApplyClick={this._onApplyClick.bind(this)}
-                        onChange={this._onChange.bind(this, 'calendarDateRange')}
+                        dateEnd={this.state.inputDateRange.dateEnd}
+                        dateStart={this.state.inputDateRange.dateStart}
+                        onChange={this._onChange.bind(this, 'inputDateRange')}
                         type="dateRange"
-                        uxMode="calendar"
+                        uxMode="input"
                     />
-                </Card>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {dateRangeCalendarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {dateRangeInputSample}
+                    </Highlighter>
 
-                {/* Service Period Calendar */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Service Period Calendar
-                </Header>
+                    {/* Service Period Input */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Service Period Input
+                    </Header>
 
-                <Card style={{ width: '320px' }}>
                     <DatePicker
-                        dateEnd={this.state.calendarServicePeriod.dateEnd}
-                        dateStart={this.state.calendarServicePeriod.dateStart}
-                        onChange={this._onChange.bind(this, 'calendarServicePeriod')}
+                        dateEnd={this.state.inputServicePeriod.dateEnd}
+                        dateStart={this.state.inputServicePeriod.dateStart}
+                        onChange={this._onChange.bind(this, 'inputServicePeriod')}
                         type="servicePeriod"
-                        uxMode="calendar"
+                        uxMode="input"
                     />
-                </Card>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {servicePeriodCalendarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {servicePeriodInputSample}
+                    </Highlighter>
 
-                {/* Service Period Range Calendar */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Service Period Range Calendar
-                </Header>
+                    {/* Service Period Range Input */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Service Period Range Input
+                    </Header>
 
-                <Card style={{ width: '320px' }}>
                     <DatePicker
-                        buttonClear={true}
-                        dateEnd={this.state.calendarServicePeriodRange.dateEnd}
-                        dateSecondaryEnd={this.state.calendarServicePeriodRange.dateSecondaryEnd}
-                        dateSecondaryStart={this.state.calendarServicePeriodRange.dateSecondaryStart}
-                        dateStart={this.state.calendarServicePeriodRange.dateStart}
-                        onApplyClick={this._onApplyClick.bind(this)}
-                        onChange={this._onChange.bind(this, 'calendarServicePeriodRange')}
-                        type="servicePeriodRange"
-                        uxMode="calendar"
-                    />
-                </Card>
+                        dateEnd={this.state.inputServicePeriodRange.dateEnd}
+                        dateSecondaryEnd={this.state.inputServicePeriodRange.dateSecondaryEnd}
+                        dateSecondaryStart={this.state.inputServicePeriodRange.dateSecondaryStart}
+                        dateStart={this.state.inputServicePeriodRange.dateStart}
+                        onChange={this._onChange.bind(this, 'inputServicePeriodRange')}
+                        type="servicePeriodRangeStart"
+                        uxMode="input"
+                    /><br /><br />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {servicePeriodRangeCalendarSample}
-                </Highlighter>
-
-                {/* Events */}
-                <Header size="large" style={{ marginTop: '55px' }}>
-                    Events
-                </Header>
-
-                <Card style={{ width: '320px' }}>
                     <DatePicker
-                        date={this.state.calendarSingleDate}
-                        events={[
-                            moment('02/01/2017', 'MM/DD/YYYY').unix(),
-                            moment('02/05/2017', 'MM/DD/YYYY').unix(),
-                            moment('02/15/2017', 'MM/DD/YYYY').unix(),
-                            moment('02/25/2017', 'MM/DD/YYYY').unix()
-                        ]}
-                        onChange={this._onChange.bind(this, 'calendarSingleDate')}
-                        uxMode="calendar"
+                        dateEnd={this.state.inputServicePeriodRange.dateEnd}
+                        dateSecondaryEnd={this.state.inputServicePeriodRange.dateSecondaryEnd}
+                        dateSecondaryStart={this.state.inputServicePeriodRange.dateSecondaryStart}
+                        dateStart={this.state.inputServicePeriodRange.dateStart}
+                        onChange={this._onChange.bind(this, 'inputServicePeriodRange')}
+                        type="servicePeriodRangeEnd"
+                        uxMode="input"
                     />
-                </Card>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {eventsCalendarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {servicePeriodRangeInputSample}
+                    </Highlighter>
+
+                    {/* Single Date Calendar */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Single Date Calendar
+                    </Header>
+
+                    <Card style={{ width: '320px' }}>
+                        <DatePicker
+                            date={this.state.calendarSingleDate}
+                            onChange={this._onChange.bind(this, 'calendarSingleDate')}
+                            uxMode="calendar"
+                        />
+                    </Card>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {singleDateCalendarSample}
+                    </Highlighter>
+
+                    {/* Date Range Calendar */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Date Range Calendar
+                    </Header>
+
+                    <Card style={{ width: '320px' }}>
+                        <DatePicker
+                            buttonClear={true}
+                            dateEnd={this.state.calendarDateRange.dateEnd}
+                            dateStart={this.state.calendarDateRange.dateStart}
+                            onApplyClick={this._onApplyClick.bind(this)}
+                            onChange={this._onChange.bind(this, 'calendarDateRange')}
+                            type="dateRange"
+                            uxMode="calendar"
+                        />
+                    </Card>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {dateRangeCalendarSample}
+                    </Highlighter>
+
+                    {/* Service Period Calendar */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Service Period Calendar
+                    </Header>
+
+                    <Card style={{ width: '320px' }}>
+                        <DatePicker
+                            dateEnd={this.state.calendarServicePeriod.dateEnd}
+                            dateStart={this.state.calendarServicePeriod.dateStart}
+                            onChange={this._onChange.bind(this, 'calendarServicePeriod')}
+                            type="servicePeriod"
+                            uxMode="calendar"
+                        />
+                    </Card>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {servicePeriodCalendarSample}
+                    </Highlighter>
+
+                    {/* Service Period Range Calendar */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Service Period Range Calendar
+                    </Header>
+
+                    <Card style={{ width: '320px' }}>
+                        <DatePicker
+                            buttonClear={true}
+                            dateEnd={this.state.calendarServicePeriodRange.dateEnd}
+                            dateSecondaryEnd={this.state.calendarServicePeriodRange.dateSecondaryEnd}
+                            dateSecondaryStart={this.state.calendarServicePeriodRange.dateSecondaryStart}
+                            dateStart={this.state.calendarServicePeriodRange.dateStart}
+                            onApplyClick={this._onApplyClick.bind(this)}
+                            onChange={this._onChange.bind(this, 'calendarServicePeriodRange')}
+                            type="servicePeriodRange"
+                            uxMode="calendar"
+                        />
+                    </Card>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {servicePeriodRangeCalendarSample}
+                    </Highlighter>
+
+                    {/* Events */}
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        Events
+                    </Header>
+
+                    <Card style={{ width: '320px' }}>
+                        <DatePicker
+                            date={this.state.calendarSingleDate}
+                            events={[
+                                moment('02/01/2017', 'MM/DD/YYYY').unix(),
+                                moment('02/05/2017', 'MM/DD/YYYY').unix(),
+                                moment('02/15/2017', 'MM/DD/YYYY').unix(),
+                                moment('02/25/2017', 'MM/DD/YYYY').unix()
+                            ]}
+                            onChange={this._onChange.bind(this, 'calendarSingleDate')}
+                            uxMode="calendar"
+                        />
+                    </Card>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {eventsCalendarSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

@@ -325,201 +325,203 @@ export default class ElementsButton extends React.Component {
             <Main page="headers">
                 <TitleBar title="Button" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Button */}
-                <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
-                    Button
-                    <Header.Subheader>
-                        A standard button.
-                    </Header.Subheader>
-                </Header>
+                    {/* Button */}
+                    <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
+                        Button
+                        <Header.Subheader>
+                            A standard button.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button id="ui-button--demo_button">Button</Button>
+                    <Button id="ui-button--demo_button">Button</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {buttonSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {buttonSample}
+                    </Highlighter>
 
-                {/* Compact */}
-                <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
-                    Compact
-                    <Header.Subheader>
-                        A button can have reduced padding.
-                    </Header.Subheader>
-                </Header>
+                    {/* Compact */}
+                    <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
+                        Compact
+                        <Header.Subheader>
+                            A button can have reduced padding.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button compact>Compact</Button>
-                <Button>Normal</Button>
+                    <Button compact>Compact</Button>
+                    <Button>Normal</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {compactSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {compactSample}
+                    </Highlighter>
 
-                {/* Relax */}
-                <Header anchor="relax" size="large" style={{ marginTop: '55px' }} sub>
-                    Relax
-                    <Header.Subheader>
-                        A button can have relaxed padding.
-                    </Header.Subheader>
-                </Header>
+                    {/* Relax */}
+                    <Header anchor="relax" size="large" style={{ marginTop: '55px' }} sub>
+                        Relax
+                        <Header.Subheader>
+                            A button can have relaxed padding.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button relax>Relax</Button>
-                <Button>Normal</Button>
+                    <Button relax>Relax</Button>
+                    <Button>Normal</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {relaxSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {relaxSample}
+                    </Highlighter>
 
-                {/* Disabled */}
-                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
-                    Disabled
-                    <Header.Subheader>
-                        A disabled Button.
-                    </Header.Subheader>
-                </Header>
+                    {/* Disabled */}
+                    <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
+                        Disabled
+                        <Header.Subheader>
+                            A disabled Button.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button
-                    disabled
-                    onClick={this._onClickDisabledButton}
-                >
-                    Disabled Button
-                </Button>
+                    <Button
+                        disabled
+                        onClick={this._onClickDisabledButton}
+                    >
+                        Disabled Button
+                    </Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disabledSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disabledSample}
+                    </Highlighter>
 
-                {/* Width */}
-                <Header anchor="width" size="large" style={{ marginTop: '55px' }} sub>
-                    Width
-                    <Header.Subheader>
-                        A button can have a fixed width.
-                    </Header.Subheader>
-                </Header>
+                    {/* Width */}
+                    <Header anchor="width" size="large" style={{ marginTop: '55px' }} sub>
+                        Width
+                        <Header.Subheader>
+                            A button can have a fixed width.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button width={170}>Fixed Width Number</Button><br /><br />
-                <Button width="170px">Whoa! Button</Button>
+                    <Button width={170}>Fixed Width Number</Button><br /><br />
+                    <Button width="170px">Whoa! Button</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {widthSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {widthSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub>
-                    Fluid
-                    <Header.Subheader>
-                        A button can take on the width of the container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub>
+                        Fluid
+                        <Header.Subheader>
+                            A button can take on the width of the container.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button fluid>Fluid Button</Button>
+                    <Button fluid>Fluid Button</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fluidSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fluidSample}
+                    </Highlighter>
 
-                {/* Icon */}
-                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
-                    Icon
-                    <Header.Subheader>
-                        A button can contain an icon.
-                    </Header.Subheader>
-                </Header>
+                    {/* Icon */}
+                    <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
+                        Icon
+                        <Header.Subheader>
+                            A button can contain an icon.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button icon>
-                    <Icon color="inverse" type="plus" />
-                </Button>
+                    <Button icon>
+                        <Icon color="inverse" type="plus" />
+                    </Button>
 
-                <Button icon>
-                    <Icon color="inverse" size="medium" type="times" />
-                </Button>
+                    <Button icon>
+                        <Icon color="inverse" size="medium" type="times" />
+                    </Button>
 
-                <Button>
-                    <Icon color="inverse" type="cards" />
-                    <span>Icon On The Left</span>
-                </Button>
+                    <Button>
+                        <Icon color="inverse" type="cards" />
+                        <span>Icon On The Left</span>
+                    </Button>
 
-                <Button>
-                    <span>Icon On The Right</span>
-                    <Icon color="inverse" type="cards" />
-                </Button>
+                    <Button>
+                        <span>Icon On The Right</span>
+                        <Icon color="inverse" type="cards" />
+                    </Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {iconSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconSample}
+                    </Highlighter>
 
-                {/* Color */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                    Color
-                    <Header.Subheader>
-                        Buttons can have different colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color */}
+                    <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                        Color
+                        <Header.Subheader>
+                            Buttons can have different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button color="alert">Alert</Button>
-                <Button color="alternate">Alternate</Button>
-                <Button color="disable">Disable</Button>
-                <Button color="light">Light</Button>
-                <Button color="outline">Outline</Button>
-                <Button color="primary">Primary</Button>
-                <Button color="secondary">Secondary</Button>
-                <Button color="success">Success</Button>
-                <Button color="warning">Warning</Button>
+                    <Button color="alert">Alert</Button>
+                    <Button color="alternate">Alternate</Button>
+                    <Button color="disable">Disable</Button>
+                    <Button color="light">Light</Button>
+                    <Button color="outline">Outline</Button>
+                    <Button color="primary">Primary</Button>
+                    <Button color="secondary">Secondary</Button>
+                    <Button color="success">Success</Button>
+                    <Button color="warning">Warning</Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorSample}
+                    </Highlighter>
 
-                {/* Outlined */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                Outlined
-                    <Header.Subheader>
-                        Buttons can have different border colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Outlined */}
+                    <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                    Outlined
+                        <Header.Subheader>
+                            Buttons can have different border colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button color="alert" outlined><Icon type="envelope"/><span>Alert</span></Button>
-                <Button color="alternate" outlined><Icon type="envelope"/><span>Alternate</span></Button>
-                <Button color="disable" outlined><Icon type="envelope"/><span>Disable</span></Button>
-                <Button color="light" outlined><Icon type="envelope"/><span>Light</span></Button>
-                <Button color="outline" outlined><Icon type="envelope"/><span>Outline</span></Button>
-                <Button color="primary" outlined><Icon type="envelope"/><span>Primary</span></Button>
-                <Button color="secondary" outlined><Icon type="envelope"/><span>Secondary</span></Button>
-                <Button color="success" outlined><Icon type="envelope"/><span>Success</span></Button>
-                <Button color="warning" outlined><Icon type="envelope"/><span>Warning</span></Button>
+                    <Button color="alert" outlined><Icon type="envelope"/><span>Alert</span></Button>
+                    <Button color="alternate" outlined><Icon type="envelope"/><span>Alternate</span></Button>
+                    <Button color="disable" outlined><Icon type="envelope"/><span>Disable</span></Button>
+                    <Button color="light" outlined><Icon type="envelope"/><span>Light</span></Button>
+                    <Button color="outline" outlined><Icon type="envelope"/><span>Outline</span></Button>
+                    <Button color="primary" outlined><Icon type="envelope"/><span>Primary</span></Button>
+                    <Button color="secondary" outlined><Icon type="envelope"/><span>Secondary</span></Button>
+                    <Button color="success" outlined><Icon type="envelope"/><span>Success</span></Button>
+                    <Button color="warning" outlined><Icon type="envelope"/><span>Warning</span></Button>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    { outlinedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        { outlinedSample}
+                    </Highlighter>
 
-                {/* Color Inverted */}
-                <Header anchor="color-inverted" size="large" style={{ marginTop: '55px' }} sub>
-                    Colors Inverted
-                    <Header.Subheader>
-                        Button colors can be inverted.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color Inverted */}
+                    <Header anchor="color-inverted" size="large" style={{ marginTop: '55px' }} sub>
+                        Colors Inverted
+                        <Header.Subheader>
+                            Button colors can be inverted.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block inverse style={{ marginTop: '33px' }}>
-                    <Button color="alert" inverse>Alert</Button>
-                    <Button color="alternate" inverse>Alternate</Button>
-                    <Button color="disable" inverse>Disable</Button>
-                    <Button color="light" inverse>Light</Button>
-                    <Button color="outline" inverse>Outline</Button>
-                    <Button color="primary" inverse>Primary</Button>
-                    <Button color="secondary" inverse>Secondary</Button>
-                    <Button color="success" inverse>Success</Button>
-                    <Button color="warning" inverse>Warning</Button>
-                </Block>
+                    <Block inverse style={{ marginTop: '33px' }}>
+                        <Button color="alert" inverse>Alert</Button>
+                        <Button color="alternate" inverse>Alternate</Button>
+                        <Button color="disable" inverse>Disable</Button>
+                        <Button color="light" inverse>Light</Button>
+                        <Button color="outline" inverse>Outline</Button>
+                        <Button color="primary" inverse>Primary</Button>
+                        <Button color="secondary" inverse>Secondary</Button>
+                        <Button color="success" inverse>Success</Button>
+                        <Button color="warning" inverse>Warning</Button>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorsInvertedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorsInvertedSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

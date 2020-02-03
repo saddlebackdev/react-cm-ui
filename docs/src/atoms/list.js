@@ -35,9 +35,11 @@ export default class ElementsList extends React.Component {
                     <SubNavigation.Item label="Item" />
                 </SubNavigation>
 
-                {this._renderList()}
+                <Main.Content>
+                    {this._renderList()}
 
-                {this._renderItem()}
+                    {this._renderItem()}
+                </Main.Content>
             </Main>
         );
     }

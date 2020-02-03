@@ -109,91 +109,93 @@ export default class ViewsTitleBar extends React.Component {
             <Main page="headers">
                 <TitleBar title="Title Bar" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Title Bar */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Title Bar
-                    <Header.Subheader>
-                        A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
-                    </Header.Subheader>
-                </Header>
+                    {/* Title Bar */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Title Bar
+                        <Header.Subheader>
+                            A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                <TitleBar title="The Best Title Bar" />
-                            </Card>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                    <TitleBar title="The Best Title Bar" />
+                                </Card>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {titleBarSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {titleBarSample}
+                    </Highlighter>
 
-                {/* Sub Title */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Sub Title
-                    <Header.Subheader>
-                        Title Bar's can have a sub title.
-                    </Header.Subheader>
-                </Header>
+                    {/* Sub Title */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Sub Title
+                        <Header.Subheader>
+                            Title Bar's can have a sub title.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                <TitleBar subTitle="The Best Title Bar" title="An Even Better Title" />
-                            </Card>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                    <TitleBar subTitle="The Best Title Bar" title="An Even Better Title" />
+                                </Card>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {subTitleSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {subTitleSample}
+                    </Highlighter>
 
-                {/* Children */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Children
-                    <Header.Subheader>
-                        Title Bar's can return it's children on the right side of the bar.
-                    </Header.Subheader>
-                </Header>
+                    {/* Children */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Children
+                        <Header.Subheader>
+                            Title Bar's can return it's children on the right side of the bar.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
-                                    <Dropdown
-                                        text={(
-                                            <div>
-                                                <Image avatar style={{ marginRight: '11px' }} />
-                                                <span style={{ color: '#1c2530', fontSize: '14px', fontWeight: '400' }}>Marty McFly</span>
-                                            </div>
-                                        )}
-                                    >
-                                        <Dropdown.Item label="Item 1" />
-                                        <Dropdown.Item label="Item 2" />
-                                        <Dropdown.Item label="Item 3" />
-                                        <Dropdown.Item label="Item 4" />
-                                    </Dropdown>
-                                </TitleBar>
-                            </Card>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                    <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
+                                        <Dropdown
+                                            text={(
+                                                <div>
+                                                    <Image avatar style={{ marginRight: '11px' }} />
+                                                    <span style={{ color: '#1c2530', fontSize: '14px', fontWeight: '400' }}>Marty McFly</span>
+                                                </div>
+                                            )}
+                                        >
+                                            <Dropdown.Item label="Item 1" />
+                                            <Dropdown.Item label="Item 2" />
+                                            <Dropdown.Item label="Item 3" />
+                                            <Dropdown.Item label="Item 4" />
+                                        </Dropdown>
+                                    </TitleBar>
+                                </Card>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {childrenSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {childrenSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

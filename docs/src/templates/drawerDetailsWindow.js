@@ -371,7 +371,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -633,7 +633,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerDetailsSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }

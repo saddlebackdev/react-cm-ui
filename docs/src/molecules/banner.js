@@ -1,10 +1,12 @@
-'use strict';
-
+import {
+    Banner,
+    Button,
+    Card,
+    Header,
+    TitleBar,
+} from 'react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Banner, Button, Card, Header, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
@@ -307,111 +309,113 @@ export default class ViewsBanner extends React.Component {
             <Main page="headers">
                 <TitleBar title="Banner" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Banner */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Banner
-                    <Header.Subheader>
-                        A standard Banner.
-                    </Header.Subheader>
-                </Header>
+                    {/* Banner */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Banner
+                        <Header.Subheader>
+                            A standard Banner.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
+                    <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
 
-                <Button onClick={this._onBannerNotification2Click.bind(this)}>Banner Notification 2</Button>
+                    <Button onClick={this._onBannerNotification2Click.bind(this)}>Banner Notification 2</Button>
 
-                <Button onClick={this._onBannerNotification3Click.bind(this)}>Banner Notification 3</Button>
+                    <Button onClick={this._onBannerNotification3Click.bind(this)}>Banner Notification 3</Button>
 
-                <Banner
-                    id={1}
-                    isOpen={this.state.isBannerNotification1Open}
-                    message="A short notification description"
-                    onClose={this._onBannerNotification1Click.bind(this)}
-                    title="Banner Notification 1"
-                    type="notification"
-                />
+                    <Banner
+                        id={1}
+                        isOpen={this.state.isBannerNotification1Open}
+                        message="A short notification description"
+                        onClose={this._onBannerNotification1Click.bind(this)}
+                        title="Banner Notification 1"
+                        type="notification"
+                    />
 
-                <Banner
-                    id={2}
-                    isOpen={this.state.isBannerNotification2Open}
-                    message="A short notification description"
-                    onClose={this._onBannerNotification2Click.bind(this)}
-                    title="Banner Notification 2"
-                    type="notification"
-                />
+                    <Banner
+                        id={2}
+                        isOpen={this.state.isBannerNotification2Open}
+                        message="A short notification description"
+                        onClose={this._onBannerNotification2Click.bind(this)}
+                        title="Banner Notification 2"
+                        type="notification"
+                    />
 
-                <Banner
-                    id={3}
-                    isOpen={this.state.isBannerNotification3Open}
-                    message="A short notification description"
-                    onClose={this._onBannerNotification3Click.bind(this)}
-                    title="Banner Notification 3"
-                    type="notification"
-                />
+                    <Banner
+                        id={3}
+                        isOpen={this.state.isBannerNotification3Open}
+                        message="A short notification description"
+                        onClose={this._onBannerNotification3Click.bind(this)}
+                        title="Banner Notification 3"
+                        type="notification"
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {bannerSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {bannerSample}
+                    </Highlighter>
 
-                {/* On After Close */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    On After Close
-                    <Header.Subheader>
-                        After a Banner's close animation handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* On After Close */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        On After Close
+                        <Header.Subheader>
+                            After a Banner's close animation handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 1)}>AC Banner 2</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 2)}>AC Banner 3</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 3)}>AC Banner 4</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 1)}>AC Banner 2</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 2)}>AC Banner 3</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 3)}>AC Banner 4</Button>
 
-                {this._renderBanners()}
+                    {this._renderBanners()}
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onAfterCloseSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onAfterCloseSample}
+                    </Highlighter>
 
-                {/* Type */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Type
-                    <Header.Subheader>
-                        Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
-                    </Header.Subheader>
-                </Header>
+                    {/* Type */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Type
+                        <Header.Subheader>
+                            Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
+                        </Header.Subheader>
+                    </Header>
 
-                <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>
+                    <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>
 
-                <Button onClick={this._onBannerTypeAlertClick.bind(this)}>Alert Banner</Button>
+                    <Button onClick={this._onBannerTypeAlertClick.bind(this)}>Alert Banner</Button>
 
-                <Banner
-                    id="type-1"
-                    level="success"
-                    isOpen={this.state.isBannerTypeNotificationOpen}
-                    message="A short notification description"
-                    onClose={this._onBannerTypeNotificationClick.bind(this)}
-                    title="Notification Banner"
-                    type="notification"
-                />
+                    <Banner
+                        id="type-1"
+                        level="success"
+                        isOpen={this.state.isBannerTypeNotificationOpen}
+                        message="A short notification description"
+                        onClose={this._onBannerTypeNotificationClick.bind(this)}
+                        title="Notification Banner"
+                        type="notification"
+                    />
 
-                <Banner
-                    id="type-2"
-                    level="error"
-                    isOpen={this.state.isBannerTypeAlertOpen}
-                    message="A short alert description"
-                    onClose={this._onBannerTypeAlertClick.bind(this)}
-                    title="Alert Banner"
-                    type="alert"
-                />
+                    <Banner
+                        id="type-2"
+                        level="error"
+                        isOpen={this.state.isBannerTypeAlertOpen}
+                        message="A short alert description"
+                        onClose={this._onBannerTypeAlertClick.bind(this)}
+                        title="Alert Banner"
+                        type="alert"
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {typeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {typeSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

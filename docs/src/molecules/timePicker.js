@@ -272,130 +272,132 @@ export default class ModulesTimePicker extends React.Component {
             <Main page="headers">
                 <TitleBar title="Time Picker" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Time Picker */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Time Picker
-                    <Header.Subheader>
-                        A basic Time Picker.
-                    </Header.Subheader>
-                </Header>
+                    {/* Time Picker */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Time Picker
+                        <Header.Subheader>
+                            A basic Time Picker.
+                        </Header.Subheader>
+                    </Header>
 
-                <TimePicker
-                    id="foo_time_picker"
-                    onChange={this._onTimePickerChange.bind(this)}
-                    value={this.state.value}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {timePickerSample}
-                </Highlighter>
-
-                {/* Disable */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Disable
-                    <Header.Subheader>
-                        Indicates that the Time Picker is not available for interaction.
-                    </Header.Subheader>
-                </Header>
-
-                <TimePicker
-                    disable
-                    onChange={this._onTimePickerChange.bind(this)}
-                    value={this.state.value}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disableSample}
-                </Highlighter>
-
-                {/* Nest */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Nest
-                    <Header.Subheader>
-                        A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
-                    </Header.Subheader>
-                </Header>
-
-                <Block
-                    nest
-                    style={{ height: '175px', padding: '22px' }}
-                >
                     <TimePicker
+                        id="foo_time_picker"
+                        onChange={this._onTimePickerChange.bind(this)}
+                        value={this.state.value}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {timePickerSample}
+                    </Highlighter>
+
+                    {/* Disable */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Disable
+                        <Header.Subheader>
+                            Indicates that the Time Picker is not available for interaction.
+                        </Header.Subheader>
+                    </Header>
+
+                    <TimePicker
+                        disable
+                        onChange={this._onTimePickerChange.bind(this)}
+                        value={this.state.value}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disableSample}
+                    </Highlighter>
+
+                    {/* Nest */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Nest
+                        <Header.Subheader>
+                            A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Block
                         nest
-                        onChange={this._onNestChange.bind(this)}
-                        value={this.state.nestValue}
-                    />
-                </Block>
+                        style={{ height: '175px', padding: '22px' }}
+                    >
+                        <TimePicker
+                            nest
+                            onChange={this._onNestChange.bind(this)}
+                            value={this.state.nestValue}
+                        />
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {nestSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {nestSample}
+                    </Highlighter>
 
-                {/* Range */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Range
-                    <Header.Subheader>
-                        A Time Picker can be used in range mode, specifing a start time and an end time for the range.
-                    </Header.Subheader>
-                </Header>
+                    {/* Range */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Range
+                        <Header.Subheader>
+                            A Time Picker can be used in range mode, specifing a start time and an end time for the range.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block
-                    nest
-                    style={{ height: '175px', padding: '22px' }}
-                >
+                    <Block
+                        nest
+                        style={{ height: '175px', padding: '22px' }}
+                    >
+                        <TimePicker
+                            onChange={this._onRangeChange.bind(this)}
+                            range
+                            value={this.state.rangeValue}
+                        />
+                    </Block>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {rangeSample}
+                    </Highlighter>
+
+                    {/* Zone Options */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Zone Options
+                        <Header.Subheader>
+                            Provide a custom list of timezones to the Time Picker.
+                        </Header.Subheader>
+                    </Header>
+
                     <TimePicker
-                        onChange={this._onRangeChange.bind(this)}
-                        range
-                        value={this.state.rangeValue}
+                        onChange={this._onTimePickerChange.bind(this)}
+                        value={this.state.value}
+                        zoneOptions={customZoneOptions}
                     />
-                </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {rangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {zoneOptionsSample}
+                    </Highlighter>
 
-                {/* Zone Options */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Zone Options
-                    <Header.Subheader>
-                        Provide a custom list of timezones to the Time Picker.
-                    </Header.Subheader>
-                </Header>
+                    {/* Zone Match Props */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Zone Match Props
+                        <Header.Subheader>
+                            Whether to match the value, label or both values of each selection option when filtering.
+                        </Header.Subheader>
+                    </Header>
 
-                <TimePicker
-                    onChange={this._onTimePickerChange.bind(this)}
-                    value={this.state.value}
-                    zoneOptions={customZoneOptions}
-                />
+                    <TimePicker
+                        onChange={this._onTimePickerChange.bind(this)}
+                        value={this.state.value}
+                        zoneOptions={customZoneOptions}
+                        zoneMatchProp="label"
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {zoneOptionsSample}
-                </Highlighter>
-
-                {/* Zone Match Props */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Zone Match Props
-                    <Header.Subheader>
-                        Whether to match the value, label or both values of each selection option when filtering.
-                    </Header.Subheader>
-                </Header>
-
-                <TimePicker
-                    onChange={this._onTimePickerChange.bind(this)}
-                    value={this.state.value}
-                    zoneOptions={customZoneOptions}
-                    zoneMatchProp="label"
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {zoneMatchPropSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {zoneMatchPropSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

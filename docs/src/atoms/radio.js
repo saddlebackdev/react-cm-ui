@@ -290,192 +290,194 @@ export default class ElementsRadio extends React.Component {
             <Main page="headers">
                 <TitleBar title="Radio" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Radio */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Radio
-                    <Header.Subheader>
-                        A standard radio input.
-                    </Header.Subheader>
-                </Header>
+                    {/* Radio */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Radio
+                        <Header.Subheader>
+                            A standard radio input.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio />
+                    <Radio />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {radioSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {radioSample}
+                    </Highlighter>
 
-                {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Label
-                    <Header.Subheader>
-                        A radio input can have a label defined.
-                    </Header.Subheader>
-                </Header>
+                    {/* Label */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Label
+                        <Header.Subheader>
+                            A radio input can have a label defined.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio label="Do you want to check the box?" />
+                    <Radio label="Do you want to check the box?" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {labelSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {labelSample}
+                    </Highlighter>
 
-                {/* Align */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Align
-                    <Header.Subheader>
-                        A label definition can sit on the right or left side of the radio input.
-                    </Header.Subheader>
-                </Header>
+                    {/* Align */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Align
+                        <Header.Subheader>
+                            A label definition can sit on the right or left side of the radio input.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio align="left" label="Do you want to check the box?" /><br /><br />
-                <Radio align="right" label="You know you want too, don't you?" />
+                    <Radio align="left" label="Do you want to check the box?" /><br /><br />
+                    <Radio align="right" label="You know you want too, don't you?" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {alignSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {alignSample}
+                    </Highlighter>
 
-                {/* Checked */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Checked
-                    <Header.Subheader>
-                        A radio input can be checked from it's parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* Checked */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Checked
+                        <Header.Subheader>
+                            A radio input can be checked from it's parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio checked={true} label="Do you want to check the box?" />
+                    <Radio checked={true} label="Do you want to check the box?" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {checkedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {checkedSample}
+                    </Highlighter>
 
-                {/* Disabled */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Disabled
-                    <Header.Subheader>
-                        Disable a radio input.
-                    </Header.Subheader>
-                </Header>
+                    {/* Disabled */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Disabled
+                        <Header.Subheader>
+                            Disable a radio input.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio disabled={true} label="This radio input has been disabled, true or false?" /><br /><br />
-                <Radio checked={true} disabled={true} label="This radio input has been disabled and is checked, true or false?" />
+                    <Radio disabled={true} label="This radio input has been disabled, true or false?" /><br /><br />
+                    <Radio checked={true} disabled={true} label="This radio input has been disabled and is checked, true or false?" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {disabledSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {disabledSample}
+                    </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Fluid
-                    <Header.Subheader>
-                        A radio input can stretch as wide as the parent container.
-                    </Header.Subheader>
-                </Header>
+                    {/* Fluid */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Fluid
+                        <Header.Subheader>
+                            A radio input can stretch as wide as the parent container.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block style={{ maxWidth: '400px' }}>
-                    <Radio align="left" fluid={true} label="It's better on the right, yeah?" />
-                </Block><br />
+                    <Block style={{ maxWidth: '400px' }}>
+                        <Radio align="left" fluid={true} label="It's better on the right, yeah?" />
+                    </Block><br />
 
-                <Block style={{ maxWidth: '400px' }}>
-                    <Radio align="right" fluid={true} label="It's better on the right, yeah?" />
-                </Block>
+                    <Block style={{ maxWidth: '400px' }}>
+                        <Radio align="right" fluid={true} label="It's better on the right, yeah?" />
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {fluidSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {fluidSample}
+                    </Highlighter>
 
-                {/* Label Click */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Label Click
-                    <Header.Subheader>
-                        Sometimes you may want to disable a radio from being checked by clicking it's label definition.
-                    </Header.Subheader>
-                </Header>
+                    {/* Label Click */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Label Click
+                        <Header.Subheader>
+                            Sometimes you may want to disable a radio from being checked by clicking it's label definition.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio labelClick={false} label="Sorry, you can no longer click here to check the box." />
+                    <Radio labelClick={false} label="Sorry, you can no longer click here to check the box." />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {labelClickSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {labelClickSample}
+                    </Highlighter>
 
-                {/* OnChange */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    OnChange
-                    <Header.Subheader>
-                        Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* OnChange */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        OnChange
+                        <Header.Subheader>
+                            Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio
-                    checked={this.state.onChangeSample}
-                    label="on change question."
-                    onChange={this._onChange.bind(this)}
-                />
+                    <Radio
+                        checked={this.state.onChangeSample}
+                        label="on change question."
+                        onChange={this._onChange.bind(this)}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onChangeSample}
+                    </Highlighter>
 
-                {/* Radio Group */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Radio Group
-                    <Header.Subheader>
-                        Group radio buttons together.
-                    </Header.Subheader>
-                </Header>
+                    {/* Radio Group */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Radio Group
+                        <Header.Subheader>
+                            Group radio buttons together.
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio label="Choose me!" name="group-sample" /><br /><br />
-                <Radio label="No choose me!" name="group-sample" />
+                    <Radio label="Choose me!" name="group-sample" /><br /><br />
+                    <Radio label="No choose me!" name="group-sample" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {radioGroupSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {radioGroupSample}
+                    </Highlighter>
 
-                {/* Radio Pill Group */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Radio Pill Group
-                    <Header.Subheader>
-                        Group Radio buttons together in a pill container.<br />
-                        <a className="font-size-xsmall" href="https://www.youtube.com/watch?v=xT4ksAgQouc" target="_blank">https://www.youtube.com/watch?v=xT4ksAgQouc</a>
-                    </Header.Subheader>
-                </Header>
+                    {/* Radio Pill Group */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Radio Pill Group
+                        <Header.Subheader>
+                            Group Radio buttons together in a pill container.<br />
+                            <a className="font-size-xsmall" href="https://www.youtube.com/watch?v=xT4ksAgQouc" target="_blank">https://www.youtube.com/watch?v=xT4ksAgQouc</a>
+                        </Header.Subheader>
+                    </Header>
 
-                <Radio name="pill-sample" pill>
-                    <Radio.Item label="Option 01" />
-                    <Radio.Item label="Option 02" />
-                    <Radio.Item label="Option 03" />
-                </Radio><br /><br />
+                    <Radio name="pill-sample" pill>
+                        <Radio.Item label="Option 01" />
+                        <Radio.Item label="Option 02" />
+                        <Radio.Item label="Option 03" />
+                    </Radio><br /><br />
 
-                <Radio
-                    checked={this.state.checkedPill}
-                    name="pill-onchange-sample"
-                    onChange={this._onPillChange.bind(this)}
-                    pill
-                    multi
-                >
-                    <Radio.Item label="Option 01" />
-                    <Radio.Item label="Option 02" />
-                    <Radio.Item label="Option 03" />
-                </Radio><br /><br />
+                    <Radio
+                        checked={this.state.checkedPill}
+                        name="pill-onchange-sample"
+                        onChange={this._onPillChange.bind(this)}
+                        pill
+                        multi
+                    >
+                        <Radio.Item label="Option 01" />
+                        <Radio.Item label="Option 02" />
+                        <Radio.Item label="Option 03" />
+                    </Radio><br /><br />
 
-                <Radio
-                    checked={2}
-                    disabled
-                    name="pill-disabled-sample"
-                    pill
-                >
-                    <Radio.Item label="Option 01" />
-                    <Radio.Item label="Option 02" />
-                    <Radio.Item label="Option 03" />
-                </Radio><br /><br />
+                    <Radio
+                        checked={2}
+                        disabled
+                        name="pill-disabled-sample"
+                        pill
+                    >
+                        <Radio.Item label="Option 01" />
+                        <Radio.Item label="Option 02" />
+                        <Radio.Item label="Option 03" />
+                    </Radio><br /><br />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {radioGroupPillSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {radioGroupPillSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

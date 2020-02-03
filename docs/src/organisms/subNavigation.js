@@ -136,119 +136,121 @@ export default class CollectionsSubNavigation extends React.Component {
             <Main page="headers">
                 <TitleBar title="Sub Navigation" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Sub Navigation */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Sub Navigation
-                    <Header.Subheader>
-                        A standard Sub Navigation.
-                    </Header.Subheader>
-                </Header>
+                    {/* Sub Navigation */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Sub Navigation
+                        <Header.Subheader>
+                            A standard Sub Navigation.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation id="sub-navigation">
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Button 3" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                    <SubNavigation id="sub-navigation">
+                                        <SubNavigation.Item label="Button 1" />
+                                        <SubNavigation.Item label="Button 2" />
+                                        <SubNavigation.Item label="Button 3" />
+                                        <SubNavigation.Item label="Button 4" />
+                                    </SubNavigation>
+                                </div>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {subNavigationSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {subNavigationSample}
+                    </Highlighter>
 
-                {/* Selected */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Selected
-                    <Header.Subheader>
-                        A Sub Navigation can change the default selected button.
-                    </Header.Subheader>
-                </Header>
+                    {/* Selected */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Selected
+                        <Header.Subheader>
+                            A Sub Navigation can change the default selected button.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation selected={2}>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Default" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                    <SubNavigation selected={2}>
+                                        <SubNavigation.Item label="Button 1" />
+                                        <SubNavigation.Item label="Button 2" />
+                                        <SubNavigation.Item label="Default" />
+                                        <SubNavigation.Item label="Button 4" />
+                                    </SubNavigation>
+                                </div>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {selectedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {selectedSample}
+                    </Highlighter>
 
-                {/* onClick Parent Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    onClick Parent Handler
-                    <Header.Subheader>
-                        A Sub Navigation can a have <code>onClick</code> event handler.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick Parent Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        onClick Parent Handler
+                        <Header.Subheader>
+                            A Sub Navigation can a have <code>onClick</code> event handler.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation onClick={this._onParentClick.bind(this)}>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Button 3" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                    <SubNavigation onClick={this._onParentClick.bind(this)}>
+                                        <SubNavigation.Item label="Button 1" />
+                                        <SubNavigation.Item label="Button 2" />
+                                        <SubNavigation.Item label="Button 3" />
+                                        <SubNavigation.Item label="Button 4" />
+                                    </SubNavigation>
+                                </div>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickParentSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickParentSample}
+                    </Highlighter>
 
-                {/* onClick Children Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    onClick Children Handler
-                    <Header.Subheader>
-                        Can handle an onClick event from parent.
-                    </Header.Subheader>
-                </Header>
+                    {/* onClick Children Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        onClick Children Handler
+                        <Header.Subheader>
+                            Can handle an onClick event from parent.
+                        </Header.Subheader>
+                    </Header>
 
-                <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation>
-                                    <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
-                </MediaQuery>
+                    <MediaQuery maxWidth={767}>
+                        {matches => {
+                            return (
+                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                    <SubNavigation>
+                                        <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
+                                        <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
+                                        <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
+                                        <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
+                                    </SubNavigation>
+                                </div>
+                            );
+                        }}
+                    </MediaQuery>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickChildrenSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickChildrenSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

@@ -220,9 +220,11 @@ export default class ViewsTitleBar extends React.Component {
                     <SubNavigation.Item label="Header" />
                 </SubNavigation>
 
-                {this._renderCard()}
+                <Main.Content>
+                    {this._renderCard()}
 
-                {this._renderHeader()}
+                    {this._renderHeader()}
+                </Main.Content>
             </Main>
         );
     }

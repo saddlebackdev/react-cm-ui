@@ -292,222 +292,224 @@ export default class ElementsHeader extends React.Component {
             <Main page="headers">
                 <TitleBar title="Header" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Page Headers */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Page Headers
-                    <Header.Subheader>
-                        Headers may be oriented to give the hierarchy of a section in the context of the page.
-                    </Header.Subheader>
-                </Header>
+                    {/* Page Headers */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Page Headers
+                        <Header.Subheader>
+                            Headers may be oriented to give the hierarchy of a section in the context of the page.
+                        </Header.Subheader>
+                    </Header>
 
-                <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Page headings are sized using <code>rem</code> and are not affected by surrounding content size.</p>
+                    <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Page headings are sized using <code>rem</code> and are not affected by surrounding content size.</p>
 
-                <Header as="h1">Header 1</Header>
-                <Header as="h2">Header 2</Header>
-                <Header as="h3">Header 3</Header>
-                <Header as="h4">Header 4</Header>
-                <Header as="h5">Header 5</Header>
-                <Header as="h6">Header 6</Header>
+                    <Header as="h1">Header 1</Header>
+                    <Header as="h2">Header 2</Header>
+                    <Header as="h3">Header 3</Header>
+                    <Header as="h4">Header 4</Header>
+                    <Header as="h5">Header 5</Header>
+                    <Header as="h6">Header 6</Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {headersSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {headersSample}
+                    </Highlighter>
 
-                {/* Content Headers */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Content Headers
-                    <Header.Subheader>
-                        Headers may be oriented to give the importance of a section.
-                    </Header.Subheader>
-                </Header>
+                    {/* Content Headers */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Content Headers
+                        <Header.Subheader>
+                            Headers may be oriented to give the importance of a section.
+                        </Header.Subheader>
+                    </Header>
 
-                <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Content headings are sized with <code>em</code> and are based on the <code>font-size</code> of their container.</p>
+                    <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Content headings are sized with <code>em</code> and are based on the <code>font-size</code> of their container.</p>
 
-                <Header size="xlarge">XLarge Header</Header>
-                <Header size="large">Large Header</Header>
-                <Header size="medium">Medium Header</Header>
-                <Header size="small">Small Header</Header>
-                <Header size="xsmall">XSmall Header</Header>
-                <Header size="xxsmall">XXSmall Header</Header>
+                    <Header size="xlarge">XLarge Header</Header>
+                    <Header size="large">Large Header</Header>
+                    <Header size="medium">Medium Header</Header>
+                    <Header size="small">Small Header</Header>
+                    <Header size="xsmall">XSmall Header</Header>
+                    <Header size="xxsmall">XXSmall Header</Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {contentHeadersSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {contentHeadersSample}
+                    </Highlighter>
 
-                {/* Subheader */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Subheader
-                    <Header.Subheader>
-                        Headers may be formatted to label smaller or de-emphasized content.
-                    </Header.Subheader>
-                </Header>
+                    {/* Subheader */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Subheader
+                        <Header.Subheader>
+                            Headers may be formatted to label smaller or de-emphasized content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="medium" style={{ marginTop: '33px' }} sub={true}>
-                    The Best Header In The World
-                    <Header.Subheader>
-                        Oh yeah? Well, I think I'm the best subheader in the world.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="medium" style={{ marginTop: '33px' }} sub={true}>
+                        The Best Header In The World
+                        <Header.Subheader>
+                            Oh yeah? Well, I think I'm the best subheader in the world.
+                        </Header.Subheader>
+                    </Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {subheadersSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {subheadersSample}
+                    </Highlighter>
 
-                {/* Icon */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Icon
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    {/* Icon */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Icon
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="xlarge" icon={true}>
-                    <Icon type="check" />
-                    XLarge Icon Header
-                </Header>
+                    <Header size="xlarge" icon={true}>
+                        <Icon type="check" />
+                        XLarge Icon Header
+                    </Header>
 
-                <Header size="large" icon={true}>
-                    <Icon type="check" />
-                    Large Icon Header
-                </Header>
+                    <Header size="large" icon={true}>
+                        <Icon type="check" />
+                        Large Icon Header
+                    </Header>
 
-                <Header size="medium" icon={true}>
-                    <Icon type="check" />
-                    Medium Icon Header
-                </Header>
+                    <Header size="medium" icon={true}>
+                        <Icon type="check" />
+                        Medium Icon Header
+                    </Header>
 
-                <Header size="small" icon={true}>
-                    <Icon type="check" />
-                    Small Icon Header
-                </Header>
+                    <Header size="small" icon={true}>
+                        <Icon type="check" />
+                        Small Icon Header
+                    </Header>
 
-                <Header size="xsmall" icon={true}>
-                    <Icon type="check" />
-                    XSmall Icon Header
-                </Header>
+                    <Header size="xsmall" icon={true}>
+                        <Icon type="check" />
+                        XSmall Icon Header
+                    </Header>
 
-                <Header size="xxsmall" icon={true}>
-                    <Icon type="check" />
-                    XXSmall Icon Header
-                </Header>
+                    <Header size="xxsmall" icon={true}>
+                        <Icon type="check" />
+                        XXSmall Icon Header
+                    </Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {iconSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconSample}
+                    </Highlighter>
 
-                {/* Icon & Subheader */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Icon & Subheader
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    {/* Icon & Subheader */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Icon & Subheader
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="xlarge" icon={true} sub={true}>
-                    <Icon type="check" />
-                    XLarge Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="xlarge" icon={true} sub={true}>
+                        <Icon type="check" />
+                        XLarge Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="large" icon={true} sub={true}>
-                    <Icon type="check" />
-                    Large Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="large" icon={true} sub={true}>
+                        <Icon type="check" />
+                        Large Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="medium" icon={true} sub={true}>
-                    <Icon type="check" />
-                    Medium Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="medium" icon={true} sub={true}>
+                        <Icon type="check" />
+                        Medium Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="small" icon={true} sub={true}>
-                    <Icon type="check" />
-                    Small Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="small" icon={true} sub={true}>
+                        <Icon type="check" />
+                        Small Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="xsmall" icon={true} sub={true}>
-                    <Icon type="check" />
-                    XSmall Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="xsmall" icon={true} sub={true}>
+                        <Icon type="check" />
+                        XSmall Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="xsmall" icon={true} sub={true}>
-                    <Icon type="check" />
-                    XXSmall Icon & Subheader Header
-                    <Header.Subheader>
-                        A header can have an icon aligned to the left of the content.
-                    </Header.Subheader>
-                </Header>
+                    <Header size="xsmall" icon={true} sub={true}>
+                        <Icon type="check" />
+                        XXSmall Icon & Subheader Header
+                        <Header.Subheader>
+                            A header can have an icon aligned to the left of the content.
+                        </Header.Subheader>
+                    </Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {iconAndSubheaderSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconAndSubheaderSample}
+                    </Highlighter>
 
-                {/* Colors */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Colors
-                    <Header.Subheader>
-                        A header can be formatted with different colors.
-                    </Header.Subheader>
-                </Header>
+                    {/* Colors */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Colors
+                        <Header.Subheader>
+                            A header can be formatted with different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header color="static" size="small">Static</Header>
-                <Header color="text" size="small">Text</Header>
+                    <Header color="static" size="small">Static</Header>
+                    <Header color="text" size="small">Text</Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorsSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorsSample}
+                    </Highlighter>
 
-                {/* Colors Inverted */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Colors Inverted
-                    <Header.Subheader>
-                        A header's color can be inverted.
-                    </Header.Subheader>
-                </Header>
+                    {/* Colors Inverted */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Colors Inverted
+                        <Header.Subheader>
+                            A header's color can be inverted.
+                        </Header.Subheader>
+                    </Header>
 
-                <Block inverse={true} style={{ marginTop: '33px' }}>
-                    <Header color="static" inverse={true} size="small">Static</Header>
-                    <Header color="text" inverse={true} size="small">Text</Header>
-                </Block>
+                    <Block inverse={true} style={{ marginTop: '33px' }}>
+                        <Header color="static" inverse={true} size="small">Static</Header>
+                        <Header color="text" inverse={true} size="small">Text</Header>
+                    </Block>
 
-                <Highlighter customStyle={{ marginTop: '44px' }}>
-                    {colorsInvertedSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginTop: '44px' }}>
+                        {colorsInvertedSample}
+                    </Highlighter>
 
-                {/* Weight */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                    Weight
-                    <Header.Subheader>
-                        A header's weight can be changed.
-                    </Header.Subheader>
-                </Header>
+                    {/* Weight */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                        Weight
+                        <Header.Subheader>
+                            A header's weight can be changed.
+                        </Header.Subheader>
+                    </Header>
 
-                <Header size="medium" weight="bold">Bold</Header>
-                <Header size="medium" weight="normal">Normal</Header>
-                <Header size="medium" weight="semibold">SemiBold</Header>
+                    <Header size="medium" weight="bold">Bold</Header>
+                    <Header size="medium" weight="normal">Normal</Header>
+                    <Header size="medium" weight="semibold">SemiBold</Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {weightSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {weightSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

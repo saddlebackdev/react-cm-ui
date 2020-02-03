@@ -243,119 +243,121 @@ export default class ModulesDatePickerCalendar extends React.Component {
             <Main page="headers">
                 <TitleBar title="Date Picker" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Date Picker Calendar */}
-                <Header anchor="date-picker-calendar" size="large" style={{ marginTop: '55px' }}>
-                    Date Picker Calendar
-                </Header>
+                    {/* Date Picker Calendar */}
+                    <Header anchor="date-picker-calendar" size="large" style={{ marginTop: '55px' }}>
+                        Date Picker Calendar
+                    </Header>
 
-                <DatePickerCalendar />
+                    <DatePickerCalendar />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {datePickerSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {datePickerSample}
+                    </Highlighter>
 
-                {/* Events */}
-                <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
-                    Events
-                </Header>
+                    {/* Events */}
+                    <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
+                        Events
+                    </Header>
 
-                <DatePickerCalendar
-                    events={[
-                        moment().subtract(1, 'days'),
-                        moment().subtract(2, 'days'),
-                        moment().subtract(3, 'days'),
-                        moment().subtract(4, 'days'),
-                    ]}
-                />
+                    <DatePickerCalendar
+                        events={[
+                            moment().subtract(1, 'days'),
+                            moment().subtract(2, 'days'),
+                            moment().subtract(3, 'days'),
+                            moment().subtract(4, 'days'),
+                        ]}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {eventsSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {eventsSample}
+                    </Highlighter>
 
-                {/* Filter Dates */}
-                <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
-                    Filter Dates
-                </Header>
+                    {/* Filter Dates */}
+                    <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
+                        Filter Dates
+                    </Header>
 
-                <DatePickerCalendar
-                    filterDates={this._isWeekday}
-                />
+                    <DatePickerCalendar
+                        filterDates={this._isWeekday}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {filterDatesSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {filterDatesSample}
+                    </Highlighter>
 
-                {/* Locale */}
-                <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
-                    Locale
-                </Header>
+                    {/* Locale */}
+                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                        Locale
+                    </Header>
 
-                <DatePickerCalendar
-                    locale={moment().locale()}
-                />
+                    <DatePickerCalendar
+                        locale={moment().locale()}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {localeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {localeSample}
+                    </Highlighter>
 
-                {/* Max Date */}
-                <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
-                    Max Date
-                </Header>
+                    {/* Max Date */}
+                    <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
+                        Max Date
+                    </Header>
 
-                <DatePickerCalendar
-                    maxDate={moment()}
-                />
+                    <DatePickerCalendar
+                        maxDate={moment()}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {maxDateSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {maxDateSample}
+                    </Highlighter>
 
-                {/* Min Date */}
-                <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
-                    Min Date
-                </Header>
+                    {/* Min Date */}
+                    <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
+                        Min Date
+                    </Header>
 
-                <DatePickerCalendar
-                    minDate={moment().subtract(10, 'years')}
-                />
+                    <DatePickerCalendar
+                        minDate={moment().subtract(10, 'years')}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {minDateSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {minDateSample}
+                    </Highlighter>
 
-                {/* onChange Event Handler */}
-                <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
-                    onChange Event Handler
-                </Header>
+                    {/* onChange Event Handler */}
+                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
+                        onChange Event Handler
+                    </Header>
 
-                <DatePickerCalendar
-                    date={onChangeDate}
-                    onChange={this._onChange}
-                />
+                    <DatePickerCalendar
+                        date={onChangeDate}
+                        onChange={this._onChange}
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onChangeSample}
+                    </Highlighter>
 
-                {/* onMonthChange */}
-                <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
-                    onMonthChange Event Handler
-                </Header>
+                    {/* onMonthChange */}
+                    <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
+                        onMonthChange Event Handler
+                    </Header>
 
-                <DatePickerCalendar
-                    onMonthChange={() => window.alert('The month was changed!') }
-                />
+                    <DatePickerCalendar
+                        onMonthChange={() => window.alert('The month was changed!') }
+                    />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onMonthChangeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onMonthChangeSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

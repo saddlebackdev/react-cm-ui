@@ -1800,17 +1800,19 @@ export default class ModulesDropdown extends React.Component {
                     <SubNavigation.Item label="Drodown.Item" />
                 </SubNavigation>
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    {this.state.subNavIndex === 1 ? (
-                        <TableProps props={dropdownItemProps} />
-                    ) : (
-                        <TableProps props={dropdownProps} />
-                    )}
-                </Card>
+                        {this.state.subNavIndex === 1 ? (
+                            <TableProps props={dropdownItemProps} />
+                        ) : (
+                            <TableProps props={dropdownProps} />
+                        )}
+                    </Card>
 
-                {examplesJSX}
+                    {examplesJSX}
+                </Main.Content>
             </Main>
         );
     }

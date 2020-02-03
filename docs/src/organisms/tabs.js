@@ -105,47 +105,22 @@ export default class CollectionsTabs extends React.Component {
             <Main page="headers">
                 <TitleBar title="Tabs" />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Tabs */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Tabs
-                    <Header.Subheader>
-                        Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                    </Header.Subheader>
-                </Header>
+                    {/* Tabs */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Tabs
+                        <Header.Subheader>
+                            Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        </Header.Subheader>
+                    </Header>
 
-                <Tabs id="tabs">
-                    <Tabs.Item label="Tab 1">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                    </Tabs.Item>
-
-                    <Tabs.Item label="Tab 2">
-                        <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                    </Tabs.Item>
-                </Tabs>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {tabsSample}
-                </Highlighter>
-
-                {/* Nested Tabs */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Nested Tabs
-                    <Header.Subheader>
-                        Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
-                    </Header.Subheader>
-                </Header>
-
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Tabs nest>
+                    <Tabs id="tabs">
                         <Tabs.Item label="Tab 1">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
                         </Tabs.Item>
@@ -154,11 +129,38 @@ export default class CollectionsTabs extends React.Component {
                             <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
                         </Tabs.Item>
                     </Tabs>
-                </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {nestSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {tabsSample}
+                    </Highlighter>
+
+                    {/* Nested Tabs */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Nested Tabs
+                        <Header.Subheader>
+                            Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Tabs nest>
+                            <Tabs.Item label="Tab 1">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
+                            </Tabs.Item>
+
+                            <Tabs.Item label="Tab 2">
+                                <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
+                            </Tabs.Item>
+                        </Tabs>
+                    </Block>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {nestSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

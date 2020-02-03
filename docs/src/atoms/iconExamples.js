@@ -274,213 +274,215 @@ class ElementsIconExamples extends React.PureComponent {
 
                 <IconSubNavigation />
 
-                <Card>
-                    <Header size="large">Props</Header>
+                <Main.Content>
+                    <Card>
+                        <Header size="large">Props</Header>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Icon */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Icon
-                    <Header.Subheader>
-                        A standard icon. The
-                        {' '}
-                        <code>type</code>
-                        {' '}
-prop is required.
-                    </Header.Subheader>
-                </Header>
+                    {/* Icon */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Icon
+                        <Header.Subheader>
+                            A standard icon. The
+                            {' '}
+                            <code>type</code>
+                            {' '}
+    prop is required.
+                        </Header.Subheader>
+                    </Header>
 
-                <Icon type="activity" />
+                    <Icon type="activity" />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {iconSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {iconSample}
+                    </Highlighter>
 
-                {/* Align */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Align
-                    <Header.Subheader>
-                        Icons can change the side the margin is positioned on.
-                    </Header.Subheader>
-                </Header>
+                    {/* Align */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Align
+                        <Header.Subheader>
+                            Icons can change the side the margin is positioned on.
+                        </Header.Subheader>
+                    </Header>
 
-                <Icon align="left" type="activity" />
-                <Icon align="left" type="award" />
-                <Icon align="left" type="user" />
-                <br />
-                <br />
-
-                <div style={{ textAlign: 'right' }}>
-                    <Icon align="right" type="activity" />
-                    <Icon align="right" type="award" />
-                    <Icon align="right" type="user" />
-                </div>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {alignSample}
-                </Highlighter>
-
-                {/* Color */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Color
-                    <Header.Subheader>
-                        Icons can be formatted with different colors.
-                    </Header.Subheader>
-                </Header>
-
-                <Icon color="alert" type="activity" />
-                <Icon color="disable" type="heart" />
-                <Icon color="highlight" type="caret-down" />
-                <Icon color="primary" type="calendar" />
-                <Icon color="static" type="cards" />
-                <Icon color="success" type="time" />
-                <Icon color="warning" type="exclamation" />
-                <br />
-                <br />
-
-                <Icon color="action" type="circle-filled" />
-                <Icon color="condition" type="time" />
-                <Icon color="configuration" type="comment" />
-                <Icon color="subject" type="heart" />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {colorSample}
-                </Highlighter>
-
-                {/* Inverse */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Inverse
-                    <Header.Subheader>
-                        Icon colors can be inverted to appear on darker backgrounds better.
-                    </Header.Subheader>
-                </Header>
-
-                <Block inverse>
-                    <Icon color="alert" inverse type="activity" />
-                    <Icon color="disable" inverse type="heart" />
-                    <Icon color="highlight" inverse type="caret-down" />
-                    <Icon color="primary" inverse type="calendar" />
-                    <Icon color="static" inverse type="cards" />
-                    <Icon color="success" inverse type="time" />
-                    <Icon color="warning" inverse type="exclamation" />
+                    <Icon align="left" type="activity" />
+                    <Icon align="left" type="award" />
+                    <Icon align="left" type="user" />
                     <br />
                     <br />
 
-                    <Icon color="action" inverse type="circle-filled" />
-                    <Icon color="condition" inverse type="time" />
-                    <Icon color="configuration" inverse type="comment" />
-                    <Icon color="subject" inverse type="heart" />
-                </Block>
+                    <div style={{ textAlign: 'right' }}>
+                        <Icon align="right" type="activity" />
+                        <Icon align="right" type="award" />
+                        <Icon align="right" type="user" />
+                    </div>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {inverseSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {alignSample}
+                    </Highlighter>
 
-                {/* Compact */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Compact
-                    <Header.Subheader>
-                        Icons can appear without space to left or right.
-                    </Header.Subheader>
-                </Header>
+                    {/* Color */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Color
+                        <Header.Subheader>
+                            Icons can be formatted with different colors.
+                        </Header.Subheader>
+                    </Header>
 
-                <Icon compact type="activity" />
-                <Icon compact type="calendar" />
-                <Icon compact type="cards" />
-                <Icon compact type="time" />
+                    <Icon color="alert" type="activity" />
+                    <Icon color="disable" type="heart" />
+                    <Icon color="highlight" type="caret-down" />
+                    <Icon color="primary" type="calendar" />
+                    <Icon color="static" type="cards" />
+                    <Icon color="success" type="time" />
+                    <Icon color="warning" type="exclamation" />
+                    <br />
+                    <br />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {compactSample}
-                </Highlighter>
+                    <Icon color="action" type="circle-filled" />
+                    <Icon color="condition" type="time" />
+                    <Icon color="configuration" type="comment" />
+                    <Icon color="subject" type="heart" />
 
-                {/* onClick Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    onClick Event Handler
-                    <Header.Subheader>
-                        Icons can handle an onClick event.
-                    </Header.Subheader>
-                </Header>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {colorSample}
+                    </Highlighter>
 
-                <Icon type="activity" onClick={onIconClick} />
+                    {/* Inverse */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Inverse
+                        <Header.Subheader>
+                            Icon colors can be inverted to appear on darker backgrounds better.
+                        </Header.Subheader>
+                    </Header>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {onClickSample}
-                </Highlighter>
+                    <Block inverse>
+                        <Icon color="alert" inverse type="activity" />
+                        <Icon color="disable" inverse type="heart" />
+                        <Icon color="highlight" inverse type="caret-down" />
+                        <Icon color="primary" inverse type="calendar" />
+                        <Icon color="static" inverse type="cards" />
+                        <Icon color="success" inverse type="time" />
+                        <Icon color="warning" inverse type="exclamation" />
+                        <br />
+                        <br />
 
-                {/* Rotate */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Rotate
-                    <Header.Subheader>
-                        Icons can be rotated.
-                    </Header.Subheader>
-                </Header>
+                        <Icon color="action" inverse type="circle-filled" />
+                        <Icon color="condition" inverse type="time" />
+                        <Icon color="configuration" inverse type="comment" />
+                        <Icon color="subject" inverse type="heart" />
+                    </Block>
 
-                <Icon rotate={-90} type="heart" />
-                <Icon rotate={180} type="chevron-wh-up" />
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {inverseSample}
+                    </Highlighter>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {rotateSample}
-                </Highlighter>
+                    {/* Compact */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Compact
+                        <Header.Subheader>
+                            Icons can appear without space to left or right.
+                        </Header.Subheader>
+                    </Header>
 
-                {/* Size */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Size
-                    <Header.Subheader>
-                        Icons can have different sizes.
-                    </Header.Subheader>
-                </Header>
+                    <Icon compact type="activity" />
+                    <Icon compact type="calendar" />
+                    <Icon compact type="cards" />
+                    <Icon compact type="time" />
 
-                <Icon size={64} type="cloud-upload" />
-                <Icon size={32} type="heart" />
-                <Icon size="xlarge" type="activity" />
-                <Icon size="large" type="award" />
-                <Icon size="medium" type="book-open" />
-                <Icon size="small" type="user" />
-                <Icon size="xsmall" type="time" />
-                <Icon size="xxsmall" type="check" />
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {compactSample}
+                    </Highlighter>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {sizeSample}
-                </Highlighter>
+                    {/* onClick Event Handler */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        onClick Event Handler
+                        <Header.Subheader>
+                            Icons can handle an onClick event.
+                        </Header.Subheader>
+                    </Header>
 
-                {/* Spin */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Spin
-                    <Header.Subheader>
-                        Icons can spin clockwise.
-                    </Header.Subheader>
-                </Header>
+                    <Icon type="activity" onClick={onIconClick} />
 
-                <Icon spin type="activity" />
-                <Icon spin type="award" />
-                <Icon spin type="book-open" />
-                <Icon spin type="user" />
-                <Icon spin type="time" />
-                <Icon spin type="check" />
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {onClickSample}
+                    </Highlighter>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {spinSample}
-                </Highlighter>
+                    {/* Rotate */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Rotate
+                        <Header.Subheader>
+                            Icons can be rotated.
+                        </Header.Subheader>
+                    </Header>
 
-                {/* Title */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Title
-                    <Header.Subheader>
-                        Icons can have a
-                        {' '}
-                        <code>title</code>
-                        {' '}
-prop that gives them a &ldquo;tooltip&rdquo;.
-                    </Header.Subheader>
-                </Header>
+                    <Icon rotate={-90} type="heart" />
+                    <Icon rotate={180} type="chevron-wh-up" />
 
-                <Icon type="activity" title="I am an Activity Icon!" />
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {rotateSample}
+                    </Highlighter>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {titleSample}
-                </Highlighter>
+                    {/* Size */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Size
+                        <Header.Subheader>
+                            Icons can have different sizes.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Icon size={64} type="cloud-upload" />
+                    <Icon size={32} type="heart" />
+                    <Icon size="xlarge" type="activity" />
+                    <Icon size="large" type="award" />
+                    <Icon size="medium" type="book-open" />
+                    <Icon size="small" type="user" />
+                    <Icon size="xsmall" type="time" />
+                    <Icon size="xxsmall" type="check" />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {sizeSample}
+                    </Highlighter>
+
+                    {/* Spin */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Spin
+                        <Header.Subheader>
+                            Icons can spin clockwise.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Icon spin type="activity" />
+                    <Icon spin type="award" />
+                    <Icon spin type="book-open" />
+                    <Icon spin type="user" />
+                    <Icon spin type="time" />
+                    <Icon spin type="check" />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {spinSample}
+                    </Highlighter>
+
+                    {/* Title */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        Title
+                        <Header.Subheader>
+                            Icons can have a
+                            {' '}
+                            <code>title</code>
+                            {' '}
+    prop that gives them a &ldquo;tooltip&rdquo;.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Icon type="activity" title="I am an Activity Icon!" />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {titleSample}
+                    </Highlighter>
+                </Main.Content>
             </Main>
         );
     }

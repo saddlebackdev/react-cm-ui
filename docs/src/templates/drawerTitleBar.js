@@ -163,7 +163,7 @@ class ModulesDrawerTitleBar extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -353,7 +353,7 @@ class ModulesDrawerTitleBar extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerTitleBarSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }
