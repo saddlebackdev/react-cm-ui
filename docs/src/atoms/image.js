@@ -1,5 +1,3 @@
-'use strict';
-
 import 'global/images/marty-mcfly.jpg';
 
 import { Card, Header, Image, TitleBar } from 'react-cm-ui';
@@ -15,7 +13,7 @@ export default class ImageSample extends React.Component {
 
     render() {
         return (
-            <Image src="/images/marty-mcfly.jpg" />
+            <Image src="/global/images/marty-mcfly.jpg" />
         );
     }
 
@@ -118,8 +116,8 @@ export default class ElementsImage extends React.Component {
         ];
 
         const martyMcFlyImageSrc = window.location.host.indexOf('localhost') > -1 ?
-            '/_/docs/src/images/marty-mcfly.jpg' :
-            '/images/marty-mcfly.jpg';
+            '/global/images/marty-mcfly.jpg' :
+            '/global/images/marty-mcfly.jpg';
 
         return (
             <Main page="headers">

@@ -1,5 +1,3 @@
-'use strict';
-
 import 'global/images/avatar1.jpg';
 import 'global/images/avatar2.jpg';
 import 'global/images/avatar3.jpg';
@@ -15,8 +13,8 @@ import React from 'react';
 import TableProps from '../global/tableProps';
 
 const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
-    `/_/docs/src/images/${imageFileName}` :
-    `/images/${imageFileName}`;
+    `/global/images/${imageFileName}` :
+    `/global/images/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
 
@@ -258,27 +256,27 @@ export default class DisableSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/images/avatar1.jpg',
+                'avatar': '/global/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/images/avatar2.jpg',
+                'avatar': '/global/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/images/avatar3.jpg',
+                'avatar': '/global/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/images/avatar4.jpg',
+                'avatar': '/global/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/images/avatar5.jpg',
+                'avatar': '/global/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34
@@ -585,27 +583,27 @@ export default class SelectionOptionComponentSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/images/avatar1.jpg',
+                'avatar': '/global/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/images/avatar2.jpg',
+                'avatar': '/global/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/images/avatar3.jpg',
+                'avatar': '/global/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/images/avatar4.jpg',
+                'avatar': '/global/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/images/avatar5.jpg',
+                'avatar': '/global/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34
@@ -652,27 +650,27 @@ export default class SelectionUnderlineSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/images/avatar1.jpg',
+                'avatar': '/global/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/images/avatar2.jpg',
+                'avatar': '/global/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/images/avatar3.jpg',
+                'avatar': '/global/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/images/avatar4.jpg',
+                'avatar': '/global/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/images/avatar5.jpg',
+                'avatar': '/global/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34
