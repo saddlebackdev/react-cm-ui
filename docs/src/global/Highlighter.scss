@@ -6,15 +6,10 @@ $blockMinHeight: 348px; // 14 lines
 .highlighter.block {
     border-bottom: 1px solid color(borderColor);
     border-top: 1px solid color(borderColor);
-    // max-height: $blockMaxHeight;
-    // min-height: $blockMinHeight;
     > div {
-        // height: auto;
-        // max-height: $blockMaxHeight;
-        // min-height: $blockMinHeight;
+        border-radius: 3px;
     }
     pre {
-        background-color: color(backgroundColor) !important;
         font-size: rem(13.5px);
         line-height: 20px;
         padding: 22px 11px !important;
@@ -22,7 +17,6 @@ $blockMinHeight: 348px; // 14 lines
     }
     code {
         background-color: transparent;
-        border-radius: 0;
         color: inherit;
         font-size: inherit;
         padding: 0;
@@ -37,14 +31,12 @@ $blockMinHeight: 348px; // 14 lines
     }
     pre {
         border: 0;
-        border-radius: 3px;
         display: inline-block !important;
         font-size: rem(13.5px);
         margin: 0 !important;
     }
     code {
         background-color: transparent;
-        border-radius: 0;
         color: inherit;
         font-size: inherit;
         padding: 0;
@@ -53,6 +45,6 @@ $blockMinHeight: 348px; // 14 lines
 
 @media only screen and (min-width: 768px) {
     .highlighter {
-        margin: 44px -22px;
+        margin: 44px 0;
     }
 }

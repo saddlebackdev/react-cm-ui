@@ -1,4 +1,4 @@
-import './Highlighter.scss';
+import './highlighter.scss';
 
 import { prism, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ClassNames from 'classnames';
@@ -21,10 +21,10 @@ const propTypes = {
 const defaultProps = {
     className: undefined,
     customStyle: undefined,
-    language: 'javascript',
+    language: 'jsx',
     showLineNumbers: true,
     style: undefined,
-    theme: 'light',
+    theme: 'dark',
     type: 'block',
 };
 
