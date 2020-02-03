@@ -1,6 +1,4 @@
 import './home.scss';
-import './style-guide/cm-ui-kit_as_1.6.2.sketch';
-import './style-guide/cm-ui-kit_as_1.6.2.pdf';
 
 import {
     Button,

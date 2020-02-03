@@ -1,9 +1,9 @@
 import { IndexRoute, Route } from 'react-router';
 import React from 'react';
-import App from './app/app.js';
+import CoreApp from './app';
 
 const routes = (
-    <Route path="/" component={App}>
+    <Route path="/" component={CoreApp}>
         <IndexRoute
             getComponent={(location, callback) => {
                 import('./app/home')
