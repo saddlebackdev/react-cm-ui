@@ -12,9 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TableProps from '../global/tableProps';
 
-const getImageUrl = (imageFileName) => window.location.host.indexOf('localhost') > -1 ?
-    `/global/images/${imageFileName}` :
-    `/global/images/${imageFileName}`;
+const getImageUrl = (imageFileName) => `/global/images/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
 

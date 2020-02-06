@@ -115,10 +115,6 @@ export default class ElementsImage extends React.Component {
             },
         ];
 
-        const martyMcFlyImageSrc = window.location.host.indexOf('localhost') > -1 ?
-            '/global/images/marty-mcfly.jpg' :
-            '/global/images/marty-mcfly.jpg';
-
         return (
             <Main page="headers">
                 <TitleBar title="Image" />
@@ -138,7 +134,7 @@ export default class ElementsImage extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Image src={martyMcFlyImageSrc} />
+                    <Image src="/global/images/marty-mcfly.jpg" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {imageSample}
