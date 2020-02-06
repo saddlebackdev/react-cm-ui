@@ -1,4 +1,4 @@
-@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
 
 $prefixDrawerDataGroup: drawer--data_group;
 $prefixPageDataGroup: page--data_group;
@@ -92,7 +92,7 @@ $prefixPageDataGroups: page--data_groups;
                 flex-grow: 1;
             }
             &_value, &_field_name, &_field_name_and_value, &_field_value {
-                font-weight: $default-font-weight-semibold;
+                font-weight: $fontWeightSemiBold;
             }
             &_value {
                 font-size: rem(16px);
@@ -138,7 +138,7 @@ $prefixPageDataGroups: page--data_groups;
         .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {
             &_row {
                 &_value, &_field_name, &_field_name_and_value {
-                    font-weight: $default-font-weight-normal;
+                    font-weight: $fontWeightRegular;
                 }
                 &_value {
                     font-size: rem(14px);

@@ -1,0 +1,120 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+$size: 22px;
+$size-dot: 14px;
+
+.ui.radio {
+    display: inline-block;
+    margin-right: 22px;
+    min-height: $size;
+    position: relative;
+    text-align: left;
+    .input { display: none; }
+    label {
+        color: color(color);
+        cursor: pointer;
+        display: block;
+        font-size: rem(14px);
+        position: relative;
+        > span { display: inline-block; padding-left: rem(33px); padding-top: 2px; }
+        &::before, &::after {
+            content: '';
+            height: $size;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition: opacity 150ms ease;
+            width: $size;
+        }
+        &::before { // faux input
+            background: color(backgroundColor);
+            border: 1px solid color(borderColor);
+            border-radius: rem(11px);
+        }
+        &::after { // dot/check
+            background-color: color(backgroundColorHighlight);
+            border-radius: rem($size-dot / 2);
+            height: $size-dot;
+            margin: ($size - $size-dot) / 2;
+            opacity: 0;
+            width: $size-dot;
+        }
+        &.label-not-clickable {
+            cursor: auto;
+            &::before, &::after { cursor: pointer; }
+        }
+    }
+    .input:checked + {
+        label::after { opacity: 1; }
+    }
+    &-align-right {
+        margin-left: 11px;
+        margin-right: 0;
+        text-align: left;
+        label {
+            > span {
+                padding-left: 0;
+                padding-right: rem(33px);
+            }
+            &::before, &::after { left: auto; right: 0; }
+        }
+    }
+    &-full-width {
+        display: block;
+        margin-right: 0;
+    }
+    &-pill {
+        .radio-item {
+            display: inline-block;
+            label {
+                background-color: color(backgroundColor);
+                border: 1px solid color(borderColor);
+                border-right: 0;
+                cursor: pointer;
+                display: inline-block;
+                font-size: rem(14px);
+                font-weight: $fontWeightRegular;
+                outline: none;
+                padding: rem(6px) rem(22px);
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 125ms linear, border 125ms linear, color 125ms linear;
+                white-space: nowrap;
+                &::before, &::after { display: none; }
+            }
+            .input:checked + label {
+                background-color: color(backgroundColorHighlight);
+                border-color: color(borderColorHighlight);
+                color: color(colorInverse);
+            }
+            &:first-child {
+                label { border-radius: 15.5px 0 0 15.5px; }
+            }
+            &:last-child {
+                label { border-right: 1px solid color(borderColor); border-radius: 0 15.5px 15.5px 0; }
+                .input:checked + label { border-right: 1px solid color(borderColorHighlight); }
+            }
+            &.radio-item-is-checked + .radio-item label { border-left: 1px solid color(borderColorHighlight); }
+        }
+    }
+    &-disabled {
+        label {
+            cursor: auto;
+            &::before { background: color(backgroundColorDisable); }
+            &::after { background-color: color(backgroundColorStatic); }
+        }
+        &.radio-pill {
+            .radio-item {
+                label { cursor: default; }
+                .input:checked + label {
+                    background-color: color(backgroundColorStatic);
+                    border-color: color(borderColorTertiary);
+                }
+                &:last-child {
+                    .input:checked + label { border-right: 1px solid color(borderColorTertiary); }
+                }
+                &.radio-item-is-checked + .radio-item label { border-left: 1px solid color(borderColorTertiary); }
+            }
+        }
+    }
+}

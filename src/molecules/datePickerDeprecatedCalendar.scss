@@ -1,0 +1,92 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+$pointer-size: 8px;
+
+%triangle-pointer {
+    margin-left: -$pointer-size;
+    position: absolute;
+    &, &::before {
+        border: $pointer-size solid transparent;
+        box-sizing: content-box;
+        height: 0;
+        position: absolute;
+        width: 1px;
+    }
+    &::before {
+        border-bottom-color: color(backgroundColor);
+        border-width: $pointer-size;
+        content: '';
+        left: -$pointer-size;
+        z-index: -1;
+    }
+}
+%triangle-pointer-up {
+    @extend %triangle-pointer;
+    margin-top: -$pointer-size;
+    top: 0;
+    &, &::before { border-bottom-color: color(backgroundColor); border-top: 0; }
+    &::before { border-bottom-color: color(borderColor); top: -1px; }
+}
+%triangle-pointer-down {
+    @extend %triangle-pointer;
+    bottom: 0;
+    margin-bottom: -$pointer-size;
+    &, &::before { border-bottom: 0; border-top-color: color(backgroundColor); }
+    &::before { border-top-color: color(borderColor); bottom: -1px; }
+}
+
+.date-picker-deprecated-tether-element {
+    z-index: 10000;
+    .date-picker-pointer { content: ''; left: 50px; position: absolute; }
+    &-attached-top .date-picker-pointer { @extend %triangle-pointer-up; }
+    &-attached-bottom .date-picker-pointer { @extend %triangle-pointer-down; }
+    &-attached-top.datepicker-tether-element .date-picker-pointer { margin-top: -20px; }
+    .ui.date-picker-deprecated-calendar {
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColor);
+        border-radius: 3px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .24);
+        padding: 22px;
+        width: 298px;
+        .date-picker-month-container { margin: 0 -11px; }
+    }
+}
+    .ui.date-picker-deprecated-calendar {
+        display: inline-block;
+        font-size: rem(16px);
+        position: relative;
+        .date-picker-month-container {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 0 -13px;
+            position: relative;
+        }
+            .date-picker-selected-month-year {
+                align-items: flex-start;
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: 9px;
+                width: 100%;
+                .date-picker-selected- {
+                    &month, &year {
+                        color: color(colorSecondary);
+                        cursor: pointer;
+                        font-size: rem(16px);
+                        font-weight: $fontWeightBold;
+                        position: relative;
+                        i { color: color(color); }
+                    }
+                }
+                .date-picker-selected-month { margin-right: auto; }
+                .date-picker-selected-year { margin-left: auto; text-align: right; }
+            }
+            .date-picker-header-days {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                .date-picker-deprecated-day { font-size: rem(14px); font-weight: $fontWeightBold; text-transform: uppercase; }
+            }
+    }

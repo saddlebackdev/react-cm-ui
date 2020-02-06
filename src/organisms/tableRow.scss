@@ -1,0 +1,14 @@
+@import '../global/styles/colors', '../global/styles/fontSizeCalculator';
+
+.ui.table .table-row {
+    &.table-row-text-align- {
+        &center { text-align: center; }
+        &left { text-align: left; }
+        &right { text-align: right; }
+    }
+    &.table-row-vertical-align- {
+        &bottom { vertical-align: bottom; }
+        &middle { vertical-align: middle; }
+        &top { vertical-align: top; }
+    }
+}

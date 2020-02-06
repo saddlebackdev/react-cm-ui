@@ -1,4 +1,4 @@
-@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator';
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
 
 
 .ui {
@@ -78,7 +78,7 @@
         &--nested_toggles_label, &_wing--option {
             border-bottom: 1px solid color(borderColor);
             cursor: pointer;
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
             margin: 0 -11px;
             min-height: 43px;
             transition: background-color 200ms ease-in;

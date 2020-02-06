@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch';
-import Button from '../elements/button';
-import Grid from '../collections/grid';
-import Icon from '../elements/icon';
-import List from '../elements/list';
+import Button from '../atoms/button';
+import Grid from '../organisms/grid';
+import Icon from '../atoms/icon';
+import List from '../atoms/list';
 
 const propTypes = {
     children: PropTypes.element,

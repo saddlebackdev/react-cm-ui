@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../elements/header';
+import Header from '../atoms/header';
 
 const propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,

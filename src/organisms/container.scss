@@ -1,0 +1,50 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
+
+.ui.container {
+    background-color: color(backgroundColor);
+    min-height: 100%;
+    padding: 0 11px;
+    width: 100%;
+    &.container-color {
+        &-inverse { background-color: color(backgroundColorInverse); }
+        &-light { background-color: color(backgroundColorLight); }
+        &-nest { background-color: color(backgroundColorNest); }
+        &-transparent { background-color: transparent; }
+    }
+    .container-content {
+        margin: 0 auto;
+        max-width: 1720px - $nav-width;
+        position: relative;
+        width: 100%;
+    }
+    .container-content-max-width {
+        &-laptop { max-width: 1024px - $nav-width - 44px; }
+    }
+}
+.container-action-bar {
+    align-items: center;
+    background-color: color(backgroundColor);
+    border-bottom: 1px solid color(borderColor);
+    border-top: 1px solid color(borderColor);
+    display: flex;
+    justify-content: flex-start;
+    min-height: 70px;
+    padding: 0 22px;
+    width: auto;
+    &.container-action-bar-color {
+        &-inverse { background-color: color(backgroundColorInverse); }
+        &-light { background-color: color(backgroundColorLight); }
+        &-nest { background-color: color(backgroundColorNest); }
+        &-primary { background-color: color(backgroundColor); }
+        &-transparent { background-color: transparent; }
+    }
+    &.container-action-bar-stretch { margin: 0 -11px; }
+}
+.ui.sub-navigation + .container-action-bar { border-top: 0; }
+
+@media only screen and (min-width: 768px) {
+    .ui.container { padding: 0 22px; }
+    .container-action-bar {
+        &.container-stretch { margin: 0 -22px; }
+    }
+}
