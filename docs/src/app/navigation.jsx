@@ -202,6 +202,10 @@ class CoreAppNavigation extends React.PureComponent {
                             </li>
 
                             <li>
+                                <Link className={navItemClassName} to={{ pathname: '/molecules/dropdown-button' }} activeClassName={isActive}>Dropdown Button</Link>
+                            </li>
+
+                            <li>
                                 <Link className={navItemClassName} to={{ pathname: '/molecules/duration-picker' }} activeClassName={isActive}>Duration Picker</Link>
                             </li>
 
