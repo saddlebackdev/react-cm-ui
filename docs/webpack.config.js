@@ -9,7 +9,7 @@ module.exports = (env, options) => {
 
     return {
         entry: {
-            bundle: './src/index.js',
+            bundle: './src/index.jsx',
             commons: ['react-syntax-highlighter'],
         },
         devServer: {
