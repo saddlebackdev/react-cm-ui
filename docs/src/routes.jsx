@@ -48,7 +48,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/button.js')
+                    import('./atoms/button')
                         .then((module) => callback(null, module.default));
                 }}
                 path="button"
@@ -197,7 +197,14 @@ const routes = (
                 }}
                 path="date-picker-input"
             />
-             <Route
+            <Route
+                getComponent={(location, callback) => {
+                    import('./molecules/dropdownButton')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="dropdown-button"
+            />
+            <Route
                 getComponent={(location, callback) => {
                     import('./molecules/durationPicker.js')
                         .then((module) => callback(null, module.default));
