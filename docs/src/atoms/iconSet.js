@@ -7,7 +7,7 @@ import {
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
-import IconSubNavigation from './iconSubNavigation.js';
+import IconSubNavigation from './iconSubNavigation';
 import Main from '../global/main';
 
 
