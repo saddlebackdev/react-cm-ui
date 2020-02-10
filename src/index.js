@@ -22,6 +22,7 @@ export { default as Comment } from './molecules/comment';
 export { default as DatePicker } from './molecules/datePickerDeprecated';
 export { default as DatePickerCalendar } from './molecules/datePickerCalendar';
 export { default as DatePickerInput } from './molecules/datePickerInput';
+export { default as DropdownButton } from './molecules/dropdownButton';
 export { default as DurationPicker } from './molecules/durationPicker';
 export { default as PhoneInput } from './molecules/phoneInput';
 export { default as TimePicker } from './molecules/timePicker';
