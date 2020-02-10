@@ -1,4 +1,11 @@
-'use strict';
+/* eslint-disable */
+
+/**
+ * NOTE: The props 'button' part of this component is deprecated as of Feb. 11, 2020.
+ * Please use the DropdownButton component instead.
+ * We are disabling Eslint for this file because of the above note and wanting to
+ * deprecate it fully in hopes to rip out the select portion of it as well.
+ */
 
 import React, { Component } from 'react';
 import _ from 'lodash';
@@ -76,6 +83,10 @@ class Dropdown extends Component {
             selectionOptionComponent, selectionValueComponent, selectionMultiple,
             selectionRequired, selectionUnderline, style, tabIndex, text, theme,
         } = this.props;
+
+        if (button) {
+            console.warn('Dropdown (react-cm-ui): The prop \'button\' is deprecated. Please use the DropdownButton component instead.');
+        }
 
         const { menuIsOpen, menuPositionStyle } = this.state;
         const containerClasses = ClassNames('ui', 'dropdown', className, {
@@ -540,10 +551,10 @@ class Dropdown extends Component {
             menuXPosition,
             menuYPosition,
             menuPositionStyle: {
-                bottom: menuYPosition === 'bottom' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
+                bottom: menuYPosition === 'bottom' ? '100%' : null,
                 left: menuXPosition === 'left' ? 0 : null,
                 right: menuXPosition === 'right' ? 0 : null,
-                top: menuYPosition === 'top' ? `${dropdownContainerEl.getBoundingClientRect().height}px` : null,
+                top: menuYPosition === 'top' ? '100%' : null,
             },
         });
     }
