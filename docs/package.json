@@ -5,6 +5,8 @@
     "build": "webpack",
     "build:clean": "rimraf build",
     "start": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+    "start:local": "npm run start",
+    "start:local:prod": "npm run build",
     "start:stats": "webpack --display-modules --display-chunks --json > stats.json --progress"
   },
   "dependencies": {
