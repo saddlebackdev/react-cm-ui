@@ -24,15 +24,10 @@ function DocsDropdownButton() {
     tableProps = [
         ...tableProps,
         {
-            name: 'as',
-            type: 'button',
-            default: 'button',
-            description: 'Can only be a button.',
-        }, {
             name: 'iconType',
             type: 'chevron-down<br />| plus',
             default: 'chevron-down',
-            description: 'An element type to render as.',
+            description: 'The icon that sits to the left of the title.',
         },
     ];
     tableProps = _.sortBy(tableProps, ['name']);

@@ -9,13 +9,11 @@ import Icon from '../atoms/icon';
 
 const propTypes = {
     ...buttonPropTypes,
-    as: PropTypes.oneOf(['button']),
     iconType: PropTypes.oneOf(['chevron-down', 'plus']),
 };
 
 const defaultProps = {
     ...buttonDefaultProps,
-    as: 'button',
     iconType: 'chevron-down',
 };
 
@@ -58,7 +56,6 @@ function DropdownButton(props) {
 
     return (
         <Button
-            as={as}
             className={containerClasses}
             color={color}
             compact={compact}
