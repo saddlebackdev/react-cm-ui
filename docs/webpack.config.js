@@ -112,7 +112,7 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                title: 'Church Management UI Docs',
+                title: 'React-CM-UI Docs',
                 template: 'template.ejs',
             }),
             new MiniCssExtractPlugin({
