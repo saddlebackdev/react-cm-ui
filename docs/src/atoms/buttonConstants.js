@@ -84,7 +84,7 @@ export const buttonDocProps = [
         name: 'style',
         type: 'object',
         default: '',
-        description: 'Supply any inline styles to the Header\'s container. Mainly used for padding and margins.',
+        description: 'Supply any inline styles to the Button\'s container. Mainly used for padding and margins.',
         allowedTypes: '',
     }, {
         name: 'width',
