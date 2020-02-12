@@ -68,7 +68,7 @@ class CoreAppNavigation extends React.PureComponent {
                             <Link to={{ pathname: '/' }}>
                                 <Header
                                     className="logo"
-                                    color="static"
+                                    inverse
                                     onClick={this.onLogoClick}
                                     size="medium"
                                     weight="semibold"
