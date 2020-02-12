@@ -3,7 +3,7 @@ import React from 'react';
 
 function DropdownDropdownExample() {
     return (
-        <DropdownButton color="success" title="Test">
+        <DropdownButton color="success" label="Simple Dropdown Button">
             <DropdownButton.Option>Option 01</DropdownButton.Option>
             <DropdownButton.Option>Option 02</DropdownButton.Option>
             <DropdownButton.Option>Option 01</DropdownButton.Option>

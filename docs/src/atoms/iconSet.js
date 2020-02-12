@@ -1,5 +1,6 @@
 import {
     Dropdown,
+    DropdownButton,
     Grid,
     Header,
     Icon,
@@ -252,9 +253,12 @@ class ElementsIconSet extends React.PureComponent {
         this.onSortAscendingClick = this.onSortAscendingClick.bind(this);
     }
 
-    onSortAscendingClick(selectedOption) {
+    onSortAscendingClick(event, id, label) {
         this.setState({
-            sortSelectedOption: selectedOption,
+            sortSelectedOption: {
+                id,
+                label,
+            },
         });
     }
 
@@ -309,22 +313,19 @@ class ElementsIconSet extends React.PureComponent {
                 <Main.Content>
                     <Grid columns={1} style={{ marginBottom: '22px' }}>
                         <Grid.Column style={{ textAlign: 'right' }}>
-                            <Dropdown
-                                button
-                                collapseMenuOnChange
-                                onChange={this.onSortAscendingClick}
-                                options={this.sortByOptions}
+                            <DropdownButton
                                 style={{ margin: 0 }}
-                                text={`Sort by: ${sortSelectedOption.label}`}
+                                label={`Sort by: ${sortSelectedOption.label}`}
                             >
                                 {_.map(this.sortByOptions, (option) => (
-                                    <Dropdown.Item
+                                    <DropdownButton.Option
                                         key={option.id}
                                         id={option.id}
                                         label={option.label}
+                                        onClick={this.onSortAscendingClick}
                                     />
                                 ))}
-                            </Dropdown>
+                            </DropdownButton>
                         </Grid.Column>
                     </Grid>
 

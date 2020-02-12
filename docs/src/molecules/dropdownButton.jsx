@@ -8,11 +8,12 @@ import {
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
+import { buttonDocProps } from '../atoms/buttonConstants';
+import DocsDropdownButtonSubNavigation from './dropdownButtonSubNavigation';
 import DropdownButtonExample from './dropdownButtonExample';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
-import { buttonDocProps } from '../atoms/buttonConstants';
 
 function DocsDropdownButton() {
     let tableProps = _.filter(buttonDocProps, (prop) => (
@@ -24,10 +25,20 @@ function DocsDropdownButton() {
     tableProps = [
         ...tableProps,
         {
+            name: 'iconSize',
+            type: 'number',
+            default: 16,
+            description: 'The icon that sits to the left of the label.',
+        }, {
             name: 'iconType',
-            type: 'chevron-down<br />| plus',
+            type: 'caret-down<br />| chevron-down<br />| ellipsis-h<br />| plus',
             default: 'chevron-down',
-            description: 'The icon that sits to the left of the title.',
+            description: 'The icon that sits to the left of the label.',
+        }, {
+            name: 'label',
+            type: 'string',
+            default: '',
+            description: 'The label.',
         },
     ];
     tableProps = _.sortBy(tableProps, ['name']);
@@ -35,6 +46,8 @@ function DocsDropdownButton() {
     return (
         <Main page="headers">
             <TitleBar title="Dropdown Button" />
+
+            <DocsDropdownButtonSubNavigation />
 
             <Main.Content>
                 <Card>

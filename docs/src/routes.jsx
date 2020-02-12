@@ -133,7 +133,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/prompt.js')
+                    import('./atoms/prompt')
                         .then((module) => callback(null, module.default));
                 }}
                 path="prompt"
@@ -197,13 +197,21 @@ const routes = (
                 }}
                 path="date-picker-input"
             />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/dropdownButton')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="dropdown-button"
-            />
+            <Route path="dropdown-button">
+                <IndexRoute
+                    getComponent={(location, callback) => {
+                        import('./molecules/dropdownButton')
+                            .then((module) => callback(null, module.default));
+                    }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./molecules/dropdownButtonOption')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="option"
+                />
+            </Route>
             <Route
                 getComponent={(location, callback) => {
                     import('./molecules/durationPicker.js')
@@ -235,7 +243,7 @@ const routes = (
                 }}
                 path="accordion"
             />
-             <Route
+            <Route
                 getComponent={(location, callback) => {
                     import('./organisms/card.js')
                         .then((module) => callback(null, module.default));
