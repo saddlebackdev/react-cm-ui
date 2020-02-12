@@ -1,5 +1,5 @@
 import { ActivityIndicator } from 'react-cm-ui';
-import { borderColor } from 'global/styles/colors.scss';
+import { borderColor } from 'global/styles/colors';
 import React from 'react';
 
 function ActivityIndicatorStyleExample() {
