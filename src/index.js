@@ -1,4 +1,5 @@
 // Atoms
+export { default as A } from './atoms/a';
 export { default as ActivityIndicator } from './atoms/activityIndicator';
 export { default as Button } from './atoms/button';
 export { default as Checkbox } from './atoms/checkbox';
