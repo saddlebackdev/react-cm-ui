@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import domUtils from '../global/utils/domUtils';
+import { BEM_BLOCK_NAME, OPTION_INNER_CLASS_NAME } from './dropdownMenuConstants';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -83,8 +84,12 @@ function DropdownMenu(props) {
     useEffect(() => {
         function onClickOutside(event) {
             const parentContainer = dropdownMenuRef.current;
+            const containsTarget = parentContainer.contains(event.target);
 
-            if (!parentContainer.contains(event.target)) {
+            if (
+                !containsTarget ||
+                (containsTarget && event.target.className === OPTION_INNER_CLASS_NAME)
+            ) {
                 onToggleOpen();
             }
 
@@ -109,10 +114,9 @@ function DropdownMenu(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
-    const bemClassName = 'dropdown_menu';
-    const containerClasses = ClassNames('ui', bemClassName, className, {
-        [`${bemClassName}-closed`]: !isOpen,
-        [`${bemClassName}-opened`]: isOpen,
+    const containerClasses = ClassNames('ui', BEM_BLOCK_NAME, className, {
+        [`${BEM_BLOCK_NAME}-closed`]: !isOpen,
+        [`${BEM_BLOCK_NAME}-opened`]: isOpen,
     });
 
     return (

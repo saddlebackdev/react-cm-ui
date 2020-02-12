@@ -9,17 +9,24 @@ import Icon from '../atoms/icon';
 
 const propTypes = {
     ...buttonPropTypes,
-    iconType: PropTypes.oneOf(['chevron-down', 'plus']),
+    iconSize: PropTypes.number,
+    iconType: PropTypes.oneOf([
+        'caret-down',
+        'chevron-down',
+        'ellipsis-h',
+        'plus',
+    ]),
+    label: PropTypes.string,
 };
 
 const defaultProps = {
     ...buttonDefaultProps,
+    iconSize: 16,
     iconType: 'chevron-down',
 };
 
 function DropdownButton(props) {
     const {
-        as,
         children,
         className,
         color,
@@ -27,9 +34,12 @@ function DropdownButton(props) {
         disable,
         fluid,
         id,
+        icon,
+        iconSize,
         iconType,
         innerStyle,
         inverse,
+        label,
         outlined,
         relax,
         style,
@@ -52,7 +62,7 @@ function DropdownButton(props) {
     }
 
     const bemClassName = 'button_dropdown';
-    const containerClasses = ClassNames('ui', 'button_dropdown', className);
+    const containerClasses = ClassNames('button_dropdown', className);
 
     return (
         <Button
@@ -61,6 +71,7 @@ function DropdownButton(props) {
             compact={compact}
             disable={disable}
             fluid={fluid}
+            icon={icon}
             id={id}
             innerStyle={innerStyle}
             inverse={inverse}
@@ -77,12 +88,17 @@ function DropdownButton(props) {
             title={title}
             width={width}
         >
-            <Icon
-                inverse
-                type={iconType}
-            />
+            {iconType && (
+                <Icon
+                    compact={icon && !label}
+                    size={iconSize}
+                    inverse
+                    style={{ margin: icon && !label ? 0 : null }}
+                    type={iconType}
+                />
+            )}
 
-            <span>{title}</span>
+            {label && <span>{label}</span>}
 
             <DropdownMenu
                 className={`${bemClassName}--menu`}

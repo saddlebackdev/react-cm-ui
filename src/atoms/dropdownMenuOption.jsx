@@ -1,28 +1,30 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { OPTION_CLASS_NAME, OPTION_INNER_CLASS_NAME } from './dropdownMenuConstants';
 
 const propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     className: PropTypes.string,
     disable: PropTypes.bool,
     id: PropTypes.string,
+    label: PropTypes.string,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
-    title: PropTypes.string,
 };
 
 const defaultProps = {
+    children: undefined,
     className: undefined,
     disable: false,
     id: undefined,
+    label: undefined,
     onClick: () => {},
     onKeyDown: () => {},
     style: undefined,
     tabIndex: -1,
-    title: undefined,
 };
 
 function DropdownMenuOption(props) {
@@ -33,25 +35,24 @@ function DropdownMenuOption(props) {
         id,
         onClick,
         onKeyDown,
+        label,
         style,
         tabIndex,
-        title,
     } = props;
-    const bemClassName = 'dropdown_menu--option';
-    const containerClasses = ClassNames(bemClassName, className, {
-        [`${bemClassName}-disable`]: disable,
+    const containerClasses = ClassNames(OPTION_CLASS_NAME, className, {
+        [`${OPTION_CLASS_NAME}-disable`]: disable,
     });
 
     function handleOnClick(event) {
         event.stopPropagation();
 
-        onClick(event);
+        onClick(event, id, label);
     }
 
     function handleOnKeyDown(event) {
         event.stopPropagation();
 
-        onKeyDown(event);
+        onKeyDown(event, id, label);
     }
 
     return (
@@ -63,12 +64,11 @@ function DropdownMenuOption(props) {
             role="button"
             style={style}
             tabIndex={tabIndex}
-            title={title}
         >
             <div
-                className={`${bemClassName}_inner`}
+                className={OPTION_INNER_CLASS_NAME}
             >
-                {children}
+                {children || label}
             </div>
         </div>
     );

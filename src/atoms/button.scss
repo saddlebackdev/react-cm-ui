@@ -36,6 +36,9 @@ $buttonSize: 32px;
     &.button-color- {
         &light, &outline, &transparent {
             color: color(color);
+            .ui.icon {
+                .icon-use-path { fill: color(color); }
+            }
         }
         &alert { background-color: color(backgroundColorButtonAlert); }
         &alternate { background-color: color(backgroundColorButtonAlternate); }
@@ -47,14 +50,13 @@ $buttonSize: 32px;
         &outline {
             background-color: transparent;
             box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
-            > .ui.icon {
-                .icon-use-path { fill: color(color); }
-            }
         }
         &primary { background-color: color(backgroundColorButton); }
         &secondary { background-color: color(backgroundColorButtonSecondary); }
         &success { background-color: color(backgroundColorButtonSuccess); }
-        &transparent { background-color: transparent; }
+        &transparent {
+            background-color: transparent;
+        }
         &warning { background-color: color(backgroundColorWarning); }
     }
     &.button-outlined.button-color- {
