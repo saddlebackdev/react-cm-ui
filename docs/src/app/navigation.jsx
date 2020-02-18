@@ -68,7 +68,7 @@ class CoreAppNavigation extends React.PureComponent {
                             <Link to={{ pathname: '/' }}>
                                 <Header
                                     className="logo"
-                                    color="static"
+                                    inverse
                                     onClick={this.onLogoClick}
                                     size="medium"
                                     weight="semibold"
@@ -199,6 +199,10 @@ class CoreAppNavigation extends React.PureComponent {
 
                             <li>
                                 <Link className={navItemClassName} to={{ pathname: '/molecules/date-picker-input' }} activeClassName={isActive}>Date Picker Input</Link>
+                            </li>
+
+                            <li>
+                                <Link className={navItemClassName} to={{ pathname: '/molecules/dropdown-button' }} activeClassName={isActive}>Dropdown Button</Link>
                             </li>
 
                             <li>

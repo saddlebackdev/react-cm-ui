@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "description": "React UI for Healthy Church",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -46,7 +46,7 @@
     "react": "^16.8.6",
     "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^16.8.6",
-    "react-onclickoutside": "^5.7.1",
+    "react-onclickoutside": "^6.7.1",
     "react-phone-number-input": "^2.3.21",
     "react-portal": "^4.1.1",
     "react-responsive": "^7.0.0",
