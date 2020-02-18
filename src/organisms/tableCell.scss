@@ -55,7 +55,6 @@ $cell-border-color: color(borderColorSecondary);
     // table
     &.table-basic {
         .table-cell {
-            background-color: inherit;
             height: 44px;
             padding: rem(11px);
             &:first-child { padding-left: 0; }

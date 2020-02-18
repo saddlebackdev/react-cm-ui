@@ -1,14 +1,72 @@
-'use strict';
-
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../global/utils/utils.js';
 
-class TableHeaderCell extends Component {
+const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+const propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    collapsing: PropTypes.bool,
+    desktop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    desktopLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    id: PropTypes.string,
+    laptop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobile: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobileLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobileMedium: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    onClick: PropTypes.func,
+    sticky: PropTypes.bool,
+    style: PropTypes.object,
+    tablet: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    width: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+};
+
+class TableHeaderCell extends React.PureComponent {
+    constructor() {
+        super();
+
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        const { onClick } = this.props;
+
+        if (_.isFunction(onClick)) {
+            onClick();
+        }
+    }
+
     render() {
         const {
+            children,
             className,
             collapsing,
             desktop,
@@ -19,6 +77,7 @@ class TableHeaderCell extends Component {
             mobileLarge,
             mobileMedium,
             onClick,
+            sticky,
             style,
             tablet,
             textAlign,
@@ -27,6 +86,7 @@ class TableHeaderCell extends Component {
         const cellPrefix = 'table-header-cell';
         const containerClasses = ClassNames(
             'table-header-cell',
+            'table--cell',
             _.isNumber(width) ?
                 `${cellPrefix}-${Utils.numberToWord(width)}` :
                 width === true || width === 'auto' ?
@@ -89,71 +149,24 @@ class TableHeaderCell extends Component {
                 'table-header-cell-text-align-center': textAlign === 'center',
                 'table-header-cell-text-align-left': textAlign === 'left',
                 'table-header-cell-text-align-right': textAlign === 'right',
+                'table-header-cell-sticky': sticky,
             },
-            className
+            className,
         );
 
         return (
             <th
                 className={containerClasses}
                 id={id}
-                onClick={this._onClick.bind(this)}
+                onClick={this.onClick}
                 style={style}
             >
-                <span>{this.props.children}</span>
+                <span>{children}</span>
             </th>
         );
     }
-
-    _onClick() {
-        if (_.isFunction(this.props.onClick)) {
-            this.props.onClick();
-        }
-    }
 }
 
-const columnNumberEnums = [ 'auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
-const textAlignEnums = [ 'center', 'left', 'right' ];
-
-TableHeaderCell.propTypes = {
-    className: PropTypes.string,
-    collapsing: PropTypes.bool,
-    desktop: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    desktopLarge: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    id: PropTypes.string,
-    laptop: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobile: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobileLarge: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobileMedium: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    onClick: PropTypes.func,
-    style: PropTypes.object,
-    tablet: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    textAlign: PropTypes.oneOf(textAlignEnums),
-    width: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-};
+TableHeaderCell.propTypes = propTypes;
 
 export default TableHeaderCell;
