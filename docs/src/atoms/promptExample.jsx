@@ -1,12 +1,11 @@
 import {
     A,
     Button,
-    DropdownButton,
     Prompt,
 } from 'react-cm-ui';
 import React from 'react';
 
-function PrompExample() {
+function PromptExample() {
     return (
         <div>
             <Prompt inline>
@@ -17,10 +16,10 @@ function PrompExample() {
             <br />
 
             <Prompt inline>
-                <A>asdf</A>
+                <A>Link</A>
             </Prompt>
         </div>
     );
 }
 
-export default PrompExample;
+export default PromptExample;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 const propTypes = {
     className: PropTypes.oneOfType([
@@ -39,6 +38,8 @@ const defaultProps = {
     style: undefined,
     show: undefined,
 };
+
+const noop = () => {};
 
 class Prompt extends Component {
     constructor(props) {
@@ -115,53 +116,6 @@ class Prompt extends Component {
         });
     }
 
-    // renderAction() {
-    //     const { children } = this.props;
-    //     const { show } = this.state;
-
-    //     const childClasses = (children && children.props.className) || null;
-    //     const promptActionClasses = ClassNames('prompt-action', childClasses, {
-    //         'prompt-action-disable': show,
-    //     });
-    //     console.log('children', children);
-    //     console.log('children.type.name', children.type.name);
-
-    //     if (children && children.type.name === 'Button') {
-    //         return React.cloneElement(children, {
-    //             className: promptActionClasses,
-    //             color: show ? 'disable' : children.props.color,
-    //             onClick: this.onClick,
-    //             ref: (promptAction) => { this.promptAction = promptAction; },
-    //         });
-    //     }
-
-    //     if (children && children.type.name === 'DropdownButton)') {
-    //         return (
-    //             <div ref={(ref) => { this.promptAction = ref; }}>
-    //                 {React.cloneElement(children, {
-    //                     className: promptActionClasses,
-    //                     color: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
-    //                 })}
-    //             </div>
-    //         );
-    //     }
-
-    //     if (children && children.type.name === 'Dropdown') {
-    //         return React.cloneElement(children, {
-    //             className: promptActionClasses,
-    //             buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
-    //             onChange: this.onClick,
-    //             ref: (promptAction) => { this.promptAction = promptAction; },
-    //         });
-    //     }
-
-    //     return React.cloneElement(children, {
-    //         className: `${promptActionClasses} ${show ? 'color-static' : null}`,
-    //         onClick: this.onClick,
-    //         ref: (promptAction) => { this.promptAction = promptAction; },
-    //     });
-    // }
-
     render() {
         const {
             children,
@@ -200,7 +154,7 @@ class Prompt extends Component {
                 {/* {this.renderAction()} */}
                 <div
                     onClick={this.onClick}
-                    onKeyDown={() => {}}
+                    onKeyDown={noop}
                     ref={(ref) => { this.childrenRef = ref; }}
                     role="button"
                     tabIndex={-1}
@@ -214,7 +168,7 @@ class Prompt extends Component {
                     <div
                         className="prompt-yes-btn"
                         onClick={this.onYesClick}
-                        onKeyDown={() => {}}
+                        onKeyDown={noop}
                         role="button"
                         tabIndex={-1}
                     >
@@ -224,7 +178,7 @@ class Prompt extends Component {
                     <div
                         className="prompt-no-btn"
                         onClick={this.onNoClick}
-                        onKeyDown={() => {}}
+                        onKeyDown={noop}
                         role="button"
                         tabIndex={-1}
                     >
