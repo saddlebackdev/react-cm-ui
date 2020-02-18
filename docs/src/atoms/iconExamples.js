@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
-import IconSubNavigation from './iconSubNavigation.js';
+import IconSubNavigation from './iconSubNavigation';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
 

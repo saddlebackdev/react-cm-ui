@@ -1,4 +1,8 @@
-'use strict';
+/* eslint-disable */
+
+/**
+ * NOTE: Disabled eslint for this file due to this component being deprecated.
+ */
 
 import React, { Component } from 'react';
 import _ from 'lodash';

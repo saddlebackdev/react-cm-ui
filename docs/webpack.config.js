@@ -9,7 +9,7 @@ module.exports = (env, options) => {
 
     return {
         entry: {
-            bundle: './src/index.js',
+            bundle: './src/index.jsx',
             commons: ['react-syntax-highlighter'],
         },
         devServer: {
@@ -112,12 +112,13 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                title: 'Church Management UI Docs',
+                title: 'React-CM-UI Docs',
                 template: 'template.ejs',
             }),
             new MiniCssExtractPlugin({
-                filename: 'css/bundle.css',
                 allChunks: true,
+                filename: 'css/bundle.css',
+                ignoreOrder: true,
             }),
             new webpack.DefinePlugin({
                 __UI_PACKAGE_VERSION__: (typeof process.env.CM_UI_DOCS_VERSION === 'undefined') ?
