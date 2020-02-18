@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DataGridTableRow from './dataGridTableRow';
-import DragListener from '../utils/dragListener';
-import Icon from '../elements/icon';
-import Table from '../collections/table';
+import DragListener from '../global/utils/dragListener';
+import Icon from '../atoms/icon';
+import Table from '../organisms/table';
 
 const propTypes = {
     bleed: PropTypes.bool,
@@ -95,7 +95,7 @@ class DataGridTable extends React.PureComponent {
         const containerClasses = ClassNames('ui', `${classNamePrefix}_table`, className);
         const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
         const isSelectable =
-            _.isFunction(rowProps) && _.isFunction(rowProps().onClick);
+            !_.isUndefined(rowProps) && _.isFunction(rowProps().onClick);
 
         return (
             <div
@@ -157,7 +157,7 @@ class DataGridTable extends React.PureComponent {
                                 key={`tableBodyRow-${row.id || index}`}
                                 row={row}
                                 rowIndex={index}
-                                rowProps={rowProps}
+                                rowProps={rowProps(row)}
                                 sizes={sizes}
                             />
                         ))}

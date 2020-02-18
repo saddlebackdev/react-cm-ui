@@ -10,10 +10,10 @@ import {
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
-import DrawerSubNavigation from '../modules/drawerSubNavigation';
-import Highlighter from '../app/highlighter';
-import Main from '../app/main';
-import TableProps from '../app/tableProps';
+import DrawerSubNavigation from './drawerSubNavigation';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
+import TableProps from '../global/tableProps';
 
 const drawerFiltersDrawerSample = `import { Button, Drawer } from 'react-cm-ui';
 import React from 'react';
@@ -482,7 +482,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
 
                 <DrawerSubNavigation />
 
-                <div>
+                <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
 
@@ -733,7 +733,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {drawerFiltersDrawerSample}
                     </Highlighter>
-                </div>
+                </Main.Content>
             </Main>
         );
     }

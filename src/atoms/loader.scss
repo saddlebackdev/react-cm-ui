@@ -1,0 +1,17 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+$size: 66px;
+
+.ui.loader {
+    display: inline-block;
+    height: $size;
+    text-align: center;
+    width: $size;
+    svg { animation: 1150ms infinite reverse spin linear; height: $size; width: $size; }
+    &-fluid { display: block; width: 100%; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+}

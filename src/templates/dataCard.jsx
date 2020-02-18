@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Card from '../views/card';
+import Card from '../organisms/card';
 import DataCardColumn from './dataCardColumn';
 
 const propTypes = {

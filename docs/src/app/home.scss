@@ -1,0 +1,33 @@
+@import '../global/styles/colors';
+@import '../global/styles/fonts';
+@import '../global/styles/fontSizeCalculator';
+
+.home {
+    &--hero {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 99px 0 121px;
+    }
+    &--logo {
+        display: inline-block;
+        flex: 0 1 auto;
+        height: 186px;
+        margin: 0 66px 0 0;
+        width: 184px;
+        path { fill: color(backgroundColorHighlightDark); }
+    }
+    &--title {
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+    }
+    &--sub_title {
+        // color: color(backgroundColorHighlightDark);
+        font-size: rem(22px);
+        margin: 20px 0 33px;
+    }
+    &--highlighter.inline pre {
+        display: block !important;
+    }
+}

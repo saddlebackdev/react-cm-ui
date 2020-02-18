@@ -1,0 +1,73 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+.table_props {
+    margin: rem(11px) -22px 0;
+    .ui.table {
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: em(16px);
+        text-align: left;
+        width: 100%;
+    }
+    th, td {
+        font-weight: $default-font-weight-bold;
+        padding: 11px;
+        &:first-child { padding-left: 0; }
+        &:last-child { padding-right: 0; }
+    }
+    p { margin: 0; }
+    &--allowed_types {
+        color: color(colorStatic);
+        margin-top: 4px;
+        .type {
+            font-weight: $default-font-weight-semibold;
+            text-transform: capitalize;
+        }
+    }
+    td {
+        font-size: em(14px);
+        font-weight: $default-font-weight-normal;
+    }
+    &--table_cell_name > code {
+        display: none;
+    }
+    &--mobile_info {
+        margin: 0;
+        padding: 0;
+        dd, dt {
+            margin: 0;
+            padding: 0;
+        }
+        dt {
+            color: color(colorStatic);
+            font-size: em(14px);
+            font-weight: $default-font-weight-semibold;
+            margin: 11px 0 1px;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+        code {
+            margin-left: -3px;
+        }
+    }
+    &--prop_name, &--prop_type, &--prop_default {
+        font-family: monospace;
+        font-size: 90%;
+        padding: 2px 0;
+    }
+    &--table_cell_name > .table_props--prop_name {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .table_props {
+        margin: calc(2rem - .14285em) -22px 0;
+        .allowed-types { margin-top: 11px; }
+        &--table_cell_name > .table_props--prop_name {
+            display: block;
+        }
+        &--mobile_info { display: none; }
+    }
+}

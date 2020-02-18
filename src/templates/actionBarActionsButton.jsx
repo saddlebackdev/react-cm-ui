@@ -3,11 +3,11 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
-import Button from '../elements/button';
+import Button from '../atoms/button';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Header from '../elements/header';
-import Icon from '../elements/icon';
-import Prompt from '../modules/prompt';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
+import Prompt from '../atoms/prompt';
 
 const propTypes = {
     header: PropTypes.string.isRequired,

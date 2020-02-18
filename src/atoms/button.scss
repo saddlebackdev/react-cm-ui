@@ -1,0 +1,180 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+$buttonSize: 32px;
+
+.ui.button {
+    background-color: color(backgroundColorButton);
+    border: 0;
+    border-radius: 3px;
+    color: color(colorInverse);
+    cursor: pointer;
+    display: inline-block;
+    font-size: rem(14px);
+    font-weight: $fontWeightSemiBold;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: 0 11px 0 0;
+    min-height: $buttonSize;
+    outline: none;
+    overflow: hidden;
+    padding: 0 rem(22px) 1px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
+    vertical-align: top;
+    white-space: normal;
+    .button-inner-container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        min-height: $buttonSize;
+        > .ui.icon {
+            .icon-use-path { fill: color(colorInverse); }
+        }
+    }
+    &.button-color- {
+        &light, &outline, &transparent {
+            color: color(color);
+            .ui.icon {
+                .icon-use-path { fill: color(color); }
+            }
+        }
+        &alert { background-color: color(backgroundColorButtonAlert); }
+        &alternate { background-color: color(backgroundColorButtonAlternate); }
+        &disable {
+            background-color: color(backgroundColorButtonDisable);
+            cursor: default;
+        }
+        &light { background-color: color(backgroundColorLight); }
+        &outline {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
+        }
+        &primary { background-color: color(backgroundColorButton); }
+        &secondary { background-color: color(backgroundColorButtonSecondary); }
+        &success { background-color: color(backgroundColorButtonSuccess); }
+        &transparent {
+            background-color: transparent;
+        }
+        &warning { background-color: color(backgroundColorWarning); }
+    }
+    &.button-outlined.button-color- {
+        &alert {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlert);
+            color: color(colorAlert);
+            .ui.icon {
+                .icon-use-path { fill: color(colorAlert); }
+            }
+        }
+        &alternate {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonAlternate);
+            color: color(color);
+            .ui.icon {
+                .icon-use-path { fill: color(color); }
+            }
+        }
+        &disable {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonDisable);
+            color: color(colorDisable);
+            .ui.icon {
+                .icon-use-path { fill: color(colorDisable); }
+            }
+            cursor: default;
+        }
+        &light {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorLight);
+            color: color(backgroundColorLight);
+            .ui.icon {
+                .icon-use-path { fill: color(backgroundColorLight); }
+            }
+        }
+        &outline {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
+            color: color(color);
+            .ui.icon {
+                .icon-use-path { fill: color(color); }
+            }
+        }
+        &primary {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButton);
+            color: color(backgroundColorButton);
+            .ui.icon {
+                .icon-use-path { fill: color(backgroundColorButton); }
+            }
+        }
+        &secondary {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonSecondary);
+            color: color(backgroundColorButtonSecondary);
+            .ui.icon {
+                .icon-use-path { fill: color(backgroundColorButtonSecondary); }
+            }
+        }
+        &success {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorButtonSuccess);
+            color: color(colorSuccess);
+            .ui.icon {
+                .icon-use-path { fill: color(colorSuccess); }
+            }
+        }
+        &warning {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 1px color(backgroundColorWarning);
+            color: color(colorWarning);
+            .ui.icon {
+                .icon-use-path { fill: color(colorWarning); }
+            }
+        }
+    }
+    &.button-inverse.button-color- {
+        &outline, &transparent {
+            color: color(colorInverse);
+        }
+        &alert { background-color: color(backgroundColorButtonAlert); }
+        &alternate { background-color: color(backgroundColorButtonAlternate); }
+        &disable { background-color: color(backgroundColorButtonDisable); cursor: default;  }
+        &light { background-color: color(backgroundColorLight); color: color(color); }
+        &outline {
+            background-color: rgba(255, 255, 255, .30);
+            box-shadow: inset 0 0 0 1px color(borderColorSecondary);
+            > .ui.icon {
+                .icon-use-path { fill: color(color); }
+            }
+        }
+        &primary { background-color: color(backgroundColorButton); }
+        &success { background-color: color(backgroundColorButtonSuccess); }
+        &secondary { background-color: color(backgroundColorButtonSecondary); }
+        &transparent {
+            background-color: transparent;
+        }
+        &warning { background-color: color(backgroundColorWarning); }
+    }
+    &.button-icon {
+        height: $buttonSize;
+        padding: 0;
+        width: $buttonSize;
+        .button-inner-container {
+            align-items: center;
+            display: inline-flex;
+            height: $buttonSize;
+            justify-content: center;
+            width: $buttonSize;
+            .ui.icon { float: none; font-size: 16px; }
+        }
+    }
+        .button-inner-container span + .ui.icon { margin: 0 0 0 11px; }
+        .ui.icon:only-child { margin: 0; }
+    &.button-fluid { width: 100%; }
+    &.button-compact { padding-left: rem(11px); padding-right: rem(11px); }
+    &.button-relax { padding-left: rem(33px); padding-right: rem(33px); }
+    &.button-fixed-width { padding-left: 0; padding-right: 0; }
+    &:last-child { margin-right: 0; }
+}

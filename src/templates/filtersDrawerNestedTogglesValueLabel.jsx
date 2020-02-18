@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../elements/icon';
+import Icon from '../atoms/icon';
 
 const propTypes = {
     nestedTogglesData: PropTypes.shape({}).isRequired,

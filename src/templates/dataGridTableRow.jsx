@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Table from '../collections/table';
+import Table from '../organisms/table';
 
 const propTypes = {
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
@@ -12,7 +13,13 @@ const propTypes = {
     isClickable: PropTypes.bool,
     row: PropTypes.shape({}).isRequired,
     rowIndex: PropTypes.number.isRequired,
-    rowProps: PropTypes.func,
+    rowProps: PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        onClick: PropTypes.func,
+        selected: PropTypes.bool,
+        style: PropTypes.shape({}),
+    }),
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
 };
 
@@ -32,10 +39,11 @@ class DataGridTableRow extends React.PureComponent {
 
     onClick() {
         const { isClickable, row, rowProps } = this.props;
+        const { onClick } = rowProps;
         const isTextSelect = window.getSelection().toString();
 
-        if (isClickable && !isTextSelect) {
-            rowProps().onClick(row);
+        if (isClickable && !isTextSelect && !_.isUndefined(onClick)) {
+            onClick(row);
         }
     }
 
@@ -49,12 +57,25 @@ class DataGridTableRow extends React.PureComponent {
             isClickable,
             row,
             rowIndex,
+            rowProps,
             sizes,
         } = this.props;
+        const {
+            className: rowClassName,
+            id: rowId,
+            selected: rowSelected,
+            style: rowStyle,
+        } = rowProps;
+        const containerClasses = ClassNames(`${classNamePrefix}_row`, rowClassName, {
+            [`${classNamePrefix}_row-selected`]: rowSelected,
+        });
 
         return (
             <Table.Row
+                className={containerClasses}
+                id={rowId}
                 onClick={isClickable ? this.onClick : null}
+                style={rowStyle}
             >
                 {_.map(columns, (column, index) => {
                     let accessor = null;
@@ -65,15 +86,15 @@ class DataGridTableRow extends React.PureComponent {
                         accessor = column.accessor(row);
                     }
 
-                    const style = {};
+                    const cellStyle = {};
                     const size =
                         _.isEmpty(sizes) || _.isEmpty(sizes[rowIndex]) ?
                             null :
                             sizes[rowIndex][index];
 
                     if (size) {
-                        style.height = `${size.h}px`;
-                        style.width = `${size.w}px`;
+                        cellStyle.height = `${size.h}px`;
+                        cellStyle.width = `${size.w}px`;
                     }
 
                     if (idPrefix === 'column') {
@@ -82,14 +103,14 @@ class DataGridTableRow extends React.PureComponent {
                         }
                     }
 
-                    const id = `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
+                    const cellId = `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell
-                            id={id}
-                            key={id}
+                            id={cellId}
+                            key={cellId}
                             textAlign={column.textAlign}
-                            style={style}
+                            style={cellStyle}
                         >
                             {accessor}
                         </Table.Cell>

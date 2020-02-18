@@ -3,7 +3,7 @@ npm-debug.log
 build
 lib
 stats.json
-.DS_Store
+**/.DS_Store
 config.json
 config.local.json
 *.tgz

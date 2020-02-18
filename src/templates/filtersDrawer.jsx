@@ -3,16 +3,16 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../elements/button';
-import Checkbox from '../elements/checkbox';
+import Button from '../atoms/button';
+import Checkbox from '../atoms/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../modules/dropdown';
+import Dropdown from '../atoms/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
 
 const propTypes = {
     children: PropTypes.node,
@@ -28,7 +28,7 @@ const propTypes = {
     rows: PropTypes.arrayOf(PropTypes.shape({
         header: PropTypes.string,
         items: PropTypes.arrayOf(PropTypes.shape({
-            checkbox: {
+            checkbox: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 disabled: PropTypes.bool,
@@ -40,8 +40,8 @@ const propTypes = {
                 name: PropTypes.string,
                 onChange: PropTypes.func,
                 style: PropTypes.object,
-            },
-            dropdown: {
+            }),
+            dropdown: PropTypes.shape({
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
@@ -50,14 +50,14 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.arrayOf(PropTypes.shape({
+                value: PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string,
                     ]),
-                })),
-            },
+                }),
+            }),
             jsx: PropTypes.node,
             multiSelect: PropTypes.arrayOf(PropTypes.shape({
                 placeholder: PropTypes.string,
@@ -69,7 +69,7 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.PropTypes.shape({
+                value: PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
@@ -87,7 +87,7 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.PropTypes.shape({
+                value: PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
@@ -95,7 +95,7 @@ const propTypes = {
                     ]),
                 }),
             })),
-            toggle: {
+            toggle: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 disabled: PropTypes.bool,
@@ -106,7 +106,7 @@ const propTypes = {
                 name: PropTypes.string,
                 onChange: PropTypes.func,
                 style: PropTypes.object,
-            },
+            }),
         })),
     })),
     style: PropTypes.shape({}),

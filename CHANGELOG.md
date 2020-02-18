@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.3.0 - 02/18/2020
+
+- [PR #104](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113
+    - Reworked file structure. All of our components have been organized into their respective atomic directories: Atoms, Molecules, Organisms, and Templates.
+- [PR #110](https://github.com/saddlebackdev/react-cm-ui/pull/110) / Merge Commit b5e0741ea0f00cf3dbe001b173ae969941357dfb
+    - Added new **DropdownButton** component.
+    - Deprecated the **Dropdown** `button` prop.
+    - Added new **A** component.
+- [PR #111](https://github.com/saddlebackdev/react-cm-ui/pull/111) / Merge Commit d971ac189a3b2120c271fbd0a039ec4977c143ed
+    - Added basic props to the **DataGrid** `rowProps` prop.
+
 ## 9.2.0 - 01/30/2020
 
 - [PR #109](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113

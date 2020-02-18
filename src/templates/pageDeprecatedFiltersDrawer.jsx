@@ -1,13 +1,13 @@
 /* eslint-disable */
 
 import _ from 'lodash';
-import Button from '../elements/button';
+import Button from '../atoms/button';
 import ClassNames from 'classnames';
 import Drawer from '../templates/drawer';
-import Dropdown from '../modules/dropdown';
-import Header from '../elements/header';
-import Icon from '../elements/icon';
-import Label from '../elements/label';
+import Dropdown from '../atoms/dropdown';
+import Header from '../atoms/header';
+import Icon from '../atoms/icon';
+import Label from '../atoms/label';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';

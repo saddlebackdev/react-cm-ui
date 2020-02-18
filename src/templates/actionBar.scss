@@ -1,4 +1,4 @@
-@import '../shared/styles/colors', '../shared/styles/fonts', '../shared/styles/fontSizeCalculator', '../shared/styles/variables';
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
 
 // ######## //
 // TODO: Remove !important when we refactor <List /> naming convention to BEM.
@@ -130,7 +130,7 @@ $backwards-step4-duration: $standard-fifth-timing;
         }
         &--option_container {
             font-size: rem(14px);
-            font-weight: $default-font-weight-semibold;
+            font-weight: $fontWeightSemiBold;
             margin: 0 -11px;
             position: relative;
             @for $i from 1 through 11 {

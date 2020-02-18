@@ -1,0 +1,180 @@
+@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+
+$columns: 12;
+$breakpoints: (
+    'mobile' '(max-width: 374px)',
+    'mobile-medium' '(min-width: 375px)',
+    'mobile-large' '(min-width: 425px)',
+    'tablet' '(min-width: 768px)',
+    'laptop' '(min-width: 1024px)',
+    'desktop' '(min-width: 1440px)',
+    'desktop-large' '(min-width: 1720px)'
+);
+$breakpoint-has-widths: (
+    'mobile',
+    'mobile-medium',
+    'mobile-large',
+    'tablet',
+    'laptop',
+    'desktop',
+    'desktop-large'
+);
+$cell-border-color: color(borderColorSecondary);
+
+.ui.table .table-cell {
+    border-top: 1px solid $cell-border-color;
+    color: color(color);
+    font-weight: $fontWeightRegular;
+    padding: rem(11px);
+    text-align: inherit;
+    transition:
+        background-color 150ms linear,
+        border-top-color 150ms linear;
+    &.table-cell-active { background-color: color(backgroundColorNest); }
+    &.table-cell-collapsing { white-space: nowrap; width: 1px; }
+    &.table-cell-disabled { color: color(colorStatic); pointer-events: none; }
+    &.table-cell-font-size-large { font-size: rem(20px) !important; }
+    &.table-cell-font-size-medium { font-size: rem(18px) !important; }
+    &.table-cell-font-size-small { font-size: rem(16px) !important; }
+    &.table-cell-font-size-xsmall { font-size: rem(14px) !important; }
+    &.table-cell-selectable:hover { background-color: color(backgroundColorNest); }
+    &.table-cell-single-line {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    &.table-cell-text-align-left { text-align: left; }
+    &.table-cell-text-align-center { text-align: center; }
+    &.table-cell-text-align-right { text-align: right; }
+    &.table-cell-vertical-align-bottom { vertical-align: bottom; }
+    &.table-cell-vertical-align-middle { vertical-align: middle; }
+    &.table-cell-vertical-align-top { vertical-align: top; }
+}
+.table-row:first-child .table-cell { border-top: 0; }
+.ui.table {
+    // table
+    &.table-basic {
+        .table-cell {
+            background-color: inherit;
+            height: 44px;
+            padding: rem(11px);
+            &:first-child { padding-left: 0; }
+            &:last-child { padding-right: 0; }
+        }
+        .table-row:last-child .table-cell { border-bottom: 1px solid $cell-border-color; }
+    }
+    &.table-celled .table-cell {
+        border-left: 1px solid $cell-border-color;
+        &:first-child { border-left: 0; }
+    }
+    &.table-definition {
+        &:not(.table-basic) .table-cell:first-child {
+            background-color: color(backgroundColorNest);
+            border-right: 1px solid color(borderColor);
+            border-top: 1px solid color(borderColor);
+        }
+        &.table-basic .table-cell:nth-child(2) { border-left: 1px solid color(borderColor); }
+        .table-cell:first-child { font-weight: $fontWeightSemiBold; }
+        .table-row:first-child .table-cell { border-top: 0; }
+        &.table-basic .table-cell:first-child { padding-left: rem(11px); }
+    }
+    &.table-font-size- {
+        &large .table-cell { font-size: rem(20px); }
+        &medium .table-cell { font-size: rem(18px); }
+        &small .table-cell { font-size: rem(16px); }
+        &xsmall .table-cell { font-size: rem(14px); }
+    }
+    &.table-selectable .table-body .table-row:hover, &.table-selectable .table-body .table-row-selected {
+        .table-cell {
+            background-color: color(backgroundColorNest);
+            border-top-color: color(borderColor);
+            cursor: pointer;
+        }
+        + .table-row .table-cell { border-top-color: color(borderColor); }
+    }
+    &.table-single-line .table-cell { overflow: hidden; text-overflow: ellipsis; }
+    &.table-size- {
+        &small .table-cell {
+            height: 44px;
+        }
+        &medium .table-cell {
+            height: 70px;
+        }
+    }
+    &.table-stretch {
+        .table-cell {
+            padding: rem(11px);
+            &:first-child { padding-left: rem(11px); }
+            &:last-child { padding-right: rem(11px); }
+        }
+        &-very .table-cell {
+            padding: rem(11px);
+            &:first-child { padding-left: rem(22px); }
+            &:last-child { padding-right: rem(22px); }
+        }
+    }
+    &.table-striped .table-row:nth-child(2n) .table-cell {
+        background-color: color(backgroundColorLight);
+    }
+    // tbody
+    .table-body-celled .table-cell { border-left: 1px solid $cell-border-color; }
+    // tr
+    .table-row- {
+        &active .table-cell { background-color: color(backgroundColorNest); }
+        &disabled .table-cell { color: color(colorStatic); pointer-events: none; }
+        &font-size-large .table-cell { font-size: rem(20px) !important; }
+        &font-size-medium .table-cell { font-size: rem(18px) !important; }
+        &font-size-small .table-cell { font-size: rem(16px) !important; }
+        &font-size-xsmall .table-cell { font-size: rem(14px) !important; }
+    }
+}
+
+@mixin device-type($namespace: '') {
+    $prefix: '.table-cell-' + $namespace;
+    $columns-width: 1 / $columns * 100%;
+
+    #{$prefix}one { display: table-cell; width: 1 * $columns-width; }
+    #{$prefix}two { display: table-cell; width: 2 * $columns-width; }
+    #{$prefix}three { display: table-cell; width: 3 * $columns-width; }
+    #{$prefix}four { display: table-cell; width: 4 * $columns-width; }
+    #{$prefix}five { display: table-cell; width: 5 * $columns-width; }
+    #{$prefix}six { display: table-cell; width: 6 * $columns-width; }
+    #{$prefix}seven { display: table-cell; width: 7 * $columns-width; }
+    #{$prefix}eight { display: table-cell; width: 8 * $columns-width; }
+    #{$prefix}nine { display: table-cell; width: 9 * $columns-width; }
+    #{$prefix}ten { display: table-cell; width: 10 * $columns-width; }
+    #{$prefix}eleven { display: table-cell; width: 11 * $columns-width; }
+    #{$prefix}twelve { display: table-cell; width: 12 * $columns-width; }
+
+    #{$prefix}hide { display: none; }
+    #{$prefix}show { display: table-cell; }
+}
+
+@include device-type();
+
+@mixin grid-media-query($media-query) {
+    $breakpoint-found: false;
+
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        $declaration: nth($breakpoint, 2);
+
+        @if $media-query == $name and $declaration{
+            $breakpoint-found: true;
+
+            @media only screen and #{$declaration}{
+                @content;
+            }
+        }
+    }
+
+    @if $breakpoint-found == false{
+        @warn "Breakpoint ‘#{$media-query}’ does not exist"
+    }
+}
+
+@each $name in $breakpoint-has-widths {
+    @include grid-media-query($name) {
+        @include device-type('#{$name}-');
+    }
+}

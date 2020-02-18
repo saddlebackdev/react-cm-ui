@@ -1,0 +1,9 @@
+@import '../global/styles/colors';
+@import '../global/styles/fonts';
+
+.ui.a {
+    color: color(colorLink);
+    cursor: pointer;
+    font-weight: $fontWeightSemiBold;
+    text-decoration: none;
+}

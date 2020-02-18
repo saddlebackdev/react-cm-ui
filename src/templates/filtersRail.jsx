@@ -3,7 +3,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Rail from '../elements/rail';
+import Rail from '../organisms/rail';
 
 const propTypes = {
     children: PropTypes.node,

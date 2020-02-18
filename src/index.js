@@ -1,53 +1,53 @@
-// Collections
-export { default as Grid } from './collections/grid';
-export { default as Table } from './collections/table.js';
-export { default as Tabs } from './collections/tabs.js';
+// Atoms
+export { default as A } from './atoms/a';
+export { default as ActivityIndicator } from './atoms/activityIndicator';
+export { default as Button } from './atoms/button';
+export { default as Checkbox } from './atoms/checkbox';
+export { default as Divider } from './atoms/divider';
+export { default as Dropdown } from './atoms/dropdown';
+export { default as Header } from './atoms/header';
+export { default as Icon } from './atoms/icon';
+export { default as Image } from './atoms/image';
+export { default as Input } from './atoms/input';
+export { default as Label } from './atoms/label';
+export { default as List } from './atoms/list';
+export { default as Loader } from './atoms/loader';
+export { default as Prompt } from './atoms/prompt';
+export { default as Radio } from './atoms/radio';
+export { default as SegmentedControls } from './atoms/segmentedControls';
+export { default as TextArea } from './atoms/textArea';
 
-// Elements
-export { default as ActivityIndicator } from './elements/activityIndicator.js';
-export { default as Button } from './elements/button.js';
-export { default as Checkbox } from './elements/checkbox.js';
-export { default as Comment } from './elements/comment.js';
-export { default as Container } from './elements/container.js';
-export { default as Divider } from './elements/divider.js';
-export { default as Header } from './elements/header';
-export { default as Icon } from './elements/icon.js';
-export { default as Image } from './elements/image.js';
-export { default as Input } from './elements/input.js';
-export { default as Label } from './elements/label.js';
-export { default as List } from './elements/list.js';
-export { default as Loader } from './elements/loader.js';
-export { default as Radio } from './elements/radio.js';
-export { default as Rail } from './elements/rail.js';
-export { default as TextArea } from './elements/textArea.js';
+// Molecules
+export { default as Banner } from './molecules/banner';
+export { default as Comment } from './molecules/comment';
+export { default as DatePicker } from './molecules/datePickerDeprecated';
+export { default as DatePickerCalendar } from './molecules/datePickerCalendar';
+export { default as DatePickerInput } from './molecules/datePickerInput';
+export { default as DropdownButton } from './molecules/dropdownButton';
+export { default as DurationPicker } from './molecules/durationPicker';
+export { default as PhoneInput } from './molecules/phoneInput';
+export { default as TimePicker } from './molecules/timePicker';
 
-// Modules
-export { default as Accordion } from './modules/accordion.js';
-export { default as DatePicker } from './modules/datePickerDeprecated.js';
-export { default as DatePickerCalendar } from './modules/datePickerCalendar.js';
-export { default as DatePickerInput } from './modules/datePickerInput.js';
-export { default as DrawerDeprecated } from './modules/drawerDeprecated.js';
-export { default as Dropdown } from './modules/dropdown.js';
-export { default as DurationPicker } from './modules/durationPicker.js';
-export { default as Modal } from './modules/modal.js';
-export { default as PhoneInput } from './modules/phoneInput.js';
-export { default as Prompt } from './modules/prompt.js';
-export { default as SegmentedControls } from './modules/segmentedControls.js';
-export { default as TimePicker } from './modules/timePicker.js';
+// Organisms
+export { default as Accordion } from './organisms/accordion';
+export { default as Card } from './organisms/card';
+export { default as Container } from './organisms/container';
+export { default as Grid } from './organisms/grid';
+export { default as InfoBar } from './organisms/infoBar';
+export { default as Rail } from './organisms/rail';
+export { default as SubNavigation } from './organisms/subNavigation';
+export { default as Table } from './organisms/table';
+export { default as Tabs } from './organisms/tabs';
+export { default as TitleBar } from './organisms/titleBar';
 
 // Templates
+export { default as DrawerDeprecated } from './templates/drawerDeprecated';
 export { default as Drawer } from './templates/drawer';
+export { default as Modal } from './templates/modal';
 export { default as Page } from './templates/page';
 
-// utils
-export { default as DatePickerUtils } from './utils/datePickerUtils.js';
-export { default as dateUtils } from './utils/dateUtils.js';
-export { default as domUtils } from './utils/domUtils.js';
-export { default as Utils } from './utils/utils.js';
-
-// Views
-export { default as Banner } from './views/banner.js';
-export { default as Card } from './views/card.js';
-export { default as InfoBar } from './views/infoBar.js';
-export { default as SubNavigation } from './views/subNavigation.js';
-export { default as TitleBar } from './views/titleBar.js';
+// Utils
+export { default as DatePickerUtils } from './global/utils/datePickerUtils';
+export { default as dateUtils } from './global/utils/dateUtils';
+export { default as domUtils } from './global/utils/domUtils';
+export { default as Utils } from './global/utils/utils';
