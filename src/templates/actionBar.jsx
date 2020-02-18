@@ -217,7 +217,7 @@ class ActionBar extends React.PureComponent {
                                                     {_.map(list, (item) => {
                                                         const {
                                                             actionsButton,
-                                                            jsx, // eslint-disable-line no-shadow
+                                                            jsx: listJsx,
                                                             iconBack,
                                                             iconFilter,
                                                             iconGrid,
@@ -229,7 +229,7 @@ class ActionBar extends React.PureComponent {
                                                             item.divide;
 
                                                         const listItemClassName = ClassNames('action_bar--list_item', {
-                                                            'action_bar--list_item-jsx': jsx,
+                                                            'action_bar--list_item-jsx': listJsx,
                                                             'action_bar--list_item-icon_filter': iconFilter,
                                                             'action_bar--list_item-icon_grid': iconGrid,
                                                             'action_bar--list_item-icon_table': iconTable,
@@ -238,7 +238,7 @@ class ActionBar extends React.PureComponent {
                                                         const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`; // eslint-disable-line no-plusplus
 
                                                         if (!actionsButton &&
-                                                                !jsx &&
+                                                                !listJsx &&
                                                                 !iconBack &&
                                                                 !iconFilter &&
                                                                 !iconGrid &&
@@ -360,7 +360,7 @@ class ActionBar extends React.PureComponent {
                                                                 />
                                                                 )}
 
-                                                                {jsx}
+                                                                {listJsx}
                                                             </List.Item>
                                                         );
                                                     })}
