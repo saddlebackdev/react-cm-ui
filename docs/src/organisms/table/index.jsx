@@ -1,9 +1,13 @@
+/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable global-require */
+
 import React from 'react';
 import {
     Card,
     Header,
     TitleBar,
 } from 'react-cm-ui';
+import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 import TableSample from './tableSample';
@@ -22,10 +26,12 @@ import TableSampleResponsiveWidth from './tableSampleResponsiveWidth';
 import TableSampleSelectable from './tableSampleSelectable';
 import TableSampleSingleLine from './tableSampleSingleLine';
 import TableSampleSize from './tableSampleSize';
+import TableSampleStickyColumns from './tableSampleStickyColumns';
 import TableSampleStretch from './tableSampleStretch';
 import TableSampleStriped from './tableSampleStriped';
 import TableSampleTextAlign from './tableSampleTextAlign';
-import TableSampleVerticalAlign from './TableSampleVerticalAlign';
+import TableSampleVerticalAlign from './tableSampleVerticalAlign';
+
 
 const propDefinitions = [
     {
@@ -204,6 +210,19 @@ export default function CollectionsTable() {
 
                 {/* Drag and Drop Row Reordering */}
                 <TableSampleDragAndDropRowReordering />
+
+                <Header anchor="basic-table" size="large" style={{ marginTop: '55px' }} sub>
+                    Sticky Columns
+                    <Header.Subheader>
+                        A table can be more basic, stripping UI away.
+                    </Header.Subheader>
+                </Header>
+
+                <TableSampleStickyColumns />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./tableSampleStickyColumns').default}
+                </Highlighter>
             </Main.Content>
         </Main>
     );
