@@ -304,7 +304,7 @@ const routes = (
         <Route path="templates">
             <Route
                 getComponent={(location, callback) => {
-                    import('./templates/drawerDeprecated.js')
+                    import('./templates/drawerDeprecated')
                         .then((module) => callback(null, module.default));
                 }}
                 path="drawer-deprecated"
@@ -312,20 +312,20 @@ const routes = (
             <Route path="drawer">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./templates/drawer.js')
+                        import('./templates/drawer')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerActionBar.js')
+                        import('./templates/drawerActionBar')
                             .then((module) => callback(null, module.default));
                     }}
                     path="action-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerContent.js')
+                        import('./templates/drawerContent')
                             .then((module) => callback(null, module.default));
                     }}
                     path="content"
@@ -339,63 +339,63 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDeprecatedFiltersDrawer.js')
+                        import('./templates/drawerDeprecatedFiltersDrawer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="deprecated-filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataCards.js')
+                        import('./templates/drawerDataCards')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-cards"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerNavigation.js')
+                        import('./templates/drawerNavigation')
                             .then((module) => callback(null, module.default));
                     }}
                     path="navigation"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataGrid.js')
+                        import('./templates/drawerDataGrid')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-grid"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerTitleBar.js')
+                        import('./templates/drawerTitleBar')
                             .then((module) => callback(null, module.default));
                     }}
                     path="title-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerWing.js')
+                        import('./templates/drawerWing')
                             .then((module) => callback(null, module.default));
                     }}
                     path="wing"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDetailsWindow.js')
+                        import('./templates/drawerDetailsWindow')
                             .then((module) => callback(null, module.default));
                     }}
                     path="details-window"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerSticky.js')
+                        import('./templates/drawerSticky')
                             .then(module => callback(null, module.default));
                     }}
                     path="sticky"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataGroups.js')
+                        import('./templates/drawerDataGroups')
                             .then(module => callback(null, module.default));
                     }}
                     path="data-groups"
