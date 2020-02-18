@@ -1,3 +1,12 @@
+/* eslint-disable */
+
+/**
+ * NOTE: The props 'button' part of this component's documentation has been is deprecated as of Feb. 11, 2020.
+ * Please use the DropdownButton component instead.
+ * We are disabling Eslint for this file because of the above note and wanting to
+ * deprecate it fully in hopes to rip out the select portion of it as well.
+ */
+
 import 'global/images/avatar1.jpg';
 import 'global/images/avatar2.jpg';
 import 'global/images/avatar3.jpg';
@@ -5,11 +14,12 @@ import 'global/images/avatar4.jpg';
 import 'global/images/avatar5.jpg';
 
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
+import { Link } from 'react-router';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import PropTypes from 'prop-types';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const getImageUrl = (imageFileName) => `/global/images/${imageFileName}`;
@@ -1799,6 +1809,12 @@ export default class ModulesDropdown extends React.Component {
                 </SubNavigation>
 
                 <Main.Content>
+                    <Header size="large" style={{ marginTop: '55px' }}>
+                        The prop 'button' has been deprecated.
+                        <br />
+                        Please use <Link to={{ pathname: '/molecules/dropdown-button' }}>Dropdown Button</Link> component instead.
+                    </Header>
+
                     <Card>
                         <Header size="large">Props</Header>
 
