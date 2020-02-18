@@ -13,7 +13,13 @@ const propTypes = {
     isClickable: PropTypes.bool,
     row: PropTypes.shape({}).isRequired,
     rowIndex: PropTypes.number.isRequired,
-    rowProps: PropTypes.shape({}),
+    rowProps: PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        onClick: PropTypes.func,
+        selected: PropTypes.bool,
+        style: PropTypes.shape({}),
+    }),
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
 };
 
@@ -33,10 +39,11 @@ class DataGridTableRow extends React.PureComponent {
 
     onClick() {
         const { isClickable, row, rowProps } = this.props;
+        const { onClick } = rowProps;
         const isTextSelect = window.getSelection().toString();
 
-        if (isClickable && !isTextSelect) {
-            rowProps().onClick(row);
+        if (isClickable && !isTextSelect && !_.isUndefined(onClick)) {
+            onClick(row);
         }
     }
 
