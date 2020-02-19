@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.3.1 - 02/19/2020
+
+- [PR #112](https://github.com/saddlebackdev/react-cm-ui/pull/112) / Merge Commit 619db3f1349b567f8e690d09678e0d2b65d40a05
+    - Fixes the crash on **DataGridTableRow** render.
+- [PR #113](https://github.com/saddlebackdev/react-cm-ui/pull/113) / Merge Commit 2b327385e4ff0176730a44b870f35246b677e637
+    - Fixes **Dropdown** being a child of **Prompt**.
+
 ## 9.3.0 - 02/18/2020
 
 - [PR #104](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113
