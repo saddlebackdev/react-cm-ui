@@ -99,7 +99,7 @@ class DataGridTableRow extends React.PureComponent {
 
                     if (idPrefix === 'column') {
                         if (handle && _.last(columns) === column) {
-                            style.borderRight = '1px solid #edf1f5';
+                            cellStyle.borderRight = '1px solid #edf1f5';
                         }
                     }
 
