@@ -1,5 +1,4 @@
 import {
-    Dropdown,
     DropdownButton,
     Grid,
     Header,
@@ -11,7 +10,6 @@ import React from 'react';
 import IconSubNavigation from './iconSubNavigation';
 import Main from '../global/main';
 
-
 class ElementsIconSet extends React.PureComponent {
     constructor() {
         super();
@@ -21,18 +19,24 @@ class ElementsIconSet extends React.PureComponent {
                 category: 'Actions',
                 types: [
                     'action',
-                    'cloud-download',
-                    'cloud-upload',
+                    'add',
+                    'delete',
+                    'download-1',
+                    'download-2',
                     'duplicate',
-                    'edit',
-                    'pencil',
-                    'pencil-input',
-                    'plus',
-                    'power',
+                    'edit-1',
+                    'edit-2',
+                    'edit-text',
+                    'input',
+                    'refresh',
                     'save',
-                    'text-edit',
-                    'trash',
+                    'scan',
+                    'start-or-run',
+                    'target',
+                    'transfer',
                     'undo',
+                    'upload-1',
+                    'upload-2',
                 ],
             }, {
                 category: 'App Features',
@@ -163,49 +167,53 @@ class ElementsIconSet extends React.PureComponent {
             }, {
                 category: 'Interface',
                 types: [
-                    'arrow-to-bottom',
-                    'arrow-to-top',
-                    'arrow-sort',
-                    'caret-sort',
                     'chevron-down',
                     'chevron-left',
                     'chevron-right',
                     'chevron-up',
-                    'compas',
-                    'contract',
-                    'drag',
-                    'ellipsis-h',
+                    'close',
+                    'stepper',
+                    'drag-and-drop-1',
                     'expand',
-                    'filter',
+                    'external-link',
+                    'filters',
                     'grid',
-                    'hand-select',
-                    'link-external',
                     'list',
+                    'menu',
+                    'navigate',
                     'pin',
                     'search',
-                    'times',
+                    'select',
+                    'shrink',
+                    'sign-out',
+                    'sort',
+                    'unpin',
                 ],
             }, {
                 category: 'Miscellaneous',
                 types: [
                     'activity',
-                    'ban',
-                    'calendar-one',
-                    'calendar-recurring',
-                    'chair',
-                    'check',
-                    'cog',
-                    'droplet',
-                    'exclamation',
+                    'attendance',
+                    'baptism',
+                    'configuration-1',
+                    'configuration-2',
                     'flag',
-                    'hand-help',
-                    'home',
-                    'shield',
-                    'sliders',
-                    'stairs',
+                    'media',
+                    'one-time-serving-op',
+                    'placeholder',
+                    'pulpit',
+                    'recurring-serving-op',
+                    'restricted',
+                    'security',
+                    'settings',
+                    'steps',
                     'subjects-and-objects',
+                    'success',
                     'template',
-                    'wrench-screwdriver',
+                    'ticket',
+                    'training',
+                    'urgent',
+                    'want-help',
                 ],
             }, {
                 category: 'People',
@@ -273,13 +281,10 @@ class ElementsIconSet extends React.PureComponent {
                 .map((iconSet) => iconSet.types)
                 .flatten()
                 .sortBy()
-                .map((iconType, index) => (
-                    <Grid.Column key={index} laptop={3} mobileLarge={4} width={6}>
-                        <Icon compact={iconCompact} size={iconSize} type={iconType} />
+                            <Icon compact={iconCompact} size={iconSize} type={iconType} />
 
-                        <p className="icon-type-name">{iconType}</p>
-                    </Grid.Column>
-                ))
+                            <p className="icon-type-name">{iconType}</p>
+                        </Grid.Column>
                 .value();
         } else {
             renderCategories = _.map(this.icons, (iconSet, parentIndex) => (
@@ -294,7 +299,6 @@ class ElementsIconSet extends React.PureComponent {
 
                     <Grid.Row>
                         {_.map(iconSet.types, (type, childIndex) => (
-                            <Grid.Column key={childIndex} laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type={type} />
                                 <p className="icon-type-name">{type}</p>
                             </Grid.Column>
@@ -341,42 +345,34 @@ class ElementsIconSet extends React.PureComponent {
                         </Grid.Row>
 
                         <Grid.Row>
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
                                 <p className="icon-type-name">circle-filled</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="text-lines" />
                                 <p className="icon-type-name">text-lines</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-up" />
                                 <p className="icon-type-name">caret-up</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-right" />
                                 <p className="icon-type-name">caret-right</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-down" />
                                 <p className="icon-type-name">caret-down</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-left" />
                                 <p className="icon-type-name">caret-left</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
                                 <p className="icon-type-name">arrows-alt</p>
                             </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="spinner" />
                                 <p className="icon-type-name">spinner</p>
                             </Grid.Column>
