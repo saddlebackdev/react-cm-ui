@@ -84,13 +84,13 @@ const routes = (
             <Route path="icon">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./atoms/iconSet.js')
+                        import('./atoms/iconSet')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./atoms/iconExamples.js')
+                        import('./atoms/iconExamples')
                             .then((module) => callback(null, module.default));
                     }}
                     path="examples"

@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.4.0 - 03/05/2020
+
+- [PR #114](https://github.com/saddlebackdev/react-cm-ui/pull/114) / Merge Commit 27e4d90edba46584765b45dc651afc174ab4f959
+    - Icons:
+        - New icons.
+        - Renamed some current icons (old names are aliases now) to close design/dev gap.
+    - Refactored `timeFromNow` util function.
+
 ## 9.3.1 - 02/19/2020
 
 - [PR #112](https://github.com/saddlebackdev/react-cm-ui/pull/112) / Merge Commit 619db3f1349b567f8e690d09678e0d2b65d40a05

@@ -151,16 +151,37 @@ class Prompt extends Component {
                 id={id}
                 style={style}
             >
-                {/* {this.renderAction()} */}
-                <div
-                    onClick={this.onClick}
-                    onKeyDown={noop}
-                    ref={(ref) => { this.childrenRef = ref; }}
-                    role="button"
-                    tabIndex={-1}
-                >
-                    {children}
-                </div>
+                {/*
+                 * NOTE: Remove this condition for 'Dropdown' when Dropdown is
+                 * removed from the library.
+                 */}
+                {children && children.type.name === 'Dropdown' ? (
+                    <div
+                        ref={(ref) => { this.childrenRef = ref; }}
+                    >
+                        {React.cloneElement(children, {
+                            className: ClassNames(
+                                'prompt-action',
+                                (children && children.props.className) || null,
+                                {
+                                    'prompt-action-disable': show,
+                                },
+                            ),
+                            buttonColor: show && children.props.buttonColor !== 'transparent' ? 'disable' : children.props.buttonColor,
+                            onChange: this.onClick,
+                        })}
+                    </div>
+                ) : (
+                    <div
+                        onClick={this.onClick}
+                        onKeyDown={noop}
+                        ref={(ref) => { this.childrenRef = ref; }}
+                        role="button"
+                        tabIndex={-1}
+                    >
+                        {children}
+                    </div>
+                )}
 
                 <div className="prompt-actions" style={promptActionsStyle}>
                     <div className={messageClasses}>{message}</div>
