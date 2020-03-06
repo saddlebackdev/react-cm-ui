@@ -281,10 +281,13 @@ class ElementsIconSet extends React.PureComponent {
                 .map((iconSet) => iconSet.types)
                 .flatten()
                 .sortBy()
-                            <Icon compact={iconCompact} size={iconSize} type={iconType} />
+                .map((iconType, index) => (
+                    <Grid.Column key={index} laptop={3} mobileLarge={4} width={6}>
+                        <Icon compact={iconCompact} size={iconSize} type={iconType} />
 
-                            <p className="icon-type-name">{iconType}</p>
-                        </Grid.Column>
+                        <p className="icon-type-name">{iconType}</p>
+                    </Grid.Column>
+                ))
                 .value();
         } else {
             renderCategories = _.map(this.icons, (iconSet, parentIndex) => (
@@ -299,6 +302,7 @@ class ElementsIconSet extends React.PureComponent {
 
                     <Grid.Row>
                         {_.map(iconSet.types, (type, childIndex) => (
+                            <Grid.Column key={childIndex} laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type={type} />
                                 <p className="icon-type-name">{type}</p>
                             </Grid.Column>
@@ -345,34 +349,42 @@ class ElementsIconSet extends React.PureComponent {
                         </Grid.Row>
 
                         <Grid.Row>
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
                                 <p className="icon-type-name">circle-filled</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="text-lines" />
                                 <p className="icon-type-name">text-lines</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-up" />
                                 <p className="icon-type-name">caret-up</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-right" />
                                 <p className="icon-type-name">caret-right</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-down" />
                                 <p className="icon-type-name">caret-down</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="caret-left" />
                                 <p className="icon-type-name">caret-left</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
                                 <p className="icon-type-name">arrows-alt</p>
                             </Grid.Column>
 
+                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
                                 <Icon compact={iconCompact} size={iconSize} type="spinner" />
                                 <p className="icon-type-name">spinner</p>
                             </Grid.Column>
