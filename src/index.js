@@ -51,3 +51,4 @@ export { default as DatePickerUtils } from './global/utils/datePickerUtils';
 export { default as dateUtils } from './global/utils/dateUtils';
 export { default as domUtils } from './global/utils/domUtils';
 export { default as Utils } from './global/utils/utils';
+export { default as TimeFromNow } from './utils/timeFromNow';
