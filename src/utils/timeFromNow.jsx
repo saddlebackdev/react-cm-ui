@@ -1,14 +1,13 @@
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
     className: PropTypes.string,
-    date: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({}),
-    ]).isRequired,
+    // eslint-disable-next-line no-underscore-dangle
+    date: MomentPropTypes.momentObj.withPredicate((momentObj) => momentObj._isUTC).isRequired,
     id: PropTypes.string,
     locale: PropTypes.string,
     style: PropTypes.shape({}),
