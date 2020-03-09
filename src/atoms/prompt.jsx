@@ -178,6 +178,9 @@ class Prompt extends Component {
                         ref={(ref) => { this.childrenRef = ref; }}
                         role="button"
                         tabIndex={-1}
+                        style={{
+                            outline: 'none',
+                        }}
                     >
                         {children}
                     </div>
