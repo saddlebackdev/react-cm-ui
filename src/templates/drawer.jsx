@@ -118,6 +118,24 @@ class Drawer extends React.Component {
                 `${TRANSLATE_X_END} translateY(${nextProps.positionYOffset}px)` :
                 TRANSLATE_X_END;
         }
+        
+        if (
+            prevProps.isOpen &&
+            nextProps.isOpen &&
+            prevProps.maxWidth !== nextProps.maxWidth
+        ) {
+            this.drawerContainerRef.style.maxWidth = _.isNumber(nextProps.maxWidth) ? `${nextProps.maxWidth}px` :
+                nextProps.maxWidth || '768px';
+        }
+        
+        if (
+            prevProps.isOpen &&
+            nextProps.isOpen &&
+            prevProps.maxHeight !== nextProps.maxHeight
+        ) {
+            this.drawerContainerRef.style.maxHeight = _.isNumber(nextProps.maxHeight) ? `${nextProps.maxHeight}px` :
+                nextProps.maxHeight || '700px';
+        }
     }
 
     componentWillUnmount() {
