@@ -16,9 +16,10 @@
         }
     .text-area-container { position: relative; }
         textarea {
+            -webkit-appearance: none;
             background-color: color(backgroundColor);
-            border: 1px solid color(borderColor);
             border-radius: 3px;
+            border: 1px solid color(borderColor);
             display: block;
             margin: 0;
             outline: none;

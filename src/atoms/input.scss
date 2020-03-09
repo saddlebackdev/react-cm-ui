@@ -16,9 +16,10 @@
             margin-left: 3px;
         }
     input {
+        -webkit-appearance: none;
         background-color: color(backgroundColor);
-        border: 1px solid color(borderColor);
         border-radius: 3px;
+        border: 1px solid color(borderColor);
         line-height: em(42px);
         margin: 0;
         outline: none;
