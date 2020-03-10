@@ -24,7 +24,7 @@ const defaultProps = {
     width: '100%',
 };
 
-const hasClassName = 'has-drawer--wing';
+const hasClassName = 'drawer-has_wing';
 const animateOutClassName = 'drawer--wing-animate-out';
 
 class DrawerWing extends React.PureComponent {
