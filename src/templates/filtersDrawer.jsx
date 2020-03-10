@@ -21,6 +21,7 @@ const propTypes = {
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    mobileMaxWidth: PropTypes.number,
     moduleType: PropTypes.string.isRequired,
     onApply: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
@@ -116,6 +117,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     id: undefined,
+    mobileMaxWidth: undefined,
     rows: undefined,
     style: {},
 };
@@ -217,6 +219,7 @@ class FiltersDrawer extends React.Component {
             isDirty,
             isFiltering,
             isOpen,
+            mobileMaxWidth,
             moduleType,
             onClose,
             rows,
@@ -238,12 +241,13 @@ class FiltersDrawer extends React.Component {
 
         return (
             <MediaQuery
-                maxWidth={767}
+                maxWidth={mobileMaxWidth ? mobileMaxWidth : 767}
             >
                 <Drawer
                     className={containerClasses}
                     id={id}
                     isOpen={isOpen}
+                    mobileMaxWidth={mobileMaxWidth}
                     onClose={onClose}
                     style={style}
                     wing={(

@@ -7,6 +7,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
+    mobileMaxWidth: PropTypes.number,
     style: PropTypes.shape({}),
 };
 
@@ -15,6 +16,7 @@ const defaultProps = {
     className: undefined,
     id: undefined,
     isOpen: undefined,
+    mobileMaxWidth: undefined,
     style: {},
 };
 
@@ -24,6 +26,7 @@ function DrawerFiltersRail(props) {
         className,
         id,
         isOpen,
+        mobileMaxWidth,
         style,
     } = props;
 
@@ -32,6 +35,7 @@ function DrawerFiltersRail(props) {
             className={className}
             id={id}
             isOpen={isOpen}
+            mobileMaxWidth={mobileMaxWidth}
             moduleType="drawer"
             style={style}
         >

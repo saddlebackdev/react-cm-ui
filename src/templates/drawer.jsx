@@ -29,6 +29,7 @@ const propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+    mobileMaxWidth: PropTypes.number,
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
@@ -47,6 +48,7 @@ const defaultProps = {
     dimmer: true,
     maxHeight: undefined,
     maxWidth: undefined,
+    mobileMaxWidth: undefined,
     onClickOutside: undefined,
     onClose: undefined,
     onCloseComplete: undefined,
@@ -66,6 +68,8 @@ const TRANSLATE_X_RIGHT_START = 'translateX(100%)';
 const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
 const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
+const DEFAULT_DRAWER_WIDTH = 768;
+const DEFAULT_DRAWER_HEIGHT = 700;
 
 class Drawer extends React.Component {
     constructor(props) {
@@ -125,7 +129,7 @@ class Drawer extends React.Component {
             prevProps.maxWidth !== nextProps.maxWidth
         ) {
             this.drawerContainerRef.style.maxWidth = _.isNumber(nextProps.maxWidth) ? `${nextProps.maxWidth}px` :
-                nextProps.maxWidth || '768px';
+                nextProps.maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
         }
         
         if (
@@ -134,7 +138,7 @@ class Drawer extends React.Component {
             prevProps.maxHeight !== nextProps.maxHeight
         ) {
             this.drawerContainerRef.style.maxHeight = _.isNumber(nextProps.maxHeight) ? `${nextProps.maxHeight}px` :
-                nextProps.maxHeight || '700px';
+                nextProps.maxHeight || `${DEFAULT_DRAWER_HEIGHT}px`;
         }
     }
 
@@ -242,6 +246,7 @@ class Drawer extends React.Component {
         const {
             dimmer,
             maxWidth,
+            mobileMaxWidth,
             maxHeight,
             onClickOutside,
             positionYOffset,
@@ -254,6 +259,7 @@ class Drawer extends React.Component {
         const layeredOffset = 11;
         const scrollPosition = window.pageYOffset;
         const zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        const drawerWidth = mobileMaxWidth ? mobileMaxWidth + 1 : DEFAULT_DRAWER_WIDTH; // This implies if mobileMaxWidth is set and maxWidth not set
 
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
@@ -327,14 +333,14 @@ class Drawer extends React.Component {
 
             if (!_.isUndefined(maxWidth)) {
                 this.drawerContainerRef.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` :
-                    maxWidth || '768px';
+                    maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
             } else {
                 this.drawerContainerRef.style.maxWidth =
-                    `${768 - (layeredOffset * (drawerLength - 1))}px`;
+                    `${drawerWidth - (layeredOffset * (drawerLength - 1))}px`;
             }
 
             if (!_.isUndefined(maxHeight)) {
-                this.drawerContainerRef.style.maxHeight = maxHeight ? `${maxHeight}px` : '700px';
+                this.drawerContainerRef.style.maxHeight = maxHeight ? `${maxHeight}px` : `${DEFAULT_DRAWER_HEIGHT}px`;
             }
 
             this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
@@ -384,6 +390,7 @@ class Drawer extends React.Component {
         const {
             children,
             className,
+            mobileMaxWidth,
             positionYOffset,
             wing,
         } = this.props;
@@ -416,7 +423,7 @@ class Drawer extends React.Component {
                             autoHide
                         >
                             <div className="drawer-container-inner">
-                                {children}
+                                    {children}
                             </div>
                         </ScrollBar>
 

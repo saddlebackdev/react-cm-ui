@@ -10,6 +10,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
+    mobileMaxWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
     style: PropTypes.shape({}),
 };
@@ -19,6 +20,7 @@ const defaultProps = {
     className: undefined,
     id: undefined,
     isOpen: undefined,
+    mobileMaxWidth: undefined,
     style: {},
 };
 
@@ -28,6 +30,7 @@ function FiltersRail(props) {
         className,
         id,
         isOpen,
+        mobileMaxWidth,
         moduleType,
         style,
     } = props;
@@ -39,7 +42,7 @@ function FiltersRail(props) {
 
     return (
         <MediaQuery
-            minWidth={768}
+            minWidth={mobileMaxWidth ? mobileMaxWidth + 1 : 768}
         >
             <div
                 className={containerClasses}

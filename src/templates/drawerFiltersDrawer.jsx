@@ -9,6 +9,7 @@ const propTypes = {
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    mobileMaxWidth: PropTypes.number,
     onApply: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -20,6 +21,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     id: undefined,
+    mobileMaxWidth: undefined,
     rows: undefined,
     style: {},
 };
@@ -32,6 +34,7 @@ function DrawerFiltersDrawer(props) {
         isDirty,
         isFiltering,
         isOpen,
+        mobileMaxWidth,
         onApply,
         onClear,
         onClose,
@@ -46,6 +49,7 @@ function DrawerFiltersDrawer(props) {
             isDirty={isDirty}
             isFiltering={isFiltering}
             isOpen={isOpen}
+            mobileMaxWidth={mobileMaxWidth}
             moduleType="drawer"
             onApply={onApply}
             onClear={onClear}
