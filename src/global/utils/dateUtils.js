@@ -235,60 +235,6 @@ const dateUtils = {
         });
     },
 
-    timeFromNow(
-        date,
-        locale = 'en',
-        relativeTime = {},
-        relativeTimeThreshold = {},
-    ) {
-        let originalRelativeTime;
-        const originalRTTss = moment.relativeTimeThreshold('ss');
-        const originalRTTs = moment.relativeTimeThreshold('s');
-        const originalRTTm = moment.relativeTimeThreshold('m');
-        const originalRTTh = moment.relativeTimeThreshold('h');
-        const originalRTTd = moment.relativeTimeThreshold('d');
-        const originalRTTM = moment.relativeTimeThreshold('M');
-
-        if (relativeTime || relativeTimeThreshold) {
-            originalRelativeTime = moment().locale(locale).localeData()._relativeTime; // eslint-disable-line no-underscore-dangle, max-len
-        }
-
-        // Customizing moment's relativeTime
-        if (relativeTime) {
-            moment.updateLocale(locale, { relativeTime });
-        }
-
-        // Customizing moment's relativeTimeThreshold
-        if (relativeTimeThreshold) {
-            moment.relativeTimeThreshold('ss', relativeTimeThreshold.ss || originalRTTss);
-            moment.relativeTimeThreshold('s', relativeTimeThreshold.s || originalRTTs);
-            moment.relativeTimeThreshold('m', relativeTimeThreshold.m || originalRTTm);
-            moment.relativeTimeThreshold('h', relativeTimeThreshold.h || originalRTTh);
-            moment.relativeTimeThreshold('d', relativeTimeThreshold.d || originalRTTd);
-            moment.relativeTimeThreshold('M', relativeTimeThreshold.M || originalRTTM);
-        }
-
-        // Setting fromNow string with customized relativeTime
-        const fromNowTime = moment(date).fromNow(true);
-
-        // Reverting moment's relativeTime.
-        if (relativeTime) {
-            moment.updateLocale(locale, { relativeTime: originalRelativeTime });
-        }
-
-        // Reverting moment's relativeTimeThresholds.
-        if (relativeTimeThreshold) {
-            moment.relativeTimeThreshold('ss', originalRTTss);
-            moment.relativeTimeThreshold('s', originalRTTs);
-            moment.relativeTimeThreshold('m', originalRTTm);
-            moment.relativeTimeThreshold('h', originalRTTh);
-            moment.relativeTimeThreshold('d', originalRTTd);
-            moment.relativeTimeThreshold('M', originalRTTM);
-        }
-
-        return fromNowTime;
-    },
-
     unixToTz(date, userTimeZoneId) {
         const timeZoneId = userTimeZoneId || dateUtils.getDetectedTimeZone();
 

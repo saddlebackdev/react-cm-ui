@@ -46,6 +46,7 @@
     "react": "^16.8.6",
     "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^16.8.6",
+    "react-moment-proptypes": "^1.7.0",
     "react-onclickoutside": "^6.7.1",
     "react-phone-number-input": "^2.3.21",
     "react-portal": "^4.1.1",
