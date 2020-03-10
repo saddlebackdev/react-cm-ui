@@ -241,7 +241,7 @@ class FiltersDrawer extends React.Component {
 
         return (
             <MediaQuery
-                maxWidth={mobileMaxWidth ? mobileMaxWidth : 767}
+                maxWidth={mobileMaxWidth || 767}
             >
                 <Drawer
                     className={containerClasses}

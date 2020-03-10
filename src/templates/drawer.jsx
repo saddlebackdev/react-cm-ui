@@ -423,7 +423,7 @@ class Drawer extends React.Component {
                             autoHide
                         >
                             <div className="drawer-container-inner">
-                                    {children}
+                                {children}
                             </div>
                         </ScrollBar>
 
