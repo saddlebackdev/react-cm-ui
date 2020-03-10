@@ -1,6 +1,22 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.6.0 - 03/10/2020
+
+#### Feature
+- [PR #115](https://github.com/saddlebackdev/react-cm-ui/pull/115) / Merge Commit 04ce4cef66cc6c701878adb22f13f11614b1e3a1
+    - New **TimeFromNow** utility component.
+- [PR #116](https://github.com/saddlebackdev/react-cm-ui/pull/116) / Merge Commit dc94ccfdbfe97e5a2bcbebdb1b1eecff88afb4ea
+    - Added the ability to update the **Drawer** component's `maxWidth`.
+
+#### Bug Fix
+- [PR #117](https://github.com/saddlebackdev/react-cm-ui/pull/117) / Merge Commit 6eb654dfaa138ef1bf57b82e90445d4afb700c3e
+    - Fixes the `outline` issue with some of our buttons in iOS.
+- [PR #118](https://github.com/saddlebackdev/react-cm-ui/pull/118) / Merge Commit ab5453bfc1f8788e327b3703ae8330ef0a9391db
+    - Fixes the `-webkit-appearance` issue with our **Input** and **TextArea** components in iOS.
+- [PR #119](https://github.com/saddlebackdev/react-cm-ui/pull/119) / Merge Commit 4e4d33e5fea81af326ee3d48eaec0ac88c14d089
+    - Fixes some issues with our **Drawer** component's **ActionBar** `border-top`.
+
 ## 9.4.0 - 03/05/2020
 
 - [PR #114](https://github.com/saddlebackdev/react-cm-ui/pull/114) / Merge Commit 27e4d90edba46584765b45dc651afc174ab4f959
