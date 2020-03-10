@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SubNavigation from '../organisms/subNavigation';
 
-const hasClassName = 'has-drawer--navigation';
+const hasClassName = 'drawer-has_navigation';
 
 const propTypes = {
     className: PropTypes.string,

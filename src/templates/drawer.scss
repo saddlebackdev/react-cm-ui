@@ -34,7 +34,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // Header Items
     // ####
     // Only One Header Item Showing
-    &.drawer--has_action_bar:not(.has-drawer--navigation):not(.has-drawer--title_bar) .drawer-container-inner {
+    &.drawer-has_action_bar:not(.drawer-has_navigation):not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-action-bar-height;
         .drawer {
             &--action_bar {
@@ -47,7 +47,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar).has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+    &:not(.drawer-has_action_bar).drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-navigation-height;
         .drawer {
             &--navigation {
@@ -58,7 +58,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar):not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+    &:not(.drawer-has_action_bar):not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-title-bar-height;
         .drawer {
             &--title_bar {
@@ -70,7 +70,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
     }
     // Two Header Items Showing
-    &.drawer--has_action_bar.has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+    &.drawer-has_action_bar.drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-navigation-height;
         .drawer {
             &--action_bar {
@@ -84,7 +84,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &.drawer--has_action_bar:not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+    &.drawer-has_action_bar:not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-title-bar-height;
         .drawer {
             &--action_bar {
@@ -100,7 +100,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar).has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+    &:not(.drawer-has_action_bar).drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-navigation-height + $drawer-title-bar-height;
         .drawer {
             &--navigation {
@@ -116,7 +116,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
     }
     // Three Header Items Showing
-    &.drawer--has_action_bar.has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+    &.drawer-has_action_bar.drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height;
         .drawer {
             &--action_bar {

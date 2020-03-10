@@ -1,6 +1,6 @@
 @import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
 
-.ui.drawer--wing.has-drawer--wing--title_bar .drawer--wing-container-inner {
+.ui.drawer--wing.drawer--wing-has_title_bar .drawer--wing-container-inner {
     padding-top: $drawer-title-bar-height;
 }
 
@@ -55,7 +55,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-    .ui.drawer.has-drawer--wing {
+    .ui.drawer.drawer-has_wing {
         .drawer-container {
             transform: translate(-100%) !important;
         }
