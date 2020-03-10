@@ -52,8 +52,8 @@ const defaultProps = {
     style: {},
 };
 
-const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer--has_action_bar';
-const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page--has_action_bar';
+const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer-has_action_bar';
+const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page-has_action_bar';
 
 class ActionBar extends React.PureComponent {
     constructor() {
