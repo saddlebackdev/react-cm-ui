@@ -3,39 +3,42 @@ import React from 'react';
 import FiltersRail from './filtersRail';
 
 const propTypes = {
+    breakpointUp: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
-    mobileMaxWidth: PropTypes.number,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
+    breakpointUp: undefined,
     children: undefined,
     className: undefined,
     id: undefined,
     isOpen: undefined,
-    mobileMaxWidth: undefined,
     style: {},
 };
 
 function DrawerFiltersRail(props) {
     const {
+        breakpointUp,
         children,
         className,
         id,
         isOpen,
-        mobileMaxWidth,
         style,
     } = props;
 
     return (
         <FiltersRail
+            breakpointUp={breakpointUp}
             className={className}
             id={id}
             isOpen={isOpen}
-            mobileMaxWidth={mobileMaxWidth}
             moduleType="drawer"
             style={style}
         >

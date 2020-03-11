@@ -5,32 +5,44 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Rail from '../organisms/rail';
 
+const breakpoints = {
+    values: {
+        sm: 0,
+        md: 768,
+        lg: 1200,
+        xl: 1686,
+    },
+};
+
 const propTypes = {
+    breakpointUp: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
-    mobileMaxWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
+    breakpointUp: breakpoints.values.md,
     children: undefined,
     className: undefined,
     id: undefined,
     isOpen: undefined,
-    mobileMaxWidth: undefined,
     style: {},
 };
 
 function FiltersRail(props) {
     const {
+        breakpointUp,
         children,
         className,
         id,
         isOpen,
-        mobileMaxWidth,
         moduleType,
         style,
     } = props;
@@ -42,7 +54,7 @@ function FiltersRail(props) {
 
     return (
         <MediaQuery
-            minWidth={mobileMaxWidth ? mobileMaxWidth + 1 : 768}
+            minWidth={breakpointUp}
         >
             <div
                 className={containerClasses}
