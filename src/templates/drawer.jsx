@@ -67,26 +67,6 @@ const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
 const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
 const DEFAULT_DRAWER_WIDTH = 768;
-
-function toggleBodyStyle(isOpen) {
-    const { scrollY } = window;
-    const bodyStyleTop = BODY.style.top;
-
-    BODY.style.height = isOpen ? '100%' : '';
-    BODY.style.position = isOpen ? 'fixed' : '';
-    BODY.style.top = isOpen ? `-${scrollY}px` : '';
-    BODY.style.width = isOpen ? '100%' : '';
-
-    if (!isOpen) {
-        BODY.classList.remove('drawer-open');
-
-        // eslint-disable-next-line radix
-        window.scrollTo(0, parseInt(bodyStyleTop || '0') * -1);
-    } else {
-        BODY.classList.add('drawer-open');
-    }
-}
-
 class Drawer extends React.Component {
     constructor(props) {
         super(props);
@@ -165,10 +145,8 @@ class Drawer extends React.Component {
          * closing animation never happens.
          */
         if (isOpen && this.useComponentWillUnmount) {
-            toggleBodyStyle(false);
-
-            if (BODY.classList.contains('drawer-nubbin-open')) {
-                BODY.classList.remove('drawer-nubbin-open');
+            if (BODY.classList.contains('drawer-open')) {
+                BODY.classList.remove('drawer-open');
             }
 
             if (BODY.classList.contains('drawer-dimmers')) {
@@ -233,20 +211,14 @@ class Drawer extends React.Component {
             BODY.classList.remove('drawer-open-layered');
         }
 
-        if (drawerLength <= 1 || (drawerLength > 1 && BODY.classList.contains('drawer-nubbin-open'))) {
-            const isOpen = false;
-
-            toggleBodyStyle(isOpen);
-
-            if (BODY.classList.contains('drawer-dimmers')) {
-                BODY.classList.remove('drawer-dimmers');
-            }
+        if (drawerLength <= 1) {
+            const scrollPosition = parseInt(BODY.style.top, 10);
+            window.scroll(0, Math.abs(scrollPosition));
+            BODY.classList.remove('drawer-open', 'drawer-dimmers');
+            BODY.style.top = null;
         }
 
-        if (drawerLength <= 1 && BODY.classList.contains('drawer-nubbin-open')) {
-            BODY.classList.remove('drawer-nubbin-open');
-        }
-
+        BODY.style.position = null;
         BODY.classList.remove('drawer-animate-out');
 
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
@@ -279,6 +251,7 @@ class Drawer extends React.Component {
         const boxShadowPositionX = this.isPositionX('right') ? '-' : '';
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
         const layeredOffset = 11;
+        const scrollPosition = window.pageYOffset;
         const zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
@@ -338,13 +311,12 @@ class Drawer extends React.Component {
 
                     default:
                 }
+                BODY.style.top = `-${scrollPosition}px`;
 
-                if (!positionY && !maxHeight) {
-                    const isOpen = true;
+                domUtils.addClassName(BODY, 'drawer-open');
 
-                    toggleBodyStyle(isOpen);
-                } else {
-                    BODY.classList.add('drawer-nubbin-open');
+                if (positionY && maxHeight) {
+                    BODY.style.position = 'inherit';
                 }
 
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
@@ -412,7 +384,6 @@ class Drawer extends React.Component {
             children,
             className,
             positionYOffset,
-            style,
             wing,
         } = this.props;
         const { isOpen } = this.state;
@@ -438,7 +409,6 @@ class Drawer extends React.Component {
                         ref={(ref) => { this.drawerContainerRef = ref; }}
                         style={{
                             height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
-                            ...style,
                         }}
                     >
                         <ScrollBar
