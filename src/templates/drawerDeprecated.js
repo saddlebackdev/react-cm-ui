@@ -409,16 +409,16 @@ class DrawerDeprecated extends Component {
         const { isOpen } = this.state;
 
         if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
-            if (document.body.classList.contains('drawer-open')) {
-                document.body.classList.remove('drawer-open');
+            if (document.body.classList.contains('drawer-deprecated-open')) {
+                document.body.classList.remove('drawer-deprecated-open');
             }
 
             if (document.body.classList.contains('drawer-dimmers')) {
                 document.body.classList.remove('drawer-dimmers');
             }
 
-            if (document.body.classList.contains('drawer-open-layered')) {
-                document.body.classList.remove('drawer-open-layered');
+            if (document.body.classList.contains('drawer-deprecated-open-layered')) {
+                document.body.classList.remove('drawer-deprecated-open-layered');
             }
 
             if (document.body.classList.contains('drawer-animate-out')) {
@@ -469,13 +469,13 @@ class DrawerDeprecated extends Component {
         this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         if (drawerLength <= 2) {
-            body.classList.remove('drawer-open-layered');
+            body.classList.remove('drawer-deprecated-open-layered');
         }
 
         if (drawerLength <= 1) {
             const scrollPosition = parseInt(body.style.top, 10);
 
-            body.classList.remove('drawer-open', 'drawer-dimmers');
+            body.classList.remove('drawer-deprecated-open', 'drawer-dimmers');
             window.scroll(0, Math.abs(scrollPosition));
             body.style.top = null;
         }
@@ -517,9 +517,9 @@ class DrawerDeprecated extends Component {
         }
 
         setTimeout(() => {
-            if (document.body.classList.contains('drawer-open')) {
+            if (document.body.classList.contains('drawer-deprecated-open')) {
                 zIndex = zIndex + drawerLength;
-                domUtils.addClassName(body, 'drawer-open-layered');
+                domUtils.addClassName(body, 'drawer-deprecated-open-layered');
 
                 nodePortal.style.zIndex = zIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
@@ -527,7 +527,7 @@ class DrawerDeprecated extends Component {
                 drawerDimmer.style.display = 'none';
             } else {
                 body.style.top = `-${scrollPosition}px`;
-                domUtils.addClassName(body, 'drawer-open');
+                domUtils.addClassName(body, 'drawer-deprecated-open');
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
