@@ -412,6 +412,7 @@ class Drawer extends React.Component {
             children,
             className,
             positionYOffset,
+            style,
             wing,
         } = this.props;
         const { isOpen } = this.state;
@@ -437,6 +438,7 @@ class Drawer extends React.Component {
                         ref={(ref) => { this.drawerContainerRef = ref; }}
                         style={{
                             height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
+                            ...style,
                         }}
                     >
                         <ScrollBar
