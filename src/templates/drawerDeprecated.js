@@ -461,6 +461,7 @@ class DrawerDeprecated extends Component {
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const drawerDeprecatedLength = document.querySelectorAll('.ui.drawer.deprecated').length;
 
         if (onClickOutside) {
             document.removeEventListener('click', this._onClickOutside);
@@ -472,7 +473,7 @@ class DrawerDeprecated extends Component {
             body.classList.remove('drawer-deprecated-open-layered');
         }
 
-        if (drawerLength <= 1) {
+        if (drawerLength <= 1 || drawerDeprecatedLength <= 1) {
             const scrollPosition = parseInt(body.style.top, 10);
 
             body.classList.remove('drawer-deprecated-open', 'drawer-dimmers');
