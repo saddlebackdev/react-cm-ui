@@ -14,7 +14,20 @@ import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogg
 import Header from '../atoms/header';
 import Icon from '../atoms/icon';
 
+const breakpoints = {
+    values: {
+        sm: 0,
+        md: 767,
+        lg: 1199,
+        xl: 1685,
+    },
+};
+
 const propTypes = {
+    breakpointDown: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
@@ -113,6 +126,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    breakpointDown: breakpoints.values.md,
     children: undefined,
     className: undefined,
     id: undefined,
@@ -211,6 +225,7 @@ class FiltersDrawer extends React.Component {
 
     render() {
         const {
+            breakpointDown,
             children,
             className,
             id,
@@ -238,7 +253,7 @@ class FiltersDrawer extends React.Component {
 
         return (
             <MediaQuery
-                maxWidth={767}
+                maxWidth={breakpointDown}
             >
                 <Drawer
                     className={containerClasses}

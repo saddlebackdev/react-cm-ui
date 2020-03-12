@@ -3,6 +3,10 @@ import React from 'react';
 import FiltersDrawer from './filtersDrawer'; // eslint-disable-line import/no-cycle
 
 const propTypes = {
+    breakpointDown: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
@@ -17,6 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    breakpointDown: undefined,
     children: undefined,
     className: undefined,
     id: undefined,
@@ -26,6 +31,7 @@ const defaultProps = {
 
 function DrawerFiltersDrawer(props) {
     const {
+        breakpointDown,
         children,
         className,
         id,
@@ -41,6 +47,7 @@ function DrawerFiltersDrawer(props) {
 
     return (
         <FiltersDrawer
+            breakpointDown={breakpointDown}
             className={className}
             id={id}
             isDirty={isDirty}

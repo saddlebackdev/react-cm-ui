@@ -66,7 +66,7 @@ const TRANSLATE_X_RIGHT_START = 'translateX(100%)';
 const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
 const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
-
+const DEFAULT_DRAWER_WIDTH = 768;
 class Drawer extends React.Component {
     constructor(props) {
         super(props);
@@ -125,7 +125,7 @@ class Drawer extends React.Component {
             prevProps.maxWidth !== nextProps.maxWidth
         ) {
             this.drawerContainerRef.style.maxWidth = _.isNumber(nextProps.maxWidth) ? `${nextProps.maxWidth}px` :
-                nextProps.maxWidth || '768px';
+                nextProps.maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
         }
         
         if (
@@ -133,8 +133,7 @@ class Drawer extends React.Component {
             nextProps.isOpen &&
             prevProps.maxHeight !== nextProps.maxHeight
         ) {
-            this.drawerContainerRef.style.maxHeight = _.isNumber(nextProps.maxHeight) ? `${nextProps.maxHeight}px` :
-                nextProps.maxHeight || '700px';
+            this.drawerContainerRef.style.maxHeight = nextProps.maxHeight ? `${nextProps.maxHeight}px` : 'none';
         }
     }
 
@@ -327,14 +326,14 @@ class Drawer extends React.Component {
 
             if (!_.isUndefined(maxWidth)) {
                 this.drawerContainerRef.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` :
-                    maxWidth || '768px';
+                    maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
             } else {
                 this.drawerContainerRef.style.maxWidth =
-                    `${768 - (layeredOffset * (drawerLength - 1))}px`;
+                    `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (drawerLength - 1))}px`;
             }
 
             if (!_.isUndefined(maxHeight)) {
-                this.drawerContainerRef.style.maxHeight = maxHeight ? `${maxHeight}px` : '700px';
+                this.drawerContainerRef.style.maxHeight = `${maxHeight}px`;
             }
 
             this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
