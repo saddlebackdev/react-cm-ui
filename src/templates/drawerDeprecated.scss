@@ -4,7 +4,7 @@
 $zindex: $drawer-zindex;
 
 html:not(.ua-ie-edge):not(.ua-ie-11) body {
-    &.drawer-open {
+    &.drawer-deprecated-open {
         overflow-y: scroll;
         position: fixed;
         width: 100%;

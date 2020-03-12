@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.6.0 - 03/12/2020
+
+#### Feature
+- [PR #120](https://github.com/saddlebackdev/react-cm-ui/pull/120) / Merge Commit 473f44ffcbdfed6d107d2babc70f5bdcc4e6dd49
+    - Added ability to change the **FiltersRail** and **FiltersDrawer** component's breakpooints.
+
+#### Bug Fix
+- [PR #121](https://github.com/saddlebackdev/react-cm-ui/pull/121) / Merge Commit 5b519df7acb55832fd1aaaa249f145143b55661a
+    - Fixes the body scroll issue when opening a **Drawer**.
+- [PR #122](https://github.com/saddlebackdev/react-cm-ui/pull/122) / Merge Commit 8c9710987d7d64eddb1dbc70f29e6dec37ac55e0
+    - Fixes style not being spread into the **Drawer** component's container style prop.
+
 ## 9.5.0 - 03/10/2020
 
 #### Feature

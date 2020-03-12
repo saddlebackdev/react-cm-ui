@@ -4,11 +4,6 @@
 $zindex: $drawer-zindex;
 
 html:not(.ua-ie-edge):not(.ua-ie-11) body {
-    &.drawer-open {
-        overflow-y: scroll;
-        position: fixed;
-        width: 100%;
-    }
     &.drawer-dimmers .drawer-dimmer {
         animation: fadeInDimmer 200ms forwards;
         backface-visibility: hidden;

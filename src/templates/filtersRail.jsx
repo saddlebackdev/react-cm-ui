@@ -5,7 +5,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Rail from '../organisms/rail';
 
+const breakpoints = {
+    values: {
+        sm: 0,
+        md: 768,
+        lg: 1200,
+        xl: 1686,
+    },
+};
+
 const propTypes = {
+    breakpointUp: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
@@ -15,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    breakpointUp: breakpoints.values.md,
     children: undefined,
     className: undefined,
     id: undefined,
@@ -24,6 +38,7 @@ const defaultProps = {
 
 function FiltersRail(props) {
     const {
+        breakpointUp,
         children,
         className,
         id,
@@ -39,7 +54,7 @@ function FiltersRail(props) {
 
     return (
         <MediaQuery
-            minWidth={768}
+            minWidth={breakpointUp}
         >
             <div
                 className={containerClasses}
