@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.6.1 - 03/12/2020
+
+- [PR #123](https://github.com/saddlebackdev/react-cm-ui/pull/123) / Merge Commit 16f9955044e5becb70cea358f1b938c4b5a0a807
+    - Fixes **DrawerDeprecated** Regression
+
 ## 9.6.0 - 03/12/2020
 
 #### Feature
