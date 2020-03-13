@@ -1,4 +1,4 @@
-import { backgroundColorStatic } from '../colors';
+import colorStyles from '../colors';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -112,7 +112,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                         id={option.id}
                         style={{
                             backgroundColor: option.disabled ?
-                                backgroundColorStatic :
+                                colorStyles.backgroundColorStatic :
                                 option.iconBackgroundColor,
                         }}
                     >
