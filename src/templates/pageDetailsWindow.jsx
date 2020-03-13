@@ -23,7 +23,7 @@ const defaultProps = {
     style: {},
 };
 
-function PageDetailsWindow(props) {
+const PageDetailsWindow = React.forwardRef((props, ref) => {
     const {
         bleed,
         className,
@@ -44,11 +44,12 @@ function PageDetailsWindow(props) {
             columns={columns}
             data={data}
             expandableColumns={expandableColumns}
+            forwardedRef={ref}
             style={style}
             moduleType="page"
         />
     );
-}
+});
 
 PageDetailsWindow.propTypes = propTypes;
 PageDetailsWindow.defaultProps = defaultProps;

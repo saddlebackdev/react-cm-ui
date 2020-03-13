@@ -23,7 +23,7 @@ const defaultProps = {
     style: {},
 };
 
-function DrawerDetailsWindow(props) {
+const DrawerDetailsWindow = React.forwardRef((props, ref) => {
     const {
         bleed,
         className,
@@ -44,11 +44,12 @@ function DrawerDetailsWindow(props) {
             columns={columns}
             data={data}
             expandableColumns={expandableColumns}
+            forwardedRef={ref}
             style={style}
             moduleType="drawer"
         />
     );
-}
+});
 
 DrawerDetailsWindow.propTypes = propTypes;
 DrawerDetailsWindow.defaultProps = defaultProps;
