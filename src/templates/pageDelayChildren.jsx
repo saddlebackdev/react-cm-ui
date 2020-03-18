@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -12,39 +12,27 @@ const defaultProps = {
 
 const ACTIVITY_INDICATOR_DURATION = 200;
 
-class DelayChildren extends React.PureComponent {
-    constructor(props) {
-        super(props);
+function DelayChildren(props) {
+    const { children, isDataFetching } = props;
+    const [isFetching, setIsFetching] = useState(isDataFetching);
 
-        this.state = {
-            isDataFetching: props.isDataFetching,
-        };
-    }
+    useEffect(() => {
+        let isFetchingTimeout;
 
-    componentDidUpdate(prevProps) {
-        const { props: nextProps } = this;
-
-        if (prevProps.isDataFetching && !nextProps.isDataFetching) {
-            setTimeout(() => {
-                this.setState((prevState) => ({
-                    isDataFetching: !prevState.isDataFetching,
-                }));
+        if (isFetching && !isDataFetching) {
+            isFetchingTimeout = setTimeout(() => {
+                setIsFetching((prev) => !prev.isFetching);
             }, ACTIVITY_INDICATOR_DURATION / 2);
         }
+
+        return () => clearTimeout(isFetchingTimeout);
+    }, [isDataFetching, isFetching]);
+
+    if (isFetching) {
+        return null;
     }
 
-    render() {
-        const { children } = this.props;
-        const { isDataFetching } = this.state;
-
-        if (isDataFetching) {
-            return (
-                <div />
-            );
-        }
-
-        return children;
-    }
+    return children;
 }
 
 DelayChildren.propTypes = propTypes;

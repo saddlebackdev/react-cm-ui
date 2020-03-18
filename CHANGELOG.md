@@ -1,13 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.7.0 - 03/18/2020
+
+#### Feature
+- [PR #128](https://github.com/saddlebackdev/react-cm-ui/pull/128) / Merge Commit a9609215224a5da0baeaf9304ecd36737a222a98
+    - **Page**: Implemented forwardRef.
+
 ## 9.6.2 - 03/12/2020
 
 #### Bug Fix
 - [PR #124](https://github.com/saddlebackdev/react-cm-ui/pull/124) / Merge Commit 8d9be9cbb345231569d17fdb82609d68d8822a99
     - Fixed color import.
 - [PR #125](https://github.com/saddlebackdev/react-cm-ui/pull/125) / Merge Commit 7ea8d16ffc190b126ca4d265ec4ea355bbcf3411
-    - **DetailsWindow**: Implemented forwardRef for.
+    - **DetailsWindow**: Implemented forwardRef.
 
 ## 9.6.1 - 03/12/2020
 
