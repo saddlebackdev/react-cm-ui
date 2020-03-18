@@ -72,7 +72,7 @@ const propTypes = {
                 }),
             }),
             jsx: PropTypes.node,
-            multiSelect: PropTypes.arrayOf(PropTypes.shape({
+            multiSelect: PropTypes.shape({
                 placeholder: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
@@ -82,15 +82,15 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.shape({
+                value: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string,
                     ]),
-                }),
-            })),
-            nestedToggles: PropTypes.arrayOf(PropTypes.shape({
+                })),
+            }),
+            nestedToggles: PropTypes.shape({
                 label: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
@@ -100,14 +100,14 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.shape({
+                value: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string,
                     ]),
-                }),
-            })),
+                })),
+            }),
             toggle: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
