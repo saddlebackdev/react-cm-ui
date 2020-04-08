@@ -60,9 +60,9 @@ const defaultProps = {
 };
 
 const BODY = document.body;
-const TRANSLATE_X_END = 'translateX(0)';
-const TRANSLATE_X_LEFT_START = 'translateX(-100%)';
-const TRANSLATE_X_RIGHT_START = 'translateX(100%)';
+const TRANSLATE_X_END = 'translate3d(0, 0, 0)';
+const TRANSLATE_X_LEFT_START = 'translate3d(-100%, 0, 0)';
+const TRANSLATE_X_RIGHT_START = 'translate3d(100%, 0, 0)';
 const BOX_SHADOW_XSMALL = '0 0 3px 0 rgba(0, 0, 0, 0.30)';
 const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';

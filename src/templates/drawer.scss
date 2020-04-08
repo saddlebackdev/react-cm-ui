@@ -156,7 +156,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         position: absolute;
         right: 0;
         top: 0;
-        transform: translate(100%, 0);
+        transform: translate3d(100%, 0, 0);
         transition: max-width 200ms ease-in-out, transform 333ms ease-in-out;
         width: 100%;
         .shadow_container {
@@ -183,7 +183,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.left-position .drawer-container {
         left: 0;
         right: inherit;
-        transform: translate(-100%, 0);
+        transform: translate3d(-100%, 0, 0);
     }
     > div > div:last-child { z-index: $zindex; } // Vertical scrollbar
     .drawer-container-inner {
