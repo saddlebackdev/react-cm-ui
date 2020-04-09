@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.7.1 - 04/09/2020
+
+#### Bug Fix
+- [PR #129](https://github.com/saddlebackdev/react-cm-ui/pull/129) / Merge Commit c28481c5996728da074168de20cb639dd3b7603d
+    - **Drawer** animation performance fixes.
+- [PR #130](https://github.com/saddlebackdev/react-cm-ui/pull/130) / Merge Commit 67b937e14aef945661c74cae52c4b93ddbe0216c
+    - **Input** required prop fixes.
+
 ## 9.7.0 - 03/18/2020
 
 #### Feature
