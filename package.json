@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "9.7.0",
+  "version": "9.7.1",
   "description": "React UI for Healthy Church",
   "main": "lib/",
   "jsnext:main": "src/",
@@ -43,7 +43,7 @@
     "moment-timezone": "^0.5.21",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-custom-scrollbars": "^4.0.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.8.6",
     "react-moment-proptypes": "^1.7.0",
     "react-onclickoutside": "^6.7.1",
