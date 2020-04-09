@@ -64,7 +64,7 @@ class DrawerWing extends React.PureComponent {
         const animationEvent = domUtils.cssTransitionType(this.closestDrawerContainerEl);
 
         this.drawerWingRef.closest('.ui.drawer').classList.add(animateOutClassName);
-        this.closestDrawerContainerEl.style.transform = 'translate(0)';
+        this.closestDrawerContainerEl.style.transform = 'translate3d(0, 0, 0)';
         this.closestDrawerContainerEl.addEventListener(
             animationEvent,
             this.onCloseAnimationComplete,
@@ -96,7 +96,7 @@ class DrawerWing extends React.PureComponent {
 
         this.closestDrawerContainerEl = this.drawerWingRef.closest('.drawer-container');
         this.closestDrawerContainerEl.style.transform = `
-            translate(${isPositionLeft ? width : `-${width}`}, 0)
+            translate3d(${isPositionLeft ? width : `-${width}`}, 0, 0)
         `;
     }
 
