@@ -13,7 +13,7 @@ export default class ImageSample extends React.Component {
 
     render() {
         return (
-            <Image src="/images/marty-mcfly.jpg" />
+            <Image src="/global/images/marty-mcfly.jpg" />
         );
     }
 
