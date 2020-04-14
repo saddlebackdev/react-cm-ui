@@ -1,6 +1,6 @@
 import { IndexRoute, Route } from 'react-router';
 import React from 'react';
-import CoreApp from './app';
+import CoreApp from './app/app';
 
 const routes = (
     <Route path="/" component={CoreApp}>
@@ -38,6 +38,59 @@ const routes = (
             />
         </Route>
 
+        <Route path="/data-display">
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/banner.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="banner"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/divider.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="divider"
+            />
+            <Route path="icon">
+                <IndexRoute
+                    getComponent={(location, callback) => {
+                        import('./dataDisplay/iconSet')
+                            .then((module) => callback(null, module.default));
+                    }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./dataDisplay/iconExamples')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="examples"
+                />
+            </Route>
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/image.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="image"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/list.js')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="list"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/table')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="table"
+            />
+        </Route>
+
         <Route path="/atoms">
             <Route
                 getComponent={(location, callback) => {
@@ -62,13 +115,6 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/divider.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="divider"
-            />
-            <Route
-                getComponent={(location, callback) => {
                     import('./atoms/dropdown.js')
                         .then((module) => callback(null, module.default));
                 }}
@@ -80,28 +126,6 @@ const routes = (
                         .then((module) => callback(null, module.default));
                 }}
                 path="header"
-            />
-            <Route path="icon">
-                <IndexRoute
-                    getComponent={(location, callback) => {
-                        import('./atoms/iconSet')
-                            .then((module) => callback(null, module.default));
-                    }}
-                />
-                <Route
-                    getComponent={(location, callback) => {
-                        import('./atoms/iconExamples')
-                            .then((module) => callback(null, module.default));
-                    }}
-                    path="examples"
-                />
-            </Route>
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/image.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="image"
             />
             <Route
                 getComponent={(location, callback) => {
@@ -116,13 +140,6 @@ const routes = (
                         .then((module) => callback(null, module.default));
                 }}
                 path="label"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/list.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="list"
             />
             <Route
                 getComponent={(location, callback) => {
@@ -162,13 +179,6 @@ const routes = (
         </Route>
 
         <Route path="molecules">
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/banner.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="banner"
-            />
             <Route
                 getComponent={(location, callback) => {
                     import('./molecules/comment.js')
@@ -277,13 +287,6 @@ const routes = (
                         .then((module) => callback(null, module.default));
                 }}
                 path="sub-navigation"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./organisms/table')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="table"
             />
             <Route
                 getComponent={(location, callback) => {

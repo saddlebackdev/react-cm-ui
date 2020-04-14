@@ -5,7 +5,7 @@ import { buttonPropTypes, buttonDefaultProps } from '../atoms/buttonConstants';
 import Button from '../atoms/button';
 import DropdownMenu from '../atoms/dropdownMenu';
 import DropdownMenuOption from '../atoms/dropdownMenuOption';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 const propTypes = {
     ...buttonPropTypes,

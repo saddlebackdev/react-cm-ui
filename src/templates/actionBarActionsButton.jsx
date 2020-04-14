@@ -6,7 +6,7 @@ import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOp
 import Button from '../atoms/button';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 import Prompt from '../atoms/prompt';
 
 const propTypes = {

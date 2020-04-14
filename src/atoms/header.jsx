@@ -2,8 +2,8 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import HeaderSubheader from './headerSubheader';
-import Icon from './icon';
-import Utils from '../global/utils/utils';
+import Icon from '../dataDisplay/icon';
+import Utils from '../utils/utils';
 
 const asEnums = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 const colorEnums = ['static', 'text'];

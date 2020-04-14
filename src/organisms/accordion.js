@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import domUtils from '../global/utils/domUtils.js';
-import Icon from '../atoms/icon';
+import domUtils from '../utils/domUtils.js';
+import Icon from '../dataDisplay/icon';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 

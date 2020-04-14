@@ -8,11 +8,11 @@ import React, { Component } from 'react';
 
 import Grid from '../organisms/grid';
 import GridColumn from '../organisms/gridColumn';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 import Input from '../atoms/input';
 
-import DatePickerUtils from '../global/utils/datePickerUtils.js';
-import DateUtils from '../global/utils/dateUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
+import DateUtils from '../utils/dateUtils.js';
 
 class DatePickerInput extends Component {
     constructor(props) {

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Dropdown from '../atoms/dropdown';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 import Input from '../atoms/input';
 
 class TimePicker extends Component {

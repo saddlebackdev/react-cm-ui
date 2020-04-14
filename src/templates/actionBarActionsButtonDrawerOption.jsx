@@ -1,4 +1,4 @@
-import colorStyles from '../colors';
+import colorStyles from '../styles/colorExports';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import React from 'react';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,

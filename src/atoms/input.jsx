@@ -4,7 +4,7 @@ import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Icon from './icon';
+import Icon from '../dataDisplay/icon';
 
 const propTypes = {
     autoComplete: PropTypes.oneOf(['off', 'on']),

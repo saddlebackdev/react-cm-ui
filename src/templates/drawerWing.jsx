@@ -2,7 +2,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import domUtils from '../global/utils/domUtils';
+import domUtils from '../utils/domUtils';
 
 const propTypes = {
     children: PropTypes.node,

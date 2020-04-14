@@ -5,7 +5,7 @@ import ReactPhoneInput, {
 } from 'react-phone-number-input/max';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import Divider from '../atoms/divider';
+import Divider from '../dataDisplay/divider';
 import Dropdown from '../atoms/dropdown';
 import PropTypes from 'prop-types';
 import React from 'react';
