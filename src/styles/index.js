@@ -1,6 +1,5 @@
 export {
     keys as breakpointKeys,
-    propTypes as breakpointPropTypes,
     values as breakpointValues,
 } from './breakpointsConstants';
 export { default as makeStyles } from './makeStyles';
