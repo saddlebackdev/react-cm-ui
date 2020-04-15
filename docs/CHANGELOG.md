@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 - 04/14/2020
+
+- Added new component category, Data Displays.
+
 ## 0.3.1 - 03/05/2020
 
 - A gap between icon categories, Actions and Miscellaneous, are now closed.
