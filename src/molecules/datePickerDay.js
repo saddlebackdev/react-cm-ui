@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import DatePickerUtils from '../global/utils/datePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';

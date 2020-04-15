@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../global/utils/utils.js';
+import Utils from '../utils/utils.js';
 
 class DropdownItem extends Component {
     render() {

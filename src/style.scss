@@ -5,23 +5,31 @@
 // Tabs.react: 6000
 
 // Base
-@import './global/styles/normalize';
-@import './global/styles/typography';
+@import './styles/normalize';
+@import './styles/typography';
+
+// Data Display
+@import './dataDisplay/banner';
+@import './dataDisplay/divider';
+@import './dataDisplay/icon';
+@import './dataDisplay/image';
+@import './dataDisplay/list';
+@import './dataDisplay/table';
+@import './dataDisplay/tableCell';
+@import './dataDisplay/tableHeader';
+@import './dataDisplay/tableHeaderCell';
+@import './dataDisplay/tableRow';
 
 // Atoms
 @import './atoms/a';
 @import './atoms/activityIndicator';
 @import './atoms/button';
 @import './atoms/checkbox';
-@import './atoms/divider';
 @import './atoms/dropdown';
 @import './atoms/dropdownMenu';
 @import './atoms/header';
-@import './atoms/icon';
-@import './atoms/image';
 @import './atoms/input';
 @import './atoms/label';
-@import './atoms/list';
 @import './atoms/loader';
 @import './atoms/prompt';
 @import './atoms/radio';
@@ -29,7 +37,6 @@
 @import './atoms/textArea';
 
 // Molecules
-@import './molecules/banner';
 @import './molecules/comment';
 @import './molecules/datePickerCalendar';
 @import './molecules/datePickerDay';
@@ -55,11 +62,6 @@
 @import './organisms/infoBar';
 @import './organisms/rail';
 @import './organisms/subNavigation';
-@import './organisms/table';
-@import './organisms/tableCell';
-@import './organisms/tableHeader';
-@import './organisms/tableHeaderCell';
-@import './organisms/tableRow';
 @import './organisms/tabs';
 @import './organisms/titleBar';
 

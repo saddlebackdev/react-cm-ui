@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
 import InfoBar from '../organisms/infoBar';
 import DetailsWindowColumnContainer from './detailsWindowColumnContainer';
-import domUtils from '../global/utils/domUtils';
+import domUtils from '../utils/domUtils';
 
 const propTypes = {
     bleed: PropTypes.bool,

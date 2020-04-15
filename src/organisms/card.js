@@ -4,9 +4,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import domUtils from '../global/utils/domUtils.js';
+import domUtils from '../utils/domUtils.js';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 class CardHeader extends Component {
     render() {

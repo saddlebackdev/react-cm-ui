@@ -4,6 +4,7 @@ import 'regenerator-runtime/runtime';
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
+import { theme, ThemeProvider } from 'react-cm-ui/styles';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -29,13 +30,15 @@ const onUpdate = () => {
 
 const render = () => {
     ReactDOM.render(
-        <Provider store={appReduxStore}>
-            <Router
-                history={browserHistory}
-                onUpdate={onUpdate}
-                routes={routes}
-            />
-        </Provider>,
+        <ThemeProvider theme={theme}>
+            <Provider store={appReduxStore}>
+                <Router
+                    history={browserHistory}
+                    onUpdate={onUpdate}
+                    routes={routes}
+                />
+            </Provider>
+        </ThemeProvider>,
         document.getElementById('coreApp'),
     );
 };

@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../global/utils/utils.js';
+import Utils from '../utils/utils.js';
 
 function InfoBar(props) {
     const {

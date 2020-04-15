@@ -7,9 +7,9 @@ import ActionBarSearch from './actionBarSearch';
 import Button from '../atoms/button';
 import DropdownButton from '../molecules/dropdownButton';
 import Grid from '../organisms/grid';
-import Icon from '../atoms/icon';
-import List from '../atoms/list';
-import Utils from '../global/utils/utils';
+import Icon from '../dataDisplay/icon';
+import List from '../dataDisplay/list';
+import Utils from '../utils/utils';
 
 const propTypes = {
     children: PropTypes.element,

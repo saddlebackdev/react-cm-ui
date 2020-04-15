@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../global/utils/utils';
+import Utils from '../utils/utils';
 
 const propTypes = {
     as: PropTypes.oneOf(['div', 'header', 'main', 'section']),
