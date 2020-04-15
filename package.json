@@ -1,8 +1,8 @@
 {
   "name": "react-cm-ui",
-  "version": "9.7.1",
+  "version": "9.8.0",
   "description": "React UI for Healthy Church",
-  "main": "lib/",
+  "main": "core/",
   "jsnext:main": "src/",
   "repository": {
     "type": "git",
@@ -25,16 +25,18 @@
     "cm"
   ],
   "files": [
-    "lib",
+    "core",
     "src"
   ],
   "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
   "scripts": {
-    "compile": "gulp && babel src/ -d lib/",
+    "compile": "gulp",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepare": "npm run compile"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.10",
+    "@material-ui/styles": "^4.9.10",
     "autosize": "^3.0.17",
     "classnames": "^2.2.5",
     "country-telephone-data": "^0.4.4",

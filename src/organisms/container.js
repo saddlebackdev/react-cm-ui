@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import ContainerActionBar from './containerActionBar';
 import ContainerContent from './containerContent';
 
-import Utils from '../global/utils/utils.js';
+import Utils from '../utils/utils.js';
 
 class Container extends Component {
 

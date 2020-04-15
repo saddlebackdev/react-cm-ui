@@ -1,6 +1,7 @@
 node_modules/
 npm-debug.log
 build
+core
 lib
 stats.json
 **/.DS_Store

@@ -12,9 +12,9 @@ import DatePickerMonth from './datePickerDeprecatedMonth';
 import DatePickerDropdownMonth from './datePickerDropdownMonth';
 import DatePickerDropdownYear from './datePickerDropdownYear';
 import Grid from '../organisms/grid';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
-import DatePickerUtils from '../global/utils/datePickerUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils.js';
 
 class DatePickerCalendar extends Component {
     constructor(props) {

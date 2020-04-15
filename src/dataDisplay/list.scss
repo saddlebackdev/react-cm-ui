@@ -1,0 +1,60 @@
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator';
+
+.ui {
+    &.list {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0; // need to think about the top and bottom margin. Moved it to 0 for the time being. ******
+        padding: 0;
+        .icon { margin: 0; }
+    }
+    &.list-fluid { display: block; }
+    &.list-divide:not(.list-horizontal) .list--item {
+        border-top: 1px solid color(borderColor);
+        padding: rem(16.5px) 0;
+        &:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    &.list-horizontal {
+        > .list--item {
+            display: inline-flex;
+            flex-direction: column;
+            min-height: rem(22px);
+            padding: 0 rem(16.5px);
+            position: relative;
+            &:first-child { padding-left: 0; }
+            &:last-child { padding-right: 0; }
+        }
+        .list--item-divide { margin-left: rem(16.5px); }
+        &.list-divide .list--item, .list--item-divide {
+            padding: 0 rem(33px);
+            &:not(:first-child)::before {
+                background-color: color(borderColor);
+                content: '';
+                height: 75%;
+                left: 0;
+                position: absolute;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 1px;
+            }
+            &:first-child {
+                margin-left: 0;
+                padding-left: 0;
+            }
+            &:last-child { padding-right: 0; }
+        }
+    }
+    &.list-inverse {
+        color: color(colorInverse);
+        &.list-horizontal.list-divide .list--item, .list--item-divide {
+            &:not(:first-child)::before { background-color: color(colorInverse); }
+        }
+    }
+    .list--item { display: list-item; }
+}

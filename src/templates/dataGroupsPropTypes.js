@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Utils from '../global/utils/utils';
+import Utils from '../utils/utils';
 
 export const rowPropTypes = PropTypes.shape({
     accessor: PropTypes.oneOfType([

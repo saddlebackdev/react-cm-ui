@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import domUtils from '../global/utils/domUtils';
+import domUtils from '../utils/domUtils';
 import { BEM_BLOCK_NAME, OPTION_INNER_CLASS_NAME } from './dropdownMenuConstants';
 
 const propTypes = {

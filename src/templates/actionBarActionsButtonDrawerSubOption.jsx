@@ -2,8 +2,8 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../atoms/icon';
-import Utils from '../global/utils/utils';
+import Icon from '../dataDisplay/icon';
+import Utils from '../utils/utils';
 
 export const singleOptionPropTypeShape = {
     disabled: PropTypes.bool,

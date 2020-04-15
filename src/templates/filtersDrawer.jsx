@@ -12,7 +12,7 @@ import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 const breakpoints = {
     values: {

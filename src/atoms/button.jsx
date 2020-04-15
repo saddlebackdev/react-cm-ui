@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import React from 'react';
 import { buttonPropTypes, buttonDefaultProps } from './buttonConstants';
-import Utils from '../global/utils/utils';
+import Utils from '../utils/utils';
 
 const propTypes = {
     ...buttonPropTypes,

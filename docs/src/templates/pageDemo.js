@@ -10,7 +10,7 @@ import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneo
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'global/styles/colors';
+import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'react-cm-ui/styles/colorExports';
 
 const nop = () => { };
 

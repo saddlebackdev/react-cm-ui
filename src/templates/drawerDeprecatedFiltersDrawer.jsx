@@ -9,7 +9,7 @@ import Checkbox from '../atoms/checkbox';
 import Drawer from './drawer';
 import Dropdown from '../atoms/dropdown';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 class DrawerFiltersDrawer extends React.PureComponent {
     render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Icon from './icon';
+import Icon from '../dataDisplay/icon';
 
 const propTypes = {
     align: PropTypes.oneOf([ 'left', 'right' ]),
