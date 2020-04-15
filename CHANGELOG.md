@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.8.0 - 04/14/2020
+
+#### Feature
+- [PR #131](https://github.com/saddlebackdev/react-cm-ui/pull/131) / Merge Commit 354883a1051d993bb894fb3822acf5b8e9dc488a
+    - Reorganization of components.
+    - Implemented some of Material-UI's styles.
+        - We now can do JSS using `makeStyles` or `withStyles`.
+        - We now have the starting to a global theme, starting with breakpoints.
+    - New `versions.js`. This is part of the UI gap closure.
+
 ## 9.7.1 - 04/09/2020
 
 #### Bug Fix
