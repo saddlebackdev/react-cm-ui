@@ -149,7 +149,7 @@ class DrawerDeprecatedHeader extends Component {
         const headerEl = ReactDOM.findDOMNode(this);
         if (headerEl) {
             const paddingTop = headerEl.offsetHeight;
-            let drawerInnerContainer = headerEl.closest('.drawer-container-inner'); 
+            const drawerInnerContainer = headerEl.closest('.drawer-container-inner'); 
             if (drawerInnerContainer && paddingTop !== this._drawerContainerInnerPaddingTop) {
                 this._drawerContainerInnerPaddingTop = `${paddingTop + DEFAULT_CONTAINER_PADDING_TOP}px`;
                 drawerInnerContainer.style.paddingTop = this._drawerContainerInnerPaddingTop;
