@@ -87,21 +87,21 @@ class Prompt extends Component {
         return false;
     }
 
-    onNoClick() {
+    onNoClick(event) {
         const { onNoClick } = this.props;
 
         if (!_.isUndefined(onNoClick)) {
-            onNoClick();
+            onNoClick(event);
         } else {
             this.setState({ show: false });
         }
     }
 
-    onYesClick() {
+    onYesClick(event) {
         const { onYesClick } = this.props;
 
         if (!_.isUndefined(onYesClick)) {
-            onYesClick();
+            onYesClick(event);
         } else {
             this.setState({ show: false });
         }
