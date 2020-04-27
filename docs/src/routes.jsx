@@ -91,6 +91,122 @@ const routes = (
             />
         </Route>
 
+        <Route path="/inputs">
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/button')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="button"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/checkbox')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="checkbox"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/datePicker')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="date-picker"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/datePickerCalendar')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="date-picker-calendar"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/datePickerInput')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="date-picker-input"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/dropdown')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="dropdown"
+            />
+            <Route path="dropdown-button">
+                <IndexRoute
+                    getComponent={(location, callback) => {
+                        import('./inputs/dropdownButton')
+                            .then((module) => callback(null, module.default));
+                    }}
+                />
+                <Route
+                    getComponent={(location, callback) => {
+                        import('./inputs/dropdownButtonOption')
+                            .then((module) => callback(null, module.default));
+                    }}
+                    path="option"
+                />
+            </Route>
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/durationPicker')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="duration-picker"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/input')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="input"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/phoneInput')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="phone-input"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/prompt')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="prompt"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/radio')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="radio"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/segmentedControls')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="segmented-controls"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/textArea')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="text-area"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./inputs/timePicker')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="time-picker"
+            />
+        </Route>
+
         <Route path="/atoms">
             <Route
                 getComponent={(location, callback) => {
@@ -101,38 +217,10 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/button')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="button"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/checkbox.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="checkbox"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/dropdown.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="dropdown"
-            />
-            <Route
-                getComponent={(location, callback) => {
                     import('./atoms/header')
                         .then((module) => callback(null, module.default));
                 }}
                 path="header"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/input.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="input"
             />
             <Route
                 getComponent={(location, callback) => {
@@ -148,34 +236,6 @@ const routes = (
                 }}
                 path="loader"
             />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/prompt')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="prompt"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/radio.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="radio"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/segmentedControls.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="segmented-controls"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./atoms/textArea.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="text-area"
-            />
         </Route>
 
         <Route path="molecules">
@@ -185,63 +245,6 @@ const routes = (
                         .then((module) => callback(null, module.default));
                 }}
                 path="comment"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/datePicker.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="date-picker"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/datePickerCalendar.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="date-picker-calendar"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/datePickerInput.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="date-picker-input"
-            />
-            <Route path="dropdown-button">
-                <IndexRoute
-                    getComponent={(location, callback) => {
-                        import('./molecules/dropdownButton')
-                            .then((module) => callback(null, module.default));
-                    }}
-                />
-                <Route
-                    getComponent={(location, callback) => {
-                        import('./molecules/dropdownButtonOption')
-                            .then((module) => callback(null, module.default));
-                    }}
-                    path="option"
-                />
-            </Route>
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/durationPicker.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="duration-picker"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/phoneInput.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="phone-input"
-            />
-            <Route
-                getComponent={(location, callback) => {
-                    import('./molecules/timePicker.js')
-                        .then((module) => callback(null, module.default));
-                }}
-                path="time-picker"
             />
         </Route>
 

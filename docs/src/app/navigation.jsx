@@ -355,6 +355,158 @@ class CoreAppNavigation extends React.PureComponent {
                             inverse
                             size="small"
                         >
+                            Inputs
+                        </Header>
+
+                        <ul
+                            className={classes.ul}
+                        >
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/button' }}
+                                    activeClassName={isActive}
+                                >
+                                    Button
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/checkbox' }}
+                                    activeClassName={isActive}
+                                >
+                                    Checkbox
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/date-picker-calendar' }}
+                                    activeClassName={isActive}
+                                >
+                                    Date Picker Calendar
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/date-picker-input' }}
+                                    activeClassName={isActive}
+                                >
+                                    Date Picker Input
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/dropdown' }}
+                                    activeClassName={isActive}
+                                >
+                                    Dropdown
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/dropdown-button' }}
+                                    activeClassName={isActive}
+                                >
+                                    Dropdown Button
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/duration-picker' }}
+                                    activeClassName={isActive}
+                                >
+                                    Duration Picker
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/input' }}
+                                    activeClassName={isActive}
+                                >
+                                    Input
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/phone-input' }}
+                                    activeClassName={isActive}
+                                >
+                                    Phone Input
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/prompt' }}
+                                    activeClassName={isActive}
+                                >
+                                    Prompt
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/radio' }}
+                                    activeClassName={isActive}
+                                >
+                                    Radio
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/segmented-controls' }}
+                                    activeClassName={isActive}
+                                >
+                                    Segmented Controls
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/text-area' }}
+                                    activeClassName={isActive}
+                                >
+                                    Text Area
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    className={navItemClassName, classes.ulLink}
+                                    to={{ pathname: '/inputs/time-picker' }}
+                                    activeClassName={isActive}
+                                >
+                                    Time Picker
+                                </Link>
+                            </li>
+                        </ul>
+
+                        <Header
+                            className={classes.header, classes.headerSubSection}
+                            inverse
+                            size="small"
+                        >
                             Atoms
                         </Header>
 
@@ -374,36 +526,6 @@ class CoreAppNavigation extends React.PureComponent {
                             <li>
                                 <Link
                                     className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/button' }}
-                                    activeClassName={isActive}
-                                >
-                                    Button
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/checkbox' }}
-                                    activeClassName={isActive}
-                                >
-                                    Checkbox
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/dropdown' }}
-                                    activeClassName={isActive}
-                                >
-                                    Dropdown
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
                                     to={{ pathname: '/atoms/header' }}
                                     activeClassName={isActive}
                                 >
@@ -414,60 +536,10 @@ class CoreAppNavigation extends React.PureComponent {
                             <li>
                                 <Link
                                     className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
                                     to={{ pathname: '/atoms/label' }}
                                     activeClassName={isActive}
                                 >
                                     Label
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/prompt' }}
-                                    activeClassName={isActive}
-                                >
-                                    Prompt
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/radio' }}
-                                    activeClassName={isActive}
-                                >
-                                    Radio
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/text-area' }}
-                                    activeClassName={isActive}
-                                >
-                                    Text Area
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/segmented-controls' }}
-                                    activeClassName={isActive}
-                                >
-                                    Segmented Controls
                                 </Link>
                             </li>
                         </ul>
@@ -490,66 +562,6 @@ class CoreAppNavigation extends React.PureComponent {
                                     activeClassName={isActive}
                                 >
                                     Comment
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/date-picker-calendar' }}
-                                    activeClassName={isActive}
-                                >
-                                    Date Picker Calendar
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/date-picker-input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Date Picker Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/dropdown-button' }}
-                                    activeClassName={isActive}
-                                >
-                                    Dropdown Button
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/duration-picker' }}
-                                    activeClassName={isActive}
-                                >
-                                    Duration Picker
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/phone-input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Phone Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/time-picker' }}
-                                    activeClassName={isActive}
-                                >
-                                    Time Picker
                                 </Link>
                             </li>
                         </ul>

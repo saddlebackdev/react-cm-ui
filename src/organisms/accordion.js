@@ -91,11 +91,11 @@ AccordionItem.propTypes = {
     className: PropTypes.string,
     isSelected: PropTypes.bool,
     scrollContainer: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     scrollContainerMarginHeight: PropTypes.number,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     subAccordion: PropTypes.bool,
     summary: PropTypes.bool,
 };
@@ -142,7 +142,7 @@ class AccordionCheckbox extends Component {
 
 AccordionCheckbox.propTypes = {
     className: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 class AccordionContent extends Component {
@@ -156,7 +156,7 @@ class AccordionContent extends Component {
 }
 
 AccordionContent.propTypes = {
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 class Accordion extends Component {
@@ -332,7 +332,7 @@ Accordion.propTypes = {
     id: PropTypes.string,
     inverse: PropTypes.bool,
     scrollContainer: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     scrollContainerMarginHeight: PropTypes.number,
@@ -340,7 +340,7 @@ Accordion.propTypes = {
         PropTypes.array,
         PropTypes.number,
     ]),
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Accordion;

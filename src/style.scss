@@ -8,7 +8,7 @@
 @import './styles/normalize';
 @import './styles/typography';
 
-// Data Display
+// NEW: Data Display
 @import './dataDisplay/banner';
 @import './dataDisplay/divider';
 @import './dataDisplay/icon';
@@ -20,39 +20,41 @@
 @import './dataDisplay/tableHeaderCell';
 @import './dataDisplay/tableRow';
 
+// NEW: Inputs
+@import './inputs/button';
+@import './inputs/checkbox';
+@import './inputs/datePickerCalendar';
+@import './inputs/datePickerDay';
+@import './inputs/datePickerDeprecated';
+@import './inputs/datePickerDeprecatedCalendar';
+@import './inputs/datePickerDeprecatedDay';
+@import './inputs/datePickerDeprecatedMonth';
+@import './inputs/datePickerDeprecatedWeek';
+@import './inputs/datePickerDropdownMonth';
+@import './inputs/datePickerDropdownYear';
+@import './inputs/datePickerInput';
+@import './inputs/datePickerMonth';
+@import './inputs/datePickerWeek';
+@import './inputs/dropdown';
+@import './inputs/dropdownMenu';
+@import './inputs/durationPicker';
+@import './inputs/input';
+@import './inputs/phoneInput';
+@import './inputs/prompt';
+@import './inputs/radio';
+@import './inputs/textArea';
+@import './inputs/timePicker';
+@import './inputs/segmentedControls';
+
 // Atoms
 @import './atoms/a';
 @import './atoms/activityIndicator';
-@import './atoms/button';
-@import './atoms/checkbox';
-@import './atoms/dropdown';
-@import './atoms/dropdownMenu';
 @import './atoms/header';
-@import './atoms/input';
 @import './atoms/label';
 @import './atoms/loader';
-@import './atoms/prompt';
-@import './atoms/radio';
-@import './atoms/segmentedControls';
-@import './atoms/textArea';
 
 // Molecules
 @import './molecules/comment';
-@import './molecules/datePickerCalendar';
-@import './molecules/datePickerDay';
-@import './molecules/datePickerDeprecated';
-@import './molecules/datePickerDeprecatedCalendar';
-@import './molecules/datePickerDeprecatedDay';
-@import './molecules/datePickerDeprecatedMonth';
-@import './molecules/datePickerDeprecatedWeek';
-@import './molecules/datePickerDropdownMonth';
-@import './molecules/datePickerDropdownYear';
-@import './molecules/datePickerInput';
-@import './molecules/datePickerMonth';
-@import './molecules/datePickerWeek';
-@import './molecules/durationPicker';
-@import './molecules/phoneInput';
-@import './molecules/timePicker';
 
 // Organisms
 @import './organisms/accordion';

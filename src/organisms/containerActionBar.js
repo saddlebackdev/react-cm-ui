@@ -37,7 +37,7 @@ ContainerActionBar.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(Utils.colorEnums()),
     stretch: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.shape({})
 };
 
 export default ContainerActionBar;

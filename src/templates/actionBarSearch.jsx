@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../dataDisplay/icon';
-import Input from '../atoms/input';
+import Input from '../inputs/input';
 
 const propTypes = {
     id: PropTypes.string,
@@ -12,7 +12,7 @@ const propTypes = {
     onChange: PropTypes.func.isRequired,
     onClearClick: PropTypes.func,
     onKeyDown: PropTypes.func,
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
 
