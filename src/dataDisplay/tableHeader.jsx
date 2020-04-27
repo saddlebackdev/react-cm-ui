@@ -86,7 +86,7 @@ TableHeader.propTypes = {
     mobile: PropTypes.bool,
     mobileLarge: PropTypes.bool,
     mobileMedium: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     tablet: PropTypes.bool,
     width: PropTypes.bool,
 };

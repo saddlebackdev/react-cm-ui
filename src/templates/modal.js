@@ -65,7 +65,7 @@ class ModalHeader extends Component {
 ModalHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -437,7 +437,7 @@ Modal.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     fluidContent: PropTypes.bool,
@@ -466,7 +466,7 @@ Modal.propTypes = {
     ]),
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
     titleTruncate: PropTypes.bool,
     width: PropTypes.oneOfType([

@@ -19,14 +19,14 @@ const propTypes = {
     onChange: PropTypes.func,
     range: PropTypes.bool,
     required: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     value: PropTypes.shape({
         timeDisplay: PropTypes.string,
         timeFrom: PropTypes.string,
         timeTo: PropTypes.string,
         timeZone: PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.object,
+            PropTypes.shape({}),
         ]),
     }),
     zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),

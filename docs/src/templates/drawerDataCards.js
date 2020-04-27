@@ -211,11 +211,11 @@ class ModulesDrawerDataCards extends React.Component {
             isDrawerOpen,
             searchValue,
         } = this.state;
-        // cardProps: PropTypes.object,
+        // cardProps: PropTypes.shape({}),
         // className: PropTypes.string,
         // columns: PropTypes.array,
         // data: PropTypes.array,
-        // style: PropTypes.object,
+        // style: PropTypes.shape({}),
         const props = [
             {
                 name: 'cardProps',

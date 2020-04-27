@@ -386,9 +386,9 @@ DatePickerCalendar.defaultProps = {
 DatePickerCalendar.propTypes = {
     className: PropTypes.string,
     controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
-    date: PropTypes.object,
-    dateFrom: PropTypes.object,
-    dateTo: PropTypes.object,
+    date: PropTypes.shape({}),
+    dateFrom: PropTypes.shape({}),
+    dateTo: PropTypes.shape({}),
     events: PropTypes.array,
     excludeDates: PropTypes.array,
     filterDates: PropTypes.func,
@@ -398,15 +398,15 @@ DatePickerCalendar.propTypes = {
     ]),
     includeDates: PropTypes.array,
     locale: PropTypes.string,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
+    minDate: PropTypes.shape({}),
     mode: PropTypes.oneOf([ 'calendar', 'input' ]),
     onChange: PropTypes.func,
     onMonthChange: PropTypes.func,
     range: PropTypes.bool,
     rangeFrom: PropTypes.bool,
     rangeTo: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DatePickerCalendar;

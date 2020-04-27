@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-    maxDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
     month: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,

@@ -31,7 +31,7 @@ class TableBody extends Component {
 TableBody.propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default TableBody;

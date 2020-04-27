@@ -11,12 +11,12 @@ import Input from './input';
 
 const propTypes = {
     className: PropTypes.string,
-    date: PropTypes.object,
-    dateEnd: PropTypes.object,
+    date: PropTypes.shape({}),
+    dateEnd: PropTypes.shape({}),
     dateFormat: PropTypes.string,
-    dateSecondaryEnd: PropTypes.object,
-    dateSecondaryStart: PropTypes.object,
-    dateStart: PropTypes.object,
+    dateSecondaryEnd: PropTypes.shape({}),
+    dateSecondaryStart: PropTypes.shape({}),
+    dateStart: PropTypes.shape({}),
     disabled: PropTypes.bool,
     errorMessage: PropTypes.string,
     excludeDates: PropTypes.array,
@@ -25,8 +25,8 @@ const propTypes = {
     id: PropTypes.string,
     includeDates: PropTypes.array,
     locale: PropTypes.string,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
+    minDate: PropTypes.shape({}),
     mode: PropTypes.string,
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
@@ -119,7 +119,7 @@ class DatePickerInput extends React.Component {
         });
     }
 
-    onChange(dateType, value) {
+    _onChange(dateType, value) {
         const { type, locale, uxMode } = this.props;
         const newLocale = locale || moment.locale();
 

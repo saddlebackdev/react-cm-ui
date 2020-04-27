@@ -474,20 +474,20 @@ class CoreAppNavigation extends React.PureComponent {
                             <li>
                                 <Link
                                     className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/text-area' }}
+                                    to={{ pathname: '/inputs/segmented-controls' }}
                                     activeClassName={isActive}
                                 >
-                                    Text Area
+                                    Segmented Controls
                                 </Link>
                             </li>
 
                             <li>
                                 <Link
                                     className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/segmented-controls' }}
+                                    to={{ pathname: '/inputs/text-area' }}
                                     activeClassName={isActive}
                                 >
-                                    Segmented Controls
+                                    Text Area
                                 </Link>
                             </li>
 

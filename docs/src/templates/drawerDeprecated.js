@@ -639,7 +639,7 @@ class NestHeader1DrawerComponent extends React.Component {
 
 NestHeader1DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string
     ]),
     inverse: PropTypes.bool,
@@ -704,7 +704,7 @@ class NestHeader2DrawerComponent extends React.Component {
 
 NestHeader2DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string
     ]),
     inverse: PropTypes.bool,
@@ -760,7 +760,7 @@ class NestHeader3DrawerComponent extends React.Component {
 
 NestHeader3DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string
     ]),
     inverse: PropTypes.bool,
@@ -1789,7 +1789,7 @@ class NestHeader1DrawerComponent extends React.Component {
 
 NestHeader1DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -1853,7 +1853,7 @@ class NestHeader2DrawerComponent extends React.Component {
 
 NestHeader2DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -1908,7 +1908,7 @@ class NestHeader3DrawerComponent extends React.Component {
 
 NestHeader3DrawerComponent.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,

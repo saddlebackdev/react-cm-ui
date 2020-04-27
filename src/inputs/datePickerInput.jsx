@@ -334,9 +334,9 @@ DatePickerInput.defaultProps = {
 DatePickerInput.propTypes = {
     className: PropTypes.string,
     controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
-    date: PropTypes.object,
-    dateFrom: PropTypes.object,
-    dateTo: PropTypes.object,
+    date: PropTypes.shape({}),
+    dateFrom: PropTypes.shape({}),
+    dateTo: PropTypes.shape({}),
     disabled: PropTypes.bool,
     errorMessage: PropTypes.string,
     events: PropTypes.array,
@@ -349,8 +349,8 @@ DatePickerInput.propTypes = {
     includeDates: PropTypes.array,
     label: PropTypes.string,
     locale: PropTypes.string,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    maxDate: PropTypes.shape({}),
+    minDate: PropTypes.shape({}),
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
@@ -358,7 +358,7 @@ DatePickerInput.propTypes = {
     rangeFrom: PropTypes.bool,
     rangeTo: PropTypes.bool,
     required: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DatePickerInput;

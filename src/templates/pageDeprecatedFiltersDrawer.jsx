@@ -570,7 +570,7 @@ PageFiltersDrawer.propTypes = {
     onClear: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     rows: PropTypes.array,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default PageFiltersDrawer;

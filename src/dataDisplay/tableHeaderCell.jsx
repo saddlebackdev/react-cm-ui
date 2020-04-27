@@ -144,7 +144,7 @@ TableHeaderCell.propTypes = {
         PropTypes.oneOf(columnNumberEnums),
     ]),
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     tablet: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.oneOf(columnNumberEnums),

@@ -63,7 +63,7 @@ class CloseButton extends Component {
 
 CloseButton.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -103,7 +103,7 @@ DrawerDeprecatedWing.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
     onOpenToggle: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     width: PropTypes.number,
 };
 
@@ -149,7 +149,7 @@ class DrawerDeprecatedHeader extends Component {
         const headerEl = ReactDOM.findDOMNode(this);
         if (headerEl) {
             const paddingTop = headerEl.offsetHeight;
-            const drawerInnerContainer = headerEl.closest('.drawer-container-inner'); 
+            const drawerInnerContainer = headerEl.closest('.drawer-container-inner');
             if (drawerInnerContainer && paddingTop !== this._drawerContainerInnerPaddingTop) {
                 this._drawerContainerInnerPaddingTop = `${paddingTop + DEFAULT_CONTAINER_PADDING_TOP}px`;
                 drawerInnerContainer.style.paddingTop = this._drawerContainerInnerPaddingTop;
@@ -160,13 +160,13 @@ class DrawerDeprecatedHeader extends Component {
 
 DrawerDeprecatedHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
@@ -620,7 +620,7 @@ DrawerDeprecated.defaultProps = {
 DrawerDeprecated.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     color: PropTypes.oneOf(colorEnums),
@@ -638,17 +638,17 @@ DrawerDeprecated.propTypes = {
     path: PropTypes.string,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     scrollBar: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
-    wing: PropTypes.object,
+    wing: PropTypes.shape({}),
 };
 
 DrawerDeprecated.contextTypes = {
-    router: PropTypes.object,
+    router: PropTypes.shape({}),
 };
 
 export default DrawerDeprecated;

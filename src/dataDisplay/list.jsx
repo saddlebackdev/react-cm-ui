@@ -52,7 +52,7 @@ Item.propTypes = {
     className: PropTypes.string,
     divide: PropTypes.bool,
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 class List extends Component {
@@ -100,7 +100,7 @@ List.propTypes = {
     fluid: PropTypes.bool,
     horizontal: PropTypes.bool,
     inverse: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default List;
