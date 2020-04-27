@@ -3,10 +3,10 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../atoms/button';
-import Checkbox from '../atoms/checkbox';
+import Button from '../inputs/button';
+import Checkbox from '../inputs/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';

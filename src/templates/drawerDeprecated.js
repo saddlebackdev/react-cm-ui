@@ -2,16 +2,16 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../atoms/button';
+import { Portal } from 'react-portal';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import ScrollBar from 'react-custom-scrollbars';
+import Button from '../inputs/button';
 import Divider from '../dataDisplay/divider';
 import domUtils from '../utils/domUtils';
 import Header from '../atoms/header';
 import Icon from '../dataDisplay/icon';
-import { Portal } from 'react-portal';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import ScrollBar from 'react-custom-scrollbars';
 
 const DEFAULT_CONTAINER_PADDING_TOP = 27;
 const colorEnums = [ 'dark-blue', 'grey', 'white' ];

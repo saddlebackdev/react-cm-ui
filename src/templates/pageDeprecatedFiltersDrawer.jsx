@@ -1,10 +1,10 @@
 /* eslint-disable */
 
 import _ from 'lodash';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import ClassNames from 'classnames';
 import Drawer from '../templates/drawer';
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import Header from '../atoms/header';
 import Icon from '../dataDisplay/icon';
 import Label from '../atoms/label';

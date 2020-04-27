@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import ClassNames from 'classnames';
 import Divider from '../dataDisplay/divider';
 import domUtils from '../utils/domUtils.js';

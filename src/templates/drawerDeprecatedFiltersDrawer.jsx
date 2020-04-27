@@ -4,10 +4,10 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../atoms/button';
-import Checkbox from '../atoms/checkbox';
+import Button from '../inputs/button';
+import Checkbox from '../inputs/checkbox';
 import Drawer from './drawer';
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import Header from '../atoms/header';
 import Icon from '../dataDisplay/icon';
 

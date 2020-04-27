@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../dataDisplay/icon';
-import Input from '../atoms/input';
+import Input from '../inputs/input';
 
 const propTypes = {
     id: PropTypes.string,

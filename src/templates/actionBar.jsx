@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch';
-import Button from '../atoms/button';
-import DropdownButton from '../molecules/dropdownButton';
+import Button from '../inputs/button';
+import DropdownButton from '../inputs/dropdownButton';
 import Grid from '../organisms/grid';
 import Icon from '../dataDisplay/icon';
 import List from '../dataDisplay/list';
