@@ -119,7 +119,7 @@ class DatePickerInput extends React.Component {
         });
     }
 
-    _onChange(dateType, value) {
+    onChange(dateType, value) {
         const { type, locale, uxMode } = this.props;
         const newLocale = locale || moment.locale();
 
@@ -197,16 +197,6 @@ class DatePickerInput extends React.Component {
         }
     }
 
-    safeDateFormat(date, locale) {
-        if (date && date.isValid()) {
-            return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
-        }
-
-        if (_.isNull(date)) {
-            return null;
-        }
-    }
-
     getAllowedDateFormats(specifiedFormat) {
         const formats = DateUtils.getAllowedDateFormats();
 
@@ -215,6 +205,16 @@ class DatePickerInput extends React.Component {
         }
 
         return formats;
+    }
+
+    safeDateFormat(date, locale) {
+        if (date && date.isValid()) {
+            return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
+        }
+
+        if (_.isNull(date)) {
+            return null;
+        }
     }
 
     render() {
