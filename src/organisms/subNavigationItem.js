@@ -18,7 +18,7 @@ class SubNavigationItem extends Component {
 SubNavigationItem.propTypes = {
     label: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.shape({})
 };
 
 export default SubNavigationItem;

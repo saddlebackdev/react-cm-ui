@@ -38,7 +38,7 @@ class Loader extends Component {
 Loader.propTypes = {
     className: PropTypes.string,
     fluid: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.shape({}),
 };
 
 export default Loader;

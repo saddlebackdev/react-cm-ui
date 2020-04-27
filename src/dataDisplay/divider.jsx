@@ -39,7 +39,7 @@ Divider.propTypes = {
         PropTypes.bool,
         PropTypes.oneOf([ 'very' ])
     ]),
-    style: PropTypes.object
+    style: PropTypes.shape({}),
 };
 
 export default Divider;

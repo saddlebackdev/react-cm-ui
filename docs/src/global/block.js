@@ -27,5 +27,5 @@ Block.propTypes = {
     className: PropTypes.string,
     inverse: PropTypes.bool,
     nest: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.shape({}),
 };

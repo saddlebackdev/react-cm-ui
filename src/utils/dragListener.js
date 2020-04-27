@@ -152,7 +152,7 @@ DragListener.propTypes = {
     onDrag: PropTypes.func.isRequired,
     onDragEnd: PropTypes.func,
     onDragStart: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DragListener;

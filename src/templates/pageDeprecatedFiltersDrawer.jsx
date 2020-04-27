@@ -1,10 +1,10 @@
 /* eslint-disable */
 
 import _ from 'lodash';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import ClassNames from 'classnames';
 import Drawer from '../templates/drawer';
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import Header from '../atoms/header';
 import Icon from '../dataDisplay/icon';
 import Label from '../atoms/label';
@@ -48,7 +48,7 @@ MultiSelectLabel.propTypes = {
     color: PropTypes.string,
     label: PropTypes.string.isRequired,
     onItemChange: PropTypes.func.isRequired,
-    selectedOption: PropTypes.object.isRequired,
+    selectedOption: PropTypes.shape({}).isRequired,
     value: PropTypes.array.isRequired,
 };
 
@@ -83,7 +83,7 @@ class NestedTogglesLabel extends React.PureComponent {
 }
 
 NestedTogglesLabel.propTypes = {
-    nestedTogglesData: PropTypes.object.isRequired,
+    nestedTogglesData: PropTypes.shape({}).isRequired,
     onClick: PropTypes.func.isRequired,
 };
 
@@ -122,7 +122,7 @@ class NestedTogglesWingOptionLabel extends React.PureComponent {
 NestedTogglesWingOptionLabel.propTypes = {
     isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    option: PropTypes.object.isRequired,
+    option: PropTypes.shape({}).isRequired,
 };
 
 class NestedTogglesValueLabel extends React.PureComponent {
@@ -159,9 +159,9 @@ class NestedTogglesValueLabel extends React.PureComponent {
 }
 
 NestedTogglesValueLabel.propTypes = {
-    nestedTogglesData: PropTypes.object.isRequired,
+    nestedTogglesData: PropTypes.shape({}).isRequired,
     onClick: PropTypes.func.isRequired,
-    option: PropTypes.object.isRequired,
+    option: PropTypes.shape({}).isRequired,
 };
 
 class PageFiltersDrawer extends React.Component {
@@ -570,7 +570,7 @@ PageFiltersDrawer.propTypes = {
     onClear: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     rows: PropTypes.array,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default PageFiltersDrawer;
