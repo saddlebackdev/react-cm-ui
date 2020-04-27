@@ -1,6 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.9.0 - 04/27/2020
+
+#### Feature
+- [PR #134](https://github.com/saddlebackdev/react-cm-ui/pull/134) / Merge Commit bc7a86698b0f78cc25420869047299b5963fecac
+    - Prompt passes the "yes" and "no" click events through.
+- [PR #135](https://github.com/saddlebackdev/react-cm-ui/pull/135) / Merge Commit 7772a61edd8ede424420774bb64dbbba5e7eb4b8
+    - Moved input type components to a new dir/category, "Inputs".
+    - Changed all `PropTypes.object` to `PropTypes.shape({})`.
+
+#### Bug Fix
+- [PR #132](https://github.com/saddlebackdev/react-cm-ui/pull/132) / Merge Commit 01214de064ffdd4130d663bda9c97482d0212c90
+    - Moved Cell phone icon to center.
+- [PR #133](https://github.com/saddlebackdev/react-cm-ui/pull/133) / Merge Commit 1b9a831989481e65d04573b5b490d15973ce6e8d
+    - Validating drawer header exists before trying to modify its padding size.
+
 ## 9.8.0 - 04/14/2020
 
 #### Feature
