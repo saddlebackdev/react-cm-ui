@@ -1732,7 +1732,7 @@ export default class ModulesDrawer extends React.Component {
 }
 
 ModulesDrawer.contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.shape({}).isRequired,
 };
 
 class NestHeader1DrawerComponent extends React.Component {

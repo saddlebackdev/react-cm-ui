@@ -847,7 +847,7 @@ SelectionCustomComponent.propTypes = {
     isFocused: PropTypes.bool,
     onFocus: PropTypes.func,
     onSelect: PropTypes.func,
-    option: PropTypes.object.isRequired,
+    option: PropTypes.shape({}).isRequired,
 };
 
 export default class ModulesDropdown extends React.Component {

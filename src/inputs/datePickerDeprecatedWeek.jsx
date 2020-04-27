@@ -6,7 +6,7 @@ import DatePickerDay from './datePickerDeprecatedDay';
 const propTypes = {
     date: PropTypes.shape({}),
     dateEnd: PropTypes.shape({}),
-    dateInView: PropTypes.object.isRequired,
+    dateInView: PropTypes.shape({}).isRequired,
     dateSecondaryEnd: PropTypes.shape({}),
     dateSecondaryStart: PropTypes.shape({}),
     dateStart: PropTypes.shape({}),
