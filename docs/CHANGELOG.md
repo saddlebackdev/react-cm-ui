@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.0 - 04/28/2020
+
+- Added new component category, Inputs.
+
 ## 0.4.0 - 04/14/2020
 
 - Added new component category, Data Displays.
