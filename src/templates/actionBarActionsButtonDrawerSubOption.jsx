@@ -91,18 +91,20 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
                 onClick={this.onClick}
                 role="menuitem"
             >
-                <div
-                    className="actions_button_drawer_sub_option--icon_container"
-                    id={subOption.id}
-                >
-                    <Icon
-                        color={subOption.disabled ? 'static' : subOption.iconColor}
-                        compact
-                        className="actions_button_drawer_sub_option--icon"
-                        size={subOption.iconSize || 16}
-                        type={subOption.iconType}
-                    />
-                </div>
+                {subOption.iconType && (
+                    <div
+                        className="actions_button_drawer_sub_option--icon_container"
+                        id={subOption.id}
+                    >
+                        <Icon
+                            color={subOption.disabled ? 'static' : subOption.iconColor}
+                            compact
+                            className="actions_button_drawer_sub_option--icon"
+                            size={subOption.iconSize || 16}
+                            type={subOption.iconType}
+                        />
+                    </div>
+                )}
 
                 <div
                     className="actions_button_drawer_sub_option--label"
