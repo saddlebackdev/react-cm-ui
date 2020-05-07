@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.10.0 - 05/07/2020
+
+#### Feature
+- [PR #136](https://github.com/saddlebackdev/react-cm-ui/pull/136) / Merge Commit f468d5032bd818fdb105d9ceeeeecc7fafb36ef8
+    - Drawer Content gutters were widened.
+- [PR #137](https://github.com/saddlebackdev/react-cm-ui/pull/137) / Merge Commit 923b3fb7d630627bb34d668cfd9e2f7acc8694ff
+    - **Page/Drawer** **ActionBar** actionsButton has the ability to change icon now.
+
+#### Bug Fix
+- [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 980e4589d6db19d738d5ac1b1f624316b618110b
+    - Gulp inputs script fix.
+
 ## 9.9.0 - 04/27/2020
 
 #### Feature
