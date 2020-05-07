@@ -11,6 +11,9 @@ import Prompt from '../inputs/prompt';
 
 const propTypes = {
     header: PropTypes.string.isRequired,
+    iconBackgroundColor: PropTypes.string,
+    iconBackgroundHighlightColor: PropTypes.string,
+    iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
     options: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -18,6 +21,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+    iconBackgroundColor: 'alternate',
+    iconBackgroundHighlightColor: 'highlight',
+    iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,
     style: {},
@@ -92,6 +98,9 @@ class ActionBarActionsButton extends React.PureComponent {
     render() {
         const {
             header,
+            iconBackgroundColor,
+            iconBackgroundHighlightColor,
+            iconType,
             id,
             isMobileSearchVisible,
             options,
@@ -138,12 +147,15 @@ class ActionBarActionsButton extends React.PureComponent {
                 >
                     <Button
                         className="action_bar--actions_button"
-                        color={isDrawerOpen ? 'highlight' : 'alternate'}
+                        color={isDrawerOpen ? iconBackgroundHighlightColor : iconBackgroundColor}
                         icon
                         id={id}
                         style={style}
                     >
-                        <Icon size="small" type="ellipsis-h" />
+                        <Icon
+                            size="small"
+                            type={iconType}
+                        />
                     </Button>
                 </Prompt>
 
