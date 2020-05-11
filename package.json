@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "9.10.0",
+  "version": "9.10.1",
   "description": "React UI for Healthy Church",
   "main": "core/",
   "jsnext:main": "src/",
@@ -79,6 +79,7 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-sass": "^4.0.2",
+    "node-sass": "~4.12.0",
     "rimraf": "^2.6.1"
   }
 }
