@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import colorStyles from '../styles/colorExports.scss';
+import colorStyles from '../styles/colorExports'; // eslint-disable-line import/extensions
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
