@@ -5,7 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Bug Fix
 - [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 0d42cc33ef08afc1416336eff809017b019432b2
-    - Fixed docs builds error.
     - Fixed pacakge build error.
 
 ## 9.10.0 - 05/07/2020
