@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.1 - 05/11/2020
+
+#### Bug Fix
+- [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 0d42cc33ef08afc1416336eff809017b019432b2
+    - Fixed docs builds error.
+
 ## 0.5.0 - 04/28/2020
 
 - Added new component category, Inputs.
