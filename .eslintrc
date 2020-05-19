@@ -5,6 +5,7 @@
     ],
     "env": {
         "browser": true,
+        "jest": true,
         "node": true
     },
     "parser": "babel-eslint",
@@ -46,6 +47,7 @@
         "import/order": ["error", { groups: [["builtin", "external", "internal"]] }],
         "import/no-unresolved": [0],
         # Overwriting eslint-config-airbnb/rules/react.js
+        "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".test.js"] }],
         "react/jsx-fragments": ["error", "element"],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
