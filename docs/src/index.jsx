@@ -28,6 +28,8 @@ const onUpdate = () => {
     }
 };
 
+window.theme = theme;
+
 const render = () => {
     ReactDOM.render(
         <ThemeProvider theme={theme}>

@@ -4,6 +4,7 @@ export { default as Divider } from './dataDisplay/divider';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
+export { default as PersonAccordion } from './dataDisplay/personAccordion';
 export { default as Table } from './dataDisplay/table';
 
 // NEW: Inputs

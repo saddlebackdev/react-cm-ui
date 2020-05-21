@@ -70,17 +70,24 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/image.js')
+                    import('./dataDisplay/image')
                         .then((module) => callback(null, module.default));
                 }}
                 path="image"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/list.js')
+                    import('./dataDisplay/list')
                         .then((module) => callback(null, module.default));
                 }}
                 path="list"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/personAccordion')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="person-accordion"
             />
             <Route
                 getComponent={(location, callback) => {

@@ -1,4 +1,5 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import transitions from '@material-ui/core/styles/transitions';
 import {
     keys as breakpointsKeys,
     values as breakpointsValues,
@@ -9,6 +10,7 @@ const theme = {
         keys: breakpointsKeys,
         values: breakpointsValues,
     }),
+    transitions,
 };
 
 export default theme;
