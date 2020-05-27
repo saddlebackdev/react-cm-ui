@@ -20,7 +20,7 @@ describe('<A />', () => {
     });
 
     it('Should have expected \'id\' prop', () => {
-        expect(wrapper).prop('id').toEqual(props.id);
+        expect(wrapper).find('span').prop('id').toEqual(props.id);
     });
 
     it('Fires onClick()', () => {
