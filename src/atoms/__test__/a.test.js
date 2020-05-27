@@ -8,6 +8,7 @@ import A from '../a';
 
 describe('<A />', () => {
     const props = {
+        id: 'some_block--some_element_name-some_modifier',
         onClick: jest.fn(),
     };
 
@@ -16,6 +17,10 @@ describe('<A />', () => {
 
     it('Should render without problems', () => {
         expect(wrapper).toBeDefined();
+    });
+
+    it('Should have expected \'id\' prop', () => {
+        expect(wrapper).prop('id').toEqual(props.id);
     });
 
     it('Fires onClick()', () => {
