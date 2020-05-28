@@ -10,6 +10,7 @@
 
 // NEW: Data Display
 @import './dataDisplay/banner';
+@import './dataDisplay/dataGroups';
 @import './dataDisplay/divider';
 @import './dataDisplay/icon';
 @import './dataDisplay/image';
@@ -73,7 +74,6 @@
 @import './templates/content';
 @import './templates/dataCards';
 @import './templates/dataGrid';
-@import './templates/dataGroups';
 @import './templates/detailsWindow';
 @import './templates/drawer';
 @import './templates/drawerDeprecated';

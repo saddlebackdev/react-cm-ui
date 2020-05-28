@@ -1,11 +1,13 @@
 // NEW: Data Display
 export { default as Banner } from './dataDisplay/banner';
+export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
-export { default as PersonAccordion } from './dataDisplay/personAccordion';
+export { default as PersonPanel } from './dataDisplay/personPanel';
 export { default as Table } from './dataDisplay/table';
+export { default as Typography } from './dataDisplay/typography';
 
 // NEW: Inputs
 export { default as Button } from './inputs/button';
@@ -55,8 +57,9 @@ export { default as Page } from './templates/page';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
-export { default as Utils } from './utils/utils';
+export { default as TelephoneLink } from './utils/telephoneLink';
 export { default as TimeFromNow } from './utils/timeFromNow';
+export { default as Utils } from './utils/utils';
 export { default as withWidth } from './utils/withWidth';
 
 // Other

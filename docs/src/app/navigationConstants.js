@@ -49,8 +49,8 @@ export const navigationItems = [
                         label: 'List',
                         path: 'list',
                     }, {
-                        label: 'Person Accordion',
-                        path: 'person-accordion',
+                        label: 'Person Panel',
+                        path: 'person-panel',
                     }, {
                         label: 'Table',
                         path: 'table',

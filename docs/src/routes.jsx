@@ -84,10 +84,10 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/personAccordion')
+                    import('./dataDisplay/personPanel')
                         .then((module) => callback(null, module.default));
                 }}
-                path="person-accordion"
+                path="person-panel"
             />
             <Route
                 getComponent={(location, callback) => {

@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../atoms/header';
-import Icon from '../dataDisplay/icon';
+import Icon from './icon';
 import { rowPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
