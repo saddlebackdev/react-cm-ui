@@ -38,7 +38,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="/data-display">
+        <Route path="/components/data-display">
             <Route
                 getComponent={(location, callback) => {
                     import('./dataDisplay/banner.js')
@@ -91,7 +91,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="/inputs">
+        <Route path="/components/inputs">
             <Route
                 getComponent={(location, callback) => {
                     import('./inputs/button')
@@ -207,7 +207,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="/atoms">
+        <Route path="/components/atoms">
             <Route
                 getComponent={(location, callback) => {
                     import('./atoms/activityIndicator')
@@ -238,7 +238,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="molecules">
+        <Route path="/components/molecules">
             <Route
                 getComponent={(location, callback) => {
                     import('./molecules/comment.js')
@@ -248,7 +248,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="organisms">
+        <Route path="/components/organisms">
             <Route
                 getComponent={(location, callback) => {
                     import('./organisms/accordion.js')
@@ -307,7 +307,7 @@ const routes = (
             />
         </Route>
 
-        <Route path="templates">
+        <Route path="/components/templates">
             <Route
                 getComponent={(location, callback) => {
                     import('./templates/drawerDeprecated')
@@ -395,14 +395,14 @@ const routes = (
                 <Route
                     getComponent={(location, callback) => {
                         import('./templates/drawerSticky')
-                            .then(module => callback(null, module.default));
+                            .then((module) => callback(null, module.default));
                     }}
                     path="sticky"
                 />
                 <Route
                     getComponent={(location, callback) => {
                         import('./templates/drawerDataGroups')
-                            .then(module => callback(null, module.default));
+                            .then((module) => callback(null, module.default));
                     }}
                     path="data-groups"
                 />
