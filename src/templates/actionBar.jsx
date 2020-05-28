@@ -286,6 +286,7 @@ class ActionBar extends React.PureComponent {
                                                                 {/* eslint-disable max-len */}
                                                                 {actionsButton && (
                                                                 <ActionBarActionsButton
+                                                                    className={actionsButton.className}
                                                                     iconBackgroundColor={actionsButton.iconBackgroundColor}
                                                                     iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
                                                                     iconType={actionsButton.iconType}
