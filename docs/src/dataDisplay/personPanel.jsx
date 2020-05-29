@@ -85,7 +85,7 @@ function DocsPersonPanel() {
                     <PersonPanelSimpleExample />
                 </Example>
 
-                <Header
+                {/* <Header
                     anchor="controlledAccordion"
                     size="large"
                     style={{ marginTop: '33px' }}
@@ -120,7 +120,7 @@ function DocsPersonPanel() {
                             props: apiPersonPanelSummary,
                         },
                     ]}
-                />
+                /> */}
             </Main.Content>
         </Main>
     );

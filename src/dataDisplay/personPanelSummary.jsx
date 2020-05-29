@@ -30,32 +30,62 @@ const propTypes = {
         preferredContactInfo: PropTypes.string,
     }),
     data: PropTypes.shape({
-        birthDate: PropTypes.number,
-        churchEntityId: PropTypes.number,
-        churchEntityName: PropTypes.string,
-        contactPreferences: PropTypes.shape({}),
-        emails: PropTypes.arrayOf(PropTypes.shape({})),
-        firstName: PropTypes.string,
-        gender: PropTypes.string,
-        gradeLevel: PropTypes.string,
-        id: PropTypes.number,
-        isAdult: PropTypes.bool,
-        isChild: PropTypes.bool,
-        isChurchEntityKnown: PropTypes.bool,
+        avatar: PropTypes.string,
+        birthdate: PropTypes.number,
+        campus: PropTypes.string,
+        emails: PropTypes.arrayOf(
+            PropTypes.shape({
+                email: PropTypes.string,
+                isPrimary: PropTypes.bool,
+            }),
+        ),
+        firstName: PropTypes.string.isRequired,
+        gender: PropTypes.oneOf([
+            'F',
+            'M',
+            null,
+        ]),
+        gradeLevel: PropTypes.oneOf([
+            'None',
+            'PreK',
+            'Kindergarten',
+            'First',
+            'Second',
+            'Third',
+            'Fourth',
+            'Fifth',
+            'Sixth',
+            'Seventh',
+            'Eighth',
+            'Ninth',
+            'Tenth',
+            'Eleventh',
+            'Twelfth',
+            null,
+        ]),
         isDoNotContact: PropTypes.bool,
         isDoNotEmail: PropTypes.bool,
         isDoNotMail: PropTypes.bool,
         isDoNotPhone: PropTypes.bool,
         isDoNotText: PropTypes.bool,
-        isStudent: PropTypes.bool,
-        lastName: PropTypes.string,
+        lastName: PropTypes.string.isRequired,
         maritalStatus: PropTypes.string,
         nickName: PropTypes.string,
         noteCount: PropTypes.number,
-        personId: PropTypes.number,
-        phones: PropTypes.arrayOf(PropTypes.shape({})),
+        personId: PropTypes.number.isRequired,
+        phones: PropTypes.arrayOf(
+            PropTypes.shape({
+                phone: PropTypes.string,
+                isPrimary: PropTypes.bool,
+            }),
+        ),
+        preferredMethod: PropTypes.string,
         prefix: PropTypes.string,
-        profilePictureUrl: PropTypes.string,
+        recordType: PropTypes.oneOf([
+            'adult',
+            'child',
+            'student',
+        ]).isRequired,
         suffix: PropTypes.string,
     }),
     isCompact: PropTypes.bool,
@@ -68,32 +98,24 @@ const propTypes = {
 const defaultProps = {
     classes: undefined,
     data: {
-        birthDate: null,
-        churchEntityId: null,
-        churchEntityName: null,
-        contactPreferences: null,
-        emails: null,
-        firstName: null,
+        avatar: null,
+        birthdate: null,
+        campus: null,
+        emails: [],
         gender: null,
         gradeLevel: null,
-        id: null,
-        isAdult: null,
-        isChild: null,
-        isChurchEntityKnown: null,
         isDoNotContact: false,
         isDoNotEmail: false,
         isDoNotMail: false,
         isDoNotPhone: false,
         isDoNotText: false,
-        isStudent: false,
-        lastName: null,
         maritalStatus: null,
         nickName: null,
         noteCount: 0,
-        personId: null,
-        phones: null,
+        phones: [],
+        preferredMethod: null,
         prefix: null,
-        profilePictureUrl: null,
+        recordType: 'adult',
         suffix: null,
     },
     isCompact: false,
@@ -105,32 +127,20 @@ const defaultProps = {
 
 const bemClass = `${BEM_BLOCK_NAME}--summary`;
 
-function ageText({ birthDate }) {
-    if (!isEmpty(birthDate)) {
+function ageText({ birthdate }) {
+    if (!isEmpty(birthdate)) {
         return '';
     }
 
-    return `${moment().diff(birthDate, 'years')}yr`;
+    return `${moment().diff(birthdate, 'years')}yr`;
 }
 
-function birthDateText({ birthDate }) {
-    if (!isEmpty(birthDate)) {
+function birthdateText({ birthdate }) {
+    if (!isEmpty(birthdate)) {
         return '';
     }
 
-    return moment.unix(birthDate).utc().format('MM/DD/YY');
-}
-
-function churchEntityNameText({
-    churchEntityId,
-    isChurchEntityKnown,
-    churchEntityName,
-}) {
-    if (isNil(churchEntityId)) {
-        return !isChurchEntityKnown ? 'Unkown' : 'Does Not Attend';
-    }
-
-    return churchEntityName;
+    return moment.unix(birthdate).utc().format('MM/DD/YY');
 }
 
 // eslint-disable-next-line react/prop-types
@@ -209,15 +219,15 @@ function gradeLevelText({ gradeLevel }) {
 function renderContactText({
     /* eslint-disable react/prop-types */
     classes,
-    isChild,
     isDoNotContact,
     isDoNotEmail,
     isDoNotMail,
     isDoNotPhone,
     isDoNotText,
-    preferredContactMethod,
+    preferredMethod,
     email,
     phone,
+    recordType,
     /* eslint-enable react/prop-types */
 }) {
     let contactMethodText = '';
@@ -226,7 +236,7 @@ function renderContactText({
     if (isDoNotContact) {
         contactMethodText = 'Do Not Contact This Individual';
     } else {
-        switch (preferredContactMethod) {
+        switch (preferredMethod) {
             case 'email':
                 contactMethodText = 'Prefers Email';
 
@@ -253,6 +263,8 @@ function renderContactText({
                 }
 
                 break;
+            case 'mail':
+            case 'none':
             default:
                 if (renderPhone({ phone })) {
                     preferredContactInfoText = renderPhone({ phone });
@@ -288,7 +300,7 @@ function renderContactText({
         }
     }
 
-    if (!isChild && (contactMethodText || preferredContactMethod !== 'none')) {
+    if (recordType !== 'child' && (contactMethodText || preferredMethod !== 'none')) {
         return (
             <React.Fragment>
                 {contactMethodText && (
@@ -302,7 +314,7 @@ function renderContactText({
                     </Typography>
                 )}
 
-                {preferredContactMethod !== 'none' && preferredContactInfoText && (
+                {preferredMethod !== 'none' && preferredContactInfoText && (
                     <Typography
                         // eslint-disable-next-line react/prop-types
                         className={classes.preferredContactInfo}
@@ -350,7 +362,32 @@ const useStyles = makeStyles((theme) => {
                     zIndex: 1,
                 },
                 '&::before': {
-                    backgroundColor: palette.teal[500],
+                    backgroundColor: (props) => {
+                        const {
+                            data: {
+                                recordType,
+                                gender,
+                            },
+                        } = props;
+
+                        switch (recordType) {
+                            case 'child':
+                                return palette.teal[500];
+                            case 'student':
+                                return palette.teal[500];
+                            case 'adult':
+                                switch (gender) {
+                                    case 'F':
+                                        return palette.teal[500];
+                                    case 'M':
+                                        return palette.teal[500];
+                                    default:
+                                        return null;
+                                }
+                            default:
+                                return null;
+                        }
+                    },
                     borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
                     opacity: 1,
                     width: '5px',
@@ -360,7 +397,32 @@ const useStyles = makeStyles((theme) => {
                     color: palette.text.contrastText,
                     borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
                     '&::before': {
-                        backgroundImage: palette.teal.G500,
+                        backgroundImage: (props) => {
+                            const {
+                                data: {
+                                    recordType,
+                                    gender,
+                                },
+                            } = props;
+
+                            switch (recordType) {
+                                case 'child':
+                                    return palette.teal.G500;
+                                case 'student':
+                                    return palette.teal.G500;
+                                case 'adult':
+                                    switch (gender) {
+                                        case 'F':
+                                            return palette.teal.G500;
+                                        case 'M':
+                                            return palette.teal.G500;
+                                        default:
+                                            return null;
+                                    }
+                                default:
+                                    return null;
+                            }
+                        },
                         borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
                         width: '100%',
                     },
@@ -472,31 +534,27 @@ function PersonPanelSummary(props) {
     const classes = useStyles(props);
     const {
         data: {
-            birthDate,
-            churchEntityId,
-            churchEntityName,
-            contactPreferences,
+            avatar,
+            birthdate,
+            campus,
             emails,
             firstName,
             gender,
             gradeLevel,
-            id: personId,
-            isAdult,
-            isChild,
-            isChurchEntityKnown,
             isDoNotContact,
             isDoNotEmail,
             isDoNotMail,
             isDoNotPhone,
             isDoNotText,
-            isStudent,
             lastName,
             maritalStatus,
             nickName,
             noteCount,
+            personId,
             phones,
             prefix,
-            profilePictureUrl,
+            preferredMethod,
+            recordType,
             suffix,
         },
         isCompact,
@@ -505,14 +563,16 @@ function PersonPanelSummary(props) {
         showAdditionalDetails,
         tabIndex,
     } = props;
-    const avatar = profilePictureUrl;
+    console.log('data firstName', firstName);
     const primaryPhone = find(phones, 'isPrimary');
     const primaryEmail = find(emails, 'isPrimary');
     const phone = primaryPhone && primaryPhone.displayPhoneNumber ? primaryPhone.displayPhoneNumber : 'N/A';
     const email = primaryEmail && primaryEmail.email ? primaryEmail.email : 'N/A';
-    const preferredContactMethod = contactPreferences && contactPreferences.preferredMethod;
 
     useEffect(() => {
+        const isAdult = recordType === 'adult';
+        const isChild = recordType === 'child';
+        const isStudent = recordType === 'student';
         let text = '';
 
         if (gender) {
@@ -523,16 +583,16 @@ function PersonPanelSummary(props) {
             text += ` | ${maritalStatus}`;
         }
 
-        if ((isChild || isStudent) && birthDate) {
-            text += ` | ${ageText({ birthDate })} ${birthDateText({ birthDate })}`;
+        if ((isChild || isStudent) && birthdate) {
+            text += ` | ${ageText({ birthdate })} ${birthdateText({ birthdate })}`;
         }
 
         if ((isChild || isStudent) && gradeLevel) {
             text += ` | gr ${gradeLevelText({ gradeLevel })}`;
         }
 
-        if (churchEntityName) {
-            text += ` | ${churchEntityNameText({ isChurchEntityKnown, churchEntityId, churchEntityName })}`;
+        if (campus) {
+            text += ` | ${campus}`;
         }
 
         text = trimStart(text, '| ');
@@ -540,43 +600,41 @@ function PersonPanelSummary(props) {
         setMetaInfoText(text);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
+        birthdate,
+        campus,
         gender,
-        isAdult,
-        maritalStatus,
-        isChild,
-        isStudent,
-        birthDate,
         gradeLevel,
-        churchEntityName,
+        maritalStatus,
+        recordType,
     ]);
 
     useEffect(() => {
         setRenderContactInfo(
             renderContactText({
                 classes,
-                isChild,
                 isDoNotContact,
                 isDoNotEmail,
                 isDoNotMail,
                 isDoNotPhone,
                 isDoNotText,
-                preferredContactMethod,
+                preferredMethod,
                 email,
                 phone,
+                recordType,
             }),
         );
     }, [
         classes,
-        isChild,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
         isDoNotPhone,
         isDoNotText,
         isExpanded,
-        preferredContactMethod,
+        preferredMethod,
         email,
         phone,
+        recordType,
     ]);
 
     const onClick = (event) => {

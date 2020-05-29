@@ -16,7 +16,6 @@ import PersonPanelSummary from './personPanelSummary';
 
 const propTypes = {
     children: PropTypes.node,
-    data: PropTypes.shape({}).isRequired,
     isCompact: PropTypes.bool,
     isExpanded: PropTypes.bool,
     onChange: PropTypes.func,
@@ -41,7 +40,6 @@ const useStyles = makeStyles({
 function PersonPanel(props) {
     const {
         children,
-        data,
         isCompact,
         isExpanded: isExpandedProp,
         onChange,
@@ -73,7 +71,6 @@ function PersonPanel(props) {
         if (isDetails) {
             return React.cloneElement(child, {
                 ...child.props,
-                data,
                 isExpanded,
             });
         }
@@ -81,7 +78,6 @@ function PersonPanel(props) {
         if (isSummary) {
             return React.cloneElement(child, {
                 ...child.props,
-                data,
                 isCompact,
                 isExpanded,
                 onClick: onSummaryClick,
