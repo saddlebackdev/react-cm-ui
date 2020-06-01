@@ -1,21 +1,130 @@
-'use strict';
-
-import React, { Component } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import { borderColor } from '../colors.js';
 import TableBody from './tableBody';
 import TableCell from './tableCell';
 import TableHeader from './tableHeader';
 import TableHeaderCell from './tableHeaderCell';
 import TableRow from './tableRow';
+import Utils from '../utils/utils';
 
-import Utils from '../utils/utils.js';
+const propTypes = {
+    basic: PropTypes.bool,
+    celled: PropTypes.bool,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    collapsing: PropTypes.bool,
+    definition: PropTypes.bool,
+    fixed: PropTypes.bool,
+    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
+    fullWidth: PropTypes.bool,
+    id: PropTypes.string,
+    selectable: PropTypes.bool,
+    singleLine: PropTypes.bool,
+    size: PropTypes.oneOf(['l', 'large', 'm', 'medium', 's', 'small']),
+    stackable: PropTypes.bool,
+    stickyColumnCount: PropTypes.number,
+    stretch: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['very']),
+    ]),
+    striped: PropTypes.bool,
+    style: PropTypes.shape({}),
+};
 
-class Table extends Component {
+const defaultProps = {
+    basic: undefined,
+    celled: undefined,
+    children: undefined,
+    className: undefined,
+    collapsing: undefined,
+    definition: undefined,
+    fixed: undefined,
+    fontSize: undefined,
+    fullWidth: undefined,
+    id: undefined,
+    selectable: undefined,
+    singleLine: undefined,
+    size: undefined,
+    stackable: undefined,
+    stickyColumnCount: 0,
+    stretch: undefined,
+    striped: undefined,
+    style: undefined,
+};
+
+const Wrapper = styled('div').attrs({
+    className: 'table--sticky_columns',
+})`
+    & .table--scroll_container {
+        position: relative;
+        overflow: auto;
+        position: relative;
+    }
+    & .table--cell:nth-child(-n+${(props) => props.stickyColumnCount}) {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+    }
+    & .table--cell:nth-child(${(props) => props.stickyColumnCount}) {
+        border-right: 1px solid ${borderColor.default};
+    }
+`;
+
+Wrapper.displayName = 'Wrapper';
+
+class Table extends React.PureComponent {
+    componentDidMount() {
+        this.setStickyColumnPositions();
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            children: prevChildren,
+            stickyColumnCount: prevStickyColumnCount,
+        } = prevProps;
+        const {
+            children: nextChildren,
+            stickyColumnCount: nextStickyColumnCount,
+        } = this.props;
+
+        if (prevChildren !== nextChildren || prevStickyColumnCount !== nextStickyColumnCount) {
+            this.setStickyColumnPositions();
+        }
+    }
+
+    setStickyColumnPositions() {
+        const { stickyColumnCount } = this.props;
+
+        if (stickyColumnCount > 1 && this.tableRef) {
+            const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(-n+${stickyColumnCount})`);
+            let cellWidths = 0;
+            let cellCount = 0;
+
+            // eslint-disable-next-line no-plusplus
+            for (let rootIndex = 0; rootIndex < stickyCells.length; rootIndex++) {
+                cellCount += 1;
+
+                if (cellCount <= stickyColumnCount && cellCount > 1) {
+                    cellWidths += stickyCells[rootIndex].clientWidth;
+                    stickyCells[rootIndex].style.left = `${cellWidths - 1}px`;
+                }
+
+                if (cellCount === stickyColumnCount) {
+                    cellCount = 0;
+                    cellWidths = 0;
+                }
+            }
+        }
+    }
+
     render() {
         const {
             basic,
             celled,
+            children,
             className,
             collapsing,
             definition,
@@ -26,6 +135,7 @@ class Table extends Component {
             selectable,
             singleLine,
             size,
+            stickyColumnCount,
             stretch,
             style,
             stackable,
@@ -56,18 +166,33 @@ class Table extends Component {
                 'table-stackable': stackable,
                 'table-unstackable': stackable === false,
             },
-            className
+            className,
         );
 
-        return (
+        const tableJsx = (
             <table
                 className={containerClasses}
                 id={id}
+                ref={(ref) => { this.tableRef = ref; }}
                 style={style}
             >
-                {this.props.children}
+                {children}
             </table>
         );
+
+        if (stickyColumnCount) {
+            return (
+                <Wrapper
+                    stickyColumnCount={stickyColumnCount}
+                >
+                    <div className="table--scroll_container">
+                        {tableJsx}
+                    </div>
+                </Wrapper>
+            );
+        }
+
+        return tableJsx;
     }
 }
 
@@ -77,27 +202,7 @@ Table.Header = TableHeader;
 Table.HeaderCell = TableHeaderCell;
 Table.Row = TableRow;
 
-Table.propTypes = {
-    basic: PropTypes.bool,
-    celled: PropTypes.bool,
-    className: PropTypes.string,
-    collapsing: PropTypes.bool,
-    color: PropTypes.oneOf([ 'bottom', 'middle', 'top' ]),
-    definition: PropTypes.bool,
-    fixed: PropTypes.bool,
-    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
-    fullWidth: PropTypes.bool,
-    id: PropTypes.string,
-    selectable: PropTypes.bool,
-    singleLine: PropTypes.bool,
-    size: PropTypes.oneOf([ 'l', 'large', 'm', 'medium', 's', 'small' ]),
-    stackable: PropTypes.bool,
-    stretch: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf([ 'very' ]),
-    ]),
-    striped: PropTypes.bool,
-    style: PropTypes.shape({}),
-};
+Table.propTypes = propTypes;
+Table.defaultProps = defaultProps;
 
 export default Table;
