@@ -9,7 +9,7 @@ module.exports = (env, options) => {
 
     return {
         entry: {
-            bundle: './src/index.js',
+            bundle: './src/index.jsx',
             commons: ['react-syntax-highlighter'],
         },
         devServer: {
@@ -93,7 +93,7 @@ module.exports = (env, options) => {
                 react: path.resolve(__dirname, '../node_modules/react'),
                 'react-custom-scrollbars': path.resolve(__dirname, '../node_modules/react-custom-scrollbars'),
                 'react-dom': path.resolve(__dirname, '../node_modules/react-dom'),
-                'react-cm-ui': path.resolve(__dirname, '../src/index.js'),
+                'react-cm-ui': path.resolve(__dirname, '../src'),
                 'react-responsive': path.resolve(__dirname, '../node_modules/react-responsive'),
                 'css-cm-ui': path.resolve(__dirname, '../src/style.scss'),
             },
@@ -112,12 +112,13 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                title: 'Church Management UI Docs',
+                title: 'React-CM-UI Docs',
                 template: 'template.ejs',
             }),
             new MiniCssExtractPlugin({
-                filename: 'css/bundle.css',
                 allChunks: true,
+                filename: 'css/bundle.css',
+                ignoreOrder: true,
             }),
             new webpack.DefinePlugin({
                 __UI_PACKAGE_VERSION__: (typeof process.env.CM_UI_DOCS_VERSION === 'undefined') ?

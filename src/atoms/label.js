@@ -3,9 +3,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Icon from './icon';
+import Icon from '../dataDisplay/icon';
 
-import Utils from '../global/utils/utils';
+import Utils from '../utils/utils';
 
 class Label extends Component {
     render() {
@@ -67,7 +67,7 @@ Label.propTypes = {
     fluid: PropTypes.bool,
     onClearClick: PropTypes.func,
     onClick: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default Label;

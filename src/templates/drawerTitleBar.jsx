@@ -25,8 +25,8 @@ const defaultProps = {
     titleStyle: {},
 };
 
-const hasClassName = 'has-drawer--title_bar';
-const hasWingClassName = 'has-drawer--wing--title_bar';
+const hasClassName = 'drawer-has_title_bar';
+const hasWingClassName = 'drawer--wing-has_title_bar';
 
 class DrawerTitleBar extends React.PureComponent {
     componentDidMount() {
@@ -35,13 +35,28 @@ class DrawerTitleBar extends React.PureComponent {
 
         if (closestWing) {
             closestWing.classList.add(hasWingClassName);
-        } else {
-            closestDrawer.classList.add(hasClassName);
+
+            return null;
         }
+
+        closestDrawer.classList.add(hasClassName);
+
+        return null;
     }
 
     componentWillUnmount() {
-        this.drawerTitleBarRef.closest('.ui.drawer').classList.remove(hasClassName);
+        const closestDrawer = this.drawerTitleBarRef.closest('.ui.drawer');
+        const closestWing = this.drawerTitleBarRef.closest('.ui.drawer--wing');
+
+        if (closestWing) {
+            closestWing.classList.remove(hasWingClassName);
+
+            return null;
+        }
+
+        closestDrawer.classList.remove(hasClassName);
+
+        return null;
     }
 
     render() {

@@ -1,11 +1,12 @@
-'use strict';
-
+import {
+    Card,
+    DropdownButton,
+    Header,
+    Image,
+    TitleBar,
+} from 'react-cm-ui';
 import MediaQuery from 'react-responsive';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Dropdown, Header, Icon, Image, TitleBar } from 'react-cm-ui';
-
-// Docs UI Components
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
@@ -68,6 +69,10 @@ export default class ViewsTitleBar extends React.Component {
         super();
 
         this._onDropdownClick = this._onDropdownClick.bind(this);
+    }
+
+    _onDropdownClick(event) {
+        this.dropdown._onDropdownClick(event);
     }
 
     render() {
@@ -173,19 +178,17 @@ export default class ViewsTitleBar extends React.Component {
                             return (
                                 <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
                                     <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
-                                        <Dropdown
-                                            text={(
-                                                <div>
-                                                    <Image avatar style={{ marginRight: '11px' }} />
-                                                    <span style={{ color: '#1c2530', fontSize: '14px', fontWeight: '400' }}>Marty McFly</span>
-                                                </div>
-                                            )}
+                                        <DropdownButton
+                                            color="transparent"
+                                            iconSize={10}
+                                            iconType="caret-down"
+                                            label="Marty McFly"
                                         >
-                                            <Dropdown.Item label="Item 1" />
-                                            <Dropdown.Item label="Item 2" />
-                                            <Dropdown.Item label="Item 3" />
-                                            <Dropdown.Item label="Item 4" />
-                                        </Dropdown>
+                                            <DropdownButton.Option label="Item 1" />
+                                            <DropdownButton.Option label="Item 2" />
+                                            <DropdownButton.Option label="Item 3" />
+                                            <DropdownButton.Option label="Item 4" />
+                                        </DropdownButton>
                                     </TitleBar>
                                 </Card>
                             );
@@ -198,9 +201,5 @@ export default class ViewsTitleBar extends React.Component {
                 </Main.Content>
             </Main>
         );
-    }
-
-    _onDropdownClick(event) {
-        this.dropdown._onDropdownClick(event);
     }
 }

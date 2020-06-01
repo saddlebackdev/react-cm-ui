@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Utils from '../global/utils/utils.js';
+import Utils from '../utils/utils.js';
 
 class ContainerActionBar extends Component {
 
@@ -37,7 +37,7 @@ ContainerActionBar.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(Utils.colorEnums()),
     stretch: PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.shape({})
 };
 
 export default ContainerActionBar;

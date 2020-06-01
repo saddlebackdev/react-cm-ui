@@ -2,8 +2,8 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../atoms/icon';
-import Utils from '../global/utils/utils';
+import Icon from '../dataDisplay/icon';
+import Utils from '../utils/utils';
 
 export const singleOptionPropTypeShape = {
     disabled: PropTypes.bool,
@@ -91,18 +91,20 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
                 onClick={this.onClick}
                 role="menuitem"
             >
-                <div
-                    className="actions_button_drawer_sub_option--icon_container"
-                    id={subOption.id}
-                >
-                    <Icon
-                        color={subOption.disabled ? 'static' : subOption.iconColor}
-                        compact
-                        className="actions_button_drawer_sub_option--icon"
-                        size={subOption.iconSize || 16}
-                        type={subOption.iconType}
-                    />
-                </div>
+                {subOption.iconType && (
+                    <div
+                        className="actions_button_drawer_sub_option--icon_container"
+                        id={subOption.id}
+                    >
+                        <Icon
+                            color={subOption.disabled ? 'static' : subOption.iconColor}
+                            compact
+                            className="actions_button_drawer_sub_option--icon"
+                            size={subOption.iconSize || 16}
+                            type={subOption.iconType}
+                        />
+                    </div>
+                )}
 
                 <div
                     className="actions_button_drawer_sub_option--label"

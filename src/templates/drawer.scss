@@ -1,14 +1,9 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator', '../styles/variables';
 
 // The drawers z-index's starts at 10000
 $zindex: $drawer-zindex;
 
 html:not(.ua-ie-edge):not(.ua-ie-11) body {
-    &.drawer-open {
-        overflow-y: scroll;
-        position: fixed;
-        width: 100%;
-    }
     &.drawer-dimmers .drawer-dimmer {
         animation: fadeInDimmer 200ms forwards;
         backface-visibility: hidden;
@@ -34,7 +29,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // Header Items
     // ####
     // Only One Header Item Showing
-    &.drawer--has_action_bar:not(.has-drawer--navigation):not(.has-drawer--title_bar) .drawer-container-inner {
+    &.drawer-has_action_bar:not(.drawer-has_navigation):not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-action-bar-height;
         .drawer {
             &--action_bar {
@@ -47,7 +42,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar).has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+    &:not(.drawer-has_action_bar).drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-navigation-height;
         .drawer {
             &--navigation {
@@ -58,7 +53,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar):not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+    &:not(.drawer-has_action_bar):not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-title-bar-height;
         .drawer {
             &--title_bar {
@@ -70,7 +65,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
     }
     // Two Header Items Showing
-    &.drawer--has_action_bar.has-drawer--navigation:not(.has-drawer--title_bar) .drawer-container-inner {
+    &.drawer-has_action_bar.drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-navigation-height;
         .drawer {
             &--action_bar {
@@ -84,7 +79,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &.drawer--has_action_bar:not(.has-drawer--navigation).has-drawer--title_bar .drawer-container-inner {
+    &.drawer-has_action_bar:not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-title-bar-height;
         .drawer {
             &--action_bar {
@@ -100,7 +95,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
             }
         }
     }
-    &:not(.drawer--has_action_bar).has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+    &:not(.drawer-has_action_bar).drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-navigation-height + $drawer-title-bar-height;
         .drawer {
             &--navigation {
@@ -116,7 +111,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         }
     }
     // Three Header Items Showing
-    &.drawer--has_action_bar.has-drawer--navigation.has-drawer--title_bar .drawer-container-inner {
+    &.drawer-has_action_bar.drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
         padding-top: $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height;
         .drawer {
             &--action_bar {
@@ -161,7 +156,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
         position: absolute;
         right: 0;
         top: 0;
-        transform: translate(100%, 0);
+        transform: translate3d(100%, 0, 0);
         transition: max-width 200ms ease-in-out, transform 333ms ease-in-out;
         width: 100%;
         .shadow_container {
@@ -188,7 +183,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.left-position .drawer-container {
         left: 0;
         right: inherit;
-        transform: translate(-100%, 0);
+        transform: translate3d(-100%, 0, 0);
     }
     > div > div:last-child { z-index: $zindex; } // Vertical scrollbar
     .drawer-container-inner {

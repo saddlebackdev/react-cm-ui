@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import ClassNames from 'classnames';
-import Divider from '../atoms/divider';
-import domUtils from '../global/utils/domUtils.js';
+import Divider from '../dataDisplay/divider';
+import domUtils from '../utils/domUtils.js';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -65,7 +65,7 @@ class ModalHeader extends Component {
 ModalHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -437,7 +437,7 @@ Modal.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     fluidContent: PropTypes.bool,
@@ -466,7 +466,7 @@ Modal.propTypes = {
     ]),
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.string,
     titleTruncate: PropTypes.bool,
     width: PropTypes.oneOfType([

@@ -1,4 +1,4 @@
-@import '../global/styles/colors';
+@import '../styles/colors';
 @import './pageVariables';
 
 $desktopActionBarHeight: 70px;
@@ -18,7 +18,7 @@ $navWidth: 250px;
     &-background_color_white {
         background-color: color(backgroundColor);
     }
-    &--has_action_bar {
+    &-has_action_bar {
         min-height: calc(100vh - 105px); // Accounts for the mobile TitleBar and ActionBar height $mobileTitleBarHeight + 50px
     }
     &--activity_indicator {
@@ -47,7 +47,7 @@ $navWidth: 250px;
 @media only screen and (min-width: 768px) {
     .ui.page {
         min-height: calc(100vh - #{$desktopTitleBarHeight}); // Accounts for the desktop TitleBar height
-        &--has_action_bar {
+        &-has_action_bar {
             min-height: calc(100vh - 140px); // Accounts for the desktop TitleBar and ActionBar height: 70px + 70px
         }
         &--activity_indicator {

@@ -3,18 +3,31 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../atoms/button';
-import Checkbox from '../atoms/checkbox';
+import Button from '../inputs/button';
+import Checkbox from '../inputs/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
+
+const breakpoints = {
+    values: {
+        sm: 0,
+        md: 767,
+        lg: 1199,
+        xl: 1685,
+    },
+};
 
 const propTypes = {
+    breakpointDown: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
@@ -28,20 +41,39 @@ const propTypes = {
     rows: PropTypes.arrayOf(PropTypes.shape({
         header: PropTypes.string,
         items: PropTypes.arrayOf(PropTypes.shape({
-            checkbox: {
+            checkbox: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 disabled: PropTypes.bool,
                 id: PropTypes.string,
                 label: PropTypes.oneOfType([
-                    PropTypes.object,
+                    PropTypes.shape({}),
                     PropTypes.string,
                 ]),
                 name: PropTypes.string,
                 onChange: PropTypes.func,
-                style: PropTypes.object,
-            },
-            dropdown: {
+                style: PropTypes.shape({}),
+            }),
+            dropdown: PropTypes.shape({
+                onChange: PropTypes.func,
+                options: PropTypes.arrayOf(PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                })),
+                value: PropTypes.shape({
+                    label: PropTypes.string,
+                    value: PropTypes.oneOfType([
+                        PropTypes.number,
+                        PropTypes.string,
+                    ]),
+                }),
+            }),
+            jsx: PropTypes.node,
+            multiSelect: PropTypes.shape({
+                placeholder: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
@@ -57,27 +89,8 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-            },
-            jsx: PropTypes.node,
-            multiSelect: PropTypes.arrayOf(PropTypes.shape({
-                placeholder: PropTypes.string,
-                onChange: PropTypes.func,
-                options: PropTypes.arrayOf(PropTypes.shape({
-                    label: PropTypes.string,
-                    value: PropTypes.oneOfType([
-                        PropTypes.number,
-                        PropTypes.string,
-                    ]),
-                })),
-                value: PropTypes.PropTypes.shape({
-                    label: PropTypes.string,
-                    value: PropTypes.oneOfType([
-                        PropTypes.number,
-                        PropTypes.string,
-                    ]),
-                }),
-            })),
-            nestedToggles: PropTypes.arrayOf(PropTypes.shape({
+            }),
+            nestedToggles: PropTypes.shape({
                 label: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
@@ -87,15 +100,15 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.PropTypes.shape({
+                value: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
                         PropTypes.number,
                         PropTypes.string,
                     ]),
-                }),
-            })),
-            toggle: {
+                })),
+            }),
+            toggle: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 disabled: PropTypes.bool,
@@ -105,14 +118,15 @@ const propTypes = {
                 labelIconType: PropTypes.string,
                 name: PropTypes.string,
                 onChange: PropTypes.func,
-                style: PropTypes.object,
-            },
+                style: PropTypes.shape({}),
+            }),
         })),
     })),
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
+    breakpointDown: breakpoints.values.md,
     children: undefined,
     className: undefined,
     id: undefined,
@@ -211,6 +225,7 @@ class FiltersDrawer extends React.Component {
 
     render() {
         const {
+            breakpointDown,
             children,
             className,
             id,
@@ -238,7 +253,7 @@ class FiltersDrawer extends React.Component {
 
         return (
             <MediaQuery
-                maxWidth={767}
+                maxWidth={breakpointDown}
             >
                 <Drawer
                     className={containerClasses}

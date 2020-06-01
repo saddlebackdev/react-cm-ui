@@ -1,0 +1,168 @@
+@import '../styles/colors';
+@import '../styles/fonts';
+@import '../styles/fontSizeCalculator';
+
+$size: 22px;
+$size-small: 18px;
+$size-toggle: 52px;
+$padding-label-toggle: 63px;
+
+.ui.checkbox {
+    display: inline-block;
+    margin-right: 22px;
+    min-height: $size;
+    position: relative;
+    text-align: left;
+    .input { display: none; }
+    label {
+        color: color(color);
+        cursor: pointer;
+        display: block;
+        position: relative;
+        > .checkbox-label-text {
+            display: inline-block;
+            font-size: rem(14px);
+            padding-left: rem(33px);
+            padding-top: 2px;
+            &-weight-bold { font-weight: $fontWeightBold; }
+            &-weight-normal { font-weight: $fontWeightRegular; }
+            &-weight-semibold { font-weight: $fontWeightSemiBold; }
+        }
+        &::before, .ui.icon-check {
+            position: absolute;
+            transition:
+                background 150ms ease,
+                border 150ms ease,
+                opacity 150ms ease;
+        }
+        &::before { // faux input
+            background: color(backgroundColor);
+            border: 1px solid color(borderColor);
+            border-radius: 3px;
+            content: '';
+            height: $size;
+            left: 0;
+            top: 0;
+            width: $size;
+        }
+        .ui.icon-check {
+            left: 6px;
+            opacity: 0;
+            top: 6px;
+        }
+        &.label-not-clickable {
+            cursor: auto;
+            &::before, &.ui.icon-check { cursor: pointer; }
+        }
+    }
+    &.checkbox-size-small {
+        min-height: $size-small;
+        label {
+            font-size: rem(12px);
+            > .checkbox-label-text { font-size: rem(12px); padding-top: 1px; }
+            &::before { height: $size-small; width: $size-small; }
+            .ui.icon-check { // check
+                left: 5px;
+                top: 5px;
+            }
+        }
+    }
+    .input:checked + label {
+        &::before {
+            background-color: color(backgroundColorHighlight);
+            border: 1px solid color(borderColorHighlight);
+        }
+        .ui.icon-check { opacity: 1; }
+    }
+    &-align-right {
+        text-align: right;
+        label {
+            > span {
+                padding-left: 0;
+                padding-right: rem(33px);
+            }
+            &::before { left: auto; right: 0; }
+            .ui.icon-check { left: auto; right: 6px; }
+        }
+    }
+    &-disabled .input {
+        + label, &:checked + label {
+            cursor: auto;
+            &::before {
+                background-color: color(backgroundColorDisable);
+                border: 1px solid color(borderColor);
+            }
+        }
+        &:checked + label .ui.icon-check {
+            opacity: 1;
+        }
+    }
+    &-full-width { display: block; margin-right: 0; }
+    &-inverse label { color: color(colorInverse); }
+    &-toggle {
+        label {
+            > span { padding-left: rem($padding-label-toggle); }
+            &::before {
+                border-radius: rem(11px);
+                display: block;
+                height: $size;
+                width: $size-toggle;
+                z-index: 1;
+            }
+            &::after {
+                background-color: color(backgroundColorButtonAlternate);
+                border: 0;
+                border-radius: rem(12.5px);
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.30);
+                content: '';
+                height: 25px;
+                left: 0;
+                opacity: 1;
+                position: absolute;
+                top: rem(-1.5px);
+                transition:
+                    background-color 300ms ease,
+                    left 300ms ease,
+                    right 300ms ease;
+                width: 25px;
+                z-index: 3;
+            }
+            .checkbox-toggle-text {
+                align-items: center;
+                display: inline-flex;
+                font-size: rem(12px);
+                font-weight: $fontWeightSemiBold;
+                height: $size;
+                justify-content: center;
+                left: 0;
+                letter-spacing: .4px;
+                padding: 0 7px 0 8px;
+                position: absolute;
+                text-align: left;
+                top: 0;
+                width: $size-toggle;
+                z-index: 2;
+            }
+                .checkbox-toggle-text-on, .checkbox-toggle-text-off { flex: 1 0 auto; }
+                .checkbox-toggle-text-on { color: color(colorInverse); }
+                .checkbox-toggle-text-off { text-align: right; }
+        }
+        .input:checked + {
+            label::after { left: rem(27px); }
+        }
+        &.checkbox-align-right {
+            label {
+                > span {
+                    padding-left: 0;
+                    padding-right: rem($padding-label-toggle);
+                }
+                .checkbox-toggle-text { left: auto; right: 0; text-align: left; }
+                &::after {
+                    left: auto;
+                    right: rem(27px);
+                }
+            }
+            .input:checked + label::after { left: auto; right: 0; }
+        }
+    }
+}

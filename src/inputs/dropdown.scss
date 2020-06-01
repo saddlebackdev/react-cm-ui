@@ -1,0 +1,744 @@
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator';
+
+$dark-theme-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.43);
+
+// control options
+$select-input-bg:                   color(backgroundColor) !default;
+$select-input-bg-focus:             color(backgroundColorInverse);
+$select-input-bg-disabled:          color(backgroundColorDisable) !default;
+$select-input-border-color:         color(borderColor) !default;
+$select-input-border-radius:        rem(3px) !default;
+$select-input-border-focus:         color(borderColorHighlight) !default;
+$select-input-border-width:         1px !default;
+$select-input-arrow-color-focus:    color(colorInverse);
+$select-input-height:               44px !default;
+$select-input-internal-height:      ($select-input-height - ($select-input-border-width * 2)) !default;
+$select-input-placeholder:          color(colorStatic) !default;
+$select-text-color:                 color(color) !default;
+$select-text-color-focus:           color(colorInverse);
+$select-link-hover-color:           $select-input-border-focus !default;
+
+$select-padding-horizontal:         11px !default;
+
+// menu options
+$select-menu-bg:                    color(backgroundColorInverseAlternate);
+$select-menu-border-radius:         rem(3px);
+$select-menu-margin-top:            4px;
+$select-menu-max-height:            200px !default;
+$select-menu-padding-vertical:      11px;
+$select-menu-zindex:                1000 !default;
+
+$select-option-bg:                  $select-menu-bg !default;
+$select-option-color:               color(colorInverse);
+$select-option-focused-color:       color(color) !default;
+$select-option-focused-bg:          color(backgroundColor) !default;
+$select-option-selected-color:      color(color) !default;
+$select-option-selected-bg:         color(backgroundColor) !default;
+$select-option-disabled-color:      color(colorStatic) !default;
+$select-option-margin-vertical:     4px;
+$select-option-padding-horizontal:  22px;
+$select-option-padding-vertical:    7px;
+
+$select-noresults-color:            color(colorInverse);
+
+// clear "x" button
+$select-clear-size:                 floor(($select-input-height / 2)) !default;
+$select-clear-color:                #999 !default;
+$select-clear-hover-color:          #D0021B !default; // red
+$select-clear-width:                16px !default;
+
+// arrow indicator
+$select-arrow-color:                #999 !default;
+$select-arrow-color-hover:          #666 !default;
+$select-arrow-width:                16px !default;
+
+// loading indicator
+$select-loading-size:               16px !default;
+$select-loading-color:              $select-text-color !default;
+$select-loading-color-bg:           $select-input-border-color !default;
+
+// multi-select item
+$select-item-border-radius:         2px !default;
+$select-item-gutter:                5px !default;
+$select-item-padding-vertical:      2px !default;
+$select-item-padding-horizontal:    5px !default;
+$select-item-font-size:             .9em !default;
+$select-item-color:                 #08c !default; // pale blue
+$select-item-bg:                    #f2f9fc !default;
+$select-item-border-color:          darken($select-item-bg, 10%) !default;
+$select-item-hover-color:           darken($select-item-color, 5%) !default; // pale blue
+$select-item-hover-bg:              darken($select-item-bg, 5%) !default;
+$select-item-disabled-color:        #333 !default;
+$select-item-disabled-bg:           #fcfcfc !default;
+$select-item-disabled-border-color: darken($select-item-disabled-bg, 10%) !default;
+
+
+// Utilities
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+@mixin square($size) {
+    @include size($size, $size);
+}
+@mixin border-top-radius($radius) {
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
+}
+@mixin border-right-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius) {
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
+}
+
+// Spinner
+@mixin Select-spinner($size, $orbit, $satellite) {
+    @include animation( Select-animation-spin 400ms infinite linear );
+    @include square($size);
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: floor(($size / 8)) solid $orbit;
+    border-right-color: $satellite;
+    display: inline-block;
+    position: relative;
+
+}
+@keyframes Select-animation-spin {
+    to { transform: rotate(1turn); }
+}
+@-webkit-keyframes Select-animation-spin {
+    to { -webkit-transform: rotate(1turn); }
+}
+
+// Vendor Prefixes
+@mixin animation($animation) {
+    animation: $animation;
+}
+@mixin box-sizing($boxmodel) {
+    box-sizing: $boxmodel;
+}
+
+.ui.dropdown {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+    > .label { margin-bottom: em(8px); }
+        .input-required-indicator {
+            color: color(colorAlert);
+            display: inline-block;
+            font-size: rem(14px);
+            margin-left: 3px;
+        }
+    .dropdown-selection-value {
+        color: color(colorSecondary);
+        cursor: pointer;
+        font-size: rem(16px);
+        font-weight: $fontWeightBold;
+        text-transform: capitalize;
+    }
+    > .ui.icon { cursor: pointer; }
+    .dropdown-selection-value + .ui.icon { margin-left: 11px;}
+    .dropdown-menu {
+        background: color(backgroundColor);
+        border: 1px solid color(borderColor);
+        border-radius: 3px;
+        box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.06);
+        flex: 1 0 auto;
+        list-style: none;
+        margin: 5px 0;
+        padding: 0;
+        position: absolute;
+        z-index: 8000;
+        li {
+            padding: rem(4px) 0;
+            &:first-child { padding-top: rem(11px); }
+            &:last-child { padding-bottom: rem(11px); }
+        }
+            li > span {
+                align-items: center;
+                color: color(color);
+                cursor: pointer;
+                display: flex;
+                font-size: rem(14px);
+                font-weight: $fontWeightSemiBold;
+                justify-content: flex-start;
+                padding: rem(7px) rem(22px);
+                text-align: left;
+                transition: color 150ms ease-out;
+                white-space: nowrap;
+                &:hover { background-color: color(backgroundColorHighlight); color: color(colorInverse); }
+            }
+            li.dropdown-item-is-disabled span {
+                color: color(colorStatic);
+                cursor: default;
+                pointer-events: none;
+            }
+        &.dropdown-menu-columns {
+            li { padding: rem(7px) rem(22px); }
+                li > span { border-radius: rem(3px); padding: 0; }
+        }
+    }
+    &:not(.dropdown-menu-theme-dark) .dropdown-menu li > span:hover .ui.icon {
+        .icon-use-path { fill: color(colorInverse); }
+    }
+    &.dropdown-button {
+        align-items: center;
+        background-color: color(backgroundColorButton);
+        border: 0;
+        border-radius: 3px;
+        color: color(colorInverse);
+        cursor: pointer;
+        display: inline-flex;
+        height: 44px;
+        justify-content: center;
+        letter-spacing: 1px;
+        margin: 0 11px 0 0;
+        padding: 0 rem(22px);
+        text-align: center;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
+        white-space: normal;
+        &.dropdown-button-compact {
+            padding-left: rem(11px);
+            padding-right: rem(11px);
+        }
+        .dropdown-selection-value {
+            color: inherit;
+            cursor: pointer;
+            font-size: rem(14px);
+            font-weight: $fontWeightSemiBold;
+        }
+        &.dropdown-disable {
+            background-color: color(backgroundColorDisable) !important;
+            cursor: default;
+            .dropdown-selection-value { color: color(colorStatic); cursor: inherit; }
+            .ui.icon {
+                cursor: inherit;
+                .icon-use-path { fill: color(colorStatic); }
+            }
+        }
+        &.dropdown-color- {
+            &alert {
+                background-color: color(backgroundColorButtonAlert);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+            &alternate {
+                background-color: color(backgroundColorButtonAlternate);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+            &disable {
+                background-color: color(backgroundColorButtonDisable) !important;
+                color: color(colorStatic);
+                cursor: default;
+                > .ui.icon .icon-use-path { fill: color(colorStatic); }
+            }
+            &light {
+                background-color: color(backgroundColorLight);
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
+            }
+            &outline {
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px color(borderColorQuaternary);
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
+            }
+            &primary {
+                background-color: color(backgroundColorButton);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+            &secondary {
+                background-color: color(backgroundColorButtonSecondary);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+            &success {
+                background-color: color(backgroundColorButtonSuccess);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+            &transparent {
+                background-color: transparent;
+                > .ui.icon.icon-color-primary .icon-use-path { fill: color(color); }
+            }
+            &warning {
+                background-color: color(backgroundColorWarning);
+                > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            }
+        }
+        &.dropdown-is-active {
+            background-color: color(backgroundColorHighlight);
+            color: color(colorInverse);
+            &:not(.dropdown-color-transparent) > .ui.icon .icon-use-path { fill: color(colorInverse); }
+            &.dropdown-color-disable {
+                background-color: color(backgroundColorButtonDisable) !important;
+                color: color(colorStatic);
+                cursor: default;
+                > .ui.icon .icon-use-path { fill: color(colorStatic); }
+            }
+            &.dropdown-color-outline {
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px color(borderColorHighlight);
+                color: color(color);
+                > .ui.icon .icon-use-path { fill: color(color); }
+            }
+            &.dropdown-color-transparent {
+                background-color: transparent;
+                color: color(color);
+                > .ui.icon.icon-color-primary .icon-use-path { fill: color(color); }
+            }
+        }
+        &.dropdown-inverse.dropdown-color- {
+            &alert { background-color: color(backgroundColorButtonAlert); }
+            &alternate { background-color: color(backgroundColorButtonAlternate); }
+            &disable { background-color: color(backgroundColorButtonDisable); cursor: default;  }
+            &light { background-color: color(backgroundColorLight); color: color(color); }
+            &outline {
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px color(borderColorSecondary);
+                color: color(colorInverse);
+                > .ui.icon {
+                    .icon-use-path { fill: color(colorInverse); }
+                }
+            }
+            &primary { background-color: color(backgroundColorButton); }
+            &success { background-color: color(backgroundColorButtonSuccess); }
+        }
+    }
+    &.dropdown-fluid { display: block; }
+    &.dropdown-selection {
+        display: inline-block;
+        min-width: 200px;
+        &.dropdown-fluid { display: block; }
+        + * { margin-top: em(33px); }
+    }
+    &.dropdown-menu-theme-dark .dropdown-menu {
+        background: color(backgroundColorInverseAlternate);
+        border: 0;
+        border-radius: rem(3px);
+        box-shadow: $dark-theme-box-shadow;
+        li > span {
+            color: color(colorInverse);
+            &:hover {
+                background-color: color(backgroundColor);
+                color: color(color);
+                .ui.icon-color-primary.icon-inverse {
+                    .icon-use-path { fill: color(color); }
+                }
+            }
+        }
+        li.dropdown-item-is-disabled span {
+            color: color(colorStatic);
+        }
+    }
+    .dropdown-selection-mobile-button {
+        align-items: center;
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColor);
+        border-radius: rem(3px);
+        cursor: pointer;
+        display: flex;
+        height: 44px;
+        justify-content: flex-start;
+        padding: 0 11px;
+        position: relative;
+        .placeholder, .label { flex: 1 0 auto; text-transform: capitalize; }
+        .placeholder { color: color(colorStatic); }
+        .label { color: color(color); font-size: rem(16px); }
+        .ui.icon {
+            flex: 0 1 auto;
+            height: 16px;
+            margin-left: 11px;
+            width: 16px;
+        }
+    }
+    &.dropdown-disabled .dropdown-selection-mobile-button {
+        background-color: color(backgroundColorDisable);
+        .placeholder, .label { color: color(colorStatic); }
+    }
+    // CSS grabbed from react-select's src https://github.com/JedWatson/react-select/tree/v1.0.0-rc.3/scss
+    // HIGHLY EDITED - DON'T JUST COPY AND PASTE TO OVERWRITE.
+    // Sorry folks.
+    .Select {
+        position: relative;
+        &, & div, & input,
+        & span { @include box-sizing(border-box); }
+        &.is-disabled > .Select-control {
+            background-color: $select-input-bg-disabled;
+            &:hover { box-shadow: none; }
+        }
+        &.is-disabled .Select-arrow-zone {
+            cursor: default;
+            pointer-events: none;
+            .ui.icon {
+                .icon-use-path { fill: color(colorStatic); }
+            }
+        }
+    }
+        .Select-control {
+            background-color: $select-input-bg;
+            border-color:
+                lighten($select-input-border-color, 5%)
+                $select-input-border-color
+                darken($select-input-border-color, 10%);
+            border-radius: $select-input-border-radius;
+            border: $select-input-border-width solid $select-input-border-color;
+            color: $select-text-color;
+            cursor: default;
+            display: table;
+            border-spacing: 0;
+            border-collapse: separate;
+            height: $select-input-height;
+            outline: none;
+            position: relative;
+            width: 100%;
+            &:hover { box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06); }
+            .Select-input:focus { outline: none; }
+        }
+        .is-searchable.is-open > .Select-control { cursor: text; }
+        .is-open:not(.Select--multi) > .Select-control {
+            background-color: $select-input-bg-focus;
+            border-color:
+                darken($select-input-border-color, 10%)
+                $select-input-border-color
+                lighten($select-input-border-color, 5%);
+            color: $select-text-color-focus;
+            .Select-arrow {
+                border-color: transparent transparent $select-arrow-color;
+                border-width: 0 $select-arrow-width $select-arrow-width;
+                top: -2px;
+            }
+            .Select-value-label { color: $select-text-color !important; }
+            .Select-arrow-zone, .Select-clear-zone {
+                .ui.icon {
+                    .icon-use-path {
+                        fill: $select-input-arrow-color-focus;
+                    }
+                }
+            }
+        }
+        .is-searchable.is-focused:not(.is-open) > .Select-control { cursor: text; }
+        .is-focused:not(.is-open) > .Select-control {
+            border-color:
+                $select-input-border-focus
+                lighten($select-input-border-focus, 5%)
+                lighten($select-input-border-focus, 5%);
+            box-shadow:
+                inset 0 1px 2px rgba(0, 0, 0, 0.1),
+                0 0 5px -1px fade($select-input-border-focus,50%);
+        }
+            .Select-placeholder, .Select--single > .Select-control .Select-value {
+                bottom: 0;
+                color: $select-input-placeholder;
+                left: 0;
+                line-height: $select-input-internal-height;
+                max-width: 100%;
+                overflow: hidden;
+                padding-left: $select-padding-horizontal;
+                padding-right: $select-padding-horizontal;
+                position: absolute;
+                right: 0;
+                text-overflow: ellipsis;
+                top: 0;
+                white-space: nowrap;
+            }
+            .has-value.Select--single > .Select-control .Select-value,
+            .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value {
+                .Select-value-label { color: $select-text-color; }
+                a.Select-value-label {
+                    cursor: pointer;
+                    text-decoration: none;
+                    &:hover, &:focus {
+                        color: $select-link-hover-color;
+                        outline: none;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .Select-input {
+                height: $select-input-internal-height;
+                padding-left: $select-padding-horizontal;
+                padding-right: $select-padding-horizontal;
+                vertical-align: middle;
+                > input {
+                    background: none transparent;
+                    border: 0 none;
+                    box-shadow: none;
+                    cursor: default;
+                    display: inline-block;
+                    font-family: inherit;
+                    font-size: inherit;
+                    margin: 0;
+                    outline: none;
+                    line-height: 14px;  /* For IE 8 compatibility */
+                    padding: (($select-input-internal-height - 14) / 2 - 2) 0 (($select-input-internal-height - 14) / 2 + 2);  /* For IE 8 compatibility */
+                    -webkit-appearance: none;
+                    .is-focused & { cursor: text; }
+                }
+            }
+            .has-value.is-pseudo-focused .Select-input { opacity: 0; }
+            .Select-control:not(.is-searchable) > .Select-input { outline: none; }
+            .Select-loading-zone {
+                cursor: pointer;
+                display: table-cell;
+                position: relative;
+                text-align: center;
+                vertical-align: middle;
+                width: $select-loading-size;
+            }
+            .Select-loading {
+                @include Select-spinner($select-loading-size, $select-loading-color-bg, $select-loading-color);
+                vertical-align: middle;
+            }
+            .Select-clear-zone {
+                @include animation( Select-animation-fadeIn 200ms );
+                color: $select-clear-color;
+                cursor: pointer;
+                display: table-cell;
+                padding-right: 11px;
+                position: relative;
+                text-align: center;
+                vertical-align: middle;
+                width: $select-clear-width;
+                > div {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
+                &:hover {
+                color: $select-clear-hover-color;
+                }
+            }
+                .Select-clear {
+                    display: inline-block;
+                    font-size: $select-clear-size;
+                    line-height: 1;
+                }
+            .Select--multi .Select-clear-zone { width: $select-clear-width; }
+            .Select--multi .Select-multi-value-wrapper { display: inline-block; }
+            .Select .Select-aria-only {
+                display: inline-block;
+                height: 1px;
+                width: 1px;
+                margin: -1px;
+                clip: rect(0,0,0,0);
+                overflow: hidden;
+            }
+            .Select-arrow-zone {
+                cursor: pointer;
+                display: table-cell;
+                padding-bottom: 0;
+                padding-right: 11px;
+                position: relative;
+                text-align: center;
+                vertical-align: middle;
+                width: $select-arrow-width;
+                > div {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+                .Select-arrow {
+                    border-color: $select-arrow-color transparent transparent;
+                    border-style: solid;
+                    border-width: $select-arrow-width $select-arrow-width ($select-arrow-width / 2);
+                    display: inline-block;
+                    height: 0;
+                    position: relative;
+                    width: 0;
+                }
+                .is-open .Select-arrow, .Select-arrow-zone:hover > .Select-arrow {
+                    border-top-color: $select-arrow-color-hover;
+                }
+        .Select-menu-outer {
+            background-color: $select-menu-bg;
+            border-radius: $select-menu-border-radius;
+            box-shadow: $dark-theme-box-shadow;
+            box-sizing: border-box;
+            margin-top: $select-menu-margin-top;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: $select-menu-padding-vertical;
+            padding-top: $select-menu-padding-vertical;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            z-index: $select-menu-zindex;
+        }
+            .Select-option {
+                background-color: $select-option-bg;
+                box-sizing: border-box;
+                color: $select-option-color;
+                cursor: pointer;
+                display: block;
+                font-size: rem(14px);
+                font-weight: $fontWeightSemiBold;
+                margin: $select-option-margin-vertical 0;
+                padding: $select-option-padding-vertical $select-option-padding-horizontal;
+                white-space: nowrap;
+                &.is-selected { background-color: $select-option-selected-bg; color: $select-option-selected-color; }
+                &.is-focused, &:hover { background-color: $select-option-focused-bg; color: $select-option-focused-color; }
+                &.is-disabled { color: $select-option-disabled-color; cursor: default; }
+            }
+            .Select-noresults {
+                box-sizing: border-box;
+                color: $select-noresults-color;
+                cursor: default;
+                display: block;
+                padding: $select-option-padding-vertical $select-option-padding-horizontal;
+            }
+    .Select.Select--multi {
+        .Select-control { background-color: $select-input-bg; }
+            .Select-input {
+                margin-left: $select-padding-horizontal;
+                padding: 0;
+                vertical-align: middle;
+            }
+            &.has-value .Select-input {
+                margin-left: $select-item-gutter;
+            }
+            .Select-value {
+                align-items: flex-start;
+                background-color: color(backgroundColorLight);
+                border: 1px solid color(borderColor);
+                border-radius: $select-item-border-radius;
+                color: color(color);
+                display: inline-flex;
+                flex-direction: row-reverse;
+                font-size: $select-item-font-size;
+                height: 30px;
+                justify-content: flex-start;
+                margin-left: 6px;
+                margin-top: 6px;
+                vertical-align: top;
+            }
+                .Select-value-label, .Select-value-icon {
+                    align-items: center;
+                    align-self: stretch;
+                    display: inline-flex;
+                    flex: 0 1 auto;
+                    justify-content: center;
+                    vertical-align: middle;
+                }
+                .Select-value-label {
+                    @include border-left-radius( $select-item-border-radius );
+                    cursor: default;
+                    font-size: rem(14px);
+                    padding: 0 11px;
+                }
+                a.Select-value-label {
+                    color: $select-item-color;
+                    cursor: pointer;
+                    text-decoration: none;
+                    &:hover { text-decoration: underline; }
+                }
+                .Select-value-icon {
+                    @include border-right-radius($select-item-border-radius);
+                    border: 1px solid color(borderColor);
+                    color: color(colorStatic);
+                    cursor: pointer;
+                    line-height: 1;
+                    margin: -1px -1px -1px 0;
+                    padding: 0 9px;
+                    position: relative;
+                    speak: none;
+                    text-transform: none;
+                    transition:
+                        background-color 150ms linear,
+                        border-color 150ms linear,
+                        color 150ms linear;
+                    &:hover, &:focus {
+                        background-color: color(backgroundColorStatic);
+                        border-color: color(borderColorTertiary);
+                        color: color(colorInverse);
+                    }
+                    &:active { background-color: $select-item-border-color; }
+                }
+        &.is-open > .Select-control .Select-arrow-zone .ui.icon {
+            .icon-use-path {
+                fill: color(colorHighlight);
+            }
+        }
+    }
+    .Select--multi.is-disabled {
+        > .Select-control {
+            background-color: $select-input-bg-disabled;
+            &:hover { box-shadow: none; }
+        }
+        // icon
+        .Select-value-icon {
+            cursor: not-allowed;
+            border-right: 1px solid $select-item-disabled-border-color;
+
+            &:hover, &:focus, &:active {
+                background-color: $select-item-disabled-bg;
+            }
+        }
+    }
+    &.ui.dropdown-inverse  {
+        .is-open:not(.Select--multi) > .Select-control {
+            background-color: color(backgroundColor);
+            .Select-arrow-zone, .Select-clear-zone {
+                .ui.icon {
+                    .icon-use-path { fill: color(color); }
+                }
+            }
+            .Select-value-label { color: color(color) !important; }
+        }
+        .Select-menu-outer { background-color: color(backgroundColor); }
+            .Select-option {
+                background-color: color(backgroundColor);
+                color: color(color);
+                &.is-selected, &.is-focused, &:hover { background-color: color(backgroundColorHighlight); color: color(colorInverse); }
+                &.is-disabled { color: $select-option-disabled-color; }
+            }
+            .Select-noresults { color: color(color); }
+        .Select-input > input { color: color(color); }
+    }
+    &.dropdown-selection-underline  {
+        .Select--single .Select-control {
+            border-left: 0;
+            border-radius: 0;
+            border-right: 0;
+            border-top: 0;
+            font-size: rem(14px);
+            height: 32px;
+            &:hover { box-shadow: none; }
+            .Select-placeholder { line-height: 33px; padding-left: 0; padding-right: 0; }
+            .Select-value { line-height: 33px; padding-left: 0; }
+            .Select-input {
+                height: 32px;
+                padding-left: 0;
+                > input {
+                    color: color(color);
+                    padding: 7px 0 11px;
+                }
+            }
+            .Select-arrow-zone { padding-right: 0; width: 10px; }
+                .ui.icon-times { height: 10px; width: 10px; }
+        }
+        .is-open:not(.Select--multi).Select--single > .Select-control {
+            background-color: color(backgroundColor);
+            border-bottom-color: $select-input-border-color;
+            box-shadow: none;
+            color: color(color);
+            .Select-arrow-zone .icon-use-path { fill: color(colorHighlight); }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.dropdown.dropdown-button { height: 33px; }
+}
+
+@keyframes Select-animation-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

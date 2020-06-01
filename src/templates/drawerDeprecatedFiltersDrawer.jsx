@@ -4,12 +4,12 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../atoms/button';
-import Checkbox from '../atoms/checkbox';
+import Button from '../inputs/button';
+import Checkbox from '../inputs/checkbox';
 import Drawer from './drawer';
-import Dropdown from '../atoms/dropdown';
+import Dropdown from '../inputs/dropdown';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 class DrawerFiltersDrawer extends React.PureComponent {
     render() {
@@ -165,7 +165,7 @@ DrawerFiltersDrawer.propTypes = {
     onClose: PropTypes.func.isRequired,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     rows: PropTypes.array.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
 };
 
 export default DrawerFiltersDrawer;

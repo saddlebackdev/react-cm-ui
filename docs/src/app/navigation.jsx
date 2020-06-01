@@ -1,14 +1,132 @@
-import './navigation.scss';
-
-import { domUtils, Header, Icon } from 'react-cm-ui';
+import {
+    Divider,
+    Header,
+    Icon,
+} from 'react-cm-ui';
+import {
+    backgroundColorInverse,
+    borderColorQuaternary,
+    color,
+    colorInverse,
+    colorStatic,
+} from 'react-cm-ui/styles/colorExports';
+import _ from 'lodash';
+import { domUtils } from 'react-cm-ui/utils';
 import { Link } from 'react-router';
+import { withStyles } from 'react-cm-ui/styles';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
+import { navigationItems } from './navigationConstants';
 
 const propTypes = {
+    classes: PropTypes.shape({
+        divider: PropTypes.shape({}),
+        header: PropTypes.shape({}),
+        headerSection: PropTypes.shape({}),
+        headerSubSection: PropTypes.shape({}),
+        logo: PropTypes.shape({}),
+        logoContainer: PropTypes.shape({}),
+        packageVersion: PropTypes.shape({}),
+        root: PropTypes.shape({}),
+        scrollBarInner: PropTypes.shape({}),
+        ul: PropTypes.shape({}),
+        ulLink: PropTypes.shape({}),
+    }).isRequired,
     toggleNavigation: PropTypes.func.isRequired,
 };
+
+const useStyles = (theme) => ({
+    root: {
+        backgroundColor: backgroundColorInverse,
+        color: colorInverse,
+        height: '100%',
+        left: 0,
+        opacity: 0,
+        position: 'fixed',
+        top: 0,
+        transitionDelay: '750ms',
+        transitionProperty: 'opacity',
+        width: '250px',
+        '&.pushed-right': {
+            opacity: 1,
+            transitionDelay: '.1ms',
+        },
+        '& .ui.header': {
+            zIndex: -1,
+        },
+        [theme.breakpoints.up('md')]: {
+            opacity: 1,
+            transition: 'none',
+            zIndex: 7000,
+        },
+    },
+    logoContainer: {
+        alignItems: 'flex-start',
+        backgroundColor: backgroundColorInverse,
+        borderBottom: `1px solid ${borderColorQuaternary}`,
+        boxShadow: `0 10px 24px ${backgroundColorInverse}`,
+        clipPath: 'inset(0 0 -26px 0)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        left: 0,
+        margin: '0 16px',
+        padding: '11px 0 16px',
+        position: 'fixed',
+        top: 0,
+        width: `${250 - 32}px`,
+        '& + .ui.header': {
+            marginTop: '0 !important',
+        },
+    },
+    logo: {
+        cursor: 'pointer',
+        display: 'inline-block',
+        fontSize: '20px',
+        fontWeight: 700,
+        letterSpacing: '1px',
+        textTransform: 'uppercase',
+    },
+    packageVersion: {
+        color: colorStatic,
+        fontSize: '12px',
+        fontStyle: 'italic',
+        margin: '11px 0 0',
+    },
+    scrollBarInner: {
+        padding: '104px 16px 22px',
+        position: 'relative',
+        '& > *': {
+            marginTop: 0,
+        },
+    },
+    divider: {
+        '& + .ui.header': {
+            marginTop: '22px',
+        },
+    },
+    headerSection: {
+        marginTop: '22px !important',
+    },
+    headerSubSection: {
+        margin: '16px 0 5px !important',
+    },
+    ul: {
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+    },
+    ulLink: {
+        color: colorStatic,
+        fontSize: '14px',
+        transition: `${color} 300ms ease-out`,
+        '&.is-active': {
+            color: colorInverse,
+        },
+    },
+});
 
 class CoreAppNavigation extends React.PureComponent {
     constructor(props) {
@@ -16,6 +134,7 @@ class CoreAppNavigation extends React.PureComponent {
 
         this.onLogoClick = this.onLogoClick.bind(this);
         this.toggleNavigation = this.toggleNavigation.bind(this);
+        this.listJSX = this.renderList();
     }
 
     componentDidMount() {
@@ -52,23 +171,156 @@ class CoreAppNavigation extends React.PureComponent {
         toggleNavigation();
     }
 
+    renderList() {
+        const {
+            classes,
+        } = this.props;
+        let sectionKeyNum = 0;
+        let sectionItemKeyNum = 0;
+        let subSectionItemKeyNum = 0;
+
+        return _.map(navigationItems, (section, index) => {
+            sectionKeyNum += 1;
+
+            return (
+                <React.Fragment key={`section-${sectionKeyNum}`}>
+                    {index > 0 && (
+                        <Divider
+                            className={classes.divider}
+                            color="inverse"
+                            inverse
+                            relaxed
+                        />
+                    )}
+
+                    <Header
+                        className={ClassNames(classes.header, classes.headerSection)}
+                        inverse
+                        size="medium"
+                        style={{ marginTop: 0 }}
+                    >
+                        {section.label}
+                    </Header>
+
+                    <ul
+                        className={classes.ul}
+                    >
+                        {_.map(section.items, (sectionItem) => {
+                            const path = sectionItem.path && `/${section.path}/${sectionItem.path}`;
+                            sectionItemKeyNum += 1;
+                            const key = `section--item-${sectionItemKeyNum}`;
+
+                            return this.renderListItem(
+                                sectionItem,
+                                path,
+                                key,
+                            );
+                        })}
+
+                        {_.map(section.subSections, (subSection) => {
+                            sectionItemKeyNum += 1;
+
+                            return (
+                                <li key={`section_item-${sectionItemKeyNum}`}>
+                                    <Header
+                                        className={ClassNames(
+                                            classes.header,
+                                            classes.headerSubSection,
+                                        )}
+                                        inverse
+                                        size="small"
+                                    >
+                                        {subSection.label}
+                                    </Header>
+
+                                    <ul
+                                        className={classes.ul}
+                                    >
+                                        {_.map(subSection.items, (subSectionItem) => {
+                                            subSectionItemKeyNum += 1;
+                                            const path = subSectionItem.path && `/${section.path}/${subSection.path}/${subSectionItem.path}`;
+                                            const key = `sub_section--item-${subSectionItemKeyNum}`;
+
+                                            return this.renderListItem(
+                                                subSectionItem,
+                                                path,
+                                                key,
+                                            );
+                                        })}
+                                    </ul>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </React.Fragment>
+            );
+        });
+    }
+
+    renderListItem(item, route, key) {
+        const {
+            classes,
+        } = this.props;
+
+        if (item.href) {
+            return (
+                <li key={key}>
+                    <a
+                        className={classes.ulLink}
+                        href={item.href}
+                        // eslint-disable-next-line react/jsx-no-target-blank
+                        target="_blank"
+                    >
+                        {item.label}
+
+                        <Icon
+                            color="static"
+                            inverse
+                            size={10}
+                            style={{
+                                marginLeft: '7px',
+                            }}
+                            type="link-external"
+                        />
+                    </a>
+                </li>
+            );
+        }
+
+        return (
+            <li key={key}>
+                <Link
+                    activeClassName="is-active"
+                    className={ClassNames('core-app-nav-item', classes.ulLink)}
+                    to={{ pathname: route }}
+                >
+                    {item.label}
+                </Link>
+            </li>
+        );
+    }
+
     render() {
-        const navItemClassName = 'core-app-nav-item';
-        const isActive = 'is-active';
+        const {
+            classes,
+        } = this.props;
         const version = __UI_PACKAGE_VERSION__; // eslint-disable-line no-undef
 
         return (
-            <nav className="core-app-nav" ref={(ref) => { this.coreAppNavRef = ref; }}>
+            <nav
+                className={classes.root}
+                ref={(ref) => { this.coreAppNavRef = ref; }}
+            >
                 <ScrollBar
                     autoHide
                     className="core-app-nav-scrollbar"
                 >
-                    <div className="core-app-nav-scrollbar-inner">
-                        <div className="logo-wrapper">
+                    <div className={classes.scrollBarInner}>
+                        <div className={classes.logoContainer}>
                             <Link to={{ pathname: '/' }}>
                                 <Header
-                                    className="logo"
-                                    color="static"
+                                    className={classes.logo}
+                                    inverse
                                     onClick={this.onLogoClick}
                                     size="medium"
                                     weight="semibold"
@@ -77,198 +329,10 @@ class CoreAppNavigation extends React.PureComponent {
                                 </Header>
                             </Link>
 
-                            <div className="text-xsmall text-semibold text-italics package-version">{`v${version}`}</div>
+                            <div className={`text-xsmall text-semibold text-italics ${classes.packageVersion}`}>{`v${version}`}</div>
                         </div>
 
-                        <Header inverse size="small" style={{ marginTop: 0 }}>Getting Started</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/getting-started/installation' }} activeClassName={isActive}>Installation</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/getting-started/usage' }} activeClassName={isActive}>
-                                    Usage
-                                </Link>
-                            </li>
-
-                            <li>
-                                <a href="https://github.com/saddlebackdev/react-cm-ui/blob/dev/CHANGELOG.md" target="_blank">
-                                    Changelog
-
-                                    <Icon
-                                        color="static"
-                                        inverse
-                                        size={10}
-                                        style={{
-                                            marginLeft: '7px',
-                                        }}
-                                        type="link-external"
-                                    />
-                                </a>
-                            </li>
-                        </ul>
-
-                        <Header inverse size="small">Style Guide</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/style-guide/colors' }} activeClassName={isActive}>Colors</Link>
-                            </li>
-                        </ul>
-
-                        <Header inverse size="small">Atoms</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/activity-indicator' }} activeClassName={isActive}>Activity Indicator</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/button' }} activeClassName={isActive}>Button</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/checkbox' }} activeClassName={isActive}>Checkbox</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/divider' }} activeClassName={isActive}>Divider</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/dropdown' }} activeClassName={isActive}>Dropdown</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/header' }} activeClassName={isActive}>Header</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/icon' }} activeClassName={isActive}>Icon</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/image' }} activeClassName={isActive}>Image</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/input' }} activeClassName={isActive}>Input</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/label' }} activeClassName={isActive}>Label</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/list' }} activeClassName={isActive}>List</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/prompt' }} activeClassName={isActive}>Prompt</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/radio' }} activeClassName={isActive}>Radio</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/text-area' }} activeClassName={isActive}>Text Area</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/atoms/segmented-controls' }} activeClassName={isActive}>Segmented Controls</Link>
-                            </li>
-                        </ul>
-
-                        <Header inverse size="small">Molecules</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/banner' }} activeClassName={isActive}>Banner</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/comment' }} activeClassName={isActive}>Comment</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/date-picker-calendar' }} activeClassName={isActive}>Date Picker Calendar</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/date-picker-input' }} activeClassName={isActive}>Date Picker Input</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/duration-picker' }} activeClassName={isActive}>Duration Picker</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/phone-input' }} activeClassName={isActive}>Phone Input</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/molecules/time-picker' }} activeClassName={isActive}>Time Picker</Link>
-                            </li>
-                        </ul>
-
-                        <Header inverse size="small">Organisms</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/accordion' }} activeClassName={isActive}>Accordion</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/card' }} activeClassName={isActive}>Card</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/grid' }} activeClassName={isActive}>Grid</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/info-bar' }} activeClassName={isActive}>Info Bar</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/rail' }} activeClassName={isActive}>Rail</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/sub-navigation' }} activeClassName={isActive}>Sub Navigation</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/title-bar' }} activeClassName={isActive}>Title Bar</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/table' }} activeClassName={isActive}>Table</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/organisms/tabs' }} activeClassName={isActive}>Tabs</Link>
-                            </li>
-                        </ul>
-
-                        <Header inverse size="small">Templates</Header>
-
-                        <ul>
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/templates/drawer' }} activeClassName={isActive}>Drawer</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/templates/modal' }} activeClassName={isActive}>Modal</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName} to={{ pathname: '/templates/page' }} activeClassName={isActive}>Page</Link>
-                            </li>
-                        </ul>
+                        {this.listJSX}
                     </div>
                 </ScrollBar>
             </nav>
@@ -278,4 +342,4 @@ class CoreAppNavigation extends React.PureComponent {
 
 CoreAppNavigation.propTypes = propTypes;
 
-export default CoreAppNavigation;
+export default withStyles(useStyles)(CoreAppNavigation);

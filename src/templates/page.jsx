@@ -1,7 +1,7 @@
 import { CSSTransitionGroup } from 'react-transition-group';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ActivityIndicator from '../atoms/activityIndicator';
 import PageActionBar from './pageActionBar';
 import PageContainer from './pageContainer';
@@ -34,67 +34,63 @@ const defaultProps = {
 
 const ACTIVITY_INDICATOR_DURATION = 200;
 
-class Page extends React.PureComponent {
-    constructor(props) {
-        super(props);
+const Page = React.forwardRef((props, ref) => {
+    const {
+        backgroundColor,
+        children,
+        className,
+        id,
+        isDataFetching,
+        style,
+    } = props;
+    const [hasActivityIndicator, setHasActivityIndicator] = useState(isDataFetching);
 
-        this.state = {
-            hasActivityIndicator: props.isDataFetching,
-        };
-    }
+    useEffect(() => {
+        setHasActivityIndicator(isDataFetching);
+    }, [isDataFetching]);
 
-    render() {
-        const {
-            backgroundColor,
-            children,
-            className,
-            id,
-            isDataFetching,
-            style,
-        } = this.props;
-        const { hasActivityIndicator } = this.state;
-        const containerClasses = ClassNames('ui', 'page', className, {
-            'page-background_color_grey': !backgroundColor || backgroundColor === 'grey',
-            'page-background_color_white': backgroundColor === 'white',
-        });
+    const containerClasses = ClassNames('ui', 'page', className, {
+        'page-background_color_grey': !backgroundColor || backgroundColor === 'grey',
+        'page-background_color_white': backgroundColor === 'white',
+    });
 
-        return (
-            <main
-                className={containerClasses}
-                id={id}
-                style={style}
+    return (
+        <main
+            className={containerClasses}
+            id={id}
+            ref={ref}
+            style={style}
+        >
+            <CSSTransitionGroup
+                transitionEnterTimeout={ACTIVITY_INDICATOR_DURATION}
+                transitionLeaveTimeout={ACTIVITY_INDICATOR_DURATION}
+                transitionName={{
+                    enter: 'page--activity_indicator-enter',
+                    leave: 'page--activity_indicator-leave',
+                }}
             >
-                <CSSTransitionGroup
-                    transitionEnterTimeout={ACTIVITY_INDICATOR_DURATION}
-                    transitionLeaveTimeout={ACTIVITY_INDICATOR_DURATION}
-                    transitionName={{
-                        enter: 'page--activity_indicator-enter',
-                        leave: 'page--activity_indicator-leave',
-                    }}
-                >
-                    {hasActivityIndicator && isDataFetching && (
-                        <ActivityIndicator
-                            className="page--activity_indicator"
-                            style={{
-                                transform: 'translate(-50%, -50%)',
-                            }}
-                        />
-                    )}
-                </CSSTransitionGroup>
-
-                {hasActivityIndicator && (
-                    <PageDelayChildren
-                        isDataFetching={isDataFetching}
-                    >
-                        {children}
-                    </PageDelayChildren>
+                {hasActivityIndicator && isDataFetching && (
+                    <ActivityIndicator
+                        className="page--activity_indicator"
+                        style={{
+                            transform: 'translate(-50%, -50%)',
+                        }}
+                    />
                 )}
+            </CSSTransitionGroup>
 
-                {!hasActivityIndicator && !isDataFetching && children}
-            </main>
-        );
-    }
-}
+            {hasActivityIndicator && (
+                <PageDelayChildren
+                    isDataFetching={isDataFetching}
+                >
+                    {children}
+                </PageDelayChildren>
+            )}
+
+            {!hasActivityIndicator && !isDataFetching && children}
+        </main>
+    );
+});
 
 Page.ActionBar = PageActionBar;
 Page.Container = PageContainer;

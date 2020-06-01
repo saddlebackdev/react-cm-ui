@@ -17,7 +17,7 @@ class TabsItem extends Component {
 
 TabsItem.propTypes = {
     label: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.shape({})
 };
 
 export default TabsItem;

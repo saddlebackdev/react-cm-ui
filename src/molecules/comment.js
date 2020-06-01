@@ -3,10 +3,10 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Dropdown from '../atoms/dropdown';
-import Image from '../atoms/image';
-import Prompt from '../atoms/prompt';
-import TextArea from '../atoms/textArea';
+import Dropdown from '../inputs/dropdown';
+import Image from '../dataDisplay/image';
+import Prompt from '../inputs/prompt';
+import TextArea from '../inputs/textArea';
 
 class Comment extends Component {
     constructor(props) {
@@ -252,7 +252,7 @@ Comment.propTypes = {
     onActionMenuClick: PropTypes.func,
     onDelete: PropTypes.func,
     onSaveEdit: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     text: PropTypes.string,
     time: PropTypes.number
 };

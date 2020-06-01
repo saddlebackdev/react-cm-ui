@@ -1,6 +1,130 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.10.1 - 05/11/2020
+
+#### Bug Fix
+- [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 0d42cc33ef08afc1416336eff809017b019432b2
+    - Fixed pacakge build error.
+
+## 9.10.0 - 05/07/2020
+
+#### Feature
+- [PR #136](https://github.com/saddlebackdev/react-cm-ui/pull/136) / Merge Commit f468d5032bd818fdb105d9ceeeeecc7fafb36ef8
+    - Drawer Content gutters were widened.
+- [PR #137](https://github.com/saddlebackdev/react-cm-ui/pull/137) / Merge Commit 923b3fb7d630627bb34d668cfd9e2f7acc8694ff
+    - **Page/Drawer** **ActionBar** actionsButton has the ability to change icon now.
+
+#### Bug Fix
+- [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 980e4589d6db19d738d5ac1b1f624316b618110b
+    - Gulp inputs script fix.
+
+## 9.9.0 - 04/27/2020
+
+#### Feature
+- [PR #134](https://github.com/saddlebackdev/react-cm-ui/pull/134) / Merge Commit bc7a86698b0f78cc25420869047299b5963fecac
+    - Prompt passes the "yes" and "no" click events through.
+- [PR #135](https://github.com/saddlebackdev/react-cm-ui/pull/135) / Merge Commit 7772a61edd8ede424420774bb64dbbba5e7eb4b8
+    - Moved input type components to a new dir/category, "Inputs".
+    - Changed all `PropTypes.object` to `PropTypes.shape({})`.
+
+#### Bug Fix
+- [PR #132](https://github.com/saddlebackdev/react-cm-ui/pull/132) / Merge Commit 01214de064ffdd4130d663bda9c97482d0212c90
+    - Moved Cell phone icon to center.
+- [PR #133](https://github.com/saddlebackdev/react-cm-ui/pull/133) / Merge Commit 1b9a831989481e65d04573b5b490d15973ce6e8d
+    - Validating drawer header exists before trying to modify its padding size.
+
+## 9.8.0 - 04/14/2020
+
+#### Feature
+- [PR #131](https://github.com/saddlebackdev/react-cm-ui/pull/131) / Merge Commit 354883a1051d993bb894fb3822acf5b8e9dc488a
+    - Reorganization of components.
+    - Implemented some of Material-UI's styles.
+        - We now can do JSS using `makeStyles` or `withStyles`.
+        - We now have the starting to a global theme, starting with breakpoints.
+    - New `versions.js`. This is part of the UI gap closure.
+
+## 9.7.1 - 04/09/2020
+
+#### Bug Fix
+- [PR #129](https://github.com/saddlebackdev/react-cm-ui/pull/129) / Merge Commit c28481c5996728da074168de20cb639dd3b7603d
+    - **Drawer** animation performance fixes.
+- [PR #130](https://github.com/saddlebackdev/react-cm-ui/pull/130) / Merge Commit 67b937e14aef945661c74cae52c4b93ddbe0216c
+    - **Input** required prop fixes.
+
+## 9.7.0 - 03/18/2020
+
+#### Feature
+- [PR #128](https://github.com/saddlebackdev/react-cm-ui/pull/128) / Merge Commit a9609215224a5da0baeaf9304ecd36737a222a98
+    - **Page**: Implemented forwardRef.
+
+## 9.6.2 - 03/12/2020
+
+#### Bug Fix
+- [PR #124](https://github.com/saddlebackdev/react-cm-ui/pull/124) / Merge Commit 8d9be9cbb345231569d17fdb82609d68d8822a99
+    - Fixed color import.
+- [PR #125](https://github.com/saddlebackdev/react-cm-ui/pull/125) / Merge Commit 7ea8d16ffc190b126ca4d265ec4ea355bbcf3411
+    - **DetailsWindow**: Implemented forwardRef.
+
+## 9.6.1 - 03/12/2020
+
+- [PR #123](https://github.com/saddlebackdev/react-cm-ui/pull/123) / Merge Commit 16f9955044e5becb70cea358f1b938c4b5a0a807
+    - Fixes **DrawerDeprecated** Regression
+
+## 9.6.0 - 03/12/2020
+
+#### Feature
+- [PR #120](https://github.com/saddlebackdev/react-cm-ui/pull/120) / Merge Commit 473f44ffcbdfed6d107d2babc70f5bdcc4e6dd49
+    - Added ability to change the **FiltersRail** and **FiltersDrawer** component's breakpooints.
+
+#### Bug Fix
+- [PR #121](https://github.com/saddlebackdev/react-cm-ui/pull/121) / Merge Commit 5b519df7acb55832fd1aaaa249f145143b55661a
+    - Fixes the body scroll issue when opening a **Drawer**.
+- [PR #122](https://github.com/saddlebackdev/react-cm-ui/pull/122) / Merge Commit 8c9710987d7d64eddb1dbc70f29e6dec37ac55e0
+    - Fixes style not being spread into the **Drawer** component's container style prop.
+
+## 9.5.0 - 03/10/2020
+
+#### Feature
+- [PR #115](https://github.com/saddlebackdev/react-cm-ui/pull/115) / Merge Commit 04ce4cef66cc6c701878adb22f13f11614b1e3a1
+    - New **TimeFromNow** utility component.
+- [PR #116](https://github.com/saddlebackdev/react-cm-ui/pull/116) / Merge Commit dc94ccfdbfe97e5a2bcbebdb1b1eecff88afb4ea
+    - Added the ability to update the **Drawer** component's `maxWidth`.
+
+#### Bug Fix
+- [PR #117](https://github.com/saddlebackdev/react-cm-ui/pull/117) / Merge Commit 6eb654dfaa138ef1bf57b82e90445d4afb700c3e
+    - Fixes the `outline` issue with some of our buttons in iOS.
+- [PR #118](https://github.com/saddlebackdev/react-cm-ui/pull/118) / Merge Commit ab5453bfc1f8788e327b3703ae8330ef0a9391db
+    - Fixes the `-webkit-appearance` issue with our **Input** and **TextArea** components in iOS.
+- [PR #119](https://github.com/saddlebackdev/react-cm-ui/pull/119) / Merge Commit 4e4d33e5fea81af326ee3d48eaec0ac88c14d089
+    - Fixes some issues with our **Drawer** component's **ActionBar** `border-top`.
+
+## 9.4.0 - 03/05/2020
+
+- [PR #114](https://github.com/saddlebackdev/react-cm-ui/pull/114) / Merge Commit 27e4d90edba46584765b45dc651afc174ab4f959
+    - Icons:
+        - New icons.
+        - Renamed some current icons (old names are aliases now) to close design/dev gap.
+    - Refactored `timeFromNow` util function.
+
+## 9.3.1 - 02/19/2020
+
+- [PR #112](https://github.com/saddlebackdev/react-cm-ui/pull/112) / Merge Commit 619db3f1349b567f8e690d09678e0d2b65d40a05
+    - Fixes the crash on **DataGridTableRow** render.
+- [PR #113](https://github.com/saddlebackdev/react-cm-ui/pull/113) / Merge Commit 2b327385e4ff0176730a44b870f35246b677e637
+    - Fixes **Dropdown** being a child of **Prompt**.
+
+## 9.3.0 - 02/18/2020
+
+- [PR #104](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113
+    - Reworked file structure. All of our components have been organized into their respective atomic directories: Atoms, Molecules, Organisms, and Templates.
+- [PR #110](https://github.com/saddlebackdev/react-cm-ui/pull/110) / Merge Commit b5e0741ea0f00cf3dbe001b173ae969941357dfb
+    - Added new **DropdownButton** component.
+    - Deprecated the **Dropdown** `button` prop.
+    - Added new **A** component.
+- [PR #111](https://github.com/saddlebackdev/react-cm-ui/pull/111) / Merge Commit d971ac189a3b2120c271fbd0a039ec4977c143ed
+    - Added basic props to the **DataGrid** `rowProps` prop.
+
 ## 9.2.0 - 01/30/2020
 
 - [PR #109](https://github.com/saddlebackdev/react-cm-ui/pull/109) / Merge Commit f5a6aee8865df85ef603ec3c16dbec7a86727113

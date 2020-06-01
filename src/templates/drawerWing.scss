@@ -1,6 +1,6 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator', '../styles/variables';
 
-.ui.drawer--wing.has-drawer--wing--title_bar .drawer--wing-container-inner {
+.ui.drawer--wing.drawer--wing-has_title_bar .drawer--wing-container-inner {
     padding-top: $drawer-title-bar-height;
 }
 
@@ -16,8 +16,7 @@
         border-left: 1px solid color(borderColor);
         height: 100%;
         position: relative;
-        transform: translate(100%, 0);
-        // transition: background-color 200ms ease-in;
+        transform: translate3d(100%, 0, 0);
         width: 100%;
     }
     .drawer--wing-container {
@@ -45,7 +44,7 @@
         > div {
             border-left: none;
             border-right: 1px solid color(borderColor);
-            transform: translate(-100%, 0);
+            transform: translate3d(-100%, 0, 0);
         }
         .drawer--wing-container {
             left: inherit;
@@ -55,9 +54,9 @@
 }
 
 @media only screen and (max-width: 767px) {
-    .ui.drawer.has-drawer--wing {
+    .ui.drawer.drawer-has_wing {
         .drawer-container {
-            transform: translate(-100%) !important;
+            transform: translate3d(-100%, 0, 0) !important;
         }
         .ui.drawer--wing {
             > div {
@@ -68,11 +67,11 @@
             }
         }
         &.drawer--wing-animate-out .drawer-container {
-            transform: translate(0) !important;
+            transform: translate3d(0, 0, 0) !important;
         }
         &.left-position {
             .drawer-container {
-                transform: translate(100%) !important;
+                transform: translate3d(100%, 0, 0) !important;
             }
             .ui.drawer--wing {
                 > div {

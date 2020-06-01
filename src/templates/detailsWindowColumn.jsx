@@ -3,9 +3,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
+import Icon from '../dataDisplay/icon';
 
 const propTypes = {
     column: columnPropTypesShape.isRequired,

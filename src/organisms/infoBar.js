@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../global/utils/utils.js';
+import Utils from '../utils/utils.js';
 
 function InfoBar(props) {
     const {
@@ -44,7 +44,7 @@ InfoBar.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
 
 InfoBar.defaultProps = {

@@ -2,16 +2,16 @@
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../atoms/button';
-import ClassNames from 'classnames';
-import Divider from '../atoms/divider';
-import domUtils from '../global/utils/domUtils';
-import Header from '../atoms/header';
-import Icon from '../atoms/icon';
 import { Portal } from 'react-portal';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import Button from '../inputs/button';
+import Divider from '../dataDisplay/divider';
+import domUtils from '../utils/domUtils';
+import Header from '../atoms/header';
+import Icon from '../dataDisplay/icon';
 
 const DEFAULT_CONTAINER_PADDING_TOP = 27;
 const colorEnums = [ 'dark-blue', 'grey', 'white' ];
@@ -63,7 +63,7 @@ class CloseButton extends Component {
 
 CloseButton.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
@@ -103,7 +103,7 @@ DrawerDeprecatedWing.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(colorEnums),
     onOpenToggle: PropTypes.func,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     width: PropTypes.number,
 };
 
@@ -147,13 +147,12 @@ class DrawerDeprecatedHeader extends Component {
 
     _onHeaderUpdate(node) {
         const headerEl = ReactDOM.findDOMNode(this);
-
         if (headerEl) {
             const paddingTop = headerEl.offsetHeight;
-
-            if (paddingTop !== this._drawerContainerInnerPaddingTop) {
+            const drawerInnerContainer = headerEl.closest('.drawer-container-inner');
+            if (drawerInnerContainer && paddingTop !== this._drawerContainerInnerPaddingTop) {
                 this._drawerContainerInnerPaddingTop = `${paddingTop + DEFAULT_CONTAINER_PADDING_TOP}px`;
-                headerEl.closest('.drawer-container-inner').style.paddingTop = this._drawerContainerInnerPaddingTop;
+                drawerInnerContainer.style.paddingTop = this._drawerContainerInnerPaddingTop;
             }
         }
     }
@@ -161,13 +160,13 @@ class DrawerDeprecatedHeader extends Component {
 
 DrawerDeprecatedHeader.propTypes = {
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     title: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
@@ -409,16 +408,16 @@ class DrawerDeprecated extends Component {
         const { isOpen } = this.state;
 
         if (isOpen && this._useComponentWillUnmount) { // We only want to clean up classes here if the closing animation never happens and the drawer isOpen.
-            if (document.body.classList.contains('drawer-open')) {
-                document.body.classList.remove('drawer-open');
+            if (document.body.classList.contains('drawer-deprecated-open')) {
+                document.body.classList.remove('drawer-deprecated-open');
             }
 
             if (document.body.classList.contains('drawer-dimmers')) {
                 document.body.classList.remove('drawer-dimmers');
             }
 
-            if (document.body.classList.contains('drawer-open-layered')) {
-                document.body.classList.remove('drawer-open-layered');
+            if (document.body.classList.contains('drawer-deprecated-open-layered')) {
+                document.body.classList.remove('drawer-deprecated-open-layered');
             }
 
             if (document.body.classList.contains('drawer-animate-out')) {
@@ -461,6 +460,7 @@ class DrawerDeprecated extends Component {
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
         const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const drawerDeprecatedLength = document.querySelectorAll('.ui.drawer.deprecated').length;
 
         if (onClickOutside) {
             document.removeEventListener('click', this._onClickOutside);
@@ -469,13 +469,13 @@ class DrawerDeprecated extends Component {
         this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
         if (drawerLength <= 2) {
-            body.classList.remove('drawer-open-layered');
+            body.classList.remove('drawer-deprecated-open-layered');
         }
 
-        if (drawerLength <= 1) {
+        if (drawerLength <= 1 || drawerDeprecatedLength <= 1) {
             const scrollPosition = parseInt(body.style.top, 10);
 
-            body.classList.remove('drawer-open', 'drawer-dimmers');
+            body.classList.remove('drawer-deprecated-open', 'drawer-dimmers');
             window.scroll(0, Math.abs(scrollPosition));
             body.style.top = null;
         }
@@ -517,9 +517,9 @@ class DrawerDeprecated extends Component {
         }
 
         setTimeout(() => {
-            if (document.body.classList.contains('drawer-open')) {
+            if (document.body.classList.contains('drawer-deprecated-open')) {
                 zIndex = zIndex + drawerLength;
-                domUtils.addClassName(body, 'drawer-open-layered');
+                domUtils.addClassName(body, 'drawer-deprecated-open-layered');
 
                 nodePortal.style.zIndex = zIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
@@ -527,7 +527,7 @@ class DrawerDeprecated extends Component {
                 drawerDimmer.style.display = 'none';
             } else {
                 body.style.top = `-${scrollPosition}px`;
-                domUtils.addClassName(body, 'drawer-open');
+                domUtils.addClassName(body, 'drawer-deprecated-open');
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
@@ -620,7 +620,7 @@ DrawerDeprecated.defaultProps = {
 DrawerDeprecated.propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     color: PropTypes.oneOf(colorEnums),
@@ -638,17 +638,17 @@ DrawerDeprecated.propTypes = {
     path: PropTypes.string,
     position: PropTypes.oneOf([ 'left', 'right' ]),
     scrollBar: PropTypes.bool,
-    style: PropTypes.object,
+    style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
-        PropTypes.object,
+        PropTypes.shape({}),
         PropTypes.string,
     ]),
     titleTruncate: PropTypes.bool,
-    wing: PropTypes.object,
+    wing: PropTypes.shape({}),
 };
 
 DrawerDeprecated.contextTypes = {
-    router: PropTypes.object,
+    router: PropTypes.shape({}),
 };
 
 export default DrawerDeprecated;

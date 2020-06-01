@@ -1,0 +1,22 @@
+@import '../styles/colors', '../styles/fontSizeCalculator';
+
+.ui.table {
+    background-color: color(backgroundColor);
+    border: 1px solid color(borderColor);
+    border-collapse: separate;
+    border-radius: 3px;
+    border-spacing: 0;
+    color: color(color);
+    margin: calc(2rem - .14285em) 0 1rem;
+    text-align: left;
+    width: 100%;
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
+    &.table-basic { border: 0; }
+    &.table-collapsing { width: auto; }
+    &.table-color- {
+        &grey-xxlight { background-color: color(backgroundColorNest); }
+    }
+    &.table-fixed { table-layout: fixed; }
+    &.table-single-line { white-space: nowrap; }
+}

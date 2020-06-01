@@ -1,4 +1,4 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator';
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator';
 
 $prefixDrawerFiltersDrawer: drawer--filters_drawer;
 $prefixPageFiltersDrawer: page--filters_drawer;
@@ -111,6 +111,7 @@ $prefixPageBlockName: page_filters_drawer;
             font-weight: $fontWeightSemiBold;
             margin: 0 -11px;
             min-height: 43px;
+            outline: none;
             transition: background-color 200ms ease-in;
         }
         &--nested_toggles_label {

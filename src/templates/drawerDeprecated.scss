@@ -1,10 +1,10 @@
-@import '../global/styles/colors', '../global/styles/fonts', '../global/styles/fontSizeCalculator', '../global/styles/variables';
+@import '../styles/colors', '../styles/fonts', '../styles/fontSizeCalculator', '../styles/variables';
 
 // The drawers z-index's starts at 10000
 $zindex: $drawer-zindex;
 
 html:not(.ua-ie-edge):not(.ua-ie-11) body {
-    &.drawer-open {
+    &.drawer-deprecated-open {
         overflow-y: scroll;
         position: fixed;
         width: 100%;

@@ -3,21 +3,29 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
-import Button from '../atoms/button';
+import Button from '../inputs/button';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
 import Header from '../atoms/header';
-import Icon from '../atoms/icon';
-import Prompt from '../atoms/prompt';
+import Icon from '../dataDisplay/icon';
+import Prompt from '../inputs/prompt';
 
 const propTypes = {
+    className: PropTypes.string.isRequired,
     header: PropTypes.string.isRequired,
+    iconBackgroundColor: PropTypes.string,
+    iconBackgroundHighlightColor: PropTypes.string,
+    iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
     options: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
+    className: undefined,
+    iconBackgroundColor: 'alternate',
+    iconBackgroundHighlightColor: 'highlight',
+    iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,
     style: {},
@@ -91,7 +99,11 @@ class ActionBarActionsButton extends React.PureComponent {
 
     render() {
         const {
+            className,
             header,
+            iconBackgroundColor,
+            iconBackgroundHighlightColor,
+            iconType,
             id,
             isMobileSearchVisible,
             options,
@@ -106,6 +118,7 @@ class ActionBarActionsButton extends React.PureComponent {
         } = this.state;
 
         const hasSelectedOption = !_.isEmpty(selectedOption);
+        const containerClasses = ClassNames('action_bar--actions_button_drawer', className);
         const titleClasses = ClassNames('actions_button_drawer--title', {
             'actions_button_drawer--title-hide': hasSelectedOption,
             'actions_button_drawer--title-show': !hasSelectedOption,
@@ -138,17 +151,20 @@ class ActionBarActionsButton extends React.PureComponent {
                 >
                     <Button
                         className="action_bar--actions_button"
-                        color={isDrawerOpen ? 'highlight' : 'alternate'}
+                        color={isDrawerOpen ? iconBackgroundHighlightColor : iconBackgroundColor}
                         icon
                         id={id}
                         style={style}
                     >
-                        <Icon size="small" type="ellipsis-h" />
+                        <Icon
+                            size="small"
+                            type={iconType}
+                        />
                     </Button>
                 </Prompt>
 
                 <Drawer
-                    className="action_bar--actions_button_drawer"
+                    className={containerClasses}
                     dimmer={false}
                     isOpen={isDrawerOpen}
                     maxWidth={224}

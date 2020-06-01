@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
 import InfoBar from '../organisms/infoBar';
 import DetailsWindowColumnContainer from './detailsWindowColumnContainer';
-import domUtils from '../global/utils/domUtils';
+import domUtils from '../utils/domUtils';
 
 const propTypes = {
     bleed: PropTypes.bool,
@@ -16,6 +16,12 @@ const propTypes = {
     columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
     data: PropTypes.shape({}).isRequired,
     expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
+    forwardedRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+            current: PropTypes.instanceOf(Element),
+        }),
+    ]),
     moduleType: PropTypes.string,
     style: PropTypes.shape({}),
 };
@@ -26,6 +32,7 @@ const defaultProps = {
     color: undefined,
     columnProps: undefined,
     expandableColumns: undefined,
+    forwardedRef: undefined,
     moduleType: undefined,
     style: {},
 };
@@ -39,10 +46,9 @@ class DetailsWindow extends React.PureComponent {
         };
 
         this.expandableContainerHeight = null;
-        this.previousExpandableContainerHeight = null;
-
         this.onExpandButtonToggle = this.onExpandButtonToggle.bind(this);
         this.onExpandTransitionComplete = this.onExpandTransitionComplete.bind(this);
+        this.previousExpandableContainerHeight = null;
         this.setColumnContainerHeight = this.setColumnContainerHeight.bind(this);
     }
 
@@ -117,6 +123,7 @@ class DetailsWindow extends React.PureComponent {
             columns,
             data,
             expandableColumns,
+            forwardedRef,
             style,
             moduleType,
         } = this.props;
@@ -173,6 +180,7 @@ class DetailsWindow extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
+                ref={forwardedRef}
                 style={style}
             >
                 <InfoBar color={color}>
