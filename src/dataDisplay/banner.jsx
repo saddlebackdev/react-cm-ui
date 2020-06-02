@@ -89,21 +89,21 @@ class Banner extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {
-            isOpen: prevIsOpn,
+            isOpen: prevIsOpen,
         } = prevProps;
         const {
-            isOpen: nextIsOpen,
+            isOpen,
         } = this.props;
 
-        if (!prevIsOpn && nextIsOpen) {
+        if (!prevIsOpen && isOpen) {
             this.setState({
-                isOpen: nextIsOpen,
+                isOpen,
             }, () => {
                 this.onOpen();
             });
         }
 
-        if (prevIsOpn && !nextIsOpen) {
+        if (prevIsOpen && !isOpen) {
             this.onBeforeClose();
         }
     }
