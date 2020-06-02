@@ -1,15 +1,69 @@
-'use strict';
-
-import React, { Component } from 'react';
-import BannerItem from './bannerItem';
-import ClassNames from 'classnames';
-import Header from '../atoms/header';
-import Icon from '../dataDisplay/icon';
+import {
+    isUndefined,
+    isFunction,
+    forEachRight,
+} from 'lodash';
 import { Portal } from 'react-portal';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import BannerItem from './bannerItem';
+import Header from '../atoms/header';
+import Icon from './icon';
+import domUtils from '../utils/domUtils';
+import withTheme from '../styles/withTheme';
 
-class Banner extends Component {
+const propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]).isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    level: PropTypes.oneOf([
+        'error',
+        'purple',
+        'secondary',
+        'success',
+        'teal',
+        'warning',
+    ]),
+    levelIcon: PropTypes.string,
+    message: PropTypes.string,
+    onAfterClose: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
+    onOpen: PropTypes.func,
+    style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            banner: PropTypes.number,
+        }),
+    }).isRequired,
+    title: PropTypes.string,
+    topPosition: PropTypes.number,
+    type: PropTypes.oneOf([
+        'alert',
+        'notification',
+    ]),
+};
+
+const defaultProps = {
+    children: undefined,
+    className: undefined,
+    level: undefined,
+    levelIcon: undefined,
+    message: undefined,
+    onAfterClose: undefined,
+    onOpen: undefined,
+    style: undefined,
+    title: undefined,
+    topPosition: undefined,
+    type: undefined,
+};
+
+class Banner extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,27 +71,128 @@ class Banner extends Component {
             isOpen: props.isOpen,
         };
 
-        this._onAnimationComplete = this._onAnimationComplete.bind(this);
-        this._onBeforeClose = this._onBeforeClose.bind(this);
-        this._onOpen = this._onOpen.bind(this);
+        this.onAnimationComplete = this.onAnimationComplete.bind(this);
+        this.onBeforeClose = this.onBeforeClose.bind(this);
+        this.onClose = this.onClose.bind(this);
+        this.onOpen = this.onOpen.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (!prevProps.isOpen && this.props.isOpen) {
+    componentDidMount() {
+        const {
+            isOpen,
+        } = this.state;
+
+        if (isOpen) {
+            this.onOpen();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            isOpen: prevIsOpen,
+        } = prevProps;
+        const {
+            isOpen,
+        } = this.props;
+
+        if (!prevIsOpen && isOpen) {
             this.setState({
-                isOpen: this.props.isOpen,
+                isOpen,
             }, () => {
-                this._onOpen();
+                this.onOpen();
             });
         }
 
-        if (prevProps.isOpen && !this.props.isOpen) {
-            this._onBeforeClose();
+        if (prevIsOpen && !isOpen) {
+            this.onBeforeClose();
         }
     }
 
+    onAnimationComplete() {
+        const { id, isOpen, onAfterClose } = this.props;
+        // eslint-disable-next-line react/no-find-dom-node
+        const nodePortal = ReactDOM.findDOMNode(this);
+        const bannerContainer = nodePortal.querySelector('.banner-container');
+        const animationEvent = domUtils.cssAnimationType(bannerContainer);
+        bannerContainer.removeEventListener(animationEvent, this.onAnimationComplete);
+
+        this.setState({
+            isOpen: false,
+        }, () => {
+            this.bannerYPositions();
+
+            if (!isUndefined(onAfterClose) && !isOpen) {
+                onAfterClose(id);
+            }
+        });
+    }
+
+    onBeforeClose() {
+        // eslint-disable-next-line react/no-find-dom-node
+        const nodePortal = ReactDOM.findDOMNode(this);
+        const bannerContainer = nodePortal.querySelector('.banner-container');
+        const animationEvent = domUtils.cssAnimationType(bannerContainer);
+
+        bannerContainer.className += ' animate-out';
+        bannerContainer.addEventListener(animationEvent, this.onAnimationComplete);
+    }
+
+    onClose() {
+        const {
+            id,
+            onClose,
+        } = this.props;
+
+        onClose(id);
+    }
+
+    onOpen() {
+        const {
+            onOpen,
+            theme: {
+                zIndex,
+            },
+        } = this.props;
+        // eslint-disable-next-line react/no-find-dom-node
+        const nodePortal = ReactDOM.findDOMNode(this);
+        nodePortal.style.zIndex = zIndex.banner;
+
+        this.bannerYPositions();
+
+        if (isFunction(onOpen)) {
+            onOpen();
+        }
+    }
+
+    bannerYPositions() {
+        const { topPosition } = this.props;
+        let bannersYPosition = topPosition || 22;
+        const containersArray = document.querySelectorAll('.ui.banner .banner-container');
+        const containersLength = containersArray.length - 1;
+
+        forEachRight(containersArray, (element, index) => {
+            const el = element;
+
+            if (index !== containersLength) {
+                bannersYPosition += el.offsetHeight + 11;
+            }
+
+            el.style.top = `${bannersYPosition}px`;
+        });
+    }
+
     render() {
-        const { children, className, id, level, levelIcon, message, title, type } = this.props;
+        const {
+            children,
+            className,
+            id,
+            level,
+            levelIcon,
+            message,
+            style,
+            title,
+            type,
+        } = this.props;
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -75,7 +230,7 @@ class Banner extends Component {
 
         return (
             <Portal>
-                <div className={containerClasses} id={id} style={this.props.style}>
+                <div className={containerClasses} id={id} style={style}>
                     <div className={containerInnerClasses}>
                         <div className="banner-level-type">
                             <Icon compact inverse type={levelIcon || levelBasedIcon} />
@@ -104,7 +259,7 @@ class Banner extends Component {
                                 compact
                                 id={`ui-button--close_banner_${id}`}
                                 inverse
-                                onClick={this._onClose.bind(this)}
+                                onClick={this.onClose}
                                 type="times"
                                 style={{
                                     position: 'absolute',
@@ -118,108 +273,11 @@ class Banner extends Component {
             </Portal>
         );
     }
-
-    componentDidMount() {
-        if (this.state.isOpen) {
-            this._onOpen();
-        }
-    }
-
-    _animationProps(el) {
-        let a;
-        let animations = {
-            'animation': 'animationend',
-            'OAnimation': 'oAnimationEnd',
-            'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd',
-        };
-
-        for (a in animations) {
-            if (el.style[a] !== undefined) {
-                return animations[a];
-            }
-        }
-    }
-
-    _bannerYPositions() {
-        const { topPosition } = this.props;
-        let bannersYPosition = topPosition || 22;
-        const containersArray = document.querySelectorAll('.ui.banner .banner-container');
-        const containersLength = containersArray.length - 1;
-
-        _.forEachRight(containersArray, (el, i) => {
-            if (i !== containersLength) {
-                bannersYPosition += el.offsetHeight + 11;
-            }
-
-            el.style.top = bannersYPosition + 'px';
-        });
-    }
-
-    _onAnimationComplete() {
-        const { id, isOpen, onAfterClose } = this.props;
-        const nodePortal = ReactDOM.findDOMNode(this);
-        const bannerContainer = nodePortal.querySelector('.banner-container');
-        const animationEvent = this._animationProps(bannerContainer);
-        bannerContainer.removeEventListener(animationEvent, this._onAnimationComplete);
-
-        this.setState({
-            isOpen: false,
-        }, () => {
-            this._bannerYPositions();
-
-            if (!_.isUndefined(onAfterClose) && !isOpen) {
-                onAfterClose(id);
-            }
-        });
-    }
-
-    _onBeforeClose() {
-        const nodePortal = ReactDOM.findDOMNode(this);
-        const bannerContainer = nodePortal.querySelector('.banner-container');
-        const animationEvent = this._animationProps(bannerContainer);
-
-        bannerContainer.className += ' animate-out';
-        bannerContainer.addEventListener(animationEvent, this._onAnimationComplete);
-    }
-
-    _onClose() {
-        this.props.onClose(this.props.id);
-    }
-
-    _onOpen() {
-        const nodePortal = ReactDOM.findDOMNode(this);
-        nodePortal.style.zIndex = 10000;
-        this._bannerYPositions();
-
-        if (!_.isUndefined(this.props.onOpen)) {
-            this.props.onOpen();
-        }
-    }
 }
 
 Banner.Item = BannerItem;
 
-const levelEnums = [ 'error', 'purple', 'secondary', 'success', 'teal', 'warning' ];
-const typeEnums = [ 'alert', 'notification' ];
+Banner.propTypes = propTypes;
+Banner.defaultProps = defaultProps;
 
-Banner.propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]).isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    level: PropTypes.oneOf(levelEnums),
-    levelIcon: PropTypes.string,
-    message: PropTypes.string,
-    onAfterClose: PropTypes.func,
-    onClose: PropTypes.func.isRequired,
-    onOpen: PropTypes.func,
-    style: PropTypes.shape({}),
-    title: PropTypes.string,
-    topPosition: PropTypes.number,
-    type: PropTypes.oneOf(typeEnums),
-};
-
-export default Banner;
+export default withTheme(Banner);
