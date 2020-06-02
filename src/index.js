@@ -55,7 +55,6 @@ export { default as Page } from './templates/page';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
-export { default as TelephoneLink } from './utils/telephoneLink';
 export { default as TimeFromNow } from './utils/timeFromNow';
 export { default as Utils } from './utils/utils';
 export { default as withWidth } from './utils/withWidth';
