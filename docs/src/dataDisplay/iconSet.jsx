@@ -98,7 +98,7 @@ class ElementsIconSet extends React.PureComponent {
                     'times-square',
                 ],
             }, {
-                category: 'Data Types Custom',
+                category: 'Data Types - Custom',
                 types: [
                     'info',
                     'link',
@@ -108,7 +108,7 @@ class ElementsIconSet extends React.PureComponent {
                     'status',
                 ],
             }, {
-                category: 'Data Types Date & Time',
+                category: 'Data Types - Date & Time',
                 types: [
                     'calendar',
                     'calendar-range',
@@ -120,7 +120,7 @@ class ElementsIconSet extends React.PureComponent {
                     'time-history',
                 ],
             }, {
-                category: 'Data Types File',
+                category: 'Data Types - File',
                 types: [
                     'file',
                     'image',
@@ -128,24 +128,36 @@ class ElementsIconSet extends React.PureComponent {
                     'volume',
                 ],
             }, {
-                category: 'Data Types Person',
+                category: 'Data Types - Person',
                 types: [
-                    'award',
-                    'birthday-cake',
-                    'book-open',
-                    'briefcase',
-                    'briefcase-membership',
+                    'birthday',
+                    'certified',
+                    'class',
+                    'class-101',
+                    'class-201',
+                    'class-301',
+                    'class-401',
+                    'class-taken',
+                    'discipleship',
+                    'doj-cleared',
+                    'fbi-cleared',
+                    'fingerprinted',
                     'gender',
-                    'gift',
-                    'heart',
+                    'giving',
+                    'membership',
+                    'milestone',
+                    'occupation',
+                    'shape-experiences',
+                    'shape-heart',
+                    'shape-personality',
+                    'shape-spiritual-gifts',
+                    // Need to move the below types to the proper category
+                    'award',
                     'marital-status',
-                    'notebook',
-                    'preferred-service',
-                    'shoe-prints',
                     'user',
                 ],
             }, {
-                category: 'Data Types Text',
+                category: 'Data Types - Text',
                 types: [
                     'sort-alpha',
                     'sort-alpha-numeric',
