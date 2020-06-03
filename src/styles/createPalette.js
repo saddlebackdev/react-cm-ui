@@ -29,25 +29,25 @@ export default function createPalette() {
             main: red[500],
             dark: red[600],
         },
-        primary: { // ......................Talk about this. Good
+        primary: {
             main: grey[600],
         },
-        secondary: { // ......................Talk about this. Good
+        secondary: {
             main: blue[500],
             dark: blue[600],
         },
-        static: { // ......................Talk about this. Good
+        static: {
             main: grey[300],
         },
         success: {
             main: green[500],
             dark: green[600],
         },
-        text: { // ......................Talk about this
+        text: {
             active: cyan[500],
             contrastText: common.white,
             disable: grey[300],
-            inverseDisable: grey[500], // figured out what to call this
+            inverseDisable: grey[500],
             link: cyan[500],
             primary: grey[600],
             secondary: grey[400],
