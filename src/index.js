@@ -5,6 +5,7 @@ export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
 export { default as Table } from './dataDisplay/table';
+export { default as Typography } from './dataDisplay/typography';
 
 // NEW: Inputs
 export { default as Button } from './inputs/button';
