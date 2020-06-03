@@ -12,6 +12,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Add `id` prop to `<A>` component
 - [PR #148](https://github.com/saddlebackdev/react-cm-ui/pull/148) / Merge Commit eac1e10377b879a1d6252d9b2be29a18cc906581
     - Banner and Z-Index Changes.
+- [PR #150](https://github.com/saddlebackdev/react-cm-ui/pull/150) / Merge Commit 8bd599326be714d493bea953a0c6603732176a8d
+    - Added and Fixed Data Type - Person Icons.
+- [PR #151](https://github.com/saddlebackdev/react-cm-ui/pull/151) / Merge Commit 78dab928501e185437f2bc9a0549a21778467489
+    - Added Palette, Shape, Transitions, and Typography to the theme.
+- [PR #152](https://github.com/saddlebackdev/react-cm-ui/pull/152) / Merge Commit 7b32e20b9d83bc79d52b586d4af856cb65274467
+    - Added new Typography component.
 
 #### Other
 - [PR #142](https://github.com/saddlebackdev/react-cm-ui/pull/142) / Merge Commit 90ca4c9a432367e77a250d62733e6f3a1605649a
