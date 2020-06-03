@@ -10,6 +10,7 @@ import Icon from '../dataDisplay/icon';
 import Prompt from '../inputs/prompt';
 
 const propTypes = {
+    className: PropTypes.string.isRequired,
     header: PropTypes.string.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconBackgroundHighlightColor: PropTypes.string,
@@ -21,6 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    className: undefined,
     iconBackgroundColor: 'alternate',
     iconBackgroundHighlightColor: 'highlight',
     iconType: 'ellipsis-h',
@@ -97,6 +99,7 @@ class ActionBarActionsButton extends React.PureComponent {
 
     render() {
         const {
+            className,
             header,
             iconBackgroundColor,
             iconBackgroundHighlightColor,
@@ -115,6 +118,7 @@ class ActionBarActionsButton extends React.PureComponent {
         } = this.state;
 
         const hasSelectedOption = !_.isEmpty(selectedOption);
+        const containerClasses = ClassNames('action_bar--actions_button_drawer', className);
         const titleClasses = ClassNames('actions_button_drawer--title', {
             'actions_button_drawer--title-hide': hasSelectedOption,
             'actions_button_drawer--title-show': !hasSelectedOption,
@@ -160,7 +164,7 @@ class ActionBarActionsButton extends React.PureComponent {
                 </Prompt>
 
                 <Drawer
-                    className="action_bar--actions_button_drawer"
+                    className={containerClasses}
                     dimmer={false}
                     isOpen={isDrawerOpen}
                     maxWidth={224}

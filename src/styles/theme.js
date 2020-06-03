@@ -17,6 +17,12 @@ const theme = {
     shape,
     transitions,
     typography: createTypography(),
+    zIndex: {
+        drawer: 10000,
+        modal: 11000,
+        prompt: 12000,
+        banner: 13000,
+    },
 };
 
 export default theme;
