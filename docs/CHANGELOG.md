@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.0 - 06/02/2020
+
+#### Feature
+- [PR #141](https://github.com/saddlebackdev/react-cm-ui/pull/141) / Merge Commit 9a9e63054f40df0db2b8461f2c270680b644215d
+    - Documentation Navigation Updates
+
 ## 0.5.1 - 05/11/2020
 
 #### Bug Fix
