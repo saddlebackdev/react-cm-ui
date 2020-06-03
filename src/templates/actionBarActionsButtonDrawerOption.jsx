@@ -1,8 +1,8 @@
-import colorStyles from '../styles/colorExports';
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import colorStyles from '../styles/colorExports'; // eslint-disable-line import/extensions
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
@@ -107,24 +107,26 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                     role="menuitem"
                     tabIndex={idNumber}
                 >
-                    <div
-                        className="actions_button_drawer_option--icon_container"
-                        id={option.id}
-                        style={{
-                            backgroundColor: option.disabled ?
-                                colorStyles.backgroundColorStatic :
-                                option.iconBackgroundColor,
-                        }}
-                    >
-                        <Icon
-                            color={option.iconColor}
-                            compact
-                            className="actions_button_drawer_option--icon"
-                            inverse
-                            size={option.iconSize || 16}
-                            type={option.iconType}
-                        />
-                    </div>
+                    {option.iconType && (
+                        <div
+                            className="actions_button_drawer_option--icon_container"
+                            id={option.id}
+                            style={{
+                                backgroundColor: option.disabled ?
+                                    colorStyles.backgroundColorStatic :
+                                    option.iconBackgroundColor,
+                            }}
+                        >
+                            <Icon
+                                color={option.iconColor}
+                                compact
+                                className="actions_button_drawer_option--icon"
+                                inverse
+                                size={option.iconSize || 16}
+                                type={option.iconType}
+                            />
+                        </div>
+                    )}
 
                     <div
                         className="actions_button_drawer_option--label"

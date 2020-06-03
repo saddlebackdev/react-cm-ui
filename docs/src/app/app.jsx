@@ -23,7 +23,7 @@ if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
     history.pushState({}, '', location.hash.substring(2));
 }
 
-class CoreApp extends React.Component {
+class App extends React.Component {
     static onResize() {
         breakpointActions.update();
     }
@@ -35,13 +35,13 @@ class CoreApp extends React.Component {
         breakpointActions.update();
 
         this.curScrollPos = null;
-        this.onResizeDebounce = _.debounce(() => CoreApp.onResize(), 80);
+        this.onResizeDebounce = _.debounce(() => App.onResize(), 80);
         this.onToggleNavigation = this.onToggleNavigation.bind(this);
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.onResizeDebounce);
-        CoreApp.onResize();
+        App.onResize();
     }
 
     onToggleNavigation() {
@@ -105,6 +105,6 @@ class CoreApp extends React.Component {
     }
 }
 
-CoreApp.propTypes = propTypes;
+App.propTypes = propTypes;
 
-export default CoreApp;
+export default App;

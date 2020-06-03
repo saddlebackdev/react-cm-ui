@@ -10,16 +10,29 @@ import {
     colorInverse,
     colorStatic,
 } from 'react-cm-ui/styles/colorExports';
+import _ from 'lodash';
 import { domUtils } from 'react-cm-ui/utils';
-import { withStyles } from 'react-cm-ui/styles';
 import { Link } from 'react-router';
+import { withStyles } from 'react-cm-ui/styles';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
+import { navigationItems } from './navigationConstants';
 
 const propTypes = {
     classes: PropTypes.shape({
         divider: PropTypes.shape({}),
+        header: PropTypes.shape({}),
+        headerSection: PropTypes.shape({}),
+        headerSubSection: PropTypes.shape({}),
+        logo: PropTypes.shape({}),
+        logoContainer: PropTypes.shape({}),
+        packageVersion: PropTypes.shape({}),
+        root: PropTypes.shape({}),
+        scrollBarInner: PropTypes.shape({}),
+        ul: PropTypes.shape({}),
+        ulLink: PropTypes.shape({}),
     }).isRequired,
     toggleNavigation: PropTypes.func.isRequired,
 };
@@ -121,6 +134,7 @@ class CoreAppNavigation extends React.PureComponent {
 
         this.onLogoClick = this.onLogoClick.bind(this);
         this.toggleNavigation = this.toggleNavigation.bind(this);
+        this.listJSX = this.renderList();
     }
 
     componentDidMount() {
@@ -157,12 +171,139 @@ class CoreAppNavigation extends React.PureComponent {
         toggleNavigation();
     }
 
+    renderList() {
+        const {
+            classes,
+        } = this.props;
+        let sectionKeyNum = 0;
+        let sectionItemKeyNum = 0;
+        let subSectionItemKeyNum = 0;
+
+        return _.map(navigationItems, (section, index) => {
+            sectionKeyNum += 1;
+
+            return (
+                <React.Fragment key={`section-${sectionKeyNum}`}>
+                    {index > 0 && (
+                        <Divider
+                            className={classes.divider}
+                            color="inverse"
+                            inverse
+                            relaxed
+                        />
+                    )}
+
+                    <Header
+                        className={ClassNames(classes.header, classes.headerSection)}
+                        inverse
+                        size="medium"
+                        style={{ marginTop: 0 }}
+                    >
+                        {section.label}
+                    </Header>
+
+                    <ul
+                        className={classes.ul}
+                    >
+                        {_.map(section.items, (sectionItem) => {
+                            const path = sectionItem.path && `/${section.path}/${sectionItem.path}`;
+                            sectionItemKeyNum += 1;
+                            const key = `section--item-${sectionItemKeyNum}`;
+
+                            return this.renderListItem(
+                                sectionItem,
+                                path,
+                                key,
+                            );
+                        })}
+
+                        {_.map(section.subSections, (subSection) => {
+                            sectionItemKeyNum += 1;
+
+                            return (
+                                <li key={`section_item-${sectionItemKeyNum}`}>
+                                    <Header
+                                        className={ClassNames(
+                                            classes.header,
+                                            classes.headerSubSection,
+                                        )}
+                                        inverse
+                                        size="small"
+                                    >
+                                        {subSection.label}
+                                    </Header>
+
+                                    <ul
+                                        className={classes.ul}
+                                    >
+                                        {_.map(subSection.items, (subSectionItem) => {
+                                            subSectionItemKeyNum += 1;
+                                            const path = subSectionItem.path && `/${section.path}/${subSection.path}/${subSectionItem.path}`;
+                                            const key = `sub_section--item-${subSectionItemKeyNum}`;
+
+                                            return this.renderListItem(
+                                                subSectionItem,
+                                                path,
+                                                key,
+                                            );
+                                        })}
+                                    </ul>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </React.Fragment>
+            );
+        });
+    }
+
+    renderListItem(item, route, key) {
+        const {
+            classes,
+        } = this.props;
+
+        if (item.href) {
+            return (
+                <li key={key}>
+                    <a
+                        className={classes.ulLink}
+                        href={item.href}
+                        // eslint-disable-next-line react/jsx-no-target-blank
+                        target="_blank"
+                    >
+                        {item.label}
+
+                        <Icon
+                            color="static"
+                            inverse
+                            size={10}
+                            style={{
+                                marginLeft: '7px',
+                            }}
+                            type="link-external"
+                        />
+                    </a>
+                </li>
+            );
+        }
+
+        return (
+            <li key={key}>
+                <Link
+                    activeClassName="is-active"
+                    className={ClassNames('core-app-nav-item', classes.ulLink)}
+                    to={{ pathname: route }}
+                >
+                    {item.label}
+                </Link>
+            </li>
+        );
+    }
+
     render() {
         const {
             classes,
         } = this.props;
-        const navItemClassName = 'core-app-nav-item';
-        const isActive = 'is-active';
         const version = __UI_PACKAGE_VERSION__; // eslint-disable-line no-undef
 
         return (
@@ -191,514 +332,7 @@ class CoreAppNavigation extends React.PureComponent {
                             <div className={`text-xsmall text-semibold text-italics ${classes.packageVersion}`}>{`v${version}`}</div>
                         </div>
 
-                        <Header
-                            className={classes.header, classes.headerSection}
-                            inverse
-                            size="medium"
-                            style={{ marginTop: 0 }}
-                        >
-                            Getting Started
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link className={navItemClassName, classes.ulLink} to={{ pathname: '/getting-started/installation' }} activeClassName={isActive}>Installation</Link>
-                            </li>
-
-                            <li>
-                                <Link className={navItemClassName, classes.ulLink} to={{ pathname: '/getting-started/usage' }} activeClassName={isActive}>
-                                    Usage
-                                </Link>
-                            </li>
-
-                            <li>
-                                <a
-                                    className={classes.ulLink}
-                                    href="https://github.com/saddlebackdev/react-cm-ui/blob/dev/CHANGELOG.md"
-                                    target="_blank"
-                                >
-                                    Changelog
-
-                                    <Icon
-                                        color="static"
-                                        inverse
-                                        size={10}
-                                        style={{
-                                            marginLeft: '7px',
-                                        }}
-                                        type="link-external"
-                                    />
-                                </a>
-                            </li>
-                        </ul>
-
-                        <Divider
-                            className={classes.divider}
-                            color="inverse"
-                            inverse
-                            relaxed
-                        />
-
-                        <Header
-                            className={classes.header, classes.headerSection}
-                            inverse
-                            size="medium"
-                        >
-                            Style Guide
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/style-guide/colors' }}
-                                    activeClassName={isActive}
-                                >
-                                    Colors
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Divider
-                            className={classes.divider}
-                            color="inverse"
-                            inverse
-                            relaxed
-                        />
-
-                        <Header
-                            className={classes.header, classes.headerSection}
-                            inverse
-                            size="medium"
-                        >
-                            Components
-                        </Header>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Data Display
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/banner' }}
-                                    activeClassName={isActive}
-                                >
-                                    Banner
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/divider' }}
-                                    activeClassName={isActive}
-                                >
-                                    Divider
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/icon' }}
-                                    activeClassName={isActive}
-                                >
-                                    Icon
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/image' }}
-                                    activeClassName={isActive}
-                                >
-                                    Image
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/list' }}
-                                    activeClassName={isActive}
-                                >
-                                    List
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/data-display/table' }}
-                                    activeClassName={isActive}
-                                >
-                                    Table
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Inputs
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/button' }}
-                                    activeClassName={isActive}
-                                >
-                                    Button
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/checkbox' }}
-                                    activeClassName={isActive}
-                                >
-                                    Checkbox
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/date-picker-calendar' }}
-                                    activeClassName={isActive}
-                                >
-                                    Date Picker Calendar
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/date-picker-input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Date Picker Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/dropdown' }}
-                                    activeClassName={isActive}
-                                >
-                                    Dropdown
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/dropdown-button' }}
-                                    activeClassName={isActive}
-                                >
-                                    Dropdown Button
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/duration-picker' }}
-                                    activeClassName={isActive}
-                                >
-                                    Duration Picker
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/phone-input' }}
-                                    activeClassName={isActive}
-                                >
-                                    Phone Input
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/prompt' }}
-                                    activeClassName={isActive}
-                                >
-                                    Prompt
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/radio' }}
-                                    activeClassName={isActive}
-                                >
-                                    Radio
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/segmented-controls' }}
-                                    activeClassName={isActive}
-                                >
-                                    Segmented Controls
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/text-area' }}
-                                    activeClassName={isActive}
-                                >
-                                    Text Area
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/inputs/time-picker' }}
-                                    activeClassName={isActive}
-                                >
-                                    Time Picker
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Atoms
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/activity-indicator' }}
-                                    activeClassName={isActive}
-                                >
-                                    Activity Indicator
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/header' }}
-                                    activeClassName={isActive}
-                                >
-                                    Header
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/atoms/label' }}
-                                    activeClassName={isActive}
-                                >
-                                    Label
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Molecules
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/molecules/comment' }}
-                                    activeClassName={isActive}
-                                >
-                                    Comment
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Organisms
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/accordion' }}
-                                    activeClassName={isActive}
-                                >
-                                    Accordion
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/card' }}
-                                    activeClassName={isActive}
-                                >
-                                    Card
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/grid' }}
-                                    activeClassName={isActive}
-                                >
-                                    Grid
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/info-bar' }}
-                                    activeClassName={isActive}
-                                >
-                                    Info Bar
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/rail' }}
-                                    activeClassName={isActive}
-                                >
-                                    Rail
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/sub-navigation' }}
-                                    activeClassName={isActive}
-                                >
-                                    Sub Navigation
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/title-bar' }}
-                                    activeClassName={isActive}
-                                >
-                                    Title Bar
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/organisms/tabs' }}
-                                    activeClassName={isActive}
-                                >
-                                    Tabs
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Header
-                            className={classes.header, classes.headerSubSection}
-                            inverse
-                            size="small"
-                        >
-                            Templates
-                        </Header>
-
-                        <ul
-                            className={classes.ul}
-                        >
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/templates/drawer' }}
-                                    activeClassName={isActive}
-                                >
-                                    Drawer
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/templates/modal' }}
-                                    activeClassName={isActive}
-                                >
-                                    Modal
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    className={navItemClassName, classes.ulLink}
-                                    to={{ pathname: '/templates/page' }}
-                                    activeClassName={isActive}
-                                >
-                                    Page
-                                </Link>
-                            </li>
-                        </ul>
+                        {this.listJSX}
                     </div>
                 </ScrollBar>
             </nav>

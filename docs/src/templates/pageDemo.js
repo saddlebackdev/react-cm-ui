@@ -67,7 +67,7 @@ class PageDemo extends React.PureComponent {
         }));
     }
 
-    onBackClick() { // eslint-disable-line class-methods-use-this
+    onBackClick() {
         console.log('Mobile Back button clicked!'); // eslint-disable-line no-console
     }
 
@@ -123,7 +123,7 @@ class PageDemo extends React.PureComponent {
         });
     }
 
-    onSearchKeyDown(event) { // eslint-disable-line class-methods-use-this,no-unused-vars
+    onSearchKeyDown(event) { // eslint-disable-line no-unused-vars
         // console.log('Search onKeyDown.  event:', event); // eslint-disable-line no-console
     }
 

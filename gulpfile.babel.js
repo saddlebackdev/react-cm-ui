@@ -30,6 +30,13 @@ const paths = {
             ],
             dest: 'core/dataDisplay',
         },
+        inputs: {
+            src: [
+                'src/inputs/**.js',
+                'src/inputs/**.jsx',
+            ],
+            dest: 'core/inputs',
+        },
         molecules: {
             src: [
                 'src/molecules/**.js',
@@ -97,6 +104,12 @@ export function scriptsDataDisplay() {
         .pipe(dest(paths.scripts.dataDisplay.dest));
 }
 
+export function scriptsInputs() {
+    return src(paths.scripts.inputs.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.inputs.dest));
+}
+
 // TODO: Remove once all components are shifted to the new organization.
 export function scriptsMolecules() {
     return src(paths.scripts.molecules.src)
@@ -149,6 +162,7 @@ function watchFiles() {
     watch(paths.scripts.src, scriptsRoot);
     watch(paths.scripts.src, scriptsAtoms);
     watch(paths.scripts.src, scriptsDataDisplay);
+    watch(paths.scripts.src, scriptsInputs);
     watch(paths.scripts.src, scriptsMolecules);
     watch(paths.scripts.src, scriptsOrganisms);
     watch(paths.scripts.src, scriptsStyles);
@@ -165,6 +179,7 @@ export default series(
         images,
         scriptsAtoms,
         scriptsDataDisplay,
+        scriptsInputs,
         scriptsMolecules,
         scriptsOrganisms,
         scriptsRoot,

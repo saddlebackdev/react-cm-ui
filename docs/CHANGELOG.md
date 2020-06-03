@@ -1,6 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.0 - 06/02/2020
+
+#### Feature
+- [PR #141](https://github.com/saddlebackdev/react-cm-ui/pull/141) / Merge Commit 9a9e63054f40df0db2b8461f2c270680b644215d
+    - Documentation Navigation Updates
+- [PR #150](https://github.com/saddlebackdev/react-cm-ui/pull/150) / Merge Commit 8bd599326be714d493bea953a0c6603732176a8d
+    - Added and Fixed Data Type - Person Icons.
+
+## 0.5.1 - 05/11/2020
+
+#### Bug Fix
+- [PR #138](https://github.com/saddlebackdev/react-cm-ui/pull/138) / Merge Commit 0d42cc33ef08afc1416336eff809017b019432b2
+    - Fixed docs builds error.
+
 ## 0.5.0 - 04/28/2020
 
 - Added new component category, Inputs.
