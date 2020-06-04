@@ -18,36 +18,42 @@ const paths = {
     scripts: {
         atoms: {
             src: [
-                'src/atoms/**.js',
-                'src/atoms/**.jsx',
+                'src/atoms/**/**.js',
+                'src/atoms/**/**.jsx',
             ],
             dest: 'core/atoms',
         },
+        colors: {
+            src: [
+                'src/colors/**/**.js',
+            ],
+            dest: 'core/colors',
+        },
         dataDisplay: {
             src: [
-                'src/dataDisplay/**.js',
-                'src/dataDisplay/**.jsx',
+                'src/dataDisplay/**/**.js',
+                'src/dataDisplay/**/**.jsx',
             ],
             dest: 'core/dataDisplay',
         },
         inputs: {
             src: [
-                'src/inputs/**.js',
-                'src/inputs/**.jsx',
+                'src/inputs/**/**.js',
+                'src/inputs/**/**.jsx',
             ],
             dest: 'core/inputs',
         },
         molecules: {
             src: [
-                'src/molecules/**.js',
-                'src/molecules/**.jsx',
+                'src/molecules/**/**.js',
+                'src/molecules/**/**.jsx',
             ],
             dest: 'core/molecules',
         },
         organisms: {
             src: [
-                'src/organisms/**.js',
-                'src/organisms/**.jsx',
+                'src/organisms/**/**.js',
+                'src/organisms/**/**.jsx',
             ],
             dest: 'core/organisms',
         },
@@ -59,21 +65,21 @@ const paths = {
         },
         styles: {
             src: [
-                'src/styles/**.js',
+                'src/styles/**/**.js',
             ],
             dest: 'core/styles',
         },
         templates: {
             src: [
-                'src/templates/**.js',
-                'src/templates/**.jsx',
+                'src/templates/**/**.js',
+                'src/templates/**/**.jsx',
             ],
             dest: 'core/templates',
         },
         utils: {
             src: [
-                'src/utils/**.js',
-                'src/utils/**.jsx',
+                'src/utils/**/**.js',
+                'src/utils/**/**.jsx',
             ],
             dest: 'core/utils',
         },
@@ -96,6 +102,12 @@ export function scriptsAtoms() {
     return src(paths.scripts.atoms.src)
         .pipe(babel())
         .pipe(dest(paths.scripts.atoms.dest));
+}
+
+export function scriptsColors() {
+    return src(paths.scripts.colors.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.colors.dest));
 }
 
 export function scriptsDataDisplay() {
@@ -161,6 +173,7 @@ function watchFiles() {
     watch(paths.images.src, images);
     watch(paths.scripts.src, scriptsRoot);
     watch(paths.scripts.src, scriptsAtoms);
+    watch(paths.scripts.src, scriptsColors);
     watch(paths.scripts.src, scriptsDataDisplay);
     watch(paths.scripts.src, scriptsInputs);
     watch(paths.scripts.src, scriptsMolecules);
@@ -178,6 +191,7 @@ export default series(
     parallel(
         images,
         scriptsAtoms,
+        scriptsColors,
         scriptsDataDisplay,
         scriptsInputs,
         scriptsMolecules,
