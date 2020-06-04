@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.11.1 - 06/04/2020
+
+#### Bug Fix
+- Fixed compile script to include `./src/colors` and `./src/dataDisplay/icons` directories.
+
 ## 9.11.0 - 06/03/2020
 
 #### Feature
