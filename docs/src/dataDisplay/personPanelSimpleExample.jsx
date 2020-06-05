@@ -27,11 +27,11 @@ function PersonPanelSimpleExample() {
                     firstName: personPayloadDude.firstName,
                     gender: personPayloadDude.gender,
                     gradeLevel: personPayloadDude.gradeLevel,
-                    isDoNotContact: personPayloadDude.isDoNotContact,
-                    isDoNotEmail: personPayloadDude.isDoNotEmail,
-                    isDoNotMail: personPayloadDude.isDoNotMail,
-                    isDoNotPhone: personPayloadDude.isDoNotPhone,
-                    isDoNotText: personPayloadDude.isDoNotText,
+                    isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
+                    isDoNotEmail: personPayloadDude.contactPreferences.doNotEmail,
+                    isDoNotMail: personPayloadDude.contactPreferences.doNotMail,
+                    isDoNotPhone: personPayloadDude.contactPreferences.doNotPhone,
+                    isDoNotText: personPayloadDude.contactPreferences.doNotText,
                     lastName: personPayloadDude.lastName,
                     maritalStatus: personPayloadDude.maritalStatus,
                     nickName: personPayloadDude.nickName,
@@ -43,6 +43,7 @@ function PersonPanelSimpleExample() {
                     recordType,
                     suffix: personPayloadDude.suffix,
                 }}
+                showAdditionalDetails
             />
 
             <PersonPanel.Details />

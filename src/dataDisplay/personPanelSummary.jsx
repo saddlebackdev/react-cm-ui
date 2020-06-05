@@ -21,6 +21,7 @@ import { BEM_BLOCK_NAME } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
 import TelephoneLink from '../utils/telephoneLink';
 import EmailLink from '../utils/emailLink';
+import PersonPanelSummaryContactText from './personPanelSummaryContactText';
 
 const propTypes = {
     classes: PropTypes.shape({
@@ -143,33 +144,6 @@ function birthdateText({ birthdate }) {
     return moment.unix(birthdate).utc().format('MM/DD/YY');
 }
 
-// eslint-disable-next-line react/prop-types
-function renderEmail({ email }) {
-    if (!email) {
-        return null;
-    }
-
-    return (
-        <EmailLink
-            email={email}
-        />
-    );
-}
-
-
-// eslint-disable-next-line react/prop-types
-function renderPhone({ phone }) {
-    if (phone) {
-        return null;
-    }
-
-    return (
-        <TelephoneLink
-            number={phone}
-        />
-    );
-}
-
 function genderText({ gender }) {
     switch (gender) {
         case 'F':
@@ -216,120 +190,6 @@ function gradeLevelText({ gradeLevel }) {
     }
 }
 
-function renderContactText({
-    /* eslint-disable react/prop-types */
-    classes,
-    isDoNotContact,
-    isDoNotEmail,
-    isDoNotMail,
-    isDoNotPhone,
-    isDoNotText,
-    preferredMethod,
-    email,
-    phone,
-    recordType,
-    /* eslint-enable react/prop-types */
-}) {
-    let contactMethodText = '';
-    let preferredContactInfoText = '';
-
-    if (isDoNotContact) {
-        contactMethodText = 'Do Not Contact This Individual';
-    } else {
-        switch (preferredMethod) {
-            case 'email':
-                contactMethodText = 'Prefers Email';
-
-                if (renderEmail({ email })) {
-                    preferredContactInfoText = renderEmail({ email });
-                }
-
-                break;
-            case 'phone':
-                contactMethodText = 'Prefers Phone';
-
-                if (renderPhone({ phone })) {
-                    preferredContactInfoText = renderPhone({
-                        phone,
-                    });
-                }
-
-                break;
-            case 'text-message':
-                contactMethodText = 'Prefers Text';
-
-                if (phone) {
-                    preferredContactInfoText = phone;
-                }
-
-                break;
-            case 'mail':
-            case 'none':
-            default:
-                if (renderPhone({ phone })) {
-                    preferredContactInfoText = renderPhone({ phone });
-                } else if (renderEmail({ email })) {
-                    preferredContactInfoText = renderEmail({ email });
-                }
-        }
-
-        if (isDoNotEmail || isDoNotMail || isDoNotPhone || isDoNotText) {
-            if (contactMethodText) {
-                contactMethodText += ', DNC via';
-            } else {
-                contactMethodText = 'DNC via ';
-            }
-
-            if (isDoNotEmail) {
-                contactMethodText += 'Email, ';
-            }
-
-            if (isDoNotMail) {
-                contactMethodText += 'Mail, ';
-            }
-
-            if (isDoNotPhone) {
-                contactMethodText += 'Phone, ';
-            }
-
-            if (isDoNotText) {
-                contactMethodText += 'Text';
-            }
-
-            contactMethodText = trimEnd(contactMethodText, ', ');
-        }
-    }
-
-    if (recordType !== 'child' && (contactMethodText || preferredMethod !== 'none')) {
-        return (
-            <React.Fragment>
-                {contactMethodText && (
-                    <Typography
-                        // eslint-disable-next-line react/prop-types
-                        className={classes.preferredContactMethod}
-                        component="h5"
-                        variant="h5"
-                    >
-                        {`(${contactMethodText})`}
-                    </Typography>
-                )}
-
-                {preferredMethod !== 'none' && preferredContactInfoText && (
-                    <Typography
-                        // eslint-disable-next-line react/prop-types
-                        className={classes.preferredContactInfo}
-                        variant="body2"
-                    >
-                        {preferredContactInfoText}
-                    </Typography>
-                )}
-            </React.Fragment>
-        );
-    }
-
-    return null;
-}
-
 const useStyles = makeStyles((theme) => {
     const {
         palette,
@@ -342,27 +202,60 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            [`&.${bemClass}`]: {
-                backgroundColor: palette.background.light,
-                borderRadius,
-                color: palette.text.primary,
-                cursor: 'pointer',
-                outline: 'none',
-                padding: '13px 11px',
-                position: 'relative',
-                transition: colorTransition,
-                userSelect: 'none',
-                '&::before, &::after': {
-                    bottom: 0,
-                    content: '""',
-                    left: 0,
-                    position: 'absolute',
-                    top: 0,
-                    transition: `opacity ${transitionDuration} ease-in-out`,
-                    zIndex: 1,
+            backgroundColor: palette.background.light,
+            borderRadius,
+            color: palette.text.primary,
+            cursor: 'pointer',
+            outline: 'none',
+            padding: '13px 11px',
+            position: 'relative',
+            transition: colorTransition,
+            userSelect: 'none',
+            '&::before, &::after': {
+                bottom: 0,
+                content: '""',
+                left: 0,
+                position: 'absolute',
+                top: 0,
+                transition: `opacity ${transitionDuration} ease-in-out`,
+                zIndex: 1,
+            },
+            '&::before': {
+                backgroundColor: (props) => {
+                    const {
+                        data: {
+                            recordType,
+                            gender,
+                        },
+                    } = props;
+
+                    switch (recordType) {
+                        case 'child':
+                            return palette.sky[500];
+                        case 'student':
+                            return palette.redOrange[500];
+                        case 'adult':
+                        default:
+                            switch (gender) {
+                                case 'F':
+                                    return palette.cyan[600];
+                                case 'M':
+                                    return palette.green[600];
+                                default:
+                                    return palette.teal[500];
+                            }
+                    }
                 },
+                borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
+                opacity: 1,
+                width: '5px',
+                transition: `width ${transitionDuration} ease-in-out`,
+            },
+            '&$expanded': {
+                color: palette.text.contrastText,
+                borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
                 '&::before': {
-                    backgroundColor: (props) => {
+                    backgroundImage: (props) => {
                         const {
                             data: {
                                 recordType,
@@ -372,64 +265,27 @@ const useStyles = makeStyles((theme) => {
 
                         switch (recordType) {
                             case 'child':
-                                return palette.teal[500];
+                                return palette.sky.G500;
                             case 'student':
-                                return palette.teal[500];
+                                return palette.redOrange.G500;
                             case 'adult':
+                            default:
                                 switch (gender) {
                                     case 'F':
-                                        return palette.teal[500];
+                                        return palette.cyan.G600;
                                     case 'M':
-                                        return palette.teal[500];
+                                        return palette.green.G600;
                                     default:
-                                        return null;
+                                        return palette.teal.G500;
                                 }
-                            default:
-                                return null;
                         }
                     },
-                    borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
-                    opacity: 1,
-                    width: '5px',
-                    transition: `width ${transitionDuration} ease-in-out`,
-                },
-                '&-is_expanded': {
-                    color: palette.text.contrastText,
                     borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
-                    '&::before': {
-                        backgroundImage: (props) => {
-                            const {
-                                data: {
-                                    recordType,
-                                    gender,
-                                },
-                            } = props;
-
-                            switch (recordType) {
-                                case 'child':
-                                    return palette.teal.G500;
-                                case 'student':
-                                    return palette.teal.G500;
-                                case 'adult':
-                                    switch (gender) {
-                                        case 'F':
-                                            return palette.teal.G500;
-                                        case 'M':
-                                            return palette.teal.G500;
-                                        default:
-                                            return null;
-                                    }
-                                default:
-                                    return null;
-                            }
-                        },
-                        borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
-                        width: '100%',
-                    },
+                    width: '100%',
                 },
-                '&-is_compact': {
-                    padding: '8px 11px',
-                },
+            },
+            '&$compact': {
+                padding: '8px 11px',
             },
         },
         additionalDetailsColumn: {
@@ -448,15 +304,30 @@ const useStyles = makeStyles((theme) => {
             paddingRight: 0,
             width: 'auto !important',
         },
+        compact: {},
         contactInfoColumn: {
+            display: 'none',
             width: 'auto !important',
             '&-has_contact_info': {
                 marginLeft: 'auto',
             },
+            [theme.breakpoints.up(900)]: {
+                display: 'block',
+            },
         },
+        expanded: {},
         grid: {
             position: 'relative',
             zIndex: 2,
+        },
+        gridRow: {
+            alignItems: 'center !important',
+            flexWrap: 'nowrap !important',
+        },
+        metaInfo: {
+            '&$compact': {
+                display: 'none',
+            },
         },
         nameColumn: {
             marginRight: 'auto',
@@ -493,37 +364,6 @@ const useStyles = makeStyles((theme) => {
                     '100ms' :
                     null
             ),
-        },
-        preferredContactMethod: {
-            color: (props) => (
-                props.isExpanded ?
-                    palette.text.contrastText :
-                    palette.text.secondary
-            ),
-            transitionDelay: (props) => (
-                props.isExpanded ?
-                    '100ms' :
-                    null
-            ),
-        },
-        preferredContactInfo: {
-            fontWeight: theme.typography.fontWeightBold,
-            '& .ui.a': {
-                color: (props) => (
-                    props.isExpanded ?
-                        palette.text.contrastText :
-                        palette.text.link
-                ),
-                transition: colorTransition,
-                transitionDelay: (props) => (
-                    props.isExpanded ?
-                        '50ms' :
-                        null
-                ),
-            },
-        },
-        row: {
-            alignItems: 'center !important',
         },
     };
 });
@@ -563,14 +403,13 @@ function PersonPanelSummary(props) {
         showAdditionalDetails,
         tabIndex,
     } = props;
-    console.log('data firstName', firstName);
     const primaryPhone = find(phones, 'isPrimary');
     const primaryEmail = find(emails, 'isPrimary');
     const phone = primaryPhone && primaryPhone.displayPhoneNumber ? primaryPhone.displayPhoneNumber : 'N/A';
     const email = primaryEmail && primaryEmail.email ? primaryEmail.email : 'N/A';
 
     useEffect(() => {
-        const isAdult = recordType === 'adult';
+        const isAdult = isNil(recordType) || recordType === 'adult';
         const isChild = recordType === 'child';
         const isStudent = recordType === 'student';
         let text = '';
@@ -610,21 +449,24 @@ function PersonPanelSummary(props) {
 
     useEffect(() => {
         setRenderContactInfo(
-            renderContactText({
-                classes,
-                isDoNotContact,
-                isDoNotEmail,
-                isDoNotMail,
-                isDoNotPhone,
-                isDoNotText,
-                preferredMethod,
-                email,
-                phone,
-                recordType,
-            }),
+            <PersonPanelSummaryContactText
+                classes={classes}
+                isCompact={isCompact}
+                isDoNotContact={isDoNotContact}
+                isDoNotEmail={isDoNotEmail}
+                isDoNotMail={isDoNotMail}
+                isDoNotPhone={isDoNotPhone}
+                isDoNotText={isDoNotText}
+                isExpanded={isExpanded}
+                preferredMethod={preferredMethod}
+                email={email}
+                phone={phone}
+                recordType={recordType}
+            />,
         );
     }, [
         classes,
+        isCompact,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
@@ -650,10 +492,13 @@ function PersonPanelSummary(props) {
         UI_CLASS_NAME,
         [`${bemClass}`],
         {
-            [`${bemClass}-is_compact`]: isCompact,
-            [`${bemClass}-is_expanded`]: isExpanded,
+            [classes.compact]: isCompact,
+            [classes.expanded]: isExpanded,
         },
     );
+    const metaInfoClasses = ClassNames(classes.metaInfo, {
+        [classes.compact]: isCompact,
+    });
     const contactInfoColumnClasses = ClassNames(
         classes.contactInfoColumn,
         {
@@ -677,7 +522,7 @@ function PersonPanelSummary(props) {
         >
             <Grid className={classes.grid}>
                 <Grid.Row
-                    className={classes.row}
+                    className={classes.gridRow}
                 >
                     <Grid.Column
                         className={classes.avatarColumn}
@@ -702,6 +547,7 @@ function PersonPanelSummary(props) {
                         </Typography>
 
                         <Typography
+                            className={metaInfoClasses}
                             color={isExpanded ? 'inherit' : 'textSecondary'}
                             variant="caption"
                         >
