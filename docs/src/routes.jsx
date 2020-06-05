@@ -70,7 +70,7 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/image.js')
+                    import('./dataDisplay/image.jsx')
                         .then((module) => callback(null, module.default));
                 }}
                 path="image"
