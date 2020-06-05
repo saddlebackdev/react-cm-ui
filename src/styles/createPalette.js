@@ -7,6 +7,8 @@ import {
     orange,
     pink,
     red,
+    redOrange,
+    sky,
     teal,
 } from '../colors';
 
@@ -61,8 +63,12 @@ export default function createPalette() {
     return {
         common,
         ...palette,
+        cyan,
+        green,
         grey,
         pink,
+        redOrange,
+        sky,
         teal,
     };
 }
