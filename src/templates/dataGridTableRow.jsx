@@ -6,7 +6,11 @@ import Table from '../dataDisplay/table';
 
 const propTypes = {
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
-    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        style: PropTypes.shape({}),
+    })).isRequired,
     handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string.isRequired,
@@ -86,7 +90,7 @@ class DataGridTableRow extends React.PureComponent {
                         accessor = column.accessor(row);
                     }
 
-                    const cellStyle = {};
+                    let cellStyle = {};
                     const size =
                         _.isEmpty(sizes) || _.isEmpty(sizes[rowIndex]) ?
                             null :
@@ -97,16 +101,22 @@ class DataGridTableRow extends React.PureComponent {
                         cellStyle.width = `${size.w}px`;
                     }
 
+                    cellStyle = {
+                        ...cellStyle,
+                        ...column.style,
+                    };
+
                     if (idPrefix === 'column') {
                         if (handle && _.last(columns) === column) {
                             cellStyle.borderRight = '1px solid #edf1f5';
                         }
                     }
 
-                    const cellId = `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
+                    const cellId = column.id || `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell
+                            className={column.className}
                             id={cellId}
                             key={cellId}
                             textAlign={column.textAlign}
