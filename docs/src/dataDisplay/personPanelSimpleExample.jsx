@@ -6,12 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { personPayloadDude } from './personPanelConstants';
 
 function PersonPanelSimpleExample() {
-    const [addresses, setAddresses] = useState([]);
-    const [emails, setEmails] = useState([]);
-    const [phones, setPhones] = useState([]);
+    const [detailsData, setDetailsData] = useState({});
+    const [summaryData, setSummaryData] = useState({});
 
     useEffect(() => {
-        const newAddresses = map(personPayloadDude.addresses, (address) => ({
+        const addresses = map(personPayloadDude.addresses, (address) => ({
             address1: address.address1,
             address2: address.address2,
             city: address.city,
@@ -22,17 +21,11 @@ function PersonPanelSimpleExample() {
             region: address.region,
             regionCode: address.regionCode,
         }));
-
-        setAddresses(newAddresses);
-
-        const newEmails = map(personPayloadDude.emails, (email) => ({
+        const emails = map(personPayloadDude.emails, (email) => ({
             isPrimary: email.isPrimary,
             value: email.email,
         }));
-
-        setEmails(newEmails);
-
-        const newPhones = map(personPayloadDude.phones, (phone) => {
+        const phones = map(personPayloadDude.phones, (phone) => {
             let type;
 
             switch (phone.phoneTypeId) {
@@ -57,74 +50,64 @@ function PersonPanelSimpleExample() {
                 value: phone.displayPhoneNumber,
             };
         });
+        let recordType;
 
-        setPhones(newPhones);
+        if (personPayloadDude.isChild) {
+            recordType = 'child';
+        } else if (personPayloadDude.isStudent) {
+            recordType = 'student';
+        } else {
+            recordType = 'adult';
+        }
+
+        setDetailsData({
+            addresses,
+            allergies: personPayloadDude.allergies,
+            birthdate: personPayloadDude.birthDate,
+            campus: personPayloadDude.churchEntityName,
+            commonlyAttendedService: personPayloadDude.commonlyAttendedService,
+            emails,
+            gradeLevel: personPayloadDude.gradeLevel,
+            isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
+            personId: personPayloadDude.id,
+            phones,
+            preferredService: personPayloadDude.preferredService,
+            recordType,
+        });
+
+        setSummaryData({
+            avatar: personPayloadDude.profilePictureUrl,
+            birthdate: personPayloadDude.birthDate,
+            campus: personPayloadDude.churchEntityName,
+            emails,
+            firstName: personPayloadDude.firstName,
+            gender: personPayloadDude.gender,
+            gradeLevel: personPayloadDude.gradeLevel,
+            isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
+            isDoNotEmail: personPayloadDude.contactPreferences.doNotEmail,
+            isDoNotMail: personPayloadDude.contactPreferences.doNotMail,
+            isDoNotPhone: personPayloadDude.contactPreferences.doNotPhone,
+            isDoNotText: personPayloadDude.contactPreferences.doNotText,
+            lastName: personPayloadDude.lastName,
+            maritalStatus: personPayloadDude.maritalStatus,
+            nickName: personPayloadDude.nickName,
+            personId: personPayloadDude.id,
+            phones,
+            preferredMethod: personPayloadDude.contactPreferences.preferredMethod,
+            prefix: personPayloadDude.prefix,
+            recordType,
+            suffix: personPayloadDude.suffix,
+        });
     }, []);
-
-    console.log('emails', emails);
-
-    let recordType;
-
-    if (personPayloadDude.isChild) {
-        recordType = 'child';
-    } else if (personPayloadDude.isStudent) {
-        recordType = 'student';
-    } else {
-        recordType = 'adult';
-    }
 
     return (
         <PersonPanel>
             <PersonPanel.Summary
-                data={{
-                    avatar: personPayloadDude.profilePictureUrl,
-                    birthdate: personPayloadDude.birthDate,
-                    campus: personPayloadDude.churchEntityName,
-                    emails,
-                    firstName: personPayloadDude.firstName,
-                    gender: personPayloadDude.gender,
-                    gradeLevel: personPayloadDude.gradeLevel,
-                    isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
-                    isDoNotEmail: personPayloadDude.contactPreferences.doNotEmail,
-                    isDoNotMail: personPayloadDude.contactPreferences.doNotMail,
-                    isDoNotPhone: personPayloadDude.contactPreferences.doNotPhone,
-                    isDoNotText: personPayloadDude.contactPreferences.doNotText,
-                    lastName: personPayloadDude.lastName,
-                    maritalStatus: personPayloadDude.maritalStatus,
-                    nickName: personPayloadDude.nickName,
-                    personId: personPayloadDude.id,
-                    phones,
-                    preferredMethod: personPayloadDude.contactPreferences.preferredMethod,
-                    prefix: personPayloadDude.prefix,
-                    recordType,
-                    suffix: personPayloadDude.suffix,
-                }}
+                data={summaryData}
             />
 
             <PersonPanel.Details
-                data={{
-                    addresses,
-                    birthdate: personPayloadDude.birthDate,
-                    campus: personPayloadDude.churchEntityName,
-                    emails,
-                    firstName: personPayloadDude.firstName,
-                    gender: personPayloadDude.gender,
-                    gradeLevel: personPayloadDude.gradeLevel,
-                    isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
-                    isDoNotEmail: personPayloadDude.contactPreferences.doNotEmail,
-                    isDoNotMail: personPayloadDude.contactPreferences.doNotMail,
-                    isDoNotPhone: personPayloadDude.contactPreferences.doNotPhone,
-                    isDoNotText: personPayloadDude.contactPreferences.doNotText,
-                    lastName: personPayloadDude.lastName,
-                    maritalStatus: personPayloadDude.maritalStatus,
-                    nickName: personPayloadDude.nickName,
-                    personId: personPayloadDude.id,
-                    phones,
-                    preferredMethod: personPayloadDude.contactPreferences.preferredMethod,
-                    prefix: personPayloadDude.prefix,
-                    recordType,
-                    suffix: personPayloadDude.suffix,
-                }}
+                data={detailsData}
             />
         </PersonPanel>
     );
