@@ -59,6 +59,7 @@ class DataGroup extends React.PureComponent {
         const { isExpanded } = this.state;
         const bemClassName = `${moduleType}--data_group`;
         const containerClasses = ClassNames(bemClassName, className, {
+            [`${bemClassName}-is_expandable`]: isExpandable,
             [`${bemClassName}-expanded`]: isExpandable && isExpanded,
         });
 
