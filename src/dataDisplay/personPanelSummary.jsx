@@ -1,6 +1,5 @@
 import {
     Grid,
-    Icon,
     Image,
     Typography,
 } from 'react-cm-ui';
@@ -8,7 +7,6 @@ import {
     find,
     isEmpty,
     isNil,
-    trimEnd,
     trimStart,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -19,8 +17,6 @@ import React, { useEffect, useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
-import TelephoneLink from '../utils/telephoneLink';
-import EmailLink from '../utils/emailLink';
 import PersonPanelSummaryContactText from './personPanelSummaryContactText';
 
 const propTypes = {
@@ -72,7 +68,6 @@ const propTypes = {
         lastName: PropTypes.string.isRequired,
         maritalStatus: PropTypes.string,
         nickName: PropTypes.string,
-        noteCount: PropTypes.number,
         personId: PropTypes.number.isRequired,
         phones: PropTypes.arrayOf(
             PropTypes.shape({
@@ -92,7 +87,6 @@ const propTypes = {
     isCompact: PropTypes.bool,
     isExpanded: PropTypes.bool,
     onClick: PropTypes.func,
-    showAdditionalDetails: PropTypes.bool,
     tabIndex: PropTypes.number,
 };
 
@@ -112,7 +106,6 @@ const defaultProps = {
         isDoNotText: false,
         maritalStatus: null,
         nickName: null,
-        noteCount: 0,
         phones: [],
         preferredMethod: null,
         prefix: null,
@@ -122,7 +115,6 @@ const defaultProps = {
     isCompact: false,
     isExpanded: false,
     onClick: undefined,
-    showAdditionalDetails: false,
     tabIndex: -1,
 };
 
@@ -288,13 +280,6 @@ const useStyles = makeStyles((theme) => {
                 padding: '8px 11px',
             },
         },
-        additionalDetailsColumn: {
-            width: 'auto !important',
-            wordWrap: 'nowrap',
-            '&-no_contact_info': {
-                marginLeft: 'auto',
-            },
-        },
         avatar: {
             boxShadow: `inset 0 0 0 1px ${palette.border.primary} !important`,
         },
@@ -333,25 +318,12 @@ const useStyles = makeStyles((theme) => {
             marginRight: 'auto',
             width: 'auto !important',
         },
-        noteCount: {
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'flex-end',
-        },
-        noteCountText: {
-            color: (props) => (
-                props.isExpanded ?
-                    palette.text.contrastText :
-                    palette.text.secondary
-            ),
-            transitionDelay: (props) => (
-                props.isExpanded ?
-                    '100ms' :
-                    null
-            ),
-        },
-        noteIcon: {
-            marginRight: '5px !important',
+        personIdColumn: {
+            width: 'auto !important',
+            wordWrap: 'nowrap',
+            '&-no_contact_info': {
+                marginLeft: 'auto',
+            },
         },
         personId: {
             color: (props) => (
@@ -389,7 +361,6 @@ function PersonPanelSummary(props) {
             lastName,
             maritalStatus,
             nickName,
-            noteCount,
             personId,
             phones,
             prefix,
@@ -400,7 +371,6 @@ function PersonPanelSummary(props) {
         isCompact,
         isExpanded,
         onClick: onClickProp,
-        showAdditionalDetails,
         tabIndex,
     } = props;
     const primaryPhone = find(phones, 'isPrimary');
@@ -450,7 +420,6 @@ function PersonPanelSummary(props) {
     useEffect(() => {
         setRenderContactInfo(
             <PersonPanelSummaryContactText
-                classes={classes}
                 isCompact={isCompact}
                 isDoNotContact={isDoNotContact}
                 isDoNotEmail={isDoNotEmail}
@@ -465,7 +434,6 @@ function PersonPanelSummary(props) {
             />,
         );
     }, [
-        classes,
         isCompact,
         isDoNotContact,
         isDoNotEmail,
@@ -505,8 +473,8 @@ function PersonPanelSummary(props) {
             [`${classes.contactInfoColumn}-has_contact_info`]: !!renderContactInfo,
         },
     );
-    const additionalDetailsColumnClasses = ClassNames(
-        classes.additionalDetailsColumn,
+    const personIdColumnClasses = ClassNames(
+        classes.personIdColumn,
         {
             [`${classes.additionalDetailsColumn}-no_contact_info`]: !renderContactInfo,
         },
@@ -564,41 +532,17 @@ function PersonPanelSummary(props) {
                         </Grid.Column>
                     )}
 
-                    {showAdditionalDetails && (personId || noteCount) && (
-                        <Grid.Column
-                            className={additionalDetailsColumnClasses}
-                            textAlign="right"
+                    <Grid.Column
+                        className={personIdColumnClasses}
+                        textAlign="right"
+                    >
+                        <Typography
+                            className={classes.personId}
+                            variant="caption"
                         >
-                            {noteCount && (
-                                <div
-                                    className={classes.noteCount}
-                                >
-                                    <Icon
-                                        className={classes.noteIcon}
-                                        color={isExpanded ? 'primary' : 'warning'}
-                                        inverse={isExpanded}
-                                        type="file-alt"
-                                    />
-
-                                    <Typography
-                                        className={classes.noteCountText}
-                                        variant="caption"
-                                    >
-                                        {noteCount}
-                                    </Typography>
-                                </div>
-                            )}
-
-                            {personId && (
-                                <Typography
-                                    className={classes.personId}
-                                    variant="caption"
-                                >
-                                    {`Id: ${personId}`}
-                                </Typography>
-                            )}
-                        </Grid.Column>
-                    )}
+                            {`Id: ${personId}`}
+                        </Typography>
+                    </Grid.Column>
                 </Grid.Row>
             </Grid>
         </div>
