@@ -21,10 +21,18 @@ import PersonPanelSummaryContactText from './personPanelSummaryContactText';
 
 const propTypes = {
     classes: PropTypes.shape({
-        grid: PropTypes.string,
         root: PropTypes.string,
-        preferredContactMethod: PropTypes.string,
-        preferredContactInfo: PropTypes.string,
+        avatar: PropTypes.string,
+        avatarColumn: PropTypes.string,
+        compact: PropTypes.string,
+        contactInfoColumn: PropTypes.string,
+        expanded: PropTypes.string,
+        grid: PropTypes.string,
+        gridRow: PropTypes.string,
+        metaInfo: PropTypes.string,
+        nameColumn: PropTypes.string,
+        personIdColumn: PropTypes.string,
+        personId: PropTypes.string,
     }),
     data: PropTypes.shape({
         avatar: PropTypes.string,
@@ -293,7 +301,7 @@ const useStyles = makeStyles((theme) => {
         contactInfoColumn: {
             display: 'none',
             width: 'auto !important',
-            '&-has_contact_info': {
+            '&$hasContactInfo': {
                 marginLeft: 'auto',
             },
             [theme.breakpoints.up(900)]: {
@@ -301,6 +309,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         expanded: {},
+        hasContactInfo: {},
         grid: {
             position: 'relative',
             zIndex: 2,
@@ -318,10 +327,11 @@ const useStyles = makeStyles((theme) => {
             marginRight: 'auto',
             width: 'auto !important',
         },
+        noContactInfo: {},
         personIdColumn: {
             width: 'auto !important',
             wordWrap: 'nowrap',
-            '&-no_contact_info': {
+            '&$noContactInfo': {
                 marginLeft: 'auto',
             },
         },
@@ -470,13 +480,13 @@ function PersonPanelSummary(props) {
     const contactInfoColumnClasses = ClassNames(
         classes.contactInfoColumn,
         {
-            [`${classes.contactInfoColumn}-has_contact_info`]: !!renderContactInfo,
+            [classes.hasContactInfo]: !!renderContactInfo,
         },
     );
     const personIdColumnClasses = ClassNames(
         classes.personIdColumn,
         {
-            [`${classes.additionalDetailsColumn}-no_contact_info`]: !renderContactInfo,
+            [classes.noContactInfo]: !renderContactInfo,
         },
     );
 
