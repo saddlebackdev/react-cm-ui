@@ -40,7 +40,7 @@ const propTypes = {
         campus: PropTypes.string,
         emails: PropTypes.arrayOf(
             PropTypes.shape({
-                email: PropTypes.string,
+                value: PropTypes.string,
                 isPrimary: PropTypes.bool,
             }),
         ),
@@ -79,7 +79,7 @@ const propTypes = {
         personId: PropTypes.number.isRequired,
         phones: PropTypes.arrayOf(
             PropTypes.shape({
-                phone: PropTypes.string,
+                value: PropTypes.string,
                 isPrimary: PropTypes.bool,
             }),
         ),
@@ -385,8 +385,8 @@ function PersonPanelSummary(props) {
     } = props;
     const primaryPhone = find(phones, 'isPrimary');
     const primaryEmail = find(emails, 'isPrimary');
-    const phone = primaryPhone && primaryPhone.displayPhoneNumber ? primaryPhone.displayPhoneNumber : 'N/A';
-    const email = primaryEmail && primaryEmail.email ? primaryEmail.email : 'N/A';
+    const phone = (primaryPhone && primaryPhone.value) || 'N/A';
+    const email = (primaryEmail && primaryEmail.value) || 'N/A';
 
     useEffect(() => {
         const isAdult = isNil(recordType) || recordType === 'adult';
