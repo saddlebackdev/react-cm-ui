@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
+import Address from '../utils/address';
 import Collapse from '../utils/collapse';
 import DataGroups from './dataGroups';
 import EmailLink from '../utils/emailLink';
@@ -19,20 +20,47 @@ import Typography from './typography';
 const propTypes = {
     children: PropTypes.node,
     data: PropTypes.shape({
-        addresses: PropTypes.arrayOf(PropTypes.shape({})),
+        addresses: PropTypes.arrayOf(
+            PropTypes.shape({
+                address1: PropTypes.string,
+                address2: PropTypes.string,
+                city: PropTypes.string,
+                country: PropTypes.string,
+                countryAlpha2: PropTypes.string,
+                isPrimary: PropTypes.bool,
+                postalCode: PropTypes.string,
+                region: PropTypes.string,
+                regionCode: PropTypes.string,
+            }),
+        ),
         allergies: PropTypes.string,
         birthDate: PropTypes.number,
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
         churchEntityName: PropTypes.string,
         commonlyAttendedService: PropTypes.arrayOf(PropTypes.shape({})),
         deceasedDate: PropTypes.number,
-        emails: PropTypes.arrayOf(PropTypes.shape({})),
+        emails: PropTypes.arrayOf(
+            PropTypes.shape({
+                isPrimary: PropTypes.bool,
+                value: PropTypes.string,
+            })
+        ),
         gradeLevel: PropTypes.string,
         isAdult: PropTypes.bool,
         isChild: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
         isStudent: PropTypes.bool,
-        phones: PropTypes.arrayOf(PropTypes.shape({})),
+        phones: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.oneOf([
+                    'cell',
+                    'home',
+                    'work',
+                ]),
+                isPrimary: PropTypes.bool,
+                value: PropTypes.string,
+            }),
+        ),
         preferredMethod: PropTypes.string,
         preferredService: PropTypes.string,
     }),
@@ -43,20 +71,20 @@ const propTypes = {
 const defaultProps = {
     children: undefined,
     data: {
-        addresses: null,
+        addresses: [],
         allergies: null,
         birthDate: null,
         churchEntities: null,
         churchEntityName: null,
         commonlyAttendedService: null,
         deceasedDate: null,
-        emails: null,
+        emails: [],
         gradeLevel: null,
         isAdult: false,
         isChild: false,
         isDoNotContact: false,
         isStudent: false,
-        phones: null,
+        phones: [],
         preferredMethod: null,
         preferredService: null,
     },
@@ -66,106 +94,117 @@ const defaultProps = {
 
 const bemClass = `${BEM_BLOCK_NAME}--details`;
 
-function setContactDataGroup({
+function setAddressDataGroup({
     addresses,
+    isChild,
+    isDoNotContact,
+}) {
+    if (!isEmpty(addresses) && !isDoNotContact && !isChild) {
+        const addressRows = map(addresses, (address) => ({
+            accessor: () => (
+                <Address
+                    address1={address.address1}
+                    address2={address.address2}
+                    city={address.city}
+                    country={address.country}
+                    countryAlpha2={address.countryAlpha2}
+                    postalCode={address.postalCode}
+                    region={address.region}
+                    regionCode={address.regionCode}
+                />
+            ),
+            fieldName: address.isPrimary ? 'Primary' : 'Address',
+        }));
+
+        return [
+            {
+                header: 'Address',
+                rows: [
+                    ...addressRows,
+                ],
+            },
+        ];
+    }
+
+    return [];
+}
+
+function setEmailDataGroup({
     emails,
     isChild,
     isDoNotContact,
-    phones,
-    preferredMethod,
 }) {
-    if (!isDoNotContact && !isChild) {
-        let phoneRow = [];
-        const primaryPhone = find(phones, 'isPrimary');
-
-        if (primaryPhone) {
-            phoneRow = [{
-                accessor: () => (
-                    <span
-                        className="color-link font-weight-semibold"
-                        onClick={() => (
-                            <TelephoneLink number={primaryPhone.displayPhoneNumber} />
-                        )}
-                        role="presentation"
-                        style={{
-                            cursor: 'pointer',
-                        }}
-                    >
-                        {primaryPhone.displayPhoneNumber}
-                    </span>
-                ),
-                fieldName: 'Cell',
-            }];
-        }
-
-        let emailRow = [];
-        const primaryEmail = find(emails, 'isPrimary');
-
-        if (primaryEmail) {
-            emailRow = [{
-                accessor: () => (
-                    <span
-                        className="color-link font-weight-semibold"
-                        onClick={() => (
-                            <EmailLink email={primaryEmail.email} />
-                        )}
-                        role="presentation"
-                        style={{
-                            cursor: 'pointer',
-                        }}
-                    >
-                        {primaryEmail.email}
-                    </span>
-                ),
-                fieldName: 'Email',
-            }];
-        }
-
-        let preferredMethodRow = [];
-
-        if (preferredMethod) {
-            preferredMethodRow = [{
-                accessor: 'preferredMethod',
-                fieldName: 'Preferred Method',
-            }];
-        }
-
-        const primaryAddress = find(addresses, 'isPrimary');
-        const addressRow = [{
+    if (!isEmpty(emails) && !isDoNotContact && !isChild) {
+        console.log('emails', emails);
+        const emailRows = map(emails, (email) => ({
             accessor: () => (
-                primaryAddress ? (
-                    <p style={{ margin: 0 }}>
-                        <span>{primaryAddress.address1}</span>
-                        <br />
-                        {primaryAddress.address2 && (
-                            <span>{primaryAddress.address2}</span>
-                        )}
-                        <span>{`${primaryAddress.city}, ${primaryAddress.countryAlpha2 === 'US' ? primaryAddress.regionCode : primaryAddress.region} ${primaryAddress.postalCode || ''}`}</span>
-                        <br />
-                        <span>{primaryAddress.country}</span>
-                    </p>
-                ) : 'N/A'
+                <EmailLink
+                    email={email.value}
+                />
             ),
-            fieldName: 'Address',
-        }];
+            fieldName: email.isPrimary ? 'Primary' : 'Email',
+        }));
 
-        if (
-            !isEmpty(phoneRow) ||
-            !isEmpty(emailRow) ||
-            !isEmpty(preferredMethodRow)
-        ) {
-            return [
-                {
-                    header: 'Contact',
-                    rows: [
-                        ...phoneRow,
-                        ...emailRow,
-                        ...preferredMethodRow,
-                        ...addressRow,
-                    ],
-                },
-            ];
-        }
+        return [
+            {
+                header: 'Email',
+                rows: [
+                    ...emailRows,
+                ],
+            },
+        ];
+    }
+
+    return [];
+}
+
+function setPhoneDataGroup({
+    isChild,
+    isDoNotContact,
+    phones,
+}) {
+    if (!isEmpty(phones) && !isDoNotContact && !isChild) {
+        const phoneRows = map(phones, (phone) => {
+            let fieldName;
+
+            switch (phone.type) {
+                case 'cell':
+                    fieldName = 'Cell';
+
+                    break;
+                case 'home':
+                    fieldName = 'Home';
+
+                    break;
+                case 'work':
+                    fieldName = 'Work';
+
+                    break;
+                default:
+            }
+
+            if (phone.isPrimary) {
+                fieldName = 'Primary';
+            }
+
+            return {
+                accessor: () => (
+                    <TelephoneLink
+                        number={phone.value}
+                    />
+                ),
+                fieldName,
+            }
+        });
+
+        return [
+            {
+                header: 'Phone',
+                rows: [
+                    ...phoneRows,
+                ],
+            },
+        ];
     }
 
     return [];
@@ -433,13 +472,20 @@ function PersonPanelDetails(props) {
             isStudent,
             preferredService,
         });
-        const contactDataGroup = setContactDataGroup({
+        const addressDataGroup = setAddressDataGroup({
             addresses,
+            isChild,
+            isDoNotContact,
+        });
+        const emailDataGroup = setEmailDataGroup({
             emails,
             isChild,
             isDoNotContact,
+        });
+        const phoneDataGroup = setPhoneDataGroup({
+            isChild,
+            isDoNotContact,
             phones,
-            preferredMethod,
         });
         const emergencyContactDataGroup = setEmergencyContactDataGroup({
             isChild,
@@ -447,7 +493,9 @@ function PersonPanelDetails(props) {
         });
         const newDataGroupsColumns = [
             ...personalDataGroup,
-            ...contactDataGroup,
+            ...addressDataGroup,
+            ...emailDataGroup,
+            ...phoneDataGroup,
             ...emergencyContactDataGroup,
             ...otherDataGroups,
         ];
