@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.12.0 - 06/09/2020
+
+#### Feature
+- [PR #154](https://github.com/saddlebackdev/react-cm-ui/pull/154) / Merge Commit 800011d9afd045cfaf822878511292bfeaf7cee0
+    - Added DataGrid Props To Support Styling.
+
 ## 9.11.1 - 06/04/2020
 
 #### Bug Fix
