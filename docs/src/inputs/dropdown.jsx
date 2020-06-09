@@ -22,7 +22,11 @@ import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
 
-const getImageUrl = (imageFileName) => `/global/images/${imageFileName}`;
+const imageFilePath = window.location.host.indexOf('localhost') > -1 ?
+    '/global/images' :
+    '/images';
+
+const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
 
@@ -264,27 +268,27 @@ export default class DisableSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/global/images/avatar1.jpg',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/global/images/avatar2.jpg',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/global/images/avatar3.jpg',
+                'avatar': '/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/global/images/avatar4.jpg',
+                'avatar': '/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/global/images/avatar5.jpg',
+                'avatar': '/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34
@@ -591,27 +595,27 @@ export default class SelectionOptionComponentSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/global/images/avatar1.jpg',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/global/images/avatar2.jpg',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/global/images/avatar3.jpg',
+                'avatar': '/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/global/images/avatar4.jpg',
+                'avatar': '/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/global/images/avatar5.jpg',
+                'avatar': '/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34
@@ -658,27 +662,27 @@ export default class SelectionUnderlineSample extends React.Component {
                 'label': 'All Users',
                 'value': -1
             }, {
-                'avatar': '/global/images/avatar1.jpg',
+                'avatar': '/images/avatar1.jpg',
                 'id': 5,
                 'label': 'Rafi Ghazarian',
                 'value': 5
             }, {
-                'avatar': '/global/images/avatar2.jpg',
+                'avatar': '/images/avatar2.jpg',
                 'id': 8,
                 'label': 'Mike Jacobs',
                 'value': 8
             }, {
-                'avatar': '/global/images/avatar3.jpg',
+                'avatar': '/images/avatar3.jpg',
                 'id': 13,
                 'label': 'Joseph Lee',
                 'value': 13
             }, {
-                'avatar': '/global/images/avatar4.jpg',
+                'avatar': '/images/avatar4.jpg',
                 'id': 21,
                 'label': 'Cameron Brewer',
                 'value': 21
             }, {
-                'avatar': '/global/images/avatar5.jpg',
+                'avatar': '/images/avatar5.jpg',
                 'id': 34,
                 'label': 'Geoffrey Roberts',
                 'value': 34

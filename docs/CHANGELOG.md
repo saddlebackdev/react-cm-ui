@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.1 - 06/09/2020
+
+#### Feature
+- [PR #153](https://github.com/saddlebackdev/react-cm-ui/pull/153) / Merge Commit 28eceeb606f2d47aa2aa8f6fe05a99ee4451b616
+    - Fix image paths for deployed CM UI Docs website.
+
 ## 0.6.0 - 06/02/2020
 
 #### Feature

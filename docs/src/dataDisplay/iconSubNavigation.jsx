@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import { last } from 'lodash';
 import React from 'react';
 import { SubNavigation } from 'react-cm-ui';
 
@@ -21,23 +22,15 @@ class ModulesIconSubNavigation extends React.PureComponent {
 
     render() {
         const { pathname } = window.location;
-        const pathnameSegments = pathname.split('/');
-        const pathnameThirdSegment = pathnameSegments[3];
-        let itemSelected;
-
-        switch (pathnameThirdSegment) {
-            case 'examples':
-                itemSelected = 1;
-
-                break;
-            default:
-                itemSelected = 0;
-        }
+        const pathSegments = pathname.split('/');
+        const lastPathSegment = last(pathSegments);
+        const isExamplesPage = lastPathSegment === 'examples';
+        const selectedIndex = isExamplesPage ? 1 : 0;
 
         return (
             <SubNavigation
                 onClick={ModulesIconSubNavigation.onSubNavClick}
-                selected={itemSelected}
+                selected={selectedIndex}
                 style={{ marginBottom: '33px' }}
             >
                 <SubNavigation.Item label="Set" />
