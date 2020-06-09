@@ -15,9 +15,17 @@ const propTypes = {
     minWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
     rowProps: PropTypes.func,
+    size: PropTypes.oneOf([
+        'small',
+        'medium',
+    ]),
     small: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
+    stretch: PropTypes.oneOfType([
+        PropTypes.oneOf(['very']),
+        PropTypes.bool,
+    ]),
     style: PropTypes.shape({}),
 };
 
@@ -28,9 +36,11 @@ const defaultProps = {
     handle: true,
     minWidth: 800,
     rowProps: undefined,
-    small: undefined,
+    size: 'small',
+    small: false,
     stickyColumns: 0,
     stickyColumnWidth: 30,
+    stretch: false,
     style: {},
 };
 
@@ -218,9 +228,11 @@ class DataGrid extends React.Component {
             id,
             moduleType,
             rowProps,
-            small,
+            size: sizeProp,
+            small: smallProp,
             stickyColumns,
             stickyColumnWidth,
+            stretch,
             style,
         } = this.props;
         const {
@@ -230,7 +242,7 @@ class DataGrid extends React.Component {
             sizes,
         } = this.state;
         const { classNamePrefix } = this;
-
+        const size = smallProp ? 'small' : sizeProp;
         const isStickyColumns = stickyColumns > 0;
         const containerClasses = ClassNames('ui', classNamePrefix, className, {
             [`${classNamePrefix}-bleed`]: bleed,
@@ -262,10 +274,11 @@ class DataGrid extends React.Component {
                             moduleType={moduleType}
                             ref={(ref) => { this.bodyTable = ref; }}
                             rowProps={rowProps}
+                            size={size}
                             sizes={sizes}
-                            small={small}
                             stickyColumnWidth={stickyColumnWidth}
                             stickyColumns={stickyColumns}
+                            stretch={stretch}
                             style={{
                                 minWidth,
                             }}
@@ -289,10 +302,11 @@ class DataGrid extends React.Component {
                             onSplitter={this.onSplitterClick}
                             onSplitterDragEnd={this.onSplitterDragEnd}
                             rowProps={rowProps}
+                            size={size}
                             sizes={sizes}
-                            small={small}
                             stickyColumnWidth={stickyColumnWidth}
                             stickyColumns={stickyColumns}
+                            stretch={stretch}
                         />
                     </div>
 
@@ -318,9 +332,10 @@ class DataGrid extends React.Component {
                     minWidth={minWidth}
                     moduleType={moduleType}
                     rowProps={rowProps}
-                    small={small}
+                    size={size}
                     stickyColumnWidth={stickyColumnWidth}
                     stickyColumns={stickyColumns}
+                    stretch={stretch}
                 />
             </div>
         );
