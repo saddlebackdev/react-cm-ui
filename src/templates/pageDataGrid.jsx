@@ -12,9 +12,17 @@ const propTypes = {
     id: PropTypes.string,
     minWidth: PropTypes.number,
     rowProps: PropTypes.func,
+    size: PropTypes.oneOf([
+        'small',
+        'medium',
+    ]),
     small: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
+    stretch: PropTypes.oneOfType([
+        PropTypes.oneOf(['very']),
+        PropTypes.bool,
+    ]),
     style: PropTypes.shape({}),
 };
 
@@ -26,9 +34,11 @@ const defaultProps = {
     id: 'page',
     minWidth: 800,
     rowProps: undefined,
+    size: 'small',
     small: undefined,
     stickyColumns: 0,
     stickyColumnWidth: 30,
+    stretch: false,
     style: {},
 };
 
@@ -43,9 +53,11 @@ function PageDataGrid(props) {
         id,
         minWidth,
         rowProps,
+        size,
         small,
         stickyColumnWidth,
         stickyColumns,
+        stretch,
         style,
     } = props;
 
@@ -61,9 +73,11 @@ function PageDataGrid(props) {
             minWidth={minWidth}
             moduleType="page"
             rowProps={rowProps}
+            size={size}
             small={small}
             stickyColumnWidth={stickyColumnWidth}
             stickyColumns={stickyColumns}
+            stretch={stretch}
             style={style}
         />
     );
