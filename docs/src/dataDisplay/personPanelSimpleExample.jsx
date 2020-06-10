@@ -1,16 +1,17 @@
 import {
+    find,
     map,
 } from 'lodash';
 import { PersonPanel } from 'react-cm-ui';
 import React, { useEffect, useState } from 'react';
-import { personPayloadDude } from './personPanelConstants';
+import { personDudePayload } from './personPanelConstants';
 
 function PersonPanelSimpleExample() {
     const [detailsData, setDetailsData] = useState({});
     const [summaryData, setSummaryData] = useState({});
 
     useEffect(() => {
-        const addresses = map(personPayloadDude.addresses, (address) => ({
+        const addresses = map(personDudePayload.addresses, (address) => ({
             address1: address.address1,
             address2: address.address2,
             city: address.city,
@@ -21,11 +22,11 @@ function PersonPanelSimpleExample() {
             region: address.region,
             regionCode: address.regionCode,
         }));
-        const emails = map(personPayloadDude.emails, (email) => ({
+        const emails = map(personDudePayload.emails, (email) => ({
             isPrimary: email.isPrimary,
             value: email.email,
         }));
-        const phones = map(personPayloadDude.phones, (phone) => {
+        const phones = map(personDudePayload.phones, (phone) => {
             let type;
 
             switch (phone.phoneTypeId) {
@@ -50,11 +51,12 @@ function PersonPanelSimpleExample() {
                 value: phone.displayPhoneNumber,
             };
         });
+        const primaryEmergencyContact = find(personDudePayload.emergencyContacts, 'isPrimary');
         let recordType;
 
-        if (personPayloadDude.isChild) {
+        if (personDudePayload.isChild) {
             recordType = 'child';
-        } else if (personPayloadDude.isStudent) {
+        } else if (personDudePayload.isStudent) {
             recordType = 'student';
         } else {
             recordType = 'adult';
@@ -62,41 +64,46 @@ function PersonPanelSimpleExample() {
 
         setDetailsData({
             addresses,
-            allergies: personPayloadDude.allergies,
-            birthdate: personPayloadDude.birthDate,
-            campus: personPayloadDude.churchEntityName,
-            commonlyAttendedService: personPayloadDude.commonlyAttendedService,
+            allergies: personDudePayload.allergies,
+            birthdate: personDudePayload.birthDate,
+            campus: personDudePayload.churchEntityName,
+            commonlyAttendedService: personDudePayload.commonlyAttendedService,
             emails,
-            gradeLevel: personPayloadDude.gradeLevel,
-            isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
-            personId: personPayloadDude.id,
+            emergencyContactAddresses: primaryEmergencyContact.addresses,
+            emergencyContactEmails: primaryEmergencyContact.emails,
+            emergencyContactName: `${primaryEmergencyContact.firstName} ${primaryEmergencyContact.lastName}`,
+            emergencyContactPhones: primaryEmergencyContact.phones,
+            emergencyContactPreferMethod: primaryEmergencyContact.preferredMethod,
+            emergencyContactRelation: primaryEmergencyContact.relationshipName,
+            gradeLevel: personDudePayload.gradeLevel,
+            isDoNotContact: personDudePayload.contactPreferences.doNotContact,
             phones,
-            preferredService: personPayloadDude.preferredService,
+            preferredService: personDudePayload.preferredService,
             recordType,
         });
 
         setSummaryData({
-            avatar: personPayloadDude.profilePictureUrl,
-            birthdate: personPayloadDude.birthDate,
-            campus: personPayloadDude.churchEntityName,
+            avatar: personDudePayload.profilePictureUrl,
+            birthdate: personDudePayload.birthDate,
+            campus: personDudePayload.churchEntityName,
             emails,
-            firstName: personPayloadDude.firstName,
-            gender: personPayloadDude.gender,
-            gradeLevel: personPayloadDude.gradeLevel,
-            isDoNotContact: personPayloadDude.contactPreferences.doNotContact,
-            isDoNotEmail: personPayloadDude.contactPreferences.doNotEmail,
-            isDoNotMail: personPayloadDude.contactPreferences.doNotMail,
-            isDoNotPhone: personPayloadDude.contactPreferences.doNotPhone,
-            isDoNotText: personPayloadDude.contactPreferences.doNotText,
-            lastName: personPayloadDude.lastName,
-            maritalStatus: personPayloadDude.maritalStatus,
-            nickName: personPayloadDude.nickName,
-            personId: personPayloadDude.id,
+            firstName: personDudePayload.firstName,
+            gender: personDudePayload.gender,
+            gradeLevel: personDudePayload.gradeLevel,
+            isDoNotContact: personDudePayload.contactPreferences.doNotContact,
+            isDoNotEmail: personDudePayload.contactPreferences.doNotEmail,
+            isDoNotMail: personDudePayload.contactPreferences.doNotMail,
+            isDoNotPhone: personDudePayload.contactPreferences.doNotPhone,
+            isDoNotText: personDudePayload.contactPreferences.doNotText,
+            lastName: personDudePayload.lastName,
+            maritalStatus: personDudePayload.maritalStatus,
+            nickName: personDudePayload.nickName,
+            personId: personDudePayload.id,
             phones,
-            preferredMethod: personPayloadDude.contactPreferences.preferredMethod,
-            prefix: personPayloadDude.prefix,
+            preferredMethod: personDudePayload.contactPreferences.preferredMethod,
+            prefix: personDudePayload.prefix,
             recordType,
-            suffix: personPayloadDude.suffix,
+            suffix: personDudePayload.suffix,
         });
     }, []);
 

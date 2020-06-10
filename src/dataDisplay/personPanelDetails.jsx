@@ -2,10 +2,11 @@ import {
     find,
     isEmpty,
     map,
+    remove,
 } from 'lodash';
+import ClassNames from 'classnames';
 import makeStyles from 'react-cm-ui/styles/makeStyles'; // eslint-disable-line import/extensions
 import moment from 'moment-timezone';
-import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
@@ -20,49 +21,60 @@ import Typography from './typography';
 const propTypes = {
     children: PropTypes.node,
     data: PropTypes.shape({
-        addresses: PropTypes.arrayOf(
-            PropTypes.shape({
-                address1: PropTypes.string,
-                address2: PropTypes.string,
-                city: PropTypes.string,
-                country: PropTypes.string,
-                countryAlpha2: PropTypes.string,
-                isPrimary: PropTypes.bool,
-                postalCode: PropTypes.string,
-                region: PropTypes.string,
-                regionCode: PropTypes.string,
-            }),
-        ),
+        addresses: PropTypes.arrayOf(PropTypes.shape({
+            address1: PropTypes.string,
+            address2: PropTypes.string,
+            city: PropTypes.string,
+            country: PropTypes.string,
+            countryAlpha2: PropTypes.string,
+            isPrimary: PropTypes.bool,
+            postalCode: PropTypes.string,
+            region: PropTypes.string,
+            regionCode: PropTypes.string,
+        })),
         allergies: PropTypes.string,
-        birthDate: PropTypes.number,
+        birthdate: PropTypes.number,
+        campus: PropTypes.string,
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
         churchEntityName: PropTypes.string,
         commonlyAttendedService: PropTypes.arrayOf(PropTypes.shape({})),
         deceasedDate: PropTypes.number,
-        emails: PropTypes.arrayOf(
-            PropTypes.shape({
-                isPrimary: PropTypes.bool,
-                value: PropTypes.string,
-            })
-        ),
+        emails: PropTypes.arrayOf(PropTypes.shape({
+            isPrimary: PropTypes.bool,
+            value: PropTypes.string,
+        })),
+        emergencyContactAddresses: PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.string,
+            isPrimary: PropTypes.bool,
+        })),
+        emergencyContactEmails: PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.string,
+            isPrimary: PropTypes.bool,
+        })),
+        emergencyContactName: PropTypes.string,
+        emergencyContactPhones: PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.string,
+            isPrimary: PropTypes.bool,
+        })),
+        emergencyContactPreferMethod: PropTypes.oneOf([
+            'email',
+            'letter',
+            'none',
+            'phone',
+            'text',
+        ]),
+        emergencyContactRelation: PropTypes.string,
         gradeLevel: PropTypes.string,
-        isAdult: PropTypes.bool,
         isChild: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
         isStudent: PropTypes.bool,
-        phones: PropTypes.arrayOf(
-            PropTypes.shape({
-                type: PropTypes.oneOf([
-                    'cell',
-                    'home',
-                    'work',
-                ]),
-                isPrimary: PropTypes.bool,
-                value: PropTypes.string,
-            }),
-        ),
-        preferredMethod: PropTypes.string,
+        phones: PropTypes.arrayOf(PropTypes.shape({
+            type: PropTypes.oneOf(['cell', 'home', 'work']),
+            isPrimary: PropTypes.bool,
+            value: PropTypes.string,
+        })),
         preferredService: PropTypes.string,
+        recordType: PropTypes.oneOf(['adult', 'child', 'student']),
     }),
     isExpanded: PropTypes.bool,
     otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
@@ -73,20 +85,26 @@ const defaultProps = {
     data: {
         addresses: [],
         allergies: null,
-        birthDate: null,
+        birthdate: null,
+        campus: null,
         churchEntities: null,
         churchEntityName: null,
         commonlyAttendedService: null,
         deceasedDate: null,
         emails: [],
+        emergencyContactAddresses: null,
+        emergencyContactEmails: null,
+        emergencyContactName: null,
+        emergencyContactPhones: null,
+        emergencyContactPreferMethod: null,
+        emergencyContactRelation: null,
         gradeLevel: null,
-        isAdult: false,
         isChild: false,
         isDoNotContact: false,
         isStudent: false,
         phones: [],
-        preferredMethod: null,
         preferredService: null,
+        recordType: 'adult',
     },
     isExpanded: false,
     otherDataGroups: [],
@@ -135,7 +153,6 @@ function setEmailDataGroup({
     isDoNotContact,
 }) {
     if (!isEmpty(emails) && !isDoNotContact && !isChild) {
-        console.log('emails', emails);
         const emailRows = map(emails, (email) => ({
             accessor: () => (
                 <EmailLink
@@ -158,44 +175,46 @@ function setEmailDataGroup({
     return [];
 }
 
+function getPhoneFieldName(type, isPrimary) {
+    let fieldName;
+
+    switch (type) {
+        case 'cell':
+            fieldName = 'Cell';
+
+            break;
+        case 'home':
+            fieldName = 'Home';
+
+            break;
+        case 'work':
+            fieldName = 'Work';
+
+            break;
+        default:
+    }
+
+    if (isPrimary) {
+        fieldName = 'Primary';
+    }
+
+    return fieldName;
+}
+
 function setPhoneDataGroup({
     isChild,
     isDoNotContact,
     phones,
 }) {
     if (!isEmpty(phones) && !isDoNotContact && !isChild) {
-        const phoneRows = map(phones, (phone) => {
-            let fieldName;
-
-            switch (phone.type) {
-                case 'cell':
-                    fieldName = 'Cell';
-
-                    break;
-                case 'home':
-                    fieldName = 'Home';
-
-                    break;
-                case 'work':
-                    fieldName = 'Work';
-
-                    break;
-                default:
-            }
-
-            if (phone.isPrimary) {
-                fieldName = 'Primary';
-            }
-
-            return {
-                accessor: () => (
-                    <TelephoneLink
-                        number={phone.value}
-                    />
-                ),
-                fieldName,
-            }
-        });
+        const phoneRows = map(phones, (phone) => ({
+            accessor: () => (
+                <TelephoneLink
+                    number={phone.value}
+                />
+            ),
+            fieldName: getPhoneFieldName(phone.type, phone.isPrimary),
+        }));
 
         return [
             {
@@ -211,12 +230,13 @@ function setPhoneDataGroup({
 }
 
 function setEmergencyContactDataGroup({
+    emergencyContactAddresses,
+    emergencyContactEmails,
     emergencyContactName,
+    emergencyContactPhones,
     emergencyContactRelation,
-    emergencyContactPreferMethodText,
+    emergencyContactPreferMethod,
 }) {
-    // const primaryEmergencyContact = find(emergencyContacts, 'isPrimary');
-
     let nameRow = [];
 
     if (emergencyContactName) {
@@ -235,19 +255,112 @@ function setEmergencyContactDataGroup({
         }];
     }
 
-    let emergencyContactPreferMethodRow = [];
+    let preferMethodRow = [];
+    let addressRows = [];
 
-    if (emergencyContactPreferMethodText) {
-        emergencyContactPreferMethodRow = [{
-            accessor: 'emergencyContactPreferMethodText',
-            fieldName: emergencyContactPreferMethod,
-        }];
+    if (emergencyContactAddresses) {
+        if (emergencyContactPreferMethod === 'letter') {
+            const primaryPreferredAddress = remove(emergencyContactAddresses, 'isPrimary')[0];
+
+            preferMethodRow = [
+                ...preferMethodRow,
+                {
+                    accessor: () => (
+                        <EmailLink
+                            email={primaryPreferredAddress.value}
+                        />
+                    ),
+                    fieldName: `Prefers ${emergencyContactPreferMethod}`,
+                },
+            ];
+        }
+
+        addressRows = map(emergencyContactAddresses, (address) => ({
+            accessor: () => (
+                <Address
+                    address1={address.address1}
+                    address2={address.address2}
+                    city={address.city}
+                    country={address.country}
+                    countryAlpha2={address.countryAlpha2}
+                    postalCode={address.postalCode}
+                    region={address.region}
+                    regionCode={address.regionCode}
+                />
+            ),
+            fieldName: 'Address',
+        }));
+    }
+
+    let emailRows = [];
+
+    if (emergencyContactEmails) {
+        if (emergencyContactPreferMethod === 'email') {
+            const primaryPreferredEmail = remove(emergencyContactEmails, 'isPrimary')[0];
+
+            preferMethodRow = [
+                ...preferMethodRow,
+                {
+                    accessor: () => (
+                        <EmailLink
+                            email={primaryPreferredEmail.value}
+                        />
+                    ),
+                    fieldName: `Prefers ${emergencyContactPreferMethod}`,
+                },
+            ];
+        }
+
+        emailRows = map(emergencyContactEmails, (email) => ({
+            accessor: () => (
+                <EmailLink
+                    email={email.value}
+                />
+            ),
+            fieldName: 'Email',
+        }));
+    }
+
+    let phoneRows = [];
+
+    if (emergencyContactPhones && emergencyContactPreferMethod) {
+        if (
+            emergencyContactPreferMethod === 'text' ||
+            emergencyContactPreferMethod === 'phone'
+        ) {
+            const primaryPreferredPhone = remove(emergencyContactPhones, 'isPrimary')[0];
+
+            preferMethodRow = [
+                ...preferMethodRow,
+                {
+                    accessor: () => (
+                        <TelephoneLink
+                            number={primaryPreferredPhone.value}
+                        />
+                    ),
+                    fieldName: `Prefers ${emergencyContactPreferMethod}`,
+                },
+            ];
+        }
+
+        phoneRows = map(emergencyContactPhones, (phone) => ({
+            accessor: () => (
+                <TelephoneLink
+                    number={phone.value}
+                />
+            ),
+            fieldName: 'Phone',
+        }));
     }
 
     if (
-        !isEmpty(emergencyContactName) ||
-        !isEmpty(emergencyContactRelation) ||
-        !isEmpty(emergencyContactPreferMethodText)
+        !isEmpty(nameRow) &&
+        !isEmpty(relationRow) &&
+        (
+            !isEmpty(addressRows) ||
+            !isEmpty(emailRows) ||
+            !isEmpty(phoneRows)
+        )
     ) {
         return [
             {
@@ -255,7 +368,10 @@ function setEmergencyContactDataGroup({
                 rows: [
                     ...nameRow,
                     ...relationRow,
-                    ...emergencyContactPreferMethodRow,
+                    ...preferMethodRow,
+                    ...phoneRows,
+                    ...emailRows,
+                    ...addressRows,
                 ],
             },
         ];
@@ -266,9 +382,9 @@ function setEmergencyContactDataGroup({
 
 function setPersonalDataGroup({
     allergies,
-    birthDate,
+    birthdate,
+    campus,
     churchEntities,
-    churchEntityName,
     commonlyAttendedService,
     deceasedDate,
     gradeLevel,
@@ -278,10 +394,10 @@ function setPersonalDataGroup({
 }) {
     let birthdayRow = [];
 
-    if (birthDate) {
+    if (birthdate) {
         birthdayRow = [{
             accessor: () => (
-                birthDate ? moment.unix(birthDate).utc().format('MM/DD/YYYY') : 'N/A'
+                birthdate ? moment.unix(birthdate).utc().format('MM/DD/YYYY') : 'N/A'
             ),
             fieldName: 'Birthday',
         }];
@@ -372,9 +488,9 @@ function setPersonalDataGroup({
 
     let homeCampusRow = [];
 
-    if (churchEntityName) {
+    if (campus) {
         homeCampusRow = [{
-            accessor: 'churchEntityName',
+            accessor: 'campus',
             fieldName: 'Home Campus',
         }];
     }
@@ -425,6 +541,9 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
+        dataGroups: {
+            margin: '0 -22px !important',
+        },
         innerContainer: {
             padding: 22,
         },
@@ -442,32 +561,36 @@ function PersonPanelDetails(props) {
     const {
         addresses,
         allergies,
-        birthDate,
+        birthdate,
+        campus,
         churchEntities,
-        churchEntityName,
         commonlyAttendedService,
         deceasedDate,
         emails,
+        emergencyContactAddresses,
+        emergencyContactEmails,
+        emergencyContactName,
+        emergencyContactPhones,
+        emergencyContactPreferMethod,
+        emergencyContactRelation,
         gradeLevel,
-        isAdult,
-        isChild,
         isDoNotContact,
-        isStudent,
         phones,
-        preferredMethod,
         preferredService,
+        recordType,
     } = data;
+    const isChild = recordType === 'child';
+    const isStudent = recordType === 'student';
 
     useEffect(() => {
         const personalDataGroup = setPersonalDataGroup({
             allergies,
-            birthDate,
+            birthdate,
+            campus,
             churchEntities,
-            churchEntityName,
             commonlyAttendedService,
             deceasedDate,
             gradeLevel,
-            isAdult,
             isChild,
             isStudent,
             preferredService,
@@ -488,8 +611,12 @@ function PersonPanelDetails(props) {
             phones,
         });
         const emergencyContactDataGroup = setEmergencyContactDataGroup({
-            isChild,
-            isDoNotContact,
+            emergencyContactAddresses,
+            emergencyContactEmails,
+            emergencyContactName,
+            emergencyContactPhones,
+            emergencyContactPreferMethod,
+            emergencyContactRelation,
         });
         const newDataGroupsColumns = [
             ...personalDataGroup,
@@ -504,20 +631,24 @@ function PersonPanelDetails(props) {
     }, [
         addresses,
         allergies,
-        birthDate,
+        birthdate,
+        campus,
         churchEntities,
-        churchEntityName,
         commonlyAttendedService,
         deceasedDate,
         emails,
+        emergencyContactAddresses,
+        emergencyContactEmails,
+        emergencyContactName,
+        emergencyContactPhones,
+        emergencyContactPreferMethod,
+        emergencyContactRelation,
         gradeLevel,
-        isAdult,
         isChild,
         isDoNotContact,
         isStudent,
         otherDataGroups,
         phones,
-        preferredMethod,
         preferredService,
     ]);
 
@@ -543,6 +674,7 @@ function PersonPanelDetails(props) {
 
                     {shouldDataGroupsRender && (
                         <DataGroups
+                            className={classes.dataGroups}
                             columns={dataGroupsColumns}
                             data={data}
                             moduleType="page"
