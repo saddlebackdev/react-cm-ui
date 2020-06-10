@@ -18,6 +18,7 @@ import makeStyles from 'react-cm-ui/styles/makeStyles';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
 import PersonPanelSummaryContactText from './personPanelSummaryContactText';
+import { ENTER_KEY_CODE } from '../global/constants';
 
 const propTypes = {
     classes: PropTypes.shape({
@@ -462,7 +463,9 @@ function PersonPanelSummary(props) {
     };
 
     const onKeyDown = (event) => {
-        onClickProp(event);
+        if (event.keyCode === ENTER_KEY_CODE) {
+            onClickProp(event);
+        }
     };
 
     const rootClasses = ClassNames(
