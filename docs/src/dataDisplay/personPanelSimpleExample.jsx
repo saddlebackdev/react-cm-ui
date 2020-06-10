@@ -107,6 +107,14 @@ function PersonPanelSimpleExample() {
         });
     }, []);
 
+    const onSelectYesClick = () => {
+        console.log('Selected!');
+    };
+
+    const onViewRecordYesClick = () => {
+        console.log('Routing!');
+    };
+
     return (
         <PersonPanel>
             <PersonPanel.Summary
@@ -115,6 +123,16 @@ function PersonPanelSimpleExample() {
 
             <PersonPanel.Details
                 data={detailsData}
+                selectButtonProps={{
+                    id: 'the_dude_select_id',
+                    prompt: true,
+                    onYesClick: onSelectYesClick,
+                }}
+                viewRecordButtonProps={{
+                    id: 'the_dude_view_record_id',
+                    prompt: true,
+                    onYesClick: onViewRecordYesClick,
+                }}
             />
         </PersonPanel>
     );

@@ -9,12 +9,13 @@ import makeStyles from 'react-cm-ui/styles/makeStyles'; // eslint-disable-line i
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { BEM_BLOCK_NAME } from './personPanelConstants';
+import { BEM_DETAILS_NAME } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
 import Address from '../utils/address';
 import Collapse from '../utils/collapse';
 import DataGroups from './dataGroups';
 import EmailLink from '../utils/emailLink';
+import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
 import TelephoneLink from '../utils/telephoneLink';
 import Typography from './typography';
 
@@ -77,11 +78,31 @@ const propTypes = {
         recordType: PropTypes.oneOf(['adult', 'child', 'student']),
     }),
     isExpanded: PropTypes.bool,
+    selectButtonProps: PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        onClick: PropTypes.func,
+        onKeyDownClick: PropTypes.func,
+        onPromptCancelClick: PropTypes.func,
+        onPromptConfirmClick: PropTypes.func,
+        prompt: PropTypes.bool,
+        promptId: PropTypes.bool,
+    }),
     otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
+    viewRecordButtonProps: PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        onClick: PropTypes.func,
+        onKeyDownClick: PropTypes.func,
+        onPromptCancelClick: PropTypes.func,
+        onPromptConfirmClick: PropTypes.func,
+        prompt: PropTypes.bool,
+        promptId: PropTypes.bool,
+    }),
 };
 
 const defaultProps = {
-    children: undefined,
+    children: null,
     data: {
         addresses: [],
         allergies: null,
@@ -107,10 +128,10 @@ const defaultProps = {
         recordType: 'adult',
     },
     isExpanded: false,
+    selectButtonProps: {},
     otherDataGroups: [],
+    viewRecordButtonProps: {},
 };
-
-const bemClass = `${BEM_BLOCK_NAME}--details`;
 
 function setAddressDataGroup({
     addresses,
@@ -531,7 +552,7 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            [`&.${bemClass}`]: {
+            [`&.${BEM_DETAILS_NAME}`]: {
                 backgroundColor: palette.background.primary,
                 color: palette.text.primary,
                 padding: 0,
@@ -541,8 +562,11 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
+        actions: {
+            marginTop: '33px',
+        },
         dataGroups: {
-            margin: '0 -22px !important',
+            margin: '0 -22px -22px !important',
         },
         innerContainer: {
             padding: 22,
@@ -556,6 +580,8 @@ function PersonPanelDetails(props) {
         data,
         isExpanded,
         otherDataGroups,
+        selectButtonProps,
+        viewRecordButtonProps,
     } = props;
     const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
     const {
@@ -656,9 +682,9 @@ function PersonPanelDetails(props) {
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
-        [`${bemClass}`],
+        [`${BEM_DETAILS_NAME}`],
         {
-            [`${bemClass}-is_expanded`]: isExpanded,
+            [`${BEM_DETAILS_NAME}-is_expanded`]: isExpanded,
         },
     );
     const shouldCoreMilestonesRender = true;
@@ -682,6 +708,29 @@ function PersonPanelDetails(props) {
                     )}
 
                     {children}
+
+                    {(!isEmpty(selectButtonProps) || !isEmpty(viewRecordButtonProps)) && (
+                        <div
+                            className={classes.actions}
+                        >
+                            {!isEmpty(selectButtonProps) && (
+                                <PersonPanelDetailsActionButton
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
+                                    {...selectButtonProps}
+                                    label="Select"
+                                />
+                            )}
+
+                            {!isEmpty(viewRecordButtonProps) && (
+                                <PersonPanelDetailsActionButton
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
+                                    {...viewRecordButtonProps}
+                                    label="View Record"
+                                    outlined
+                                />
+                            )}
+                        </div>
+                    )}
                 </div>
             </Collapse>
         </div>
