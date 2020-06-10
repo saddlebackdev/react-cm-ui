@@ -15,6 +15,7 @@ import Address from '../utils/address';
 import Collapse from '../utils/collapse';
 import DataGroups from './dataGroups';
 import EmailLink from '../utils/emailLink';
+import PersonCoreMilestones from './personCoreMilestones';
 import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
 import TelephoneLink from '../utils/telephoneLink';
 import Typography from './typography';
@@ -66,9 +67,7 @@ const propTypes = {
         ]),
         emergencyContactRelation: PropTypes.string,
         gradeLevel: PropTypes.string,
-        isChild: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
-        isStudent: PropTypes.bool,
         phones: PropTypes.arrayOf(PropTypes.shape({
             type: PropTypes.oneOf(['cell', 'home', 'work']),
             isPrimary: PropTypes.bool,
@@ -120,9 +119,7 @@ const defaultProps = {
         emergencyContactPreferMethod: null,
         emergencyContactRelation: null,
         gradeLevel: null,
-        isChild: false,
         isDoNotContact: false,
-        isStudent: false,
         phones: [],
         preferredService: null,
         recordType: 'adult',
@@ -695,7 +692,9 @@ function PersonPanelDetails(props) {
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
                     {shouldCoreMilestonesRender && (
-                        <div>Core Milestones</div>
+                        <PersonCoreMilestones
+                            recordType={recordType}
+                        />
                     )}
 
                     {shouldDataGroupsRender && (
