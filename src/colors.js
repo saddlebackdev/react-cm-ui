@@ -30,10 +30,12 @@ const purpleDark = '#9958d2';
 
 export const backgroundColor = {
     default: nutrualWhite,
+    nutrualTwo,
 };
 
 export const borderColor = {
     default: nutrualThree,
+    nutrualWhite,
 };
 
 export const color = {

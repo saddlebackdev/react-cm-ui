@@ -46,6 +46,7 @@
         # Overwriting eslint-config-airbnb-base/rules/imports.js
         "import/order": ["error", { groups: [["builtin", "external", "internal"]] }],
         "import/no-unresolved": [0],
+        "linebreak-style": ["error", "windows"], #remove
         # Overwriting eslint-config-airbnb/rules/react.js
         "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".test.js"] }],
         "react/jsx-fragments": ["error", "element"],
