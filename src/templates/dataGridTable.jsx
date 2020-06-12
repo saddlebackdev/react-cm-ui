@@ -12,7 +12,11 @@ const propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
-    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        className: PropTypes.string,
+        id: PropTypes.string,
+        style: PropTypes.shape({}),
+    })).isRequired,
     data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
@@ -22,8 +26,15 @@ const propTypes = {
     onSplitter: PropTypes.func,
     onSplitterDragEnd: PropTypes.func,
     rowProps: PropTypes.func,
+    size: PropTypes.oneOf([
+        'small',
+        'medium',
+    ]),
     sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
-    small: PropTypes.bool,
+    stretch: PropTypes.oneOfType([
+        PropTypes.oneOf(['very']),
+        PropTypes.bool,
+    ]),
     style: PropTypes.shape({}),
 };
 
@@ -37,8 +48,9 @@ const defaultProps = {
     onSplitter: undefined,
     onSplitterDragEnd: undefined,
     rowProps: undefined,
+    size: 'small',
     sizes: undefined,
-    small: true,
+    stretch: false,
     style: undefined,
 };
 
@@ -78,7 +90,7 @@ class DataGridTable extends React.PureComponent {
     render() {
         const {
             classNamePrefix,
-            bleed,
+            bleed: bleedProp,
             className,
             columns,
             data,
@@ -88,10 +100,12 @@ class DataGridTable extends React.PureComponent {
             id,
             idPrefix,
             rowProps,
+            size,
             sizes,
-            small,
+            stretch,
             style,
         } = this.props;
+        const bleed = bleedProp ? 'very' : stretch;
         const containerClasses = ClassNames('ui', `${classNamePrefix}_table`, className);
         const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
         const isSelectable =
@@ -107,8 +121,8 @@ class DataGridTable extends React.PureComponent {
                     className={`${classNamePrefix}_table_component`}
                     fontSize={fontSize}
                     selectable={isSelectable}
-                    small={small}
-                    stretch={bleed ? 'very' : null}
+                    size={size}
+                    stretch={bleed}
                 >
                     <Table.Header>
                         <Table.Row>
@@ -117,13 +131,20 @@ class DataGridTable extends React.PureComponent {
                                     idPrefix === 'column' &&
                                     handle &&
                                     _.last(columns) === column;
+                                const headerCellClasses = ClassNames(
+                                    `${classNamePrefix}_table_header_cell`,
+                                    column.className,
+                                );
 
                                 return (
                                     <Table.HeaderCell
-                                        className={`${classNamePrefix}_table_header_cell`}
+                                        className={headerCellClasses}
+                                        id={column.id}
                                         key={`tableBodyRow-${index}`}
+                                        style={column.style}
                                     >
                                         {column.header}
+
                                         {hasSplitter && (
                                             <DragListener
                                                 className={`${classNamePrefix}_table_header_handle`}

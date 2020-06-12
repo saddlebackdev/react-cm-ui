@@ -22,17 +22,17 @@ import { navigationItems } from './navigationConstants';
 
 const propTypes = {
     classes: PropTypes.shape({
-        divider: PropTypes.shape({}),
-        header: PropTypes.shape({}),
-        headerSection: PropTypes.shape({}),
-        headerSubSection: PropTypes.shape({}),
-        logo: PropTypes.shape({}),
-        logoContainer: PropTypes.shape({}),
-        packageVersion: PropTypes.shape({}),
-        root: PropTypes.shape({}),
-        scrollBarInner: PropTypes.shape({}),
-        ul: PropTypes.shape({}),
-        ulLink: PropTypes.shape({}),
+        divider: PropTypes.string,
+        header: PropTypes.string,
+        headerSection: PropTypes.string,
+        headerSubSection: PropTypes.string,
+        logo: PropTypes.string,
+        logoContainer: PropTypes.string,
+        packageVersion: PropTypes.string,
+        root: PropTypes.string,
+        scrollBarInner: PropTypes.string,
+        ul: PropTypes.string,
+        ulLink: PropTypes.string,
     }).isRequired,
     toggleNavigation: PropTypes.func.isRequired,
 };

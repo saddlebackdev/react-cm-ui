@@ -115,11 +115,9 @@ class TableSampleOnClick extends React.PureComponent {
         this.onClick = this.onClick.bind(this);
     }
 
-    /* eslint-disable class-methods-use-this */
     onClick() {
         window.alert('Clayton Kershaw!'); // eslint-disable-line no-alert
     }
-    /* eslint-enable class-methods-use-this */
 
     render() {
         return (

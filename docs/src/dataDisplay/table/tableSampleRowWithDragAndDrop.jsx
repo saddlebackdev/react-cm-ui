@@ -18,11 +18,9 @@ class TableSampleRowWithDragAndDrop extends React.PureComponent {
         this.setState({ isDragging: false });
     }
 
-    /* eslint-disable class-methods-use-this */
     onDragOver(event) {
         event.preventDefault();
     }
-    /* eslint-disable class-methods-use-this */
 
     onDragStart(event) {
         const { index } = this.props;

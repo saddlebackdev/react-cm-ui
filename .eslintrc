@@ -10,7 +10,9 @@
     },
     "parser": "babel-eslint",
     "rules": {
-        # Overwriting eslint-config-airbnb-base/rules/style.js
+        // Overwriting eslint-config-airbnb-base/rules/best-practices.js
+        "class-methods-use-this": [0],
+        // Overwriting eslint-config-airbnb-base/rules/style.js
         "indent": ["error", 4, {
             "SwitchCase": 1,
             "VariableDeclarator": 1,
@@ -33,7 +35,7 @@
             "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
             "ignoreComments": false
         }],
-        # Added ignoreTemplateLiterals
+        // Added ignoreTemplateLiterals
         "max-len": ["error", 100, 2, {
             "ignoreUrls": true,
             "ignoreComments": false,
@@ -43,12 +45,11 @@
             "ignoreTemplateLiterals": true
         }],
         "operator-linebreak": ["error", "after"],
-        # Overwriting eslint-config-airbnb-base/rules/imports.js
-        "import/order": ["error", { groups: [["builtin", "external", "internal"]] }],
+        // Overwriting eslint-config-airbnb-base/rules/imports.js
+        "import/order": ["error", { "groups": [["builtin", "external", "internal"]] }],
         "import/no-unresolved": [0],
-        "linebreak-style": ["error", "windows"], #remove
-        # Overwriting eslint-config-airbnb/rules/react.js
-        "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".test.js"] }],
+        // Overwriting eslint-config-airbnb/rules/react.js
+        "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".test.js"] }],
         "react/jsx-fragments": ["error", "element"],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
