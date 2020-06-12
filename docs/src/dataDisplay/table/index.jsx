@@ -1,9 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable global-require */
 
-import React, {
-    useState,
-} from 'react';
+import React from 'react';
 import {
     Card,
     Header,
@@ -121,6 +119,12 @@ const propDefinitions = [
         description: 'Headers may be formatted with a subheader',
         allowedTypes: '',
     }, {
+        name: 'stickyColumnCount',
+        type: 'number',
+        default: '',
+        description: 'Sticky columns number, from left to right',
+        allowedTypes: '',
+    }, {
         name: 'stretch',
         type: 'bool or enum',
         default: '',
@@ -142,148 +146,89 @@ const propDefinitions = [
 ];
 
 export default function CollectionsTable() {
-    const [stickyColumns, setStickyColumns] = useState(1);
-    console.log('COLS', stickyColumns);
+
     return (
         <Main page="headers">
             <TitleBar title="Table" />
 
             <Main.Content>
-                {/* <Card>
+                <Card>
                     <Header size="large">Props</Header>
 
                     <TableProps props={propDefinitions} />
-                </Card> */}
+                </Card>
 
                 {/* Table */}
-                {/* <TableSample /> */}
+                <TableSample />
 
                 {/* Basic Table */}
-                {/* <TableSampleBasic /> */}
+                <TableSampleBasic />
 
                 {/* Celled Table */}
-                {/* <TableSampleCelled /> */}
+                <TableSampleCelled />
 
                 {/* Collapsing Table */}
-                {/* <TableSampleCollapsing /> */}
+                <TableSampleCollapsing />
 
                 {/* Definition Table */}
-                {/* <TableSampleDefinition /> */}
+                <TableSampleDefinition />
 
                 {/* Fixed Table */}
-                {/* <TableSampleFixed /> */}
+                <TableSampleFixed />
 
                 {/* Font Size */}
-                {/* <TableSampleFontSize /> */}
+                <TableSampleFontSize />
 
                 {/* Full Width Table */}
-                {/* <TableSampleFullWidth /> */}
+                <TableSampleFullWidth />
 
                 {/* Selectable Table */}
-                {/* <TableSampleSelectable /> */}
+                <TableSampleSelectable />
 
                 {/* Single Line Table */}
-                {/* <TableSampleSingleLine /> */}
+                <TableSampleSingleLine />
 
                 {/* Size */}
-                {/* <TableSampleSize /> */}
+                <TableSampleSize />
 
                 {/* Stretch Table */}
-                {/* <TableSampleStretch /> */}
+                <TableSampleStretch />
 
                 {/* Striped Table */}
-                {/* <TableSampleStriped /> */}
+                <TableSampleStriped />
 
                 {/* Active */}
-                {/* <TableSampleActive /> */}
+                <TableSampleActive />
 
                 {/* Disabled */}
-                {/* <TableSampleDisabled /> */}
+                <TableSampleDisabled />
 
                 {/* Text Align */}
-                {/* <TableSampleTextAlign /> */}
+                <TableSampleTextAlign />
 
                 {/* Vertical Align */}
-                {/* <TableSampleVerticalAlign /> */}
+                <TableSampleVerticalAlign />
 
                 {/* onClick Event Handler Samples */}
-                {/* <TableSampleOnClick /> */}
+                <TableSampleOnClick />
 
                 {/* Responsive Width */}
-                {/* <TableSampleResponsiveWidth /> */}
+                <TableSampleResponsiveWidth />
 
                 {/* Drag and Drop Row Reordering */}
-                {/* <TableSampleDragAndDropRowReordering /> */}
-                <input 
-                    type="number" 
-                    max={10} 
-                    min={0} 
-                    onChange={({target}) => {
-                        setStickyColumns(parseInt(target.value));
-                    }}
-                    style={{
-                        position: 'fixed',
-                        top: 80,
-                        right: 20,
-                    }}
-                    value={stickyColumns}
-                />
+                <TableSampleDragAndDropRowReordering />
+
                 <Header anchor="basic-table" size="large" style={{ marginTop: '55px' }} sub>
                     Sticky Columns
-                    {/* <Header.Subheader>
+                    <Header.Subheader>
                         A table can be more basic, stripping UI away.
-                    </Header.Subheader> */}
+                    </Header.Subheader>
                 </Header>
-                
-                <h1>Basics</h1>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic /> 
-                <h2>Celled</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic celled/>
-                <h2>fixed</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic fixed/>
-                <h2>fixed single line</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic fixed singleLine/>
-                <h2>Collapsing</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic collapsing={true}/>
-                <h2>Definition</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic definition/>
-                <h2>Fullwidth</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic definition fullwidth/>
-                <h2>stretch</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic stretch/>
-                <h2>stretch very</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic stretch="very"/>
-                <h2>selectable</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic selectable/>
-                <h2>striped</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} basic striped/>
 
-                <h1>Defaults</h1>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns}/>
-                <h2>Celled</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} celled/>
-                <h2>fixed</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} fixed/>
-                <h2>fixed single line</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} fixed singleLine/>
-                <h2>Collapsing</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} collapsing={true}/>
-                <h2>Definition</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} definition/>
-                <h2>Fullwidth</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} definition fullWidth/>
-                <h2>stretch</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} stretch/>
-                <h2>stretch very</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} stretch="very"/>
-                <h2>selectable</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} selectable/>
-                <h2>striped</h2>
-                <TableSampleStickyColumns stickyColumnCount={stickyColumns} striped/>
-                
-                {/* <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                <TableSampleStickyColumns />
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {require('!!raw-loader!./tableSampleStickyColumns').default}
-                </Highlighter> */}
+                </Highlighter>
             </Main.Content>
         </Main>
     );
