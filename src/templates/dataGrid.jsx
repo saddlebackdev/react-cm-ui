@@ -106,12 +106,12 @@ class DataGrid extends React.Component {
             currentStickyColumnWidth = theWidth;
         }
 
-        for (let i = 0; i < data.length; i += 1) {
+        if (_.isEmpty(data)) {
             const row = [];
 
             for (let j = 0; j < stickyColumns; j += 1) {
-                const el1 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_column-${i}_${j}`);
-                const el2 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_body-${i}_${j}`);
+                const el1 = document.querySelector(`#${this.classNamePrefix}_table_${id}_header_column-${j}`);
+                const el2 = document.querySelector(`#${this.classNamePrefix}_table_${id}_header_body-${j}`);
 
                 const size = {
                     h: Math.max(el1.clientHeight, el2.clientHeight),
@@ -126,6 +126,28 @@ class DataGrid extends React.Component {
             }
 
             sizes.push(row);
+        } else {
+            for (let i = 0; i < data.length; i += 1) {
+                const row = [];
+
+                for (let j = 0; j < stickyColumns; j += 1) {
+                    const el1 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_column-${i}_${j}`);
+                    const el2 = document.querySelector(`#${this.classNamePrefix}_table_${id}_cell_body-${i}_${j}`);
+
+                    const size = {
+                        h: Math.max(el1.clientHeight, el2.clientHeight),
+                        w: el1.clientWidth,
+                    };
+
+                    if (handle && j === stickyColumns - 1) {
+                        size.w = width;
+                    }
+
+                    row.push(size);
+                }
+
+                sizes.push(row);
+            }
         }
 
         const newState = { currentStickyColumnWidth, sizes };
