@@ -478,8 +478,8 @@ class DrawerDeprecated extends Component {
         const { onCloseComplete, position, onClickOutside } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
-        const drawerLength = document.querySelectorAll('.ui.drawer-is_modal').length;
-        const drawerDeprecatedLength = document.querySelectorAll('.ui.drawer.deprecated.drawer-is_modal').length;
+        const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
+        const numberOfModalDeprecatedDrawers = document.querySelectorAll('.ui.drawer.deprecated.drawer-is_modal').length;
 
         if (onClickOutside) {
             document.removeEventListener('click', this._onClickOutside);
@@ -487,11 +487,11 @@ class DrawerDeprecated extends Component {
 
         this.drawerContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
-        if (drawerLength <= 2) {
+        if (numberOfModalDrawers <= 2) {
             body.classList.remove('drawer-deprecated-open-layered');
         }
 
-        if (drawerLength <= 1 || drawerDeprecatedLength <= 1) {
+        if (numberOfModalDrawers <= 1 || numberOfModalDeprecatedDrawers <= 1) {
             const scrollPosition = parseInt(body.style.top, 10);
 
             body.classList.remove('drawer-deprecated-open', 'drawer-dimmers');
@@ -527,7 +527,7 @@ class DrawerDeprecated extends Component {
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
-        const drawerLength = document.querySelectorAll('.ui.drawer-is_modal').length;
+        const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
         const drawerDimmer = nodePortal.querySelector('.drawer-dimmer-deprecated');
         const layeredOffset = 11;
@@ -541,12 +541,12 @@ class DrawerDeprecated extends Component {
         }
 
         setTimeout(() => {
-            if (!isModal || drawerLength >= 2) {
+            if (!isModal || numberOfModalDrawers >= 2) {
                 drawerDimmer.style.display = 'none';
             }
 
-            if (drawerLength >= 2) {
-                zIndex = zIndex + drawerLength;
+            if (numberOfModalDrawers >= 2) {
+                zIndex = zIndex + numberOfModalDrawers;
 
                 if (isModal) {
                     domUtils.addClassName(body, 'drawer-deprecated-open-layered');
@@ -564,7 +564,7 @@ class DrawerDeprecated extends Component {
 
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
                 nodePortal.style.zIndex = zIndex - 1;
-                this._drawerContainer.style.zIndex = zIndex + drawerLength;
+                this._drawerContainer.style.zIndex = zIndex + numberOfModalDrawers;
             }
 
             if (!_.isUndefined(maxWidth)) {
@@ -574,7 +574,7 @@ class DrawerDeprecated extends Component {
                         maxWidth :
                         '768px';
             } else {
-                this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (drawerLength - 1)) + 'px';
+                this._drawerContainer.style.maxWidth = 768 - (layeredOffset * (numberOfModalDrawers - 1)) + 'px';
             }
 
             this._drawerContainer.style.transform = 'translate(0, 0)';
