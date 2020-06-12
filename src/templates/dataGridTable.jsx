@@ -135,13 +135,30 @@ class DataGridTable extends React.PureComponent {
                                     `${classNamePrefix}_table_header_cell`,
                                     column.className,
                                 );
+                                const cellId = column.id || `${classNamePrefix}_table_${id}_header_${idPrefix}-${index}`;
+
+                                let cellStyle = {};
+                                const cellSize =
+                                    !_.isEmpty(data) || _.isEmpty(sizes) || _.isEmpty(sizes[0]) ?
+                                        null :
+                                        sizes[0][index];
+
+                                if (cellSize) {
+                                    cellStyle.height = `${cellSize.h}px`;
+                                    cellStyle.width = `${cellSize.w}px`;
+                                }
+
+                                cellStyle = {
+                                    ...cellStyle,
+                                    ...column.style,
+                                };
 
                                 return (
                                     <Table.HeaderCell
                                         className={headerCellClasses}
-                                        id={column.id}
+                                        id={cellId}
                                         key={`tableBodyRow-${index}`}
-                                        style={column.style}
+                                        style={cellStyle}
                                     >
                                         {column.header}
 
