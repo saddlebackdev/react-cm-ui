@@ -24,6 +24,7 @@ const propTypes = {
     className: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
+    isModal: PropTypes.bool,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
@@ -45,6 +46,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     dimmer: true,
+    isModal: true,
     maxHeight: undefined,
     maxWidth: undefined,
     onClickOutside: undefined,
@@ -221,7 +223,7 @@ class Drawer extends React.Component {
     onCloseAnimationComplete() {
         const { onCloseComplete, onClickOutside } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
-        const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
 
         if (onClickOutside) {
             document.removeEventListener('click', this.onClickOutside);
@@ -229,11 +231,11 @@ class Drawer extends React.Component {
 
         this.drawerContainerRef.removeEventListener(animationEvent, this.onCloseAnimationComplete);
 
-        if (drawerLength <= 2) {
+        if (numberOfModalDrawers <= 2) {
             BODY.classList.remove('drawer-open-layered');
         }
 
-        if (drawerLength <= 1 || (drawerLength > 1 && BODY.classList.contains('drawer-nubbin-open'))) {
+        if (numberOfModalDrawers <= 1 || (numberOfModalDrawers > 1 && BODY.classList.contains('drawer-nubbin-open'))) {
             const isOpen = false;
 
             toggleBodyStyle(isOpen);
@@ -243,7 +245,7 @@ class Drawer extends React.Component {
             }
         }
 
-        if (drawerLength <= 1 && BODY.classList.contains('drawer-nubbin-open')) {
+        if (numberOfModalDrawers <= 1 && BODY.classList.contains('drawer-nubbin-open')) {
             BODY.classList.remove('drawer-nubbin-open');
         }
 
@@ -268,6 +270,7 @@ class Drawer extends React.Component {
 
         const {
             dimmer,
+            isModal,
             maxWidth,
             maxHeight,
             onClickOutside,
@@ -277,7 +280,7 @@ class Drawer extends React.Component {
         } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         const boxShadowPositionX = this.isPositionX('right') ? '-' : '';
-        const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
         const layeredOffset = 11;
         const zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
@@ -285,6 +288,12 @@ class Drawer extends React.Component {
 
         if (onClickOutside) {
             document.addEventListener('click', this.onClickOutside);
+        }
+
+        if (!dimmer || !isModal || numberOfModalDrawers >= 2) {
+            this.drawerRef.style.pointerEvents = 'none';
+            this.drawerContainerRef.style.pointerEvents = 'auto';
+            this.drawerDimmerRef.style.display = 'none';
         }
 
         setTimeout(() => {
@@ -296,14 +305,8 @@ class Drawer extends React.Component {
                 this.shadowRef.style.marginLeft = '30px';
             }
 
-            if (!dimmer || domUtils.hasClassName(BODY, 'drawer-open')) {
-                this.drawerRef.style.pointerEvents = 'none';
-                this.drawerContainerRef.style.pointerEvents = 'auto';
-                this.drawerDimmerRef.style.display = 'none';
-            }
-
-            if (domUtils.hasClassName(BODY, 'drawer-open')) {
-                const newZIndex = zIndex + drawerLength;
+            if (numberOfModalDrawers >= 2) {
+                const newZIndex = zIndex + numberOfModalDrawers;
                 let boxShadow = BOX_SHADOW_SMALL;
 
                 switch (shadowSize) {
@@ -349,7 +352,7 @@ class Drawer extends React.Component {
 
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this.drawerRef.style.zIndex = zIndex - 1;
-                this.drawerContainerRef.style.zIndex = zIndex + drawerLength;
+                this.drawerContainerRef.style.zIndex = zIndex + numberOfModalDrawers;
             }
 
             if (!_.isUndefined(maxWidth)) {
@@ -357,7 +360,7 @@ class Drawer extends React.Component {
                     maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
             } else {
                 this.drawerContainerRef.style.maxWidth =
-                    `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (drawerLength - 1))}px`;
+                    `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (numberOfModalDrawers - 1))}px`;
             }
 
             if (!_.isUndefined(maxHeight)) {
@@ -371,7 +374,10 @@ class Drawer extends React.Component {
     }
 
     onOpenAnimationComplete() {
-        const { dimmer } = this.props;
+        const {
+            dimmer,
+            isModal,
+        } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         this.drawerContainerRef.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
@@ -381,7 +387,7 @@ class Drawer extends React.Component {
             onOpenComplete();
         }
 
-        if (dimmer) {
+        if (dimmer && isModal) {
             BODY.classList.add('drawer-dimmers');
         }
     }
@@ -411,6 +417,7 @@ class Drawer extends React.Component {
         const {
             children,
             className,
+            isModal,
             positionYOffset,
             style,
             wing,
@@ -421,16 +428,22 @@ class Drawer extends React.Component {
             return false;
         }
 
-        const drawerClasses = ClassNames('ui', 'drawer', className, {
-            'left-position': this.isPositionX('left'),
-            'top-position': this.isPositionY('top'),
-            'bottom-position': this.isPositionY('bottom'),
-        });
+        const containerClasses = ClassNames(
+            'ui',
+            'drawer',
+            className,
+            {
+                'left-position': this.isPositionX('left'),
+                'top-position': this.isPositionY('top'),
+                'bottom-position': this.isPositionY('bottom'),
+                'drawer-is_modal': isModal,
+            },
+        );
 
         return (
             <Portal>
                 <div
-                    className={drawerClasses}
+                    className={containerClasses}
                     ref={(ref) => { this.drawerRef = ref; }}
                 >
                     <div
