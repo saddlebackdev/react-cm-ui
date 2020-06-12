@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.11.2 - 06/12/2020
+
+#### Bug Fix
+- **Drawer** and **DrawerDeprecated** `zIndex` fixes.
+- Added `isModal` prop to **Drawer**.
+
 ## 9.12.0 - 06/09/2020
 
 #### Feature
