@@ -24,6 +24,7 @@ export default function createPalette() {
             secondary: grey[200],
         },
         border: {
+            contrastPrimary: common.white,
             primary: grey[300],
             secondary: grey[200],
         },
