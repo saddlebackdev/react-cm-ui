@@ -241,8 +241,19 @@ class DrawerDeprecated extends Component {
     }
 
     render() {
-        const { children, className, closeButton, color, header,
-            inverse, scrollBar, title, titleTruncate, position } = this.props;
+        const {
+            children,
+            className,
+            closeButton,
+            color,
+            header,
+            inverse,
+            isModal,
+            scrollBar,
+            title,
+            titleTruncate,
+            position,
+        } = this.props;
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -250,7 +261,15 @@ class DrawerDeprecated extends Component {
         }
 
         const { transformValue, wing } = this.state;
-        const containerClasses = ClassNames('ui', 'drawer', 'deprecated', className);
+        const containerClasses = ClassNames(
+            'ui',
+            'drawer',
+            'deprecated',
+            className,
+            {
+                'drawer-is_modal': isModal,
+            }
+        );
         const containerInnerClasses = ClassNames('drawer-container', {
             'color-dark-blue': color === 'dark-blue',
             'drawer-container-inverse': inverse,
@@ -459,8 +478,8 @@ class DrawerDeprecated extends Component {
         const { onCloseComplete, position, onClickOutside } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         const body = document.body;
-        const drawerLength = document.querySelectorAll('.ui.drawer').length;
-        const drawerDeprecatedLength = document.querySelectorAll('.ui.drawer.deprecated').length;
+        const drawerLength = document.querySelectorAll('.ui.drawer-is_modal').length;
+        const drawerDeprecatedLength = document.querySelectorAll('.ui.drawer.deprecated.drawer-is_modal').length;
 
         if (onClickOutside) {
             document.removeEventListener('click', this._onClickOutside);
@@ -499,11 +518,16 @@ class DrawerDeprecated extends Component {
 
     _onOpen() {
         this._useComponentWillUnmount = true;
-        const { maxWidth, onClickOutside, position } = this.props;
+        const {
+            isModal,
+            maxWidth,
+            onClickOutside,
+            position,
+        } = this.props;
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
-        const drawerLength = document.querySelectorAll('.ui.drawer').length;
+        const drawerLength = document.querySelectorAll('.ui.drawer-is_modal').length;
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
         const drawerDimmer = nodePortal.querySelector('.drawer-dimmer-deprecated');
         const layeredOffset = 11;
@@ -517,17 +541,27 @@ class DrawerDeprecated extends Component {
         }
 
         setTimeout(() => {
-            if (document.body.classList.contains('drawer-deprecated-open')) {
+            if (!isModal || drawerLength >= 2) {
+                drawerDimmer.style.display = 'none';
+            }
+
+            if (drawerLength >= 2) {
                 zIndex = zIndex + drawerLength;
-                domUtils.addClassName(body, 'drawer-deprecated-open-layered');
+
+                if (isModal) {
+                    domUtils.addClassName(body, 'drawer-deprecated-open-layered');
+                }
 
                 nodePortal.style.zIndex = zIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
                 this._drawerContainer.style.zIndex = zIndex;
-                drawerDimmer.style.display = 'none';
             } else {
                 body.style.top = `-${scrollPosition}px`;
-                domUtils.addClassName(body, 'drawer-deprecated-open');
+
+                if (isModal) {
+                    domUtils.addClassName(body, 'drawer-deprecated-open');
+                }
+
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
                 nodePortal.style.zIndex = zIndex - 1;
                 this._drawerContainer.style.zIndex = zIndex + drawerLength;
@@ -548,6 +582,9 @@ class DrawerDeprecated extends Component {
     }
 
     _onOpenAnimationComplete() {
+        const {
+            isModal,
+        } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
         this.drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
 
@@ -557,7 +594,9 @@ class DrawerDeprecated extends Component {
             onOpenComplete();
         }
 
-        document.body.classList.add('drawer-dimmers');
+        if (isModal) {
+            document.body.classList.add('drawer-dimmers');
+        }
     }
 
     _onOpenWingToggle(width) {
@@ -613,6 +652,7 @@ DrawerDeprecated.Header = DrawerDeprecatedHeader;
 DrawerDeprecated.Wing = DrawerDeprecatedWing;
 
 DrawerDeprecated.defaultProps = {
+    isModal: true,
     isOpen: false,
     position: 'right',
 };
@@ -627,6 +667,7 @@ DrawerDeprecated.propTypes = {
     header: PropTypes.bool,
     inverse: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
+    isModal: PropTypes.bool,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
