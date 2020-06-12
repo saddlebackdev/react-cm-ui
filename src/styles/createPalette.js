@@ -8,7 +8,7 @@ import {
     pink,
     red,
     teal,
-} from '../colors';
+} from '../colors/index';
 
 export default function createPalette() {
     const palette = {
