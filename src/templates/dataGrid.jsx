@@ -270,79 +270,79 @@ class DataGrid extends React.Component {
             [`${classNamePrefix}-bleed`]: bleed,
             [`${classNamePrefix}-sticky_columns`]: isStickyColumns,
         });
+        // here
+        // if (isStickyColumns) {
+        //     return (
+        //         <div
+        //             className={containerClasses}
+        //             style={style}
+        //         >
+        //             <div
+        //                 className={`${classNamePrefix}_fixed_body`}
+        //                 onScroll={this.onScroll}
+        //             >
+        //                 <DataGridTable
+        //                     bleed={bleed}
+        //                     className={className}
+        //                     classNamePrefix={classNamePrefix}
+        //                     collapsed={collapsed}
+        //                     columns={columns}
+        //                     data={data}
+        //                     fontSize={fontSize}
+        //                     handle={handle}
+        //                     id={id}
+        //                     idPrefix="body"
+        //                     minWidth={minWidth}
+        //                     moduleType={moduleType}
+        //                     ref={(ref) => { this.bodyTable = ref; }}
+        //                     rowProps={rowProps}
+        //                     size={size}
+        //                     sizes={sizes}
+        //                     stickyColumnWidth={stickyColumnWidth} // here
+        //                     stickyColumns={stickyColumns}
+        //                     stretch={stretch}
+        //                     style={{
+        //                         minWidth,
+        //                     }}
+        //                 />
+        //             </div>
 
-        if (isStickyColumns) {
-            return (
-                <div
-                    className={containerClasses}
-                    style={style}
-                >
-                    <div
-                        className={`${classNamePrefix}_fixed_body`}
-                        onScroll={this.onScroll}
-                    >
-                        <DataGridTable
-                            bleed={bleed}
-                            className={className}
-                            classNamePrefix={classNamePrefix}
-                            collapsed={collapsed}
-                            columns={columns}
-                            data={data}
-                            fontSize={fontSize}
-                            handle={handle}
-                            id={id}
-                            idPrefix="body"
-                            minWidth={minWidth}
-                            moduleType={moduleType}
-                            ref={(ref) => { this.bodyTable = ref; }}
-                            rowProps={rowProps}
-                            size={size}
-                            sizes={sizes}
-                            stickyColumnWidth={stickyColumnWidth}
-                            stickyColumns={stickyColumns}
-                            stretch={stretch}
-                            style={{
-                                minWidth,
-                            }}
-                        />
-                    </div>
+        //             <div className={`${classNamePrefix}_fixed_column`}>
+        //                 <DataGridTable
+        //                     bleed={bleed}
+        //                     className={className}
+        //                     classNamePrefix={classNamePrefix}
+        //                     columns={_.slice(columns, 0, stickyColumns)}
+        //                     data={data}
+        //                     dropShadow={scrolledRight}
+        //                     fontSize={fontSize}
+        //                     handle={handle}
+        //                     id={id}
+        //                     idPrefix="column"
+        //                     minWidth={minWidth}
+        //                     moduleType={moduleType}
+        //                     onSplitter={this.onSplitterClick}
+        //                     onSplitterDragEnd={this.onSplitterDragEnd}
+        //                     rowProps={rowProps}
+        //                     size={size}
+        //                     sizes={sizes}
+        //                     stickyColumnWidth={stickyColumnWidth}
+        //                     stickyColumns={stickyColumns}
+        //                     stretch={stretch}
+        //                 />
+        //             </div>
 
-                    <div className={`${classNamePrefix}_fixed_column`}>
-                        <DataGridTable
-                            bleed={bleed}
-                            className={className}
-                            classNamePrefix={classNamePrefix}
-                            columns={_.slice(columns, 0, stickyColumns)}
-                            data={data}
-                            dropShadow={scrolledRight}
-                            fontSize={fontSize}
-                            handle={handle}
-                            id={id}
-                            idPrefix="column"
-                            minWidth={minWidth}
-                            moduleType={moduleType}
-                            onSplitter={this.onSplitterClick}
-                            onSplitterDragEnd={this.onSplitterDragEnd}
-                            rowProps={rowProps}
-                            size={size}
-                            sizes={sizes}
-                            stickyColumnWidth={stickyColumnWidth}
-                            stickyColumns={stickyColumns}
-                            stretch={stretch}
-                        />
-                    </div>
-
-                    <div className={`${classNamePrefix}_fixed_bottom`} />
-                </div>
-            );
-        }
+        //             <div className={`${classNamePrefix}_fixed_bottom`} />
+        //         </div>
+        //     );
+        // }
 
         return (
             <div
                 className={containerClasses}
                 style={style}
             >
-                <DataGridTable
+                <DataGridTable // stickyColumnsCount must be tested here.
                     bleed={bleed}
                     className={className}
                     classNamePrefix={classNamePrefix}

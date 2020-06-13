@@ -102,6 +102,7 @@ class DataGridTable extends React.PureComponent {
             rowProps,
             size,
             sizes,
+            stickyColumns, // here
             stretch,
             style,
         } = this.props;
@@ -116,6 +117,7 @@ class DataGridTable extends React.PureComponent {
                 className={containerClasses}
                 style={style}
             >
+                linked
                 <Table
                     basic
                     className={`${classNamePrefix}_table_component`}
@@ -123,6 +125,7 @@ class DataGridTable extends React.PureComponent {
                     selectable={isSelectable}
                     size={size}
                     stretch={bleed}
+                    stickyColumnCount={stickyColumns}
                 >
                     <Table.Header>
                         <Table.Row>
@@ -162,7 +165,7 @@ class DataGridTable extends React.PureComponent {
                                     >
                                         {column.header}
 
-                                        {hasSplitter && (
+                                        {hasSplitter && ( // Este es el resizer
                                             <DragListener
                                                 className={`${classNamePrefix}_table_header_handle`}
                                                 onClick={this.onSplitterClick}

@@ -4,7 +4,7 @@ import { SubNavigation } from 'react-cm-ui';
 
 class ModulesPageSubNavigation extends React.PureComponent {
     static onSubNavClick(index) {
-        const pageLocation = '/templates/page';
+        const pageLocation = '/components/templates/page'; // here
 
         switch (index) {
             case 0:

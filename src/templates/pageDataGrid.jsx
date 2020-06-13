@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import DataGrid from './dataGrid';
-
+// This is the data grin in /data-capture/connection-questions
 const propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
