@@ -1,333 +1,410 @@
-import { map } from 'lodash';
 import {
     Grid,
     Header,
     Icon,
     TimeFromNow,
 } from 'react-cm-ui';
-// import { connect } from 'react-redux';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
+import makeStyles from '../styles/makeStyles';
 import useTheme from '../styles/useTheme';
 import useMediaQuery from '../utils/useMediaQuery';
-// import { personDefaultProps, personPropTypes } from './personPropTypes.js';
-// import hcDateUtils from '../../../shared/dateUtils.js';
+import dateUtils from '../utils/dateUtils';
+import {
+    GENDER_DEFAULT_TYPE,
+    GENDER_PROP_TYPE,
+    RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
+    RECORD_TYPE_PROP_TYPE,
+} from './personPanelConstants';
 
 const propTypes = {
-    backgroundColorAlpha: PropTypes.number,
     className: PropTypes.string,
-    columnProps: PropTypes.shape({
-        1: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        2: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        3: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        4: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        5: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        6: PropTypes.shape({
-            remove: PropTypes.bool,
-            style: PropTypes.shape({}),
-        }),
-        7: PropTypes.shape({
-            remove: PropTypes.bool,
-            className: PropTypes.string,
-            style: PropTypes.shape({}),
-        }),
-        8: PropTypes.shape({
-            remove: PropTypes.bool,
-            className: PropTypes.string,
-            style: PropTypes.shape({}),
-        }),
-    }),
     congregationDate: PropTypes.oneOfType([
         MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
-        PropTypes.string,
-    ]),
+        PropTypes.string]),
     firstContactDate: PropTypes.oneOfType([
         MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
         PropTypes.string,
     ]),
+    gender: GENDER_PROP_TYPE,
     hasAcceptedChrist: PropTypes.bool,
-    hasAttendedClass101: PropTypes.bool,
-    hasAttendedClass201: PropTypes.bool,
-    hasAttendedClass301: PropTypes.bool,
-    hasAttendedClass401: PropTypes.bool,
     hasSignedMaturityCovenant: PropTypes.bool,
     hasSignedMembershipAgreement: PropTypes.bool,
     hasSignedMinistryCovenant: PropTypes.bool,
     hasSignedMissionCovenant: PropTypes.bool,
+    hasTakenClass101: PropTypes.bool,
+    hasTakenClass201: PropTypes.bool,
+    hasTakenClass301: PropTypes.bool,
+    hasTakenClass401: PropTypes.bool,
+    iconSize: PropTypes.number,
+    inverse: PropTypes.bool,
+    isActiveInTrips: PropTypes.bool,
     isBaptised: PropTypes.bool,
     isInMinistry: PropTypes.bool,
     isInSmallGroup: PropTypes.bool,
-    isPEACE: PropTypes.bool,
-    recordType: PropTypes.oneOf(['adult', 'child', 'student']).isRequired,
-    // iconSize: PropTypes.number,
-    // inverse: PropTypes.bool,
-    // isMobile: PropTypes.bool,
-    // style: PropTypes.shape({}),
+    recordType: RECORD_TYPE_PROP_TYPE,
+    removeAcceptedChristColumn: PropTypes.bool,
+    removeBaptismColumn: PropTypes.bool,
+    removeClassColumn: PropTypes.bool,
+    removeCongregationDateColumn: PropTypes.bool,
+    removeFirstContactDateColumn: PropTypes.bool,
+    removeInMinistryColumn: PropTypes.bool,
+    removeInTripsColumn: PropTypes.bool,
+    removeSmallGroupColumn: PropTypes.bool,
 };
 
 const defaultProps = {
-    backgroundColorAlpha: undefined,
     className: undefined,
-    columnProps: {},
     congregationDate: '',
     firstContactDate: '',
+    gender: GENDER_DEFAULT_TYPE,
     hasAcceptedChrist: false,
-    hasAttendedClass101: false,
-    hasAttendedClass201: false,
-    hasAttendedClass301: false,
-    hasAttendedClass401: false,
-    hasSignedMembershipAgreement: false,
     hasSignedMaturityCovenant: false,
+    hasSignedMembershipAgreement: false,
     hasSignedMinistryCovenant: false,
     hasSignedMissionCovenant: false,
+    hasTakenClass101: false,
+    hasTakenClass201: false,
+    hasTakenClass301: false,
+    hasTakenClass401: false,
+    iconSize: 16,
+    inverse: false,
+    isActiveInTrips: false,
     isBaptised: false,
     isInMinistry: false,
     isInSmallGroup: false,
-    isPEACE: false,
-    iconSize: undefined,
-    inverse: false,
-    isMobile: true,
-    style: {},
+    recordType: RECORD_TYPE_DEFAULT_PROP,
+    removeAcceptedChristColumn: false,
+    removeBaptismColumn: false,
+    removeClassColumn: false,
+    removeCongregationDateColumn: false,
+    removeFirstContactDateColumn: false,
+    removeInMinistryColumn: false,
+    removeInTripsColumn: false,
+    removeSmallGroupColumn: false,
 };
+
+function getIconSize({ isMobile, iconSize }) {
+    if (!isMobile) {
+        return iconSize || 24;
+    }
+
+    return iconSize;
+}
+
+const useStyles = makeStyles((theme) => {
+    const {
+        palette,
+    } = theme;
+    const columnHorizontalPadding = 5.5;
+    const hasAttendedStyles = {
+        backgroundColor: 'transparent',
+        boxShadow: `inset 0 0 0 2px ${palette.border.contrastPrimary}`,
+        opacity: 1,
+    };
+    const hasSignedStyles = {
+        backgroundColor: palette.background.primary,
+        boxShadow: 'none',
+        opacity: 1,
+    };
+    const iconClassSize = 24;
+
+    return {
+        container: {
+            backgroundColor: palette.background.primary,
+            '&$isAdult': {
+                '&$genderFemale .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderMale .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderUndefined .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
+                },
+            },
+            '&$isChild': {
+                '&$genderFemale .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
+                },
+            },
+            '&$isStudent': {
+                '&$genderFemale .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
+                },
+            },
+        },
+        column: {
+            height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
+            padding: `0 ${columnHorizontalPadding}px`,
+            width: (props) => `${getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }) + (columnHorizontalPadding * 2)}px !important`,
+        },
+        congregationDateColummn: {
+            paddingLeft: 5.5,
+            width: 'auto',
+        },
+        firstContactDateColumn: {
+            flexGrow: 1,
+            paddingRight: 5.5,
+            textAlign: 'left',
+            width: 'auto',
+        },
+        genderFemale: {},
+        genderMale: {},
+        genderUndefined: {},
+        grid: {
+            margin: `0 -${columnHorizontalPadding}px !important`,
+        },
+        hasTakenClass101: {},
+        hasSignedMembershipAgreement: {},
+        hasTakenClass201: {},
+        hasSignedMaturityCovenant: {},
+        hasTakenClass301: {},
+        hasSignedMinistryCovenant: {},
+        hasTakenClass401: {},
+        hasSignedMissionCovenant: {},
+        icon: {
+            display: 'flex !important',
+        },
+        inverse: {},
+        isAdult: {},
+        isChild: {},
+        isStudent: {},
+        iconBase: {
+            backgroundColor: palette.background.primary,
+            height: '10.42px',
+            opacity: 0.25,
+            position: 'absolute',
+            width: '11.07px',
+            '&$isAdult': {
+                '&$genderFemale': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderMale': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderUndefined': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
+                },
+            },
+            '&$isChild': {
+                '&$genderFemale': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
+                },
+            },
+            '&$isStudent': {
+                '&$genderFemale': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
+                },
+            },
+            '&$hasSignedMembershipAgreement': {
+                ...hasSignedStyles,
+            },
+            '&$hasTakenClass101': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMaturityCovenant': {
+                ...hasSignedStyles,
+            },
+            '&$hasTakenClass201': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMinistryCovenant': {
+                ...hasSignedStyles,
+            },
+            '&$hasTakenClass301': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMissionCovenant': {
+                ...hasSignedStyles,
+            },
+            '&$hasTakenClass401': {
+                ...hasAttendedStyles,
+            },
+        },
+        iconBaseClass101: {
+            borderRadius: '0 3px 0 0',
+            right: 0,
+            '&$hasTakenClass101': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMembershipAgreement': {
+                ...hasSignedStyles,
+            },
+        },
+        iconBaseClass201: {
+            borderRadius: '3px 0 0',
+            top: 0,
+            '&$hasTakenClass201': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMaturityCovenant': {
+                ...hasSignedStyles,
+            },
+        },
+        iconBaseClass301: {
+            borderRadius: '0 0 0 3px',
+            bottom: 0,
+            '&$hasTakenClass301': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMinistryCovenant': {
+                ...hasSignedStyles,
+            },
+        },
+        iconBaseClass401: {
+            borderRadius: '0 0 3px',
+            bottom: 0,
+            right: 0,
+            '&$hasTakenClass401': {
+                ...hasAttendedStyles,
+            },
+            '&$hasSignedMissionCovenant': {
+                ...hasSignedStyles,
+            },
+        },
+        iconClassContainer: {
+            height: iconClassSize,
+            position: 'relative',
+            transform: (props) => {
+                const iconSize = getIconSize({
+                    isMobile: props.isMobile,
+                    iconSize: props.iconSize,
+                });
+
+                return `scale(${(props.isMobile || iconSize === 16) ? 16 / iconClassSize : 1})`;
+            },
+            transformOrigin: '0 3px',
+            width: iconClassSize,
+        },
+        iconClassInnerContainer: {
+            height: iconClassSize,
+            transform: 'rotate(45deg) scale(0.707106)',
+            width: iconClassSize,
+        },
+    };
+});
 
 export function PersonCoreMilestones(props) {
     const {
-        backgroundColorAlpha,
         className,
-        columnProps,
-        congregationDate: congregationDateAndTime,
-        firstContactDate: firstContactDateAndTime,
+        congregationDate: congregationDateProp,
+        firstContactDate: firstContactDateProp,
+        gender,
         hasAcceptedChrist,
-        hasAttendedClass101,
-        hasAttendedClass201,
-        hasAttendedClass301,
-        hasAttendedClass401,
+        hasTakenClass101,
+        hasTakenClass201,
+        hasTakenClass301,
+        hasTakenClass401,
         hasSignedMembershipAgreement,
         hasSignedMaturityCovenant,
         hasSignedMinistryCovenant,
         hasSignedMissionCovenant,
+        iconSize: iconSizeProp,
         isBaptised,
         isInMinistry,
         isInSmallGroup,
-        isPEACE,
+        isActiveInTrips,
         inverse,
         recordType,
-        style,
+        removeAcceptedChristColumn,
+        removeBaptismColumn,
+        removeClassColumn,
+        removeCongregationDateColumn,
+        removeFirstContactDateColumn,
+        removeInMinistryColumn,
+        removeInTripsColumn,
+        removeSmallGroupColumn,
     } = props;
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
+    const classes = useStyles({ ...props, isMobile });
     const isAdult = recordType === 'adult';
     const blockClassName = 'person_core_milestones';
-    const containerClasses = ClassNames(blockClassName, className, {
-        [`${blockClassName}-inverse`]: inverse,
-    });
-    const class101Classes = ClassNames(`${blockClassName}--class_101`, {
-        [`${blockClassName}--class_101-has_attended`]: hasAttendedClass101,
-        [`${blockClassName}--class_101-has_signed`]: hasSignedMembershipAgreement,
-    });
-    const class201Classes = ClassNames(`${blockClassName}--class_201`, {
-        [`${blockClassName}--class_201-has_attended`]: hasAttendedClass201,
-        [`${blockClassName}--class_201-has_signed`]: hasSignedMaturityCovenant,
-    });
-    const class301Classes = ClassNames(`${blockClassName}--class_301`, {
-        [`${blockClassName}--class_301-has_attended`]: hasAttendedClass301,
-        [`${blockClassName}--class_301-has_signed`]: hasSignedMinistryCovenant,
-    });
-    const class401Classes = ClassNames(`${blockClassName}--class_401`, {
-        [`${blockClassName}--class_401-has_attended`]: hasAttendedClass401,
-        [`${blockClassName}--class_401-has_signed`]: hasSignedMissionCovenant,
-    });
-    const horizontalColumnPadding = 5.5;
-    const iconColumnPadding = `0 ${horizontalColumnPadding}px`;
-    const backgroundColor = inverse ? '255, 255, 255' : '0, 0, 0';
-    const styleBackgroundColor = backgroundColorAlpha ?
-        `rgba(${backgroundColor}, ${backgroundColorAlpha})` :
-        null;
-
-    let { iconSize } = props;
-
-    if (!isMobile) {
-        iconSize = iconSize || 24;
-    } else {
-        iconSize = iconSize || 16;
-    }
-
-    const iconClassSize = 24;
-    const iconColumnWidth = `${iconSize + (horizontalColumnPadding * 2)}px`;
-    const iconStyle = {
-        height: iconSize,
-        padding: iconColumnPadding,
-        width: iconColumnWidth,
-    };
-    const defaultColumnProps = [
+    const containerClasses = ClassNames(
+        classes.container,
+        blockClassName,
+        className,
         {
-            remove: false,
-            style: iconStyle,
-        }, {
-            remove: false,
-            style: iconStyle,
-        }, {
-            remove: false,
-            style: iconStyle,
-        }, {
-            remove: false,
-            style: iconStyle,
-        }, {
-            remove: false,
-            style: iconStyle,
-        }, {
-            remove: false,
-            style: iconStyle,
-        }, {
-            className: `${blockClassName}--at_saddleback`,
-            remove: false,
-            style: {
-                paddingLeft: 5.5,
-                width: 'auto',
-            },
-        }, {
-            className: `${blockClassName}--member_for`,
-            remove: false,
-            style: {
-                flexGrow: 1,
-                paddingRight: 5.5,
-                textAlign: 'left',
-                width: 'auto',
-            },
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.inverse]: inverse,
+            [classes.isAdult]: recordType === 'adult',
+            [classes.isChild]: recordType === 'child',
+            [classes.isStudent]: recordType === 'student',
         },
-    ];
-    const mergedColumnProps = map(defaultColumnProps, (column, index) => {
-        if (index === 0 && columnProps['1']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['1'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['1'].style,
-                },
-            };
-        }
-
-        if (index === 1 && columnProps['2']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['2'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['2'].style,
-                },
-            };
-        }
-
-        if (index === 2 && columnProps['3']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['3'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['3'].style,
-                },
-            };
-        }
-
-        if (index === 3 && columnProps['4']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['4'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['4'].style,
-                },
-            };
-        }
-
-        if (index === 4 && columnProps['5']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['5'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['5'].style,
-                },
-            };
-        }
-
-        if (index === 5 && columnProps['6']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['6'],
-                style: {
-                    ...defaultColumnProps.style,
-                    ...columnProps['6'].style,
-                },
-            };
-        }
-
-        if (index === 6 && columnProps['7']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['7'],
-                className: ClassNames(
-                    `${blockClassName}--at_saddleback`,
-                    columnProps['7'].className,
-                ),
-                style: {
-                    paddingLeft: 5.5,
-                    width: 'auto',
-                    ...columnProps['7'].style,
-                },
-            };
-        }
-
-        if (index === 7 && columnProps['8']) {
-            return {
-                ...defaultColumnProps[index],
-                ...columnProps['8'],
-                className: ClassNames(
-                    `${blockClassName}--member_for`,
-                    columnProps['8'].className,
-                ),
-                style: {
-                    flexGrow: 1,
-                    paddingRight: 5.5,
-                    textAlign: 'left',
-                    width: 'auto',
-                    ...columnProps['8'].style,
-                },
-            };
-        }
-
-        return {
-            ...defaultColumnProps[index],
-        };
-    });
+    );
+    const iconBaseClass101Classes = ClassNames(
+        classes.iconBaseClass101,
+        classes.iconBase,
+        {
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
+            [classes.hasTakenClass101]: hasTakenClass101,
+            [classes.isAdult]: recordType === 'adult',
+            [classes.isChild]: recordType === 'child',
+            [classes.isStudent]: recordType === 'student',
+        },
+    );
+    const iconBaseClass201Classes = ClassNames(
+        classes.iconBaseClass201,
+        classes.iconBase,
+        {
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
+            [classes.hasTakenClass201]: hasTakenClass201,
+            [classes.isAdult]: recordType === 'adult',
+            [classes.isChild]: recordType === 'child',
+            [classes.isStudent]: recordType === 'student',
+        },
+    );
+    const iconBaseClass301Classes = ClassNames(
+        classes.iconBaseClass301,
+        classes.iconBase,
+        {
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
+            [classes.hasTakenClass301]: hasTakenClass301,
+            [classes.isAdult]: recordType === 'adult',
+            [classes.isChild]: recordType === 'child',
+            [classes.isStudent]: recordType === 'student',
+        },
+    );
+    const iconBaseClass401Classes = ClassNames(
+        classes.iconBaseClass401,
+        classes.iconBase,
+        {
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
+            [classes.hasTakenClass401]: hasTakenClass401,
+            [classes.isAdult]: recordType === 'adult',
+            [classes.isChild]: recordType === 'child',
+            [classes.isStudent]: recordType === 'student',
+        },
+    );
+    const iconSize = getIconSize({ isMobile, iconSize: iconSizeProp });
 
     let class101Title;
     let class201Title;
     let class301Title;
     let class401Title;
 
-    if (hasAttendedClass101) {
+    if (hasTakenClass101) {
         class101Title = 'Taken CLASS 101';
 
         if (hasSignedMembershipAgreement) {
@@ -343,7 +420,7 @@ export function PersonCoreMilestones(props) {
         }
     }
 
-    if (hasAttendedClass201) {
+    if (hasTakenClass201) {
         class201Title = 'Taken CLASS 201';
 
         if (hasSignedMaturityCovenant) {
@@ -359,7 +436,7 @@ export function PersonCoreMilestones(props) {
         }
     }
 
-    if (hasAttendedClass301) {
+    if (hasTakenClass301) {
         class301Title = 'Taken CLASS 301';
 
         if (hasSignedMinistryCovenant) {
@@ -375,7 +452,7 @@ export function PersonCoreMilestones(props) {
         }
     }
 
-    if (hasAttendedClass401) {
+    if (hasTakenClass401) {
         class401Title = 'Taken CLASS 401';
 
         if (hasSignedMissionCovenant) {
@@ -413,105 +490,93 @@ export function PersonCoreMilestones(props) {
         M: 12,
     };
     const relativeTimeRounding = Math.floor;
-    // const userTimeZone = hcDateUtils.getPreferredTimeZone();
-    const userTimeZone = '';
-    let newFirstContactDate;
-    let newCongregationDate;
+    const userTimeZone = dateUtils.getDetectedTimeZone();
+    let firstContactDate;
+    let congregationDate;
 
-    if (firstContactDateAndTime) {
-        newFirstContactDate = moment.utc(firstContactDateAndTime).tz(userTimeZone);
+    if (firstContactDateProp) {
+        firstContactDate = moment.utc(firstContactDateProp).tz(userTimeZone);
     }
 
-    if (congregationDateAndTime) {
-        newCongregationDate = moment.utc(congregationDateAndTime).tz(userTimeZone);
+    if (congregationDateProp) {
+        congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
     return (
         <div
             className={containerClasses}
-            style={{
-                ...style,
-                backgroundColor: styleBackgroundColor,
-            }}
         >
             <Grid
-                style={{
-                    margin: `0 -${horizontalColumnPadding}px`,
-                }}
+                className={classes.grid}
                 verticalAlign="middle"
             >
                 <Grid.Row>
-                    {!mergedColumnProps[0].remove && (
+                    {!removeAcceptedChristColumn && (
                         <Grid.Column
-                            {...mergedColumnProps[0]}
+                            className={ClassNames(
+                                classes.acceptedChristColumn,
+                                classes.column,
+                            )}
                         >
                             <Icon
+                                className={classes.icon}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
-                                style={{
-                                    opacity: hasAcceptedChrist ? 1 : 0.25,
-                                }}
                                 title={hasAcceptedChrist ? 'Accepted Christ' : 'Has not accepted Christ'}
                                 type="heart"
                             />
                         </Grid.Column>
                     )}
 
-                    {!mergedColumnProps[1].remove && (
+                    {!removeBaptismColumn && (
                         <Grid.Column
-                            {...mergedColumnProps[1]}
+                            className={ClassNames(
+                                classes.baptisedColumn,
+                                classes.column,
+                            )}
                         >
                             <Icon
+                                className={classes.icon}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
-                                style={{
-                                    opacity: isBaptised ? 1 : 0.25,
-                                }}
                                 title={isBaptised ? 'Baptized' : 'Not Baptized'}
                                 type="droplet"
                             />
                         </Grid.Column>
                     )}
 
-                    {!mergedColumnProps[2].remove && isAdult && (
+                    {!removeClassColumn && isAdult && (
                         <Grid.Column
-                            {...mergedColumnProps[2]}
+                            className={ClassNames(
+                                classes.classColumn,
+                                classes.column,
+                            )}
                         >
                             <div
-                                className={`${blockClassName}--classes`}
-                                style={{
-                                    height: iconClassSize,
-                                    transform: `scale(${isMobile ? 16 / 24 : 1})`,
-                                    transformOrigin: '0 3px',
-                                    width: iconClassSize,
-                                }}
+                                className={classes.iconClassContainer}
                             >
                                 <div
-                                    className={`${blockClassName}--classes_rotate`}
-                                    style={{
-                                        height: iconClassSize,
-                                        width: iconClassSize,
-                                    }}
+                                    className={classes.iconClassInnerContainer}
                                 >
                                     <div
-                                        className={class101Classes}
+                                        className={iconBaseClass101Classes}
                                         title={class101Title}
                                     />
 
                                     <div
-                                        className={class201Classes}
+                                        className={iconBaseClass201Classes}
                                         title={class201Title}
                                     />
 
                                     <div
-                                        className={class301Classes}
+                                        className={iconBaseClass301Classes}
                                         title={class301Title}
                                     />
 
                                     <div
-                                        className={class401Classes}
+                                        className={iconBaseClass401Classes}
                                         title={class401Title}
                                     />
 
@@ -520,60 +585,66 @@ export function PersonCoreMilestones(props) {
                         </Grid.Column>
                     )}
 
-                    {!mergedColumnProps[3].remove && (
+                    {!removeSmallGroupColumn && (
                         <Grid.Column
-                            {...mergedColumnProps[3]}
+                            className={ClassNames(
+                                classes.smallGroupColumn,
+                                classes.column,
+                            )}
                         >
                             <Icon
+                                className={classes.icon}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
-                                style={{
-                                    opacity: isInSmallGroup ? 1 : 0.25,
-                                }}
                                 title={isInSmallGroup ? 'Active in Small Group' : 'Not active in Small Group'}
                                 type="users"
                             />
                         </Grid.Column>
                     )}
 
-                    {!mergedColumnProps[4].remove && (
+                    {!removeInMinistryColumn && (
                         <Grid.Column
-                            {...mergedColumnProps[4]}
+                            className={ClassNames(
+                                classes.inMinistryColumn,
+                                classes.column,
+                            )}
                         >
                             <Icon
+                                className={classes.icon}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
-                                style={{
-                                    opacity: isInMinistry ? 1 : 0.25,
-                                }}
                                 title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
                                 type="serving-opportunity"
                             />
                         </Grid.Column>
                     )}
 
-                    {!mergedColumnProps[5].remove && (
+                    {!removeInTripsColumn && (
                         <Grid.Column
-                            {...mergedColumnProps[5]}
+                            className={ClassNames(
+                                classes.inTripsColumns,
+                                classes.column,
+                            )}
                         >
                             <Icon
+                                className={classes.icon}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
-                                style={{
-                                    opacity: isPEACE ? 1 : 0.25,
-                                }}
-                                title={isPEACE ? 'Active in Trips' : 'Not active in Trips'}
+                                title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
                                 type="shoe-prints"
                             />
                         </Grid.Column>
                     )}
 
-                    {newFirstContactDate && isAdult && !mergedColumnProps[6].remove && (
+                    {firstContactDate && !removeFirstContactDateColumn && isAdult && (
                         <Grid.Column
-                            {...mergedColumnProps[6]}
+                            className={ClassNames(
+                                classes.firstContactDateColumn,
+                                classes.column,
+                            )}
                         >
                             <Header
                                 className={`${blockClassName}--at_saddleback_header`}
@@ -588,7 +659,7 @@ export function PersonCoreMilestones(props) {
                                 className={`${blockClassName}--at_saddleback_date font-size-xsmall font-weight-bold`}
                             >
                                 <TimeFromNow
-                                    date={newFirstContactDate}
+                                    date={firstContactDate}
                                     relativeTime={relativeTime}
                                     relativeTimeThreshold={relativeTimeThreshold}
                                     relativeTimeRounding={relativeTimeRounding}
@@ -597,9 +668,12 @@ export function PersonCoreMilestones(props) {
                         </Grid.Column>
                     )}
 
-                    {newCongregationDate && isAdult && !mergedColumnProps[7].remove && (
+                    {congregationDate && !removeCongregationDateColumn && isAdult && (
                         <Grid.Column
-                            {...mergedColumnProps[7]}
+                            className={ClassNames(
+                                classes.congregationDateColummn,
+                                classes.column,
+                            )}
                         >
                             <Header
                                 className={`${blockClassName}--member_for_header`}
@@ -614,7 +688,7 @@ export function PersonCoreMilestones(props) {
                                 className={`${blockClassName}--member_for_date font-size-xsmall font-weight-bold`}
                             >
                                 <TimeFromNow
-                                    date={newCongregationDate}
+                                    date={congregationDate}
                                     relativeTime={relativeTime}
                                     relativeTimeThreshold={relativeTimeThreshold}
                                     relativeTimeRounding={relativeTimeRounding}

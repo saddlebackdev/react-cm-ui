@@ -75,6 +75,7 @@ function PersonPanelSimpleExample() {
             emergencyContactPhones: primaryEmergencyContact.phones,
             emergencyContactPreferMethod: primaryEmergencyContact.preferredMethod,
             emergencyContactRelation: primaryEmergencyContact.relationshipName,
+            gender: personDudePayload.gender,
             gradeLevel: personDudePayload.gradeLevel,
             isDoNotContact: personDudePayload.contactPreferences.doNotContact,
             phones,
@@ -108,10 +109,12 @@ function PersonPanelSimpleExample() {
     }, []);
 
     const onSelectYesClick = () => {
+        // eslint-disable-next-line no-console
         console.log('Selected!');
     };
 
     const onViewRecordYesClick = () => {
+        // eslint-disable-next-line no-console
         console.log('Routing!');
     };
 

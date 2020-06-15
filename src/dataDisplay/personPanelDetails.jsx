@@ -9,7 +9,13 @@ import makeStyles from 'react-cm-ui/styles/makeStyles'; // eslint-disable-line i
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { BEM_DETAILS_NAME } from './personPanelConstants';
+import {
+    BEM_DETAILS_NAME,
+    GENDER_DEFAULT_TYPE,
+    GENDER_PROP_TYPE,
+    RECORD_TYPE_DEFAULT_PROP,
+    RECORD_TYPE_PROP_TYPE,
+} from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
 import Address from '../utils/address';
 import Collapse from '../utils/collapse';
@@ -66,6 +72,7 @@ const propTypes = {
             'text',
         ]),
         emergencyContactRelation: PropTypes.string,
+        gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.string,
         isDoNotContact: PropTypes.bool,
         phones: PropTypes.arrayOf(PropTypes.shape({
@@ -74,7 +81,7 @@ const propTypes = {
             value: PropTypes.string,
         })),
         preferredService: PropTypes.string,
-        recordType: PropTypes.oneOf(['adult', 'child', 'student']),
+        recordType: RECORD_TYPE_PROP_TYPE,
     }),
     isExpanded: PropTypes.bool,
     selectButtonProps: PropTypes.shape({
@@ -118,11 +125,12 @@ const defaultProps = {
         emergencyContactPhones: null,
         emergencyContactPreferMethod: null,
         emergencyContactRelation: null,
+        gender: GENDER_DEFAULT_TYPE,
         gradeLevel: null,
         isDoNotContact: false,
         phones: [],
         preferredService: null,
-        recordType: 'adult',
+        recordType: RECORD_TYPE_DEFAULT_PROP,
     },
     isExpanded: false,
     selectButtonProps: {},
@@ -548,30 +556,37 @@ const useStyles = makeStyles((theme) => {
     } = theme;
 
     return {
-        root: {
-            [`&.${BEM_DETAILS_NAME}`]: {
-                backgroundColor: palette.background.primary,
-                color: palette.text.primary,
-                padding: 0,
-                '&-is_expanded': {
-                    borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
-                    boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
-                },
-            },
-        },
         actions: {
             marginTop: '33px',
         },
         dataGroups: {
-            margin: '0 -22px -22px !important',
+            margin: '22px -22px -22px !important',
         },
         innerContainer: {
             padding: 22,
         },
+        personCoreMilestones: {
+            borderBottom: `1px solid ${palette.border.secondary}`,
+            margin: '-22px -21px 11px',
+            padding: '18px 21px',
+        },
+        root: {
+            [`&.${BEM_DETAILS_NAME}`]: {
+                '&-is_expanded': {
+                    boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
+                },
+                backgroundColor: palette.background.primary,
+                borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
+                boxShadow: 'inset -1px -1px 0px 0px transparent, inset 1px 0px 0px 0px transparent',
+                color: palette.text.primary,
+                padding: 0,
+                transition: 'box-shadow 200ms ease-in-out',
+            },
+        },
     };
 });
 
-function PersonPanelDetails(props) {
+export function PersonPanelDetails(props) {
     const {
         children,
         data,
@@ -596,6 +611,7 @@ function PersonPanelDetails(props) {
         emergencyContactPhones,
         emergencyContactPreferMethod,
         emergencyContactRelation,
+        gender,
         gradeLevel,
         isDoNotContact,
         phones,
@@ -693,6 +709,10 @@ function PersonPanelDetails(props) {
                 <div className={classes.innerContainer}>
                     {shouldCoreMilestonesRender && (
                         <PersonCoreMilestones
+                            className={classes.personCoreMilestones}
+                            iconSize={16}
+                            isIconTransparent
+                            gender={gender}
                             recordType={recordType}
                         />
                     )}

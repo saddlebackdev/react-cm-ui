@@ -58,5 +58,13 @@
     "plugins": [
         "react",
         "sort-destructure-keys"
+    ],
+    "overrides": [
+        {
+            "files": ["*.jsx"],
+            "rules": {
+               "import/no-named-as-default": "off"
+            }
+        }
     ]
 }

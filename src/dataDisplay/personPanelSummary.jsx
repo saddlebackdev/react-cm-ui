@@ -15,10 +15,16 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/extensions
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-import { BEM_BLOCK_NAME } from './personPanelConstants';
-import { UI_CLASS_NAME } from '../global/constants';
+import {
+    BEM_BLOCK_NAME,
+    GENDER_DEFAULT_TYPE,
+    GENDER_PROP_TYPE,
+    RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
+    RECORD_TYPE_PROP_TYPE,
+} from './personPanelConstants';
+import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
 import PersonPanelSummaryContactText from './personPanelSummaryContactText';
-import { ENTER_KEY_CODE } from '../global/constants';
 
 const propTypes = {
     classes: PropTypes.shape({
@@ -46,11 +52,7 @@ const propTypes = {
             }),
         ),
         firstName: PropTypes.string.isRequired,
-        gender: PropTypes.oneOf([
-            'F',
-            'M',
-            null,
-        ]),
+        gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.oneOf([
             'None',
             'PreK',
@@ -86,11 +88,7 @@ const propTypes = {
         ),
         preferredMethod: PropTypes.string,
         prefix: PropTypes.string,
-        recordType: PropTypes.oneOf([
-            'adult',
-            'child',
-            'student',
-        ]).isRequired,
+        recordType: RECORD_TYPE_PROP_TYPE,
         suffix: PropTypes.string,
     }),
     isCompact: PropTypes.bool,
@@ -106,7 +104,7 @@ const defaultProps = {
         birthdate: null,
         campus: null,
         emails: [],
-        gender: null,
+        gender: GENDER_DEFAULT_TYPE,
         gradeLevel: null,
         isDoNotContact: false,
         isDoNotEmail: false,
@@ -118,7 +116,7 @@ const defaultProps = {
         phones: [],
         preferredMethod: null,
         prefix: null,
-        recordType: 'adult',
+        recordType: RECORD_TYPE_DEFAULT_PROP,
         suffix: null,
     },
     isCompact: false,
@@ -222,67 +220,69 @@ const useStyles = makeStyles((theme) => {
                 zIndex: 1,
             },
             '&::before': {
-                backgroundColor: (props) => {
-                    const {
-                        data: {
-                            recordType,
-                            gender,
-                        },
-                    } = props;
-
-                    switch (recordType) {
-                        case 'child':
-                            return palette.sky[500];
-                        case 'student':
-                            return palette.redOrange[500];
-                        case 'adult':
-                        default:
-                            switch (gender) {
-                                case 'F':
-                                    return palette.cyan[600];
-                                case 'M':
-                                    return palette.green[600];
-                                default:
-                                    return palette.teal[500];
-                            }
-                    }
-                },
                 borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
                 opacity: 1,
                 width: '5px',
                 transition: `width ${transitionDuration} ease-in-out`,
             },
+            '&$isAdult': {
+                '&$genderFemale::before': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderMale::before': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                },
+                '&$genderUndefined::before': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
+                },
+            },
+            '&$isChild': {
+                '&$genderFemale::before': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
+                },
+            },
+            '&$isStudent': {
+                '&$genderFemale::before': {
+                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
+                },
+            },
             '&$expanded': {
                 color: palette.text.contrastText,
                 borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
                 '&::before': {
-                    backgroundImage: (props) => {
-                        const {
-                            data: {
-                                recordType,
-                                gender,
-                            },
-                        } = props;
-
-                        switch (recordType) {
-                            case 'child':
-                                return palette.sky.G500;
-                            case 'student':
-                                return palette.redOrange.G500;
-                            case 'adult':
-                            default:
-                                switch (gender) {
-                                    case 'F':
-                                        return palette.cyan.G600;
-                                    case 'M':
-                                        return palette.green.G600;
-                                    default:
-                                        return palette.teal.G500;
-                                }
-                        }
-                    },
                     borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
                     width: '100%',
+                },
+                '&$isAdult': {
+                    '&$genderFemale::before': {
+                        backgroundImage: `${RECORD_TYPE_COLOR({
+                            gender: 'female',
+                            isGradient: true,
+                            recordType: 'adult',
+                            theme,
+                        })} !important`,
+                    },
+                    '&$genderMale::before': {
+                        backgroundImage: `${RECORD_TYPE_COLOR({
+                            gender: 'M',
+                            isGradient: true,
+                            recordType: 'adult',
+                            theme,
+                        })} !important`,
+                    },
+                    '&$genderUndefined::before': {
+                        backgroundImage: `${RECORD_TYPE_COLOR({ isGradient: true, recordType: 'adult', theme })} !important`,
+                    },
+                },
+                '&$isChild': {
+                    '&$genderFemale::before': {
+                        backgroundImage: `${RECORD_TYPE_COLOR({ isGradient: true, recordType: 'child', theme })} !important`,
+                    },
+                },
+                '&$isStudent': {
+                    '&$genderFemale::before': {
+                        backgroundImage: `${RECORD_TYPE_COLOR({ isGradient: true, recordType: 'student', theme })} !important`,
+                    },
                 },
             },
             '&$compact': {
@@ -348,10 +348,16 @@ const useStyles = makeStyles((theme) => {
                     null
             ),
         },
+        genderFemale: {},
+        genderMale: {},
+        genderUndefined: {},
+        isAdult: {},
+        isChild: {},
+        isStudent: {},
     };
 });
 
-function PersonPanelSummary(props) {
+export function PersonPanelSummary(props) {
     const [metaInfoText, setMetaInfoText] = useState('');
     const [renderContactInfo, setRenderContactInfo] = useState(null);
     const classes = useStyles(props);
@@ -388,11 +394,11 @@ function PersonPanelSummary(props) {
     const primaryEmail = find(emails, 'isPrimary');
     const phone = (primaryPhone && primaryPhone.value) || 'N/A';
     const email = (primaryEmail && primaryEmail.value) || 'N/A';
+    const isAdult = isNil(recordType) || recordType === 'adult';
+    const isChild = recordType === 'child';
+    const isStudent = recordType === 'student';
 
     useEffect(() => {
-        const isAdult = isNil(recordType) || recordType === 'adult';
-        const isChild = recordType === 'child';
-        const isStudent = recordType === 'student';
         let text = '';
 
         if (gender) {
@@ -475,6 +481,12 @@ function PersonPanelSummary(props) {
         {
             [classes.compact]: isCompact,
             [classes.expanded]: isExpanded,
+            [classes.genderFemale]: gender === 'F',
+            [classes.genderMale]: gender === 'M',
+            [classes.genderUndefined]: !gender,
+            [classes.isAdult]: isAdult,
+            [classes.isChild]: isChild,
+            [classes.isStudent]: isStudent,
         },
     );
     const metaInfoClasses = ClassNames(classes.metaInfo, {
