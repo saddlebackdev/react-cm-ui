@@ -5,7 +5,7 @@ import {
     remove,
 } from 'lodash';
 import ClassNames from 'classnames';
-import makeStyles from 'react-cm-ui/styles/makeStyles'; // eslint-disable-line import/extensions
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -28,6 +28,10 @@ import Typography from './typography';
 
 const propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     data: PropTypes.shape({
         addresses: PropTypes.arrayOf(PropTypes.shape({
             address1: PropTypes.string,
@@ -109,6 +113,8 @@ const propTypes = {
 
 const defaultProps = {
     children: null,
+    className: null,
+    classes: null,
     data: {
         addresses: [],
         allergies: null,
@@ -565,22 +571,22 @@ const useStyles = makeStyles((theme) => {
         innerContainer: {
             padding: 22,
         },
+        isExpanded: {},
         personCoreMilestones: {
             borderBottom: `1px solid ${palette.border.secondary}`,
             margin: '-22px -21px 11px',
             padding: '18px 21px',
         },
         root: {
-            [`&.${BEM_DETAILS_NAME}`]: {
-                '&-is_expanded': {
-                    boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
-                },
-                backgroundColor: palette.background.primary,
-                borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
-                boxShadow: 'inset -1px -1px 0px 0px transparent, inset 1px 0px 0px 0px transparent',
-                color: palette.text.primary,
-                padding: 0,
-                transition: 'box-shadow 200ms ease-in-out',
+            backgroundColor: palette.background.primary,
+            borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
+            boxShadow: 'inset -1px -1px 0px 0px transparent, inset 1px 0px 0px 0px transparent',
+            color: palette.text.primary,
+            flexGrow: 1,
+            padding: 0,
+            transition: 'box-shadow 200ms ease-in-out',
+            '&$isExpanded': {
+                boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
             },
         },
     };
@@ -589,6 +595,7 @@ const useStyles = makeStyles((theme) => {
 export function PersonPanelDetails(props) {
     const {
         children,
+        className,
         data,
         isExpanded,
         otherDataGroups,
@@ -695,9 +702,10 @@ export function PersonPanelDetails(props) {
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
+        className,
         [`${BEM_DETAILS_NAME}`],
         {
-            [`${BEM_DETAILS_NAME}-is_expanded`]: isExpanded,
+            [classes.isExpanded]: isExpanded,
         },
     );
     const shouldCoreMilestonesRender = true;

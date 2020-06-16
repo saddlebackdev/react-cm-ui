@@ -11,6 +11,7 @@ import Main from '../global/main';
 import Example from '../global/example';
 import PersonPanelControlledAccordionExample from './personPanelControlledAccordionExample';
 import PersonPanelSimpleExample from './personPanelSimpleExample';
+import PersonPanelSideContainerExample from './personPanelSideContainerExample';
 
 const apiPersonPanel = [
     {
@@ -78,11 +79,18 @@ function DocsPersonPanel() {
                     Simple Person Panel
                 </Header>
 
-                <Example
+                {/* <Example
                     // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
                     rawCode={require('!!raw-loader!./personPanelSimpleExample').default}
                 >
                     <PersonPanelSimpleExample />
+                </Example> */}
+
+                <Example
+                    // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
+                    rawCode={require('!!raw-loader!./personPanelSideContainerExample').default}
+                >
+                    <PersonPanelSideContainerExample />
                 </Example>
 
                 {/* <Header

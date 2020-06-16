@@ -30,10 +30,9 @@ const defaultProps = {
 
 const useStyles = makeStyles({
     root: {
-        [`&.${UI_CLASS_NAME}.${BEM_BLOCK_NAME}`]: {
-            display: 'block',
-            margin: '5px 0',
-        },
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: '5px 0',
     },
 });
 
@@ -107,6 +106,8 @@ PersonPanel.propTypes = propTypes;
 PersonPanel.defaultProps = defaultProps;
 
 PersonPanel.Details = PersonPanelDetails;
+PersonPanel.LeftContainer = PersonPanelLeftContainer;
+PersonPanel.RightContainer = PersonPanelRightContainer;
 PersonPanel.Summary = PersonPanelSummary;
 
 export default PersonPanel;

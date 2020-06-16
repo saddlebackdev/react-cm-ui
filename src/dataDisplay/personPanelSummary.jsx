@@ -205,6 +205,7 @@ const useStyles = makeStyles((theme) => {
             borderRadius,
             color: palette.text.primary,
             cursor: 'pointer',
+            flexGrow: 1,
             outline: 'none',
             padding: '13px 11px',
             position: 'relative',
