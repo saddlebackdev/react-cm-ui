@@ -295,6 +295,7 @@ const useStyles = makeStyles((theme) => {
         gridRow: {
             alignItems: 'center !important',
             flexWrap: 'nowrap !important',
+            margin: '-11px 0 !important',
         },
         metaInfo: {
             '&$compact': {
