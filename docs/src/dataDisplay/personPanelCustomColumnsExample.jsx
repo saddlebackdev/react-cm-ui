@@ -1,6 +1,7 @@
 import {
     find,
     map,
+    camelCase,
 } from 'lodash';
 import {
     Checkbox,
@@ -13,25 +14,33 @@ import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { PAYLOAD_PERSON_DUDE } from './personPanelConstants';
 
-const useStyles = makeStyles((theme) => ({
-    checkboxColumn: {
-        alignItems: 'center',
-        display: 'flex',
-        width: '33px',
-    },
-    matchColumn: {
-        alignItems: 'center',
-        display: 'flex',
-        paddingLeft: '11px',
-        width: '50px',
-    },
-    personPanelDetails: {
-        margin: '0 50px 0 33px',
-    },
-    successText: {
-        color: theme.palette.success.main,
-    },
-}));
+const useStyles = makeStyles((theme) => {
+    const checkboxColumnWidth = 33;
+    const matchColumnWidth = 50;
+
+    return {
+        checkboxColumn: {
+            alignItems: 'center',
+            display: 'flex',
+            width: checkboxColumnWidth,
+        },
+        matchColumn: {
+            alignItems: 'center',
+            display: 'flex',
+            paddingLeft: '11px',
+            width: matchColumnWidth,
+        },
+        personPanelDetails: {
+            margin: '0 50px 0 33px',
+        },
+        personPanelSummary: {
+            flexBasis: `calc(100% - ${checkboxColumnWidth + matchColumnWidth}px)`,
+        },
+        successText: {
+            color: theme.palette.success.main,
+        },
+    };
+});
 
 function PersonPanelCustomColumnsExample() {
     const [detailsData, setDetailsData] = useState({});
@@ -156,6 +165,9 @@ function PersonPanelCustomColumnsExample() {
             </div>
 
             <PersonPanelSummary
+                classes={{
+                    root: classes.personPanelSummary,
+                }}
                 data={summaryData}
             />
 
