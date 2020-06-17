@@ -2,6 +2,8 @@ import {
     Typography,
 } from 'react-cm-ui';
 import {
+    isEmpty,
+    isNil,
     trimEnd,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -46,8 +48,12 @@ const defaultProps = {
 
 // eslint-disable-next-line react/prop-types
 function renderEmail({ email }) {
-    if (!email) {
+    if (isEmpty(email)) {
         return null;
+    }
+
+    if (email === 'N/A') {
+        return email;
     }
 
     return (
@@ -60,8 +66,12 @@ function renderEmail({ email }) {
 
 // eslint-disable-next-line react/prop-types
 function renderPhone({ phone }) {
-    if (phone) {
+    if (isEmpty(phone)) {
         return null;
+    }
+
+    if (phone === 'N/A') {
+        return phone;
     }
 
     return (
