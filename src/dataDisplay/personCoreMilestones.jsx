@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => {
                     fill: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderMale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                    fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderUndefined .icon-use-path': {
                     fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
@@ -183,7 +183,7 @@ const useStyles = makeStyles((theme) => {
                     backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderMale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderUndefined': {
                     backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
@@ -328,8 +328,8 @@ export function PersonCoreMilestones(props) {
         blockClassName,
         className,
         {
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.inverse]: inverse,
             [classes.isAdult]: recordType === 'adult',
@@ -341,8 +341,8 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
             [classes.hasTakenClass101]: hasTakenClass101,
@@ -355,8 +355,8 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
             [classes.hasTakenClass201]: hasTakenClass201,
@@ -369,8 +369,8 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
             [classes.hasTakenClass301]: hasTakenClass301,
@@ -383,8 +383,8 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
             [classes.hasTakenClass401]: hasTakenClass401,

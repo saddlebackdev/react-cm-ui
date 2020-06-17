@@ -124,9 +124,9 @@ function birthdateText({ birthdate }) {
 
 function genderText({ gender }) {
     switch (gender) {
-        case 'F':
+        case 'f':
             return 'Female';
-        case 'M':
+        case 'm':
             return 'Male';
         default:
             return '';
@@ -208,10 +208,10 @@ const useStyles = makeStyles((theme) => {
             },
             '&$isAdult': {
                 '&$genderFemale::before': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'F', recordType: 'adult', theme })} !important`,
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderMale::before': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'M', recordType: 'adult', theme })} !important`,
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderUndefined::before': {
                     backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
@@ -241,7 +241,7 @@ const useStyles = makeStyles((theme) => {
                     },
                     '&$genderMale::before': {
                         backgroundImage: `${RECORD_TYPE_COLOR({
-                            gender: 'M',
+                            gender: 'm',
                             isGradient: true,
                             recordType: 'adult',
                             theme,
@@ -455,8 +455,8 @@ function PersonPanelSummary(props) {
         {
             [classes.compact]: isCompact,
             [classes.expanded]: isExpanded,
-            [classes.genderFemale]: gender === 'F',
-            [classes.genderMale]: gender === 'M',
+            [classes.genderFemale]: gender === 'f',
+            [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: !gender,
             [classes.isAdult]: isAdult,
             [classes.isChild]: isChild,

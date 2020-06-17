@@ -90,7 +90,7 @@ export const PAYLOAD_PERSON_DUDE = {
     }],
     firstContact: null,
     firstName: 'Jeffrey',
-    gender: 'M',
+    gender: 'm',
     gradeLevel: 'None',
     id: 204534,
     isAdult: true,

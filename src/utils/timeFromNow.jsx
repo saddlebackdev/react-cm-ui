@@ -65,7 +65,7 @@ function TimeFromNow(props) {
     const defaultThreshold_m = moment.relativeTimeThreshold('m');
     const defaultThreshold_h = moment.relativeTimeThreshold('h');
     const defaultThreshold_d = moment.relativeTimeThreshold('d');
-    const defaultThreshold_M = moment.relativeTimeThreshold('M');
+    const defaultThreshold_M = moment.relativeTimeThreshold('m');
     /* eslint-enable camelcase */
 
     // Customizing moment's relativeTime
@@ -86,7 +86,7 @@ function TimeFromNow(props) {
         moment.relativeTimeThreshold('m', relativeTimeThreshold.m || defaultThreshold_m);
         moment.relativeTimeThreshold('h', relativeTimeThreshold.h || defaultThreshold_h);
         moment.relativeTimeThreshold('d', relativeTimeThreshold.d || defaultThreshold_d);
-        moment.relativeTimeThreshold('M', relativeTimeThreshold.M || defaultThreshold_M);
+        moment.relativeTimeThreshold('m', relativeTimeThreshold.M || defaultThreshold_M);
         /* eslint-enable camelcase */
     }
 
@@ -106,7 +106,7 @@ function TimeFromNow(props) {
     moment.relativeTimeThreshold('m', defaultThreshold_m);
     moment.relativeTimeThreshold('h', defaultThreshold_h);
     moment.relativeTimeThreshold('d', defaultThreshold_d);
-    moment.relativeTimeThreshold('M', defaultThreshold_M);
+    moment.relativeTimeThreshold('m', defaultThreshold_M);
     /* eslint-enable camelcase */
 
     return (

@@ -160,14 +160,14 @@ function PersonPanelControlledAccordionExample() {
                 <PersonPanelSummary
                     data={{
                         ...summaryData,
-                        gender: 'F',
+                        gender: 'f',
                     }}
                 />
 
                 <PersonPanelDetails
                     data={{
                         ...detailsData,
-                        gender: 'F',
+                        gender: 'f',
                     }}
                     selectButtonProps={{
                         id: 'the_dude_select_id',

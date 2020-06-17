@@ -5,8 +5,8 @@ export const BEM_BLOCK_NAME = 'person_panel';
 export const BEM_DETAILS_NAME = `${BEM_BLOCK_NAME}--details`;
 
 export const GENDER_PROP_TYPE = PropTypes.oneOf([
-    'F',
-    'M',
+    'f',
+    'm',
     null,
 ]);
 
@@ -38,13 +38,13 @@ export const RECORD_TYPE_COLOR = ({
         case 'adult':
         default:
             switch (gender) {
-                case 'F':
+                case 'f':
                     if (isGradient) {
                         return palette.cyan.G600;
                     }
 
                     return palette.cyan[600];
-                case 'M':
+                case 'm':
                     if (isGradient) {
                         return palette.green.G600;
                     }
