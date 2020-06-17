@@ -86,8 +86,8 @@ function Heading(props) {
                 {anchorLink && (
                     <a
                         className={classes.anchorLink}
-                        ariaHidden="true"
-                        ariaLabel="anchor"
+                        aria-hidden="true"
+                        aria-label="anchor"
                         id={anchorLink}
                         href={`#${anchorLink}`}
                     >

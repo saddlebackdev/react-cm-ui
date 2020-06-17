@@ -109,15 +109,13 @@ function DocsPersonPanel() {
                     <PersonPanelCustomColumnsExample />
                 </Example>
 
-                <MarkdownContainer>
-                    <ComponentApi
-                        docs={[
-                            personPanelDoc,
-                            personPanelDetailsDoc,
-                            personPanelSummaryDoc,
-                        ]}
-                    />
-                </MarkdownContainer>
+                <ComponentApi
+                    docs={[
+                        personPanelDoc,
+                        personPanelDetailsDoc,
+                        personPanelSummaryDoc,
+                    ]}
+                />
             </Main.Content>
         </Main>
     );

@@ -12,28 +12,13 @@ import React from 'react';
 import Heading from './heading';
 import MarkdownContainer from './markdownContainer';
 import ComponentApiTable from './componentApiTable';
+import { DOCS_PROPS_PROP_TYPE } from './componentApiConstants';
 
 const propTypes = {
     docs: PropTypes.arrayOf(
         PropTypes.shape({
             displayName: PropTypes.string,
-            props: PropTypes.arrayOf(
-                PropTypes.shape({
-                    defaultValue: PropTypes.shape({
-                        computed: PropTypes.bool,
-                        value: PropTypes.string,
-                    }),
-                    description: PropTypes.string,
-                    required: PropTypes.bool,
-                    type: PropTypes.shape({
-                        name: PropTypes.string,
-                        value: PropTypes.arrayOf(PropTypes.shape({
-                            computed: PropTypes.bool,
-                            value: PropTypes.string,
-                        })),
-                    }),
-                }),
-            ),
+            props: DOCS_PROPS_PROP_TYPE,
         }),
     ),
 };

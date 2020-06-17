@@ -10,7 +10,7 @@ import Prompt from '../inputs/prompt';
 const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
-    label: PropTypes.string.isRequird,
+    label: PropTypes.string,
     onClick: PropTypes.func,
     onKeyDownClick: PropTypes.func,
     onPromptCancelClick: PropTypes.func,
@@ -18,7 +18,7 @@ const propTypes = {
     outlined: PropTypes.bool,
     prompt: PropTypes.bool,
     promptId: PropTypes.bool,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 const defaultProps = {

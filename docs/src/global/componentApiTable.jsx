@@ -9,23 +9,10 @@ import { Table } from 'react-cm-ui';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { DOCS_PROPS_PROP_TYPE } from './componentApiConstants';
 
 const propTypes = {
-    componentProps: PropTypes.arrayOf(PropTypes.shape({
-        defaultValue: PropTypes.shape({
-            computed: PropTypes.bool,
-            value: PropTypes.string,
-        }),
-        description: PropTypes.string,
-        required: PropTypes.bool,
-        type: PropTypes.shape({
-            name: PropTypes.string,
-            value: PropTypes.arrayOf(PropTypes.shape({
-                computed: PropTypes.bool,
-                value: PropTypes.string,
-            })),
-        }),
-    })).isRequired,
+    componentProps: DOCS_PROPS_PROP_TYPE.isRequired,
     style: PropTypes.shape({}),
 };
 

@@ -49,7 +49,7 @@ const propTypes = {
                 isPrimary: PropTypes.bool,
             }),
         ),
-        firstName: PropTypes.string.isRequired,
+        firstName: PropTypes.string,
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.oneOf([
             'None',
@@ -74,10 +74,10 @@ const propTypes = {
         isDoNotMail: PropTypes.bool,
         isDoNotPhone: PropTypes.bool,
         isDoNotText: PropTypes.bool,
-        lastName: PropTypes.string.isRequired,
+        lastName: PropTypes.string,
         maritalStatus: PropTypes.string,
         nickName: PropTypes.string,
-        personId: PropTypes.number.isRequired,
+        personId: PropTypes.number,
         phones: PropTypes.arrayOf(
             PropTypes.shape({
                 value: PropTypes.string,
