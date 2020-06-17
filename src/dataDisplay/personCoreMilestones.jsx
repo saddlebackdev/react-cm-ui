@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => {
             backgroundColor: palette.background.primary,
             '&$isAdult': {
                 '&$genderFemale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
+                    fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderMale .icon-use-path': {
                     fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
@@ -180,7 +180,7 @@ const useStyles = makeStyles((theme) => {
             width: '11.07px',
             '&$isAdult': {
                 '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'female', recordType: 'adult', theme })} !important`,
+                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
                 },
                 '&$genderMale': {
                     backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,

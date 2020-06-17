@@ -233,7 +233,7 @@ const useStyles = makeStyles((theme) => {
                 '&$isAdult': {
                     '&$genderFemale::before': {
                         backgroundImage: `${RECORD_TYPE_COLOR({
-                            gender: 'female',
+                            gender: 'f',
                             isGradient: true,
                             recordType: 'adult',
                             theme,
