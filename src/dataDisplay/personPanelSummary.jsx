@@ -180,14 +180,15 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
+            alignItems: 'center',
             backgroundColor: palette.background.light,
             borderRadius,
             color: palette.text.primary,
             cursor: 'pointer',
+            display: 'flex',
             flexGrow: 1,
             minHeight: 70,
             outline: 'none',
-            padding: '0 11px',
             position: 'relative',
             transition: colorTransition,
             userSelect: 'none',
@@ -286,7 +287,9 @@ const useStyles = makeStyles((theme) => {
         expanded: {},
         hasContactInfo: {},
         grid: {
+            margin: '0 !important',
             position: 'relative',
+            width: '100%',
             zIndex: 2,
         },
         gridRow: {
