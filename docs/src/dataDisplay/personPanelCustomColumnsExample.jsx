@@ -1,7 +1,6 @@
 import {
     find,
     map,
-    camelCase,
 } from 'lodash';
 import {
     Checkbox,

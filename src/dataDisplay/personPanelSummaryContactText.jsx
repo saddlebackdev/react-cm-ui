@@ -3,7 +3,6 @@ import {
 } from 'react-cm-ui';
 import {
     isEmpty,
-    isNil,
     trimEnd,
 } from 'lodash';
 import ClassNames from 'classnames';

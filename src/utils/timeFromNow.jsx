@@ -27,6 +27,7 @@ const propTypes = {
     }),
     relativeTimeRounding: PropTypes.oneOf([Math.round, Math.floor]),
     relativeTimeThreshold: PropTypes.shape({
+        ss: PropTypes.number,
         s: PropTypes.number,
         m: PropTypes.number,
         h: PropTypes.number,
