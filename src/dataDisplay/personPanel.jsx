@@ -11,21 +11,31 @@ import React, {
 } from 'react';
 import { UI_CLASS_NAME } from '../global/constants';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
-import PersonPanelDetails from './personPanelDetails';
-import PersonPanelSummary from './personPanelSummary';
 
 const propTypes = {
+    /**
+     * The content of the PersonPanel
+     */
     children: PropTypes.node,
+    /**
+     * If `true`, the PersonPanelSummary negative space is compacted and not all data is shown.
+    */
     isCompact: PropTypes.bool,
+    /**
+     * If `true`, the PersonPanelSummary is shown active and PersonPanelDetails is expanded.
+    */
     isExpanded: PropTypes.bool,
+    /**
+     * Event handler for consummer to control state outside of PersonPanel.
+    */
     onChange: PropTypes.func,
 };
 
 const defaultProps = {
-    children: undefined,
+    children: null,
     isCompact: false,
     isExpanded: false,
-    onChange: undefined,
+    onChange: null,
 };
 
 const useStyles = makeStyles({
@@ -36,6 +46,9 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * The PersonPanel displays a person's high level data in a grouped format.
+ */
 function PersonPanel(props) {
     const {
         children,
@@ -104,10 +117,5 @@ function PersonPanel(props) {
 
 PersonPanel.propTypes = propTypes;
 PersonPanel.defaultProps = defaultProps;
-
-PersonPanel.Details = PersonPanelDetails;
-PersonPanel.LeftContainer = PersonPanelLeftContainer;
-PersonPanel.RightContainer = PersonPanelRightContainer;
-PersonPanel.Summary = PersonPanelSummary;
 
 export default PersonPanel;

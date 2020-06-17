@@ -1,36 +1,49 @@
 import {
-    Typography,
-} from 'react-cm-ui';
-import {
+    camelCase,
     isEmpty,
+    isNil,
     map,
+    upperFirst,
 } from 'lodash';
 // eslint-disable-next-line import/extensions
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TableProps from './tableProps';
+import Heading from './heading';
+import MarkdownContainer from './markdownContainer';
+import ComponentApiTable from './componentApiTable';
 
 const propTypes = {
-    api: PropTypes.arrayOf(
+    docs: PropTypes.arrayOf(
         PropTypes.shape({
-            heading: PropTypes.string,
-            props: PropTypes.arrayOf(PropTypes.shape({})),
+            displayName: PropTypes.string,
+            props: PropTypes.arrayOf(
+                PropTypes.shape({
+                    defaultValue: PropTypes.shape({
+                        computed: PropTypes.bool,
+                        value: PropTypes.string,
+                    }),
+                    description: PropTypes.string,
+                    required: PropTypes.bool,
+                    type: PropTypes.shape({
+                        name: PropTypes.string,
+                        value: PropTypes.arrayOf(PropTypes.shape({
+                            computed: PropTypes.bool,
+                            value: PropTypes.string,
+                        })),
+                    }),
+                }),
+            ),
         }),
     ),
 };
 
 const defaultProps = {
-    api: [],
+    docs: [],
 };
 
 const useStyles = makeStyles({
-    h2: {
-        marginTop: '33px',
-    },
-    h3: {
-        marginTop: '22px',
-    },
+    root: {},
     tableContainer: {
         padding: '0 22px',
     },
@@ -38,57 +51,60 @@ const useStyles = makeStyles({
 
 function ComponentApi(props) {
     const {
-        api,
+        docs,
     } = props;
     const classes = useStyles();
-    const isApiEmpty = isEmpty(api);
+    const isDocsNotDefined = isNil(docs) || isEmpty(docs);
 
-    if (isApiEmpty) {
+    if (isDocsNotDefined) {
         return null;
     }
 
-    let itemNumKey = 0;
+    let docKeyNum = 1;
 
     return (
         <div
             className={classes.root}
         >
-            <Typography
-                // anchor="api"
-                className={classes.h2}
-                variant="h2"
-            >
-                API
-            </Typography>
+            <MarkdownContainer>
+                <Heading
+                    anchorLink="api"
+                    variant="h2"
+                >
+                    API
+                </Heading>
+            </MarkdownContainer>
 
-            {map(api, (item) => {
-                const isItemPropsEmpty = isEmpty(item.props);
+            {map(docs, (doc) => {
+                docKeyNum += 1;
 
-                if (isItemPropsEmpty) {
-                    return null;
-                }
-
-                itemNumKey += 1;
+                const {
+                    displayName,
+                    props: componentProps,
+                } = doc;
 
                 return (
-                    <React.Fragment
-                        key={`section-${itemNumKey}`}
-                    >
-                        <Typography
-                            className={classes.h3}
-                            variant="h3"
-                        >
-                            {item.heading}
-                        </Typography>
+                    <React.Fragment key={`doc_props-${docKeyNum}`}>
+                        <MarkdownContainer>
+                            <Heading
+                                anchorLink={`api${upperFirst(camelCase(displayName))}`}
+                                variant="h3"
+                            >
+                                {`${displayName} Props`}
+                            </Heading>
+                        </MarkdownContainer>
 
                         <div
                             className={classes.tableContainer}
                         >
-                            <TableProps props={item.props} />
+                            <ComponentApiTable
+                                componentProps={componentProps}
+                            />
                         </div>
                     </React.Fragment>
                 );
             })}
+
         </div>
     );
 }

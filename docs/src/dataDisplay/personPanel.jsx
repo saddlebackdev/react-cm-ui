@@ -1,112 +1,68 @@
 import {
-    Header,
     TitleBar,
     Typography,
 } from 'react-cm-ui';
 // eslint-disable-next-line import/extensions
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React from 'react';
 import ComponentApi from '../global/componentApi';
-import Main from '../global/main';
 import Example from '../global/example';
+import Heading from '../global/heading';
+import MarkdownContainer from '../global/markdownContainer';
+import Main from '../global/main';
 import PersonPanelControlledAccordionExample from './personPanelControlledAccordionExample';
 import PersonPanelSimpleExample from './personPanelSimpleExample';
-import PersonPanelSideContainerExample from './personPanelSideContainerExample';
-
-const apiPersonPanel = [
-    {
-        name: 'className',
-        type: 'string',
-        default: '',
-        description: 'Assign additional class names to the container.',
-        allowedTypes: '',
-    }, {
-        name: 'color',
-        type: 'enum',
-        default: 'backgroundColorHighlight',
-        description: 'Assign an ID.',
-        allowedTypes: 'backgroundColorHighlight, backgroundColorStatic',
-    }, {
-        name: 'id',
-        type: 'string',
-        default: '',
-        description: 'Assign an ID to the container.',
-        allowedTypes: '',
-    }, {
-        name: 'size',
-        type: 'number',
-        default: '68',
-        description: 'Changes the size.',
-        allowedTypes: '',
-    }, {
-        name: 'style',
-        type: 'object',
-        default: '{}',
-        description: 'Assign inline styles the container.',
-        allowedTypes: '',
-    },
-];
-const apiPersonPanelSummary = [];
-const apiPersonPanelDetails = [];
-
-const useStyles = makeStyles({
-    description: {
-        margin: '44px 0',
-    },
-});
+import PersonPanelCustomColumnsExample from './personPanelCustomColumnsExample';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as personPanelDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanel';
+import { default as personPanelDetailsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanelDetails';
+import { default as personPanelSummaryDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanelSummary';
+/* eslint-enable import/no-named-default, import/extensions */
 
 function DocsPersonPanel() {
-    const classes = useStyles();
+    const descriptionCopy = personPanelDoc.description;
 
     return (
         <Main page="headers">
             <TitleBar title="Person Panel" />
 
             <Main.Content>
-                <Typography
-                    className={classes.description}
-                    variant="body1"
-                >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et fringilla eros.
-                    Sed ut fringilla nisi, sed ullamcorper dolor.
-                </Typography>
+                <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {descriptionCopy}
+                    </Typography>
 
-                <Header
-                    anchor="simplePersonPanel"
-                    size="large"
-                    style={{ marginTop: '33px' }}
-                >
-                    Simple Person Panel
-                </Header>
+                    <Heading
+                        anchorLink="example"
+                        variant="h2"
+                    >
+                        Simple Person Panel
+                    </Heading>
+                </MarkdownContainer>
 
-                {/* <Example
-                    // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
+                <Example
                     rawCode={require('!!raw-loader!./personPanelSimpleExample').default}
                 >
                     <PersonPanelSimpleExample />
-                </Example> */}
-
-                <Example
-                    // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
-                    rawCode={require('!!raw-loader!./personPanelSideContainerExample').default}
-                >
-                    <PersonPanelSideContainerExample />
                 </Example>
 
-                {/* <Header
-                    anchor="controlledAccordion"
-                    size="large"
-                    style={{ marginTop: '33px' }}
-                    sub
-                >
-                    Controlled Accordion
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Extend the default person panel behavior to create an accordion with the
-                            PersonPanel component.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                <MarkdownContainer>
+                    <Heading
+                        anchorLink="children"
+                        variant="h2"
+                    >
+                        Controlled Accordion
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Extend the default person panel behavior to create an accordion with the
+                        PersonPanel component.
+                    </Typography>
+                </MarkdownContainer>
 
                 <Example
                     // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
@@ -115,20 +71,53 @@ function DocsPersonPanel() {
                     <PersonPanelControlledAccordionExample />
                 </Example>
 
-                <ComponentApi
-                    api={[
-                        {
-                            heading: 'PersonalPanel Props',
-                            props: apiPersonPanel,
-                        }, {
-                            heading: 'PersonalPanelDetails Props',
-                            props: apiPersonPanelDetails,
-                        }, {
-                            heading: 'PersonalPanelSummary Props',
-                            props: apiPersonPanelSummary,
-                        },
-                    ]}
-                /> */}
+                <MarkdownContainer>
+                    <Heading
+                        anchorLink="children"
+                        variant="h2"
+                    >
+                        Children
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        PersonPanel children are rendered by being mapped and returned exactly as
+                        the consumer has been setup, except for PersonPanelDetails and
+                        PersonPanelSummary. The latter are cloned and it their props are passed
+                        through.
+                    </Typography>
+
+                    <Heading
+                        anchorLink="customColumns"
+                        variant="h3"
+                    >
+                        Custom Columns
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        The example below shows how you can have a checkbox column to the left and
+                        some text to the right of the PersonPanelSummary.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example
+                    rawCode={require('!!raw-loader!./personPanelCustomColumnsExample').default}
+                >
+                    <PersonPanelCustomColumnsExample />
+                </Example>
+
+                <MarkdownContainer>
+                    <ComponentApi
+                        docs={[
+                            personPanelDoc,
+                            personPanelDetailsDoc,
+                            personPanelSummaryDoc,
+                        ]}
+                    />
+                </MarkdownContainer>
             </Main.Content>
         </Main>
     );

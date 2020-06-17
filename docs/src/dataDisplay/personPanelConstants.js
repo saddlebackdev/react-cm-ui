@@ -1,7 +1,7 @@
 import '../global/images/the_dude.jpg';
 
 // eslint-disable-next-line import/prefer-default-export
-export const personDudePayload = {
+export const PAYLOAD_PERSON_DUDE = {
     addresses: [
         {
             address1: '1 Dodger Ln',

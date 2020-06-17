@@ -129,15 +129,11 @@ const useStyles = makeStyles((theme) => {
                     fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
                 },
             },
-            '&$isChild': {
-                '&$genderFemale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
-                },
+            '&$isChild .icon-use-path': {
+                fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
             },
-            '&$isStudent': {
-                '&$genderFemale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
-                },
+            '&$isStudent .icon-use-path': {
+                fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
             },
         },
         column: {

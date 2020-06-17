@@ -6,6 +6,8 @@ export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
 export { default as PersonPanel } from './dataDisplay/personPanel';
+export { default as PersonPanelDetails } from './dataDisplay/personPanelDetails';
+export { default as PersonPanelSummary } from './dataDisplay/personPanelSummary';
 export { default as Table } from './dataDisplay/table';
 export { default as Typography } from './dataDisplay/typography';
 

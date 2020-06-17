@@ -65,6 +65,12 @@
             "rules": {
                "import/no-named-as-default": "off"
             }
+        }, {
+            "files": ["docs/**/*.jsx"],
+            "rules": {
+               "global-require": "off",
+               "import/no-webpack-loader-syntax": "off"
+            },
         }
     ]
 }

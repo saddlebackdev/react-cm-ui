@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => {
 
     return {
         codeContainerColumn: {
-            paddingTop: 0,
+            padding: '11px 0',
         },
         codeToggleIcon: {
             color: (props) => (
@@ -35,9 +35,21 @@ const useStyles = makeStyles((theme) => {
             ),
             fontWeight: typography.fontWeightBold,
         },
+        exampleColumn: {
+            borderRadius: shape.borderRadius,
+            boxShadow: `0 0 0 1px ${palette.border.secondary}`,
+            padding: 22,
+        },
         highlighter: {
             marginTop: '11px !important',
         },
+        root: {
+            margin: '0 !important',
+            '& .highlighter.block': {
+                marginBottom: '11px !important',
+            },
+        },
+        sourceButton: {},
     };
 });
 
@@ -60,11 +72,13 @@ function Example(props) {
 
     return (
         <Grid
-            className="example"
+            className={classes.root}
             columns={1}
         >
             <Grid.Row>
-                <Grid.Column>
+                <Grid.Column
+                    className={classes.exampleColumn}
+                >
                     {children}
                 </Grid.Column>
             </Grid.Row>
@@ -76,6 +90,7 @@ function Example(props) {
                 >
                     <div>
                         <Button
+                            className={classes.sourceButton}
                             color="transparent"
                             icon
                             onClick={onCodeToggle}

@@ -1,20 +1,30 @@
 /* eslint-disable react/no-danger */
 
-import './TableProps.scss';
+// import './ComponentApiTable.scss';
 
-import _ from 'lodash';
+import {
+    map,
+} from 'lodash';
 import { Table } from 'react-cm-ui';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-    props: PropTypes.arrayOf(PropTypes.shape({
-        allowedTypes: PropTypes.string,
-        default: PropTypes.string,
+    componentProps: PropTypes.arrayOf(PropTypes.shape({
+        defaultValue: PropTypes.shape({
+            computed: PropTypes.bool,
+            value: PropTypes.string,
+        }),
         description: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
+        required: PropTypes.bool,
+        type: PropTypes.shape({
+            name: PropTypes.string,
+            value: PropTypes.arrayOf(PropTypes.shape({
+                computed: PropTypes.bool,
+                value: PropTypes.string,
+            })),
+        }),
     })).isRequired,
     style: PropTypes.shape({}),
 };
@@ -23,21 +33,50 @@ const defaultProps = {
     style: {},
 };
 
-function TableProps(props) {
-    const { props: componentProps, style } = props;
+function ComponentApiTable(props) {
+    const { componentProps, style } = props;
     const bemBlockName = 'table_props';
     const containerClasses = ClassNames(bemBlockName);
     let TableRowKey = 1;
 
-    const TableRows = _.map(componentProps, (componentProp, index) => {
+    const TableRows = map(componentProps, (componentProp, key) => {
         TableRowKey += 1;
-        const { description } = componentProp;
+        const {
+            defaultValue,
+            description,
+            type,
+        } = componentProp;
+        const name = key;
+        let typeName;
+        let allowedTypesString;
+        let unionString;
+
+        switch (type.name) {
+            case 'enum':
+                allowedTypesString = map(type.value, (typeValue) => (
+                    `${typeValue.value.replace(/['"]+/g, '')}`
+                )).join(' | ');
+
+                typeName = allowedTypesString;
+
+                break;
+            case 'union':
+                unionString = map(type.value, (typeValue) => (
+                    `${typeValue.name.replace(/['"]+/g, '')}`
+                )).join(' | ');
+
+                typeName = unionString;
+
+                break;
+            default:
+                typeName = type.name;
+        }
 
         return (
             <Table.Row key={`${bemBlockName}--props_row_key-${TableRowKey}`}>
                 <Table.Cell className={`${bemBlockName}--table_cell_name`}>
                     <div className={`${bemBlockName}--prop_name`}>
-                        {componentProp.name}
+                        {name}
                     </div>
 
                     <dl className={`${bemBlockName}--mobile_info`}>
@@ -46,7 +85,7 @@ function TableProps(props) {
                         <dd>
                             <span
                                 className={`${bemBlockName}--prop_name`}
-                                dangerouslySetInnerHTML={{ __html: componentProp.name }}
+                                dangerouslySetInnerHTML={{ __html: name }}
                             />
                         </dd>
 
@@ -55,21 +94,21 @@ function TableProps(props) {
                         <dd>
                             <span
                                 className={`${bemBlockName}--prop_type`}
-                                dangerouslySetInnerHTML={{ __html: componentProp.type }}
+                                dangerouslySetInnerHTML={{ __html: typeName }}
                             />
                         </dd>
 
-                        {componentProp.default ? [
-                            <dt key={`dt-default-${index}`}>Default</dt>,
+                        {defaultValue && defaultValue.value && [
+                            <dt key={`dt-default-${TableRowKey}`}>Default</dt>,
                             <dd
-                                key={`dd-default-${index}`}
+                                key={`dd-default-${TableRowKey}`}
                             >
                                 <span
                                     className={`${bemBlockName}--prop_default`}
-                                    dangerouslySetInnerHTML={{ __html: componentProp.default }}
+                                    dangerouslySetInnerHTML={{ __html: defaultValue.value }}
                                 />
                             </dd>,
-                        ] : null}
+                        ]}
 
                         <dt>Description</dt>
 
@@ -78,13 +117,6 @@ function TableProps(props) {
                                 className={`${bemBlockName}--prop_description`}
                                 dangerouslySetInnerHTML={{ __html: description }}
                             />
-
-                            {componentProp.allowedTypes ? (
-                                <p className={`${bemBlockName}--allowed_types`}>
-                                    <span className="type">{`${componentProp.type}s:`}</span>
-                                    {componentProp.allowedTypes}
-                                </p>
-                            ) : null}
                         </dd>
                     </dl>
                 </Table.Cell>
@@ -95,7 +127,7 @@ function TableProps(props) {
                 >
                     <span
                         className={`${bemBlockName}--prop_type`}
-                        dangerouslySetInnerHTML={{ __html: componentProp.type }}
+                        dangerouslySetInnerHTML={{ __html: typeName }}
                     />
                 </Table.Cell>
 
@@ -103,10 +135,12 @@ function TableProps(props) {
                     laptop
                     width={false}
                 >
-                    <span
-                        className={`${bemBlockName}--prop_default`}
-                        dangerouslySetInnerHTML={{ __html: componentProp.default }}
-                    />
+                    {defaultValue && defaultValue.value && (
+                        <span
+                            className={`${bemBlockName}--prop_default`}
+                            dangerouslySetInnerHTML={{ __html: defaultValue.value }}
+                        />
+                    )}
                 </Table.Cell>
 
                 <Table.Cell
@@ -117,13 +151,6 @@ function TableProps(props) {
                         className={`${bemBlockName}--prop_description`}
                         dangerouslySetInnerHTML={{ __html: description }}
                     />
-
-                    {componentProp.allowedTypes ? (
-                        <p className="allowed-types">
-                            <span className="type">{`${componentProp.type}s:`}</span>
-                            {componentProp.allowedTypes}
-                        </p>
-                    ) : null}
                 </Table.Cell>
             </Table.Row>
         );
@@ -160,7 +187,7 @@ function TableProps(props) {
     );
 }
 
-TableProps.propTypes = propTypes;
-TableProps.defaultProps = defaultProps;
+ComponentApiTable.propTypes = propTypes;
+ComponentApiTable.defaultProps = defaultProps;
 
-export default TableProps;
+export default ComponentApiTable;

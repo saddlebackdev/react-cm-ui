@@ -1,8 +1,8 @@
 import {
+    filter,
     find,
     isEmpty,
     map,
-    remove,
 } from 'lodash';
 import ClassNames from 'classnames';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
@@ -11,9 +11,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import {
     BEM_DETAILS_NAME,
-    GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
-    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../global/constants';
@@ -115,29 +113,7 @@ const defaultProps = {
     children: null,
     className: null,
     classes: null,
-    data: {
-        addresses: [],
-        allergies: null,
-        birthdate: null,
-        campus: null,
-        churchEntities: null,
-        churchEntityName: null,
-        commonlyAttendedService: null,
-        deceasedDate: null,
-        emails: [],
-        emergencyContactAddresses: null,
-        emergencyContactEmails: null,
-        emergencyContactName: null,
-        emergencyContactPhones: null,
-        emergencyContactPreferMethod: null,
-        emergencyContactRelation: null,
-        gender: GENDER_DEFAULT_TYPE,
-        gradeLevel: null,
-        isDoNotContact: false,
-        phones: [],
-        preferredService: null,
-        recordType: RECORD_TYPE_DEFAULT_PROP,
-    },
+    data: {},
     isExpanded: false,
     selectButtonProps: {},
     otherDataGroups: [],
@@ -292,7 +268,7 @@ function setEmergencyContactDataGroup({
 
     if (emergencyContactAddresses) {
         if (emergencyContactPreferMethod === 'letter') {
-            const primaryPreferredAddress = remove(emergencyContactAddresses, 'isPrimary')[0];
+            const primaryPreferredAddress = filter(emergencyContactAddresses, 'isPrimary')[0];
 
             preferMethodRow = [
                 ...preferMethodRow,
@@ -328,7 +304,7 @@ function setEmergencyContactDataGroup({
 
     if (emergencyContactEmails) {
         if (emergencyContactPreferMethod === 'email') {
-            const primaryPreferredEmail = remove(emergencyContactEmails, 'isPrimary')[0];
+            const primaryPreferredEmail = filter(emergencyContactEmails, 'isPrimary')[0];
 
             preferMethodRow = [
                 ...preferMethodRow,
@@ -360,7 +336,7 @@ function setEmergencyContactDataGroup({
             emergencyContactPreferMethod === 'text' ||
             emergencyContactPreferMethod === 'phone'
         ) {
-            const primaryPreferredPhone = remove(emergencyContactPhones, 'isPrimary')[0];
+            const primaryPreferredPhone = filter(emergencyContactPhones, 'isPrimary')[0];
 
             preferMethodRow = [
                 ...preferMethodRow,
@@ -592,7 +568,9 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-export function PersonPanelDetails(props) {
+function PersonPanelDetails(props) {
+    const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
+
     const {
         children,
         className,
@@ -602,7 +580,7 @@ export function PersonPanelDetails(props) {
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
-    const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
+
     const {
         addresses,
         allergies,
@@ -625,6 +603,7 @@ export function PersonPanelDetails(props) {
         preferredService,
         recordType,
     } = data;
+
     const isChild = recordType === 'child';
     const isStudent = recordType === 'student';
 
@@ -641,21 +620,25 @@ export function PersonPanelDetails(props) {
             isStudent,
             preferredService,
         });
+
         const addressDataGroup = setAddressDataGroup({
             addresses,
             isChild,
             isDoNotContact,
         });
+
         const emailDataGroup = setEmailDataGroup({
             emails,
             isChild,
             isDoNotContact,
         });
+
         const phoneDataGroup = setPhoneDataGroup({
             isChild,
             isDoNotContact,
             phones,
         });
+
         const emergencyContactDataGroup = setEmergencyContactDataGroup({
             emergencyContactAddresses,
             emergencyContactEmails,
@@ -664,11 +647,12 @@ export function PersonPanelDetails(props) {
             emergencyContactPreferMethod,
             emergencyContactRelation,
         });
+
         const newDataGroupsColumns = [
             ...personalDataGroup,
-            ...addressDataGroup,
-            ...emailDataGroup,
             ...phoneDataGroup,
+            ...emailDataGroup,
+            ...addressDataGroup,
             ...emergencyContactDataGroup,
             ...otherDataGroups,
         ];
