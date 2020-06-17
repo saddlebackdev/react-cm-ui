@@ -78,12 +78,18 @@ function PersonPanelControlledAccordionExample() {
                     campus: person.churchEntityName,
                     commonlyAttendedService: person.commonlyAttendedService,
                     emails,
-                    emergencyContactAddresses: primaryEmergencyContact && primaryEmergencyContact.addresses,
-                    emergencyContactEmails: primaryEmergencyContact && primaryEmergencyContact.emails,
-                    emergencyContactName: primaryEmergencyContact && `${primaryEmergencyContact.firstName} ${primaryEmergencyContact.lastName}`,
-                    emergencyContactPhones: primaryEmergencyContact && primaryEmergencyContact.phones,
-                    emergencyContactPreferMethod: primaryEmergencyContact && primaryEmergencyContact.preferredMethod,
-                    emergencyContactRelation: primaryEmergencyContact && primaryEmergencyContact.relationshipName,
+                    emergencyContactAddresses:
+                        primaryEmergencyContact && primaryEmergencyContact.addresses,
+                    emergencyContactEmails:
+                        primaryEmergencyContact && primaryEmergencyContact.emails,
+                    emergencyContactName:
+                        primaryEmergencyContact && `${primaryEmergencyContact.firstName} ${primaryEmergencyContact.lastName}`,
+                    emergencyContactPhones:
+                        primaryEmergencyContact && primaryEmergencyContact.phones,
+                    emergencyContactPreferMethod:
+                        primaryEmergencyContact && primaryEmergencyContact.preferredMethod,
+                    emergencyContactRelation:
+                        primaryEmergencyContact && primaryEmergencyContact.relationshipName,
                     gender: person.gender,
                     gradeLevel: person.gradeLevel,
                     isDoNotContact: person.contactPreferences.doNotContact,
