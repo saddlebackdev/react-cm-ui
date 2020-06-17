@@ -2,12 +2,16 @@ import {
     find,
     map,
 } from 'lodash';
-import { Checkbox, PersonPanel, Typography} from 'react-cm-ui';
+import {
+    Checkbox,
+    PersonPanel,
+    PersonPanelDetails,
+    PersonPanelSummary,
+    Typography,
+} from 'react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
-import { personDudePayload } from './personPanelConstants';
-import PersonPanelLeftContainer from '../../../src/dataDisplay/personPanelLeftContainer';
-import PersonPanelRightContainer from '../../../src/dataDisplay/personPanelRightContainer';
+import { PAYLOAD_PERSON_DUDE } from './personPanelConstants';
 
 const useStyles = makeStyles((theme) => ({
     checkboxColumn: {
@@ -29,13 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function PersonPanelSideContainerExample() {
+function PersonPanelCustomColumnsExample() {
     const [detailsData, setDetailsData] = useState({});
     const [summaryData, setSummaryData] = useState({});
     const classes = useStyles();
 
     useEffect(() => {
-        const addresses = map(personDudePayload.addresses, (address) => ({
+        const payloadPersonDude = PAYLOAD_PERSON_DUDE;
+        const addresses = map(payloadPersonDude.addresses, (address) => ({
             address1: address.address1,
             address2: address.address2,
             city: address.city,
@@ -46,11 +51,11 @@ function PersonPanelSideContainerExample() {
             region: address.region,
             regionCode: address.regionCode,
         }));
-        const emails = map(personDudePayload.emails, (email) => ({
+        const emails = map(payloadPersonDude.emails, (email) => ({
             isPrimary: email.isPrimary,
             value: email.email,
         }));
-        const phones = map(personDudePayload.phones, (phone) => {
+        const phones = map(payloadPersonDude.phones, (phone) => {
             let type;
 
             switch (phone.phoneTypeId) {
@@ -75,12 +80,12 @@ function PersonPanelSideContainerExample() {
                 value: phone.displayPhoneNumber,
             };
         });
-        const primaryEmergencyContact = find(personDudePayload.emergencyContacts, 'isPrimary');
+        const primaryEmergencyContact = find(payloadPersonDude.emergencyContacts, 'isPrimary');
         let recordType;
 
-        if (personDudePayload.isChild) {
+        if (payloadPersonDude.isChild) {
             recordType = 'child';
-        } else if (personDudePayload.isStudent) {
+        } else if (payloadPersonDude.isStudent) {
             recordType = 'student';
         } else {
             recordType = 'adult';
@@ -88,10 +93,10 @@ function PersonPanelSideContainerExample() {
 
         setDetailsData({
             addresses,
-            allergies: personDudePayload.allergies,
-            birthdate: personDudePayload.birthDate,
-            campus: personDudePayload.churchEntityName,
-            commonlyAttendedService: personDudePayload.commonlyAttendedService,
+            allergies: payloadPersonDude.allergies,
+            birthdate: payloadPersonDude.birthDate,
+            campus: payloadPersonDude.churchEntityName,
+            commonlyAttendedService: payloadPersonDude.commonlyAttendedService,
             emails,
             emergencyContactAddresses: primaryEmergencyContact.addresses,
             emergencyContactEmails: primaryEmergencyContact.emails,
@@ -99,36 +104,36 @@ function PersonPanelSideContainerExample() {
             emergencyContactPhones: primaryEmergencyContact.phones,
             emergencyContactPreferMethod: primaryEmergencyContact.preferredMethod,
             emergencyContactRelation: primaryEmergencyContact.relationshipName,
-            gender: personDudePayload.gender,
-            gradeLevel: personDudePayload.gradeLevel,
-            isDoNotContact: personDudePayload.contactPreferences.doNotContact,
+            gender: payloadPersonDude.gender,
+            gradeLevel: payloadPersonDude.gradeLevel,
+            isDoNotContact: payloadPersonDude.contactPreferences.doNotContact,
             phones,
-            preferredService: personDudePayload.preferredService,
+            preferredService: payloadPersonDude.preferredService,
             recordType,
         });
 
         setSummaryData({
-            avatar: personDudePayload.profilePictureUrl,
-            birthdate: personDudePayload.birthDate,
-            campus: personDudePayload.churchEntityName,
+            avatar: payloadPersonDude.profilePictureUrl,
+            birthdate: payloadPersonDude.birthDate,
+            campus: payloadPersonDude.churchEntityName,
             emails,
-            firstName: personDudePayload.firstName,
-            gender: personDudePayload.gender,
-            gradeLevel: personDudePayload.gradeLevel,
-            isDoNotContact: personDudePayload.contactPreferences.doNotContact,
-            isDoNotEmail: personDudePayload.contactPreferences.doNotEmail,
-            isDoNotMail: personDudePayload.contactPreferences.doNotMail,
-            isDoNotPhone: personDudePayload.contactPreferences.doNotPhone,
-            isDoNotText: personDudePayload.contactPreferences.doNotText,
-            lastName: personDudePayload.lastName,
-            maritalStatus: personDudePayload.maritalStatus,
-            nickName: personDudePayload.nickName,
-            personId: personDudePayload.id,
+            firstName: payloadPersonDude.firstName,
+            gender: payloadPersonDude.gender,
+            gradeLevel: payloadPersonDude.gradeLevel,
+            isDoNotContact: payloadPersonDude.contactPreferences.doNotContact,
+            isDoNotEmail: payloadPersonDude.contactPreferences.doNotEmail,
+            isDoNotMail: payloadPersonDude.contactPreferences.doNotMail,
+            isDoNotPhone: payloadPersonDude.contactPreferences.doNotPhone,
+            isDoNotText: payloadPersonDude.contactPreferences.doNotText,
+            lastName: payloadPersonDude.lastName,
+            maritalStatus: payloadPersonDude.maritalStatus,
+            nickName: payloadPersonDude.nickName,
+            personId: payloadPersonDude.id,
             phones,
-            preferredMethod: personDudePayload.contactPreferences.preferredMethod,
-            prefix: personDudePayload.prefix,
+            preferredMethod: payloadPersonDude.contactPreferences.preferredMethod,
+            prefix: payloadPersonDude.prefix,
             recordType,
-            suffix: personDudePayload.suffix,
+            suffix: payloadPersonDude.suffix,
         });
     }, []);
 
@@ -150,7 +155,7 @@ function PersonPanelSideContainerExample() {
                 <Checkbox />
             </div>
 
-            <PersonPanel.Summary
+            <PersonPanelSummary
                 data={summaryData}
             />
 
@@ -164,7 +169,7 @@ function PersonPanelSideContainerExample() {
                 </Typography>
             </div>
 
-            <PersonPanel.Details
+            <PersonPanelDetails
                 className={classes.personPanelDetails}
                 data={detailsData}
                 selectButtonProps={{
@@ -182,4 +187,4 @@ function PersonPanelSideContainerExample() {
     );
 }
 
-export default PersonPanelSideContainerExample;
+export default PersonPanelCustomColumnsExample;
