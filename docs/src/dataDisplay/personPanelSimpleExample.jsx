@@ -8,14 +8,14 @@ import {
     PersonPanelSummary,
 } from 'react-cm-ui';
 import React, { useEffect, useState } from 'react';
-import { PAYLOAD_PERSON_DUDE } from './personPanelConstants';
+import { PAYLOAD_PERSON } from './personPanelConstants';
 
 function PersonPanelSimpleExample() {
     const [detailsData, setDetailsData] = useState({});
     const [summaryData, setSummaryData] = useState({});
 
     useEffect(() => {
-        const payloadPersonDude = PAYLOAD_PERSON_DUDE;
+        const payloadPersonDude = PAYLOAD_PERSON[0];
         const addresses = map(payloadPersonDude.addresses, (address) => ({
             address1: address.address1,
             address2: address.address2,

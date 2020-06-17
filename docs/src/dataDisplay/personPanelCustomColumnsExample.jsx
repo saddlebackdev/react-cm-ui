@@ -12,7 +12,7 @@ import {
 } from 'react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
-import { PAYLOAD_PERSON_DUDE } from './personPanelConstants';
+import { PAYLOAD_PERSON } from './personPanelConstants';
 
 const useStyles = makeStyles((theme) => {
     const checkboxColumnWidth = 33;
@@ -48,7 +48,7 @@ function PersonPanelCustomColumnsExample() {
     const classes = useStyles();
 
     useEffect(() => {
-        const payloadPersonDude = PAYLOAD_PERSON_DUDE;
+        const payloadPersonDude = PAYLOAD_PERSON[0];
         const addresses = map(payloadPersonDude.addresses, (address) => ({
             address1: address.address1,
             address2: address.address2,
