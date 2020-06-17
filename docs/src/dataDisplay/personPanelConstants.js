@@ -47,7 +47,7 @@ export const PAYLOAD_PERSON = [
             doNotPhone: true,
             doNotText: true,
             id: 42,
-            preferredMethod: 'mail',
+            preferredMethod: 'phone',
         },
         deceasedDate: null,
         emails: [
@@ -153,12 +153,12 @@ export const PAYLOAD_PERSON = [
         churchEntityName: 'Lake Forest',
         contactPreferences: {
             doNotContact: false,
-            doNotEmail: true,
+            doNotEmail: false,
             doNotMail: false,
-            doNotPhone: true,
+            doNotPhone: false,
             doNotText: false,
             id: 42,
-            preferredMethod: 'mail',
+            preferredMethod: 'email',
         },
         deceasedDate: null,
         emails: [
