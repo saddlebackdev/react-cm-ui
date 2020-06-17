@@ -190,7 +190,7 @@ const useStyles = makeStyles((theme) => {
             position: 'relative',
             transition: colorTransition,
             userSelect: 'none',
-            with: '100%',
+            width: '100%',
             '&::before, &::after': {
                 bottom: 0,
                 content: '""',
