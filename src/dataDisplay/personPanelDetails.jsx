@@ -716,22 +716,19 @@ function PersonPanelDetails(props) {
             [classes.isExpanded]: isExpanded,
         },
     );
-    const shouldCoreMilestonesRender = true;
     const shouldDataGroupsRender = !isEmpty(data) && !isEmpty(dataGroupsColumns);
 
     return (
         <div className={rootClasses}>
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
-                    {shouldCoreMilestonesRender && (
-                        <PersonCoreMilestones
-                            className={classes.personCoreMilestones}
-                            iconSize={16}
-                            isIconTransparent
-                            gender={gender}
-                            recordType={recordType}
-                        />
-                    )}
+                    <PersonCoreMilestones
+                        className={classes.personCoreMilestones}
+                        iconSize={16}
+                        isIconTransparent
+                        gender={gender}
+                        recordType={recordType}
+                    />
 
                     {shouldDataGroupsRender && (
                         <DataGroups
