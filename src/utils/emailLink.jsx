@@ -5,12 +5,14 @@ import A from '../atoms/a';
 const propTypes = {
     className: PropTypes.string,
     email: PropTypes.string,
+    id: PropTypes.string,
     tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
-    className: undefined,
-    email: undefined,
+    className: null,
+    email: null,
+    id: null,
     tabIndex: -1,
 };
 
@@ -18,6 +20,7 @@ function EmailLink(props) {
     const {
         className,
         email,
+        id,
         tabIndex,
     } = props;
 
@@ -34,6 +37,7 @@ function EmailLink(props) {
     return (
         <A
             className={className}
+            id={id}
             onClick={onClick}
             tabIndex={tabIndex}
         >

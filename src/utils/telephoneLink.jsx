@@ -5,14 +5,16 @@ import A from '../atoms/a';
 const propTypes = {
     className: PropTypes.string,
     formattedNumber: PropTypes.string,
+    id: PropTypes.string,
     number: PropTypes.string,
     tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
-    className: undefined,
-    number: undefined,
-    formattedNumber: undefined,
+    className: null,
+    formattedNumber: null,
+    id: null,
+    number: null,
     tabIndex: -1,
 };
 
@@ -20,6 +22,7 @@ function TelephoneLink(props) {
     const {
         className,
         formattedNumber,
+        id,
         number,
         tabIndex,
     } = props;
@@ -37,6 +40,7 @@ function TelephoneLink(props) {
     return (
         <A
             className={className}
+            id={id}
             onClick={onClick}
             tabIndex={tabIndex}
         >
