@@ -24,15 +24,4 @@
     }
     &.table-fixed { table-layout: fixed; }
     &.table-single-line { white-space: nowrap; }
-    // &-sticky_columns {
-    //     th.table-header-cell-sticky,
-    //     td.table-cell-sticky {
-    //         &:last-of-type {
-    //             border-right: 1px solid color(borderColor);
-    //             left: 0;
-    //             position: sticky;
-    //             z-index: 2;
-    //         }
-    //     }
-    // }
 }
