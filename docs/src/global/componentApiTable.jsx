@@ -3,6 +3,7 @@
 // import './ComponentApiTable.scss';
 
 import {
+    isEmpty,
     map,
 } from 'lodash';
 import { Table } from 'react-cm-ui';
@@ -20,122 +21,99 @@ const defaultProps = {
     style: {},
 };
 
+function getTypeName(type) {
+    let allowedTypesString;
+    let unionString;
+    let arrayOfString;
+    let shapeString;
+
+    // console.log('type', type);
+    // console.log('type.name', type.name);
+    switch (type.name) {
+        case 'arrayOf':
+            // console.log('arrayOf type', type);
+            arrayOfString = map(type.value, (typeValue) => {
+                // console.log('typeValue', typeValue);
+                return getTypeName({
+                    name: typeValue,
+
+                });
+            });
+
+            return `arrayOf: [ ${arrayOfString} ]`;
+        case 'enum':
+            allowedTypesString = map(type.value, (typeValue) => (
+                `${typeValue.value.replace(/['"]+/g, '')}`
+            )).join(' | ');
+
+            return allowedTypesString;
+        case 'shape':
+            // console.log('shape type', type);
+
+            if (type.value) {
+                shapeString = map(type.value, (typeValue, key) => {
+                    console.log('typeValue', typeValue);
+                    return JSON.stringify(getTypeName(typeValue));
+                }).join(', ');
+            }
+
+            // console.log(`shape: { ${shapeString || ''} }`);
+
+            return `shape: { ${shapeString || ''} }`;
+        case 'union':
+            unionString = map(type.value, (typeValue) => (
+                `${typeValue.name.replace(/['"]+/g, '')}`
+            )).join(' | ');
+
+            return unionString;
+        default:
+            return type.name;
+    }
+}
+
 function ComponentApiTable(props) {
     const { componentProps, style } = props;
     const bemBlockName = 'table_props';
     const containerClasses = ClassNames(bemBlockName);
     let TableRowKey = 1;
+    console.log('componentProps', componentProps);
 
     const TableRows = map(componentProps, (componentProp, key) => {
         TableRowKey += 1;
         const {
             defaultValue,
             description,
+            required,
             type,
         } = componentProp;
-        const name = key;
-        let typeName;
-        let allowedTypesString;
-        let unionString;
+        let name = key;
 
-        switch (type.name) {
-            case 'enum':
-                allowedTypesString = map(type.value, (typeValue) => (
-                    `${typeValue.value.replace(/['"]+/g, '')}`
-                )).join(' | ');
-
-                typeName = allowedTypesString;
-
-                break;
-            case 'union':
-                unionString = map(type.value, (typeValue) => (
-                    `${typeValue.name.replace(/['"]+/g, '')}`
-                )).join(' | ');
-
-                typeName = unionString;
-
-                break;
-            default:
-                typeName = type.name;
+        if (required) {
+            name += '*';
         }
 
         return (
             <Table.Row key={`${bemBlockName}--props_row_key-${TableRowKey}`}>
-                <Table.Cell className={`${bemBlockName}--table_cell_name`}>
-                    <div className={`${bemBlockName}--prop_name`}>
-                        {name}
-                    </div>
-
-                    <dl className={`${bemBlockName}--mobile_info`}>
-                        <dt>Name</dt>
-
-                        <dd>
-                            <span
-                                className={`${bemBlockName}--prop_name`}
-                                dangerouslySetInnerHTML={{ __html: name }}
-                            />
-                        </dd>
-
-                        <dt>Type</dt>
-
-                        <dd>
-                            <span
-                                className={`${bemBlockName}--prop_type`}
-                                dangerouslySetInnerHTML={{ __html: typeName }}
-                            />
-                        </dd>
-
-                        {defaultValue && defaultValue.value && [
-                            <dt key={`dt-default-${TableRowKey}`}>Default</dt>,
-                            <dd
-                                key={`dd-default-${TableRowKey}`}
-                            >
-                                <span
-                                    className={`${bemBlockName}--prop_default`}
-                                    dangerouslySetInnerHTML={{ __html: defaultValue.value }}
-                                />
-                            </dd>,
-                        ]}
-
-                        <dt>Description</dt>
-
-                        <dd>
-                            <p
-                                className={`${bemBlockName}--prop_description`}
-                                dangerouslySetInnerHTML={{ __html: description }}
-                            />
-                        </dd>
-                    </dl>
+                <Table.Cell>
+                    {name}
                 </Table.Cell>
 
-                <Table.Cell
-                    laptop
-                    width={false}
-                >
+                <Table.Cell>
                     <span
-                        className={`${bemBlockName}--prop_type`}
-                        dangerouslySetInnerHTML={{ __html: typeName }}
+                        dangerouslySetInnerHTML={{ __html: type.name }}
                     />
                 </Table.Cell>
 
-                <Table.Cell
-                    laptop
-                    width={false}
-                >
+                <Table.Cell>
                     {defaultValue && defaultValue.value && (
                         <span
-                            className={`${bemBlockName}--prop_default`}
                             dangerouslySetInnerHTML={{ __html: defaultValue.value }}
                         />
                     )}
                 </Table.Cell>
 
-                <Table.Cell
-                    laptop
-                    width={false}
-                >
+                <Table.Cell>
                     <p
-                        className={`${bemBlockName}--prop_description`}
                         dangerouslySetInnerHTML={{ __html: description }}
                     />
                 </Table.Cell>
@@ -144,33 +122,30 @@ function ComponentApiTable(props) {
     });
 
     return (
-        <div className={containerClasses}>
-            <Table
-                basic
-                fontSize="xsmall"
-                stretch="very"
-                style={{
-                    backgroundColor: 'transparent',
-                    ...style,
-                }}
-            >
-                <Table.Header width={false} laptop>
-                    <Table.Row>
-                        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table
+            basic
+            stretch="very"
+            style={{
+                backgroundColor: 'transparent',
+                ...style,
+            }}
+        >
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
 
-                        <Table.HeaderCell>Type</Table.HeaderCell>
+                    <Table.HeaderCell>Type</Table.HeaderCell>
 
-                        <Table.HeaderCell>Default</Table.HeaderCell>
+                    <Table.HeaderCell>Default</Table.HeaderCell>
 
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+                    <Table.HeaderCell>Description</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
 
-                <Table.Body>
-                    {TableRows}
-                </Table.Body>
-            </Table>
-        </div>
+            <Table.Body>
+                {TableRows}
+            </Table.Body>
+        </Table>
     );
 }
 

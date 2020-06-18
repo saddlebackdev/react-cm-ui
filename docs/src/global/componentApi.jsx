@@ -30,7 +30,7 @@ const defaultProps = {
 const useStyles = makeStyles({
     root: {},
     tableContainer: {
-        padding: '0 22px',
+        margin: '33px -22px 0',
     },
 });
 

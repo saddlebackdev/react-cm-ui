@@ -25,11 +25,13 @@ import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
 import PersonPanelSummaryContactText from './personPanelSummaryContactText';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to PersonPanelSummary.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
         avatar: PropTypes.string,
         avatarColumn: PropTypes.string,
-        compact: PropTypes.string,
         contactInfoColumn: PropTypes.string,
         expanded: PropTypes.string,
         grid: PropTypes.string,
@@ -39,6 +41,9 @@ const propTypes = {
         personIdColumn: PropTypes.string,
         personId: PropTypes.string,
     }),
+    /**
+     * The data that the PersonPanelSummary uses to build the UI.
+     */
     data: PropTypes.shape({
         avatar: PropTypes.string,
         birthdate: PropTypes.number,
@@ -89,16 +94,23 @@ const propTypes = {
         recordType: RECORD_TYPE_PROP_TYPE,
         suffix: PropTypes.string,
     }),
-    isCompact: PropTypes.bool,
+    /**
+     * If `true`, expand PersonPanelSummary, otherwise collapse it.
+     */
     isExpanded: PropTypes.bool,
+    /**
+     * Event handler when clicking on the PersonPanelSummary container.
+     */
     onClick: PropTypes.func,
+    /**
+     * Indicates whether or not the PersonPanelSummary can be focused.
+     */
     tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
     classes: null,
     data: {},
-    isCompact: false,
     isExpanded: false,
     onClick: null,
     tabIndex: -1,
@@ -260,20 +272,16 @@ const useStyles = makeStyles((theme) => {
                     backgroundImage: `${RECORD_TYPE_COLOR({ isGradient: true, recordType: 'student', theme })} !important`,
                 },
             },
-            '&$compact': {
-                padding: '5.5px 11px',
-            },
         },
         avatar: {
             boxShadow: `inset 0 0 0 1px ${palette.border.primary} !important`,
         },
         avatarColumn: {
-            maxWidth: (props) => (props.isCompact ? 44 : 55),
-            minWidth: (props) => (props.isCompact ? 44 : 55),
+            maxWidth: 55,
+            minWidth: 55,
             paddingRight: 0,
             width: 'auto !important',
         },
-        compact: {},
         contactInfoColumn: {
             display: 'none',
             width: 'auto !important',
@@ -297,11 +305,7 @@ const useStyles = makeStyles((theme) => {
             flexWrap: 'nowrap !important',
             margin: '-11px 0 !important',
         },
-        metaInfo: {
-            '&$compact': {
-                display: 'none',
-            },
-        },
+        metaInfo: {},
         nameColumn: {
             marginRight: 'auto',
             width: 'auto !important',
@@ -341,7 +345,6 @@ function PersonPanelSummary(props) {
     const classes = useStyles(props);
     const {
         data,
-        isCompact,
         isExpanded,
         onClick: onClickProp,
         tabIndex,
@@ -416,7 +419,6 @@ function PersonPanelSummary(props) {
     useEffect(() => {
         setRenderContactInfo(
             <PersonPanelSummaryContactText
-                isCompact={isCompact}
                 isDoNotContact={isDoNotContact}
                 isDoNotEmail={isDoNotEmail}
                 isDoNotMail={isDoNotMail}
@@ -430,7 +432,6 @@ function PersonPanelSummary(props) {
             />,
         );
     }, [
-        isCompact,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
@@ -458,7 +459,6 @@ function PersonPanelSummary(props) {
         UI_CLASS_NAME,
         [`${bemClass}`],
         {
-            [classes.compact]: isCompact,
             [classes.expanded]: isExpanded,
             [classes.genderFemale]: gender === 'f',
             [classes.genderMale]: gender === 'm',
@@ -468,9 +468,7 @@ function PersonPanelSummary(props) {
             [classes.isStudent]: isStudent,
         },
     );
-    const metaInfoClasses = ClassNames(classes.metaInfo, {
-        [classes.compact]: isCompact,
-    });
+    const metaInfoClasses = ClassNames(classes.metaInfo);
     const contactInfoColumnClasses = ClassNames(
         classes.contactInfoColumn,
         {
@@ -502,7 +500,7 @@ function PersonPanelSummary(props) {
                         <Image
                             className={classes.avatar}
                             name={firstName && lastName ? `${firstName} ${lastName}` : null}
-                            size={isCompact ? 33 : 44}
+                            size={44}
                             src={avatar}
                             type="person"
                         />

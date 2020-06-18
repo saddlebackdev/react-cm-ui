@@ -25,11 +25,23 @@ import TelephoneLink from '../utils/telephoneLink';
 import Typography from './typography';
 
 const propTypes = {
+    /**
+     * The content of the PersonPanelDetails.
+     */
     children: PropTypes.node,
+    /**
+     * Assign additional class names to PersonPanelDetails.
+     */
     className: PropTypes.string,
+    /**
+     * Override or extend the styles applied to PersonPanelDetails.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * The data that the PersonPanelDetails uses to build the UI.
+     */
     data: PropTypes.shape({
         addresses: PropTypes.arrayOf(PropTypes.shape({
             address1: PropTypes.string,
@@ -85,7 +97,13 @@ const propTypes = {
         preferredService: PropTypes.string,
         recordType: RECORD_TYPE_PROP_TYPE,
     }),
+    /**
+     * If `true`, expand PersonPanelDetails, otherwise collapse it.
+     */
     isExpanded: PropTypes.bool,
+    /**
+     * Button `props` to setup the Select button.
+     */
     selectButtonProps: PropTypes.shape({
         className: PropTypes.string,
         id: PropTypes.string,
@@ -96,7 +114,13 @@ const propTypes = {
         prompt: PropTypes.bool,
         promptId: PropTypes.bool,
     }),
+    /**
+     * Return other DataGroups within the PersonPanelDetails.
+     */
     otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+     * Button `props` to setup the View Record button.
+     */
     viewRecordButtonProps: PropTypes.shape({
         className: PropTypes.string,
         id: PropTypes.string,
