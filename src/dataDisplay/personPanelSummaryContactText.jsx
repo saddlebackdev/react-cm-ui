@@ -236,7 +236,6 @@ function PersonPanelSummaryContactText(props) {
 
                 {preferredMethod !== 'none' && preferredContactInfoText && (
                     <Typography
-                        // eslint-disable-next-line react/prop-types
                         className={classes.preferredContactInfo}
                         variant="body2"
                     >

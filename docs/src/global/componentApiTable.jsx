@@ -3,11 +3,9 @@
 // import './ComponentApiTable.scss';
 
 import {
-    isEmpty,
     map,
 } from 'lodash';
 import { Table } from 'react-cm-ui';
-import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { DOCS_PROPS_PROP_TYPE } from './componentApiConstants';
@@ -21,65 +19,11 @@ const defaultProps = {
     style: {},
 };
 
-function getTypeName(type) {
-    let allowedTypesString;
-    let unionString;
-    let arrayOfString;
-    let shapeString;
-
-    // console.log('type', type);
-    // console.log('type.name', type.name);
-    switch (type.name) {
-        case 'arrayOf':
-            // console.log('arrayOf type', type);
-            arrayOfString = map(type.value, (typeValue) => {
-                // console.log('typeValue', typeValue);
-                return getTypeName({
-                    name: typeValue,
-
-                });
-            });
-
-            return `arrayOf: [ ${arrayOfString} ]`;
-        case 'enum':
-            allowedTypesString = map(type.value, (typeValue) => (
-                `${typeValue.value.replace(/['"]+/g, '')}`
-            )).join(' | ');
-
-            return allowedTypesString;
-        case 'shape':
-            // console.log('shape type', type);
-
-            if (type.value) {
-                shapeString = map(type.value, (typeValue, key) => {
-                    console.log('typeValue', typeValue);
-                    return JSON.stringify(getTypeName(typeValue));
-                }).join(', ');
-            }
-
-            // console.log(`shape: { ${shapeString || ''} }`);
-
-            return `shape: { ${shapeString || ''} }`;
-        case 'union':
-            unionString = map(type.value, (typeValue) => (
-                `${typeValue.name.replace(/['"]+/g, '')}`
-            )).join(' | ');
-
-            return unionString;
-        default:
-            return type.name;
-    }
-}
-
 function ComponentApiTable(props) {
     const { componentProps, style } = props;
     const bemBlockName = 'table_props';
-    const containerClasses = ClassNames(bemBlockName);
-    let TableRowKey = 1;
-    console.log('componentProps', componentProps);
 
-    const TableRows = map(componentProps, (componentProp, key) => {
-        TableRowKey += 1;
+    const TableRows = map(componentProps, (componentProp, index) => {
         const {
             defaultValue,
             description,
@@ -93,7 +37,7 @@ function ComponentApiTable(props) {
         }
 
         return (
-            <Table.Row key={`${bemBlockName}--props_row_key-${TableRowKey}`}>
+            <Table.Row key={`${bemBlockName}--props_row_key-${index}`}>
                 <Table.Cell>
                     {name}
                 </Table.Cell>

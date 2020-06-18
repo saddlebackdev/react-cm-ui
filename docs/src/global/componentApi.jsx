@@ -45,8 +45,6 @@ function ComponentApi(props) {
         return null;
     }
 
-    let docKeyNum = 1;
-
     return (
         <div
             className={classes.root}
@@ -60,16 +58,14 @@ function ComponentApi(props) {
                 </Heading>
             </MarkdownContainer>
 
-            {map(docs, (doc) => {
-                docKeyNum += 1;
-
+            {map(docs, (doc, index) => {
                 const {
                     displayName,
                     props: componentProps,
                 } = doc;
 
                 return (
-                    <React.Fragment key={`doc_props-${docKeyNum}`}>
+                    <React.Fragment key={`doc_props-${index}`}>
                         <MarkdownContainer>
                             <Heading
                                 anchorLink={`api${upperFirst(camelCase(displayName))}`}

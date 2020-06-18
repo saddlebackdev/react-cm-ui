@@ -2,7 +2,6 @@ import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
-// eslint-disable-next-line import/extensions
 import React from 'react';
 import ComponentApi from '../global/componentApi';
 import Example from '../global/example';

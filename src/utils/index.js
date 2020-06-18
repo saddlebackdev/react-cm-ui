@@ -1,5 +1,6 @@
 export { default as Collapse } from './collapse';
 export { default as DatePickerUtils } from './datePickerUtils';
+export { default as EmailLink } from './emailLink';
 export { default as dateUtils } from './dateUtils';
 export { default as domUtils } from './domUtils';
 export { default as TelephoneLink } from './telephoneLink';

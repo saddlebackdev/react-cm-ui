@@ -17,7 +17,7 @@ function PersonPanelControlledAccordionExample() {
     const [panelName, setPanelName] = useState(false);
 
     useEffect(() => {
-        const mapedData = map(PAYLOAD_PERSON, (person) => {
+        const mappedData = map(PAYLOAD_PERSON, (person) => {
             const addresses = map(person.addresses, (address) => ({
                 address1: address.address1,
                 address2: address.address2,
@@ -124,7 +124,7 @@ function PersonPanelControlledAccordionExample() {
         });
 
         setPersonsData([
-            ...mapedData,
+            ...mappedData,
         ]);
     }, []);
 
