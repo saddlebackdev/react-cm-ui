@@ -98,7 +98,7 @@ const propDefinitions = [
         name: 'resizableColumnWidthPercentage',
         type: 'number',
         default: '',
-        description: 'Default resizable column initial width percentage',
+        description: 'Resizable column default/initial width percentage',
         allowedTypes: ' 1 - 80',
     },
     {
@@ -129,7 +129,7 @@ const propDefinitions = [
         name: 'stickyColumnCount',
         type: 'number',
         default: '',
-        description: 'Sticky columns number, from left to right',
+        description: 'Sticky columns number, ordered from left to right',
         allowedTypes: '',
     }, {
         name: 'stretch',

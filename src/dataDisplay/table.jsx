@@ -406,21 +406,8 @@ class Table extends React.PureComponent {
                 >
                     <ScrollBar
                         className="table--scroll_container"
-                        renderView={(props) => (
-                            <div
-                                // eslint-disable-next-line react/jsx-props-no-spreading
-                                {...props}
-                                style={{
-                                    ...props.style,
-                                    // if we don't set this the table doesn't appear
-                                    position: 'relative',
-                                }}
-                            />
-                        )}
                         onScrollFrame={this.setStickyCellsStylesOnScroll}
-                        onUpdate={() => {
-                            this.delayedSetStickyTableContainerWidth();
-                        }}
+                        onUpdate={this.delayedSetStickyTableContainerWidth}
                         renderTrackHorizontal={(props) => (
                             <div
                                 // eslint-disable-next-line react/jsx-props-no-spreading
@@ -435,6 +422,17 @@ class Table extends React.PureComponent {
                                     ...(!shouldHandleStickyBehavior && {
                                         display: 'none',
                                     }),
+                                }}
+                            />
+                        )}
+                        renderView={(props) => (
+                            <div
+                                // eslint-disable-next-line react/jsx-props-no-spreading
+                                {...props}
+                                style={{
+                                    ...props.style,
+                                    // if we don't set this the table doesn't appear
+                                    position: 'relative',
                                 }}
                             />
                         )}
