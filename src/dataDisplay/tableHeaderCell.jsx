@@ -5,6 +5,7 @@ import React from 'react';
 import { Resizable } from 'react-resizable';
 import Utils from '../utils/utils';
 import Icon from './icon';
+import { values as breakPoints } from '../styles/breakpointsConstants';
 
 const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -41,9 +42,11 @@ const propTypes = {
         PropTypes.oneOf(columnNumberEnums),
     ]),
     onClick: PropTypes.func,
+    resizableColumnWidthPercentage: PropTypes.number,
     setResizableCellsWordWrapping: PropTypes.func,
     shouldResetWhiteSpaceStyle: PropTypes.bool,
     sticky: PropTypes.bool,
+    stickyColumnCount: PropTypes.number,
     stickyTableContainerWidth: PropTypes.number,
     style: PropTypes.object,
     tablet: PropTypes.oneOfType([
@@ -61,74 +64,112 @@ const defaultProps = {
     adjacentStickyColumnsTotalWidth: 0,
     forceTableUpdate: undefined,
     isResizable: false,
+    resizableColumnWidthPercentage: undefined,
+    stickyColumnCount: undefined,
     setResizableCellsWordWrapping: undefined,
     shouldResetWhiteSpaceStyle: true,
     stickyTableContainerWidth: 0,
 };
 
-
-const MAX_WIDTH_PERCENTAGE = 0.8;
+const HEADER_CELL_WIDTH_OFFSET = 10;
 const DEBOUNCE_WAIT_TIME = 50;
+export const MAX_WIDTH_PERCENTAGE_DESKTOP = 0.5;
+export const MAX_WIDTH_PERCENTAGE_MOBILE = 0.8;
 
 class TableHeaderCell extends React.PureComponent {
     constructor() {
         super();
         this.state = {
             minWidth: 0,
-            expandedWidth: 0,
-            hasExpandedWidthBeenSet: false,
+            expandedWidthPercentage: 0,
+            haveExpandedMeasuresBeenSet: false,
+            widthPercentage: 0,
+            shouldDisableResizeHandler: false,
+
         };
         this.header = React.createRef();
         this.debouncedUpdateExpandedWidth = null;
-        this.debouncedUpdateMaxWidth = null;
         this.onClick = this.onClick.bind(this);
         this.canCellKeepExpanding = this.canCellKeepExpanding.bind(this);
+        this.onDoubleClick = this.onDoubleClick.bind(this);
         this.onResizeColumn = this.onResizeColumn.bind(this);
+        this.onResizeStop = this.onResizeStop.bind(this);
         this.getResizingHandler = this.getResizingHandler.bind(this);
+        this.getMaxWidthPercentages = this.getMaxWidthPercentages.bind(this);
     }
 
     componentDidMount() {
+        const {
+            isResizable,
+        } = this.props;
+        if (isResizable) {
+            const currentWidth = _.get(this, 'header.current.clientWidth');
+            this.setState({
+                minWidth: currentWidth,
+            });
+        }
         this.debouncedUpdateExpandedWidth = _.debounce(
-            () => {
+            (initialLoad) => {
                 const {
                     shouldResetWhiteSpaceStyle,
                     setResizableCellsWordWrapping,
-                } = this.props;
-                const {
-                    expandedWidth: currentExpandedWidth,
-                } = this.state;
-                const updatedExpandedWidth = _.get(this, 'header.current.clientWidth');
-                // eslint-disable-next-line max-len
-                const shouldUpdateExpandedWidth = updatedExpandedWidth > currentExpandedWidth && shouldResetWhiteSpaceStyle;
-                if (shouldUpdateExpandedWidth) {
-                    this.setState({
-                        expandedWidth: updatedExpandedWidth,
-                        hasExpandedWidthBeenSet: true,
-                    }, () => {
-                        setResizableCellsWordWrapping(true);
-                    });
-                }
-            },
-            DEBOUNCE_WAIT_TIME,
-        );
-
-        this.debouncedUpdateMaxWidth = _.debounce(
-            () => {
-                const {
                     stickyTableContainerWidth,
+                    resizableColumnWidthPercentage,
                     adjacentStickyColumnsTotalWidth,
+                    forceTableUpdate,
+                    stickyColumnCount,
                 } = this.props;
                 const {
+                    widthPercentage: currentWidthPercentage,
                     minWidth,
                 } = this.state;
-                const maxWidth = stickyTableContainerWidth * MAX_WIDTH_PERCENTAGE;
-                const totalStickyCellsWidth = adjacentStickyColumnsTotalWidth + minWidth;
-                const widthOverFlow = totalStickyCellsWidth - maxWidth;
-                const updatedWidth = maxWidth - adjacentStickyColumnsTotalWidth;
-                const shouldUpdateWidth = widthOverFlow > 0 && updatedWidth > 0;
-                if (shouldUpdateWidth) {
+                // eslint-disable-next-line max-len
+                const shouldUpdateExpandedWidth = isResizable && minWidth > 0 && shouldResetWhiteSpaceStyle;
+                if (shouldUpdateExpandedWidth) {
+                    // eslint-disable-next-line max-len
+                    const maxWidthPercentages = this.getMaxWidthPercentages(stickyTableContainerWidth);
+                    setResizableCellsWordWrapping(false);
+                    // This ensures the header will re adjust accordint to the content
+                    // in case the column and browser have been already resized
+                    this.header.current.style.width = '1%';
+                    this.header.current.style.minWidth = '';
+                    const updatedExpandedWidth = _.get(this, 'header.current.clientWidth', 0) + HEADER_CELL_WIDTH_OFFSET;
+                    // eslint-disable-next-line max-len
+                    const adjustedAdjacentPercentage = (adjacentStickyColumnsTotalWidth / stickyTableContainerWidth) * 100;
+                    const shouldDisableResizeHandler = stickyColumnCount > 1 &&
+                        // eslint-disable-next-line max-len
+                        updatedExpandedWidth + adjacentStickyColumnsTotalWidth > stickyTableContainerWidth * maxWidthPercentages[0];
+                    // eslint-disable-next-line max-len
+                    let expandedWidthPercentage = (updatedExpandedWidth / stickyTableContainerWidth) * 100;
+                    let widthPercentage;
+                    if (initialLoad) {
+                        if (resizableColumnWidthPercentage) {
+                            // eslint-disable-next-line max-len
+                            widthPercentage = resizableColumnWidthPercentage - adjustedAdjacentPercentage;
+                        } else {
+                            widthPercentage = ((minWidth / stickyTableContainerWidth) * 100);
+                        }
+                    } else {
+                        widthPercentage = currentWidthPercentage;
+                    }
+                    // it never goes further than maximun allowed
+                    const adjustedMaxWIdth = maxWidthPercentages[1] - adjustedAdjacentPercentage;
+                    // eslint-disable-next-line max-len
+                    expandedWidthPercentage = parseInt(Math.min(expandedWidthPercentage, adjustedMaxWIdth), 10);
+                    widthPercentage = parseInt(Math.min(widthPercentage, adjustedMaxWIdth), 10);
+                    const updatedMinWidth = ((stickyTableContainerWidth * widthPercentage) / 100);
+                    this.header.current.style.width = `${widthPercentage}%`;
+                    this.header.current.style.minWidth = updatedMinWidth;
                     this.setState({
-                        minWidth: updatedWidth,
+                        haveExpandedMeasuresBeenSet: true,
+                        // expandedWidth is calculated with this variable on double click
+                        expandedWidthPercentage,
+                        widthPercentage,
+                        minWidth: updatedMinWidth,
+                        shouldDisableResizeHandler: !!shouldDisableResizeHandler,
+                    }, () => {
+                        setResizableCellsWordWrapping(true);
+                        forceTableUpdate();
                     });
                 }
             },
@@ -136,24 +177,39 @@ class TableHeaderCell extends React.PureComponent {
         );
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
+        const {
+            stickyTableContainerWidth: prevStickyTableContainerWidth,
+        } = prevProps;
         const {
             isResizable,
             stickyTableContainerWidth,
         } = this.props;
         const {
-            minWidth,
-            hasExpandedWidthBeenSet,
+            shouldDisableResizeHandler: prevShouldDisableResizeHandler,
+        } = prevState;
+        const {
+            haveExpandedMeasuresBeenSet,
+            shouldDisableResizeHandler,
         } = this.state;
-        const isThereEnoguhInfoToUpdateMaxWIdth = stickyTableContainerWidth > 0 && minWidth > 0;
-        if (isThereEnoguhInfoToUpdateMaxWIdth) {
-            const canKeepExpanding = this.canCellKeepExpanding(minWidth);
-            if (!canKeepExpanding) {
-                this.debouncedUpdateMaxWidth();
-            }
+        const enoughInfoToSetExpandedMeasures = isResizable &&
+            !haveExpandedMeasuresBeenSet && stickyTableContainerWidth > 0;
+        if (enoughInfoToSetExpandedMeasures) {
+            this.debouncedUpdateExpandedWidth(true);
         }
-        if (isResizable && !hasExpandedWidthBeenSet) {
-            this.debouncedUpdateExpandedWidth();
+        // mantains the expanded measures when table container size changes
+        const shouldUpdatePercentageWidth = isResizable &&
+            prevStickyTableContainerWidth > 0 && stickyTableContainerWidth > 0 &&
+            prevStickyTableContainerWidth !== stickyTableContainerWidth;
+        // eslint-disable-next-line max-len
+        const shouldCellUpdateAsInitial = prevShouldDisableResizeHandler && !shouldDisableResizeHandler;
+        if (shouldUpdatePercentageWidth) {
+            this.setState({
+                shouldDisableResizeHandler: false,
+            }, () => {
+                // let's refresh the header cell expanded measures
+                this.debouncedUpdateExpandedWidth(shouldCellUpdateAsInitial);
+            });
         }
     }
 
@@ -164,32 +220,74 @@ class TableHeaderCell extends React.PureComponent {
         }
     }
 
+    onDoubleClick() {
+        const {
+            expandedWidthPercentage: currentExpandedWidthPercentage,
+        } = this.state;
+        const {
+            stickyTableContainerWidth,
+        } = this.props;
+        const maxWidthPercentages = this.getMaxWidthPercentages(stickyTableContainerWidth);
+        // eslint-disable-next-line max-len
+        const expandedWidthPercentage = Math.min(currentExpandedWidthPercentage, maxWidthPercentages[1]);
+        // eslint-disable-next-line max-len
+        const currentWidth = parseInt((expandedWidthPercentage * stickyTableContainerWidth) / 100, 10);
+        this.setState({
+            minWidth: currentWidth,
+            widthPercentage: expandedWidthPercentage,
+        });
+    }
+
     onResizeColumn(event, node) {
+        const {
+            stickyTableContainerWidth,
+        } = this.props;
         const {
             size,
         } = node;
-        const canKeepExpanding = this.canCellKeepExpanding(size.width);
+        const {
+            minWidth,
+        } = this.state;
+        const canKeepExpanding = this.canCellKeepExpanding(size.width) || size.width <= minWidth;
         if (canKeepExpanding) {
+            const widthPercentage = parseInt((minWidth / stickyTableContainerWidth) * 100, 10);
             this.setState({
                 minWidth: node.size.width,
+                widthPercentage,
             });
         }
     }
 
+    onResizeStop() {
+        const {
+            forceTableUpdate,
+        } = this.props;
+        const currentWidth = _.get(this, 'header.current.clientWidth', 20);
+        this.setState({
+            minWidth: currentWidth,
+        });
+        forceTableUpdate();
+    }
+
+    getMaxWidthPercentages(stickyTableContainerWidth) {
+        const maxWidth = stickyTableContainerWidth >= breakPoints.md ?
+            MAX_WIDTH_PERCENTAGE_DESKTOP :
+            MAX_WIDTH_PERCENTAGE_MOBILE;
+        const adjustedMaxWidth = parseInt(maxWidth * 100, 10);
+        return [maxWidth, adjustedMaxWidth];
+    }
+
     getResizingHandler() {
         const {
-            expandedWidth,
+            shouldDisableResizeHandler,
         } = this.state;
+
         return (
             <div
                 role="presentation"
                 className="react-resizable-handle"
                 onClick={(e) => e.stopPropagation()}
-                onDoubleClick={() => {
-                    this.setState({
-                        minWidth: expandedWidth,
-                    });
-                }}
+                onDoubleClick={this.onDoubleClick}
                 style={{
                     position: 'absolute',
                     width: 10,
@@ -197,6 +295,9 @@ class TableHeaderCell extends React.PureComponent {
                     top: '50%',
                     cursor: 'col-resize',
                     transform: 'translateY(-50%)',
+                    ...(shouldDisableResizeHandler && {
+                        display: 'none',
+                    }),
                 }}
             >
                 <Icon
@@ -217,10 +318,11 @@ class TableHeaderCell extends React.PureComponent {
         const {
             minWidth,
         } = this.state;
+        const maxWidthPercentages = this.getMaxWidthPercentages(stickyTableContainerWidth);
         // eslint-disable-next-line max-len
         const currentWidth = currentMinWidth || minWidth;
         const stickyColumnsTotalWidth = adjacentStickyColumnsTotalWidth + currentWidth;
-        const maxResizingWidth = stickyTableContainerWidth * MAX_WIDTH_PERCENTAGE;
+        const maxResizingWidth = stickyTableContainerWidth * maxWidthPercentages[0];
         const canKeepExpanding = stickyColumnsTotalWidth < maxResizingWidth;
         return canKeepExpanding;
     }
@@ -244,10 +346,10 @@ class TableHeaderCell extends React.PureComponent {
             tablet,
             textAlign,
             width,
-            forceTableUpdate,
         } = this.props;
         const {
             minWidth,
+            widthPercentage,
         } = this.state;
         const cellPrefix = 'table-header-cell';
         const containerClasses = ClassNames(
@@ -320,9 +422,11 @@ class TableHeaderCell extends React.PureComponent {
             className,
         );
         const shouldUseMinWidth = isResizable && minWidth > 0;
+        const shouldUseWidthPercentage = isResizable && widthPercentage > 0;
         const updatedStyle = {
             ...style,
             ...(shouldUseMinWidth && { minWidth: `${minWidth}px` }),
+            ...(shouldUseWidthPercentage && { width: `${widthPercentage}%` }),
         };
         const tableHeaderCell = (
             <th
@@ -330,7 +434,7 @@ class TableHeaderCell extends React.PureComponent {
                 id={id}
                 onClick={this.onClick}
                 style={updatedStyle}
-                ref={this.header}
+                ref={(ref) => { this.header.current = ref; }}
             >
                 <span>{children}</span>
             </th>
@@ -338,10 +442,9 @@ class TableHeaderCell extends React.PureComponent {
         const resizableTableHeaderCell = isResizable && (
             <Resizable
                 width={minWidth}
-                height={0}
                 handle={this.getResizingHandler}
                 onResize={this.onResizeColumn}
-                onResizeStop={forceTableUpdate}
+                onResizeStop={this.onResizeStop}
                 draggableOpts={{ enableUserSelectHack: false }}
             >
                 {tableHeaderCell}

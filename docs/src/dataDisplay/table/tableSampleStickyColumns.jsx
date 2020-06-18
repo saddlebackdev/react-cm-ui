@@ -15,6 +15,10 @@ function TableSampleStickyColumns() {
                         <Table.HeaderCell>Header 2</Table.HeaderCell>
                         <Table.HeaderCell>Header 3</Table.HeaderCell>
                         <Table.HeaderCell>Header 4</Table.HeaderCell>
+                        <Table.HeaderCell>Header 5</Table.HeaderCell>
+                        <Table.HeaderCell>Header 6</Table.HeaderCell>
+                        <Table.HeaderCell>Header 7</Table.HeaderCell>
+                        <Table.HeaderCell>Header 8</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -24,9 +28,6 @@ function TableSampleStickyColumns() {
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
@@ -34,6 +35,21 @@ function TableSampleStickyColumns() {
                     </Table.Row>
 
                     <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
+                        <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>

@@ -171,16 +171,16 @@ export function styles() {
 
 function watchFiles() {
     watch(paths.images.src, images);
-    watch(paths.scripts.src, scriptsRoot);
-    watch(paths.scripts.src, scriptsAtoms);
-    watch(paths.scripts.src, scriptsColors);
-    watch(paths.scripts.src, scriptsDataDisplay);
-    watch(paths.scripts.src, scriptsInputs);
-    watch(paths.scripts.src, scriptsMolecules);
-    watch(paths.scripts.src, scriptsOrganisms);
-    watch(paths.scripts.src, scriptsStyles);
-    watch(paths.scripts.src, scriptsTemplates);
-    watch(paths.scripts.src, scriptsUtils);
+    watch(paths.scripts.root.src, scriptsRoot);
+    watch(paths.scripts.atoms.src, scriptsAtoms);
+    watch(paths.scripts.colors.src, scriptsColors);
+    watch(paths.scripts.dataDisplay.src, scriptsDataDisplay);
+    watch(paths.scripts.inputs.src, scriptsInputs);
+    watch(paths.scripts.molecules.src, scriptsMolecules);
+    watch(paths.scripts.organisms.src, scriptsOrganisms);
+    watch(paths.scripts.styles.src, scriptsStyles);
+    watch(paths.scripts.templates.src, scriptsTemplates);
+    watch(paths.scripts.utils.src, scriptsUtils);
     watch(paths.styles.src, styles);
 }
 

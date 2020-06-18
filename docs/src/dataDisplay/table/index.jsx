@@ -95,6 +95,13 @@ const propDefinitions = [
         description: 'An identifier.',
         allowedTypes: '',
     }, {
+        name: 'resizableColumnWidthPercentage',
+        type: 'number',
+        default: '',
+        description: 'Default resizable column initial width percentage',
+        allowedTypes: ' 1 - 80',
+    },
+    {
         name: 'selectable',
         type: 'bool',
         default: 'false',
