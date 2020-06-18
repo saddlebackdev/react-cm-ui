@@ -71,6 +71,19 @@
                "global-require": "off",
                "import/no-webpack-loader-syntax": "off"
             },
+        }, {
+            "files": ["*.test.js"],
+            "rules": {
+               "react/jsx-props-no-spreading": "off"
+            }
+        }, {
+            "files": [
+                "*constants.js",
+                "*Constants.js"
+            ],
+            "rules": {
+               "import/prefer-default-export": "off"
+            }
         }
     ]
 }
