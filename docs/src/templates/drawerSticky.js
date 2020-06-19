@@ -1,9 +1,11 @@
-import { Button, Card, Drawer, Header, TitleBar } from 'react-cm-ui';
+import {
+    Button, Card, Drawer, Header, TitleBar,
+} from 'react-cm-ui';
+import { Link } from 'react-router';
+import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter';
-import { Link } from 'react-router';
 import Main from '../global/main';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const drawerStickySample = `import { Button, Drawer } from 'react-cm-ui';
@@ -196,7 +198,11 @@ class ModulesDrawerSticky extends React.Component {
                             <span>A Sticky drawer.</span>
 
                             <p className="font-size-xsmall color-static">
-                                <span className="font-weight-semibold">Note:</span> <code>isOpen</code> is a required prop.
+                                <span className="font-weight-semibold">Note:</span>
+                                {' '}
+                                <code>isOpen</code>
+                                {' '}
+                                is a required prop.
                             </p>
                         </Header.Subheader>
                     </Header>
@@ -231,7 +237,9 @@ class ModulesDrawerSticky extends React.Component {
                             >
                                 <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
 
-                                <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+                                <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
+                                <br />
+                                <br />
 
                                 <p>Bar Drawer</p>
                             </Drawer>

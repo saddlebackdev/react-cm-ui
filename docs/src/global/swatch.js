@@ -1,4 +1,3 @@
-'use strict';
 
 import './Swatch.scss';
 
@@ -7,18 +6,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Main extends React.Component {
-
     render() {
         const { color, name } = this.props;
         const containerClasses = ClassNames('ui', 'swatch', {
             'swatch-border': this.props.border,
-            'swatch-text-inverse': this.props.textInverse
+            'swatch-text-inverse': this.props.textInverse,
         });
 
         return (
             <div
                 className={containerClasses}
-                style={{ 'backgroundColor': color }}
+                style={{ backgroundColor: color }}
             >
                 {name ? (
                     <div>{name}</div>
@@ -30,12 +28,11 @@ export default class Main extends React.Component {
             </div>
         );
     }
-
 }
 
 Main.propTypes = {
     border: PropTypes.bool,
     color: PropTypes.string.isRequired,
     name: PropTypes.string,
-    textInverse: PropTypes.bool
+    textInverse: PropTypes.bool,
 };

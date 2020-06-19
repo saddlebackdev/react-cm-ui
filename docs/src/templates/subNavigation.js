@@ -1,9 +1,10 @@
-'use strict';
 
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Highlighter from '../global/highlighter';
@@ -94,7 +95,6 @@ export default class OnClickChildrenSample extends React.Component {
 }`;
 
 export default class CollectionsSubNavigation extends React.Component {
-
     render() {
         const props = [
             {
@@ -102,32 +102,32 @@ export default class CollectionsSubNavigation extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'drawer',
                 type: 'bool',
                 default: '',
                 description: 'Applies a top border style to handle being in a drawer.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
                 description: 'SubNavigation can handle an onClick event.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'selected',
                 type: 'number',
                 default: '',
                 description: 'Default selected button.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the SubNavigation\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -141,7 +141,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Card>
 
                 {/* Sub Navigation */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Sub Navigation
                     <Header.Subheader>
                         A standard Sub Navigation.
@@ -149,18 +149,16 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Header>
 
                 <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Button 3" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
+                    {(matches) => (
+                        <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                            <SubNavigation>
+                                <SubNavigation.Item label="Button 1" />
+                                <SubNavigation.Item label="Button 2" />
+                                <SubNavigation.Item label="Button 3" />
+                                <SubNavigation.Item label="Button 4" />
+                            </SubNavigation>
+                        </div>
+                    )}
                 </MediaQuery>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -168,7 +166,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* Selected */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     Selected
                     <Header.Subheader>
                         A Sub Navigation can change the default selected button.
@@ -176,18 +174,16 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Header>
 
                 <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation selected={2}>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Default" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
+                    {(matches) => (
+                        <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                            <SubNavigation selected={2}>
+                                <SubNavigation.Item label="Button 1" />
+                                <SubNavigation.Item label="Button 2" />
+                                <SubNavigation.Item label="Default" />
+                                <SubNavigation.Item label="Button 4" />
+                            </SubNavigation>
+                        </div>
+                    )}
                 </MediaQuery>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -195,26 +191,28 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Parent Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     onClick Parent Handler
                     <Header.Subheader>
-                        A Sub Navigation can a have <code>onClick</code> event handler.
+                        A Sub Navigation can a have
+                        {' '}
+                        <code>onClick</code>
+                        {' '}
+                        event handler.
                     </Header.Subheader>
                 </Header>
 
                 <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation onClick={this._onParentClick.bind(this)}>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Button 3" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
+                    {(matches) => (
+                        <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                            <SubNavigation onClick={this._onParentClick.bind(this)}>
+                                <SubNavigation.Item label="Button 1" />
+                                <SubNavigation.Item label="Button 2" />
+                                <SubNavigation.Item label="Button 3" />
+                                <SubNavigation.Item label="Button 4" />
+                            </SubNavigation>
+                        </div>
+                    )}
                 </MediaQuery>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -222,7 +220,7 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Children Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                <Header size="large" style={{ marginTop: '55px' }} sub>
                     onClick Children Handler
                     <Header.Subheader>
                         Can handle an onClick event from parent.
@@ -230,18 +228,16 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Header>
 
                 <MediaQuery maxWidth={767}>
-                    {matches => {
-                        return (
-                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                <SubNavigation>
-                                    <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
-                                    <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
-                                </SubNavigation>
-                            </div>
-                        );
-                    }}
+                    {(matches) => (
+                        <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                            <SubNavigation>
+                                <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
+                                <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
+                                <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
+                                <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
+                            </SubNavigation>
+                        </div>
+                    )}
                 </MediaQuery>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -256,7 +252,6 @@ export default class CollectionsSubNavigation extends React.Component {
     }
 
     _onParentClick(index) {
-        window.alert('Yay, index ' + index + ' was just clicked!');
+        window.alert(`Yay, index ${index} was just clicked!`);
     }
-
 }

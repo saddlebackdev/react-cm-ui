@@ -1,8 +1,10 @@
-import { Button, Card, Drawer, Header, TitleBar } from 'react-cm-ui';
+import {
+    Button, Card, Drawer, Header, TitleBar,
+} from 'react-cm-ui';
+import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const drawerWingSample = `import { Button, Drawer } from 'react-cm-ui';
@@ -167,7 +169,7 @@ class ModulesDrawerWing extends React.Component {
                     <Drawer
                         isOpen={isDrawerWingOpen}
                         onClose={this._onDrawerWingToggle}
-                        wing={
+                        wing={(
                             <Drawer.Wing
                                 color={wingOpenType}
                                 isOpen={!!wingOpenType}
@@ -193,7 +195,7 @@ class ModulesDrawerWing extends React.Component {
                                     </div>
                                 ) : null}
                             </Drawer.Wing>
-                        }
+                          )}
                     >
                         <Button onClick={this._onDrawerWingToggle}>Close Drawer</Button>
 

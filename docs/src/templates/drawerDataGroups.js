@@ -1,8 +1,10 @@
-import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
+import {
+    Button, Card, Drawer, Header, Icon, Input, TitleBar,
+} from 'react-cm-ui';
+import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const drawerDataGroupsSample = `import { Button, Drawer, InfoBar } from 'react-cm-ui';
@@ -326,14 +328,14 @@ class ModulesDrawerDataGroups extends React.Component {
                                     jsx: (
                                         <Input
                                             fluid
-                                            icon={searchValue ?
+                                            icon={searchValue ? (
                                                 <Icon
                                                     compact
                                                     onClick={this._onClearSearchClick}
                                                     title="Clear Search"
                                                     type="times"
-                                                /> : null
-                                            }
+                                                />
+                                            ) : null}
                                             onChange={this._onSearchChange}
                                             onKeyDown={this._onSearchKeyDown}
                                             placeholder="Search"
@@ -394,14 +396,14 @@ class ModulesDrawerDataGroups extends React.Component {
                                     }, {
                                         accessor: 'homeCampus',
                                         fieldName: 'Home Campus',
-                                    }
+                                    },
                                 ]}
                                 data={{
                                     birthday: '23/01/1990',
                                     homeCampus: 'Lake Forest',
                                 }}
                                 style={{
-                                    marginTop: '10px'
+                                    marginTop: '10px',
                                 }}
                             />
 
@@ -418,17 +420,17 @@ class ModulesDrawerDataGroups extends React.Component {
                                     }, {
                                         accessor: 'homeCampus',
                                         fieldName: 'Home Campus',
-                                        header: "Campus",
+                                        header: 'Campus',
                                         iconType: 'church',
                                         iconSize: 22,
-                                    }
+                                    },
                                 ]}
                                 data={{
                                     birthday: '23/01/1990',
                                     homeCampus: 'Lake Forest',
                                 }}
                                 style={{
-                                    marginTop: '10px'
+                                    marginTop: '10px',
                                 }}
                             />
                         </Drawer.DataGroups>

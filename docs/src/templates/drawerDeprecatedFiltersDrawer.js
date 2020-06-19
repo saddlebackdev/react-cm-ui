@@ -1,9 +1,11 @@
-import { Button, Card, Drawer, Header, Icon, Input, TitleBar } from 'react-cm-ui';
+import {
+    Button, Card, Drawer, Header, Icon, Input, TitleBar,
+} from 'react-cm-ui';
 import _ from 'lodash';
+import React from 'react';
 import DrawerSubNavigation from './drawerSubNavigation.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const drawerFiltersDrawerSample = `import { Button, Drawer } from 'react-cm-ui';
@@ -427,7 +429,10 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    Optional and Required Properties for <code>columns</code>:
+                    Optional and Required Properties for
+                    {' '}
+                    <code>columns</code>
+                    :
 
                     <Highlighter
                         customStyle={{ marginBottom: '44px', marginTop: '44px' }}
@@ -499,14 +504,14 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
                                     jsx: (
                                         <Input
                                             fluid
-                                            icon={searchValue ?
+                                            icon={searchValue ? (
                                                 <Icon
                                                     compact
                                                     onClick={this._onClearSearchClick}
                                                     title="Clear Search"
                                                     type="times"
-                                                /> : null
-                                            }
+                                                />
+                                            ) : null}
                                             onChange={this._onSearchChange}
                                             onKeyDown={this._onSearchKeyDown}
                                             placeholder="Search"
@@ -587,17 +592,17 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
                             />
 
                             <p>
-                            Click the filters icon above in the Drawers.ActionBar (upper left).
+                                Click the filters icon above in the Drawers.ActionBar (upper left).
                             </p>
 
                             <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
-                            maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl
-                            efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit
-                            pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet
-                            orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad
-                            litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non
-                            tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu ornare sapien. Praesent ac dui
+                                maximus, cursus eros eu, malesuada tortor. Praesent vulputate molestie leo, eu sollicitudin nisl
+                                efficitur sed. Etiam vitae tortor neque. Nullam blandit vestibulum mauris, in tristique velit
+                                pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula. Cras purus elit, dictum sit amet
+                                orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci. Class aptent taciti sociosqu ad
+                                litora torquent per conubia nostra, per inceptos himenaeos. Integer sed dictum mauris. Donec non
+                                tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
                             </p>
 
                             <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
@@ -640,12 +645,12 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
     }
 
     _onFiltersCheckboxChange(id) {
-        let { dirtyFilters } = this.state;
+        const { dirtyFilters } = this.state;
 
         if (_.includes(dirtyFilters.filtersCheckbox, _.toString(id))) { // Subtract
             dirtyFilters.filtersCheckbox = _.pull(dirtyFilters.filtersCheckbox, _.toString(id));
         } else { // Add
-            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [ _.toString(id) ]);
+            dirtyFilters.filtersCheckbox = _.union(dirtyFilters.filtersCheckbox, [_.toString(id)]);
         }
 
         this.setState({
@@ -654,7 +659,7 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
     }
 
     _onFiltersDropdownChange(selectedOption) {
-        let { dirtyFilters } = this.state;
+        const { dirtyFilters } = this.state;
         dirtyFilters.filtersDropdownValue = selectedOption;
 
         this.setState({
