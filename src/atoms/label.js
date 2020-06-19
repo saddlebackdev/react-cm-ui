@@ -9,7 +9,9 @@ import Utils from '../utils/utils';
 
 class Label extends Component {
     render() {
-        const { children, className, color, disabled, fluid, inverse, onClick, onClearClick, style } = this.props;
+        const {
+            children, className, color, disabled, fluid, inverse, onClick, onClearClick, style,
+        } = this.props;
         const containerClasses = ClassNames('ui', 'label', className, {
             'label-clickable': onClick,
             'label-color-alert': color === 'alert',

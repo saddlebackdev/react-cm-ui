@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import domUtils from '../utils/domUtils.js';
-import Icon from '../dataDisplay/icon';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import domUtils from '../utils/domUtils.js';
+import Icon from '../dataDisplay/icon';
 
 class AccordionItem extends Component {
     constructor(props) {
@@ -23,7 +23,9 @@ class AccordionItem extends Component {
     }
 
     render() {
-        const { children, className, style, subAccordion, summary } = this.props;
+        const {
+            children, className, style, subAccordion, summary,
+        } = this.props;
         const { isSelected } = this.state;
         const containerClasses = ClassNames('accordion-item', className, {
             'accordion-item-is-active': isSelected,
@@ -40,11 +42,11 @@ class AccordionItem extends Component {
 
     _animationProps(el) {
         let a;
-        let animations = {
-            'animation': 'animationend',
-            'OAnimation': 'oAnimationEnd',
-            'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd',
+        const animations = {
+            animation: 'animationend',
+            OAnimation: 'oAnimationEnd',
+            MozAnimation: 'animationend',
+            WebkitAnimation: 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -210,9 +212,11 @@ class Accordion extends Component {
             'accordion-inverse': inverse,
             'accordion-inclusive': exclusive === false,
         });
-        const convertedChildren = _.isArray(children) ? children : [ children ];
-        let items = _.map(convertedChildren, (child, index) => {
-            const { children, onClick, style, subTitle, subAccordion, summary, title } = child.props;
+        const convertedChildren = _.isArray(children) ? children : [children];
+        const items = _.map(convertedChildren, (child, index) => {
+            const {
+                children, onClick, style, subTitle, subAccordion, summary, title,
+            } = child.props;
             const isSelected = exclusive === false ? _.includes(selected, index) : selected === index;
 
             if (title) {
@@ -230,7 +234,10 @@ class Accordion extends Component {
                             className="accordion-item-title"
                             onClick={this._onSummaryClick.bind(this, index, onClick)}
                         >
-                            <span className="copy">{title}{subTitle ? <span className="padding-left">{subTitle}</span> : null}</span>
+                            <span className="copy">
+                                {title}
+                                {subTitle ? <span className="padding-left">{subTitle}</span> : null}
+                            </span>
                             <Icon
                                 compact
                                 inverse={inverse}
@@ -245,7 +252,7 @@ class Accordion extends Component {
                         </AccordionContent>
                     </AccordionItem>
                 );
-            } else if (summary === false) {
+            } if (summary === false) {
                 return (
                     <AccordionItem
                         isSelected={isSelected}
@@ -261,31 +268,29 @@ class Accordion extends Component {
                         </AccordionContent>
                     </AccordionItem>
                 );
-            } else {
-                return (
-                    <AccordionItem
-                        isSelected={isSelected}
-                        key={`accordion-item-${index}`}
-                        scrollContainer={scrollContainer}
-                        scrollContainerMarginHeight={scrollContainerMarginHeight}
-                        style={style}
-                        subAccordion={subAccordion}
-                        summary={summary}
-                    >
-                        {React.Children.map(children, (c, i) => {
-                            if (i === 0) {
-                                return (
-                                    <AccordionSummary onClick={this._onSummaryClick.bind(this, index, c.props.onClick)}>
-                                        {c.props.children}
-                                    </AccordionSummary>
-                                );
-                            } else {
-                                return c;
-                            }
-                        })}
-                    </AccordionItem>
-                );
             }
+            return (
+                <AccordionItem
+                    isSelected={isSelected}
+                    key={`accordion-item-${index}`}
+                    scrollContainer={scrollContainer}
+                    scrollContainerMarginHeight={scrollContainerMarginHeight}
+                    style={style}
+                    subAccordion={subAccordion}
+                    summary={summary}
+                >
+                    {React.Children.map(children, (c, i) => {
+                        if (i === 0) {
+                            return (
+                                <AccordionSummary onClick={this._onSummaryClick.bind(this, index, c.props.onClick)}>
+                                    {c.props.children}
+                                </AccordionSummary>
+                            );
+                        }
+                        return c;
+                    })}
+                </AccordionItem>
+            );
         });
 
         return (
@@ -305,9 +310,9 @@ class Accordion extends Component {
         let newSelected;
 
         if (exclusive === false) {
-            let isSelected = _.includes(selected, index);
+            const isSelected = _.includes(selected, index);
 
-            newSelected = isSelected ? _.pull(selected, index) : _.union(selected, [ index ]);
+            newSelected = isSelected ? _.pull(selected, index) : _.union(selected, [index]);
         } else {
             newSelected = selected === index ? -1 : index;
         }
