@@ -4,11 +4,34 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default class CoreAppHeader extends React.Component {
+const propTypes = {
+    onToggleNavigation: PropTypes.func,
+};
+
+const defaultProps = {
+    onToggleNavigation: null,
+};
+
+class CoreAppHeader extends React.Component {
+    onToggleNavigation() {
+        const {
+            onToggleNavigation,
+        } = this.props;
+
+        onToggleNavigation();
+    }
+
     render() {
         return (
             <header className="core-app-header">
-                <button className="button-menu" onClick={this._onToggleNavigation.bind(this)}>Menu</button>
+                <button
+                    className="button-menu"
+                    onClick={this.onToggleNavigation.bind(this)}
+                    tabIndex={-1}
+                    type="button"
+                >
+                    Menu
+                </button>
 
                 <div className="logo-wrapper">
                     <Link to={{ pathname: '/introduction' }} className="logo">
@@ -43,12 +66,9 @@ export default class CoreAppHeader extends React.Component {
             </header>
         );
     }
-
-    _onToggleNavigation() {
-        this.props.onToggleNavigation();
-    }
 }
 
-CoreAppHeader.propTypes = {
-    onToggleNavigation: PropTypes.func,
-};
+CoreAppHeader.propTypes = propTypes;
+CoreAppHeader.defaultProps = defaultProps;
+
+export default CoreAppHeader;
