@@ -1,5 +1,8 @@
 const shape = {
-    borderRadius: 5,
+    borderRadius: {
+        main: 3,
+        secondary: 5,
+    },
 };
 
 export default shape;
