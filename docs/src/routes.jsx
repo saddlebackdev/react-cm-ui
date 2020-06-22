@@ -31,7 +31,7 @@ const routes = (
         <Route path="/style-guide">
             <Route
                 getComponent={(location, callback) => {
-                    import('./app/styleGuideColors.js')
+                    import('./app/styleGuideColors')
                         .then((module) => callback(null, module.default));
                 }}
                 path="colors"
@@ -41,14 +41,14 @@ const routes = (
         <Route path="/components/data-display">
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/banner.js')
+                    import('./dataDisplay/banner')
                         .then((module) => callback(null, module.default));
                 }}
                 path="banner"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/divider.js')
+                    import('./dataDisplay/divider')
                         .then((module) => callback(null, module.default));
                 }}
                 path="divider"
@@ -77,7 +77,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/list.js')
+                    import('./dataDisplay/list')
                         .then((module) => callback(null, module.default));
                 }}
                 path="list"
@@ -224,14 +224,14 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/label.js')
+                    import('./atoms/label')
                         .then((module) => callback(null, module.default));
                 }}
                 path="label"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./atoms/loader.js')
+                    import('./atoms/loader')
                         .then((module) => callback(null, module.default));
                 }}
                 path="loader"
@@ -241,7 +241,7 @@ const routes = (
         <Route path="/components/molecules">
             <Route
                 getComponent={(location, callback) => {
-                    import('./molecules/comment.js')
+                    import('./molecules/comment')
                         .then((module) => callback(null, module.default));
                 }}
                 path="comment"
@@ -251,28 +251,28 @@ const routes = (
         <Route path="/components/organisms">
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/accordion.js')
+                    import('./organisms/accordion')
                         .then((module) => callback(null, module.default));
                 }}
                 path="accordion"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/card.js')
+                    import('./organisms/card')
                         .then((module) => callback(null, module.default));
                 }}
                 path="card"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/grid.js')
+                    import('./organisms/grid')
                         .then((module) => callback(null, module.default));
                 }}
                 path="grid"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/infoBar.js')
+                    import('./organisms/infoBar')
                         .then((module) => callback(null, module.default));
                 }}
                 path="info-bar"
@@ -286,21 +286,21 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/subNavigation.js')
+                    import('./organisms/subNavigation')
                         .then((module) => callback(null, module.default));
                 }}
                 path="sub-navigation"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/tabs.js')
+                    import('./organisms/tabs')
                         .then((module) => callback(null, module.default));
                 }}
                 path="tabs"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./organisms/titleBar.js')
+                    import('./organisms/titleBar')
                         .then((module) => callback(null, module.default));
                 }}
                 path="title-bar"
@@ -409,7 +409,7 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./templates/modal.js')
+                    import('./templates/modal')
                         .then((module) => callback(null, module.default));
                 }}
                 path="modal"
@@ -486,7 +486,7 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDemo.js')
+                        import('./templates/pageDemo')
                             .then((module) => callback(null, module.default));
                     }}
                     path="demo"
