@@ -22,7 +22,7 @@ const propTypes = {
     celled: PropTypes.bool,
     children: PropTypes.node,
     classes: PropTypes.shape({
-        table_sticky_columns: PropTypes.shape({}),
+        tableStickyColumns: PropTypes.shape({}),
     }),
     className: PropTypes.string,
     collapsing: PropTypes.bool,
@@ -405,7 +405,7 @@ class Table extends React.PureComponent {
         if (stickyColumnCount > 0) {
             return (
                 <div
-                    className={classes.table_sticky_columns}
+                    className={classes.tableStickyColumns}
                     ref={(ref) => { this.tableStickyContainer = ref; }}
                 >
                     <ScrollBar
@@ -460,7 +460,7 @@ Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
 const useStyles = {
-    table_sticky_columns: {
+    tableStickyColumns: {
         '& .table-sticky': {
             marginBottom: '10px !important',
         },
