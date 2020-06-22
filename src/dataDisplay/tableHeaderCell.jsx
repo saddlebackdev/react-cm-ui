@@ -125,12 +125,13 @@ class TableHeaderCell extends React.PureComponent {
                 } = this.state;
                 // eslint-disable-next-line max-len
                 const shouldUpdateExpandedWidth = isResizable && minWidth > 0 && shouldResetWhiteSpaceStyle;
+
                 if (shouldUpdateExpandedWidth) {
                     // eslint-disable-next-line max-len
                     const maxWidthPercentages = this.getMaxWidthPercentages(stickyTableContainerWidth);
                     setResizableCellsWordWrapping(false);
-                    // This ensures the header will re adjust accordint to the content
-                    // in case the column and browser have been already resized
+                    // This ensures the header will readjust according to the content
+                    // after a browser resize event.
                     this.header.current.style.width = '1%';
                     this.header.current.style.minWidth = '';
                     const updatedExpandedWidth = _.get(this, 'header.current.clientWidth', 0) + HEADER_CELL_WIDTH_OFFSET;
@@ -142,6 +143,7 @@ class TableHeaderCell extends React.PureComponent {
                     // eslint-disable-next-line max-len
                     let expandedWidthPercentage = (updatedExpandedWidth / stickyTableContainerWidth) * 100;
                     let widthPercentage;
+
                     if (initialLoad) {
                         if (resizableColumnWidthPercentage) {
                             // eslint-disable-next-line max-len
@@ -152,6 +154,7 @@ class TableHeaderCell extends React.PureComponent {
                     } else {
                         widthPercentage = currentWidthPercentage;
                     }
+
                     // it never goes further than maximun allowed
                     const adjustedMaxWIdth = maxWidthPercentages[1] - adjustedAdjacentPercentage;
                     // eslint-disable-next-line max-len

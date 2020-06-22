@@ -40,8 +40,8 @@ const propTypes = {
         const {
             [propName]: propValue,
         } = props;
-        // eslint-disable-next-line max-len
-        const isValid = propValue > 0 && propValue <= parseInt(MAX_WIDTH_PERCENTAGE_DESKTOP * 100, 10);
+        const isValid = propValue > 0 &&
+            propValue <= parseInt(MAX_WIDTH_PERCENTAGE_DESKTOP * 100, 10);
         if (!isValid) {
             return new Error(
                 `Invalid prop value for ${propName} (${propValue}) supplied to ${componentName}. Validation failed.`,
@@ -140,6 +140,7 @@ class Table extends React.PureComponent {
             celled,
             fixed,
         } = this.props;
+
         if (stickyColumnCount > 0 && this.tableRef) {
             const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(-n+${stickyColumnCount})`);
             let cellWidths = 0;
@@ -172,12 +173,12 @@ class Table extends React.PureComponent {
                     auxLeftOverFloatSpace = 2;
                 }
             }
-            // eslint-disable-next-line no-plusplus
-            for (let rootIndex = 0; rootIndex < stickyCells.length; rootIndex++) {
+
+            for (let rootIndex = 0; rootIndex < stickyCells.length; rootIndex += 1) {
                 cellCount += 1;
-                // eslint-disable-next-line max-len
-                const shouldChangeInitialDefitinionCell = definition && !fullWidth && rootIndex === 0;
-                if (shouldChangeInitialDefitinionCell) {
+                const shouldChangeInitialDefinitionCell = definition &&
+                    !fullWidth && rootIndex === 0;
+                if (shouldChangeInitialDefinitionCell) {
                     stickyCells[rootIndex].style.backgroundColor = backgroundColor.default;
                 }
                 if (cellCount <= stickyColumnCount && cellCount > 1) {
@@ -258,9 +259,11 @@ class Table extends React.PureComponent {
                 const parsedHeaderCells = React.Children.map(
                     headerCells,
                     (headerCell, index) => {
-                        // eslint-disable-next-line max-len
                         const isResizable = shouldHandleStickyBehavior &&
-                            (index === stickyColumnCount - 1 && index !== headerCells.length - 1);
+                            (
+                                index === stickyColumnCount - 1 &&
+                                index !== headerCells.length - 1
+                            );
                         return {
                             ...headerCell,
                             props: {
@@ -272,7 +275,6 @@ class Table extends React.PureComponent {
                                     stickyTableContainerWidth,
                                     shouldResetWhiteSpaceStyle: shouldHandleStickyBehavior,
                                     forceTableUpdate: this.forceTableUpdate,
-                                    // eslint-disable-next-line max-len
                                     resizableColumnWidthPercentage,
                                     // eslint-disable-next-line max-len
                                     setResizableCellsWordWrapping: this.setResizableCellsWordWrapping,
@@ -309,7 +311,9 @@ class Table extends React.PureComponent {
             definition,
             fullWidth,
         } = this.props;
+
         const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(-n+${stickyColumnCount})`);
+
         for (let i = 0; i < stickyCells.length; i += 1) {
             const stickyCell = stickyCells[i];
             stickyCell.classList.add(STICKY_CELL_CLASS);
