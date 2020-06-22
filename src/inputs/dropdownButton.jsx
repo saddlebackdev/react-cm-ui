@@ -10,15 +10,18 @@ import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     ...buttonPropTypes,
+    /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
     /**
-     * The icon that sits to the left of the label.
+     * The size of the icon that sits to the left of the label.
      */
     iconSize: PropTypes.number,
     /**
-     * The icon that sits to the left of the label.
+     * The type of the icon that sits to the left of the label.
      */
     iconType: PropTypes.oneOf([
         'caret-down',
@@ -27,7 +30,7 @@ const propTypes = {
         'plus',
     ]),
     /**
-     * The label.
+     * The ButtonDropdown's label.
      */
     label: PropTypes.string,
 };

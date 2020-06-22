@@ -24,11 +24,11 @@ export const buttonPropTypes = {
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop.
+     * Deprecated prop. Please use `disable` instead.
      */
     disabled: PropTypes.bool,
     /**
-     * A button can stretch the width of it's container.
+     * The Button will be resized to its parent container's width.
      */
     fluid: PropTypes.bool,
     href: PropTypes.string,
