@@ -6,16 +6,32 @@ import Button from './button';
 import DropdownMenu from './dropdownMenu';
 import DropdownMenuOption from './dropdownMenuOption';
 import Icon from '../dataDisplay/icon';
+import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     ...buttonPropTypes,
+    /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    /**
+     * The size of the icon that sits to the left of the label.
+     */
     iconSize: PropTypes.number,
+    /**
+     * The type of the icon that sits to the left of the label.
+     */
     iconType: PropTypes.oneOf([
         'caret-down',
         'chevron-down',
         'ellipsis-h',
         'plus',
     ]),
+    /**
+     * The ButtonDropdown's label.
+     */
     label: PropTypes.string,
 };
 
@@ -25,7 +41,17 @@ const defaultProps = {
     iconType: 'chevron-down',
 };
 
+const useStyles = makeStyles({
+    root: {
+        overflow: 'visible',
+        position: 'relative',
+    },
+});
+
 function DropdownButton(props) {
+    const dropdownButtonRef = useRef(null);
+    const [isMenuOpen, setIsOpen] = useState(false);
+    const classes = useStyles();
     const {
         children,
         className,
@@ -47,11 +73,6 @@ function DropdownButton(props) {
         title,
         width,
     } = props;
-    const [
-        isMenuOpen,
-        setIsOpen,
-    ] = useState(false);
-    const dropdownButtonRef = useRef(null);
 
     function getParentContainer() {
         return dropdownButtonRef.current;
@@ -62,11 +83,17 @@ function DropdownButton(props) {
     }
 
     const bemClassName = 'button_dropdown';
-    const containerClasses = ClassNames('button_dropdown', className);
+    const rootClasses = ClassNames(
+        'button_dropdown',
+        className,
+    );
 
     return (
         <Button
-            className={containerClasses}
+            className={rootClasses}
+            classes={{
+                root: classes.root,
+            }}
             color={color}
             compact={compact}
             disable={disable}
@@ -79,11 +106,7 @@ function DropdownButton(props) {
             outlined={outlined}
             ref={dropdownButtonRef}
             relax={relax}
-            style={{
-                ...style,
-                overflow: 'auto',
-                position: 'relative',
-            }}
+            style={style}
             target={target}
             title={title}
             width={width}
