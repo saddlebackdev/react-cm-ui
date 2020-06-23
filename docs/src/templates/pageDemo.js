@@ -237,7 +237,7 @@ class PageDemo extends React.PureComponent {
                                                 label: 'Bar Template',
                                                 onClick: () => { console.log('Bar Template was clicked!'); /* eslint-disable-line no-console */ },
                                             }, {
-                                                disabled: true,
+                                                disable: true,
                                                 iconType: 'save',
                                                 id: 'sub-option-baz',
                                                 label: 'Baz Template',
@@ -257,7 +257,7 @@ class PageDemo extends React.PureComponent {
                                         label: 'Email',
                                         onClick: () => { console.log('Email was clicked!'); /* eslint-disable-line no-console */ },
                                     }, {
-                                        disabled: true,
+                                        disable: true,
                                         iconType: 'comment-lines',
                                         label: 'SMS',
                                         onClick: () => { console.log('SMS was clicked!'); /* eslint-disable-line no-console */ },

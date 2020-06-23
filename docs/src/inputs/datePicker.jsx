@@ -488,7 +488,7 @@ export default class ModulesDatePicker extends React.Component {
                 description: 'Date timestamp for date range, service period, and service period range.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the date input is not available for interaction.',

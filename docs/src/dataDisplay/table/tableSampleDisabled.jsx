@@ -25,11 +25,11 @@ export default class DisbaledTableSample extends React.Component {
                     <Table.Row>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
-                        <Table.Cell disabled>cell</Table.Cell>
+                        <Table.Cell disable>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                     </Table.Row>
 
-                    <Table.Row disabled>
+                    <Table.Row disable>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
@@ -51,7 +51,7 @@ export default class DisbaledTableSample extends React.Component {
 function TableSampleDisabled() {
     return (
         <React.Fragment>
-            <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
+            <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub>
                 Disabled
                 <Header.Subheader>
                     A table&rsquo;s row or cell can be disabled.
@@ -72,11 +72,11 @@ function TableSampleDisabled() {
                     <Table.Row>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
-                        <Table.Cell disabled>cell</Table.Cell>
+                        <Table.Cell disable>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                     </Table.Row>
 
-                    <Table.Row disabled>
+                    <Table.Row disable>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
                         <Table.Cell>cell</Table.Cell>
