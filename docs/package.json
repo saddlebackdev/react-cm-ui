@@ -26,6 +26,7 @@
     "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {
+    "@advclb/react-docgen-loader": "^0.1.0",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
@@ -34,6 +35,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "~4.12.0",
     "postcss-loader": "^3.0.0",
+    "react-docgen": "^5.3.0",
     "resolve-url-loader": "^3.1.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.1.0",

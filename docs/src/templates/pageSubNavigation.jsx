@@ -4,7 +4,7 @@ import { SubNavigation } from 'react-cm-ui';
 
 class ModulesPageSubNavigation extends React.PureComponent {
     static onSubNavClick(index) {
-        const pageLocation = '/templates/page';
+        const pageLocation = '/components/templates/page';
 
         switch (index) {
             case 0:
@@ -59,10 +59,10 @@ class ModulesPageSubNavigation extends React.PureComponent {
             },
         } = window;
         const pathnameSegments = pathname.split('/');
-        const pathnameThirdSegment = pathnameSegments[3];
+        const pathnameFourthSegment = pathnameSegments[4];
         let itemSelected;
 
-        switch (pathnameThirdSegment) {
+        switch (pathnameFourthSegment) {
             case 'action-bar':
                 itemSelected = 1;
 

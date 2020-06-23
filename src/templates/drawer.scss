@@ -30,7 +30,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     // ####
     // Only One Header Item Showing
     &.drawer-has_action_bar:not(.drawer-has_navigation):not(.drawer-has_title_bar) .drawer-container-inner {
-        padding-top: $drawer-action-bar-height;
+        padding-top: $drawer-action-bar-height-mobile;
         .drawer {
             &--action_bar {
                 background-color: color(backgroundColorLight);
@@ -38,7 +38,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px - 22px);
+                min-height: calc(100% + $drawer-action-bar-height-mobile - 22px);
             }
         }
     }
@@ -49,24 +49,24 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 55px - 22px);
+                min-height: calc(100% + $drawer-navigation-height - 22px);
             }
         }
     }
     &:not(.drawer-has_action_bar):not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
-        padding-top: $drawer-title-bar-height;
+        padding-top: $drawer-title-bar-height-mobile;
         .drawer {
             &--title_bar {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px - 22px);
+                min-height: calc(100% + $drawer-title-bar-height-mobile - 22px);
             }
         }
     }
     // Two Header Items Showing
     &.drawer-has_action_bar.drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
-        padding-top: $drawer-action-bar-height + $drawer-navigation-height;
+        padding-top: $drawer-action-bar-height-mobile + $drawer-navigation-height;
         .drawer {
             &--action_bar {
                 top: $drawer-navigation-height;
@@ -75,56 +75,56 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px + 55px - 22px);
+                min-height: calc(100% + $drawer-action-bar-height-mobile + $drawer-navigation-height - 22px);
             }
         }
     }
     &.drawer-has_action_bar:not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
-        padding-top: $drawer-action-bar-height + $drawer-title-bar-height;
+        padding-top: $drawer-action-bar-height-mobile + $drawer-title-bar-height-mobile;
         .drawer {
             &--action_bar {
                 background-color: color(backgroundColorLight);
                 border-top: 1px solid color(borderColor);
-                top: $drawer-title-bar-height;
+                top: $drawer-title-bar-height-mobile;
             }
             &--title_bar {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px + 70px - 22px);
+                min-height: calc(100% + $drawer-action-bar-height-mobile + $drawer-title-bar-height-mobile - 22px);
             }
         }
     }
     &:not(.drawer-has_action_bar).drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
-        padding-top: $drawer-navigation-height + $drawer-title-bar-height;
+        padding-top: $drawer-navigation-height + $drawer-title-bar-height-mobile;
         .drawer {
             &--navigation {
                 border-bottom: 0;
-                top: $drawer-title-bar-height;
+                top: $drawer-title-bar-height-mobile;
             }
             &--title_bar {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px + 55px - 22px);
+                min-height: calc(100% + $drawer-navigation-height + $drawer-title-bar-height-mobile - 22px);
             }
         }
     }
     // Three Header Items Showing
     &.drawer-has_action_bar.drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
-        padding-top: $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height;
+        padding-top: $drawer-action-bar-height-mobile + $drawer-navigation-height + $drawer-title-bar-height-mobile;
         .drawer {
             &--action_bar {
-                top: $drawer-navigation-height + $drawer-title-bar-height;
+                top: $drawer-navigation-height + $drawer-title-bar-height-mobile;
             }
             &--navigation {
-                top: $drawer-title-bar-height;
+                top: $drawer-title-bar-height-mobile;
             }
             &--title_bar {
                 top: 0;
             }
             &--filters_rail {
-                min-height: calc(100% + 70px + 55px + 70px - 22px);
+                min-height: calc(100% + $drawer-action-bar-height-mobile + $drawer-navigation-height + $drawer-title-bar-height-mobile - 22px);
             }
         }
     }
@@ -192,6 +192,88 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     &.drawer-animate-out .drawer-dimmer {
         animation: fadeOutDimmer 100ms forwards;
         animation-delay: 200ms;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.drawer:not(.deprecated) {
+        // ####
+        // Header Items
+        // ####
+        // Only One Header Item Showing
+        &.drawer-has_action_bar:not(.drawer-has_navigation):not(.drawer-has_title_bar) .drawer-container-inner {
+            padding-top: $drawer-action-bar-height;
+            .drawer {
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-action-bar-height - 22px);
+                }
+            }
+        }
+        &:not(.drawer-has_action_bar).drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
+            padding-top: $drawer-navigation-height;
+            .drawer {
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-navigation-height - 22px);
+                }
+            }
+        }
+        &:not(.drawer-has_action_bar):not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
+            padding-top: $drawer-title-bar-height;
+            .drawer {
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-title-bar-height - 22px);
+                }
+            }
+        }
+        // Two Header Items Showing
+        &.drawer-has_action_bar.drawer-has_navigation:not(.drawer-has_title_bar) .drawer-container-inner {
+            padding-top: $drawer-action-bar-height + $drawer-navigation-height;
+            .drawer {
+                &--action_bar {
+                    top: $drawer-navigation-height;
+                }
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-action-bar-height + $drawer-navigation-height - 22px);
+                }
+            }
+        }
+        &.drawer-has_action_bar:not(.drawer-has_navigation).drawer-has_title_bar .drawer-container-inner {
+            padding-top: $drawer-action-bar-height + $drawer-title-bar-height;
+            .drawer {
+                &--action_bar {
+                    top: $drawer-title-bar-height;
+                }
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-action-bar-height + $drawer-title-bar-height - 22px);
+                }
+            }
+        }
+        &:not(.drawer-has_action_bar).drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
+            padding-top: $drawer-navigation-height + $drawer-title-bar-height;
+            .drawer {
+                &--navigation {
+                    top: $drawer-title-bar-height;
+                }
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-title-bar-height + $drawer-navigation-height - 22px);
+                }
+            }
+        }
+        // Three Header Items Showing
+        &.drawer-has_action_bar.drawer-has_navigation.drawer-has_title_bar .drawer-container-inner {
+            padding-top: $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height;
+            .drawer {
+                &--action_bar {
+                    top: $drawer-navigation-height + $drawer-title-bar-height;
+                }
+                &--navigation {
+                    top: $drawer-title-bar-height;
+                }
+                &--filters_rail {
+                    min-height: calc(100% + $drawer-action-bar-height + $drawer-navigation-height + $drawer-title-bar-height - 22px);
+                }
+            }
+        }
     }
 }
 

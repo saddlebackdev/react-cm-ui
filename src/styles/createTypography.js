@@ -22,7 +22,7 @@ export default function createTypography() {
         h4: buildVariant(fontWeightMedium, 16, 1.25),
         h5: buildVariant(fontWeightRegular, 14, 1.5),
         h6: buildVariant(fontWeightRegular, 12, 1.5),
-        body1: buildVariant(fontWeightRegular, 16, 1.5),
+        body1: buildVariant(fontWeightRegular, 16, 1.25),
         body2: buildVariant(fontWeightRegular, 14, 1.43),
         caption: buildVariant(fontWeightRegular, 14, 1.66),
     };
