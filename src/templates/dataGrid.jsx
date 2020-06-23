@@ -50,7 +50,6 @@ class DataGrid extends React.Component {
 
         this.state = {
             collapsed: null,
-            minWidth: props.minWidth,
             scrolledRight: false,
             sizes: [],
             currentStickyColumnWidth: null,
@@ -78,7 +77,6 @@ class DataGrid extends React.Component {
             data,
             handle,
             id,
-            minWidth,
             stickyColumns,
             stickyColumnWidth,
         } = this.props;
@@ -150,25 +148,10 @@ class DataGrid extends React.Component {
             }
         }
 
-        const newState = { currentStickyColumnWidth, sizes };
-
-        if (collapsed === true) {
-            newState.minWidth = minWidth;
-        } else if (collapsed === false) {
-            const diff = totalWidth - stickyColumnWidth;
-
-            if (diff > 0) {
-                newState.minWidth = minWidth + diff;
-            }
-        } else {
-            const diff = (totalWidth - width) / 2;
-
-            if (diff > 0) {
-                newState.minWidth = minWidth + diff;
-            }
-        }
-
-        this.setState(newState);
+        this.setState({
+            currentStickyColumnWidth,
+            sizes,
+        });
     }
 
     onResizeWindow() {
@@ -248,6 +231,7 @@ class DataGrid extends React.Component {
             fontSize,
             handle,
             id,
+            minWidth,
             moduleType,
             rowProps,
             size: sizeProp,
@@ -259,7 +243,6 @@ class DataGrid extends React.Component {
         } = this.props;
         const {
             collapsed,
-            minWidth,
             scrolledRight,
             sizes,
         } = this.state;
@@ -292,7 +275,6 @@ class DataGrid extends React.Component {
                             handle={handle}
                             id={id}
                             idPrefix="body"
-                            minWidth={minWidth}
                             moduleType={moduleType}
                             ref={(ref) => { this.bodyTable = ref; }}
                             rowProps={rowProps}
@@ -319,7 +301,6 @@ class DataGrid extends React.Component {
                             handle={handle}
                             id={id}
                             idPrefix="column"
-                            minWidth={minWidth}
                             moduleType={moduleType}
                             onSplitter={this.onSplitterClick}
                             onSplitterDragEnd={this.onSplitterDragEnd}
@@ -351,13 +332,15 @@ class DataGrid extends React.Component {
                     fontSize={fontSize}
                     handle={handle}
                     id={id}
-                    minWidth={minWidth}
                     moduleType={moduleType}
                     rowProps={rowProps}
                     size={size}
                     stickyColumnWidth={stickyColumnWidth}
                     stickyColumns={stickyColumns}
                     stretch={stretch}
+                    style={{
+                        minWidth,
+                    }}
                 />
             </div>
         );
