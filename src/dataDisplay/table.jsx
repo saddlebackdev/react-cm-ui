@@ -18,66 +18,130 @@ import TableHeaderCell, {
 import TableRow from './tableRow';
 
 const propTypes = {
+    /**
+     * Basic (default) styling.
+     */
     basic: PropTypes.bool,
+    /**
+     * If `true`, all columns will be divided.
+     */
     celled: PropTypes.bool,
+    /**
+     * The content of the Table.
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to Table.
+     */
     classes: PropTypes.shape({
-        tableStickyColumns: PropTypes.shape({}),
+        tableStickyColumns: PropTypes.string,
     }),
+    /**
+     * Add additional classes to the Table.
+     */
     className: PropTypes.string,
+    /**
+     * If `true`, applies `width: auto` to the Table.
+     */
     collapsing: PropTypes.bool,
+    /**
+     * If `true`, far left column divided from the rest of the columns.
+     */
     definition: PropTypes.bool,
+    /**
+     * If `true`, columns can be evenly spaced.
+     */
     fixed: PropTypes.bool,
+    /**
+     * Change the font size of typography in the Table.
+     */
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
+    /**
+     * Deprecated prop.
+     */
     fullWidth: PropTypes.bool,
+    /**
+     * Add an id to the Table.
+     */
     id: PropTypes.string,
+    /**
+     * Table row and cells can be highlighted as if they have been selected.
+     */
     selectable: PropTypes.bool,
+    /**
+     * Truncate copy within cells in the Table
+     */
     singleLine: PropTypes.bool,
+    /**
+     * Change the cell's vertical size in the Table.
+     */
     size: PropTypes.oneOf(['l', 'large', 'm', 'medium', 's', 'small']),
+    /**
+     * Deprecated prop.
+     */
     stackable: PropTypes.bool,
+    /**
+     * From left to right, giving a number greater than 0 will cause column's to be fixed to the
+     * left of the Table.
+     */
     stickyColumnCount: PropTypes.number,
+    /**
+     * Need a description.
+     */
     resizableColumnWidthPercentage: (props, propName, componentName) => {
         const {
             [propName]: propValue,
         } = props;
+
         const isValid = propValue > 0 &&
             propValue <= parseInt(MAX_WIDTH_PERCENTAGE_DESKTOP * 100, 10);
+
         if (!isValid) {
             return new Error(
                 `Invalid prop value for ${propName} (${propValue}) supplied to ${componentName}. Validation failed.`,
             );
         }
-        return null;
+
+        return;
     },
+    /**
+     * If `true` or `very`, the Table will bleed off the edge.
+     */
     stretch: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.oneOf(['very']),
     ]),
+    /**
+     * Deprecated prop.
+     */
     striped: PropTypes.bool,
+    /**
+     * Supply any inline styles to the Table.
+     */
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
-    basic: undefined,
-    celled: undefined,
-    children: undefined,
-    classes: undefined,
-    className: undefined,
-    collapsing: undefined,
-    definition: undefined,
-    fixed: undefined,
-    fontSize: undefined,
-    fullWidth: undefined,
-    id: undefined,
-    selectable: undefined,
-    singleLine: undefined,
-    size: undefined,
-    stackable: undefined,
+    basic: true,
+    celled: false,
+    children: null,
+    classes: null,
+    className: null,
+    collapsing: false,
+    definition: false,
+    fixed: false,
+    fontSize: null,
+    fullWidth: false,
+    id: null,
+    selectable: false,
+    singleLine: false,
+    size: null,
+    stackable: null,
     stickyColumnCount: 0,
-    resizableColumnWidthPercentage: undefined,
-    stretch: undefined,
-    striped: undefined,
-    style: undefined,
+    resizableColumnWidthPercentage: null,
+    stretch: false,
+    striped: false,
+    style: null,
 };
 
 const DEBOUNCE_WAIT_TIME = 50;
