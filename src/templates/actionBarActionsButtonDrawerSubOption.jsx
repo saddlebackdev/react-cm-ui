@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,6 +6,7 @@ import Icon from '../dataDisplay/icon';
 import Utils from '../utils/utils';
 
 export const singleOptionPropTypeShape = {
+    disable: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string,
     iconBackgroundColor: PropTypes.string,
@@ -40,31 +41,53 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
         this.onClick = this.onClick.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        const {
+            subOption: {
+                disabled: prevSubOptionDisabled,
+            },
+        } = prevProps;
+        const {
+            subOption: {
+                disabled: subOptionDisabled,
+            },
+        } = this.props;
+
+        if (prevSubOptionDisabled !== subOptionDisabled && subOptionDisabled) {
+            // eslint-disable-next-line no-console
+            console.warn('ActionBarActionsButtonDrawerSubOption (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
+    }
+
     onClick() {
         const {
             onRequestPrompt,
             subOption,
-            subOption: {
-                disabled,
-                onClick: subOptionOnClick,
-                requiresPrompt,
-            },
         } = this.props;
+        const {
+            disable,
+            disabled,
+            onClick: subOptionOnClick,
+            requiresPrompt,
+        } = subOption;
 
-        if (!_.isFunction(subOptionOnClick)) {
+        if (!isFunction(subOptionOnClick)) {
             return false;
         }
 
-        if (disabled) {
+        if (disable || disabled) {
             return false;
         }
 
-        if (requiresPrompt && _.isFunction(onRequestPrompt)) {
+        if (requiresPrompt && isFunction(onRequestPrompt)) {
             onRequestPrompt(subOption);
             return false;
         }
 
-        subOptionOnClick();
+        if (isFunction(subOptionOnClick)) {
+            subOptionOnClick();
+        }
+
         return true;
     }
 
@@ -74,13 +97,13 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
             subOption,
             subOptionClassNameNum,
         } = this.props;
-
+        const isSubOptionDisabled = subOption.disable || subOption.disabled;
         const classNameNumber = subOptionClassNameNum;
         const subOptionClasses = ClassNames(
             'actions_button_drawer--sub_option',
             `actions_button_drawer--sub_option-${classNameNumber}`,
             `${isSelected ? `actions_button_drawer--sub_option-${classNameNumber}-show` : ''}`,
-            `${subOption.disabled ? `actions_button_drawer--sub_option-${classNameNumber}-disabled` : ''}`,
+            `${isSubOptionDisabled ? `actions_button_drawer--sub_option-${classNameNumber}-disabled` : ''}`,
         );
 
         /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -97,7 +120,7 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
                         id={subOption.id}
                     >
                         <Icon
-                            color={subOption.disabled ? 'static' : subOption.iconColor}
+                            color={isSubOptionDisabled ? 'static' : subOption.iconColor}
                             compact
                             className="actions_button_drawer_sub_option--icon"
                             size={subOption.iconSize || 16}

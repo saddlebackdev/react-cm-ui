@@ -6,6 +6,13 @@ import PhoneInputCountryDropdownItem from './phoneInputCountryDropdownItem';
 import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue';
 
 const propTypes = {
+    /**
+     * A DatePickerInput can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
     disabled: PropTypes.bool,
     options: PropTypes.arrayOf(PropTypes.shape({})),
     onChange: PropTypes.func.isRequired,
@@ -13,6 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    disable: false,
     disabled: false,
     options: [],
     value: '',
@@ -30,7 +38,20 @@ class PhoneInputCountryDropdown extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { onChange, options, value } = this.props;
+        const {
+            disabled: prevDisabled,
+        } = prevProps;
+        const {
+            disabled,
+            onChange,
+            options,
+            value,
+        } = this.props;
+
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('PhoneInputCountryDropdown (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
 
         if (prevProps.value !== value && prevState.selectedOption.value !== value) {
             this.setState({
@@ -53,6 +74,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
 
     render() {
         const {
+            disable,
             disabled,
             options,
         } = this.props;
@@ -61,7 +83,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
         return (
             <Dropdown
                 clearable={false}
-                disable={disabled}
+                disable={disable || disabled}
                 iconSize={10}
                 iconType="caret-down"
                 onChange={this.onChange}

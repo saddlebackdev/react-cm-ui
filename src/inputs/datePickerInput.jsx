@@ -1,29 +1,83 @@
+import {
+    indexOf,
+    isEqual,
+    isFunction,
+    isNil,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
-import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
-import DatePickerCalendar from './datePickerCalendar';
-import DatePickerUtils from '../utils/datePickerUtils.js';
-import DateUtils from '../utils/dateUtils.js';
+import DatePickerUtils from '../utils/datePickerUtils';
+import DateUtils from '../utils/dateUtils';
 import Icon from '../dataDisplay/icon';
 import Input from './input';
+import DatePickerCalendarOnClickOutside from './datePickerCalendarOnClickOutside';
 
-class Calendar extends React.PureComponent {
-    handleClickOutside(event) {
-        const { onClose } = this.props;
+const propTypes = {
+    className: PropTypes.string,
+    date: PropTypes.shape({}),
+    dateFrom: PropTypes.shape({}),
+    dateTo: PropTypes.shape({}),
+    /**
+     * A DatePickerInput can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
+    disabled: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    events: PropTypes.arrayof(PropTypes.shape({})),
+    excludeDates: PropTypes.arrayof(PropTypes.shape({})),
+    filterDates: PropTypes.func,
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
+    includeDates: PropTypes.arrayof(PropTypes.shape({})),
+    label: PropTypes.string,
+    locale: PropTypes.string,
+    maxDate: PropTypes.shape({}),
+    minDate: PropTypes.shape({}),
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onMonthChange: PropTypes.func,
+    rangeFrom: PropTypes.bool,
+    rangeTo: PropTypes.bool,
+    required: PropTypes.bool,
+    style: PropTypes.shape({}),
+    tabIndex: PropTypes.number,
+};
 
-        onClose(event);
-    }
-
-    render() {
-        return <DatePickerCalendar {...this.props} />;
-    }
-}
-
-const CalendarOnClickOutside = onClickOutside(Calendar);
+const defaultProps = {
+    className: null,
+    date: PropTypes.shape({}),
+    dateFrom: null,
+    dateTo: null,
+    disable: false,
+    disabled: false,
+    errorMessage: null,
+    events: null,
+    excludeDates: null,
+    filterDates: null,
+    id: null,
+    includeDates: null,
+    label: null,
+    locale: 'en-US',
+    maxDate: null,
+    minDate: null,
+    onBlur: null,
+    onChange: null,
+    onMonthChange: null,
+    rangeFrom: false,
+    rangeTo: false,
+    required: false,
+    style: null,
+    tabIndex: -1,
+};
 
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
@@ -37,11 +91,14 @@ class DatePickerInput extends React.PureComponent {
         let inputValue;
 
         if (props.rangeFrom) {
-            inputValue = this._safeDateFormat(newDateFrom, props.locale);
+            // eslint-disable-next-line no-underscore-dangle
+            inputValue = this.safeDateFormat(newDateFrom, props.locale);
         } else if (props.rangeTo) {
-            inputValue = this._safeDateFormat(newDateTo, props.locale);
+            // eslint-disable-next-line no-underscore-dangle
+            inputValue = this.safeDateFormat(newDateTo, props.locale);
         } else {
-            inputValue = this._safeDateFormat(newDate, props.locale);
+            // eslint-disable-next-line no-underscore-dangle
+            inputValue = this.safeDateFormat(newDate, props.locale);
         }
 
         this.state = {
@@ -52,27 +109,52 @@ class DatePickerInput extends React.PureComponent {
             inputValue,
         };
 
-        this._dateFormats = this._getAllowedDateFormats('MM/DD/YYYY');
+        this.dateFormats = this.getAllowedDateFormats('MM/DD/YYYY');
 
-        this._getMaxDate = this._getMaxDate.bind(this);
-        this._getMinDate = this._getMinDate.bind(this);
-        this._onCalendarChange = this._onCalendarChange.bind(this);
-        this._onCalendarClickOutside = this._onCalendarClickOutside.bind(this);
-        this._onIconClick = this._onIconClick.bind(this);
-        this._onInputBlur = this._onInputBlur.bind(this);
-        this._onInputChange = this._onInputChange.bind(this);
-        this._onInputFocus = this._onInputFocus.bind(this);
-        this._onInputKeyDown = this._onInputKeyDown.bind(this);
-        this._onMonthChange = this._onMonthChange.bind(this);
+        this.getMaxDate = this.getMaxDate.bind(this);
+        this.getMinDate = this.getMinDate.bind(this);
+        this.onCalendarChange = this.onCalendarChange.bind(this);
+        this.onCalendarClickOutside = this.onCalendarClickOutside.bind(this);
+        this.onIconClick = this.onIconClick.bind(this);
+        this.onInputBlur = this.onInputBlur.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
+        this.onInputFocus = this.onInputFocus.bind(this);
+        this.onInputKeyDown = this.onInputKeyDown.bind(this);
+        this.onMonthChange = this.onMonthChange.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { date, dateFrom, dateTo, locale, rangeFrom, rangeTo } = this.props;
+    componentDidMount() {
+        const { onChange, rangeFrom, rangeTo } = this.props;
+
+        if ((rangeFrom || rangeTo) && !isFunction(onChange)) {
+            // eslint-disable-next-line no-console
+            console.error('The onChange prop is required when using the rangeFrom or rangeTo props');
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            disabled: prevDisabled,
+        } = prevProps;
+        const {
+            date,
+            dateFrom,
+            dateTo,
+            disabled,
+            locale,
+            rangeFrom,
+            rangeTo,
+        } = this.props;
+
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('DatePickerInput (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
             !DatePickerUtils.isSameDay(dateFrom, prevProps.dateFrom) ||
             !DatePickerUtils.isSameDay(dateTo, prevProps.dateTo) ||
-            !_.isEqual(locale, prevProps.locale)
+            !isEqual(locale, prevProps.locale)
         ) {
             const isDateRange = rangeFrom || rangeTo;
             const newDate = isDateRange ? undefined : date;
@@ -81,11 +163,11 @@ class DatePickerInput extends React.PureComponent {
             let newInputValue;
 
             if (rangeFrom) {
-                newInputValue = this._safeDateFormat(newDateFrom, locale);
+                newInputValue = this.safeDateFormat(newDateFrom, locale);
             } else if (rangeTo) {
-                newInputValue = this._safeDateFormat(newDateTo, locale);
+                newInputValue = this.safeDateFormat(newDateTo, locale);
             } else {
-                newInputValue = this._safeDateFormat(newDate, locale);
+                newInputValue = this.safeDateFormat(newDate, locale);
             }
 
             this.setState({
@@ -97,10 +179,155 @@ class DatePickerInput extends React.PureComponent {
         }
     }
 
+    onCalendarChange({ date, dateFrom, dateTo }) {
+        const {
+            disable,
+            disabled,
+            onChange,
+        } = this.props;
+        const isNotDisabled = !disable && !disabled;
+        const isOnChangeFunc = isFunction(onChange);
+
+        if (isNotDisabled && isOnChangeFunc) {
+            onChange({ date, dateFrom, dateTo });
+        }
+
+        if (isNotDisabled && !isOnChangeFunc) {
+            const { locale } = this.props;
+
+            this.setState({
+                date,
+                inputValue: this.safeDateFormat(date, locale),
+            });
+        }
+
+        this.setOpen(false);
+    }
+
+    onCalendarClickOutside() {
+        this.setOpen(false);
+    }
+
+    onIconClick() {
+        const {
+            disable,
+            disabled,
+        } = this.props;
+        const isNotDisabled = !disable && !disabled;
+
+        if (isNotDisabled) {
+            // eslint-disable-next-line no-underscore-dangle, react/no-find-dom-node
+            ReactDOM.findDOMNode(this._datePickerInput._input).focus();
+        }
+    }
+
+    onInputBlur(event) {
+        const { onBlur } = this.props;
+
+        if (isFunction(onBlur)) {
+            onBlur(event);
+        }
+    }
+
+    onInputChange(value) {
+        const {
+            disable,
+            disabled,
+            locale,
+            rangeFrom,
+            rangeTo,
+        } = this.props;
+        const { dateFrom, dateTo } = this.state;
+        const date = moment(value, this.dateFormats, locale || moment.locale(), true);
+        const isNotDisabled = !disable && !disabled;
+
+        const isValidValueChange = isNotDisabled &&
+            date.isValid() &&
+            !DatePickerUtils.isDayDisabled(date, this.props);
+
+        const isValidUpdateToNull = !isValidValueChange &&
+            isNotDisabled &&
+            (value === '' || value === '__/__/____');
+
+        const onChangeParam = {};
+        const updatedDateValue = isValidValueChange ? date : null;
+
+        if (rangeFrom) {
+            onChangeParam.dateFrom = updatedDateValue;
+            onChangeParam.dateTo = dateTo;
+        } else if (rangeTo) {
+            onChangeParam.dateFrom = dateFrom;
+            onChangeParam.dateTo = updatedDateValue;
+        } else {
+            onChangeParam.date = updatedDateValue;
+        }
+
+        if (isValidValueChange || isValidUpdateToNull) {
+            this.onCalendarChange(onChangeParam);
+        }
+    }
+
+    onInputFocus() {
+        this.setOpen(true);
+    }
+
+    onInputKeyDown(event) {
+        if (event.keyCode === 9 || event.keyCode === 13) {
+            this.setOpen(false);
+        }
+    }
+
+    onMonthChange(month, year) {
+        const { onMonthChange } = this.props;
+
+        if (isFunction(onMonthChange)) {
+            onMonthChange(month, year);
+        }
+    }
+
+    getAllowedDateFormats(specifiedFormat) {
+        let formats = DateUtils.getAllowedDateFormats();
+
+        if (indexOf(formats, specifiedFormat) < 0) {
+            formats = [specifiedFormat, ...formats];
+        }
+
+        return formats;
+    }
+
+    getMaxDate() {
+        const { maxDate } = this.props;
+
+        return maxDate;
+    }
+
+    getMinDate() {
+        const { minDate } = this.props;
+
+        return minDate;
+    }
+
+    setOpen(open) {
+        this.setState({ isCalendarOpen: open });
+    }
+
+    safeDateFormat(date, locale) {
+        if (date && date.isValid()) {
+            return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
+        }
+
+        if (isNil(date)) {
+            return '';
+        }
+
+        return null;
+    }
+
     render() {
         const {
             className,
             errorMessage,
+            disable,
             disabled,
             events,
             excludeDates,
@@ -115,21 +342,41 @@ class DatePickerInput extends React.PureComponent {
             style,
             tabIndex,
         } = this.props;
-        const { date, dateFrom, dateTo, isCalendarOpen, inputValue } = this.state;
-        const containerClasses = ClassNames('ui', 'date-picker-input', className);
+
+        const {
+            date,
+            dateFrom,
+            dateTo,
+            isCalendarOpen,
+            inputValue,
+        } = this.state;
+
+        const rootClasses = ClassNames('ui', 'date-picker-input', className);
+
+        let iconColor;
+
+        if (isCalendarOpen) {
+            iconColor = 'highlight';
+        }
+
+        const isDisabled = disable || disabled;
+
+        if (isDisabled) {
+            iconColor = 'primary';
+        }
 
         return (
-            <div className={containerClasses} id={id} style={style}>
+            <div className={rootClasses} id={id} style={style}>
                 <TetherComponent
-                    attachment={'top left'}
+                    attachment="top left"
                     classPrefix="date-picker-tether"
                     constraints={[{
                         to: 'window',
                         attachment: 'together',
                     }]}
-                    renderElement={ref => isCalendarOpen && (
+                    renderElement={(ref) => isCalendarOpen && (
                         <div ref={ref}>
-                            <CalendarOnClickOutside
+                            <DatePickerCalendarOnClickOutside
                                 controls="dropdowns"
                                 date={date}
                                 dateFrom={dateFrom}
@@ -139,226 +386,59 @@ class DatePickerInput extends React.PureComponent {
                                 filterDates={filterDates}
                                 includeDates={includeDates}
                                 locale={locale}
-                                maxDate={this._getMaxDate()}
-                                minDate={this._getMinDate()}
+                                maxDate={this.getMaxDate()}
+                                minDate={this.getMinDate()}
                                 mode="input"
-                                onChange={this._onCalendarChange}
-                                onClose={this._onCalendarClickOutside}
-                                onMonthChange={this._onMonthChange}
+                                onChange={this.onCalendarChange}
+                                onClose={this.onCalendarClickOutside}
+                                onMonthChange={this.onMonthChange}
                                 rangeFrom={rangeFrom}
                                 rangeTo={rangeTo}
                             />
                         </div>
                     )}
-                    renderTarget={ref => (
+                    renderTarget={(ref) => (
                         <div ref={ref}>
                             <Input
                                 autoComplete="off"
                                 data-parsley-error-message={errorMessage}
-                                disabled={disabled}
+                                disable={isDisabled}
                                 guide
                                 icon={(
                                     <Icon
-                                        color={isCalendarOpen ? 'highlight' : disabled ? 'primary' : null}
+                                        color={iconColor}
                                         compact
-                                        disable={disabled}
-                                        onClick={this._onIconClick}
+                                        disable={isDisabled}
+                                        onClick={this.onIconClick}
                                         type="calendar"
                                     />
                                 )}
                                 keepCharPositions
                                 label={label}
-                                mask={[ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ]}
-                                onBlur={this._onInputBlur}
-                                onChange={this._onInputChange}
-                                onFocus={this._onInputFocus}
-                                onKeyDown={this._onInputKeyDown}
+                                mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                                onBlur={this.onInputBlur}
+                                onChange={this.onInputChange}
+                                onFocus={this.onInputFocus}
+                                onKeyDown={this.onInputKeyDown}
                                 placeholder="mm/dd/yyyy"
                                 required={required}
-                                ref={ref => this._datePickerInput = ref}
+                                // eslint-disable-next-line no-underscore-dangle
+                                ref={(inputRef) => { this._datePickerInput = inputRef; }}
                                 tabIndex={tabIndex}
                                 type="text"
                                 value={inputValue}
                             />
                         </div>
                     )}
-                    targetAttachment={'bottom left'}
-                    targetOffset={'11px 0'}
+                    targetAttachment="bottom left"
+                    targetOffset="11px 0"
                 />
             </div>
         );
     }
-
-    componentDidMount() {
-        const { onChange, rangeFrom, rangeTo } = this.props;
-
-        if ((rangeFrom || rangeTo) && _.isUndefined(onChange)) {
-            console.error('The onChange prop is required when using the rangeFrom or rangeTo props');
-        }
-    }
-
-    _getAllowedDateFormats(specifiedFormat) {
-        let formats = DateUtils.getAllowedDateFormats();
-
-        if (_.indexOf(formats, specifiedFormat) < 0) {
-            formats = [ specifiedFormat, ...formats ];
-        }
-
-        return formats;
-    }
-
-    _getMaxDate() {
-        const { maxDate } = this.props;
-
-        return maxDate;
-    }
-
-    _getMinDate() {
-        const { minDate } = this.props;
-
-        return minDate;
-    }
-
-    _onCalendarChange({ date, dateFrom, dateTo }) {
-        const { disabled, onChange } = this.props;
-
-        if (!disabled && !_.isUndefined(onChange)) {
-            onChange({ date, dateFrom, dateTo });
-        } else {
-            if (!disabled) {
-                const { locale } = this.props;
-
-                this.setState({
-                    date,
-                    inputValue: this._safeDateFormat(date, locale),
-                });
-            }
-        }
-
-        this._setOpen(false);
-    }
-
-    _onCalendarClickOutside(event) {
-        this._setOpen(false);
-    }
-
-    _onIconClick() {
-        const { disabled } = this.props;
-
-        if (!disabled) {
-            ReactDOM.findDOMNode(this._datePickerInput._input).focus();
-        }
-    }
-
-    _onInputBlur(event) {
-        const { onBlur } = this.props;
-
-        if (!_.isUndefined(onBlur)) {
-            onBlur(event);
-        }
-    }
-
-    _onInputChange(value) {
-        const { disabled, locale, rangeFrom, rangeTo } = this.props;
-        const { dateFrom, dateTo } = this.state;
-        const date = moment(value, this._dateFormats, locale || moment.locale(), true);
-
-        const isValidValueChange = !disabled &&
-            date.isValid() &&
-            !DatePickerUtils.isDayDisabled(date, this.props);
-
-        const isValidUpdateToNull = !isValidValueChange &&
-            !disabled &&
-            value === '' || value === '__/__/____';
-
-        let onChangeParam = {};
-        const updatedDateValue = isValidValueChange ? date : null;
-
-        if (rangeFrom) {
-            onChangeParam.dateFrom = updatedDateValue;
-            onChangeParam.dateTo = dateTo;
-        } else if (rangeTo) {
-            onChangeParam.dateFrom = dateFrom;
-            onChangeParam.dateTo = updatedDateValue;
-        } else {
-            onChangeParam.date = updatedDateValue;
-        }
-
-        if (isValidValueChange || isValidUpdateToNull) {
-            this._onCalendarChange(onChangeParam);
-        }
-    }
-
-    _onInputFocus() {
-        this._setOpen(true);
-    }
-
-    _onInputKeyDown(event) {
-        if (event.keyCode === 9 || event.keyCode === 13) {
-            this._setOpen(false);
-        }
-    }
-
-    _onMonthChange(month, year) {
-        const { onMonthChange } = this.props;
-
-        if (!_.isUndefined(onMonthChange)) {
-            onMonthChange(month, year);
-        }
-    }
-
-    _safeDateFormat(date, locale) {
-        if (date && date.isValid()) {
-            return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
-        }
-
-        if (_.isNil(date)) {
-            return '';
-        }
-    }
-
-    _setOpen(open) {
-        this.setState({ isCalendarOpen: open });
-    }
 }
 
-DatePickerInput.defaultProps = {
-    controls: 'dropdowns',
-    disabled: false,
-    locale: 'en-US',
-    rangeFrom: false,
-    rangeTo: false,
-    required: false,
-};
-
-DatePickerInput.propTypes = {
-    className: PropTypes.string,
-    controls: PropTypes.oneOf([ 'dropdowns', 'arrows' ]),
-    date: PropTypes.shape({}),
-    dateFrom: PropTypes.shape({}),
-    dateTo: PropTypes.shape({}),
-    disabled: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    events: PropTypes.array,
-    excludeDates: PropTypes.array,
-    filterDates: PropTypes.func,
-    id: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    includeDates: PropTypes.array,
-    label: PropTypes.string,
-    locale: PropTypes.string,
-    maxDate: PropTypes.shape({}),
-    minDate: PropTypes.shape({}),
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onMonthChange: PropTypes.func,
-    rangeFrom: PropTypes.bool,
-    rangeTo: PropTypes.bool,
-    required: PropTypes.bool,
-    style: PropTypes.shape({}),
-};
+DatePickerInput.propTypes = propTypes;
+DatePickerInput.defaultProps = defaultProps;
 
 export default DatePickerInput;

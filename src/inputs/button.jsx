@@ -280,10 +280,10 @@ class Button extends React.PureComponent {
             disabled: prevDisabled,
         } = prevProps;
         const {
-            disabled: nextDisabled,
+            disabled,
         } = this.props;
 
-        if (prevDisabled !== nextDisabled && nextDisabled) {
+        if (prevDisabled !== disabled && disabled) {
             // eslint-disable-next-line no-console
             console.warn('Button (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
         }

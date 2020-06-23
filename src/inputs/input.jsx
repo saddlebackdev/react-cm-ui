@@ -1,4 +1,10 @@
-import _ from 'lodash';
+import {
+    isEmpty,
+    isFunction,
+    isNumber,
+    isObject,
+    isString,
+} from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
@@ -10,16 +16,23 @@ const propTypes = {
     autoComplete: PropTypes.oneOf(['off', 'on']),
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
+    /**
+     * A DatePickerInput can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     fluid: PropTypes.bool,
     guide: PropTypes.bool,
     icon: PropTypes.oneOfType([
         PropTypes.shape({}),
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
@@ -30,7 +43,7 @@ const propTypes = {
     loading: PropTypes.bool,
     mask: PropTypes.oneOfType([
         PropTypes.array,
-        PropTypes.func
+        PropTypes.func,
     ]),
     max: PropTypes.number,
     maxLength: PropTypes.number,
@@ -48,17 +61,50 @@ const propTypes = {
     style: PropTypes.shape({}),
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
     value: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
 };
 
 const defaultProps = {
+    autoComplete: null,
+    autoFocus: null,
+    className: null,
+    disable: false,
+    disabled: false,
+    error: null,
+    fluid: false,
+    guide: false,
+    icon: null,
+    id: null,
+    inverse: false,
+    keepCharPositions: false,
+    label: null,
+    labelPosition: null,
+    labelStyle: null,
+    loading: false,
+    mask: null,
+    max: null,
+    maxLength: null,
+    min: null,
+    minLength: null,
+    name: null,
+    onBlur: null,
+    onChange: null,
+    onClick: null,
+    onFocus: null,
+    onKeyDown: null,
+    placeholder: null,
+    required: false,
     showSpinners: true,
+    style: null,
+    tabIndex: null,
+    type: null,
+    value: null,
 };
 
 class Input extends React.PureComponent {
@@ -88,7 +134,8 @@ class Input extends React.PureComponent {
         const { autoFocus, icon, loading } = this.props;
         const type = this.getType();
 
-        if (_.isString(icon) || _.isObject(icon) || loading || type === 'number') {
+        if (isString(icon) || isObject(icon) || loading || type === 'number') {
+            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
             const inputTop = ReactDOM.findDOMNode(this._input).offsetTop;
 
             if (inputTop > 0) {
@@ -97,6 +144,7 @@ class Input extends React.PureComponent {
         }
 
         if (autoFocus) {
+            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
             ReactDOM.findDOMNode(this._input).focus();
 
             this.setState({
@@ -126,7 +174,7 @@ class Input extends React.PureComponent {
             onBlur,
         } = this.props;
 
-        if (!_.isUndefined(onBlur)) {
+        if (isFunction(onBlur)) {
             onBlur(event.target.value);
         }
 
@@ -135,13 +183,16 @@ class Input extends React.PureComponent {
 
     onChange(event) {
         const {
+            disable,
             disabled,
             max,
             min,
             onChange,
+            required,
         } = this.props;
+        const isDisabled = disable || disabled;
 
-        if (!disabled) {
+        if (!isDisabled) {
             const type = this.getType();
             let newValue = event.target.value;
 
@@ -151,37 +202,45 @@ class Input extends React.PureComponent {
                 }
 
                 this.inputTimer = setTimeout(() => {
-                    if (_.isEmpty(newValue)) {
+                    if (isEmpty(newValue)) {
                         if (required) {
-                            newValue = _.isNumber(min) ? min : (_.isNumber(max)? max : 0);
+                            const isMaxNumber = isNumber(max);
+                            const isMinNumber = isNumber(min);
+
+                            newValue = (isMinNumber && min) || (isMaxNumber && max) || 0;
                         }
                     } else {
                         newValue = +newValue;
-                        if (_.isNumber(max)) {
+                        if (isNumber(max)) {
                             newValue = Math.min(max, newValue);
                         }
-                        if (_.isNumber(min)) {
+                        if (isNumber(min)) {
                             newValue = Math.max(min, newValue);
                         }
                     }
 
-                    if (_.isUndefined(onChange)) {
+                    if (!isFunction(onChange)) {
+                        // eslint-disable-next-line no-underscore-dangle
                         this._input.value = newValue;
                     } else {
                         onChange(newValue);
                     }
                 }, 500);
 
-                if (_.isUndefined(onChange)) {
+                if (!isFunction(onChange)) {
+                    // eslint-disable-next-line no-underscore-dangle
                     this._input.value = newValue;
                 } else {
                     onChange(newValue);
                 }
             } else {
-                if (_.isUndefined(onChange)) {
-                    this._input.value = newValue;
-                } else {
+                if (isFunction(onChange)) {
                     onChange(newValue);
+                }
+
+                if (!isFunction(onChange)) {
+                    // eslint-disable-next-line no-underscore-dangle
+                    this._input.value = newValue;
                 }
             }
 
@@ -194,7 +253,7 @@ class Input extends React.PureComponent {
             onClick,
         } = this.props;
 
-        if (!_.isUndefined(onClick)) {
+        if (isFunction(onClick)) {
             onClick(event.target.value);
         }
     }
@@ -204,7 +263,7 @@ class Input extends React.PureComponent {
             onFocus,
         } = this.props;
 
-        if (!_.isUndefined(onFocus)) {
+        if (isFunction(onFocus)) {
             onFocus(event);
         }
 
@@ -218,35 +277,60 @@ class Input extends React.PureComponent {
             onKeyDown,
         } = this.props;
 
-        if (!_.isUndefined(onKeyDown)) {
+        if (isFunction(onKeyDown)) {
             onKeyDown(event);
         }
     }
 
     onNumberToggleClick(action) {
         const {
+            disable,
             disabled,
             max,
             min,
             type,
             onChange,
         } = this.props;
-        const value = this._input.value;
+        const isDisabled = disable || disabled;
+        // eslint-disable-next-line no-underscore-dangle
+        const { value } = this._input;
 
-        if (!disabled) {
+        if (!isDisabled) {
             let newValue = value || 0;
+            const isTypeEqualNumber = type === 'number';
+            const isValueLessThanMin = isTypeEqualNumber &&
+                isNumber(min) &&
+                ((value * 1) - 1) < min;
+            const isValueGreaterThanMax = isTypeEqualNumber &&
+                isNumber(max) &&
+                ((value * 1) + 1) > max;
 
             switch (action) {
                 case 'down':
-                    newValue = type === 'number' && _.isNumber(min) && value * 1 - 1 < min ? !newValue ? max : newValue : --newValue;
+                    if (isValueLessThanMin && !newValue) {
+                        newValue = max;
+                    }
+
+                    if (!isValueLessThanMin) {
+                        newValue -= 1;
+                    }
+
                     break;
                 case 'up':
-                    newValue = type === 'number' && _.isNumber(max) && value * 1 + 1 > max ? newValue : newValue < min ? min : ++newValue;
+                    if (!isValueGreaterThanMax && newValue < min) {
+                        newValue = min;
+                    }
+
+                    if (!isValueGreaterThanMax && newValue > min) {
+                        newValue += 1;
+                    }
+
                     break;
                 default:
             }
 
-            if (_.isUndefined(onChange)) {
+            if (!isFunction(onChange)) {
+                // eslint-disable-next-line no-underscore-dangle
                 this._input.value = newValue;
             } else {
                 onChange(newValue);
@@ -310,6 +394,7 @@ class Input extends React.PureComponent {
         const {
             autoComplete,
             className,
+            disable,
             disabled,
             error,
             fluid,
@@ -342,8 +427,9 @@ class Input extends React.PureComponent {
         } = this.state;
         const type = this.getType();
         const newLabelPosition = labelPosition || 'top';
+        const isDisabled = disable || disabled;
         const containerClasses = ClassNames('ui', 'input', className, {
-            'input-disabled': disabled,
+            'input-disabled': isDisabled,
             'input-error': error,
             'input-fluid': fluid,
             'input-has-value': value,
@@ -384,7 +470,7 @@ class Input extends React.PureComponent {
                 {mask ? (
                     <InputMasked
                         autoComplete={autoComplete}
-                        disabled={disabled}
+                        disabled={isDisabled}
                         guide={guide}
                         id={id}
                         keepCharPositions={keepCharPositions}
@@ -398,6 +484,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
+                        // eslint-disable-next-line no-underscore-dangle
                         ref={(ref) => { this._input = ref; }}
                         required={required}
                         tabIndex={tabIndex}
@@ -407,7 +494,7 @@ class Input extends React.PureComponent {
                 ) : (
                     <input
                         autoComplete={autoComplete}
-                        disabled={disabled}
+                        disabled={isDisabled}
                         id={id}
                         name={name}
                         max={max}
@@ -420,6 +507,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
+                        // eslint-disable-next-line no-underscore-dangle
                         ref={(ref) => { this._input = ref; }}
                         required={required}
                         tabIndex={tabIndex}
@@ -430,25 +518,28 @@ class Input extends React.PureComponent {
 
                 {newLabelPosition === 'bottom' ? renderLabel() : null}
 
-                {_.isString(icon) || _.isObject(icon) || loading || type === 'number' ? (
+                {isString(icon) || isObject(icon) || loading || type === 'number' ? (
                     <div
                         className="input-actions"
+                        // eslint-disable-next-line no-underscore-dangle
                         ref={(ref) => { this._inputActions = ref; }}
                         style={{
                             pointerEvents: 'none',
                             top: inputActionsTopPosition,
                         }}
                     >
-                        {_.isString(icon) || loading ? (
+                        {(isString(icon) || loading) && (
                             <Icon compact spin={loading} type={loading ? 'spinner' : icon} />
-                        ) : _.isObject(icon) ? (
+                        )}
+
+                        {isObject(icon) && (
                             <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
                                 {icon}
                             </div>
-                        ) : null}
+                        )}
 
                         {type === 'number' && showSpinners ? (
-                            <div className="input-number-controls" style={{ pointerEvents: disabled ? 'none' : 'auto' }}>
+                            <div className="input-number-controls" style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
                                 <Icon
                                     compact
                                     onClick={this.onNumberToggleUpClick}
@@ -469,7 +560,7 @@ class Input extends React.PureComponent {
                     </div>
                 ) : null}
 
-                {error && _.isString(error) ? (
+                {error && isString(error) ? (
                     <p className="input-error-message">{error}</p>
                 ) : null}
             </div>
