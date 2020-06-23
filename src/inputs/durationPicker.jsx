@@ -8,7 +8,7 @@ import Input from './input';
 const propTypes = {
     className: PropTypes.string,
     /**
-     * A TableRow can be disabled.
+     * A DurationPicker can be disabled.
      */
     disable: PropTypes.bool,
     /**

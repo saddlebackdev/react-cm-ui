@@ -18,7 +18,7 @@ const propTypes = {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
     /**
-     * A DatePickerInput can be disabled.
+     * A Input can be disabled.
      */
     disable: PropTypes.bool,
     /**
@@ -227,8 +227,6 @@ class Input extends React.PureComponent {
                 }, 500);
             }
 
-            console.log('newValue', newValue);
-
             this.setNewValue(newValue);
 
             this.shouldShowRequiredIndicator(newValue);
@@ -307,12 +305,7 @@ class Input extends React.PureComponent {
                 default:
             }
 
-            if (!isFunction(onChange)) {
-                // eslint-disable-next-line no-underscore-dangle
-                this._input.value = newValue;
-            } else {
-                onChange(newValue);
-            }
+            this.setNewValue(newValue);
 
             this.shouldShowRequiredIndicator(newValue);
         }
@@ -360,8 +353,6 @@ class Input extends React.PureComponent {
         const {
             onChange,
         } = this.props;
-
-        console.log('value', value);
 
         if (isFunction(onChange)) {
             onChange(value);

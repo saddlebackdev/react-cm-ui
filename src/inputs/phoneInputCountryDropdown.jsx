@@ -7,7 +7,7 @@ import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue';
 
 const propTypes = {
     /**
-     * A DatePickerInput can be disabled.
+     * A PhoneInputCountryDropdown can be disabled.
      */
     disable: PropTypes.bool,
     /**

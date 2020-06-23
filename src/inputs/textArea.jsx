@@ -15,7 +15,7 @@ const propTypes = {
     className: PropTypes.string,
     columns: PropTypes.number,
     /**
-     * A DatePickerInput can be disabled.
+     * A TextArea can be disabled.
      */
     disable: PropTypes.bool,
     /**

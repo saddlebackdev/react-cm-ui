@@ -20,7 +20,7 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     /**
-     * A DatePickerInput can be disabled.
+     * A Radio can be disabled.
      */
     disable: PropTypes.bool,
     /**

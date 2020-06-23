@@ -91,13 +91,10 @@ class DatePickerInput extends React.PureComponent {
         let inputValue;
 
         if (props.rangeFrom) {
-            // eslint-disable-next-line no-underscore-dangle
             inputValue = this.safeDateFormat(newDateFrom, props.locale);
         } else if (props.rangeTo) {
-            // eslint-disable-next-line no-underscore-dangle
             inputValue = this.safeDateFormat(newDateTo, props.locale);
         } else {
-            // eslint-disable-next-line no-underscore-dangle
             inputValue = this.safeDateFormat(newDate, props.locale);
         }
 

@@ -8,7 +8,7 @@ import Icon from '../dataDisplay/icon';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
-    checked: false,
+    checked: PropTypes.bool,
     className: PropTypes.string,
     /**
      * A TableRow can be disabled.
@@ -44,7 +44,7 @@ const propTypes = {
 const defaultProps = {
     align: null,
     checked: false,
-    className: PropTypes.string,
+    className: null,
     disable: false,
     disabled: false,
     fluid: false,
@@ -219,9 +219,9 @@ class Checkbox extends React.Component {
                     value={newValue}
                 />
 
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label
                     className={labelClasses}
+                    htmlFor={inputId}
                 >
                     {label && (
                         // eslint-disable-next-line jsx-a11y/no-static-element-interactions

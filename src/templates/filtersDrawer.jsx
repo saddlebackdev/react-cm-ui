@@ -56,7 +56,7 @@ const propTypes = {
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 /**
-                 * A DatePickerInput can be disabled.
+                 * A Checkbox can be disabled.
                  */
                 disable: PropTypes.bool,
                 /**
@@ -130,7 +130,7 @@ const propTypes = {
                 checked: PropTypes.bool,
                 className: PropTypes.string,
                 /**
-                 * A DatePickerInput can be disabled.
+                 * A Toggle can be disabled.
                  */
                 disable: PropTypes.bool,
                 /**

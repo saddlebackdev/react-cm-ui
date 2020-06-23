@@ -14,7 +14,7 @@ const propTypes = {
     country: PropTypes.string,
     countryOptions: PropTypes.arrayOf(PropTypes.string),
     /**
-     * A DatePickerInput can be disabled.
+     * A PhoneInput can be disabled.
      */
     disable: PropTypes.bool,
     /**
