@@ -39,7 +39,7 @@ function ComponentApi(props) {
         docs,
     } = props;
     const classes = useStyles();
-    const isDocsNotDefined = isNil(docs) || isEmpty(docs);
+    const isDocsNotDefined = isEmpty(docs);
 
     if (isDocsNotDefined) {
         return null;
