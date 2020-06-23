@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // eslint-disable-next-line import/extensions
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-import TelephoneLink from '../utils/telephoneLink';
-import EmailLink from '../utils/emailLink';
+import TelephoneLink from './telephoneLink';
+import EmailLink from './emailLink';
 
 const propTypes = {
     isCompact: PropTypes.bool,
@@ -20,6 +20,9 @@ const propTypes = {
     isDoNotMail: PropTypes.bool,
     isDoNotPhone: PropTypes.bool,
     isDoNotText: PropTypes.bool,
+    /**
+     * `isExpanded` prop is required by `makeStyles()` but not used directly by the component.
+     */
     isExpanded: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     preferredMethod: PropTypes.string,
     email: PropTypes.string,
@@ -220,12 +223,10 @@ function PersonPanelSummaryContactText(props) {
 
         return (
             <div
-                // eslint-disable-next-line react/prop-types
                 className={classes.contactText}
             >
                 {contactMethodText && (
                     <Typography
-                        // eslint-disable-next-line react/prop-types
                         className={preferredContactMethodClasses}
                         component="h5"
                         variant="h5"

@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => {
      * That is the base size for the class icon (which isn't an SVG), so that the size can be
      * scaled proportionally based on the given `size` from props.
      */
-    const baseClassIconSize = 24;
+    const basesClassIconSize = 24;
 
     return {
         container: {
@@ -271,7 +271,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconClassContainer: {
-            height: baseClassIconSize,
+            height: basesClassIconSize,
             position: 'relative',
             transform: (props) => {
                 const iconSize = getIconSize({
@@ -279,15 +279,15 @@ const useStyles = makeStyles((theme) => {
                     iconSize: props.iconSize,
                 });
 
-                return `scale(${(props.isMobile || iconSize === 16) ? 16 / baseClassIconSize : 1})`;
+                return `scale(${(props.isMobile || iconSize === 16) ? 16 / basesClassIconSize : 1})`;
             },
             transformOrigin: '0 3px',
-            width: baseClassIconSize,
+            width: basesClassIconSize,
         },
         iconClassInnerContainer: {
-            height: baseClassIconSize,
+            height: basesClassIconSize,
             transform: 'rotate(45deg) scale(0.707106)',
-            width: baseClassIconSize,
+            width: basesClassIconSize,
         },
     };
 });

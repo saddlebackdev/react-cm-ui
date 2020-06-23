@@ -1,7 +1,3 @@
-/* eslint-disable react/no-danger */
-
-// import './ComponentApiTable.scss';
-
 import {
     map,
 } from 'lodash';
@@ -23,7 +19,7 @@ function ComponentApiTable(props) {
     const { componentProps, style } = props;
     const bemBlockName = 'table_props';
 
-    const TableRows = map(componentProps, (componentProp, index) => {
+    const TableRows = map(componentProps, (componentProp, key) => {
         const {
             defaultValue,
             description,
@@ -37,13 +33,14 @@ function ComponentApiTable(props) {
         }
 
         return (
-            <Table.Row key={`${bemBlockName}--props_row_key-${index}`}>
+            <Table.Row key={`${bemBlockName}--props_row_key-${key}`}>
                 <Table.Cell>
                     {name}
                 </Table.Cell>
 
                 <Table.Cell>
                     <span
+                        // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: type.name }}
                     />
                 </Table.Cell>
@@ -51,6 +48,7 @@ function ComponentApiTable(props) {
                 <Table.Cell>
                     {defaultValue && defaultValue.value && (
                         <span
+                            // eslint-disable-next-line react/no-danger
                             dangerouslySetInnerHTML={{ __html: defaultValue.value }}
                         />
                     )}
@@ -58,6 +56,7 @@ function ComponentApiTable(props) {
 
                 <Table.Cell>
                     <p
+                        // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: description }}
                     />
                 </Table.Cell>
