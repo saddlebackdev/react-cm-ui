@@ -145,6 +145,7 @@ class DataGridTable extends React.PureComponent {
 
                                 if (cellSize) {
                                     cellStyle.height = `${cellSize.h}px`;
+                                    cellStyle.minWidth = `${cellSize.w}px`;
                                     cellStyle.width = `${cellSize.w}px`;
                                 }
 
