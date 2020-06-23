@@ -64,6 +64,7 @@ export default function createPalette() {
     return {
         common,
         ...palette,
+        blue,
         cyan,
         green,
         grey,

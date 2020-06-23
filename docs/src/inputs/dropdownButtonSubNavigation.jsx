@@ -1,10 +1,11 @@
 import { browserHistory } from 'react-router';
-import React from 'react';
+import { last } from 'lodash';
 import { SubNavigation } from 'react-cm-ui';
+import React from 'react';
 
 function DocsDropdownButtonSubNavigation() {
     function onSubNavClick(index) {
-        const drawerLocation = '/molecules/dropdown-button';
+        const drawerLocation = '/components/inputs/dropdown-button';
 
         switch (index) {
             case 1:
@@ -19,23 +20,15 @@ function DocsDropdownButtonSubNavigation() {
     }
 
     const { pathname } = window.location;
-    const pathnameSegments = pathname.split('/');
-    const pathnameThirdSegment = pathnameSegments[3];
-    let itemSelected;
-
-    switch (pathnameThirdSegment) {
-        case 'option':
-            itemSelected = 1;
-
-            break;
-        default:
-            itemSelected = 0;
-    }
+    const pathSegments = pathname.split('/');
+    const lastPathSegment = last(pathSegments);
+    const isExamplesPage = lastPathSegment === 'option';
+    const selectedIndex = isExamplesPage ? 1 : 0;
 
     return (
         <SubNavigation
             onClick={onSubNavClick}
-            selected={itemSelected}
+            selected={selectedIndex}
             style={{ marginBottom: '33px' }}
         >
             <SubNavigation.Item label="Dropdown Button" />

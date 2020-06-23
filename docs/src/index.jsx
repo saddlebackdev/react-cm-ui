@@ -11,6 +11,13 @@ import ReactDOM from 'react-dom';
 import { appReduxStore } from './global/configureReduxStore';
 import routes from './routes';
 
+/**
+ * `theme` is being pushed into the global window object for documentation purposes. This gives
+ * developers, designers, and business some documentation in UI without needing to look through
+ * source code.
+ */
+window.theme = theme;
+
 const onUpdate = () => {
     const { hash } = window.location;
 
