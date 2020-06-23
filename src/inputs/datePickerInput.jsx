@@ -30,14 +30,14 @@ const propTypes = {
      */
     disabled: PropTypes.bool,
     errorMessage: PropTypes.string,
-    events: PropTypes.arrayof(PropTypes.shape({})),
-    excludeDates: PropTypes.arrayof(PropTypes.shape({})),
+    events: PropTypes.arrayOf(PropTypes.shape({})),
+    excludeDates: PropTypes.arrayOf(PropTypes.shape({})),
     filterDates: PropTypes.func,
     id: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
-    includeDates: PropTypes.arrayof(PropTypes.shape({})),
+    includeDates: PropTypes.arrayOf(PropTypes.shape({})),
     label: PropTypes.string,
     locale: PropTypes.string,
     maxDate: PropTypes.shape({}),
@@ -54,7 +54,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    date: PropTypes.shape({}),
+    date: null,
     dateFrom: null,
     dateTo: null,
     disable: false,

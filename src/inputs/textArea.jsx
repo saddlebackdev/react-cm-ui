@@ -69,9 +69,9 @@ const defaultProps = {
     inverse: false,
     label: null,
     labelStyle: null,
-    maxHeight: 88,
+    maxHeight: null,
     maxLength: null,
-    minHeight: null,
+    minHeight: 88,
     minLength: null,
     name: null,
     onAutoHeightResized: null,
@@ -85,7 +85,7 @@ const defaultProps = {
     resize: false,
     rows: null,
     style: null,
-    value: null,
+    value: undefined,
 };
 
 class TextArea extends React.Component {
@@ -107,11 +107,12 @@ class TextArea extends React.Component {
             value,
         } = this.props;
 
-        if (autoHeight) {
+        if (autoHeight && this.textArea) {
             // eslint-disable-next-line react/no-find-dom-node
             const textArea = ReactDOM.findDOMNode(this.textArea);
+
             const autoResize = setInterval(() => {
-                if (value || textArea.value) {
+                if (value || this.textArea.value) {
                     clearInterval(autoResize);
                     autosize(textArea);
 
@@ -122,7 +123,7 @@ class TextArea extends React.Component {
             }, 150);
         }
 
-        if (autoFocus) {
+        if (autoFocus && this.textArea) {
             // eslint-disable-next-line react/no-find-dom-node
             ReactDOM.findDOMNode(this.textArea).focus();
 
@@ -191,7 +192,7 @@ class TextArea extends React.Component {
         if (isFunction(onChange)) {
             onChange(valueEvent);
         } else {
-            this.setState({ value: valueEvent });
+            this.textArea.value = valueEvent;
         }
     }
 
@@ -253,18 +254,18 @@ class TextArea extends React.Component {
             resize,
             rows,
             style,
-            value: valueProp,
+            value,
         } = this.props;
         const {
-            value: valueState,
             isFocused,
         } = this.state;
+        const isDisabled = disable || disabled;
         const containerClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
-            'text-area-disabled': disabled,
+            'text-area-disabled': isDisabled,
             'text-area-error': error,
             'text-area-fluid': fluid,
-            'text-area-has-value': valueState,
+            'text-area-has-value': value,
             'text-area-focused': isFocused,
             'text-area-inverse': inverse,
         });
@@ -275,7 +276,7 @@ class TextArea extends React.Component {
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
-                        {required && !valueState ? (
+                        {required && !value ? (
                             <span className="text-area-required-indicator">*</span>
                         ) : null}
                     </label>
@@ -283,7 +284,7 @@ class TextArea extends React.Component {
 
                 <div className="text-area-container">
                     <textarea
-                        disabled={disable || disabled}
+                        disabled={isDisabled}
                         cols={columns}
                         id={id}
                         name={name}
@@ -303,12 +304,12 @@ class TextArea extends React.Component {
                             minHeight,
                             resize: !isUndefined(resize) && !resize ? 'none' : 'auto',
                         }}
-                        value={valueProp}
+                        value={value}
                     />
 
-                    {error && isString(error) ? (
+                    {error && isString(error) && (
                         <p className="text-area-error-message">{error}</p>
-                    ) : null}
+                    )}
                 </div>
             </div>
         );

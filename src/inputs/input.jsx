@@ -4,6 +4,7 @@ import {
     isNumber,
     isObject,
     isString,
+    toNumber,
 } from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
@@ -104,7 +105,6 @@ const defaultProps = {
     style: null,
     tabIndex: null,
     type: null,
-    value: null,
 };
 
 class Input extends React.PureComponent {
@@ -187,7 +187,6 @@ class Input extends React.PureComponent {
             disabled,
             max,
             min,
-            onChange,
             required,
         } = this.props;
         const isDisabled = disable || disabled;
@@ -204,45 +203,33 @@ class Input extends React.PureComponent {
                 this.inputTimer = setTimeout(() => {
                     if (isEmpty(newValue)) {
                         if (required) {
-                            const isMaxNumber = isNumber(max);
-                            const isMinNumber = isNumber(min);
-
-                            newValue = (isMinNumber && min) || (isMaxNumber && max) || 0;
+                            if (isNumber(min)) {
+                                newValue = min;
+                            } else if (isNumber(max)) {
+                                newValue = max;
+                            } else {
+                                newValue = 0;
+                            }
                         }
                     } else {
-                        newValue = +newValue;
+                        newValue += 1;
+
                         if (isNumber(max)) {
                             newValue = Math.min(max, newValue);
                         }
+
                         if (isNumber(min)) {
                             newValue = Math.max(min, newValue);
                         }
                     }
 
-                    if (!isFunction(onChange)) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._input.value = newValue;
-                    } else {
-                        onChange(newValue);
-                    }
+                    this.setNewValue(newValue);
                 }, 500);
-
-                if (!isFunction(onChange)) {
-                    // eslint-disable-next-line no-underscore-dangle
-                    this._input.value = newValue;
-                } else {
-                    onChange(newValue);
-                }
-            } else {
-                if (isFunction(onChange)) {
-                    onChange(newValue);
-                }
-
-                if (!isFunction(onChange)) {
-                    // eslint-disable-next-line no-underscore-dangle
-                    this._input.value = newValue;
-                }
             }
+
+            console.log('newValue', newValue);
+
+            this.setNewValue(newValue);
 
             this.shouldShowRequiredIndicator(newValue);
         }
@@ -296,32 +283,23 @@ class Input extends React.PureComponent {
         const { value } = this._input;
 
         if (!isDisabled) {
-            let newValue = value || 0;
-            const isTypeEqualNumber = type === 'number';
-            const isValueLessThanMin = isTypeEqualNumber &&
-                isNumber(min) &&
-                ((value * 1) - 1) < min;
-            const isValueGreaterThanMax = isTypeEqualNumber &&
-                isNumber(max) &&
-                ((value * 1) + 1) > max;
+            let newValue = value ? toNumber(value) : 0;
 
             switch (action) {
                 case 'down':
-                    if (isValueLessThanMin && !newValue) {
-                        newValue = max;
-                    }
-
-                    if (!isValueLessThanMin) {
+                    if (type === 'number' && isNumber(min) && newValue - 1 < min) {
+                        if (!newValue) {
+                            newValue = min;
+                        }
+                    } else {
                         newValue -= 1;
                     }
 
                     break;
                 case 'up':
-                    if (!isValueGreaterThanMax && newValue < min) {
-                        newValue = min;
-                    }
-
-                    if (!isValueGreaterThanMax && newValue > min) {
+                    if (type === 'number' && isNumber(max) && newValue + 1 > max) {
+                        newValue = max;
+                    } else {
                         newValue += 1;
                     }
 
@@ -376,6 +354,21 @@ class Input extends React.PureComponent {
         }
 
         return newType;
+    }
+
+    setNewValue(value) {
+        const {
+            onChange,
+        } = this.props;
+
+        console.log('value', value);
+
+        if (isFunction(onChange)) {
+            onChange(value);
+        } else {
+            // eslint-disable-next-line no-underscore-dangle
+            this._input.value = value;
+        }
     }
 
     shouldShowRequiredIndicator(value) {
@@ -456,16 +449,16 @@ class Input extends React.PureComponent {
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                     {label}
 
-                    {showRequiredIndicator ? (
+                    {showRequiredIndicator && (
                         <span className="input-required-indicator">*</span>
-                    ) : null}
+                    )}
                 </label>
             );
         };
 
         return (
             <div className={containerClasses} style={style}>
-                {newLabelPosition === 'top' ? renderLabel() : null}
+                {newLabelPosition === 'top' && renderLabel()}
 
                 {mask ? (
                     <InputMasked
@@ -516,9 +509,9 @@ class Input extends React.PureComponent {
                     />
                 )}
 
-                {newLabelPosition === 'bottom' ? renderLabel() : null}
+                {newLabelPosition === 'bottom' && renderLabel()}
 
-                {isString(icon) || isObject(icon) || loading || type === 'number' ? (
+                {(isString(icon) || isObject(icon) || loading || type === 'number') && (
                     <div
                         className="input-actions"
                         // eslint-disable-next-line no-underscore-dangle
@@ -538,7 +531,7 @@ class Input extends React.PureComponent {
                             </div>
                         )}
 
-                        {type === 'number' && showSpinners ? (
+                        {type === 'number' && showSpinners && (
                             <div className="input-number-controls" style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
                                 <Icon
                                     compact
@@ -556,13 +549,13 @@ class Input extends React.PureComponent {
                                     type="caret-down"
                                 />
                             </div>
-                        ) : null}
+                        )}
                     </div>
-                ) : null}
+                )}
 
-                {error && isString(error) ? (
+                {error && isString(error) && (
                     <p className="input-error-message">{error}</p>
-                ) : null}
+                )}
             </div>
         );
     }

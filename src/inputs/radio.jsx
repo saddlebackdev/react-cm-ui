@@ -50,7 +50,7 @@ const defaultProps = {
     fluid: false,
     id: null,
     label: null,
-    labelClick: false,
+    labelClick: true,
     multi: false,
     name: null,
     onChange: null,
@@ -219,7 +219,7 @@ class Radio extends React.Component {
                 onKeyDown={this.onKeyDown}
                 role="radio"
                 style={style}
-                tabIndex={tabIndex}
+                tabIndex={isDisabled ? -1 : tabIndex}
             >
                 <input
                     checked={isChecked}
@@ -232,7 +232,8 @@ class Radio extends React.Component {
                     value={value}
                 />
 
-                <span className={labelClasses}>
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <label className={labelClasses}>
                     {label && (
                         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                         <span
@@ -242,7 +243,7 @@ class Radio extends React.Component {
                             {label}
                         </span>
                     )}
-                </span>
+                </label>
             </div>
         );
     }

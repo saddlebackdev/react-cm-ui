@@ -98,8 +98,9 @@ class PhoneInput extends React.PureComponent {
             style,
             value,
         } = this.props;
+        const isDisabled = disable || disabled;
         const containerClasses = ClassNames('ui', 'phone-input', className, {
-            'phone-input--disabled': disable || disabled,
+            'phone-input--disabled': isDisabled,
             'phone-input--error': error,
             'phone-input--fluid': fluid,
         });
@@ -123,6 +124,7 @@ class PhoneInput extends React.PureComponent {
                 <ReactPhoneInput
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...this.props}
+                    disabled={isDisabled}
                     className=""
                     countryOptions={countryOptions}
                     countrySelectComponent={PhoneInputCountryDropdown}
