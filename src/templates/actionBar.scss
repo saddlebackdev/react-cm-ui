@@ -58,7 +58,7 @@ $backwards-step4-duration: $standard-fifth-timing;
 .ui.drawer.drawer-has_action_bar {
     .drawer-container-inner,
     .drawer--wing-container-inner {
-        padding-top: $drawer-action-bar-height;
+        padding-top: $drawer-action-bar-height-mobile;
         .ui.drawer--action_bar {
             top: 0;
         }
@@ -77,18 +77,18 @@ $backwards-step4-duration: $standard-fifth-timing;
     }
     .drawer-container-inner,
     .drawer--wing-container-inner {
-        padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
+        padding-top: $drawer-title-bar-height-mobile + $drawer-action-bar-height-mobile;
         .ui.drawer--action_bar {
-            top: $drawer-title-bar-height;
+            top: $drawer-title-bar-height-mobile;
         }
     }
 }
 .ui.drawer.drawer-has_title_bar.drawer-has_navigation.drawer-has_action_bar {
     .drawer-container-inner,
     .drawer--wing-container-inner {
-        padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
+        padding-top: $drawer-title-bar-height-mobile + $drawer-navigation-height + $drawer-action-bar-height-mobile;
         .ui.drawer--action_bar {
-            top: $drawer-title-bar-height + $drawer-navigation-height;
+            top: $drawer-title-bar-height-mobile + $drawer-navigation-height;
         }
     }
 }
@@ -105,8 +105,7 @@ $backwards-step4-duration: $standard-fifth-timing;
     }
     .drawer--action_bar {
         background-color: color(backgroundColor);
-        height: $drawer-action-bar-height;
-        padding: 0 11px;
+        padding: 8px 11px;
         z-index: $drawer-zindex;
     }
     .page--action_bar {
@@ -326,6 +325,8 @@ $backwards-step4-duration: $standard-fifth-timing;
 @media only screen and (max-width: 767px) {
     .ui {
         &.drawer--action_bar, &.page--action_bar {
+            min-height: $drawer-action-bar-height-mobile;
+            top: $drawer-title-bar-height-mobile;
             .button {
                 height: 32px;
                 min-height: 32px;
@@ -344,6 +345,30 @@ $backwards-step4-duration: $standard-fifth-timing;
 }
 
 @media only screen and (min-width: 768px) {
+    .ui.drawer.drawer-has_action_bar {
+        .drawer-container-inner,
+        .drawer--wing-container-inner {
+            padding-top: $drawer-action-bar-height;
+        }
+    }
+    .ui.drawer.drawer-has_title_bar.drawer-has_action_bar {
+        .drawer-container-inner,
+        .drawer--wing-container-inner {
+            padding-top: $drawer-title-bar-height + $drawer-action-bar-height;
+            .ui.drawer--action_bar {
+                top: $drawer-title-bar-height;
+            }
+        }
+    }
+    .ui.drawer.drawer-has_title_bar.drawer-has_navigation.drawer-has_action_bar {
+        .drawer-container-inner,
+        .drawer--wing-container-inner {
+            padding-top: $drawer-title-bar-height + $drawer-navigation-height + $drawer-action-bar-height;
+            .ui.drawer--action_bar {
+                top: $drawer-title-bar-height + $drawer-navigation-height;
+            }
+        }
+    }
     .ui {
         &.drawer--action_bar, &.page--action_bar {
             padding: 0 22px;
@@ -353,6 +378,9 @@ $backwards-step4-duration: $standard-fifth-timing;
             min-height: 70px;
             padding: 0 22px;
             top: 70px;
+        }
+        &.drawer--action_bar {
+            height: $drawer-action-bar-height;
         }
     }
 }

@@ -59,10 +59,10 @@ class ModulesPageSubNavigation extends React.PureComponent {
             },
         } = window;
         const pathnameSegments = pathname.split('/');
-        const pathnameThirdSegment = pathnameSegments[3];
+        const pathnameFourthSegment = pathnameSegments[4];
         let itemSelected;
 
-        switch (pathnameThirdSegment) {
+        switch (pathnameFourthSegment) {
             case 'action-bar':
                 itemSelected = 1;
 
