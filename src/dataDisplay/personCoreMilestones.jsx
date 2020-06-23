@@ -115,8 +115,8 @@ const useStyles = makeStyles((theme) => {
     };
 
     /**
-     * That is the base size for the class icon (which isn't an SVG), so that the size can be
-     * scaled proportionally based on the given `size` from props.
+     * This is the base icon size for the C.L.A.S.S. icon (which isn't an SVG), so that the
+     * size can be scaled proportionally based on the given `size` from props.
      */
     const basesClassIconSize = 24;
 
