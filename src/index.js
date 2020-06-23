@@ -56,8 +56,8 @@ export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
 export { default as TimeFromNow } from './utils/timeFromNow';
+export { default as useMediaQuery } from './utils/useMediaQuery';
 export { default as Utils } from './utils/utils';
-export { default as withWidth } from './utils/withWidth';
 
 // Other
 export { default as versions } from './versions';
