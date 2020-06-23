@@ -1,7 +1,3 @@
-/* eslint-disable react/no-danger */
-
-// import './ComponentApiTable.scss';
-
 import {
     map,
 } from 'lodash';
@@ -44,6 +40,7 @@ function ComponentApiTable(props) {
 
                 <Table.Cell>
                     <span
+                        // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: type.name }}
                     />
                 </Table.Cell>
@@ -51,6 +48,7 @@ function ComponentApiTable(props) {
                 <Table.Cell>
                     {defaultValue && defaultValue.value && (
                         <span
+                            // eslint-disable-next-line react/no-danger
                             dangerouslySetInnerHTML={{ __html: defaultValue.value }}
                         />
                     )}
@@ -58,6 +56,7 @@ function ComponentApiTable(props) {
 
                 <Table.Cell>
                     <p
+                        // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: description }}
                     />
                 </Table.Cell>
