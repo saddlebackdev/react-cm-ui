@@ -1,7 +1,6 @@
 import {
     Button,
     Grid,
-    Icon,
 } from 'react-cm-ui';
 /* eslint-disable import/extensions */
 import Collapse from 'react-cm-ui/utils/collapse';
