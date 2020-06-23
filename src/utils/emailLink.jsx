@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import A from '../atoms/a';
 
 const propTypes = {
     className: PropTypes.string,
@@ -28,21 +27,15 @@ function EmailLink(props) {
         return null;
     }
 
-    const onClick = (event) => {
-        event.stopPropagation();
-
-        window.location.href = `mailto:${email}`;
-    };
-
     return (
-        <A
+        <a
             className={className}
             id={id}
-            onClick={onClick}
+            href={`mailto:${email}`}
             tabIndex={tabIndex}
         >
             {email}
-        </A>
+        </a>
     );
 }
 

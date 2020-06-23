@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import A from '../atoms/a';
 
 const propTypes = {
     className: PropTypes.string,
@@ -31,21 +30,15 @@ function TelephoneLink(props) {
         return null;
     }
 
-    const onClick = (event) => {
-        event.stopPropagation();
-
-        window.location.href = `tel:${number}`;
-    };
-
     return (
-        <A
+        <a
             className={className}
             id={id}
-            onClick={onClick}
+            href={`tel:${number}`}
             tabIndex={tabIndex}
         >
             {formattedNumber || number}
-        </A>
+        </a>
     );
 }
 
