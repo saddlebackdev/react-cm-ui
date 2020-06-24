@@ -35,10 +35,7 @@ const propTypes = {
      * Override or extend the styles applied to Table.
      */
     classes: PropTypes.shape({
-<<<<<<< HEAD
-=======
         tableSticky: PropTypes.string,
->>>>>>> 2bff7f5... Cameron's requested changes made
         tableStickyColumns: PropTypes.string,
     }),
     /**
