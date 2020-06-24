@@ -10,7 +10,7 @@ import {
     redOrange,
     sky,
     teal,
-} from '../colors/index';
+} from '../colors';
 
 export default function createPalette() {
     const palette = {

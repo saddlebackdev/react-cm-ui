@@ -1,21 +1,22 @@
 import ClassNames from 'classnames';
-import { debounce } from 'lodash';
+import {
+    debounce,
+    get,
+} from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import {
-    backgroundColor,
-    borderColor,
-} from '../colors';
 import { withStyles } from '../styles';
 import Utils from '../utils/utils';
 import TableBody from './tableBody';
 import TableCell from './tableCell';
+import {
+    DEBOUNCE_WAIT_TIME,
+    TH_RESIZABLE_MAX_WIDTH,
+} from './tableConstants';
 import TableHeader from './tableHeader';
-import TableHeaderCell, {
-    MAX_WIDTH_PERCENTAGE_DESKTOP,
-} from './tableHeaderCell';
 import TableRow from './tableRow';
+import TableHeaderCell from './tableHeaderCell';
 
 const propTypes = {
     /**
@@ -34,6 +35,10 @@ const propTypes = {
      * Override or extend the styles applied to Table.
      */
     classes: PropTypes.shape({
+<<<<<<< HEAD
+=======
+        tableSticky: PropTypes.string,
+>>>>>>> 2bff7f5... Cameron's requested changes made
         tableStickyColumns: PropTypes.string,
     }),
     /**
@@ -92,10 +97,9 @@ const propTypes = {
         const {
             [propName]: propValue,
         } = props;
-
-        const isValid = propValue > 0 &&
-            propValue <= parseInt(MAX_WIDTH_PERCENTAGE_DESKTOP * 100, 10);
-
+        const isValid = propValue ?
+            propValue > 0 && propValue <= parseInt(TH_RESIZABLE_MAX_WIDTH * 100, 10) :
+            true;
         if (!isValid) {
             return new Error(
                 `Invalid prop value for ${propName} (${propValue}) supplied to ${componentName}. Validation failed.`,
@@ -119,6 +123,9 @@ const propTypes = {
      * Supply any inline styles to the Table.
      */
     style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        palette: PropTypes.shape({}),
+    }),
 };
 
 const defaultProps = {
@@ -142,15 +149,41 @@ const defaultProps = {
     stretch: false,
     striped: false,
     style: null,
+    theme: null,
 };
 
-const DEBOUNCE_WAIT_TIME = 50;
 const TABLE_HEADER_TYPE = 'TableHeader';
 const STICKY_CELL_CLASS = 'sticky-cell';
 const STICKY_CELL_RESIZABLE_CLASS = 'sticky-cell-resizable';
 const STICKY_CELL_FIRST_OF_ROW_CLASS = 'sticky-cell-first-of-row';
 const STICKY_CELL_LAST_OF_COLUMN_CLASS = 'sticky-cell-last-of-column';
-const STICKY_CELL_BORDER_STYLE = `1px solid ${borderColor.default}`;
+
+const useStyles = ({ palette }) => ({
+    tableStickyColumns: {
+        '& .table-cell': {
+            backgroundColor: get(palette, 'background.primary'),
+        },
+        '& .table--scroll_container': {
+            position: 'relative',
+            overflow: 'auto',
+            height: 'auto',
+        },
+        '& .sticky-cell': {
+            position: 'sticky',
+            left: 0,
+            zIndex: 2,
+        },
+        '& .table-header > tr': {
+            backgroundColor: ({ basic }) => !basic && get(palette, 'background.secondary'),
+        },
+        '& .sticky-cell-resizable': {
+            borderRight: `1px solid ${get(palette, 'border.primary')}`,
+        },
+    },
+    tableSticky: {
+        marginBottom: '10px !important',
+    },
+});
 
 /**
  * A table can have one or more columns defined as 'sticky' so that they stay fixed while the user
@@ -159,28 +192,43 @@ const STICKY_CELL_BORDER_STYLE = `1px solid ${borderColor.default}`;
 class Table extends React.PureComponent {
     constructor() {
         super();
+
         this.state = {
             adjacentStickyColumnsTotalWidth: 0,
             stickyTableContainerWidth: 0,
         };
+        
         this.applyStickyClassesToCells = this.applyStickyClassesToCells.bind(this);
         this.delayedSetScrollBarPosition = null;
         this.forceTableUpdate = this.forceTableUpdate.bind(this);
         this.parseChildren = this.parseChildren.bind(this);
         this.setResizableCellsWordWrapping = this.setResizableCellsWordWrapping.bind(this);
         this.setStickyCellsStylesOnScroll = this.setStickyCellsStylesOnScroll.bind(this);
+        this.getStickyCellBorderStyle = this.getStickyCellBorderStyle.bind(this);
     }
 
     componentDidMount() {
-        this.setStickyColumnPositions();
-        this.applyStickyClassesToCells();
-        this.delayedSetStickyTableContainerWidth = debounce(() => {
-            // eslint-disable-next-line max-len
-            this.setState({
-                stickyTableContainerWidth: this.tableStickyContainer.clientWidth,
-            });
+        const {
+            stickyColumnCount,
+        } = this.props;
+
+        if (stickyColumnCount > 0) {
             this.setStickyColumnPositions();
-        }, DEBOUNCE_WAIT_TIME);
+            this.applyStickyClassesToCells();
+        }
+
+        this.delayedSetStickyTableContainerWidth = stickyColumnCount > 0 &&
+            debounce(() => {
+                const {
+                    tableStickyContainer,
+                } = this;
+
+                this.setState({
+                    stickyTableContainerWidth: tableStickyContainer.clientWidth,
+                });
+
+                this.setStickyColumnPositions();
+            }, DEBOUNCE_WAIT_TIME);
     }
 
     componentDidUpdate(prevProps) {
@@ -188,14 +236,31 @@ class Table extends React.PureComponent {
             children: prevChildren,
             stickyColumnCount: prevStickyColumnCount,
         } = prevProps;
+
         const {
-            children: nextChildren,
-            stickyColumnCount: nextStickyColumnCount,
+            children,
+            stickyColumnCount,
         } = this.props;
-        if (prevChildren !== nextChildren || prevStickyColumnCount !== nextStickyColumnCount) {
+
+        const shouldRunStickyHelperFunctions = stickyColumnCount > 0 &&
+            (prevChildren !== children || prevStickyColumnCount !== stickyColumnCount);
+
+        if (shouldRunStickyHelperFunctions) {
             this.setStickyColumnPositions();
             this.applyStickyClassesToCells();
         }
+    }
+
+    getStickyCellBorderStyle() {
+        const {
+            theme: {
+                palette,
+            },
+        } = this.props;
+
+        const borderStyle = get(palette, 'border.primary');
+
+        return `1px solid ${borderStyle}`;
     }
 
     setStickyColumnPositions() {
@@ -207,6 +272,9 @@ class Table extends React.PureComponent {
             singleLine,
             celled,
             fixed,
+            theme: {
+                palette,
+            },
         } = this.props;
 
         if (stickyColumnCount > 0 && this.tableRef) {
@@ -219,13 +287,16 @@ class Table extends React.PureComponent {
              */
             let leftOverFloatSpace = 1;
             let auxLeftOverFloatSpace = 0;
+
             if (basic) {
                 leftOverFloatSpace = 4;
                 auxLeftOverFloatSpace = -1;
+
                 if (celled) {
                     leftOverFloatSpace = 4;
                     auxLeftOverFloatSpace = -1;
                 }
+
                 if (fixed || singleLine) {
                     leftOverFloatSpace = 4;
                     auxLeftOverFloatSpace = 1;
@@ -233,9 +304,11 @@ class Table extends React.PureComponent {
             } else {
                 leftOverFloatSpace = 2;
                 auxLeftOverFloatSpace = 1;
+
                 if (celled) {
                     auxLeftOverFloatSpace = 2;
                 }
+
                 if (fixed || singleLine) {
                     leftOverFloatSpace = 3;
                     auxLeftOverFloatSpace = 2;
@@ -246,9 +319,11 @@ class Table extends React.PureComponent {
                 cellCount += 1;
                 const shouldChangeInitialDefinitionCell = definition &&
                     !fullWidth && rootIndex === 0;
+
                 if (shouldChangeInitialDefinitionCell) {
-                    stickyCells[rootIndex].style.backgroundColor = backgroundColor.default;
+                    stickyCells[rootIndex].style.backgroundColor = get(palette, 'background.primary');
                 }
+
                 if (cellCount <= stickyColumnCount && cellCount > 1) {
                     cellWidths += stickyCells[rootIndex - 1].clientWidth;
                     /**
@@ -260,11 +335,15 @@ class Table extends React.PureComponent {
                         const definitionLeftOverflow = isFirstHeaderColumn ? 4 : 3;
                         stickyCells[rootIndex].style.left = `${cellWidths - definitionLeftOverflow}px`;
                     } else {
-                        // eslint-disable-next-line max-len
-                        cellWidths -= leftOverFloatSpace + (cellCount >= 3 ? auxLeftOverFloatSpace : 0);
+                        cellWidths -= leftOverFloatSpace + (
+                            cellCount >= 3 ?
+                                auxLeftOverFloatSpace :
+                                0
+                        );
                         stickyCells[rootIndex].style.left = `${cellWidths}px`;
                     }
                 }
+
                 if (cellCount === stickyColumnCount) {
                     // used to get the max cell resizable width according to the table container
                     this.setState({
@@ -281,10 +360,13 @@ class Table extends React.PureComponent {
         const {
             stickyColumnCount,
         } = this.props;
+
         const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(${stickyColumnCount})`);
+
         for (let i = 0; i < stickyCells.length; i += 1) {
             stickyCells[i].style.whiteSpace = shouldBreakSpaces ? 'break-spaces' : 'nowrap';
         }
+
         this.setStickyColumnPositions();
     }
 
@@ -293,32 +375,45 @@ class Table extends React.PureComponent {
             basic,
             definition,
             fullWidth,
+            theme: {
+                palette,
+            },
         } = this.props;
+
         const stickyCellsFirstOfRow = this.tableRef.querySelectorAll(`.${STICKY_CELL_FIRST_OF_ROW_CLASS}`);
-        const stickyCellBorderLeftStyle = scrollLeft > 0 && !basic ? STICKY_CELL_BORDER_STYLE : '';
+        const stickyCellBorderStyle = this.getStickyCellBorderStyle();
+        const stickyCellBorderLeftStyle = scrollLeft > 0 && !basic ? stickyCellBorderStyle : '';
+
         for (let i = 0; i < stickyCellsFirstOfRow.length; i += 1) {
             stickyCellsFirstOfRow[i].style.borderLeft = stickyCellBorderLeftStyle;
             const isInitalDefinitionCell = definition && !fullWidth && i === 0;
+
             if (isInitalDefinitionCell) {
-                stickyCellsFirstOfRow[i].style.borderTop = backgroundColor.default;
+                stickyCellsFirstOfRow[i].style.borderTop = get(palette, 'background.primary');
                 stickyCellsFirstOfRow[i].style.boxShadow = '';
                 stickyCellsFirstOfRow[i].style.borderLeft = '';
-                stickyCellsFirstOfRow[i].style.borderRight = STICKY_CELL_BORDER_STYLE;
+                stickyCellsFirstOfRow[i].style.borderRight = stickyCellBorderStyle;
             }
         }
     }
 
     parseChildren(children) {
         const {
+            setResizableCellsWordWrapping,
+        } = this;
+
+        const {
             stickyColumnCount,
             fixed,
             singleLine,
             resizableColumnWidthPercentage,
         } = this.props;
+
         const {
             adjacentStickyColumnsTotalWidth,
             stickyTableContainerWidth,
         } = this.state;
+
         const shouldHandleStickyBehavior = !fixed && !singleLine;
         const parsedChildren = React.Children.map(children, (child) => {
             if (child.type.name === TABLE_HEADER_TYPE) {
@@ -344,8 +439,7 @@ class Table extends React.PureComponent {
                                     shouldResetWhiteSpaceStyle: shouldHandleStickyBehavior,
                                     forceTableUpdate: this.forceTableUpdate,
                                     resizableColumnWidthPercentage,
-                                    // eslint-disable-next-line max-len
-                                    setResizableCellsWordWrapping: this.setResizableCellsWordWrapping,
+                                    setResizableCellsWordWrapping,
                                 }),
                             },
                         };
@@ -368,8 +462,10 @@ class Table extends React.PureComponent {
                     },
                 };
             }
+
             return child;
         });
+
         return parsedChildren;
     }
 
@@ -386,18 +482,25 @@ class Table extends React.PureComponent {
             const stickyCell = stickyCells[i];
             stickyCell.classList.add(STICKY_CELL_CLASS);
             const isDefinitionInitalCell = definition && !fullWidth && i === 0;
+
             if (isDefinitionInitalCell) {
                 stickyCell.style.boxShadow = '';
             }
+
             const isFirstRowCell = (stickyColumnCount === 1 || (i + 1) % stickyColumnCount === 1);
+
             if (isFirstRowCell) {
                 stickyCell.classList.add(STICKY_CELL_FIRST_OF_ROW_CLASS);
             }
+
             const isResizableCell = (i + 1) % stickyColumnCount === 0;
+
             if (isResizableCell) {
                 stickyCell.classList.add(STICKY_CELL_RESIZABLE_CLASS);
             }
+
             const isLastColumnCell = stickyCells.length - i <= stickyColumnCount;
+
             if (isLastColumnCell) {
                 stickyCell.classList.add(STICKY_CELL_LAST_OF_COLUMN_CLASS);
             }
@@ -413,6 +516,7 @@ class Table extends React.PureComponent {
             basic,
             celled,
             children,
+            classes,
             className,
             collapsing,
             definition,
@@ -423,13 +527,13 @@ class Table extends React.PureComponent {
             selectable,
             singleLine,
             size,
+            stackable,
             stickyColumnCount,
             stretch,
-            style,
-            stackable,
             striped,
-            classes,
+            style,
         } = this.props;
+
         const shouldHandleStickyBehavior = !fixed && !singleLine;
         const containerClasses = ClassNames(
             'ui',
@@ -455,7 +559,7 @@ class Table extends React.PureComponent {
                 'table-striped': striped,
                 'table-stackable': stackable,
                 'table-unstackable': stackable === false,
-                'table-sticky': stickyColumnCount,
+                [classes.tableSticky]: stickyColumnCount,
             },
             className,
         );
@@ -470,6 +574,7 @@ class Table extends React.PureComponent {
                 {tableChildren}
             </table>
         );
+
         if (stickyColumnCount > 0) {
             return (
                 <div
@@ -514,6 +619,7 @@ class Table extends React.PureComponent {
                 </div>
             );
         }
+
         return tableJsx;
     }
 }
@@ -527,31 +633,4 @@ Table.Row = TableRow;
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-const useStyles = {
-    tableStickyColumns: {
-        '& .table-sticky': {
-            marginBottom: '10px !important',
-        },
-        '& .table-cell': {
-            backgroundColor: '#fff',
-        },
-        '& .table--scroll_container': {
-            position: 'relative',
-            overflow: 'auto',
-            height: 'auto',
-        },
-        '& .sticky-cell': {
-            position: 'sticky',
-            left: 0,
-            zIndex: 2,
-        },
-        '& .table-header > tr': {
-            backgroundColor: ({ basic }) => !basic && backgroundColor.nutrualTwo,
-        },
-        '& .sticky-cell-resizable': {
-            borderRight: STICKY_CELL_BORDER_STYLE,
-        },
-    },
-};
-
-export default withStyles(useStyles)(Table);
+export default withStyles(useStyles, { withTheme: true })(Table);

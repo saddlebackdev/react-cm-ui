@@ -30,8 +30,131 @@ import TableSampleVerticalAlign from './tableSampleVerticalAlign';
 import { default as tableDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table';
 /* eslint-enable import/no-named-default, import/extensions */
 
+<<<<<<< HEAD
 function DocsPersonPanel() {
     const descriptionCopy = tableDoc.description;
+=======
+const propDefinitions = [
+    {
+        name: 'basic',
+        type: 'bool',
+        default: 'false',
+        description: 'An element type to render as (string or function).',
+        allowedTypes: 'h1, h2, h3, h4, h5, h6',
+    }, {
+        name: 'celled',
+        type: 'bool',
+        default: 'false',
+        description: 'Primary content.',
+        allowedTypes: '',
+    }, {
+        name: 'children',
+        type: 'node',
+        default: '',
+        description: 'Additional classes.',
+        allowedTypes: '',
+    }, {
+        name: 'className',
+        type: 'string',
+        default: '',
+        description: 'Color of the header.',
+        allowedTypes: '',
+    }, {
+        name: 'collapsing',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers may be formatted with an icon to floated to the left.',
+        allowedTypes: '',
+    }, {
+        name: 'definition',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers can be formatted to appear on dark backgrounds better.',
+        allowedTypes: '',
+    }, {
+        name: 'fixed',
+        type: 'bool',
+        default: 'false',
+        description: 'Content headings are sized with em and are based on the font-size of their container.',
+        allowedTypes: '',
+    }, {
+        name: 'fontSize',
+        type: 'enum',
+        default: '',
+        description: 'Supply any inline styles to the Header\'s container. Mainly used for padding and margins.',
+        allowedTypes: 'large, medium, small, xlarge, xsmall, xxsmall',
+    }, {
+        name: 'fullWidth',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: '',
+    }, {
+        name: 'id',
+        type: 'string',
+        default: '',
+        description: 'An identifier.',
+        allowedTypes: '',
+    }, {
+        name: 'resizableColumnWidthPercentage',
+        type: 'number',
+        default: '',
+        description: 'Resizable column default/initial width percentage',
+        allowedTypes: ' 1 - 80',
+    },
+    {
+        name: 'selectable',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: '',
+    }, {
+        name: 'singleLine',
+        type: 'bool',
+        default: '',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: 'medium, small',
+    }, {
+        name: 'size',
+        type: 'enum',
+        default: 'small',
+        description: 'The size of a table\'s body of cells.',
+        allowedTypes: 'medium, small',
+    }, {
+        name: 'stackable',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: '',
+    }, {
+        name: 'stickyColumnCount',
+        type: 'number',
+        default: '',
+        description: 'Sticky columns number, ordered from left to right',
+        allowedTypes: '',
+    }, {
+        name: 'stretch',
+        type: 'bool or enum',
+        default: '',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: 'very',
+    }, {
+        name: 'striped',
+        type: 'bool',
+        default: 'false',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: '',
+    }, {
+        name: 'style',
+        type: 'object',
+        default: '',
+        description: 'Headers may be formatted with a subheader',
+        allowedTypes: '',
+    },
+];
+
+export default function CollectionsTable() {
+>>>>>>> 2bff7f5... Cameron's requested changes made
 
     return (
         <Main page="headers">
