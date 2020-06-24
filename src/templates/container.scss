@@ -1,4 +1,3 @@
-$prefixDrawerContainer: drawer--container;
 $prefixPageContainer: page--container;
 
 .ui {
@@ -11,6 +10,17 @@ $prefixPageContainer: page--container;
     .ui {
         &.#{$prefixPageContainer} {
             margin-top: 70px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .ui {
+        &.#{$prefixPageContainer} {
+            transition: margin-top 333ms ease-in-out;
+            &-has_action_bar_mobile_search_visible {
+                margin-top: 105px;
+            }
         }
     }
 }
