@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { DOCS_PROPS_PROP_TYPE } from './componentApiConstants';
 import MarkdownContainer from './markdownContainer';
+import { REPLACE_BACKTICKS_WITH_TAG } from './utils';
 
 const propTypes = {
     componentProps: DOCS_PROPS_PROP_TYPE.isRequired,
@@ -155,10 +156,6 @@ function ComponentApiTable(props) {
             name += '*';
         }
 
-        const backtickReplacer = (match, p1) => {
-            return `<code>${p1}</code>`;
-        };
-
         return (
             <Table.Row key={`table_props--props_row_key-${key}`}>
                 <Table.Cell>
@@ -190,7 +187,7 @@ function ComponentApiTable(props) {
                     <p
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{
-                            __html: description && description.replace(/`(.*?)`/g, backtickReplacer),
+                            __html: description && REPLACE_BACKTICKS_WITH_TAG(description),
                         }}
                     />
                 </Table.Cell>

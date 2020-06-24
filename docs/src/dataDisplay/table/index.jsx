@@ -98,7 +98,8 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        If `true`, applies `width: auto` to the Table.
+                        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                        If <code>true</code>, applies <code>width: auto</code> to the Table.
                     </Typography>
                 </MarkdownContainer>
 

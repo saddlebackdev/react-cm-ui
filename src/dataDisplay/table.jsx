@@ -83,12 +83,12 @@ const propTypes = {
      */
     stackable: PropTypes.bool,
     /**
-     * From left to right, giving a number greater than 0 will cause column's to be fixed to the
-     * left of the Table.
+     * A table can have one or more columns defined as 'sticky' so that they stay fixed while the
+     * user horizontally scrolls to see the remaining columns.
      */
     stickyColumnCount: PropTypes.number,
     /**
-     * Need a description.
+     * Resizable cell default percentage width related to the Table container size.
      */
     resizableColumnWidthPercentage: (props, propName, componentName) => {
         const {
@@ -183,8 +183,7 @@ const useStyles = ({ palette }) => ({
 });
 
 /**
- * A table can have one or more columns defined as 'sticky' so that they stay fixed while the user
- * horizontally scrolls to see the remaining columns.
+ * Tables display sets of data.
  */
 class Table extends React.PureComponent {
     constructor() {
@@ -194,7 +193,7 @@ class Table extends React.PureComponent {
             adjacentStickyColumnsTotalWidth: 0,
             stickyTableContainerWidth: 0,
         };
-        
+
         this.applyStickyClassesToCells = this.applyStickyClassesToCells.bind(this);
         this.delayedSetScrollBarPosition = null;
         this.forceTableUpdate = this.forceTableUpdate.bind(this);
