@@ -493,7 +493,7 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDemo.js')
+                        import('./templates/pageDemo')
                             .then((module) => callback(null, module.default));
                     }}
                     path="demo"
