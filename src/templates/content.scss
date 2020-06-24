@@ -38,3 +38,13 @@ $prefixPageContent: page--content;
         padding: 33px 22px;
     }
 }
+
+@media only screen and (max-width: 767px) {
+    .ui.#{$prefixDrawerContent} {
+        padding: 33px 22px;
+        transition: margin-top 333ms ease-in-out;
+        &-has_action_bar_mobile_search_visible {
+            margin-top: 55px;
+        }
+    }
+}
