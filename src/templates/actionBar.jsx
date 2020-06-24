@@ -313,6 +313,7 @@ class ActionBar extends React.PureComponent {
                                                                     id={actionsButton.id}
                                                                     isMobileSearchVisible={isMobileSearchVisible}
                                                                     header={actionsButton.header}
+                                                                    moduleType={moduleType}
                                                                     options={actionsButton.options}
                                                                     style={actionsButton.style}
                                                                 />
