@@ -6,7 +6,7 @@ $prefixPageFiltersRail: page--filters_rail;
 
 .ui {
     &.#{$prefixPageFiltersRail} {
-        margin-left: -#{$pageGutterSm};
+        margin-left: -#{$pageGutter496};
         min-height: 100%;
     }
     &.#{$prefixDrawerFiltersRail}, &.#{$prefixPageFiltersRail} {
