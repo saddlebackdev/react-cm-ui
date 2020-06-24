@@ -1,10 +1,17 @@
 // NEW: Data Display
+export { default as Address } from './dataDisplay/address';
 export { default as Banner } from './dataDisplay/banner';
+export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
+export { default as EmailLink } from './dataDisplay/emailLink';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
+export { default as PersonPanel } from './dataDisplay/personPanel';
+export { default as PersonPanelDetails } from './dataDisplay/personPanelDetails';
+export { default as PersonPanelSummary } from './dataDisplay/personPanelSummary';
 export { default as Table } from './dataDisplay/table';
+export { default as TelephoneLink } from './dataDisplay/telephoneLink';
 export { default as Typography } from './dataDisplay/typography';
 
 // NEW: Inputs

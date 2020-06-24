@@ -7,6 +7,10 @@ import { browserHistory, Router } from 'react-router';
 import { theme, ThemeProvider } from 'react-cm-ui/styles';
 import { Provider } from 'react-redux';
 import React from 'react';
+/**
+ * TODO: Need to add this to ./docs/package.json
+ * May cause a webpack build conflict with the one in ./package.json.
+ */
 import ReactDOM from 'react-dom';
 import { appReduxStore } from './global/configureReduxStore';
 import routes from './routes';

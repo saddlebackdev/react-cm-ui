@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import DataGroups from './dataGroups';
-import { groupPropTypes } from './dataGroupsPropTypes';
+import DataGroups from '../dataDisplay/dataGroups';
+import { groupPropTypes } from '../dataDisplay/dataGroupsPropTypes';
 
 const propTypes = {
     bleed: PropTypes.bool,

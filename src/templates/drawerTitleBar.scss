@@ -3,7 +3,7 @@
 .ui.drawer--title_bar {
     background-color: color(backgroundColor);
     border-bottom: 1px solid color(borderColorSecondary);
-    height: $drawer-title-bar-height;
+    height: $drawer-title-bar-height-mobile;
     left: 0;
     position: fixed;
     top: 0;
@@ -11,7 +11,7 @@
     width: 100%;
     z-index: $drawer-zindex;
     > div {
-        height: $drawer-title-bar-height;
+        height: $drawer-title-bar-height-mobile;
         position: relative;
     }
     .title {
@@ -42,6 +42,10 @@
 
 @media only screen and (min-width: 768px) {
     .ui.drawer--title_bar {
+        height: $drawer-title-bar-height;
+        > div {
+            height: $drawer-title-bar-height;
+        }
         .title {
             padding: 0 88px 0 22px;
         }
