@@ -33,6 +33,12 @@ const useStyles = makeStyles(({
         '& p': {
             marginBottom: '16px',
         },
+        '& .prop_name': {
+            fontFamily: 'monospace',
+        },
+        '& .prop_type': {
+            fontFamily: 'monospace',
+        },
     },
 }));
 

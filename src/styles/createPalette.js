@@ -67,7 +67,13 @@ export default function createPalette() {
         blue,
         cyan,
         green,
-        grey,
+        grey: {
+            50: grey[100], // DO NOT USE
+            ...grey,
+            700: grey[500], // DO NOT USE
+            800: grey[500], // DO NOT USE
+            900: grey[500], // DO NOT USE
+        },
         pink,
         redOrange,
         sky,

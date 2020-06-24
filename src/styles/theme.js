@@ -22,6 +22,7 @@ const theme = {
         modal: 11000,
         prompt: 12000,
         banner: 13000,
+        tooltip: 14000,
     },
 };
 

@@ -102,7 +102,7 @@ const propTypes = {
             );
         }
 
-        return;
+        return null;
     },
     /**
      * If `true` or `very`, the Table will bleed off the edge.
@@ -152,6 +152,10 @@ const STICKY_CELL_FIRST_OF_ROW_CLASS = 'sticky-cell-first-of-row';
 const STICKY_CELL_LAST_OF_COLUMN_CLASS = 'sticky-cell-last-of-column';
 const STICKY_CELL_BORDER_STYLE = `1px solid ${borderColor.default}`;
 
+/**
+ * A table can have one or more columns defined as 'sticky' so that they stay fixed while the user
+ * horizontally scrolls to see the remaining columns.
+ */
 class Table extends React.PureComponent {
     constructor() {
         super();
