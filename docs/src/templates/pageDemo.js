@@ -370,7 +370,7 @@ class PageDemo extends React.PureComponent {
                 middleName: 'Cool',
                 suffix: null,
                 nickName: null,
-                gender: 'M',
+                gender: 'm',
                 maritalStatusId: 1,
                 maritalStatus: 'Married',
                 membershipStatusId: 2,
@@ -469,11 +469,11 @@ class PageDemo extends React.PureComponent {
         }
 
         switch (gender) {
-            case 'F':
+            case 'f':
                 genderText = 'Female';
 
                 break;
-            case 'M':
+            case 'm':
                 genderText = 'Male';
 
                 break;
