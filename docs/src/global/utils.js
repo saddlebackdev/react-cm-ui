@@ -1,4 +1,5 @@
-export const REPLACE_BACKTICKS_WITH_TAG = (string) => {
+// eslint-disable-next-line import/prefer-default-export
+export const replaceBackticksWithTag = (string) => {
     const replacer = (match, p1) => `<code>${p1}</code>`;
 
     if (!string) {

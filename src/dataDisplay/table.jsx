@@ -32,7 +32,7 @@ const propTypes = {
      */
     children: PropTypes.node,
     /**
-     * Override or extend the styles applied to Table.
+     * Override or extend the styles applied to the Table.
      */
     classes: PropTypes.shape({
         tableSticky: PropTypes.string,
@@ -47,15 +47,15 @@ const propTypes = {
      */
     collapsing: PropTypes.bool,
     /**
-     * If `true`, far left column divided from the rest of the columns.
+     * If `true`, the far left column is divided from the rest of the columns.
      */
     definition: PropTypes.bool,
     /**
-     * If `true`, columns can be evenly spaced.
+     * If `true`, columns will be evenly spaced.
      */
     fixed: PropTypes.bool,
     /**
-     * Change the font size of typography in the Table.
+     * Change the font size of text in the Table.
      */
     fontSize: PropTypes.oneOf(Utils.sizeEnums()),
     /**
@@ -67,7 +67,7 @@ const propTypes = {
      */
     id: PropTypes.string,
     /**
-     * Table row and cells can be highlighted as if they have been selected.
+     * Table rows and cells can be highlighted as if they have been selected.
      */
     selectable: PropTypes.bool,
     /**
@@ -75,7 +75,7 @@ const propTypes = {
      */
     singleLine: PropTypes.bool,
     /**
-     * Change the cell's vertical size in the Table.
+     * Change the cells vertical size in the Table.
      */
     size: PropTypes.oneOf(['l', 'large', 'm', 'medium', 's', 'small']),
     /**
@@ -94,9 +94,11 @@ const propTypes = {
         const {
             [propName]: propValue,
         } = props;
+
         const isValid = propValue ?
             propValue > 0 && propValue <= parseInt(TH_RESIZABLE_MAX_WIDTH * 100, 10) :
             true;
+
         if (!isValid) {
             return new Error(
                 `Invalid prop value for ${propName} (${propValue}) supplied to ${componentName}. Validation failed.`,

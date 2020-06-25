@@ -26,16 +26,15 @@ import TableSampleStickyColumns from './tableSampleStickyColumns';
 import TableSampleStretch from './tableSampleStretch';
 import TableSampleTextAlign from './tableSampleTextAlign';
 import TableSampleVerticalAlign from './tableSampleVerticalAlign';
-/* eslint-disable import/no-named-default, import/extensions */
+// eslint-disable-next-line import/no-named-default, import/extensions
 import { default as tableDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table';
-/* eslint-enable import/no-named-default, import/extensions */
 
-function DocsPersonPanel() {
+function DocsTable() {
     const descriptionCopy = tableDoc.description;
 
     return (
         <Main page="headers">
-            <TitleBar title="Person Panel" />
+            <TitleBar title="Table" />
 
             <Main.Content>
                 <MarkdownContainer>
@@ -142,7 +141,7 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        A table column&rsquo;s width can be evenly spaced.
+                        The widths of the Table&rsquo;s columns can be evenly spaced.
                     </Typography>
                 </MarkdownContainer>
 
@@ -272,7 +271,7 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        A table&rsquo;s row or cell can be active.
+                        A Table&rsquo;s rows or cells can be active.
                     </Typography>
                 </MarkdownContainer>
 
@@ -314,7 +313,7 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        A table&rsquo;s row or cell&rsquo;s text alignment can be changed.
+                        The vertical alignment of a Table&rsquo;s rows or cells can be changed.
                     </Typography>
                 </MarkdownContainer>
 
@@ -356,7 +355,8 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        A table header cell can handle an onClick event.
+                        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                        A table header cell can handle an <code>onClick</code> event.
                     </Typography>
                 </MarkdownContainer>
 
@@ -377,8 +377,8 @@ function DocsPersonPanel() {
                     <Typography
                         variant="body1"
                     >
-                        A table header cell and table ceel can specify a width
-                        for a specific device.
+                        A table header cell and table cell can specify a width for a specific
+                        device.
                     </Typography>
                 </MarkdownContainer>
 
@@ -417,11 +417,12 @@ function DocsPersonPanel() {
                         Sticky Columns
                     </Heading>
 
-                    {/* <Typography
+                    <Typography
                         variant="body1"
                     >
-                        // Need Description.
-                    </Typography> */}
+                        A table can have one or more columns defined as "sticky" so that they stay
+                        fixed while the user horizontally scrolls to see the remaining columns.
+                    </Typography>
                 </MarkdownContainer>
 
                 <Example
@@ -440,4 +441,4 @@ function DocsPersonPanel() {
     );
 }
 
-export default DocsPersonPanel;
+export default DocsTable;
