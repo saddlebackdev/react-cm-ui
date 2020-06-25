@@ -53,7 +53,7 @@
         "react/jsx-fragments": ["error", "element"],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
-        "react/no-did-update-set-state": "off",
+        "react/no-did-update-set-state": "off"
     },
     "plugins": [
         "react",
@@ -61,6 +61,17 @@
     ],
     "overrides": [
         {
+            "files": ["*.jsx"],
+            "rules": {
+               "import/no-named-as-default": "off"
+            }
+        }, {
+            "files": ["docs/**/*.jsx"],
+            "rules": {
+               "global-require": "off",
+               "import/no-webpack-loader-syntax": "off"
+            }
+        }, {
             "files": ["*.test.js"],
             "rules": {
                "react/jsx-props-no-spreading": "off"

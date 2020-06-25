@@ -10,6 +10,7 @@
 
 // NEW: Data Display
 @import './dataDisplay/banner';
+@import './dataDisplay/dataGroups';
 @import './dataDisplay/divider';
 @import './dataDisplay/icon/icon';
 @import './dataDisplay/image';
@@ -72,7 +73,6 @@
 @import './templates/content';
 @import './templates/dataCards';
 @import './templates/dataGrid';
-@import './templates/dataGroups';
 @import './templates/detailsWindow';
 @import './templates/drawer';
 @import './templates/drawerDeprecated';
@@ -83,5 +83,4 @@
 @import './templates/filtersDrawer';
 @import './templates/filtersRail';
 @import './templates/modal';
-@import './templates/page';
 @import './templates/pageDeprecatedFiltersDrawer';

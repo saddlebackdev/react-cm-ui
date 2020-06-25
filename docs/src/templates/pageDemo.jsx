@@ -9,10 +9,31 @@ import _ from 'lodash';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
+import withStyles from 'react-cm-ui/styles/withStyles';
 import React from 'react';
-import { backgroundColor, backgroundColorAlert, backgroundColorSuccess } from 'react-cm-ui/styles/colorExports';
+import {
+    backgroundColorAlert,
+    backgroundColorSuccess,
+} from 'react-cm-ui/styles/colorExports';
 
-const nop = () => { };
+const propTypes = {
+    classes: PropTypes.shape({
+        dataGroupsContainer: PropTypes.string,
+    }),
+    isMobile: PropTypes.bool.isRequired,
+};
+
+const defaultProps = {
+    classes: null,
+};
+
+const nop = () => {};
+
+const styles = {
+    dataGroupsContainer: {
+        margin: '0 -11px',
+    },
+};
 
 class PageDemo extends React.PureComponent {
     constructor() {
@@ -149,7 +170,10 @@ class PageDemo extends React.PureComponent {
     }
 
     render() {
-        const { isMobile } = this.props;
+        const {
+            classes,
+            isMobile,
+        } = this.props;
         const {
             appliedFilters,
             dirtyFilters,
@@ -370,7 +394,7 @@ class PageDemo extends React.PureComponent {
                 middleName: 'Cool',
                 suffix: null,
                 nickName: null,
-                gender: 'M',
+                gender: 'm',
                 maritalStatusId: 1,
                 maritalStatus: 'Married',
                 membershipStatusId: 2,
@@ -469,11 +493,11 @@ class PageDemo extends React.PureComponent {
         }
 
         switch (gender) {
-            case 'F':
+            case 'f':
                 genderText = 'Female';
 
                 break;
-            case 'M':
+            case 'm':
                 genderText = 'Male';
 
                 break;
@@ -505,7 +529,6 @@ class PageDemo extends React.PureComponent {
             gender: genderText,
             maritalStatus: maritalStatus || '',
         };
-
 
         const mainCoulumn = [];
 
@@ -593,7 +616,6 @@ class PageDemo extends React.PureComponent {
         };
 
         mainCoulumn.push(personalColumnInfo);
-
 
         let personPhonesExpandableRows;
         if (!_.isEmpty(phones)) {
@@ -836,7 +858,7 @@ class PageDemo extends React.PureComponent {
                 </div>
 
                 <Page
-                    backgroundColor={!isMobile ? 'white' : 'grey'}
+                    backgroundColor="primary"
                     className="page_class_name"
                     isDataFetching={isFetching}
                 >
@@ -886,6 +908,7 @@ class PageDemo extends React.PureComponent {
                                             checkbox: {
                                                 checked: true,
                                                 label: 'Sensitive',
+                                                // eslint-disable-next-line no-console
                                                 onChange: () => console.log('Sensitive Toggled'),
                                             },
                                         }, {
@@ -894,6 +917,7 @@ class PageDemo extends React.PureComponent {
                                                 label: 'Pinned',
                                                 labelIconColor: 'highlight',
                                                 labelIconType: 'pin',
+                                                // eslint-disable-next-line no-console
                                                 onChange: () => console.log('Pinned Toggled'),
                                             },
                                         },
@@ -1129,10 +1153,7 @@ class PageDemo extends React.PureComponent {
                             )}
 
                             <div
-                                style={{
-                                    backgroundColor: '#fff',
-                                    margin: '0 -22px',
-                                }}
+                                className={classes.dataGroupsContainer}
                             >
                                 <Page.DataGroups
                                     columns={mainCoulumn}
@@ -1147,9 +1168,8 @@ class PageDemo extends React.PureComponent {
     }
 }
 
-PageDemo.propTypes = {
-    isMobile: PropTypes.bool.isRequired,
-};
+PageDemo.propTypes = propTypes;
+PageDemo.defaultProps = defaultProps;
 
 const mapStateToProps = (state) => {
     const { breakpoint: { isMobile } } = state;
@@ -1159,4 +1179,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PageDemo);
+export default connect(mapStateToProps)(
+    withStyles(
+        styles,
+        {
+            withTheme: true,
+        },
+    )(PageDemo),
+);

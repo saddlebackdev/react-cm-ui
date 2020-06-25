@@ -54,6 +54,8 @@ const defaultProps = {
 
 const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer-has_action_bar';
 const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page-has_action_bar';
+const HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'drawer--content-has_action_bar_mobile_search_visible';
+const HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'page--container-has_action_bar_mobile_search_visible';
 
 class ActionBar extends React.PureComponent {
     constructor() {
@@ -89,7 +91,25 @@ class ActionBar extends React.PureComponent {
     onMobileSearchIconToggle() {
         this.setState((prevState) => ({
             isMobileSearchVisible: !prevState.isMobileSearchVisible,
-        }));
+        }), () => {
+            const { moduleType } = this.props;
+            const { isMobileSearchVisible } = this.state;
+            if (moduleType === 'drawer') {
+                if (isMobileSearchVisible) {
+                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.add(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+                } else {
+                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.remove(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+                }
+            }
+
+            if (moduleType === 'page') {
+                if (isMobileSearchVisible) {
+                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+                } else {
+                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.remove(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+                }
+            }
+        });
     }
 
     render() {
@@ -293,6 +313,7 @@ class ActionBar extends React.PureComponent {
                                                                     id={actionsButton.id}
                                                                     isMobileSearchVisible={isMobileSearchVisible}
                                                                     header={actionsButton.header}
+                                                                    moduleType={moduleType}
                                                                     options={actionsButton.options}
                                                                     style={actionsButton.style}
                                                                 />

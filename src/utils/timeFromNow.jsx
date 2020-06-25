@@ -27,6 +27,7 @@ const propTypes = {
     }),
     relativeTimeRounding: PropTypes.oneOf([Math.round, Math.floor]),
     relativeTimeThreshold: PropTypes.shape({
+        ss: PropTypes.number,
         s: PropTypes.number,
         m: PropTypes.number,
         h: PropTypes.number,
@@ -60,12 +61,12 @@ function TimeFromNow(props) {
     const defaultRelativeTime = moment().locale(locale).localeData()._relativeTime; // eslint-disable-line no-underscore-dangle, max-len
     const defaultRounding = moment.relativeTimeRounding();
     /* eslint-disable camelcase */
-    const defaultThreshold_ss = moment.relativeTimeThreshold('ss');
-    const defaultThreshold_s = moment.relativeTimeThreshold('s');
-    const defaultThreshold_m = moment.relativeTimeThreshold('m');
-    const defaultThreshold_h = moment.relativeTimeThreshold('h');
-    const defaultThreshold_d = moment.relativeTimeThreshold('d');
-    const defaultThreshold_M = moment.relativeTimeThreshold('M');
+    const defaultThreshold_FewSeconds = moment.relativeTimeThreshold('ss');
+    const defaultThreshold_Seconds = moment.relativeTimeThreshold('s');
+    const defaultThreshold_Minutes = moment.relativeTimeThreshold('m');
+    const defaultThreshold_Hours = moment.relativeTimeThreshold('h');
+    const defaultThreshold_Days = moment.relativeTimeThreshold('d');
+    const defaultThreshold_Months = moment.relativeTimeThreshold('M');
     /* eslint-enable camelcase */
 
     // Customizing moment's relativeTime
@@ -81,12 +82,12 @@ function TimeFromNow(props) {
     // Customizing moment's relativeTimeThreshold
     if (relativeTimeThreshold) {
         /* eslint-disable camelcase */
-        moment.relativeTimeThreshold('ss', relativeTimeThreshold.ss || defaultThreshold_ss);
-        moment.relativeTimeThreshold('s', relativeTimeThreshold.s || defaultThreshold_s);
-        moment.relativeTimeThreshold('m', relativeTimeThreshold.m || defaultThreshold_m);
-        moment.relativeTimeThreshold('h', relativeTimeThreshold.h || defaultThreshold_h);
-        moment.relativeTimeThreshold('d', relativeTimeThreshold.d || defaultThreshold_d);
-        moment.relativeTimeThreshold('M', relativeTimeThreshold.M || defaultThreshold_M);
+        moment.relativeTimeThreshold('ss', relativeTimeThreshold.ss || defaultThreshold_FewSeconds);
+        moment.relativeTimeThreshold('s', relativeTimeThreshold.s || defaultThreshold_Seconds);
+        moment.relativeTimeThreshold('m', relativeTimeThreshold.m || defaultThreshold_Minutes);
+        moment.relativeTimeThreshold('h', relativeTimeThreshold.h || defaultThreshold_Hours);
+        moment.relativeTimeThreshold('d', relativeTimeThreshold.d || defaultThreshold_Days);
+        moment.relativeTimeThreshold('M', relativeTimeThreshold.M || defaultThreshold_Months);
         /* eslint-enable camelcase */
     }
 
@@ -101,12 +102,12 @@ function TimeFromNow(props) {
 
     // Reverting moment's relativeTimeThresholds.
     /* eslint-disable camelcase */
-    moment.relativeTimeThreshold('ss', defaultThreshold_ss);
-    moment.relativeTimeThreshold('s', defaultThreshold_s);
-    moment.relativeTimeThreshold('m', defaultThreshold_m);
-    moment.relativeTimeThreshold('h', defaultThreshold_h);
-    moment.relativeTimeThreshold('d', defaultThreshold_d);
-    moment.relativeTimeThreshold('M', defaultThreshold_M);
+    moment.relativeTimeThreshold('ss', defaultThreshold_FewSeconds);
+    moment.relativeTimeThreshold('s', defaultThreshold_Seconds);
+    moment.relativeTimeThreshold('m', defaultThreshold_Minutes);
+    moment.relativeTimeThreshold('h', defaultThreshold_Hours);
+    moment.relativeTimeThreshold('d', defaultThreshold_Days);
+    moment.relativeTimeThreshold('M', defaultThreshold_Months);
     /* eslint-enable camelcase */
 
     return (
