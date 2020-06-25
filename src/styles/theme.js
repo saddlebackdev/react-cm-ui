@@ -13,10 +13,31 @@ const theme = {
         keys: breakpointsKeys,
         values: breakpointsValues,
     }),
+    gutters: {
+        page: {
+            sm: 22,
+            496: 44,
+        },
+    },
+    height: {
+        appHeader: {
+            sm: 55,
+            md: 70,
+        },
+    },
     palette: createPalette(),
     shape,
     transitions,
     typography: createTypography(),
+    width: {
+        navigation: {
+            sm: {},
+            md: {
+                collapsed: 70,
+                expanded: 250,
+            },
+        },
+    },
     zIndex: {
         drawer: 10000,
         modal: 11000,

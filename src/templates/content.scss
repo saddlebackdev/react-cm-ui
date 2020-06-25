@@ -8,8 +8,8 @@ $prefixPageContent: page--content;
         padding: 33px 22px;
     }
     &.#{$prefixPageContent} {
-        margin: 0 -#{$pageGutterXsm};
-        padding: 0 #{$pageGutterXsm};
+        margin: 0 -#{$pageGutterSm};
+        padding: 0 #{$pageGutterSm};
     }
     &.#{$prefixDrawerContent}, &.#{$prefixPageContent} {
         position: relative;
@@ -24,11 +24,11 @@ $prefixPageContent: page--content;
     }
 }
 
-@media only screen and (min-width: 508px) {
+@media only screen and (min-width: 496px) {
     .ui {
         &.#{$prefixPageContent} {
-            margin: 0 -#{$pageGutterSm};
-            padding: 0 #{$pageGutterSm};
+            margin: 0 -#{$pageGutter496};
+            padding: 0 #{$pageGutter496};
         }
     }
 }
