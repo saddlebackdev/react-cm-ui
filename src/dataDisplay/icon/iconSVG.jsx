@@ -66,11 +66,6 @@ function IconSVG(props) {
         id = polygon.id;
     }
 
-    if (type === false) {
-        console.log('## type', type);
-        console.log('id', id);
-    }
-
     return (
         <svg
             style={style}
