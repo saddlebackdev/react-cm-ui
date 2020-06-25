@@ -18,7 +18,7 @@ const propTypes = {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
     /**
-     * A Input can be disabled.
+     * An Input can be disabled.
      */
     disable: PropTypes.bool,
     /**
@@ -212,7 +212,7 @@ class Input extends React.PureComponent {
                             }
                         }
                     } else {
-                        newValue += 1;
+                        newValue = +newValue;
 
                         if (isNumber(max)) {
                             newValue = Math.min(max, newValue);
