@@ -173,7 +173,7 @@ const useStyles = ({ palette }) => ({
         '& .table-header > tr': {
             backgroundColor: ({ basic }) => !basic && get(palette, 'background.secondary'),
         },
-        '& .sticky-cell-resizable': {
+        '& td.sticky-cell-resizable': {
             borderRight: `1px solid ${get(palette, 'border.primary')}`,
         },
     },
@@ -205,20 +205,24 @@ class Table extends React.PureComponent {
 
     componentDidMount() {
         const {
+            tableStickyContainer,
+        } = this;
+
+        const {
             stickyColumnCount,
         } = this.props;
 
         if (stickyColumnCount > 0) {
             this.setStickyColumnPositions();
             this.applyStickyClassesToCells();
+
+            this.setState({
+                stickyTableContainerWidth: tableStickyContainer.clientWidth,
+            });
         }
 
         this.delayedSetStickyTableContainerWidth = stickyColumnCount > 0 &&
             debounce(() => {
-                const {
-                    tableStickyContainer,
-                } = this;
-
                 this.setState({
                     stickyTableContainerWidth: tableStickyContainer.clientWidth,
                 });

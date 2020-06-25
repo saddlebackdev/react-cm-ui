@@ -341,8 +341,8 @@ class TableHeaderCell extends React.PureComponent {
                 style={{
                     position: 'absolute',
                     width: 10,
-                    right: 2,
-                    top: '50%',
+                    right: 0,
+                    top: '40%',
                     cursor: 'col-resize',
                     transform: 'translateY(-50%)',
                     ...(shouldDisableResizeHandler && {
@@ -494,10 +494,12 @@ class TableHeaderCell extends React.PureComponent {
                 <span>{children}</span>
             </th>
         );
+        const resizingHandler = this.getResizingHandler();
         const resizableTableHeaderCell = isResizable && (
             <Resizable
                 width={minWidth}
-                handle={this.getResizingHandler}
+                height={0}
+                handle={resizingHandler}
                 onResize={this.onResizeColumn}
                 onResizeStop={this.onResizeStop}
                 draggableOpts={{ enableUserSelectHack: false }}
