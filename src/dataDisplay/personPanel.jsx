@@ -1,7 +1,6 @@
 import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 // eslint-disable-next-line import/extensions
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React, {
     Children,
@@ -11,6 +10,7 @@ import React, {
 } from 'react';
 import { UI_CLASS_NAME } from '../global/constants';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
+import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     /**

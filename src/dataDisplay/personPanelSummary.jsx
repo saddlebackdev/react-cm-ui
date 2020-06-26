@@ -13,8 +13,6 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-// eslint-disable-next-line import/extensions
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import {
     BEM_BLOCK_NAME,
     GENDER_PROP_TYPE,
@@ -23,6 +21,7 @@ import {
 } from './personPanelConstants';
 import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
 import PersonPanelSummaryContactText from './personPanelSummaryContactText';
+import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     /**
