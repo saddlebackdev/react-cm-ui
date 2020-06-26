@@ -1,6 +1,26 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.7.0 - 06/26/2020
+
+#### Feature
+- [PR #147](https://github.com/saddlebackdev/react-cm-ui/pull/147) / Merge Commit 03ee127a7823367e0f7e26e652b941549a62d9fe
+    - New **PersonPanel** documentation.
+- [PR #159](https://github.com/saddlebackdev/react-cm-ui/pull/159) / Merge Commit 5d3de5da2e6fdcbfdf0e4a78e7136d6a236b4cb5
+    - Refactored **Table** documentation using new documentation helper components.
+- [PR #161](https://github.com/saddlebackdev/react-cm-ui/pull/161) / Merge Commit 983f432c5928667f6e1f9981ef6da58a13e3eb95
+    - Added `theme` to the global `window` object.
+- [PR #162](https://github.com/saddlebackdev/react-cm-ui/pull/162) / Merge Commit 209805981c80a4381d7f8bfc1879f50eec4ef92c
+    - New example and api components to make our lives all a little more simple.
+- [PR #163](https://github.com/saddlebackdev/react-cm-ui/pull/163) / Merge Commit a10ead45ace696c891d8d49ecd50d42c8cbef637
+    - Changed lanuage and props from `disabled` to `disable`.
+
+#### Bug Fix
+- [PR #158](https://github.com/saddlebackdev/react-cm-ui/pull/158) / Merge Commit 8325c79b22c20dbe07583a666ca20ab4f857a304
+    - Fixed navigation issue on **Page/Drawer**.
+- [PR #161](https://github.com/saddlebackdev/react-cm-ui/pull/161) / Merge Commit 983f432c5928667f6e1f9981ef6da58a13e3eb95
+    - Fixed **DropdownButton's** sub navigation routes.
+
 ## 0.6.1 - 06/09/2020
 
 #### Feature
