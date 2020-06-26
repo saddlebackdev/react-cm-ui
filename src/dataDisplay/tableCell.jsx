@@ -6,8 +6,6 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../utils/utils';
 
-                'table-cell-sticky': sticky,
-
 const columnNumberEnums = [
     'auto',
     1,
