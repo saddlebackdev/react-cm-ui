@@ -14,6 +14,7 @@ const propTypes = {
     path: PropTypes.shape({
         id: PropTypes.string.isRequired,
         d: PropTypes.string.isRequired,
+        transform: PropTypes.string,
     }),
     polygon: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -87,6 +88,7 @@ function IconSVG(props) {
                     <path
                         id={id}
                         d={path.d}
+                        transform={path.transform}
                     />
                 )}
 
