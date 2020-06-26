@@ -81,7 +81,7 @@ export default class ModulesPhoneInput extends React.Component {
                 description: 'Moves specified countries to the top of the options. \'|\' Seperates the top from the remaining with a divider.',
                 allowedTypes: '',
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: 'false',
                 description: 'Indicates that the Phone Input is not available for interaction.',

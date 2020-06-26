@@ -11,6 +11,7 @@ const propTypes = {
     handle: PropTypes.bool,
     id: PropTypes.string,
     minWidth: PropTypes.number,
+    resizableColumnWidthPercentage: PropTypes.number,
     rowProps: PropTypes.func,
     size: PropTypes.oneOf([
         'small',
@@ -33,6 +34,7 @@ const defaultProps = {
     handle: true,
     id: 'page',
     minWidth: 800,
+    resizableColumnWidthPercentage: undefined,
     rowProps: undefined,
     size: 'small',
     small: undefined,
@@ -57,6 +59,7 @@ function PageDataGrid(props) {
         small,
         stickyColumnWidth,
         stickyColumns,
+        resizableColumnWidthPercentage,
         stretch,
         style,
     } = props;
@@ -77,6 +80,7 @@ function PageDataGrid(props) {
             small={small}
             stickyColumnWidth={stickyColumnWidth}
             stickyColumns={stickyColumns}
+            resizableColumnWidthPercentage={resizableColumnWidthPercentage}
             stretch={stretch}
             style={style}
         />

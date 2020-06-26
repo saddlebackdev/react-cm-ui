@@ -3,6 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ActivityIndicator from '../atoms/activityIndicator';
+import makeStyles from '../styles/makeStyles';
 import PageActionBar from './pageActionBar';
 import PageContainer from './pageContainer';
 import PageContent from './pageContent';
@@ -16,9 +17,18 @@ import PageFiltersDrawer from './pageFiltersDrawer';
 import PageFiltersRail from './pageFiltersRail';
 
 const propTypes = {
-    backgroundColor: PropTypes.oneOf(['white', 'grey']),
+    // eslint-disable-next-line react/no-unused-prop-types
+    backgroundColor: PropTypes.oneOf([
+        'grey',
+        'primary',
+        'secondary',
+        'white',
+    ]),
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     id: PropTypes.string,
     isDataFetching: PropTypes.bool,
     style: PropTypes.shape({}),
@@ -26,17 +36,94 @@ const propTypes = {
 
 const defaultProps = {
     backgroundColor: 'grey',
-    className: undefined,
-    id: undefined,
+    className: null,
+    classes: null,
+    id: null,
     isDataFetching: false,
-    style: {},
+    style: null,
 };
 
 const ACTIVITY_INDICATOR_DURATION = 200;
 
+const useStyles = makeStyles((theme) => {
+    const {
+        breakpoints,
+        gutters,
+        height,
+        palette,
+        width,
+    } = theme;
+
+    return {
+        root: {
+            backgroundColor: (props) => {
+                const {
+                    backgroundColor,
+                } = props;
+
+                if (backgroundColor === 'secondary' || backgroundColor === 'grey') {
+                    return palette.background.secondary;
+                }
+
+                return palette.background.primary;
+            },
+            minHeight: `calc(100vh - ${height.appHeader.sm}px)`,
+            padding: `0 ${gutters.page.sm}px`,
+            position: 'relative',
+            width: '100%',
+            '&.ui.page-has_action_bar': {
+                minHeight: 'calc(100vh - 105px)',
+            },
+            '& .page--activity_indicator': {
+                animationDuration: '200ms',
+                animationFillMode: 'forwards',
+                animationTimingFunction: 'ease-in-out',
+                left: '50%',
+                marginTop: `calc(${height.appHeader.sm}px / 2)`,
+                position: 'fixed',
+                top: '50%',
+                '&-enter': {
+                    animationName: '$pageActivityIndicatorEnter',
+                },
+                '&-leave': {
+                    animationName: '$pageActivityIndicatorLeave',
+                },
+            },
+            [breakpoints.up(496)]: {
+                padding: `0 ${gutters.page[496]}px`,
+            },
+            [breakpoints.up('md')]: {
+                minHeight: `calc(100vh - ${height.appHeader.md}px)`,
+                '&.ui.page-has_action_bar': {
+                    minHeight: 'calc(100vh - 140px)',
+                },
+                '& .page--activity_indicator': {
+                    marginLeft: `calc(${width.navigation.expanded}px / 2)`,
+                    marginTop: `calc(${height.appHeader.md}px / 2)`,
+                },
+            },
+        },
+        '@keyframes pageActivityIndicatorEnter': {
+            '0%': {
+                opacity: 0,
+            },
+            '100%': {
+                opacity: 1,
+            },
+        },
+        '@keyframes pageActivityIndicatorLeave': {
+            '0%': {
+                opacity: 1,
+            },
+            '100%': {
+                opacity: 0,
+            },
+        },
+    };
+});
+
 const Page = React.forwardRef((props, ref) => {
     const {
-        backgroundColor,
         children,
         className,
         id,
@@ -44,19 +131,22 @@ const Page = React.forwardRef((props, ref) => {
         style,
     } = props;
     const [hasActivityIndicator, setHasActivityIndicator] = useState(isDataFetching);
+    const classes = useStyles(props);
 
     useEffect(() => {
         setHasActivityIndicator(isDataFetching);
     }, [isDataFetching]);
 
-    const containerClasses = ClassNames('ui', 'page', className, {
-        'page-background_color_grey': !backgroundColor || backgroundColor === 'grey',
-        'page-background_color_white': backgroundColor === 'white',
-    });
+    const rootClasses = ClassNames(
+        'ui',
+        'page',
+        classes.root,
+        className,
+    );
 
     return (
         <main
-            className={containerClasses}
+            className={rootClasses}
             id={id}
             ref={ref}
             style={style}

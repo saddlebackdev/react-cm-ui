@@ -4,7 +4,7 @@ import { SubNavigation } from 'react-cm-ui';
 
 class ModulesDrawerSubNavigation extends React.PureComponent {
     static onSubNavClick(index) {
-        const drawerLocation = '/templates/drawer';
+        const drawerLocation = '/components/templates/drawer';
 
         switch (index) {
             case 1:
@@ -61,10 +61,10 @@ class ModulesDrawerSubNavigation extends React.PureComponent {
     render() {
         const { pathname } = window.location;
         const pathnameSegments = pathname.split('/');
-        const pathnameThirdSegment = pathnameSegments[3];
+        const pathnameFourthSegment = pathnameSegments[4];
         let itemSelected;
 
-        switch (pathnameThirdSegment) {
+        switch (pathnameFourthSegment) {
             case 'action-bar':
                 itemSelected = 1;
 

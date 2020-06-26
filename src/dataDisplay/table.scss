@@ -12,7 +12,12 @@
     width: 100%;
     &:first-child { margin-top: 0; }
     &:last-child { margin-bottom: 0; }
-    &.table-basic { border: 0; }
+    &.table-basic {
+        border: 0;
+        .table-header-cell, .table-cell {
+            background-color: color(backgroundColor);
+        }
+    }
     &.table-collapsing { width: auto; }
     &.table-color- {
         &grey-xxlight { background-color: color(backgroundColorNest); }

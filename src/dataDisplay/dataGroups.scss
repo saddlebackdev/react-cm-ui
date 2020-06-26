@@ -27,7 +27,7 @@ $prefixPageDataGroups: page--data_groups;
         &:first-child {
             margin-top: 0;
         }
-        &:hover {
+        &.is_expandable:hover {
             border-radius: 3px;
             box-shadow: inset 0 0 1px 1px color(backgroundColorLight);
             .#{$prefixDrawerDataGroup}, .#{$prefixPageDataGroup} {

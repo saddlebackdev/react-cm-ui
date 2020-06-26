@@ -70,17 +70,24 @@ const routes = (
             </Route>
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/image.jsx')
+                    import('./dataDisplay/image')
                         .then((module) => callback(null, module.default));
                 }}
                 path="image"
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/list.js')
+                    import('./dataDisplay/list')
                         .then((module) => callback(null, module.default));
                 }}
                 path="list"
+            />
+            <Route
+                getComponent={(location, callback) => {
+                    import('./dataDisplay/personPanel')
+                        .then((module) => callback(null, module.default));
+                }}
+                path="person-panel"
             />
             <Route
                 getComponent={(location, callback) => {
@@ -486,7 +493,7 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDemo.js')
+                        import('./templates/pageDemo')
                             .then((module) => callback(null, module.default));
                     }}
                     path="demo"

@@ -77,7 +77,7 @@ function ElementsButton() {
                     {require('!!raw-loader!./buttonCompactExample').default}
                 </Highlighter>
 
-                {/* Disabled */}
+                {/* Disable */}
                 <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
                     Disabled
                     <Header.Subheader>

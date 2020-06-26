@@ -1,15 +1,68 @@
 
-import React, { Component } from 'react';
-import _ from 'lodash';
+import {
+    isFunction,
+} from 'lodash';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../utils/utils';
 
-class TableRow extends Component {
+const propTypes = {
+    active: PropTypes.bool,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
+    ]).isRequired,
+    className: PropTypes.string,
+    /**
+     * A TableRow can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
+    disabled: PropTypes.bool,
+    draggable: PropTypes.bool,
+    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
+    id: PropTypes.string,
+    onClick: PropTypes.func,
+    onDragEnd: PropTypes.func,
+    onDragOver: PropTypes.func,
+    onDragStart: PropTypes.func,
+    onDrop: PropTypes.func,
+    selected: PropTypes.bool,
+    style: PropTypes.shape({}),
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
+};
+
+const defaultProps = {
+    active: false,
+    className: null,
+    disable: false,
+    disabled: false,
+    draggable: false,
+    fontSize: null,
+    id: null,
+    onClick: null,
+    onDragEnd: null,
+    onDragOver: null,
+    onDragStart: null,
+    onDrop: null,
+    selected: false,
+    style: null,
+    textAlign: null,
+    verticalAlign: null,
+};
+
+class TableRow extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { isDragging: false, selected: props.selected };
+        this.state = {
+            isDragging: false,
+            selected: props.selected,
+        };
 
         this.onClick = this.onClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
@@ -19,10 +72,21 @@ class TableRow extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { selected } = this.props;
-        const { selected: wasSelected } = prevProps;
+        const {
+            disabled: prevDisabled,
+            selected: prevSelected,
+        } = prevProps;
+        const {
+            disabled,
+            selected,
+        } = this.props;
 
-        if (selected !== wasSelected) {
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('TableRow (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
+
+        if (selected !== prevSelected) {
             this.setState({ selected });
         }
     }
@@ -30,7 +94,7 @@ class TableRow extends Component {
     onClick() {
         const { onClick } = this.props;
         const isTextHighlighted = window.getSelection().toString();
-        if (!isTextHighlighted && _.isFunction(onClick)) {
+        if (!isTextHighlighted && isFunction(onClick)) {
             onClick();
         }
     }
@@ -41,7 +105,7 @@ class TableRow extends Component {
         if (draggable) {
             this.setState({ isDragging: false });
 
-            if (_.isFunction(onDragEnd)) {
+            if (isFunction(onDragEnd)) {
                 onDragEnd(event);
             }
         }
@@ -51,7 +115,7 @@ class TableRow extends Component {
         const { draggable, onDragOver } = this.props;
 
         if (draggable) {
-            if (!_.isFunction(onDragOver)) {
+            if (!isFunction(onDragOver)) {
                 console.warn('Table Row is draggable but onDragOver event is not handled!'); // eslint-disable-line no-console
             } else {
                 onDragOver(event);
@@ -68,7 +132,7 @@ class TableRow extends Component {
         if (draggable) {
             this.setState({ isDragging: true });
 
-            if (!_.isFunction(onDragStart)) {
+            if (!isFunction(onDragStart)) {
                 console.warn('Table Row is draggable but onDragStart event is not handled!'); // eslint-disable-line no-console
             } else {
                 onDragStart(event);
@@ -80,7 +144,7 @@ class TableRow extends Component {
         const { draggable, onDrop } = this.props;
 
         if (draggable) {
-            if (!_.isFunction(onDrop)) {
+            if (!isFunction(onDrop)) {
                 console.warn('Table Row is draggable but onDrop event is not handled!'); // eslint-disable-line no-console
             } else {
                 onDrop(event);
@@ -93,6 +157,7 @@ class TableRow extends Component {
             active,
             children,
             className,
+            disable,
             disabled,
             draggable,
             fontSize,
@@ -109,7 +174,7 @@ class TableRow extends Component {
             'table-row',
             {
                 'table-row-active': active,
-                'table-row-disabled': disabled,
+                'table-row-disabled': disable || disabled,
                 'table-row-clickable': onClick,
                 'table-row-font-size-large': fontSize === 'large',
                 'table-row-font-size-medium': fontSize === 'medium',
@@ -147,47 +212,7 @@ class TableRow extends Component {
     }
 }
 
-const textAlignEnums = ['center', 'left', 'right'];
-const verticalAlignEnums = ['bottom', 'middle', 'top'];
-
-TableRow.propTypes = {
-    active: PropTypes.bool,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]).isRequired,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    draggable: PropTypes.bool,
-    fontSize: PropTypes.oneOf(Utils.sizeEnums()),
-    id: PropTypes.string,
-    onClick: PropTypes.func,
-    onDragEnd: PropTypes.func,
-    onDragOver: PropTypes.func,
-    onDragStart: PropTypes.func,
-    onDrop: PropTypes.func,
-    selected: PropTypes.bool,
-    style: PropTypes.shape({}),
-    textAlign: PropTypes.oneOf(textAlignEnums),
-    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
-};
-
-TableRow.defaultProps = {
-    active: false,
-    className: undefined,
-    disabled: false,
-    draggable: false,
-    fontSize: undefined,
-    id: undefined,
-    onClick: undefined,
-    onDragEnd: undefined,
-    onDragOver: undefined,
-    onDragStart: undefined,
-    onDrop: undefined,
-    selected: false,
-    style: undefined,
-    textAlign: undefined,
-    verticalAlign: undefined,
-};
+TableRow.propTypes = propTypes;
+TableRow.defaultProps = defaultProps;
 
 export default TableRow;

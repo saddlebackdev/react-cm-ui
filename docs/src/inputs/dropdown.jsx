@@ -767,7 +767,7 @@ export default class ItemIconSample extends React.Component {
             >
                 <Dropdown.Item iconType="block" label="Option 1" />
                 <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
-                <Dropdown.Item disabled iconType="circle" label="Option 3" />
+                <Dropdown.Item disable iconType="circle" label="Option 3" />
                 <Dropdown.Item iconColor="alert" iconType="reassign" label="Option 4" />
             </Dropdown>
         );
@@ -906,7 +906,7 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'A Dropdown can be disabled',
@@ -1084,7 +1084,7 @@ export default class ModulesDropdown extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Whether or not this dropdown item (option) is disabled.',
@@ -1234,9 +1234,9 @@ export default class ModulesDropdown extends React.Component {
                         {itemIconSample}
                     </Highlighter>
 
-                    {/* Disabled */}
+                    {/* Disable */}
                     <Header size="large" style={{ marginTop: '55px' }} sub>
-                        Disabled
+                        Disable
                         <Header.Subheader>
                             An Item can be be <em>disabled</em>, preventing its selection.
                         </Header.Subheader>
@@ -1250,7 +1250,7 @@ export default class ModulesDropdown extends React.Component {
                     >
                         <Dropdown.Item iconType="block" label="Option 1" />
                         <Dropdown.Item iconColor="highlight" iconType="heart" label="Option 2" />
-                        <Dropdown.Item disabled iconType="circle" label="Option 3" />
+                        <Dropdown.Item disable iconType="circle" label="Option 3" />
                         <Dropdown.Item iconColor="alert" iconType="reassign" label="Option 4" />
                     </Dropdown>
 

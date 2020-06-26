@@ -12,7 +12,7 @@ $prefixPageDetails: page--details_window;
     }
     &.#{$prefixDrawerDetails} {
         &-bleed {
-            margin: 0 -#{$pageGutterXsm};
+            margin: 0 -#{$pageGutterSm};
         }
     }
     &.#{$prefixPageDetails} {
@@ -42,7 +42,7 @@ $prefixPageDetails: page--details_window;
                 visibility: visible;
             }
         }
-        &_column, {
+        &_column {
             padding: 11px;
             &-divide, &-divide_left {
                 display: flex;
@@ -82,7 +82,7 @@ $prefixPageDetails: page--details_window;
     }
 }
 
-@media only screen and (min-width: 508px) {
+@media only screen and (min-width: 496px) {
     .ui.#{$prefixPageDetails} {
         &-bleed {
             margin: 0 -#{$pageGutterSm};

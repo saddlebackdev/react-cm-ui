@@ -82,7 +82,7 @@ export default class DisabledDurationPickerSample extends React.Component {
     render() {
         return (
             <DurationPicker
-                disabled
+                disable
                 id="disabled-duration-picker"
                 onChange={this._onDurationPickerChange}
                 value={this.state.value}
@@ -154,7 +154,7 @@ export default class ModulesDurationPicker extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the Duration Picker is not available for interaction.',
@@ -293,7 +293,7 @@ export default class ModulesDurationPicker extends React.Component {
                     </Header>
 
                     <DurationPicker
-                        disabled
+                        disable
                         onChange={this._onDuration4PickerChange}
                         value={this.state.value4}
                     />

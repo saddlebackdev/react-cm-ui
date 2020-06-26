@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActivityIndicator from '../atoms/activityIndicator';
 import Header from '../atoms/header';
-import Icon from '../dataDisplay/icon';
-import List from '../dataDisplay/list';
+import Icon from './icon';
+import List from './list';
 import DataGroupExpandedRow from './dataGroupExpandedRow';
 import DataGroupRow from './dataGroupRow';
 import { groupPropTypes } from './dataGroupsPropTypes';
@@ -59,6 +59,7 @@ class DataGroup extends React.PureComponent {
         const { isExpanded } = this.state;
         const bemClassName = `${moduleType}--data_group`;
         const containerClasses = ClassNames(bemClassName, className, {
+            [`${bemClassName}-is_expandable`]: isExpandable,
             [`${bemClassName}-expanded`]: isExpandable && isExpanded,
         });
 

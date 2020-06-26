@@ -7,6 +7,8 @@ import {
     orange,
     pink,
     red,
+    redOrange,
+    sky,
     teal,
 } from '../colors';
 
@@ -22,6 +24,7 @@ export default function createPalette() {
             secondary: grey[200],
         },
         border: {
+            contrastPrimary: common.white,
             primary: grey[300],
             secondary: grey[200],
         },
@@ -61,8 +64,19 @@ export default function createPalette() {
     return {
         common,
         ...palette,
-        grey,
+        blue,
+        cyan,
+        green,
+        grey: {
+            50: grey[100], // DO NOT USE
+            ...grey,
+            700: grey[500], // DO NOT USE
+            800: grey[500], // DO NOT USE
+            900: grey[500], // DO NOT USE
+        },
         pink,
+        redOrange,
+        sky,
         teal,
     };
 }

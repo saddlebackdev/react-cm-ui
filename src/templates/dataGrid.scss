@@ -21,7 +21,7 @@ $blackAlpha: rgba(0, 0, 0, .5);
     }
     &.#{$prefixPageDataGrid}  {
         &-bleed {
-            margin: 0 -#{$pageGutterXsm};
+            margin: 0 -#{$pageGutterSm};
         }
     }
     &.#{$prefixDrawerDataGrid} {
@@ -86,11 +86,11 @@ $blackAlpha: rgba(0, 0, 0, .5);
     }
 }
 
-@media only screen and (min-width: 508px) {
+@media only screen and (min-width: 496px) {
     .ui {
         &.#{$prefixPageDataGrid}  {
             &-bleed {
-                margin: 0 -#{$pageGutterSm};
+                margin: 0 -#{$pageGutter496};
             }
         }
     }

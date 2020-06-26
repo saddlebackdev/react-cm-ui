@@ -13,7 +13,7 @@ html, body, #coreApp, .core-app-root, .layout { height: 100%; }
             .layout { right: -$nav-width !important; }
         }
     }
-    .core-app-root { min-width: 320px; }
+    .core-app-root { min-width: 375px; }
         .demo {
             height: 100%;
             .demo--navigation {

@@ -7,38 +7,59 @@ import Input from './input';
 
 const propTypes = {
     className: PropTypes.string,
+    /**
+     * A DurationPicker can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
     id: PropTypes.string,
+    nest: PropTypes.bool,
     onChange: PropTypes.func,
-    required: PropTypes.bool,
     showDays: PropTypes.bool,
     showHours: PropTypes.bool,
     showMinutes: PropTypes.bool,
     showMonths: PropTypes.bool,
     showSeconds: PropTypes.bool,
     showYears: PropTypes.bool,
+    style: PropTypes.shape({}),
     value: (props, propName, componentName) => {
+        // eslint-disable-next-line react/destructuring-assignment
         const theProp = props[propName];
+
         if (!_.isNil(theProp) && !moment.isDuration(theProp)) {
             return new Error(
-                'Invalid prop `' + propName + '` supplied to' +
-                ' `' + componentName + '`. Validation failed.'
+                `Invalid prop \`${propName}\` supplied to` +
+                ` \`${componentName}\`. Validation failed.`,
             );
         }
-    } // TODO: There is a `react-moment-proptypes` package we can consider [ https://www.npmjs.com/package/react-moment-proptypes ]
+
+        return null;
+    }, // TODO: There is a `react-moment-proptypes` package we can consider [ https://www.npmjs.com/package/react-moment-proptypes ]
 };
 
 const defaultProps = {
+    className: null,
+    disable: false,
+    disabled: false,
+    nest: null,
     showDays: true,
     showHours: true,
     showMinutes: false,
     showMonths: false,
     showSeconds: false,
     showYears: false,
+    error: null,
+    id: null,
+    onChange: null,
+    style: null,
+    value: null,
 };
 
 const defaultState = {
@@ -126,12 +147,23 @@ class DurationPicker extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { value: nextValue } = this.props;
-        const { value: prevValue } = prevState;
+        const {
+            disabled: prevDisabled,
+            value: prevValue,
+        } = prevState;
+        const {
+            disabled,
+            value,
+        } = this.props;
 
-        if (!DurationPicker.areMomentDurationsEqual(prevValue, nextValue)) {
-            if (moment.isDuration(nextValue)) {
-                this.setState(DurationPicker.getStateFromDurationValue(nextValue));
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('DurationPicker (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
+
+        if (!DurationPicker.areMomentDurationsEqual(prevValue, value)) {
+            if (moment.isDuration(value)) {
+                this.setState(DurationPicker.getStateFromDurationValue(value));
             } else { // if value is nil or invalid, reset to default state
                 this.setState(defaultState);
             }
@@ -185,11 +217,11 @@ class DurationPicker extends React.Component {
     render() {
         const {
             className,
+            disable,
             disabled,
             error,
             id,
             nest,
-            required,
             showDays,
             showHours,
             showMinutes,
@@ -204,11 +236,11 @@ class DurationPicker extends React.Component {
             minutes,
             months,
             seconds,
-            value,
             years,
         } = this.state;
+        const isDisabled = disable || disabled;
         const containerClasses = ClassNames('ui', 'duration-picker', className, {
-            'duration-picker-disable': disabled,
+            'duration-picker-disable': isDisabled,
             'duration-picker-error': error,
             'duration-picker-nest': nest,
         });
@@ -217,9 +249,9 @@ class DurationPicker extends React.Component {
         const needsHoursToMinutesSeparator = showHours && showMinutes;
         const needsMinutesToSecondsSeparator = showMinutes && showSeconds;
         const onlyOne =
-            showHours && !showMinutes && !showSeconds ||
-            showMinutes && !showHours && !showSeconds ||
-            showSeconds && !showHours && !showMinutes;
+            (showHours && !showMinutes && !showSeconds) ||
+            (showMinutes && !showHours && !showSeconds) ||
+            (showSeconds && !showHours && !showMinutes);
 
         const hhMmSsClasses = ClassNames('hh-mm-ss', {
             'only-one': onlyOne,
@@ -235,7 +267,7 @@ class DurationPicker extends React.Component {
                 {showYears ? (
                     <Input
                         className="duration-picker-input"
-                        disabled={disabled}
+                        disable={isDisabled}
                         id={`${id || 'duration-picker'}-years`}
                         label="Years"
                         max={99}
@@ -250,7 +282,7 @@ class DurationPicker extends React.Component {
                 {showMonths ? (
                     <Input
                         className="duration-picker-input"
-                        disabled={disabled}
+                        disable={isDisabled}
                         id={`${id || 'duration-picker'}-months`}
                         label="Months"
                         max={11}
@@ -265,7 +297,7 @@ class DurationPicker extends React.Component {
                 {showDays ? (
                     <Input
                         className="duration-picker-input"
-                        disabled={disabled}
+                        disable={isDisabled}
                         id={`${id || 'duration-picker'}-days`}
                         label="Days"
                         max={29}
@@ -281,7 +313,7 @@ class DurationPicker extends React.Component {
                     {showHours && (
                         <Input
                             className="duration-picker-input"
-                            disabled={disabled}
+                            disable={isDisabled}
                             id={`${id || 'duration-picker'}-hours`}
                             label="Hours"
                             max={23}
@@ -298,7 +330,7 @@ class DurationPicker extends React.Component {
                     {showMinutes && (
                         <Input
                             className="duration-picker-input"
-                            disabled={disabled}
+                            disable={isDisabled}
                             id={`${id || 'duration-picker'}-minutes`}
                             label="Minutes"
                             max={59}
@@ -315,7 +347,7 @@ class DurationPicker extends React.Component {
                     {showSeconds && (
                         <Input
                             className="duration-picker-input"
-                            disabled={disabled}
+                            disable={isDisabled}
                             id={`${id || 'duration-picker'}-seconds`}
                             label="Seconds"
                             max={59}

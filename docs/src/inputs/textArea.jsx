@@ -62,7 +62,7 @@ export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <TextArea disabled value="So cool!" />
+            <TextArea disable value="So cool!" />
         );
     }
 
@@ -340,7 +340,7 @@ export default class ElementsTextArea extends React.Component {
                 description: 'Specify a column size.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: 'false',
                 description: 'Indicates that the text area is not available for interaction.',
@@ -533,15 +533,15 @@ export default class ElementsTextArea extends React.Component {
                         {autoFocusSample}
                     </Highlighter>
 
-                    {/* Disabled */}
+                    {/* Disable */}
                     <Header size="large" style={{ marginTop: '55px' }} sub >
-                        Disabled
+                        Disable
                         <Header.Subheader>
                             Indicates that the text area is not available for interaction.
                         </Header.Subheader>
                     </Header>
 
-                    <TextArea disabled value="So cool!" />
+                    <TextArea disable value="So cool!" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {disabledSample}

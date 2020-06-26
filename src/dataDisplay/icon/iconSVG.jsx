@@ -1,36 +1,51 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { TITLE_PROP_TYPE } from './iconConstants';
 
 const propTypes = {
-    gradientId: PropTypes.string,
-    maskId: PropTypes.string,
-    pathD: PropTypes.string,
-    pathId: PropTypes.string,
+    circle: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        cx: PropTypes.string.isRequired,
+        cy: PropTypes.string.isRequired,
+        r: PropTypes.string.isRequired,
+    }),
+    gradientId: PropTypes.string.isRequired,
+    maskId: PropTypes.string.isRequired,
+    path: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        d: PropTypes.string.isRequired,
+        transform: PropTypes.string,
+    }),
+    polygon: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        transform: PropTypes.string,
+        points: PropTypes.string.isRequired,
+    }),
     renderGradientColor: PropTypes.node,
     style: PropTypes.shape({}),
-    title: PropTypes.string,
+    title: TITLE_PROP_TYPE,
     type: PropTypes.string,
     viewBox: PropTypes.string,
 };
 
 const defaultProps = {
-    gradientId: undefined,
-    maskId: undefined,
-    pathD: undefined,
-    pathId: undefined,
-    renderGradientColor: undefined,
-    style: undefined,
-    title: undefined,
-    type: undefined,
+    circle: null,
+    path: null,
+    polygon: null,
+    renderGradientColor: null,
+    style: null,
+    type: null,
+    title: null,
     viewBox: '0 0 24 24',
 };
 
 function IconSVG(props) {
     const {
+        circle,
         gradientId,
         maskId,
-        pathD,
-        pathId,
+        path,
+        polygon,
         renderGradientColor,
         style,
         title,
@@ -38,18 +53,52 @@ function IconSVG(props) {
         viewBox,
     } = props;
 
+    let id;
+
+    if (circle) {
+        id = circle.id;
+    }
+
+    if (path) {
+        id = path.id;
+    }
+
+    if (polygon) {
+        id = polygon.id;
+    }
+
     return (
         <svg
             style={style}
             viewBox={viewBox}
         >
-            <title>{title || type}</title>
+            {title !== false && <title>{title || type}</title>}
 
             <defs>
-                <path
-                    id={pathId}
-                    d={pathD}
-                />
+                {circle && (
+                    <circle
+                        id={id}
+                        cx={circle.cx}
+                        cy={circle.cy}
+                        r={circle.r}
+                    />
+                )}
+
+                {path && (
+                    <path
+                        id={id}
+                        d={path.d}
+                        transform={path.transform}
+                    />
+                )}
+
+                {polygon && (
+                    <polygon
+                        id={id}
+                        transform={polygon.transform}
+                        points={polygon.points}
+                    />
+                )}
 
                 {renderGradientColor}
             </defs>
@@ -61,14 +110,14 @@ function IconSVG(props) {
                         fill="white"
                     >
                         <use
-                            xlinkHref={`#${pathId}`}
+                            xlinkHref={`#${id}`}
                         />
                     </mask>
                 )}
 
                 <use
                     className="icon-use-path"
-                    xlinkHref={`#${pathId}`}
+                    xlinkHref={`#${id}`}
                 />
 
                 {renderGradientColor && (

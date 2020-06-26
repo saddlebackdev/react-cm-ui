@@ -17,6 +17,7 @@ const propTypes = {
     iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
+    moduleType: PropTypes.oneOf(['drawer', 'page']),
     options: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
@@ -28,6 +29,7 @@ const defaultProps = {
     iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,
+    moduleType: undefined,
     style: {},
 };
 
@@ -106,6 +108,7 @@ class ActionBarActionsButton extends React.PureComponent {
             iconType,
             id,
             isMobileSearchVisible,
+            moduleType,
             options,
             style,
         } = this.props;
@@ -126,6 +129,12 @@ class ActionBarActionsButton extends React.PureComponent {
 
         const headerHeight = 55;
         const actionBarHeight = isMobileSearchVisible ? 105 : 50;
+
+        let navigationBarHeight = 0;
+
+        if (moduleType === 'drawer' && document.querySelector('.ui.drawer.drawer-has_navigation')) {
+            navigationBarHeight = 55;
+        }
 
         const promptMessage = !_.isEmpty(promptingOption) ?
             promptingOption.promptMessage :
@@ -170,7 +179,7 @@ class ActionBarActionsButton extends React.PureComponent {
                     maxWidth={224}
                     onClose={this.onDrawerToggle}
                     onCloseComplete={this.onDrawerCloseComplete}
-                    positionYOffset={headerHeight + actionBarHeight}
+                    positionYOffset={headerHeight + actionBarHeight + navigationBarHeight}
                     shadowSize="xsmall"
                 >
                     <Drawer.Content className="actions_button_drawer--content">

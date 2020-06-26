@@ -1,4 +1,15 @@
-import _ from 'lodash';
+import {
+    cloneDeep,
+    differenceBy,
+    filter,
+    isArray,
+    isEmpty,
+    map,
+    mapValues,
+    some,
+    sortBy,
+    union,
+} from 'lodash';
 import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
@@ -44,6 +55,13 @@ const propTypes = {
             checkbox: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
+                /**
+                 * A Checkbox can be disabled.
+                 */
+                disable: PropTypes.bool,
+                /**
+                 * Deprecated prop. Please use `disable` instead.
+                 */
                 disabled: PropTypes.bool,
                 id: PropTypes.string,
                 label: PropTypes.oneOfType([
@@ -111,6 +129,13 @@ const propTypes = {
             toggle: PropTypes.shape({
                 checked: PropTypes.bool,
                 className: PropTypes.string,
+                /**
+                 * A Toggle can be disabled.
+                 */
+                disable: PropTypes.bool,
+                /**
+                 * Deprecated prop. Please use `disable` instead.
+                 */
                 disabled: PropTypes.bool,
                 id: PropTypes.string,
                 label: PropTypes.string,
@@ -136,13 +161,13 @@ const defaultProps = {
 
 class FiltersDrawer extends React.Component {
     static onMultiSelectChange(onItemChange, value, selectedOption) {
-        const filteredOptions = _.union(value, [selectedOption]);
+        const filteredOptions = union(value, [selectedOption]);
 
         onItemChange(filteredOptions);
     }
 
     static onNestedTogglesValueLabelClick(nestedTogglesData, selectedOption) {
-        const selectedOptions = _.filter(nestedTogglesData.value, (d) => (
+        const selectedOptions = filter(nestedTogglesData.value, (d) => (
             d.value !== selectedOption.value
         ));
 
@@ -192,7 +217,7 @@ class FiltersDrawer extends React.Component {
 
     onNestedTogglesLabelClick(nestedTogglesData) {
         this.setState({
-            nestedTogglesData: _.cloneDeep(nestedTogglesData),
+            nestedTogglesData: cloneDeep(nestedTogglesData),
         });
     }
 
@@ -200,15 +225,15 @@ class FiltersDrawer extends React.Component {
         const { nestedTogglesData } = this.state;
         let selectedOptions;
 
-        if (_.some(nestedTogglesData.value, selectedOption)) { // Subtract
-            selectedOptions = _.filter(nestedTogglesData.value, (d) => (
+        if (some(nestedTogglesData.value, selectedOption)) { // Subtract
+            selectedOptions = filter(nestedTogglesData.value, (d) => (
                 d.value !== selectedOption.value
             ));
         } else { // Add
-            selectedOptions = _.sortBy([...nestedTogglesData.value, selectedOption], ['value']);
+            selectedOptions = sortBy([...nestedTogglesData.value, selectedOption], ['value']);
         }
 
-        const newNestedTogglesData = _.mapValues(nestedTogglesData, (data, key) => {
+        const newNestedTogglesData = mapValues(nestedTogglesData, (data, key) => {
             let newData = data;
 
             if (key === 'value') {
@@ -243,7 +268,7 @@ class FiltersDrawer extends React.Component {
         const containerClasses = ClassNames('ui', bemClassName, className);
         const canClear = isFiltering || isDirty;
         const clearFiltersClasses = ClassNames('clear-filters', 'font-size-xsmall', 'font-weight-semibold');
-        const isNestedTogglesOptionsEmpty = _.isEmpty(nestedTogglesData);
+        const isNestedTogglesOptionsEmpty = isEmpty(nestedTogglesData);
 
         let rowKeyNum = 1;
         let itemKeyNum = 1;
@@ -294,9 +319,9 @@ class FiltersDrawer extends React.Component {
                                 >
                                     {
                                         !isNestedTogglesOptionsEmpty &&
-                                        _.map(nestedTogglesData.options, (option) => {
+                                        map(nestedTogglesData.options, (option) => {
                                             nestedTogglesOptionLabelKeyNum += 1;
-                                            const isSelected = _.some(
+                                            const isSelected = some(
                                                 nestedTogglesData.value,
                                                 option,
                                             );
@@ -387,7 +412,7 @@ class FiltersDrawer extends React.Component {
                     />
 
                     <Drawer.Content>
-                        {_.map(rows, (row) => {
+                        {map(rows, (row) => {
                             rowKeyNum += 1;
 
                             return (
@@ -408,7 +433,7 @@ class FiltersDrawer extends React.Component {
                                         className={`${bemBlockClassName}--items`}
                                     >
                                         {/* eslint-disable max-len */}
-                                        {_.isArray(row.items) && _.map(row.items, (item) => {
+                                        {isArray(row.items) && map(row.items, (item) => {
                                             const {
                                                 checkbox,
                                                 dropdown,
@@ -447,7 +472,7 @@ class FiltersDrawer extends React.Component {
                                                         <Checkbox
                                                             checked={checkbox.checked}
                                                             className={checkbox.className}
-                                                            disabled={checkbox.disabled}
+                                                            disabled={checkbox.disable || checkbox.disabled}
                                                             fluid
                                                             id={checkbox.id}
                                                             label={checkbox.label}
@@ -521,7 +546,7 @@ class FiltersDrawer extends React.Component {
                                                 multiSelect
                                             ) {
                                                 // Multi Select
-                                                const modifiedOptions = _.differenceBy(
+                                                const modifiedOptions = differenceBy(
                                                     multiSelect.options,
                                                     multiSelect.value,
                                                     'value',
@@ -556,8 +581,8 @@ class FiltersDrawer extends React.Component {
                                                             value=""
                                                         />
 
-                                                        {!_.isEmpty(multiSelect.value) &&
-                                                                _.map(multiSelect.value, (v) => {
+                                                        {!isEmpty(multiSelect.value) &&
+                                                                map(multiSelect.value, (v) => {
                                                                     const selectedOption = v;
                                                                     multiSelectLabelKeyNum += 1;
 
@@ -597,9 +622,9 @@ class FiltersDrawer extends React.Component {
                                                             nestedTogglesData={nestedToggles}
                                                         />
 
-                                                        {!_.isEmpty(nestedToggles.value) && (
+                                                        {!isEmpty(nestedToggles.value) && (
                                                             <div>
-                                                                {_.map(
+                                                                {map(
                                                                     nestedToggles.value,
                                                                     (option) => {
                                                                         nestedTogglesValueLabelKeyNum += 1;
@@ -655,7 +680,7 @@ class FiltersDrawer extends React.Component {
                                                             align="right"
                                                             checked={toggle.checked}
                                                             className={toggle.className}
-                                                            disabled={toggle.disabled}
+                                                            disabled={toggle.disable || toggle.disabled}
                                                             fluid
                                                             id={toggle.id}
                                                             label={newLabel}

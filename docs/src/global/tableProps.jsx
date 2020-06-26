@@ -10,7 +10,11 @@ import React from 'react';
 
 const propTypes = {
     props: PropTypes.arrayOf(PropTypes.shape({
+        allowedTypes: PropTypes.string,
+        default: PropTypes.string,
         description: PropTypes.string,
+        name: PropTypes.string,
+        type: PropTypes.string,
     })).isRequired,
     style: PropTypes.shape({}),
 };
