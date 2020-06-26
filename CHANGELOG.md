@@ -1,6 +1,33 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.0 - 06/26/2020
+
+#### Feature
+- [PR #147](https://github.com/saddlebackdev/react-cm-ui/pull/147) / Merge Commit 03ee127a7823367e0f7e26e652b941549a62d9fe
+    - New **PersonPanel** components.
+- [PR #159](https://github.com/saddlebackdev/react-cm-ui/pull/159) / Merge Commit 5d3de5da2e6fdcbfdf0e4a78e7136d6a236b4cb5
+    - Refactored **Table** sticky column(s).
+- [PR #170](https://github.com/saddlebackdev/react-cm-ui/pull/170) / Merge Commit f78366dc674fb21672dc1628893166b6fe39e8cc
+    - Cleaned up **Icon** and added ability to suppress `title`.
+
+#### Bug Fix
+- [PR #158](https://github.com/saddlebackdev/react-cm-ui/pull/158) / Merge Commit 8325c79b22c20dbe07583a666ca20ab4f857a304
+    - Fixed navigation issue on **Page/Drawer**.
+- [PR #161](https://github.com/saddlebackdev/react-cm-ui/pull/161) / Merge Commit 983f432c5928667f6e1f9981ef6da58a13e3eb95
+    - Fixed **DropdownButton's** menu being cut off in Chrome.
+- [PR #163](https://github.com/saddlebackdev/react-cm-ui/pull/163) / Merge Commit a10ead45ace696c891d8d49ecd50d42c8cbef637
+    - Deprecrated `disabled` prop and added `disable` prop.
+- [PR #165](https://github.com/saddlebackdev/react-cm-ui/pull/165) / Merge Commit e4117c4210b8e13ac72cc86df4eb89987b2c99f2
+    - Fixed design issues, when using actionbarButtons in **Drawer** for smaller viewports (Mobile).
+    - Refactor widths of **Drawer.TitleBar** & **Drawer.ActionBar** based on new designs.
+- [PR #167](https://github.com/saddlebackdev/react-cm-ui/pull/167) / Merge Commit 142192cb1933799e75583c4805b7528e2e39972d
+    - Fixed action bar button drawer overlapping issue on **Drawer** when **Drawer**. Navigation is included for **Drawer**.
+- [PR #168](https://github.com/saddlebackdev/react-cm-ui/pull/168) / Merge Commit 569a4c6ca83605e2e90720127bd7a9f27efa5e90
+    - Fixed search text box overlapping content in our the `sm` breakpoint.
+- [PR #169](https://github.com/saddlebackdev/react-cm-ui/pull/169) / Merge Commit fa4006846b357905e0596a9bb5f4c0879a7323d1
+    - Fixed **Page** gutters in order to close gap between design and dev.
+
 ## 9.12.1 - 06/12/2020
 - [PR #156](https://github.com/saddlebackdev/react-cm-ui/pull/156) / Merge Commit f220b42d63b9da455540975b6ec187ebe35488c4
     - **Drawer** and **DrawerDeprecated** `zIndex` fixes.
