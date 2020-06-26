@@ -12,6 +12,7 @@ export { default as PersonPanelDetails } from './dataDisplay/personPanelDetails'
 export { default as PersonPanelSummary } from './dataDisplay/personPanelSummary';
 export { default as Table } from './dataDisplay/table';
 export { default as TelephoneLink } from './dataDisplay/telephoneLink';
+export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
 // NEW: Inputs

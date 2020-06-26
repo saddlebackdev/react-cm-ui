@@ -19,6 +19,7 @@ const paths = {
         atoms: {
             src: [
                 'src/atoms/**/**.js',
+                '!src/atoms/**/*.test.js',
                 'src/atoms/**/**.jsx',
             ],
             dest: 'core/atoms',
@@ -26,6 +27,7 @@ const paths = {
         colors: {
             src: [
                 'src/colors/**/**.js',
+                '!src/colors/**/*.test.js',
             ],
             dest: 'core/colors',
         },
@@ -33,12 +35,22 @@ const paths = {
             src: [
                 'src/dataDisplay/**/**.js',
                 'src/dataDisplay/**/**.jsx',
+                '!src/dataDisplay/**/*.test.js',
             ],
             dest: 'core/dataDisplay',
+        },
+        global: {
+            src: [
+                'src/global/**/**.js',
+                '!src/global/**/*.test.js',
+                'src/global/**/**.jsx',
+            ],
+            dest: 'core/global',
         },
         inputs: {
             src: [
                 'src/inputs/**/**.js',
+                '!src/inputs/**/*.test.js',
                 'src/inputs/**/**.jsx',
             ],
             dest: 'core/inputs',
@@ -46,6 +58,7 @@ const paths = {
         molecules: {
             src: [
                 'src/molecules/**/**.js',
+                '!src/molecules/**/*.test.js',
                 'src/molecules/**/**.jsx',
             ],
             dest: 'core/molecules',
@@ -53,6 +66,7 @@ const paths = {
         organisms: {
             src: [
                 'src/organisms/**/**.js',
+                '!src/organisms/**/*.test.js',
                 'src/organisms/**/**.jsx',
             ],
             dest: 'core/organisms',
@@ -65,6 +79,7 @@ const paths = {
         },
         styles: {
             src: [
+                '!src/styles/**/*.test.js',
                 'src/styles/**/**.js',
             ],
             dest: 'core/styles',
@@ -72,6 +87,7 @@ const paths = {
         templates: {
             src: [
                 'src/templates/**/**.js',
+                '!src/templates/**/*.test.js',
                 'src/templates/**/**.jsx',
             ],
             dest: 'core/templates',
@@ -79,6 +95,7 @@ const paths = {
         utils: {
             src: [
                 'src/utils/**/**.js',
+                '!src/utils/**/*.test.js',
                 'src/utils/**/**.jsx',
             ],
             dest: 'core/utils',
@@ -114,6 +131,12 @@ export function scriptsDataDisplay() {
     return src(paths.scripts.dataDisplay.src)
         .pipe(babel())
         .pipe(dest(paths.scripts.dataDisplay.dest));
+}
+
+export function scriptsGlobal() {
+    return src(paths.scripts.global.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.global.dest));
 }
 
 export function scriptsInputs() {
@@ -175,6 +198,7 @@ function watchFiles() {
     watch(paths.scripts.src, scriptsAtoms);
     watch(paths.scripts.src, scriptsColors);
     watch(paths.scripts.src, scriptsDataDisplay);
+    watch(paths.scripts.src, scriptsGlobal);
     watch(paths.scripts.src, scriptsInputs);
     watch(paths.scripts.src, scriptsMolecules);
     watch(paths.scripts.src, scriptsOrganisms);
@@ -193,6 +217,7 @@ export default series(
         scriptsAtoms,
         scriptsColors,
         scriptsDataDisplay,
+        scriptsGlobal,
         scriptsInputs,
         scriptsMolecules,
         scriptsOrganisms,

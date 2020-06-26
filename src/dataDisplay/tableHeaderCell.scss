@@ -42,7 +42,6 @@ $cell-border-side-left-color: color(borderColor);
 }
 .ui.table {
     &.table-basic .table-header-cell {
-        background-color: inherit;
         color: color(colorStatic);
         padding: 0 rem(11px) rem(11px);
         &:first-child { padding-left: 0; }

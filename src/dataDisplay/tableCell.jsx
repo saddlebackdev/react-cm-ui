@@ -6,6 +6,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../utils/utils';
 
+                'table-cell-sticky': sticky,
 
 const columnNumberEnums = [
     'auto',
@@ -69,6 +70,7 @@ const propTypes = {
     ]),
     selectable: PropTypes.bool,
     singleLine: PropTypes.bool,
+    sticky: PropTypes.bool,
     style: PropTypes.shape({}),
     tablet: PropTypes.oneOfType([
         PropTypes.bool,
@@ -132,6 +134,7 @@ function TableCell(props) {
         laptop,
         selectable,
         singleLine,
+        sticky,
         style,
         tablet,
         textAlign,
@@ -166,6 +169,7 @@ function TableCell(props) {
             'table-cell-vertical-align-bottom': verticalAlign === 'bottom',
             'table-cell-vertical-align-middle': verticalAlign === 'middle',
             'table-cell-vertical-align-top': verticalAlign === 'top',
+            'table-cell-sticky': sticky,
             [`${cellPrefix}-${Utils.numberToWord(width)}`]: isNumber(width),
             [`${cellPrefix}-show`]: width === true || width === 'auto',
             [`${cellPrefix}-hide`]: width === false,

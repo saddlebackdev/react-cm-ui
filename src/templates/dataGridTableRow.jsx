@@ -24,14 +24,12 @@ const propTypes = {
         selected: PropTypes.bool,
         style: PropTypes.shape({}),
     }),
-    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
 };
 
 const defaultProps = {
     handle: undefined,
     isClickable: undefined,
     rowProps: undefined,
-    sizes: undefined,
 };
 
 class DataGridTableRow extends React.PureComponent {
@@ -62,7 +60,6 @@ class DataGridTableRow extends React.PureComponent {
             row,
             rowIndex,
             rowProps,
-            sizes,
         } = this.props;
         const {
             className: rowClassName,
@@ -83,35 +80,21 @@ class DataGridTableRow extends React.PureComponent {
             >
                 {_.map(columns, (column, index) => {
                     let accessor = null;
-
                     if (_.isString(column.accessor)) {
                         accessor = _.get(row, column.accessor);
                     } else if (_.isFunction(column.accessor)) {
                         accessor = column.accessor(row);
                     }
-
                     let cellStyle = {};
-                    const size =
-                        _.isEmpty(sizes) || _.isEmpty(sizes[rowIndex]) ?
-                            null :
-                            sizes[rowIndex][index];
-
-                    if (size) {
-                        cellStyle.height = `${size.h}px`;
-                        cellStyle.width = `${size.w}px`;
-                    }
-
-                    cellStyle = {
-                        ...cellStyle,
-                        ...column.style,
-                    };
-
                     if (idPrefix === 'column') {
                         if (handle && _.last(columns) === column) {
                             cellStyle.borderRight = '1px solid #edf1f5';
                         }
                     }
-
+                    cellStyle = {
+                        ...cellStyle,
+                        ...column.style,
+                    };
                     const cellId = column.id || `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
