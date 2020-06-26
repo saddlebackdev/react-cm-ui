@@ -11,7 +11,7 @@ const propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     /**
-     * A TableRow can be disabled.
+     * A Checkbox can be disabled.
      */
     disable: PropTypes.bool,
     /**
