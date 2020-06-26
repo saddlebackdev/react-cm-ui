@@ -1,11 +1,11 @@
 import {
     isFunction,
 } from 'lodash';
-import makeStyles from 'react-cm-ui/styles/makeStyles'; // eslint-disable-line import/extensions
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Button from '../inputs/button';
 import Prompt from '../inputs/prompt';
+import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     className: PropTypes.string,

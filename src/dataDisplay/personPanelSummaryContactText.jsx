@@ -8,10 +8,9 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// eslint-disable-next-line import/extensions
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import TelephoneLink from './telephoneLink';
 import EmailLink from './emailLink';
+import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
     isCompact: PropTypes.bool,

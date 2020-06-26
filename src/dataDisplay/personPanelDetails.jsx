@@ -5,7 +5,6 @@ import {
     map,
 } from 'lodash';
 import ClassNames from 'classnames';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -19,6 +18,7 @@ import Address from './address';
 import Collapse from '../utils/collapse';
 import DataGroups from './dataGroups';
 import EmailLink from './emailLink';
+import makeStyles from '../styles/makeStyles';
 import PersonCoreMilestones from './personCoreMilestones';
 import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
 import TelephoneLink from './telephoneLink';
