@@ -107,6 +107,7 @@ const defaultProps = {
     mobileMedium: null,
     selectable: false,
     singleLine: false,
+    sticky: false,
     style: null,
     tablet: null,
     textAlign: null,
