@@ -12,8 +12,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Cleaned up **Icon** and added ability to suppress `title`.
 
 #### Bug Fix
-- [PR #158](https://github.com/saddlebackdev/react-cm-ui/pull/158) / Merge Commit 8325c79b22c20dbe07583a666ca20ab4f857a304
-    - Fixed navigation issue on **Page/Drawer**.
 - [PR #161](https://github.com/saddlebackdev/react-cm-ui/pull/161) / Merge Commit 983f432c5928667f6e1f9981ef6da58a13e3eb95
     - Fixed **DropdownButton's** menu being cut off in Chrome.
 - [PR #163](https://github.com/saddlebackdev/react-cm-ui/pull/163) / Merge Commit a10ead45ace696c891d8d49ecd50d42c8cbef637
