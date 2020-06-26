@@ -8,7 +8,7 @@ function onClickDisabledButton() {
 function ButtonDisableExample() {
     return (
         <Button
-            disabled
+            disable
             onClick={onClickDisabledButton}
         >
             Disabled Button

@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import {
+    isFunction,
+} from 'lodash';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Icon from '../dataDisplay/icon';
 
 const propTypes = {
-    align: PropTypes.oneOf([ 'left', 'right' ]),
+    align: PropTypes.oneOf(['left', 'right']),
     checked: PropTypes.bool,
     className: PropTypes.string,
+    /**
+     * A Checkbox can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
     id: PropTypes.string,
@@ -19,11 +28,12 @@ const propTypes = {
     labelClassName: PropTypes.string,
     labelClick: PropTypes.bool,
     labelStyle: PropTypes.shape({}),
-    labelWeight: PropTypes.oneOf([ 'bold', 'normal', 'semibold' ]),
+    labelWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
     name: PropTypes.string,
     onChange: PropTypes.func,
-    size: PropTypes.oneOf([ 'small', 'large' ]),
+    size: PropTypes.oneOf(['small', 'large']),
     style: PropTypes.shape({}),
+    tabIndex: PropTypes.number,
     toggle: PropTypes.bool,
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -31,14 +41,39 @@ const propTypes = {
     ]),
 };
 
-class Checkbox extends Component {
+const defaultProps = {
+    align: null,
+    checked: false,
+    className: null,
+    disable: false,
+    disabled: false,
+    fluid: false,
+    id: null,
+    inverse: null,
+    label: null,
+    labelClassName: null,
+    labelClick: null,
+    labelStyle: null,
+    labelWeight: null,
+    name: null,
+    onChange: null,
+    size: null,
+    style: null,
+    tabIndex: -1,
+    toggle: null,
+    value: null,
+};
+
+class Checkbox extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = { isChecked: props.checked || false };
 
         this.onClick = this.onClick.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
         this.onLabelClick = this.onLabelClick.bind(this);
+        this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
     }
 
     componentDidMount() {
@@ -46,17 +81,31 @@ class Checkbox extends Component {
 
         if (checked) {
             // isChecked is already set by the props.checked in the constructor.
+            // eslint-disable-next-line no-underscore-dangle
             this._inputRef.checked = checked;
         }
     }
 
     componentDidUpdate(prevProps) {
-        const { checked, onChange } = this.props;
+        const {
+            disabled: prevDisabled,
+        } = prevProps;
+        const {
+            checked,
+            disabled,
+            onChange,
+        } = this.props;
 
-        if (_.isFunction(onChange) && prevProps.checked !== checked) {
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('Checkbox (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
+
+        if (isFunction(onChange) && prevProps.checked !== checked) {
             this.setState({
                 isChecked: checked,
             }, () => {
+                // eslint-disable-next-line no-underscore-dangle
                 this._inputRef.checked = checked;
             });
         }
@@ -67,12 +116,13 @@ class Checkbox extends Component {
         const { isChecked } = this.state;
 
         if (!disabled) {
-            if (!_.isUndefined(onChange)) {
+            if (isFunction(onChange)) {
                 onChange(id, !isChecked, event);
             } else {
                 this.setState({
                     isChecked: !isChecked,
                 }, () => {
+                    // eslint-disable-next-line no-underscore-dangle
                     this._inputRef.checked = !isChecked;
                 });
             }
@@ -81,18 +131,31 @@ class Checkbox extends Component {
         }
     }
 
+    onKeyDown() {
+        /**
+         * NOTE: Need to use a prop function here someday.
+         */
+    }
+
     onLabelClick(event) {
         const { labelClick } = this.props;
 
-        if (!_.isUndefined(labelClick) && labelClick === false) {
+        if (isFunction(labelClick) && labelClick === false) {
             event.stopPropagation();
         }
+    }
+
+    onLabelKeyDown() {
+        /**
+         * NOTE: Need to use a prop function here someday
+         */
     }
 
     render() {
         const {
             align,
             className,
+            disable,
             disabled,
             fluid,
             id,
@@ -105,16 +168,17 @@ class Checkbox extends Component {
             name,
             size,
             style,
+            tabIndex,
             toggle,
             value,
         } = this.props;
         const { isChecked } = this.state;
-        const newDisabled = disabled || false;
+        const isDisabled = disable || disabled;
         const newValue = value || '';
         const containerClasses = ClassNames('ui', 'checkbox', className, {
             'checkbox-align-left': align === 'left',
             'checkbox-align-right': align === 'right',
-            'checkbox-disabled': disabled,
+            'checkbox-disabled': isDisabled,
             'checkbox-full-width': fluid,
             'checkbox-inverse': inverse,
             'checkbox-is-checked': isChecked,
@@ -122,7 +186,7 @@ class Checkbox extends Component {
             'checkbox-toggle': toggle,
         });
         const labelClasses = ClassNames('checkbox-label', {
-            'label-not-clickable': !_.isUndefined(labelClick) && labelClick === false,
+            'label-not-clickable': isFunction(labelClick) && labelClick === false,
         });
         const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
             'checkbox-label-text-weight-bold': labelWeight === 'bold',
@@ -133,34 +197,43 @@ class Checkbox extends Component {
         const inputId = id ? `${id}_hidden_input` : null;
 
         return (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
                 className={containerClasses}
                 id={id}
                 onClick={this.onClick}
+                onKeyDown={this.onKeyDown}
                 style={style}
+                tabIndex={tabIndex}
             >
                 <input
                     checked={isChecked}
                     className="input"
-                    disabled={newDisabled}
+                    disabled={isDisabled}
                     id={inputId}
                     name={name}
                     readOnly
+                    // eslint-disable-next-line no-underscore-dangle
                     ref={(ref) => { this._inputRef = ref; }}
                     type="checkbox"
                     value={newValue}
                 />
 
-                <label className={labelClasses}>
-                    {label ? (
+                <label
+                    className={labelClasses}
+                    htmlFor={inputId}
+                >
+                    {label && (
+                        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                         <span
                             className={labelTextClasses}
                             onClick={this.onLabelClick}
+                            onKeyDown={this.onLabelKeyDown}
                             style={labelStyle}
                         >
                             {label}
                         </span>
-                    ) : null}
+                    )}
 
                     {toggle ? (
                         <div className="checkbox-toggle-text">
@@ -170,7 +243,7 @@ class Checkbox extends Component {
                     ) : null}
 
                     <Icon
-                        color={disabled ? 'static' : 'primary'}
+                        color={isDisabled ? 'static' : 'primary'}
                         compact
                         inverse
                         size={checkSize}
@@ -183,5 +256,6 @@ class Checkbox extends Component {
 }
 
 Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

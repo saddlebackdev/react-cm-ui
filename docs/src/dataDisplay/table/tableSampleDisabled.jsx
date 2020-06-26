@@ -17,11 +17,11 @@ function TableSampleDisabled() {
                 <Table.Row>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
-                    <Table.Cell disabled>cell</Table.Cell>
+                    <Table.Cell disable>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                 </Table.Row>
 
-                <Table.Row disabled>
+                <Table.Row disable>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>

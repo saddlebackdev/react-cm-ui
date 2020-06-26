@@ -196,7 +196,7 @@ export default class ModulesTimePicker extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the Time Picker is not available for interaction.',

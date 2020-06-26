@@ -73,7 +73,7 @@ export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <Radio disabled={true} label="This radio input has been disabled, true or false?" />
+            <Radio disable label="This radio input has been disabled, true or false?" />
         );
     }
 
@@ -216,7 +216,7 @@ export default class ElementsRadio extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the radio input is not available for interaction.',
@@ -352,16 +352,16 @@ export default class ElementsRadio extends React.Component {
                         {checkedSample}
                     </Highlighter>
 
-                    {/* Disabled */}
+                    {/* Disable */}
                     <Header size="large" style={{ marginTop: '55px' }} sub={true}>
-                        Disabled
+                        Disable
                         <Header.Subheader>
                             Disable a radio input.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio disabled={true} label="This radio input has been disabled, true or false?" /><br /><br />
-                    <Radio checked={true} disabled={true} label="This radio input has been disabled and is checked, true or false?" />
+                    <Radio disable label="This radio input has been disabled, true or false?" /><br /><br />
+                    <Radio checked={true} disable label="This radio input has been disabled and is checked, true or false?" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {disabledSample}
@@ -463,7 +463,7 @@ export default class ElementsRadio extends React.Component {
 
                     <Radio
                         checked={2}
-                        disabled
+                        disable
                         name="pill-disabled-sample"
                         pill
                     >

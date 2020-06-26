@@ -54,7 +54,7 @@ export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <Input disabled={true} value="So cool!" />
+            <Input disable value="So cool!" />
         );
     }
 
@@ -387,7 +387,7 @@ export default class ElementsButton extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: ''
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: 'false',
                 description: 'Indicates that the input is not available for interaction.',
@@ -617,14 +617,14 @@ export default class ElementsButton extends React.Component {
                     </Highlighter>
 
                     {/* Disabled */}
-                    <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub >
-                        Disabled
+                    <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub >
+                        Disable
                         <Header.Subheader>
                             Indicates that the input is not available for interaction.
                         </Header.Subheader>
                     </Header>
 
-                    <Input disabled={true} value="So cool!" />
+                    <Input disable value="So cool!" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {disabledSample}

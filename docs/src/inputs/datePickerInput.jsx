@@ -29,20 +29,20 @@ export default class DisabledSample extends React.Component {
             dateOnChange: moment(),
         };
 
-        this._onChange = this._onChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     render() {
         return (
             <DatePickerInput
                 date={dateOnChange}
-                disabled
-                onChange={this._onChange}
+                disable
+                onChange={this.onChange}
             />
         );
     }
 
-    _onChange({ date, dateFrom, dateTo }) {
+    onChange({ date, dateFrom, dateTo }) {
         this.setState({
             dateOnChange: date,
         });
@@ -94,12 +94,12 @@ export default class FilterDatesSample extends React.Component {
     render() {
         return (
             <DatePickerInput
-                filterDates={this._isWeekend}
+                filterDates={this.isWeekend}
             />
         );
     }
 
-    _isWeekend(date) {
+    isWeekend(date) {
         const day = date.day();
 
         return day === 0 || day === 6;
@@ -188,19 +188,19 @@ export default class OnChangeSample extends React.Component {
             dateOnChange: moment(),
         };
 
-        this._onChange = this._onChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     render() {
         return (
             <DatePickerInput
                 date={dateOnChange}
-                onChange={this._onChange}
+                onChange={this.onChange}
             />
         );
     }
 
-    _onChange({ date, dateFrom, dateTo }) {
+    onChange({ date, dateFrom, dateTo }) {
         this.setState({
             dateOnChange: date,
         });
@@ -233,7 +233,7 @@ export default class RangeSample extends React.Component {
             dateRangeTo: moment(),
         };
 
-        this._onRangeChange = this._onRangeChange.bind(this);
+        this.onRangeChange = this.onRangeChange.bind(this);
     }
 
     render() {
@@ -242,14 +242,14 @@ export default class RangeSample extends React.Component {
                 <DatePickerInput
                     dateFrom={dateRangeFrom}
                     dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
+                    onChange={this.onRangeChange}
                     rangeFrom
                     label="From"
                 />
                 <DatePickerInput
                     dateFrom={dateRangeFrom}
                     dateTo={dateRangeTo}
-                    onChange={this._onRangeChange}
+                    onChange={this.onRangeChange}
                     rangeTo
                     label="To"
                 />
@@ -257,7 +257,7 @@ export default class RangeSample extends React.Component {
         );
     }
 
-    _onRangeChange({ date, dateFrom, dateTo }) {
+    onRangeChange({ date, dateFrom, dateTo }) {
         this.setState({
             dateRangeFrom: dateFrom,
             dateRangeTo: dateTo,
@@ -277,9 +277,28 @@ export default class ModulesDatePickerInput extends React.Component {
             inputDate: {},
         };
 
-        this._isWeekend = this._isWeekend.bind(this);
-        this._onChange = this._onChange.bind(this);
-        this._onRangeChange = this._onRangeChange.bind(this);
+        this.isWeekend = this.isWeekend.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onRangeChange = this.onRangeChange.bind(this);
+    }
+
+    onChange({ date }) {
+        this.setState({
+            dateOnChange: date,
+        });
+    }
+
+    onRangeChange({ dateFrom, dateTo }) {
+        this.setState({
+            dateRangeFrom: dateFrom,
+            dateRangeTo: dateTo,
+        });
+    }
+
+    isWeekend(date) {
+        const day = date.day();
+
+        return day === 0 || day === 6;
     }
 
     render() {
@@ -309,7 +328,7 @@ export default class ModulesDatePickerInput extends React.Component {
                 description: 'Moment object for date range',
                 allowedTypes: '',
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the date input is not available for interaction.',
@@ -446,15 +465,15 @@ export default class ModulesDatePickerInput extends React.Component {
                         {datePickerSample}
                     </Highlighter>
 
-                    {/* Disabled */}
-                    <Header anchor="disabled" size="large" style={{ marginTop: '55px' }}>
-                        Disabled
+                    {/* Disable */}
+                    <Header anchor="disable" size="large" style={{ marginTop: '55px' }}>
+                        Disable
                     </Header>
 
                     <DatePickerInput
                         date={dateOnChange}
-                        disabled
-                        onChange={this._onChange}
+                        disable
+                        onChange={this.onChange}
                     />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -503,7 +522,7 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Header>
 
                     <DatePickerInput
-                        filterDates={this._isWeekend}
+                        filterDates={this.isWeekend}
                     />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -583,7 +602,7 @@ export default class ModulesDatePickerInput extends React.Component {
 
                     <DatePickerInput
                         date={dateOnChange}
-                        onChange={this._onChange}
+                        onChange={this.onChange}
                     />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -614,7 +633,7 @@ export default class ModulesDatePickerInput extends React.Component {
                                 <DatePickerInput
                                     dateFrom={dateRangeFrom}
                                     dateTo={dateRangeTo}
-                                    onChange={this._onRangeChange}
+                                    onChange={this.onRangeChange}
                                     rangeFrom
                                     label="From"
                                 />
@@ -623,7 +642,7 @@ export default class ModulesDatePickerInput extends React.Component {
                                 <DatePickerInput
                                     dateFrom={dateRangeFrom}
                                     dateTo={dateRangeTo}
-                                    onChange={this._onRangeChange}
+                                    onChange={this.onRangeChange}
                                     rangeTo
                                     label="To"
                                 />
@@ -637,24 +656,5 @@ export default class ModulesDatePickerInput extends React.Component {
                 </Main.Content>
             </Main>
         );
-    }
-
-    _isWeekend(date) {
-        const day = date.day();
-
-        return day === 0 || day === 6;
-    }
-
-    _onChange({ date, dateFrom, dateTo }) {
-        this.setState({
-            dateOnChange: date,
-        });
-    }
-
-    _onRangeChange({ date, dateFrom, dateTo }) {
-        this.setState({
-            dateRangeFrom: dateFrom,
-            dateRangeTo: dateTo,
-        });
     }
 }

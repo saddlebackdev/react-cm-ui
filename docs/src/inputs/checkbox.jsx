@@ -68,7 +68,7 @@ export default class DisabledSample extends React.Component {
 
     render() {
         return (
-            <Checkbox disabled={true} label="This checkbox has been disabled, true or false?" />
+            <Checkbox disable label="This checkbox has been disabled, true or false?" />
         );
     }
 
@@ -184,7 +184,7 @@ export default class ElementsCheckbox extends React.Component {
                 description: 'Additional classes.',
                 allowedTypes: '',
             }, {
-                name: 'disabled',
+                name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the checkbox is not available for interaction.',
@@ -329,7 +329,7 @@ export default class ElementsCheckbox extends React.Component {
                     </Header>
 
                     <Checkbox
-                        disabled
+                        disable
                         label="This checkbox has been disabled, true or false?"
                         onChange={this._onDisabledCheckBoxChange.bind(this)}
                     />

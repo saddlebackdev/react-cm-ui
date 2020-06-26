@@ -13,6 +13,13 @@ const propTypes = {
     className: PropTypes.string,
     country: PropTypes.string,
     countryOptions: PropTypes.arrayOf(PropTypes.string),
+    /**
+     * A PhoneInput can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disable` instead.
+     */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
@@ -32,6 +39,7 @@ const defaultProps = {
     className: undefined,
     country: 'US',
     countryOptions: ['US', '|'],
+    disable: false,
     disabled: false,
     error: false,
     fluid: false,
@@ -47,6 +55,20 @@ class PhoneInput extends React.PureComponent {
         super();
 
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            disabled: prevDisabled,
+        } = prevProps;
+        const {
+            disabled,
+        } = this.props;
+
+        if (prevDisabled !== disabled && disabled) {
+            // eslint-disable-next-line no-console
+            console.warn('PhoneInput (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
+        }
     }
 
     onChange(value) {
@@ -65,6 +87,7 @@ class PhoneInput extends React.PureComponent {
         const {
             className,
             countryOptions,
+            disable,
             disabled,
             error,
             fluid,
@@ -75,8 +98,9 @@ class PhoneInput extends React.PureComponent {
             style,
             value,
         } = this.props;
+        const isDisabled = disable || disabled;
         const containerClasses = ClassNames('ui', 'phone-input', className, {
-            'phone-input--disabled': disabled,
+            'phone-input--disabled': isDisabled,
             'phone-input--error': error,
             'phone-input--fluid': fluid,
         });
@@ -98,7 +122,9 @@ class PhoneInput extends React.PureComponent {
                 ) : null}
 
                 <ReactPhoneInput
+                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...this.props}
+                    disabled={isDisabled}
                     className=""
                     countryOptions={countryOptions}
                     countrySelectComponent={PhoneInputCountryDropdown}
