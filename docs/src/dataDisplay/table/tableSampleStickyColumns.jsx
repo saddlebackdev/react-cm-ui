@@ -1,15 +1,19 @@
 import { Table } from 'react-cm-ui';
 import React from 'react';
 
-function TableSampleDisabled() {
+function TableSampleStickyColumns() {
     return (
-        <Table basic>
+        <Table basic stickyColumnCount={1}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Header 1</Table.HeaderCell>
                     <Table.HeaderCell>Header 2</Table.HeaderCell>
                     <Table.HeaderCell>Header 3</Table.HeaderCell>
                     <Table.HeaderCell>Header 4</Table.HeaderCell>
+                    <Table.HeaderCell>Header 5</Table.HeaderCell>
+                    <Table.HeaderCell>Header 6</Table.HeaderCell>
+                    <Table.HeaderCell>Header 7</Table.HeaderCell>
+                    <Table.HeaderCell>Header 8</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
@@ -17,11 +21,8 @@ function TableSampleDisabled() {
                 <Table.Row>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
-                    <Table.Cell disabled>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
-                </Table.Row>
-
-                <Table.Row disabled>
+                    <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
@@ -29,6 +30,21 @@ function TableSampleDisabled() {
                 </Table.Row>
 
                 <Table.Row>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
+                    <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
                     <Table.Cell>cell</Table.Cell>
@@ -39,4 +55,4 @@ function TableSampleDisabled() {
     );
 }
 
-export default TableSampleDisabled;
+export default TableSampleStickyColumns;

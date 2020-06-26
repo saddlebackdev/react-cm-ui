@@ -2,10 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import DataGridTableRow from './dataGridTableRow';
-import DragListener from '../utils/dragListener';
-import Icon from '../dataDisplay/icon';
 import Table from '../dataDisplay/table';
 
 const propTypes = {
@@ -23,14 +20,13 @@ const propTypes = {
     handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string,
-    onSplitter: PropTypes.func,
-    onSplitterDragEnd: PropTypes.func,
+    resizableColumnWidthPercentage: PropTypes.number,
     rowProps: PropTypes.func,
     size: PropTypes.oneOf([
         'small',
         'medium',
     ]),
-    sizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))),
+    stickyColumns: PropTypes.number,
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
         PropTypes.bool,
@@ -45,48 +41,15 @@ const defaultProps = {
     fontSize: 'xsmall',
     handle: false,
     idPrefix: 'base',
-    onSplitter: undefined,
-    onSplitterDragEnd: undefined,
+    resizableColumnWidthPercentage: undefined,
     rowProps: undefined,
     size: 'small',
-    sizes: undefined,
+    stickyColumns: undefined,
     stretch: false,
     style: undefined,
 };
 
 class DataGridTable extends React.PureComponent {
-    constructor() {
-        super();
-
-        this.onSplitterClick = this.onSplitterClick.bind(this);
-        this.onSplitterDrag = this.onSplitterDrag.bind(this);
-    }
-
-    onSplitterClick() {
-        const { onSplitter } = this.props;
-
-        requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
-            handle.style.left = 0;
-        });
-
-        if (_.isFunction(onSplitter)) {
-            onSplitter();
-        }
-    }
-
-    onSplitterDrag({ deltaX }) {
-        const { onSplitterDragEnd } = this.props;
-
-        requestAnimationFrame(() => {
-            const handle = ReactDOM.findDOMNode(this.handle); // eslint-disable-line react/no-find-dom-node
-            handle.style.left = 0;
-        });
-
-        onSplitterDragEnd(deltaX);
-    }
-
-
     render() {
         const {
             classNamePrefix,
@@ -100,8 +63,9 @@ class DataGridTable extends React.PureComponent {
             id,
             idPrefix,
             rowProps,
+            resizableColumnWidthPercentage,
             size,
-            sizes,
+            stickyColumns,
             stretch,
             style,
         } = this.props;
@@ -123,60 +87,25 @@ class DataGridTable extends React.PureComponent {
                     selectable={isSelectable}
                     size={size}
                     stretch={bleed}
+                    stickyColumnCount={stickyColumns}
+                    resizableColumnWidthPercentage={resizableColumnWidthPercentage}
                 >
                     <Table.Header>
                         <Table.Row>
                             {_.map(columns, (column, index) => {
-                                const hasSplitter =
-                                    idPrefix === 'column' &&
-                                    handle &&
-                                    _.last(columns) === column;
                                 const headerCellClasses = ClassNames(
                                     `${classNamePrefix}_table_header_cell`,
                                     column.className,
                                 );
                                 const cellId = column.id || `${classNamePrefix}_table_${id}_header_${idPrefix}-${index}`;
-
-                                let cellStyle = {};
-                                const cellSize =
-                                    !_.isEmpty(data) || _.isEmpty(sizes) || _.isEmpty(sizes[0]) ?
-                                        null :
-                                        sizes[0][index];
-
-                                if (cellSize) {
-                                    cellStyle.height = `${cellSize.h}px`;
-                                    cellStyle.width = `${cellSize.w}px`;
-                                }
-
-                                cellStyle = {
-                                    ...cellStyle,
-                                    ...column.style,
-                                };
-
                                 return (
                                     <Table.HeaderCell
                                         className={headerCellClasses}
                                         id={cellId}
                                         key={`tableBodyRow-${index}`}
-                                        style={cellStyle}
+                                        style={column.style}
                                     >
                                         {column.header}
-
-                                        {hasSplitter && (
-                                            <DragListener
-                                                className={`${classNamePrefix}_table_header_handle`}
-                                                onClick={this.onSplitterClick}
-                                                onDrag={this.onSplitterDrag}
-                                                ref={(ref) => { this.handle = ref; }}
-                                            >
-                                                <Icon
-                                                    color="static"
-                                                    compact
-                                                    size="small"
-                                                    type="splitter"
-                                                />
-                                            </DragListener>
-                                        )}
                                     </Table.HeaderCell>
                                 );
                             })}
@@ -196,7 +125,6 @@ class DataGridTable extends React.PureComponent {
                                 row={row}
                                 rowIndex={index}
                                 rowProps={rowProps(row)}
-                                sizes={sizes}
                             />
                         ))}
                     </Table.Body>

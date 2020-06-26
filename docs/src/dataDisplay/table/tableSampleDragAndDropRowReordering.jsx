@@ -1,9 +1,6 @@
-import _ from 'lodash';
+import { map } from 'lodash';
+import { Table } from 'react-cm-ui';
 import React from 'react';
-import {
-    Header,
-    Table,
-} from 'react-cm-ui';
 import TableSampleRowWithDragAndDrop from './tableSampleRowWithDragAndDrop';
 
 class TableSampleDragAndDropRowReordering extends React.PureComponent {
@@ -63,34 +60,26 @@ class TableSampleDragAndDropRowReordering extends React.PureComponent {
         const { tableData } = this.state;
 
         return (
-            <React.Fragment>
-                <Header anchor="drag-and-drop-row-reordering" size="large" style={{ marginTop: '55px' }} sub>
-                    Drag and Drop Row Reordering
-                    <Header.Subheader>
-                        A table&rsquo;s rows can be drag and drop enabled to allow reordering.
-                    </Header.Subheader>
-                </Header>
+            <Table basic>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Order</Table.HeaderCell>
+                        <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.HeaderCell>Classification</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-                <Table basic>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Order</Table.HeaderCell>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Classification</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {_.map(tableData, (tableRowData, index) => (
-                            <TableSampleRowWithDragAndDrop
-                                index={index}
-                                key={`row-data-item-${tableRowData.id}`}
-                                onReorder={this.onReorderTableRow}
-                                tableRowData={tableRowData}
-                            />
-                        ))}
-                    </Table.Body>
-                </Table>
-            </React.Fragment>
+                <Table.Body>
+                    {map(tableData, (tableRowData, index) => (
+                        <TableSampleRowWithDragAndDrop
+                            index={index}
+                            key={`row-data-item-${tableRowData.id}`}
+                            onReorder={this.onReorderTableRow}
+                            tableRowData={tableRowData}
+                        />
+                    ))}
+                </Table.Body>
+            </Table>
         );
     }
 }

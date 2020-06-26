@@ -1,14 +1,66 @@
-'use strict';
-
-import React, { Component } from 'react';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../utils/utils.js';
+import Utils from '../utils/utils';
 
-class TableCell extends Component {
+const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const fontSizeEnums = ['large', 'medium', 'small', 'xsmall'];
+const textAlignEnums = ['center', 'left', 'right'];
+const verticalAlignEnums = ['bottom', 'middle', 'top'];
+
+const propTypes = {
+    active: PropTypes.bool,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    collapsing: PropTypes.bool,
+    desktop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    desktopLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    disabled: PropTypes.bool,
+    fontSize: PropTypes.oneOf(fontSizeEnums),
+    id: PropTypes.string,
+    laptop: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobile: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobileLarge: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    mobileMedium: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    selectable: PropTypes.bool,
+    singleLine: PropTypes.bool,
+    sticky: PropTypes.bool,
+    style: PropTypes.object,
+    tablet: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+    textAlign: PropTypes.oneOf(textAlignEnums),
+    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
+    width: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(columnNumberEnums),
+    ]),
+};
+
+class TableCell extends React.PureComponent {
     render() {
         const {
             active,
+            children,
             className,
             collapsing,
             desktop,
@@ -22,6 +74,7 @@ class TableCell extends Component {
             laptop,
             selectable,
             singleLine,
+            sticky,
             style,
             tablet,
             textAlign,
@@ -31,6 +84,7 @@ class TableCell extends Component {
         const cellPrefix = 'table-cell';
         const containerClasses = ClassNames(
             'table-cell',
+            'table--cell',
             _.isNumber(width) ?
                 `${cellPrefix}-${Utils.numberToWord(width)}` :
                 width === true || width === 'auto' ?
@@ -103,8 +157,9 @@ class TableCell extends Component {
                 'table-cell-vertical-align-bottom': verticalAlign === 'bottom',
                 'table-cell-vertical-align-middle': verticalAlign === 'middle',
                 'table-cell-vertical-align-top': verticalAlign === 'top',
+                'table-cell-sticky': sticky,
             },
-            className
+            className,
         );
 
         return (
@@ -113,61 +168,12 @@ class TableCell extends Component {
                 id={id}
                 style={style}
             >
-                {this.props.children}
+                {children}
             </td>
         );
     }
 }
 
-const columnNumberEnums = [ 'auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
-const fontSizeEnums = [ 'large', 'medium', 'small', 'xsmall' ];
-const textAlignEnums = [ 'center', 'left', 'right' ];
-const verticalAlignEnums = [ 'bottom', 'middle', 'top' ];
-
-TableCell.propTypes = {
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    collapsing: PropTypes.bool,
-    desktop: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    desktopLarge: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    disabled: PropTypes.bool,
-    fontSize: PropTypes.oneOf(fontSizeEnums),
-    id: PropTypes.string,
-    laptop: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobile: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobileLarge: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    mobileMedium: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    selectable: PropTypes.bool,
-    singleLine: PropTypes.bool,
-    style: PropTypes.shape({}),
-    tablet: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-    textAlign: PropTypes.oneOf(textAlignEnums),
-    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
-    width: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(columnNumberEnums),
-    ]),
-};
+TableCell.propTypes = propTypes;
 
 export default TableCell;
