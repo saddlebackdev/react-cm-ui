@@ -1,5 +1,5 @@
 /**
- * To Run this test, from the React CM UI root folder, execute the following command:
+ * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/atoms/__test__/a.test.js
  */
 import { describe, expect, it } from '@jest/globals';
