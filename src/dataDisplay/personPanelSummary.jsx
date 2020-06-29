@@ -193,7 +193,7 @@ const useStyles = makeStyles((theme) => {
         root: {
             alignItems: 'center',
             backgroundColor: palette.background.light,
-            borderRadius,
+            borderRadius: borderRadius.main,
             color: palette.text.primary,
             cursor: 'pointer',
             display: 'flex',
@@ -214,7 +214,7 @@ const useStyles = makeStyles((theme) => {
                 zIndex: 1,
             },
             '&::before': {
-                borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
+                borderRadius: `${borderRadius.main}px 0 0 ${borderRadius.main}px`,
                 opacity: 1,
                 width: '5px',
                 transition: `width ${transitionDuration} ease-in-out`,
@@ -238,9 +238,9 @@ const useStyles = makeStyles((theme) => {
             },
             '&$expanded': {
                 color: palette.text.contrastText,
-                borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+                borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                 '&::before': {
-                    borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+                    borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                     width: '100%',
                 },
                 '&$isAdult': {

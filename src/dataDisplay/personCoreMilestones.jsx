@@ -101,6 +101,9 @@ function getIconSize({ isMobile, iconSize }) {
 const useStyles = makeStyles((theme) => {
     const {
         palette,
+        shape: {
+            borderRadius,
+        },
     } = theme;
     const columnHorizontalPadding = 5.5;
     const hasAttendedStyles = {
@@ -230,7 +233,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass101: {
-            borderRadius: '0 3px 0 0',
+            borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
             '&$hasTakenClass101': {
                 ...hasAttendedStyles,
@@ -240,7 +243,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass201: {
-            borderRadius: '3px 0 0',
+            borderRadius: `${borderRadius.main}px 0 0`,
             top: 0,
             '&$hasTakenClass201': {
                 ...hasAttendedStyles,
@@ -250,7 +253,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass301: {
-            borderRadius: '0 0 0 3px',
+            borderRadius: `0 0 0 ${borderRadius.main}px`,
             bottom: 0,
             '&$hasTakenClass301': {
                 ...hasAttendedStyles,
@@ -260,7 +263,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass401: {
-            borderRadius: '0 0 3px',
+            borderRadius: `0 0 ${borderRadius.main}px`,
             bottom: 0,
             right: 0,
             '&$hasTakenClass401': {
@@ -281,7 +284,7 @@ const useStyles = makeStyles((theme) => {
 
                 return `scale(${(props.isMobile || iconSize === 16) ? 16 / basesClassIconSize : 1})`;
             },
-            transformOrigin: '0 3px',
+            transformOrigin: `0 ${borderRadius.main}px`,
             width: basesClassIconSize,
         },
         iconClassInnerContainer: {

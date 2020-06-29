@@ -558,7 +558,9 @@ function setPersonalDataGroup({
 const useStyles = makeStyles((theme) => {
     const {
         palette,
-        shape,
+        shape: {
+            borderRadius,
+        },
     } = theme;
 
     return {
@@ -579,7 +581,7 @@ const useStyles = makeStyles((theme) => {
         },
         root: {
             backgroundColor: palette.background.primary,
-            borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
+            borderRadius: `0 0 ${borderRadius.main}px ${borderRadius.main}px`,
             boxShadow: 'inset -1px -1px 0px 0px transparent, inset 1px 0px 0px 0px transparent',
             color: palette.text.primary,
             flexGrow: 1,
