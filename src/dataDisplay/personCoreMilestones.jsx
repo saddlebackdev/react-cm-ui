@@ -1,8 +1,8 @@
 import {
     Grid,
-    Header,
     Icon,
     TimeFromNow,
+    Typography,
 } from 'react-cm-ui';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -24,13 +24,12 @@ import {
 const propTypes = {
     className: PropTypes.string,
     congregationDate: PropTypes.oneOfType([
-        MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
-        PropTypes.string]),
+        PropTypes.oneOf([null]),
+    ]),
     firstContactDate: PropTypes.oneOfType([
-        MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
-        PropTypes.string,
+        PropTypes.oneOf([null]),
     ]),
     gender: GENDER_PROP_TYPE,
     hasAcceptedChrist: PropTypes.bool,
@@ -61,8 +60,8 @@ const propTypes = {
 
 const defaultProps = {
     className: undefined,
-    congregationDate: '',
-    firstContactDate: '',
+    congregationDate: null,
+    firstContactDate: null,
     gender: GENDER_DEFAULT_TYPE,
     hasAcceptedChrist: false,
     hasSignedMaturityCovenant: false,
@@ -150,14 +149,24 @@ const useStyles = makeStyles((theme) => {
             width: (props) => `${getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }) + (columnHorizontalPadding * 2)}px !important`,
         },
         congregationDateColummn: {
-            paddingLeft: 5.5,
-            width: 'auto',
+            padding: `0 ${columnHorizontalPadding}px`,
+            width: 'auto !important',
+        },
+        congregationDateHeading: {
+            color: palette.text.secondary,
         },
         firstContactDateColumn: {
             flexGrow: 1,
-            paddingRight: 5.5,
+            padding: `0 ${columnHorizontalPadding}px`,
+            textAlign: 'right',
+            width: 'auto !important',
+        },
+        firstContactDateHeading: {
+            color: palette.text.secondary,
+        },
+        dateContainers: {
+            display: 'inline-block',
             textAlign: 'left',
-            width: 'auto',
         },
         genderFemale: {},
         genderMale: {},
@@ -292,6 +301,41 @@ const useStyles = makeStyles((theme) => {
             transform: 'rotate(45deg) scale(0.707106)',
             width: basesClassIconSize,
         },
+        iconAcceptedChrist: {
+            opacity: 0.25,
+            '&$hasAcceptedChrist': {
+                opacity: 1,
+            },
+        },
+        iconBaptised: {
+            opacity: 0.25,
+            '&$isBaptised': {
+                opacity: 1,
+            },
+        },
+        inMinistryColumn: {
+            opacity: 0.25,
+            '&$isInMinistry': {
+                opacity: 1,
+            },
+        },
+        iconSmallGroup: {
+            opacity: 0.25,
+            '&$isInSmallGroup': {
+                opacity: 1,
+            },
+        },
+        inTripsColumns: {
+            opacity: 0.25,
+            '&$isActiveInTrips': {
+                opacity: 1,
+            },
+        },
+        hasAcceptedChrist: {},
+        isBaptised: {},
+        isInSmallGroup: {},
+        isInMinistry: {},
+        isActiveInTrips: {},
     };
 });
 
@@ -517,13 +561,16 @@ export function PersonCoreMilestones(props) {
                 <Grid.Row>
                     {!removeAcceptedChristColumn && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.acceptedChristColumn,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconAcceptedChrist,
+                                    classes.icon,
+                                    {
+                                        [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -535,13 +582,16 @@ export function PersonCoreMilestones(props) {
 
                     {!removeBaptismColumn && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.baptisedColumn,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconBaptised,
+                                    classes.icon,
+                                    {
+                                        [classes.isBaptised]: isBaptised,
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -553,10 +603,7 @@ export function PersonCoreMilestones(props) {
 
                     {!removeClassColumn && isAdult && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.classColumn,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <div
                                 className={classes.iconClassContainer}
@@ -591,13 +638,16 @@ export function PersonCoreMilestones(props) {
 
                     {!removeSmallGroupColumn && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.smallGroupColumn,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconSmallGroup,
+                                    classes.icon,
+                                    {
+                                        [classes.isInSmallGroup]: isInSmallGroup,
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -609,13 +659,16 @@ export function PersonCoreMilestones(props) {
 
                     {!removeInMinistryColumn && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.inMinistryColumn,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.inMinistryColumn,
+                                    classes.icon,
+                                    {
+                                        [classes.isInMinistry]: isInMinistry,
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -627,13 +680,16 @@ export function PersonCoreMilestones(props) {
 
                     {!removeInTripsColumn && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.inTripsColumns,
-                                classes.column,
-                            )}
+                            className={classes.column}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.inTripsColumns,
+                                    classes.icon,
+                                    {
+                                        [classes.isActiveInTrips]: isActiveInTrips,
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -645,59 +701,57 @@ export function PersonCoreMilestones(props) {
 
                     {firstContactDate && !removeFirstContactDateColumn && isAdult && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.firstContactDateColumn,
-                                classes.column,
-                            )}
+                            className={classes.firstContactDateColumn}
                         >
-                            <Header
-                                className={`${blockClassName}--at_saddleback_header`}
-                                size={!isMobile ? 'xxsmall' : 'xsmall'}
-                                weight="normal"
-                                style={{ margin: 0 }}
+                            <div
+                                className={classes.dateContainers}
                             >
-                                At Saddleback
-                            </Header>
+                                <Typography
+                                    className={classes.firstContactDateHeading}
+                                    variant="h6"
+                                >
+                                    At Saddleback
+                                </Typography>
 
-                            <span
-                                className={`${blockClassName}--at_saddleback_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    date={firstContactDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
+                                <span
+                                    className={`${blockClassName}--at_saddleback_date font-size-xsmall font-weight-bold`}
+                                >
+                                    <TimeFromNow
+                                        date={firstContactDate}
+                                        relativeTime={relativeTime}
+                                        relativeTimeThreshold={relativeTimeThreshold}
+                                        relativeTimeRounding={relativeTimeRounding}
+                                    />
+                                </span>
+                            </div>
                         </Grid.Column>
                     )}
 
                     {congregationDate && !removeCongregationDateColumn && isAdult && (
                         <Grid.Column
-                            className={ClassNames(
-                                classes.congregationDateColummn,
-                                classes.column,
-                            )}
+                            className={classes.congregationDateColummn}
                         >
-                            <Header
-                                className={`${blockClassName}--member_for_header`}
-                                size={!isMobile ? 'xxsmall' : 'xsmall'}
-                                weight="normal"
-                                style={{ margin: 0 }}
+                            <div
+                                className={classes.dateContainers}
                             >
-                                Member For
-                            </Header>
+                                <Typography
+                                    className={classes.congregationDateHeading}
+                                    variant="h6"
+                                >
+                                    Member For
+                                </Typography>
 
-                            <span
-                                className={`${blockClassName}--member_for_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    date={congregationDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
+                                <span
+                                    className={`${blockClassName}--member_for_date font-size-xsmall font-weight-bold`}
+                                >
+                                    <TimeFromNow
+                                        date={congregationDate}
+                                        relativeTime={relativeTime}
+                                        relativeTimeThreshold={relativeTimeThreshold}
+                                        relativeTimeRounding={relativeTimeRounding}
+                                    />
+                                </span>
+                            </div>
                         </Grid.Column>
                     )}
                 </Grid.Row>

@@ -6,6 +6,7 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import {
@@ -60,6 +61,10 @@ const propTypes = {
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
         churchEntityName: PropTypes.string,
         commonlyAttendedService: PropTypes.arrayOf(PropTypes.shape({})),
+        congregationDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
         deceasedDate: PropTypes.number,
         emails: PropTypes.arrayOf(PropTypes.shape({
             isPrimary: PropTypes.bool,
@@ -86,9 +91,26 @@ const propTypes = {
             'text',
         ]),
         emergencyContactRelation: PropTypes.string,
+        firstContactDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.string,
+        hasAcceptedChrist: PropTypes.bool,
+        hasSignedMaturityCovenant: PropTypes.bool,
+        hasSignedMembershipAgreement: PropTypes.bool,
+        hasSignedMinistryCovenant: PropTypes.bool,
+        hasSignedMissionCovenant: PropTypes.bool,
+        hasTakenClass101: PropTypes.bool,
+        hasTakenClass201: PropTypes.bool,
+        hasTakenClass301: PropTypes.bool,
+        hasTakenClass401: PropTypes.bool,
+        isActiveInTrips: PropTypes.bool,
+        isBaptised: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
+        isInMinistry: PropTypes.bool,
+        isInSmallGroup: PropTypes.bool,
         phones: PropTypes.arrayOf(PropTypes.shape({
             type: PropTypes.oneOf(['cell', 'home', 'work']),
             isPrimary: PropTypes.bool,
@@ -614,6 +636,7 @@ function PersonPanelDetails(props) {
         campus,
         churchEntities,
         commonlyAttendedService,
+        congregationDate,
         deceasedDate,
         emails,
         emergencyContactAddresses,
@@ -622,9 +645,23 @@ function PersonPanelDetails(props) {
         emergencyContactPhones,
         emergencyContactPreferMethod,
         emergencyContactRelation,
+        firstContactDate,
         gender,
         gradeLevel,
+        hasAcceptedChrist,
+        hasSignedMaturityCovenant,
+        hasSignedMembershipAgreement,
+        hasSignedMinistryCovenant,
+        hasSignedMissionCovenant,
+        hasTakenClass101,
+        hasTakenClass201,
+        hasTakenClass301,
+        hasTakenClass401,
+        isActiveInTrips,
+        isBaptised,
         isDoNotContact,
+        isInMinistry,
+        isInSmallGroup,
         phones,
         preferredService,
         recordType,
@@ -726,9 +763,23 @@ function PersonPanelDetails(props) {
                 <div className={classes.innerContainer}>
                     <PersonCoreMilestones
                         className={classes.personCoreMilestones}
-                        iconSize={16}
-                        isIconTransparent
+                        congregationDate={congregationDate}
+                        firstContactDate={firstContactDate}
                         gender={gender}
+                        hasAcceptedChrist={hasAcceptedChrist}
+                        hasSignedMaturityCovenant={hasSignedMaturityCovenant}
+                        hasSignedMembershipAgreement={hasSignedMembershipAgreement}
+                        hasSignedMinistryCovenant={hasSignedMinistryCovenant}
+                        hasSignedMissionCovenant={hasSignedMissionCovenant}
+                        hasTakenClass101={hasTakenClass101}
+                        hasTakenClass201={hasTakenClass201}
+                        hasTakenClass301={hasTakenClass301}
+                        hasTakenClass401={hasTakenClass401}
+                        iconSize={16}
+                        isActiveInTrips={isActiveInTrips}
+                        isBaptised={isBaptised}
+                        isInMinistry={isInMinistry}
+                        isInSmallGroup={isInSmallGroup}
                         recordType={recordType}
                     />
 
