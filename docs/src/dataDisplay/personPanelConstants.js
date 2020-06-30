@@ -1,7 +1,7 @@
-import '../global/images/andy_davis.jpg';
-import '../global/images/princess_buttercup.jpg';
-import '../global/images/princess_merida.jpg';
-import '../global/images/the_dude.jpg';
+import 'images/andy_davis.jpg';
+import 'images/princess_buttercup.jpg';
+import 'images/princess_merida.jpg';
+import 'images/the_dude.jpg';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PAYLOAD_PERSON = [
@@ -126,7 +126,7 @@ export const PAYLOAD_PERSON = [
         ],
         preferredService: null,
         prefix: 'Mr.',
-        profilePictureUrl: '/global/images/the_dude.jpg',
+        profilePictureUrl: '/images/the_dude.jpg',
         suffix: null,
     },
     {
@@ -192,7 +192,7 @@ export const PAYLOAD_PERSON = [
         ],
         preferredService: null,
         prefix: 'Mrs.',
-        profilePictureUrl: '/global/images/princess_buttercup.jpg',
+        profilePictureUrl: '/images/princess_buttercup.jpg',
         suffix: null,
     },
     {
@@ -298,7 +298,7 @@ export const PAYLOAD_PERSON = [
         phones: [],
         preferredService: null,
         prefix: '',
-        profilePictureUrl: '/global/images/andy_davis.jpg',
+        profilePictureUrl: '/images/andy_davis.jpg',
         suffix: null,
     },
     {
@@ -349,7 +349,7 @@ export const PAYLOAD_PERSON = [
         phones: [],
         preferredService: null,
         prefix: '',
-        profilePictureUrl: '/global/images/princess_merida.jpg',
+        profilePictureUrl: '/images/princess_merida.jpg',
         suffix: null,
     },
 ];

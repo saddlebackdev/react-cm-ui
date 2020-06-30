@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = (env, options) => {
     const isDevMode = options.mode === 'development';
@@ -110,8 +111,8 @@ module.exports = (env, options) => {
                     '*': 'http://0.0.0.0:5000',
                 },
             }),
+            new FaviconsWebpackPlugin('src/images/favicon.svg'),
             new HtmlWebpackPlugin({
-                filename: 'index.html',
                 title: 'React-CM-UI Docs',
                 template: 'template.ejs',
             }),
