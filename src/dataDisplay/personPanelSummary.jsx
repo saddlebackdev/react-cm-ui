@@ -20,7 +20,7 @@ import {
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
 import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
-import PersonPanelSummaryContactText from './personPanelSummaryContactText';
+import PersonContactInfo from './personContactInfo';
 import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
@@ -115,25 +115,23 @@ const defaultProps = {
     tabIndex: -1,
 };
 
-const bemClass = `${BEM_BLOCK_NAME}--summary`;
-
-function ageText({ birthdate }) {
+const ageText = ({ birthdate }) => {
     if (!isEmpty(birthdate)) {
         return '';
     }
 
     return `${moment().diff(birthdate, 'years')}yr`;
-}
+};
 
-function birthdateText({ birthdate }) {
+const birthdateText = ({ birthdate }) => {
     if (!isEmpty(birthdate)) {
         return '';
     }
 
     return moment.unix(birthdate).utc().format('MM/DD/YY');
-}
+};
 
-function genderText({ gender }) {
+const genderText = ({ gender }) => {
     switch (gender) {
         case 'f':
             return 'Female';
@@ -142,9 +140,9 @@ function genderText({ gender }) {
         default:
             return '';
     }
-}
+};
 
-function gradeLevelText({ gradeLevel }) {
+const gradeLevelText = ({ gradeLevel }) => {
     switch (gradeLevel) {
         case 'PreK':
             return 'PK';
@@ -177,7 +175,9 @@ function gradeLevelText({ gradeLevel }) {
         default:
             return gradeLevel;
     }
-}
+};
+
+const BEM_CLASS_NAME = `${BEM_BLOCK_NAME}--summary`;
 
 const useStyles = makeStyles((theme) => {
     const {
@@ -417,7 +417,7 @@ function PersonPanelSummary(props) {
 
     useEffect(() => {
         setRenderContactInfo(
-            <PersonPanelSummaryContactText
+            <PersonContactInfo
                 isDoNotContact={isDoNotContact}
                 isDoNotEmail={isDoNotEmail}
                 isDoNotMail={isDoNotMail}
@@ -456,7 +456,7 @@ function PersonPanelSummary(props) {
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
-        [`${bemClass}`],
+        [`${BEM_CLASS_NAME}`],
         {
             [classes.expanded]: isExpanded,
             [classes.genderFemale]: gender === 'f',
