@@ -111,7 +111,7 @@ const defaultProps = {
     classes: null,
     data: {},
     isExpanded: false,
-    onClick: null,
+    onClick: () => {},
     tabIndex: -1,
 };
 
