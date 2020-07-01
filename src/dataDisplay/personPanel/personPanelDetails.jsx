@@ -609,6 +609,7 @@ const useStyles = makeStyles((theme) => {
             flexGrow: 1,
             padding: 0,
             transition: 'box-shadow 200ms ease-in-out',
+            width: '100%',
             '&$isExpanded': {
                 boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
             },
