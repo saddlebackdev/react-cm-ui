@@ -243,7 +243,7 @@ const useStyles = makeStyles((theme) => {
             '&$isStudent::before': {
                 backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
             },
-            '&$expanded': {
+            '&$isExpanded': {
                 color: palette.text.contrastText,
                 borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                 '&::before': {
@@ -301,7 +301,7 @@ const useStyles = makeStyles((theme) => {
                 display: 'block',
             },
         },
-        expanded: {},
+        isExpanded: {},
         hasContactInfo: {},
         grid: {
             margin: '0 !important',
@@ -480,7 +480,7 @@ function PersonPanelSummary(props) {
         UI_CLASS_NAME,
         [`${BEM_CLASS_NAME}`],
         {
-            [classes.expanded]: isExpanded,
+            [classes.isExpanded]: isExpanded,
             [classes.genderFemale]: gender === 'f',
             [classes.genderMale]: gender === 'm',
             [classes.genderUndefined]: gender !== 'm' && gender !== 'f',
