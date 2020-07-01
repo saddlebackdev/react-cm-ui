@@ -1,6 +1,7 @@
 import {
     Grid,
     Image,
+    lowerCase,
     Typography,
 } from 'react-cm-ui';
 import {
@@ -8,6 +9,7 @@ import {
     isEmpty,
     isNil,
     trimStart,
+    includes,
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -138,8 +140,10 @@ const birthdateText = ({ birthdate }) => {
 const genderText = ({ gender }) => {
     switch (gender) {
         case 'f':
+        case 'F':
             return 'Female';
         case 'm':
+        case 'M':
             return 'Male';
         default:
             return '';
@@ -481,9 +485,9 @@ function PersonPanelSummary(props) {
         [`${BEM_CLASS_NAME}`],
         {
             [classes.isExpanded]: isExpanded,
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: gender !== 'm' && gender !== 'f',
+            [classes.genderFemale]: includes(['f', 'F'], gender),
+            [classes.genderMale]: includes(['m', 'M'], gender),
+            [classes.genderUndefined]: !includes(['f', 'F', 'm', 'M'], gender),
             [classes.isAdult]: isAdult,
             [classes.isChild]: isChild,
             [classes.isStudent]: isStudent,
