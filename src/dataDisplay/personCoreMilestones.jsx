@@ -4,6 +4,9 @@ import {
     TimeFromNow,
     Typography,
 } from 'react-cm-ui';
+import {
+    includes,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
@@ -375,14 +378,16 @@ export function PersonCoreMilestones(props) {
     const classes = useStyles({ ...props, isMobile });
     const isAdult = recordType === 'adult';
     const blockClassName = 'person_core_milestones';
+    const isFemale = includes(['f', 'F'], gender);
+    const isMale = includes(['m', 'M'], gender);
     const containerClasses = ClassNames(
         classes.container,
         blockClassName,
         className,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.inverse]: inverse,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
@@ -393,9 +398,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
             [classes.hasTakenClass101]: hasTakenClass101,
             [classes.isAdult]: recordType === 'adult',
@@ -407,9 +412,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
             [classes.hasTakenClass201]: hasTakenClass201,
             [classes.isAdult]: recordType === 'adult',
@@ -421,9 +426,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
             [classes.hasTakenClass301]: hasTakenClass301,
             [classes.isAdult]: recordType === 'adult',
@@ -435,9 +440,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
             [classes.hasTakenClass401]: hasTakenClass401,
             [classes.isAdult]: recordType === 'adult',
