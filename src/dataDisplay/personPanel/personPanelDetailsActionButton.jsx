@@ -3,9 +3,9 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import Button from '../inputs/button';
-import Prompt from '../inputs/prompt';
-import makeStyles from '../styles/makeStyles';
+import Button from '../../inputs/button';
+import Prompt from '../../inputs/prompt';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     className: PropTypes.string,

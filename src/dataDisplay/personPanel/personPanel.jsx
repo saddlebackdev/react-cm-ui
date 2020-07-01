@@ -8,9 +8,9 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import { UI_CLASS_NAME } from '../global/constants';
+import { UI_CLASS_NAME } from '../../global/constants';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
-import makeStyles from '../styles/makeStyles';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**

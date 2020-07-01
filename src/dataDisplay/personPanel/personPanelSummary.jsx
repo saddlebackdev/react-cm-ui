@@ -19,9 +19,9 @@ import {
     RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
-import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
-import PersonContactInfo from './personContactInfo';
-import makeStyles from '../styles/makeStyles';
+import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
+import PersonContactInfo from '../personContactInfo';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**

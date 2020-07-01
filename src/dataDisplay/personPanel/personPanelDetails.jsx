@@ -14,16 +14,16 @@ import {
     GENDER_PROP_TYPE,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
-import { UI_CLASS_NAME } from '../global/constants';
-import Address from './address';
-import Collapse from '../utils/collapse';
-import DataGroups from './dataGroups';
-import EmailLink from './emailLink';
-import makeStyles from '../styles/makeStyles';
-import PersonCoreMilestones from './personCoreMilestones';
+import { UI_CLASS_NAME } from '../../global/constants';
+import Address from '../address';
+import Collapse from '../../utils/collapse';
+import DataGroups from '../dataGroups';
+import EmailLink from '../emailLink';
+import makeStyles from '../../styles/makeStyles';
+import PersonCoreMilestones from '../personCoreMilestones';
 import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
-import TelephoneLink from './telephoneLink';
-import Typography from './typography';
+import TelephoneLink from '../telephoneLink';
+import Typography from '../typography';
 
 const propTypes = {
     /**

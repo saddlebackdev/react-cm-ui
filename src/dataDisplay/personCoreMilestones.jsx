@@ -19,7 +19,7 @@ import {
     RECORD_TYPE_COLOR,
     RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
-} from './personPanelConstants';
+} from './personPanel/personPanelConstants';
 
 const propTypes = {
     className: PropTypes.string,
