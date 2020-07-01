@@ -102,6 +102,18 @@ function PersonPanelControlledAccordionExample() {
                     birthdate: person.birthDate,
                     campus: person.churchEntityName,
                     emails,
+                    emergencyContactEmail:
+                        primaryEmergencyContact &&
+                        find(primaryEmergencyContact.emails, 'isPrimary').value,
+                    emergencyContactPhone:
+                        primaryEmergencyContact &&
+                        find(primaryEmergencyContact.phones, 'isPrimary').value,
+                    emergencyContactPreferredMethod:
+                        primaryEmergencyContact &&
+                        primaryEmergencyContact.preferredMethod,
+                    emergencyContactRelationshipName:
+                        primaryEmergencyContact &&
+                        primaryEmergencyContact.relationshipName,
                     firstName: person.firstName,
                     gender: person.gender,
                     gradeLevel: person.gradeLevel,

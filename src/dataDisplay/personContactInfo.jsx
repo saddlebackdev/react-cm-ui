@@ -13,6 +13,11 @@ import EmailLink from './emailLink';
 import makeStyles from '../styles/makeStyles';
 
 const propTypes = {
+    email: PropTypes.string,
+    emergencyContactEmail: PropTypes.string,
+    emergencyContactPhone: PropTypes.string,
+    emergencyContactPreferredMethod: PropTypes.string,
+    emergencyContactRelationshipName: PropTypes.string,
     isCompact: PropTypes.bool,
     isDoNotContact: PropTypes.bool,
     isDoNotEmail: PropTypes.bool,
@@ -23,9 +28,8 @@ const propTypes = {
      * `isExpanded` prop is required by `makeStyles()` but not used directly by the component.
      */
     isExpanded: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-    preferredMethod: PropTypes.string,
-    email: PropTypes.string,
     phone: PropTypes.string,
+    preferredMethod: PropTypes.string,
     recordType: PropTypes.oneOf([
         'adult',
         'child',
@@ -34,6 +38,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+    emergencyContactEmail: null,
+    emergencyContactPhone: null,
+    emergencyContactPreferredMethod: null,
+    emergencyContactRelationshipName: null,
+    email: null,
     isCompact: false,
     isDoNotContact: false,
     isDoNotEmail: false,
@@ -41,46 +50,10 @@ const defaultProps = {
     isDoNotPhone: false,
     isDoNotText: false,
     isExpanded: false,
-    preferredMethod: undefined,
-    email: undefined,
-    phone: undefined,
+    phone: null,
+    preferredMethod: null,
     recordType: 'adult',
 };
-
-// eslint-disable-next-line react/prop-types
-function renderEmail({ email }) {
-    if (isEmpty(email)) {
-        return null;
-    }
-
-    if (email === 'N/A') {
-        return email;
-    }
-
-    return (
-        <EmailLink
-            email={email}
-        />
-    );
-}
-
-
-// eslint-disable-next-line react/prop-types
-function renderPhone({ phone }) {
-    if (isEmpty(phone)) {
-        return null;
-    }
-
-    if (phone === 'N/A') {
-        return phone;
-    }
-
-    return (
-        <TelephoneLink
-            number={phone}
-        />
-    );
-}
 
 const useStyles = makeStyles((theme) => {
     const {
@@ -133,62 +106,139 @@ const useStyles = makeStyles((theme) => {
 
 function PersonPanelSummaryContactText(props) {
     const {
+        emergencyContactEmail,
+        emergencyContactPhone,
+        emergencyContactPreferredMethod,
+        emergencyContactRelationshipName,
         isCompact,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
         isDoNotPhone,
         isDoNotText,
-        preferredMethod,
-        email,
-        phone,
+        preferredMethod: preferredMethodProp,
+        email: emailProp,
+        phone: phoneProp,
         recordType,
     } = props;
+
     const classes = useStyles(props);
+
+    const isChild = recordType === 'child';
+
+    const renderEmail = () => {
+        let email = emailProp;
+
+        if (isChild && emergencyContactEmail) {
+            email = emergencyContactEmail;
+        }
+
+        if (isEmpty(email)) {
+            return null;
+        }
+
+        if (email === 'N/A') {
+            return email;
+        }
+
+        return (
+            <EmailLink
+                email={email}
+            />
+        );
+    };
+
+    const renderPhone = () => {
+        let phone = phoneProp;
+
+        if (isChild && emergencyContactPhone) {
+            phone = emergencyContactPhone;
+        }
+
+        if (isEmpty(phone)) {
+            return null;
+        }
+
+        if (phone === 'N/A') {
+            return phone;
+        }
+
+        return (
+            <TelephoneLink
+                number={phone}
+            />
+        );
+    };
+
     let contactMethodText = '';
     let preferredContactInfoText = '';
+    let preferredMethod = preferredMethodProp;
+
+    if (isChild && emergencyContactPreferredMethod) {
+        preferredMethod = emergencyContactPreferredMethod;
+    }
 
     if (isDoNotContact) {
         contactMethodText = 'Do Not Contact This Individual';
     } else {
         switch (preferredMethod) {
             case 'email':
-                contactMethodText = 'Prefers Email';
+                if (isChild && emergencyContactEmail && emergencyContactRelationshipName) {
+                    contactMethodText = `${emergencyContactRelationshipName}'s Email`;
+                } else {
+                    contactMethodText = 'Prefers Email';
+                }
 
-                if (renderEmail({ email })) {
-                    preferredContactInfoText = renderEmail({ email });
+                if (renderEmail()) {
+                    preferredContactInfoText = renderEmail();
                 }
 
                 break;
             case 'phone':
-                contactMethodText = 'Prefers Phone';
+                if (isChild && emergencyContactPhone && emergencyContactRelationshipName) {
+                    contactMethodText = `${emergencyContactRelationshipName}'s Phone`;
+                } else {
+                    contactMethodText = 'Prefers Phone';
+                }
 
-                if (renderPhone({ phone })) {
-                    preferredContactInfoText = renderPhone({
-                        phone,
-                    });
+                if (renderPhone()) {
+                    preferredContactInfoText = renderPhone();
                 }
 
                 break;
             case 'text-message':
-                contactMethodText = 'Prefers Text';
+                // eslint-disable-next-line no-case-declarations
+                let textNumber = phoneProp;
 
-                if (phone) {
-                    preferredContactInfoText = phone;
+                if (isChild && emergencyContactPhone) {
+                    textNumber = emergencyContactPhone;
+                }
+
+                if (isChild && emergencyContactPhone && emergencyContactRelationshipName) {
+                    contactMethodText = `${emergencyContactRelationshipName}'s Text`;
+                } else {
+                    contactMethodText = 'Prefers Text';
+                }
+
+                if (phoneProp) {
+                    preferredContactInfoText = textNumber;
                 }
 
                 break;
             case 'mail':
             case 'none':
             default:
-                if (renderPhone({ phone })) {
-                    preferredContactInfoText = renderPhone({ phone });
-                } else if (renderEmail({ email })) {
-                    preferredContactInfoText = renderEmail({ email });
+                if (!isChild && renderPhone()) {
+                    preferredContactInfoText = renderPhone();
+                } else if (!isChild && renderEmail()) {
+                    preferredContactInfoText = renderEmail();
                 }
         }
 
-        if (isDoNotEmail || isDoNotMail || isDoNotPhone || isDoNotText) {
+        if (
+            !isChild &&
+            (isDoNotEmail || isDoNotMail || isDoNotPhone || isDoNotText)
+        ) {
             if (contactMethodText) {
                 contactMethodText += ', DNC via';
             } else {
@@ -215,11 +265,11 @@ function PersonPanelSummaryContactText(props) {
         }
     }
 
-    if (recordType !== 'child' && (contactMethodText || preferredMethod !== 'none')) {
-        const preferredContactMethodClasses = ClassNames(classes.preferredContactMethod, {
-            [classes.compact]: isCompact,
-        });
+    const preferredContactMethodClasses = ClassNames(classes.preferredContactMethod, {
+        [classes.compact]: isCompact,
+    });
 
+    if (contactMethodText || preferredMethod !== 'none') {
         return (
             <div
                 className={classes.contactText}

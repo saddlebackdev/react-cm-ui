@@ -53,6 +53,10 @@ const propTypes = {
                 isPrimary: PropTypes.bool,
             }),
         ),
+        emergencyContactEmail: PropTypes.string,
+        emergencyContactPhone: PropTypes.string,
+        emergencyContactPreferredMethod: PropTypes.string,
+        emergencyContactRelationshipName: PropTypes.string,
         firstName: PropTypes.string,
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.oneOf([
@@ -219,6 +223,9 @@ const useStyles = makeStyles((theme) => {
                 width: '5px',
                 transition: `width ${transitionDuration} ease-in-out`,
             },
+            [`& a.${UI_CLASS_NAME}`]: {
+                transition: colorTransition,
+            },
             '&$isAdult': {
                 '&$genderFemale::before': {
                     backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
@@ -242,6 +249,9 @@ const useStyles = makeStyles((theme) => {
                 '&::before': {
                     borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                     width: '100%',
+                },
+                [`& a.${UI_CLASS_NAME}`]: {
+                    color: palette.text.contrastText,
                 },
                 '&$isAdult': {
                     '&$genderFemale::before': {
@@ -353,6 +363,10 @@ function PersonPanelSummary(props) {
         birthdate,
         campus,
         emails,
+        emergencyContactEmail,
+        emergencyContactPhone,
+        emergencyContactPreferredMethod,
+        emergencyContactRelationshipName,
         firstName,
         gender,
         gradeLevel,
@@ -418,6 +432,10 @@ function PersonPanelSummary(props) {
     useEffect(() => {
         setRenderContactInfo(
             <PersonContactInfo
+                emergencyContactEmail={emergencyContactEmail}
+                emergencyContactPhone={emergencyContactPhone}
+                emergencyContactPreferredMethod={emergencyContactPreferredMethod}
+                emergencyContactRelationshipName={emergencyContactRelationshipName}
                 isDoNotContact={isDoNotContact}
                 isDoNotEmail={isDoNotEmail}
                 isDoNotMail={isDoNotMail}
@@ -431,15 +449,19 @@ function PersonPanelSummary(props) {
             />,
         );
     }, [
+        email,
+        emergencyContactEmail,
+        emergencyContactPhone,
+        emergencyContactPreferredMethod,
+        emergencyContactRelationshipName,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
         isDoNotPhone,
         isDoNotText,
         isExpanded,
-        preferredMethod,
-        email,
         phone,
+        preferredMethod,
         recordType,
     ]);
 
@@ -461,7 +483,7 @@ function PersonPanelSummary(props) {
             [classes.expanded]: isExpanded,
             [classes.genderFemale]: gender === 'f',
             [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderUndefined]: gender !== 'm' && gender !== 'f',
             [classes.isAdult]: isAdult,
             [classes.isChild]: isChild,
             [classes.isStudent]: isStudent,
