@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env, options) => {
     const isDevMode = options.mode === 'development';
