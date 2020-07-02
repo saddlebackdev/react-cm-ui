@@ -1,11 +1,12 @@
-'use strict';
 
-import { Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter';
+import {
+    Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 import { Link } from 'react-router';
-import Main from '../global/main';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Main from '../global/main';
+import Highlighter from '../global/highlighter';
 import TableProps from '../global/tableProps';
 
 const drawerSample = `import React from 'react';
@@ -911,8 +912,11 @@ export default class ModulesDrawer extends React.Component {
                 </SubNavigation>
 
                 <Header size="large" style={{ margin: '55px 0' }}>
-                    This version of the Drawer component has been deprecated.<br />
-                    Please use <Link to={{ pathname: '/modules/drawer' }}>Drawer</Link>
+                    This version of the Drawer component has been deprecated.
+                    <br />
+                    Please use
+                    {' '}
+                    <Link to={{ pathname: '/modules/drawer' }}>Drawer</Link>
                 </Header>
 
                 {this._renderDrawer()}
@@ -1114,7 +1118,17 @@ export default class ModulesDrawer extends React.Component {
                     </Header>
 
                     <p className="font-size-xsmall color-static">
-                        <span className="font-weight-semibold">Note:</span> <code>isOpen</code>, <code>onClose</code>, and <code>title</code> are all required props.
+                        <span className="font-weight-semibold">Note:</span>
+                        {' '}
+                        <code>isOpen</code>
+                        ,
+                        {' '}
+                        <code>onClose</code>
+                        , and
+                        {' '}
+                        <code>title</code>
+                        {' '}
+                        are all required props.
                     </p>
 
                     <Button onClick={this._onBasicDrawerClick.bind(this)}>Open The Basic Drawer</Button>
@@ -1128,7 +1142,9 @@ export default class ModulesDrawer extends React.Component {
                         <div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
-                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
+                            <br />
+                            <br />
 
                             <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
 
@@ -1145,7 +1161,9 @@ export default class ModulesDrawer extends React.Component {
                                 <div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
-                                    <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+                                    <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
+                                    <br />
+                                    <br />
 
                                     <Button onClick={this._onBarDrawerClick.bind(this)}>Open Bar Drawer</Button>
 
@@ -1160,7 +1178,9 @@ export default class ModulesDrawer extends React.Component {
                                         <div>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
-                                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
+                                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
+                                            <br />
+                                            <br />
 
                                             <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
 
@@ -1213,7 +1233,9 @@ export default class ModulesDrawer extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onCloseButtonDrawerClick.bind(this)}>A Chevron-WH-Right Close Button</Button><br /><br />
+                    <Button onClick={this._onCloseButtonDrawerClick.bind(this)}>A Chevron-WH-Right Close Button</Button>
+                    <br />
+                    <br />
                     <Button onClick={this._onCustomCloseButtonDrawerClick.bind(this)}>A Custom Close Button</Button>
 
                     <DrawerDeprecated
@@ -1737,7 +1759,9 @@ ModulesDrawer.contextTypes = {
 
 class NestHeader1DrawerComponent extends React.Component {
     render() {
-        const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
+        const {
+            closeButton, inverse, onClose, title, titleTruncate,
+        } = this.props;
 
         return (
             <div>
@@ -1800,7 +1824,9 @@ NestHeader1DrawerComponent.propTypes = {
 
 class NestHeader2DrawerComponent extends React.Component {
     render() {
-        const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
+        const {
+            closeButton, inverse, onClose, title, titleTruncate,
+        } = this.props;
 
         return (
             <div>
@@ -1864,7 +1890,9 @@ NestHeader2DrawerComponent.propTypes = {
 
 class NestHeader3DrawerComponent extends React.Component {
     render() {
-        const { closeButton, inverse, onClose, title, titleTruncate } = this.props;
+        const {
+            closeButton, inverse, onClose, title, titleTruncate,
+        } = this.props;
 
         return (
             <div>

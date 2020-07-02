@@ -1,11 +1,10 @@
-'use strict';
 
-import { appReduxStore } from '../global/configureReduxStore.js';
+import { appReduxStore } from './configureReduxStore.js';
 
 export default class BreakpointActions {
     static update() {
-        const clientHeight = document.documentElement.clientHeight;
-        const clientWidth = document.documentElement.clientWidth;
+        const { clientHeight } = document.documentElement;
+        const { clientWidth } = document.documentElement;
         const winWidth = window.innerWidth;
 
         const isMedium = winWidth >= 768 && winWidth <= 1023;

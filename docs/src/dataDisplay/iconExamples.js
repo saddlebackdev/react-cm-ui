@@ -289,7 +289,7 @@ class ElementsIconExamples extends React.PureComponent {
                             {' '}
                             <code>type</code>
                             {' '}
-    prop is required.
+                            prop is required.
                         </Header.Subheader>
                     </Header>
 
@@ -473,7 +473,7 @@ class ElementsIconExamples extends React.PureComponent {
                             {' '}
                             <code>title</code>
                             {' '}
-    prop that gives them a &ldquo;tooltip&rdquo;.
+                            prop that gives them a &ldquo;tooltip&rdquo;.
                         </Header.Subheader>
                     </Header>
 

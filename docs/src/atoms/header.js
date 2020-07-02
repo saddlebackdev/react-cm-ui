@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Header, Icon, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, Icon, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -221,71 +222,69 @@ export default class WeightSample extends React.Component {
 }`;
 
 export default class ElementsHeader extends React.Component {
-
     render() {
-
         const props = [
             {
                 name: 'as',
                 type: 'enum',
                 default: '',
                 description: 'An element type to render as (string or function).',
-                allowedTypes: 'h1, h2, h3, h4, h5, h6'
+                allowedTypes: 'h1, h2, h3, h4, h5, h6',
             }, {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'color',
                 type: 'enum',
                 default: '',
                 description: 'Color of the header.',
-                allowedTypes: 'inverse, static, text'
+                allowedTypes: 'inverse, static, text',
             }, {
                 name: 'icon',
                 type: 'bool',
                 default: 'false',
                 description: 'Headers may be formatted with an icon to floated to the left.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: 'false',
                 description: 'Headers can be formatted to appear on dark backgrounds better.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'size',
                 type: 'enum',
                 default: '',
                 description: 'Content headings are sized with em and are based on the font-size of their container.',
-                allowedTypes: 'large, medium, small, xlarge, xsmall, xxsmall'
+                allowedTypes: 'large, medium, small, xlarge, xsmall, xxsmall',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Header\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'sub',
                 type: 'bool',
                 default: 'false',
                 description: 'Headers may be formatted with a subheader',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'weight',
                 type: 'enum',
                 default: 'false',
                 description: 'Headers may be formatted to have lighter or bolder weights',
-                allowedTypes: 'bold, normal, semibold'
-            }
+                allowedTypes: 'bold, normal, semibold',
+            },
         ];
 
         return (
@@ -300,14 +299,22 @@ export default class ElementsHeader extends React.Component {
                     </Card>
 
                     {/* Page Headers */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Page Headers
                         <Header.Subheader>
                             Headers may be oriented to give the hierarchy of a section in the context of the page.
                         </Header.Subheader>
                     </Header>
 
-                    <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Page headings are sized using <code>rem</code> and are not affected by surrounding content size.</p>
+                    <p className="font-size-xsmall color-static">
+                        <span className="font-weight-semibold">Note:</span>
+                        {' '}
+                        Page headings are sized using
+                        {' '}
+                        <code>rem</code>
+                        {' '}
+                        and are not affected by surrounding content size.
+                    </p>
 
                     <Header as="h1">Header 1</Header>
                     <Header as="h2">Header 2</Header>
@@ -321,14 +328,26 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Content Headers */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Content Headers
                         <Header.Subheader>
                             Headers may be oriented to give the importance of a section.
                         </Header.Subheader>
                     </Header>
 
-                    <p className="font-size-xsmall color-static"><span className="font-weight-semibold">Note:</span> Content headings are sized with <code>em</code> and are based on the <code>font-size</code> of their container.</p>
+                    <p className="font-size-xsmall color-static">
+                        <span className="font-weight-semibold">Note:</span>
+                        {' '}
+                        Content headings are sized with
+                        {' '}
+                        <code>em</code>
+                        {' '}
+                        and are based on the
+                        {' '}
+                        <code>font-size</code>
+                        {' '}
+                        of their container.
+                    </p>
 
                     <Header size="xlarge">XLarge Header</Header>
                     <Header size="large">Large Header</Header>
@@ -342,14 +361,14 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Subheader */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Subheader
                         <Header.Subheader>
                             Headers may be formatted to label smaller or de-emphasized content.
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="medium" style={{ marginTop: '33px' }} sub={true}>
+                    <Header size="medium" style={{ marginTop: '33px' }} sub>
                         The Best Header In The World
                         <Header.Subheader>
                             Oh yeah? Well, I think I'm the best subheader in the world.
@@ -361,39 +380,39 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Icon */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Icon
                         <Header.Subheader>
                             A header can have an icon aligned to the left of the content.
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="xlarge" icon={true}>
+                    <Header size="xlarge" icon>
                         <Icon type="check" />
                         XLarge Icon Header
                     </Header>
 
-                    <Header size="large" icon={true}>
+                    <Header size="large" icon>
                         <Icon type="check" />
                         Large Icon Header
                     </Header>
 
-                    <Header size="medium" icon={true}>
+                    <Header size="medium" icon>
                         <Icon type="check" />
                         Medium Icon Header
                     </Header>
 
-                    <Header size="small" icon={true}>
+                    <Header size="small" icon>
                         <Icon type="check" />
                         Small Icon Header
                     </Header>
 
-                    <Header size="xsmall" icon={true}>
+                    <Header size="xsmall" icon>
                         <Icon type="check" />
                         XSmall Icon Header
                     </Header>
 
-                    <Header size="xxsmall" icon={true}>
+                    <Header size="xxsmall" icon>
                         <Icon type="check" />
                         XXSmall Icon Header
                     </Header>
@@ -403,14 +422,14 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Icon & Subheader */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Icon & Subheader
                         <Header.Subheader>
                             A header can have an icon aligned to the left of the content.
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="xlarge" icon={true} sub={true}>
+                    <Header size="xlarge" icon sub>
                         <Icon type="check" />
                         XLarge Icon & Subheader Header
                         <Header.Subheader>
@@ -418,7 +437,7 @@ export default class ElementsHeader extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="large" icon={true} sub={true}>
+                    <Header size="large" icon sub>
                         <Icon type="check" />
                         Large Icon & Subheader Header
                         <Header.Subheader>
@@ -426,7 +445,7 @@ export default class ElementsHeader extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="medium" icon={true} sub={true}>
+                    <Header size="medium" icon sub>
                         <Icon type="check" />
                         Medium Icon & Subheader Header
                         <Header.Subheader>
@@ -434,7 +453,7 @@ export default class ElementsHeader extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="small" icon={true} sub={true}>
+                    <Header size="small" icon sub>
                         <Icon type="check" />
                         Small Icon & Subheader Header
                         <Header.Subheader>
@@ -442,7 +461,7 @@ export default class ElementsHeader extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="xsmall" icon={true} sub={true}>
+                    <Header size="xsmall" icon sub>
                         <Icon type="check" />
                         XSmall Icon & Subheader Header
                         <Header.Subheader>
@@ -450,7 +469,7 @@ export default class ElementsHeader extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Header size="xsmall" icon={true} sub={true}>
+                    <Header size="xsmall" icon sub>
                         <Icon type="check" />
                         XXSmall Icon & Subheader Header
                         <Header.Subheader>
@@ -463,7 +482,7 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Colors */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Colors
                         <Header.Subheader>
                             A header can be formatted with different colors.
@@ -478,16 +497,16 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Colors Inverted */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Colors Inverted
                         <Header.Subheader>
                             A header's color can be inverted.
                         </Header.Subheader>
                     </Header>
 
-                    <Block inverse={true} style={{ marginTop: '33px' }}>
-                        <Header color="static" inverse={true} size="small">Static</Header>
-                        <Header color="text" inverse={true} size="small">Text</Header>
+                    <Block inverse style={{ marginTop: '33px' }}>
+                        <Header color="static" inverse size="small">Static</Header>
+                        <Header color="text" inverse size="small">Text</Header>
                     </Block>
 
                     <Highlighter customStyle={{ marginTop: '44px' }}>
@@ -495,7 +514,7 @@ export default class ElementsHeader extends React.Component {
                     </Highlighter>
 
                     {/* Weight */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Weight
                         <Header.Subheader>
                             A header's weight can be changed.
@@ -513,5 +532,4 @@ export default class ElementsHeader extends React.Component {
             </Main>
         );
     }
-
 }

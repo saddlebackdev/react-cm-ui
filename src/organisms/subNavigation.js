@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import _ from 'lodash';
 import ClassNames from 'classnames';
@@ -31,10 +32,10 @@ class SubNavigation extends Component {
             'sub-navigation-border-top': border === 'top' || border === 'both',
             'sub-navigation-drawer': drawer,
         });
-        const childrenArray = children && (_.isArray(children) ? children : [ children ]);
-        let buttons = _.map(childrenArray, (child, index) => {
+        const childrenArray = children && (_.isArray(children) ? children : [children]);
+        const buttons = _.map(childrenArray, (child, index) => {
             const { label, onClick, style } = child.props;
-            let isActive = ClassNames({ 'is-active': this.state.selected === index });
+            const isActive = ClassNames({ 'is-active': this.state.selected === index });
             const buttonID = id ?
                 `${id}_${_.snakeCase(child.props.label)}` :
                 `sub_navigation_button--${_.snakeCase(child.props.label)}`;
@@ -44,12 +45,12 @@ class SubNavigation extends Component {
                     className={isActive}
                     id={buttonID}
                     onClick={this._onItemClick.bind(this, index, label, onClick)}
-                    key={'sub-navigation-buttons-' + index}
+                    key={`sub-navigation-buttons-${index}`}
                     style={style}
                 >
                     <span className="sub-navigation-button-inner">
                         <span className="copy">{label}</span>
-                        <span className="button-is-active-indicator"/>
+                        <span className="button-is-active-indicator" />
                     </span>
                 </button>
             );
@@ -89,7 +90,7 @@ class SubNavigation extends Component {
 
 SubNavigation.Item = SubNavigationItem;
 
-const borderEnums = [ 'both', 'bottom', 'top' ];
+const borderEnums = ['both', 'bottom', 'top'];
 
 SubNavigation.propTypes = {
     border: PropTypes.oneOf(borderEnums),

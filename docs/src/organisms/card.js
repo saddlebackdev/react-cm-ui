@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
+import {
+    Card, Grid, Header, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -245,50 +246,50 @@ export default class ViewsTitleBar extends React.Component {
                 type: 'bool',
                 default: 'false',
                 description: 'Cards can have an active state.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'collapsable',
                 type: 'bool',
                 default: 'false',
                 description: 'Cards can be collapsable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'compact',
                 type: 'bool',
                 default: 'false',
                 description: 'A card can reduce its padding.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'nest',
                 type: 'bool',
                 default: 'false',
                 description: 'Cards may be placed in a nested background color.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'func',
                 default: '',
                 description: 'Cards can handle an onClick event.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Card\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         if (subNavIndex === 0) {
@@ -301,7 +302,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Card>
 
                     {/* Card */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Card
                         <Header.Subheader>
                             A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
@@ -313,13 +314,15 @@ export default class ViewsTitleBar extends React.Component {
 
                         {null}
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                             Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                             Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
                             Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
                             dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                             himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                        </p>
                     </Card>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -327,27 +330,32 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Nested Card */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Nested Card
                         <Header.Subheader>
-                            A card can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                            A card can give the appearance of being nested. The parent's background color needs to be set to
+                            {' '}
+                            <code>color(backgroundColorNest)</code>
+                            .
                         </Header.Subheader>
                     </Header>
 
                     <Block
-                        nest={true}
+                        nest
                         style={{ padding: '22px' }}
                     >
-                        <Card nest={true}>
+                        <Card nest>
                             <Header size="large">Look How Nested I Am</Header>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                                 Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                                 Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
                                 Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
                                 dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
                         </Card>
                     </Block>
 
@@ -356,7 +364,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Compact
                         <Header.Subheader>
                             A card can have it's padding reduced.
@@ -364,18 +372,18 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <Block
-                        nest={true}
+                        nest
                         style={{ padding: '22px' }}
                     >
-                        <Card compact={true} nest={true}>
-                            <Grid stressed={true}>
+                        <Card compact nest>
+                            <Grid stressed>
                                 <Grid.Row>
                                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                     </Grid.Column>
 
                                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                        <Header size="small" sub={true}>
+                                        <Header size="small" sub>
                                             A Title
                                             <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                         </Header>
@@ -390,7 +398,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Card onClick Event Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Card onClick Event Handler
                         <Header.Subheader>
                             A card can handle an onClick event.
@@ -398,18 +406,18 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <Block
-                        nest={true}
+                        nest
                         style={{ padding: '22px' }}
                     >
-                        <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
-                            <Grid stressed={true}>
+                        <Card compact nest onClick={this._onClick.bind(this)}>
+                            <Grid stressed>
                                 <Grid.Row>
                                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                     </Grid.Column>
 
                                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                        <Header size="small" sub={true}>
+                                        <Header size="small" sub>
                                             A Title
                                             <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                         </Header>
@@ -424,7 +432,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Active */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Active
                         <Header.Subheader>
                             Cards can have an active state.
@@ -432,18 +440,18 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <Block
-                        nest={true}
+                        nest
                         style={{ padding: '22px' }}
                     >
-                        <Card active={true} compact={true} nest={true}>
-                            <Grid stressed={true}>
+                        <Card active compact nest>
+                            <Grid stressed>
                                 <Grid.Row>
                                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                     </Grid.Column>
 
                                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                        <Header size="small" sub={true}>
+                                        <Header size="small" sub>
                                             A Title
                                             <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
                                         </Header>
@@ -458,7 +466,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Collapsable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Collapsable
                         <Header.Subheader>
                             Cards can be collapsable.
@@ -466,27 +474,31 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <Block
-                        nest={true}
+                        nest
                         style={{ padding: '22px' }}
                     >
                         <Card collapsable nest title="Collapsable Card">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                                 Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                                 Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
                                 Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
                                 dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
                         </Card>
 
                         <Card compact collapsable nest title="Compact Collapsable Card">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                                 Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                                 Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
                                 Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
                                 dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
                         </Card>
                     </Block>
 
@@ -506,32 +518,32 @@ export default class ViewsTitleBar extends React.Component {
                 type: 'bool',
                 default: '',
                 description: 'Attach edges to the parent container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'color',
                 type: 'enum',
                 default: '',
                 description: 'A Card.Header\'s background color.',
-                allowedTypes: 'blue, green, pink'
+                allowedTypes: 'blue, green, pink',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Card.Header\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         if (subNavIndex === 1) {
@@ -544,7 +556,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Card>
 
                     {/* Collapsable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Header
                         <Header.Subheader>
                             Cards can have a custom header.
@@ -556,13 +568,15 @@ export default class ViewsTitleBar extends React.Component {
                             Custom Header
                         </Card.Header>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                             Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
                             Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
                             Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
                             dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                             himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.</p>
+                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                        </p>
                     </Card>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

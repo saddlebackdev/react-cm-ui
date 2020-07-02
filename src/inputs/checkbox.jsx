@@ -219,9 +219,9 @@ class Checkbox extends React.Component {
                     value={newValue}
                 />
 
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label
                     className={labelClasses}
-                    htmlFor={inputId}
                 >
                     {label && (
                         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
