@@ -8,6 +8,12 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 module.exports = (env, options) => {
     const isDevMode = options.mode === 'development';
 
+    let favIconSrc = 'images/favicon.svg';
+
+    if (isDevMode) {
+        favIconSrc = 'src/images/favicon.svg';
+    }
+
     return {
         entry: {
             bundle: './src/index.jsx',
@@ -111,7 +117,7 @@ module.exports = (env, options) => {
                     '*': 'http://0.0.0.0:5000',
                 },
             }),
-            new FaviconsWebpackPlugin('src/images/favicon.svg'),
+            new FaviconsWebpackPlugin(favIconSrc),
             new HtmlWebpackPlugin({
                 title: 'React-CM-UI Docs',
                 template: 'template.ejs',
