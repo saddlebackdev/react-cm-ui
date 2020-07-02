@@ -2,7 +2,6 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanel.test.js
  */
-import { describe, expect, it } from '@jest/globals';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import MockedTheme from '../../../testUtils/mockedTheme';
