@@ -1,13 +1,13 @@
 
-'use strict';
-
-import { Accordion, Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-import Block from '../global/block.js';
-import Highlighter from '../global/highlighter';
-import Main from '../global/main';
+import {
+    Accordion, Card, Header, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import Block from '../global/block.js';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps';
 
 const accordionSample = `import React from 'react';
@@ -652,7 +652,9 @@ export default class CollectionsAccordion extends React.Component {
                         >
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
                         </Accordion.Item>
-                    </Accordion><br /><br />
+                    </Accordion>
+                    <br />
+                    <br />
 
                     <Accordion basic>
                         <Accordion.Item>
@@ -698,7 +700,7 @@ export default class CollectionsAccordion extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Accordion basic exclusive={false} selected={[ 1, 2 ]}>
+                    <Accordion basic exclusive={false} selected={[1, 2]}>
                         <Accordion.Item title="Option One">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
                         </Accordion.Item>
@@ -752,12 +754,14 @@ export default class CollectionsAccordion extends React.Component {
                                 </Accordion.Item>
                             </Accordion>
                         </ScrollBar>
-                    </Block><br /><br />
+                    </Block>
+                    <br />
+                    <br />
 
                     <Block inverse style={{ height: '205px' }}>
                         <ScrollBar
                             autoHide
-                            ref={scrollBarNode => {
+                            ref={(scrollBarNode) => {
                                 this.scrollBarNode = scrollBarNode;
                             }}
                         >
@@ -797,7 +801,11 @@ export default class CollectionsAccordion extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub>
                         Selected
                         <Header.Subheader>
-                            You can specify the <strong>selected</strong> prop to expand one of the items by default.
+                            You can specify the
+                            {' '}
+                            <strong>selected</strong>
+                            {' '}
+                            prop to expand one of the items by default.
                         </Header.Subheader>
                     </Header>
 
@@ -831,7 +839,7 @@ export default class CollectionsAccordion extends React.Component {
                     <Accordion selected={controlledExampleSelectedIndex}>
                         <Accordion.Item>
                             <Accordion.Summary onClick={this._onClickAccordionItem}>
-                                <Header size="small">{'Option One'}</Header>
+                                <Header size="small">Option One</Header>
                             </Accordion.Summary>
                             <Accordion.Content>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -840,7 +848,7 @@ export default class CollectionsAccordion extends React.Component {
 
                         <Accordion.Item>
                             <Accordion.Summary onClick={this._onClickAccordionItem}>
-                                <Header size="small">{'Option Two'}</Header>
+                                <Header size="small">Option Two</Header>
                             </Accordion.Summary>
                             <Accordion.Content>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>

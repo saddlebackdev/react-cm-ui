@@ -1,10 +1,11 @@
-'use strict';
 
-import { Card, Header, Tabs, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, Tabs, TitleBar,
+} from 'react-cm-ui';
+import React from 'react';
 import Block from '../global/block.js';
 import Highlighter from '../global/highlighter';
 import Main from '../global/main';
-import React from 'react';
 import TableProps from '../global/tableProps';
 
 const tabsSample = `import React from 'react';
@@ -138,7 +139,10 @@ export default class CollectionsTabs extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub>
                         Nested Tabs
                         <Header.Subheader>
-                            Tabs can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                            Tabs can give the appearance of being nested. The parent's background color needs to be set to
+                            {' '}
+                            <code>color(backgroundColorNest)</code>
+                            .
                         </Header.Subheader>
                     </Header>
 

@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Header, Loader, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, Loader, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -25,9 +26,7 @@ export default class InputSample extends React.Component {
 }`;
 
 export default class ElementsLoader extends React.Component {
-
     render() {
-
         const props = [
             {
                 name: 'className',
@@ -40,14 +39,14 @@ export default class ElementsLoader extends React.Component {
                 type: 'bool',
                 default: '',
                 description: 'Loarders can take on the size of its container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Segmented Controls\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -62,7 +61,7 @@ export default class ElementsLoader extends React.Component {
                     </Card>
 
                     {/* Loader */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Loader
                         <Header.Subheader>
                             A standard loader. To be used to alert the user that something is happening.
@@ -76,7 +75,7 @@ export default class ElementsLoader extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Fluid
                         <Header.Subheader>
                             A Loader's container can take on the size of its parent container.
@@ -84,7 +83,7 @@ export default class ElementsLoader extends React.Component {
                     </Header>
 
                     <Block style={{ maxWidth: '450px' }}>
-                        <Loader fluid={true} />
+                        <Loader fluid />
                     </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -94,5 +93,4 @@ export default class ElementsLoader extends React.Component {
             </Main>
         );
     }
-
 }

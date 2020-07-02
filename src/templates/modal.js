@@ -1,17 +1,16 @@
-'use strict';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Button from '../inputs/button';
 import ClassNames from 'classnames';
-import Divider from '../dataDisplay/divider';
-import domUtils from '../utils/domUtils.js';
-import Header from '../atoms/header';
-import Icon from '../dataDisplay/icon';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import Button from '../inputs/button';
+import Divider from '../dataDisplay/divider';
+import domUtils from '../utils/domUtils.js';
+import Header from '../atoms/header';
+import Icon from '../dataDisplay/icon';
 
 class ModalHeader extends Component {
     constructor() {
@@ -21,7 +20,9 @@ class ModalHeader extends Component {
     }
 
     render() {
-        const { children, closeButton, inverse, title, titleTruncate } = this.props;
+        const {
+            children, closeButton, inverse, title, titleTruncate,
+        } = this.props;
         const titleClass = ClassNames('title', {
             'modal-title-truncate': titleTruncate,
         });
@@ -160,12 +161,12 @@ class Modal extends Component {
             'modal-container-is-scrolled': isScrolled,
         });
         const containerInnerStyles = {
-            height: height,
-            maxHeight: maxHeight,
-            maxWidth: maxWidth,
-            minHeight: minHeight,
-            minWidth: minWidth,
-            width: width,
+            height,
+            maxHeight,
+            maxWidth,
+            minHeight,
+            minWidth,
+            width,
         };
         const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
 
@@ -174,7 +175,7 @@ class Modal extends Component {
                 <div className={containerClasses}>
                     <div
                         className={containerInnerClasses}
-                        ref={ref => this._modalContainerRef = ref}
+                        ref={(ref) => this._modalContainerRef = ref}
                         style={containerInnerStyles}
                     >
                         <ScrollBar
@@ -186,15 +187,15 @@ class Modal extends Component {
                         >
                             <div
                                 className="modal-container-inner"
-                                ref={el => this.modalContainerInner = el}
+                                ref={(el) => this.modalContainerInner = el}
                                 style={containerInnerScrollStyles}
                             >
-                                {header ? React.Children.map(this.props.children, c => React.cloneElement(c, {
-                                    closeButton: closeButton,
-                                    inverse: inverse,
+                                {header ? React.Children.map(this.props.children, (c) => React.cloneElement(c, {
+                                    closeButton,
+                                    inverse,
                                     onClose: this._onClose,
-                                    title: title,
-                                    titleTruncate: titleTruncate,
+                                    title,
+                                    titleTruncate,
                                 })) : [
                                     <ModalHeader
                                         closeButton={closeButton}
@@ -259,11 +260,11 @@ class Modal extends Component {
 
     _animationProps(el) {
         let a;
-        let animations = {
-            'animation': 'animationend',
-            'OAnimation': 'oAnimationEnd',
-            'MozAnimation': 'animationend',
-            'WebkitAnimation': 'webkitAnimationEnd',
+        const animations = {
+            animation: 'animationend',
+            OAnimation: 'oAnimationEnd',
+            MozAnimation: 'animationend',
+            WebkitAnimation: 'webkitAnimationEnd',
         };
 
         for (a in animations) {
@@ -303,7 +304,7 @@ class Modal extends Component {
     }
 
     _onCloseAnimationComplete() {
-        const body = document.body;
+        const { body } = document;
         const animationEvent = this._animationProps(this._modalContainerRef);
         this._modalContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
 
@@ -331,7 +332,7 @@ class Modal extends Component {
 
     _onOpen() {
         const { autoHeight, onClickOutside, maxWidth } = this.props;
-        const body = document.body;
+        const { body } = document;
         const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
         const modalLength = document.querySelectorAll('.ui.modal').length;
@@ -347,7 +348,7 @@ class Modal extends Component {
         }
 
         if (domUtils.hasClassName(body, 'modal-open')) {
-            zIndex = zIndex + modalLength;
+            zIndex += modalLength;
             domUtils.addClassName(body, 'modal-open-layered');
 
             nodePortal.style.zIndex = zIndex;
@@ -422,13 +423,13 @@ class Modal extends Component {
     _onScrollStart() {
         const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
 
-        this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
+        this.setState({ isScrolled: scrollContainerPos > 0 });
     }
 
     _onScrollStop() {
         const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
 
-        this.setState({ isScrolled: scrollContainerPos > 0 ? true : false });
+        this.setState({ isScrolled: scrollContainerPos > 0 });
     }
 }
 

@@ -208,7 +208,6 @@ export default class TypeSample extends React.Component {
 }`;
 
 export default class ViewsBanner extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -218,7 +217,7 @@ export default class ViewsBanner extends React.Component {
             isBannerNotification3Open: false,
             isBannerTypeNotificationOpen: false,
             isBannerTypeAlertOpen: false,
-            acData: []
+            acData: [],
         };
     }
 
@@ -235,74 +234,74 @@ export default class ViewsBanner extends React.Component {
                 type: 'number || string',
                 default: '',
                 description: 'Required: Provide an id.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'isOpen',
                 type: 'bool',
                 default: '',
                 description: 'Required: A boolean that is supplied the Banner for the animation.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'level',
                 type: 'enum',
                 default: '',
                 description: 'A Banner\'s level.',
-                allowedTypes: 'error, secondary, success, warning'
+                allowedTypes: 'error, secondary, success, warning',
             }, {
                 name: 'levelIcon',
                 type: 'string',
                 default: '',
                 description: 'A Banner\'s type of level icon.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'message',
                 type: 'string',
                 default: '',
                 description: 'A Drawer\'s message.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onAfterClose',
                 type: 'func',
                 default: '',
                 description: 'Called after the Banner\'s close animation.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required: Handler for closing the Banner.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onOpen',
                 type: 'func',
                 default: '',
                 description: 'Called before the Banner\'s animation.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Banner\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'title',
                 type: 'string',
                 default: '',
                 description: 'A Banner\'s title.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'topPosition',
                 type: 'number',
                 default: '',
                 description: 'Changes the Banner\'s top position relative to the top of the viewport.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'type',
                 type: 'enum',
                 default: '',
                 description: 'Supply any inline styles to the Banner\'s container. Mainly used for padding and margins.',
-                allowedTypes: 'alert, notification'
-            }
+                allowedTypes: 'alert, notification',
+            },
         ];
 
         return (
@@ -317,7 +316,7 @@ export default class ViewsBanner extends React.Component {
                     </Card>
 
                     {/* Banner */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Banner
                         <Header.Subheader>
                             A standard Banner.
@@ -362,7 +361,7 @@ export default class ViewsBanner extends React.Component {
                     </Highlighter>
 
                     {/* On After Close */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         On After Close
                         <Header.Subheader>
                             After a Banner's close animation handler.
@@ -381,7 +380,7 @@ export default class ViewsBanner extends React.Component {
                     </Highlighter>
 
                     {/* Type */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Type
                         <Header.Subheader>
                             Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
@@ -421,31 +420,31 @@ export default class ViewsBanner extends React.Component {
     }
 
     _onAfterClose(id) {
-        let acData = this.state.acData;
+        const { acData } = this.state;
 
-        _.remove(this.state.acData, d => d.id === id);
+        _.remove(this.state.acData, (d) => d.id === id);
 
-        this.setState({ acData: acData });
+        this.setState({ acData });
     }
 
     _onAcBannerClick(id) {
-        let acData = this.state.acData;
-        let newAcData = _.find(acData, d => d.id === id);
+        const { acData } = this.state;
+        let newAcData = _.find(acData, (d) => d.id === id);
 
         if (_.isObject(newAcData)) {
             newAcData.isOpen = !newAcData.isOpen;
         } else {
             newAcData = {
-                id: id,
+                id,
                 isOpen: true,
                 message: 'A short notification description',
                 title: `AC Banner ${id + 1}`,
-                type: 'notification'
+                type: 'notification',
             };
             acData.push(newAcData);
         }
 
-        this.setState({ acData: acData });
+        this.setState({ acData });
     }
 
     _onBannerNotification1Click() {
@@ -469,20 +468,17 @@ export default class ViewsBanner extends React.Component {
     }
 
     _renderBanners() {
-        return _.map(this.state.acData, d => {
-            return (
-                <Banner
-                    id={d.id}
-                    isOpen={d.isOpen}
-                    key={`banner-key-${d.id}`}
-                    message={d.message}
-                    onAfterClose={this._onAfterClose.bind(this)}
-                    onClose={this._onAcBannerClick.bind(this, d.id)}
-                    title={d.title}
-                    type={d.type}
-                />
-            );
-        })
+        return _.map(this.state.acData, (d) => (
+            <Banner
+                id={d.id}
+                isOpen={d.isOpen}
+                key={`banner-key-${d.id}`}
+                message={d.message}
+                onAfterClose={this._onAfterClose.bind(this)}
+                onClose={this._onAcBannerClick.bind(this, d.id)}
+                title={d.title}
+                type={d.type}
+            />
+        ));
     }
-
 }
