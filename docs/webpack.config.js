@@ -117,7 +117,7 @@ module.exports = (env, options) => {
                     '*': 'http://0.0.0.0:5000',
                 },
             }),
-            new FaviconsWebpackPlugin(favIconSrc),
+            new FaviconsWebpackPlugin('images/favicon.svg'),
             new HtmlWebpackPlugin({
                 title: 'React-CM-UI Docs',
                 template: 'template.ejs',
