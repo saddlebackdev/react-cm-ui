@@ -42,7 +42,7 @@ describe('<PersonPanel />', () => {
         expect(wrapper).toBeDefined();
     });
 
-    it('should render with the root classes', () => {
+    it('Should render with the root classes', () => {
         const wrapper = mount(
             <MockedTheme>
                 <PersonPanel

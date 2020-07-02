@@ -11,25 +11,41 @@ import React from 'react';
 import TelephoneLink from './telephoneLink';
 import EmailLink from './emailLink';
 import makeStyles from '../styles/makeStyles';
+import { PERSON_CONTACT_INFO_CLASSES } from '../global/constants';
+
+const preferredMethodEnums = [
+    'email',
+    'mail',
+    'none',
+    'phone',
+    'text-message',
+    '',
+    null,
+];
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to PersonContactInfo.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     email: PropTypes.string,
     emergencyContactEmail: PropTypes.string,
     emergencyContactPhone: PropTypes.string,
-    emergencyContactPreferredMethod: PropTypes.string,
+    emergencyContactPreferredMethod: PropTypes.oneOf(preferredMethodEnums),
     emergencyContactRelationshipName: PropTypes.string,
-    isCompact: PropTypes.bool,
+    /**
+     * The `id` of the PersonContactInfo.
+     */
+    id: PropTypes.string,
     isDoNotContact: PropTypes.bool,
     isDoNotEmail: PropTypes.bool,
     isDoNotMail: PropTypes.bool,
     isDoNotPhone: PropTypes.bool,
     isDoNotText: PropTypes.bool,
-    /**
-     * `isExpanded` prop is required by `makeStyles()` but not used directly by the component.
-     */
-    isExpanded: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     phone: PropTypes.string,
-    preferredMethod: PropTypes.string,
+    preferredMethod: PropTypes.oneOf(preferredMethodEnums),
     recordType: PropTypes.oneOf([
         'adult',
         'child',
@@ -38,18 +54,18 @@ const propTypes = {
 };
 
 const defaultProps = {
+    classes: null,
     emergencyContactEmail: null,
     emergencyContactPhone: null,
     emergencyContactPreferredMethod: null,
     emergencyContactRelationshipName: null,
     email: null,
-    isCompact: false,
+    id: null,
     isDoNotContact: false,
     isDoNotEmail: false,
     isDoNotMail: false,
     isDoNotPhone: false,
     isDoNotText: false,
-    isExpanded: false,
     phone: null,
     preferredMethod: null,
     recordType: 'adult',
@@ -59,58 +75,33 @@ const useStyles = makeStyles((theme) => {
     const {
         palette,
     } = theme;
-    const transitionDuration = '200ms';
-    const colorTransition = `color ${transitionDuration} ease-out`;
 
     return {
-        contactText: {
+        preferredContactMethod: {
+            color: palette.text.secondary,
+        },
+        preferredContactInfo: {
+            fontWeight: theme.typography.fontWeightBold,
+            '& .ui.a': {
+                color: palette.text.link,
+            },
+        },
+        root: {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             maxWidth: '250px !important',
         },
-        preferredContactMethod: {
-            color: (props) => (
-                props.isExpanded ?
-                    palette.text.contrastText :
-                    palette.text.secondary
-            ),
-            transitionDelay: (props) => (
-                props.isExpanded ?
-                    '100ms' :
-                    null
-            ),
-            '&$compact': {
-                display: 'none',
-            },
-        },
-        preferredContactInfo: {
-            fontWeight: theme.typography.fontWeightBold,
-            '& .ui.a': {
-                color: (props) => (
-                    props.isExpanded ?
-                        palette.text.contrastText :
-                        palette.text.link
-                ),
-                transition: colorTransition,
-                transitionDelay: (props) => (
-                    props.isExpanded ?
-                        '50ms' :
-                        null
-                ),
-            },
-        },
-        compact: {},
     };
 });
 
-function PersonPanelSummaryContactText(props) {
+function PersonContactInfo(props) {
     const {
         emergencyContactEmail,
         emergencyContactPhone,
         emergencyContactPreferredMethod,
         emergencyContactRelationshipName,
-        isCompact,
+        id,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
@@ -185,7 +176,7 @@ function PersonPanelSummaryContactText(props) {
             case 'email':
                 if (isChild && emergencyContactEmail && emergencyContactRelationshipName) {
                     contactMethodText = `${emergencyContactRelationshipName}'s Email`;
-                } else {
+                } else if (!isChild) {
                     contactMethodText = 'Prefers Email';
                 }
 
@@ -197,7 +188,7 @@ function PersonPanelSummaryContactText(props) {
             case 'phone':
                 if (isChild && emergencyContactPhone && emergencyContactRelationshipName) {
                     contactMethodText = `${emergencyContactRelationshipName}'s Phone`;
-                } else {
+                } else if (!isChild) {
                     contactMethodText = 'Prefers Phone';
                 }
 
@@ -216,7 +207,7 @@ function PersonPanelSummaryContactText(props) {
 
                 if (isChild && emergencyContactPhone && emergencyContactRelationshipName) {
                     contactMethodText = `${emergencyContactRelationshipName}'s Text`;
-                } else {
+                } else if (!isChild) {
                     contactMethodText = 'Prefers Text';
                 }
 
@@ -240,7 +231,7 @@ function PersonPanelSummaryContactText(props) {
             (isDoNotEmail || isDoNotMail || isDoNotPhone || isDoNotText)
         ) {
             if (contactMethodText) {
-                contactMethodText += ', DNC via';
+                contactMethodText += ', DNC via ';
             } else {
                 contactMethodText = 'DNC via ';
             }
@@ -265,41 +256,39 @@ function PersonPanelSummaryContactText(props) {
         }
     }
 
-    const preferredContactMethodClasses = ClassNames(classes.preferredContactMethod, {
-        [classes.compact]: isCompact,
-    });
-
-    if (contactMethodText || preferredMethod !== 'none') {
-        return (
-            <div
-                className={classes.contactText}
-            >
-                {contactMethodText && (
-                    <Typography
-                        className={preferredContactMethodClasses}
-                        component="h5"
-                        variant="h5"
-                    >
-                        {`(${contactMethodText})`}
-                    </Typography>
-                )}
-
-                {preferredMethod !== 'none' && preferredContactInfoText && (
-                    <Typography
-                        className={classes.preferredContactInfo}
-                        variant="body2"
-                    >
-                        {preferredContactInfoText}
-                    </Typography>
-                )}
-            </div>
-        );
+    if (!contactMethodText) {
+        return null;
     }
 
-    return null;
+    return (
+        <div
+            className={ClassNames(
+                PERSON_CONTACT_INFO_CLASSES,
+                classes.root,
+            )}
+            id={id}
+        >
+            <Typography
+                className={classes.preferredContactMethod}
+                component="h5"
+                variant="h5"
+            >
+                {`(${contactMethodText})`}
+            </Typography>
+
+            {preferredContactInfoText && (
+                <Typography
+                    className={classes.preferredContactInfo}
+                    variant="body2"
+                >
+                    {preferredContactInfoText}
+                </Typography>
+            )}
+        </div>
+    );
 }
 
-PersonPanelSummaryContactText.propTypes = propTypes;
-PersonPanelSummaryContactText.defaultProps = defaultProps;
+PersonContactInfo.propTypes = propTypes;
+PersonContactInfo.defaultProps = defaultProps;
 
-export default PersonPanelSummaryContactText;
+export default PersonContactInfo;

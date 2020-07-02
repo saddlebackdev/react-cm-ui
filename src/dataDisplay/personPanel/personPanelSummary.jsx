@@ -254,7 +254,7 @@ const useStyles = makeStyles((theme) => {
                     borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                     width: '100%',
                 },
-                [`& a.${UI_CLASS_NAME}`]: {
+                [`& a.${UI_CLASS_NAME}, h5`]: {
                     color: palette.text.contrastText,
                 },
                 '&$isAdult': {
