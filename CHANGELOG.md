@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.1 - 07/02/2020
+
+#### Feature
+- [PR #174](https://github.com/saddlebackdev/react-cm-ui/pull/174) / Merge Commit ee4630fd1debc82452102239e799d192e8532ff3
+    - Fixed **Checkbox** bug.
+
 ## 9.13.0 - 06/26/2020
 
 #### Feature
