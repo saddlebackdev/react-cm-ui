@@ -1,23 +1,25 @@
 import {
     isFunction,
 } from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Button from '../../inputs/button';
 import Prompt from '../../inputs/prompt';
 import makeStyles from '../../styles/makeStyles';
+import { BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON } from '../../global/constants';
 
 const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
-    onKeyDownClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
     onPromptCancelClick: PropTypes.func,
     onPromptConfirmClick: PropTypes.func,
     outlined: PropTypes.bool,
     prompt: PropTypes.bool,
-    promptId: PropTypes.bool,
+    promptId: PropTypes.string,
     title: PropTypes.string,
 };
 
@@ -25,27 +27,28 @@ const defaultProps = {
     className: null,
     id: null,
     onClick: null,
-    onKeyDownClick: null,
+    onKeyDown: null,
     onPromptCancelClick: null,
     onPromptConfirmClick: null,
     outlined: false,
-    prompt: null,
+    prompt: false,
     promptId: null,
 };
 
 const useStyles = makeStyles({
+    button: {},
     prompt: {
-        marginRight: '11px',
+        marginRight: 11,
     },
 });
 
-function PersonPanelDetails(props) {
+function PersonPanelDetailsActionButton(props) {
     const {
         className,
         id,
         label,
         onClick: onClickProp,
-        onKeyDownClick: onKeyDownClickProp,
+        onKeyDown: onKeyDownProp,
         onNoClick: onNoClickProp,
         onYesClick: onYesClickProp,
         outlined,
@@ -63,8 +66,8 @@ function PersonPanelDetails(props) {
     };
 
     const onKeyDownClick = (event) => {
-        if (isFunction(onKeyDownClickProp)) {
-            onKeyDownClickProp(event);
+        if (isFunction(onKeyDownProp)) {
+            onKeyDownProp(event);
         }
     };
 
@@ -90,11 +93,15 @@ function PersonPanelDetails(props) {
 
     const buttonJSX = (
         <Button
-            className={className}
+            className={ClassNames(
+                BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON,
+                classes.button,
+                className,
+            )}
             id={id}
             outlined={outlined}
             onClick={onClick}
-            onKeyDownClick={onKeyDownClick}
+            onKeyDown={onKeyDownClick}
             title={title}
         >
             {label}
@@ -104,7 +111,10 @@ function PersonPanelDetails(props) {
     if (prompt) {
         return (
             <Prompt
-                className={classes.prompt}
+                className={ClassNames(
+                    classes.prompt,
+                    className,
+                )}
                 id={promptId}
                 inline
                 inlineMessageColor="success"
@@ -121,7 +131,7 @@ function PersonPanelDetails(props) {
     return buttonJSX;
 }
 
-PersonPanelDetails.propTypes = propTypes;
-PersonPanelDetails.defaultProps = defaultProps;
+PersonPanelDetailsActionButton.propTypes = propTypes;
+PersonPanelDetailsActionButton.defaultProps = defaultProps;
 
-export default PersonPanelDetails;
+export default PersonPanelDetailsActionButton;

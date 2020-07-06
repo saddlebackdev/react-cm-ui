@@ -130,11 +130,11 @@ const propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
         onClick: PropTypes.func,
-        onKeyDownClick: PropTypes.func,
+        onKeyDown: PropTypes.func,
         onPromptCancelClick: PropTypes.func,
         onPromptConfirmClick: PropTypes.func,
         prompt: PropTypes.bool,
-        promptId: PropTypes.bool,
+        promptId: PropTypes.string,
     }),
     /**
      * Return other DataGroups within the PersonPanelDetails.
@@ -147,11 +147,11 @@ const propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
         onClick: PropTypes.func,
-        onKeyDownClick: PropTypes.func,
+        onKeyDown: PropTypes.func,
         onPromptCancelClick: PropTypes.func,
         onPromptConfirmClick: PropTypes.func,
         prompt: PropTypes.bool,
-        promptId: PropTypes.bool,
+        promptId: PropTypes.string,
     }),
 };
 
