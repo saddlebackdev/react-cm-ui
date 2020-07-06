@@ -59,7 +59,6 @@ const propTypes = {
         birthdate: PropTypes.number,
         campus: PropTypes.string,
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
-        churchEntityName: PropTypes.string,
         commonlyAttendedService: PropTypes.arrayOf(PropTypes.shape({})),
         congregationDate: PropTypes.oneOfType([
             MomentPropTypes.momentString,
@@ -112,13 +111,25 @@ const propTypes = {
         isInMinistry: PropTypes.bool,
         isInSmallGroup: PropTypes.bool,
         phones: PropTypes.arrayOf(PropTypes.shape({
-            type: PropTypes.oneOf(['cell', 'home', 'work']),
+            type: PropTypes.oneOf([
+                1,
+                2,
+                3,
+                'cell',
+                'home',
+                'work',
+            ]),
             isPrimary: PropTypes.bool,
             value: PropTypes.string,
         })),
         preferredService: PropTypes.string,
         recordType: RECORD_TYPE_PROP_TYPE,
     }),
+    /**
+     * The `id` of the PersonPanelDetails.
+     */
+    id: PropTypes.string,
+    /**
     /**
      * If `true`, expand PersonPanelDetails, otherwise collapse it.
      */
@@ -136,10 +147,6 @@ const propTypes = {
         prompt: PropTypes.bool,
         promptId: PropTypes.string,
     }),
-    /**
-     * Return other DataGroups within the PersonPanelDetails.
-     */
-    otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
     /**
      * Button `props` to setup the View Record button.
      */
@@ -160,9 +167,9 @@ const defaultProps = {
     className: null,
     classes: null,
     data: {},
+    id: null,
     isExpanded: false,
     selectButtonProps: {},
-    otherDataGroups: [],
     viewRecordButtonProps: {},
 };
 
@@ -201,11 +208,11 @@ function setAddressDataGroup({
     return [];
 }
 
-function setEmailDataGroup({
+const setEmailDataGroup = ({
     emails,
     isChild,
     isDoNotContact,
-}) {
+}) => {
     if (!isEmpty(emails) && !isDoNotContact && !isChild) {
         const emailRows = map(emails, (email) => ({
             accessor: () => (
@@ -227,21 +234,24 @@ function setEmailDataGroup({
     }
 
     return [];
-}
+};
 
 function getPhoneFieldName(type, isPrimary) {
     let fieldName;
 
     switch (type) {
         case 'cell':
+        case 3:
             fieldName = 'Cell';
 
             break;
         case 'home':
+        case 1:
             fieldName = 'Home';
 
             break;
         case 'work':
+        case 2:
             fieldName = 'Work';
 
             break;
@@ -255,11 +265,11 @@ function getPhoneFieldName(type, isPrimary) {
     return fieldName;
 }
 
-function setPhoneDataGroup({
+const setPhoneDataGroup = ({
     isChild,
     isDoNotContact,
     phones,
-}) {
+}) => {
     if (!isEmpty(phones) && !isDoNotContact && !isChild) {
         const phoneRows = map(phones, (phone) => ({
             accessor: () => (
@@ -281,16 +291,16 @@ function setPhoneDataGroup({
     }
 
     return [];
-}
+};
 
-function setEmergencyContactDataGroup({
+const setEmergencyContactDataGroup = ({
     emergencyContactAddresses,
     emergencyContactEmails,
     emergencyContactName,
     emergencyContactPhones,
     emergencyContactRelation,
     emergencyContactPreferMethod,
-}) {
+}) => {
     let nameRow = [];
 
     if (emergencyContactName) {
@@ -432,9 +442,9 @@ function setEmergencyContactDataGroup({
     }
 
     return [];
-}
+};
 
-function setPersonalDataGroup({
+const setPersonalDataGroup = ({
     allergies,
     birthdate,
     campus,
@@ -445,7 +455,7 @@ function setPersonalDataGroup({
     isChild,
     isStudent,
     preferredService,
-}) {
+}) => {
     let birthdayRow = [];
 
     if (birthdate) {
@@ -575,7 +585,7 @@ function setPersonalDataGroup({
     }
 
     return [];
-}
+};
 
 const useStyles = makeStyles((theme) => {
     const {
@@ -624,8 +634,8 @@ function PersonPanelDetails(props) {
         children,
         className,
         data,
+        id,
         isExpanded,
-        otherDataGroups,
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
@@ -712,16 +722,13 @@ function PersonPanelDetails(props) {
             emergencyContactRelation,
         });
 
-        const newDataGroupsColumns = [
+        setDataGroupsColumns([
             ...personalDataGroup,
             ...phoneDataGroup,
             ...emailDataGroup,
             ...addressDataGroup,
             ...emergencyContactDataGroup,
-            ...otherDataGroups,
-        ];
-
-        setDataGroupsColumns(newDataGroupsColumns);
+        ]);
     }, [
         addresses,
         allergies,
@@ -741,7 +748,6 @@ function PersonPanelDetails(props) {
         isChild,
         isDoNotContact,
         isStudent,
-        otherDataGroups,
         phones,
         preferredService,
     ]);
@@ -756,10 +762,14 @@ function PersonPanelDetails(props) {
             [classes.isExpanded]: isExpanded,
         },
     );
+
     const shouldDataGroupsRender = !isEmpty(data) && !isEmpty(dataGroupsColumns);
 
     return (
-        <div className={rootClasses}>
+        <div
+            className={rootClasses}
+            id={id}
+        >
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
                     <PersonCoreMilestones

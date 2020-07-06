@@ -1,6 +1,6 @@
 /**
  * To run this test from the church-management/client folder, execute the following command:
- * npx jest ./src/dataDisplay/personPanel/__test__/personPanel.test.js
+ * npx jest ./src/dataDisplay/personPanel/__test__/personPanelSummary.test.js
  */
 import { mount, shallow } from 'enzyme';
 import React from 'react';

@@ -1,6 +1,6 @@
 /**
  * To run this test from the church-management/client folder, execute the following command:
- * npx jest ./src/dataDisplay/personPanel/__test__/personPanel.test.js
+ * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetailsActionButton.test.js
  */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
@@ -8,7 +8,7 @@ import PersonPanelDetailsActionButton from '../personPanelDetailsActionButton';
 import MockedTheme from '../../../testUtils/mockedTheme';
 import { ENTER_KEY_CODE } from '../../../global/constants';
 
-describe('<PersonPanel />', () => {
+describe('<personPanelDetailsActionButton />', () => {
     const props = {
         className: 'block_name--element_name-modifier',
         id: 'block_name--element_name-modifier',

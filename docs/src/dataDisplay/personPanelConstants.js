@@ -36,9 +36,6 @@ export const PAYLOAD_PERSON = [
         ],
         allergies: null,
         birthDate: 854496000,
-        churchEntities: [],
-        churchEntityId: 2,
-        churchEntityKnown: true,
         churchEntityName: 'Los Angeles',
         contactPreferences: {
             doNotContact: false,
@@ -161,7 +158,6 @@ export const PAYLOAD_PERSON = [
         ],
         allergies: null,
         birthDate: 854496000,
-        churchEntities: [],
         churchEntityId: 2,
         churchEntityKnown: true,
         churchEntityName: 'Lake Forest',
@@ -334,7 +330,6 @@ export const PAYLOAD_PERSON = [
         allergies: null,
         birthDate: 1133395200,
         churchEntities: [],
-        churchEntityId: 2,
         churchEntityKnown: true,
         churchEntityName: 'Los Angeles',
         contactPreferences: {
