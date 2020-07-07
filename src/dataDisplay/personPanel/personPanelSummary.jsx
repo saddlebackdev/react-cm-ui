@@ -1,10 +1,4 @@
 import {
-    Grid,
-    Image,
-    lowerCase,
-    Typography,
-} from 'react-cm-ui';
-import {
     find,
     isEmpty,
     isNil,
@@ -22,8 +16,11 @@ import {
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
 import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
-import PersonContactInfo from '../personContactInfo';
+import Grid from '../../organisms/grid';
+import Image from '../image';
 import makeStyles from '../../styles/makeStyles';
+import PersonContactInfo from '../personContactInfo';
+import Typography from '../typography';
 
 const propTypes = {
     /**
