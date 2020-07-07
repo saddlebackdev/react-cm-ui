@@ -100,7 +100,7 @@ export const PAYLOAD_PERSON = [
         hasSignedMinistryCovenant: false,
         hasSignedMissionCovenant: false,
         hasTakenClass101: true,
-        hasTakenClass201: false,
+        hasTakenClass201: true,
         hasTakenClass301: false,
         hasTakenClass401: false,
         id: 204534,
