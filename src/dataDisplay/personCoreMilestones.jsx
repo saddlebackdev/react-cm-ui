@@ -114,16 +114,14 @@ const useStyles = makeStyles((theme) => {
         },
     } = theme;
     const columnHorizontalPadding = 5.5;
-    const hasAttendedStyles = {
+    const hasAttendedStyles = (boxShadowColor) => ({
         backgroundColor: 'transparent',
-        boxShadow: `inset 0 0 0 2px ${palette.border.contrastPrimary}`,
-        opacity: 1,
-    };
-    const hasSignedStyles = {
-        backgroundColor: palette.background.primary,
+        boxShadow: `inset 0 0 0 2px ${boxShadowColor}`,
+    });
+    const hasSignedStyles = (backgroundColor) => ({
+        backgroundColor,
         boxShadow: 'none',
-        opacity: 1,
-    };
+    });
 
     /**
      * This is the base icon size for the C.L.A.S.S. icon (which isn't an SVG), so that the
@@ -134,23 +132,6 @@ const useStyles = makeStyles((theme) => {
     return {
         root: {
             backgroundColor: palette.background.primary,
-            '&$isAdult': {
-                '&$genderFemale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderMale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderUndefined .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
-                },
-            },
-            '&$isChild .icon-use-path': {
-                fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
-            },
-            '&$isStudent .icon-use-path': {
-                fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
-            },
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
@@ -193,102 +174,187 @@ const useStyles = makeStyles((theme) => {
         hasSignedMissionCovenant: {},
         icon: {
             display: 'flex !important',
+            '&.ui.icon .icon-use-path': {
+                fill: palette.static.main,
+            },
         },
         inverse: {},
         isAdult: {},
         isChild: {},
         isStudent: {},
         iconBase: {
-            backgroundColor: palette.background.primary,
+            backgroundColor: palette.static.main,
             height: '10.42px',
-            opacity: 0.25,
             position: 'absolute',
             width: '11.07px',
-            '&$isAdult': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderMale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderUndefined': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
-                },
-            },
-            '&$isChild': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
-                },
-            },
-            '&$isStudent': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
-                },
-            },
-            '&$hasSignedMembershipAgreement': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass101': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMaturityCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass201': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMinistryCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass301': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMissionCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass401': {
-                ...hasAttendedStyles,
-            },
         },
         iconBaseClass101: {
             borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
-            '&$hasTakenClass101': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMembershipAgreement': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass101': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass201: {
             borderRadius: `${borderRadius.main}px 0 0`,
             top: 0,
-            '&$hasTakenClass201': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMaturityCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass201': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass301: {
             borderRadius: `0 0 0 ${borderRadius.main}px`,
             bottom: 0,
-            '&$hasTakenClass301': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMinistryCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass301': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass401: {
             borderRadius: `0 0 ${borderRadius.main}px`,
             bottom: 0,
             right: 0,
-            '&$hasTakenClass401': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMissionCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass401': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconClassContainer: {
@@ -311,33 +377,108 @@ const useStyles = makeStyles((theme) => {
             width: basesClassIconSize,
         },
         iconAcceptedChrist: {
-            opacity: 0.25,
             '&$hasAcceptedChrist': {
-                opacity: 1,
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
             },
         },
         iconBaptised: {
-            opacity: 0.25,
             '&$isBaptised': {
-                opacity: 1,
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
             },
         },
         iconInMinistry: {
-            opacity: 0.25,
             '&$isInMinistry': {
-                opacity: 1,
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
             },
         },
         iconSmallGroup: {
-            opacity: 0.25,
             '&$isInSmallGroup': {
-                opacity: 1,
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
             },
         },
         iconInTrips: {
-            opacity: 0.25,
             '&$isActiveInTrips': {
-                opacity: 1,
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
             },
         },
         hasAcceptedChrist: {},
@@ -583,7 +724,13 @@ export function PersonCoreMilestones(props) {
                                     classes.iconAcceptedChrist,
                                     classes.icon,
                                     {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
                                         [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
                                     },
                                 )}
                                 compact
@@ -607,7 +754,13 @@ export function PersonCoreMilestones(props) {
                                     classes.iconBaptised,
                                     classes.icon,
                                     {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
                                         [classes.isBaptised]: isBaptised,
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
                                     },
                                 )}
                                 compact
@@ -681,7 +834,13 @@ export function PersonCoreMilestones(props) {
                                     classes.iconSmallGroup,
                                     classes.icon,
                                     {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
                                         [classes.isInSmallGroup]: isInSmallGroup,
+                                        [classes.isStudent]: recordType === 'student',
                                     },
                                 )}
                                 compact
@@ -705,7 +864,13 @@ export function PersonCoreMilestones(props) {
                                     classes.iconInMinistry,
                                     classes.icon,
                                     {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
                                         [classes.isInMinistry]: isInMinistry,
+                                        [classes.isStudent]: recordType === 'student',
                                     },
                                 )}
                                 compact
@@ -729,7 +894,13 @@ export function PersonCoreMilestones(props) {
                                     classes.iconInTrips,
                                     classes.icon,
                                     {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
                                         [classes.isActiveInTrips]: isActiveInTrips,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
                                     },
                                 )}
                                 compact
