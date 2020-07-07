@@ -181,6 +181,20 @@ describe('<PersonPanelDetails />', () => {
         expect(root.hasClass(props.className)).toEqual(true);
     });
 
+    it('Should have expected `id` prop', () => {
+        const wrapper = mount(
+            <MockedTheme>
+                <PersonPanelDetails
+                    {...props}
+                />
+            </MockedTheme>,
+        );
+
+        const root = wrapper.find('div').first();
+
+        expect(root.prop('id')).toEqual(props.id);
+    });
+
     it('Should render with children', () => {
         const wrapper = shallow(
             <MockedTheme>

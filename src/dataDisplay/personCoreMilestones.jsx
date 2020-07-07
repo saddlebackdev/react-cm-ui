@@ -12,10 +12,6 @@ import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
-import makeStyles from '../styles/makeStyles';
-import useTheme from '../styles/useTheme';
-import useMediaQuery from '../utils/useMediaQuery';
-import dateUtils from '../utils/dateUtils';
 import {
     GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
@@ -23,6 +19,14 @@ import {
     RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanel/personPanelConstants';
+import {
+    BEM_PERSON_CORE_MILESTONES,
+    PERSON_CORE_MILESTONES_CLASSES,
+} from '../global/constants';
+import makeStyles from '../styles/makeStyles';
+import useTheme from '../styles/useTheme';
+import useMediaQuery from '../utils/useMediaQuery';
+import dateUtils from '../utils/dateUtils';
 
 const propTypes = {
     className: PropTypes.string,
@@ -45,6 +49,7 @@ const propTypes = {
     hasTakenClass301: PropTypes.bool,
     hasTakenClass401: PropTypes.bool,
     iconSize: PropTypes.number,
+    id: PropTypes.string,
     inverse: PropTypes.bool,
     isActiveInTrips: PropTypes.bool,
     isBaptised: PropTypes.bool,
@@ -76,6 +81,7 @@ const defaultProps = {
     hasTakenClass301: false,
     hasTakenClass401: false,
     iconSize: 16,
+    id: null,
     inverse: false,
     isActiveInTrips: false,
     isBaptised: false,
@@ -126,7 +132,7 @@ const useStyles = makeStyles((theme) => {
     const basesClassIconSize = 24;
 
     return {
-        container: {
+        root: {
             backgroundColor: palette.background.primary,
             '&$isAdult': {
                 '&$genderFemale .icon-use-path': {
@@ -316,7 +322,7 @@ const useStyles = makeStyles((theme) => {
                 opacity: 1,
             },
         },
-        inMinistryColumn: {
+        iconInMinistry: {
             opacity: 0.25,
             '&$isInMinistry': {
                 opacity: 1,
@@ -328,7 +334,7 @@ const useStyles = makeStyles((theme) => {
                 opacity: 1,
             },
         },
-        inTripsColumns: {
+        iconInTrips: {
             opacity: 0.25,
             '&$isActiveInTrips': {
                 opacity: 1,
@@ -358,6 +364,7 @@ export function PersonCoreMilestones(props) {
         hasSignedMinistryCovenant,
         hasSignedMissionCovenant,
         iconSize: iconSizeProp,
+        id,
         isBaptised,
         isInMinistry,
         isInSmallGroup,
@@ -377,12 +384,11 @@ export function PersonCoreMilestones(props) {
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
     const classes = useStyles({ ...props, isMobile });
     const isAdult = recordType === 'adult';
-    const blockClassName = 'person_core_milestones';
     const isFemale = includes(['f', 'F'], gender);
     const isMale = includes(['m', 'M'], gender);
-    const containerClasses = ClassNames(
-        classes.container,
-        blockClassName,
+    const rootClasses = ClassNames(
+        PERSON_CORE_MILESTONES_CLASSES,
+        classes.root,
         className,
         {
             [classes.genderFemale]: isFemale,
@@ -557,7 +563,8 @@ export function PersonCoreMilestones(props) {
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
+            id={id}
         >
             <Grid
                 className={classes.grid}
@@ -566,7 +573,10 @@ export function PersonCoreMilestones(props) {
                 <Grid.Row>
                     {!removeAcceptedChristColumn && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
+                                classes.column,
+                            )}
                         >
                             <Icon
                                 className={ClassNames(
@@ -587,7 +597,10 @@ export function PersonCoreMilestones(props) {
 
                     {!removeBaptismColumn && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
+                                classes.column,
+                            )}
                         >
                             <Icon
                                 className={ClassNames(
@@ -608,7 +621,10 @@ export function PersonCoreMilestones(props) {
 
                     {!removeClassColumn && isAdult && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
+                                classes.column,
+                            )}
                         >
                             <div
                                 className={classes.iconClassContainer}
@@ -617,22 +633,34 @@ export function PersonCoreMilestones(props) {
                                     className={classes.iconClassInnerContainer}
                                 >
                                     <div
-                                        className={iconBaseClass101Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
+                                            iconBaseClass101Classes,
+                                        )}
                                         title={class101Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass201Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
+                                            iconBaseClass201Classes,
+                                        )}
                                         title={class201Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass301Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
+                                            iconBaseClass301Classes,
+                                        )}
                                         title={class301Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass401Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
+                                            iconBaseClass401Classes,
+                                        )}
                                         title={class401Title}
                                     />
 
@@ -643,7 +671,10 @@ export function PersonCoreMilestones(props) {
 
                     {!removeSmallGroupColumn && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
+                                classes.column,
+                            )}
                         >
                             <Icon
                                 className={ClassNames(
@@ -664,11 +695,14 @@ export function PersonCoreMilestones(props) {
 
                     {!removeInMinistryColumn && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
+                                classes.column,
+                            )}
                         >
                             <Icon
                                 className={ClassNames(
-                                    classes.inMinistryColumn,
+                                    classes.iconInMinistry,
                                     classes.icon,
                                     {
                                         [classes.isInMinistry]: isInMinistry,
@@ -685,11 +719,14 @@ export function PersonCoreMilestones(props) {
 
                     {!removeInTripsColumn && (
                         <Grid.Column
-                            className={classes.column}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--in_trips_column`,
+                                classes.column,
+                            )}
                         >
                             <Icon
                                 className={ClassNames(
-                                    classes.inTripsColumns,
+                                    classes.iconInTrips,
                                     classes.icon,
                                     {
                                         [classes.isActiveInTrips]: isActiveInTrips,
@@ -706,7 +743,10 @@ export function PersonCoreMilestones(props) {
 
                     {firstContactDate && !removeFirstContactDateColumn && isAdult && (
                         <Grid.Column
-                            className={classes.firstContactDateColumn}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
+                                classes.firstContactDateColumn,
+                            )}
                         >
                             <div
                                 className={classes.dateContainers}
@@ -719,7 +759,7 @@ export function PersonCoreMilestones(props) {
                                 </Typography>
 
                                 <span
-                                    className={`${blockClassName}--at_saddleback_date font-size-xsmall font-weight-bold`}
+                                    className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
                                 >
                                     <TimeFromNow
                                         date={firstContactDate}
@@ -734,7 +774,10 @@ export function PersonCoreMilestones(props) {
 
                     {congregationDate && !removeCongregationDateColumn && isAdult && (
                         <Grid.Column
-                            className={classes.congregationDateColummn}
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
+                                classes.congregationDateColummn,
+                            )}
                         >
                             <div
                                 className={classes.dateContainers}
@@ -747,7 +790,7 @@ export function PersonCoreMilestones(props) {
                                 </Typography>
 
                                 <span
-                                    className={`${blockClassName}--member_for_date font-size-xsmall font-weight-bold`}
+                                    className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
                                 >
                                     <TimeFromNow
                                         date={congregationDate}
