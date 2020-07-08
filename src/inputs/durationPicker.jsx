@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Input from './input';
@@ -29,19 +30,7 @@ const propTypes = {
     showSeconds: PropTypes.bool,
     showYears: PropTypes.bool,
     style: PropTypes.shape({}),
-    value: (props, propName, componentName) => {
-        // eslint-disable-next-line react/destructuring-assignment
-        const theProp = props[propName];
-
-        if (!_.isNil(theProp) && !moment.isDuration(theProp)) {
-            return new Error(
-                `Invalid prop \`${propName}\` supplied to` +
-                ` \`${componentName}\`. Validation failed.`,
-            );
-        }
-
-        return null;
-    }, // TODO: There is a `react-moment-proptypes` package we can consider [ https://www.npmjs.com/package/react-moment-proptypes ]
+    value: MomentPropTypes.momentDurationObj,
 };
 
 const defaultProps = {
