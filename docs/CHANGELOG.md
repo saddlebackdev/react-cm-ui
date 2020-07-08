@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.0 - 07/08/2020
+
+#### Feature
+- [PR #173](https://github.com/saddlebackdev/react-cm-ui/pull/173) / Merge Commit 66ff8c3adb9f6049e1286278c54737c07ea898c7
+    - Moved `./src/global/images` to `./src/images`.
+    - Added a favicon SVG.
+
+#### Bug Fix
+- [PR #173](https://github.com/saddlebackdev/react-cm-ui/pull/173) / Merge Commit 66ff8c3adb9f6049e1286278c54737c07ea898c7
+    - Fixed **PersonPanel** component imports and updated its documentation.
+
 ## 0.7.0 - 06/26/2020
 
 #### Feature
