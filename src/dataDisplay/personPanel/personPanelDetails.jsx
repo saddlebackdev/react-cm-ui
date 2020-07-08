@@ -6,6 +6,7 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import {
@@ -13,16 +14,16 @@ import {
     GENDER_PROP_TYPE,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
-import { UI_CLASS_NAME } from '../global/constants';
-import Address from './address';
-import Collapse from '../utils/collapse';
-import DataGroups from './dataGroups';
-import EmailLink from './emailLink';
-import makeStyles from '../styles/makeStyles';
-import PersonCoreMilestones from './personCoreMilestones';
+import { UI_CLASS_NAME } from '../../global/constants';
+import Address from '../address';
+import Collapse from '../../utils/collapse';
+import DataGroups from '../dataGroups';
+import EmailLink from '../emailLink';
+import makeStyles from '../../styles/makeStyles';
+import PersonCoreMilestones from '../personCoreMilestones';
 import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
-import TelephoneLink from './telephoneLink';
-import Typography from './typography';
+import TelephoneLink from '../telephoneLink';
+import Typography from '../typography';
 
 const propTypes = {
     /**
@@ -58,8 +59,11 @@ const propTypes = {
         birthdate: PropTypes.number,
         campus: PropTypes.string,
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
-        churchEntityName: PropTypes.string,
         commonlyAttendedService: PropTypes.arrayOf(PropTypes.shape({})),
+        congregationDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
         deceasedDate: PropTypes.number,
         emails: PropTypes.arrayOf(PropTypes.shape({
             isPrimary: PropTypes.bool,
@@ -86,17 +90,46 @@ const propTypes = {
             'text',
         ]),
         emergencyContactRelation: PropTypes.string,
+        firstContactDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.string,
+        hasAcceptedChrist: PropTypes.bool,
+        hasSignedMaturityCovenant: PropTypes.bool,
+        hasSignedMembershipAgreement: PropTypes.bool,
+        hasSignedMinistryCovenant: PropTypes.bool,
+        hasSignedMissionCovenant: PropTypes.bool,
+        hasTakenClass101: PropTypes.bool,
+        hasTakenClass201: PropTypes.bool,
+        hasTakenClass301: PropTypes.bool,
+        hasTakenClass401: PropTypes.bool,
+        isActiveInTrips: PropTypes.bool,
+        isBaptised: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
+        isInMinistry: PropTypes.bool,
+        isInSmallGroup: PropTypes.bool,
         phones: PropTypes.arrayOf(PropTypes.shape({
-            type: PropTypes.oneOf(['cell', 'home', 'work']),
+            type: PropTypes.oneOf([
+                1,
+                2,
+                3,
+                'cell',
+                'home',
+                'work',
+            ]),
             isPrimary: PropTypes.bool,
             value: PropTypes.string,
         })),
         preferredService: PropTypes.string,
         recordType: RECORD_TYPE_PROP_TYPE,
     }),
+    /**
+     * The `id` of the PersonPanelDetails.
+     */
+    id: PropTypes.string,
+    /**
     /**
      * If `true`, expand PersonPanelDetails, otherwise collapse it.
      */
@@ -108,16 +141,12 @@ const propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
         onClick: PropTypes.func,
-        onKeyDownClick: PropTypes.func,
+        onKeyDown: PropTypes.func,
         onPromptCancelClick: PropTypes.func,
         onPromptConfirmClick: PropTypes.func,
         prompt: PropTypes.bool,
-        promptId: PropTypes.bool,
+        promptId: PropTypes.string,
     }),
-    /**
-     * Return other DataGroups within the PersonPanelDetails.
-     */
-    otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
     /**
      * Button `props` to setup the View Record button.
      */
@@ -125,11 +154,11 @@ const propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
         onClick: PropTypes.func,
-        onKeyDownClick: PropTypes.func,
+        onKeyDown: PropTypes.func,
         onPromptCancelClick: PropTypes.func,
         onPromptConfirmClick: PropTypes.func,
         prompt: PropTypes.bool,
-        promptId: PropTypes.bool,
+        promptId: PropTypes.string,
     }),
 };
 
@@ -138,9 +167,9 @@ const defaultProps = {
     className: null,
     classes: null,
     data: {},
+    id: null,
     isExpanded: false,
     selectButtonProps: {},
-    otherDataGroups: [],
     viewRecordButtonProps: {},
 };
 
@@ -179,11 +208,11 @@ function setAddressDataGroup({
     return [];
 }
 
-function setEmailDataGroup({
+const setEmailDataGroup = ({
     emails,
     isChild,
     isDoNotContact,
-}) {
+}) => {
     if (!isEmpty(emails) && !isDoNotContact && !isChild) {
         const emailRows = map(emails, (email) => ({
             accessor: () => (
@@ -205,21 +234,24 @@ function setEmailDataGroup({
     }
 
     return [];
-}
+};
 
 function getPhoneFieldName(type, isPrimary) {
     let fieldName;
 
     switch (type) {
         case 'cell':
+        case 3:
             fieldName = 'Cell';
 
             break;
         case 'home':
+        case 1:
             fieldName = 'Home';
 
             break;
         case 'work':
+        case 2:
             fieldName = 'Work';
 
             break;
@@ -233,11 +265,11 @@ function getPhoneFieldName(type, isPrimary) {
     return fieldName;
 }
 
-function setPhoneDataGroup({
+const setPhoneDataGroup = ({
     isChild,
     isDoNotContact,
     phones,
-}) {
+}) => {
     if (!isEmpty(phones) && !isDoNotContact && !isChild) {
         const phoneRows = map(phones, (phone) => ({
             accessor: () => (
@@ -259,16 +291,16 @@ function setPhoneDataGroup({
     }
 
     return [];
-}
+};
 
-function setEmergencyContactDataGroup({
+const setEmergencyContactDataGroup = ({
     emergencyContactAddresses,
     emergencyContactEmails,
     emergencyContactName,
     emergencyContactPhones,
     emergencyContactRelation,
     emergencyContactPreferMethod,
-}) {
+}) => {
     let nameRow = [];
 
     if (emergencyContactName) {
@@ -410,9 +442,9 @@ function setEmergencyContactDataGroup({
     }
 
     return [];
-}
+};
 
-function setPersonalDataGroup({
+const setPersonalDataGroup = ({
     allergies,
     birthdate,
     campus,
@@ -423,7 +455,7 @@ function setPersonalDataGroup({
     isChild,
     isStudent,
     preferredService,
-}) {
+}) => {
     let birthdayRow = [];
 
     if (birthdate) {
@@ -553,12 +585,14 @@ function setPersonalDataGroup({
     }
 
     return [];
-}
+};
 
 const useStyles = makeStyles((theme) => {
     const {
         palette,
-        shape,
+        shape: {
+            borderRadius,
+        },
     } = theme;
 
     return {
@@ -579,12 +613,13 @@ const useStyles = makeStyles((theme) => {
         },
         root: {
             backgroundColor: palette.background.primary,
-            borderRadius: `0 0 ${shape.borderRadius}px ${shape.borderRadius}px`,
+            borderRadius: `0 0 ${borderRadius.main}px ${borderRadius.main}px`,
             boxShadow: 'inset -1px -1px 0px 0px transparent, inset 1px 0px 0px 0px transparent',
             color: palette.text.primary,
             flexGrow: 1,
             padding: 0,
             transition: 'box-shadow 200ms ease-in-out',
+            width: '100%',
             '&$isExpanded': {
                 boxShadow: `inset -1px -1px 0px 0px ${palette.border.secondary}, inset 1px 0px 0px 0px ${palette.border.secondary}`,
             },
@@ -599,8 +634,8 @@ function PersonPanelDetails(props) {
         children,
         className,
         data,
+        id,
         isExpanded,
-        otherDataGroups,
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
@@ -612,6 +647,7 @@ function PersonPanelDetails(props) {
         campus,
         churchEntities,
         commonlyAttendedService,
+        congregationDate,
         deceasedDate,
         emails,
         emergencyContactAddresses,
@@ -620,9 +656,23 @@ function PersonPanelDetails(props) {
         emergencyContactPhones,
         emergencyContactPreferMethod,
         emergencyContactRelation,
+        firstContactDate,
         gender,
         gradeLevel,
+        hasAcceptedChrist,
+        hasSignedMaturityCovenant,
+        hasSignedMembershipAgreement,
+        hasSignedMinistryCovenant,
+        hasSignedMissionCovenant,
+        hasTakenClass101,
+        hasTakenClass201,
+        hasTakenClass301,
+        hasTakenClass401,
+        isActiveInTrips,
+        isBaptised,
         isDoNotContact,
+        isInMinistry,
+        isInSmallGroup,
         phones,
         preferredService,
         recordType,
@@ -672,16 +722,13 @@ function PersonPanelDetails(props) {
             emergencyContactRelation,
         });
 
-        const newDataGroupsColumns = [
+        setDataGroupsColumns([
             ...personalDataGroup,
             ...phoneDataGroup,
             ...emailDataGroup,
             ...addressDataGroup,
             ...emergencyContactDataGroup,
-            ...otherDataGroups,
-        ];
-
-        setDataGroupsColumns(newDataGroupsColumns);
+        ]);
     }, [
         addresses,
         allergies,
@@ -701,7 +748,6 @@ function PersonPanelDetails(props) {
         isChild,
         isDoNotContact,
         isStudent,
-        otherDataGroups,
         phones,
         preferredService,
     ]);
@@ -716,17 +762,35 @@ function PersonPanelDetails(props) {
             [classes.isExpanded]: isExpanded,
         },
     );
+
     const shouldDataGroupsRender = !isEmpty(data) && !isEmpty(dataGroupsColumns);
 
     return (
-        <div className={rootClasses}>
+        <div
+            className={rootClasses}
+            id={id}
+        >
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
                     <PersonCoreMilestones
                         className={classes.personCoreMilestones}
-                        iconSize={16}
-                        isIconTransparent
+                        congregationDate={congregationDate}
+                        firstContactDate={firstContactDate}
                         gender={gender}
+                        hasAcceptedChrist={hasAcceptedChrist}
+                        hasSignedMaturityCovenant={hasSignedMaturityCovenant}
+                        hasSignedMembershipAgreement={hasSignedMembershipAgreement}
+                        hasSignedMinistryCovenant={hasSignedMinistryCovenant}
+                        hasSignedMissionCovenant={hasSignedMissionCovenant}
+                        hasTakenClass101={hasTakenClass101}
+                        hasTakenClass201={hasTakenClass201}
+                        hasTakenClass301={hasTakenClass301}
+                        hasTakenClass401={hasTakenClass401}
+                        iconSize={16}
+                        isActiveInTrips={isActiveInTrips}
+                        isBaptised={isBaptised}
+                        isInMinistry={isInMinistry}
+                        isInSmallGroup={isInSmallGroup}
                         recordType={recordType}
                     />
 

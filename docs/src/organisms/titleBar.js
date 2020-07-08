@@ -82,32 +82,32 @@ export default class ViewsTitleBar extends React.Component {
                 type: 'node',
                 default: '',
                 description: 'A Title Bar\'s right side content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Title Bar\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'subTitle',
                 type: 'string',
                 default: '',
                 description: 'A sub title.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'title',
                 type: 'string',
                 default: '',
                 description: 'Shorthand for primary title.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -122,7 +122,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Card>
 
                     {/* Title Bar */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Title Bar
                         <Header.Subheader>
                             A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
@@ -130,13 +130,11 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                    <TitleBar title="The Best Title Bar" />
-                                </Card>
-                            );
-                        }}
+                        {(matches) => (
+                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                <TitleBar title="The Best Title Bar" />
+                            </Card>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -144,7 +142,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Sub Title */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Sub Title
                         <Header.Subheader>
                             Title Bar's can have a sub title.
@@ -152,13 +150,11 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                    <TitleBar subTitle="The Best Title Bar" title="An Even Better Title" />
-                                </Card>
-                            );
-                        }}
+                        {(matches) => (
+                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                <TitleBar subTitle="The Best Title Bar" title="An Even Better Title" />
+                            </Card>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -166,7 +162,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Children */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Children
                         <Header.Subheader>
                             Title Bar's can return it's children on the right side of the bar.
@@ -174,25 +170,23 @@ export default class ViewsTitleBar extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
-                                    <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
-                                        <DropdownButton
-                                            color="transparent"
-                                            iconSize={10}
-                                            iconType="caret-down"
-                                            label="Marty McFly"
-                                        >
-                                            <DropdownButton.Option label="Item 1" />
-                                            <DropdownButton.Option label="Item 2" />
-                                            <DropdownButton.Option label="Item 3" />
-                                            <DropdownButton.Option label="Item 4" />
-                                        </DropdownButton>
-                                    </TitleBar>
-                                </Card>
-                            );
-                        }}
+                        {(matches) => (
+                            <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
+                                <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
+                                    <DropdownButton
+                                        color="transparent"
+                                        iconSize={10}
+                                        iconType="caret-down"
+                                        label="Marty McFly"
+                                    >
+                                        <DropdownButton.Option label="Item 1" />
+                                        <DropdownButton.Option label="Item 2" />
+                                        <DropdownButton.Option label="Item 3" />
+                                        <DropdownButton.Option label="Item 4" />
+                                    </DropdownButton>
+                                </TitleBar>
+                            </Card>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

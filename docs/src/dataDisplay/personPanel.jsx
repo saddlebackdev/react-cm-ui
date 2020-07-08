@@ -12,9 +12,9 @@ import PersonPanelControlledAccordionExample from './personPanelControlledAccord
 import PersonPanelSimpleExample from './personPanelSimpleExample';
 import PersonPanelCustomColumnsExample from './personPanelCustomColumnsExample';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as personPanelDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanel';
-import { default as personPanelDetailsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanelDetails';
-import { default as personPanelSummaryDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanelSummary';
+import { default as personPanelDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanel/personPanel';
+import { default as personPanelDetailsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanel/personPanelDetails';
+import { default as personPanelSummaryDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personPanel/personPanelSummary';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsPersonPanel() {

@@ -1,10 +1,11 @@
-'use strict';
 
-import { Card, Header, SubNavigation, TitleBar } from 'react-cm-ui';
-import Highlighter from '../global/highlighter';
-import Main from '../global/main';
+import {
+    Card, Header, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 import MediaQuery from 'react-responsive';
 import React from 'react';
+import Highlighter from '../global/highlighter';
+import Main from '../global/main';
 import TableProps from '../global/tableProps';
 
 const subNavigationSample = `import React from 'react';
@@ -152,18 +153,16 @@ export default class CollectionsSubNavigation extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                    <SubNavigation id="sub-navigation">
-                                        <SubNavigation.Item label="Button 1" />
-                                        <SubNavigation.Item label="Button 2" />
-                                        <SubNavigation.Item label="Button 3" />
-                                        <SubNavigation.Item label="Button 4" />
-                                    </SubNavigation>
-                                </div>
-                            );
-                        }}
+                        {(matches) => (
+                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                <SubNavigation id="sub-navigation">
+                                    <SubNavigation.Item label="Button 1" />
+                                    <SubNavigation.Item label="Button 2" />
+                                    <SubNavigation.Item label="Button 3" />
+                                    <SubNavigation.Item label="Button 4" />
+                                </SubNavigation>
+                            </div>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -179,18 +178,16 @@ export default class CollectionsSubNavigation extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                    <SubNavigation selected={2}>
-                                        <SubNavigation.Item label="Button 1" />
-                                        <SubNavigation.Item label="Button 2" />
-                                        <SubNavigation.Item label="Default" />
-                                        <SubNavigation.Item label="Button 4" />
-                                    </SubNavigation>
-                                </div>
-                            );
-                        }}
+                        {(matches) => (
+                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                <SubNavigation selected={2}>
+                                    <SubNavigation.Item label="Button 1" />
+                                    <SubNavigation.Item label="Button 2" />
+                                    <SubNavigation.Item label="Default" />
+                                    <SubNavigation.Item label="Button 4" />
+                                </SubNavigation>
+                            </div>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -201,23 +198,25 @@ export default class CollectionsSubNavigation extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }} sub>
                         onClick Parent Handler
                         <Header.Subheader>
-                            A Sub Navigation can a have <code>onClick</code> event handler.
+                            A Sub Navigation can a have
+                            {' '}
+                            <code>onClick</code>
+                            {' '}
+                            event handler.
                         </Header.Subheader>
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                    <SubNavigation onClick={this._onParentClick.bind(this)}>
-                                        <SubNavigation.Item label="Button 1" />
-                                        <SubNavigation.Item label="Button 2" />
-                                        <SubNavigation.Item label="Button 3" />
-                                        <SubNavigation.Item label="Button 4" />
-                                    </SubNavigation>
-                                </div>
-                            );
-                        }}
+                        {(matches) => (
+                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                <SubNavigation onClick={this._onParentClick.bind(this)}>
+                                    <SubNavigation.Item label="Button 1" />
+                                    <SubNavigation.Item label="Button 2" />
+                                    <SubNavigation.Item label="Button 3" />
+                                    <SubNavigation.Item label="Button 4" />
+                                </SubNavigation>
+                            </div>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -233,18 +232,16 @@ export default class CollectionsSubNavigation extends React.Component {
                     </Header>
 
                     <MediaQuery maxWidth={767}>
-                        {matches => {
-                            return (
-                                <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
-                                    <SubNavigation>
-                                        <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
-                                        <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
-                                        <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
-                                        <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
-                                    </SubNavigation>
-                                </div>
-                            );
-                        }}
+                        {(matches) => (
+                            <div style={{ margin: matches ? '0 11px' : '0 22px' }}>
+                                <SubNavigation>
+                                    <SubNavigation.Item label="Button 1" onClick={this._onChildClick.bind(this)} />
+                                    <SubNavigation.Item label="Button 2" onClick={this._onChildClick.bind(this)} />
+                                    <SubNavigation.Item label="Button 3" onClick={this._onChildClick.bind(this)} />
+                                    <SubNavigation.Item label="Button 4" onClick={this._onChildClick.bind(this)} />
+                                </SubNavigation>
+                            </div>
+                        )}
                     </MediaQuery>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -260,6 +257,6 @@ export default class CollectionsSubNavigation extends React.Component {
     }
 
     _onParentClick(index) {
-        window.alert('Yay, index ' + index + ' was just clicked!');
+        window.alert(`Yay, index ${index} was just clicked!`);
     }
 }

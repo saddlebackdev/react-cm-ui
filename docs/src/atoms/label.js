@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Header, Label, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, Label, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -122,16 +123,14 @@ export default class OnClearClickSample extends React.Component {
 }`;
 
 export default class ElementsLabel extends React.Component {
-
     render() {
-
         const props = [
             {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
@@ -143,38 +142,38 @@ export default class ElementsLabel extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Color of the Label.',
-                allowedTypes: 'alert, highlight, primary, success, transparent, warning'
+                allowedTypes: 'alert, highlight, primary, success, transparent, warning',
             }, {
                 name: 'fluid',
                 type: 'bool',
                 default: '',
                 description: 'Label\'s can take on the size of its container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: 'false',
                 description: 'A Label can be formatted to appear on dark backgrounds better.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClick',
                 type: 'function',
                 default: '',
                 description: 'Called after the end-user\'s click.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onClearClick',
                 type: 'function',
                 default: '',
                 description: 'Called after the end-user\'s click.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Label\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -189,7 +188,7 @@ export default class ElementsLabel extends React.Component {
                     </Card>
 
                     {/* Label */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Label
                         <Header.Subheader>
                             A standard label that can be attached to something, giving information about it.
@@ -203,7 +202,7 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Color
                         <Header.Subheader>
                             Labels can have different colors.
@@ -222,34 +221,34 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Fluid
                         <Header.Subheader>
                             A Label's container can take on the size of its parent container.
                         </Header.Subheader>
                     </Header>
 
-                    <Label fluid={true}>A Fluid Label</Label>
+                    <Label fluid>A Fluid Label</Label>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {fluidSample}
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Inverse
                         <Header.Subheader>
                             Labels can have different colors.
                         </Header.Subheader>
                     </Header>
 
-                    <Block inverse={true} style={{ marginTop: '33px' }}>
-                        <Label color="alert" inverse={true}>Alert</Label>
-                        <Label color="highlight" inverse={true}>Highlight</Label>
-                        <Label color="success" inverse={true}>Success</Label>
-                        <Label color="primary" inverse={true}>Primary</Label>
-                        <Label color="transparent" inverse={true}>Transparent</Label>
-                        <Label color="warning" inverse={true}>Warning</Label>
+                    <Block inverse style={{ marginTop: '33px' }}>
+                        <Label color="alert" inverse>Alert</Label>
+                        <Label color="highlight" inverse>Highlight</Label>
+                        <Label color="success" inverse>Success</Label>
+                        <Label color="primary" inverse>Primary</Label>
+                        <Label color="transparent" inverse>Transparent</Label>
+                        <Label color="warning" inverse>Warning</Label>
                     </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -257,7 +256,7 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* onClick */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         onClick Handler
                         <Header.Subheader>
                             A Label can be have a onClick handler.
@@ -271,7 +270,7 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* onClearClick */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         onClearClick Handler
                         <Header.Subheader>
                             A Label can be removed using the onClearClick handler.
@@ -300,5 +299,4 @@ export default class ElementsLabel extends React.Component {
     _onClearClick() {
         console.log('Label removed.');
     }
-
 }

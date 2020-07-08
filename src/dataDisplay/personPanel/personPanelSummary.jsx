@@ -1,13 +1,9 @@
 import {
-    Grid,
-    Image,
-    Typography,
-} from 'react-cm-ui';
-import {
     find,
     isEmpty,
     isNil,
     trimStart,
+    includes,
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -19,9 +15,12 @@ import {
     RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
-import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../global/constants';
-import PersonPanelSummaryContactText from './personPanelSummaryContactText';
-import makeStyles from '../styles/makeStyles';
+import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
+import Grid from '../../organisms/grid';
+import Image from '../image';
+import makeStyles from '../../styles/makeStyles';
+import PersonContactInfo from '../personContactInfo';
+import Typography from '../typography';
 
 const propTypes = {
     /**
@@ -53,6 +52,10 @@ const propTypes = {
                 isPrimary: PropTypes.bool,
             }),
         ),
+        emergencyContactEmail: PropTypes.string,
+        emergencyContactPhone: PropTypes.string,
+        emergencyContactPreferredMethod: PropTypes.string,
+        emergencyContactRelationshipName: PropTypes.string,
         firstName: PropTypes.string,
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.oneOf([
@@ -111,40 +114,40 @@ const defaultProps = {
     classes: null,
     data: {},
     isExpanded: false,
-    onClick: null,
+    onClick: () => {},
     tabIndex: -1,
 };
 
-const bemClass = `${BEM_BLOCK_NAME}--summary`;
-
-function ageText({ birthdate }) {
+const ageText = ({ birthdate }) => {
     if (!isEmpty(birthdate)) {
         return '';
     }
 
     return `${moment().diff(birthdate, 'years')}yr`;
-}
+};
 
-function birthdateText({ birthdate }) {
+const birthdateText = ({ birthdate }) => {
     if (!isEmpty(birthdate)) {
         return '';
     }
 
     return moment.unix(birthdate).utc().format('MM/DD/YY');
-}
+};
 
-function genderText({ gender }) {
+const genderText = ({ gender }) => {
     switch (gender) {
         case 'f':
+        case 'F':
             return 'Female';
         case 'm':
+        case 'M':
             return 'Male';
         default:
             return '';
     }
-}
+};
 
-function gradeLevelText({ gradeLevel }) {
+const gradeLevelText = ({ gradeLevel }) => {
     switch (gradeLevel) {
         case 'PreK':
             return 'PK';
@@ -177,7 +180,9 @@ function gradeLevelText({ gradeLevel }) {
         default:
             return gradeLevel;
     }
-}
+};
+
+const BEM_CLASS_NAME = `${BEM_BLOCK_NAME}--summary`;
 
 const useStyles = makeStyles((theme) => {
     const {
@@ -193,7 +198,7 @@ const useStyles = makeStyles((theme) => {
         root: {
             alignItems: 'center',
             backgroundColor: palette.background.light,
-            borderRadius,
+            borderRadius: borderRadius.main,
             color: palette.text.primary,
             cursor: 'pointer',
             display: 'flex',
@@ -214,10 +219,13 @@ const useStyles = makeStyles((theme) => {
                 zIndex: 1,
             },
             '&::before': {
-                borderRadius: `${borderRadius}px 0 0 ${borderRadius}px`,
+                borderRadius: `${borderRadius.main}px 0 0 ${borderRadius.main}px`,
                 opacity: 1,
                 width: '5px',
                 transition: `width ${transitionDuration} ease-in-out`,
+            },
+            [`& a.${UI_CLASS_NAME}`]: {
+                transition: colorTransition,
             },
             '&$isAdult': {
                 '&$genderFemale::before': {
@@ -236,12 +244,15 @@ const useStyles = makeStyles((theme) => {
             '&$isStudent::before': {
                 backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
             },
-            '&$expanded': {
+            '&$isExpanded': {
                 color: palette.text.contrastText,
-                borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+                borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                 '&::before': {
-                    borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+                    borderRadius: `${borderRadius.main}px ${borderRadius.main}px 0 0`,
                     width: '100%',
+                },
+                [`& a.${UI_CLASS_NAME}, h5`]: {
+                    color: palette.text.contrastText,
                 },
                 '&$isAdult': {
                     '&$genderFemale::before': {
@@ -291,7 +302,7 @@ const useStyles = makeStyles((theme) => {
                 display: 'block',
             },
         },
-        expanded: {},
+        isExpanded: {},
         hasContactInfo: {},
         grid: {
             margin: '0 !important',
@@ -353,6 +364,10 @@ function PersonPanelSummary(props) {
         birthdate,
         campus,
         emails,
+        emergencyContactEmail,
+        emergencyContactPhone,
+        emergencyContactPreferredMethod,
+        emergencyContactRelationshipName,
         firstName,
         gender,
         gradeLevel,
@@ -417,7 +432,11 @@ function PersonPanelSummary(props) {
 
     useEffect(() => {
         setRenderContactInfo(
-            <PersonPanelSummaryContactText
+            <PersonContactInfo
+                emergencyContactEmail={emergencyContactEmail}
+                emergencyContactPhone={emergencyContactPhone}
+                emergencyContactPreferredMethod={emergencyContactPreferredMethod}
+                emergencyContactRelationshipName={emergencyContactRelationshipName}
                 isDoNotContact={isDoNotContact}
                 isDoNotEmail={isDoNotEmail}
                 isDoNotMail={isDoNotMail}
@@ -431,15 +450,19 @@ function PersonPanelSummary(props) {
             />,
         );
     }, [
+        email,
+        emergencyContactEmail,
+        emergencyContactPhone,
+        emergencyContactPreferredMethod,
+        emergencyContactRelationshipName,
         isDoNotContact,
         isDoNotEmail,
         isDoNotMail,
         isDoNotPhone,
         isDoNotText,
         isExpanded,
-        preferredMethod,
-        email,
         phone,
+        preferredMethod,
         recordType,
     ]);
 
@@ -456,12 +479,12 @@ function PersonPanelSummary(props) {
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
-        [`${bemClass}`],
+        [`${BEM_CLASS_NAME}`],
         {
-            [classes.expanded]: isExpanded,
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.isExpanded]: isExpanded,
+            [classes.genderFemale]: includes(['f', 'F'], gender),
+            [classes.genderMale]: includes(['m', 'M'], gender),
+            [classes.genderUndefined]: !includes(['f', 'F', 'm', 'M'], gender),
             [classes.isAdult]: isAdult,
             [classes.isChild]: isChild,
             [classes.isStudent]: isStudent,

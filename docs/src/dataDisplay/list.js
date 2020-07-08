@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, Header, List, SubNavigation, TitleBar } from 'react-cm-ui';
+import {
+    Card, Header, List, SubNavigation, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -56,50 +57,50 @@ export default class ElementsList extends React.Component {
                 type: 'enum',
                 default: 'ul',
                 description: 'Cards can have an active state.',
-                allowedTypes: 'div, ol, ul'
+                allowedTypes: 'div, ol, ul',
             }, {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'divide',
                 type: 'bool',
                 default: '',
                 description: 'Each List.Item will be divided.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'fluid',
                 type: 'bool',
                 default: '',
                 description: 'A List can stretch the width of it\'s container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'horizontal',
                 type: 'bool',
                 default: '',
                 description: 'A List can be displayed horizontally.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'inverse',
                 type: 'bool',
                 default: '',
                 description: 'A List can be formatted to appear on dark backgrounds.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the List\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         if (subNavIndex === 0) {
@@ -112,7 +113,7 @@ export default class ElementsList extends React.Component {
                     </Card>
 
                     {/* List */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         List
                         <Header.Subheader>
                             A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
@@ -132,7 +133,7 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Horizontal */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Horizontal
                         <Header.Subheader>
                             A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
@@ -162,7 +163,7 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Divide */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Divide
                         <Header.Subheader>
                             A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
@@ -189,7 +190,9 @@ export default class ElementsList extends React.Component {
                                 300
                             </div>
                         </List.Item>
-                    </List><br /><br />
+                    </List>
+                    <br />
+                    <br />
 
                     <List divide horizontal>
                         <List.Item>
@@ -228,7 +231,7 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Inverse
                         <Header.Subheader>
                             A List's color can be set to the appropriate color when on a dark background.
@@ -256,7 +259,9 @@ export default class ElementsList extends React.Component {
                                     300
                                 </div>
                             </List.Item>
-                        </List><br /><br />
+                        </List>
+                        <br />
+                        <br />
 
                         <List divide inverse horizontal>
                             <List.Item>
@@ -307,26 +312,26 @@ export default class ElementsList extends React.Component {
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'divide',
                 type: 'bool',
                 default: '',
                 description: 'Each List.Item will be divided.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the List\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         if (subNavIndex === 1) {

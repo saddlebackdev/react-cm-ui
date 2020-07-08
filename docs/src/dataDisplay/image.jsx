@@ -1,4 +1,4 @@
-import 'global/images/marty-mcfly.jpg';
+import 'images/marty-mcfly.jpg';
 
 import {
     Card,
@@ -30,22 +30,22 @@ import { Image } from 'react-cm-ui';
 export default class AvatarSample extends React.Component {
 
     render() {
-        const martyMcFlyImageSrc = 'images/marty-mcfly.jpg';
+        const MARTY_MCFLY_IMAGE_SRC = 'images/marty-mcfly.jpg';
 
         return (
             <div>
                 <Image type="person" /><br /><br />
                 <Image type="user" /><br /><br />
-                <Image type="person" src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="user" src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="person" src={MARTY_MCFLY_IMAGE_SRC} /><br /><br />
+                <Image type="user" src={MARTY_MCFLY_IMAGE_SRC} /><br /><br />
                 <Image type="person" name="Marty McFly" /><br /><br />
                 <Image type="user" name="Marty McFly" /><br /><br />
                 {/*
                     Test Name AND Image Source
                     Shouldn't render image AND initials ... only image :-)
                 */}
-                <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} /><br /><br />
-                <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
+                <Image type="person" name="Marty McFly" src={MARTY_MCFLY_IMAGE_SRC} /><br /><br />
+                <Image type="user" name="Marty McFly" src={MARTY_MCFLY_IMAGE_SRC} />
             </div>
         );
     }
@@ -57,13 +57,13 @@ import { Image } from 'react-cm-ui';
 export default class SizeSample extends React.Component {
 
     render() {
-        const martyMcFlyImageSrc = '/global/images/marty-mcfly.jpg';
+        const MARTY_MCFLY_IMAGE_SRC = '/images/marty-mcfly.jpg';
 
         return (
             <div>
-                <Image src={martyMcFlyImageSrc} size={100} /><br /><br />
+                <Image src={MARTY_MCFLY_IMAGE_SRC} size={100} /><br /><br />
                 <Image type="user" size={44} name="Marty McFly" /><br /><br />
-                <Image type="user" size={66} src={martyMcFlyImageSrc} /><br /><br />
+                <Image type="user" size={66} src={MARTY_MCFLY_IMAGE_SRC} /><br /><br />
                 <Image type="user" size={22} /><br /><br />
                 <Image type="user" size={44} /><br /><br />
                 <Image type="user" size={66} /><br /><br />
@@ -125,9 +125,7 @@ const props = [
     },
 ];
 
-const martyMcFlyImageSrc = window.location.host.indexOf('localhost') > -1 ?
-    '/global/images/marty-mcfly.jpg' :
-    '/images/marty-mcfly.jpg';
+const MARTY_MCFLY_IMAGE_SRC = '/images/marty-mcfly.jpg';
 
 export default function ElementsImage() {
     return (
@@ -149,7 +147,7 @@ export default function ElementsImage() {
                     </Header.Subheader>
                 </Header>
 
-                <Image src={martyMcFlyImageSrc} />
+                <Image src={MARTY_MCFLY_IMAGE_SRC} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {imageSample}
@@ -169,10 +167,10 @@ export default function ElementsImage() {
                 <Image type="user" />
                 <br />
                 <br />
-                <Image type="person" src={martyMcFlyImageSrc} />
+                <Image type="person" src={MARTY_MCFLY_IMAGE_SRC} />
                 <br />
                 <br />
-                <Image type="user" src={martyMcFlyImageSrc} />
+                <Image type="user" src={MARTY_MCFLY_IMAGE_SRC} />
                 <br />
                 <br />
                 <Image type="person" name="Marty McFly" />
@@ -185,10 +183,10 @@ export default function ElementsImage() {
                     Test Name AND Image Source
                     Shouldn't render image AND initials ... only image :-)
                 */}
-                <Image type="person" name="Marty McFly" src={martyMcFlyImageSrc} />
+                <Image type="person" name="Marty McFly" src={MARTY_MCFLY_IMAGE_SRC} />
                 <br />
                 <br />
-                <Image type="user" name="Marty McFly" src={martyMcFlyImageSrc} />
+                <Image type="user" name="Marty McFly" src={MARTY_MCFLY_IMAGE_SRC} />
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {avatarSample}
@@ -202,13 +200,13 @@ export default function ElementsImage() {
                     </Header.Subheader>
                 </Header>
 
-                <Image src={martyMcFlyImageSrc} size={100} />
+                <Image src={MARTY_MCFLY_IMAGE_SRC} size={100} />
                 <br />
                 <br />
                 <Image type="user" size={44} name="Marty McFly" />
                 <br />
                 <br />
-                <Image type="user" size={66} src={martyMcFlyImageSrc} />
+                <Image type="user" size={66} src={MARTY_MCFLY_IMAGE_SRC} />
                 <br />
                 <br />
                 <Image type="user" size={22} />

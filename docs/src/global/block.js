@@ -1,4 +1,3 @@
-'use strict';
 
 import './Block.scss';
 
@@ -7,11 +6,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Block extends React.Component {
-
     render() {
         const containerClasses = ClassNames('ui', 'block', this.props.className, {
             'block-inverse': this.props.inverse,
-            'block-nest': this.props.nest
+            'block-nest': this.props.nest,
         });
 
         return (
@@ -20,7 +18,6 @@ export default class Block extends React.Component {
             </div>
         );
     }
-
 }
 
 Block.propTypes = {

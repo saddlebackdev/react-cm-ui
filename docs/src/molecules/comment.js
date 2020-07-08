@@ -1,8 +1,9 @@
-'use strict';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Banner, Card, Comment, Header, Image, TitleBar } from 'react-cm-ui';
+import {
+    Banner, Card, Comment, Header, Image, TitleBar,
+} from 'react-cm-ui';
 
 // Docs UI Components
 import Block from '../global/block.js';
@@ -158,7 +159,7 @@ export default class ElmentsComment extends React.Component {
             editableCommentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.',
             editableComment2Text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             isRemoveBannerOpen: false,
-            isSaveBannerOpen: false
+            isSaveBannerOpen: false,
         };
 
         this._onMenuClick = this._onMenuClick.bind(this);
@@ -169,7 +170,9 @@ export default class ElmentsComment extends React.Component {
     }
 
     render() {
-        const { editableCommentText, editableComment2Text, isRemoveBannerOpen, isSaveBannerOpen } = this.state;
+        const {
+            editableCommentText, editableComment2Text, isRemoveBannerOpen, isSaveBannerOpen,
+        } = this.state;
 
         const props = [
             {
@@ -177,86 +180,86 @@ export default class ElmentsComment extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Show the comment author\'s avatar.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'canDelete',
                 type: 'bool',
                 default: 'false',
                 description: 'Whether or not the user is permitted to delete the comment (assuming that isEditable is true and it is editable in the first place).',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'canEdit',
                 type: 'bool',
                 default: 'false',
                 description: 'Whether or not the user is permitted to edit and save an update to the comment (assuming that isEditable is true and it is editable in the first place).',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'children',
                 type: 'node',
                 default: '',
                 description: 'Primary content.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'detailsPosition',
                 type: 'enum',
                 default: 'left',
                 description: 'Position the comment\'s details on either the left or right.',
-                allowedTypes: 'left, right'
+                allowedTypes: 'left, right',
             }, {
                 name: 'isEditable',
                 type: 'bool',
                 default: 'false',
                 description: 'Whether or not the comment is editable.  At all.  If it is editable, but certain users may not have Edit and/or Delete permission, use canEdit and canDelete to govern that.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'name *',
                 type: 'string',
                 default: '',
                 description: 'A required field which displays the user\'s name.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onActionMenuClick',
                 type: 'func',
                 default: '',
                 description: 'The onActionMenuClick event handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onDelete',
                 type: 'func',
                 default: '',
                 description: 'The onDelete event handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onSaveEdit',
                 type: 'func',
                 default: '',
                 description: 'The onSaveEdit event handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the Comment\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'text',
                 type: 'string',
                 default: '',
                 description: 'In addition to passing it in as the child, you must pass the text/contents of a comment in here if you want to make it editable.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'time *',
                 type: 'number',
                 default: '',
                 description: 'A required field which displays the time the comment was posted in UTC.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
 
         return (
@@ -271,7 +274,7 @@ export default class ElmentsComment extends React.Component {
                     </Card>
 
                     {/* Comment */}
-                    <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub>
                         Comment
                         <Header.Subheader>
                             A user's comment.
@@ -287,7 +290,7 @@ export default class ElmentsComment extends React.Component {
                     </Highlighter>
 
                     {/* Editable Comment */}
-                    <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub>
                         Editable Comments
                         <Header.Subheader>
                             A comment can be editable and deletable.
@@ -295,16 +298,37 @@ export default class ElmentsComment extends React.Component {
                     </Header>
 
                     <p>
-                        Use the <code>isEditable</code> prop to set whether or not a comment is editable or deletable
-                        <em>at all</em> (versus simply being read-only).  <code>isEditable</code> defaults to false, so set
+                        Use the
+                        {' '}
+                        <code>isEditable</code>
+                        {' '}
+                        prop to set whether or not a comment is editable or deletable
+                        <em>at all</em>
+                        {' '}
+                        (versus simply being read-only).
+                        <code>isEditable</code>
+                        {' '}
+                        defaults to false, so set
                         it to true for editable comments.
                     </p>
 
                     <p>
-                        Likely there will be some business rules around <em>who</em> may edit and delete comments.  For
+                        Likely there will be some business rules around
+                        {' '}
+                        <em>who</em>
+                        {' '}
+                        may edit and delete comments.  For
                         example, let&rsquo;s say the rules are that a comment may only be edited by its original author, but
                         that certain "moderator" users are authorized to delete comments (e.g. comments deemed
-                        "inappropriate").  You should use the <code>canDelete</code> and <code>canEdit</code> props to drive
+                        "inappropriate").  You should use the
+                        {' '}
+                        <code>canDelete</code>
+                        {' '}
+                        and
+                        {' '}
+                        <code>canEdit</code>
+                        {' '}
+                        props to drive
                         these kinds of permissions and selectively make deletion and editing available. The sample below
                         demonstrates this: Let&rsquo;s say that Joe Smith is the logged in user and has moderation
                         privileges. Joe Smith&rsquo;s comments are both editable and deleteable whereas Jessica Jones&rsquo;
@@ -340,7 +364,7 @@ export default class ElmentsComment extends React.Component {
                         onDelete={() => this._onRemoveComment(2)}
                         time={1536941520}
                     >
-                        {'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </Comment>
 
                     <Comment
@@ -396,17 +420,15 @@ export default class ElmentsComment extends React.Component {
 
     _onRemoveComment(id) {
         this.setState({ isRemoveBannerOpen: true }, () => {
-            setTimeout(() => this.setState({ isRemoveBannerOpen: false}), 2000);
+            setTimeout(() => this.setState({ isRemoveBannerOpen: false }), 2000);
         });
     }
 
     _onSaveComment(id, updatedComment) {
         const updatedState = { isSaveBannerOpen: true };
 
-        if (id === 1)
-            updatedState.editableCommentText = updatedComment;
-        else if (id === 3)
-            updatedState.editableComment2Text = updatedComment;
+        if (id === 1) updatedState.editableCommentText = updatedComment;
+        else if (id === 3) updatedState.editableComment2Text = updatedComment;
 
         this.setState(updatedState, () => {
             setTimeout(() => this.setState({ isSaveBannerOpen: false }), 2000);

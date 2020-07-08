@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => {
         },
         personPanelDetails: {
             margin: '0 50px 0 33px',
+            width: 'calc(100% - 83px)',
         },
         personPanelSummary: {
             flexBasis: `calc(100% - ${checkboxColumnWidth + matchColumnWidth}px)`,
@@ -180,6 +181,10 @@ function PersonPanelCustomColumnsExample() {
                 </Typography>
             </div>
 
+            <div
+                className={classes.checkboxColumn}
+            />
+
             <PersonPanelDetails
                 className={classes.personPanelDetails}
                 data={detailsData}
@@ -193,6 +198,10 @@ function PersonPanelCustomColumnsExample() {
                     prompt: true,
                     onYesClick: onViewRecordYesClick,
                 }}
+            />
+
+            <div
+                className={classes.matchColumn}
             />
         </PersonPanel>
     );

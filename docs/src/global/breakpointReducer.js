@@ -1,4 +1,3 @@
-'use strict';
 
 export const DEFAULT_STATE = {
     clientHeight: null,
@@ -16,7 +15,8 @@ export const DEFAULT_STATE = {
 const breakpoint = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
         case 'BreakpointActions.ON_UPDATE':
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 clientHeight: action.result.clientHeight,
                 clientWidth: action.result.clientWidth,
                 isLarge: action.result.isLarge,
@@ -27,7 +27,7 @@ const breakpoint = (state = DEFAULT_STATE, action) => {
                 isXSmall: action.result.isXSmall,
                 isXXSmall: action.result.isXXSmall,
                 winWidth: action.result.winWidth,
-            });
+            };
     }
 
     return state;

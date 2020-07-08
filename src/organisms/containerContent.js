@@ -1,5 +1,5 @@
-'use strict';
 
+import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -7,15 +7,16 @@ import React, { Component } from 'react';
 import Utils from '../utils/utils.js';
 
 class ContainerContent extends Component {
-
     render() {
-        const { as, className, maxWidth, style } = this.props;
+        const {
+            as, className, maxWidth, style,
+        } = this.props;
         const containerClasses = ClassNames('container-content', className, {
-            'container-content-max-width-laptop': maxWidth === 'laptop'
+            'container-content-max-width-laptop': maxWidth === 'laptop',
         });
         const ElementType = Utils.getElementType(as || 'section', this.props);
         const containerStyle = _.merge(style, {
-            maxWidth: _.isNumber(maxWidth) ? maxWidth : null
+            maxWidth: _.isNumber(maxWidth) ? maxWidth : null,
         });
 
         return (
@@ -24,19 +25,18 @@ class ContainerContent extends Component {
             </ElementType>
         );
     }
-
 }
 
-const asEnums = [ 'div', 'section' ];
+const asEnums = ['div', 'section'];
 
 ContainerContent.propTypes = {
     as: PropTypes.oneOf(asEnums),
     className: PropTypes.string,
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
-    style: PropTypes.shape({})
+    style: PropTypes.shape({}),
 };
 
 export default ContainerContent;

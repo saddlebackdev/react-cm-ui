@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -71,14 +72,14 @@ const GridColumn = React.forwardRef((props, ref) => {
     const colPrefix = 'grid-col';
 
     const containerClasses = ClassNames('ui', colPrefix, className, {
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktop)}`]: _.isNumber(desktop),
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktopLarge)}`]: _.isNumber(desktopLarge),
-        [`${colPrefix}-laptop-${Utils.numberToWord(laptop)}`]: _.isNumber(laptop),
-        [`${colPrefix}-mobile-${Utils.numberToWord(mobile)}`]: _.isNumber(mobile),
-        [`${colPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}`]: _.isNumber(mobileLarge),
-        [`${colPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}`]: _.isNumber(mobileMedium),
-        [`${colPrefix}-tablet-${Utils.numberToWord(tablet)}`]: _.isNumber(tablet),
-        [`${colPrefix}-${Utils.numberToWord(width)}`]: _.isNumber(width),
+        [`${colPrefix}-desktop-${Utils.numberToWord(desktop)}`]: isNumber(desktop),
+        [`${colPrefix}-desktop-${Utils.numberToWord(desktopLarge)}`]: isNumber(desktopLarge),
+        [`${colPrefix}-laptop-${Utils.numberToWord(laptop)}`]: isNumber(laptop),
+        [`${colPrefix}-mobile-${Utils.numberToWord(mobile)}`]: isNumber(mobile),
+        [`${colPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}`]: isNumber(mobileLarge),
+        [`${colPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}`]: isNumber(mobileMedium),
+        [`${colPrefix}-tablet-${Utils.numberToWord(tablet)}`]: isNumber(tablet),
+        [`${colPrefix}-${Utils.numberToWord(width)}`]: isNumber(width),
         [`${colPrefix}-desktop-auto`]: desktop === 'auto',
         [`${colPrefix}-desktop-large-auto`]: desktopLarge === 'auto',
         [`${colPrefix}-laptop-auto`]: laptop === 'auto',
