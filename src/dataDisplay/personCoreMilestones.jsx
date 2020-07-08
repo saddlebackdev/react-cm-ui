@@ -1,36 +1,42 @@
 import {
     Grid,
-    Header,
     Icon,
     TimeFromNow,
+    Typography,
 } from 'react-cm-ui';
+import {
+    includes,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
-import makeStyles from '../styles/makeStyles';
-import useTheme from '../styles/useTheme';
-import useMediaQuery from '../utils/useMediaQuery';
-import dateUtils from '../utils/dateUtils';
 import {
     GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
     RECORD_TYPE_COLOR,
     RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
-} from './personPanelConstants';
+} from './personPanel/personPanelConstants';
+import {
+    BEM_PERSON_CORE_MILESTONES,
+    PERSON_CORE_MILESTONES_CLASSES,
+} from '../global/constants';
+import makeStyles from '../styles/makeStyles';
+import useTheme from '../styles/useTheme';
+import useMediaQuery from '../utils/useMediaQuery';
+import dateUtils from '../utils/dateUtils';
 
 const propTypes = {
     className: PropTypes.string,
     congregationDate: PropTypes.oneOfType([
-        MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
-        PropTypes.string]),
+        PropTypes.oneOf([null]),
+    ]),
     firstContactDate: PropTypes.oneOfType([
-        MomentPropTypes.momentObj,
         MomentPropTypes.momentString,
-        PropTypes.string,
+        PropTypes.oneOf([null]),
     ]),
     gender: GENDER_PROP_TYPE,
     hasAcceptedChrist: PropTypes.bool,
@@ -43,6 +49,7 @@ const propTypes = {
     hasTakenClass301: PropTypes.bool,
     hasTakenClass401: PropTypes.bool,
     iconSize: PropTypes.number,
+    id: PropTypes.string,
     inverse: PropTypes.bool,
     isActiveInTrips: PropTypes.bool,
     isBaptised: PropTypes.bool,
@@ -61,8 +68,8 @@ const propTypes = {
 
 const defaultProps = {
     className: undefined,
-    congregationDate: '',
-    firstContactDate: '',
+    congregationDate: null,
+    firstContactDate: null,
     gender: GENDER_DEFAULT_TYPE,
     hasAcceptedChrist: false,
     hasSignedMaturityCovenant: false,
@@ -74,6 +81,7 @@ const defaultProps = {
     hasTakenClass301: false,
     hasTakenClass401: false,
     iconSize: 16,
+    id: null,
     inverse: false,
     isActiveInTrips: false,
     isBaptised: false,
@@ -101,18 +109,19 @@ function getIconSize({ isMobile, iconSize }) {
 const useStyles = makeStyles((theme) => {
     const {
         palette,
+        shape: {
+            borderRadius,
+        },
     } = theme;
     const columnHorizontalPadding = 5.5;
-    const hasAttendedStyles = {
+    const hasAttendedStyles = (boxShadowColor) => ({
         backgroundColor: 'transparent',
-        boxShadow: `inset 0 0 0 2px ${palette.border.contrastPrimary}`,
-        opacity: 1,
-    };
-    const hasSignedStyles = {
-        backgroundColor: palette.background.primary,
+        boxShadow: `inset 0 0 0 2px ${boxShadowColor}`,
+    });
+    const hasSignedStyles = (backgroundColor) => ({
+        backgroundColor,
         boxShadow: 'none',
-        opacity: 1,
-    };
+    });
 
     /**
      * This is the base icon size for the C.L.A.S.S. icon (which isn't an SVG), so that the
@@ -121,25 +130,8 @@ const useStyles = makeStyles((theme) => {
     const basesClassIconSize = 24;
 
     return {
-        container: {
+        root: {
             backgroundColor: palette.background.primary,
-            '&$isAdult': {
-                '&$genderFemale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderMale .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderUndefined .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
-                },
-            },
-            '&$isChild .icon-use-path': {
-                fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
-            },
-            '&$isStudent .icon-use-path': {
-                fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
-            },
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
@@ -147,14 +139,24 @@ const useStyles = makeStyles((theme) => {
             width: (props) => `${getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }) + (columnHorizontalPadding * 2)}px !important`,
         },
         congregationDateColummn: {
-            paddingLeft: 5.5,
-            width: 'auto',
+            padding: `0 ${columnHorizontalPadding}px`,
+            width: 'auto !important',
+        },
+        congregationDateHeading: {
+            color: palette.text.secondary,
         },
         firstContactDateColumn: {
             flexGrow: 1,
-            paddingRight: 5.5,
+            padding: `0 ${columnHorizontalPadding}px`,
+            textAlign: 'right',
+            width: 'auto !important',
+        },
+        firstContactDateHeading: {
+            color: palette.text.secondary,
+        },
+        dateContainers: {
+            display: 'inline-block',
             textAlign: 'left',
-            width: 'auto',
         },
         genderFemale: {},
         genderMale: {},
@@ -172,102 +174,187 @@ const useStyles = makeStyles((theme) => {
         hasSignedMissionCovenant: {},
         icon: {
             display: 'flex !important',
+            '&.ui.icon .icon-use-path': {
+                fill: palette.static.main,
+            },
         },
         inverse: {},
         isAdult: {},
         isChild: {},
         isStudent: {},
         iconBase: {
-            backgroundColor: palette.background.primary,
+            backgroundColor: palette.static.main,
             height: '10.42px',
-            opacity: 0.25,
             position: 'absolute',
             width: '11.07px',
-            '&$isAdult': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderMale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })} !important`,
-                },
-                '&$genderUndefined': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })} !important`,
-                },
-            },
-            '&$isChild': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
-                },
-            },
-            '&$isStudent': {
-                '&$genderFemale': {
-                    backgroundColor: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
-                },
-            },
-            '&$hasSignedMembershipAgreement': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass101': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMaturityCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass201': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMinistryCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass301': {
-                ...hasAttendedStyles,
-            },
-            '&$hasSignedMissionCovenant': {
-                ...hasSignedStyles,
-            },
-            '&$hasTakenClass401': {
-                ...hasAttendedStyles,
-            },
         },
         iconBaseClass101: {
-            borderRadius: '0 3px 0 0',
+            borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
-            '&$hasTakenClass101': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMembershipAgreement': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass101': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass201: {
-            borderRadius: '3px 0 0',
+            borderRadius: `${borderRadius.main}px 0 0`,
             top: 0,
-            '&$hasTakenClass201': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMaturityCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass201': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass301: {
-            borderRadius: '0 0 0 3px',
+            borderRadius: `0 0 0 ${borderRadius.main}px`,
             bottom: 0,
-            '&$hasTakenClass301': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMinistryCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass301': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconBaseClass401: {
-            borderRadius: '0 0 3px',
+            borderRadius: `0 0 ${borderRadius.main}px`,
             bottom: 0,
             right: 0,
-            '&$hasTakenClass401': {
-                ...hasAttendedStyles,
-            },
             '&$hasSignedMissionCovenant': {
-                ...hasSignedStyles,
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasSignedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
+            },
+            '&$hasTakenClass401': {
+                '&$isAdult': {
+                    '&$genderFemale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderMale': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                    },
+                    '&$genderUndefined': {
+                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                    },
+                },
+                '&$isChild': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                },
+                '&$isStudent': {
+                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                },
             },
         },
         iconClassContainer: {
@@ -281,7 +368,7 @@ const useStyles = makeStyles((theme) => {
 
                 return `scale(${(props.isMobile || iconSize === 16) ? 16 / basesClassIconSize : 1})`;
             },
-            transformOrigin: '0 3px',
+            transformOrigin: `0 ${borderRadius.main}px`,
             width: basesClassIconSize,
         },
         iconClassInnerContainer: {
@@ -289,6 +376,116 @@ const useStyles = makeStyles((theme) => {
             transform: 'rotate(45deg) scale(0.707106)',
             width: basesClassIconSize,
         },
+        iconAcceptedChrist: {
+            '&$hasAcceptedChrist': {
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
+            },
+        },
+        iconBaptised: {
+            '&$isBaptised': {
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
+            },
+        },
+        iconInMinistry: {
+            '&$isInMinistry': {
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
+            },
+        },
+        iconSmallGroup: {
+            '&$isInSmallGroup': {
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
+            },
+        },
+        iconInTrips: {
+            '&$isActiveInTrips': {
+                '&$isAdult': {
+                    '&$genderFemale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderMale .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                    },
+                    '&$genderUndefined .icon-use-path': {
+                        fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
+                    },
+                },
+                '&$isChild .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                },
+                '&$isStudent .icon-use-path': {
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                },
+            },
+        },
+        hasAcceptedChrist: {},
+        isBaptised: {},
+        isInSmallGroup: {},
+        isInMinistry: {},
+        isActiveInTrips: {},
     };
 });
 
@@ -308,6 +505,7 @@ export function PersonCoreMilestones(props) {
         hasSignedMinistryCovenant,
         hasSignedMissionCovenant,
         iconSize: iconSizeProp,
+        id,
         isBaptised,
         isInMinistry,
         isInSmallGroup,
@@ -327,15 +525,16 @@ export function PersonCoreMilestones(props) {
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
     const classes = useStyles({ ...props, isMobile });
     const isAdult = recordType === 'adult';
-    const blockClassName = 'person_core_milestones';
-    const containerClasses = ClassNames(
-        classes.container,
-        blockClassName,
+    const isFemale = includes(['f', 'F'], gender);
+    const isMale = includes(['m', 'M'], gender);
+    const rootClasses = ClassNames(
+        PERSON_CORE_MILESTONES_CLASSES,
+        classes.root,
         className,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.inverse]: inverse,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
@@ -346,9 +545,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
             [classes.hasTakenClass101]: hasTakenClass101,
             [classes.isAdult]: recordType === 'adult',
@@ -360,9 +559,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
             [classes.hasTakenClass201]: hasTakenClass201,
             [classes.isAdult]: recordType === 'adult',
@@ -374,9 +573,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
             [classes.hasTakenClass301]: hasTakenClass301,
             [classes.isAdult]: recordType === 'adult',
@@ -388,9 +587,9 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
-            [classes.genderFemale]: gender === 'f',
-            [classes.genderMale]: gender === 'm',
-            [classes.genderUndefined]: !gender,
+            [classes.genderFemale]: isFemale,
+            [classes.genderMale]: isMale,
+            [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
             [classes.hasTakenClass401]: hasTakenClass401,
             [classes.isAdult]: recordType === 'adult',
@@ -505,7 +704,8 @@ export function PersonCoreMilestones(props) {
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
+            id={id}
         >
             <Grid
                 className={classes.grid}
@@ -515,12 +715,24 @@ export function PersonCoreMilestones(props) {
                     {!removeAcceptedChristColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.acceptedChristColumn,
+                                `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
                                 classes.column,
                             )}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconAcceptedChrist,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -533,12 +745,24 @@ export function PersonCoreMilestones(props) {
                     {!removeBaptismColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.baptisedColumn,
+                                `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
                                 classes.column,
                             )}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconBaptised,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isBaptised]: isBaptised,
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -551,7 +775,7 @@ export function PersonCoreMilestones(props) {
                     {!removeClassColumn && isAdult && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.classColumn,
+                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
                                 classes.column,
                             )}
                         >
@@ -562,22 +786,34 @@ export function PersonCoreMilestones(props) {
                                     className={classes.iconClassInnerContainer}
                                 >
                                     <div
-                                        className={iconBaseClass101Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
+                                            iconBaseClass101Classes,
+                                        )}
                                         title={class101Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass201Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
+                                            iconBaseClass201Classes,
+                                        )}
                                         title={class201Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass301Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
+                                            iconBaseClass301Classes,
+                                        )}
                                         title={class301Title}
                                     />
 
                                     <div
-                                        className={iconBaseClass401Classes}
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
+                                            iconBaseClass401Classes,
+                                        )}
                                         title={class401Title}
                                     />
 
@@ -589,12 +825,24 @@ export function PersonCoreMilestones(props) {
                     {!removeSmallGroupColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.smallGroupColumn,
+                                `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
                                 classes.column,
                             )}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconSmallGroup,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isInSmallGroup]: isInSmallGroup,
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -607,12 +855,24 @@ export function PersonCoreMilestones(props) {
                     {!removeInMinistryColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.inMinistryColumn,
+                                `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
                                 classes.column,
                             )}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconInMinistry,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isInMinistry]: isInMinistry,
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -625,12 +885,24 @@ export function PersonCoreMilestones(props) {
                     {!removeInTripsColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                classes.inTripsColumns,
+                                `${BEM_PERSON_CORE_MILESTONES}--in_trips_column`,
                                 classes.column,
                             )}
                         >
                             <Icon
-                                className={classes.icon}
+                                className={ClassNames(
+                                    classes.iconInTrips,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isActiveInTrips]: isActiveInTrips,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
                                 compact
                                 inverse={inverse}
                                 size={iconSize}
@@ -643,58 +915,62 @@ export function PersonCoreMilestones(props) {
                     {firstContactDate && !removeFirstContactDateColumn && isAdult && (
                         <Grid.Column
                             className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
                                 classes.firstContactDateColumn,
-                                classes.column,
                             )}
                         >
-                            <Header
-                                className={`${blockClassName}--at_saddleback_header`}
-                                size={!isMobile ? 'xxsmall' : 'xsmall'}
-                                weight="normal"
-                                style={{ margin: 0 }}
+                            <div
+                                className={classes.dateContainers}
                             >
-                                At Saddleback
-                            </Header>
+                                <Typography
+                                    className={classes.firstContactDateHeading}
+                                    variant="h6"
+                                >
+                                    At Saddleback
+                                </Typography>
 
-                            <span
-                                className={`${blockClassName}--at_saddleback_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    date={firstContactDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
+                                <span
+                                    className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
+                                >
+                                    <TimeFromNow
+                                        date={firstContactDate}
+                                        relativeTime={relativeTime}
+                                        relativeTimeThreshold={relativeTimeThreshold}
+                                        relativeTimeRounding={relativeTimeRounding}
+                                    />
+                                </span>
+                            </div>
                         </Grid.Column>
                     )}
 
                     {congregationDate && !removeCongregationDateColumn && isAdult && (
                         <Grid.Column
                             className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
                                 classes.congregationDateColummn,
-                                classes.column,
                             )}
                         >
-                            <Header
-                                className={`${blockClassName}--member_for_header`}
-                                size={!isMobile ? 'xxsmall' : 'xsmall'}
-                                weight="normal"
-                                style={{ margin: 0 }}
+                            <div
+                                className={classes.dateContainers}
                             >
-                                Member For
-                            </Header>
+                                <Typography
+                                    className={classes.congregationDateHeading}
+                                    variant="h6"
+                                >
+                                    Member For
+                                </Typography>
 
-                            <span
-                                className={`${blockClassName}--member_for_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    date={congregationDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
+                                <span
+                                    className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
+                                >
+                                    <TimeFromNow
+                                        date={congregationDate}
+                                        relativeTime={relativeTime}
+                                        relativeTimeThreshold={relativeTimeThreshold}
+                                        relativeTimeRounding={relativeTimeRounding}
+                                    />
+                                </span>
+                            </div>
                         </Grid.Column>
                     )}
                 </Grid.Row>

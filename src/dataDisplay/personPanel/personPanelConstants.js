@@ -6,7 +6,10 @@ export const BEM_DETAILS_NAME = `${BEM_BLOCK_NAME}--details`;
 
 export const GENDER_PROP_TYPE = PropTypes.oneOf([
     'f',
+    'F',
     'm',
+    'M',
+    '',
     null,
 ]);
 

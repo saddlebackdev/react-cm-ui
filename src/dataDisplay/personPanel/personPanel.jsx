@@ -8,9 +8,9 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import { UI_CLASS_NAME } from '../global/constants';
+import { UI_CLASS_NAME } from '../../global/constants';
 import { BEM_BLOCK_NAME } from './personPanelConstants';
-import makeStyles from '../styles/makeStyles';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
@@ -18,9 +18,15 @@ const propTypes = {
      */
     children: PropTypes.node,
     /**
-     * If `true`, the PersonPanelSummary negative space is compacted and not all data is shown.
-    */
-    isCompact: PropTypes.bool,
+     * Override or extend the styles applied to PersonPanel.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    /**
+     * The `id` of the PersonPanel.
+     */
+    id: PropTypes.string,
     /**
      * If `true`, the PersonPanelSummary is shown active and PersonPanelDetails is expanded.
     */
@@ -33,7 +39,8 @@ const propTypes = {
 
 const defaultProps = {
     children: null,
-    isCompact: false,
+    classes: null,
+    id: null,
     isExpanded: false,
     onChange: null,
 };
@@ -52,12 +59,13 @@ const useStyles = makeStyles({
 function PersonPanel(props) {
     const {
         children,
-        isCompact,
+        id,
         isExpanded: isExpandedProp,
         onChange,
     } = props;
 
     const [isExpanded, setIsExpandedState] = useState(isExpandedProp);
+    const classes = useStyles();
 
     useEffect(() => {
         setIsExpandedState(isExpandedProp);
@@ -90,7 +98,6 @@ function PersonPanel(props) {
         if (isSummary) {
             return React.cloneElement(child, {
                 ...child.props,
-                isCompact,
                 isExpanded,
                 onClick: onSummaryClick,
             });
@@ -99,7 +106,6 @@ function PersonPanel(props) {
         return child;
     });
 
-    const classes = useStyles();
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
@@ -109,6 +115,7 @@ function PersonPanel(props) {
     return (
         <div
             className={rootClasses}
+            id={id}
         >
             {clonedChildren}
         </div>

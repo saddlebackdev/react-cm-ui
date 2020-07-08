@@ -1,7 +1,7 @@
-import '../global/images/andy_davis.jpg';
-import '../global/images/princess_buttercup.jpg';
-import '../global/images/princess_merida.jpg';
-import '../global/images/the_dude.jpg';
+import 'images/andy_davis.jpg';
+import 'images/princess_buttercup.jpg';
+import 'images/princess_merida.jpg';
+import 'images/the_dude.jpg';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PAYLOAD_PERSON = [
@@ -36,9 +36,6 @@ export const PAYLOAD_PERSON = [
         ],
         allergies: null,
         birthDate: 854496000,
-        churchEntities: [],
-        churchEntityId: 2,
-        churchEntityKnown: true,
         churchEntityName: 'Los Angeles',
         contactPreferences: {
             doNotContact: false,
@@ -49,6 +46,7 @@ export const PAYLOAD_PERSON = [
             id: 42,
             preferredMethod: 'phone',
         },
+        congregationDate: '2000-12-01T12:00:00',
         deceasedDate: null,
         emails: [
             {
@@ -92,13 +90,26 @@ export const PAYLOAD_PERSON = [
             preferredMethod: 'phone',
             relationshipName: 'Friend',
         }],
-        firstContact: null,
+        firstContactDate: '2001-12-01T12:00:00',
         firstName: 'Jeffrey',
         gender: 'm',
         gradeLevel: 'none',
+        hasAcceptedChrist: true,
+        hasSignedMaturityCovenant: false,
+        hasSignedMembershipAgreement: true,
+        hasSignedMinistryCovenant: false,
+        hasSignedMissionCovenant: false,
+        hasTakenClass101: true,
+        hasTakenClass201: true,
+        hasTakenClass301: false,
+        hasTakenClass401: false,
         id: 204534,
+        isActiveInTrips: false,
         isAdult: true,
+        isBaptised: true,
         isChild: false,
+        isInMinistry: false,
+        isInSmallGroup: true,
         lastName: 'Lebowski',
         maritalStatus: 'Single',
         nickName: 'The Dude',
@@ -126,7 +137,7 @@ export const PAYLOAD_PERSON = [
         ],
         preferredService: null,
         prefix: 'Mr.',
-        profilePictureUrl: '/global/images/the_dude.jpg',
+        profilePictureUrl: '/images/the_dude.jpg',
         suffix: null,
     },
     {
@@ -147,7 +158,6 @@ export const PAYLOAD_PERSON = [
         ],
         allergies: null,
         birthDate: 854496000,
-        churchEntities: [],
         churchEntityId: 2,
         churchEntityKnown: true,
         churchEntityName: 'Lake Forest',
@@ -192,7 +202,7 @@ export const PAYLOAD_PERSON = [
         ],
         preferredService: null,
         prefix: 'Mrs.',
-        profilePictureUrl: '/global/images/princess_buttercup.jpg',
+        profilePictureUrl: '/images/princess_buttercup.jpg',
         suffix: null,
     },
     {
@@ -298,7 +308,7 @@ export const PAYLOAD_PERSON = [
         phones: [],
         preferredService: null,
         prefix: '',
-        profilePictureUrl: '/global/images/andy_davis.jpg',
+        profilePictureUrl: '/images/andy_davis.jpg',
         suffix: null,
     },
     {
@@ -320,7 +330,6 @@ export const PAYLOAD_PERSON = [
         allergies: null,
         birthDate: 1133395200,
         churchEntities: [],
-        churchEntityId: 2,
         churchEntityKnown: true,
         churchEntityName: 'Los Angeles',
         contactPreferences: {
@@ -349,7 +358,7 @@ export const PAYLOAD_PERSON = [
         phones: [],
         preferredService: null,
         prefix: '',
-        profilePictureUrl: '/global/images/princess_merida.jpg',
+        profilePictureUrl: '/images/princess_merida.jpg',
         suffix: null,
     },
 ];

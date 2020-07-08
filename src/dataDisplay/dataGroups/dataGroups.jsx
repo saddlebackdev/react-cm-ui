@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import {
+    groupBy,
+    isEmpty,
+    isEqual,
+    map,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -38,7 +43,7 @@ class DataGroups extends React.PureComponent {
         const { columns: nextColumns } = this.props;
         const { columns: prevColumns } = prevProps;
 
-        if (!_.isEqual(prevColumns, nextColumns)) {
+        if (!isEqual(prevColumns, nextColumns)) {
             this.reorderColumns();
         }
     }
@@ -85,7 +90,7 @@ class DataGroups extends React.PureComponent {
             columnNum += 1;
         }
 
-        newColumns = _.groupBy(newColumns, 'columnIndex');
+        newColumns = groupBy(newColumns, 'columnIndex');
 
         this.setState({
             columns: newColumns,
@@ -109,7 +114,7 @@ class DataGroups extends React.PureComponent {
                 ref={(ref) => { this.dataGroups = ref; }}
                 style={style}
             >
-                {!_.isEmpty(columns) && _.map(columns, (column, index) => (
+                {!isEmpty(columns) && map(columns, (column, index) => (
                     <DataGroupsColumn
                         column={column}
                         data={data}

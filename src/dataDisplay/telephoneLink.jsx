@@ -1,5 +1,7 @@
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { TELEPHONE_LINK_CLASSES } from '../global/constants';
 
 const propTypes = {
     className: PropTypes.string,
@@ -30,9 +32,14 @@ function TelephoneLink(props) {
         return null;
     }
 
+    const rootClasses = ClassNames(
+        TELEPHONE_LINK_CLASSES,
+        className,
+    );
+
     return (
         <a
-            className={className}
+            className={rootClasses}
             id={id}
             href={`tel:${number}`}
             tabIndex={tabIndex}

@@ -7,11 +7,11 @@
  * deprecate it fully in hopes to rip out the select portion of it as well.
  */
 
-import 'global/images/avatar1.jpg';
-import 'global/images/avatar2.jpg';
-import 'global/images/avatar3.jpg';
-import 'global/images/avatar4.jpg';
-import 'global/images/avatar5.jpg';
+import 'images/avatar1.jpg';
+import 'images/avatar2.jpg';
+import 'images/avatar3.jpg';
+import 'images/avatar4.jpg';
+import 'images/avatar5.jpg';
 
 import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-ui';
 import { Link } from 'react-router';
@@ -22,10 +22,7 @@ import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
 
-const imageFilePath = window.location.host.indexOf('localhost') > -1 ?
-    '/global/images' :
-    '/images';
-
+const imageFilePath = '/images';
 const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
