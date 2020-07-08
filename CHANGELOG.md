@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.2 - 07/08/2020
+
+#### Bug Fix
+- [PR #160](https://github.com/saddlebackdev/react-cm-ui/pull/160) / Merge Commit b719dd0d72f05c9f6a99e81c5b1576421beb3e2d
+    - Eslint Auto Fixes.
+- [PR #173](https://github.com/saddlebackdev/react-cm-ui/pull/173) / Merge Commit 66ff8c3adb9f6049e1286278c54737c07ea898c7
+    - Fixes some **PersonPanel** bugs.
+    - Moved **PersonPanel** files to `./src/dataDisplay/personPanel`
+    - **PersonPanel** component unit tests.
+    - Fixed our babel config that was including tests in `./core`.
+
 ## 9.13.1 - 07/02/2020
 
 #### Feature
