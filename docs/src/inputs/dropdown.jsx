@@ -22,10 +22,7 @@ import Highlighter from '../global/highlighter';
 import Main from '../global/main';
 import TableProps from '../global/tableProps';
 
-const imageFilePath = window.location.host.indexOf('localhost') > -1 ?
-    '/global/images' :
-    '/images';
-
+const imageFilePath = '/images';
 const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
