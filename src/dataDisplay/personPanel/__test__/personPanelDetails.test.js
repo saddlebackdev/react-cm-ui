@@ -165,6 +165,28 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should render with the root classes', () => {
+        const rootOverride = 'makeStyles-root-123';
+
+        const wrapper = mount(
+            <MockedTheme>
+                <PersonPanelDetails
+                    {...props}
+                    classes={{
+                        root: rootOverride,
+                    }}
+                />
+            </MockedTheme>,
+        );
+
+        const root = wrapper.find('div').first();
+
+        expect(root.hasClass('cmui')).toEqual(true);
+        expect(root.hasClass('person_panel--details')).toEqual(true);
+        expect(root.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
+        expect(root.hasClass(rootOverride)).toEqual(true);
+    });
+
+    it('Should render with the root className', () => {
         const wrapper = mount(
             <MockedTheme>
                 <PersonPanelDetails
@@ -175,9 +197,6 @@ describe('<PersonPanelDetails />', () => {
 
         const root = wrapper.find('div').first();
 
-        expect(root.hasClass('cmui')).toEqual(true);
-        expect(root.hasClass('person_panel--details')).toEqual(true);
-        expect(root.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
         expect(root.hasClass(props.className)).toEqual(true);
     });
 

@@ -24,6 +24,10 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
+     * Assign additional class names to PersonPanel.
+     */
+    className: PropTypes.string,
+    /**
      * The `id` of the PersonPanel.
      */
     id: PropTypes.string,
@@ -40,6 +44,7 @@ const propTypes = {
 const defaultProps = {
     children: null,
     classes: null,
+    className: null,
     id: null,
     isExpanded: false,
     onChange: null,
@@ -59,13 +64,15 @@ const useStyles = makeStyles({
 function PersonPanel(props) {
     const {
         children,
+        className,
         id,
         isExpanded: isExpandedProp,
         onChange,
     } = props;
 
+    const classes = useStyles(props);
+
     const [isExpanded, setIsExpandedState] = useState(isExpandedProp);
-    const classes = useStyles();
 
     useEffect(() => {
         setIsExpandedState(isExpandedProp);
@@ -110,6 +117,7 @@ function PersonPanel(props) {
         classes.root,
         UI_CLASS_NAME,
         BEM_BLOCK_NAME,
+        className,
     );
 
     return (
