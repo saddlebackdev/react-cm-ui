@@ -48,9 +48,9 @@ describe('<PersonPanel />', () => {
 
     it('Should render with the root classes', () => {
         const rootOverride = 'makeStyles-root-123';
+
         const wrapper = mount(
             <MockedTheme>
-                cl
                 <PersonPanel
                     {...props}
                     classes={{
