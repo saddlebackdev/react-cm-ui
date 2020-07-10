@@ -1,6 +1,29 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.3 - 07/10/2020
+
+#### Bug Fix
+- [PR #175](https://github.com/saddlebackdev/react-cm-ui/pull/175) / Merge Commit 16b712761bd911386bfb1a04b61a02f96c11828d
+    - Person Panel
+        - Reordered hooks to have all components read the same.
+        - Passes in props to the makeStyles hook so we can override the root class in parent components.
+        - Added className prop.
+        - Added an expect in the root classes test to make sure it's rendering the override class.
+        - Added a test to for className
+    - Person Panel Summary
+        - Reordered hooks to have all components read the same.
+        - Code clean up
+        - Added className prop.
+        - Added id prop.
+        - Added an expect in the root classes test to make sure it's rendering the override class.
+        - Added a test to for className
+        - Added a test to for id
+    - Person Panel Details
+        - Reordered hooks to have all components read the same.
+        - Added className prop.
+        - Code clean up
+
 ## 9.13.2 - 07/08/2020
 
 #### Bug Fix
