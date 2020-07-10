@@ -31,15 +31,15 @@ const propTypes = {
      */
     children: PropTypes.node,
     /**
-     * Assign additional class names to PersonPanelDetails.
-     */
-    className: PropTypes.string,
-    /**
      * Override or extend the styles applied to PersonPanelDetails.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to PersonPanelDetails.
+     */
+    className: PropTypes.string,
     /**
      * The data that the PersonPanelDetails uses to build the UI.
      */
@@ -628,8 +628,6 @@ const useStyles = makeStyles((theme) => {
 });
 
 function PersonPanelDetails(props) {
-    const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
-
     const {
         children,
         className,
@@ -639,6 +637,10 @@ function PersonPanelDetails(props) {
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
+
+    const classes = useStyles(props);
+
+    const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
 
     const {
         addresses,
@@ -752,12 +754,11 @@ function PersonPanelDetails(props) {
         preferredService,
     ]);
 
-    const classes = useStyles(props);
     const rootClasses = ClassNames(
         classes.root,
         UI_CLASS_NAME,
-        className,
         [`${BEM_DETAILS_NAME}`],
+        className,
         {
             [classes.isExpanded]: isExpanded,
         },

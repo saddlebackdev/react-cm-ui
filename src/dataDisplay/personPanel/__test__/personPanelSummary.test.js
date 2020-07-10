@@ -8,9 +8,13 @@ import MockedTheme from '../../../testUtils/mockedTheme';
 import PersonPanelSummary from '../personPanelSummary';
 
 describe('<PersonPanelSummary />', () => {
+    const bemName = 'block_name--element_name-modifier';
+
     const props = {
         classes: null,
+        className: bemName,
         data: {},
+        id: bemName,
         isExpanded: false,
         onClick: jest.fn(),
         tabIndex: -1,
@@ -29,10 +33,14 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with the root classes', () => {
+        const rootOverride = 'makeStyles-root-123';
         const wrapper = mount(
             <MockedTheme>
                 <PersonPanelSummary
                     {...props}
+                    classes={{
+                        root: rootOverride,
+                    }}
                 />
             </MockedTheme>,
         );
@@ -44,6 +52,35 @@ describe('<PersonPanelSummary />', () => {
         expect(root.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
         expect(root.hasClass(/(makeStyles)-(genderUndefined)-(\d+)/)).toEqual(true);
         expect(root.hasClass(/(makeStyles)-(isAdult)-(\d+)/)).toEqual(true);
+        expect(root.hasClass(rootOverride)).toEqual(true);
+    });
+
+    it('Should render with the root className', () => {
+        const wrapper = mount(
+            <MockedTheme>
+                <PersonPanelSummary
+                    {...props}
+                />
+            </MockedTheme>,
+        );
+
+        const root = wrapper.find('div').first();
+
+        expect(root.hasClass(props.className)).toEqual(true);
+    });
+
+    it('Should have expected `id` prop', () => {
+        const wrapper = mount(
+            <MockedTheme>
+                <PersonPanelSummary
+                    {...props}
+                />
+            </MockedTheme>,
+        );
+
+        const root = wrapper.find('div').first();
+
+        expect(root.prop('id')).toEqual(props.id);
     });
 
     it('Should render with isStudent class', () => {

@@ -22,8 +22,12 @@ describe('<PersonPanel />', () => {
             Details
         </PersonPanelDetails>,
     ];
+
+    const bemName = 'block_name--element_name-modifier';
+
     const props = {
-        id: 'block_name--element_name-modifier',
+        className: bemName,
+        id: bemName,
         isExpanded: false,
         onChange: jest.fn(),
     };
@@ -43,10 +47,15 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should render with the root classes', () => {
+        const rootOverride = 'makeStyles-root-123';
         const wrapper = mount(
             <MockedTheme>
+                cl
                 <PersonPanel
                     {...props}
+                    classes={{
+                        root: rootOverride,
+                    }}
                 >
                     {minimalChildren}
                 </PersonPanel>
@@ -58,6 +67,21 @@ describe('<PersonPanel />', () => {
         expect(root.hasClass('cmui')).toEqual(true);
         expect(root.hasClass('person_panel')).toEqual(true);
         expect(root.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
+        expect(root.hasClass(rootOverride)).toEqual(true);
+    });
+
+    it('Should render with the root className', () => {
+        const wrapper = mount(
+            <MockedTheme>
+                <PersonPanel
+                    {...props}
+                />
+            </MockedTheme>,
+        );
+
+        const root = wrapper.find('div').first();
+
+        expect(root.hasClass(props.className)).toEqual(true);
     });
 
     it('Should have expected `id` prop', () => {
