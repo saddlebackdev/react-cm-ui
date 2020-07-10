@@ -40,6 +40,10 @@ const propTypes = {
         personId: PropTypes.string,
     }),
     /**
+     * Assign additional class names to PersonPanelSummary.
+     */
+    className: PropTypes.string,
+    /**
      * The data that the PersonPanelSummary uses to build the UI.
      */
     data: PropTypes.shape({
@@ -97,6 +101,10 @@ const propTypes = {
         suffix: PropTypes.string,
     }),
     /**
+     * The `id` of the PersonPanelSummary.
+     */
+    id: PropTypes.string,
+    /**
      * If `true`, expand PersonPanelSummary, otherwise collapse it.
      */
     isExpanded: PropTypes.bool,
@@ -112,7 +120,9 @@ const propTypes = {
 
 const defaultProps = {
     classes: null,
+    className: null,
     data: {},
+    id: null,
     isExpanded: false,
     onClick: () => {},
     tabIndex: -1,
@@ -350,15 +360,20 @@ const useStyles = makeStyles((theme) => {
 });
 
 function PersonPanelSummary(props) {
-    const [metaInfoText, setMetaInfoText] = useState('');
-    const [renderContactInfo, setRenderContactInfo] = useState(null);
-    const classes = useStyles(props);
     const {
+        className,
         data,
+        id,
         isExpanded,
         onClick: onClickProp,
         tabIndex,
     } = props;
+
+    const classes = useStyles(props);
+
+    const [metaInfoText, setMetaInfoText] = useState('');
+    const [renderContactInfo, setRenderContactInfo] = useState(null);
+
     const {
         avatar,
         birthdate,
@@ -386,6 +401,7 @@ function PersonPanelSummary(props) {
         recordType,
         suffix,
     } = data;
+
     const primaryPhone = find(phones, 'isPrimary');
     const primaryEmail = find(emails, 'isPrimary');
     const phone = (primaryPhone && primaryPhone.value) || 'N/A';
@@ -480,6 +496,7 @@ function PersonPanelSummary(props) {
         classes.root,
         UI_CLASS_NAME,
         [`${BEM_CLASS_NAME}`],
+        className,
         {
             [classes.isExpanded]: isExpanded,
             [classes.genderFemale]: includes(['f', 'F'], gender),
@@ -507,6 +524,7 @@ function PersonPanelSummary(props) {
     return (
         <div
             className={rootClasses}
+            id={id}
             onClick={onClick}
             onKeyDown={onKeyDown}
             tabIndex={tabIndex}
