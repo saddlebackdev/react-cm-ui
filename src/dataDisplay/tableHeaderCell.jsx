@@ -408,7 +408,7 @@ class TableHeaderCell extends React.PureComponent {
         const cellPrefix = 'table-header-cell';
         const containerClasses = ClassNames(
             'table-header-cell',
-            'table--cell',
+            'table-cell',
             _.isNumber(width) ?
                 `${cellPrefix}-${Utils.numberToWord(width)}` :
                 width === true || width === 'auto' ?
