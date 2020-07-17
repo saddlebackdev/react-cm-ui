@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.4 - 07/16/2020
+
+#### Bug Fix
+- [PR #176](https://github.com/saddlebackdev/react-cm-ui/pull/176) / Merge Commit d899aef82d3a1694facc04b2de92ef29f1c7357d
+    - bump lodash from 4.17.15 to 4.17.19
+- [PR #177](https://github.com/saddlebackdev/react-cm-ui/pull/177) / Merge Commit 5a81b0e723d4035b703bb0ff639b07ee2a03f6f2
+    - Added `withWidth` HOC.
+- [PR #179](https://github.com/saddlebackdev/react-cm-ui/pull/179) / Merge Commit f80cd59eadab30e53a98a007d7a72b6d045afa87
+    - Fixed **Table** sticky bug.
+
 ## 9.13.3 - 07/10/2020
 
 #### Bug Fix

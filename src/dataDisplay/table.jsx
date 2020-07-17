@@ -280,7 +280,7 @@ class Table extends React.PureComponent {
         } = this.props;
 
         if (stickyColumnCount > 0 && this.tableRef) {
-            const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(-n+${stickyColumnCount})`);
+            const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`);
             let cellWidths = 0;
             let cellCount = 0;
             /**
@@ -363,7 +363,7 @@ class Table extends React.PureComponent {
             stickyColumnCount,
         } = this.props;
 
-        const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(${stickyColumnCount})`);
+        const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(${stickyColumnCount})`);
 
         for (let i = 0; i < stickyCells.length; i += 1) {
             stickyCells[i].style.whiteSpace = shouldBreakSpaces ? 'break-spaces' : 'nowrap';
@@ -478,7 +478,7 @@ class Table extends React.PureComponent {
             fullWidth,
         } = this.props;
 
-        const stickyCells = this.tableRef.querySelectorAll(`.table--cell:nth-child(-n+${stickyColumnCount})`);
+        const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`);
 
         for (let i = 0; i < stickyCells.length; i += 1) {
             const stickyCell = stickyCells[i];
