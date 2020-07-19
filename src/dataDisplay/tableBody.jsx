@@ -25,30 +25,33 @@ const defaultProps = {
     style: null,
 };
 
-const TableBody = React.forwardRef((props, ref) => {
-    const {
-        children,
-        className,
-        id,
-        style,
-    } = props;
+const TableBody = React.forwardRef(
+    // eslint-disable-next-line prefer-arrow-callback
+    function TableBody(props, ref) {
+        const {
+            children,
+            className,
+            id,
+            style,
+        } = props;
 
-    const containerClasses = ClassNames(
-        'table-body',
-        className,
-    );
+        const containerClasses = ClassNames(
+            'table-body',
+            className,
+        );
 
-    return (
-        <tbody
-            className={containerClasses}
-            id={id}
-            ref={ref}
-            style={style}
-        >
-            {children}
-        </tbody>
-    );
-});
+        return (
+            <tbody
+                className={containerClasses}
+                id={id}
+                ref={ref}
+                style={style}
+            >
+                {children}
+            </tbody>
+        );
+    },
+);
 
 TableBody.propTypes = propTypes;
 TableBody.defaultProps = defaultProps;
