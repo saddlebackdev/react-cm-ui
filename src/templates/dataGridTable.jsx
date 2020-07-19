@@ -115,11 +115,7 @@ class DataGridTable extends React.PureComponent {
             newData,
         } = this.state;
 
-        const {
-            onClick: rowOnClick,
-        } = rowProps;
-
-        const isSelectable = isFunction(rowOnClick);
+        const isSelectable = isFunction(rowProps().onClick);
 
         const tableRows = map(newData, (row, index) => (
             <DataGridTableRow

@@ -109,7 +109,7 @@ $cell-border-color: color(borderColorSecondary);
         &-very .table-cell {
             padding: rem(11px);
             &:first-child { padding-left: rem(22px); }
-            &:last-child { padding-right: rem(22px); }
+            &:last-child { padding-right: rem(22px) !important; }
         }
     }
     &.table-striped .table-row:nth-child(2n) .table-cell {
