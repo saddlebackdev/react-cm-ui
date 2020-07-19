@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import {
+    isFunction,
+    isUndefined,
+    map,
+} from 'lodash';
+import { ReactSortable } from 'react-sortablejs';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,18 +19,22 @@ const propTypes = {
         id: PropTypes.string,
         style: PropTypes.shape({}),
     })).isRequired,
-    data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    data: PropTypes.arrayOf(
+        PropTypes.shape({}),
+    ).isRequired,
     dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
     handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string,
+    onChange: PropTypes.func,
     resizableColumnWidthPercentage: PropTypes.number,
     rowProps: PropTypes.func,
     size: PropTypes.oneOf([
         'small',
         'medium',
     ]),
+    sortable: PropTypes.bool,
     stickyColumns: PropTypes.number,
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
@@ -41,22 +50,53 @@ const defaultProps = {
     fontSize: 'xsmall',
     handle: false,
     idPrefix: 'base',
+    onChange: undefined,
     resizableColumnWidthPercentage: undefined,
-    rowProps: undefined,
+    rowProps: () => ({
+        className: null,
+        id: null,
+        onClick: null,
+        selected: null,
+        style: null,
+    }),
     size: 'small',
+    sortable: false,
     stickyColumns: undefined,
     stretch: false,
     style: undefined,
 };
 
 class DataGridTable extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            newData: props.data,
+        };
+
+        this.setNewData = this.setNewData.bind(this);
+    }
+
+    setNewData(newData) {
+        const {
+            onChange,
+        } = this.props;
+
+        this.setState({
+            newData,
+        });
+
+        if (isFunction(onChange)) {
+            onChange(newData);
+        }
+    }
+
     render() {
         const {
             classNamePrefix,
             bleed: bleedProp,
             className,
             columns,
-            data,
             dropShadow,
             fontSize,
             handle,
@@ -65,19 +105,67 @@ class DataGridTable extends React.PureComponent {
             rowProps,
             resizableColumnWidthPercentage,
             size,
+            sortable,
             stickyColumns,
             stretch,
             style,
         } = this.props;
-        const bleed = bleedProp ? 'very' : stretch;
-        const containerClasses = ClassNames('ui', `${classNamePrefix}_table`, className);
+
+        const {
+            newData,
+        } = this.state;
+
+        const {
+            onClick: rowOnClick,
+        } = rowProps;
+
+        const isSelectable = isFunction(rowOnClick);
+
+        const tableRows = map(newData, (row, index) => (
+            <DataGridTableRow
+                classNamePrefix={classNamePrefix}
+                columns={columns}
+                handle={handle}
+                id={id}
+                idPrefix={idPrefix}
+                isClickable={isSelectable}
+                key={`tableBodyRow-${row.id || index}`}
+                row={row}
+                rowIndex={index}
+                rowProps={rowProps(row)}
+            />
+        ));
+
+        let tableBody;
         const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
-        const isSelectable =
-            !_.isUndefined(rowProps) && _.isFunction(rowProps().onClick);
+
+        if (sortable) {
+            tableBody = (
+                <ReactSortable
+                    className={bodyClasses}
+                    list={newData}
+                    setList={this.setNewData}
+                    tag={Table.Body}
+                >
+                    {tableRows}
+                </ReactSortable>
+            );
+        } else {
+            tableBody = (
+                <Table.Body
+                    className={bodyClasses}
+                >
+                    {tableRows}
+                </Table.Body>
+            );
+        }
+
+        const rootClasses = ClassNames('ui', `${classNamePrefix}_table`, className);
+        const bleed = bleedProp ? 'very' : stretch;
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 style={style}
             >
                 <Table
@@ -92,12 +180,14 @@ class DataGridTable extends React.PureComponent {
                 >
                     <Table.Header>
                         <Table.Row>
-                            {_.map(columns, (column, index) => {
+                            {map(columns, (column, index) => {
                                 const headerCellClasses = ClassNames(
                                     `${classNamePrefix}_table_header_cell`,
                                     column.className,
                                 );
+
                                 const cellId = column.id || `${classNamePrefix}_table_${id}_header_${idPrefix}-${index}`;
+
                                 return (
                                     <Table.HeaderCell
                                         className={headerCellClasses}
@@ -112,22 +202,7 @@ class DataGridTable extends React.PureComponent {
                         </Table.Row>
                     </Table.Header>
 
-                    <Table.Body className={bodyClasses}>
-                        {_.map(data, (row, index) => (
-                            <DataGridTableRow
-                                classNamePrefix={classNamePrefix}
-                                columns={columns}
-                                handle={handle}
-                                id={id}
-                                idPrefix={idPrefix}
-                                isClickable={isSelectable}
-                                key={`tableBodyRow-${row.id || index}`}
-                                row={row}
-                                rowIndex={index}
-                                rowProps={rowProps(row)}
-                            />
-                        ))}
-                    </Table.Body>
+                    {tableBody}
                 </Table>
             </div>
         );

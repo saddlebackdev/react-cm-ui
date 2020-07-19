@@ -76,6 +76,7 @@ class TableRow extends React.Component {
             disabled: prevDisabled,
             selected: prevSelected,
         } = prevProps;
+
         const {
             disabled,
             selected,
@@ -119,6 +120,7 @@ class TableRow extends React.Component {
                 console.warn('Table Row is draggable but onDragOver event is not handled!'); // eslint-disable-line no-console
             } else {
                 onDragOver(event);
+
                 return;
             }
         }
