@@ -1,5 +1,6 @@
 import {
     get,
+    isEmpty,
     isFunction,
     isString,
     isUndefined,
@@ -65,7 +66,7 @@ class DataGridTableRow extends React.Component {
             rowProps: { onClick },
         } = this.props;
 
-        const isTextSelect = window.getSelection().toString();
+        const isTextSelect = !isEmpty(window.getSelection().toString());
 
         if (isClickable && !isTextSelect && !isUndefined(onClick)) {
             onClick(row);
