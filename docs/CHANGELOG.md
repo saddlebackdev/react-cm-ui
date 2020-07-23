@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.1 - 07/16/2020
+
+#### Feature
+- [PR #178](https://github.com/saddlebackdev/react-cm-ui/pull/178) / Merge Commit a008bdf9155c071bf5bff7a8ba95d1c2c7c7382c
+    - bump lodash from 4.17.15 to 4.17.19 in /docs
+
 ## 0.8.0 - 07/08/2020
 
 #### Feature
