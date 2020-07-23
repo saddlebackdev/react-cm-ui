@@ -409,6 +409,12 @@ export default class ModulesModal extends React.Component {
                 description: 'Give a Modal a height.',
                 allowedTypes: '',
             }, {
+                name: 'headerStyle',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the Modal\'s header.',
+                allowedTypes: '',
+            }, {
                 name: 'isOpen',
                 type: 'bool',
                 default: 'false',
@@ -460,7 +466,7 @@ export default class ModulesModal extends React.Component {
                 name: 'title',
                 type: 'string',
                 default: '',
-                description: 'Optinal string to give a Modal a title. If it is an empty then Modal\'s header (with a close button) will not be shown.',
+                description: 'Optinal string to give a Modal a title. If it is an empty (and closeButton is not defined) then Modal\'s header will not be shown.',
                 allowedTypes: '',
             }, {
                 name: 'fluidContent',
