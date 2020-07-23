@@ -24,9 +24,9 @@ class ModalHeader extends Component {
             children,
             closeButton,
             inverse,
+            style,
             title,
             titleTruncate,
-            style,
         } = this.props;
         const titleClass = ClassNames('title', {
             'modal-title-truncate': titleTruncate,
@@ -78,7 +78,7 @@ ModalHeader.propTypes = {
     onClose: PropTypes.func,
     title: PropTypes.string,
     titleTruncate: PropTypes.bool,
-    
+
 };
 
 class Modal extends Component {

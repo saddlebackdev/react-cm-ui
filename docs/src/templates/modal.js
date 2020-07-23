@@ -466,7 +466,7 @@ export default class ModulesModal extends React.Component {
                 name: 'title',
                 type: 'string',
                 default: '',
-                description: 'Optinal string to give a Modal a title. If it is an empty (and closeButton is not defined) then Modal\'s header will not be shown.',
+                description: 'Optional string to give a Modal a title. If it is an empty (and closeButton is not defined) then Modal\'s header will not be shown.',
                 allowedTypes: '',
             }, {
                 name: 'fluidContent',
