@@ -1,6 +1,5 @@
 import {
     isFunction,
-    isUndefined,
     map,
 } from 'lodash';
 import { ReactSortable } from 'react-sortablejs';
@@ -70,21 +69,13 @@ class DataGridTable extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            newData: props.data,
-        };
-
-        this.setNewData = this.setNewData.bind(this);
+        this.setSortableList = this.setSortableList.bind(this);
     }
 
-    setNewData(newData) {
+    setSortableList(newData) {
         const {
             onChange,
         } = this.props;
-
-        this.setState({
-            newData,
-        });
 
         if (isFunction(onChange)) {
             onChange(newData);
@@ -97,6 +88,7 @@ class DataGridTable extends React.PureComponent {
             bleed: bleedProp,
             className,
             columns,
+            data,
             dropShadow,
             fontSize,
             handle,
@@ -111,26 +103,28 @@ class DataGridTable extends React.PureComponent {
             style,
         } = this.props;
 
-        const {
-            newData,
-        } = this.state;
-
         const isSelectable = isFunction(rowProps().onClick);
 
-        const tableRows = map(newData, (row, index) => (
-            <DataGridTableRow
-                classNamePrefix={classNamePrefix}
-                columns={columns}
-                handle={handle}
-                id={id}
-                idPrefix={idPrefix}
-                isClickable={isSelectable}
-                key={`tableBodyRow-${row.id || index}`}
-                row={row}
-                rowIndex={index}
-                rowProps={rowProps(row)}
-            />
-        ));
+        let rowKeyNum = 1;
+
+        const tableRows = map(data, (row) => {
+            rowKeyNum += 1;
+
+            return (
+                <DataGridTableRow
+                    classNamePrefix={classNamePrefix}
+                    columns={columns}
+                    handle={handle}
+                    id={id}
+                    idPrefix={idPrefix}
+                    isClickable={isSelectable}
+                    key={`tableBodyRow-${row.id || rowKeyNum}`}
+                    row={row}
+                    rowIndex={rowKeyNum}
+                    rowProps={rowProps(row)}
+                />
+            );
+        });
 
         let tableBody;
         const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
@@ -139,8 +133,8 @@ class DataGridTable extends React.PureComponent {
             tableBody = (
                 <ReactSortable
                     className={bodyClasses}
-                    list={newData}
-                    setList={this.setNewData}
+                    list={data}
+                    setList={this.setSortableList}
                     tag={Table.Body}
                 >
                     {tableRows}
