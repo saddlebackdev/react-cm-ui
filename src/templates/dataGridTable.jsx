@@ -159,6 +159,7 @@ class DataGridTable extends React.PureComponent {
             let tBodyKeyNum = 1;
 
             tableBody = map(dataProp, (arrayOfData, index) => {
+                const isDisabled = !!sortable[index].disabled;
                 const isSortable = !isNil(sortable[index].sort) ? sortable[index].sort : true;
                 const hasHandle = !isNil(sortable[index].handle) ? sortable[index].handle : true;
 
@@ -167,6 +168,7 @@ class DataGridTable extends React.PureComponent {
                 return (
                     <ReactSortable
                         className={bodyClasses}
+                        disabled={isDisabled}
                         filter={`${classNamePrefix}-filter`}
                         key={`tbody--${tBodyKeyNum}`}
                         list={arrayOfData}
