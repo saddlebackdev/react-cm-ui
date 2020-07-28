@@ -7,20 +7,32 @@ const propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    data: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.shape({})),
+            PropTypes.shape({}),
+        ]),
+    ).isRequired,
     fontSize: PropTypes.string,
-    handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     minWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
-    onChange: PropTypes.func,
     resizableColumnWidthPercentage: PropTypes.number,
     rowProps: PropTypes.func,
     size: PropTypes.oneOf([
         'small',
         'medium',
     ]),
-    sortable: PropTypes.bool,
+    sortable: PropTypes.arrayOf(
+        PropTypes.shape({
+            disabled: PropTypes.bool,
+            filter: PropTypes.string,
+            group: PropTypes.string,
+            handle: PropTypes.bool,
+            onChange: PropTypes.func,
+            sort: PropTypes.bool,
+        }),
+    ),
     small: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
@@ -35,9 +47,7 @@ const defaultProps = {
     bleed: true,
     className: undefined,
     fontSize: undefined,
-    handle: false,
     minWidth: 800,
-    onChange: undefined,
     resizableColumnWidthPercentage: undefined,
     rowProps: () => ({
         className: null,
@@ -48,7 +58,7 @@ const defaultProps = {
     }),
     size: 'small',
     small: false,
-    sortable: false,
+    sortable: null,
     stickyColumns: 0,
     stickyColumnWidth: 30,
     stretch: false,
@@ -73,9 +83,7 @@ class DataGrid extends React.Component {
             columns,
             data,
             fontSize,
-            handle,
             id,
-            onChange,
             moduleType,
             rowProps,
             size: sizeProp,
@@ -112,11 +120,9 @@ class DataGrid extends React.Component {
                     columns={columns}
                     data={data}
                     fontSize={fontSize}
-                    handle={handle}
                     id={id}
                     minWidth={minWidth}
                     moduleType={moduleType}
-                    onChange={onChange}
                     rowProps={rowProps}
                     size={size}
                     sortable={sortable}

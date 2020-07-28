@@ -1,6 +1,9 @@
 import {
+    flatMap,
     isFunction,
     map,
+    isArray,
+    isNil,
 } from 'lodash';
 import { ReactSortable } from 'react-sortablejs';
 import ClassNames from 'classnames';
@@ -19,21 +22,31 @@ const propTypes = {
         style: PropTypes.shape({}),
     })).isRequired,
     data: PropTypes.arrayOf(
-        PropTypes.shape({}),
+        PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.shape({})),
+            PropTypes.shape({}),
+        ]),
     ).isRequired,
     dropShadow: PropTypes.bool,
     fontSize: PropTypes.string,
-    handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     idPrefix: PropTypes.string,
-    onChange: PropTypes.func,
     resizableColumnWidthPercentage: PropTypes.number,
     rowProps: PropTypes.func,
     size: PropTypes.oneOf([
         'small',
         'medium',
     ]),
-    sortable: PropTypes.bool,
+    sortable: PropTypes.arrayOf(
+        PropTypes.shape({
+            disabled: PropTypes.bool,
+            filter: PropTypes.string,
+            group: PropTypes.string,
+            handle: PropTypes.bool,
+            onChange: PropTypes.func,
+            sort: PropTypes.bool,
+        }),
+    ),
     stickyColumns: PropTypes.number,
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
@@ -47,9 +60,7 @@ const defaultProps = {
     className: undefined,
     dropShadow: false,
     fontSize: 'xsmall',
-    handle: false,
     idPrefix: 'base',
-    onChange: undefined,
     resizableColumnWidthPercentage: undefined,
     rowProps: () => ({
         className: null,
@@ -59,7 +70,7 @@ const defaultProps = {
         style: null,
     }),
     size: 'small',
-    sortable: false,
+    sortable: null,
     stickyColumns: undefined,
     stretch: false,
     style: undefined,
@@ -69,16 +80,16 @@ class DataGridTable extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.setSortableList = this.setSortableList.bind(this);
+        this.onSortableChange = this.onSortableChange.bind(this);
     }
 
-    setSortableList(newData) {
+    onSortableChange(newData, index) {
         const {
-            onChange,
+            sortable,
         } = this.props;
 
-        if (isFunction(onChange)) {
-            onChange(newData);
+        if (isFunction(sortable[index].onChange)) {
+            sortable[index].onChange(newData, index);
         }
     }
 
@@ -88,10 +99,9 @@ class DataGridTable extends React.PureComponent {
             bleed: bleedProp,
             className,
             columns,
-            data,
+            data: dataProp,
             dropShadow,
             fontSize,
-            handle,
             id,
             idPrefix,
             rowProps,
@@ -107,7 +117,7 @@ class DataGridTable extends React.PureComponent {
 
         let rowKeyNum = 1;
 
-        const tableRows = map(data, (row) => {
+        const tableRows = (data, handle) => flatMap(data, (row) => {
             rowKeyNum += 1;
 
             return (
@@ -129,23 +139,54 @@ class DataGridTable extends React.PureComponent {
         let tableBody;
         const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
 
-        if (sortable) {
+        if (sortable === true) {
             tableBody = (
                 <ReactSortable
                     className={bodyClasses}
-                    list={data}
-                    setList={this.setSortableList}
+                    filter={`${classNamePrefix}-filter`}
+                    list={dataProp}
+                    setList={(newData) => this.onSortableChange(newData, 0)}
+                    sort={!isNil(sortable[0].sort) ? sortable[0].sort : true}
                     tag={Table.Body}
                 >
-                    {tableRows}
+                    {tableRows(
+                        dataProp,
+                        !isNil(sortable[0].handle) ? sortable[0].handle : true,
+                    )}
                 </ReactSortable>
             );
+        } else if (isArray(sortable) && isArray(dataProp[0])) {
+            let tBodyKeyNum = 1;
+
+            tableBody = map(dataProp, (arrayOfData, index) => {
+                const isSortable = !isNil(sortable[index].sort) ? sortable[index].sort : true;
+                const hasHandle = !isNil(sortable[index].handle) ? sortable[index].handle : true;
+
+                tBodyKeyNum += 1;
+
+                return (
+                    <ReactSortable
+                        className={bodyClasses}
+                        filter={`${classNamePrefix}-filter`}
+                        key={`tbody--${tBodyKeyNum}`}
+                        list={arrayOfData}
+                        setList={(newData) => this.onSortableChange(newData, index)}
+                        sort={isSortable}
+                        tag={Table.Body}
+                    >
+                        {tableRows(
+                            arrayOfData,
+                            hasHandle,
+                        )}
+                    </ReactSortable>
+                );
+            });
         } else {
             tableBody = (
                 <Table.Body
                     className={bodyClasses}
                 >
-                    {tableRows}
+                    {tableRows(dataProp)}
                 </Table.Body>
             );
         }
