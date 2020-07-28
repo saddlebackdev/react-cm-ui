@@ -32,7 +32,7 @@ function DocsPrompt() {
             type: 'enum',
             default: '',
             description: 'Give an inline Prompt\'s action message a custom background color.',
-            allowedTypes: 'alert, success',
+            allowedTypes: 'alert, success, warning',
         }, {
             name: 'inlineHorizontalAlign',
             type: 'enum',
