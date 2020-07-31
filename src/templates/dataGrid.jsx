@@ -1,6 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTable from './dataGridTable';
 
 const propTypes = {
@@ -23,16 +24,7 @@ const propTypes = {
         'small',
         'medium',
     ]),
-    sortable: PropTypes.arrayOf(
-        PropTypes.shape({
-            disabled: PropTypes.bool,
-            filter: PropTypes.string,
-            group: PropTypes.string,
-            handle: PropTypes.bool,
-            onChange: PropTypes.func,
-            sort: PropTypes.bool,
-        }),
-    ),
+    sortable: PropTypes.arrayOf(SORTABLE_PROP_TYPES),
     small: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,

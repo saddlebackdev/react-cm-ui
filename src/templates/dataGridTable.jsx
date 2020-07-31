@@ -5,12 +5,13 @@ import {
     isArray,
     isNil,
 } from 'lodash';
-import { ReactSortable } from 'react-sortablejs';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTableRow from './dataGridTableRow';
 import Table from '../dataDisplay/table';
+import DataGridTableReactSortable from './dataGridTableReactSortable';
 
 const propTypes = {
     bleed: PropTypes.bool,
@@ -37,16 +38,7 @@ const propTypes = {
         'small',
         'medium',
     ]),
-    sortable: PropTypes.arrayOf(
-        PropTypes.shape({
-            disabled: PropTypes.bool,
-            filter: PropTypes.string,
-            group: PropTypes.string,
-            handle: PropTypes.bool,
-            onChange: PropTypes.func,
-            sort: PropTypes.bool,
-        }),
-    ),
+    sortable: PropTypes.arrayOf(SORTABLE_PROP_TYPES),
     stickyColumns: PropTypes.number,
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
@@ -141,46 +133,47 @@ class DataGridTable extends React.PureComponent {
 
         if (sortable === true) {
             tableBody = (
-                <ReactSortable
+                <DataGridTableReactSortable
+                    arrayIndex={0}
                     className={bodyClasses}
-                    filter={`${classNamePrefix}-filter`}
                     list={dataProp}
-                    setList={(newData) => this.onSortableChange(newData, 0)}
-                    sort={!isNil(sortable[0].sort) ? sortable[0].sort : true}
-                    tag={Table.Body}
+                    sortable={{
+                        ...sortable,
+                        filter: `${classNamePrefix}-filter`,
+                    }}
                 >
                     {tableRows(
                         dataProp,
                         !isNil(sortable[0].handle) ? sortable[0].handle : true,
                     )}
-                </ReactSortable>
+                </DataGridTableReactSortable>
             );
         } else if (isArray(sortable) && isArray(dataProp[0])) {
             let tBodyKeyNum = 1;
 
-            tableBody = map(dataProp, (arrayOfData, index) => {
-                const isDisabled = !!sortable[index].disabled;
-                const isSortable = !isNil(sortable[index].sort) ? sortable[index].sort : true;
-                const hasHandle = !isNil(sortable[index].handle) ? sortable[index].handle : true;
+            tableBody = map(dataProp, (arrayOfData, arrayIndex) => {
+                const hasHandle = !isNil(sortable[arrayIndex].handle) ?
+                    sortable[arrayIndex].handle :
+                    true;
 
                 tBodyKeyNum += 1;
 
                 return (
-                    <ReactSortable
+                    <DataGridTableReactSortable
+                        arrayIndex={arrayIndex}
                         className={bodyClasses}
-                        disabled={isDisabled}
-                        filter={`${classNamePrefix}-filter`}
                         key={`tbody--${tBodyKeyNum}`}
                         list={arrayOfData}
-                        setList={(newData) => this.onSortableChange(newData, index)}
-                        sort={isSortable}
-                        tag={Table.Body}
+                        sortable={{
+                            ...sortable,
+                            filter: `${classNamePrefix}-filter`,
+                        }}
                     >
                         {tableRows(
                             arrayOfData,
                             hasHandle,
                         )}
-                    </ReactSortable>
+                    </DataGridTableReactSortable>
                 );
             });
         } else {
