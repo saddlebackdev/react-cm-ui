@@ -1,32 +1,98 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.13.4',
+        package: '9.15.0',
         components: {
             dataDisplay: {
-                banner: 'NA',
-                divided: 'NA',
-                icon: 'NA',
-                image: 'NA',
-                list: 'NA',
-                personPanel: 'NA',
-                table: 'NA',
+                banner: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                divided: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                icon: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                image: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                list: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                personPanel: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                table: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
             },
             inputs: {
-                button: 'NA',
-                checkbox: 'NA',
-                datePicker: 'NA',
-                datePickerCalendar: 'NA',
-                datePickerInput: 'NA',
-                dropdown: 'NA',
-                dropdownButton: 'NA',
-                durationPicker: 'NA',
-                input: 'NA',
-                phoneInput: 'NA',
-                prompt: 'NA',
-                radio: 'NA',
-                segmentedControls: 'NA',
-                textArea: 'NA',
-                timePicker: 'NA',
+                button: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                checkbox: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                datePicker: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                datePickerCalendar: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                datePickerInput: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                dropdown: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                dropdownButton: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                durationPicker: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                input: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                phoneInput: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                prompt: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                radio: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                segmentedControls: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                textArea: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
+                timePicker: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                },
             },
         },
         theme: {
