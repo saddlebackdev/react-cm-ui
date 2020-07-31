@@ -98,8 +98,8 @@ const useStyles = makeStyles((theme) => {
                     minHeight: 'calc(100vh - 140px)',
                 },
                 '& .page--activity_indicator': {
-                    marginLeft: `calc(${width.navigation.expanded}px / 2)`,
-                    marginTop: `calc(${height.appHeader.md}px / 2)`,
+                    marginLeft: `calc(${width.navigation.md.expanded - 70}px / 2)`,
+                    marginTop: 0,
                 },
             },
         },

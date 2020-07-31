@@ -1,16 +1,20 @@
-import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTable from './dataGridTable';
 
 const propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    data: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.shape({})),
+            PropTypes.shape({}),
+        ]),
+    ).isRequired,
     fontSize: PropTypes.string,
-    handle: PropTypes.bool,
     id: PropTypes.string.isRequired,
     minWidth: PropTypes.number,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
@@ -20,6 +24,7 @@ const propTypes = {
         'small',
         'medium',
     ]),
+    sortable: PropTypes.arrayOf(SORTABLE_PROP_TYPES),
     small: PropTypes.bool,
     stickyColumnWidth: PropTypes.number,
     stickyColumns: PropTypes.number,
@@ -34,12 +39,18 @@ const defaultProps = {
     bleed: true,
     className: undefined,
     fontSize: undefined,
-    handle: true,
     minWidth: 800,
     resizableColumnWidthPercentage: undefined,
-    rowProps: undefined,
+    rowProps: () => ({
+        className: null,
+        id: null,
+        onClick: null,
+        selected: null,
+        style: null,
+    }),
     size: 'small',
     small: false,
+    sortable: null,
     stickyColumns: 0,
     stickyColumnWidth: 30,
     stretch: false,
@@ -49,9 +60,11 @@ const defaultProps = {
 class DataGrid extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             minWidth: props.minWidth,
         };
+
         this.classNamePrefix = `${props.moduleType}--data_grid`;
     }
 
@@ -62,32 +75,34 @@ class DataGrid extends React.Component {
             columns,
             data,
             fontSize,
-            handle,
             id,
             moduleType,
             rowProps,
             size: sizeProp,
             small: smallProp,
+            sortable,
             stickyColumns,
             stickyColumnWidth,
             resizableColumnWidthPercentage,
             stretch,
             style,
         } = this.props;
+
         const {
             minWidth,
         } = this.state;
+
         const { classNamePrefix } = this;
         const size = smallProp ? 'small' : sizeProp;
         const isStickyColumns = stickyColumns > 0;
-        const containerClasses = ClassNames('ui', classNamePrefix, className, {
+        const rootClasses = ClassNames('ui', classNamePrefix, className, {
             [`${classNamePrefix}-bleed`]: bleed,
             [`${classNamePrefix}-sticky_columns`]: isStickyColumns,
         });
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 style={style}
             >
                 <DataGridTable
@@ -97,12 +112,12 @@ class DataGrid extends React.Component {
                     columns={columns}
                     data={data}
                     fontSize={fontSize}
-                    handle={handle}
                     id={id}
                     minWidth={minWidth}
                     moduleType={moduleType}
                     rowProps={rowProps}
                     size={size}
+                    sortable={sortable}
                     stickyColumnWidth={stickyColumnWidth}
                     stickyColumns={stickyColumns}
                     resizableColumnWidthPercentage={resizableColumnWidthPercentage}

@@ -15,7 +15,7 @@ const propTypes = {
     id: PropTypes.string,
     inline: PropTypes.bool,
     inlineHorizontalAlign: PropTypes.oneOf(['left', 'right']),
-    inlineMessageColor: PropTypes.oneOf(['alert', 'success']),
+    inlineMessageColor: PropTypes.oneOf(['alert', 'success', 'warning']),
     message: PropTypes.string,
     onClick: PropTypes.func,
     onNoClick: PropTypes.func,
@@ -137,6 +137,7 @@ class Prompt extends React.Component {
         const messageClasses = ClassNames('prompt-message', {
             'promp-message-alert': inlineMessageColor === 'alert' || children.props.color === 'alert' || children.props.buttonColor === 'alert',
             'promp-message-success': inlineMessageColor === 'success' || children.props.color === 'success' || children.props.buttonColor === 'success',
+            'promp-message-warning': inlineMessageColor === 'warning' || children.props.color === 'warning' || children.props.buttonColor === 'warning',
         });
 
         const promptActionsStyle = {

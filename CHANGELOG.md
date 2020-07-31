@@ -1,6 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.14.0 - 07/31/2020
+
+#### Feature
+- [PR #180](https://github.com/saddlebackdev/react-cm-ui/pull/180) / Merge Commit 5d51bbe0a255470fddfeb78209af3df54c234c11
+    - Added react-sortablejs to handle D&Ding **DataGridTableRows**
+- [PR #181](https://github.com/saddlebackdev/react-cm-ui/pull/181) / Merge Commit 2621c598c6703dbe4fe2136fd9e644d20ef8b672
+    - Updated **Modal** styling to match design.
+    - Added `warning` color to **Prompt's** `inlineMessageColor`.
+
+#### Bug Fix
+- [PR #181](https://github.com/saddlebackdev/react-cm-ui/pull/181) / Merge Commit 2621c598c6703dbe4fe2136fd9e644d20ef8b672
+    - Fixed bug in **TextArea**.
+
 ## 9.13.4 - 07/16/2020
 
 #### Bug Fix
