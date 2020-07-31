@@ -2,6 +2,7 @@ import {
     isFunction,
     isString,
     isUndefined,
+    get,
 } from 'lodash';
 import autosize from 'autosize';
 import ClassNames from 'classnames';
@@ -112,7 +113,7 @@ class TextArea extends React.Component {
             const textArea = ReactDOM.findDOMNode(this.textArea);
 
             const autoResize = setInterval(() => {
-                if (value || this.textArea.value) {
+                if (value || get(this, 'textArea.value')) {
                     clearInterval(autoResize);
                     autosize(textArea);
 

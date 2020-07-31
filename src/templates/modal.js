@@ -21,14 +21,19 @@ class ModalHeader extends Component {
 
     render() {
         const {
-            children, closeButton, inverse, title, titleTruncate,
+            children,
+            closeButton,
+            inverse,
+            style,
+            title,
+            titleTruncate,
         } = this.props;
         const titleClass = ClassNames('title', {
             'modal-title-truncate': titleTruncate,
         });
 
         return (
-            <header className="modal-header">
+            <header className="modal-header" style={style}>
                 <Header
                     as="h3"
                     className={titleClass}
@@ -73,6 +78,7 @@ ModalHeader.propTypes = {
     onClose: PropTypes.func,
     title: PropTypes.string,
     titleTruncate: PropTypes.bool,
+
 };
 
 class Modal extends Component {
@@ -134,10 +140,11 @@ class Modal extends Component {
             className,
             closeButton,
             fluidContent,
-            header,
+            headerStyle,
             inverse,
             title,
             titleTruncate,
+            style,
         } = this.props;
         const {
             autoHeightMax,
@@ -167,8 +174,18 @@ class Modal extends Component {
             minHeight,
             minWidth,
             width,
+            ...style,
         };
-        const containerInnerScrollStyles = fluidContent ? { height: '100%' } : null;
+
+        const containerInnerScrollStyles = {
+            ...(fluidContent && {
+                height: '100%',
+            }),
+            ...((!title && !closeButton) && {
+                paddingTop: 33,
+            }),
+
+        };
 
         return (
             <Portal>
@@ -190,13 +207,7 @@ class Modal extends Component {
                                 ref={(el) => this.modalContainerInner = el}
                                 style={containerInnerScrollStyles}
                             >
-                                {header ? React.Children.map(this.props.children, (c) => React.cloneElement(c, {
-                                    closeButton,
-                                    inverse,
-                                    onClose: this._onClose,
-                                    title,
-                                    titleTruncate,
-                                })) : [
+                                {(title || closeButton) && (
                                     <ModalHeader
                                         closeButton={closeButton}
                                         inverse={inverse}
@@ -204,11 +215,12 @@ class Modal extends Component {
                                         onClose={this._onClose}
                                         title={title}
                                         titleTruncate={titleTruncate}
-                                    />,
-                                    <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
-                                        {this.props.children}
-                                    </div>,
-                                ]}
+                                        style={headerStyle}
+                                    />
+                                )}
+                                <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
+                                    {this.props.children}
+                                </div>
                             </div>
                         </ScrollBar>
                     </div>
@@ -443,6 +455,7 @@ Modal.propTypes = {
     ]),
     fluidContent: PropTypes.bool,
     header: PropTypes.bool,
+    headerStyle: PropTypes.shape({}),
     height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -474,6 +487,10 @@ Modal.propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+};
+
+Modal.defaultProps = {
+    headerStyle: undefined,
 };
 
 export default Modal;

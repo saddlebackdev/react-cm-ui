@@ -26,6 +26,7 @@
                     padding: 0 11px;
                     &.promp-message-alert { background-color: color(backgroundColorAlert); }
                     &.promp-message-success { background-color: color(backgroundColorSuccess); }
+                    &.promp-message-warning { background-color: color(backgroundColorWarning); }
                 }
 
             }
