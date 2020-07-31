@@ -1,10 +1,23 @@
-import _ from 'lodash';
+import {
+    get,
+    isEmpty,
+    isFunction,
+    isString,
+    isUndefined,
+    map,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Grid from '../organisms/grid';
+import Icon from '../dataDisplay/icon';
 import Table from '../dataDisplay/table';
+import withStyles from '../styles/withStyles';
 
 const propTypes = {
+    classes: PropTypes.shape({
+        handleGrid: PropTypes.string,
+    }),
     classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
@@ -27,12 +40,19 @@ const propTypes = {
 };
 
 const defaultProps = {
-    handle: undefined,
+    classes: null,
+    handle: false,
     isClickable: undefined,
     rowProps: undefined,
 };
 
-class DataGridTableRow extends React.PureComponent {
+const styles = {
+    handleGrid: {
+        flexWrap: 'nowrap !important',
+    },
+};
+
+class DataGridTableRow extends React.Component {
     constructor() {
         super();
 
@@ -40,17 +60,22 @@ class DataGridTableRow extends React.PureComponent {
     }
 
     onClick() {
-        const { isClickable, row, rowProps } = this.props;
-        const { onClick } = rowProps;
-        const isTextSelect = window.getSelection().toString();
+        const {
+            isClickable,
+            row,
+            rowProps: { onClick },
+        } = this.props;
 
-        if (isClickable && !isTextSelect && !_.isUndefined(onClick)) {
+        const isTextSelected = !isEmpty(window.getSelection().toString());
+
+        if (isClickable && !isTextSelected && !isUndefined(onClick)) {
             onClick(row);
         }
     }
 
     render() {
         const {
+            classes,
             classNamePrefix,
             columns,
             handle,
@@ -61,12 +86,14 @@ class DataGridTableRow extends React.PureComponent {
             rowIndex,
             rowProps,
         } = this.props;
+
         const {
             className: rowClassName,
             id: rowId,
             selected: rowSelected,
             style: rowStyle,
         } = rowProps;
+
         const containerClasses = ClassNames(`${classNamePrefix}_row`, rowClassName, {
             [`${classNamePrefix}_row-selected`]: rowSelected,
         });
@@ -78,34 +105,46 @@ class DataGridTableRow extends React.PureComponent {
                 onClick={isClickable ? this.onClick : null}
                 style={rowStyle}
             >
-                {_.map(columns, (column, index) => {
+                {map(columns, (cell, index) => {
                     let accessor = null;
-                    if (_.isString(column.accessor)) {
-                        accessor = _.get(row, column.accessor);
-                    } else if (_.isFunction(column.accessor)) {
-                        accessor = column.accessor(row);
+
+                    if (isString(cell.accessor)) {
+                        accessor = get(row, cell.accessor);
+                    } else if (isFunction(cell.accessor)) {
+                        accessor = cell.accessor(row);
                     }
-                    let cellStyle = {};
-                    if (idPrefix === 'column') {
-                        if (handle && _.last(columns) === column) {
-                            cellStyle.borderRight = '1px solid #edf1f5';
-                        }
-                    }
-                    cellStyle = {
-                        ...cellStyle,
-                        ...column.style,
-                    };
-                    const cellId = column.id || `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
+
+                    const cellId = cell.id ||
+                        `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell
-                            className={column.className}
+                            className={cell.className}
                             id={cellId}
                             key={cellId}
-                            textAlign={column.textAlign}
-                            style={cellStyle}
+                            textAlign={cell.textAlign}
+                            style={{
+                                ...cell.style,
+                            }}
                         >
-                            {accessor}
+                            {handle && index === 0 ? (
+                                <Grid
+                                    className={classes.handleGrid}
+                                >
+                                    <Grid.Column>
+                                        <Icon
+                                            color="static"
+                                            size={14}
+                                            title="Reorder"
+                                            type="splitter"
+                                        />
+                                    </Grid.Column>
+
+                                    <Grid.Column>
+                                        {accessor}
+                                    </Grid.Column>
+                                </Grid>
+                            ) : accessor}
                         </Table.Cell>
                     );
                 })}
@@ -117,4 +156,4 @@ class DataGridTableRow extends React.PureComponent {
 DataGridTableRow.propTypes = propTypes;
 DataGridTableRow.defaultProps = defaultProps;
 
-export default DataGridTableRow;
+export default withStyles(styles)(DataGridTableRow);
