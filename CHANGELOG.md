@@ -1,7 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 9.15.0 - 07/31/2020
+## 9.14.0 - 07/31/2020
 
 #### Feature
 - [PR #180](https://github.com/saddlebackdev/react-cm-ui/pull/180) / Merge Commit 5d51bbe0a255470fddfeb78209af3df54c234c11
