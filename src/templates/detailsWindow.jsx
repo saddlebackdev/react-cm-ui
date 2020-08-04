@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
-import InfoBar from '../organisms/infoBar';
+import InfoBar from '../surfaces/infoBar';
 import DetailsWindowColumnContainer from './detailsWindowColumnContainer';
 import domUtils from '../utils/domUtils';
 

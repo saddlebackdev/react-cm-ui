@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
 import Button from '../inputs/button';
-import Header from '../atoms/header';
+import Header from '../dataDisplay/header';
 import Icon from '../dataDisplay/icon';
 
 const propTypes = {

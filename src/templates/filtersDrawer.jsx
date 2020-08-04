@@ -15,14 +15,14 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../inputs/button';
-import Checkbox from '../inputs/checkbox';
+import Checkbox from '../inputs/checkbox/checkbox';
 import Drawer from './drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../inputs/dropdown';
+import Dropdown from '../inputs/dropdown/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
-import Header from '../atoms/header';
+import Header from '../dataDisplay/header';
 import Icon from '../dataDisplay/icon';
 
 const breakpoints = {

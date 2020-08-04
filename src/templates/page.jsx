@@ -2,7 +2,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import ActivityIndicator from '../atoms/activityIndicator';
+import ActivityIndicator from '../feedback/activityIndicator';
 import makeStyles from '../styles/makeStyles';
 import PageActionBar from './pageActionBar';
 import PageContainer from './pageContainer';

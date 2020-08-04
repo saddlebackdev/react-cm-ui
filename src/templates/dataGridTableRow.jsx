@@ -9,7 +9,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Grid from '../organisms/grid';
+import Grid from '../layout/grid';
 import Icon from '../dataDisplay/icon';
 import Table from '../dataDisplay/table';
 import withStyles from '../styles/withStyles';

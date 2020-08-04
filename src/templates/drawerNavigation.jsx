@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SubNavigation from '../organisms/subNavigation';
+import SubNavigation from '../navigation/subNavigation/subNavigation';
 
 const hasClassName = 'drawer-has_navigation';
 

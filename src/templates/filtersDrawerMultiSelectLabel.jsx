@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Label from '../atoms/label';
+import Label from '../dataDisplay/label';
 
 const propTypes = {
     color: PropTypes.string,

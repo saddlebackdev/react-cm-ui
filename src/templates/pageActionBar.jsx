@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActionBar from './actionBar';
+import ActionBar from '../surfaces/actionBar';
 
 const propTypes = {
     children: PropTypes.node,

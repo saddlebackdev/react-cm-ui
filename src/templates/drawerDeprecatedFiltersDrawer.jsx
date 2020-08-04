@@ -5,10 +5,10 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../inputs/button';
-import Checkbox from '../inputs/checkbox';
+import Checkbox from '../inputs/checkbox/checkbox';
 import Drawer from './drawer';
-import Dropdown from '../inputs/dropdown';
-import Header from '../atoms/header';
+import Dropdown from '../inputs/dropdown/dropdown';
+import Header from '../dataDisplay/header';
 import Icon from '../dataDisplay/icon';
 
 class DrawerFiltersDrawer extends React.PureComponent {
