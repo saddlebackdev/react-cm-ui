@@ -118,9 +118,7 @@ class Radio extends React.Component {
         if (multi) {
             if (includes(newValue, idArg)) {
                 remove(newValue, (v) => v === idArg);
-            }
-
-            if (!includes(newValue, idArg) && isArray(newValue)) {
+            } else if (isArray(newValue)) {
                 newValue.push(idArg);
             } else {
                 newValue = [idArg];
