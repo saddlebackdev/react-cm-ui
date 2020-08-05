@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.5 - 08/05/2020
+
+### Bug Fix
+- Fix Page Details Window Gutter (commit 3a0ccd7a93d93ffee21a1b7b8c2246a7890e3bff)
+    - Cherry-picked from [PR 185](https://github.com/saddlebackdev/react-cm-ui/pull/185) / Merge Commit f5f3eb9414c60b691ccc00166f052edef84d3ba7
+
 ## 9.13.4 - 07/16/2020
 
 #### Bug Fix
