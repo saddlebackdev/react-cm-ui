@@ -12,12 +12,12 @@ $prefixPageDetails: page--details_window;
     }
     &.#{$prefixDrawerDetails} {
         &-bleed {
-            margin: 0 -#{$pageGutterSm};
+            margin: 0 -22px;
         }
     }
     &.#{$prefixPageDetails} {
         &-bleed {
-            margin: 0 -22px;
+            margin: 0 -#{$pageGutterSm};;
         }
     }
     .#{$prefixDrawerDetails}, .#{$prefixPageDetails} {
@@ -85,7 +85,7 @@ $prefixPageDetails: page--details_window;
 @media only screen and (min-width: 496px) {
     .ui.#{$prefixPageDetails} {
         &-bleed {
-            margin: 0 -#{$pageGutterSm};
+            margin: 0 -#{$pageGutter496};
         }
         .ui.info-bar {
             padding: 22px 22px;
