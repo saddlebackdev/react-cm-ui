@@ -19,7 +19,7 @@ import Button from '../button';
 import domUtils from '../../utils/domUtils.js';
 import DropdownItem from './dropdownItem';
 import Icon from '../../dataDisplay/icon';
-import Modal from '../../templates/modal';
+import Modal from '../../surfaces/modal';
 import Utils from '../../utils/utils.js';
 
 class CustomSelect extends Select {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
 import Button from '../../inputs/button';
-import Drawer from '../../templates/drawer'; // eslint-disable-line import/no-cycle
+import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';

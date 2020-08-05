@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../../inputs/button';
 import Checkbox from '../../inputs/checkbox/checkbox';
-import Drawer from '../../templates/drawer'; // eslint-disable-line import/no-cycle
+import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
 import Dropdown from '../../inputs/dropdown/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
