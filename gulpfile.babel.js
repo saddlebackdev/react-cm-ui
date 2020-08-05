@@ -16,14 +16,6 @@ const paths = {
         dest: 'core/images',
     },
     scripts: {
-        atoms: {
-            src: [
-                'src/atoms/**/**.js',
-                '!src/atoms/**/*.test.js',
-                'src/atoms/**/**.jsx',
-            ],
-            dest: 'core/atoms',
-        },
         colors: {
             src: [
                 'src/colors/**/**.js',
@@ -38,6 +30,14 @@ const paths = {
                 '!src/dataDisplay/**/*.test.js',
             ],
             dest: 'core/dataDisplay',
+        },
+        feedback: {
+            src: [
+                'src/feedback/**/**.js',
+                'src/feedback/**/**.jsx',
+                '!src/feedback/**/*.test.js',
+            ],
+            dest: 'core/feedback',
         },
         global: {
             src: [
@@ -55,21 +55,21 @@ const paths = {
             ],
             dest: 'core/inputs',
         },
-        molecules: {
+        layout: {
             src: [
-                'src/molecules/**/**.js',
-                '!src/molecules/**/*.test.js',
-                'src/molecules/**/**.jsx',
+                'src/layout/**/**.js',
+                '!src/layout/**/*.test.js',
+                'src/layout/**/**.jsx',
             ],
-            dest: 'core/molecules',
+            dest: 'core/layout',
         },
-        organisms: {
+        navigation: {
             src: [
-                'src/organisms/**/**.js',
-                '!src/organisms/**/*.test.js',
-                'src/organisms/**/**.jsx',
+                'src/navigation/**/**.js',
+                '!src/navigation/**/*.test.js',
+                'src/navigation/**/**.jsx',
             ],
-            dest: 'core/organisms',
+            dest: 'core/navigation',
         },
         root: {
             src: [
@@ -84,13 +84,20 @@ const paths = {
             ],
             dest: 'core/styles',
         },
-        templates: {
+        surfaces: {
             src: [
-                'src/templates/**/**.js',
-                '!src/templates/**/*.test.js',
-                'src/templates/**/**.jsx',
+                '!src/surfaces/**/*.test.js',
+                'src/surfaces/**/**.js',
             ],
-            dest: 'core/templates',
+            dest: 'core/surfaces',
+        },
+        testUtils: {
+            src: [
+                'src/testUtils/**/**.js',
+                '!src/utils/**/*.test.js',
+                'src/testUtils/**/**.jsx',
+            ],
+            dest: 'core/testUtils',
         },
         utils: {
             src: [
@@ -114,13 +121,6 @@ export function images() {
         .pipe(dest(paths.images.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsAtoms() {
-    return src(paths.scripts.atoms.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.atoms.dest));
-}
-
 export function scriptsColors() {
     return src(paths.scripts.colors.src)
         .pipe(babel())
@@ -131,6 +131,12 @@ export function scriptsDataDisplay() {
     return src(paths.scripts.dataDisplay.src)
         .pipe(babel())
         .pipe(dest(paths.scripts.dataDisplay.dest));
+}
+
+export function scriptsFeedback() {
+    return src(paths.scripts.feedback.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.feedback.dest));
 }
 
 export function scriptsGlobal() {
@@ -145,18 +151,16 @@ export function scriptsInputs() {
         .pipe(dest(paths.scripts.inputs.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsMolecules() {
-    return src(paths.scripts.molecules.src)
+export function scriptsLayout() {
+    return src(paths.scripts.layout.src)
         .pipe(babel())
-        .pipe(dest(paths.scripts.molecules.dest));
+        .pipe(dest(paths.scripts.layout.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsOrganisms() {
-    return src(paths.scripts.organisms.src)
+export function scriptsNavigation() {
+    return src(paths.scripts.navigation.src)
         .pipe(babel())
-        .pipe(dest(paths.scripts.organisms.dest));
+        .pipe(dest(paths.scripts.navigation.dest));
 }
 
 export function scriptsRoot() {
@@ -171,18 +175,22 @@ export function scriptsStyles() {
         .pipe(dest(paths.scripts.styles.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsTemplates() {
-    return src(paths.scripts.templates.src)
+export function scriptsSurfaces() {
+    return src(paths.scripts.surfaces.src)
         .pipe(babel())
-        .pipe(dest(paths.scripts.templates.dest));
+        .pipe(dest(paths.scripts.surfaces.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
 export function scriptsUtils() {
     return src(paths.scripts.utils.src)
         .pipe(babel())
         .pipe(dest(paths.scripts.utils.dest));
+}
+
+export function scriptsTestUtils() {
+    return src(paths.scripts.testUtils.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.testUtils.dest));
 }
 
 export function styles() {
@@ -195,16 +203,17 @@ export function styles() {
 function watchFiles() {
     watch(paths.images.src, images);
     watch(paths.scripts.src, scriptsRoot);
-    watch(paths.scripts.src, scriptsAtoms);
     watch(paths.scripts.src, scriptsColors);
     watch(paths.scripts.src, scriptsDataDisplay);
+    watch(paths.scripts.src, scriptsFeedback);
     watch(paths.scripts.src, scriptsGlobal);
     watch(paths.scripts.src, scriptsInputs);
-    watch(paths.scripts.src, scriptsMolecules);
-    watch(paths.scripts.src, scriptsOrganisms);
+    watch(paths.scripts.src, scriptsLayout);
+    watch(paths.scripts.src, scriptsNavigation);
     watch(paths.scripts.src, scriptsStyles);
-    watch(paths.scripts.src, scriptsTemplates);
+    watch(paths.scripts.src, scriptsSurfaces);
     watch(paths.scripts.src, scriptsUtils);
+    watch(paths.scripts.src, scriptsTestUtils);
     watch(paths.styles.src, styles);
 }
 
@@ -214,17 +223,18 @@ export default series(
     clean,
     parallel(
         images,
-        scriptsAtoms,
         scriptsColors,
         scriptsDataDisplay,
+        scriptsFeedback,
         scriptsGlobal,
         scriptsInputs,
-        scriptsMolecules,
-        scriptsOrganisms,
+        scriptsLayout,
+        scriptsNavigation,
         scriptsRoot,
         scriptsStyles,
-        scriptsTemplates,
+        scriptsSurfaces,
         scriptsUtils,
+        scriptsTestUtils,
         styles,
     ),
 );
