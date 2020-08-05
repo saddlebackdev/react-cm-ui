@@ -36,6 +36,7 @@
 // Layout
 @import './layout/container/container';
 @import './layout/grid/grid';
+@import './layout/page/pageDeprecatedFiltersDrawer';
 
 // Navigation
 @import './navigation/a/a';
@@ -47,18 +48,15 @@
 @import './surfaces/actionBar/actionBar';
 @import './surfaces/card/card';
 @import './surfaces/detailsWindow/detailsWindow';
+@import './surfaces/drawer/drawer';
+@import './surfaces/drawer/drawerFiltersDrawer';
+@import './surfaces/drawer/drawerNavigation';
+@import './surfaces/drawer/drawerTitleBar';
+@import './surfaces/drawer/drawerWing';
+@import './surfaces/drawerDeprecated/drawerDeprecated';
 @import './surfaces/filtersDrawer/filtersDrawer';
 @import './surfaces/filtersRail/filtersRail';
 @import './surfaces/infoBar/infoBar';
+@import './surfaces/modal/modal';
 @import './surfaces/rail/rail';
 @import './surfaces/titleBar/titleBar';
-
-// Templates
-@import './templates/drawer/drawer';
-@import './templates/drawer/drawerFiltersDrawer';
-@import './templates/drawer/drawerNavigation';
-@import './templates/drawer/drawerTitleBar';
-@import './templates/drawer/drawerWing';
-@import './templates/drawerDeprecated/drawerDeprecated';
-@import './templates/modal/modal';
-@import './templates/page/pageDeprecatedFiltersDrawer';
