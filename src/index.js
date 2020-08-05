@@ -2,6 +2,8 @@
 export { default as Address } from './dataDisplay/address';
 export { default as Banner } from './dataDisplay/banner';
 export { default as Comment } from './dataDisplay/comment';
+export { default as DataCards } from './dataDisplay/dataCards';
+export { default as DataGrid } from './dataDisplay/dataGrid';
 export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
 export { default as EmailLink } from './dataDisplay/emailLink';
@@ -45,6 +47,7 @@ export { default as TimePicker } from './inputs/timePicker';
 // Layout
 export { default as Container } from './layout/container';
 export { default as Grid } from './layout/grid';
+export { default as Page } from './layout/page';
 
 // Navigation
 export { default as A } from './navigation/a';
