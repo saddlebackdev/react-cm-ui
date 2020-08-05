@@ -56,13 +56,13 @@ const routes = (
             <Route path="icon">
                 <IndexRoute
                     getComponent={(location, callback) => {
-                        import('./dataDisplay/iconSet')
+                        import('./dataDisplay/icon/iconSet')
                             .then((module) => callback(null, module.default));
                     }}
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./dataDisplay/iconExamples')
+                        import('./dataDisplay/icon/iconExamples')
                             .then((module) => callback(null, module.default));
                     }}
                     path="examples"
@@ -84,7 +84,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./dataDisplay/personPanel')
+                    import('./dataDisplay/personPanel/personPanel')
                         .then((module) => callback(null, module.default));
                 }}
                 path="person-panel"
@@ -101,7 +101,7 @@ const routes = (
         <Route path="/components/inputs">
             <Route
                 getComponent={(location, callback) => {
-                    import('./inputs/button')
+                    import('./inputs/button/button')
                         .then((module) => callback(null, module.default));
                 }}
                 path="button"
@@ -115,7 +115,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./inputs/datePicker')
+                    import('./inputs/datePickerDeprecated')
                         .then((module) => callback(null, module.default));
                 }}
                 path="date-picker"
@@ -136,7 +136,7 @@ const routes = (
             />
             <Route
                 getComponent={(location, callback) => {
-                    import('./inputs/dropdown')
+                    import('./inputs/dropdownDeprecated/dropdownDeprecated')
                         .then((module) => callback(null, module.default));
                 }}
                 path="dropdown"
@@ -150,7 +150,7 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./inputs/dropdownButtonOption')
+                        import('./inputs/dropdownButton/dropdownButtonOption')
                             .then((module) => callback(null, module.default));
                     }}
                     path="option"
