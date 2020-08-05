@@ -55,15 +55,15 @@ export { default as Tabs } from './navigation/tabs';
 export { default as Accordion } from './surfaces/accordion';
 export { default as ActionBar } from './surfaces/actionBar';
 export { default as Card } from './surfaces/card';
+export { default as DetailsWindow } from './surfaces/detailsWindow';
+export { default as Drawer } from './surfaces/drawer';
+export { default as DrawerDeprecated } from './surfaces/drawerDeprecated';
+export { default as FiltersDrawer } from './surfaces/filtersDrawer';
+export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
+export { default as Modal } from './surfaces/modal';
 export { default as Rail } from './surfaces/rail';
 export { default as TitleBar } from './surfaces/titleBar';
-
-// Templates
-export { default as DrawerDeprecated } from './templates/drawerDeprecated';
-export { default as Drawer } from './templates/drawer';
-export { default as Modal } from './templates/modal';
-export { default as Page } from './templates/page';
 
 // Utils
 export { default as DatePickerUtils } from './utils/datePickerUtils';

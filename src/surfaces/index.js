@@ -1,6 +1,12 @@
 export { default as Accordion } from './accordion';
 export { default as ActionBar } from './actionBar';
 export { default as Card } from './card';
+export { default as DetailsWindow } from './detailsWindow';
+export { default as Drawer } from './drawer';
+export { default as DrawerDeprecated } from './drawerDeprecated';
+export { default as FiltersDrawer } from './filtersDrawer';
+export { default as FiltersRail } from './filtersRail';
 export { default as InfoBar } from './infoBar';
+export { default as Modal } from './modal';
 export { default as Rail } from './rail';
 export { default as TitleBar } from './titleBar';

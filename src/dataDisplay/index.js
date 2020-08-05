@@ -1,6 +1,8 @@
 export { default as Address } from './address';
 export { default as Banner } from './banner';
 export { default as Comment } from './comment';
+export { default as DataCards } from './dataCards';
+export { default as DataGrid } from './dataGrid';
 export { default as DataGroups } from './dataGroups';
 export { default as Divider } from './divider';
 export { default as EmailLink } from './emailLink';
