@@ -331,84 +331,84 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerActionBar')
+                        import('./templates/drawer/drawerActionBar')
                             .then((module) => callback(null, module.default));
                     }}
                     path="action-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerContent')
+                        import('./templates/drawer/drawerContent')
                             .then((module) => callback(null, module.default));
                     }}
                     path="content"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerFiltersDrawer')
+                        import('./templates/drawer/drawerFiltersDrawer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDeprecatedFiltersDrawer')
+                        import('./templates/drawer/drawerDeprecatedFiltersDrawer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="deprecated-filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataCards')
+                        import('./templates/drawer/drawerDataCards')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-cards"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerNavigation')
+                        import('./templates/drawer/drawerNavigation')
                             .then((module) => callback(null, module.default));
                     }}
                     path="navigation"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataGrid')
+                        import('./templates/drawer/drawerDataGrid')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-grid"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerTitleBar')
+                        import('./templates/drawer/drawerTitleBar')
                             .then((module) => callback(null, module.default));
                     }}
                     path="title-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerWing')
+                        import('./templates/drawer/drawerWing')
                             .then((module) => callback(null, module.default));
                     }}
                     path="wing"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDetailsWindow')
+                        import('./templates/drawer/drawerDetailsWindow')
                             .then((module) => callback(null, module.default));
                     }}
                     path="details-window"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerSticky')
+                        import('./templates/drawer/drawerSticky')
                             .then((module) => callback(null, module.default));
                     }}
                     path="sticky"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/drawerDataGroups')
+                        import('./templates/drawer/drawerDataGroups')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-groups"
@@ -430,70 +430,70 @@ const routes = (
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageActionBar')
+                        import('./templates/page/pageActionBar')
                             .then((module) => callback(null, module.default));
                     }}
                     path="action-bar"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageContainer')
+                        import('./templates/page/pageContainer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="container"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageContent')
+                        import('./templates/page/pageContent')
                             .then((module) => callback(null, module.default));
                     }}
                     path="content"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDataCards')
+                        import('./templates/page/pageDataCards')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-cards"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDataGrid')
+                        import('./templates/page/pageDataGrid')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-grid"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDataGroups')
+                        import('./templates/page/pageDataGroups')
                             .then((module) => callback(null, module.default));
                     }}
                     path="data-groups"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDetailsWindow')
+                        import('./templates/page/pageDetailsWindow')
                             .then((module) => callback(null, module.default));
                     }}
                     path="details-window"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageFiltersDrawer')
+                        import('./templates/page/pageFiltersDrawer')
                             .then((module) => callback(null, module.default));
                     }}
                     path="filters-drawer"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageFiltersRail')
+                        import('./templates/page/pageFiltersRail')
                             .then((module) => callback(null, module.default));
                     }}
                     path="filters-rail"
                 />
                 <Route
                     getComponent={(location, callback) => {
-                        import('./templates/pageDemo')
+                        import('./templates/page/pageDemo')
                             .then((module) => callback(null, module.default));
                     }}
                     path="demo"

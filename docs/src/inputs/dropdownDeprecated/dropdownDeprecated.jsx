@@ -17,7 +17,7 @@ import { Card, Dropdown, Grid, Header, SubNavigation, TitleBar } from 'react-cm-
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Block from '../../global/block.js';
+import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';

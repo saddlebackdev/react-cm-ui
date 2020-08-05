@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 
 // Docs UI Components
-import Block from '../../global/block.js';
+import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
