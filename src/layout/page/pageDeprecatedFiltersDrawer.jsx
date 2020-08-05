@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../../inputs/button';
-import Drawer from '../drawer';
+import Drawer from '../../surfaces/drawer';
 import Dropdown from '../../inputs/dropdown/dropdown';
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
