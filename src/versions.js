@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.13.4',
+        package: '9.13.5',
         components: {
             dataDisplay: {
                 banner: 'NA',
