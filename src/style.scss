@@ -23,8 +23,17 @@
 
 // Inputs
 @import './inputs/checkbox/checkbox';
-@import './inputs/datePickerDeprecated/datePickerDeprecated';
 @import './inputs/datePickerCalendar/datePickerCalendar';
+@import './inputs/datePickerCalendar/datePickerDay';
+@import './inputs/datePickerCalendar/datePickerDropdownMonth';
+@import './inputs/datePickerCalendar/datePickerDropdownYear';
+@import './inputs/datePickerCalendar/datePickerMonth';
+@import './inputs/datePickerCalendar/datePickerWeek';
+@import './inputs/datePickerDeprecated/datePickerDeprecated';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedCalendar';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedDay';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedMonth';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedWeek';
 @import './inputs/datePickerInput/datePickerInput';
 @import './inputs/dropdown/dropdown';
 @import './inputs/dropdownMenu/dropdownMenu';
