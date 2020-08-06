@@ -21,7 +21,7 @@ import dateUtils from '../../utils/dateUtils';
 import Grid from '../../layout/grid';
 import Icon from '../icon';
 import makeStyles from '../../styles/makeStyles';
-import TimeFromNow from '../../utils/timeFromNow';
+import TimeFromNow from '../timeFromNow';
 import Typography from '../typography';
 import useMediaQuery from '../../utils/useMediaQuery';
 import useTheme from '../../styles/useTheme';

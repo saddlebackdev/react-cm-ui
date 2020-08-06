@@ -19,6 +19,7 @@ export { default as PersonPanelDetails } from './dataDisplay/personPanel/personP
 export { default as PersonPanelSummary } from './dataDisplay/personPanel/personPanelSummary';
 export { default as Table } from './dataDisplay/table';
 export { default as TelephoneLink } from './dataDisplay/telephoneLink';
+export { default as TimeFromNow } from './dataDisplay/timeFromNow';
 export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
@@ -72,7 +73,6 @@ export { default as TitleBar } from './surfaces/titleBar';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
-export { default as TimeFromNow } from './utils/timeFromNow/timeFromNow';
 export { default as useMediaQuery } from './utils/useMediaQuery';
 export { default as Utils } from './utils/utils';
 export { default as withWidth } from './utils/withWidth/withWidth';
