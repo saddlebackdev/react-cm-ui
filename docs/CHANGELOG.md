@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.3 - 08/06/2020
+
+#### Bug Fix
+- [PR #183](https://github.com/saddlebackdev/react-cm-ui/pull/183) / Merge Commit 4c1ece3ec379cb95bc2564dffb5ba865854d1435
+    - bump elliptic from 6.5.2 to 6.5.3 in /docs
+
 ## 0.8.2 - 07/31/2020
 
 #### Feature
