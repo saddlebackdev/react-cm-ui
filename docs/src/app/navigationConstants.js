@@ -85,9 +85,9 @@ export const navigationItems = [
                         path: 'email-link',
                     },
                     {
-                        component: 'header',
-                        label: 'Header',
-                        path: 'header',
+                        component: 'headerDeprecated',
+                        label: 'Header (Deprecated)',
+                        path: 'header-deprecated',
                     },
                     {
                         component: 'icon',
@@ -261,9 +261,9 @@ export const navigationItems = [
                 directory: 'layout',
                 items: [
                     {
-                        component: 'container',
-                        label: 'Container',
-                        path: 'container',
+                        component: 'containerDeprecated',
+                        label: 'Container (deprecated)',
+                        path: 'container-deprecated',
                     },
                     {
                         component: 'grid',
@@ -288,9 +288,9 @@ export const navigationItems = [
                         path: 'a',
                     },
                     {
-                        component: 'subNavigation',
-                        label: 'Sub Navigation',
-                        path: 'sub-navigation',
+                        component: 'subNavigationDeprecated',
+                        label: 'Sub Navigation (Deprecated)',
+                        path: 'sub-navigation-deprecated',
                     },
                     {
                         component: 'tabs',
@@ -305,9 +305,9 @@ export const navigationItems = [
                 directory: 'surfaces',
                 items: [
                     {
-                        component: 'accordion',
-                        label: 'Accordion',
-                        path: 'accordion',
+                        component: 'accordionDeprecated',
+                        label: 'Accordion (Deprecated)',
+                        path: 'accordion-deprecated',
                     },
                     {
                         component: 'actionBar',
@@ -345,9 +345,9 @@ export const navigationItems = [
                         path: 'filters-rail',
                     },
                     {
-                        component: 'infoBar',
-                        label: 'Info Bar',
-                        path: 'info-bar',
+                        component: 'infoBarDeprecated',
+                        label: 'Info Bar (Deprecated)',
+                        path: 'info-bar-deprecated',
                     },
                     {
                         component: 'modal',
