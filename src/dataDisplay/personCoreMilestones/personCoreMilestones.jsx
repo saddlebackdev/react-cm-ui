@@ -1,10 +1,4 @@
 import {
-    Grid,
-    Icon,
-    TimeFromNow,
-    Typography,
-} from 'react-cm-ui';
-import {
     includes,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -23,10 +17,14 @@ import {
     BEM_PERSON_CORE_MILESTONES,
     PERSON_CORE_MILESTONES_CLASSES,
 } from '../../global/constants';
-import makeStyles from '../../styles/makeStyles';
-import useTheme from '../../styles/useTheme';
-import useMediaQuery from '../../utils/useMediaQuery';
 import dateUtils from '../../utils/dateUtils';
+import Grid from '../../layout/grid';
+import Icon from '../icon';
+import makeStyles from '../../styles/makeStyles';
+import TimeFromNow from '../../utils/timeFromNow';
+import Typography from '../typography';
+import useMediaQuery from '../../utils/useMediaQuery';
+import useTheme from '../../styles/useTheme';
 
 const propTypes = {
     className: PropTypes.string,

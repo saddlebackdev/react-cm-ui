@@ -1,1 +1,1 @@
-export { default } from './container.jsx';
+export { default } from './container';

@@ -1,7 +1,4 @@
 import {
-    Typography,
-} from 'react-cm-ui';
-import {
     isEmpty,
     trimEnd,
 } from 'lodash';
@@ -12,6 +9,7 @@ import TelephoneLink from '../telephoneLink';
 import EmailLink from '../emailLink';
 import makeStyles from '../../styles/makeStyles';
 import { PERSON_CONTACT_INFO_CLASSES } from '../../global/constants';
+import Typography from '../typography';
 
 const preferredMethodEnums = [
     'email',
