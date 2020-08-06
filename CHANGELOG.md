@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [PR #185](https://github.com/saddlebackdev/react-cm-ui/pull/185) / Merge Commit f5f3eb9414c60b691ccc00166f052edef84d3ba7
     - **Page Details Window** gutter fix.
 
+## 9.13.5 - 08/05/2020
+
+### Bug Fix
+- Fix Page Details Window Gutter (commit 3a0ccd7a93d93ffee21a1b7b8c2246a7890e3bff)
+    - Cherry-picked from [PR 185](https://github.com/saddlebackdev/react-cm-ui/pull/185) / Merge Commit f5f3eb9414c60b691ccc00166f052edef84d3ba7
+
 ## 9.14.0 - 07/31/2020
 
 #### Feature
@@ -98,15 +104,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Fixed **Page** gutters in order to close gap between design and dev.
 
 ## 9.12.1 - 06/12/2020
+
+#### Bug Fix
 - [PR #156](https://github.com/saddlebackdev/react-cm-ui/pull/156) / Merge Commit f220b42d63b9da455540975b6ec187ebe35488c4
     - **Drawer** and **DrawerDeprecated** `zIndex` fixes.
     - Added `isModal` prop to **Drawer**.
 - [PR #157](https://github.com/saddlebackdev/react-cm-ui/pull/157) / Merge Commit 6d97221cc5496312b25491042bb164e8d98c2d38
     - Fixed **DataGrid** column cell alignments.
-
-#### Bug Fix
-- **Drawer** and **DrawerDeprecated** `zIndex` fixes.
-- Added `isModal` prop to **Drawer**.
 
 ## 9.11.2 - 06/12/2020
 
