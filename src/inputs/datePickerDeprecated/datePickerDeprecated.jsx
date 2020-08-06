@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 import DatePickerCalendar from './datePickerDeprecatedCalendar';
 import DatePickerInput from './datePickerDeprecatedInput';
-import DatePickerUtils from '../../utils/datePickerUtils.js';
+import DatePickerUtils from '../../utils/datePickerUtils';
 
 class DatePicker extends React.Component {
     constructor(props) {

@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Button from '../../inputs/button';
 import Divider from '../../dataDisplay/divider';
-import domUtils from '../../utils/domUtils.js';
+import domUtils from '../../utils/domUtils';
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
 

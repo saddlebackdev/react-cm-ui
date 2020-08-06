@@ -4,7 +4,7 @@
  */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import MockedTheme from '../../testUtils/mockedTheme';
+import MockedTheme from '../../../testUtils/mockedTheme';
 import PersonCoreMilestones from '../personCoreMilestones';
 
 describe('<PersonCoreMilestones />', () => {
