@@ -18,5 +18,6 @@ export { default as PersonPanelDetails } from './personPanel/personPanelDetails'
 export { default as PersonPanelSummary } from './personPanel/personPanelSummary';
 export { default as Table } from './table';
 export { default as TelephoneLink } from './telephoneLink';
+export { default as TimeFromNow } from './timeFromNow';
 export { default as Tooltip } from './tooltip';
 export { default as Typography } from './typography';
