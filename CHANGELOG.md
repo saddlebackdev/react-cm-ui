@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.14.1 - 08/06/2020
+
+#### Bug Fix
+- [PR #184](https://github.com/saddlebackdev/react-cm-ui/pull/184) / Merge Commit 51781117d934a019133cbb81d2ee22289da379e6
+    - Fixes handling a click on radio item with multi option.
+- [PR #185](https://github.com/saddlebackdev/react-cm-ui/pull/185) / Merge Commit f5f3eb9414c60b691ccc00166f052edef84d3ba7
+    - **Page Details Window** gutter fix.
+
 ## 9.14.0 - 07/31/2020
 
 #### Feature
