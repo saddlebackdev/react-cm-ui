@@ -27,7 +27,7 @@ import TableSampleStretch from './tableSampleStretch';
 import TableSampleTextAlign from './tableSampleTextAlign';
 import TableSampleVerticalAlign from './tableSampleVerticalAlign';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as tableDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table';
+import { default as tableDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table/table';
 
 function DocsTable() {
     const descriptionCopy = tableDoc.description;

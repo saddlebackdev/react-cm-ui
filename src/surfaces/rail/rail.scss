@@ -1,0 +1,36 @@
+@import '../../styles/colors';
+
+.ui.rail {
+    background-color: color(backgroundColor);
+    height: 100%;
+    padding: 22px;
+    position: absolute;
+    width: 250px;
+    &.rail-position {
+        &-left::after, &-right::after {
+            content: '';
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 15px;
+        }
+        &-left {
+            box-shadow: inset -1px 0 0 0 color(borderColor);
+            left: 0;
+            top: 0;
+            &::after {
+                background: linear-gradient(to right, rgba(0, 0, 0, .1) -100%, transparent 100%);
+                right: -15px;
+            }
+        }
+        &-right {
+            box-shadow: inset 1px 0 0 0 color(borderColor);
+            right: 0;
+            top: 0;
+            &::after {
+                background: linear-gradient(to left, rgba(0, 0, 0, .1) -100%, transparent 100%);
+                left: -15px;
+            }
+        }
+    }
+}

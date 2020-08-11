@@ -15,15 +15,15 @@ import {
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
 import { UI_CLASS_NAME } from '../../global/constants';
-import Address from '../address';
-import Collapse from '../../utils/collapse';
+import Address from '../address/address';
+import Collapse from '../../utils/collapse/collapse';
 import DataGroups from '../dataGroups';
 import EmailLink from '../emailLink';
 import makeStyles from '../../styles/makeStyles';
 import PersonCoreMilestones from '../personCoreMilestones';
 import PersonPanelDetailsActionButton from './personPanelDetailsActionButton';
 import TelephoneLink from '../telephoneLink';
-import Typography from '../typography';
+import Typography from '../typography/typography';
 
 const propTypes = {
     /**
