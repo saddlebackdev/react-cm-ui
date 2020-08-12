@@ -1,113 +1,144 @@
-import { isNumber } from 'lodash';
+import {
+    reduce,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../../utils/utils';
-
-const alignEnums = ['stretch'];
-const columnEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const floatedEnums = ['left', 'right'];
-const textAlignEnums = ['center', 'left', 'right'];
-const verticalAlignEnums = ['bottom', 'middle', 'top'];
+import {
+    BEM_GRID_COLUMN,
+    UI_CLASS_NAME,
+} from '../../global/constants';
+import {
+    GRID_SIZES,
+} from './gridConstants';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    align: PropTypes.oneOf(alignEnums),
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to the component.
+     * See [CSS API](#css) below for more details.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
-    desktop: PropTypes.oneOf(columnEnums),
-    desktopLarge: PropTypes.oneOf(columnEnums),
-    fieldType: PropTypes.oneOf(['checkbox', 'legend', 'radio']),
-    floated: PropTypes.oneOf(floatedEnums),
     id: PropTypes.string,
-    laptop: PropTypes.oneOf(columnEnums),
-    mobile: PropTypes.oneOf(columnEnums),
-    mobileLarge: PropTypes.oneOf(columnEnums),
-    mobileMedium: PropTypes.oneOf(columnEnums),
-    style: PropTypes.shape({}),
-    tablet: PropTypes.oneOf(columnEnums),
-    textAlign: PropTypes.oneOf(textAlignEnums),
-    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
-    width: PropTypes.oneOf(columnEnums),
+    lg: PropTypes.oneOfType([
+        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.bool,
+    ]),
+    md: PropTypes.oneOfType([
+        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.bool,
+    ]),
+    sm: PropTypes.oneOfType([
+        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.bool,
+    ]),
+    xl: PropTypes.oneOfType([
+        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.bool,
+    ]),
 };
 
 const defaultProps = {
-    align: undefined,
-    className: undefined,
-    desktop: undefined,
-    desktopLarge: undefined,
-    fieldType: undefined,
-    floated: undefined,
-    id: undefined,
-    laptop: undefined,
-    mobile: undefined,
-    mobileLarge: undefined,
-    mobileMedium: undefined,
-    style: {},
-    tablet: undefined,
-    textAlign: undefined,
-    verticalAlign: undefined,
-    width: undefined,
+    classes: null,
+    children: null,
+    className: null,
+    id: null,
+    lg: false,
+    md: false,
+    sm: false,
+    xl: false,
 };
+
+function generateGrid(globalStyles, theme, breakpoint) {
+    const styles = {};
+
+    GRID_SIZES.forEach((size) => {
+        const key = `${BEM_GRID_COLUMN}-${breakpoint}-${size}`;
+
+        if (size === true) {
+            // For the auto layouting
+            styles[key] = {
+                flexBasis: 0,
+                flexGrow: 1,
+                maxWidth: '100%',
+            };
+
+            return null;
+        }
+
+        if (size === 'auto') {
+            styles[key] = {
+                flexBasis: 'auto',
+                flexGrow: 0,
+                maxWidth: 'none',
+            };
+
+            return null;
+        }
+
+        const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+
+        styles[key] = {
+            flexBasis: width,
+            flexGrow: 0,
+            maxWidth: width,
+        };
+    });
+
+    if (breakpoint === 'sm') {
+        Object.assign(globalStyles, styles);
+    } else {
+        // eslint-disable-next-line no-param-reassign
+        globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+    }
+}
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        margin: 0,
+    },
+    ...reduce(theme.breakpoints.keys, (accumulator, key) => {
+        generateGrid(accumulator, theme, key);
+
+        return accumulator;
+    }, {}),
+}));
 
 const GridColumn = React.forwardRef((props, ref) => {
     const {
-        align,
         children,
         className,
-        desktop,
-        desktopLarge,
-        fieldType,
-        floated,
         id,
-        laptop,
-        mobile,
-        mobileLarge,
-        mobileMedium,
-        style,
-        tablet,
-        textAlign,
-        verticalAlign,
-        width,
+        sm,
+        md,
+        lg,
+        xl,
     } = props;
-    const colPrefix = 'grid-col';
 
-    const containerClasses = ClassNames('ui', colPrefix, className, {
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktop)}`]: isNumber(desktop),
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktopLarge)}`]: isNumber(desktopLarge),
-        [`${colPrefix}-laptop-${Utils.numberToWord(laptop)}`]: isNumber(laptop),
-        [`${colPrefix}-mobile-${Utils.numberToWord(mobile)}`]: isNumber(mobile),
-        [`${colPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}`]: isNumber(mobileLarge),
-        [`${colPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}`]: isNumber(mobileMedium),
-        [`${colPrefix}-tablet-${Utils.numberToWord(tablet)}`]: isNumber(tablet),
-        [`${colPrefix}-${Utils.numberToWord(width)}`]: isNumber(width),
-        [`${colPrefix}-desktop-auto`]: desktop === 'auto',
-        [`${colPrefix}-desktop-large-auto`]: desktopLarge === 'auto',
-        [`${colPrefix}-laptop-auto`]: laptop === 'auto',
-        [`${colPrefix}-mobile-auto`]: mobile === 'auto',
-        [`${colPrefix}-mobile-large-auto`]: mobileLarge === 'auto',
-        [`${colPrefix}-mobile-medium-auto`]: mobileMedium === 'auto',
-        [`${colPrefix}-tablet-auto`]: tablet === 'auto',
-        [`${colPrefix}-auto`]: width === 'auto',
-        'grid-col-floated-left': floated === 'left',
-        'grid-col-floated-right': floated === 'right',
-        'grid-col-align-stretch': align === 'stretch',
-        'grid-col-text-align-center': textAlign === 'center',
-        'grid-col-text-align-left': textAlign === 'left',
-        'grid-col-text-align-right': textAlign === 'right',
-        'grid-col-vertical-align-bottom': verticalAlign === 'bottom',
-        'grid-col-vertical-align-center': verticalAlign === 'center',
-        'grid-col-vertical-align-top': verticalAlign === 'top',
-        'grid-col-form_field_checkbox': fieldType === 'checkbox',
-        'grid-col-form_field_legend': fieldType === 'legend',
-        'grid-col-form_field_radio': fieldType === 'radio',
-    });
+    const classes = useStyles(props);
+
+    const containerClasses = ClassNames(
+        UI_CLASS_NAME,
+        BEM_GRID_COLUMN,
+        classes.root,
+        className,
+        {
+            [classes[`${BEM_GRID_COLUMN}-sm-${String(sm)}`]]: sm !== false,
+            [classes[`${BEM_GRID_COLUMN}-md-${String(md)}`]]: md !== false,
+            [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false,
+            [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false,
+        },
+    );
 
     return (
         <div
             className={containerClasses}
             id={id}
             ref={ref}
-            style={style}
         >
             {children}
         </div>

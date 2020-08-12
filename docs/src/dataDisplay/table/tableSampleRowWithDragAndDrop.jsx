@@ -1,6 +1,30 @@
+import { Grid, Icon, Table } from 'react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Grid, Icon, Table } from 'react-cm-ui';
+import withStyles from 'react-cm-ui/styles/withStyles';
+
+const propTypes = {
+    classes: PropTypes.shape({
+        handleColumn: PropTypes.string,
+    }),
+    index: PropTypes.number.isRequired,
+    onReorder: PropTypes.func.isRequired,
+    tableRowData: PropTypes.shape({
+        classification: PropTypes.string,
+        name: PropTypes.string,
+        order: PropTypes.number,
+    }).isRequired,
+};
+
+const defaultProps = {
+    classes: null,
+};
+
+const styles = {
+    handleColumn: {
+        height: 16,
+    },
+};
 
 class TableSampleRowWithDragAndDrop extends React.PureComponent {
     constructor(props) {
@@ -35,7 +59,11 @@ class TableSampleRowWithDragAndDrop extends React.PureComponent {
     }
 
     render() {
-        const { tableRowData } = this.props;
+        const {
+            classes,
+            tableRowData,
+        } = this.props;
+
         const { isDragging } = this.state;
 
         return (
@@ -47,22 +75,33 @@ class TableSampleRowWithDragAndDrop extends React.PureComponent {
                 onDrop={this.onDrop}
             >
                 <Table.Cell>
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Icon style={{ cursor: isDragging ? 'grabbing' : 'grab' }} title="Reorder" type="splitter" />
-                            </Grid.Column>
-                            <Grid.Column>
-                                <span style={{ fontWeight: 'bold' }}>
-                                    {tableRowData.order}
-                                </span>
-                            </Grid.Column>
-                        </Grid.Row>
+                    <Grid
+                        alignItems="center"
+                    >
+                        <Grid.Column
+                            classes={{
+                                root: classes.handleColumn,
+                            }}
+                        >
+                            <Icon
+                                style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                                title="Reorder"
+                                type="splitter"
+                            />
+                        </Grid.Column>
+
+                        <Grid.Column>
+                            <span style={{ fontWeight: 'bold' }}>
+                                {tableRowData.order}
+                            </span>
+                        </Grid.Column>
                     </Grid>
                 </Table.Cell>
+
                 <Table.Cell>
                     {tableRowData.name}
                 </Table.Cell>
+
                 <Table.Cell>
                     {tableRowData.classification}
                 </Table.Cell>
@@ -71,14 +110,7 @@ class TableSampleRowWithDragAndDrop extends React.PureComponent {
     }
 }
 
-TableSampleRowWithDragAndDrop.propTypes = {
-    index: PropTypes.number.isRequired,
-    onReorder: PropTypes.func.isRequired,
-    tableRowData: PropTypes.shape({
-        classification: PropTypes.string,
-        name: PropTypes.string,
-        order: PropTypes.number,
-    }).isRequired,
-};
+TableSampleRowWithDragAndDrop.propTypes = propTypes;
+TableSampleRowWithDragAndDrop.defaultProps = defaultProps;
 
-export default TableSampleRowWithDragAndDrop;
+export default withStyles(styles)(TableSampleRowWithDragAndDrop);

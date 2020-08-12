@@ -1,5 +1,6 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import transitions from '@material-ui/core/styles/transitions';
+import createSpacing from '@material-ui/core/styles/createSpacing';
 import {
     keys as breakpointsKeys,
     values as breakpointsValues,
@@ -27,6 +28,7 @@ const theme = {
     },
     palette: createPalette(),
     shape,
+    spacing: createSpacing(11),
     transitions,
     typography: createTypography(),
     width: {

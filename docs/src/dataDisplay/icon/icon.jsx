@@ -12,7 +12,8 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from 'react-cm-ui/styles';
+import withStyles from 'react-cm-ui/styles/withStyles';
+import withWidth from 'react-cm-ui/utils/withWidth';
 import IconSubNavigation from './iconSubNavigation';
 import Main from '../../global/main';
 
@@ -276,6 +277,9 @@ const sortByOptions = [
 ];
 
 const useStyles = () => ({
+    iconGridColumn: {
+        textAlign: 'center',
+    },
     dropdownButton: {
         '&.ui.button.button_dropdown': {
             overflow: 'visible !important',
@@ -311,7 +315,14 @@ class ElementsIconSet extends React.PureComponent {
     }
 
     render() {
-        const { classes } = this.props;
+        const {
+            classes,
+            width,
+        } = this.props;
+
+        console.log('width', width);
+        console.log('window.innerWidth', window.innerWidth);
+
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
@@ -329,32 +340,66 @@ class ElementsIconSet extends React.PureComponent {
 
             /* eslint-disable react/no-array-index-key */
             renderCategories = map(sortedFlatMapOfIconTypes, (iconType, index) => (
-                <Grid.Column key={index} laptop={3} mobileLarge={4} width={6}>
-                    <Icon compact={iconCompact} size={iconSize} type={iconType} />
+                <React.Fragment
+                    key={index}
+                >
+                    {width === 'lg' && index % 5 === 0 ? (
+                        <Grid.Column
+                            lg={12}
+                        />
+                    ) : null}
 
-                    <p className="icon-type-name">{iconType}</p>
-                </Grid.Column>
+                    <Grid.Column
+                        classes={{
+                            root: classes.iconGridColumn,
+                        }}
+                        lg
+                        md={4}
+                        sm={6}
+                    >
+                        <Icon compact={iconCompact} size={iconSize} type={iconType} />
+
+                        <p className="icon-type-name">{iconType}</p>
+                    </Grid.Column>
+                </React.Fragment>
             ));
             /* eslint-enable react/no-array-index-key */
         } else {
             renderCategories = map(categorizedIconSet, (iconSet, parentIndex) => (
                 <React.Fragment key={parentIndex}>
-                    <Grid.Row>
-                        <Grid.Column textAlign="left" width={12}>
-                            <Header size="large" style={{ margin: '0 0 22px' }}>
-                                {iconSet.category}
-                            </Header>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column
+                        sm={12}
+                    >
+                        <Header size="large" style={{ margin: '0 0 22px' }}>
+                            {iconSet.category}
+                        </Header>
+                    </Grid.Column>
 
-                    <Grid.Row>
-                        {map(iconSet.types, (type, childIndex) => (
-                            <Grid.Column key={childIndex} laptop={3} mobileLarge={4} width={6}>
+                    {map(iconSet.types, (type, childIndex) => (
+                        <React.Fragment
+                            key={childIndex}
+                        >
+                            {width === 'lg' && childIndex % 5 === 0 ? (
+                                <Grid.Column
+                                    lg={12}
+                                />
+                            ) : null}
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                key={childIndex}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
                                 <Icon compact={iconCompact} size={iconSize} type={type} />
+
                                 <p className="icon-type-name">{type}</p>
                             </Grid.Column>
-                        ))}
-                    </Grid.Row>
+                        </React.Fragment>
+                    ))}
                 </React.Fragment>
             ));
         }
@@ -366,8 +411,14 @@ class ElementsIconSet extends React.PureComponent {
                 <IconSubNavigation />
 
                 <Main.Content>
-                    <Grid columns={1} style={{ marginBottom: '22px' }}>
-                        <Grid.Column style={{ textAlign: 'right' }}>
+                    <Grid
+                        alignItems="flex-start"
+                        justifyContent="flex-end"
+                        spacing={2}
+                    >
+                        <Grid.Column
+                            sm="auto"
+                        >
                             <DropdownButton
                                 className={classes.dropdownButton}
                                 style={{ margin: 0 }}
@@ -385,58 +436,122 @@ class ElementsIconSet extends React.PureComponent {
                         </Grid.Column>
                     </Grid>
 
-                    <Grid textAlign="center">
+                    <Grid
+                        alignItems="flex-start"
+                        justify="center"
+                        spacing={2}
+                    >
                         {renderCategories}
 
-                        <Grid.Row>
-                            <Grid.Column textAlign="left" width={12}>
-                                <Header size="large" style={{ margin: '0 0 22px' }}>
-                                    Older Icons
-                                </Header>
-                            </Grid.Column>
-                        </Grid.Row>
+                        <Grid.Column
+                            sm={12}
+                        >
+                            <Header size="large" style={{ margin: '0 0 22px' }}>
+                                Older Icons
+                            </Header>
+                        </Grid.Column>
 
-                        <Grid.Row>
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
-                                <p className="icon-type-name">circle-filled</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
+                            <p className="icon-type-name">circle-filled</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="text-lines" />
-                                <p className="icon-type-name">text-lines</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="text-lines" />
+                            <p className="icon-type-name">text-lines</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="caret-up" />
-                                <p className="icon-type-name">caret-up</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="caret-up" />
+                            <p className="icon-type-name">caret-up</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="caret-right" />
-                                <p className="icon-type-name">caret-right</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="caret-right" />
+                            <p className="icon-type-name">caret-right</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="caret-down" />
-                                <p className="icon-type-name">caret-down</p>
-                            </Grid.Column>
+                        {width === 'lg' ? (
+                            <Grid.Column
+                                lg={12}
+                            />
+                        ) : null}
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="caret-left" />
-                                <p className="icon-type-name">caret-left</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="caret-down" />
+                            <p className="icon-type-name">caret-down</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
-                                <p className="icon-type-name">arrows-alt</p>
-                            </Grid.Column>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="caret-left" />
+                            <p className="icon-type-name">caret-left</p>
+                        </Grid.Column>
 
-                            <Grid.Column laptop={3} mobileLarge={4} width={6}>
-                                <Icon compact={iconCompact} size={iconSize} type="spinner" />
-                                <p className="icon-type-name">spinner</p>
-                            </Grid.Column>
-                        </Grid.Row>
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
+                            <p className="icon-type-name">arrows-alt</p>
+                        </Grid.Column>
+
+                        <Grid.Column
+                            classes={{
+                                root: classes.iconGridColumn,
+                            }}
+                            lg
+                            md={4}
+                            sm={6}
+                        >
+                            <Icon compact={iconCompact} size={iconSize} type="spinner" />
+                            <p className="icon-type-name">spinner</p>
+                        </Grid.Column>
                     </Grid>
                 </Main.Content>
             </Main>
@@ -446,4 +561,9 @@ class ElementsIconSet extends React.PureComponent {
 
 ElementsIconSet.propTypes = propTypes;
 
-export default withStyles(useStyles)(ElementsIconSet);
+export default withStyles(
+    useStyles,
+    {
+        withTheme: true,
+    },
+)(withWidth()(ElementsIconSet));
