@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.13.6 - 08/12/2020
+
+- Fix Radio Button `onClick` handling when `multi` prop is set to `true` (Commit 72fdd9206ba26b685a0b4fd4c640aa16e37fffaf)
+    - Cherry-picked from [PR 184](https://github.com/saddlebackdev/react-cm-ui/pull/184) / Merge Commit 51781117d934a019133cbb81d2ee22289da379e6
+
 ## 9.13.5 - 08/05/2020
 
 ### Bug Fix
