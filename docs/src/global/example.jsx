@@ -12,7 +12,11 @@ import Highlighter from './highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    rawCode: PropTypes.string.isRequired,
+    rawCode: PropTypes.string,
+};
+
+const defaultProps = {
+    rawCode: null,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -25,6 +29,7 @@ const useStyles = makeStyles((theme) => {
     return {
         codeContainerColumn: {
             padding: '11px 0',
+            textAlign: 'right',
         },
         codeToggleIcon: {
             color: (props) => (
@@ -58,6 +63,7 @@ function Example(props) {
         children,
         rawCode,
     } = props;
+
     const [isCodeExpanded, setIsCodeExpanded] = useState(false);
 
     const onCodeToggle = () => {
@@ -91,7 +97,6 @@ function Example(props) {
                     root: classes.codeContainerColumn,
                 }}
                 sm={12}
-                textAlign="right"
             >
                 <div>
                     <Button
@@ -109,23 +114,26 @@ function Example(props) {
                     </Button>
                 </div>
 
-                <Collapse in={isCodeExpanded}>
-                    <Highlighter
-                        className={classes.highlighter}
-                        customStyle={{
-                            marginBottom: '44px',
-                            marginTop: '0',
-                        }}
-                        language="jsx"
-                    >
-                        {rawCode}
-                    </Highlighter>
-                </Collapse>
+                {rawCode && (
+                    <Collapse in={isCodeExpanded}>
+                        <Highlighter
+                            className={classes.highlighter}
+                            customStyle={{
+                                marginBottom: '44px',
+                                marginTop: '0',
+                            }}
+                            language="jsx"
+                        >
+                            {rawCode}
+                        </Highlighter>
+                    </Collapse>
+                )}
             </Grid.Column>
         </Grid>
     );
 }
 
 Example.propTypes = propTypes;
+Example.defaultProps = defaultProps;
 
 export default Example;

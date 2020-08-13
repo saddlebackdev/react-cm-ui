@@ -14,30 +14,53 @@ import {
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * The content of the GridColumn
+     */
     children: PropTypes.node,
     /**
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-    }),
+    classes: PropTypes.shape({}),
+    /**
+     * Assign additional class names to GridColumn.
+     */
     className: PropTypes.string,
+    /**
+     * The `id` of the GridColumn.
+     */
     id: PropTypes.string,
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `lg` breakpoint and wider screens if not overridden.
+     */
     lg: PropTypes.oneOfType([
-        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
         PropTypes.bool,
     ]),
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `md` breakpoint and wider screens if not overridden.
+     */
     md: PropTypes.oneOfType([
-        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
         PropTypes.bool,
     ]),
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `sm` breakpoint and wider screens if not overridden.
+     */
     sm: PropTypes.oneOfType([
-        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
         PropTypes.bool,
     ]),
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `xl` breakpoint and wider screens if not overridden.
+     */
     xl: PropTypes.oneOfType([
-        PropTypes.oneOf(GRID_SIZES),
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
         PropTypes.bool,
     ]),
 };

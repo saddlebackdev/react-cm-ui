@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function GridSample() {
+function GridBreakpointsSample() {
     const classes = useStyles();
 
     return (
@@ -29,6 +29,33 @@ function GridSample() {
             </Grid.Column>
 
             <Grid.Column
+                md={6}
+                sm={12}
+            >
+                <Card
+                    classes={{
+                        root: classes.card,
+                    }}
+                >
+                    sm=12 md=6
+                </Card>
+            </Grid.Column>
+
+            <Grid.Column
+                md={6}
+                sm={12}
+            >
+                <Card
+                    classes={{
+                        root: classes.card,
+                    }}
+                >
+                    sm=12 md=6
+                </Card>
+            </Grid.Column>
+
+            <Grid.Column
+                md={3}
                 sm={6}
             >
                 <Card
@@ -36,11 +63,12 @@ function GridSample() {
                         root: classes.card,
                     }}
                 >
-                    sm=6
+                    sm=6 md=3
                 </Card>
             </Grid.Column>
 
             <Grid.Column
+                md={3}
                 sm={6}
             >
                 <Card
@@ -48,59 +76,37 @@ function GridSample() {
                         root: classes.card,
                     }}
                 >
-                    sm=6
+                    sm=6 md=3
                 </Card>
             </Grid.Column>
 
             <Grid.Column
-                sm={3}
+                md={3}
+                sm={6}
             >
                 <Card
                     classes={{
                         root: classes.card,
                     }}
                 >
-                    sm=3
+                    sm=6 md=3
                 </Card>
             </Grid.Column>
 
             <Grid.Column
-                sm={3}
+                md={3}
+                sm={6}
             >
                 <Card
                     classes={{
                         root: classes.card,
                     }}
                 >
-                    sm=3
-                </Card>
-            </Grid.Column>
-
-            <Grid.Column
-                sm={3}
-            >
-                <Card
-                    classes={{
-                        root: classes.card,
-                    }}
-                >
-                    sm=3
-                </Card>
-            </Grid.Column>
-
-            <Grid.Column
-                sm={3}
-            >
-                <Card
-                    classes={{
-                        root: classes.card,
-                    }}
-                >
-                    sm=3
+                    sm=6 md=3
                 </Card>
             </Grid.Column>
         </Grid>
     );
 }
 
-export default GridSample;
+export default GridBreakpointsSample;

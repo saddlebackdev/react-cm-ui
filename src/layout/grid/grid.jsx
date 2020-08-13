@@ -41,12 +41,18 @@ const propTypes = {
         'flex-start',
         'stretch',
     ]),
+    /**
+     * The content of the Grid
+     */
     children: PropTypes.node,
     /**
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes: PropTypes.shape({}),
+    /**
+     * Assign additional class names to Grid.
+     */
     className: PropTypes.string,
     /**
      * Defines the `flex-direction` style property.
@@ -58,6 +64,9 @@ const propTypes = {
         'row-reverse',
         'row',
     ]),
+    /**
+     * The `id` of the Grid.
+     */
     id: PropTypes.string,
     /**
      * Defines the `justify-content` style property.
