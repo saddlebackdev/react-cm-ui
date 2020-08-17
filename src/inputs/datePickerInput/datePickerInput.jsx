@@ -267,7 +267,7 @@ class DatePickerInput extends React.PureComponent {
         }
 
         if (isValidValueChange || isValidUpdateToNull) {
-            this.onCalendarChange(onChangeParam, true);
+            this.onCalendarChange(onChangeParam);
         }
     }
 
