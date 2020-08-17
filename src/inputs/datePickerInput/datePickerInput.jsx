@@ -377,7 +377,6 @@ class DatePickerInput extends React.PureComponent {
         }
 
         let inputString = inputValue;
-        // eslint-disable-next-line no-underscore-dangle
         if (!isFocused) {
             const dateFormat = this.safeDateFormat(date, locale, displayFormat);
             if (!isEmpty(dateFormat)) {
