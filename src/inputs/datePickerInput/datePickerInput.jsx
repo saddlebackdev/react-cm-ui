@@ -181,7 +181,7 @@ class DatePickerInput extends React.PureComponent {
         }
     }
 
-    onCalendarChange({ date, dateFrom, dateTo }, isFocused = false) {
+    onCalendarChange({ date, dateFrom, dateTo }) {
         const {
             disable,
             disabled,
@@ -203,11 +203,11 @@ class DatePickerInput extends React.PureComponent {
             });
         }
 
-        this.setOpen(false, isFocused);
+        this.setOpen(false);
     }
 
     onCalendarClickOutside() {
-        this.setOpen(false, false);
+        this.setOpen(false);
     }
 
     onIconClick() {
@@ -276,12 +276,13 @@ class DatePickerInput extends React.PureComponent {
     }
 
     onInputFocus() {
-        this.setOpen(true, true);
+        this.setOpen(true);
+        this.setState({ isFocused: true });
     }
 
     onInputKeyDown(event) {
         if (event.keyCode === 9 || event.keyCode === 13) {
-            this.setOpen(false, true);
+            this.setOpen(false);
         }
     }
 
@@ -315,8 +316,8 @@ class DatePickerInput extends React.PureComponent {
         return minDate;
     }
 
-    setOpen(open, isFocused) {
-        this.setState({ isCalendarOpen: open, isFocused });
+    setOpen(open) {
+        this.setState({ isCalendarOpen: open });
     }
 
     safeDateFormat(date, locale, format = 'MM/DD/YYYY') {
