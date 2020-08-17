@@ -70,3 +70,7 @@ export { default as withWidth } from './utils/withWidth';
 
 // Other
 export { default as versions } from './versions';
+
+// Navigation
+export { default as SectionalTabs } from './navigation/tabs';
+export { default as Breadcrumbs } from './navigation/breadcrumbs';

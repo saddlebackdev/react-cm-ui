@@ -11,6 +11,21 @@ const routes = (
             }}
         />
 
+        <Route // here:: delete this
+            getComponent={(location, callback) => {
+                import('./navigation/tabs/index.jsx')
+                    .then((module) => callback(null, module.default));
+            }}
+            path="tabs"
+        />
+
+        <Route // here:: delete this
+            getComponent={(location, callback) => {
+                import('./navigation/breadcrumbs/index.jsx')
+                    .then((module) => callback(null, module.default));
+            }}
+            path="breadcrumbs"
+        />
         <Route path="/getting-started">
             <Route
                 getComponent={(location, callback) => {

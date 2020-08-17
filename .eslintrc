@@ -10,6 +10,7 @@
     },
     "parser": "babel-eslint",
     "rules": {
+        "linebreak-style": ["error", "windows"],
         // Overwriting eslint-config-airbnb-base/rules/best-practices.js
         "class-methods-use-this": [0],
         // Overwriting eslint-config-airbnb-base/rules/style.js
