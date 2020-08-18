@@ -1,0 +1,31 @@
+@import '../../styles/colors', '../../styles/fonts', '../../styles/fontSizeCalculator';
+
+$circleSize: 16px;
+$barHeight: 68px;
+
+%bar_properties {
+    border-radius: $circleSize / 2;
+    height: $circleSize;
+    position: absolute;
+    width: $circleSize;
+}
+
+.activity_indicator {
+    display: inline-flex;
+    flex-direction: row;
+    height: 70px;
+    justify-content: space-between;
+    pointer-events: none;
+    position: relative;
+    width: 70px;
+    &--left, &--middle, &--right {
+        display: flex;
+        flex-direction: column-reverse;
+        height: $barHeight;
+        position: relative;
+        width: $circleSize;
+    }
+    &--circle, &--bar {
+        @extend %bar_properties;
+    }
+}

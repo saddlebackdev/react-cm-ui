@@ -1,0 +1,105 @@
+@import '../../styles/colors', '../../styles/fonts', '../../styles/fontSizeCalculator';
+
+$shadow: rgba(0, 0, 0, .17);
+
+.ui.tabs {
+    .tabs-buttons {
+        display: inline-flex;
+        height: 39px;
+        position: relative;
+        &::after {
+            background-color: color(backgroundColor);
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+        button {
+            align-items: center;
+            background-color: color(backgroundColorButtonAlternate);
+            border: 0;
+            border-radius: 3px 3px 0 0;
+            color: color(colorInverse);
+            display: inline-flex;
+            font-size: em(14px);
+            font-weight: $fontWeightSemiBold;
+            height: 39px;
+            justify-content: center;
+            letter-spacing: .7px;
+            line-height: 39px;
+            outline: none;
+            padding: 0 22px 3px;
+            position: relative;
+            transition: background-color 200ms linear, background-image 250ms linear, box-shadow 200ms linear, color 200ms linear;
+            z-index: 1;
+            &::before, &::after {
+                background-repeat: no-repeat;
+                bottom: 0;
+                content: '';
+                height: 3px;
+                opacity: 0;
+                position: absolute;
+                transition: opacity 200ms linear;
+                visibility: hidden;
+                width: 3px;
+                z-index: 3;
+            }
+            &::before {
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iM3B4IiBoZWlnaHQ9IjNweCIgdmlld0JveD0iNTEyIDExMyAzIDMiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDM5LjEgKDMxNzIwKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPHBhdGggZD0iTTUxMiwxMTMgQzUxMi40ODE1NjcsMTE1Ljc1NjM0OCA1MTUsMTE2IDUxNSwxMTYgTDUxNC41MDQ1MTcsMTE2IEw1MTIsMTE2IEw1MTIsMTEzIFoiIGlkPSJUcmlhbmdsZS1Db3B5IiBzdHJva2U9Im5vbmUiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEzLjUwMDAwMCwgMTE0LjUwMDAwMCkgc2NhbGUoLTEsIDEpIHRyYW5zbGF0ZSgtNTEzLjUwMDAwMCwgLTExNC41MDAwMDApICI+PC9wYXRoPgo8L3N2Zz4=');
+                left: -3px;
+            }
+            &::after {
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNHB4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iNDk2IDExMyA0IDQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8cGF0aCBkPSJNNDk3LDExMyBDNDk3LjQ4MTU2NywxMTUuNzU2MzQ4IDUwMCwxMTYgNTAwLDExNiBMNDk5LjUwNDUxNywxMTYgTDQ5NywxMTYgTDQ5NywxMTMgWiIgaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PC9wYXRoPgo8L3N2Zz4=');
+                right: -2px;
+            }
+            > .tab-card-button-inner {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                width: 100%;
+            }
+            &.is-active {
+                background-color: color(backgroundColor);
+                box-shadow:
+                    inset 1px 1px 0 0 color(borderColorSecondary),
+                    inset -1px 0 0 0 color(borderColorSecondary);
+                color: color(color);
+                cursor: auto;
+                z-index: 2;
+                i { color: color(backgroundColorHighlight); }
+                &::before, &::after { opacity: 1; visibility: visible; }
+                &:last-child { box-shadow: none; }
+            }
+            i { margin-right: 11px; }
+            &:first-child::before { display: none; }
+            &:not(:first-child) { box-shadow: inset 1px 0px 0 0 color(borderColorQuinary); margin-left: -3px; }
+            &:not(:first-child):not(.is-active) { border-radius: 0 3px 0 0; }
+        }
+    }
+    .tabs-content {
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColorSecondary);
+        border-radius: 0 3px 3px;
+        border-top: 0;
+        padding: 22px;
+        position: relative;
+        z-index: 4;
+        > {
+            :first-child { margin-top: 0; }
+            :last-child { margin-bottom: 0; }
+        }
+    }
+    &-nest {
+        .tabs-buttons {
+            box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1);
+            button.is-active {
+                box-shadow:
+                    inset -1px 0 0 0 color(borderColorSecondary),
+                    1px 1px 2px 0 $shadow;
+            }
+        }
+        .tabs-content { border: 0; box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, .1), 1px 1px 2px 0 rgba(0, 0, 0, .1); }
+    }
+}

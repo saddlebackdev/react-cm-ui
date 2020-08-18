@@ -1,0 +1,67 @@
+@import '../../styles/colors', '../../styles/fontSizeCalculator';
+
+$border-radius: 3px 0 0 3px;
+$top: 88px;
+
+.ui.banner {
+    backface-visibility: hidden;
+    height: 100%;
+    left: 0;
+    min-width: 320px;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .banner-container {
+        align-items: flex-start;
+        animation: slideInBanner 150ms ease-out forwards;
+        backface-visibility: hidden;
+        border-radius: color(borderColor)-radius;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.43);
+        color: color(colorInverse);
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        pointer-events: auto;
+        position: absolute;
+        right: 0;
+        top: $top;
+        transition: top 150ms ease-out;
+        width: 282px;
+        .banner-level-type {
+            align-items: center;
+            align-self: stretch;
+            border-radius: color(borderColor)-radius;
+            display: inline-flex;
+            flex: 0 1 1px;
+            justify-content: center;
+            max-width: 44px;
+            min-width: 44px;
+        }
+        .banner-message-container {
+            align-self: stretch;
+            background-color: color(backgroundColorInverse);
+            flex: 1 1 auto;
+            padding: 18px 22px;
+        }
+        &.animate-out { animation: slideOutBanner 333ms forwards; }
+    }
+    &.banner-level- {
+        &error .banner-container { background: color(backgroundColorAlert); }
+        &purple .banner-container { background: color(backgroundColorPurple); } // Rename when better defined
+        &secondary .banner-container { background: color(backgroundColorHighlight); }
+        &success .banner-container { background: color(backgroundColorSuccess); }
+        &teal .banner-container { background: color(backgroundColorTeal); } // Rename when better defined
+        &warning .banner-container { background: color(backgroundColorWarning); }
+    }
+}
+
+@keyframes slideInBanner {
+    0% { transform: translate(100%, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes slideOutBanner {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100%, 0); }
+}

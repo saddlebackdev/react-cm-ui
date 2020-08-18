@@ -5,6 +5,7 @@ export { default as DatePickerCalendar } from './datePickerCalendar';
 export { default as DatePickerInput } from './datePickerInput';
 export { default as Dropdown } from './dropdown';
 export { default as DropdownButton } from './dropdownButton';
+export { default as DropdownMenu } from './dropdownMenu';
 export { default as DurationPicker } from './durationPicker';
 export { default as Input } from './input';
 export { default as PhoneInput } from './phoneInput';
