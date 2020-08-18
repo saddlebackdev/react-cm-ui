@@ -63,13 +63,16 @@ class PhoneInputCountryDropdown extends React.PureComponent {
     }
 
     onChange(selectedOption) {
-        const { onChange } = this.props;
 
-        this.setState({
-            selectedOption,
-        }, () => {
-            onChange(selectedOption.value);
-        });
+        if (selectedOption) {
+            const { onChange } = this.props;
+
+            this.setState({
+                selectedOption,
+            }, () => {
+                onChange(selectedOption.value);
+            });
+        }
     }
 
     render() {
