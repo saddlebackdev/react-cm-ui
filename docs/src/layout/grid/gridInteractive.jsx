@@ -1,11 +1,13 @@
 import {
     Card,
     Grid,
+    Input,
     Radio,
     Typography,
 } from 'react-cm-ui';
 import {
     map,
+    times,
     toString,
 } from 'lodash';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
@@ -37,9 +39,15 @@ const JUSTIFY_CONTENT_TYPES = [
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+const WRAP_TYPES = [
+    'nowrap',
+    'wrap-reverse',
+    'wrap',
+];
+
 const useStyles = makeStyles((theme) => ({
     gridExample: {
-        height: 264,
+        minHeight: 264,
     },
     card: {
         backgroundColor: theme.palette.background.secondary,
@@ -51,7 +59,9 @@ function GridInteractive() {
     const [alignItemsType, setAlignItemsType] = useState(ALIGN_ITEMS_TYPES[1]);
     const [directionType, setDirectionType] = useState(DIRECTION_TYPES[0]);
     const [justifyContentType, setJustifyContentType] = useState(JUSTIFY_CONTENT_TYPES[1]);
+    const [numberOfColumns, setNumberOfColumns] = useState(3);
     const [spacingNumber, setSpacingNumber] = useState(2);
+    const [wrapType, setWrapType] = useState(WRAP_TYPES[2]);
 
     const classes = useStyles();
 
@@ -67,8 +77,16 @@ function GridInteractive() {
         setJustifyContentType(id);
     };
 
+    const onNumberOfColumnsChange = (value) => {
+        setNumberOfColumns(value);
+    };
+
     const onSpacingRadioChange = (id) => {
         setSpacingNumber(id);
+    };
+
+    const onWrapRadioChange = (id) => {
+        setWrapType(id);
     };
 
     return (
@@ -81,36 +99,21 @@ function GridInteractive() {
                 direction={directionType}
                 justifyContent={justifyContentType}
                 spacing={spacingNumber}
+                wrap={wrapType}
             >
-                <Grid.Column>
-                    <Card
-                        classes={{
-                            root: classes.card,
-                        }}
+                {times(numberOfColumns, (number) => (
+                    <Grid.Column
+                        key={number}
                     >
-                        column 1
-                    </Card>
-                </Grid.Column>
-
-                <Grid.Column>
-                    <Card
-                        classes={{
-                            root: classes.card,
-                        }}
-                    >
-                        column 2
-                    </Card>
-                </Grid.Column>
-
-                <Grid.Column>
-                    <Card
-                        classes={{
-                            root: classes.card,
-                        }}
-                    >
-                        column 3
-                    </Card>
-                </Grid.Column>
+                        <Card
+                            classes={{
+                                root: classes.card,
+                            }}
+                        >
+                            {`col ${number + 1}`}
+                        </Card>
+                    </Grid.Column>
+                ))}
             </Grid>
 
             <Grid spacing={2}>
@@ -122,7 +125,14 @@ function GridInteractive() {
                             >
                                 <Typography
                                     gutterBottom
-                                    varient="h4"
+                                    variant="h4"
+                                >
+                                    Grid Props
+                                </Typography>
+
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
                                 >
                                     Align Items
                                 </Typography>
@@ -150,7 +160,7 @@ function GridInteractive() {
                             >
                                 <Typography
                                     gutterBottom
-                                    varient="h4"
+                                    variant="h5"
                                 >
                                     Direction
                                 </Typography>
@@ -178,7 +188,7 @@ function GridInteractive() {
                             >
                                 <Typography
                                     gutterBottom
-                                    varient="h4"
+                                    variant="h5"
                                 >
                                     Justify Content
                                 </Typography>
@@ -206,7 +216,7 @@ function GridInteractive() {
                             >
                                 <Typography
                                     gutterBottom
-                                    varient="h4"
+                                    variant="h5"
                                 >
                                     Spacing
                                 </Typography>
@@ -227,6 +237,61 @@ function GridInteractive() {
                                         </Grid.Column>
                                     ))}
                                 </Grid>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                sm={12}
+                            >
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                >
+                                    Wrap
+                                </Typography>
+
+                                <Grid>
+                                    {map(WRAP_TYPES, (type) => (
+                                        <Grid.Column
+                                            key={type}
+                                            sm="auto"
+                                        >
+                                            <Radio
+                                                checked={wrapType === type}
+                                                id={type}
+                                                label={type}
+                                                name="wrapRadioGroup"
+                                                onChange={onWrapRadioChange}
+                                            />
+                                        </Grid.Column>
+                                    ))}
+                                </Grid>
+                            </Grid.Column>
+
+                            <Grid.Column>
+                                <Typography
+                                    gutterBottom
+                                    variant="h4"
+                                >
+                                    Grid Columns
+                                </Typography>
+
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                >
+                                    Number of Columns
+                                </Typography>
+
+                                <Input
+                                    max={36}
+                                    min={1}
+                                    onChange={onNumberOfColumnsChange}
+                                    type="number"
+                                    value={numberOfColumns}
+                                    style={{
+                                        width: 60,
+                                    }}
+                                />
                             </Grid.Column>
                         </Grid>
                     </Card>
