@@ -133,7 +133,7 @@ const useStyles = makeStyles((theme) => {
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
-            padding: `0 ${columnHorizontalPadding}px`,
+            padding: `0 ${columnHorizontalPadding}px !important`,
             width: (props) => `${getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }) + (columnHorizontalPadding * 2)}px !important`,
         },
         congregationDateColummn: {
@@ -160,7 +160,7 @@ const useStyles = makeStyles((theme) => {
         genderMale: {},
         genderUndefined: {},
         grid: {
-            margin: `0 -${columnHorizontalPadding}px !important`,
+            width: 'calc(100% + 11px)',
         },
         hasTakenClass101: {},
         hasSignedMembershipAgreement: {},
@@ -706,272 +706,271 @@ export function PersonCoreMilestones(props) {
             id={id}
         >
             <Grid
+                alignItems="center"
                 className={classes.grid}
-                verticalAlign="middle"
+                spacing={1}
             >
-                <Grid.Row>
-                    {!removeAcceptedChristColumn && (
-                        <Grid.Column
+                {!removeAcceptedChristColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Icon
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
-                                classes.column,
+                                classes.iconAcceptedChrist,
+                                classes.icon,
+                                {
+                                    [classes.genderFemale]: isFemale,
+                                    [classes.genderMale]: isMale,
+                                    [classes.genderUndefined]: !isFemale && !isMale,
+                                    [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                    [classes.isAdult]: recordType === 'adult',
+                                    [classes.isChild]: recordType === 'child',
+                                    [classes.isStudent]: recordType === 'student',
+                                },
                             )}
-                        >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconAcceptedChrist,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.hasAcceptedChrist]: hasAcceptedChrist,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={hasAcceptedChrist ? 'Accepted Christ' : 'Has not accepted Christ'}
-                                type="heart"
-                            />
-                        </Grid.Column>
-                    )}
+                            compact
+                            inverse={inverse}
+                            size={iconSize}
+                            title={hasAcceptedChrist ? 'Accepted Christ' : 'Has not accepted Christ'}
+                            type="heart"
+                        />
+                    </Grid.Column>
+                )}
 
-                    {!removeBaptismColumn && (
-                        <Grid.Column
+                {!removeBaptismColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Icon
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
-                                classes.column,
+                                classes.iconBaptised,
+                                classes.icon,
+                                {
+                                    [classes.genderFemale]: isFemale,
+                                    [classes.genderMale]: isMale,
+                                    [classes.genderUndefined]: !isFemale && !isMale,
+                                    [classes.isAdult]: recordType === 'adult',
+                                    [classes.isBaptised]: isBaptised,
+                                    [classes.isChild]: recordType === 'child',
+                                    [classes.isStudent]: recordType === 'student',
+                                },
                             )}
-                        >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconBaptised,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isBaptised]: isBaptised,
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isBaptised ? 'Baptized' : 'Not Baptized'}
-                                type="droplet"
-                            />
-                        </Grid.Column>
-                    )}
+                            compact
+                            inverse={inverse}
+                            size={iconSize}
+                            title={isBaptised ? 'Baptized' : 'Not Baptized'}
+                            type="droplet"
+                        />
+                    </Grid.Column>
+                )}
 
-                    {!removeClassColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
-                                classes.column,
-                            )}
+                {!removeClassColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--class_column`,
+                            classes.column,
+                        )}
+                    >
+                        <div
+                            className={classes.iconClassContainer}
                         >
                             <div
-                                className={classes.iconClassContainer}
+                                className={classes.iconClassInnerContainer}
                             >
                                 <div
-                                    className={classes.iconClassInnerContainer}
-                                >
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
-                                            iconBaseClass101Classes,
-                                        )}
-                                        title={class101Title}
-                                    />
+                                    className={ClassNames(
+                                        `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
+                                        iconBaseClass101Classes,
+                                    )}
+                                    title={class101Title}
+                                />
 
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
-                                            iconBaseClass201Classes,
-                                        )}
-                                        title={class201Title}
-                                    />
+                                <div
+                                    className={ClassNames(
+                                        `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
+                                        iconBaseClass201Classes,
+                                    )}
+                                    title={class201Title}
+                                />
 
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
-                                            iconBaseClass301Classes,
-                                        )}
-                                        title={class301Title}
-                                    />
+                                <div
+                                    className={ClassNames(
+                                        `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
+                                        iconBaseClass301Classes,
+                                    )}
+                                    title={class301Title}
+                                />
 
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
-                                            iconBaseClass401Classes,
-                                        )}
-                                        title={class401Title}
-                                    />
+                                <div
+                                    className={ClassNames(
+                                        `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
+                                        iconBaseClass401Classes,
+                                    )}
+                                    title={class401Title}
+                                />
 
-                                </div>
                             </div>
-                        </Grid.Column>
-                    )}
+                        </div>
+                    </Grid.Column>
+                )}
 
-                    {!removeSmallGroupColumn && (
-                        <Grid.Column
+                {!removeSmallGroupColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Icon
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
-                                classes.column,
+                                classes.iconSmallGroup,
+                                classes.icon,
+                                {
+                                    [classes.genderFemale]: isFemale,
+                                    [classes.genderMale]: isMale,
+                                    [classes.genderUndefined]: !isFemale && !isMale,
+                                    [classes.isAdult]: recordType === 'adult',
+                                    [classes.isChild]: recordType === 'child',
+                                    [classes.isInSmallGroup]: isInSmallGroup,
+                                    [classes.isStudent]: recordType === 'student',
+                                },
                             )}
-                        >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconSmallGroup,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isInSmallGroup]: isInSmallGroup,
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isInSmallGroup ? 'Active in Small Group' : 'Not active in Small Group'}
-                                type="users"
-                            />
-                        </Grid.Column>
-                    )}
+                            compact
+                            inverse={inverse}
+                            size={iconSize}
+                            title={isInSmallGroup ? 'Active in Small Group' : 'Not active in Small Group'}
+                            type="users"
+                        />
+                    </Grid.Column>
+                )}
 
-                    {!removeInMinistryColumn && (
-                        <Grid.Column
+                {!removeInMinistryColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Icon
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
-                                classes.column,
+                                classes.iconInMinistry,
+                                classes.icon,
+                                {
+                                    [classes.genderFemale]: isFemale,
+                                    [classes.genderMale]: isMale,
+                                    [classes.genderUndefined]: !isFemale && !isMale,
+                                    [classes.isAdult]: recordType === 'adult',
+                                    [classes.isChild]: recordType === 'child',
+                                    [classes.isInMinistry]: isInMinistry,
+                                    [classes.isStudent]: recordType === 'student',
+                                },
                             )}
-                        >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconInMinistry,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isInMinistry]: isInMinistry,
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
-                                type="serving-opportunity"
-                            />
-                        </Grid.Column>
-                    )}
+                            compact
+                            inverse={inverse}
+                            size={iconSize}
+                            title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
+                            type="serving-opportunity"
+                        />
+                    </Grid.Column>
+                )}
 
-                    {!removeInTripsColumn && (
-                        <Grid.Column
+                {!removeInTripsColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--in_trips_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Icon
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--in_trips_column`,
-                                classes.column,
+                                classes.iconInTrips,
+                                classes.icon,
+                                {
+                                    [classes.genderFemale]: isFemale,
+                                    [classes.genderMale]: isMale,
+                                    [classes.genderUndefined]: !isFemale && !isMale,
+                                    [classes.isActiveInTrips]: isActiveInTrips,
+                                    [classes.isAdult]: recordType === 'adult',
+                                    [classes.isChild]: recordType === 'child',
+                                    [classes.isStudent]: recordType === 'student',
+                                },
                             )}
-                        >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconInTrips,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isActiveInTrips]: isActiveInTrips,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
-                                type="shoe-prints"
-                            />
-                        </Grid.Column>
-                    )}
+                            compact
+                            inverse={inverse}
+                            size={iconSize}
+                            title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
+                            type="shoe-prints"
+                        />
+                    </Grid.Column>
+                )}
 
-                    {firstContactDate && !removeFirstContactDateColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
-                                classes.firstContactDateColumn,
-                            )}
+                {firstContactDate && !removeFirstContactDateColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
+                            classes.firstContactDateColumn,
+                        )}
+                    >
+                        <div
+                            className={classes.dateContainers}
                         >
-                            <div
-                                className={classes.dateContainers}
+                            <Typography
+                                className={classes.firstContactDateHeading}
+                                variant="h6"
                             >
-                                <Typography
-                                    className={classes.firstContactDateHeading}
-                                    variant="h6"
-                                >
-                                    At Saddleback
-                                </Typography>
+                                At Saddleback
+                            </Typography>
 
-                                <span
-                                    className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
-                                >
-                                    <TimeFromNow
-                                        date={firstContactDate}
-                                        relativeTime={relativeTime}
-                                        relativeTimeThreshold={relativeTimeThreshold}
-                                        relativeTimeRounding={relativeTimeRounding}
-                                    />
-                                </span>
-                            </div>
-                        </Grid.Column>
-                    )}
-
-                    {congregationDate && !removeCongregationDateColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
-                                classes.congregationDateColummn,
-                            )}
-                        >
-                            <div
-                                className={classes.dateContainers}
+                            <span
+                                className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
                             >
-                                <Typography
-                                    className={classes.congregationDateHeading}
-                                    variant="h6"
-                                >
-                                    Member For
-                                </Typography>
+                                <TimeFromNow
+                                    date={firstContactDate}
+                                    relativeTime={relativeTime}
+                                    relativeTimeThreshold={relativeTimeThreshold}
+                                    relativeTimeRounding={relativeTimeRounding}
+                                />
+                            </span>
+                        </div>
+                    </Grid.Column>
+                )}
 
-                                <span
-                                    className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
-                                >
-                                    <TimeFromNow
-                                        date={congregationDate}
-                                        relativeTime={relativeTime}
-                                        relativeTimeThreshold={relativeTimeThreshold}
-                                        relativeTimeRounding={relativeTimeRounding}
-                                    />
-                                </span>
-                            </div>
-                        </Grid.Column>
-                    )}
-                </Grid.Row>
+                {congregationDate && !removeCongregationDateColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
+                            classes.congregationDateColummn,
+                        )}
+                    >
+                        <div
+                            className={classes.dateContainers}
+                        >
+                            <Typography
+                                className={classes.congregationDateHeading}
+                                variant="h6"
+                            >
+                                Member For
+                            </Typography>
+
+                            <span
+                                className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
+                            >
+                                <TimeFromNow
+                                    date={congregationDate}
+                                    relativeTime={relativeTime}
+                                    relativeTimeThreshold={relativeTimeThreshold}
+                                    relativeTimeRounding={relativeTimeRounding}
+                                />
+                            </span>
+                        </div>
+                    </Grid.Column>
+                )}
             </Grid>
         </div>
     );
