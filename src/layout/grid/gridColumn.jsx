@@ -22,7 +22,9 @@ const propTypes = {
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
-    classes: PropTypes.shape({}),
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     /**
      * Assign additional class names to GridColumn.
      */
