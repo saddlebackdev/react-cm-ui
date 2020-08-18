@@ -21,6 +21,10 @@ const theme = {
         },
     },
     height: {
+        actionBar: {
+            sm: 50,
+            md: 70,
+        },
         appHeader: {
             sm: 55,
             md: 70,
