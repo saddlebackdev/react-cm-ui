@@ -9,6 +9,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { BEM_DATA_GRID } from '../../global/constants';
 import Grid from '../../layout/grid';
 import Icon from '../icon';
 import Table from '../table';
@@ -18,7 +19,6 @@ const propTypes = {
     classes: PropTypes.shape({
         handleGrid: PropTypes.string,
     }),
-    classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
         id: PropTypes.string,
@@ -50,6 +50,9 @@ const styles = {
     handleGrid: {
         flexWrap: 'nowrap !important',
     },
+    handleGridColumn: {
+        height: 16,
+    },
 };
 
 class DataGridTableRow extends React.Component {
@@ -76,7 +79,6 @@ class DataGridTableRow extends React.Component {
     render() {
         const {
             classes,
-            classNamePrefix,
             columns,
             handle,
             id: tableId,
@@ -94,8 +96,8 @@ class DataGridTableRow extends React.Component {
             style: rowStyle,
         } = rowProps;
 
-        const containerClasses = ClassNames(`${classNamePrefix}_row`, rowClassName, {
-            [`${classNamePrefix}_row-selected`]: rowSelected,
+        const containerClasses = ClassNames(`${BEM_DATA_GRID}--row`, rowClassName, {
+            [`${BEM_DATA_GRID}--row-selected`]: rowSelected,
         });
 
         return (
@@ -115,7 +117,7 @@ class DataGridTableRow extends React.Component {
                     }
 
                     const cellId = cell.id ||
-                        `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
+                        `${BEM_DATA_GRID}--table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell
@@ -129,9 +131,14 @@ class DataGridTableRow extends React.Component {
                         >
                             {handle && index === 0 ? (
                                 <Grid
+                                    alignItems="center"
                                     className={classes.handleGrid}
                                 >
-                                    <Grid.Column>
+                                    <Grid.Column
+                                        classes={{
+                                            root: classes.handleGridColumn,
+                                        }}
+                                    >
                                         <Icon
                                             color="static"
                                             size={14}
