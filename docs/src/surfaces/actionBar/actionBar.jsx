@@ -2,8 +2,14 @@ import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+    startCase,
+} from 'lodash';
 import React from 'react';
+import ActionBarSample from './ActionBarSample';
 import ComponentApi from '../../global/componentApi';
+import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
@@ -12,11 +18,14 @@ import { default as actionBarDoc } from '!!@advclb/react-docgen-loader!react-cm-
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsActionBar() {
-    const descriptionCopy = actionBarDoc.description;
+    const {
+        description,
+        displayName,
+    } = actionBarDoc;
 
     return (
-        <Main page="action_bar">
-            <TitleBar title="Action Bar" />
+        <Main page={camelCase(displayName)}>
+            <TitleBar title={startCase(displayName)} />
 
             <Main.Content>
                 <MarkdownContainer>
@@ -24,16 +33,28 @@ function DocsActionBar() {
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
                         anchorLink="example"
                         variant="h2"
                     >
-                        Coming soon.
+                        Standard Action Bar
                     </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Contained button.
+                    </Typography>
                 </MarkdownContainer>
+
+                <Example
+                    rawCode={require('!!raw-loader!./actionBarSample').default}
+                >
+                    <ActionBarSample />
+                </Example>
 
                 <ComponentApi
                     docs={[
