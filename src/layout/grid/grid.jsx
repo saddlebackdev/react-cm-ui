@@ -8,10 +8,8 @@ import React from 'react';
 import {
     BEM_GRID,
     UI_CLASS_NAME,
-    BEM_GRID_COLUMN,
 } from '../../global/constants';
 import {
-    GRID_SIZES,
     SPACINGS,
 } from './gridConstants';
 import GridColumn from './gridColumn';
@@ -47,7 +45,6 @@ const propTypes = {
     children: PropTypes.node,
     /**
      * Override or extend the styles applied to the component.
-     * See [CSS API](#css) below for more details.
      */
     classes: PropTypes.shape({}),
     /**
@@ -202,6 +199,10 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
+/**
+ * The Grid layout responsivly adapts to screen size, aiding in dividing up content into their own
+ * regions.
+ */
 const Grid = React.forwardRef((props, ref) => {
     const {
         alignContent,

@@ -1,9 +1,16 @@
 import {
     TitleBar,
     Typography,
+    versions,
 } from 'react-cm-ui';
+import {
+    filter,
+} from 'lodash';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import GridAutoLayoutSample from './gridAutoLayoutSample';
 import GridBreakpointsSample from './gridBreakpointsSample';
@@ -18,7 +25,19 @@ import { default as docGrid } from '!!@advclb/react-docgen-loader!react-cm-ui/la
 import { default as docGridColumn } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/gridColumn';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsTable() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsTable(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const descriptionCopy = docGrid.description;
 
     return (
@@ -38,7 +57,7 @@ function DocsTable() {
                         anchorLink="example"
                         variant="h2"
                     >
-                        Basic Grid
+                        Standard Grid
                     </Heading>
 
                     <Typography
@@ -144,9 +163,15 @@ function DocsTable() {
                         docGridColumn,
                     ]}
                 />
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
 
-export default DocsTable;
+DocsTable.propTypes = propTypes;
+
+export default withRouter(DocsTable);
