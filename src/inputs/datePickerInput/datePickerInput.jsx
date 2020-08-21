@@ -1,5 +1,6 @@
 import {
     indexOf,
+    isEmpty,
     isEqual,
     isFunction,
     isNil,
@@ -29,6 +30,7 @@ const propTypes = {
      * Deprecated prop. Please use `disable` instead.
      */
     disabled: PropTypes.bool,
+    displayFormat: PropTypes.string,
     errorMessage: PropTypes.string,
     events: PropTypes.arrayOf(PropTypes.shape({})),
     excludeDates: PropTypes.arrayOf(PropTypes.shape({})),
@@ -59,6 +61,7 @@ const defaultProps = {
     dateTo: null,
     disable: false,
     disabled: false,
+    displayFormat: 'MM/DD/YYYY',
     errorMessage: null,
     events: null,
     excludeDates: null,
@@ -104,6 +107,7 @@ class DatePickerInput extends React.PureComponent {
             dateTo: newDateTo,
             isCalendarOpen: false,
             inputValue,
+            isFocused: false,
         };
 
         this.dateFormats = this.getAllowedDateFormats('MM/DD/YYYY');
@@ -115,6 +119,7 @@ class DatePickerInput extends React.PureComponent {
         this.onIconClick = this.onIconClick.bind(this);
         this.onInputBlur = this.onInputBlur.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+        this.onInputClick = this.onInputClick.bind(this);
         this.onInputFocus = this.onInputFocus.bind(this);
         this.onInputKeyDown = this.onInputKeyDown.bind(this);
         this.onMonthChange = this.onMonthChange.bind(this);
@@ -224,6 +229,8 @@ class DatePickerInput extends React.PureComponent {
         if (isFunction(onBlur)) {
             onBlur(event);
         }
+
+        this.setState({ isFocused: false });
     }
 
     onInputChange(value) {
@@ -264,8 +271,13 @@ class DatePickerInput extends React.PureComponent {
         }
     }
 
+    onInputClick() {
+        this.setState({ isFocused: true });
+    }
+
     onInputFocus() {
         this.setOpen(true);
+        this.setState({ isFocused: true });
     }
 
     onInputKeyDown(event) {
@@ -308,9 +320,9 @@ class DatePickerInput extends React.PureComponent {
         this.setState({ isCalendarOpen: open });
     }
 
-    safeDateFormat(date, locale) {
+    safeDateFormat(date, locale, format = 'MM/DD/YYYY') {
         if (date && date.isValid()) {
-            return date.clone().locale(locale || moment.locale()).format('MM/DD/YYYY');
+            return date.clone().locale(locale || moment.locale()).format(format);
         }
 
         if (isNil(date)) {
@@ -326,6 +338,7 @@ class DatePickerInput extends React.PureComponent {
             errorMessage,
             disable,
             disabled,
+            displayFormat,
             events,
             excludeDates,
             filterDates,
@@ -346,6 +359,7 @@ class DatePickerInput extends React.PureComponent {
             dateTo,
             isCalendarOpen,
             inputValue,
+            isFocused,
         } = this.state;
 
         const rootClasses = ClassNames('ui', 'date-picker-input', className);
@@ -360,6 +374,14 @@ class DatePickerInput extends React.PureComponent {
 
         if (isDisabled) {
             iconColor = 'primary';
+        }
+
+        let inputString = inputValue;
+        if (!isFocused) {
+            const dateFormat = this.safeDateFormat(date, locale, displayFormat);
+            if (!isEmpty(dateFormat)) {
+                inputString = dateFormat;
+            }
         }
 
         return (
@@ -415,6 +437,7 @@ class DatePickerInput extends React.PureComponent {
                                 mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
                                 onBlur={this.onInputBlur}
                                 onChange={this.onInputChange}
+                                onClick={this.onInputClick}
                                 onFocus={this.onInputFocus}
                                 onKeyDown={this.onInputKeyDown}
                                 placeholder="mm/dd/yyyy"
@@ -423,7 +446,7 @@ class DatePickerInput extends React.PureComponent {
                                 ref={(inputRef) => { this._datePickerInput = inputRef; }}
                                 tabIndex={tabIndex}
                                 type="text"
-                                value={inputValue}
+                                value={inputString}
                             />
                         </div>
                     )}
