@@ -3,9 +3,11 @@ const versions = {
         package: '10.0.0',
         components: {
             layout: {
-                devLibraryVersion: '2.0.0',
-                designLibraryVersion: 'N/A',
-                designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
+                grid: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
+                },
             },
         },
         theme: {

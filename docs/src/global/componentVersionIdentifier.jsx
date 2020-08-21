@@ -21,7 +21,7 @@ function ComponentVersionIdentifier(props) {
     } = props;
 
     const pthNmArray = filter(pathname.split('/'), (segment) => segment);
-    const version = versions['react-cm-ui'][pthNmArray[0]][pthNmArray[1]];
+    const version = versions['react-cm-ui'][pthNmArray[0]][pthNmArray[1]][pthNmArray[2]];
 
     return (
         <MarkdownContainer>
