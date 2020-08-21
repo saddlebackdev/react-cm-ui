@@ -1,0 +1,95 @@
+@import '../../styles/colors', '../../styles/fonts', '../../styles/fontSizeCalculator', '../../styles/vendors/flag-icon-css/flag-icon';
+
+$width: 65px;
+
+.ui.phone-input {
+    color: color(color);
+    display: inline-block;
+    font-size: em(16px);
+    position: relative;
+    .label {
+        margin-bottom: em(8px);
+    }
+    .phone-input--required_indicator {
+        color: color(colorAlert);
+        display: inline-block;
+        font-size: rem(14px);
+        margin-left: 3px;
+    }
+    > div::before {
+        background-color: color(backgroundColorLight);
+        border-right: 1px solid color(borderColor);
+        bottom: 1px;
+        content: '';
+        left: 1px;
+        position: absolute;
+        top: 1px;
+        width: $width;
+        z-index: 1;
+    }
+    .react-phone-number-input {
+        position: relative;
+    }
+    .ui.dropdown {
+        display: inline-block;
+        flex: 0 1 $width;
+        max-width: $width;
+        min-width: $width;
+        position: absolute;
+        z-index: 2;
+        .Select-input {
+            max-width: 38px;
+            overflow: hidden;
+        }
+        .Select-control {
+            background-color: transparent;
+            border: 0;
+        }
+        .icon-use-path { fill: color(color) !important; }
+    }
+    .react-phone-number-input__icon {
+        align-items: center;
+        display: inline-flex;
+        height: 100%;
+        justify-content: center;
+        width: 20px;
+        .react-phone-number-input__icon-image {
+            height: 16px;
+        }
+    }
+    .react-phone-number-input__input {
+        background-color: color(backgroundColor);
+        border: 1px solid color(borderColor);
+        border-radius: 3px;
+        line-height: em(42px);
+        margin: 0;
+        outline: none;
+        padding: 0 em(11px) 0 $width + 11px;
+        text-align: left;
+        transition: border-color 150ms ease-out;
+        width: 100%;
+        &::placeholder { color: color(colorStatic); }
+    }
+    .react-phone-number-input--focus input {
+        border-color: color(backgroundColorHighlight);
+    }
+    &.phone-input {
+        &--disabled input {
+            background-color: color(backgroundColorDisable);
+            color: color(color);
+        }
+        &--fluid {
+            display: block;
+        }
+        &--error {
+            input { border-color: color(backgroundColorHighlight); }
+            .input-error-message {
+                color: color(colorAlert);
+                font-size: em(14px);
+            }
+        }
+    }
+    + * {
+        margin-top: em(33px);
+    }
+}

@@ -1,0 +1,61 @@
+@import '../../styles/colors', '../../styles/fonts', '../../styles/fontSizeCalculator';
+
+$size-mobile: 44px;
+$size-tablet: 33px;
+
+.ui.segmented-controls {
+    display: inline-block;
+    height: $size-mobile;
+    .segmented-controls-buttons {
+        align-items: flex-start;
+        border-radius: rem(3px);
+        color: color(colorInverse);
+        display: flex;
+        flex-direction: row;
+        font-size: rem(14px);
+        height: $size-mobile;
+        justify-content: flex-start;
+        .segmented-controls-button {
+            background-color: color(backgroundColorButtonAlternate);
+            border: 0;
+            border-right: 1px solid color(backgroundColorInverse);
+            color: color(colorInverse);
+            cursor: pointer;
+            display: inline-block;
+            font-size: rem(14px);
+            font-weight: $fontWeightSemiBold;
+            letter-spacing: 1px;
+            line-height: 1;
+            outline: none;
+            padding: rem(15px) rem(22px);
+            text-align: center;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: background-color 125ms linear, color 125ms linear, opacity 250ms ease-out;
+            white-space: nowrap;
+            &.segmented-controls-button-is-active { background-color: color(backgroundColorInverse); }
+                &.segmented-controls-button-icon {
+                    .copy {
+                        float: left;
+                        + .ui.icon { float: right; }
+                    }
+                }
+            &:first-child { border-radius: rem(3px) 0 0 rem(3px); }
+            &:last-child { border: 0; border-radius: 0 rem(3px) rem(3px) 0; }
+        }
+    }
+    &-fluid {
+        display: block;
+        .segmented-controls-buttons .segmented-controls-button { flex: 1 0 1px; }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ui.segmented-controls {
+        height: $size-tablet;
+        .segmented-controls-buttons {
+            height: $size-tablet;
+            .segmented-controls-button { padding: rem(9.5px) rem(22px); }
+        }
+    }
+}

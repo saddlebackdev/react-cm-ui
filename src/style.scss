@@ -1,86 +1,77 @@
-// Z-indexes //
-// ModalDrawer.react, ModalFormSheet.react: 9000
-// PageBar.react: 8000
-// CoreAppNavigation.react Sub Menu: 7000
-// Tabs.react: 6000
-
 // Base
 @import './styles/normalize';
 @import './styles/typography';
 
-// NEW: Data Display
-@import './dataDisplay/banner';
+// Data Display
+@import './dataDisplay/banner/banner';
+@import './dataDisplay/dataCards/dataCards';
+@import './dataDisplay/dataGrid/dataGrid';
 @import './dataDisplay/dataGroups/dataGroups';
-@import './dataDisplay/divider';
+@import './dataDisplay/divider/divider';
+@import './dataDisplay/header/header';
 @import './dataDisplay/icon/icon';
-@import './dataDisplay/image';
-@import './dataDisplay/list';
-@import './dataDisplay/table';
-@import './dataDisplay/tableCell';
-@import './dataDisplay/tableHeader';
-@import './dataDisplay/tableHeaderCell';
-@import './dataDisplay/tableRow';
+@import './dataDisplay/image/image';
+@import './dataDisplay/label/label';
+@import './dataDisplay/list/list';
+@import './dataDisplay/table/table';
+@import './dataDisplay/table/tableCell';
+@import './dataDisplay/table/tableHeader';
+@import './dataDisplay/table/tableHeaderCell';
+@import './dataDisplay/table/tableRow';
 
-// NEW: Inputs
-@import './inputs/checkbox';
-@import './inputs/datePickerCalendar';
-@import './inputs/datePickerDay';
-@import './inputs/datePickerDeprecated';
-@import './inputs/datePickerDeprecatedCalendar';
-@import './inputs/datePickerDeprecatedDay';
-@import './inputs/datePickerDeprecatedMonth';
-@import './inputs/datePickerDeprecatedWeek';
-@import './inputs/datePickerDropdownMonth';
-@import './inputs/datePickerDropdownYear';
-@import './inputs/datePickerInput';
-@import './inputs/datePickerMonth';
-@import './inputs/datePickerWeek';
-@import './inputs/dropdown';
-@import './inputs/dropdownMenu';
-@import './inputs/durationPicker';
-@import './inputs/input';
-@import './inputs/phoneInput';
-@import './inputs/prompt';
-@import './inputs/radio';
-@import './inputs/textArea';
-@import './inputs/timePicker';
-@import './inputs/segmentedControls';
+// Feedback
+@import './feedback/loader/loader';
+@import './feedback/activityIndicator/activityIndicator';
 
-// Atoms
-@import './atoms/a';
-@import './atoms/activityIndicator';
-@import './atoms/header';
-@import './atoms/label';
-@import './atoms/loader';
+// Inputs
+@import './inputs/checkbox/checkbox';
+@import './inputs/datePickerCalendar/datePickerCalendar';
+@import './inputs/datePickerCalendar/datePickerDay';
+@import './inputs/datePickerCalendar/datePickerDropdownMonth';
+@import './inputs/datePickerCalendar/datePickerDropdownYear';
+@import './inputs/datePickerCalendar/datePickerMonth';
+@import './inputs/datePickerCalendar/datePickerWeek';
+@import './inputs/datePickerDeprecated/datePickerDeprecated';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedCalendar';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedDay';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedMonth';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedWeek';
+@import './inputs/datePickerInput/datePickerInput';
+@import './inputs/dropdown/dropdown';
+@import './inputs/dropdownMenu/dropdownMenu';
+@import './inputs/durationPicker/durationPicker';
+@import './inputs/input/input';
+@import './inputs/phoneInput/phoneInput';
+@import './inputs/prompt/prompt';
+@import './inputs/radio/radio';
+@import './inputs/segmentedControls/segmentedControls';
+@import './inputs/textArea/textArea';
+@import './inputs/timePicker/timePicker';
 
-// Molecules
-@import './molecules/comment';
+// Layout
+@import './layout/container/container';
+@import './layout/grid/grid';
+@import './layout/page/pageDeprecatedFiltersDrawer';
 
-// Organisms
-@import './organisms/accordion';
-@import './organisms/card';
-@import './organisms/container';
-@import './organisms/grid';
-@import './organisms/infoBar';
-@import './organisms/rail';
-@import './organisms/subNavigation';
-@import './organisms/tabs';
-@import './organisms/titleBar';
+// Navigation
+@import './navigation/a/a';
+@import './navigation/subNavigation/subNavigation';
+@import './navigation/tabs/tabs';
 
-// Templates
-@import './templates/actionBar';
-@import './templates/container';
-@import './templates/content';
-@import './templates/dataCards';
-@import './templates/dataGrid';
-@import './templates/detailsWindow';
-@import './templates/drawer';
-@import './templates/drawerDeprecated';
-@import './templates/drawerFiltersDrawer';
-@import './templates/drawerNavigation';
-@import './templates/drawerTitleBar';
-@import './templates/drawerWing';
-@import './templates/filtersDrawer';
-@import './templates/filtersRail';
-@import './templates/modal';
-@import './templates/pageDeprecatedFiltersDrawer';
+// Surfaces
+@import './surfaces/accordion/accordion';
+@import './surfaces/actionBar/actionBar';
+@import './surfaces/card/card';
+@import './surfaces/detailsWindow/detailsWindow';
+@import './surfaces/drawer/drawer';
+@import './surfaces/drawer/drawerFiltersDrawer';
+@import './surfaces/drawer/drawerNavigation';
+@import './surfaces/drawer/drawerTitleBar';
+@import './surfaces/drawer/drawerWing';
+@import './surfaces/drawerDeprecated/drawerDeprecated';
+@import './surfaces/filtersDrawer/filtersDrawer';
+@import './surfaces/filtersRail/filtersRail';
+@import './surfaces/infoBar/infoBar';
+@import './surfaces/modal/modal';
+@import './surfaces/rail/rail';
+@import './surfaces/titleBar/titleBar';

@@ -1,5 +1,5 @@
 
-import { appReduxStore } from './configureReduxStore.js';
+import { appReduxStore } from './configureReduxStore';
 
 export default class BreakpointActions {
     static update() {

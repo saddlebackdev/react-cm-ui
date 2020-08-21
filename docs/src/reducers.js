@@ -1,6 +1,6 @@
 
 import { combineReducers } from 'redux';
-import breakpoint from './global/breakpointReducer.js';
+import breakpoint from './global/breakpointReducer';
 
 const rootReducer = combineReducers({
     breakpoint,
