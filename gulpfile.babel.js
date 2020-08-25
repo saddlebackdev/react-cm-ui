@@ -63,6 +63,14 @@ const paths = {
             ],
             dest: 'core/molecules',
         },
+        navigation: {
+            src: [
+                'src/navigation/**/**.js',
+                '!src/navigation/**/*.test.js',
+                'src/navigation/**/**.jsx',
+            ],
+            dest: 'core/navigation',
+        },
         organisms: {
             src: [
                 'src/organisms/**/**.js',
@@ -152,6 +160,12 @@ export function scriptsMolecules() {
         .pipe(dest(paths.scripts.molecules.dest));
 }
 
+export function scriptsNavigation() {
+    return src(paths.scripts.navigation.src)
+        .pipe(babel())
+        .pipe(dest(paths.scripts.navigation.dest));
+}
+
 // TODO: Remove once all components are shifted to the new organization.
 export function scriptsOrganisms() {
     return src(paths.scripts.organisms.src)
@@ -194,17 +208,17 @@ export function styles() {
 
 function watchFiles() {
     watch(paths.images.src, images);
-    watch(paths.scripts.src, scriptsRoot);
-    watch(paths.scripts.src, scriptsAtoms);
-    watch(paths.scripts.src, scriptsColors);
-    watch(paths.scripts.src, scriptsDataDisplay);
-    watch(paths.scripts.src, scriptsGlobal);
-    watch(paths.scripts.src, scriptsInputs);
-    watch(paths.scripts.src, scriptsMolecules);
-    watch(paths.scripts.src, scriptsOrganisms);
-    watch(paths.scripts.src, scriptsStyles);
-    watch(paths.scripts.src, scriptsTemplates);
-    watch(paths.scripts.src, scriptsUtils);
+    watch(paths.scripts.root.src, scriptsRoot);
+    watch(paths.scripts.atoms.src, scriptsAtoms);
+    watch(paths.scripts.colors.src, scriptsColors);
+    watch(paths.scripts.dataDisplay.src, scriptsDataDisplay);
+    watch(paths.scripts.inputs.src, scriptsInputs);
+    watch(paths.scripts.molecules.src, scriptsMolecules);
+    watch(paths.scripts.navigation.src, scriptsNavigation);
+    watch(paths.scripts.organisms.src, scriptsOrganisms);
+    watch(paths.scripts.styles.src, scriptsStyles);
+    watch(paths.scripts.templates.src, scriptsTemplates);
+    watch(paths.scripts.utils.src, scriptsUtils);
     watch(paths.styles.src, styles);
 }
 
@@ -220,6 +234,7 @@ export default series(
         scriptsGlobal,
         scriptsInputs,
         scriptsMolecules,
+        scriptsNavigation,
         scriptsOrganisms,
         scriptsRoot,
         scriptsStyles,

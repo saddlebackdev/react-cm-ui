@@ -1,32 +1,46 @@
-import React from 'react';
-// import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-// import BreadcrumbsMUI from '@material-ui/core/Breadcrumbs';
+import React, {
+    useState,
+    useEffect,
+    useRef,
+} from 'react';
 import PropTypes from 'prop-types';
-import {
-    Typography,
-    Icon,
-} from 'react-cm-ui';
 import {
     get,
 } from 'lodash';
+import Classnames from 'classnames';
+import Typography from '../../dataDisplay/typography';
+import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 import {
     BEM_BLOCK_NAME,
 } from './breadcrumbsConstants';
-import Classnames from 'classnames';
+import {
+    routesToArray,
+    getPathNameBreadcrumbs,
+} from './breadcrumbsUtils';
 
 const propTypes = {
-    pathBreadcrumbs: PropTypes.shape([]).isRequired,
-    nameMap: PropTypes.shape([]).isRequired,
+    /**
+     * Instance of react-router core, breadcrums will be generated automatically using the routes object structure, location and push function.
+     */
+    router: PropTypes.shape({}).isRequired,
+    /**
+     * When false, is going to show only the previous route from the current location
+     */
+    showOnlyPreviousRoute: PropTypes.bool,
+    /**
+     * Applied for all the breadcrumbs but the last item
+     */
+    separatorIconType: PropTypes.string,
 };
 
 const defaultProps = {
-    // pathBreadcrumbs: [],
-    // nameMap: [],
-    showOnlyPrevious: true,
+    showOnlyPreviousRoute: false,
+    separatorIconType: 'chevron-left',
 };
+
 const useStyles = makeStyles((theme) => {
-    console.log('theme', theme);
+    // console.log('theme', theme);
     const textColorPrimary = get(theme, 'palette.text.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const fontWeightRegular = get(theme, 'typography.fontWeightRegular');
@@ -35,7 +49,7 @@ const useStyles = makeStyles((theme) => {
         root: {
             overflow: 'hidden',
             width: '100%',
-            [`& .${BEM_BLOCK_NAME}--breadcrumbs`]: {
+            [`& .${BEM_BLOCK_NAME}--breadcrumbs`]: { // here:: tengo que acomodar las classes
                 overflow: 'hidden',
                 padding: 0,
                 textOverflow: 'ellipsis',
@@ -83,14 +97,62 @@ const useStyles = makeStyles((theme) => {
 
 function Breadcrumbs(props) {
     const {
-        nameMap,
-        pathBreadcrumbs,
-        separator,
-        showOnlyPrevious,
+        separatorIconType,
+        showOnlyPreviousRoute,
+        router,
     } = props;
-    console.log('showOnlyPrevious', showOnlyPrevious)
+
     const classes = useStyles();
 
+    const [existentRoutes, setExistentRoutes] = useState([]);
+    const [pathBreadcrumbs, setPathBreadcrumbs] = useState([]);
+
+    const pathName = get(router, 'location.pathname');
+    const pathParams = get(router, 'params');
+    const routerPushFunction = get(router, 'push');
+
+    const prevPathName = useRef();
+
+    // console.log('BREADCRUMBS', pathName, '\nrouter', router, '\n',
+    // existentRoutes
+    // );
+
+    useEffect(() => {
+        const routes = get(router, 'routes', []);
+        const currentExistentRoutes = routesToArray(routes);
+        // console.log('DID_MOUNT_BREADCRUMBS');
+        setExistentRoutes(currentExistentRoutes);
+        const currentBreadCrumbs = getPathNameBreadcrumbs(
+            pathName,
+            pathParams,
+            routerPushFunction,
+            currentExistentRoutes,
+        );
+        // console.log('DID_MOUNT_BREADCRUMBS', pathName, currentBreadCrumbs);
+        setPathBreadcrumbs(currentBreadCrumbs);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // didMount
+
+    useEffect(() => {
+        const shouldUpdatePathBreadcrumbs = prevPathName.current &&
+            prevPathName.current !== pathName;
+        // console.log('SHOULD_UPDATE_BREADCRUMBS', shouldUpdatePathBreadcrumbs, prevPathName.current, pathName);
+        if (shouldUpdatePathBreadcrumbs) {
+            const currentBreadCrumbs = getPathNameBreadcrumbs(
+                pathName,
+                pathParams,
+                routerPushFunction,
+                existentRoutes,
+            );
+            // console.log('currentBreadCrumbs', currentBreadCrumbs);
+            setPathBreadcrumbs(currentBreadCrumbs);
+        }
+        prevPathName.current = pathName;
+        // console.log('DID_UPDATE_BREADCRUMBS');
+    }); // didUpdate
+
+    const lastSeparator = '/';
+    // console.log('pathBreadcrumbs', pathBreadcrumbs);
     return (
         <div className={classes.root}>
             <ul
@@ -102,6 +164,7 @@ function Breadcrumbs(props) {
                         const {
                             onBreadcrumbClick,
                             to,
+                            title,
                         } = breadcrumb;
 
                         const isLast = index === pathBreadcrumbs.length - 1;
@@ -112,9 +175,10 @@ function Breadcrumbs(props) {
                                 [`${BEM_BLOCK_NAME}--breadcrumb-is-previous`]: isPrevious,
                             },
                         );
-                        const currentSeparator = isLast ? separator : '<';
+
                         return (
                             <li
+                                key={`${BEM_BLOCK_NAME}--breadcruumb-key-${to}`}
                                 onClick={onBreadcrumbClick}
                                 role="presentation"
                                 className={breadcrumbClasses}
@@ -122,29 +186,29 @@ function Breadcrumbs(props) {
                                 <Typography variant="h3">
                                     <div className={`${BEM_BLOCK_NAME}--breadcrumb-separator`}>
                                         {isLast ? (
-                                            currentSeparator
+                                            lastSeparator
                                         ) : (
                                             <Icon
-                                                type="chevron-left"
+                                                type={separatorIconType}
                                                 size="xsmall"
                                             />
                                         )}
                                     </div>
                                     <div className={`${BEM_BLOCK_NAME}--breadcrumb-to`}>
-                                        {nameMap[to]}
+                                        {title}
                                     </div>
                                 </Typography>
                             </li>
                         );
                     })
                     .filter((breadcrumb, index) => {
-                        const shouldRenderBreadcrumb = !showOnlyPrevious || (
-                            showOnlyPrevious && (
+                        const shouldRenderBreadcrumb = !showOnlyPreviousRoute || (
+                            showOnlyPreviousRoute && (
                                 index === pathBreadcrumbs.length - 1 ||
                                 index === pathBreadcrumbs.length - 2
                             )
                         );
-                        console.log('shouldRenderBreadcrumb', shouldRenderBreadcrumb);
+
                         return shouldRenderBreadcrumb;
                     })}
             </ul>

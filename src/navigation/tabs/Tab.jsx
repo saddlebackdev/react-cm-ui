@@ -1,61 +1,84 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+    Component,
+} from 'react';
 import {
-    Typography,
-} from 'react-cm-ui';
+    isFunction,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import Classnames from 'classnames';
+import Typography from '../../dataDisplay/typography';
 import {
     BEM_BLOCK_BAME,
     TAB_ROOT_CLASS,
     TAB_CLASS,
 } from './tabsConstants';
 
-export default class Tab extends Component {
+const propTypes = {
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    classNames: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    // onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    // onFocus: PropTypes.func,
+    originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    selected: PropTypes.bool.isRequired,
+};
+
+const defaultProps = {
+    children: undefined,
+    // onBlur: undefined,
+    onChange: undefined,
+    onClick: undefined,
+    // onFocus: undefined,
+};
+
+class Tab extends Component {
 
     constructor(props) {
         super(props);
         this.onTabClick = this.onTabClick.bind(this);
-        this.renderRemovableTab = this.renderRemovableTab.bind(this);
         this.renderTab = this.renderTab.bind(this);
     }
 
     shouldComponentUpdate(nextProps) {
-        const { children, selected, classNames } = this.props;
+        const {
+            children,
+            classNames,
+            selected,
+        } = this.props;
+
         return children !== nextProps.children ||
             selected !== nextProps.selected ||
             classNames !== nextProps.classNames;
     }
 
     onTabClick(evt) {
-        const { onClick, originalKey } = this.props;
-        onClick(originalKey, evt);
-    }
+        const {
+            onChange,
+            onClick,
+            originalKey,
+        } = this.props;
 
-    renderRemovableTab() {
-        const { children, onRemove } = this.props;
-        return (
-            <div className="RRT__removable">
-                <div className="RRT__removable-text">{children}</div>
-                <div className="RRT__removable-icon" onClick={onRemove}>
-                    x
-                </div>
-            </div>
-        );
+        if (isFunction(onClick)) {
+            onClick(this.props);
+        }
+        if (isFunction(onChange)) {
+            onChange(originalKey, evt);
+        }
     }
 
     renderTab() {
         const {
             children,
-            allowRemove,
             selected,
         } = this.props;
 
-        if (allowRemove) {
-            return this.renderRemovableTab();
-        }
-        const tabLabelClassNames = Classnames(`${TAB_CLASS}--label`, {
-            [`${TAB_CLASS}--label-selected`]: selected,
-        });
+        const tabLabelClassNames = Classnames(
+            `${TAB_CLASS}--label`,
+            { [`${TAB_CLASS}--label-selected`]: selected },
+        );
+
         return (
             <Typography
                 variant="h4"
@@ -68,31 +91,22 @@ export default class Tab extends Component {
 
     render() {
         const {
-            id,
             classNames,
-            selected,
-            disabled,
-            panelId,
-            onFocus,
-            onBlur,
-            originalKey,
+            id,
+            // onBlur,
+            // onFocus,
+            // originalKey,
         } = this.props;
 
         return (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <div
                 ref={(e) => { this.tab = e; }}
-                // role="tab"
+                role="presentation"
                 className={classNames}
                 id={id}
-                // aria-selected={selected ? 'true' : 'false'}
-                // aria-expanded={selected ? 'true' : 'false'}
-                // aria-disabled={disabled ? 'true' : 'false'}
-                // aria-controls={panelId}
-                tabIndex="0"
                 onClick={this.onTabClick}
-                onFocus={onFocus(originalKey)}
-                onBlur={onBlur}
+                // onFocus={onFocus(originalKey)}
+                // onBlur={onBlur}
             >
                 {this.renderTab()}
             </div>
@@ -100,26 +114,7 @@ export default class Tab extends Component {
     }
 }
 
-Tab.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-    disabled: PropTypes.bool,
+Tab.propTypes = propTypes;
+Tab.defaultProps = defaultProps;
 
-    // generic props
-    panelId: PropTypes.string.isRequired,
-    selected: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
-    onRemove: PropTypes.func,
-    onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    allowRemove: PropTypes.bool,
-    id: PropTypes.string.isRequired,
-    originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    classNames: PropTypes.string.isRequired,
-};
-
-Tab.defaultProps = {
-    children: undefined,
-    onRemove: () => { },
-    allowRemove: false,
-    disabled: false,
-};
+export default Tab;

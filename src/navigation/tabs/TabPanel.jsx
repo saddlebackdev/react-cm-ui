@@ -1,7 +1,24 @@
-import React, { Component } from 'react';
+import React, {
+    Component,
+} from 'react';
 import PropTypes from 'prop-types';
 
-export default class TabPanel extends Component {
+const propTypes = {
+    getContent: PropTypes.func,
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    id: PropTypes.string.isRequired,
+    isHidden: PropTypes.bool,
+    classNames: PropTypes.string.isRequired,
+    tabId: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+    getContent: undefined,
+    children: undefined,
+    isHidden: false,
+};
+
+class TabPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +33,13 @@ export default class TabPanel extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        const { children, getContent, classNames, isHidden } = this.props;
+        const {
+            children,
+            classNames,
+            getContent,
+            isHidden,
+        } = this.props;
+
         return (
             getContent !== nextProps.getContent ||
             children !== nextProps.children ||
@@ -26,8 +49,18 @@ export default class TabPanel extends Component {
     }
 
     render() {
-        const { classNames, id, tabId, children, getContent, isHidden } = this.props;
-        const { renderedAtLeastOnce } = this.state;
+        const {
+            children,
+            classNames,
+            getContent,
+            id,
+            isHidden,
+            tabId,
+        } = this.props;
+
+        const {
+            renderedAtLeastOnce,
+        } = this.state;
 
         return (
             <div className={classNames} role="tabpanel" id={id} aria-labelledby={tabId} aria-hidden={isHidden}>
@@ -38,19 +71,7 @@ export default class TabPanel extends Component {
     }
 }
 
-TabPanel.propTypes = {
-    getContent: PropTypes.func,
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-    id: PropTypes.string.isRequired,
-    isHidden: PropTypes.bool,
+TabPanel.propTypes = propTypes;
+TabPanel.defaultProps = defaultProps;
 
-    // generic props
-    classNames: PropTypes.string.isRequired,
-    tabId: PropTypes.string.isRequired,
-};
-
-TabPanel.defaultProps = {
-    getContent: undefined,
-    children: undefined,
-    isHidden: false,
-};
+export default TabPanel;

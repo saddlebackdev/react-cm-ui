@@ -143,11 +143,12 @@ class Dropdown extends Component {
                         label: itemLabel,
                         disabled: itemDisabled,
                         onClick,
+                        value: itemValue,
                     } = child.props;
 
                     let {
                         iconColor: itemIconColor,
-                        itemId: itemId,
+                        id: itemId,
                     } = child.props;
 
                     const itemClass = ClassNames('dropdown-item', child.props.className, {
@@ -163,6 +164,7 @@ class Dropdown extends Component {
                         id: itemId || null,
                         label: itemLabel,
                         onClick,
+                        value: itemValue,
                     };
 
                     if (id && itemId) {

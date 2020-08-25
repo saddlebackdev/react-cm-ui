@@ -1,40 +1,68 @@
-import React, {
-    PureComponent,
-} from 'react';
+import React from 'react';
 import {
-    Card,
-    Header,
     TitleBar,
-    SectionalTabs,
+    Typography,
 } from 'react-cm-ui';
 import Main from '../../global/main';
-import { getExampleTabs } from './tabsConstants';
+import Example from '../../global/example';
+import MarkdownContainer from '../../global/markdownContainer';
+import Heading from '../../global/heading';
+import ComponentApi from '../../global/componentApi';
+import NavigationTabsSample from './navigationTabsSample';
+import NavigationTabsSampleWithContent from './navigationTabsSampleWithContent';
+import NavigationTabsSampleSelectedTabKey from './navigationTabsSampleSelectedTabKey';
+// eslint-disable-next-line import/no-named-default
+import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/index.jsx';
 
-const items = getExampleTabs();
+function TabsExample() {
+    return (
+        <Main page="headers">
+            <TitleBar title="Sectional Navigation" />
+            <Main.Content>
 
-class TabsExample extends PureComponent {
-    render() {
-        return (
-            <Main page="headers">
-                <TitleBar title="Sectional Navigation" />
-                <Card>
-                    <Header size="large">Props</Header>
-                </Card>
-                <div className="basic__wrapper">
-                    <div className="basic__tabs">
-                        <SectionalTabs
-                            showMore
-                            transform={false}
-                            // showInkBar={true}
-                            items={items}
-                            selectedTabKey={0}
-                            unmountOnExit
-                        />
-                    </div>
-                </div>
-            </Main>
-        );
-    }
+                <MarkdownContainer>
+                    <Heading anchorLink="children" variant="h2">
+                        Simple Navigation Tabs panel
+                    </Heading>
+                    <Typography variant="body1">
+                        A simple navigation tabs panel.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example rawCode={require('!!raw-loader!./navigationTabsSample.jsx').default}>
+                    <NavigationTabsSample />
+                </Example>
+
+                <MarkdownContainer>
+                    <Heading anchorLink="children" variant="h2">
+                        Tabs Panel With Content
+                    </Heading>
+                    <Typography variant="body1">
+                        A navigation tabs panel rendering content set inside the tab item object.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example rawCode={require('!!raw-loader!./navigationTabsSampleWithContent.jsx').default}>
+                    <NavigationTabsSampleWithContent />
+                </Example>
+
+                <MarkdownContainer>
+                    <Heading anchorLink="children" variant="h2">
+                        Selected Tab Key
+                    </Heading>
+                    <Typography variant="body1">
+                        The selected tab can be programmatically changed.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example rawCode={require('!!raw-loader!./navigationTabsSampleSelectedTabKey.jsx').default}>
+                    <NavigationTabsSampleSelectedTabKey />
+                </Example>
+
+                <ComponentApi docs={[navigationTabsDoc]} />
+            </Main.Content>
+        </Main>
+    );
 }
 
 export default TabsExample;
