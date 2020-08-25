@@ -1,10 +1,10 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/breadcrumbs/__test__/index.test.js
+ * npx jest ./src/navigation/breadcrumbs/__test__/breadcrumbs.test.js
  */
 import { shallow } from 'enzyme';
 import React from 'react';
-import Breadcrumbs from '../index';
+import Breadcrumbs from '../breadcrumbs';
 import { ROUTER } from './breadcrumbsMockups';
 
 const componentProps = {

@@ -1,10 +1,10 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/tabs/__test__/index.test.js
+ * npx jest ./src/navigation/tabs/__test__/tabs.test.js
  */
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Tabs as NavigationTabs } from '../index';
+import { Tabs as NavigationTabs } from '../tabs';
 import {
     items,
     tabsState,
@@ -25,12 +25,10 @@ describe('<NavigationTabs />', () => {
 
     it('renders without crashing', () => {
         expect(wrapper.length).toBe(1);
-        // console.log('\x1b[36m', wrapper.length, '\x1b[0m');
     });
 
     it('renders all tabs as visible when the container width is greater than the tabs total width', () => {
         const visibleTabs = wrapper.find('Tab').map((tab) => tab.prop('children'));
-        // console.log('\x1b[33m', wrapper.debug(), '\x1b[0m');
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -50,7 +48,6 @@ describe('<NavigationTabs />', () => {
             blockWidth: 500,
         });
         const visibleTabs = wrapper.find('Tab').map((tab) => tab.prop('children'));
-        // console.log('\x1b[33m', visibleTabs, '\x1b[0m');
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -66,20 +63,10 @@ describe('<NavigationTabs />', () => {
             ...tabsState,
             blockWidth: 500,
         });
-        // expect(visibleTabs).toEqual([
-        //     'Example Tab 1',
-        //     'Example Tab 2',
-        //     'Example Tab 3',
-        //     'Example Tab 4',
-        // ]);
-        // expect(wrapper.find('Dropdown').length).toBe(1);
-        // expect(wrapper.find('DropdownItem').length).toBe(4);
         const hiddenTabs = wrapper.find('Dropdown');
         hiddenTabs.at(0).prop('onChange')({ value: 'exampleTab8' });
-        // console.log('\x1b[34m', wrapper.debug(), '\x1b[0m');
         const visibleTabs = wrapper.find('Tab').map((tab) => tab.prop('children'));
         expect(visibleTabs[3]).toBe('Example Tab 8');
-        expect(1).toBe(1);
     });
 
     it('handles resize events swapping the tabs from the hidden dropdown to the visible panel', () => {
@@ -119,12 +106,5 @@ describe('<NavigationTabs />', () => {
         expect(visibleTabs).toEqual([
             'Example Tab 1',
         ]);
-        // expect(wrapper.find('Dropdown').length).toBe(1);
-        // expect(wrapper.find('DropdownItem').length).toBe(4);
-        // const hiddenTabs = wrapper.find('Dropdown');
-        // hiddenTabs.at(0).prop('onChange')({ value: 'exampleTab8' });
-        console.log('\x1b[34m', wrapper.debug(), '\x1b[0m');
-        // expect(visibleTabs[3]).toBe('Example Tab 8');
-        expect(1).toBe(1);
     });
 });

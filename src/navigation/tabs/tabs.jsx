@@ -1,3 +1,6 @@
+import React, {
+    Component,
+} from 'react';
 import Classnames from 'classnames';
 import {
     find,
@@ -9,12 +12,9 @@ import {
     sortBy,
 } from 'lodash';
 import PropTypes from 'prop-types';
-import React, {
-    Component,
-} from 'react';
 import ResizeDetector from 'react-resize-detector';
-import Tab from './Tab';
-import TabPanel from './TabPanel';
+import Tab from './tab';
+import TabPanel from './tabPanel';
 import withStyles from '../../styles/withStyles';
 import Dropdown from '../../inputs/dropdown';
 import {

@@ -175,6 +175,18 @@ export const navigationItems = [
                 ],
                 label: 'Templates',
                 path: 'templates',
+            }, {
+                items: [
+                    {
+                        label: 'Tabs',
+                        path: 'tabs',
+                    }, {
+                        label: 'Breadcrumbs',
+                        path: 'breadcrumbs',
+                    },
+                ],
+                label: 'Navigation',
+                path: 'navigation',
             },
         ],
     },

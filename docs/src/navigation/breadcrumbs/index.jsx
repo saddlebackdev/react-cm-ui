@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-    Card,
-    Header,
     TitleBar,
-    Breadcrumbs,
     Typography,
 } from 'react-cm-ui';
 import Main from '../../global/main';
@@ -14,8 +11,8 @@ import BreadcrumbsSampleAllRoutes from './breadcrumbsSampleOnlyPreviousRoute';
 import BreadcrumbsSampleSeparatorIcon from './breadcrumbsSampleSeparatorIcon';
 import ComponentApi from '../../global/componentApi';
 import Example from '../../global/example';
-// eslint-disable-next-line import/no-named-default
-import { default as breadcrumbsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/index.jsx';
+// eslint-disable-next-line import/no-named-default, import/extensions
+import { default as breadcrumbsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/breadcrumbs';
 
 function BreadcrumbsExample() {
     return (
@@ -54,7 +51,8 @@ function BreadcrumbsExample() {
                         Separator Icon Type
                     </Heading>
                     <Typography variant="body1">
-                        The defaul separator icon type can be changed for one of the existent types in the icon section.
+                        The defaul separator icon type can be changed for one of the
+                        existent types in the icon section.
                     </Typography>
                 </MarkdownContainer>
 

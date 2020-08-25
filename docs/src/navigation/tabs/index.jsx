@@ -11,8 +11,8 @@ import ComponentApi from '../../global/componentApi';
 import NavigationTabsSample from './navigationTabsSample';
 import NavigationTabsSampleWithContent from './navigationTabsSampleWithContent';
 import NavigationTabsSampleSelectedTabKey from './navigationTabsSampleSelectedTabKey';
-// eslint-disable-next-line import/no-named-default
-import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/index.jsx';
+// eslint-disable-next-line import/no-named-default, import/extensions
+import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/tabs';
 
 function TabsExample() {
     return (
