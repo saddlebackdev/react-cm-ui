@@ -21,7 +21,9 @@ import {
 
 const propTypes = {
     /**
-     * Instance of react-router core, breadcrums will be generated automatically using the routes object structure, location and push function.
+     * Instance of react-router core,
+     * breadcrums will be generated automatically using the routes object structure,
+     * location and push function.
      */
     router: PropTypes.shape({}).isRequired,
     /**
@@ -40,7 +42,6 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles((theme) => {
-    // console.log('theme', theme);
     const textColorPrimary = get(theme, 'palette.text.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const fontWeightRegular = get(theme, 'typography.fontWeightRegular');
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => {
         root: {
             overflow: 'hidden',
             width: '100%',
-            [`& .${BEM_BLOCK_NAME}--breadcrumbs`]: { // here:: tengo que acomodar las classes
+            [`& .${BEM_BLOCK_NAME}--breadcrumbs`]: {
                 overflow: 'hidden',
                 padding: 0,
                 textOverflow: 'ellipsis',
@@ -73,16 +74,14 @@ const useStyles = makeStyles((theme) => {
                             padding: '0 5px 0 0',
                         },
                     },
-                    '& .MuiTypography-root': {
+                    [`& .${BEM_BLOCK_NAME}--breadcrumb-typography`]: {
                         display: 'inline',
                         '& > div': {
                             display: 'inline',
                         },
                     },
                 },
-                // --------------------------------------------------------------------
                 '&:hover': {
-                    // border: '1px solid red',
                     [`& .${BEM_BLOCK_NAME}--breadcrumb-is-last`]: {
                         color: textColorSecondary,
                         '&:hover': {
@@ -113,14 +112,9 @@ function Breadcrumbs(props) {
 
     const prevPathName = useRef();
 
-    // console.log('BREADCRUMBS', pathName, '\nrouter', router, '\n',
-    // existentRoutes
-    // );
-
     useEffect(() => {
         const routes = get(router, 'routes', []);
         const currentExistentRoutes = routesToArray(routes);
-        // console.log('DID_MOUNT_BREADCRUMBS');
         setExistentRoutes(currentExistentRoutes);
         const currentBreadCrumbs = getPathNameBreadcrumbs(
             pathName,
@@ -128,15 +122,15 @@ function Breadcrumbs(props) {
             routerPushFunction,
             currentExistentRoutes,
         );
-        // console.log('DID_MOUNT_BREADCRUMBS', pathName, currentBreadCrumbs);
         setPathBreadcrumbs(currentBreadCrumbs);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // didMount
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const shouldUpdatePathBreadcrumbs = prevPathName.current &&
             prevPathName.current !== pathName;
-        // console.log('SHOULD_UPDATE_BREADCRUMBS', shouldUpdatePathBreadcrumbs, prevPathName.current, pathName);
+
         if (shouldUpdatePathBreadcrumbs) {
             const currentBreadCrumbs = getPathNameBreadcrumbs(
                 pathName,
@@ -144,15 +138,13 @@ function Breadcrumbs(props) {
                 routerPushFunction,
                 existentRoutes,
             );
-            // console.log('currentBreadCrumbs', currentBreadCrumbs);
+
             setPathBreadcrumbs(currentBreadCrumbs);
         }
+
         prevPathName.current = pathName;
-        // console.log('DID_UPDATE_BREADCRUMBS');
     }); // didUpdate
 
-    const lastSeparator = '/';
-    // console.log('pathBreadcrumbs', pathBreadcrumbs);
     return (
         <div className={classes.root}>
             <ul
@@ -183,10 +175,10 @@ function Breadcrumbs(props) {
                                 role="presentation"
                                 className={breadcrumbClasses}
                             >
-                                <Typography variant="h3">
+                                <Typography variant="h3" className={`${BEM_BLOCK_NAME}--breadcrumb-typography`}>
                                     <div className={`${BEM_BLOCK_NAME}--breadcrumb-separator`}>
                                         {isLast ? (
-                                            lastSeparator
+                                            '/'
                                         ) : (
                                             <Icon
                                                 type={separatorIconType}

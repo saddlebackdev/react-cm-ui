@@ -4,17 +4,17 @@ import React, {
 import PropTypes from 'prop-types';
 
 const propTypes = {
-    getContent: PropTypes.func,
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    classNames: PropTypes.string.isRequired,
+    getContent: PropTypes.func,
     id: PropTypes.string.isRequired,
     isHidden: PropTypes.bool,
-    classNames: PropTypes.string.isRequired,
     tabId: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-    getContent: undefined,
     children: undefined,
+    getContent: undefined,
     isHidden: false,
 };
 

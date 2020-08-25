@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
 import {
-    BEM_BLOCK_BAME,
-    TAB_ROOT_CLASS,
     TAB_CLASS,
 } from './tabsConstants';
 
@@ -17,20 +15,16 @@ const propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     classNames: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    // onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
-    // onFocus: PropTypes.func,
     originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     selected: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
     children: undefined,
-    // onBlur: undefined,
     onChange: undefined,
     onClick: undefined,
-    // onFocus: undefined,
 };
 
 class Tab extends Component {
@@ -93,20 +87,15 @@ class Tab extends Component {
         const {
             classNames,
             id,
-            // onBlur,
-            // onFocus,
-            // originalKey,
         } = this.props;
 
         return (
             <div
-                ref={(e) => { this.tab = e; }}
-                role="presentation"
                 className={classNames}
                 id={id}
                 onClick={this.onTabClick}
-                // onFocus={onFocus(originalKey)}
-                // onBlur={onBlur}
+                ref={(e) => { this.tab = e; }}
+                role="presentation"
             >
                 {this.renderTab()}
             </div>
