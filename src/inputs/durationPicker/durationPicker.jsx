@@ -194,7 +194,7 @@ const defaultState = {
  * to configure and input a single duration or timespan value (stored as a
  * Duration object from the MomentJS library).
  */
-class DurationPicker extends React.PureComponent {
+export class DurationPicker extends React.PureComponent {
     static areMomentDurationsEqual(durationA, durationB) {
         const durationAHasValue = moment.isDuration(durationA);
         const durationBHasValue = moment.isDuration(durationB);
@@ -365,7 +365,7 @@ class DurationPicker extends React.PureComponent {
             showYears,
         } = this.props;
 
-        this.secondsOptions = showSeconds &&
+        this.secondsOptions = (showSeconds &&
             isEmpty(this.secondsOptions) &&
             map(
                 range(SECONDS_MAX + 1),
@@ -373,9 +373,9 @@ class DurationPicker extends React.PureComponent {
                     label: `${seconds} ${seconds === 1 ? SECOND_SINGULAR : SECONDS_PLURAL}`,
                     value: seconds,
                 }),
-            );
+            )) || this.secondsOptions || [];
 
-        this.minutesOptions = showMinutes &&
+        this.minutesOptions = (showMinutes &&
             isEmpty(this.minutesOptions) &&
             map(
                 range(MINUTES_MAX + 1),
@@ -383,9 +383,9 @@ class DurationPicker extends React.PureComponent {
                     label: `${minutes} ${minutes === 1 ? MINUTE_SINGULAR : MINUTES_PLURAL}`,
                     value: minutes,
                 }),
-            );
+            )) || this.minutesOptions || [];
 
-        this.hoursOptions = showHours &&
+        this.hoursOptions = (showHours &&
             isEmpty(this.hoursOptions) &&
             map(
                 range(HOURS_MAX + 1),
@@ -393,9 +393,9 @@ class DurationPicker extends React.PureComponent {
                     label: `${hours} ${hours === 1 ? HOUR_SINGULAR : HOURS_PLURAL}`,
                     value: hours,
                 }),
-            );
+            )) || this.hoursOptions || [];
 
-        this.daysOptions = showDays &&
+        this.daysOptions = (showDays &&
             isEmpty(this.daysOptions) &&
             map(
                 range(DAYS_MAX + 1),
@@ -403,9 +403,9 @@ class DurationPicker extends React.PureComponent {
                     label: `${days} ${days === 1 ? DAY_SINGULAR : DAYS_PLURAL}`,
                     value: days,
                 }),
-            );
+            )) || this.daysOptions || [];
 
-        this.monthsOptions = showMonths &&
+        this.monthsOptions = (showMonths &&
             isEmpty(this.monthsOptions) &&
             map(
                 range(MONTHS_MAX + 1),
@@ -413,9 +413,9 @@ class DurationPicker extends React.PureComponent {
                     label: `${months} ${months === 1 ? MONTH_SINGULAR : MONTHS_PLURAL}`,
                     value: months,
                 }),
-            );
+            )) || this.monthsOptions || [];
 
-        this.yearsOptions = showYears &&
+        this.yearsOptions = (showYears &&
             isEmpty(this.yearsOptions) &&
             map(
                 range(maxYears + 1),
@@ -423,7 +423,7 @@ class DurationPicker extends React.PureComponent {
                     label: `${years} ${years === 1 ? YEAR_SINGULAR : YEARS_PLURAL}`,
                     value: years,
                 }),
-            );
+            )) || this.yearsOptions || [];
     }
 
     render() {
