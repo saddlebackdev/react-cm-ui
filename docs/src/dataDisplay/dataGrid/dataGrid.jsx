@@ -1,10 +1,14 @@
 import {
     TitleBar,
     Typography,
+    versions,
 } from 'react-cm-ui';
 import { camelCase, startCase } from 'lodash';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import DataGridSample from './dataGridSample';
 import DataGridSortableRowsSample from './dataGridSortableRowsSample';
 import DataGridStickyColumnsSample from './dataGridStickyColumnsSample';
@@ -16,7 +20,19 @@ import MarkdownContainer from '../../global/markdownContainer';
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGrid/dataGrid';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsDataGrid() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsDataGrid(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const {
         description,
         name,
@@ -102,9 +118,15 @@ function DocsDataGrid() {
                         rootDoc,
                     ]}
                 />
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
 
-export default DocsDataGrid;
+DocsDataGrid.propTypes = propTypes;
+
+export default withRouter(DocsDataGrid);
