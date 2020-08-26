@@ -7,9 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
-import {
-    TAB_CLASS,
-} from './tabsConstants';
+import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
 
 const propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
@@ -28,7 +26,6 @@ const defaultProps = {
 };
 
 class Tab extends Component {
-
     constructor(props) {
         super(props);
         this.onTabClick = this.onTabClick.bind(this);
@@ -69,8 +66,8 @@ class Tab extends Component {
         } = this.props;
 
         const tabLabelClassNames = Classnames(
-            `${TAB_CLASS}--label`,
-            { [`${TAB_CLASS}--label-selected`]: selected },
+            `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
+            { [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label-selected`]: selected },
         );
 
         return (

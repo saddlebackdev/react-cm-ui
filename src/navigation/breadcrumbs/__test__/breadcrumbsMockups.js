@@ -1,14 +1,15 @@
-export const ROUTER = {
+export default {
     location: {
         pathname: '/my-section/sub-section/some-status/cool-stuff',
     },
     params: {},
-    push: () => {},
+    push: (to) => { alert(`it would push to: ${to}`); },
     routes: [
         {
             path: '/',
-            title: 'Home',
-            indexRoute: {},
+            indexRoute: {
+                title: 'Home',
+            },
             childRoutes: [
                 {
                     path: 'my-section',
@@ -42,5 +43,3 @@ export const ROUTER = {
         },
     ],
 };
-
-export const a = '';

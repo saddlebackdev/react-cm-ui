@@ -4,16 +4,12 @@ import React, {
     useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-    get,
-} from 'lodash';
+import { get } from 'lodash';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
-import {
-    BEM_BLOCK_NAME,
-} from './breadcrumbsConstants';
+import { BEM_NAVIGATION_BREADCRUMBS } from '../../global/constants';
 import {
     routesToArray,
     getPathNameBreadcrumbs,
@@ -50,31 +46,31 @@ const useStyles = makeStyles((theme) => {
         root: {
             overflow: 'hidden',
             width: '100%',
-            [`& .${BEM_BLOCK_NAME}--breadcrumbs`]: {
+            [`& .${BEM_NAVIGATION_BREADCRUMBS}--list`]: {
                 overflow: 'hidden',
                 padding: 0,
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
                 margin: '-3px 0 -3px 0',
-                [`& .${BEM_BLOCK_NAME}--breadcrumb`]: {
+                [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`]: {
                     cursor: 'pointer',
                     display: 'inline',
-                    padding: '0 5px 0 0',
+                    padding: ({ showOnlyPreviousRoute }) => (showOnlyPreviousRoute ? '0 5px 0 0' : '0 10px 0 0'),
                     transition: 'color 0.1s',
                     '&:hover': {
                         '& .icon-use-path': {
                             fill: colorHighlight,
                         },
                     },
-                    '&-is-last': {
+                    '&_is_last': {
                         '& div': {
                             fontWeight: fontWeightRegular,
                         },
-                        [`& .${BEM_BLOCK_NAME}--breadcrumb-separator`]: {
+                        [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`]: {
                             padding: '0 5px 0 0',
                         },
                     },
-                    [`& .${BEM_BLOCK_NAME}--breadcrumb-typography`]: {
+                    [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_typography`]: {
                         display: 'inline',
                         '& > div': {
                             display: 'inline',
@@ -82,7 +78,7 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&:hover': {
-                    [`& .${BEM_BLOCK_NAME}--breadcrumb-is-last`]: {
+                    [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_is_last`]: {
                         color: textColorSecondary,
                         '&:hover': {
                             color: textColorPrimary,
@@ -101,16 +97,13 @@ function Breadcrumbs(props) {
         router,
     } = props;
 
-    const classes = useStyles();
-
+    const classes = useStyles(props);
     const [existentRoutes, setExistentRoutes] = useState([]);
     const [pathBreadcrumbs, setPathBreadcrumbs] = useState([]);
-
     const pathName = get(router, 'location.pathname');
     const pathParams = get(router, 'params');
-    const routerPushFunction = get(router, 'push');
-
     const prevPathName = useRef();
+    const routerPushFunction = get(router, 'push');
 
     useEffect(() => {
         const routes = get(router, 'routes', []);
@@ -147,10 +140,7 @@ function Breadcrumbs(props) {
 
     return (
         <div className={classes.root}>
-            <ul
-                aria-label="breadcrumbs"
-                className={`${BEM_BLOCK_NAME}--breadcrumbs`}
-            >
+            <ul className={`${BEM_NAVIGATION_BREADCRUMBS}--list`}>
                 {pathBreadcrumbs
                     .map((breadcrumb, index) => {
                         const {
@@ -160,23 +150,21 @@ function Breadcrumbs(props) {
                         } = breadcrumb;
 
                         const isLast = index === pathBreadcrumbs.length - 1;
-                        const isPrevious = index === pathBreadcrumbs.length - 2;
                         const breadcrumbClasses = Classnames(
-                            `${BEM_BLOCK_NAME}--breadcrumb`, {
-                                [`${BEM_BLOCK_NAME}--breadcrumb-is-last`]: isLast,
-                                [`${BEM_BLOCK_NAME}--breadcrumb-is-previous`]: isPrevious,
+                            `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`, {
+                                [`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_is_last`]: isLast,
                             },
                         );
 
                         return (
                             <li
-                                key={`${BEM_BLOCK_NAME}--breadcruumb-key-${to}`}
-                                onClick={onBreadcrumbClick}
-                                role="presentation"
                                 className={breadcrumbClasses}
+                                key={`${BEM_NAVIGATION_BREADCRUMBS}--breadcruumb_key_${to}`}
+                                onClick={!isLast && onBreadcrumbClick}
+                                role="presentation"
                             >
-                                <Typography variant="h3" className={`${BEM_BLOCK_NAME}--breadcrumb-typography`}>
-                                    <div className={`${BEM_BLOCK_NAME}--breadcrumb-separator`}>
+                                <Typography variant="h3" className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_typography`}>
+                                    <div className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`}>
                                         {isLast ? (
                                             '/'
                                         ) : (
@@ -186,7 +174,7 @@ function Breadcrumbs(props) {
                                             />
                                         )}
                                     </div>
-                                    <div className={`${BEM_BLOCK_NAME}--breadcrumb-to`}>
+                                    <div className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`}>
                                         {title}
                                     </div>
                                 </Typography>
@@ -196,8 +184,8 @@ function Breadcrumbs(props) {
                     .filter((breadcrumb, index) => {
                         const shouldRenderBreadcrumb = !showOnlyPreviousRoute || (
                             showOnlyPreviousRoute && (
-                                index === pathBreadcrumbs.length - 1 ||
-                                index === pathBreadcrumbs.length - 2
+                                index === pathBreadcrumbs.length - 1 || // the last route
+                                index === pathBreadcrumbs.length - 2 // the previous route from the current
                             )
                         );
 

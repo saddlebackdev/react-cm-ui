@@ -18,12 +18,12 @@ import TabPanel from './tabPanel';
 import withStyles from '../../styles/withStyles';
 import Dropdown from '../../inputs/dropdown';
 import {
-    BEM_BLOCK_NAME,
-    TAB_CLASS,
-} from './tabsConstants';
+    BEM_NAVIGATION_TABS,
+    BEM_NAVIGATION_TAB_ROOT_CLASS,
+} from '../../global/constants';
 
-const tabPrefix = 'tab-';
-const panelPrefix = 'panel-';
+const PREFIX_TAB = 'tab-';
+const PANEL_PREFIX = 'panel-';
 
 const propTypes = {
     /**
@@ -76,24 +76,24 @@ const useStyles = (theme) => {
     const colorActivePrimary = get(theme, 'palette.active.primary');
     const styles = {
         root: {
-            [`& .${BEM_BLOCK_NAME}--container`]: {
+            [`& .${BEM_NAVIGATION_TABS}--container`]: {
                 position: 'relative',
             },
-            [`& .${BEM_BLOCK_NAME}--panel`]: {
+            [`& .${BEM_NAVIGATION_TABS}--panel`]: {
                 display: 'flex',
                 flexWrap: 'wrap',
             },
-            [`& .${BEM_BLOCK_NAME}--panel-content`]: {
+            [`& .${BEM_NAVIGATION_TABS}--panel-content`]: {
                 padding: '10px 0 10px 0',
                 borderTop: `1px solid ${borderColorSecondary}`,
             },
-            [`& .${TAB_CLASS}`]: {
+            [`& .${BEM_NAVIGATION_TAB_ROOT_CLASS}`]: {
                 cursor: 'pointer',
                 zIndex: 1,
                 whiteSpace: 'nowrap',
                 padding: '10px 20px 0 0',
                 outline: 'none',
-                '&--label': {
+                '&-label': {
                     fontSize: 14,
                     color: textColorSecondary,
                     paddingBottom: 10,
@@ -106,10 +106,6 @@ const useStyles = (theme) => {
                         color: `${textColorPrimary} !important`,
                         borderBottom: `2px solid ${colorActivePrimary}`,
                     },
-                },
-                '&--disabled': {
-                    opacity: 0.5,
-                    cursor: 'not-allowed',
                 },
                 '& .dropdown-menu': {
                     margin: '-15px 0',
@@ -262,7 +258,7 @@ class Tabs extends Component {
         tabRefsKeys.forEach((key) => {
             if (this.tabRefs[key]) {
                 const width = this.tabRefs[key].tab.offsetWidth;
-                updatedTabDimensions[key.replace(tabPrefix, '')] = { width, offset: updatedTabsTotalWidth };
+                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
                 updatedTabsTotalWidth += width;
             }
         });
@@ -414,12 +410,12 @@ class Tabs extends Component {
                 selected,
                 tabIndex,
             }),
-            id: tabPrefix + key,
-            key: tabPrefix + key,
+            id: PREFIX_TAB + key,
+            key: PREFIX_TAB + key,
             originalKey: key,
             onClick,
             onChange: this.onChangeTab,
-            ref: (ref) => { this.tabRefs[tabPrefix + key] = ref; },
+            ref: (ref) => { this.tabRefs[PREFIX_TAB + key] = ref; },
             selected,
         };
     }
@@ -435,9 +431,9 @@ class Tabs extends Component {
         return {
             getContent,
             children: content,
-            key: panelPrefix + key,
-            id: panelPrefix + key,
-            tabId: tabPrefix + key,
+            key: PANEL_PREFIX + key,
+            id: PANEL_PREFIX + key,
+            tabId: PREFIX_TAB + key,
             classNames: this.getClassNamesFor('panel', { className, isHidden }),
             isHidden,
         };
@@ -454,17 +450,17 @@ class Tabs extends Component {
         switch (type) {
             case 'tab':
                 return Classnames(
-                    `${TAB_CLASS}`,
+                    `${BEM_NAVIGATION_TAB_ROOT_CLASS}`,
                     className,
                     {
-                        [`${TAB_CLASS}--first`]: !tabIndex,
-                        [`${TAB_CLASS}--selected`]: selected,
-                        [`${TAB_CLASS}--disabled`]: disabled,
+                        [`${BEM_NAVIGATION_TAB_ROOT_CLASS}--first`]: !tabIndex,
+                        [`${BEM_NAVIGATION_TAB_ROOT_CLASS}--selected`]: selected,
+                        [`${BEM_NAVIGATION_TAB_ROOT_CLASS}--disabled`]: disabled,
                     },
                 );
             case 'panel':
                 return Classnames(
-                    `${BEM_BLOCK_NAME}--panel-content`,
+                    `${BEM_NAVIGATION_TABS}--panel-content`,
                     className,
                 );
             default:
@@ -516,10 +512,10 @@ class Tabs extends Component {
         const selectedTabKey = this.getSelectedTabKey();
         const rootClasses = get(classes, 'root');
         const containerClasses = Classnames(
-            `${BEM_BLOCK_NAME}--container`,
+            `${BEM_NAVIGATION_TABS}--container`,
             { [rootClasses]: rootClasses },
         );
-        const tabsClasses = Classnames(`${BEM_BLOCK_NAME}--panel`);
+        const tabsClasses = Classnames(`${BEM_NAVIGATION_TABS}--panel`);
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <Dropdown
                 collapseMenuOnChange

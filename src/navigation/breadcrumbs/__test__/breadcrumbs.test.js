@@ -5,7 +5,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import Breadcrumbs from '../breadcrumbs';
-import { ROUTER } from './breadcrumbsMockups';
+import ROUTER from './breadcrumbsMockups';
 
 const componentProps = {
     router: {
