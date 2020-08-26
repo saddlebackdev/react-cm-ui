@@ -129,6 +129,7 @@ class PhoneInput extends React.PureComponent {
                     countryOptions={countryOptions}
                     countrySelectComponent={PhoneInputCountryDropdown}
                     fluid=""
+                    international={false}
                     onChange={this.onChange}
                     style={{}}
                 />
