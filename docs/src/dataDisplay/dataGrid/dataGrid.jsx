@@ -2,6 +2,7 @@ import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
+import { camelCase, startCase } from 'lodash';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
 import DataGridSample from './dataGridSample';
@@ -12,15 +13,18 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as dataGridDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGrid/dataGrid';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGrid/dataGrid';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsDataGrid() {
-    const descriptionCopy = dataGridDoc.description;
+    const {
+        description,
+        name,
+    } = rootDoc;
 
     return (
-        <Main page="data_grid">
-            <TitleBar title="Data Grid" />
+        <Main page={camelCase(name)}>
+            <TitleBar title={startCase(name)} />
 
             <Main.Content>
                 <MarkdownContainer>
@@ -28,7 +32,7 @@ function DocsDataGrid() {
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
@@ -95,7 +99,7 @@ function DocsDataGrid() {
 
                 <ComponentApi
                     docs={[
-                        dataGridDoc,
+                        rootDoc,
                     ]}
                 />
             </Main.Content>
