@@ -20,7 +20,9 @@ import Main from '../../global/main';
 const propTypes = {
     classes: PropTypes.shape({
         dropdownButton: PropTypes.string,
+        iconGridColumn: PropTypes.string,
     }).isRequired,
+    width: PropTypes.string.isRequired,
 };
 
 const categorizedIconSet = [
@@ -319,9 +321,6 @@ class ElementsIconSet extends React.PureComponent {
             classes,
             width,
         } = this.props;
-
-        console.log('width', width);
-        console.log('window.innerWidth', window.innerWidth);
 
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
