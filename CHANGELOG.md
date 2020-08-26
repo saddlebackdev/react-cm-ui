@@ -1,6 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.15.0 - 08/21/2020
+
+#### Feature
+- [PR #186](https://github.com/saddlebackdev/react-cm-ui/pull/186) / Merge Commit 16d06373f870432f09ec9b6c96224e8b88e5e908
+    - Reorganized Components In `./src`
+- [PR #189](https://github.com/saddlebackdev/react-cm-ui/pull/189) / Merge Commit 43bf9894dd4b830551662ed8a67c264e12716781
+    - Change to allow disabling international region code for phone numbers.
+- [PR #190](https://github.com/saddlebackdev/react-cm-ui/pull/190) / Merge Commit f2142f54cb4f2cd41698d4d608367bc5d33e92d5
+    - Added `customFormat` prop to **DatePickerInput**
+
+## 9.13.6 - 08/12/2020
+
+- Fix Radio Button `onClick` handling when `multi` prop is set to `true` (Commit 72fdd9206ba26b685a0b4fd4c640aa16e37fffaf)
+    - Cherry-picked from [PR 184](https://github.com/saddlebackdev/react-cm-ui/pull/184) / Merge Commit 51781117d934a019133cbb81d2ee22289da379e6
+
 ## 9.14.1 - 08/06/2020
 
 #### Bug Fix

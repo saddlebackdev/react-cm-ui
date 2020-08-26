@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.0 - 08/21/2020
+
+#### Feature
+- [PR #187](https://github.com/saddlebackdev/react-cm-ui/pull/187) / Merge Commit 8f98e876211708240f3a246eb995f8656b193e03
+    - Reorganized Components In `./docs`.
+
+#### Bug Fix
+- [PR #188](https://github.com/saddlebackdev/react-cm-ui/pull/188) / Merge Commit d76c61b7b3fd5aad03c82c3c670b187334e0c4da
+    - Fixed a Eslint `react-dom` import error.
+
 ## 0.8.3 - 08/06/2020
 
 #### Bug Fix

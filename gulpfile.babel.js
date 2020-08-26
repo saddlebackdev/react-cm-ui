@@ -16,98 +16,12 @@ const paths = {
         dest: 'core/images',
     },
     scripts: {
-        atoms: {
-            src: [
-                'src/atoms/**/**.js',
-                '!src/atoms/**/*.test.js',
-                'src/atoms/**/**.jsx',
-            ],
-            dest: 'core/atoms',
-        },
-        colors: {
-            src: [
-                'src/colors/**/**.js',
-                '!src/colors/**/*.test.js',
-            ],
-            dest: 'core/colors',
-        },
-        dataDisplay: {
-            src: [
-                'src/dataDisplay/**/**.js',
-                'src/dataDisplay/**/**.jsx',
-                '!src/dataDisplay/**/*.test.js',
-            ],
-            dest: 'core/dataDisplay',
-        },
-        global: {
-            src: [
-                'src/global/**/**.js',
-                '!src/global/**/*.test.js',
-                'src/global/**/**.jsx',
-            ],
-            dest: 'core/global',
-        },
-        inputs: {
-            src: [
-                'src/inputs/**/**.js',
-                '!src/inputs/**/*.test.js',
-                'src/inputs/**/**.jsx',
-            ],
-            dest: 'core/inputs',
-        },
-        molecules: {
-            src: [
-                'src/molecules/**/**.js',
-                '!src/molecules/**/*.test.js',
-                'src/molecules/**/**.jsx',
-            ],
-            dest: 'core/molecules',
-        },
-        navigation: {
-            src: [
-                'src/navigation/**/**.js',
-                '!src/navigation/**/*.test.js',
-                'src/navigation/**/**.jsx',
-            ],
-            dest: 'core/navigation',
-        },
-        organisms: {
-            src: [
-                'src/organisms/**/**.js',
-                '!src/organisms/**/*.test.js',
-                'src/organisms/**/**.jsx',
-            ],
-            dest: 'core/organisms',
-        },
-        root: {
-            src: [
-                'src/**.js',
-            ],
-            dest: 'core',
-        },
-        styles: {
-            src: [
-                '!src/styles/**/*.test.js',
-                'src/styles/**/**.js',
-            ],
-            dest: 'core/styles',
-        },
-        templates: {
-            src: [
-                'src/templates/**/**.js',
-                '!src/templates/**/*.test.js',
-                'src/templates/**/**.jsx',
-            ],
-            dest: 'core/templates',
-        },
-        utils: {
-            src: [
-                'src/utils/**/**.js',
-                '!src/utils/**/*.test.js',
-                'src/utils/**/**.jsx',
-            ],
-            dest: 'core/utils',
-        },
+        src: [
+            'src/**/*.js',
+            'src/**/*.jsx',
+            '!src/**/*.test.js',
+        ],
+        dest: 'core',
     },
     styles: {
         src: 'src/**/*.scss',
@@ -122,81 +36,10 @@ export function images() {
         .pipe(dest(paths.images.dest));
 }
 
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsAtoms() {
-    return src(paths.scripts.atoms.src)
+export function scripts() {
+    return src(paths.scripts.src)
         .pipe(babel())
-        .pipe(dest(paths.scripts.atoms.dest));
-}
-
-export function scriptsColors() {
-    return src(paths.scripts.colors.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.colors.dest));
-}
-
-export function scriptsDataDisplay() {
-    return src(paths.scripts.dataDisplay.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.dataDisplay.dest));
-}
-
-export function scriptsGlobal() {
-    return src(paths.scripts.global.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.global.dest));
-}
-
-export function scriptsInputs() {
-    return src(paths.scripts.inputs.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.inputs.dest));
-}
-
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsMolecules() {
-    return src(paths.scripts.molecules.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.molecules.dest));
-}
-
-export function scriptsNavigation() {
-    return src(paths.scripts.navigation.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.navigation.dest));
-}
-
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsOrganisms() {
-    return src(paths.scripts.organisms.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.organisms.dest));
-}
-
-export function scriptsRoot() {
-    return src(paths.scripts.root.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.root.dest));
-}
-
-export function scriptsStyles() {
-    return src(paths.scripts.styles.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.styles.dest));
-}
-
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsTemplates() {
-    return src(paths.scripts.templates.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.templates.dest));
-}
-
-// TODO: Remove once all components are shifted to the new organization.
-export function scriptsUtils() {
-    return src(paths.scripts.utils.src)
-        .pipe(babel())
-        .pipe(dest(paths.scripts.utils.dest));
+        .pipe(dest(paths.scripts.dest));
 }
 
 export function styles() {
@@ -208,17 +51,7 @@ export function styles() {
 
 function watchFiles() {
     watch(paths.images.src, images);
-    watch(paths.scripts.root.src, scriptsRoot);
-    watch(paths.scripts.atoms.src, scriptsAtoms);
-    watch(paths.scripts.colors.src, scriptsColors);
-    watch(paths.scripts.dataDisplay.src, scriptsDataDisplay);
-    watch(paths.scripts.inputs.src, scriptsInputs);
-    watch(paths.scripts.molecules.src, scriptsMolecules);
-    watch(paths.scripts.navigation.src, scriptsNavigation);
-    watch(paths.scripts.organisms.src, scriptsOrganisms);
-    watch(paths.scripts.styles.src, scriptsStyles);
-    watch(paths.scripts.templates.src, scriptsTemplates);
-    watch(paths.scripts.utils.src, scriptsUtils);
+    watch(paths.scripts.src, scripts);
     watch(paths.styles.src, styles);
 }
 
@@ -228,18 +61,7 @@ export default series(
     clean,
     parallel(
         images,
-        scriptsAtoms,
-        scriptsColors,
-        scriptsDataDisplay,
-        scriptsGlobal,
-        scriptsInputs,
-        scriptsMolecules,
-        scriptsNavigation,
-        scriptsOrganisms,
-        scriptsRoot,
-        scriptsStyles,
-        scriptsTemplates,
-        scriptsUtils,
+        scripts,
         styles,
     ),
 );

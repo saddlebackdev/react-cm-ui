@@ -16,11 +16,11 @@ import {
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
 import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
-import Grid from '../../organisms/grid';
+import Grid from '../../layout/grid';
 import Image from '../image';
 import makeStyles from '../../styles/makeStyles';
-import PersonContactInfo from '../personContactInfo';
-import Typography from '../typography';
+import PersonContactInfo from '../personContactInfo/personContactInfo';
+import Typography from '../typography/typography';
 
 const propTypes = {
     /**
