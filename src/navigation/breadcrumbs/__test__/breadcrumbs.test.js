@@ -15,7 +15,7 @@ const componentProps = {
             pathname: '/my-section/sub-section/some-status/cool-stuff',
         },
     },
-    showOnlyPrevious: false,
+    showOnlyPreviousRoute: false,
     separatorIconType: 'chevron-left',
 };
 
@@ -30,7 +30,7 @@ describe('<Breadcrumbs />', () => {
     it('renders all the breadcrumbs for a location pathname', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
         const breadcrumbs = wrapper.find('li');
-        const breadcrumbsLabels = wrapper.find('.breadcrumbs---breadcrumb-to');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to');
         expect(breadcrumbs.length).toBe(5);
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Home');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('My Section');
@@ -42,13 +42,13 @@ describe('<Breadcrumbs />', () => {
     it('renders only a breadcrumb for the current and previous pathname section when showOnlyPrevious is true', () => {
         const testCaseProps = {
             ...componentProps,
-            showOnlyPrevious: true,
+            showOnlyPreviousRoute: true,
         };
 
         wrapper = shallow(<Breadcrumbs {...testCaseProps} />);
         const breadcrumbs = wrapper.find('li');
         expect(breadcrumbs.length).toBe(2);
-        const breadcrumbsLabels = wrapper.find('.breadcrumbs---breadcrumb-to');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to');
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Some Status');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('Cool Stuff');
     });
@@ -79,7 +79,7 @@ describe('<Breadcrumbs />', () => {
 
     it('renders a simple slash as separator for the last breadcrumb', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
-        const separators = wrapper.find('.breadcrumbs---breadcrumb-separator');
+        const separators = wrapper.find('.navigation_breadcrumbs--breadcrumb_separator');
         expect(separators.at(4).prop('children')).toBe('/');
     });
 });

@@ -297,6 +297,16 @@ export const navigationItems = [
                         label: 'Tabs',
                         path: 'tabs',
                     },
+                    {
+                        component: 'navigationTabs',
+                        label: 'Navigation Tabs',
+                        path: 'navigation-tabs',
+                    },
+                    {
+                        component: 'breadcrumbs',
+                        label: 'Breadcrumbs',
+                        path: 'breadcrumbs',
+                    },
                 ],
                 label: 'Navigation',
                 path: 'navigation',
