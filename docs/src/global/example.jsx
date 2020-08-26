@@ -12,7 +12,11 @@ import Highlighter from './highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
-    rawCode: PropTypes.string.isRequired,
+    rawCode: PropTypes.string,
+};
+
+const defaultProps = {
+    rawCode: null,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -103,18 +107,20 @@ function Example(props) {
                         </Button>
                     </div>
 
-                    <Collapse in={isCodeExpanded}>
-                        <Highlighter
-                            className={classes.highlighter}
-                            customStyle={{
-                                marginBottom: '44px',
-                                marginTop: '0',
-                            }}
-                            language="jsx"
-                        >
-                            {rawCode}
-                        </Highlighter>
-                    </Collapse>
+                    {rawCode && (
+                        <Collapse in={isCodeExpanded}>
+                            <Highlighter
+                                className={classes.highlighter}
+                                customStyle={{
+                                    marginBottom: '44px',
+                                    marginTop: '0',
+                                }}
+                                language="jsx"
+                            >
+                                {rawCode}
+                            </Highlighter>
+                        </Collapse>
+                    )}
                 </Grid.Column>
             </Grid.Row>
         </Grid>
@@ -122,5 +128,6 @@ function Example(props) {
 }
 
 Example.propTypes = propTypes;
+Example.defaultProps = defaultProps;
 
 export default Example;

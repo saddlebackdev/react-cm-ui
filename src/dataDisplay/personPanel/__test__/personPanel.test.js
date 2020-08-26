@@ -2,11 +2,10 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanel.test.js
  */
-import { mount } from 'enzyme';
 import React from 'react';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import PersonPanel from '../personPanel';
 import PersonPanelDetails from '../personPanelDetails';
-import MockedTheme from '../../../testUtils/mockedTheme';
 import PersonPanelSummary from '../personPanelSummary';
 
 describe('<PersonPanel />', () => {
@@ -33,14 +32,12 @@ describe('<PersonPanel />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         expect(wrapper).toBeDefined();
@@ -49,17 +46,15 @@ describe('<PersonPanel />', () => {
     it('Should render with the root classes', () => {
         const rootOverride = 'makeStyles-root-123';
 
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                    classes={{
-                        root: rootOverride,
-                    }}
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+                classes={{
+                    root: rootOverride,
+                }}
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         const root = wrapper.find('div').first();
@@ -71,12 +66,10 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should render with the root className', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -85,14 +78,12 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should have expected `id` prop', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         const root = wrapper.find('div').first();
@@ -101,15 +92,13 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should expand when clicking PersonPanelSummary', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                    onChange={undefined}
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+                onChange={undefined}
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         wrapper.find('PersonPanelSummary').simulate('click');
@@ -126,14 +115,12 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should call onChange when clicking PersonPanelSummary', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         wrapper.find('PersonPanelSummary').simulate('click');
@@ -142,15 +129,13 @@ describe('<PersonPanel />', () => {
     });
 
     it('Should be controlled', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanel
-                    {...props}
-                    isExpanded
-                >
-                    {minimalChildren}
-                </PersonPanel>
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanel
+                {...props}
+                isExpanded
+            >
+                {minimalChildren}
+            </PersonPanel>,
         );
 
         const summary = wrapper.find(PersonPanelSummary);

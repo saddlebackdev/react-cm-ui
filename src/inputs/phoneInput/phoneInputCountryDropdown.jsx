@@ -31,7 +31,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
         super(props);
 
         this.state = {
-            selectedOption: _.find(props.options, (o) => !o.divider && o.value === props.value),
+            selectedOption: _.find(props.options, (o) => !o.divider && o.value && o.value === props.value),
         };
 
         this.onChange = this.onChange.bind(this);
@@ -55,7 +55,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
 
         if (prevProps.value !== value && prevState.selectedOption.value !== value) {
             this.setState({
-                selectedOption: _.find(options, (o) => !o.divider && o.value === value),
+                selectedOption: _.find(options, (o) => !o.divider && o.value && o.value === value),
             }, () => {
                 onChange(value);
             });
