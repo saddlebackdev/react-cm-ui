@@ -1,11 +1,11 @@
 /**
  * To run this test from the church-management/client folder, execute the following command:
- * npx jest ./src/dataDisplay/__test__/personCoreMilestones.test.js
+ * npx jest ./src/dataDisplay/personCoreMilestones/__test__/personCoreMilestones.test.js
  */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import MockedTheme from '../../../testUtils/mockedTheme';
-import PersonCoreMilestones from '../personCoreMilestones';
+import PersonCoreMilestones from '../personCoreMilestones'; // eslint-disable-line import/no-named-as-default
 
 describe('<PersonCoreMilestones />', () => {
     const bemBlockName = 'person_core_milestones';
