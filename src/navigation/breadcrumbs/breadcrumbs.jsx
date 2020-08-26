@@ -38,10 +38,11 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles((theme) => {
+    const colorHighlight = get(theme, 'palette.cyan[500]');
+    const fontWeightRegular = get(theme, 'typography.fontWeightRegular');
     const textColorPrimary = get(theme, 'palette.text.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
-    const fontWeightRegular = get(theme, 'typography.fontWeightRegular');
-    const colorHighlight = get(theme, 'palette.cyan[500]');
+
     return {
         root: {
             overflow: 'hidden',
@@ -92,9 +93,9 @@ const useStyles = makeStyles((theme) => {
 
 function Breadcrumbs(props) {
     const {
+        router,
         separatorIconType,
         showOnlyPreviousRoute,
-        router,
     } = props;
 
     const classes = useStyles(props);

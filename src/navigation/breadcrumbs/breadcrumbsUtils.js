@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {
     get,
     uniqBy,
@@ -134,7 +133,7 @@ export const transformPathsWithOptionalParams = (paths) => {
     optionalPaths = optionalPaths
         .map((auxPath) => ({
             ...auxPath,
-            path: auxPath.path.replace(/[\(\)]/g, (char) => replacements[char]),
+            path: auxPath.path.replace(/[()]/g, (char) => replacements[char]),
         }))
         .map((auxPath) => {
             if (auxPath.path.length > 2) {

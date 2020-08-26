@@ -1,4 +1,4 @@
-export default {
+export default { // Router mockup
     location: {
         pathname: '/my-section/sub-section/some-status/cool-stuff',
     },

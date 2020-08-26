@@ -5,11 +5,11 @@ import Classnames from 'classnames';
 import {
     find,
     findIndex,
-    throttle,
     get,
     isFunction,
     isEqual,
     sortBy,
+    throttle,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
@@ -69,11 +69,11 @@ const defaultProps = {
 };
 
 const useStyles = (theme) => {
+    const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
+    const borderColorSecondary = get(theme, 'palette.border.secondary');
+    const colorActivePrimary = get(theme, 'palette.active.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const textColorPrimary = get(theme, 'palette.text.primary');
-    const borderColorSecondary = get(theme, 'palette.border.secondary');
-    const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
-    const colorActivePrimary = get(theme, 'palette.active.primary');
     const styles = {
         root: {
             [`& .${BEM_NAVIGATION_TABS}--container`]: {
@@ -123,23 +123,23 @@ class Tabs extends Component {
 
         this.state = {
             blockWidth: 0,
-            showMoreWidth: 40,
+            items: props.items || [],
             selectedTabKey: props.selectedTabKey,
+            showMoreWidth: 40,
             tabDimensions: {},
             tabsTotalWidth: 0,
-            items: props.items || [],
         };
 
-        this.onChangeTab = this.onChangeTab.bind(this);
-        this.onChangeTabHidden = this.onChangeTabHidden.bind(this);
-        this.onResize = this.onResize.bind(this);
-        this.onResizeThrottled = throttle(this.onResize, props.resizeThrottle, { trailing: true });
         this.getClassNamesFor = this.getClassNamesFor.bind(this);
         this.getExpandedTabs = this.getExpandedTabs.bind(this);
         this.getPanelProps = this.getPanelProps.bind(this);
         this.getSelectedTabKey = this.getSelectedTabKey.bind(this);
         this.getTabs = this.getTabs.bind(this);
         this.getTabProps = this.getTabProps.bind(this);
+        this.onChangeTab = this.onChangeTab.bind(this);
+        this.onChangeTabHidden = this.onChangeTabHidden.bind(this);
+        this.onResize = this.onResize.bind(this);
+        this.onResizeThrottled = throttle(this.onResize, props.resizeThrottle, { trailing: true });
         this.selectedTabKeyProp = props.selectedTabKey;
         this.setTabsDimensions = this.setTabsDimensions.bind(this);
         this.tabRefs = {};
@@ -155,10 +155,10 @@ class Tabs extends Component {
         } = this.props;
 
         const {
-            selectedTabKey,
-            tabsTotalWidth,
             blockWidth,
+            selectedTabKey,
             showMoreWidth,
+            tabsTotalWidth,
             tabsHidden,
             tabsVisible,
         } = this.state;
@@ -275,10 +275,10 @@ class Tabs extends Component {
     getTabs() {
         const {
             blockWidth,
-            tabsTotalWidth,
-            tabDimensions,
-            showMoreWidth,
             items,
+            showMoreWidth,
+            tabDimensions,
+            tabsTotalWidth,
         } = this.state;
 
         const selectedTabKey = this.getSelectedTabKey();
@@ -300,22 +300,22 @@ class Tabs extends Component {
 
                 const selected = selectedTabKey === key;
                 const payload = {
-                    tabIndex,
-                    selected,
                     disabled,
                     key,
+                    selected,
+                    tabIndex,
                 };
                 const tabPayload = {
                     ...payload,
-                    title,
                     className: tabClassName,
                     onClick,
+                    title,
                 };
                 const panelPayload = {
                     ...payload,
+                    className: panelClassName,
                     content,
                     getContent,
-                    className: panelClassName,
                 };
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
@@ -441,10 +441,10 @@ class Tabs extends Component {
 
     getClassNamesFor(type, itemStates) {
         const {
+            className = '',
+            disabled,
             selected,
             tabIndex,
-            disabled,
-            className = '',
         } = itemStates;
 
         switch (type) {
@@ -504,9 +504,9 @@ class Tabs extends Component {
         } = this.props;
 
         const {
-            tabsVisible,
-            tabsHidden,
             panels,
+            tabsHidden,
+            tabsVisible,
         } = this.getTabs();
 
         const selectedTabKey = this.getSelectedTabKey();
@@ -524,10 +524,10 @@ class Tabs extends Component {
             >
                 {tabsHidden.map((tab) => {
                     const {
-                        onClick,
-                        originalKey,
                         children,
                         key,
+                        onClick,
+                        originalKey,
                     } = this.getTabProps(tab);
 
                     return (

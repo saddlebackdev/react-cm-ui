@@ -50,7 +50,9 @@ export const items = [
 ];
 
 export const tabWidth = 100;
+
 const tabsDimensions = items.reduce((result, tab, index) => {
+    // eslint-disable-next-line no-param-reassign
     result[tab.key] = {
         width: tabWidth,
         offset: tabWidth * index,
