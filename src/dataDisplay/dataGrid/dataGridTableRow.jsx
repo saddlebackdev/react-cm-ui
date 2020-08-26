@@ -18,6 +18,8 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     classes: PropTypes.shape({
         handleGrid: PropTypes.string,
+        handleGridColumn: PropTypes.string,
+        dataValueGridColumn: PropTypes.string,
     }),
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
@@ -47,7 +49,13 @@ const defaultProps = {
 };
 
 const styles = {
+    dataValueGridColumn: {
+        flexBasis: '100%',
+        flexGrow: 1,
+        maxWidth: '100%',
+    },
     handleGrid: {
+        alignItems: 'center !important',
         flexWrap: 'nowrap !important',
     },
     handleGridColumn: {
@@ -108,12 +116,12 @@ class DataGridTableRow extends React.Component {
                 style={rowStyle}
             >
                 {map(columns, (cell, index) => {
-                    let accessor = null;
+                    let accessorDataValue = null;
 
                     if (isString(cell.accessor)) {
-                        accessor = get(row, cell.accessor);
+                        accessorDataValue = get(row, cell.accessor);
                     } else if (isFunction(cell.accessor)) {
-                        accessor = cell.accessor(row);
+                        accessorDataValue = cell.accessor(row);
                     }
 
                     const cellId = cell.id ||
@@ -147,11 +155,13 @@ class DataGridTableRow extends React.Component {
                                         />
                                     </Grid.Column>
 
-                                    <Grid.Column>
-                                        {accessor}
+                                    <Grid.Column
+                                        className={classes.dataValueGridColumn}
+                                    >
+                                        {accessorDataValue}
                                     </Grid.Column>
                                 </Grid>
-                            ) : accessor}
+                            ) : accessorDataValue}
                         </Table.Cell>
                     );
                 })}

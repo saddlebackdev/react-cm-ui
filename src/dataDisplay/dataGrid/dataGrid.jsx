@@ -154,8 +154,6 @@ function DataGrid(props) {
         },
     );
 
-    console.log('sortable', sortable);
-
     return (
         <div
             className={rootClasses}

@@ -1,6 +1,6 @@
-import { theme, ThemeProvider } from '../styles';
 import { mount } from 'enzyme';
 import * as React from 'react';
+import { theme, ThemeProvider } from '../styles';
 
 const getThemeProviderWrappingComponent = (customTheme) => ({ children }) => (
     <ThemeProvider

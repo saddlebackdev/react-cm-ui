@@ -1,9 +1,14 @@
 import {
     TitleBar,
     Typography,
+    versions,
 } from 'react-cm-ui';
+import { camelCase, startCase } from 'lodash';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import DataGridSample from './dataGridSample';
 import DataGridSortableRowsSample from './dataGridSortableRowsSample';
 import DataGridStickyColumnsSample from './dataGridStickyColumnsSample';
@@ -12,15 +17,30 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as dataGridDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGrid/dataGrid';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGrid/dataGrid';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsDataGrid() {
-    const descriptionCopy = dataGridDoc.description;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsDataGrid(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        name,
+    } = rootDoc;
 
     return (
-        <Main page="data_grid">
-            <TitleBar title="Data Grid" />
+        <Main page={camelCase(name)}>
+            <TitleBar title={startCase(name)} />
 
             <Main.Content>
                 <MarkdownContainer>
@@ -28,7 +48,7 @@ function DocsDataGrid() {
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
@@ -95,12 +115,18 @@ function DocsDataGrid() {
 
                 <ComponentApi
                     docs={[
-                        dataGridDoc,
+                        rootDoc,
                     ]}
+                />
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
 
-export default DocsDataGrid;
+DocsDataGrid.propTypes = propTypes;
+
+export default withRouter(DocsDataGrid);

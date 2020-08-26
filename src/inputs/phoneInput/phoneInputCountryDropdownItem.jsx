@@ -70,9 +70,9 @@ class PhoneInputCountryDropdownItem extends React.Component {
         return (
             <div
                 className={containerClasses}
-                onMouseDown={this.onMouseDown}
-                onMouseEnter={this.onMouseEnter}
-                onMouseMove={this.onMouseMove}
+                onMouseDown={option.value && this.onMouseDown}
+                onMouseEnter={option.value && this.onMouseEnter}
+                onMouseMove={option.value && this.onMouseMove}
                 role="menuitem"
                 style={{ padding: '7px 11px' }}
                 title={title}

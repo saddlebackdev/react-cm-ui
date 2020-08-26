@@ -1,5 +1,6 @@
 import {
     filter,
+    get,
     map,
     startCase,
 } from 'lodash';
@@ -20,8 +21,19 @@ function ComponentVersionIdentifier(props) {
         pathname,
     } = props;
 
-    const pthNmArray = filter(pathname.split('/'), (segment) => segment);
-    const version = versions['react-cm-ui'][pthNmArray[0]][pthNmArray[1]][pthNmArray[2]];
+    const pathNameArray = filter(pathname.split('/'), (segment) => segment);
+
+    const version = get(
+        versions,
+        [
+            'react-cm-ui',
+            ...pathNameArray,
+        ],
+    );
+
+    if (!version) {
+        return null;
+    }
 
     return (
         <MarkdownContainer>
