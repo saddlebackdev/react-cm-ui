@@ -4,7 +4,7 @@ import {
     versions,
 } from 'react-cm-ui';
 import {
-    filter,
+    filter, camelCase,
 } from 'lodash';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
@@ -21,8 +21,8 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as docGrid } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/grid';
-import { default as docGridColumn } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/gridColumn';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/grid';
+import { default as rootDocColumn } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/gridColumn';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -31,18 +31,21 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsTable(props) {
+function DocsGrid(props) {
     const {
         location: {
             pathname,
         },
     } = props;
 
-    const descriptionCopy = docGrid.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="headers">
-            <TitleBar title={docGrid.displayName} />
+        <Main page={camelCase(displayName)}>
+            <TitleBar title={displayName} />
 
             <Main.Content>
                 <MarkdownContainer>
@@ -50,7 +53,7 @@ function DocsTable(props) {
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
@@ -159,8 +162,8 @@ function DocsTable(props) {
 
                 <ComponentApi
                     docs={[
-                        docGrid,
-                        docGridColumn,
+                        rootDoc,
+                        rootDocColumn,
                     ]}
                 />
 
@@ -172,6 +175,6 @@ function DocsTable(props) {
     );
 }
 
-DocsTable.propTypes = propTypes;
+DocsGrid.propTypes = propTypes;
 
-export default withRouter(DocsTable);
+export default withRouter(DocsGrid);
