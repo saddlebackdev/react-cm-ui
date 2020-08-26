@@ -33,7 +33,7 @@ function PageActionBar(props) {
         };
     }, []);
 
-    const toggleSmSearchVisbileClassName = (isVisible) => {
+    const toggleSmSearchVisibleClassName = (isVisible) => {
         if (isVisible) {
             pageActionBarRef.closest('.ui.page').querySelector('.ui.page--container')
                 .classList.add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
@@ -59,7 +59,7 @@ function PageActionBar(props) {
             moduleType="page"
             ref={pageActionBarRef}
             style={style}
-            toggleSmSearchVisbileClassName={toggleSmSearchVisbileClassName}
+            toggleSmSearchVisibleClassName={toggleSmSearchVisibleClassName}
         >
             {children}
         </ActionBar>

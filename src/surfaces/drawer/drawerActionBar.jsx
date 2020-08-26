@@ -27,7 +27,7 @@ class DrawerActionBar extends React.PureComponent {
     constructor() {
         super();
 
-        this.toggleSmSearchVisbileClassName = this.toggleSmSearchVisbileClassName.bind(this);
+        this.toggleSmSearchVisibleClassName = this.toggleSmSearchVisibleClassName.bind(this);
     }
 
     componentDidMount() {
@@ -60,7 +60,7 @@ class DrawerActionBar extends React.PureComponent {
         return null;
     }
 
-    toggleSmSearchVisbileClassName(isVisible) {
+    toggleSmSearchVisibleClassName(isVisible) {
         const closestDrawerContent = this.drawerActionBarRef.closest('.ui.drawer')
             .querySelector('.ui.drawer--content');
 
@@ -91,7 +91,7 @@ class DrawerActionBar extends React.PureComponent {
                     id={id}
                     style={style}
                     moduleType="drawer"
-                    toggleSmSearchVisbileClassName={this.toggleSmSearchVisbileClassName}
+                    toggleSmSearchVisibleClassName={this.toggleSmSearchVisibleClassName}
                 >
                     {children}
                 </ActionBar>

@@ -72,8 +72,8 @@ const propTypes = {
         'space-evenly',
     ]),
     moduleType: PropTypes.oneOf(['drawer', 'page']),
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
-    toggleSmSearchVisbileClassName: PropTypes.func,
+    style: PropTypes.shape({}),
+    toggleSmSearchVisibleClassName: PropTypes.func,
 };
 
 const defaultProps = {
@@ -85,7 +85,7 @@ const defaultProps = {
     justifyContent: 'flex-start',
     moduleType: undefined,
     style: {},
-    toggleSmSearchVisbileClassName: null,
+    toggleSmSearchVisibleClassName: null,
 };
 
 const styles = (theme) => {
@@ -471,11 +471,11 @@ class ActionBar extends React.Component {
         this.setState((prevState) => ({
             isMobileSearchVisible: !prevState.isMobileSearchVisible,
         }), () => {
-            const { toggleSmSearchVisbileClassName } = this.props;
+            const { toggleSmSearchVisibleClassName } = this.props;
             const { isMobileSearchVisible } = this.state;
 
-            if (isFunction(toggleSmSearchVisbileClassName)) {
-                toggleSmSearchVisbileClassName(isMobileSearchVisible);
+            if (isFunction(toggleSmSearchVisibleClassName)) {
+                toggleSmSearchVisibleClassName(isMobileSearchVisible);
             }
         });
     }
