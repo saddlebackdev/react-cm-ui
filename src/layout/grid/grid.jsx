@@ -203,46 +203,51 @@ const useStyles = makeStyles((theme) => {
  * The Grid layout responsivly adapts to screen size, aiding in dividing up content into their own
  * regions.
  */
-const Grid = React.forwardRef((props, ref) => {
-    const {
-        alignContent,
-        alignItems,
-        children,
-        className,
-        id,
-        direction,
-        justifyContent,
-        spacing,
-        wrap,
-    } = props;
+const Grid = React.forwardRef(
+    /* eslint-disable react-hooks/rules-of-hooks */
+    // eslint-disable-next-line prefer-arrow-callback
+    function grid(props, ref) {
+        const {
+            alignContent,
+            alignItems,
+            children,
+            className,
+            id,
+            direction,
+            justifyContent,
+            spacing,
+            wrap,
+        } = props;
 
-    const classes = useStyles(props);
+        const classes = useStyles(props);
 
-    const rootClasses = ClassNames(
-        UI_CLASS_NAME,
-        BEM_GRID,
-        classes.root,
-        className,
-        {
-            [classes[`alignContent-${camelCase(alignContent)}`]]: alignContent !== 'stretch',
-            [classes[`alignItems-${camelCase(alignItems)}`]]: alignItems !== 'stretch',
-            [classes[`direction-${camelCase(direction)}`]]: direction !== 'row',
-            [classes[`justifyContent-${camelCase(justifyContent)}`]]: justifyContent !== 'flex-start',
-            [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
-            [classes[`wrap-${camelCase(wrap)}`]]: wrap !== 'wrap',
-        },
-    );
+        const rootClasses = ClassNames(
+            UI_CLASS_NAME,
+            BEM_GRID,
+            classes.root,
+            className,
+            {
+                [classes[`alignContent-${camelCase(alignContent)}`]]: alignContent !== 'stretch',
+                [classes[`alignItems-${camelCase(alignItems)}`]]: alignItems !== 'stretch',
+                [classes[`direction-${camelCase(direction)}`]]: direction !== 'row',
+                [classes[`justifyContent-${camelCase(justifyContent)}`]]: justifyContent !== 'flex-start',
+                [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
+                [classes[`wrap-${camelCase(wrap)}`]]: wrap !== 'wrap',
+            },
+        );
 
-    return (
-        <div
-            className={rootClasses}
-            id={id}
-            ref={ref}
-        >
-            {children}
-        </div>
-    );
-});
+        return (
+            <div
+                className={rootClasses}
+                id={id}
+                ref={ref}
+            >
+                {children}
+            </div>
+        );
+    },
+    /* eslint-enable react-hooks/rules-of-hooks */
+);
 
 Grid.Column = GridColumn;
 

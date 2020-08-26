@@ -132,42 +132,47 @@ const useStyles = makeStyles((theme) => ({
     }, {}),
 }));
 
-const GridColumn = React.forwardRef((props, ref) => {
-    const {
-        children,
-        className,
-        id,
-        sm,
-        md,
-        lg,
-        xl,
-    } = props;
+const GridColumn = React.forwardRef(
+    /* eslint-disable react-hooks/rules-of-hooks */
+    // eslint-disable-next-line prefer-arrow-callback
+    function gridColumn(props, ref) {
+        const {
+            children,
+            className,
+            id,
+            sm,
+            md,
+            lg,
+            xl,
+        } = props;
 
-    const classes = useStyles(props);
+        const classes = useStyles(props);
 
-    const containerClasses = ClassNames(
-        UI_CLASS_NAME,
-        BEM_GRID_COLUMN,
-        classes.root,
-        className,
-        {
-            [classes[`${BEM_GRID_COLUMN}-sm-${String(sm)}`]]: sm !== false,
-            [classes[`${BEM_GRID_COLUMN}-md-${String(md)}`]]: md !== false,
-            [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false,
-            [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false,
-        },
-    );
+        const containerClasses = ClassNames(
+            UI_CLASS_NAME,
+            BEM_GRID_COLUMN,
+            classes.root,
+            className,
+            {
+                [classes[`${BEM_GRID_COLUMN}-sm-${String(sm)}`]]: sm !== false,
+                [classes[`${BEM_GRID_COLUMN}-md-${String(md)}`]]: md !== false,
+                [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false,
+                [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false,
+            },
+        );
 
-    return (
-        <div
-            className={containerClasses}
-            id={id}
-            ref={ref}
-        >
-            {children}
-        </div>
-    );
-});
+        return (
+            <div
+                className={containerClasses}
+                id={id}
+                ref={ref}
+            >
+                {children}
+            </div>
+        );
+    },
+    /* eslint-enable react-hooks/rules-of-hooks */
+);
 
 GridColumn.propTypes = propTypes;
 GridColumn.defaultProps = defaultProps;
