@@ -2,10 +2,9 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanel.test.js
  */
-import { mount, shallow } from 'enzyme';
 import React from 'react';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import PersonContactInfo from '../personContactInfo';
-import MockedTheme from '../../../testUtils/mockedTheme';
 
 describe('<PersonContactInfo />', () => {
     const props = {
@@ -26,24 +25,20 @@ describe('<PersonContactInfo />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+            />,
         );
 
         expect(wrapper).toBeDefined();
     });
 
     it('Should render with the root classes', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -54,12 +49,10 @@ describe('<PersonContactInfo />', () => {
     });
 
     it('Should have expected `id` prop', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -70,25 +63,21 @@ describe('<PersonContactInfo />', () => {
     it('Should expect email contact text.', () => {
         let wrapper;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Prefers Email)');
         expect(wrapper.find('a').text()).toEqual(props.email);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="email"
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="email"
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Friend\'s Email)');
@@ -98,26 +87,22 @@ describe('<PersonContactInfo />', () => {
     it('Should expect phone contact text.', () => {
         let wrapper;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    preferredMethod="phone"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                preferredMethod="phone"
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Prefers Phone)');
         expect(wrapper.find('a').text()).toEqual(props.phone);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="phone"
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="phone"
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Friend\'s Phone)');
@@ -127,26 +112,22 @@ describe('<PersonContactInfo />', () => {
     it('Should expect text message contact text.', () => {
         let wrapper;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    preferredMethod="text-message"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                preferredMethod="text-message"
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Prefers Text)');
         expect(wrapper.find('p').text()).toEqual(props.phone);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="text-message"
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="text-message"
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Friend\'s Text)');
@@ -154,28 +135,24 @@ describe('<PersonContactInfo />', () => {
     });
 
     it('Should expect do not contact message.', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    isDoNotContact
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                isDoNotContact
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Do Not Contact This Individual)');
     });
 
     it('Should expect do contact by types message.', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    isDoNotMail
-                    isDoNotPhone
-                    isDoNotText
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                isDoNotMail
+                isDoNotPhone
+                isDoNotText
+            />,
         );
 
         expect(wrapper.find('h5').text()).toEqual('(Prefers Email, DNC via Mail, Phone, Text)');
@@ -188,35 +165,29 @@ describe('<PersonContactInfo />', () => {
         /**
          * Adult
          */
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    preferredMethod={null}
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                preferredMethod={null}
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    preferredMethod="mail"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                preferredMethod="mail"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    preferredMethod="none"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                preferredMethod="none"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
@@ -224,76 +195,64 @@ describe('<PersonContactInfo />', () => {
         /**
          * Child
          */
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="email"
-                    emergencyContactRelationshipName={null}
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="email"
+                emergencyContactRelationshipName={null}
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="mail"
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="mail"
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="none"
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="none"
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="phone"
-                    emergencyContactRelationshipName={null}
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="phone"
+                emergencyContactRelationshipName={null}
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonContactInfo
-                    {...props}
-                    emergencyContactPreferredMethod="text-message"
-                    emergencyContactRelationshipName={null}
-                    recordType="child"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonContactInfo
+                {...props}
+                emergencyContactPreferredMethod="text-message"
+                emergencyContactRelationshipName={null}
+                recordType="child"
+            />,
         );
 
         expect(wrapper.find('div')).toHaveLength(0);
