@@ -504,7 +504,7 @@ const routes = (
         <Route path="/components/navigation">
             <Route
                 getComponent={(location, callback) => {
-                    import('./navigation/tabs')
+                    import('./navigation/navigationTabs')
                         .then((module) => callback(null, module.default));
                 }}
                 path="tabs"

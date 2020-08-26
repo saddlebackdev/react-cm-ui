@@ -1,6 +1,6 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/tabs/__test__/tabPanel.test.js
+ * npx jest ./src/navigation/navigationTabs/__test__/tabPanel.test.js
  */
 import { shallow } from 'enzyme';
 import React from 'react';

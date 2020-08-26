@@ -12,7 +12,7 @@ import NavigationTabsSample from './navigationTabsSample';
 import NavigationTabsSampleWithContent from './navigationTabsSampleWithContent';
 import NavigationTabsSampleSelectedTabKey from './navigationTabsSampleSelectedTabKey';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/tabs';
+import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/navigationTabs/tabs';
 
 function TabsExample() {
     return (
