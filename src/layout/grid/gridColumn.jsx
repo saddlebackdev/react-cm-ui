@@ -33,7 +33,7 @@ const propTypes = {
      */
     id: PropTypes.string,
     /**
-     * Defines the number of grids the component is going to use.
+     * Defines the number of columns the component is going to use.
      * It's applied for the `lg` breakpoint and wider screens if not overridden.
      */
     lg: PropTypes.oneOfType([
@@ -41,7 +41,7 @@ const propTypes = {
         PropTypes.bool,
     ]),
     /**
-     * Defines the number of grids the component is going to use.
+     * Defines the number of columns the component is going to use.
      * It's applied for the `md` breakpoint and wider screens if not overridden.
      */
     md: PropTypes.oneOfType([
@@ -49,7 +49,7 @@ const propTypes = {
         PropTypes.bool,
     ]),
     /**
-     * Defines the number of grids the component is going to use.
+     * Defines the number of columns the component is going to use.
      * It's applied for the `sm` breakpoint and wider screens if not overridden.
      */
     sm: PropTypes.oneOfType([
@@ -57,7 +57,7 @@ const propTypes = {
         PropTypes.bool,
     ]),
     /**
-     * Defines the number of grids the component is going to use.
+     * Defines the number of columns the component is going to use.
      * It's applied for the `xl` breakpoint and wider screens if not overridden.
      */
     xl: PropTypes.oneOfType([
