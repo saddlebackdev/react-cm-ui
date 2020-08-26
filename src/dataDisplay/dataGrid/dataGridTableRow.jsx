@@ -18,6 +18,8 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     classes: PropTypes.shape({
         handleGrid: PropTypes.string,
+        handleGridColumn: PropTypes.string,
+        dataValueGridColumn: PropTypes.string,
     }),
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
@@ -47,7 +49,7 @@ const defaultProps = {
 };
 
 const styles = {
-    accessorGridColumn: {
+    dataValueGridColumn: {
         flexBasis: '100%',
         flexGrow: 1,
         maxWidth: '100%',
@@ -118,12 +120,12 @@ class DataGridTableRow extends React.Component {
                 style={rowStyle}
             >
                 {map(columns, (cell, index) => {
-                    let accessor = null;
+                    let accessorDataValue = null;
 
                     if (isString(cell.accessor)) {
-                        accessor = get(row, cell.accessor);
+                        accessorDataValue = get(row, cell.accessor);
                     } else if (isFunction(cell.accessor)) {
-                        accessor = cell.accessor(row);
+                        accessorDataValue = cell.accessor(row);
                     }
 
                     const cellId = cell.id ||
@@ -155,12 +157,12 @@ class DataGridTableRow extends React.Component {
                                     </Grid.Column>
 
                                     <Grid.Column
-                                        className={classes.accessorGridColumn}
+                                        className={classes.dataValueGridColumn}
                                     >
-                                        {accessor}
+                                        {accessorDataValue}
                                     </Grid.Column>
                                 </Grid>
-                            ) : accessor}
+                            ) : accessorDataValue}
                         </Table.Cell>
                     );
                 })}

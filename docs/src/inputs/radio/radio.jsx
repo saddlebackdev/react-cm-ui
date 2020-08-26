@@ -466,7 +466,7 @@ export default class ElementsRadio extends React.Component {
 
                     <Radio
                         checked={this.state.checkedPill}
-                        name="pillOnchangeSample"
+                        name="pillOnChangeSample"
                         onChange={this._onPillChange.bind(this)}
                         pill
                         multi
