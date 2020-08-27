@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.15.1',
+        package: '9.15.2',
         components: {},
         theme: {
             breakpoints: '1.0.0',
