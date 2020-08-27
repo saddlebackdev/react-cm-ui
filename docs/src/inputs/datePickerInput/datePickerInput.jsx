@@ -627,27 +627,32 @@ export default class ModulesDatePickerInput extends React.Component {
                         Range
                     </Header>
 
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
-                                <DatePickerInput
-                                    dateFrom={dateRangeFrom}
-                                    dateTo={dateRangeTo}
-                                    onChange={this.onRangeChange}
-                                    rangeFrom
-                                    label="From"
-                                />
-                            </Grid.Column>
-                            <Grid.Column desktop={2} laptop={3} mobileLarge={4} width={12}>
-                                <DatePickerInput
-                                    dateFrom={dateRangeFrom}
-                                    dateTo={dateRangeTo}
-                                    onChange={this.onRangeChange}
-                                    rangeTo
-                                    label="To"
-                                />
-                            </Grid.Column>
-                        </Grid.Row>
+                    <Grid spacing={2}>
+                        <Grid.Column
+                            md="auto"
+                            sm={12}
+                        >
+                            <DatePickerInput
+                                dateFrom={dateRangeFrom}
+                                dateTo={dateRangeTo}
+                                onChange={this.onRangeChange}
+                                rangeFrom
+                                label="From"
+                            />
+                        </Grid.Column>
+
+                        <Grid.Column
+                            md="auto"
+                            sm={12}
+                        >
+                            <DatePickerInput
+                                dateFrom={dateRangeFrom}
+                                dateTo={dateRangeTo}
+                                onChange={this.onRangeChange}
+                                rangeTo
+                                label="To"
+                            />
+                        </Grid.Column>
                     </Grid>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

@@ -1380,94 +1380,121 @@ export default class ModulesDropdown extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Grid>
-                        <Grid.Row stackable>
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="alert" collapseMenuOnChange text="Alert" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                    <Grid spacing={2}>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="alert" collapseMenuOnChange text="Alert" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="alternate" collapseMenuOnChange text="Alternate" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="alternate" collapseMenuOnChange text="Alternate" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="disable" collapseMenuOnChange text="Disable" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="disable" collapseMenuOnChange text="Disable" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="light" collapseMenuOnChange text="Light" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="light" collapseMenuOnChange text="Light" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="outline" collapseMenuOnChange text="Outline" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="outline" collapseMenuOnChange text="Outline" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="primary" collapseMenuOnChange text="Primary" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row stackable>
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="primary" collapseMenuOnChange text="Primary" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
 
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="success" collapseMenuOnChange text="Success" style={{ maxWidth: '200px', width: '100%' }}>
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
+
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="success" collapseMenuOnChange text="Success" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
+
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <Dropdown button buttonColor="warning" collapseMenuOnChange text="Warning" style={{ maxWidth: '200px', width: '100%' }}>
+                                <Dropdown.Item label="Option 1" />
+                                <Dropdown.Item label="Option 2" />
+                            </Dropdown>
+                        </Grid.Column>
+
+                        <Grid.Column
+                            sm={6}
+                            md="auto"
+                        >
+                            <div style={{ flex: '0 0 auto' }}>
+                                <Dropdown
+                                    button
+                                    buttonColor="transparent"
+                                    buttonCompact
+                                    collapseMenuOnChange
+                                    iconColor="static"
+                                    iconTitle={'Transparent icon button dropdown'}
+                                    iconType="ellipsis-h"
+                                    onChange={() => { }}
+                                    style={{ margin: 0 }}
+                                >
                                     <Dropdown.Item label="Option 1" />
                                     <Dropdown.Item label="Option 2" />
                                 </Dropdown>
-                            </Grid.Column>
-
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <Dropdown button buttonColor="warning" collapseMenuOnChange text="Warning" style={{ maxWidth: '200px', width: '100%' }}>
-                                    <Dropdown.Item label="Option 1" />
-                                    <Dropdown.Item label="Option 2" />
-                                </Dropdown>
-                            </Grid.Column>
-
-                            <Grid.Column width={6} tablet={4} laptop={2}>
-                                <div style={{ flex: '0 0 auto' }}>
-                                    <Dropdown
-                                        button
-                                        buttonColor="transparent"
-                                        buttonCompact
-                                        collapseMenuOnChange
-                                        iconColor="static"
-                                        iconTitle={'Transparent icon button dropdown'}
-                                        iconType="ellipsis-h"
-                                        onChange={() => { }}
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Dropdown.Item label="Option 1" />
-                                        <Dropdown.Item label="Option 2" />
-                                    </Dropdown>
-                                    <div style={{ display: 'inline-flex' }}>
-                                        {'(Transparent)'}
-                                    </div>
+                                <div style={{ display: 'inline-flex' }}>
+                                    {'(Transparent)'}
                                 </div>
-                            </Grid.Column>
-                        </Grid.Row>
+                            </div>
+                        </Grid.Column>
                     </Grid>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
