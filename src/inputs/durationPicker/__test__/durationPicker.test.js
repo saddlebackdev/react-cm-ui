@@ -2,20 +2,18 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/inputs/durationPicker/__test__/durationPicker.test.js
  */
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import moment from 'moment-timezone';
 import React from 'react';
 import { BEM_BLOCK_NAME } from '../constants';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import DurationPicker from '../durationPicker';
 import StyledDurationPicker from '../styledDurationPicker';
-import MockedTheme from '../../../testUtils/mockedTheme';
 
 describe('<DurationPicker />', () => {
     it('Can render without problems (all default props)', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <StyledDurationPicker />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <StyledDurationPicker />,
         );
 
         expect(wrapper).toBeDefined();
@@ -47,10 +45,8 @@ describe('<DurationPicker />', () => {
             }),
         };
 
-        const wrapper = mount(
-            <MockedTheme>
-                <StyledDurationPicker {...props} />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <StyledDurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -73,10 +69,8 @@ describe('<DurationPicker />', () => {
             showYears: true,
         };
 
-        const wrapper = mount(
-            <MockedTheme>
-                <StyledDurationPicker {...props} />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <StyledDurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -111,10 +105,8 @@ describe('<DurationPicker />', () => {
             value: null,
         };
 
-        const wrapper = mount(
-            <MockedTheme>
-                <StyledDurationPicker {...props} />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <StyledDurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -147,10 +139,8 @@ describe('<DurationPicker />', () => {
             value: moment.duration(),
         };
 
-        const wrapper = mount(
-            <MockedTheme>
-                <StyledDurationPicker {...props} />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <StyledDurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();

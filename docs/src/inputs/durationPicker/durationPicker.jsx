@@ -1,13 +1,16 @@
 import {
-    camelCase,
-    startCase,
-} from 'lodash';
-import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+    startCase,
+} from 'lodash';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import DurationPickerDaysHoursMinutesSecondsExample from './durationPickerDaysHoursMinutesSecondsExample';
 import DurationPickerDisabledExample from './durationPickerDisabledExample';
 import DurationPickerErrorHandlingExample from './durationPickerErrorHandlingExample';
@@ -23,7 +26,19 @@ import Main from '../../global/main';
 import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/durationPicker/durationPicker';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsDurationPicker() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsDurationPicker(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const {
         description: componentDescription,
         displayName: componentName,
@@ -198,9 +213,15 @@ function DocsDurationPicker() {
                         componentDoc,
                     ]}
                 />
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
 
-export default DocsDurationPicker;
+DocsDurationPicker.propTypes = propTypes;
+
+export default withRouter(DocsDurationPicker);
