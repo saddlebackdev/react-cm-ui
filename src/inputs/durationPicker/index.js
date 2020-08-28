@@ -1,1 +1,1 @@
-export { default } from './styledDurationPicker';
+export { default } from './durationPicker';

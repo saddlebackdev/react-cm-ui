@@ -2,18 +2,16 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/inputs/durationPicker/__test__/durationPicker.test.js
  */
-import { shallow } from 'enzyme';
 import moment from 'moment-timezone';
 import React from 'react';
 import { BEM_BLOCK_NAME } from '../constants';
 import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import DurationPicker from '../durationPicker';
-import StyledDurationPicker from '../styledDurationPicker';
 
 describe('<DurationPicker />', () => {
     it('Can render without problems (all default props)', () => {
         const wrapper = mountWithTheme(
-            <StyledDurationPicker />,
+            <DurationPicker />,
         );
 
         expect(wrapper).toBeDefined();
@@ -46,7 +44,7 @@ describe('<DurationPicker />', () => {
         };
 
         const wrapper = mountWithTheme(
-            <StyledDurationPicker {...props} />,
+            <DurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -70,7 +68,7 @@ describe('<DurationPicker />', () => {
         };
 
         const wrapper = mountWithTheme(
-            <StyledDurationPicker {...props} />,
+            <DurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -106,7 +104,7 @@ describe('<DurationPicker />', () => {
         };
 
         const wrapper = mountWithTheme(
-            <StyledDurationPicker {...props} />,
+            <DurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -140,7 +138,7 @@ describe('<DurationPicker />', () => {
         };
 
         const wrapper = mountWithTheme(
-            <StyledDurationPicker {...props} />,
+            <DurationPicker {...props} />,
         );
 
         expect(wrapper).toBeDefined();
@@ -173,23 +171,24 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...initialProps} />,
         );
 
         expect(wrapper).toBeDefined();
         expect(wrapper.exists()).toBe(true);
 
-        const initialStateValue = wrapper.state('value');
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        const initialStateValue = durationPicker.state.value;
         expect(moment.isDuration(initialStateValue)).toBe(true);
         expect(initialStateValue.valueOf()).toEqual(initialValue.valueOf());
 
-        expect(wrapper.state('years')).toEqual(0);
-        expect(wrapper.state('months')).toEqual(0);
-        expect(wrapper.state('days')).toEqual(4);
-        expect(wrapper.state('hours')).toEqual(3);
-        expect(wrapper.state('minutes')).toEqual(2);
-        expect(wrapper.state('seconds')).toEqual(1);
+        expect(durationPicker.state.years).toEqual(0);
+        expect(durationPicker.state.months).toEqual(0);
+        expect(durationPicker.state.days).toEqual(4);
+        expect(durationPicker.state.hours).toEqual(3);
+        expect(durationPicker.state.minutes).toEqual(2);
+        expect(durationPicker.state.seconds).toEqual(1);
 
         const newValue = moment.duration({
             days: 8,
@@ -205,16 +204,16 @@ describe('<DurationPicker />', () => {
 
         wrapper.setProps(newProps);
 
-        const newStateValue = wrapper.state('value');
+        const newStateValue = durationPicker.state.value;
         expect(moment.isDuration(newStateValue)).toBe(true);
         expect(newStateValue.valueOf()).toEqual(newValue.valueOf());
 
-        expect(wrapper.state('years')).toEqual(0);
-        expect(wrapper.state('months')).toEqual(0);
-        expect(wrapper.state('days')).toEqual(8);
-        expect(wrapper.state('hours')).toEqual(6);
-        expect(wrapper.state('minutes')).toEqual(4);
-        expect(wrapper.state('seconds')).toEqual(2);
+        expect(durationPicker.state.years).toEqual(0);
+        expect(durationPicker.state.months).toEqual(0);
+        expect(durationPicker.state.days).toEqual(8);
+        expect(durationPicker.state.hours).toEqual(6);
+        expect(durationPicker.state.minutes).toEqual(4);
+        expect(durationPicker.state.seconds).toEqual(2);
     });
 
     it('Can handle value prop being nulled out in componentDidUpdate()', () => {
@@ -234,23 +233,24 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...initialProps} />,
         );
 
         expect(wrapper).toBeDefined();
         expect(wrapper.exists()).toBe(true);
 
-        const initialStateValue = wrapper.state('value');
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        const initialStateValue = durationPicker.state.value;
         expect(moment.isDuration(initialStateValue)).toBe(true);
         expect(initialStateValue.valueOf()).toEqual(initialValue.valueOf());
 
-        expect(wrapper.state('years')).toEqual(0);
-        expect(wrapper.state('months')).toEqual(0);
-        expect(wrapper.state('days')).toEqual(4);
-        expect(wrapper.state('hours')).toEqual(3);
-        expect(wrapper.state('minutes')).toEqual(2);
-        expect(wrapper.state('seconds')).toEqual(1);
+        expect(durationPicker.state.years).toEqual(0);
+        expect(durationPicker.state.months).toEqual(0);
+        expect(durationPicker.state.days).toEqual(4);
+        expect(durationPicker.state.hours).toEqual(3);
+        expect(durationPicker.state.minutes).toEqual(2);
+        expect(durationPicker.state.seconds).toEqual(1);
 
         const newProps = {
             ...initialProps,
@@ -259,13 +259,13 @@ describe('<DurationPicker />', () => {
 
         wrapper.setProps(newProps);
 
-        expect(wrapper.state('value')).toBeNull();
-        expect(wrapper.state('years')).toEqual(0);
-        expect(wrapper.state('months')).toEqual(0);
-        expect(wrapper.state('days')).toEqual(0);
-        expect(wrapper.state('hours')).toEqual(0);
-        expect(wrapper.state('minutes')).toEqual(0);
-        expect(wrapper.state('seconds')).toEqual(0);
+        expect(durationPicker.state.value).toBeNull();
+        expect(durationPicker.state.years).toEqual(0);
+        expect(durationPicker.state.months).toEqual(0);
+        expect(durationPicker.state.days).toEqual(0);
+        expect(durationPicker.state.hours).toEqual(0);
+        expect(durationPicker.state.minutes).toEqual(0);
+        expect(durationPicker.state.seconds).toEqual(0);
     });
 
     it('Can handle showXXX props changing in componentDidUpdate()', () => {
@@ -285,7 +285,7 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...initialProps} />,
         );
 
@@ -297,12 +297,13 @@ describe('<DurationPicker />', () => {
         expect(wrapper.find(`#${BEM_BLOCK_NAME}--years_dropdown`).exists()).toBe(false);
         expect(wrapper.find(`#${BEM_BLOCK_NAME}--months_dropdown`).exists()).toBe(false);
 
-        expect(wrapper.instance().daysOptions).toHaveLength(30);
-        expect(wrapper.instance().hoursOptions).toHaveLength(24);
-        expect(wrapper.instance().minutesOptions).toHaveLength(60);
-        expect(wrapper.instance().secondsOptions).toHaveLength(60);
-        expect(wrapper.instance().monthsOptions).toHaveLength(0);
-        expect(wrapper.instance().yearsOptions).toHaveLength(0);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.daysOptions).toHaveLength(30);
+        expect(durationPicker.hoursOptions).toHaveLength(24);
+        expect(durationPicker.minutesOptions).toHaveLength(60);
+        expect(durationPicker.secondsOptions).toHaveLength(60);
+        expect(durationPicker.monthsOptions).toHaveLength(0);
+        expect(durationPicker.yearsOptions).toHaveLength(0);
 
         const newProps = {
             ...initialProps,
@@ -316,14 +317,14 @@ describe('<DurationPicker />', () => {
         wrapper.setProps(newProps);
 
         // Expect that originally populated dropdown options are still populated
-        expect(wrapper.instance().daysOptions).toHaveLength(30);
-        expect(wrapper.instance().hoursOptions).toHaveLength(24);
-        expect(wrapper.instance().minutesOptions).toHaveLength(60);
-        expect(wrapper.instance().secondsOptions).toHaveLength(60);
+        expect(durationPicker.daysOptions).toHaveLength(30);
+        expect(durationPicker.hoursOptions).toHaveLength(24);
+        expect(durationPicker.minutesOptions).toHaveLength(60);
+        expect(durationPicker.secondsOptions).toHaveLength(60);
 
         // Expect that now months and years options are populated
-        expect(wrapper.instance().monthsOptions).toHaveLength(12);
-        expect(wrapper.instance().yearsOptions).toHaveLength(100);
+        expect(durationPicker.monthsOptions).toHaveLength(12);
+        expect(durationPicker.yearsOptions).toHaveLength(100);
 
         expect(wrapper.find(`#${BEM_BLOCK_NAME}--days_dropdown`).exists()).toBe(true);
         expect(wrapper.find(`#${BEM_BLOCK_NAME}--months_dropdown`).exists()).toBe(true);
@@ -351,14 +352,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('days')).toEqual(4);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.days).toEqual(4);
 
         const newDaysOption = { value: 2 };
-        wrapper.instance().onDaysChange(newDaysOption);
+        durationPicker.onDaysChange(newDaysOption);
 
         const expectedNewDuration = moment.duration({
             days: 2,
@@ -374,7 +376,7 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `days` state has been updated from 4 to 2
-        expect(wrapper.state('days')).toEqual(2);
+        expect(durationPicker.state.days).toEqual(2);
     });
 
     it('Handles onDaysChange() (as uncontrolled component)', () => {
@@ -382,20 +384,21 @@ describe('<DurationPicker />', () => {
             classes: {},
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('days')).toEqual(0);
-        expect(wrapper.state('value')).toBeNull();
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.days).toEqual(0);
+        expect(durationPicker.state.value).toBeNull();
 
         const newDaysOption = { value: 2 };
-        wrapper.instance().onDaysChange(newDaysOption);
+        durationPicker.onDaysChange(newDaysOption);
 
-        expect(wrapper.state('days')).toEqual(2);
+        expect(durationPicker.state.days).toEqual(2);
 
         const expectedDurationValue = moment.duration({ days: 2 });
-        const newStateValue = wrapper.state('value');
+        const newStateValue = durationPicker.state.value;
         expect(moment.isDuration(newStateValue)).toBe(true);
         expect(newStateValue.valueOf()).toEqual(expectedDurationValue.valueOf());
     });
@@ -417,14 +420,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('hours')).toEqual(3);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.hours).toEqual(3);
 
         const newHoursOption = { value: 6 };
-        wrapper.instance().onHoursChange(newHoursOption);
+        durationPicker.onHoursChange(newHoursOption);
 
         const expectedNewDuration = moment.duration({
             days: 4,
@@ -440,7 +444,7 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `hours` state has been updated from 3 to 6
-        expect(wrapper.state('hours')).toEqual(6);
+        expect(durationPicker.state.hours).toEqual(6);
     });
 
     it('Handles onMinutesChange()', () => {
@@ -460,14 +464,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('minutes')).toEqual(2);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.minutes).toEqual(2);
 
         const newMinutesOption = { value: 42 };
-        wrapper.instance().onMinutesChange(newMinutesOption);
+        durationPicker.onMinutesChange(newMinutesOption);
 
         const expectedNewDuration = moment.duration({
             days: 4,
@@ -483,7 +488,7 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `minutes` state has been updated from 2 to 42
-        expect(wrapper.state('minutes')).toEqual(42);
+        expect(durationPicker.state.minutes).toEqual(42);
     });
 
     it('Handles onMonthsChange()', () => {
@@ -500,14 +505,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('months')).toEqual(0);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.months).toEqual(0);
 
         const newMonthsOption = { value: 2 };
-        wrapper.instance().onMonthsChange(newMonthsOption);
+        durationPicker.onMonthsChange(newMonthsOption);
 
         const expectedNewDuration = moment.duration({
             months: 2,
@@ -522,7 +528,7 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `months` state has been updated from 0 to 2
-        expect(wrapper.state('months')).toEqual(2);
+        expect(durationPicker.state.months).toEqual(2);
     });
 
     it('Handles onSecondsChange()', () => {
@@ -542,14 +548,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('seconds')).toEqual(1);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.seconds).toEqual(1);
 
         const newSecondsOption = { value: 57 };
-        wrapper.instance().onSecondsChange(newSecondsOption);
+        durationPicker.onSecondsChange(newSecondsOption);
 
         const expectedNewDuration = moment.duration({
             days: 4,
@@ -565,7 +572,7 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `minutes` state has been updated from 1 to 57
-        expect(wrapper.state('seconds')).toEqual(57);
+        expect(durationPicker.state.seconds).toEqual(57);
     });
 
     it('Handles onYearsChange()', () => {
@@ -585,14 +592,15 @@ describe('<DurationPicker />', () => {
             value: initialValue,
         };
 
-        const wrapper = shallow(
+        const wrapper = mountWithTheme(
             <DurationPicker {...props} />,
         );
 
-        expect(wrapper.state('years')).toEqual(3);
+        const durationPicker = wrapper.find('DurationPicker').instance();
+        expect(durationPicker.state.years).toEqual(3);
 
         const newYearsOption = { value: 1 };
-        wrapper.instance().onYearsChange(newYearsOption);
+        durationPicker.onYearsChange(newYearsOption);
 
         const expectedNewDuration = moment.duration({
             years: 1,
@@ -607,6 +615,6 @@ describe('<DurationPicker />', () => {
         expect(onChangeArg.valueOf()).toEqual(expectedNewDuration.valueOf());
 
         // Expect that `minutes` state has been updated from 3 to 1
-        expect(wrapper.state('years')).toEqual(1);
+        expect(durationPicker.state.years).toEqual(1);
     });
 });
