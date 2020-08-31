@@ -1,7 +1,15 @@
 const versions = {
     'react-cm-ui': {
         package: '9.15.2',
-        components: {},
+        components: {
+            inputs: {
+                durationPicker: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
+        },
         theme: {
             breakpoints: '1.0.0',
             gutters: '1.0.0',
