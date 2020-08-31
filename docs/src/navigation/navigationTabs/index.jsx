@@ -3,6 +3,10 @@ import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
+import {
+    startCase,
+    camelCase,
+} from 'lodash';
 import Main from '../../global/main';
 import Example from '../../global/example';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -12,12 +16,16 @@ import NavigationTabsSample from './navigationTabsSample';
 import NavigationTabsSampleWithContent from './navigationTabsSampleWithContent';
 import NavigationTabsSampleSelectedTabKey from './navigationTabsSampleSelectedTabKey';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as navigationTabsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/navigationTabs/tabs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/navigationTabs/tabs';
 
 function TabsExample() {
+    const {
+        displayName,
+    } = rootDoc;
+
     return (
-        <Main page="headers">
-            <TitleBar title="Sectional Navigation" />
+        <Main page={camelCase(displayName)}>
+            <TitleBar title={startCase(displayName)} />
             <Main.Content>
 
                 <MarkdownContainer>
@@ -51,7 +59,7 @@ function TabsExample() {
                         Selected Tab Key
                     </Heading>
                     <Typography variant="body1">
-                        The selected tab can be programmatically changed.
+                        The selected tab can programmatically be changed.
                     </Typography>
                 </MarkdownContainer>
 
@@ -59,7 +67,7 @@ function TabsExample() {
                     <NavigationTabsSampleSelectedTabKey />
                 </Example>
 
-                <ComponentApi docs={[navigationTabsDoc]} />
+                <ComponentApi docs={[rootDoc]} />
             </Main.Content>
         </Main>
     );

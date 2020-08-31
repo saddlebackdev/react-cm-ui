@@ -3,6 +3,10 @@ import {
     TitleBar,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+    startCase,
+} from 'lodash';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 import Heading from '../../global/heading';
@@ -12,12 +16,16 @@ import BreadcrumbsSampleSeparatorIcon from './breadcrumbsSampleSeparatorIcon';
 import ComponentApi from '../../global/componentApi';
 import Example from '../../global/example';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as breadcrumbsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/breadcrumbs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/breadcrumbs';
 
 function BreadcrumbsExample() {
+    const {
+        displayName,
+    } = rootDoc;
+
     return (
-        <Main page="headers">
-            <TitleBar title="Breadcrumbs" />
+        <Main page={camelCase(displayName)}>
+            <TitleBar title={startCase(displayName)} />
             <Main.Content>
 
                 <MarkdownContainer>
@@ -60,7 +68,7 @@ function BreadcrumbsExample() {
                     <BreadcrumbsSampleSeparatorIcon />
                 </Example>
 
-                <ComponentApi docs={[breadcrumbsDoc]} />
+                <ComponentApi docs={[rootDoc]} />
             </Main.Content>
         </Main>
     );

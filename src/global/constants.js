@@ -4,6 +4,9 @@ export const UI_CLASS_NAME = 'cmui';
 
 export const BEM_EMAIL_LINK = 'email_link';
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
+export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
+export const BEM_NAVIGATION_TABS = 'navigation-tabs';
+export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
 export const BEM_TELEPHONE_LINK = 'telphone_link';
 export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';
 export const BEM_PERSON_PANEL = 'person_panel';
@@ -15,6 +18,3 @@ export const PERSON_CORE_MILESTONES_CLASSES = `${UI_CLASS_NAME} ${BEM_PERSON_COR
 export const PERSON_CONTACT_INFO_CLASSES = `${UI_CLASS_NAME} ${BEM_PERSON_CONTACT_INFO}`;
 export const TELEPHONE_LINK_CLASSES = `${UI_CLASS_NAME} ${BEM_TELEPHONE_LINK}`;
 
-export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
-export const BEM_NAVIGATION_TABS = 'navigation-tabs';
-export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
