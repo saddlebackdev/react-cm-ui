@@ -1,6 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.15.2 - 08/27/2020
+
+#### Bug Fix
+- [PR #197](https://github.com/saddlebackdev/react-cm-ui/pull/197) / Merge Commit 0bac4d4923b52b014f3bd5ac401d22ecb592b310
+    - Fixed a small JSS style bug affecting **PageContent** component.
+
+## 9.15.1 - 08/26/2020
+
+#### Bug Fix
+- [PR #193](https://github.com/saddlebackdev/react-cm-ui/pull/193) / Merge Commit 000718b6ac81829fd4897815d12aefd431ee1bd7
+    - Added some defensive checks on **PhoneInput's** dropdown values.
+    - Removed the "international" option from **PhoneInput** dropdown options.
+
 ## 9.15.0 - 08/21/2020
 
 #### Feature

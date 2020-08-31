@@ -9,6 +9,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { BEM_DATA_GRID } from '../../global/constants';
 import Grid from '../../layout/grid';
 import Icon from '../icon';
 import Table from '../table';
@@ -17,8 +18,9 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     classes: PropTypes.shape({
         handleGrid: PropTypes.string,
+        handleGridColumn: PropTypes.string,
+        dataValueGridColumn: PropTypes.string,
     }),
-    classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
         id: PropTypes.string,
@@ -47,8 +49,21 @@ const defaultProps = {
 };
 
 const styles = {
+    dataValueGridColumn: {
+        flexBasis: '100%',
+        flexGrow: 1,
+        maxWidth: '100%',
+    },
     handleGrid: {
+        alignItems: 'center !important',
         flexWrap: 'nowrap !important',
+    },
+    handleGridColumn: {
+        flexBasis: 16,
+        flexGrow: 0,
+        height: 16,
+        maxWidth: 16,
+        padding: '0 11px 0 8px',
     },
 };
 
@@ -76,7 +91,6 @@ class DataGridTableRow extends React.Component {
     render() {
         const {
             classes,
-            classNamePrefix,
             columns,
             handle,
             id: tableId,
@@ -94,8 +108,8 @@ class DataGridTableRow extends React.Component {
             style: rowStyle,
         } = rowProps;
 
-        const containerClasses = ClassNames(`${classNamePrefix}_row`, rowClassName, {
-            [`${classNamePrefix}_row-selected`]: rowSelected,
+        const containerClasses = ClassNames(`${BEM_DATA_GRID}--row`, rowClassName, {
+            [`${BEM_DATA_GRID}--row-selected`]: rowSelected,
         });
 
         return (
@@ -106,16 +120,16 @@ class DataGridTableRow extends React.Component {
                 style={rowStyle}
             >
                 {map(columns, (cell, index) => {
-                    let accessor = null;
+                    let accessorDataValue = null;
 
                     if (isString(cell.accessor)) {
-                        accessor = get(row, cell.accessor);
+                        accessorDataValue = get(row, cell.accessor);
                     } else if (isFunction(cell.accessor)) {
-                        accessor = cell.accessor(row);
+                        accessorDataValue = cell.accessor(row);
                     }
 
                     const cellId = cell.id ||
-                        `${classNamePrefix}_table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
+                        `${BEM_DATA_GRID}--table_${tableId}_cell_${idPrefix}-${rowIndex}_${index}`;
 
                     return (
                         <Table.Cell
@@ -131,7 +145,9 @@ class DataGridTableRow extends React.Component {
                                 <Grid
                                     className={classes.handleGrid}
                                 >
-                                    <Grid.Column>
+                                    <Grid.Column
+                                        className={classes.handleGridColumn}
+                                    >
                                         <Icon
                                             color="static"
                                             size={14}
@@ -140,11 +156,13 @@ class DataGridTableRow extends React.Component {
                                         />
                                     </Grid.Column>
 
-                                    <Grid.Column>
-                                        {accessor}
+                                    <Grid.Column
+                                        className={classes.dataValueGridColumn}
+                                    >
+                                        {accessorDataValue}
                                     </Grid.Column>
                                 </Grid>
-                            ) : accessor}
+                            ) : accessorDataValue}
                         </Table.Cell>
                     );
                 })}

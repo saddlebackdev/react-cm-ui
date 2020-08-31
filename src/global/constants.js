@@ -2,6 +2,8 @@ export const ENTER_KEY_CODE = 13;
 
 export const UI_CLASS_NAME = 'cmui';
 
+export const BEM_DATA_GRID = 'data_grid';
+
 export const BEM_EMAIL_LINK = 'email_link';
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
