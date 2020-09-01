@@ -81,5 +81,5 @@ export { default as withWidth } from './utils/withWidth/withWidth';
 export { default as versions } from './versions';
 
 // Navigation
-export { default as NavigationTabs } from './navigation/navigationTabs';
+export { default as SectionalTabs } from './navigation/sectionalTabs';
 export { default as Breadcrumbs } from './navigation/breadcrumbs';

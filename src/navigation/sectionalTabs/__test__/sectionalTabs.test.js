@@ -1,14 +1,15 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/navigationTabs/__test__/tabs.test.js
+ * npx jest ./src/navigation/sectionalTabs/__test__/sectionalTabs.test.js
  */
 // import { shallow } from 'enzyme';
 // import React from 'react';
-// import { Tabs as NavigationTabs } from '../tabs';
+// import SectionalTabs from '../sectionalTabs';
 // import {
 //     items,
 //     tabsState,
-// } from './navigationTabsMockups';
+// } from './sectionalTabsMockups';
+// import mountWithTheme from '../../../testUtils/enzymeHelpers';
 
 // let wrapper;
 
@@ -17,12 +18,9 @@
 //     selectedTabKey: 'exampleTab1',
 // };
 
-describe('<NavigationTabs />', () => {
-    it('this will be fixed after resolving the issue with the docs generator', () => {
-        expect(1).toBe(1);
-    });
+// describe('<SectionalTabs />', () => {
 //     beforeEach(() => {
-//         wrapper = shallow(<NavigationTabs {...componentProps} />);
+//         wrapper = mountWithTheme(<SectionalTabs {...componentProps} />);
 //         wrapper.setState(tabsState);
 //     });
 
@@ -110,4 +108,10 @@ describe('<NavigationTabs />', () => {
 //             'Example Tab 1',
 //         ]);
 //     });
+// });
+
+describe('<SectionalTabs />', () => {
+    it('placeholder', () => {
+        expect(1).toBe(1);
+    });
 });

@@ -18,7 +18,7 @@ const router = { // react-router core instance mockup
                     path: 'my-section',
                     childRoutes: [
                         {
-                            indexRoute: { title: 'Sub Section' },
+                            indexRoute: { title: 'Very Long Sub Section Title So It Will Not Be Entirely Displayed' },
                             path: 'sub-section',
                             childRoutes: [
                                 {

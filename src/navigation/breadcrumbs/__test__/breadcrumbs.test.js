@@ -24,17 +24,17 @@ let wrapper;
 describe('<Breadcrumbs />', () => {
     it('renders without crashing', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
-        expect(wrapper).toBeDefined();
+        expect(wrapper.length).toBe(1);
     });
 
     it('renders all the breadcrumbs for a location pathname', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
         const breadcrumbs = wrapper.find('li');
-        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to_typography');
         expect(breadcrumbs.length).toBe(5);
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Home');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('My Section');
-        expect(breadcrumbsLabels.at(2).prop('children')).toBe('Sub Section');
+        expect(breadcrumbsLabels.at(2).prop('children')).toBe('Very Long Sub Sectio...');
         expect(breadcrumbsLabels.at(3).prop('children')).toBe('Some Status');
         expect(breadcrumbsLabels.at(4).prop('children')).toBe('Cool Stuff');
     });
@@ -48,38 +48,41 @@ describe('<Breadcrumbs />', () => {
         wrapper = shallow(<Breadcrumbs {...testCaseProps} />);
         const breadcrumbs = wrapper.find('li');
         expect(breadcrumbs.length).toBe(2);
-        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to_typography');
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Some Status');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('Cool Stuff');
     });
 
-    it('renders a chevron-left icon as breadcrumb default icon', () => {
+    it('renders a slash as breadcrumb default separator', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
-        const icons = wrapper.find('Icon');
-        expect(icons.length).toBe(4); // the last breadcrumb renders a different element as separator
-        expect(icons.at(0).prop('type')).toBe('chevron-left');
-        expect(icons.at(1).prop('type')).toBe('chevron-left');
-        expect(icons.at(2).prop('type')).toBe('chevron-left');
-        expect(icons.at(3).prop('type')).toBe('chevron-left');
+        const separators = wrapper.find('.navigation_breadcrumbs--breadcrumb_separator_typography');
+        expect(separators.length).toBe(4);
+        expect(separators.at(0).prop('children')).toBe('/');
+        expect(separators.at(1).prop('children')).toBe('/');
+        expect(separators.at(2).prop('children')).toBe('/');
+        expect(separators.at(3).prop('children')).toBe('/');
     });
 
     it('renders the appropiate icon for each breadcrumb when separatorIconType is set to \'caret-right\'', () => {
         const testCaseProps = {
             ...componentProps,
-            separatorIconType: 'caret-right',
+            separatorString: '>',
         };
         wrapper = shallow(<Breadcrumbs {...testCaseProps} />);
-        const icons = wrapper.find('Icon');
-        expect(icons.length).toBe(4); // the last breadcrumb renders a different element as separator
-        expect(icons.at(0).prop('type')).toBe('caret-right');
-        expect(icons.at(1).prop('type')).toBe('caret-right');
-        expect(icons.at(2).prop('type')).toBe('caret-right');
-        expect(icons.at(3).prop('type')).toBe('caret-right');
+        const separators = wrapper.find('.navigation_breadcrumbs--breadcrumb_separator_typography');
+        expect(separators.length).toBe(4);
+        expect(separators.at(0).prop('children')).toBe('>');
+        expect(separators.at(1).prop('children')).toBe('>');
+        expect(separators.at(2).prop('children')).toBe('>');
+        expect(separators.at(3).prop('children')).toBe('>');
     });
 
-    it('renders a simple slash as separator for the last breadcrumb', () => {
+    it('renders a chevron-left type icon as separator at the first breadcrumb beginning', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
         const separators = wrapper.find('.navigation_breadcrumbs--breadcrumb_separator');
-        expect(separators.at(4).prop('children')).toBe('/');
+        const initialIcon = separators.at(0).prop('children');
+        expect(initialIcon.props.type).toBe('chevron-left');
+        expect(initialIcon.props.size).toBe('xsmall');
+        expect(initialIcon.props.size).toBe('xsmall');
     });
 });

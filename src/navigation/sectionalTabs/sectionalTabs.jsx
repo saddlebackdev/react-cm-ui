@@ -13,8 +13,8 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
-import Tab from './tab';
-import TabPanel from './tabPanel';
+import SectionalTab from './sectionalTab';
+import SectionalTabPanel from './sectionalTabPanel';
 import withStyles from '../../styles/withStyles';
 import Dropdown from '../../inputs/dropdown';
 import {
@@ -30,6 +30,10 @@ const propTypes = {
      * beforeChange callback: return false to prevent tab change
      */
     beforeChange: PropTypes.func,
+    /**
+     * Custom classes to override the default styling
+     */
+    classes: PropTypes.shape({}),
     /**
      * onChange active tab callback
      */
@@ -60,11 +64,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-    items: [],
-    selectedTabKey: undefined,
-    resizeThrottle: 100,
     beforeChange: undefined,
+    classes: undefined,
+    items: [],
     onChange: undefined,
+    resizeThrottle: 100,
+    selectedTabKey: undefined,
     withContent: false,
 };
 
@@ -491,7 +496,7 @@ class Tabs extends Component {
     getExpandedTabs(panels, selectedTabKey) {
         if (panels[selectedTabKey]) {
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return <TabPanel {...this.getPanelProps(panels[selectedTabKey])} />;
+            return <SectionalTabPanel {...this.getPanelProps(panels[selectedTabKey])} />;
         }
 
         return null;
@@ -552,7 +557,7 @@ class Tabs extends Component {
                 <div className={tabsClasses}>
                     {tabsVisible.reduce((result, tab) => {
                         // eslint-disable-next-line react/jsx-props-no-spreading
-                        result.push(<Tab {...this.getTabProps(tab)} />);
+                        result.push(<SectionalTab {...this.getTabProps(tab)} />);
 
                         return result;
                     }, [])}

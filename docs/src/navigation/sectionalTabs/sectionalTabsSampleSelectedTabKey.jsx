@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import {
     Input,
-    NavigationTabs,
+    SectionalTabs,
 } from 'react-cm-ui';
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
@@ -14,13 +14,13 @@ const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
     title: `Example Tab ${tabNumber}`,
 }));
 
-function NavigationTabsSample() {
+function SectionalTabsSample() {
     const [selectedTabKey, setSelectedTabKey] = useState(1);
     const selectedTabKeyMaxInput = items.length;
 
     return (
         <React.Fragment>
-            <NavigationTabs
+            <SectionalTabs
                 items={items}
                 selectedTabKey={`exampleTab${selectedTabKey}`}
             />
@@ -36,4 +36,4 @@ function NavigationTabsSample() {
     );
 }
 
-export default NavigationTabsSample;
+export default SectionalTabsSample;

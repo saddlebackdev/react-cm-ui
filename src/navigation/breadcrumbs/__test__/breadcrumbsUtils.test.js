@@ -67,7 +67,7 @@ describe('breadcrumbUtils.js', () => {
             expect(validRoutes).toEqual([
                 { path: '/', title: 'Home' },
                 { path: '/my-section', title: 'My Section' },
-                { path: '/my-section/sub-section', title: 'Sub Section' },
+                { path: '/my-section/sub-section', title: 'Very Long Sub Section Title So It Will Not Be Entirely Displayed' },
                 { path: '/my-section/sub-section/some-status', title: 'Some Status' },
                 { path: '/my-section/sub-section/some-status/cool-stuff', title: 'Cool Stuff' },
             ]);

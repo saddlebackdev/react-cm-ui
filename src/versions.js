@@ -1,7 +1,12 @@
 const versions = {
     'react-cm-ui': {
         package: '9.15.2',
-        components: {},
+        components: {
+            navigation: {
+                'sectional-tabs': '1.0.0',
+                breadcrumbs: '1.0.0',
+            },
+        },
         theme: {
             breakpoints: '1.0.0',
             gutters: '1.0.0',

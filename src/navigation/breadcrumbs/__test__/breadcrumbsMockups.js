@@ -20,7 +20,7 @@ export default { // Router mockup
                         {
                             path: 'sub-section',
                             indexRoute: {
-                                title: 'Sub Section',
+                                title: 'Very Long Sub Section Title So It Will Not Be Entirely Displayed',
                             },
                             childRoutes: [
                                 {

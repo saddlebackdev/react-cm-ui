@@ -298,9 +298,9 @@ export const navigationItems = [
                         path: 'tabs',
                     },
                     {
-                        component: 'navigationTabs',
-                        label: 'Navigation Tabs',
-                        path: 'navigation-tabs',
+                        component: 'sectionalTabs',
+                        label: 'Sectional Tabs',
+                        path: 'sectional-tabs',
                     },
                     {
                         component: 'breadcrumbs',

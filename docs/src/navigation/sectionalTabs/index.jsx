@@ -7,51 +7,67 @@ import {
     startCase,
     camelCase,
 } from 'lodash';
+import PropTypes from 'prop-types';
 import Main from '../../global/main';
 import Example from '../../global/example';
 import MarkdownContainer from '../../global/markdownContainer';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import ComponentApi from '../../global/componentApi';
-import NavigationTabsSample from './navigationTabsSample';
-import NavigationTabsSampleWithContent from './navigationTabsSampleWithContent';
-import NavigationTabsSampleSelectedTabKey from './navigationTabsSampleSelectedTabKey';
+import SectionalTabsSample from './sectionalTabsSample';
+import SectionalTabsSampleWithContent from './sectionalTabsSampleWithContent';
+import SectionalTabsSampleSelectedTabKey from './sectionalTabsSampleSelectedTabKey';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/navigationTabs/tabs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/sectionalTabs/sectionalTabs';
 
-function TabsExample() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function TabsExample(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const {
         displayName,
     } = rootDoc;
 
     return (
         <Main page={camelCase(displayName)}>
+
             <TitleBar title={startCase(displayName)} />
+
             <Main.Content>
 
                 <MarkdownContainer>
                     <Heading anchorLink="children" variant="h2">
-                        Simple Navigation Tabs panel
+                        Simple Sectional Tabs panel
                     </Heading>
                     <Typography variant="body1">
-                        A simple navigation tabs panel.
+                        A simple Sectional Tabs panel.
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./navigationTabsSample.jsx').default}>
-                    <NavigationTabsSample />
+                <Example rawCode={require('!!raw-loader!./sectionalTabsSample.jsx').default}>
+                    <SectionalTabsSample />
                 </Example>
 
                 <MarkdownContainer>
                     <Heading anchorLink="children" variant="h2">
-                        Tabs Panel With Content
+                        Panel With Content
                     </Heading>
                     <Typography variant="body1">
-                        A navigation tabs panel rendering content set inside the tab item object.
+                        The panel content can be set inside the tab item object.
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./navigationTabsSampleWithContent.jsx').default}>
-                    <NavigationTabsSampleWithContent />
+                <Example rawCode={require('!!raw-loader!./sectionalTabsSampleWithContent.jsx').default}>
+                    <SectionalTabsSampleWithContent />
                 </Example>
 
                 <MarkdownContainer>
@@ -63,14 +79,20 @@ function TabsExample() {
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./navigationTabsSampleSelectedTabKey.jsx').default}>
-                    <NavigationTabsSampleSelectedTabKey />
+                <Example rawCode={require('!!raw-loader!./sectionalTabsSampleSelectedTabKey.jsx').default}>
+                    <SectionalTabsSampleSelectedTabKey />
                 </Example>
 
                 <ComponentApi docs={[rootDoc]} />
+
+                <ComponentVersionIdentifier pathname={pathname} />
+
             </Main.Content>
+
         </Main>
     );
 }
+
+TabsExample.propTypes = propTypes;
 
 export default TabsExample;

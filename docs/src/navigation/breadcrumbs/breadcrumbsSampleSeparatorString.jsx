@@ -40,13 +40,13 @@ const router = { // react-router core instance mockup
     ],
 };
 
-function BreadcrumbsSampleSeparatorIcon() {
+function BreadcrumbsSampleSeparatorString() {
     return (
         <Breadcrumbs
             router={router}
-            separatorIconType="caret-right"
+            separatorString=">"
         />
     );
 }
 
-export default BreadcrumbsSampleSeparatorIcon;
+export default BreadcrumbsSampleSeparatorString;

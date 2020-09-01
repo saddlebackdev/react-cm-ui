@@ -7,25 +7,41 @@ import {
     camelCase,
     startCase,
 } from 'lodash';
+import PropTypes from 'prop-types';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import BreadcrumbsSample from './breadcrumbsSample';
 import BreadcrumbsSampleAllRoutes from './breadcrumbsSampleOnlyPreviousRoute';
-import BreadcrumbsSampleSeparatorIcon from './breadcrumbsSampleSeparatorIcon';
+import BreadcrumbsSampleSeparatorString from './breadcrumbsSampleSeparatorString';
 import ComponentApi from '../../global/componentApi';
 import Example from '../../global/example';
 // eslint-disable-next-line import/no-named-default, import/extensions
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/breadcrumbs';
 
-function BreadcrumbsExample() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function BreadcrumbsExample(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const {
         displayName,
     } = rootDoc;
 
     return (
         <Main page={camelCase(displayName)}>
+
             <TitleBar title={startCase(displayName)} />
+
             <Main.Content>
 
                 <MarkdownContainer>
@@ -56,22 +72,27 @@ function BreadcrumbsExample() {
 
                 <MarkdownContainer>
                     <Heading anchorLink="children" variant="h2">
-                        Separator Icon Type
+                        Separator String
                     </Heading>
                     <Typography variant="body1">
-                        The defaul separator icon type can be changed for one of the
-                        existent types in the icon section.
+                        The default separator string can be modified
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./breadcrumbsSampleSeparatorIcon').default}>
-                    <BreadcrumbsSampleSeparatorIcon />
+                <Example rawCode={require('!!raw-loader!./breadcrumbsSampleSeparatorString').default}>
+                    <BreadcrumbsSampleSeparatorString />
                 </Example>
 
                 <ComponentApi docs={[rootDoc]} />
+
+                <ComponentVersionIdentifier pathname={pathname} />
+
             </Main.Content>
+
         </Main>
     );
 }
+
+BreadcrumbsExample.propTypes = propTypes;
 
 export default BreadcrumbsExample;
