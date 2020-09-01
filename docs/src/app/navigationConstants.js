@@ -2,7 +2,8 @@
 export const navigationItems = [
     {
         directory: 'gettingStarted',
-        items: [
+        label: 'Getting Started',
+        levelTwo: [
             {
                 component: 'installation',
                 label: 'Installation',
@@ -18,32 +19,28 @@ export const navigationItems = [
                 href: 'https://github.com/saddlebackdev/react-cm-ui/blob/dev/CHANGELOG.md',
             },
         ],
-        label: 'Getting Started',
         path: 'getting-started',
-        subSections: [],
     },
     {
         directory: 'styleGuide',
-        items: [
+        label: 'Style Guide',
+        levelTwo: [
             {
                 component: 'colors',
                 label: 'Colors',
                 path: 'colors',
             },
         ],
-        label: 'Style Guide',
         path: 'style-guide',
-        subSections: [],
     },
     {
         directory: 'components',
-        items: [],
         label: 'Components',
-        path: 'components',
-        subSections: [
+        levelTwo: [
             {
                 directory: 'dataDisplay',
-                items: [
+                label: 'Data Display',
+                levelThree: [
                     {
                         component: 'address',
                         label: 'Address',
@@ -92,6 +89,13 @@ export const navigationItems = [
                     {
                         component: 'icon',
                         label: 'Icon',
+                        levelFour: [
+                            {
+                                component: 'iconExamples',
+                                label: 'Examples',
+                                path: 'examples',
+                            },
+                        ],
                         path: 'icon',
                     },
                     {
@@ -150,12 +154,12 @@ export const navigationItems = [
                         path: 'typography',
                     },
                 ],
-                label: 'Data Display',
                 path: 'data-display',
             },
             {
                 directory: 'feedback',
-                items: [
+                label: 'Feedback',
+                levelThree: [
                     {
                         component: 'activityIndicator',
                         label: 'Activity Indicator',
@@ -167,12 +171,12 @@ export const navigationItems = [
                         path: 'loader',
                     },
                 ],
-                label: 'Feedback',
                 path: 'feedback',
             },
             {
                 directory: 'inputs',
-                items: [
+                label: 'Inputs',
+                levelThree: [
                     {
                         component: 'button',
                         label: 'Button',
@@ -254,12 +258,12 @@ export const navigationItems = [
                         path: 'time-picker',
                     },
                 ],
-                label: 'Inputs',
                 path: 'inputs',
             },
             {
                 directory: 'layout',
-                items: [
+                label: 'Layout',
+                levelThree: [
                     {
                         component: 'containerDeprecated',
                         label: 'Container (deprecated)',
@@ -276,12 +280,12 @@ export const navigationItems = [
                         path: 'page',
                     },
                 ],
-                label: 'Layout',
                 path: 'layout',
             },
             {
                 directory: 'navigation',
-                items: [
+                label: 'Navigation',
+                levelThree: [
                     {
                         component: 'a',
                         label: 'A',
@@ -298,12 +302,12 @@ export const navigationItems = [
                         path: 'tabs',
                     },
                 ],
-                label: 'Navigation',
                 path: 'navigation',
             },
             {
                 directory: 'surfaces',
-                items: [
+                label: 'Surfaces',
+                levelThree: [
                     {
                         component: 'accordionDeprecated',
                         label: 'Accordion (Deprecated)',
@@ -365,12 +369,12 @@ export const navigationItems = [
                         path: 'title-bar',
                     },
                 ],
-                label: 'Surfaces',
                 path: 'surfaces',
             },
             {
                 directory: 'utils',
-                items: [
+                label: 'Utils',
+                levelThree: [
                     {
                         component: 'collapse',
                         label: 'Collapse',
@@ -387,9 +391,9 @@ export const navigationItems = [
                         path: 'with-width',
                     },
                 ],
-                label: 'Utils',
                 path: 'utils',
             },
         ],
+        path: 'components',
     },
 ];
