@@ -2,21 +2,26 @@ import {
     Button,
     Grid,
 } from 'react-cm-ui';
-/* eslint-disable import/extensions */
 import Collapse from 'react-cm-ui/utils/collapse';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-/* eslint-enable import/extensions */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import ExampleFrame from './exampleFrame';
 import Highlighter from './highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    iframe: PropTypes.bool,
+    maxWidth: PropTypes.number,
     rawCode: PropTypes.string,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
+    iframe: false,
+    maxWidth: null,
     rawCode: null,
+    title: null,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -61,19 +66,23 @@ const useStyles = makeStyles((theme) => {
 function Example(props) {
     const {
         children,
+        iframe,
+        maxWidth,
         rawCode,
+        title,
     } = props;
 
     const [isCodeExpanded, setIsCodeExpanded] = useState(false);
-
-    const onCodeToggle = () => {
-        setIsCodeExpanded(!isCodeExpanded);
-    };
 
     const classes = useStyles({
         ...props,
         isCodeExpanded,
     });
+
+    const onCodeToggle = () => {
+        setIsCodeExpanded(!isCodeExpanded);
+    };
+
     const codeButtonTitle = 'Show Source';
 
     return (
@@ -89,7 +98,14 @@ function Example(props) {
                 }}
                 sm={12}
             >
-                {children}
+                {iframe ? (
+                    <ExampleFrame
+                        title={title}
+                        maxWidth={maxWidth}
+                    >
+                        {children}
+                    </ExampleFrame>
+                ) : children}
             </Grid.Column>
 
             <Grid.Column

@@ -72,6 +72,7 @@ class PhoneInput extends React.PureComponent {
     }
 
     onChange(value) {
+        console.log('onChange value', value);
         const { onChange } = this.props;
         const number = value || '';
         const phoneNumberObj = number && parsePhoneNumber(number);

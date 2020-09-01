@@ -79,7 +79,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             `${hide ? `actions_button_drawer--option_container-${idNumber}-hide` : ''}`,
             `${!hide && !isSelected ? `actions_button_drawer--option_container-${idNumber}-show` : ''}`,
             {
-                'actions_button_drawer--option_container-selected': isSelected,
+                [`actions_button_drawer--option_container-${idNumber}-selected`]: isSelected,
             },
         );
 

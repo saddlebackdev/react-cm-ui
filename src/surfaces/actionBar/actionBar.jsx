@@ -3,7 +3,6 @@ import {
     isFunction,
     isUndefined,
     map,
-    delay,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -46,15 +45,23 @@ const propTypes = {
         lg: PropTypes.oneOf(GRID_SIZES),
         list: PropTypes.arrayOf(PropTypes.shape({
             actionsButton: PropTypes.shape({}),
+            drawerContainer: PropTypes.node,
             jsx: PropTypes.node,
             iconBack: PropTypes.shape({}),
             iconFilter: PropTypes.shape({}),
             iconGrid: PropTypes.shape({}),
             iconSearch: PropTypes.shape({}),
+            iconSettings: PropTypes.shape({}),
             iconTable: PropTypes.shape({}),
         })),
         md: PropTypes.oneOf(GRID_SIZES),
-        search: PropTypes.shape({}),
+        search: PropTypes.shape({
+            id: PropTypes.string,
+            onChange: PropTypes.func,
+            onClearClick: PropTypes.func,
+            onKeyDown: PropTypes.func,
+            value: PropTypes.string,
+        }),
         sm: PropTypes.oneOf(GRID_SIZES),
         xl: PropTypes.oneOf(GRID_SIZES),
     })),
@@ -89,6 +96,7 @@ const defaultProps = {
 };
 
 const styles = (theme) => {
+    const actionsButtonDrawerOptionHeight = 55;
     const standardThirdTiming = 300;
     const standardFifthTiming = 200;
 
@@ -96,25 +104,25 @@ const styles = (theme) => {
      * Forwards
      * Step 1: Fade out title and non-selected parent options
      */
-    const forwardsStep1Duration = `${standardFifthTiming}ms`;
+    const forwardsStep1Duration = standardFifthTiming;
 
     /**
      * Step 2: Reveal selected parent option by highlighting it.
      */
-    const forwardsStep2Delay = `${forwardsStep1Duration + 50}ms`;
-    const forwardsStep2Duration = `${standardThirdTiming}ms`;
+    const forwardsStep2Delay = forwardsStep1Duration + 50;
+    const forwardsStep2Duration = standardThirdTiming;
 
     /**
      * Step 3: Move selected parent option to top of drawer and show --sub_options
      */
-    const forwardsStep3Delay = `${forwardsStep1Duration + forwardsStep2Delay + forwardsStep2Duration}ms`;
-    const forwardsStep3Duration = `${standardThirdTiming}ms`;
+    const forwardsStep3Delay = forwardsStep1Duration + forwardsStep2Delay + forwardsStep2Duration;
+    const forwardsStep3Duration = standardThirdTiming;
 
     /**
      * Step 4: By staggering, fade in and move down sub options.
      */
-    const forwardsStep4Delay = `${forwardsStep3Delay + forwardsStep3Duration}ms`;
-    const forwardsStep4Duration = `${standardThirdTiming}ms`;
+    const forwardsStep4Delay = forwardsStep3Delay + forwardsStep3Duration;
+    const forwardsStep4Duration = standardThirdTiming;
 
     /**
      * Backwards
@@ -122,57 +130,66 @@ const styles = (theme) => {
      *         Move sub options up and fade out
      *         Move selected option back down
      */
-    const backwardsStep1Duration = `${standardFifthTiming}ms`;
+    const backwardsStep1Duration = standardFifthTiming;
 
     /**
      * Step 2: Move selected parent option back down and hide --sub_options
      */
-    const backwardsStep2Delay = `${backwardsStep1Duration + 50}ms`;
-    const backwardsStep2Duration = `${standardThirdTiming}ms`;
+    const backwardsStep2Delay = backwardsStep1Duration + 50;
+    const backwardsStep2Duration = standardThirdTiming;
 
     /**
      * Step 3: Remove highlight on selected option
      */
-    const backwardsStep3Delay = `${backwardsStep2Delay + backwardsStep2Duration}ms`;
-    const backwardsStep3Duration = `${standardThirdTiming}ms`;
+    const backwardsStep3Delay = backwardsStep2Delay + backwardsStep2Duration;
+    const backwardsStep3Duration = standardThirdTiming;
 
     /**
      * Step 4: Fade in drawer title
      *         By staggering, fade in and move down options.
      */
-    const backwardsStep4Delay = `${backwardsStep3Delay + backwardsStep3Duration}ms`;
-    const backwardsStep4Duration = `${standardFifthTiming}ms`;
+    const backwardsStep4Delay = backwardsStep3Delay + backwardsStep3Duration;
+    const backwardsStep4Duration = standardFifthTiming;
 
     let optionContainerStyles;
     let subOptionStyles;
 
     for (let i = 1; i <= 11; i += 1) {
+        const optionYPos = i === 1 ? 0 : actionsButtonDrawerOptionHeight * (i - 1);
+        const titleBarheight = 61;
+        const optionContainerTranslateYPos = titleBarheight + optionYPos;
+
         optionContainerStyles = {
+            ...optionContainerStyles,
+            [`&-${i}-selected`]: {
+                transform: `translateY(-${optionContainerTranslateYPos}px)`,
+            },
             [`&-${i}-hide`]: {
                 opacity: 0,
                 pointerEvents: 'none',
-                transition: `opacity ${forwardsStep1Duration} ease-in-out`,
+                transition: `opacity ${forwardsStep1Duration}ms ease-in-out`,
             },
             [`&-${i}-show`]: {
                 opacity: 1,
                 transform: 'translateY(0)',
-                transition: `opacity ${backwardsStep4Duration} ease-in-out ${backwardsStep4Delay + i * 50}ms,
-                            transform ${backwardsStep2Duration} ease-in-out ${backwardsStep2Delay}`,
+                transition: `opacity ${backwardsStep4Duration}ms ease-in-out ${backwardsStep4Delay + i * 50}ms,
+                            transform ${backwardsStep2Duration}ms ease-in-out ${backwardsStep2Delay}ms`,
             },
         };
 
         subOptionStyles = {
+            ...subOptionStyles,
             [`&-${i}`]: {
                 opacity: 0,
-                transform: 'translateY(-55px)',
-                transition: `opacity ${backwardsStep1Duration} ease-in-out 0ms,
-                            transform ${backwardsStep1Duration} ease-in-out 0ms`,
+                transform: `translateY(-${actionsButtonDrawerOptionHeight}px)`,
+                transition: `opacity ${backwardsStep1Duration}ms ease-in-out 0ms,
+                            transform ${backwardsStep1Duration}ms ease-in-out 0ms`,
             },
             [`&-${i}-show`]: {
                 opacity: 1,
                 transform: 'translateY(0)',
-                transition: `opacity ${forwardsStep4Duration} ease-in-out ${forwardsStep4Delay + i * 50}ms,
-                            transform ${forwardsStep4Duration} ease-in-out ${forwardsStep4Delay + i * 50}ms`,
+                transition: `opacity ${forwardsStep4Duration}ms ease-in-out ${forwardsStep4Delay + i * 50}ms,
+                            transform ${forwardsStep4Duration}ms ease-in-out ${forwardsStep4Delay + i * 50}ms`,
             },
             [`&-${i}-disabled`]: {
                 color: theme.palette.text.secondary,
@@ -212,56 +229,6 @@ const styles = (theme) => {
             [theme.breakpoints.up('md')]: {
                 padding: '0 22px',
             },
-            '&.drawer-has_action_bar': {
-                '& .drawer-container-inner, & .drawer--wing-container-inner': {
-                    paddingTop: theme.height.actionBar.sm,
-                    [theme.breakpoints.up('md')]: {
-                        paddingTop: theme.height.actionBar.md,
-                    },
-                    '& .ui.drawer--action_bar': {
-                        top: 0,
-                    },
-                },
-            },
-            '&.drawer-has_title_bar.drawer-has_action_bar': {
-                '&:not(.drawer-has_navigation)': {
-                    '& .drawer-container-inner, & .drawer--wing-container-inner': {
-                        '& .ui.drawer--title_bar': {
-                            borderBottom: 'none',
-                        },
-                        '& .ui.drawer--action_bar': {
-                            backgroundColor: theme.palette.background.light,
-                            borderTop: `1px solid ${theme.palette.border.primary}`,
-                        },
-                    },
-                },
-                '& .drawer-container-inner, & .drawer--wing-container-inner': {
-                    paddingTop: theme.height.appHeader.sm + theme.height.actionBar.sm,
-                    [theme.breakpoints.up('md')]: {
-                        paddingTop: theme.height.appHeader.md + theme.height.actionBar.md,
-                    },
-                    '& .ui.drawer--action_bar': {
-                        top: theme.height.appHeader.sm,
-                        [theme.breakpoints.up('md')]: {
-                            top: theme.height.appHeader.md,
-                        },
-                    },
-                },
-            },
-            '&.drawer-has_title_bar.drawer-has_navigation.drawer-has_action_bar': {
-                '& .drawer-container-inner, & .drawer--wing-container-inner': {
-                    paddingTop: theme.height.appHeader.sm + 55 + theme.height.actionBar.sm,
-                    [theme.breakpoints.up('md')]: {
-                        paddingTop: theme.height.appHeader.md + 55 + theme.height.actionBar.md,
-                    },
-                    '& .ui.drawer--action_bar': {
-                        top: theme.height.appHeader.sm + 55,
-                        [theme.breakpoints.up('md')]: {
-                            top: theme.height.appHeader.md + 55,
-                        },
-                    },
-                },
-            },
             '&$drawer': {
                 backgroundColor: theme.palette.background.primary,
                 padding: '8px 11px',
@@ -275,7 +242,7 @@ const styles = (theme) => {
                 borderTop: `1px solid ${theme.palette.border.primary}`,
                 minHeight: 50,
                 padding: '8px 11px',
-                top: 55,
+                top: actionsButtonDrawerOptionHeight,
                 width: 'auto',
                 zIndex: 3,
                 [theme.breakpoints.up('md')]: {
@@ -295,9 +262,10 @@ const styles = (theme) => {
                     paddingRight: 0,
                 },
             },
-            '&.action_bar--list': {
+            '& .action_bar--list': {
                 alignItems: 'center',
                 display: 'flex',
+                margin: 5.5,
             },
             '& .action_bar--list_item': {
                 alignItems: 'center',
@@ -316,118 +284,6 @@ const styles = (theme) => {
                     paddingRight: '0 !important',
                 },
             },
-            '& .actions_button_drawer': {
-                '&--content': {
-                    padding: '22px 11px',
-                },
-                '&--title-hide': {
-                    opacity: 0,
-                    transition: 'opacity $forwardsStep1Duration ease-in-out',
-                },
-                '&--title-show': {
-                    opacity: 1,
-                    transition: 'opacity $backwardsStep4Duration ease-in-out $backwardsStep4Delay',
-                },
-                '&--option_container': {
-                    fontSize: 14,
-                    fontWeight: '$fontWeightSemiBold',
-                    margin: '0 -11px',
-                    position: 'relative',
-                    '&:first-child': {
-                        borderTop: `1px solid ${theme.palette.border.primary}`,
-                    },
-                    ...optionContainerStyles,
-                    '&-selected': {
-                        transform: 'translateY(-61px)',
-                        transition: `transform ${forwardsStep3Duration} ease-in-out ${forwardsStep3Delay}`,
-                        '&:first-child': {
-                            borderTop: 0,
-                        },
-                    },
-                },
-            },
-            '& .actions_button_drawer--option, & .actions_button_drawer--sub_option': {
-                alignItems: 'center',
-                borderBottom: `1px solid ${theme.palette.border.primary}`,
-                color: theme.palette.text.primary,
-                cursor: 'pointer',
-                display: 'flex',
-                minHeight: 55,
-                opacity: 1,
-                outline: 'none',
-                padding: 11,
-                position: 'relative',
-            },
-            '& .actions_button_drawer--option': {
-                transition: `color ${backwardsStep3Duration} / 2 ease-in ${backwardsStep3Delay}`,
-                zIndex: 1,
-                '&::before': {
-                    backgroundColor: theme.palette.cyan[500],
-                    content: '',
-                    height: 54,
-                    left: 0,
-                    opacity: 0,
-                    position: 'absolute',
-                    top: 0,
-                    transition: `opacity 1ms ease-in-out ${backwardsStep3Delay} + ${backwardsStep3Duration},
-                                width ${backwardsStep3Duration} ease-in-out ${backwardsStep3Delay}`,
-                    width: 0,
-                    zIndex: 0,
-                },
-                '&-disabled': {
-                    color: theme.palette.text.secondary,
-                    cursor: 'default',
-                },
-                '&-selected': {
-                    borderBottom: 0,
-                    color: theme.palette.text.contrastText,
-                    transition: `color ${forwardsStep2Duration} / 2 ease-in ${forwardsStep2Delay}`,
-                    '&::before': {
-                        opacity: 1,
-                        transition: `width ${forwardsStep2Duration} ease-in-out ${forwardsStep2Delay}`,
-                        width: '100%',
-                    },
-                },
-            },
-            '& .actions_button_drawer--sub_options': {
-                left: 0,
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                '&-hide': {
-                    opacity: 0,
-                    pointerEvents: 'none',
-                    transition: `opacity ${backwardsStep3Duration} ease-in-out ${backwardsStep3Delay}`,
-                },
-                '&-show': {
-                    opacity: 1,
-                    paddingTop: 55,
-                    transition: `opacity 1ms ease-in-out ${forwardsStep3Delay}
-                                padding-top 1ms ease-in-out ${forwardsStep3Delay}`,
-                },
-            },
-            '& .actions_button_drawer_option, & .actions_button_drawer_sub_option': {
-                '&--icon_container, &--label': {
-                    zIndex: 1,
-                },
-                '&--icon_container': {
-                    alignItems: 'center',
-                    display: 'inline-flex',
-                    height: 32,
-                    justifyContent: 'center',
-                    marginRight: 16,
-                    transition: 'background-color 200ms ease-in',
-                    width: 32,
-                    zIndex: 1,
-                },
-            },
-            '& .actions_button_drawer_option--icon_container': {
-                backgroundColor: theme.palette.background.contrastPrimary,
-                borderRadius: '50%',
-            },
-            '& .actions_button_drawer--sub_option': {
-                ...subOptionStyles,
-            },
             '& .action_bar--search-mobile': {
                 height: 0,
                 opacity: 0,
@@ -435,7 +291,7 @@ const styles = (theme) => {
                 paddingTop: 0,
                 transition: 'height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out',
                 '&-show': {
-                    height: 55,
+                    height: actionsButtonDrawerOptionHeight,
                     opacity: 1,
                     paddingTop: 11,
                 },
@@ -453,6 +309,119 @@ const styles = (theme) => {
                 marginRight: 0,
             },
         },
+        '@global': {
+            '.actions_button_drawer': {
+                '&--content': {
+                    padding: '22px 11px',
+                },
+                '&--title-hide': {
+                    opacity: 0,
+                    transition: `opacity ${forwardsStep1Duration}ms ease-in-out`,
+                },
+                '&--title-show': {
+                    opacity: 1,
+                    transition: `opacity ${backwardsStep4Duration}ms ease-in-out ${backwardsStep4Delay}ms`,
+                },
+                '&--option_container': {
+                    fontSize: 14,
+                    fontWeight: theme.typography.fontWeightMedium,
+                    margin: '0 -11px',
+                    position: 'relative',
+                    transition: `transform ${forwardsStep3Duration}ms ease-in-out ${forwardsStep3Delay}ms`,
+                    '&:first-child': {
+                        borderTop: `1px solid ${theme.palette.border.primary}`,
+                    },
+                    ...optionContainerStyles,
+                    '&-selected': {
+                        '&:first-child': {
+                            borderTop: 0,
+                        },
+                    },
+                },
+            },
+            '.actions_button_drawer--option, .actions_button_drawer--sub_option': {
+                alignItems: 'center',
+                borderBottom: `1px solid ${theme.palette.border.primary}`,
+                color: theme.palette.text.primary,
+                cursor: 'pointer',
+                display: 'flex',
+                minHeight: 55,
+                opacity: 1,
+                outline: 'none',
+                padding: 11,
+                position: 'relative',
+            },
+            '.actions_button_drawer--option': {
+                transition: `color ${backwardsStep3Duration / 2}ms ease-in ${backwardsStep3Delay}ms`,
+                zIndex: 1,
+                '&::before': {
+                    backgroundColor: theme.palette.cyan[500],
+                    content: '""',
+                    height: 54,
+                    left: 0,
+                    opacity: 0,
+                    position: 'absolute',
+                    top: 0,
+                    transition: `opacity 1ms ease-in-out ${backwardsStep3Delay + backwardsStep3Duration}ms,
+                                width ${backwardsStep3Duration}ms ease-in-out ${backwardsStep3Delay}ms`,
+                    width: 0,
+                    zIndex: 0,
+                },
+                '&-disabled': {
+                    color: theme.palette.text.secondary,
+                    cursor: 'default',
+                },
+                '&-selected': {
+                    borderBottom: 0,
+                    color: theme.palette.text.contrastText,
+                    transition: `color ${forwardsStep2Duration / 2}ms ease-in ${forwardsStep2Delay}ms`,
+                    '&::before': {
+                        opacity: 1,
+                        transition: `width ${forwardsStep2Duration}ms ease-in-out ${forwardsStep2Delay}ms`,
+                        width: '100%',
+                    },
+                },
+            },
+            '.actions_button_drawer--sub_options': {
+                left: 0,
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                '&-hide': {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    transition: `opacity ${backwardsStep3Duration}ms ease-in-out ${backwardsStep3Delay}ms`,
+                },
+                '&-show': {
+                    opacity: 1,
+                    paddingTop: 55,
+                    transition: `opacity 1ms ease-in-out ${forwardsStep3Delay}ms,
+                                padding-top 1ms ease-in-out ${forwardsStep3Delay}ms`,
+                },
+            },
+            '.actions_button_drawer_option, .actions_button_drawer_sub_option': {
+                '&--icon_container, &--label': {
+                    zIndex: 1,
+                },
+                '&--icon_container': {
+                    alignItems: 'center',
+                    display: 'inline-flex',
+                    height: 32,
+                    justifyContent: 'center',
+                    marginRight: 16,
+                    transition: 'background-color 200ms ease-in',
+                    width: 32,
+                    zIndex: 1,
+                },
+            },
+            '.actions_button_drawer_option--icon_container': {
+                backgroundColor: theme.palette.background.contrastPrimary,
+                borderRadius: '50%',
+            },
+            '.actions_button_drawer--sub_option': {
+                ...subOptionStyles,
+            },
+        },
     };
 };
 
@@ -464,6 +433,7 @@ class ActionBar extends React.Component {
             isMobileSearchVisible: false,
         };
 
+        this.actionBarRef = React.createRef();
         this.onMobileSearchIconToggle = this.onMobileSearchIconToggle.bind(this);
     }
 
@@ -513,7 +483,7 @@ class ActionBar extends React.Component {
             <header
                 className={containerClasses}
                 id={id}
-                ref={(ref) => { this.actionBarRef = ref; }}
+                ref={this.actionBarRef}
                 style={style}
             >
                 <div style={{ width: '100%' }}>
@@ -629,6 +599,7 @@ class ActionBar extends React.Component {
                                                                 iconFilter,
                                                                 iconGrid,
                                                                 iconSearch,
+                                                                iconSettings,
                                                                 iconTable,
                                                             } = item;
 
@@ -650,6 +621,7 @@ class ActionBar extends React.Component {
                                                                     !iconFilter &&
                                                                     !iconGrid &&
                                                                     !iconSearch &&
+                                                                    !iconSettings &&
                                                                     !iconTable
                                                             ) {
                                                                 console.warn( // eslint-disable-line no-console, max-len
@@ -692,18 +664,20 @@ class ActionBar extends React.Component {
                                                                 >
                                                                     {/* eslint-disable max-len */}
                                                                     {actionsButton && (
-                                                                    <ActionBarActionsButton
-                                                                        className={actionsButton.className}
-                                                                        iconBackgroundColor={actionsButton.iconBackgroundColor}
-                                                                        iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
-                                                                        iconType={actionsButton.iconType}
-                                                                        id={actionsButton.id}
-                                                                        isMobileSearchVisible={isMobileSearchVisible}
-                                                                        header={actionsButton.header}
-                                                                        moduleType={moduleType}
-                                                                        options={actionsButton.options}
-                                                                        style={actionsButton.style}
-                                                                    />
+                                                                        <ActionBarActionsButton
+                                                                            actionBarRef={this.actionBarRef}
+                                                                            className={actionsButton.className}
+                                                                            drawerContainer={actionsButton.drawerContainer}
+                                                                            iconBackgroundColor={actionsButton.iconBackgroundColor}
+                                                                            iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
+                                                                            iconType={actionsButton.iconType}
+                                                                            id={actionsButton.id}
+                                                                            isMobileSearchVisible={isMobileSearchVisible}
+                                                                            header={actionsButton.header}
+                                                                            moduleType={moduleType}
+                                                                            options={actionsButton.options}
+                                                                            style={actionsButton.style}
+                                                                        />
                                                                     )}
                                                                     {/* eslint-enable max-len */}
 
@@ -760,6 +734,20 @@ class ActionBar extends React.Component {
                                                                     )}
                                                                     {/* eslint-enable max-len */}
 
+                                                                    {/* eslint-disable max-len */}
+                                                                    {iconSettings && (
+                                                                        <Icon
+                                                                            color={iconSettings.selected || iconSettings.isCustom ?
+                                                                                'highlight' :
+                                                                                null}
+                                                                            id={iconSettings.id}
+                                                                            onClick={iconSettings.onClick}
+                                                                            title={iconSettings.title || 'Settings'}
+                                                                            type="settings"
+                                                                        />
+                                                                    )}
+                                                                    {/* eslint-enable max-len */}
+
                                                                     {iconTable && (
                                                                     <Icon
                                                                         color={iconTable.selected ?
@@ -781,6 +769,7 @@ class ActionBar extends React.Component {
 
                                                 {search && (
                                                     <ActionBarSearch
+                                                        classes={search.classes}
                                                         id={search.id}
                                                         onChange={search.onChange}
                                                         onClearClick={search.onClearClick}

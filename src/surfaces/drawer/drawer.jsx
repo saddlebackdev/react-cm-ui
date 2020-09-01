@@ -22,6 +22,7 @@ import DrawerWing from './drawerWing';
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    container: PropTypes.shape({}),
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isModal: PropTypes.bool,
@@ -45,6 +46,7 @@ const propTypes = {
 const defaultProps = {
     children: undefined,
     className: undefined,
+    container: document.body,
     dimmer: true,
     isModal: true,
     maxHeight: undefined,
@@ -70,22 +72,25 @@ const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
 const DEFAULT_DRAWER_WIDTH = 768;
 
-function toggleBodyStyle(isOpen) {
+function toggleBodyStyle({ container, isOpen }) {
     const { scrollY } = window;
-    const bodyStyleTop = BODY.style.top;
 
-    BODY.style.height = isOpen ? '100%' : '';
-    BODY.style.position = isOpen ? 'fixed' : '';
-    BODY.style.top = isOpen ? `-${scrollY}px` : '';
-    BODY.style.width = isOpen ? '100%' : '';
+    const containerStyleTop = container.style.top;
+
+    const newContainer = container || document.body;
+
+    newContainer.style.height = isOpen ? '100%' : '';
+    newContainer.style.position = isOpen ? 'fixed' : '';
+    newContainer.style.top = isOpen ? `-${scrollY}px` : '';
+    newContainer.style.width = isOpen ? '100%' : '';
 
     if (!isOpen) {
-        BODY.classList.remove('drawer-open');
+        newContainer.classList.remove('drawer-open');
 
         // eslint-disable-next-line radix
-        window.scrollTo(0, parseInt(bodyStyleTop || '0') * -1);
+        window.scrollTo(0, parseInt(containerStyleTop || '0') * -1);
     } else {
-        BODY.classList.add('drawer-open');
+        newContainer.classList.add('drawer-open');
     }
 }
 
@@ -160,6 +165,10 @@ class Drawer extends React.Component {
     }
 
     componentWillUnmount() {
+        const {
+            container,
+        } = this.props;
+
         const { isOpen } = this.state;
 
         /**
@@ -167,30 +176,34 @@ class Drawer extends React.Component {
          * closing animation never happens.
          */
         if (isOpen && this.useComponentWillUnmount) {
-            toggleBodyStyle(false);
+            toggleBodyStyle({ container, isOpen: false });
 
-            if (BODY.classList.contains('drawer-nubbin-open')) {
-                BODY.classList.remove('drawer-nubbin-open');
+            if (container.classList.contains('drawer-nubbin-open')) {
+                container.classList.remove('drawer-nubbin-open');
             }
 
-            if (BODY.classList.contains('drawer-dimmers')) {
-                BODY.classList.remove('drawer-dimmers');
+            if (container.classList.contains('drawer-dimmers')) {
+                container.classList.remove('drawer-dimmers');
             }
 
-            if (BODY.classList.contains('drawer-open-layered')) {
-                BODY.classList.remove('drawer-open-layered');
+            if (container.classList.contains('drawer-open-layered')) {
+                container.classList.remove('drawer-open-layered');
             }
 
-            if (BODY.classList.contains('drawer-animate-out')) {
-                BODY.classList.remove('drawer-animate-out');
+            if (container.classList.contains('drawer-animate-out')) {
+                container.classList.remove('drawer-animate-out');
             }
         }
     }
 
     onBeforeClose() {
+        const {
+            container,
+        } = this.props;
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
 
-        BODY.classList.add('drawer-animate-out');
+        container.classList.add('drawer-animate-out');
         this.drawerContainerRef.classList.add('drawer-animate-out');
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
         this.drawerContainerRef.addEventListener(animationEvent, this.onCloseAnimationComplete);
@@ -221,7 +234,11 @@ class Drawer extends React.Component {
     }
 
     onCloseAnimationComplete() {
-        const { onCloseComplete, onClickOutside } = this.props;
+        const {
+            container,
+            onCloseComplete,
+            onClickOutside,
+        } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
 
@@ -232,24 +249,24 @@ class Drawer extends React.Component {
         this.drawerContainerRef.removeEventListener(animationEvent, this.onCloseAnimationComplete);
 
         if (numberOfModalDrawers <= 2) {
-            BODY.classList.remove('drawer-open-layered');
+            container.classList.remove('drawer-open-layered');
         }
 
-        if (numberOfModalDrawers <= 1 || (numberOfModalDrawers > 1 && BODY.classList.contains('drawer-nubbin-open'))) {
+        if (numberOfModalDrawers <= 1 || (numberOfModalDrawers > 1 && container.classList.contains('drawer-nubbin-open'))) {
             const isOpen = false;
 
-            toggleBodyStyle(isOpen);
+            toggleBodyStyle({ container, isOpen });
 
-            if (BODY.classList.contains('drawer-dimmers')) {
-                BODY.classList.remove('drawer-dimmers');
+            if (container.classList.contains('drawer-dimmers')) {
+                container.classList.remove('drawer-dimmers');
             }
         }
 
-        if (numberOfModalDrawers <= 1 && BODY.classList.contains('drawer-nubbin-open')) {
-            BODY.classList.remove('drawer-nubbin-open');
+        if (numberOfModalDrawers <= 1 && container.classList.contains('drawer-nubbin-open')) {
+            container.classList.remove('drawer-nubbin-open');
         }
 
-        BODY.classList.remove('drawer-animate-out');
+        container.classList.remove('drawer-animate-out');
 
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
 
@@ -269,6 +286,7 @@ class Drawer extends React.Component {
         this.setStartOfTransform();
 
         const {
+            container,
             dimmer,
             isModal,
             maxWidth,
@@ -322,7 +340,7 @@ class Drawer extends React.Component {
                     default:
                 }
 
-                domUtils.addClassName(BODY, 'drawer-open-layered');
+                domUtils.addClassName(container, 'drawer-open-layered');
                 this.drawerRef.style.zIndex = newZIndex;
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this.drawerContainerRef.style.zIndex = newZIndex;
@@ -345,9 +363,9 @@ class Drawer extends React.Component {
                 if (!positionY && !maxHeight) {
                     const isOpen = true;
 
-                    toggleBodyStyle(isOpen);
+                    toggleBodyStyle({ container, isOpen });
                 } else {
-                    BODY.classList.add('drawer-nubbin-open');
+                    container.classList.add('drawer-nubbin-open');
                 }
 
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
@@ -375,6 +393,7 @@ class Drawer extends React.Component {
 
     onOpenAnimationComplete() {
         const {
+            container,
             dimmer,
             isModal,
         } = this.props;
@@ -388,7 +407,7 @@ class Drawer extends React.Component {
         }
 
         if (dimmer && isModal) {
-            BODY.classList.add('drawer-dimmers');
+            container.classList.add('drawer-dimmers');
         }
     }
 
@@ -417,6 +436,7 @@ class Drawer extends React.Component {
         const {
             children,
             className,
+            container,
             isModal,
             positionYOffset,
             style,
@@ -441,7 +461,9 @@ class Drawer extends React.Component {
         );
 
         return (
-            <Portal>
+            <Portal
+                node={container}
+            >
                 <div
                     className={containerClasses}
                     ref={(ref) => { this.drawerRef = ref; }}

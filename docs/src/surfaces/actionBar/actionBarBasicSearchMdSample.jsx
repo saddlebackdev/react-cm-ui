@@ -1,6 +1,6 @@
 import { ActionBar } from 'react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-import React from 'react';
+import React, { useState } from 'react';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -8,8 +8,14 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function ActionBarSample() {
+function ActionBarBasicSearchMdSample() {
     const classes = useStyles();
+
+    const [inputValue, setInputValue] = useState('');
+
+    const onInputChange = (value) => {
+        setInputValue(value);
+    };
 
     return (
         <ActionBar
@@ -19,10 +25,35 @@ function ActionBarSample() {
             justifyContent="flex-end"
             columns={[
                 {
+                    list: [
+                        {
+                            iconSettings: {
+                                id: 'bem_block--settings_button',
+                            },
+                        }, {
+                            iconFilter: {
+                                id: 'bem_block--filter_button',
+                            },
+                        },
+                    ],
+                    sm: 'auto',
+                },
+                {
+                    search: {
+                        id: 'bem_block--search_input',
+                        onChange: onInputChange,
+                        onClearClick: () => {},
+                        onKeyDown: () => {},
+                        value: inputValue,
+                    },
+                    sm: true,
+                },
+                {
                     button: {
                         color: 'alternate',
                         iconType: 'envelope',
-                        title: 'SMS',
+                        id: 'bem_block--email_button',
+                        title: 'Email',
                     },
                     sm: 'auto',
                     style: {
@@ -33,6 +64,7 @@ function ActionBarSample() {
                     button: {
                         color: 'alternate',
                         iconType: 'comment-lines',
+                        id: 'bem_block--sms_button',
                         title: 'SMS',
                     },
                     sm: 'auto',
@@ -43,6 +75,7 @@ function ActionBarSample() {
                 {
                     dropdownButton: {
                         color: 'alternate',
+                        id: 'bem_block--actions_dropdown_button',
                         label: 'Actions',
                         options: [
                             {
@@ -64,6 +97,7 @@ function ActionBarSample() {
                     button: {
                         color: 'success',
                         iconType: 'plus',
+                        id: 'bem_block--label_button',
                         label: 'Label',
                         title: 'Label',
                     },
@@ -77,4 +111,4 @@ function ActionBarSample() {
     );
 }
 
-export default ActionBarSample;
+export default ActionBarBasicSearchMdSample;

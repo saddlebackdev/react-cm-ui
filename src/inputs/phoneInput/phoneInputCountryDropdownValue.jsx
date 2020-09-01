@@ -2,6 +2,12 @@ import ClassNames from 'classnames';
 import React from 'react';
 
 function PhoneInputCountryDropdownValue(selectedOption) {
+    console.log('PhoneInputCountryDropdownValue selectedOption', selectedOption);
+
+    if (!selectedOption) {
+        return null;
+    }
+
     const containerClasses = ClassNames('Select-value');
 
     if (!selectedOption) {
