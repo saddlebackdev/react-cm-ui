@@ -1,4 +1,9 @@
-import { ActionBar } from 'react-cm-ui';
+import {
+    ActionBar,
+    Container,
+    Content,
+    Page,
+} from 'react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -47,70 +52,78 @@ function ActionBarSmSample(props) {
     };
 
     return (
-        <ActionBar
-            classes={{
-                root: classes.root,
-            }}
-            justifyContent="flex-end"
-            columns={[
-                {
-                    iconBack: {
-                        id: 'bem_block--back_button',
+        <Page>
+            <ActionBar
+                classes={{
+                    root: classes.root,
+                }}
+                justifyContent="flex-end"
+                columns={[
+                    {
+                        iconBack: {
+                            id: 'bem_block--back_button',
+                        },
+                        sm: true,
                     },
-                    sm: true,
-                },
-                {
-                    divide: true,
-                    iconSearch: {
-                        id: 'bem_block--search_input',
-                        onChange: onInputChange,
-                        onClearClick: onInputClearClick,
-                        onKeyDown: onInputKeyDown,
-                        value: inputValue,
+                    {
+                        divide: true,
+                        iconSearch: {
+                            id: 'bem_block--search_input',
+                            onChange: onInputChange,
+                            onClearClick: onInputClearClick,
+                            onKeyDown: onInputKeyDown,
+                            value: inputValue,
+                        },
                     },
-                },
-                {
-                    divide: true,
-                    iconFilter: {
-                        id: 'bem_block--filter_button',
+                    {
+                        divide: true,
+                        iconFilter: {
+                            id: 'bem_block--filter_button',
+                        },
                     },
-                },
-                {
-                    actionsButton: {
-                        drawerContainer: window,
-                        header: 'Actions',
-                        options: [
-                            {
-                                iconType: 'envelope',
-                                label: 'Email',
-                                onClick: () => {},
-                            }, {
-                                iconType: 'comment-lines',
-                                label: 'SMS',
-                                onClick: () => {},
-                            }, {
-                                iconType: 'chevron-down',
-                                label: 'Actions',
-                                options: [
-                                    {
-                                        label: 'Option 01',
-                                    }, {
-                                        label: 'Option 02',
-                                    }, {
-                                        label: 'Option 03',
-                                    },
-                                ],
-                            }, {
-                                iconBackgroundColor: theme.palette.success.primary,
-                                iconType: 'times',
-                                label: 'Delete Stuff',
-                                onClick: () => {},
-                            },
-                        ],
+                    {
+                        actionsButton: {
+                            drawerContainer: window,
+                            header: 'Actions',
+                            options: [
+                                {
+                                    iconType: 'envelope',
+                                    label: 'Email',
+                                    onClick: () => {},
+                                }, {
+                                    iconType: 'comment-lines',
+                                    label: 'SMS',
+                                    onClick: () => {},
+                                }, {
+                                    iconType: 'chevron-down',
+                                    label: 'Actions',
+                                    options: [
+                                        {
+                                            label: 'Option 01',
+                                        }, {
+                                            label: 'Option 02',
+                                        }, {
+                                            label: 'Option 03',
+                                        },
+                                    ],
+                                }, {
+                                    iconBackgroundColor: theme.palette.success.primary,
+                                    iconType: 'times',
+                                    label: 'Delete Stuff',
+                                    onClick: () => {},
+                                },
+                            ],
+                        },
                     },
-                },
-            ]}
-        />
+                ]}
+            />
+
+            <Container>
+                <Content>
+                    Some content
+                </Content>
+            </Container>
+        </Page>
     );
 }
 

@@ -256,7 +256,7 @@ const styles = (theme) => {
                 '&--option_container': {
                     fontSize: 14,
                     fontWeight: theme.typography.fontWeightMedium,
-                    margin: [[0 -theme.spacing(1)]],
+                    margin: [[0, -theme.spacing(1)]],
                     position: 'relative',
                     transition: `transform ${forwardsStep3Duration}ms ease-in-out ${forwardsStep3Delay}ms`,
                     '&:first-child': {

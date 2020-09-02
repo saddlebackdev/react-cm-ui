@@ -265,11 +265,6 @@ export const navigationItems = [
                 label: 'Layout',
                 levelThree: [
                     {
-                        component: 'containerDeprecated',
-                        label: 'Container (deprecated)',
-                        path: 'container-deprecated',
-                    },
-                    {
                         component: 'grid',
                         label: 'Grid',
                         path: 'grid',

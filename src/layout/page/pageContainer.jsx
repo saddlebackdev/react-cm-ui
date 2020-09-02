@@ -1,67 +1,48 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import makeStyles from '../../styles/makeStyles';
+import Container from '../container';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     id: PropTypes.string,
-    style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     children: null,
+    classes: null,
     className: null,
     id: null,
-    style: null,
 };
-
-const useStyles = makeStyles((theme) => {
-    const {
-        breakpoints,
-    } = theme;
-
-    return {
-        root: {
-            marginTop: 50,
-            [breakpoints.down('md')]: {
-                transition: 'margin-top 333ms ease-in-out',
-                '&.page--container-has_action_bar_mobile_search_visible': {
-                    marginTop: 105,
-                },
-            },
-            [breakpoints.up('md')]: {
-                marginTop: 70,
-            },
-        },
-    };
-});
 
 function PageContainer(props) {
     const {
         children,
+        classes,
         className,
         id,
-        style,
     } = props;
 
-    const classes = useStyles(props);
     const rootClasses = ClassNames(
         'ui',
-        classes.root,
         'page--container',
+        classes.root,
         className,
     );
 
     return (
-        <div
+        <Container
+            classes={classes}
             className={rootClasses}
             id={id}
-            style={style}
+            moduleType="page"
         >
             {children}
-        </div>
+        </Container>
     );
 }
 
