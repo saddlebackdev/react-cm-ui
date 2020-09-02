@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-function PageContainer(props) {
+function Container(props) {
     const {
         children,
         className,
@@ -75,7 +75,7 @@ function PageContainer(props) {
     );
 }
 
-PageContainer.propTypes = propTypes;
-PageContainer.defaultProps = defaultProps;
+Container.propTypes = propTypes;
+Container.defaultProps = defaultProps;
 
-export default PageContainer;
+export default Container;
