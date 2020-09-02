@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import { GRID_SIZES } from '../../layout/grid/gridConstants';
 import Utils from '../../utils/utils';
 
+export const SM_HEIGHT = 50;
+
+export const MD_HEIGHT = 70;
+
 export const COLUMNS_PROP_TYPES = PropTypes.arrayOf(PropTypes.shape({
     button: PropTypes.shape({}),
     dropdownButton: PropTypes.shape({

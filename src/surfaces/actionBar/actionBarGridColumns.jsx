@@ -3,8 +3,9 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
+// eslint-disable-next-line import/no-cycle
 import ActionBarActionsButton from './actionBarActionsButton';
 import ActionBarSearch from './actionBarSearch';
 import Button from '../../inputs/button';
@@ -12,17 +13,18 @@ import DropdownButton from '../../inputs/dropdownButton';
 import Grid from '../../layout/grid';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
-import { useEffect } from 'react';
 
 const propTypes = {
     columns: COLUMNS_PROP_TYPES,
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    isMobileSearch: PropTypes.bool,
     isMobileSearchVisible: PropTypes.bool,
     onMobileSearchIconToggle: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
     columns: [],
+    isMobileSearch: false,
     isMobileSearchVisible: false,
     moduleType: null,
 };
@@ -68,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 function ActionBarGridColumn(props) {
     const {
         columns,
+        isMobileSearch,
         isMobileSearchVisible,
         moduleType,
         onMobileSearchIconToggle,
@@ -344,6 +347,8 @@ function ActionBarGridColumn(props) {
                         <ActionBarSearch
                             classes={search.classes}
                             id={search.id}
+                            isMobileSearch={isMobileSearch}
+                            isMobileSearchVisible={isMobileSearchVisible}
                             onChange={search.onChange}
                             onClearClick={search.onClearClick}
                             onKeyDown={search.onKeyDown}

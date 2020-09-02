@@ -2,14 +2,17 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    MD_HEIGHT,
+    SM_HEIGHT,
+} from './actionBarConstants';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
 import Button from '../../inputs/button';
 import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';
-import withWidth from '../../utils/withWidth';
-import actionBar from './actionBar';
+import withTheme from '../../styles/withTheme';
 
 const propTypes = {
     actionBarNode: PropTypes.node,
@@ -20,8 +23,16 @@ const propTypes = {
     iconBackgroundHighlightColor: PropTypes.string,
     iconType: PropTypes.string,
     id: PropTypes.string,
+    isMobileSearchVisible: PropTypes.bool,
     options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        breakpoints: PropTypes.shape({
+            values: PropTypes.shape({
+                md: PropTypes.number,
+            }),
+        }),
+    }).isRequired,
 };
 
 const defaultProps = {
@@ -32,6 +43,7 @@ const defaultProps = {
     iconBackgroundHighlightColor: 'highlight',
     iconType: 'ellipsis-h',
     id: undefined,
+    isMobileSearchVisible: false,
     style: {},
 };
 
@@ -55,12 +67,20 @@ class ActionBarActionsButton extends React.PureComponent {
         this.onPromptYesClick = this.onPromptYesClick.bind(this);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        const {
+            isMobileSearchVisible: prevIsMobileSearchVisible,
+        } = prevProps;
+
+        const {
+            isMobileSearchVisible,
+        } = this.props;
+
         const {
             actionBarBottomPosY,
         } = this.state;
 
-        if (!actionBarBottomPosY) {
+        if (!actionBarBottomPosY || prevIsMobileSearchVisible !== isMobileSearchVisible) {
             this.setState({
                 actionBarBottomPosY: this.setActionBarBottomPosY(),
             });
@@ -117,10 +137,23 @@ class ActionBarActionsButton extends React.PureComponent {
     setActionBarBottomPosY() {
         const {
             actionBarNode,
+            isMobileSearchVisible,
+            theme,
         } = this.props;
 
         if (actionBarNode) {
-            const actionBarHeight = actionBarNode.offsetHeight;
+            const bodyWidth = actionBarNode.closest('body').offsetWidth;
+
+            let actionBarHeight;
+
+            if (bodyWidth >= theme.breakpoints.values.md) {
+                actionBarHeight = MD_HEIGHT;
+            } else {
+                const searchVisibleHeightAdjustment = isMobileSearchVisible ? 55 : 0;
+
+                actionBarHeight = SM_HEIGHT + searchVisibleHeightAdjustment;
+            }
+
             const actionBarPosY = actionBarNode.getBoundingClientRect().y;
 
             return actionBarPosY + actionBarHeight;
@@ -253,4 +286,4 @@ class ActionBarActionsButton extends React.PureComponent {
 ActionBarActionsButton.propTypes = propTypes;
 ActionBarActionsButton.defaultProps = defaultProps;
 
-export default ActionBarActionsButton;
+export default withTheme(ActionBarActionsButton);
