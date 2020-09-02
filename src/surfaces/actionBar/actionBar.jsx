@@ -222,6 +222,7 @@ const styles = (theme) => {
                 transition: 'height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out',
                 '&-show': {
                     height: 46.5,
+                    marginBottom: 8.5,
                     opacity: 1,
                     paddingTop: 2.5,
                 },
