@@ -20,6 +20,7 @@ const propTypes = {
     id: PropTypes.string,
     inverse: PropTypes.bool,
     onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
     rotate: PropTypes.number,
     size: PropTypes.oneOfType([
         PropTypes.oneOf(Utils.sizeEnums()),
@@ -27,6 +28,10 @@ const propTypes = {
     ]),
     spin: PropTypes.bool,
     style: PropTypes.shape({}),
+    /**
+     * Indicates whether or not the Icon can be focused.
+     */
+    tabIndex: PropTypes.number,
     /**
      * Provides a human-readable title for the element that contains it.
      */
@@ -43,10 +48,12 @@ const defaultProps = {
     id: null,
     inverse: false,
     onClick: null,
+    onKeyDown: null,
     rotate: null,
     size: null,
     spin: false,
     style: {},
+    tabIndex: -1,
     title: null,
 };
 
@@ -61,13 +68,27 @@ class Icon extends React.PureComponent {
         super();
 
         this.onClick = this.onClick.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
     }
 
     onClick(event) {
+        console.log('onClick');
         const { disable, onClick } = this.props;
 
         if (isFunction(onClick) && !disable) {
             onClick(event);
+        }
+    }
+
+    onKeyDown(event) {
+        console.log('onKeyDown');
+        const {
+            disable,
+            onKeyDown,
+        } = this.props;
+
+        if (isFunction(onKeyDown) && !disable) {
+            onKeyDown(event);
         }
     }
 
@@ -85,10 +106,12 @@ class Icon extends React.PureComponent {
             size,
             spin,
             style,
+            tabIndex,
             type,
             title,
         } = this.props;
-        const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
+
+        const rootClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
             'icon-align-left': (!align && !compact) || align === 'left',
             'icon-align-right': !compact && align === 'right',
             'icon-clickable': onClick,
@@ -111,21 +134,25 @@ class Icon extends React.PureComponent {
             'icon-size-xxsmall': size === 'xxsmall',
             'icon-spin': spin || type === 'spinner',
         });
+
         const containerStyle = {
             ...style,
             height: isNumber(size) ? `${size / 16}rem` : null,
             width: isNumber(size) ? `${size / 16}rem` : null,
         };
+
         const svgStyle = {
             height: isNumber(size) ? `${size / 16}rem` : null,
             width: isNumber(size) ? `${size / 16}rem` : null,
             transform: isNumber(rotate) ? `rotate(${rotate}deg)` : null,
         };
+
         const gradientId = `icon-svg-gradient-color-${color}-${type}-${iconUniqueId()}`;
         const maskId = `icon-svg-mask-${type}-${iconUniqueId()}`;
         const pathId = `icon-svg-path-${type}-${iconUniqueId()}`;
         const polygonId = `icon-svg-polygon-${type}-${iconUniqueId()}`;
         const circleId = `icon-svg-circle-${type}-${iconUniqueId()}`;
+
         let renderGradientColor;
 
         switch (color) {
@@ -1554,11 +1581,13 @@ class Icon extends React.PureComponent {
 
         return (
             <Container
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 onClick={this.onClick}
+                onKeyDown={this.onKeyDown}
                 style={containerStyle}
                 type={isButton ? 'button' : null}
+                tabIndex={tabIndex}
             >
                 <IconSVG
                     circle={circle}

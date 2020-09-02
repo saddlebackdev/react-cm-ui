@@ -1,21 +1,14 @@
 import {
-    isArray,
     isFunction,
-    isUndefined,
-    map,
+    find,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { GRID_SIZES } from '../../layout/grid/gridConstants';
-import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
+import { COLUMNS_PROP_TYPES } from './actionBarConstants';
+import ActionBarGridColumns from './actionBarGridColumns';
 import ActionBarSearch from './actionBarSearch';
-import Button from '../../inputs/button';
-import DropdownButton from '../../inputs/dropdownButton';
 import Grid from '../../layout/grid';
-import Icon from '../../dataDisplay/icon';
-import List from '../../dataDisplay/list';
-import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
@@ -25,46 +18,12 @@ const propTypes = {
     children: PropTypes.node,
     classes: PropTypes.shape({
         drawer: PropTypes.string,
+        grid: PropTypes.string,
         page: PropTypes.string,
         root: PropTypes.string,
     }),
     className: PropTypes.string,
-    columns: PropTypes.arrayOf(PropTypes.shape({
-        button: PropTypes.shape({}),
-        dropdownButton: PropTypes.shape({
-            className: PropTypes.string,
-            color: PropTypes.oneOf(Utils.colorEnums()),
-            disable: PropTypes.bool,
-            iconType: PropTypes.oneOf(['chevron-down', 'plus']),
-            id: PropTypes.string,
-            onClick: PropTypes.func,
-            style: PropTypes.shape({}),
-            title: PropTypes.string,
-        }),
-        jsx: PropTypes.node,
-        lg: PropTypes.oneOf(GRID_SIZES),
-        list: PropTypes.arrayOf(PropTypes.shape({
-            actionsButton: PropTypes.shape({}),
-            drawerContainer: PropTypes.node,
-            jsx: PropTypes.node,
-            iconBack: PropTypes.shape({}),
-            iconFilter: PropTypes.shape({}),
-            iconGrid: PropTypes.shape({}),
-            iconSearch: PropTypes.shape({}),
-            iconSettings: PropTypes.shape({}),
-            iconTable: PropTypes.shape({}),
-        })),
-        md: PropTypes.oneOf(GRID_SIZES),
-        search: PropTypes.shape({
-            id: PropTypes.string,
-            onChange: PropTypes.func,
-            onClearClick: PropTypes.func,
-            onKeyDown: PropTypes.func,
-            value: PropTypes.string,
-        }),
-        sm: PropTypes.oneOf(GRID_SIZES),
-        xl: PropTypes.oneOf(GRID_SIZES),
-    })),
+    columns: COLUMNS_PROP_TYPES,
     id: PropTypes.string,
     /**
      * Defines the `justify-content` style property.
@@ -200,6 +159,9 @@ const styles = (theme) => {
 
     return {
         drawer: {},
+        grid: {
+            margin: [[0, -theme.spacing(0.5)]],
+        },
         page: {},
         root: {
             alignItems: 'center',
@@ -231,7 +193,7 @@ const styles = (theme) => {
             },
             '&$drawer': {
                 backgroundColor: theme.palette.background.primary,
-                padding: '8px 11px',
+                padding: [[8, theme.spacing(1)]],
                 zIndex: theme.zIndex.drawer,
                 [theme.breakpoints.up('md')]: {
                     height: theme.height.actionBar.md,
@@ -241,7 +203,7 @@ const styles = (theme) => {
                 backgroundColor: theme.palette.background.light,
                 borderTop: `1px solid ${theme.palette.border.primary}`,
                 minHeight: 50,
-                padding: '8px 11px',
+                padding: [[8, theme.spacing(1)]],
                 top: actionsButtonDrawerOptionHeight,
                 width: 'auto',
                 zIndex: 3,
@@ -252,38 +214,6 @@ const styles = (theme) => {
                     top: 70,
                 },
             },
-            '& .action_bar--grid_column': {
-                paddingBottom: 0,
-                paddingTop: 0,
-                '&:first-child': {
-                    paddingLeft: 0,
-                },
-                '&:last-child': {
-                    paddingRight: 0,
-                },
-            },
-            '& .action_bar--list': {
-                alignItems: 'center',
-                display: 'flex',
-                margin: 5.5,
-            },
-            '& .action_bar--list_item': {
-                alignItems: 'center',
-                alignSelf: 'stretch',
-                display: 'inline-flex',
-                justifyContent: 'center',
-                marginLeft: '0 !important',
-                padding: '0 11px !important',
-                '&::before': {
-                    height: '88% !important',
-                },
-                '&:first-child': {
-                    paddingLeft: '0 !important',
-                },
-                '&:last-child': {
-                    paddingRight: '0 !important',
-                },
-            },
             '& .action_bar--search-mobile': {
                 height: 0,
                 opacity: 0,
@@ -291,9 +221,9 @@ const styles = (theme) => {
                 paddingTop: 0,
                 transition: 'height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out',
                 '&-show': {
-                    height: actionsButtonDrawerOptionHeight,
+                    height: 46.5,
                     opacity: 1,
-                    paddingTop: 11,
+                    paddingTop: 2.5,
                 },
             },
             '& .action_bar--clear_search': {
@@ -312,7 +242,7 @@ const styles = (theme) => {
         '@global': {
             '.actions_button_drawer': {
                 '&--content': {
-                    padding: '22px 11px',
+                    padding: [[22, theme.spacing(1)]],
                 },
                 '&--title-hide': {
                     opacity: 0,
@@ -325,7 +255,7 @@ const styles = (theme) => {
                 '&--option_container': {
                     fontSize: 14,
                     fontWeight: theme.typography.fontWeightMedium,
-                    margin: '0 -11px',
+                    margin: [[0 -theme.spacing(1)]],
                     position: 'relative',
                     transition: `transform ${forwardsStep3Duration}ms ease-in-out ${forwardsStep3Delay}ms`,
                     '&:first-child': {
@@ -348,7 +278,7 @@ const styles = (theme) => {
                 minHeight: 55,
                 opacity: 1,
                 outline: 'none',
-                padding: 11,
+                padding: theme.spacing(1),
                 position: 'relative',
             },
             '.actions_button_drawer--option': {
@@ -434,6 +364,7 @@ class ActionBar extends React.Component {
         };
 
         this.actionBarRef = React.createRef();
+        this.actionBarSearchRef = React.createRef();
         this.onMobileSearchIconToggle = this.onMobileSearchIconToggle.bind(this);
     }
 
@@ -443,6 +374,12 @@ class ActionBar extends React.Component {
         }), () => {
             const { toggleSmSearchVisibleClassName } = this.props;
             const { isMobileSearchVisible } = this.state;
+
+            if (isMobileSearchVisible) {
+                const actionBarSearchNode = this.actionBarSearchRef.current.rootRef.current;
+
+                actionBarSearchNode.querySelector('input').focus();
+            }
 
             if (isFunction(toggleSmSearchVisibleClassName)) {
                 toggleSmSearchVisibleClassName(isMobileSearchVisible);
@@ -475,9 +412,7 @@ class ActionBar extends React.Component {
             },
         );
 
-        let searchDataForMobile = null;
-        let gridColumnKeyNum = 1;
-        let gridColumnListItemKeyNum = 1;
+        const iconSearchColumn = find(columns, 'iconSearch');
 
         return (
             <header
@@ -491,301 +426,30 @@ class ActionBar extends React.Component {
                         <React.Fragment>
                             <Grid
                                 alignItems="center"
-                                className="action_bar--grid"
+                                className={classes.grid}
                                 flexWrap="nowrap"
                                 justifyContent={justifyContent}
                                 spacing={1}
                             >
-                                {map(columns, (column) => {
-                                    const {
-                                        button,
-                                        dropdownButton,
-                                        columns, // eslint-disable-line no-shadow
-                                        jsx,
-                                        search,
-                                    } = column;
-                                    let { list } = column;
-                                    const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
-                                    const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`; // eslint-disable-line no-plusplus
-
-                                    if (columns) {
-                                        console.warn('ActionsBar\'s columns.columns is deprecated. Please use columns.list instead.'); // eslint-disable-line no-console
-
-                                        list = [...columns];
-                                    }
-
-                                    if (!button && !dropdownButton && !jsx && !list && !search) {
-                                        console.warn( // eslint-disable-line no-console
-                                            `${'<Page.ActionsBar>\'s column object must have one of the ' +
-                                            'following properties: button, jsx, or list.' +
-                                            'Please check this column object '}${JSON.stringify(column)}`,
-                                        );
-
-                                        return false;
-                                    }
-
-                                    let dropdownButtonOptionKeyNum = 1;
-
-                                    return (
-                                        <Grid.Column
-                                            className={gridColumnClasses}
-                                            key={gridColumnKey}
-                                            lg={column.lg}
-                                            md={column.md}
-                                            sm={column.sm}
-                                            xl={column.xl}
-                                        >
-                                            <div
-                                                style={{
-                                                    ...column.style,
-                                                }}
-                                            >
-                                                {button && (
-                                                    <Button
-                                                        color={button.color}
-                                                        disabled={!!button.disabled}
-                                                        icon={button.iconType && !button.label}
-                                                        id={button.id}
-                                                        onClick={button.onClick}
-                                                        style={button.style}
-                                                    >
-                                                        {button.iconType && <Icon type={button.iconType} />}
-                                                        {button.label && <span>{button.label}</span>}
-                                                    </Button>
-                                                )}
-
-                                                {dropdownButton && (
-                                                    <DropdownButton
-                                                        className={dropdownButton.className}
-                                                        color={dropdownButton.color}
-                                                        disable={dropdownButton.disable}
-                                                        iconType={dropdownButton.iconType}
-                                                        id={dropdownButton.id}
-                                                        label={dropdownButton.label}
-                                                        onClick={dropdownButton.onClick}
-                                                        style={dropdownButton.style}
-                                                        title={dropdownButton.title}
-                                                    >
-                                                        {map(dropdownButton.options, (option) => {
-                                                            dropdownButtonOptionKeyNum += 1;
-
-                                                            return (
-                                                                <DropdownButton.Option
-                                                                    className={option.className}
-                                                                    disabled={!!option.disabled}
-                                                                    id={option.id}
-                                                                    key={`action_bar_dropdown_button_option-${dropdownButtonOptionKeyNum}`}
-                                                                    label={option.label}
-                                                                    onClick={option.onClick}
-                                                                    onKeyDown={option.onKeyDown}
-                                                                    style={option.style}
-                                                                    tabIndex={option.tabIndex}
-                                                                />
-                                                            );
-                                                        })}
-                                                    </DropdownButton>
-                                                )}
-
-                                                {list && isArray(list) && (
-                                                    <List
-                                                        className="action_bar--list"
-                                                        horizontal
-                                                    >
-                                                        {map(list, (item) => {
-                                                            const {
-                                                                actionsButton,
-                                                                jsx: listJsx,
-                                                                iconBack,
-                                                                iconFilter,
-                                                                iconGrid,
-                                                                iconSearch,
-                                                                iconSettings,
-                                                                iconTable,
-                                                            } = item;
-
-                                                            const divide = isUndefined(item.divide) ||
-                                                                item.divide;
-
-                                                            const listItemClassName = ClassNames('action_bar--list_item', {
-                                                                'action_bar--list_item-jsx': listJsx,
-                                                                'action_bar--list_item-icon_filter': iconFilter,
-                                                                'action_bar--list_item-icon_grid': iconGrid,
-                                                                'action_bar--list_item-icon_table': iconTable,
-                                                            });
-
-                                                            const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`; // eslint-disable-line no-plusplus
-
-                                                            if (!actionsButton &&
-                                                                    !listJsx &&
-                                                                    !iconBack &&
-                                                                    !iconFilter &&
-                                                                    !iconGrid &&
-                                                                    !iconSearch &&
-                                                                    !iconSettings &&
-                                                                    !iconTable
-                                                            ) {
-                                                                console.warn( // eslint-disable-line no-console, max-len
-                                                                    `${'<Page.ActionsBar>\'s column.list object must have one of the ' +
-                                                                        'following properties: actionsButton, iconBack, iconFilter, iconGrid, or iconTable.' +
-                                                                        'Please check this column.list object '}${JSON.stringify(item)}`,
-                                                                );
-
-                                                                return false;
-                                                            }
-
-                                                            if (iconSearch) {
-                                                                /* eslint-disable max-len */
-                                                                /* eslint-disable react/jsx-props-no-spreading */
-                                                                searchDataForMobile = (
-                                                                    <ActionBarSearch
-                                                                        {...iconSearch}
-                                                                        isMobileSearch
-                                                                        isMobileSearchVisible={isMobileSearchVisible}
-                                                                        type="mobileSearch"
-                                                                    />
-                                                                );
-                                                                /* eslint-enable react/jsx-props-no-spreading */
-                                                                /* eslint-enable max-len */
-                                                            }
-
-                                                            return (
-                                                                <List.Item
-                                                                    className={listItemClassName}
-                                                                    divide={divide}
-                                                                    key={itemKey}
-                                                                    style={({
-                                                                        alignItems: item.alignItems || 'flex-start',
-                                                                        flexBasis: item.flexBasis || 'auto',
-                                                                        flexGrow: item.flexGrow || 0,
-                                                                        flexShrink: item.flexShrink || 0,
-                                                                        width: 'auto',
-                                                                        ...list.style,
-                                                                    })}
-                                                                >
-                                                                    {/* eslint-disable max-len */}
-                                                                    {actionsButton && (
-                                                                        <ActionBarActionsButton
-                                                                            actionBarRef={this.actionBarRef}
-                                                                            className={actionsButton.className}
-                                                                            drawerContainer={actionsButton.drawerContainer}
-                                                                            iconBackgroundColor={actionsButton.iconBackgroundColor}
-                                                                            iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
-                                                                            iconType={actionsButton.iconType}
-                                                                            id={actionsButton.id}
-                                                                            isMobileSearchVisible={isMobileSearchVisible}
-                                                                            header={actionsButton.header}
-                                                                            moduleType={moduleType}
-                                                                            options={actionsButton.options}
-                                                                            style={actionsButton.style}
-                                                                        />
-                                                                    )}
-                                                                    {/* eslint-enable max-len */}
-
-                                                                    {iconBack && (
-                                                                    <Icon
-                                                                        color={iconBack.selected ?
-                                                                            'highlight' :
-                                                                            null}
-                                                                        id={iconBack.id}
-                                                                        onClick={iconBack.onClick}
-                                                                        title={iconBack.title || 'Back'}
-                                                                        type="chevron-left"
-                                                                    />
-                                                                    )}
-
-                                                                    {/* eslint-disable max-len */}
-                                                                    {iconFilter && (
-                                                                    <Icon
-                                                                        color={iconFilter.selected || iconFilter.isFiltering ?
-                                                                            'highlight' :
-                                                                            null}
-                                                                        id={iconFilter.id}
-                                                                        onClick={iconFilter.onClick}
-                                                                        title={iconFilter.title || 'Filter'}
-                                                                        type="filter"
-                                                                    />
-                                                                    )}
-                                                                    {/* eslint-enable max-len */}
-
-                                                                    {iconGrid && (
-                                                                    <Icon
-                                                                        color={iconGrid.selected ?
-                                                                            'highlight' :
-                                                                            null}
-                                                                        id={iconGrid.id}
-                                                                        onClick={iconGrid.onClick}
-                                                                        title={iconGrid.title || 'Grid View'}
-                                                                        type="grid"
-                                                                    />
-                                                                    )}
-
-                                                                    {/* eslint-disable max-len */}
-                                                                    {iconSearch && (
-                                                                    <Icon
-                                                                        className="action_bar--search_icon"
-                                                                        color={isMobileSearchVisible ?
-                                                                            'highlight' :
-                                                                            null}
-                                                                        id={iconSearch.id}
-                                                                        onClick={this.onMobileSearchIconToggle}
-                                                                        title={iconSearch.title || 'Search'}
-                                                                        type="search"
-                                                                    />
-                                                                    )}
-                                                                    {/* eslint-enable max-len */}
-
-                                                                    {/* eslint-disable max-len */}
-                                                                    {iconSettings && (
-                                                                        <Icon
-                                                                            color={iconSettings.selected || iconSettings.isCustom ?
-                                                                                'highlight' :
-                                                                                null}
-                                                                            id={iconSettings.id}
-                                                                            onClick={iconSettings.onClick}
-                                                                            title={iconSettings.title || 'Settings'}
-                                                                            type="settings"
-                                                                        />
-                                                                    )}
-                                                                    {/* eslint-enable max-len */}
-
-                                                                    {iconTable && (
-                                                                    <Icon
-                                                                        color={iconTable.selected ?
-                                                                            'highlight' :
-                                                                            null}
-                                                                        id={iconTable.id}
-                                                                        onClick={iconTable.onClick}
-                                                                        title={iconTable.title || 'Table View'}
-                                                                        type="list"
-                                                                    />
-                                                                    )}
-
-                                                                    {listJsx}
-                                                                </List.Item>
-                                                            );
-                                                        })}
-                                                    </List>
-                                                )}
-
-                                                {search && (
-                                                    <ActionBarSearch
-                                                        classes={search.classes}
-                                                        id={search.id}
-                                                        onChange={search.onChange}
-                                                        onClearClick={search.onClearClick}
-                                                        onKeyDown={search.onKeyDown}
-                                                        value={search.value}
-                                                    />
-                                                )}
-
-                                                {jsx}
-                                            </div>
-                                        </Grid.Column>
-                                    );
-                                })}
+                                <ActionBarGridColumns
+                                    actionBarRef={this.actionBarRef}
+                                    columns={columns}
+                                    isMobileSearchVisible={isMobileSearchVisible}
+                                    onMobileSearchIconToggle={this.onMobileSearchIconToggle}
+                                />
                             </Grid>
 
-                            {searchDataForMobile}
+                            {iconSearchColumn && (
+                                <ActionBarSearch
+                                    // eslint-disable-next-line max-len
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
+                                    {...iconSearchColumn.iconSearch}
+                                    isMobileSearch
+                                    isMobileSearchVisible={isMobileSearchVisible}
+                                    ref={this.actionBarSearchRef}
+                                    type="mobileSearch"
+                                />
+                            )}
                         </React.Fragment>
                     )}
 

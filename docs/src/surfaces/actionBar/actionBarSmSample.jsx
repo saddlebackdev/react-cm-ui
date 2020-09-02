@@ -37,43 +37,38 @@ function ActionBarSmSample(props) {
             justifyContent="flex-end"
             columns={[
                 {
-                    flexGrow: 1,
-                    list: [
-                        {
-                            actionsButton: {
-                                drawerContainer: window,
-                                header: 'Actions',
+                    actionsButton: {
+                        drawerContainer: window,
+                        header: 'Actions',
+                        options: [
+                            {
+                                iconType: 'envelope',
+                                label: 'Email',
+                                onClick: () => {},
+                            }, {
+                                iconType: 'comment-lines',
+                                label: 'SMS',
+                                onClick: () => {},
+                            }, {
+                                iconType: 'chevron-down',
+                                label: 'Actions',
                                 options: [
                                     {
-                                        iconType: 'envelope',
-                                        label: 'Email',
-                                        onClick: () => {},
+                                        label: 'Option 01',
                                     }, {
-                                        iconType: 'comment-lines',
-                                        label: 'SMS',
-                                        onClick: () => {},
+                                        label: 'Option 02',
                                     }, {
-                                        iconType: 'chevron-down',
-                                        label: 'Actions',
-                                        options: [
-                                            {
-                                                label: 'Option 01',
-                                            }, {
-                                                label: 'Option 02',
-                                            }, {
-                                                label: 'Option 03',
-                                            },
-                                        ],
-                                    }, {
-                                        iconBackgroundColor: theme.palette.success.primary,
-                                        iconType: 'times',
-                                        label: 'Delete Stuff',
-                                        onClick: () => {},
+                                        label: 'Option 03',
                                     },
                                 ],
+                            }, {
+                                iconBackgroundColor: theme.palette.success.primary,
+                                iconType: 'times',
+                                label: 'Delete Stuff',
+                                onClick: () => {},
                             },
-                        },
-                    ],
+                        ],
+                    },
                 },
             ]}
         />

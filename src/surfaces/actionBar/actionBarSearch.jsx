@@ -1,23 +1,31 @@
-import _ from 'lodash';
+import {
+    isFunction,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ENTER_KEY_CODE } from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import Input from '../../inputs/input';
 import withStyles from '../../styles/withStyles';
-import Grid from '../../layout/grid';
 
 const propTypes = {
     classes: PropTypes.shape({
+        clearButtonContainer: PropTypes.string,
+        input: PropTypes.string,
+        isMdBreakpoint: PropTypes.string,
+        isSmBreakpoint: PropTypes.string,
+        magnifyingGlassIconContainer: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
     id: PropTypes.string,
     isMobileSearch: PropTypes.bool,
     isMobileSearchVisible: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
-    onClearClick: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    onClearClick: PropTypes.func.isRequired,
+    onKeyDown: PropTypes.func.isRequired,
+    onSearchClick: PropTypes.func,
+    onSearchKeyDown: PropTypes.func,
     value: PropTypes.string,
 };
 
@@ -25,52 +33,55 @@ const defaultProps = {
     id: undefined,
     isMobileSearch: false,
     isMobileSearchVisible: false,
-    onClearClick: undefined,
-    onKeyDown: undefined,
-    style: {},
+    onSearchClick: null,
+    onSearchKeyDown: null,
     value: '',
 };
 
 const styles = (theme) => ({
-    actionsContainer: {
-        display: 'flex',
-        pointerEvents: 'none',
-        height: 44,
-        position: 'absolute',
-        width: 'calc(100% - 16px)',
-        zIndex: 2,
-    },
-    clearButton: {
-        height: 16,
-        width: 16,
-    },
     clearButtonContainer: {
         alignItems: 'center',
-        boxShadow: [[-1, 0, 0, 0, theme.palette.border.primary]],
         display: 'flex',
         height: 44,
         justifyContent: 'center',
-        pointerEvents: 'auto',
+        position: 'absolute',
+        margin: 0,
+        right: 0,
+        top: 0,
+        transform: 'translateY(2.5px)',
         width: 44,
+        zIndex: 2,
+        '&$isSmBreakpoint': {
+            paddingTop: 2.5,
+        },
+        '&$isMdBreakpoint': {
+            boxShadow: [[-1, 0, 0, 0, theme.palette.border.primary]],
+        },
     },
     input: {
         zIndex: 1,
-        '& input': {
-            padding: [[0, 44, 0, 38]],
+        '&$isMdBreakpoint': {
+            '& input': {
+                padding: [[0, 44, 0, 38]],
+            },
         },
     },
-    magnifyingGlassIcon: {
-        pointerEvents: 'auto',
-    },
+    isMdBreakpoint: {},
+    isSmBreakpoint: {},
     magnifyingGlassIconContainer: {
         alignItems: 'center',
         display: 'flex',
-        margin: [[0, 11]],
+        height: 44,
+        left: 0,
+        margin: [[0, theme.spacing(1)]],
+        position: 'absolute',
+        top: 0,
+        zIndex: 2,
     },
     root: {
         position: 'relative',
         [theme.breakpoints.up('md')]: {
-            padding: [[0, 10.5, 0, 5.5]],
+            margin: [[0, theme.spacing(1), 0, theme.spacing(0.5)]],
         },
     },
 });
@@ -83,8 +94,10 @@ class ActionBarSearch extends React.PureComponent {
         this.onClearClick = this.onClearClick.bind(this);
         this.onClearKeyDown = this.onClearKeyDown.bind(this);
         this.onInputKeyDown = this.onInputKeyDown.bind(this);
-        this.onMagnifyingGlassClick = this.onMagnifyingGlassClick.bind(this);
-        this.onMagnifyingGlassKeyDown = this.onMagnifyingGlassKeyDown.bind(this);
+        this.onSearchClick = this.onSearchClick.bind(this);
+        this.onSearchKeyDown = this.onSearchKeyDown.bind(this);
+
+        this.rootRef = React.createRef();
     }
 
     onInputChange(value) {
@@ -93,33 +106,49 @@ class ActionBarSearch extends React.PureComponent {
         onChange(value);
     }
 
-    onClearClick() {
+    onClearClick(event) {
         const { onChange, onClearClick } = this.props;
 
-        if (_.isFunction(onClearClick)) {
-            onClearClick();
+        if (isFunction(onClearClick)) {
+            onClearClick(event);
         } else {
             onChange('');
         }
     }
 
     onClearKeyDown(event) {
-        if (event.keyCode === 13) {
-            this.onClearClick();
+        if (event.keyCode === ENTER_KEY_CODE) {
+            this.onClearClick(event);
         }
     }
 
     onInputKeyDown(event) {
         const { onKeyDown } = this.props;
 
-        if (_.isFunction(onKeyDown)) {
+        if (isFunction(onKeyDown) && event.keyCode === ENTER_KEY_CODE) {
+            event.preventDefault();
+
             onKeyDown(event);
         }
     }
 
-    onMagnifyingGlassClick() {}
+    onSearchClick(event) {
+        const { onSearchClick } = this.props;
 
-    onMagnifyingGlassKeyDown() {}
+        if (isFunction(onSearchClick)) {
+            onSearchClick(event);
+        }
+    }
+
+    onSearchKeyDown(event) {
+        const { onSearchKeyDown } = this.props;
+
+        if (isFunction(onSearchKeyDown) && event.keyCode === ENTER_KEY_CODE) {
+            event.preventDefault();
+
+            onSearchKeyDown(event);
+        }
+    }
 
     render() {
         const {
@@ -127,7 +156,6 @@ class ActionBarSearch extends React.PureComponent {
             id,
             isMobileSearch,
             isMobileSearchVisible,
-            style,
             value,
         } = this.props;
 
@@ -140,84 +168,62 @@ class ActionBarSearch extends React.PureComponent {
             },
         );
 
-        let magnificationIcon = null;
-
-        if (!isMobileSearch) {
-            magnificationIcon = (
-                <Icon
-                    className={classes.magnifyingGlassIcon}
-                    compact
-                    title="Search"
-                    type="search"
-                />
-            );
-        }
-
         return (
             <div
                 className={rootClasses}
+                ref={this.rootRef}
             >
-                <div
-                    className={classes.actionsContainer}
-                >
-                    <Grid
-                        alignItems="center"
+                {!isMobileSearch && (
+                    <div
+                        className={classes.magnifyingGlassIconContainer}
                     >
-                        <Grid.Column
-                            sm
-                        >
-                            <div
-                                className={classes.magnifyingGlassIconContainer}
-                            >
-                                <Icon
-                                    className={classes.magnifyingGlassIcon}
-                                    compact
-                                    onClick={this.onMagnifyingGlassClick}
-                                    onKeyDown={this.onMagnifyingGlassKeyDown}
-                                    title="Search"
-                                    type="search"
-                                />
-                            </div>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            sm="auto"
-                        >
-                            <div
-                                className={classes.clearButtonContainer}
-                            >
-                                <div
-                                    className={ClassNames(classes.clearButton)}
-                                    onClick={this.onClearClick}
-                                    onKeyDown={this.onClearKeyDown}
-                                    role="button"
-                                    tabIndex={-1}
-                                >
-                                    <Icon
-                                        color={value ? 'alternate' : 'disable'}
-                                        compact
-                                        title="Clear Search"
-                                        type="times-circle"
-                                    />
-                                </div>
-                            </div>
-                        </Grid.Column>
-                    </Grid>
-                </div>
+                        <Icon
+                            compact
+                            onClick={this.onSearchClick}
+                            onKeyDown={this.onSearchKeyDown}
+                            title="Search"
+                            type="search"
+                            tabIndex={0}
+                        />
+                    </div>
+                )}
 
                 <Input
                     className={ClassNames(
                         'action_bar--search_input',
                         classes.input,
+                        {
+                            [classes.isMdBreakpoint]: !isMobileSearch,
+                        },
                     )}
                     fluid
                     id={id}
                     onChange={this.onInputChange}
                     onKeyDown={this.onInputKeyDown}
                     placeholder="Search"
+                    tabIndex={0}
                     value={value}
-                    style={style}
                 />
+
+                <div
+                    className={ClassNames(
+                        classes.clearButtonContainer,
+                        {
+                            [classes.isMdBreakpoint]: !isMobileSearch,
+                            [classes.isSmBreakpoint]: isMobileSearch,
+                        },
+                    )}
+                >
+                    <Icon
+                        color={value ? 'primary' : 'disable'}
+                        compact
+                        onClick={this.onClearClick}
+                        onKeyDown={this.onClearKeyDown}
+                        tabIndex={0}
+                        title="Clear Search"
+                        type="times-circle"
+                    />
+                </div>
             </div>
         );
     }

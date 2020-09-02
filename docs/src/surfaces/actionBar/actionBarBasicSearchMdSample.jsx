@@ -17,6 +17,25 @@ function ActionBarBasicSearchMdSample() {
         setInputValue(value);
     };
 
+    const onInputClearClick = () => {
+        setInputValue('');
+    };
+
+    const onInputKeyDown = () => {
+        // eslint-disable-next-line no-alert
+        window.alert(`onInputKeyDown called with value: ${inputValue}`);
+    };
+
+    const onSearchClick = () => {
+        // eslint-disable-next-line no-alert
+        window.alert(`onSearchClick called with value: ${inputValue}`);
+    };
+
+    const onSearchKeyDown = () => {
+        // eslint-disable-next-line no-alert
+        window.alert(`onSearchKeyDown called with value: ${inputValue}`);
+    };
+
     return (
         <ActionBar
             classes={{
@@ -25,25 +44,23 @@ function ActionBarBasicSearchMdSample() {
             justifyContent="flex-end"
             columns={[
                 {
-                    list: [
-                        {
-                            iconSettings: {
-                                id: 'bem_block--settings_button',
-                            },
-                        }, {
-                            iconFilter: {
-                                id: 'bem_block--filter_button',
-                            },
-                        },
-                    ],
-                    sm: 'auto',
+                    divide: true,
+                    iconSettings: {
+                        id: 'bem_block--settings_button',
+                    },
+                }, {
+                    iconFilter: {
+                        id: 'bem_block--filter_button',
+                    },
                 },
                 {
                     search: {
                         id: 'bem_block--search_input',
                         onChange: onInputChange,
-                        onClearClick: () => {},
-                        onKeyDown: () => {},
+                        onClearClick: onInputClearClick,
+                        onKeyDown: onInputKeyDown,
+                        onSearchClick,
+                        onSearchKeyDown,
                         value: inputValue,
                     },
                     sm: true,

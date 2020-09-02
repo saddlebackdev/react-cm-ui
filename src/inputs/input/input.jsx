@@ -74,10 +74,10 @@ const propTypes = {
     required: PropTypes.bool,
     showSpinners: PropTypes.bool,
     style: PropTypes.shape({}),
-    tabIndex: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    /**
+     * Indicates whether or not the Input can be focused.
+     */
+    tabIndex: PropTypes.number,
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -117,7 +117,7 @@ const defaultProps = {
     required: false,
     showSpinners: true,
     style: null,
-    tabIndex: null,
+    tabIndex: -1,
     type: null,
     value: '',
 };
