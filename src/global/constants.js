@@ -4,6 +4,8 @@ export const UI_CLASS_NAME = 'cmui';
 
 export const BEM_DATA_GRID = 'data_grid';
 
+export const BEM_ACTION_BAR = 'action_bar';
+
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
 

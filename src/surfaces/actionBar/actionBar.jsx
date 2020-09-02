@@ -5,6 +5,10 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+    BEM_ACTION_BAR,
+} from '../../global/constants';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
 import ActionBarGridColumns from './actionBarGridColumns';
 import ActionBarSearch from './actionBarSearch';
@@ -403,8 +407,8 @@ class ActionBar extends React.Component {
         const { isMobileSearchVisible } = this.state;
 
         const containerClasses = ClassNames(
-            'ui',
-            'action_bar',
+            UI_CLASS_NAME,
+            BEM_ACTION_BAR,
             classes.root,
             className,
             {
