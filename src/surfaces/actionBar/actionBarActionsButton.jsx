@@ -120,7 +120,6 @@ class ActionBarActionsButton extends React.PureComponent {
         } = this.props;
 
         if (actionBarNode) {
-            const actionBarHeight = actionBarRef.current.offsetHeight;
             const actionBarHeight = actionBarNode.offsetHeight;
             const actionBarPosY = actionBarNode.getBoundingClientRect().y;
 
