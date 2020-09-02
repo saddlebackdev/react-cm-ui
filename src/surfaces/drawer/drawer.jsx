@@ -63,7 +63,6 @@ const defaultProps = {
     wing: undefined,
 };
 
-const BODY = document.body;
 const TRANSLATE_X_END = 'translate3d(0, 0, 0)';
 const TRANSLATE_X_LEFT_START = 'translate3d(-100%, 0, 0)';
 const TRANSLATE_X_RIGHT_START = 'translate3d(100%, 0, 0)';
@@ -73,11 +72,9 @@ const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
 const DEFAULT_DRAWER_WIDTH = 768;
 
 function toggleBodyStyle({ container, isOpen }) {
-    const { scrollY } = window;
-
     const containerStyleTop = container.style.top;
-
-    const newContainer = container || document.body;
+    const newContainer = container.closest('body') || document.body;
+    const scrollY = newContainer.scrollTop;
 
     newContainer.style.height = isOpen ? '100%' : '';
     newContainer.style.position = isOpen ? 'fixed' : '';
@@ -88,7 +85,7 @@ function toggleBodyStyle({ container, isOpen }) {
         newContainer.classList.remove('drawer-open');
 
         // eslint-disable-next-line radix
-        window.scrollTo(0, parseInt(containerStyleTop || '0') * -1);
+        newContainer.scrollTo(0, parseInt(containerStyleTop || '0') * -1);
     } else {
         newContainer.classList.add('drawer-open');
     }
