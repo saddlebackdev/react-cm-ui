@@ -21,7 +21,13 @@ function ComponentVersionIdentifier(props) {
         pathname,
     } = props;
 
-    const pathNameArray = filter(pathname.split('/'), (segment) => segment);
+    const pathNameArray = map(
+        filter(
+            pathname.split('/'),
+            (segment) => !!segment,
+        ),
+        (segment) => segment.replace(/-([a-z])/g, (match, capture) => (capture.toUpperCase())), // e.g. 'duration-picker' => 'durationPicker'
+    );
 
     const version = get(
         versions,

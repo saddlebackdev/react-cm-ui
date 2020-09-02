@@ -1,7 +1,6 @@
 import {
     TitleBar,
     Typography,
-    versions,
 } from 'react-cm-ui';
 import { camelCase, startCase } from 'lodash';
 import { withRouter } from 'react-router';

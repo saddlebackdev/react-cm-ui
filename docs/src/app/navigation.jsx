@@ -134,7 +134,7 @@ class CoreAppNavigation extends React.PureComponent {
 
         this.onLogoClick = this.onLogoClick.bind(this);
         this.toggleNavigation = this.toggleNavigation.bind(this);
-        this.listJSX = this.renderList();
+        this.renderLevelOneJsx = this.renderLevelOneJsx();
     }
 
     componentDidMount() {
@@ -171,19 +171,19 @@ class CoreAppNavigation extends React.PureComponent {
         toggleNavigation();
     }
 
-    renderList() {
+    renderLevelOneJsx() {
         const {
             classes,
         } = this.props;
-        let sectionKeyNum = 0;
-        let sectionItemKeyNum = 0;
-        let subSectionItemKeyNum = 0;
+        let levelOneKeyNum = 0;
+        let levelTwoKeyNum = 0;
+        let levelThreeKeyNum = 0;
 
-        return _.map(navigationItems, (section, index) => {
-            sectionKeyNum += 1;
+        return _.map(navigationItems, (levelOne, index) => {
+            levelOneKeyNum += 1;
 
             return (
-                <React.Fragment key={`section-${sectionKeyNum}`}>
+                <React.Fragment key={`section-${levelOneKeyNum}`}>
                     {index > 0 && (
                         <Divider
                             className={classes.divider}
@@ -199,29 +199,27 @@ class CoreAppNavigation extends React.PureComponent {
                         size="medium"
                         style={{ marginTop: 0 }}
                     >
-                        {section.label}
+                        {levelOne.label}
                     </Header>
 
                     <ul
                         className={classes.ul}
                     >
-                        {_.map(section.items, (sectionItem) => {
-                            const path = sectionItem.path && `/${section.path}/${sectionItem.path}`;
-                            sectionItemKeyNum += 1;
-                            const key = `section--item-${sectionItemKeyNum}`;
+                        {_.map(levelOne.levelTwo, (levelTwo) => {
+                            levelTwoKeyNum += 1;
 
-                            return this.renderListItem(
-                                sectionItem,
-                                path,
-                                key,
-                            );
-                        })}
+                            if (!levelTwo.levelThree) {
+                                const path = levelTwo.path && `/${levelOne.path}/${levelTwo.path}`;
 
-                        {_.map(section.subSections, (subSection) => {
-                            sectionItemKeyNum += 1;
+                                return this.renderListItem(
+                                    levelTwo,
+                                    path,
+                                    levelTwoKeyNum,
+                                );
+                            }
 
                             return (
-                                <li key={`section_item-${sectionItemKeyNum}`}>
+                                <li key={`level_two-${levelTwoKeyNum}`}>
                                     <Header
                                         className={ClassNames(
                                             classes.header,
@@ -230,19 +228,19 @@ class CoreAppNavigation extends React.PureComponent {
                                         inverse
                                         size="small"
                                     >
-                                        {subSection.label}
+                                        {levelTwo.label}
                                     </Header>
 
                                     <ul
                                         className={classes.ul}
                                     >
-                                        {_.map(subSection.items, (subSectionItem) => {
-                                            subSectionItemKeyNum += 1;
-                                            const path = subSectionItem.path && `/${section.path}/${subSection.path}/${subSectionItem.path}`;
-                                            const key = `sub_section--item-${subSectionItemKeyNum}`;
+                                        {_.map(levelTwo.levelThree, (levelThree) => {
+                                            levelThreeKeyNum += 1;
+                                            const path = levelThree.path && `/${levelOne.path}/${levelTwo.path}/${levelThree.path}`;
+                                            const key = `sub_section--item-${levelThreeKeyNum}`;
 
                                             return this.renderListItem(
-                                                subSectionItem,
+                                                levelThree,
                                                 path,
                                                 key,
                                             );
@@ -332,7 +330,7 @@ class CoreAppNavigation extends React.PureComponent {
                             <div className={`text-xsmall text-semibold text-italics ${classes.packageVersion}`}>{`v${version}`}</div>
                         </div>
 
-                        {this.listJSX}
+                        {this.renderLevelOneJsx}
                     </div>
                 </ScrollBar>
             </nav>
