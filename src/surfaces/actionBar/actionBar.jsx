@@ -43,13 +43,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-    children: undefined,
+    children: null,
     classes: null,
-    className: undefined,
+    className: null,
     columns: [],
-    id: undefined,
+    id: null,
     justifyContent: 'flex-start',
-    moduleType: undefined,
+    moduleType: null,
     style: {},
     toggleSmSearchVisibleClassName: null,
 };
@@ -193,7 +193,7 @@ const styles = (theme) => {
             },
             '&$drawer': {
                 backgroundColor: theme.palette.background.primary,
-                padding: [[8, theme.spacing(1)]],
+                padding: [[2.5, theme.spacing(1)]],
                 zIndex: theme.zIndex.drawer,
                 [theme.breakpoints.up('md')]: {
                     height: theme.height.actionBar.md,
@@ -203,7 +203,7 @@ const styles = (theme) => {
                 backgroundColor: theme.palette.background.light,
                 borderTop: `1px solid ${theme.palette.border.primary}`,
                 minHeight: 50,
-                padding: [[8, theme.spacing(1)]],
+                padding: [[2.5, theme.spacing(1)]],
                 top: actionsButtonDrawerOptionHeight,
                 width: 'auto',
                 zIndex: 3,
@@ -375,7 +375,7 @@ class ActionBar extends React.Component {
             const { toggleSmSearchVisibleClassName } = this.props;
             const { isMobileSearchVisible } = this.state;
 
-            if (isMobileSearchVisible) {
+            if (isMobileSearchVisible && this.actionBarSearchRef) {
                 const actionBarSearchNode = this.actionBarSearchRef.current.rootRef.current;
 
                 actionBarSearchNode.querySelector('input').focus();
@@ -432,7 +432,6 @@ class ActionBar extends React.Component {
                                 spacing={1}
                             >
                                 <ActionBarGridColumns
-                                    actionBarRef={this.actionBarRef}
                                     columns={columns}
                                     isMobileSearchVisible={isMobileSearchVisible}
                                     onMobileSearchIconToggle={this.onMobileSearchIconToggle}

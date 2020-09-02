@@ -9,11 +9,10 @@ import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';
 import withWidth from '../../utils/withWidth';
+import actionBar from './actionBar';
 
 const propTypes = {
-    actionBarRef: PropTypes.shape({
-        current: PropTypes.node,
-    }).isRequired,
+    actionBarNode: PropTypes.node,
     className: PropTypes.string,
     drawerContainer: PropTypes.shape({}),
     header: PropTypes.string.isRequired,
@@ -26,6 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    actionBarNode: null,
     className: undefined,
     drawerContainer: null,
     iconBackgroundColor: 'alternate',
@@ -53,14 +53,6 @@ class ActionBarActionsButton extends React.PureComponent {
         this.onPromptNoClick = this.onPromptNoClick.bind(this);
         this.onPromptRequested = this.onPromptRequested.bind(this);
         this.onPromptYesClick = this.onPromptYesClick.bind(this);
-    }
-
-    componentDidMount() {
-        // Needs to wait for a bit for the ActionBar styling to finish rendering.
-        setTimeout(() => {
-            // Helps aid in retrieving the actionBarRef.
-            this.forceUpdate();
-        }, 100);
     }
 
     componentDidUpdate() {
@@ -124,12 +116,13 @@ class ActionBarActionsButton extends React.PureComponent {
 
     setActionBarBottomPosY() {
         const {
-            actionBarRef,
+            actionBarNode,
         } = this.props;
 
-        if (actionBarRef.current) {
+        if (actionBarNode) {
             const actionBarHeight = actionBarRef.current.offsetHeight;
-            const actionBarPosY = actionBarRef.current.getBoundingClientRect().y;
+            const actionBarHeight = actionBarNode.offsetHeight;
+            const actionBarPosY = actionBarNode.getBoundingClientRect().y;
 
             return actionBarPosY + actionBarHeight;
         }
@@ -139,7 +132,7 @@ class ActionBarActionsButton extends React.PureComponent {
 
     render() {
         const {
-            actionBarRef,
+            actionBarNode,
             className,
             drawerContainer,
             header,
@@ -155,7 +148,7 @@ class ActionBarActionsButton extends React.PureComponent {
             actionBarBottomPosY,
         } = this.state;
 
-        if (!actionBarRef?.current || !actionBarBottomPosY) {
+        if (!actionBarNode || !actionBarBottomPosY) {
             return null;
         }
 

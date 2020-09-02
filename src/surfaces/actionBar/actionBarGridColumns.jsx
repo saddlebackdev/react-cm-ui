@@ -1,9 +1,9 @@
 import {
-    map, divide,
+    map,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
 import ActionBarActionsButton from './actionBarActionsButton';
 import ActionBarSearch from './actionBarSearch';
@@ -12,9 +12,9 @@ import DropdownButton from '../../inputs/dropdownButton';
 import Grid from '../../layout/grid';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
+import { useEffect } from 'react';
 
 const propTypes = {
-    actionBarRef: PropTypes.shape({}),
     columns: COLUMNS_PROP_TYPES,
     moduleType: PropTypes.oneOf(['drawer', 'page']),
     isMobileSearchVisible: PropTypes.bool,
@@ -22,16 +22,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-    actionBarRef: null,
     columns: [],
     isMobileSearchVisible: false,
     moduleType: null,
 };
 
 const useStyles = makeStyles((theme) => ({
-    gridColumnInnerContainer: {
-        // display
-    },
     iconButtons: {},
     isIconButtonColumn: {},
     isDivided: {},
@@ -71,14 +67,22 @@ const useStyles = makeStyles((theme) => ({
 
 function ActionBarGridColumn(props) {
     const {
-        actionBarRef,
         columns,
         isMobileSearchVisible,
         moduleType,
         onMobileSearchIconToggle,
     } = props;
 
+    const [actionBarNode, setActionBarNode] = useState(null);
+
+    const rootRef = useRef();
     const classes = useStyles();
+
+    useEffect(() => {
+        setTimeout(() => {
+            setActionBarNode(rootRef.current.closest('.ui.action_bar'));
+        }, 100);
+    }, []);
 
     let gridColumnKeyNum = 1;
 
@@ -148,6 +152,7 @@ function ActionBarGridColumn(props) {
                 key={gridColumnKey}
                 lg={column.lg}
                 md={column.md}
+                ref={rootRef}
                 sm={column.sm}
                 xl={column.xl}
             >
@@ -159,7 +164,7 @@ function ActionBarGridColumn(props) {
                 >
                     {actionsButton && (
                         <ActionBarActionsButton
-                            actionBarRef={actionBarRef}
+                            actionBarNode={actionBarNode}
                             className={actionsButton.className}
                             drawerContainer={actionsButton.drawerContainer}
                             iconBackgroundColor={actionsButton.iconBackgroundColor}
