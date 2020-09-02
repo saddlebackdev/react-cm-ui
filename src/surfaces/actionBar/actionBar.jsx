@@ -42,7 +42,6 @@ const propTypes = {
         'space-evenly',
     ]),
     moduleType: PropTypes.oneOf(['drawer', 'page']),
-    style: PropTypes.shape({}),
     toggleSmSearchVisibleClassName: PropTypes.func,
 };
 
@@ -54,7 +53,6 @@ const defaultProps = {
     id: null,
     justifyContent: 'flex-start',
     moduleType: null,
-    style: {},
     toggleSmSearchVisibleClassName: null,
 };
 
@@ -401,12 +399,11 @@ class ActionBar extends React.Component {
             id,
             justifyContent,
             moduleType,
-            style,
         } = this.props;
 
         const { isMobileSearchVisible } = this.state;
 
-        const containerClasses = ClassNames(
+        const rootClasses = ClassNames(
             UI_CLASS_NAME,
             BEM_ACTION_BAR,
             classes.root,
@@ -414,6 +411,7 @@ class ActionBar extends React.Component {
             {
                 [classes.drawer]: moduleType === 'drawer',
                 [classes.page]: !moduleType || moduleType === 'page',
+                [`${BEM_ACTION_BAR}-mobile_search_is_visible`]: isMobileSearchVisible,
             },
         );
 
@@ -421,10 +419,9 @@ class ActionBar extends React.Component {
 
         return (
             <header
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 ref={this.actionBarRef}
-                style={style}
             >
                 <div style={{ width: '100%' }}>
                     {columns && (
