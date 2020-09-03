@@ -22,14 +22,23 @@ const propTypes = {
      * The content of the ActionBar
      */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to ActionBar.
+     */
     classes: PropTypes.shape({
         drawer: PropTypes.string,
         grid: PropTypes.string,
         page: PropTypes.string,
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to ActionBar.
+     */
     className: PropTypes.string,
     columns: COLUMNS_PROP_TYPES,
+    /**
+     * The `id` of the ActionBar.
+     */
     id: PropTypes.string,
     /**
      * Defines the `justify-content` style property.
@@ -398,7 +407,7 @@ class ActionBar extends React.Component {
             const { toggleSmSearchVisibleClassName } = this.props;
             const { isMobileSearchVisible } = this.state;
 
-            if (isMobileSearchVisible && this.actionBarSearchRef) {
+            if (isMobileSearchVisible && this.actionBarSearchRef?.current?.rootRef?.current) {
                 const actionBarSearchNode = this.actionBarSearchRef.current.rootRef.current;
 
                 actionBarSearchNode.querySelector('input').focus();
