@@ -72,7 +72,6 @@ class Icon extends React.PureComponent {
     }
 
     onClick(event) {
-        console.log('onClick');
         const { disable, onClick } = this.props;
 
         if (isFunction(onClick) && !disable) {
@@ -81,7 +80,6 @@ class Icon extends React.PureComponent {
     }
 
     onKeyDown(event) {
-        console.log('onKeyDown');
         const {
             disable,
             onKeyDown,
