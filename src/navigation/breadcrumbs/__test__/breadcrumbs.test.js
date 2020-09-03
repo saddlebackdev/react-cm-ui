@@ -30,7 +30,7 @@ describe('<Breadcrumbs />', () => {
     it('renders all the breadcrumbs for a location pathname', () => {
         wrapper = shallow(<Breadcrumbs {...componentProps} />);
         const breadcrumbs = wrapper.find('li');
-        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to_typography');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_title_typography');
         expect(breadcrumbs.length).toBe(5);
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Home');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('My Section');
@@ -48,7 +48,7 @@ describe('<Breadcrumbs />', () => {
         wrapper = shallow(<Breadcrumbs {...testCaseProps} />);
         const breadcrumbs = wrapper.find('li');
         expect(breadcrumbs.length).toBe(2);
-        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_to_typography');
+        const breadcrumbsLabels = wrapper.find('.navigation_breadcrumbs--breadcrumb_title_typography');
         expect(breadcrumbsLabels.at(0).prop('children')).toBe('Some Status');
         expect(breadcrumbsLabels.at(1).prop('children')).toBe('Cool Stuff');
     });

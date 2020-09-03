@@ -18,7 +18,7 @@ import SectionalTabPanel from './sectionalTabPanel';
 import withStyles from '../../styles/withStyles';
 import DropdownButton from '../../inputs/dropdownButton';
 import {
-    BEM_NAVIGATION_TABS,
+    BEM_NAVIGATION_SECTIONAL_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
 
@@ -479,7 +479,7 @@ class Tabs extends Component {
             case 'panel':
                 return Classnames(
                     classes.sectionalTabsPanelContent,
-                    `${BEM_NAVIGATION_TABS}--panel-content`,
+                    `${BEM_NAVIGATION_SECTIONAL_TABS}--panel-content`,
                     className,
                 );
             default:
@@ -531,11 +531,11 @@ class Tabs extends Component {
         const selectedTabKey = this.getSelectedTabKey();
         const containerClasses = Classnames(
             classes.root,
-            `${BEM_NAVIGATION_TABS}--container`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
         );
         const tabsClasses = Classnames(
             classes.sectionalTabsPanel,
-            `${BEM_NAVIGATION_TABS}--panel`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
         );
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton

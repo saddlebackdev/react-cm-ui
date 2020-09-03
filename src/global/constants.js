@@ -6,8 +6,8 @@ export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_EMAIL_LINK = 'email_link';
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
-export const BEM_NAVIGATION_TABS = 'navigation_tabs';
-export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
+export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
+export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
 export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';
 export const BEM_PERSON_PANEL = 'person_panel';

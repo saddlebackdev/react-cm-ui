@@ -76,7 +76,7 @@ class Tab extends Component {
             `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
             {
                 [classes.sectionalTabLabelSelected]: selected,
-                [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label-selected`]: selected,
+                [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
             },
         );
 

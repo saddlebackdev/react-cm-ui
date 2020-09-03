@@ -37,7 +37,7 @@ describe('<Tab />', () => {
         };
         wrapper = shallow(<SectionalTab {...testCaseProps} />);
         const tabClasses = wrapper.find('WithStyles(ForwardRef(Typography))').prop('className');
-        const doesIncludeSelectedClass = tabClasses.includes('navigation-tabs--tab-label-selected');
+        const doesIncludeSelectedClass = tabClasses.includes('navigation_sectional_tabs--tab-label_selected');
         expect(doesIncludeSelectedClass).toBe(true);
     });
 });
