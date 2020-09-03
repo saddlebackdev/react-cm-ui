@@ -2,6 +2,11 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import makeStyles from '../../styles/makeStyles';
+import {
+    BEM_ACTION_BAR_SEARCH_VISIBLE,
+    BEM_CONTAINER,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 
 const propTypes = {
     children: PropTypes.node,
@@ -33,7 +38,7 @@ const useStyles = makeStyles((theme) => {
             marginTop: 50,
             [breakpoints.down('md')]: {
                 transition: 'margin-top 333ms ease-in-out',
-                '&.page--container-has_action_bar_mobile_search_visible': {
+                [`&.${BEM_ACTION_BAR_SEARCH_VISIBLE}`]: {
                     marginTop: 105,
                 },
             },
@@ -55,8 +60,8 @@ function Container(props) {
     const classes = useStyles(props);
 
     const rootClasses = ClassNames(
-        'ui',
-        'page--container',
+        UI_CLASS_NAME,
+        BEM_CONTAINER,
         classes.root,
         className,
         {

@@ -5,6 +5,14 @@ export const UI_CLASS_NAME = 'cmui';
 export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_ACTION_BAR = 'action_bar';
+export const BEM_ACTION_BAR_GRID_COLUMN = 'action_bar--grid_column';
+export const BEM_ACTION_BAR_SEARCH = 'action_bar--search';
+
+export const BEM_CONTAINER = 'container';
+export const BEM_ACTION_BAR_SEARCH_VISIBLE = `${BEM_CONTAINER}-action_bar_search_visible`;
+
+
+export const BEM_CONTENT = 'content';
 
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;

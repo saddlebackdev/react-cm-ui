@@ -40,7 +40,7 @@ const defaultProps = {
     className: undefined,
     drawerContainer: null,
     iconBackgroundColor: 'alternate',
-    iconBackgroundHighlightColor: 'highlight',
+    iconBackgroundHighlightColor: 'primary',
     iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,

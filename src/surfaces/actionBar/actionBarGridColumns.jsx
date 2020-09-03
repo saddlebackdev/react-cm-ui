@@ -4,6 +4,11 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import {
+    UI_CLASS_NAME,
+    BEM_ACTION_BAR,
+    BEM_ACTION_BAR_GRID_COLUMN,
+} from '../../global/constants';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
 // eslint-disable-next-line import/no-cycle
 import ActionBarActionsButton from './actionBarActionsButton';
@@ -83,7 +88,7 @@ function ActionBarGridColumn(props) {
 
     useEffect(() => {
         setTimeout(() => {
-            setActionBarNode(rootRef.current.closest('.ui.action_bar'));
+            setActionBarNode(rootRef.current.closest(`.${UI_CLASS_NAME}.${BEM_ACTION_BAR}`));
         }, 100);
     }, []);
 
@@ -112,7 +117,7 @@ function ActionBarGridColumn(props) {
             iconTable;
 
         const rootClasses = ClassNames(
-            'action_bar--grid_column',
+            BEM_ACTION_BAR_GRID_COLUMN,
             column.className,
             classes.root,
             {
@@ -123,7 +128,7 @@ function ActionBarGridColumn(props) {
         );
 
         // eslint-disable-next-line no-plusplus
-        const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`;
+        const gridColumnKey = `${BEM_ACTION_BAR_GRID_COLUMN}-${gridColumnKeyNum++}`;
 
         if (
             !actionsButton &&
@@ -231,7 +236,7 @@ function ActionBarGridColumn(props) {
                                         className={option.className}
                                         disabled={!!option.disabled}
                                         id={option.id}
-                                        key={`action_bar_dropdown_button_option-${dropdownButtonOptionKeyNum}`}
+                                        key={`${BEM_ACTION_BAR}_dropdown_button_option-${dropdownButtonOptionKeyNum}`}
                                         label={option.label}
                                         onClick={option.onClick}
                                         onKeyDown={option.onKeyDown}
@@ -294,7 +299,7 @@ function ActionBarGridColumn(props) {
                     {iconSearch && (
                         <Icon
                             className={ClassNames(
-                                'action_bar--search_icon',
+                                `${BEM_ACTION_BAR}--search_icon`,
                                 classes.iconButtons,
                             )}
                             color={

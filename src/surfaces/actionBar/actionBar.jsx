@@ -8,6 +8,8 @@ import React from 'react';
 import {
     UI_CLASS_NAME,
     BEM_ACTION_BAR,
+    BEM_ACTION_BAR_SEARCH_VISIBLE,
+    BEM_CONTAINER,
 } from '../../global/constants';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
 import ActionBarGridColumns from './actionBarGridColumns';
@@ -371,6 +373,24 @@ class ActionBar extends React.Component {
         this.onMobileSearchIconToggle = this.onMobileSearchIconToggle.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const {
+            isMobileSearchVisible: prevIsMobileSearchVisible,
+        } = prevState;
+
+        const {
+            isMobileSearchVisible,
+        } = this.state;
+
+        if (prevIsMobileSearchVisible !== isMobileSearchVisible) {
+            this.toggleContainerSearchVisibleClass();
+        }
+    }
+
+    componentWillUnmount() {
+        this.toggleContainerSearchVisibleClass();
+    }
+
     onMobileSearchIconToggle() {
         this.setState((prevState) => ({
             isMobileSearchVisible: !prevState.isMobileSearchVisible,
@@ -388,6 +408,24 @@ class ActionBar extends React.Component {
                 toggleSmSearchVisibleClassName(isMobileSearchVisible);
             }
         });
+    }
+
+    toggleContainerSearchVisibleClass() {
+        if (this.actionBarRef) {
+            const actionBarNode = this.actionBarRef.current;
+            const containerNode = actionBarNode.parentElement.querySelector(
+                `.${UI_CLASS_NAME}.${BEM_CONTAINER}`,
+            );
+
+            if (containerNode && containerNode.classList.contains(BEM_ACTION_BAR_SEARCH_VISIBLE)) {
+                containerNode.classList.remove(BEM_ACTION_BAR_SEARCH_VISIBLE);
+            } else if (
+                containerNode &&
+                !containerNode.classList.contains(BEM_ACTION_BAR_SEARCH_VISIBLE)
+            ) {
+                containerNode.classList.add(BEM_ACTION_BAR_SEARCH_VISIBLE);
+            }
+        }
     }
 
     render() {

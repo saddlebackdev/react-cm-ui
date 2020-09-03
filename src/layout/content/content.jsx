@@ -1,6 +1,10 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+    BEM_CONTENT,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 import Utils from '../../utils/utils';
 
@@ -71,16 +75,15 @@ function Content(props) {
     const classes = useStyles(props);
     const winWidth = window.innerWidth;
     const isMobile = winWidth <= 767;
-    const bemName = 'content';
 
     const rootClasses = ClassNames(
-        'ui',
+        UI_CLASS_NAME,
+        BEM_CONTENT,
         classes.root,
-        bemName,
         className,
         {
-            [`${bemName}-filters_rail_open`]: !isMobile && isFiltersRailOpen,
-            [`${bemName}-scrollable`]: scrollable,
+            [`${BEM_CONTENT}-filters_rail_open`]: !isMobile && isFiltersRailOpen,
+            [`${BEM_CONTENT}-scrollable`]: scrollable,
         },
     );
 

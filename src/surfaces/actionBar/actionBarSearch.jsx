@@ -4,7 +4,10 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
+import {
+    BEM_ACTION_BAR_SEARCH,
+    ENTER_KEY_CODE,
+} from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import Input from '../../inputs/input';
 import withStyles from '../../styles/withStyles';
@@ -160,11 +163,11 @@ class ActionBarSearch extends React.PureComponent {
         } = this.props;
 
         const rootClasses = ClassNames(
-            'action_bar--search',
+            BEM_ACTION_BAR_SEARCH,
             classes.root,
             {
-                'action_bar--search-mobile': isMobileSearch,
-                'action_bar--search-mobile-show': isMobileSearch && isMobileSearchVisible,
+                [`${BEM_ACTION_BAR_SEARCH}-mobile`]: isMobileSearch,
+                [`${BEM_ACTION_BAR_SEARCH}-mobile-show`]: isMobileSearch && isMobileSearchVisible,
             },
         );
 
@@ -190,7 +193,7 @@ class ActionBarSearch extends React.PureComponent {
 
                 <Input
                     className={ClassNames(
-                        'action_bar--search_input',
+                        `${BEM_ACTION_BAR_SEARCH}_input`,
                         classes.input,
                         {
                             [classes.isMdBreakpoint]: !isMobileSearch,
