@@ -33,16 +33,16 @@ const defaultProps = {
     getParentContainer: undefined,
 };
 const useStyles = makeStyles((theme) => {
-    const backgroundColorPrimary = get(theme, 'palette.background.primary');
     const backgroundColorInverse = get(theme, 'palette.grey[500]');
+    const backgroundColorPrimary = get(theme, 'palette.background.primary');
+    const borderColorPrimary = get(theme, 'palette.border.primary');
     const borderRadiusMain = get(theme, 'shape.borderRadius.main');
-    const colorPrimary = get(theme, 'palette.primary.main');
     const colorHighlight = get(theme, 'palette.cyan[500]');
+    const colorPrimary = get(theme, 'palette.primary.main');
     const colorStatic = get(theme, 'palette.text.secondary');
     const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
-    const textColorPrimary = get(theme, 'palette.text.primary');
     const textColorConstrast = get(theme, 'palette.text.contrastText');
-    const borderColorPrimary = get(theme, 'palette.border.primary');
+    const textColorPrimary = get(theme, 'palette.text.primary');
     const pxToRem = get(theme, 'typography.pxToRem', (px) => px);
 
     return {

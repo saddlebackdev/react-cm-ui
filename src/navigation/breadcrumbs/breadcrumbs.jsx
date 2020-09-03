@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => {
     const colorGrey500 = get(theme, 'palette.grey[500]');
     const colorHighlight = get(theme, 'palette.cyan[500]');
     const fontWeightBold = get(theme, 'typography.fontWeightBold');
+    const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
     const textColorPrimary = get(theme, 'palette.text.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const transitionDurationShortest = get(theme, 'transitions.duration.shortest');
@@ -70,27 +71,34 @@ const useStyles = makeStyles((theme) => {
             display: 'inline',
             padding: ({ showOnlyPreviousRoute }) => (showOnlyPreviousRoute ? '0 5px 0 0' : '0 5px 0 0'),
             transition: `color ${transitionDurationShortest}ms`,
+            '& .navigation_breadcrumbs--breadcrumb_title > p': {
+                fontWeight: fontWeightMedium,
+                fontSize: 12,
+                color: textColorSecondary,
+            },
             '& .icon-use-path': {
                 transition: `fill ${transitionDurationShortest}ms !important`,
-            },
-            '& h4': {
-                transition: `color ${transitionDurationShortest}ms`,
             },
             '&:hover': {
                 '& .icon-use-path': {
                     fill: colorHighlight,
                 },
-                '& h4:not(.breadcrumbSeparator)': {
+                '& .navigation_breadcrumbs--breadcrumb_title > p': {
                     color: colorHighlight,
                 },
             },
         },
         breadcrumbLast: {
-            fontWeight: fontWeightBold,
-            color: textColorPrimary,
-            '& h4': {
-                color: textColorSecondary,
+            '& .navigation_breadcrumbs--breadcrumb_title > p': {
+                fontWeight: fontWeightBold,
+                fontSize: 16,
+                color: textColorPrimary,
             },
+            '&:hover': {
+                '& .navigation_breadcrumbs--breadcrumb_title > p': {
+                    color: textColorPrimary,
+                },
+            }
         },
         breadCrumbSeparator: {
             display: 'inline',
@@ -105,9 +113,6 @@ const useStyles = makeStyles((theme) => {
         breadcrumbTitle: {
             display: 'inline',
             transition: `color ${transitionDurationShortest}ms`,
-            '&:hover :not(h3)': {
-                color: colorHighlight,
-            },
         },
         breadcrumbTitleTypography: {
             display: 'inline',
@@ -226,7 +231,7 @@ function Breadcrumbs(props) {
 
                         let breadcrumbTo = (
                             <Typography
-                                variant={isLast ? 'h3' : 'h4'}
+                                variant="body1"
                                 className={breadcrumbTitleTypographyClasses}
                             >
                                 {parsedTitle}
