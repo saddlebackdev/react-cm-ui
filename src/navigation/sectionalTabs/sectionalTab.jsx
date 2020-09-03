@@ -12,6 +12,10 @@ import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
 const propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     classNames: PropTypes.string.isRequired,
+    classes: PropTypes.shape({
+        sectionalTabLabel: PropTypes.string,
+        sectionalTabLabelSelected: PropTypes.string,
+    }),
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
@@ -20,6 +24,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    classes: {},
     children: undefined,
     onChange: undefined,
     onClick: undefined,
@@ -62,12 +67,17 @@ class Tab extends Component {
     renderTab() {
         const {
             children,
+            classes,
             selected,
         } = this.props;
 
         const tabLabelClassNames = Classnames(
+            classes.sectionalTabLabel,
             `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
-            { [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label-selected`]: selected },
+            {
+                [classes.sectionalTabLabelSelected]: selected,
+                [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label-selected`]: selected,
+            },
         );
 
         return (

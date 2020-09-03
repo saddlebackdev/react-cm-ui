@@ -34,6 +34,7 @@ function TabsExample(props) {
     } = props;
 
     const {
+        description,
         displayName,
     } = rootDoc;
 
@@ -45,9 +46,17 @@ function TabsExample(props) {
             <Main.Content>
 
                 <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {description}
+                    </Typography>
+
                     <Heading anchorLink="children" variant="h2">
                         Simple Sectional Tabs panel
                     </Heading>
+
                     <Typography variant="body1">
                         A simple Sectional Tabs panel.
                     </Typography>

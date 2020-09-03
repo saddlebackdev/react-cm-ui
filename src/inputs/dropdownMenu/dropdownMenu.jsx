@@ -1,10 +1,20 @@
-import _ from 'lodash';
+import {
+    debounce,
+    get,
+    isFunction,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import domUtils from '../../utils/domUtils';
-import { BEM_BLOCK_NAME, OPTION_INNER_CLASS_NAME } from './dropdownMenuConstants';
+import {
+    BEM_BLOCK_NAME,
+    OPTION_INNER_CLASS_NAME,
+    OPTIONS_THEME_LIGHT,
+} from './dropdownMenuConstants';
+
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -22,7 +32,97 @@ const defaultProps = {
     style: undefined,
     getParentContainer: undefined,
 };
+const useStyles = makeStyles((theme) => {
+    const backgroundColorPrimary = get(theme, 'palette.background.primary');
+    const backgroundColorInverse = get(theme, 'palette.grey[500]');
+    const borderRadiusMain = get(theme, 'shape.borderRadius.main');
+    const colorPrimary = get(theme, 'palette.primary.main');
+    const colorHighlight = get(theme, 'palette.cyan[500]');
+    const colorStatic = get(theme, 'palette.text.secondary');
+    const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
+    const textColorPrimary = get(theme, 'palette.text.primary');
+    const textColorConstrast = get(theme, 'palette.text.contrastText');
+    const borderColorPrimary = get(theme, 'palette.border.primary');
+    const pxToRem = get(theme, 'typography.pxToRem', (px) => px);
 
+    return {
+        root: {
+            backgroundColor: ({ optionsTheme }) => (optionsTheme === OPTIONS_THEME_LIGHT ?
+                backgroundColorPrimary :
+                backgroundColorInverse
+            ),
+            borderRadius: borderRadiusMain,
+            border: ({ optionsTheme }) => (optionsTheme === OPTIONS_THEME_LIGHT ?
+                `1px solid ${borderColorPrimary}` :
+                0
+            ),
+            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.43)',
+            boxSizing: 'border-box',
+            margin: '5px 0',
+            padding: 0,
+            position: 'absolute',
+            transform: 'opacity 300ms ease-in',
+            zIndex: '1000',
+            '& .dropdown_menu': {
+                '&--option': {
+                    color: ({ optionsTheme }) => (optionsTheme === OPTIONS_THEME_LIGHT ?
+                        textColorPrimary :
+                        textColorConstrast
+                    ),
+                    fontSize: pxToRem(14),
+                    fontWeight: fontWeightMedium,
+                    outline: 'none',
+                    padding: `${pxToRem(4)} 0`,
+                    textAlign: 'left',
+                    '&:first-child': {
+                        paddingTop: pxToRem(11),
+                    },
+                    '&:last-child': {
+                        paddingBottom: pxToRem(11),
+                    },
+                    '&_inner': {
+                        alignItems: 'center',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        padding: `${pxToRem(7)} ${pxToRem(22)}`,
+                        transition: 'background-color 150ms ease-out, color 150ms ease-out',
+                        whiteSpace: 'nowrap',
+                        '&:hover': {
+                            backgroundColor: ({ optionsTheme }) => (
+                                optionsTheme === OPTIONS_THEME_LIGHT ?
+                                    colorHighlight :
+                                    backgroundColorPrimary
+                            ),
+                            color: ({ optionsTheme }) => (optionsTheme === OPTIONS_THEME_LIGHT ?
+                                textColorConstrast :
+                                textColorPrimary
+                            ),
+                            '& .ui.icon-color-primary.icon-inverse': {
+                                '& .icon-use-path': {
+                                    fill: colorPrimary,
+                                },
+                            },
+                        },
+                    },
+                    '&-disable': {
+                        color: `${colorStatic} !important`,
+                        cursor: 'default',
+                        pointerEvents: 'none',
+                    },
+                },
+            },
+        },
+        dropdownMenuClosed: {
+            opacity: 0,
+            visibility: 'hidden',
+        },
+        dropdownMenuOpen: {
+            opacity: 1,
+            visibility: 'visible',
+        },
+    };
+});
 function DropdownMenu(props) {
     const {
         children,
@@ -33,6 +133,7 @@ function DropdownMenu(props) {
         onToggleOpen,
         style,
     } = props;
+
     const dropdownMenuRef = useRef(null);
     const [menuPositionStyle, setMenuPositionStyle] = useState({
         bottom: null,
@@ -41,10 +142,12 @@ function DropdownMenu(props) {
         top: '100%',
     });
 
-    function onDropdownMenuReposition() {
-        let parentContainer = dropdownMenuRef.current.parentElement;
+    const classes = useStyles(props);
 
-        if (_.isFunction(getParentContainer)) {
+    function onDropdownMenuReposition() {
+        let parentContainer = get(dropdownMenuRef, 'current.parentElement');
+
+        if (isFunction(getParentContainer)) {
             // eslint-disable-next-line react/no-find-dom-node
             parentContainer = ReactDOM.findDOMNode(getParentContainer());
         }
@@ -79,7 +182,7 @@ function DropdownMenu(props) {
         }));
     }
 
-    const debounceDropdownMenuReposition = _.debounce(() => onDropdownMenuReposition(), 100);
+    const debounceDropdownMenuReposition = debounce(() => onDropdownMenuReposition(), 100);
 
     useEffect(() => {
         function onClickOutside(event) {
@@ -114,7 +217,9 @@ function DropdownMenu(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
-    const containerClasses = ClassNames('ui', BEM_BLOCK_NAME, className, {
+    const containerClasses = ClassNames('ui', BEM_BLOCK_NAME, className, classes.root, {
+        [classes.dropdownMenuClosed]: !isOpen,
+        [classes.dropdownMenuOpen]: isOpen,
         [`${BEM_BLOCK_NAME}-closed`]: !isOpen,
         [`${BEM_BLOCK_NAME}-opened`]: isOpen,
     });

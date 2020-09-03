@@ -51,77 +51,66 @@ const useStyles = makeStyles((theme) => {
         root: {
             overflow: 'hidden',
             width: '100%',
-            [`& .${BEM_NAVIGATION_BREADCRUMBS}--list`]: {
-                overflow: 'hidden',
-                padding: 0,
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                margin: '-3px 0 -3px 0',
-                [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`]: {
-                    color: textColorSecondary,
-                    cursor: 'pointer',
-                    display: 'inline',
-                    padding: ({ showOnlyPreviousRoute }) => (showOnlyPreviousRoute ? '0 5px 0 0' : '0 5px 0 0'),
-                    transition: `color ${transitionDurationShortest}ms`,
-                    '& .icon-use-path': {
-                        transition: `fill ${transitionDurationShortest}ms !important`,
-                    },
-                    [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`]: {
-                        display: 'inline',
-                        padding: '0 5px 0 0',
-                        '&_typography': {
-                            display: 'inline',
-                        },
-                        '& .icon': {
-                            marginRight: 5,
-                        },
-                    },
-                    [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`]: {
-                        display: 'inline',
-                        transition: `color ${transitionDurationShortest}ms`,
-                        '&_typography': {
-                            display: 'inline',
-                        },
-                    },
-                    '&:hover': {
-                        '& .icon-use-path': {
-                            fill: colorHighlight,
-                        },
-                        [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`]: {
-                            color: colorHighlight,
-                        },
-                    },
-                    '&_is_last': {
-                        [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`]: {
-                            fontWeight: fontWeightBold,
-                            color: textColorPrimary,
-                            '&:hover': {
-                                color: `${textColorPrimary} !important`,
-                                cursor: 'auto',
-                            },
-                        },
-                        '&:hover': {
-                            color: `${textColorSecondary} !important`,
-                            cursor: 'auto',
-                            [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`]: {
-                                color: `${textColorPrimary} !important`,
-                                cursor: 'auto',
-                            },
-                        },
-                    },
-                    [`& .${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_typography`]: {
-                        display: 'inline',
-                        '& > div': {
-                            display: 'inline',
-                        },
-                    },
-                },
-            },
         },
         tooltip: {
             backgroundColor: colorGrey500,
             borderRadius: borderRadiusMain,
             fontSize: 12,
+        },
+        breadcrumbsList: {
+            overflow: 'hidden',
+            padding: 0,
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            margin: '-3px 0 -3px 0',
+        },
+        breadcrumb: {
+            color: textColorSecondary,
+            cursor: 'pointer',
+            display: 'inline',
+            padding: ({ showOnlyPreviousRoute }) => (showOnlyPreviousRoute ? '0 5px 0 0' : '0 5px 0 0'),
+            transition: `color ${transitionDurationShortest}ms`,
+            '& .icon-use-path': {
+                transition: `fill ${transitionDurationShortest}ms !important`,
+            },
+            '& h4': {
+                transition: `color ${transitionDurationShortest}ms`,
+            },
+            '&:hover': {
+                '& .icon-use-path': {
+                    fill: colorHighlight,
+                },
+                '& h4:not(.breadcrumbSeparator)': {
+                    color: colorHighlight,
+                },
+            },
+        },
+        breadcrumbLast: {
+            fontWeight: fontWeightBold,
+            color: textColorPrimary,
+            '& h4': {
+                color: textColorSecondary,
+            },
+        },
+        breadCrumbSeparator: {
+            display: 'inline',
+            padding: '0 5px 0 0',
+            '& .icon': {
+                marginRight: 5,
+            },
+        },
+        breadCrumbSeparatorTypography: {
+            display: 'inline',
+        },
+        breadcrumbTitle: {
+            display: 'inline',
+            transition: `color ${transitionDurationShortest}ms`,
+            '&:hover :not(h3)': {
+                color: colorHighlight,
+            },
+        },
+        breadcrumbTitleTypography: {
+            display: 'inline',
         },
     };
 });
@@ -177,9 +166,31 @@ function Breadcrumbs(props) {
         prevPathName.current = pathName;
     }); // didUpdate
 
+    const breadcrumbsListClasses = Classnames(
+        `${BEM_NAVIGATION_BREADCRUMBS}--list`,
+        classes.breadcrumbsList,
+    );
+    const breadcrumbSeparatorClasses = Classnames(
+        classes.breadCrumbSeparator,
+        `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`,
+    );
+    const breadcrumbSeparatorTypographyClasses = Classnames(
+        classes.breadCrumbSeparatorTypography,
+        `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator_typography`,
+        'breadcrumbSeparator',
+    );
+    const breadcrumbTitleClasses = Classnames(
+        classes.breadcrumbTitle,
+        `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_title`,
+    );
+    const breadcrumbTitleTypographyClasses = Classnames(
+        classes.breadcrumbTitleTypography,
+        `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_title_typography`,
+    );
+
     return (
         <div className={classes.root}>
-            <ul className={`${BEM_NAVIGATION_BREADCRUMBS}--list`}>
+            <ul className={breadcrumbsListClasses}>
                 {pathBreadcrumbs
                     .filter((breadcrumb, index) => {
                         const shouldRenderBreadcrumb = !showOnlyPreviousRoute || (
@@ -205,7 +216,10 @@ function Breadcrumbs(props) {
                         const isFirst = index === 0;
                         const isLast = index === arr.length - 1;
                         const breadcrumbClasses = Classnames(
-                            `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`, {
+                            classes.breadcrumb,
+                            `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`,
+                            {
+                                [classes.breadcrumbLast]: isLast,
                                 [`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_is_last`]: isLast,
                             },
                         );
@@ -213,7 +227,7 @@ function Breadcrumbs(props) {
                         let breadcrumbTo = (
                             <Typography
                                 variant={isLast ? 'h3' : 'h4'}
-                                className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to_typography`}
+                                className={breadcrumbTitleTypographyClasses}
                             >
                                 {parsedTitle}
                             </Typography>
@@ -239,7 +253,7 @@ function Breadcrumbs(props) {
                                 onClick={!isLast && onBreadcrumbClick}
                                 role="presentation"
                             >
-                                <div className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`}>
+                                <div className={breadcrumbSeparatorClasses}>
                                     {isFirst ? (
                                         <Icon
                                             type={ICON_TYPE_FIRST_BREADCRUMB}
@@ -249,13 +263,13 @@ function Breadcrumbs(props) {
                                     ) : (
                                         <Typography
                                             variant="h4"
-                                            className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator_typography`}
+                                            className={breadcrumbSeparatorTypographyClasses}
                                         >
                                             {separatorString}
                                         </Typography>
                                     )}
                                 </div>
-                                <div className={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_to`}>
+                                <div className={breadcrumbTitleClasses}>
                                     {breadcrumbTo}
                                 </div>
                             </li>

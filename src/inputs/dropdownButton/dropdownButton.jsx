@@ -7,6 +7,7 @@ import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
+import { OPTIONS_THEME_DARK } from '../dropdownMenu/dropdownMenuConstants';
 
 const propTypes = {
     ...buttonPropTypes,
@@ -39,6 +40,7 @@ const defaultProps = {
     ...buttonDefaultProps,
     iconSize: 16,
     iconType: 'chevron-down',
+    optionsTheme: OPTIONS_THEME_DARK,
 };
 
 const useStyles = makeStyles({
@@ -67,6 +69,7 @@ function DropdownButton(props) {
         inverse,
         label,
         outlined,
+        optionsTheme,
         relax,
         style,
         target,
@@ -84,8 +87,9 @@ function DropdownButton(props) {
 
     const bemClassName = 'button_dropdown';
     const rootClasses = ClassNames(
-        'button_dropdown',
+        bemClassName,
         className,
+        { [`${bemClassName}-open`]: isMenuOpen },
     );
 
     return (
@@ -128,6 +132,7 @@ function DropdownButton(props) {
                 isOpen={isMenuOpen}
                 onToggleOpen={onMenuToggle}
                 getParentContainer={getParentContainer}
+                optionsTheme={optionsTheme}
             >
                 {children}
             </DropdownMenu>

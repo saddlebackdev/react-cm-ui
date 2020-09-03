@@ -16,7 +16,7 @@ import ResizeDetector from 'react-resize-detector';
 import SectionalTab from './sectionalTab';
 import SectionalTabPanel from './sectionalTabPanel';
 import withStyles from '../../styles/withStyles';
-import Dropdown from '../../inputs/dropdown';
+import DropdownButton from '../../inputs/dropdownButton';
 import {
     BEM_NAVIGATION_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
@@ -24,6 +24,7 @@ import {
 
 const PREFIX_TAB = 'tab-';
 const PANEL_PREFIX = 'panel-';
+const HIDDEN_TABS_ICON_WIDTH = 40;
 
 const propTypes = {
     /**
@@ -33,7 +34,12 @@ const propTypes = {
     /**
      * Custom classes to override the default styling
      */
-    classes: PropTypes.shape({}),
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        sectionalTab: PropTypes.string,
+        sectionalTabsPanel: PropTypes.string,
+        sectionalTabsPanelContent: PropTypes.string,
+    }),
     /**
      * onChange active tab callback
      */
@@ -65,7 +71,7 @@ const propTypes = {
 
 const defaultProps = {
     beforeChange: undefined,
-    classes: undefined,
+    classes: {},
     items: [],
     onChange: undefined,
     resizeThrottle: 100,
@@ -79,43 +85,52 @@ const useStyles = (theme) => {
     const colorActivePrimary = get(theme, 'palette.active.primary');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const textColorPrimary = get(theme, 'palette.text.primary');
+    const colorHighlight = get(theme, 'palette.cyan[500]');
+
     const styles = {
         root: {
-            [`& .${BEM_NAVIGATION_TABS}--container`]: {
-                position: 'relative',
-            },
-            [`& .${BEM_NAVIGATION_TABS}--panel`]: {
-                display: 'flex',
-                flexWrap: 'wrap',
-            },
-            [`& .${BEM_NAVIGATION_TABS}--panel-content`]: {
-                padding: '10px 0 10px 0',
-                borderTop: `1px solid ${borderColorSecondary}`,
-            },
-            [`& .${BEM_NAVIGATION_TAB_ROOT_CLASS}`]: {
-                cursor: 'pointer',
-                zIndex: 1,
-                whiteSpace: 'nowrap',
-                padding: '10px 20px 0 0',
-                outline: 'none',
-                '&-label': {
-                    fontSize: 14,
-                    color: textColorSecondary,
-                    paddingBottom: 10,
-                    transition: 'color 0.1s, border-bottom 0.1s',
-                    borderBottom: `2px solid ${borderColorContrastPrimary}`,
-                    '&:hover': {
-                        color: textColorPrimary,
-                    },
-                    '&-selected': {
-                        color: `${textColorPrimary} !important`,
-                        borderBottom: `2px solid ${colorActivePrimary}`,
+            position: 'relative',
+            '& .button_dropdown': {
+                margin: '0',
+                width: HIDDEN_TABS_ICON_WIDTH,
+                '& .icon': {
+                    marginRight: '00 !important',
+                },
+                '&-open': {
+                    '& .icon-use-path': {
+                        fill: `${colorHighlight} !important`,
                     },
                 },
-                '& .dropdown-menu': {
-                    margin: '-15px 0',
-                },
             },
+        },
+        sectionalTabsPanel: {
+            display: 'flex',
+            flexWrap: 'wrap',
+        },
+        sectionalTabsPanelContent: {
+            padding: '10px 0 10px 0',
+            borderTop: `1px solid ${borderColorSecondary}`,
+        },
+        sectionalTab: {
+            cursor: 'pointer',
+            zIndex: 1,
+            whiteSpace: 'nowrap',
+            padding: '10px 20px 0 0',
+            outline: 'none',
+        },
+        sectionalTabLabel: {
+            fontSize: 14,
+            color: textColorSecondary,
+            paddingBottom: 10,
+            transition: 'color 0.1s, border-bottom 0.1s',
+            borderBottom: `2px solid ${borderColorContrastPrimary}`,
+            '&:hover': {
+                color: textColorPrimary,
+            },
+        },
+        sectionalTabLabelSelected: {
+            color: `${textColorPrimary} !important`,
+            borderBottom: `2px solid ${colorActivePrimary}`,
         },
     };
 
@@ -130,7 +145,6 @@ class Tabs extends Component {
             blockWidth: 0,
             items: props.items || [],
             selectedTabKey: props.selectedTabKey,
-            showMoreWidth: 40,
             tabDimensions: {},
             tabsTotalWidth: 0,
         };
@@ -142,7 +156,6 @@ class Tabs extends Component {
         this.getTabs = this.getTabs.bind(this);
         this.getTabProps = this.getTabProps.bind(this);
         this.onChangeTab = this.onChangeTab.bind(this);
-        this.onChangeTabHidden = this.onChangeTabHidden.bind(this);
         this.onResize = this.onResize.bind(this);
         this.onResizeThrottled = throttle(this.onResize, props.resizeThrottle, { trailing: true });
         this.selectedTabKeyProp = props.selectedTabKey;
@@ -162,7 +175,6 @@ class Tabs extends Component {
         const {
             blockWidth,
             selectedTabKey,
-            showMoreWidth,
             tabsTotalWidth,
             tabsHidden,
             tabsVisible,
@@ -172,7 +184,6 @@ class Tabs extends Component {
             items !== nextProps.items ||
             nextState.tabsTotalWidth !== tabsTotalWidth ||
             nextState.blockWidth !== blockWidth ||
-            nextState.showMoreWidth !== showMoreWidth ||
             nextProps.selectedTabKey !== this.selectedTabKeyProp ||
             nextState.selectedTabKey !== selectedTabKey ||
             (
@@ -239,17 +250,6 @@ class Tabs extends Component {
         return null;
     }
 
-    onChangeTabHidden(selectedTab) {
-        const onClick = get(selectedTab, 'onClick');
-        const selectedTabKey = get(selectedTab, 'value');
-
-        if (typeof onClick === 'function') {
-            onClick(selectedTab);
-        }
-
-        this.onChangeTab(selectedTabKey);
-    }
-
     setTabsDimensions() {
         if (!this.tabsWrapper) {
             return null;
@@ -281,14 +281,17 @@ class Tabs extends Component {
         const {
             blockWidth,
             items,
-            showMoreWidth,
             tabDimensions,
             tabsTotalWidth,
         } = this.state;
 
         const selectedTabKey = this.getSelectedTabKey();
         let tabIndex = 0;
-        let availableWidth = blockWidth - (tabsTotalWidth > blockWidth ? showMoreWidth : 0);
+        let availableWidth = blockWidth - (
+            tabsTotalWidth > blockWidth ?
+                HIDDEN_TABS_ICON_WIDTH :
+                0
+        );
 
         let reducedItems = items.reduce(
             (result, item, index) => {
@@ -396,6 +399,10 @@ class Tabs extends Component {
 
     getTabProps(tab) {
         const {
+            classes,
+        } = this.props;
+
+        const {
             className,
             collapsed,
             disabled,
@@ -415,6 +422,7 @@ class Tabs extends Component {
                 selected,
                 tabIndex,
             }),
+            classes,
             id: PREFIX_TAB + key,
             key: PREFIX_TAB + key,
             originalKey: key,
@@ -446,6 +454,10 @@ class Tabs extends Component {
 
     getClassNamesFor(type, itemStates) {
         const {
+            classes,
+        } = this.props;
+
+        const {
             className = '',
             disabled,
             selected,
@@ -455,6 +467,7 @@ class Tabs extends Component {
         switch (type) {
             case 'tab':
                 return Classnames(
+                    classes.sectionalTab,
                     `${BEM_NAVIGATION_TAB_ROOT_CLASS}`,
                     className,
                     {
@@ -465,6 +478,7 @@ class Tabs extends Component {
                 );
             case 'panel':
                 return Classnames(
+                    classes.sectionalTabsPanelContent,
                     `${BEM_NAVIGATION_TABS}--panel-content`,
                     className,
                 );
@@ -515,37 +529,45 @@ class Tabs extends Component {
         } = this.getTabs();
 
         const selectedTabKey = this.getSelectedTabKey();
-        const rootClasses = get(classes, 'root');
         const containerClasses = Classnames(
+            classes.root,
             `${BEM_NAVIGATION_TABS}--container`,
-            { [rootClasses]: rootClasses },
         );
-        const tabsClasses = Classnames(`${BEM_NAVIGATION_TABS}--panel`);
+        const tabsClasses = Classnames(
+            classes.sectionalTabsPanel,
+            `${BEM_NAVIGATION_TABS}--panel`,
+        );
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
-            <Dropdown
-                collapseMenuOnChange
-                iconType="menu"
-                onChange={this.onChangeTabHidden}
+            <DropdownButton
+                iconType="ellipsis-h"
+                optionsTheme="light"
+                color="transparent"
             >
                 {tabsHidden.map((tab) => {
                     const {
                         children,
-                        key,
                         onClick,
                         originalKey,
                     } = this.getTabProps(tab);
 
                     return (
-                        <Dropdown.Item
-                            id={key}
-                            key={`tabs--tab-hidden-dropdown-item${key}`}
+                        <DropdownButton.Option
+                            id={originalKey}
+                            key={originalKey}
                             label={children}
-                            value={originalKey}
-                            onClick={onClick}
-                        />
+                            onClick={(event, clickedTabKey) => {
+                                if (isFunction(onClick)) {
+                                    onClick(tab);
+                                }
+
+                                this.onChangeTab(clickedTabKey);
+                            }}
+                        >
+                            {children}
+                        </DropdownButton.Option>
                     );
                 })}
-            </Dropdown>
+            </DropdownButton>
         );
 
         return (

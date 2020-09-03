@@ -11,15 +11,15 @@ const versions = {
             },
             navigation: {
                 sectionalTabs: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
-                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                    designLibraryDoc: 'https://www.sketch.com/s/b6369267-89a7-4fba-997e-d45528f2f696/a/xo1bOv',
                 },
                 breadcrumbs: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
-                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
-                },,
+                    designLibraryDoc: 'https://www.sketch.com/s/b6369267-89a7-4fba-997e-d45528f2f696/a/xo1bOv',
+                },
             },
         },
         theme: {

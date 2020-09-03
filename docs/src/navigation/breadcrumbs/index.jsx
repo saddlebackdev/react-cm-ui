@@ -34,6 +34,7 @@ function BreadcrumbsExample(props) {
     } = props;
 
     const {
+        description,
         displayName,
     } = rootDoc;
 
@@ -45,9 +46,17 @@ function BreadcrumbsExample(props) {
             <Main.Content>
 
                 <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {description}
+                    </Typography>
+
                     <Heading anchorLink="children" variant="h2">
                         Breadcrumbs
                     </Heading>
+
                     <Typography variant="body1">
                         A simple navigation tabs panel.
                     </Typography>
