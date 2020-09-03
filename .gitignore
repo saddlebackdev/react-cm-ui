@@ -2,6 +2,7 @@ node_modules/
 npm-debug.log
 build
 core
+coverage
 lib
 stats.json
 **/.DS_Store
