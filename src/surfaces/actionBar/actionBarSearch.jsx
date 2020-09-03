@@ -51,11 +51,10 @@ const styles = (theme) => ({
         margin: 0,
         right: 0,
         top: 0,
-        transform: 'translateY(2.5px)',
         width: 44,
         zIndex: 2,
         '&$isSmBreakpoint': {
-            paddingTop: 2.5,
+            transform: 'translateY(2.5px)',
         },
         '&$isMdBreakpoint': {
             boxShadow: [[-1, 0, 0, 0, theme.palette.border.primary]],

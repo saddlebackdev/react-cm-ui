@@ -1,8 +1,6 @@
 export { default as Accordion } from './accordion';
 export { default as ActionBar } from './actionBar';
 export { default as Card } from './card';
-export { default as Container } from './container';
-export { default as Content } from './content';
 export { default as DetailsWindow } from './detailsWindow';
 export { default as Drawer } from './drawer';
 export { default as DrawerDeprecated } from './drawerDeprecated';
