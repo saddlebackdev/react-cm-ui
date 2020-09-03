@@ -59,8 +59,10 @@ class ActionBarActionsButton extends React.PureComponent {
             selectedOption: {},
         };
 
+        this.isDrawerClosing = false;
         this.onDrawerCloseComplete = this.onDrawerCloseComplete.bind(this);
         this.onDrawerToggle = this.onDrawerToggle.bind(this);
+        this.onDrawerClose = this.onDrawerClose.bind(this);
         this.onOptionClick = this.onOptionClick.bind(this);
         this.onPromptNoClick = this.onPromptNoClick.bind(this);
         this.onPromptRequested = this.onPromptRequested.bind(this);
@@ -88,15 +90,27 @@ class ActionBarActionsButton extends React.PureComponent {
     }
 
     onDrawerCloseComplete() {
+        this.isDrawerClosing = false;
+
         this.setState({
             selectedOption: {},
         });
     }
 
+    onDrawerClose() {
+        this.isDrawerClosing = true;
+
+        this.setState({
+            isDrawerOpen: false,
+        });
+    }
+
     onDrawerToggle() {
-        this.setState((prevState) => ({
-            isDrawerOpen: !prevState.isDrawerOpen,
-        }));
+        if (!this.isDrawerClosing) {
+            this.setState((prevState) => ({
+                isDrawerOpen: !prevState.isDrawerOpen,
+            }));
+        }
     }
 
     onOptionClick(option) {
@@ -241,7 +255,7 @@ class ActionBarActionsButton extends React.PureComponent {
                     isOpen={isDrawerOpen}
                     maxWidth={224}
                     onClickOutside
-                    onClose={this.onDrawerToggle}
+                    onClose={this.onDrawerClose}
                     onCloseComplete={this.onDrawerCloseComplete}
                     positionYOffset={actionBarBottomPosY}
                     shadowSize="xsmall"

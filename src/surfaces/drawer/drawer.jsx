@@ -22,7 +22,9 @@ import DrawerWing from './drawerWing';
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    container: PropTypes.shape({}),
+    container: PropTypes.shape({
+        classList: PropTypes.shape({}),
+    }),
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isModal: PropTypes.bool,
@@ -51,7 +53,7 @@ const defaultProps = {
     isModal: true,
     maxHeight: undefined,
     maxWidth: undefined,
-    onClickOutside: undefined,
+    onClickOutside: false,
     onClose: undefined,
     onCloseComplete: undefined,
     onOpenComplete: undefined,
@@ -206,25 +208,30 @@ class Drawer extends React.Component {
         this.drawerContainerRef.addEventListener(animationEvent, this.onCloseAnimationComplete);
     }
 
+    // eslint-disable-next-line consistent-return
     onClickOutside(event) {
         const { onClickOutside } = this.props;
 
         if (this.drawerContainerRef.contains(event.target) || !onClickOutside) {
-            return;
+            return null;
         }
 
         this.onClose();
     }
 
     onClose() {
-        const { onClickOutside, onClose } = this.props;
+        const {
+            container,
+            onClickOutside,
+            onClose: onCloseProps,
+        } = this.props;
 
         if (onClickOutside) {
-            document.removeEventListener('click', this.onClickOutside);
+            container.closest('html').removeEventListener('click', this.onClickOutside);
         }
 
-        if (_.isFunction(onClose)) {
-            onClose(...arguments); // eslint-disable-line prefer-rest-params
+        if (_.isFunction(onCloseProps)) {
+            onCloseProps(...arguments); // eslint-disable-line prefer-rest-params
         } else {
             console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
         }
@@ -240,7 +247,7 @@ class Drawer extends React.Component {
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
 
         if (onClickOutside) {
-            document.removeEventListener('click', this.onClickOutside);
+            container.closest('html').removeEventListener('click', this.onClickOutside);
         }
 
         this.drawerContainerRef.removeEventListener(animationEvent, this.onCloseAnimationComplete);
@@ -302,7 +309,7 @@ class Drawer extends React.Component {
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
         if (onClickOutside) {
-            document.addEventListener('click', this.onClickOutside);
+            container.closest('html').addEventListener('click', this.onClickOutside);
         }
 
         if (!dimmer || !isModal || numberOfModalDrawers >= 2) {
@@ -394,7 +401,9 @@ class Drawer extends React.Component {
             dimmer,
             isModal,
         } = this.props;
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
+
         this.drawerContainerRef.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
         const { onOpenComplete } = this.props;
@@ -439,6 +448,7 @@ class Drawer extends React.Component {
             style,
             wing,
         } = this.props;
+
         const { isOpen } = this.state;
 
         if (!isOpen) {
