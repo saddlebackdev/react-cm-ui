@@ -35,6 +35,10 @@ const propTypes = {
      * Assign additional class names to ActionBar.
      */
     className: PropTypes.string,
+    /**
+     * Array of objects that are used to setup
+     * the grid system in the ActionBar.
+     */
     columns: COLUMNS_PROP_TYPES,
     /**
      * The `id` of the ActionBar.
@@ -52,7 +56,15 @@ const propTypes = {
         'space-between',
         'space-evenly',
     ]),
+    /**
+     * Assigns styling to the ActionBar dependant on
+     * whether it is a child of the Page or Drawer component.
+     */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    /**
+     * Event handler for consumer to control state outside
+     * of the ActionBar.
+     */
     toggleSmSearchVisibleClassName: PropTypes.func,
 };
 
