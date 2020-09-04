@@ -13,7 +13,14 @@ const versions = {
                 grid: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
-                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
+                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a',
+                },
+            },
+            surfaces: {
+                actionBar: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.1.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b',
                 },
             },
         },
