@@ -103,13 +103,6 @@ function DocsActionBar(props) {
                     <Typography
                         variant="body1"
                     >
-                        The person search version of the actions bar can switch between a basic and
-                        advanced state.
-                    </Typography>
-
-                    <Typography
-                        variant="body1"
-                    >
                         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
                         Small (<code>sm</code>) breakpoint.
                     </Typography>
