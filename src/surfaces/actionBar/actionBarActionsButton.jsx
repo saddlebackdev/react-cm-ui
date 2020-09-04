@@ -15,7 +15,7 @@ import Prompt from '../../inputs/prompt';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
-    actionBarNode: PropTypes.node,
+    actionBarNode: PropTypes.shape({}),
     className: PropTypes.string,
     drawerContainer: PropTypes.shape({}),
     header: PropTypes.string.isRequired,
