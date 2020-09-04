@@ -62,9 +62,9 @@ function ActionBarSmSample(props) {
                                     },
                                 ],
                             }, {
-                                iconBackgroundColor: theme.palette.success.primary,
-                                iconType: 'times',
-                                label: 'Delete Stuff',
+                                iconBackgroundColor: theme.palette.success.main,
+                                iconType: 'plus',
+                                label: 'Label',
                                 onClick: () => {},
                             },
                         ],

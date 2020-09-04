@@ -109,13 +109,9 @@ class ActionBarSearch extends React.PureComponent {
     }
 
     onClearClick(event) {
-        const { onChange, onClearClick } = this.props;
+        const { onClearClick } = this.props;
 
-        if (isFunction(onClearClick)) {
-            onClearClick(event);
-        } else {
-            onChange('');
-        }
+        onClearClick(event);
     }
 
     onClearKeyDown(event) {
@@ -127,7 +123,7 @@ class ActionBarSearch extends React.PureComponent {
     onInputKeyDown(event) {
         const { onKeyDown } = this.props;
 
-        if (isFunction(onKeyDown) && event.keyCode === ENTER_KEY_CODE) {
+        if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
 
             onKeyDown(event);
@@ -137,15 +133,13 @@ class ActionBarSearch extends React.PureComponent {
     onSearchClick(event) {
         const { onSearchClick } = this.props;
 
-        if (isFunction(onSearchClick)) {
-            onSearchClick(event);
-        }
+        onSearchClick(event);
     }
 
     onSearchKeyDown(event) {
         const { onSearchKeyDown } = this.props;
 
-        if (isFunction(onSearchKeyDown) && event.keyCode === ENTER_KEY_CODE) {
+        if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
 
             onSearchKeyDown(event);
@@ -177,7 +171,10 @@ class ActionBarSearch extends React.PureComponent {
             >
                 {!isMobileSearch && (
                     <div
-                        className={classes.magnifyingGlassIconContainer}
+                        className={ClassNames(
+                            `${BEM_ACTION_BAR_SEARCH}_magnifying_glass_icon_container`,
+                            classes.magnifyingGlassIconContainer,
+                        )}
                     >
                         <Icon
                             compact
@@ -209,6 +206,7 @@ class ActionBarSearch extends React.PureComponent {
 
                 <div
                     className={ClassNames(
+                        `${BEM_ACTION_BAR_SEARCH}_clear_button_container`,
                         classes.clearButtonContainer,
                         {
                             [classes.isMdBreakpoint]: !isMobileSearch,
