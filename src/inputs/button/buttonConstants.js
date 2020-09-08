@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes, {bool} from 'prop-types';
 import Utils from '../../utils/utils';
 
 export const buttonPropTypes = {
@@ -64,6 +64,8 @@ export const buttonPropTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+    transparent: bool,
+    pill: bool,
 };
 
 export const buttonDefaultProps = {

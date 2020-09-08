@@ -323,6 +323,7 @@ class Button extends React.PureComponent {
             title,
             width,
             pill,
+            transparent
         } = this.props;
         const disable = disableProp || disabled;
         const ElementType = Utils.getElementType(as, this.props);
@@ -334,21 +335,18 @@ class Button extends React.PureComponent {
             {
                 [classes.inverse]: inverse,
                 [classes.colorAlert]: !disable && color === 'alert',
-                [classes.colorAlternate]: !disable && color === 'alternate',
+                [classes.colorSecondary]: !disable && color === 'alternate',
                 [classes.colorDisable]: disable || color === 'disable',
                 [classes.colorInverse]: !disable && color === 'inverse',
-                [classes.colorLight]: !disable && color === 'light',
-                [classes.colorOutline]: !disable && color === 'outline',
                 [classes.colorPrimary]: !disable && (!color || color === 'primary'),
-                [classes.colorSecondary]: !disable && color === 'secondary',
                 [classes.colorSuccess]: !disable && color === 'success',
-                [classes.colorTransparent]: !disable && color === 'transparent',
                 [classes.colorWarning]: !disable && color === 'warning',
+                [classes.colorTransparent]: !disable && transparent,
                 [classes.compact]: compact,
                 [classes.fluid]: fluid,
                 [classes.icon]: icon,
                 [classes.fixedWidth]: !!width,
-                [classes.outlined]: outline,
+                [classes.outlined]: !disable && outline,
                 [classes.relax]: relax,
                 [classes.pill]: pill,
             },
