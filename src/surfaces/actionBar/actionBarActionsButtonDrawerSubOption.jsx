@@ -18,6 +18,7 @@ export const singleOptionPropTypeShape = {
     iconType: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
     promptColor: PropTypes.string,
     promptMessage: PropTypes.string,
     requiresPrompt: PropTypes.bool,
@@ -39,24 +40,7 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
         super();
 
         this.onClick = this.onClick.bind(this);
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            subOption: {
-                disabled: prevSubOptionDisabled,
-            },
-        } = prevProps;
-        const {
-            subOption: {
-                disabled: subOptionDisabled,
-            },
-        } = this.props;
-
-        if (prevSubOptionDisabled !== subOptionDisabled && subOptionDisabled) {
-            // eslint-disable-next-line no-console
-            console.warn('ActionBarActionsButtonDrawerSubOption (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
+        this.onKeyDown = this.onKeyDown.bind(this);
     }
 
     onClick() {
@@ -64,31 +48,44 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
             onRequestPrompt,
             subOption,
         } = this.props;
+
         const {
             disable,
-            disabled,
             onClick: subOptionOnClick,
             requiresPrompt,
         } = subOption;
 
         if (!isFunction(subOptionOnClick)) {
-            return false;
+            return null;
         }
 
-        if (disable || disabled) {
-            return false;
+        if (disable) {
+            return null;
         }
 
         if (requiresPrompt && isFunction(onRequestPrompt)) {
             onRequestPrompt(subOption);
-            return false;
+
+            return null;
         }
 
         if (isFunction(subOptionOnClick)) {
             subOptionOnClick();
         }
 
-        return true;
+        return null;
+    }
+
+    onKeyDown(event) {
+        const {
+            subOption: {
+                onKeyDown,
+            },
+        } = this.props;
+
+        if (isFunction(onKeyDown)) {
+            onKeyDown(event);
+        }
     }
 
     render() {
@@ -97,22 +94,27 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
             subOption,
             subOptionClassNameNum,
         } = this.props;
-        const isSubOptionDisabled = subOption.disable || subOption.disabled;
+
+        const isSubOptionDisabled = subOption.disable;
         const classNameNumber = subOptionClassNameNum;
+        const subOptionClassName = 'actions_button_drawer--sub_option';
+
         const subOptionClasses = ClassNames(
-            'actions_button_drawer--sub_option',
-            `actions_button_drawer--sub_option-${classNameNumber}`,
-            `${isSelected ? `actions_button_drawer--sub_option-${classNameNumber}-show` : ''}`,
-            `${isSubOptionDisabled ? `actions_button_drawer--sub_option-${classNameNumber}-disabled` : ''}`,
+            subOptionClassName,
+            `${subOptionClassName}-${classNameNumber}`,
+            {
+                [`${subOptionClassName}-${classNameNumber}-show`]: isSelected,
+                [`${subOptionClassName}-${classNameNumber}-disabled`]: isSubOptionDisabled,
+            },
         );
 
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        /* eslint-disable jsx-a11y/interactive-supports-focus */
         return (
             <div
                 className={subOptionClasses}
                 onClick={this.onClick}
+                onKeyDown={this.onKeyDown}
                 role="menuitem"
+                tabIndex={0}
             >
                 {subOption.iconType && (
                     <div
@@ -136,8 +138,6 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
                 </div>
             </div>
         );
-        /* eslint-enable jsx-a11y/click-events-have-key-events */
-        /* eslint-enable jsx-a11y/interactive-supports-focus */
     }
 }
 
