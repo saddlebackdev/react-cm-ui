@@ -46,7 +46,7 @@ export const buttonPropTypes = {
     /**
      * A button can be outlined.
      */
-    outlined: PropTypes.bool,
+    outline: PropTypes.bool,
     /**
      * A button can relax its padding.
      */
@@ -80,7 +80,7 @@ export const buttonDefaultProps = {
     innerStyle: {},
     inverse: false,
     onClick: undefined,
-    outlined: false,
+    outline: false,
     relax: false,
     style: {},
     target: undefined,

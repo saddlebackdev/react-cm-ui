@@ -8,3 +8,4 @@ stats.json
 config.json
 config.local.json
 *.tgz
+.idea/*

@@ -313,7 +313,7 @@ class Button extends React.PureComponent {
             id,
             innerStyle,
             inverse,
-            outlined,
+            outline,
             relax,
             style,
             target,
@@ -344,7 +344,7 @@ class Button extends React.PureComponent {
                 [classes.fluid]: fluid,
                 [classes.icon]: icon,
                 [classes.fixedWidth]: !!width,
-                [classes.outlined]: outlined,
+                [classes.outlined]: outline,
                 [classes.relax]: relax,
             },
         );
