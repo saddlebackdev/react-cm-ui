@@ -4,47 +4,47 @@ import React from 'react';
 function ButtonOutlineExample() {
     return (
         <div>
-            <Button color="alert" outlined>
+            <Button color="alert" outline>
                 <Icon type="envelope" />
                 <span>Alert</span>
             </Button>
 
-            <Button color="alternate" outlined>
+            <Button color="alternate" outline>
                 <Icon type="envelope" />
                 <span>Alternate</span>
             </Button>
 
-            <Button color="disable" outlined>
+            <Button color="disable" outline>
                 <Icon type="envelope" />
                 <span>Disable</span>
             </Button>
 
-            <Button color="light" outlined>
+            <Button color="light" outline>
                 <Icon type="envelope" />
                 <span>Light</span>
             </Button>
 
-            <Button color="outline" outlined>
+            <Button color="outline" outline>
                 <Icon type="envelope" />
                 <span>Outline</span>
             </Button>
 
-            <Button color="primary" outlined>
+            <Button color="primary" outline>
                 <Icon type="envelope" />
                 <span>Primary</span>
             </Button>
 
-            <Button color="secondary" outlined>
+            <Button color="secondary" outline>
                 <Icon type="envelope" />
                 <span>Secondary</span>
             </Button>
 
-            <Button color="success" outlined>
+            <Button color="success" outline>
                 <Icon type="envelope" />
                 <span>Success</span>
             </Button>
 
-            <Button color="warning" outlined>
+            <Button color="warning" outline>
                 <Icon type="envelope" />
                 <span>Warning</span>
             </Button>
