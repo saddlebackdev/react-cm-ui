@@ -178,18 +178,16 @@ class Tabs extends Component {
             tabsTotalWidth,
             tabsHidden,
             tabsVisible,
+            items: itemsState,
         } = this.state;
 
         const shouldUpdate = (
-            items !== nextProps.items ||
+            !isEqual(nextProps.items, items) ||
             nextState.tabsTotalWidth !== tabsTotalWidth ||
             nextState.blockWidth !== blockWidth ||
             nextProps.selectedTabKey !== this.selectedTabKeyProp ||
             nextState.selectedTabKey !== selectedTabKey ||
-            (
-                !isEqual(nextState.tabsHidden, tabsHidden) ||
-                !isEqual(nextState.tabsVisible, tabsVisible)
-            )
+            !isEqual(itemsState, nextState.items)
         );
 
         return shouldUpdate;
@@ -201,14 +199,29 @@ class Tabs extends Component {
             selectedTabKey,
         } = this.props;
 
-        if (this.selectedTabKeyProp !== selectedTabKey) {
-            this.setState({ selectedTabKey });
+        const {
+            items: prevItems,
+        } = prevProps;
+
+        const didItemsChange = !isEqual(prevItems, items);
+        const didSelectedTabKeyChange = this.selectedTabKeyProp !== selectedTabKey;
+        const shouldUpdateState = didItemsChange || didSelectedTabKeyChange;
+
+        if (shouldUpdateState) {
+            const newState = {
+                ...(didSelectedTabKeyChange && {
+                    selectedTabKey,
+                }),
+                ...(didItemsChange && {
+                    items,
+                    selectedTabKey: get(items, '[0].key'),
+                }),
+            };
+
+            this.setState(newState);
         }
 
-        const shouldUpdateTabsDimensions = items.length !== prevProps.items.length ||
-            items.every((item, i) => item !== prevProps.items[i]);
-
-        if (shouldUpdateTabsDimensions) {
+        if (didItemsChange) {
             this.setTabsDimensions();
         }
 
@@ -330,6 +343,7 @@ class Tabs extends Component {
                 const isTabVisible = // initial call
                                     !blockWidth ||
                                     tabsTotalWidth === 0 ||
+                                    tabWidth === 0 || // posibily re render from a items.prop change
                                     // all tabs are fit into the block
                                     (tabWidth > 0 && blockWidth > tabsTotalWidth) ||
                                     // current tab fit into the block
@@ -340,7 +354,7 @@ class Tabs extends Component {
                 } else {
                     result.tabsHidden.push(tabPayload);
 
-                    if (selected) {
+                    if (selected && tabWidth > 0) {
                         // eslint-disable-next-line no-param-reassign
                         result.isSelectedTabHidden = true;
                     }
