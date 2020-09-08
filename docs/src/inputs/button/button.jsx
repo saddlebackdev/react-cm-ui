@@ -22,6 +22,7 @@ import ButtonWidthExample from './buttonWidthExample';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
+import ButtonPillExample from './buttonPillExample';
 
 function ElementsButton() {
     return (
@@ -149,7 +150,7 @@ function ElementsButton() {
 
                 {/* Outlined */}
                 <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                Outlined
+                    Outlined
                     <Header.Subheader>
                         Buttons can have different border colors.
                     </Header.Subheader>
@@ -188,6 +189,21 @@ function ElementsButton() {
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {require('!!raw-loader!./buttonWidthExample').default}
                 </Highlighter>
+
+                {/* Pill */}
+                <Header anchor="width" size="large" style={{ marginTop: '55px' }} sub>
+                    Pill
+                    <Header.Subheader>
+                        A button can pill form.
+                    </Header.Subheader>
+                </Header>
+
+                <ButtonPillExample />
+
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {require('!!raw-loader!./buttonPillExample').default}
+                </Highlighter>
+
             </Main.Content>
         </Main>
     );

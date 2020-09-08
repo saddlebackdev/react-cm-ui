@@ -265,6 +265,9 @@ const styles = (theme) => {
             paddingLeft: 33,
             paddingRight: 33,
         },
+        pill: {
+            borderRadius: '16px',
+        },
     };
 };
 
@@ -319,6 +322,7 @@ class Button extends React.PureComponent {
             target,
             title,
             width,
+            pill,
         } = this.props;
         const disable = disableProp || disabled;
         const ElementType = Utils.getElementType(as, this.props);
@@ -346,6 +350,7 @@ class Button extends React.PureComponent {
                 [classes.fixedWidth]: !!width,
                 [classes.outlined]: outline,
                 [classes.relax]: relax,
+                [classes.pill]: pill,
             },
         );
         const innerContainerClasses = ClassNames(
