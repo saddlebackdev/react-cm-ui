@@ -191,6 +191,7 @@ function ActionBarGridColumn(props) {
 
                     {button && (
                         <Button
+                            className={button.className}
                             color={button.color}
                             disabled={!!button.disabled}
                             icon={button.iconType && !button.label}
@@ -250,6 +251,10 @@ function ActionBarGridColumn(props) {
 
                     {iconBack && (
                         <Icon
+                            className={ClassNames(
+                                iconBack.className,
+                                classes.iconButtons,
+                            )}
                             color={
                                 iconBack.selected ?
                                     'highlight' :
@@ -265,7 +270,10 @@ function ActionBarGridColumn(props) {
 
                     {iconFilter && (
                         <Icon
-                            className={classes.iconButtons}
+                            className={ClassNames(
+                                iconFilter.className,
+                                classes.iconButtons,
+                            )}
                             color={
                                 iconFilter.selected ||
                                 iconFilter.isFiltering ?
@@ -282,7 +290,10 @@ function ActionBarGridColumn(props) {
 
                     {iconGrid && (
                         <Icon
-                            className={classes.iconButtons}
+                            className={ClassNames(
+                                iconGrid.className,
+                                classes.iconButtons,
+                            )}
                             color={
                                 iconGrid.selected ?
                                     'highlight' :
@@ -300,6 +311,7 @@ function ActionBarGridColumn(props) {
                         <Icon
                             className={ClassNames(
                                 `${BEM_ACTION_BAR}--search_icon`,
+                                iconSearch.className,
                                 classes.iconButtons,
                             )}
                             color={
@@ -317,7 +329,10 @@ function ActionBarGridColumn(props) {
 
                     {iconSettings && (
                         <Icon
-                            className={classes.iconButtons}
+                            className={ClassNames(
+                                iconSettings.className,
+                                classes.iconButtons,
+                            )}
                             color={
                                 iconSettings.selected ||
                                 iconSettings.isCustom ?
@@ -334,7 +349,10 @@ function ActionBarGridColumn(props) {
 
                     {iconTable && (
                         <Icon
-                            className={classes.iconButtons}
+                            className={ClassNames(
+                                iconTable.className,
+                                classes.iconButtons,
+                            )}
                             color={
                                 iconTable.selected ?
                                     'highlight' :
