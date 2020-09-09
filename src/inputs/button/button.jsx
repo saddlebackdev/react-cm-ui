@@ -278,20 +278,6 @@ class Button extends React.PureComponent {
         this.onClick = this.onClick.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('Button (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
-    }
-
     onClick(event) {
         const { onClick } = this.props;
 
@@ -309,7 +295,6 @@ class Button extends React.PureComponent {
             color,
             compact,
             disable: disableProp,
-            disabled,
             fluid,
             href,
             icon,
@@ -325,7 +310,7 @@ class Button extends React.PureComponent {
             pill,
             transparent
         } = this.props;
-        const disable = disableProp || disabled;
+        const disable = disableProp;
         const ElementType = Utils.getElementType(as, this.props);
         const rootClasses = ClassNames(
             'ui',
