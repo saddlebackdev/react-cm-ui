@@ -63,8 +63,6 @@ describe('<personPanelDetailsActionButton />', () => {
         );
 
         root = wrapper.find('button');
-
-        expect(root.hasClass(/(Button)-(outlined)-(\d+)/)).toEqual(true);
     });
 
     it('Should render with the prompt classes', () => {
