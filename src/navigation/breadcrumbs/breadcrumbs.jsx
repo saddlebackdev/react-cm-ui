@@ -30,12 +30,12 @@ const propTypes = {
     /**
      * Separation String between breadcrumbs
      */
-    separatorString: PropTypes.string,
+    dividerString: PropTypes.string,
 };
 
 const defaultProps = {
     showOnlyPreviousRoute: false,
-    separatorString: '/',
+    dividerString: '/',
 };
 
 const useStyles = makeStyles((theme) => {
@@ -127,7 +127,7 @@ function Breadcrumbs(props) {
     const {
         router,
         showOnlyPreviousRoute,
-        separatorString,
+        dividerString,
     } = props;
 
     const classes = useStyles(props);
@@ -270,7 +270,7 @@ function Breadcrumbs(props) {
                                             variant="h4"
                                             className={breadcrumbSeparatorTypographyClasses}
                                         >
-                                            {separatorString}
+                                            {dividerString}
                                         </Typography>
                                     )}
                                 </div>

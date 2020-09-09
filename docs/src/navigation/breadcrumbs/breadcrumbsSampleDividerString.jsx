@@ -44,7 +44,7 @@ function BreadcrumbsSampleSeparatorString() {
     return (
         <Breadcrumbs
             router={router}
-            separatorString=">"
+            dividerString=">"
         />
     );
 }

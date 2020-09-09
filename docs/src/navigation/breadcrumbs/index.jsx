@@ -14,7 +14,7 @@ import ComponentVersionIdentifier from '../../global/componentVersionIdentifier'
 import Heading from '../../global/heading';
 import BreadcrumbsSample from './breadcrumbsSample';
 import BreadcrumbsSampleAllRoutes from './breadcrumbsSampleOnlyPreviousRoute';
-import BreadcrumbsSampleSeparatorString from './breadcrumbsSampleSeparatorString';
+import BreadcrumbsSampleDividerString from './breadcrumbsSampleDividerString';
 import ComponentApi from '../../global/componentApi';
 import Example from '../../global/example';
 // eslint-disable-next-line import/no-named-default, import/extensions
@@ -81,15 +81,15 @@ function BreadcrumbsExample(props) {
 
                 <MarkdownContainer>
                     <Heading anchorLink="children" variant="h2">
-                        Separator String
+                        Divider String
                     </Heading>
                     <Typography variant="body1">
-                        The default separator string can be modified
+                        The default divider string can be modified
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./breadcrumbsSampleSeparatorString').default}>
-                    <BreadcrumbsSampleSeparatorString />
+                <Example rawCode={require('!!raw-loader!./breadcrumbsSampleDividerString').default}>
+                    <BreadcrumbsSampleDividerString />
                 </Example>
 
                 <ComponentApi docs={[rootDoc]} />

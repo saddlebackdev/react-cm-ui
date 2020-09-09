@@ -71,7 +71,7 @@ const propTypes = {
 
 const defaultProps = {
     beforeChange: undefined,
-    classes: {},
+    classes: null,
     items: [],
     onChange: undefined,
     resizeThrottle: 100,

@@ -63,10 +63,10 @@ describe('<Breadcrumbs />', () => {
         expect(separators.at(3).prop('children')).toBe('/');
     });
 
-    it('renders the appropiate icon for each breadcrumb when separatorIconType is set to \'caret-right\'', () => {
+    it('renders the appropiate divider string', () => {
         const testCaseProps = {
             ...componentProps,
-            separatorString: '>',
+            dividerString: '>',
         };
         wrapper = shallow(<Breadcrumbs {...testCaseProps} />);
         const separators = wrapper.find('.navigation_breadcrumbs--breadcrumb_separator_typography');
