@@ -64,8 +64,14 @@ export const buttonPropTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
-    transparent: bool,
-    pill: bool,
+    /**
+     * Set transparent styles.
+     */
+    transparent: PropTypes.bool,
+    /**
+     * Set a button with a pill like form.
+     */
+    pill: PropTypes.bool,
 };
 
 export const buttonDefaultProps = {
