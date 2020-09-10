@@ -17,7 +17,7 @@ const componentProps = {
     selected: false,
 };
 
-describe('<Tab />', () => {
+describe('<SectionalTab />', () => {
     it('renders withouth crashing', () => {
         wrapper = shallow(<SectionalTab {...componentProps} />);
         expect(wrapper.length).toBe(1);

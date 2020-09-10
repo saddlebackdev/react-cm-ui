@@ -10,16 +10,40 @@ import Typography from '../../dataDisplay/typography';
 import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
 
 const propTypes = {
+    /**
+     * Content to be rendered as the title
+     */
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    /**
+     * Aditional classNames to handle the tab states styles (disabled/selected)
+     */
     classNames: PropTypes.string.isRequired,
+    /**
+     * Aditional classes passed from the parent <SectionalTabs /> component to override the label styling.
+     */
     classes: PropTypes.shape({
         sectionalTabLabel: PropTypes.string,
         sectionalTabLabelSelected: PropTypes.string,
     }),
+    /**
+     * Sectional Tab identifier
+     */
     id: PropTypes.string.isRequired,
+    /**
+     * General <SectionalTabs /> onChange function, called on <SectionalTab /> click.
+     */
     onChange: PropTypes.func,
+    /**
+     * Independent <SectionalTab /> onClick function.
+     */
     onClick: PropTypes.func,
+    /**
+     * Key passed from the <SectionalTabs /> items objects.
+     */
     originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    /**
+     * Boolean used to apply the 'sectionalTabLabelSelected' class.
+     */
     selected: PropTypes.bool.isRequired,
 };
 
@@ -30,7 +54,10 @@ const defaultProps = {
     onClick: undefined,
 };
 
-class Tab extends Component {
+/**
+ * Used to render pages sections, built from the <SectionalTabs /> parent component.
+ */
+class SectionalTab extends Component {
     constructor(props) {
         super(props);
         this.onTabClick = this.onTabClick.bind(this);
@@ -110,7 +137,7 @@ class Tab extends Component {
     }
 }
 
-Tab.propTypes = propTypes;
-Tab.defaultProps = defaultProps;
+SectionalTab.propTypes = propTypes;
+SectionalTab.defaultProps = defaultProps;
 
-export default Tab;
+export default SectionalTab;

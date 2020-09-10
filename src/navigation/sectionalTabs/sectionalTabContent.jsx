@@ -2,9 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
+    /**
+     * Children to be rendered when the getContent function is undefined/null.
+     */
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    /**
+     * Class names to potentially override styling.
+     */
     classNames: PropTypes.string.isRequired,
+    /**
+     * Main function to get the content, is passed from the <SectionalTabs /> items objects.
+     * It could return a string, an object or an array.
+     */
     getContent: PropTypes.func,
+    /**
+     * Tab content component identifier.
+     */
     id: PropTypes.string.isRequired,
 };
 
@@ -13,7 +26,7 @@ const defaultProps = {
     getContent: undefined,
 };
 
-function TabPanel(props) {
+function SectionalTabContent(props) {
     const {
         children,
         classNames,
@@ -35,7 +48,7 @@ function TabPanel(props) {
     );
 }
 
-TabPanel.propTypes = propTypes;
-TabPanel.defaultProps = defaultProps;
+SectionalTabContent.propTypes = propTypes;
+SectionalTabContent.defaultProps = defaultProps;
 
-export default TabPanel;
+export default SectionalTabContent;

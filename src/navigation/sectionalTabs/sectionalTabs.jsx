@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, {
     Component,
 } from 'react';
@@ -14,7 +15,7 @@ import {
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
 import SectionalTab from './sectionalTab';
-import SectionalTabPanel from './sectionalTabPanel';
+import SectionalTabContent from './sectionalTabContent';
 import withStyles from '../../styles/withStyles';
 import DropdownButton from '../../inputs/dropdownButton';
 import {
@@ -23,8 +24,9 @@ import {
 } from '../../global/constants';
 
 const PREFIX_TAB = 'tab-';
-const PANEL_PREFIX = 'panel-';
-const HIDDEN_TABS_ICON_WIDTH = 40;
+const CONTENT_PREFIX = 'content-';
+const HIDDEN_TABS_ICON_WIDTH = 30;
+const WIDTH_OFFSET = 5; // it ain't neccesary to be too precise when resizing and calculating hidden tabs
 
 const propTypes = {
     /**
@@ -56,7 +58,7 @@ const propTypes = {
         }),
     ),
     /**
-     * frequency of onResize recalculation fires
+     * Resize recalculation frecuency in milliseconds
      */
     resizeThrottle: PropTypes.number,
     /**
@@ -92,6 +94,7 @@ const useStyles = (theme) => {
             position: 'relative',
             '& .button_dropdown': {
                 margin: '0',
+                padding: 0,
                 width: HIDDEN_TABS_ICON_WIDTH,
                 '& .icon': {
                     marginRight: '00 !important',
@@ -137,7 +140,11 @@ const useStyles = (theme) => {
     return styles;
 };
 
-class Tabs extends Component {
+/**
+ * Component capable to hide/show its tabs under a drop down button according to the container size.
+ * It swipes the hidden tabs on click making them visible.
+ */
+class SectionalTabs extends Component {
     constructor(props) {
         super(props);
 
@@ -176,8 +183,6 @@ class Tabs extends Component {
             blockWidth,
             selectedTabKey,
             tabsTotalWidth,
-            tabsHidden,
-            tabsVisible,
             items: itemsState,
         } = this.state;
 
@@ -203,17 +208,18 @@ class Tabs extends Component {
             items: prevItems,
         } = prevProps;
 
-        const didItemsChange = !isEqual(prevItems, items);
+        const didPropsItemsChange = !isEqual(prevItems, items);
         const didSelectedTabKeyChange = this.selectedTabKeyProp !== selectedTabKey;
-        const shouldUpdateState = didItemsChange || didSelectedTabKeyChange;
+        const shouldUpdateState = didPropsItemsChange || didSelectedTabKeyChange;
 
         if (shouldUpdateState) {
             const newState = {
                 ...(didSelectedTabKeyChange && {
                     selectedTabKey,
                 }),
-                ...(didItemsChange && {
+                ...(didPropsItemsChange && {
                     items,
+                    // let's select the first tab when there's a different items source
                     selectedTabKey: get(items, '[0].key'),
                 }),
             };
@@ -221,7 +227,7 @@ class Tabs extends Component {
             this.setState(newState);
         }
 
-        if (didItemsChange) {
+        if (didPropsItemsChange) {
             this.setTabsDimensions();
         }
 
@@ -345,9 +351,9 @@ class Tabs extends Component {
                                     tabsTotalWidth === 0 ||
                                     tabWidth === 0 || // posibily re render from a items.prop change
                                     // all tabs are fit into the block
-                                    (tabWidth > 0 && blockWidth > tabsTotalWidth) ||
+                                    (tabWidth > 0 && blockWidth > tabsTotalWidth + WIDTH_OFFSET) ||
                                     // current tab fit into the block
-                                    (tabWidth > 0 && availableWidth - tabWidth > 0);
+                                    (tabWidth > 0 && availableWidth - tabWidth > WIDTH_OFFSET);
 
                 if (isTabVisible) {
                     result.tabsVisible.push(tabPayload);
@@ -394,7 +400,9 @@ class Tabs extends Component {
             const reSortedItems = [
                 ...reducedItems.tabsVisible,
                 ...sortedHiddenTabs,
-            ].map((tab) => find(items, { key: tab.key }));
+            ]
+                .filter((tab) => !!tab) // makes sure there's no undefined tab when several resize events happen rapidly
+                .map((tab) => find(items, { key: tab.key }));
 
             this.setState({
                 items: reSortedItems,
@@ -458,10 +466,10 @@ class Tabs extends Component {
         return {
             getContent,
             children: content,
-            key: PANEL_PREFIX + key,
-            id: PANEL_PREFIX + key,
+            key: CONTENT_PREFIX + key,
+            id: CONTENT_PREFIX + key,
             tabId: PREFIX_TAB + key,
-            classNames: this.getClassNamesFor('panel', { className, isHidden }),
+            classNames: this.getClassNamesFor('content', { className, isHidden }),
             isHidden,
         };
     }
@@ -490,10 +498,10 @@ class Tabs extends Component {
                         [`${BEM_NAVIGATION_TAB_ROOT_CLASS}--disabled`]: disabled,
                     },
                 );
-            case 'panel':
+            case 'content':
                 return Classnames(
                     classes.sectionalTabsPanelContent,
-                    `${BEM_NAVIGATION_SECTIONAL_TABS}--panel-content`,
+                    `${BEM_NAVIGATION_SECTIONAL_TABS}--content`,
                     className,
                 );
             default:
@@ -524,7 +532,7 @@ class Tabs extends Component {
     getExpandedTabs(panels, selectedTabKey) {
         if (panels[selectedTabKey]) {
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return <SectionalTabPanel {...this.getPanelProps(panels[selectedTabKey])} />;
+            return <SectionalTabContent {...this.getPanelProps(panels[selectedTabKey])} />;
         }
 
         return null;
@@ -606,8 +614,8 @@ class Tabs extends Component {
     }
 }
 
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
+SectionalTabs.propTypes = propTypes;
+SectionalTabs.defaultProps = defaultProps;
 
-const TabsWithStyles = withStyles(useStyles, { withTheme: true })(Tabs);
-export default TabsWithStyles;
+const SectionalTabsWithStyles = withStyles(useStyles, { withTheme: true })(SectionalTabs);
+export default SectionalTabsWithStyles;

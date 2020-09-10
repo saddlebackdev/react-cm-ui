@@ -123,6 +123,10 @@ const useStyles = makeStyles((theme) => {
 const BREADCRUMB_TITLE_MAX_LENGTH = 20;
 const ICON_TYPE_FIRST_BREADCRUMB = 'chevron-left';
 
+/**
+ * Indicates the current location inside the application and the previous routes to navigate back.
+ * The breadcrumbs will be automatically generated using the passed react-router core instance (Each route must have a 'title' prop set). 
+ */
 function Breadcrumbs(props) {
     const {
         router,

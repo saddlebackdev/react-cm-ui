@@ -142,7 +142,6 @@ class Dropdown extends React.Component {
                         iconType: itemIconType,
                         label: itemLabel,
                         disabled: itemDisabled,
-                        value: itemValue,
                     } = child.props;
 
                     let {
@@ -162,7 +161,6 @@ class Dropdown extends React.Component {
                     const value = {
                         id: itemId || null,
                         label: itemLabel,
-                        value: itemValue,
                     };
 
                     if (id && itemId) {
