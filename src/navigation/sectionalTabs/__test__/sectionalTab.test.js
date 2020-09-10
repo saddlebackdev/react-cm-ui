@@ -18,7 +18,7 @@ const componentProps = {
 };
 
 describe('<SectionalTab />', () => {
-    it('renders withouth crashing', () => {
+    it('renders without crashing', () => {
         wrapper = shallow(<SectionalTab {...componentProps} />);
         expect(wrapper.length).toBe(1);
     });
@@ -30,7 +30,7 @@ describe('<SectionalTab />', () => {
         expect(componentProps.onChange).toHaveBeenCalledTimes(1);
     });
 
-    it('has the apporpiate class when selected is true', () => {
+    it('has the appropriate class when selected is true', () => {
         const testCaseProps = {
             ...componentProps,
             selected: true,

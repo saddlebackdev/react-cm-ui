@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, {
     useState,
     useEffect,
@@ -19,12 +20,13 @@ import {
 const propTypes = {
     /**
      * Instance of react-router core,
-     * breadcrums will be generated automatically using the routes object structure,
+     * breadcrumbs will be generated automatically using the routes object structure,
      * location and push function.
      */
     router: PropTypes.shape({}).isRequired,
     /**
-     * When false, is going to show only the previous route from the current location
+     * When true, it'll show only the current location breadcrumb and the previous path breadcrumb.
+     * When false, it'll show the whole navigation breadcrumbs structure for the current location.
      */
     showOnlyPreviousRoute: PropTypes.bool,
     /**
@@ -98,7 +100,7 @@ const useStyles = makeStyles((theme) => {
                 '& .navigation_breadcrumbs--breadcrumb_title > p': {
                     color: textColorPrimary,
                 },
-            }
+            },
         },
         breadCrumbSeparator: {
             display: 'inline',
@@ -125,7 +127,8 @@ const ICON_TYPE_FIRST_BREADCRUMB = 'chevron-left';
 
 /**
  * Indicates the current location inside the application and the previous routes to navigate back.
- * The breadcrumbs will be automatically generated using the passed react-router core instance (Each route must have a 'title' prop set). 
+ * The breadcrumbs will be automatically generated using the passed react-router core instance
+ * (Each route must have a 'title' prop set).
  */
 function Breadcrumbs(props) {
     const {

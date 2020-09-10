@@ -3,7 +3,8 @@ export default { // Router mockup
         pathname: '/my-section/sub-section/some-status/cool-stuff',
     },
     params: {},
-    push: (to) => { alert(`it would push to: ${to}`); },
+    // eslint-disable-next-line no-console
+    push: (to) => { console.log(`it would push to: ${to}`); },
     routes: [
         {
             path: '/',
