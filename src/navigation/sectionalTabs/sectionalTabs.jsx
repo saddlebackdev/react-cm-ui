@@ -85,9 +85,10 @@ const useStyles = (theme) => {
     const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
     const borderColorSecondary = get(theme, 'palette.border.secondary');
     const colorActivePrimary = get(theme, 'palette.active.primary');
+    const colorHighlight = get(theme, 'palette.cyan[500]');
+    const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const textColorPrimary = get(theme, 'palette.text.primary');
-    const colorHighlight = get(theme, 'palette.cyan[500]');
 
     const styles = {
         root: {
@@ -118,13 +119,17 @@ const useStyles = (theme) => {
             cursor: 'pointer',
             zIndex: 1,
             whiteSpace: 'nowrap',
-            padding: '10px 20px 0 0',
+            padding: '0 10px 0 0',
             outline: 'none',
+            '&:not(:first-child)': {
+                padding: '0 10px 0 10px',
+            },
         },
         sectionalTabLabel: {
             fontSize: 14,
+            fontWeight: fontWeightMedium,
             color: textColorSecondary,
-            paddingBottom: 10,
+            paddingBottom: 5,
             transition: 'color 0.1s, border-bottom 0.1s',
             borderBottom: `2px solid ${borderColorContrastPrimary}`,
             '&:hover': {
