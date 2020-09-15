@@ -7,7 +7,6 @@ import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
-import { OPTIONS_THEME_DARK } from '../dropdownMenu/dropdownMenuConstants';
 
 const propTypes = {
     ...buttonPropTypes,
@@ -35,6 +34,13 @@ const propTypes = {
      */
     label: PropTypes.string,
     /**
+     * Options list theme
+     */
+    optionsTheme: PropTypes.oneOf([
+        'dark',
+        'light',
+    ]),
+    /**
      * Indicates whether or not the Dropdown Button can be focused.
      */
     tabIndex: PropTypes.number,
@@ -44,7 +50,7 @@ const defaultProps = {
     ...buttonDefaultProps,
     iconSize: 16,
     iconType: 'chevron-down',
-    optionsTheme: OPTIONS_THEME_DARK,
+    optionsTheme: 'dark',
     tabIndex: -1,
 };
 

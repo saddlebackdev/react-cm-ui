@@ -23,6 +23,13 @@ const propTypes = {
     isOpen: PropTypes.bool.isRequired,
     getParentContainer: PropTypes.func,
     onToggleOpen: PropTypes.func.isRequired,
+    /**
+     * Options list theme
+     */
+    optionsTheme: PropTypes.oneOf([
+        'dark',
+        'light',
+    ]),
     style: PropTypes.shape({}),
     /**
      * Indicates whether or not the Dropdown Menu can be focused.
@@ -31,6 +38,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    optionsTheme: 'dark',
     className: undefined,
     id: undefined,
     style: undefined,
@@ -135,6 +143,7 @@ function DropdownMenu(props) {
         getParentContainer,
         id,
         isOpen,
+        optionsTheme,
         onToggleOpen,
         style,
         tabIndex,
@@ -149,7 +158,10 @@ function DropdownMenu(props) {
         top: '100%',
     });
 
-    const classes = useStyles(props);
+    const classes = useStyles({
+        ...props,
+        optionsTheme, // just to avoid the ESLint issue 'PropType is defined but prop is never used'
+    });
 
     function onDropdownMenuReposition() {
         let parentContainer = get(dropdownMenuRef, 'current.parentElement');

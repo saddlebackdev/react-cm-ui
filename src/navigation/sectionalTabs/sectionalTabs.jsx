@@ -119,10 +119,10 @@ const useStyles = (theme) => {
             cursor: 'pointer',
             zIndex: 1,
             whiteSpace: 'nowrap',
-            padding: '0 10px 0 0',
+            padding: '10px 10px 0 0',
             outline: 'none',
             '&:not(:first-child)': {
-                padding: '0 10px 0 10px',
+                padding: '10px 10px 0 10px',
             },
         },
         sectionalTabLabel: {
