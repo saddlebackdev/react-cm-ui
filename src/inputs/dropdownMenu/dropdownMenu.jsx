@@ -14,6 +14,10 @@ const propTypes = {
     getParentContainer: PropTypes.func,
     onToggleOpen: PropTypes.func.isRequired,
     style: PropTypes.shape({}),
+    /**
+     * Indicates whether or not the Dropdown Menu can be focused.
+     */
+    tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -21,6 +25,7 @@ const defaultProps = {
     id: undefined,
     style: undefined,
     getParentContainer: undefined,
+    tabIndex: -1,
 };
 
 function DropdownMenu(props) {
@@ -32,8 +37,11 @@ function DropdownMenu(props) {
         isOpen,
         onToggleOpen,
         style,
+        tabIndex,
     } = props;
+
     const dropdownMenuRef = useRef(null);
+
     const [menuPositionStyle, setMenuPositionStyle] = useState({
         bottom: null,
         left: 0,
@@ -128,6 +136,7 @@ function DropdownMenu(props) {
                 ...style,
                 ...menuPositionStyle,
             }}
+            tabIndex={tabIndex}
         >
             {children}
         </div>
