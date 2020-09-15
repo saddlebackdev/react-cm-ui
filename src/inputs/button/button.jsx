@@ -35,7 +35,6 @@ const styles = (theme) => {
             lineHeight: 1,
             margin: '0 11px 0 0',
             minHeight: buttonSize,
-            outline: 'none',
             overflow: 'hidden',
             padding: '0 22px 1px',
             textAlign: 'center',
@@ -184,6 +183,10 @@ const styles = (theme) => {
             display: 'flex',
             justifyContent: 'center',
             minHeight: buttonSize,
+            '& .ui.icon': {
+                outline: 'none',
+                pointerEvents: 'none',
+            },
             '& > .ui.icon .icon-use-path': {
                 fill: palette.text.contrastText,
             },
