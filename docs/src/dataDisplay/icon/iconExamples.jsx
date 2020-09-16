@@ -403,7 +403,7 @@ class ElementsIconExamples extends React.PureComponent {
                         </Header.Subheader>
                     </Header>
 
-                    <Icon type="activity" onClick={onIconClick} />
+                    <Icon type="activity" onClick={onIconClick} tabIndex={0} />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {onClickSample}
