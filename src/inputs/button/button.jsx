@@ -45,6 +45,9 @@ const styles = (theme) => {
             verticalAlign: 'top',
             whiteSpace: 'normal',
             width: (props) => props.width || '',
+            '&:focus': {
+                boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+            },
             '&:last-child': {
                 marginRight: 0,
             },
@@ -184,6 +187,10 @@ const styles = (theme) => {
             display: 'flex',
             justifyContent: 'center',
             minHeight: buttonSize,
+            '& .ui.icon': {
+                outline: 'none',
+                pointerEvents: 'none',
+            },
             '& > .ui.icon .icon-use-path': {
                 fill: palette.text.contrastText,
             },
@@ -273,6 +280,7 @@ class Button extends React.PureComponent {
         super(props);
 
         this.onClick = this.onClick.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -295,6 +303,10 @@ class Button extends React.PureComponent {
         if (isFunction(onClick)) {
             onClick(event);
         }
+    }
+
+    onMouseDown(event) {
+        event.preventDefault();
     }
 
     render() {
@@ -360,6 +372,7 @@ class Button extends React.PureComponent {
                 id={id}
                 href={href}
                 onClick={this.onClick}
+                onMouseDown={this.onMouseDown}
                 style={style}
                 target={target}
                 title={title}

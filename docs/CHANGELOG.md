@@ -1,6 +1,31 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.10.0 - 09/16/2020
+
+#### Feature
+- [PR #192](https://github.com/saddlebackdev/react-cm-ui/pull/192) / Merge Commit 8544d9b3119124f346b10a0d122b34cfb388f484
+    - DataGrid documentation
+    - New ComponentVersionIdentifier
+    - Updated Example Component
+    - Fixed some ActionBar and Radio documentation issues.
+- [PR #194](https://github.com/saddlebackdev/react-cm-ui/pull/194) / Merge Commit 538b8f2defdac395b734ef4934d88fbb31e4a330
+  - Updated `moment-timezone`
+  - Fixed ComponentVersionIdentifier component.
+  - Updated DurationPicker documentation.
+- [PR #195](https://github.com/saddlebackdev/react-cm-ui/pull/195) / Merge Commit 6a05e68ad5ba728e2746d82bb61d71fd3b54d2af
+  - Added SectionalTabs and BreadCrumbs documentation.
+  - Updated DropdownButton documentation.
+  -
+
+#### Bug Fix
+- [PR #198](https://github.com/saddlebackdev/react-cm-ui/pull/198) / Merge Commit 959638982efafe31be9e7989b9211a0d966a1612
+  - Fixed fourth level navigation.
+- [PR #199](https://github.com/saddlebackdev/react-cm-ui/pull/199) / Merge Commit aa7225905a0bfc0003463fcd1bfd2faae99436d9
+  - build(deps): bump bl from 4.0.2 to 4.0.3 in /docs
+- [PR #200](https://github.com/saddlebackdev/react-cm-ui/pull/200) / Merge Commit 20544222667ff5624ed388fe6b9531ce60a0e84c
+  - build(deps-dev): bump node-sass from 4.12.0 to 4.13.1 in /docs
+
 ## 0.9.0 - 08/21/2020
 
 #### Feature

@@ -4,10 +4,12 @@ import {
     map,
     isArray,
     isNil,
+    isObject,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { BEM_DATA_GRID } from '../../global/constants';
 import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTableRow from './dataGridTableRow';
 import Table from '../table';
@@ -16,7 +18,6 @@ import DataGridTableReactSortable from './dataGridTableReactSortable';
 const propTypes = {
     bleed: PropTypes.bool,
     className: PropTypes.string,
-    classNamePrefix: PropTypes.oneOf(['drawer--data_grid', 'page--data_grid']).isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({
         className: PropTypes.string,
         id: PropTypes.string,
@@ -87,7 +88,6 @@ class DataGridTable extends React.PureComponent {
 
     render() {
         const {
-            classNamePrefix,
             bleed: bleedProp,
             className,
             columns,
@@ -114,7 +114,6 @@ class DataGridTable extends React.PureComponent {
 
             return (
                 <DataGridTableRow
-                    classNamePrefix={classNamePrefix}
                     columns={columns}
                     handle={handle}
                     id={id}
@@ -129,9 +128,9 @@ class DataGridTable extends React.PureComponent {
         });
 
         let tableBody;
-        const bodyClasses = ClassNames({ [`${classNamePrefix}_drop_shadow`]: dropShadow });
+        const bodyClasses = ClassNames({ [`${BEM_DATA_GRID}--table_body-drop_shadow`]: dropShadow });
 
-        if (sortable === true) {
+        if (isArray(sortable) && sortable.length === 1 && !isArray(dataProp[0])) {
             tableBody = (
                 <DataGridTableReactSortable
                     arrayIndex={0}
@@ -139,7 +138,7 @@ class DataGridTable extends React.PureComponent {
                     list={dataProp}
                     sortable={{
                         ...sortable,
-                        filter: `${classNamePrefix}-filter`,
+                        filter: `${BEM_DATA_GRID}--table-filter`,
                     }}
                 >
                     {tableRows(
@@ -166,7 +165,7 @@ class DataGridTable extends React.PureComponent {
                         list={arrayOfData}
                         sortable={{
                             ...sortable,
-                            filter: `${classNamePrefix}-filter`,
+                            filter: `${BEM_DATA_GRID}--table-filter`,
                         }}
                     >
                         {tableRows(
@@ -186,7 +185,7 @@ class DataGridTable extends React.PureComponent {
             );
         }
 
-        const rootClasses = ClassNames('ui', `${classNamePrefix}_table`, className);
+        const rootClasses = ClassNames('ui', `${BEM_DATA_GRID}--table`, className);
         const bleed = bleedProp ? 'very' : stretch;
 
         return (
@@ -196,7 +195,7 @@ class DataGridTable extends React.PureComponent {
             >
                 <Table
                     basic
-                    className={`${classNamePrefix}_table_component`}
+                    className={`${BEM_DATA_GRID}--table_component`}
                     fontSize={fontSize}
                     selectable={isSelectable}
                     size={size}
@@ -208,11 +207,11 @@ class DataGridTable extends React.PureComponent {
                         <Table.Row>
                             {map(columns, (column, index) => {
                                 const headerCellClasses = ClassNames(
-                                    `${classNamePrefix}_table_header_cell`,
+                                    `${BEM_DATA_GRID}--table_header_cell`,
                                     column.className,
                                 );
 
-                                const cellId = column.id || `${classNamePrefix}_table_${id}_header_${idPrefix}-${index}`;
+                                const cellId = column.id || `${BEM_DATA_GRID}--table_${id}_header_${idPrefix}-${index}`;
 
                                 return (
                                     <Table.HeaderCell

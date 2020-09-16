@@ -137,13 +137,17 @@ class Dropdown extends React.Component {
         if (children && !selection) {
             items = React.Children.map(children, (child, index) => {
                 if (!_.isNil(child)) {
-                    const itemIconInverse = child.props.iconInverse;
-                    const itemIconType = child.props.iconType;
-                    const itemLabel = child.props.label;
-                    const itemDisabled = child.props.disabled;
+                    const {
+                        iconInverse: itemIconInverse,
+                        iconType: itemIconType,
+                        label: itemLabel,
+                        disabled: itemDisabled,
+                    } = child.props;
 
-                    let itemIconColor = child.props.iconColor;
-                    let itemId = child.props.id;
+                    let {
+                        iconColor: itemIconColor,
+                        id: itemId,
+                    } = child.props;
 
                     const itemClass = ClassNames('dropdown-item', child.props.className, {
                         'dropdown-item-is-selected': this.state.value ? this.state.value.label === itemLabel : false,

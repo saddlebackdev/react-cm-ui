@@ -2,9 +2,8 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personCoreMilestones/__test__/personCoreMilestones.test.js
  */
-import { mount, shallow } from 'enzyme';
 import React from 'react';
-import MockedTheme from '../../../testUtils/mockedTheme';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import PersonCoreMilestones from '../personCoreMilestones'; // eslint-disable-line import/no-named-as-default
 
 describe('<PersonCoreMilestones />', () => {
@@ -43,24 +42,20 @@ describe('<PersonCoreMilestones />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+            />,
         );
 
         expect(wrapper).toBeDefined();
     });
 
     it('Should render with the root classes', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -72,12 +67,10 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render with the root classes', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -92,12 +85,10 @@ describe('<PersonCoreMilestones />', () => {
         let wrapper;
         let column;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+            />,
         );
 
         column = wrapper.find(`.${bemBlockName}--accepted_christ_column Icon`);
@@ -110,13 +101,11 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.props().title).toEqual('Has not accepted Christ');
         expect(column.props().type).toEqual('heart');
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    hasAcceptedChrist
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                hasAcceptedChrist
+            />,
         );
 
         column = wrapper.find(`.${bemBlockName}--accepted_christ_column Icon`);
@@ -133,20 +122,18 @@ describe('<PersonCoreMilestones />', () => {
         let iconBaseClass301;
         let iconBaseClass401;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    hasSignedMaturityCovenant
-                    hasSignedMembershipAgreement
-                    hasSignedMinistryCovenant
-                    hasSignedMissionCovenant
-                    hasTakenClass101
-                    hasTakenClass201
-                    hasTakenClass301
-                    hasTakenClass401
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                hasSignedMaturityCovenant
+                hasSignedMembershipAgreement
+                hasSignedMinistryCovenant
+                hasSignedMissionCovenant
+                hasTakenClass101
+                hasTakenClass201
+                hasTakenClass301
+                hasTakenClass401
+            />,
         );
 
         column = wrapper.find(`.${bemBlockName}--class_column`).first();
@@ -190,13 +177,11 @@ describe('<PersonCoreMilestones />', () => {
         expect(iconBaseClass401.hasClass(/(makeStyles)-(hasTakenClass401)-(\d+)/)).toEqual(true);
         expect(iconBaseClass401.hasClass(/(makeStyles)-(hasSignedMissionCovenant)-(\d+)/)).toEqual(true);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    gender="f"
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                gender="f"
+            />,
         );
 
         column = wrapper.find(`.${bemBlockName}--class_column`).first();
@@ -217,13 +202,11 @@ describe('<PersonCoreMilestones />', () => {
 
         expect(iconBaseClass401.hasClass(/(makeStyles)-(genderFemale)-(\d+)/)).toEqual(true);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    gender={null}
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                gender={null}
+            />,
         );
 
         column = wrapper.find(`.${bemBlockName}--class_column`).first();
@@ -246,13 +229,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without accepted Christ column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeAcceptedChristColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeAcceptedChristColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--accepted_christ_column`);
@@ -261,13 +242,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without baptism column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeBaptismColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeBaptismColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--baptism_column`);
@@ -276,13 +255,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without C.L.A.S.S column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeClassColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeClassColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--class_column`);
@@ -291,13 +268,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without congregation date column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeCongregationDateColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeCongregationDateColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--congregation_date_column`);
@@ -306,13 +281,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without first contact date column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeFirstContactDateColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeFirstContactDateColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--first_contact_date_column`);
@@ -321,13 +294,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without in ministry column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeInMinistryColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeInMinistryColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--in_ministry_column`);
@@ -336,13 +307,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without in trips column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeInTripsColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeInTripsColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--in_trips_column`);
@@ -351,13 +320,11 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render without small group column', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonCoreMilestones
-                    {...props}
-                    removeSmallGroupColumn
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonCoreMilestones
+                {...props}
+                removeSmallGroupColumn
+            />,
         );
 
         const column = wrapper.find(`.${bemBlockName}--small_group_column`);
