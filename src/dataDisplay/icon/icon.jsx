@@ -69,6 +69,7 @@ class Icon extends React.PureComponent {
 
         this.onClick = this.onClick.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
     }
 
     onClick(event) {
@@ -88,6 +89,10 @@ class Icon extends React.PureComponent {
         if (isFunction(onKeyDown) && !disable) {
             onKeyDown(event);
         }
+    }
+
+    onMouseDown(event) {
+        event.preventDefault();
     }
 
     render() {
@@ -1583,6 +1588,7 @@ class Icon extends React.PureComponent {
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
+                onMouseDown={this.onMouseDown}
                 style={containerStyle}
                 type={isButton ? 'button' : null}
                 tabIndex={tabIndex}

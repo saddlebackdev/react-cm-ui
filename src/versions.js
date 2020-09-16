@@ -16,6 +16,18 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
                 },
             },
+            navigation: {
+                breadcrumbs: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                sectionalTabs: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
         },
         theme: {
             breakpoints: '1.0.0',

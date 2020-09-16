@@ -34,6 +34,13 @@ const propTypes = {
      */
     label: PropTypes.string,
     /**
+     * Options list theme
+     */
+    optionsTheme: PropTypes.oneOf([
+        'dark',
+        'light',
+    ]),
+    /**
      * Indicates whether or not the Dropdown Button can be focused.
      */
     tabIndex: PropTypes.number,
@@ -43,6 +50,7 @@ const defaultProps = {
     ...buttonDefaultProps,
     iconSize: 16,
     iconType: 'chevron-down',
+    optionsTheme: 'dark',
     tabIndex: -1,
 };
 
@@ -72,6 +80,7 @@ function DropdownButton(props) {
         inverse,
         label,
         outlined,
+        optionsTheme,
         relax,
         style,
         tabIndex,
@@ -90,8 +99,9 @@ function DropdownButton(props) {
 
     const bemClassName = 'button_dropdown';
     const rootClasses = ClassNames(
-        'button_dropdown',
+        bemClassName,
         className,
+        { [`${bemClassName}-open`]: isMenuOpen },
     );
 
     return (
@@ -135,6 +145,7 @@ function DropdownButton(props) {
                 isOpen={isMenuOpen}
                 onToggleOpen={onMenuToggle}
                 getParentContainer={getParentContainer}
+                optionsTheme={optionsTheme}
             >
                 {children}
             </DropdownMenu>
