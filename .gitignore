@@ -1,11 +1,11 @@
-node_modules/
-npm-debug.log
+*.tgz
+**/.DS_Store
 build
+config.json
+config.local.json
 core
 coverage
 lib
+node_modules/
+npm-debug.log
 stats.json
-**/.DS_Store
-config.json
-config.local.json
-*.tgz

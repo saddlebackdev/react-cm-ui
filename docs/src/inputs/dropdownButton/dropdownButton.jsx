@@ -39,7 +39,13 @@ function DocsDropdownButton() {
             type: 'string',
             default: '',
             description: 'The label.',
+        }, {
+            name: 'optionsTheme',
+            type: 'string',
+            default: 'dark',
+            description: 'Options list theme',
         },
+
     ];
     tableProps = _.sortBy(tableProps, ['name']);
 
