@@ -21,7 +21,6 @@ const versions = {
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
             },
-            surfaces: {},
         },
         theme: {
             breakpoints: '1.0.0',
