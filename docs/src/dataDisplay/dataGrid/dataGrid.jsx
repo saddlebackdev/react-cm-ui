@@ -34,12 +34,12 @@ function DocsDataGrid(props) {
 
     const {
         description,
-        name,
+        displayName,
     } = rootDoc;
 
     return (
-        <Main page={camelCase(name)}>
-            <TitleBar title={startCase(name)} />
+        <Main page={camelCase(displayName)}>
+            <TitleBar title={startCase(displayName)} />
 
             <Main.Content>
                 <MarkdownContainer>
