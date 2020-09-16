@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.15.2',
+        package: '9.16.0',
         components: {
             inputs: {
                 durationPicker: {
@@ -21,6 +21,7 @@ const versions = {
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
             },
+            surfaces: {},
         },
         theme: {
             breakpoints: '1.0.0',
