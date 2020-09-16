@@ -33,12 +33,17 @@ const propTypes = {
      * The ButtonDropdown's label.
      */
     label: PropTypes.string,
+    /**
+     * Indicates whether or not the Dropdown Button can be focused.
+     */
+    tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
     ...buttonDefaultProps,
     iconSize: 16,
     iconType: 'chevron-down',
+    tabIndex: -1,
 };
 
 const useStyles = makeStyles({
@@ -69,6 +74,7 @@ function DropdownButton(props) {
         outlined,
         relax,
         style,
+        tabIndex,
         target,
         title,
         width,
@@ -110,6 +116,7 @@ function DropdownButton(props) {
             target={target}
             title={title}
             width={width}
+            tabIndex={tabIndex}
         >
             {iconType && (
                 <Icon
