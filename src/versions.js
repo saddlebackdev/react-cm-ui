@@ -9,6 +9,18 @@ const versions = {
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
             },
+            navigation: {
+                breadcrumbs: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                sectionalTabs: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
         },
         theme: {
             breakpoints: '1.0.0',

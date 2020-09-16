@@ -301,6 +301,16 @@ export const navigationItems = [
                         label: 'Tabs',
                         path: 'tabs',
                     },
+                    {
+                        component: 'sectionalTabs',
+                        label: 'Sectional Tabs',
+                        path: 'sectional-tabs',
+                    },
+                    {
+                        component: 'breadcrumbs',
+                        label: 'Breadcrumbs',
+                        path: 'breadcrumbs',
+                    },
                 ],
                 path: 'navigation',
             },
