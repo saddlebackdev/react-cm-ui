@@ -2,10 +2,9 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetailsActionButton.test.js
  */
-import { mount, shallow } from 'enzyme';
 import React from 'react';
 import PersonPanelDetailsActionButton from '../personPanelDetailsActionButton';
-import MockedTheme from '../../../testUtils/mockedTheme';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import { ENTER_KEY_CODE } from '../../../global/constants';
 
 describe('<personPanelDetailsActionButton />', () => {
@@ -24,12 +23,10 @@ describe('<personPanelDetailsActionButton />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+            />,
         );
 
         expect(wrapper).toBeDefined();
@@ -39,12 +36,10 @@ describe('<personPanelDetailsActionButton />', () => {
         let wrapper;
         let root;
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+            />,
         );
 
         root = wrapper.find('button');
@@ -53,26 +48,22 @@ describe('<personPanelDetailsActionButton />', () => {
         expect(root.hasClass(/(makeStyles)-(button)-(\d+)/)).toEqual(true);
         expect(root.hasClass(props.className)).toEqual(true);
 
-        wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    outlined
-                />
-            </MockedTheme>,
+        wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                outlined
+            />,
         );
 
         root = wrapper.find('button');
     });
 
     it('Should render with the prompt classes', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -81,13 +72,11 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should have expected `id` prop', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -97,13 +86,11 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should render with label', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         const buttonInnerContainer = wrapper.find('.button-inner-container');
@@ -112,13 +99,11 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should render with title', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         const button = wrapper.find('button');
@@ -127,12 +112,10 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should call onClick when clicking PersonPanelDetailsActionButton', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+            />,
         );
 
         wrapper.find('PersonPanelDetailsActionButton').simulate('click');
@@ -141,12 +124,10 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should call onKeyDown when pressing enter key down on PersonPanelDetailsActionButton', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+            />,
         );
 
         wrapper.find('PersonPanelDetailsActionButton').props().onKeyDown({ keyCode: ENTER_KEY_CODE });
@@ -155,13 +136,11 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should call onNoClick when clicking No', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         wrapper.find('.prompt-no-btn').simulate('click');
@@ -170,13 +149,11 @@ describe('<personPanelDetailsActionButton />', () => {
     });
 
     it('Should call onYesClick when clicking No', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetailsActionButton
-                    {...props}
-                    prompt
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetailsActionButton
+                {...props}
+                prompt
+            />,
         );
 
         wrapper.find('.prompt-yes-btn').simulate('click');

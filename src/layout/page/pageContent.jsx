@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            margin: `0 -${gutters.page.sm}`,
-            padding: `0 ${gutters.page.sm}`,
+            margin: `0 -${gutters.page.sm}px`,
+            padding: `0 ${gutters.page.sm}px`,
             position: 'relative',
             transition: 'margin 200ms ease-out',
             zIndex: 0,
@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => {
                 overflowX: 'scroll',
             },
             [breakpoints.up(496)]: {
-                margin: `0 -${gutters.page[496]}`,
-                padding: `0 ${gutters.page[496]}`,
+                margin: `0 -${gutters.page[496]}px`,
+                padding: `0 ${gutters.page[496]}px`,
             },
         },
     };

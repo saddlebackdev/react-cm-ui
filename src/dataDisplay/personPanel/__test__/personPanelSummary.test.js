@@ -2,9 +2,8 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelSummary.test.js
  */
-import { mount, shallow } from 'enzyme';
 import React from 'react';
-import MockedTheme from '../../../testUtils/mockedTheme';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import PersonPanelSummary from '../personPanelSummary';
 
 describe('<PersonPanelSummary />', () => {
@@ -21,12 +20,10 @@ describe('<PersonPanelSummary />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+            />,
         );
 
         expect(wrapper).toBeDefined();
@@ -35,15 +32,13 @@ describe('<PersonPanelSummary />', () => {
     it('Should render with the root classes', () => {
         const rootOverride = 'makeStyles-root-123';
 
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    classes={{
-                        root: rootOverride,
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                classes={{
+                    root: rootOverride,
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -57,12 +52,10 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with the root className', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -71,12 +64,10 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should have expected `id` prop', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -85,15 +76,13 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with isStudent class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    data={{
-                        recordType: 'student',
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                data={{
+                    recordType: 'student',
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -102,13 +91,11 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with isExpanded class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    isExpanded
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                isExpanded
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -117,15 +104,13 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with isChild class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    data={{
-                        recordType: 'child',
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                data={{
+                    recordType: 'child',
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -134,15 +119,13 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with genderFemale class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    data={{
-                        gender: 'f',
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                data={{
+                    gender: 'f',
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -151,15 +134,13 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render with genderMale class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    data={{
-                        gender: 'm',
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                data={{
+                    gender: 'm',
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -168,16 +149,14 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should render avatar initials and name', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                    data={{
-                        firstName: 'Jeffery',
-                        lastName: 'Lebowski',
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+                data={{
+                    firstName: 'Jeffery',
+                    lastName: 'Lebowski',
+                }}
+            />,
         );
 
         expect(wrapper.find('.ui.image').text()).toEqual('JL');
@@ -185,12 +164,10 @@ describe('<PersonPanelSummary />', () => {
     });
 
     it('Should call onClick when clicking PersonPanelSummary', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelSummary
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelSummary
+                {...props}
+            />,
         );
 
         wrapper.find('PersonPanelSummary').simulate('click');

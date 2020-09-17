@@ -1,6 +1,61 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.16.0 - 09/16/2020
+
+#### Feature
+- [PR #192](https://github.com/saddlebackdev/react-cm-ui/pull/192) / Merge Commit 8544d9b3119124f346b10a0d122b34cfb388f484
+  - DataGrid
+    - New `classes` prop.
+    - `moduleType` prop no longer required.
+    - Converted SCSS to JSS
+    - `className` is now in our new global constants file.
+  - Updated PersonContactInfo, PersonCoreMilestones, PersonPanel with new Enzyme helper
+  - Added height.actionBar heights to the theme.
+  - Added spacing to the theme.
+- [PR #194](https://github.com/saddlebackdev/react-cm-ui/pull/194) / Merge Commit 538b8f2defdac395b734ef4934d88fbb31e4a330
+  - Refactored DurationPicker.
+  - Updated versions with durationPicker versions.
+- [PR #203](https://github.com/saddlebackdev/react-cm-ui/pull/203) / Merge Commit 1eefc85592f4834d7a848e57d845c863b2257921
+  - Added `onKeyDown` prop and method to Button, DropdownButton, and Icon.
+  - Added `tabIndex` prop to DropdownButton and Icon.
+  - Added outline style to Button, DropdownButton, and Icon
+- [PR #195](https://github.com/saddlebackdev/react-cm-ui/pull/195) / Merge Commit 6a05e68ad5ba728e2746d82bb61d71fd3b54d2af
+  - New dependencies: `react-resize-detector` and `jest-react-hooks-shallow`.
+  - Added a theme to DropdownButton and DropdownMenu components.
+  - Converted DropdownMenu SCSS to JSS.
+  - New components: Breadcrumbs and SectionalTabs
+  - Updated versions with breadcrumbs and sectionalTabs versions.
+
+#### Bug Fix
+- [PR #201](https://github.com/saddlebackdev/react-cm-ui/pull/201) / Merge Commit 053c3500a7e787794defc2ed253b144721302246
+  - build(deps-dev): bump node-sass from 4.12.0 to 4.13.1
+- [PR #206](https://github.com/saddlebackdev/react-cm-ui/pull/206) / Merge Commit 79333088266dbfb3b951fde6e551787e569a2591
+  - Fixed outline styling for when click on a Button, DropdownButton or Icon.
+
+## 9.15.2 - 08/27/2020
+
+#### Bug Fix
+- [PR #197](https://github.com/saddlebackdev/react-cm-ui/pull/197) / Merge Commit 0bac4d4923b52b014f3bd5ac401d22ecb592b310
+    - Fixed a small JSS style bug affecting **PageContent** component.
+
+## 9.15.1 - 08/26/2020
+
+#### Bug Fix
+- [PR #193](https://github.com/saddlebackdev/react-cm-ui/pull/193) / Merge Commit 000718b6ac81829fd4897815d12aefd431ee1bd7
+    - Added some defensive checks on **PhoneInput's** dropdown values.
+    - Removed the "international" option from **PhoneInput** dropdown options.
+
+## 9.15.0 - 08/21/2020
+
+#### Feature
+- [PR #186](https://github.com/saddlebackdev/react-cm-ui/pull/186) / Merge Commit 16d06373f870432f09ec9b6c96224e8b88e5e908
+    - Reorganized Components In `./src`
+- [PR #189](https://github.com/saddlebackdev/react-cm-ui/pull/189) / Merge Commit 43bf9894dd4b830551662ed8a67c264e12716781
+    - Change to allow disabling international region code for phone numbers.
+- [PR #190](https://github.com/saddlebackdev/react-cm-ui/pull/190) / Merge Commit f2142f54cb4f2cd41698d4d608367bc5d33e92d5
+    - Added `customFormat` prop to **DatePickerInput**
+
 ## 9.13.6 - 08/12/2020
 
 - Fix Radio Button `onClick` handling when `multi` prop is set to `true` (Commit 72fdd9206ba26b685a0b4fd4c640aa16e37fffaf)

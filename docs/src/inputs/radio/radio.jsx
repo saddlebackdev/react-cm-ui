@@ -160,7 +160,7 @@ export default class RadioGroupPillSample extends React.Component {
     render() {
         return (
             <div>
-                <Radio name="pill-sample" pill={true}>
+                <Radio name="pill-sample" pill>
                     <Radio.Item label="Option 01" />
                     <Radio.Item label="Option 02" />
                     <Radio.Item label="Option 03" />
@@ -176,7 +176,18 @@ export default class RadioGroupPillSample extends React.Component {
                     <Radio.Item label="Option 01" />
                     <Radio.Item label="Option 02" />
                     <Radio.Item label="Option 03" />
-                </Radio>
+                </Radio><br /><br />
+
+                <Radio
+                    checked={2}
+                    disable
+                    name="pill-disabled-sample"
+                    pill
+                >
+                    <Radio.Item label="Option 01" />
+                    <Radio.Item label="Option 02" />
+                    <Radio.Item label="Option 03" />
+                </Radio><br /><br />
             </div>
         );
     }
@@ -195,7 +206,6 @@ export default class ElementsRadio extends React.Component {
     }
 
     render() {
-
         const props = [
             {
                 name: 'align',
@@ -443,15 +453,20 @@ export default class ElementsRadio extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Radio name="pill-sample" pill>
-                        <Radio.Item label="Option 01" />
-                        <Radio.Item label="Option 02" />
-                        <Radio.Item label="Option 03" />
+                    <Radio
+                        id="block_name--element_name"
+                        name="pillSample"
+                        onChange={(id, newValue) => console.log(`id: ${id}, newValue: ${newValue}`)}
+                        pill
+                    >
+                        <Radio.Item id="block_name--element_name-1" label="Option 01" />
+                        <Radio.Item id="block_name--element_name-2" label="Option 02" />
+                        <Radio.Item id="block_name--element_name-3" label="Option 03" />
                     </Radio><br /><br />
 
                     <Radio
                         checked={this.state.checkedPill}
-                        name="pill-onchange-sample"
+                        name="pillOnChangeSample"
                         onChange={this._onPillChange.bind(this)}
                         pill
                         multi
@@ -464,7 +479,7 @@ export default class ElementsRadio extends React.Component {
                     <Radio
                         checked={2}
                         disable
-                        name="pill-disabled-sample"
+                        name="pillDisabledSample"
                         pill
                     >
                         <Radio.Item label="Option 01" />

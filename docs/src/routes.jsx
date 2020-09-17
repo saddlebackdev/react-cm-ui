@@ -21,31 +21,40 @@ const routes = (
                 key={`${levelOne.path}`}
                 path={`${levelOne.path}`}
             >
-                {!isEmpty(levelOne.subSections) ? map(levelOne.subSections, (levelTwo) => (
+                {map(levelOne.levelTwo, (levelTwo) => (
                     <Route
+                        getComponent={!levelTwo.levelThree ? (location, callback) => {
+                            import(`./${levelOne.directory}/${levelTwo.component}`)
+                                .then((module) => callback(null, module.default));
+                        } : null}
                         key={`${levelTwo.path}`}
                         path={`${levelTwo.path}`}
                     >
-                        {map(levelTwo.items, (levelTwoItem) => (
+                        {levelTwo.levelThree && map(levelTwo.levelThree, (levelThree) => (
                             <Route
-                                getComponent={(location, callback) => {
-                                    import(`./${levelTwo.directory}/${levelTwoItem.component}`)
-                                        .then((module) => callback(null, module.default));
-                                }}
-                                key={`${levelTwoItem.path}`}
-                                path={levelTwoItem.path}
-                            />
+                                key={`${levelThree.path}`}
+                                path={levelThree.path}
+                            >
+                                <IndexRoute
+                                    getComponent={(location, callback) => {
+                                        import(`./${levelTwo.directory}/${levelThree.component}`)
+                                            .then((module) => callback(null, module.default));
+                                    }}
+                                />
+
+                                {levelThree.levelFour && map(levelThree.levelFour, (levelFour) => (
+                                    <Route
+                                        getComponent={(location, callback) => {
+                                            import(`./${levelTwo.directory}/${levelThree.component}/${levelFour.component}`)
+                                                .then((module) => callback(null, module.default));
+                                        }}
+                                        key={`${levelFour.path}`}
+                                        path={levelFour.path}
+                                    />
+                                ))}
+                            </Route>
                         ))}
                     </Route>
-                )) : map(levelOne.items, (levelOneItem) => (
-                    <Route
-                        getComponent={(location, callback) => {
-                            import(`./${levelOne.directory}/${levelOneItem.component}`)
-                                .then((module) => callback(null, module.default));
-                        }}
-                        key={`${levelOneItem.path}`}
-                        path={levelOneItem.path}
-                    />
                 ))}
             </Route>
         ))}

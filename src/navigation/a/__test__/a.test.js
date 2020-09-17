@@ -1,6 +1,6 @@
 /**
  * To run this test from the church-management/client folder, execute the following command:
- * npx jest ./src/atoms/__test__/a.test.js
+ * npx jest ./src/navigation/a/__test__/a.test.js
  */
 import { shallow } from 'enzyme';
 import React from 'react';

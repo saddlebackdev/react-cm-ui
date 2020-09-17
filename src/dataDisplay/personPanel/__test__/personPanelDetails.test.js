@@ -2,9 +2,8 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetails.test.js
  */
-import { mount, shallow } from 'enzyme';
 import React from 'react';
-import MockedTheme from '../../../testUtils/mockedTheme';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import PersonPanelDetails from '../personPanelDetails';
 import { ENTER_KEY_CODE } from '../../../global/constants';
 
@@ -153,12 +152,10 @@ describe('<PersonPanelDetails />', () => {
     };
 
     it('Should render without problems', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+            />,
         );
 
         expect(wrapper).toBeDefined();
@@ -167,15 +164,13 @@ describe('<PersonPanelDetails />', () => {
     it('Should render with the root classes', () => {
         const rootOverride = 'makeStyles-root-123';
 
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                    classes={{
-                        root: rootOverride,
-                    }}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+                classes={{
+                    root: rootOverride,
+                }}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -187,12 +182,10 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should render with the root className', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -201,12 +194,10 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should have expected `id` prop', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -215,12 +206,10 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should render with children', () => {
-        const wrapper = shallow(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+            />,
         );
 
         const root = wrapper.find('PersonPanelDetails');
@@ -229,13 +218,11 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should render with isExpanded class', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                    isExpanded
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+                isExpanded
+            />,
         );
 
         const root = wrapper.find('div').first();
@@ -244,12 +231,10 @@ describe('<PersonPanelDetails />', () => {
     });
 
     it('Should render action buttons', () => {
-        const wrapper = mount(
-            <MockedTheme>
-                <PersonPanelDetails
-                    {...props}
-                />
-            </MockedTheme>,
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails
+                {...props}
+            />,
         );
 
         const selectButton = wrapper.find('.block_name--select').first();
