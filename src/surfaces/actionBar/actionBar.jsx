@@ -1,4 +1,5 @@
 import {
+    isEmpty,
     isFunction,
     find,
 } from 'lodash';
@@ -476,6 +477,8 @@ class ActionBar extends React.Component {
 
         const iconSearchColumn = find(columns, 'iconSearch');
 
+        console.log('columns', columns);
+
         return (
             <header
                 className={rootClasses}
@@ -483,7 +486,7 @@ class ActionBar extends React.Component {
                 ref={this.actionBarRef}
             >
                 <div style={{ width: '100%' }}>
-                    {columns && (
+                    {!isEmpty(columns) && (
                         <React.Fragment>
                             <Grid
                                 alignItems="center"

@@ -30,7 +30,6 @@ function PageContainer(props) {
     const rootClasses = ClassNames(
         'ui',
         'page--container',
-        classes.root,
         className,
     );
 

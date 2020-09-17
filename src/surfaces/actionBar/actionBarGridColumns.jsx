@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ActionBarGridColumn(props) {
+function ActionBarGridColumns(props) {
     const {
         columns,
         isMobileSearch,
@@ -388,7 +388,7 @@ function ActionBarGridColumn(props) {
     });
 }
 
-ActionBarGridColumn.propTypes = propTypes;
-ActionBarGridColumn.defaultProps = defaultProps;
+ActionBarGridColumns.propTypes = propTypes;
+ActionBarGridColumns.defaultProps = defaultProps;
 
-export default ActionBarGridColumn;
+export default ActionBarGridColumns;
