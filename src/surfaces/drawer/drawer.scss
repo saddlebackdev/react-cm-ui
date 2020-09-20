@@ -187,6 +187,7 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     }
     > div > div:last-child { z-index: $zindex; } // Vertical scrollbar
     .drawer-container-inner {
+        min-height: 100%;
         position: relative;
     }
     &.drawer-animate-out .drawer-dimmer {

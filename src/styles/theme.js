@@ -15,6 +15,9 @@ const theme = {
         values: breakpointsValues,
     }),
     gutters: {
+        drawer: {
+            sm: 22,
+        },
         page: {
             sm: 22,
             496: 44,
