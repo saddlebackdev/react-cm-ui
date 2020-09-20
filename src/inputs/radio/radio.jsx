@@ -19,6 +19,17 @@ const propTypes = {
         PropTypes.number,
     ]),
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        input: PropTypes.string,
+        isAlignedRight: PropTypes.string,
+        isChecked: PropTypes.string,
+        isDisabled: PropTypes.string,
+        isFluid: PropTypes.string,
+        isPill: PropTypes.string,
+        label: PropTypes.string,
+        labelNotClickable: PropTypes.string,
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     /**
      * A Radio can be disabled.
@@ -45,6 +56,7 @@ const defaultProps = {
     align: null,
     checked: null,
     children: null,
+    classes: null,
     className: null,
     disable: false,
     disabled: false,
