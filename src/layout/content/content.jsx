@@ -29,7 +29,7 @@ const defaultProps = {
     className: null,
     id: null,
     isFiltersRailOpen: false,
-    moduleType: null,
+    moduleType: 'page',
     scrollable: false,
     style: null,
 };
@@ -41,21 +41,28 @@ const useStyles = makeStyles((theme) => {
     } = theme;
 
     return {
+        isInDrawer: {},
+        isInPage: {},
         root: {
-            margin: `0 -${gutters.page.sm}px`,
-            padding: `0 ${gutters.page.sm}px`,
             position: 'relative',
             transition: 'margin 200ms ease-out',
             zIndex: 0,
+            '&$isInPage': {
+                margin: `0 -${gutters.page.sm}px`,
+                padding: `0 ${gutters.page.sm}px`,
+                [breakpoints.up(496)]: {
+                    margin: `0 -${gutters.page[496]}px`,
+                    padding: `0 ${gutters.page[496]}px`,
+                },
+            },
+            '&$isInDrawer': {
+                padding: `0 ${gutters.drawer.sm}px`,
+            },
             '&.page--content-filters_rail_open': {
                 marginLeft: 250,
             },
             '&.page--content-scrollable': {
                 overflowX: 'scroll',
-            },
-            [breakpoints.up(496)]: {
-                margin: `0 -${gutters.page[496]}px`,
-                padding: `0 ${gutters.page[496]}px`,
             },
         },
     };
@@ -68,6 +75,7 @@ function Content(props) {
         className,
         id,
         isFiltersRailOpen,
+        moduleType,
         scrollable,
         style,
     } = props;
@@ -82,6 +90,8 @@ function Content(props) {
         classes.root,
         className,
         {
+            [classes.isInPage]: !moduleType || moduleType === 'page',
+            [classes.isInDrawer]: moduleType === 'drawer',
             [`${BEM_CONTENT}-filters_rail_open`]: !isMobile && isFiltersRailOpen,
             [`${BEM_CONTENT}-scrollable`]: scrollable,
         },

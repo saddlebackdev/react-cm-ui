@@ -1,39 +1,47 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Container from '../../layout/container';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     id: PropTypes.string,
-    style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     children: null,
+    classes: null,
     className: null,
     id: null,
-    style: null,
 };
 
 function DrawerContainer(props) {
     const {
         children,
+        classes,
         className,
         id,
-        style,
     } = props;
 
-    const rootClasses = ClassNames('ui', 'drawer--container', className);
+    const rootClasses = ClassNames(
+        'ui',
+        'drawer--container',
+        className,
+    );
 
     return (
-        <div
+        <Container
+            classes={classes}
             className={rootClasses}
             id={id}
-            style={style}
+            moduleType="drawer"
         >
             {children}
-        </div>
+        </Container>
     );
 }
 
