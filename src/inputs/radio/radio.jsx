@@ -10,6 +10,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RadioItem from './radioItem';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
@@ -66,7 +67,177 @@ const isCheckedSingle = (c, i, isChecked) => (
 
 const isCheckedMulti = (c, i, isChecked) => {
     const id = c.id ? c.id : i;
+
     return includes(isChecked, id);
+};
+
+const styles = (theme) => {
+    const size = 22;
+    const sizeDot = 14;
+
+    const inputStyle = {
+        display: 'none',
+        '&:checked +': {
+            '& $label::after': {
+                opacity: 1,
+            },
+        },
+    };
+
+    return {
+        isAlignedRight: {},
+        isDisabled: {},
+        isFluid: {},
+        isPill: {},
+        input: {
+            ...inputStyle,
+        },
+        label: {
+            color: theme.palette.text.primary,
+            cursor: 'pointer',
+            display: 'block',
+            fontSize: 14,
+            position: 'relative',
+            '&::before, &::after': {
+                content: '""',
+                height: size,
+                left: 0,
+                position: 'absolute',
+                top: 0,
+                transition: 'opacity 150ms ease',
+                width: size,
+            },
+            '&::before': {
+                background: theme.palette.background.primary,
+                border: `1px solid ${theme.palette.border.primary}`,
+                borderRadius: 11,
+            },
+            '&::after': {
+                backgroundColor: theme.palette.cyan[500],
+                borderRadius: sizeDot / 2,
+                height: sizeDot,
+                margin: (size - sizeDot) / 2,
+                opacity: 0,
+                width: sizeDot,
+            },
+            '&$labelNotClickable': {
+                cursor: 'auto',
+                '&::before, &::after': {
+                    cursor: 'pointer',
+                },
+            },
+            '& > span': {
+                display: 'inline-block',
+                paddingLeft: 33,
+                paddingTop: 2,
+            },
+        },
+        labelNotClickable: {},
+        root: {
+            display: 'inline-block',
+            marginRight: theme.spacing(4),
+            minHeight: size,
+            position: 'relative',
+            textAlign: 'left',
+            '&$isAlignedRight': {
+                marginLeft: 11,
+                marginRight: 0,
+                textAlign: 'left',
+                '& $label': {
+                    '&::before, &::after': {
+                        left: 'auto',
+                        right: 0,
+                    },
+                    '& > span': {
+                        paddingLeft: 0,
+                        paddingRight: 'rem(33px)',
+                    },
+                },
+            },
+            '&$isDisabled': {
+                '& $label': {
+                    cursor: 'auto',
+                    '&::before': {
+                        background: theme.palette.background.secondary,
+                    },
+                    '&::after': {
+                        backgroundColor: theme.palette.grey[400],
+                    },
+                },
+                radioPill: {
+                    '& .radio-item': {
+                        '& $label': {
+                            cursor: 'default',
+                        },
+                        '& $input:checked + $label': {
+                            backgroundColor: theme.palette.grey[400],
+                            borderColor: theme.palette.grey[400],
+                        },
+                        '&:last-child': {
+                            input: {
+                                '&:checked + .label': {
+                                    borderRight: `1px solid ${theme.palette.grey[400]}`,
+                                },
+                            },
+                        },
+                        '&.radio-item-is-checked + .radio-item $label': {
+                            borderLeft: `1px solid ${theme.palette.grey[400]}`,
+                        },
+                    },
+                },
+            },
+            '&$isFluid': {
+                display: 'block',
+                marginRight: 0,
+            },
+            '&$isPill': {
+                '& .radio-item': {
+                    display: 'inline-block',
+                    '& .input': {
+                        ...inputStyle,
+                    },
+                    '& label': {
+                        backgroundColor: theme.palette.background.primary,
+                        border: `1px solid ${theme.palette.border.primary}`,
+                        borderRight: 0,
+                        cursor: 'pointer',
+                        display: 'inline-block',
+                        fontSize: 14,
+                        fontWeight: theme.typography.fontWeightRegular,
+                        outline: 'none',
+                        padding: '6px 22px',
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        transition: 'background-color 125ms linear, border 125ms linear, color 125ms linear',
+                        whiteSpace: 'nowrap',
+                        '&::before, &::after': {
+                            display: 'none',
+                        },
+                    },
+                    '& .input:checked + label': {
+                        backgroundColor: theme.palette.cyan[500],
+                        borderColor: theme.palette.cyan[500],
+                        color: theme.palette.text.contrastText,
+                    },
+                    '&:first-child label': {
+                        borderRadius: '15.5px 0 0 15.5px',
+                    },
+                    '&:last-child': {
+                        '& label': {
+                            borderRight: `1px solid ${theme.palette.border.primary}`,
+                            borderRadius: '0 15.5px 15.5px 0',
+                        },
+                        '& .input:checked + label': {
+                            borderRight: `1px solid ${theme.palette.cyan[500]}`,
+                        },
+                    },
+                    '&.radio-item-is-checked + .radio-item label': {
+                        borderLeft: `1px solid ${theme.palette.cyan[500]}`,
+                    },
+                },
+            },
+        },
+    };
 };
 
 class Radio extends React.Component {
@@ -166,6 +337,7 @@ class Radio extends React.Component {
         const {
             align,
             children,
+            classes,
             className,
             disable,
             disabled,
@@ -180,24 +352,34 @@ class Radio extends React.Component {
             tabIndex,
             value,
         } = this.props;
+
         const { isChecked } = this.state;
         const isDisabled = disable || disabled;
-        const containerClasses = ClassNames('ui', 'radio', className, {
-            'radio-align-left': align === 'left',
-            'radio-align-right': align === 'right',
-            'radio-disabled': isDisabled,
-            'radio-full-width': fluid,
-            'radio-is-checked': isChecked && !pill,
-            'radio-pill': pill,
-        });
-        const labelClasses = ClassNames('label', {
-            'label-not-clickable': labelClick === false,
-        });
+
+        const rootClasses = ClassNames(
+            'ui',
+            'radio',
+            classes.root,
+            className,
+            {
+                [classes.isAlignedRight]: align === 'right',
+                'radio-align-right': align === 'right',
+                [classes.isDisabled]: isDisabled,
+                'radio-disabled': isDisabled,
+                [classes.isFluid]: fluid,
+                'radio-full-width': fluid,
+                [classes.isChecked]: !pill && isChecked,
+                'radio-is-checked': !pill && isChecked,
+                [classes.isPill]: pill,
+                'radio-pill': pill,
+            },
+        );
 
         if (pill) {
             const isCheckedItem = multi ? isCheckedMulti : isCheckedSingle;
+
             return (
-                <div className={containerClasses} style={style}>
+                <div className={rootClasses} style={style}>
                     {React.Children.map(children, (c, i) => React.cloneElement(c, {
                         index: i,
                         checked: isCheckedItem(c, i, isChecked),
@@ -212,7 +394,7 @@ class Radio extends React.Component {
             <div
                 aria-checked={isChecked}
                 aria-labelledby={id}
-                className={containerClasses}
+                className={rootClasses}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
                 role="radio"
@@ -221,7 +403,10 @@ class Radio extends React.Component {
             >
                 <input
                     checked={isChecked}
-                    className="input"
+                    className={ClassNames(
+                        'input',
+                        classes.input,
+                    )}
                     disabled={isDisabled}
                     id={id}
                     name={name}
@@ -231,7 +416,16 @@ class Radio extends React.Component {
                 />
 
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label className={labelClasses}>
+                <label
+                    className={ClassNames(
+                        'label',
+                        classes.label,
+                        {
+                            [classes.labelNotClickable]: !labelClick,
+                            'label-not-clickable': labelClick === false,
+                        },
+                    )}
+                >
                     {label && (
                         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                         <span
@@ -252,4 +446,4 @@ Radio.Item = RadioItem;
 Radio.propTypes = propTypes;
 Radio.defaultProps = defaultProps;
 
-export default Radio;
+export default withStyles(styles)(Radio);
