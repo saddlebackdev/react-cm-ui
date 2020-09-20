@@ -35,15 +35,17 @@ const useStyles = makeStyles((theme) => {
         isDrawer: {},
         isPage: {},
         root: {
-            marginTop: 50,
-            [breakpoints.down('md')]: {
-                transition: 'margin-top 333ms ease-in-out',
-                [`&.${BEM_ACTION_BAR_SEARCH_VISIBLE}`]: {
-                    marginTop: 105,
+            '&$isPage': {
+                marginTop: 50,
+                [breakpoints.down('md')]: {
+                    transition: 'margin-top 333ms ease-in-out',
+                    [`&.${BEM_ACTION_BAR_SEARCH_VISIBLE}`]: {
+                        marginTop: 105,
+                    },
                 },
-            },
-            [breakpoints.up('md')]: {
-                marginTop: 70,
+                [breakpoints.up('md')]: {
+                    marginTop: 70,
+                },
             },
         },
     };

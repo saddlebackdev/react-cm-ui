@@ -8,6 +8,9 @@ import ActionBar from '../../surfaces/actionBar';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})),
     id: PropTypes.string,
@@ -16,6 +19,7 @@ const propTypes = {
 
 const defaultProps = {
     children: undefined,
+    classes: null,
     className: undefined,
     columns: undefined,
     id: undefined,
@@ -59,6 +63,7 @@ function PageActionBar(props) {
 
     const {
         children,
+        classes,
         className,
         columns,
         id,
@@ -67,6 +72,7 @@ function PageActionBar(props) {
 
     return (
         <ActionBar
+            classes={classes}
             className={className}
             columns={columns}
             id={id}
