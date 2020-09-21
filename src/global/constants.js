@@ -5,8 +5,8 @@ export const UI_CLASS_NAME = 'cmui';
 export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_ACTION_BAR = 'action_bar';
-export const BEM_ACTION_BAR_GRID_COLUMN = 'action_bar--grid_column';
-export const BEM_ACTION_BAR_SEARCH = 'action_bar--search';
+export const BEM_ACTION_BAR_GRID_COLUMN = `${BEM_ACTION_BAR}--grid_column`;
+export const BEM_ACTION_BAR_SEARCH = `${BEM_ACTION_BAR}--search`;
 
 export const BEM_CONTAINER = 'container';
 export const BEM_ACTION_BAR_SEARCH_VISIBLE = `${BEM_CONTAINER}-action_bar_search_visible`;
@@ -17,6 +17,9 @@ export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
 
 export const BEM_EMAIL_LINK = 'email_link';
+
+export const BEM_FILTERS_RAIL = 'filters_rail';
+export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
 export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';

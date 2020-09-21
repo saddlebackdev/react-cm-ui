@@ -38,7 +38,9 @@ function FiltersRailPageSample() {
                 columns={[
                     {
                         iconFilter: {
+                            isFiltering: false,
                             onClick: onFiltersClick,
+                            selected: isFiltersRailOpen,
                         },
                         sm: true,
                     },
@@ -91,6 +93,65 @@ function FiltersRailPageSample() {
             <Page.Container>
                 <FiltersRail
                     isOpen={isFiltersRailOpen}
+                    rows={[
+                        {
+                            heading: 'Sort By',
+                            options: [
+                                {
+                                    label: 'Received (Newest > Oldest)',
+                                    value: 1,
+                                },
+                                {
+                                    label: 'Received (Oldest > Newest)',
+                                    value: 2,
+                                },
+                            ],
+                            type: 'select',
+                        }, {
+                            heading: 'Type',
+                            options: [
+                                {
+                                    label: 'Option 1',
+                                    value: 1,
+                                },
+                                {
+                                    label: 'Option 2',
+                                    value: 2,
+                                },
+                                {
+                                    label: 'Option 3',
+                                    value: 3,
+                                },
+                            ],
+                            type: 'radio',
+                        }, {
+                            collapsible: true,
+                            heading: 'Category',
+                            options: [
+                                {
+                                    label: 'Option 1',
+                                    value: 1,
+                                },
+                                {
+                                    label: 'Option 2',
+                                    value: 2,
+                                },
+                                {
+                                    label: 'Option 3',
+                                    value: 3,
+                                },
+                                {
+                                    label: 'Option 4',
+                                    value: 4,
+                                },
+                                {
+                                    label: 'Option 5',
+                                    value: 5,
+                                },
+                            ],
+                            type: 'checkbox',
+                        },
+                    ]}
                 />
 
                 <Page.Content>

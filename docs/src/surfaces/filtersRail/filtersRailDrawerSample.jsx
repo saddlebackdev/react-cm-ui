@@ -31,14 +31,14 @@ function FiltersRailDrawerSample() {
         setIsFiltersRailOpen(!isFiltersRailOpen);
     };
 
-    const onOpenDrawerClick = () => {
+    const onOpenDrawerToggle = () => {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
     return (
         <div>
             <Button
-                onClick={onOpenDrawerClick}
+                onClick={onOpenDrawerToggle}
             >
                 Open Drawer
             </Button>
@@ -46,6 +46,18 @@ function FiltersRailDrawerSample() {
             <Drawer
                 isOpen={isDrawerOpen}
             >
+                <Drawer.TitleBar
+                    closeButton={(
+                        <Button
+                            color="alternate"
+                            icon
+                            onClick={onOpenDrawerToggle}
+                        >
+                            <Icon type="close" />
+                        </Button>
+                    )}
+                />
+
                 <Drawer.ActionBar
                     classes={{
                         root: classes.actionBar,

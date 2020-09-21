@@ -1,18 +1,30 @@
+import { map, isEmpty } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
-import Rail from '../rail';
-import makeStyles from '../../styles/makeStyles';
 import {
+    UI_CLASS_NAME,
+    BEM_CONTAINER,
     BEM_CONTENT,
+    BEM_FILTERS_RAIL,
+    BEM_FILTERS_RAIL_ROW,
 } from '../../global/constants';
+import {
+    PROP_TYPES_ROW_CLASS_NAME,
+    PROP_TYPES_ROW_CLASSES,
+    PROP_TYPES_ROW_COLLAPSIBLE,
+    PROP_TYPES_ROW_HEADING,
+    PROP_TYPES_ROW_ID,
+    PROP_TYPES_ROW_OPTIONS,
+    PROP_TYPES_ROW_TYPE,
+} from './constants';
+import FiltersRailRow from './filtersRailRow';
+import Grid from '../../layout/grid';
+import makeStyles from '../../styles/makeStyles';
+import Rail from '../rail';
 import Slide from '../../utils/slide';
 import useMediaQuery from '../../utils/useMediaQuery';
 import withTheme from '../../styles/withTheme';
-import {
-    UI_CLASS_NAME,
-    BEM_CONTAINER
-} from '../../global/constants';
 
 const propTypes = {
     children: PropTypes.node,
@@ -26,6 +38,17 @@ const propTypes = {
     id: PropTypes.string,
     isOpen: PropTypes.bool,
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    rows: PropTypes.arrayOf(
+        PropTypes.shape({
+            classes: PROP_TYPES_ROW_CLASSES,
+            className: PROP_TYPES_ROW_CLASS_NAME,
+            collapsible: PROP_TYPES_ROW_COLLAPSIBLE,
+            heading: PROP_TYPES_ROW_HEADING.isRequired,
+            id: PROP_TYPES_ROW_ID,
+            options: PROP_TYPES_ROW_OPTIONS,
+            type: PROP_TYPES_ROW_TYPE.isRequired,
+        }),
+    ),
     style: PropTypes.shape({}),
     theme: PropTypes.shape({
         breakpoints: PropTypes.shape({
@@ -41,6 +64,7 @@ const defaultProps = {
     id: undefined,
     isOpen: undefined,
     moduleType: 'page',
+    rows: [],
     style: {},
 };
 
@@ -103,6 +127,7 @@ function FiltersRail(props) {
         id,
         isOpen,
         moduleType,
+        rows,
         style,
         theme,
     } = props;
@@ -113,14 +138,12 @@ function FiltersRail(props) {
 
     useEffect(() => {
         if (!isMobile && filtersRailRef && filtersRailRef.current) {
-            console.log(filtersRailRef.current);
             const filtersRailNode = filtersRailRef.current;
             const containerClassName = `.${UI_CLASS_NAME}.${BEM_CONTAINER}`;
             const containerNode = filtersRailNode.closest(containerClassName);
             const containerOffsetTop = containerNode.offsetTop;
 
             filtersRailNode.style.minHeight = `calc(100% - ${containerOffsetTop}px)`;
-            console.log('containerOffsetTop', containerOffsetTop);
         }
     }, [
         isMobile,
@@ -130,11 +153,9 @@ function FiltersRail(props) {
         return null;
     }
 
-    const bemName = `${moduleType}--filters_rail`;
-
     const rootClasses = ClassNames(
-        'ui',
-        bemName,
+        UI_CLASS_NAME,
+        BEM_FILTERS_RAIL,
         classes.root,
         className,
         {
@@ -144,6 +165,8 @@ function FiltersRail(props) {
             [classes.isNotOpen]: !isOpen,
         },
     );
+
+    let rowKeyNum = 0;
 
     return (
         <div
@@ -160,6 +183,23 @@ function FiltersRail(props) {
                     className={classes.innerContainer}
                     position="left"
                 >
+                    {!isEmpty(rows) && (
+                        <Grid
+                            spacing={3}
+                        >
+                            {map(rows, (row) => {
+                                rowKeyNum += 1;
+
+                                return (
+                                    <FiltersRailRow
+                                        key={`${BEM_FILTERS_RAIL_ROW}-${rowKeyNum}`}
+                                        heading={row.heading}
+                                    />
+                                );
+                            })}
+                        </Grid>
+                    )}
+
                     {children}
                 </Rail>
             </Slide>
