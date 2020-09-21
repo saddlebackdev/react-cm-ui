@@ -9,6 +9,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ENTER_KEY_CODE } from '../../global/constants';
 import RadioItem from './radioItem';
 import withStyles from '../../styles/withStyles';
 
@@ -46,6 +47,7 @@ const propTypes = {
     multi: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
     pill: PropTypes.bool,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
@@ -67,20 +69,21 @@ const defaultProps = {
     multi: false,
     name: null,
     onChange: null,
+    onKeyDown: null,
     pill: false,
     style: null,
     tabIndex: -1,
-    value: null,
+    value: '',
 };
 
-const isCheckedSingle = (c, i, isChecked) => (
-    c.id ? c.id === isChecked : i === isChecked
-);
+const isCheckedSingle = (id, index, isChecked) => {
+    return id === isChecked || index === isChecked;
+};
 
-const isCheckedMulti = (c, i, isChecked) => {
-    const id = c.id ? c.id : i;
+const isCheckedMulti = (id, index, isChecked) => {
+    const newId = id || index;
 
-    return includes(isChecked, id);
+    return includes(isChecked, newId);
 };
 
 const styles = (theme) => {
@@ -104,70 +107,75 @@ const styles = (theme) => {
         input: {
             ...inputStyle,
         },
-        label: {
-            color: theme.palette.text.primary,
-            cursor: 'pointer',
-            display: 'block',
-            fontSize: 14,
-            position: 'relative',
-            '&::before, &::after': {
-                content: '""',
-                height: size,
-                left: 0,
-                position: 'absolute',
-                top: 0,
-                transition: 'opacity 150ms ease',
-                width: size,
-            },
-            '&::before': {
-                background: theme.palette.background.primary,
-                border: `1px solid ${theme.palette.border.primary}`,
-                borderRadius: 11,
-            },
-            '&::after': {
-                backgroundColor: theme.palette.cyan[500],
-                borderRadius: sizeDot / 2,
-                height: sizeDot,
-                margin: (size - sizeDot) / 2,
-                opacity: 0,
-                width: sizeDot,
-            },
-            '&$labelNotClickable': {
-                cursor: 'auto',
-                '&::before, &::after': {
-                    cursor: 'pointer',
-                },
-            },
-            '& > span': {
-                display: 'inline-block',
-                paddingLeft: 33,
-                paddingTop: 2,
-            },
-        },
+        label: {},
         labelNotClickable: {},
         root: {
             display: 'inline-block',
-            marginRight: theme.spacing(4),
+            marginRight: theme.spacing(2),
             minHeight: size,
+            outline: 'none',
             position: 'relative',
             textAlign: 'left',
+            '&:focus': {
+                boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+            },
+            '& .label': {
+                color: theme.palette.text.primary,
+                cursor: 'pointer',
+                display: 'block',
+                fontSize: 14,
+                position: 'relative',
+                '&::before, &::after': {
+                    content: '""',
+                    height: size,
+                    left: 0,
+                    position: 'absolute',
+                    top: 0,
+                    transition: 'opacity 150ms ease',
+                    width: size,
+                },
+                '&::before': {
+                    background: theme.palette.background.primary,
+                    border: `1px solid ${theme.palette.border.primary}`,
+                    borderRadius: 11,
+                },
+                '&::after': {
+                    backgroundColor: theme.palette.cyan[500],
+                    borderRadius: sizeDot / 2,
+                    height: sizeDot,
+                    margin: (size - sizeDot) / 2,
+                    opacity: 0,
+                    width: sizeDot,
+                },
+                '&$labelNotClickable': {
+                    cursor: 'auto',
+                    '&::before, &::after': {
+                        cursor: 'pointer',
+                    },
+                },
+                '& > span': {
+                    display: 'inline-block',
+                    paddingLeft: 33,
+                    paddingTop: 2,
+                },
+            },
             '&$isAlignedRight': {
                 marginLeft: 11,
                 marginRight: 0,
                 textAlign: 'left',
-                '& $label': {
+                '& .label': {
                     '&::before, &::after': {
                         left: 'auto',
                         right: 0,
                     },
                     '& > span': {
                         paddingLeft: 0,
-                        paddingRight: 'rem(33px)',
+                        paddingRight: 33,
                     },
                 },
             },
             '&$isDisabled': {
-                '& $label': {
+                '& .label': {
                     cursor: 'auto',
                     '&::before': {
                         background: theme.palette.background.secondary,
@@ -178,10 +186,10 @@ const styles = (theme) => {
                 },
                 radioPill: {
                     '& .radio-item': {
-                        '& $label': {
+                        '& .label': {
                             cursor: 'default',
                         },
-                        '& $input:checked + $label': {
+                        '& $input:checked + .label': {
                             backgroundColor: theme.palette.grey[400],
                             borderColor: theme.palette.grey[400],
                         },
@@ -192,7 +200,7 @@ const styles = (theme) => {
                                 },
                             },
                         },
-                        '&.radio-item-is-checked + .radio-item $label': {
+                        '&.radio-item-is-checked + .radio-item .label': {
                             borderLeft: `1px solid ${theme.palette.grey[400]}`,
                         },
                     },
@@ -204,15 +212,25 @@ const styles = (theme) => {
             },
             '&$isPill': {
                 '& .radio-item': {
+                    cursor: 'pointer',
                     display: 'inline-block',
+                    outline: 'none',
+                    '&:focus': {
+                        boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+                    },
+                    '&:first-child:focus': {
+                        borderRadius: '16px 0 0 16px',
+                    },
+                    '&:last-child:focus': {
+                        borderRadius: '0 16px 16px 0',
+                    },
                     '& .input': {
                         ...inputStyle,
                     },
-                    '& label': {
+                    '& .label': {
                         backgroundColor: theme.palette.background.primary,
                         border: `1px solid ${theme.palette.border.primary}`,
                         borderRight: 0,
-                        cursor: 'pointer',
                         display: 'inline-block',
                         fontSize: 14,
                         fontWeight: theme.typography.fontWeightRegular,
@@ -220,30 +238,47 @@ const styles = (theme) => {
                         padding: '6px 22px',
                         textAlign: 'center',
                         textDecoration: 'none',
-                        transition: 'background-color 125ms linear, border 125ms linear, color 125ms linear',
+                        transition: [
+                            [
+                                'background-color',
+                                '125ms',
+                                'linear',
+                            ],
+                            [
+                                'border',
+                                '125ms',
+                                'linear',
+                            ],
+                            [
+                                'color',
+                                '125ms',
+                                'linear',
+                            ],
+                        ],
                         whiteSpace: 'nowrap',
+                        zIndex: -1,
                         '&::before, &::after': {
                             display: 'none',
                         },
                     },
-                    '& .input:checked + label': {
+                    '& .input:checked + .label': {
                         backgroundColor: theme.palette.cyan[500],
                         borderColor: theme.palette.cyan[500],
                         color: theme.palette.text.contrastText,
                     },
-                    '&:first-child label': {
+                    '&:first-child .label': {
                         borderRadius: '15.5px 0 0 15.5px',
                     },
                     '&:last-child': {
-                        '& label': {
+                        '& .label': {
                             borderRight: `1px solid ${theme.palette.border.primary}`,
                             borderRadius: '0 15.5px 15.5px 0',
                         },
-                        '& .input:checked + label': {
+                        '& .input:checked + .label': {
                             borderRight: `1px solid ${theme.palette.cyan[500]}`,
                         },
                     },
-                    '&.radio-item-is-checked + .radio-item label': {
+                    '&.radio-item-is-checked + .radio-item .label': {
                         borderLeft: `1px solid ${theme.palette.cyan[500]}`,
                     },
                 },
@@ -262,6 +297,7 @@ class Radio extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onLabelClick = this.onLabelClick.bind(this);
         this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -269,6 +305,7 @@ class Radio extends React.Component {
             checked: prevChecked,
             disabled: prevDisabled,
         } = prevProps;
+
         const {
             checked,
             disabled,
@@ -291,28 +328,12 @@ class Radio extends React.Component {
             id,
             onChange,
             pill,
-            multi,
         } = this.props;
-        const {
-            isChecked,
-        } = this.state;
-        let newValue = clone(isChecked);
 
-        if (multi) {
-            if (includes(newValue, idArg)) {
-                remove(newValue, (v) => v === idArg);
-            } else if (isArray(newValue)) {
-                newValue.push(idArg);
-            } else {
-                newValue = [idArg];
-            }
-        } else if (pill) {
-            newValue = idArg;
-        } else {
-            newValue = true;
-        }
+        const newValue = this.setIsChecked(idArg);
+        const isNotDisabled = !disable && !disabled;
 
-        if (!disable && !disabled) {
+        if (isNotDisabled) {
             if (isFunction(onChange)) {
                 onChange(pill ? idArg : id, newValue);
             } else {
@@ -321,12 +342,35 @@ class Radio extends React.Component {
         }
     }
 
-    onKeyDown() {
-        /**
-         * NOTE: Need to use a prop function here someday.
-         */
+    // onKeyDown() {
+    //     /**
+    //      * NOTE: Need to use a prop function here someday.
+    //      */
 
-        return null;
+    //     return null;
+    // }
+
+    onKeyDown(event, idArg) {
+        const {
+            disable,
+            disabled,
+            id,
+            onKeyDown,
+            pill,
+        } = this.props;
+
+        if (event.keyCode === ENTER_KEY_CODE) {
+            const newValue = this.setIsChecked(idArg);
+            const isNotDisabled = !disable && !disabled;
+
+            if (!isNotDisabled) {
+                if (isFunction(onKeyDown)) {
+                    onKeyDown(pill ? idArg : id, newValue);
+                } else {
+                    this.setState({ isChecked: newValue });
+                }
+            }
+        }
     }
 
     onLabelClick(event) {
@@ -343,6 +387,39 @@ class Radio extends React.Component {
          */
 
         return null;
+    }
+
+    onMouseDown(event) {
+        event.preventDefault();
+    }
+
+    setIsChecked(idArg) {
+        const {
+            pill,
+            multi,
+        } = this.props;
+
+        const {
+            isChecked,
+        } = this.state;
+
+        let newValue = clone(isChecked);
+
+        if (multi) {
+            if (includes(newValue, idArg)) {
+                remove(newValue, (v) => v === idArg);
+            } else if (isArray(newValue)) {
+                newValue.push(idArg);
+            } else {
+                newValue = [idArg];
+            }
+        } else if (pill) {
+            newValue = idArg;
+        } else {
+            newValue = true;
+        }
+
+        return newValue;
     }
 
     render() {
@@ -391,12 +468,21 @@ class Radio extends React.Component {
             const isCheckedItem = multi ? isCheckedMulti : isCheckedSingle;
 
             return (
-                <div className={rootClasses} style={style}>
-                    {React.Children.map(children, (c, i) => React.cloneElement(c, {
-                        index: i,
-                        checked: isCheckedItem(c, i, isChecked),
-                        name: multi ? null : name,
+                <div
+                    className={rootClasses}
+                    style={style}
+                >
+                    {React.Children.map(children, (child, index) => React.cloneElement(child, {
+                        checked: isCheckedItem(child.props.id, index, isChecked),
+                        className: child.props.className,
+                        id: child.props.id,
+                        index,
+                        label: child.props.label,
+                        name: !multi ? name : null,
                         onClick: this.onClick,
+                        onKeyDown: this.onKeyDown,
+                        style: child.props.style,
+                        tabIndex: child.props.tabIndex,
                     }))}
                 </div>
             );
@@ -409,6 +495,7 @@ class Radio extends React.Component {
                 className={rootClasses}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
+                onMouseDown={this.onMouseDown}
                 role="radio"
                 style={style}
                 tabIndex={isDisabled ? -1 : tabIndex}
