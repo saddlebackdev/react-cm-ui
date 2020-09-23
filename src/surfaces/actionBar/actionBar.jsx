@@ -138,7 +138,7 @@ const styles = (theme) => {
     let subOptionStyles;
 
     for (let i = 1; i <= 11; i += 1) {
-        const optionYPos = i === 1 ? 0 : actionsButtonDrawerOptionHeight * (i - 1);
+        const optionYPos = actionsButtonDrawerOptionHeight * (i - 1);
         const titleBarheight = 61;
         const optionContainerTranslateYPos = titleBarheight + optionYPos;
 
