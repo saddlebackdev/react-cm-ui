@@ -342,14 +342,6 @@ class Radio extends React.Component {
         }
     }
 
-    // onKeyDown() {
-    //     /**
-    //      * NOTE: Need to use a prop function here someday.
-    //      */
-
-    //     return null;
-    // }
-
     onKeyDown(event, idArg) {
         const {
             disable,

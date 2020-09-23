@@ -68,7 +68,7 @@ class RadioItem extends React.Component {
 
     render() {
         const {
-            checked,
+            checked: isChecked,
             className,
             id,
             label,
@@ -77,12 +77,12 @@ class RadioItem extends React.Component {
         } = this.props;
 
         const rootClasses = ClassNames('radio-item', className, {
-            'radio-item-is-checked': checked,
+            'radio-item-is-checked': isChecked,
         });
 
         return (
             <div
-                aria-checked="false"
+                aria-checked={isChecked}
                 className={rootClasses}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
@@ -91,7 +91,7 @@ class RadioItem extends React.Component {
                 tabIndex={tabIndex}
             >
                 <input
-                    checked={checked}
+                    checked={isChecked}
                     className="input"
                     id={id}
                     name={name}
