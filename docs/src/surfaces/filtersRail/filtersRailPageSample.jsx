@@ -10,6 +10,17 @@ import makeStyles from 'react-cm-ui/styles/makeStyles';
 
 const SHORT_PAUL = '/images/short_paul.jpg';
 
+const SORT_BY_OPTIONS = [
+    {
+        label: 'Received (Newest > Oldest)',
+        value: 1,
+    },
+    {
+        label: 'Received (Oldest > Newest)',
+        value: 2,
+    },
+];
+
 const useStyles = makeStyles((theme) => ({
     actionBar: {
         left: '0 !important',
@@ -21,12 +32,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FiltersRailPageSample() {
-    const [isFiltersRailOpen, setIsFiltersRailOpen] = useState(false);
+    const [isFiltersRailOpen, setIsFiltersRailOpen] = useState(true);
+    const [sortByValue, setSortByValue] = useState(SORT_BY_OPTIONS[0]);
 
     const classes = useStyles();
 
     const onFiltersClick = () => {
         setIsFiltersRailOpen(!isFiltersRailOpen);
+    };
+
+    const onSelectChange = (selectedOption) => {
+        setSortByValue(selectedOption);
     };
 
     return (
@@ -96,18 +112,31 @@ function FiltersRailPageSample() {
                     rows={[
                         {
                             heading: 'Sort By',
-                            options: [
+                            components: [
                                 {
-                                    label: 'Received (Newest > Oldest)',
-                                    value: 1,
-                                },
-                                {
-                                    label: 'Received (Oldest > Newest)',
-                                    value: 2,
+                                    type: 'select',
+                                    onChange: onSelectChange,
+                                    options: SORT_BY_OPTIONS,
+                                    placeholder: 'test',
+                                    value: sortByValue,
                                 },
                             ],
-                            type: 'select',
                         }, {
+                            components: [
+                                {
+                                    type: 'radioPill',
+                                    onChange: () => {},
+                                    options: [
+                                        {
+                                            label: 'Active',
+                                        }, {
+                                            label: 'Inactive',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
                             heading: 'Type',
                             options: [
                                 {
@@ -125,7 +154,6 @@ function FiltersRailPageSample() {
                             ],
                             type: 'radio',
                         }, {
-                            collapsible: true,
                             heading: 'Category',
                             options: [
                                 {

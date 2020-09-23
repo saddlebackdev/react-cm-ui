@@ -13,10 +13,9 @@ import {
     PROP_TYPES_ROW_CLASS_NAME,
     PROP_TYPES_ROW_CLASSES,
     PROP_TYPES_ROW_COLLAPSIBLE,
+    PROP_TYPES_ROW_COMPONENTS,
     PROP_TYPES_ROW_HEADING,
     PROP_TYPES_ROW_ID,
-    PROP_TYPES_ROW_OPTIONS,
-    PROP_TYPES_ROW_TYPE,
 } from './constants';
 import FiltersRailRow from './filtersRailRow';
 import Grid from '../../layout/grid';
@@ -42,11 +41,10 @@ const propTypes = {
         PropTypes.shape({
             classes: PROP_TYPES_ROW_CLASSES,
             className: PROP_TYPES_ROW_CLASS_NAME,
+            components: PROP_TYPES_ROW_COMPONENTS,
             collapsible: PROP_TYPES_ROW_COLLAPSIBLE,
             heading: PROP_TYPES_ROW_HEADING.isRequired,
             id: PROP_TYPES_ROW_ID,
-            options: PROP_TYPES_ROW_OPTIONS,
-            type: PROP_TYPES_ROW_TYPE.isRequired,
         }),
     ),
     style: PropTypes.shape({}),
@@ -72,6 +70,14 @@ const useStyles = makeStyles((theme) => {
     const railWidth = 250;
 
     return {
+        innerContainer: {
+            height: 'auto',
+            minHeight: '100%',
+            pointerEvents: 'auto',
+            '&::after': {
+                zIndex: -1,
+            },
+        },
         isInDrawer: {},
         isNotOpen: {},
         isNotInDrawer: {},
@@ -106,14 +112,6 @@ const useStyles = makeStyles((theme) => {
                 },
                 [`&$isInDrawer + .${BEM_CONTENT}`]: {
                     marginLeft: railWidth,
-                },
-            },
-            '&inner_container': {
-                height: 'auto',
-                minHeight: '100%',
-                pointerEvents: 'auto',
-                '&::after': {
-                    zIndex: -1,
                 },
             },
         },
@@ -192,6 +190,11 @@ function FiltersRail(props) {
 
                                 return (
                                     <FiltersRailRow
+                                        classes={row.classes}
+                                        className={row.className}
+                                        collapsible={row.collapsible}
+                                        components={row.components}
+                                        id={row.id}
                                         key={`${BEM_FILTERS_RAIL_ROW}-${rowKeyNum}`}
                                         heading={row.heading}
                                     />

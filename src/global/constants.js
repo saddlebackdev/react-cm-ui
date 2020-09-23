@@ -32,6 +32,8 @@ export const BEM_PERSON_PANEL = 'person_panel';
 export const BEM_PERSON_PANEL_DETAILS = `${BEM_PERSON_PANEL}--details`;
 export const BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON = `${BEM_PERSON_PANEL_DETAILS}_action_button`;
 
+export const BEM_SELECT = 'select';
+
 export const BEM_TELEPHONE_LINK = 'telphone_link';
 
 export const EMAIL_LINK_CLASSES = `${UI_CLASS_NAME} ${BEM_EMAIL_LINK}`;
