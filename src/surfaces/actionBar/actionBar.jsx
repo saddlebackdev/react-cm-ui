@@ -81,6 +81,8 @@ const defaultProps = {
 };
 
 const styles = (theme) => {
+    const actionsButtonDrawerOptionHeight = 55;
+
     /**
      * Forwards
      * Step 1: Fade out title and non-selected parent options
@@ -131,8 +133,6 @@ const styles = (theme) => {
      */
     const backwardsStep4Delay = backwardsStep3Delay + backwardsStep3Duration;
     const backwardsStep4Duration = theme.transitions.duration.shorter;
-
-    const actionsButtonDrawerOptionHeight = 33;
 
     let optionContainerStyles;
     let subOptionStyles;
