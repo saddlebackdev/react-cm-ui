@@ -33,8 +33,7 @@ describe('<ActionBarGridColumns >', () => {
         expect(wrapper).toBeDefined();
     });
 
-    it('Should render proper columns', () => {
-
+    it('Should render proper columns sm breakpoint', () => {
         const wrapper = mountWithTheme(
             <ActionBarGridColumns
                 {...props}
@@ -127,7 +126,7 @@ describe('<ActionBarGridColumns >', () => {
         expect(wrapper.find(`.${jsxClass}`).exists()).toEqual(true);
     });
 
-    it('Should foo', () => {
+    it('Should render proper columns and icon colors for sm breakpoint', () => {
         const wrapper = mountWithTheme(
             <ActionBarGridColumns
                 {...props}

@@ -82,32 +82,30 @@ const defaultProps = {
 
 const styles = (theme) => {
     const actionsButtonDrawerOptionHeight = 55;
-    const standardThirdTiming = 300;
-    const standardFifthTiming = 200;
 
     /**
      * Forwards
      * Step 1: Fade out title and non-selected parent options
      */
-    const forwardsStep1Duration = standardFifthTiming;
+    const forwardsStep1Duration = theme.transitions.duration.shorter;
 
     /**
      * Step 2: Reveal selected parent option by highlighting it.
      */
     const forwardsStep2Delay = forwardsStep1Duration + 50;
-    const forwardsStep2Duration = standardThirdTiming;
+    const forwardsStep2Duration = theme.transitions.duration.standard;
 
     /**
      * Step 3: Move selected parent option to top of drawer and show --sub_options
      */
     const forwardsStep3Delay = forwardsStep1Duration + forwardsStep2Delay + forwardsStep2Duration;
-    const forwardsStep3Duration = standardThirdTiming;
+    const forwardsStep3Duration = theme.transitions.duration.standard;
 
     /**
      * Step 4: By staggering, fade in and move down sub options.
      */
     const forwardsStep4Delay = forwardsStep3Delay + forwardsStep3Duration;
-    const forwardsStep4Duration = standardThirdTiming;
+    const forwardsStep4Duration = theme.transitions.duration.standard;
 
     /**
      * Backwards
@@ -115,32 +113,32 @@ const styles = (theme) => {
      *         Move sub options up and fade out
      *         Move selected option back down
      */
-    const backwardsStep1Duration = standardFifthTiming;
+    const backwardsStep1Duration = theme.transitions.duration.shorter;
 
     /**
      * Step 2: Move selected parent option back down and hide --sub_options
      */
     const backwardsStep2Delay = backwardsStep1Duration + 50;
-    const backwardsStep2Duration = standardThirdTiming;
+    const backwardsStep2Duration = theme.transitions.duration.standard;
 
     /**
      * Step 3: Remove highlight on selected option
      */
     const backwardsStep3Delay = backwardsStep2Delay + backwardsStep2Duration;
-    const backwardsStep3Duration = standardThirdTiming;
+    const backwardsStep3Duration = theme.transitions.duration.standard;
 
     /**
      * Step 4: Fade in drawer title
      *         By staggering, fade in and move down options.
      */
     const backwardsStep4Delay = backwardsStep3Delay + backwardsStep3Duration;
-    const backwardsStep4Duration = standardFifthTiming;
+    const backwardsStep4Duration = theme.transitions.duration.shorter;
 
     let optionContainerStyles;
     let subOptionStyles;
 
     for (let i = 1; i <= 11; i += 1) {
-        const optionYPos = i === 1 ? 0 : actionsButtonDrawerOptionHeight * (i - 1);
+        const optionYPos = actionsButtonDrawerOptionHeight * (i - 1);
         const titleBarheight = 61;
         const optionContainerTranslateYPos = titleBarheight + optionYPos;
 
@@ -269,7 +267,7 @@ const styles = (theme) => {
         '@global': {
             '.actions_button_drawer': {
                 '&--content': {
-                    padding: [[22, theme.spacing(1)]],
+                    padding: '22px 11px !important',
                 },
                 '&--title-hide': {
                     opacity: 0,
