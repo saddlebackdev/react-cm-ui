@@ -663,14 +663,11 @@ function Select(props) {
     } = props;
 
     const classes = useStyles(props);
-
     const dropdownMenuRef = useRef();
     const selectRef = useRef();
 
     const onChange = (selectedOption) => {
-        console.log('onChangeProp', onChangeProp);
         if (isFunction(onChangeProp)) {
-            console.log('selectedOption', selectedOption);
             onChangeProp(selectedOption);
         }
     };
@@ -732,8 +729,8 @@ function Select(props) {
             [classes.isUnderlined]: isUnderlined,
         },
     );
-    const showRequiredIndicator = required && isEmpty(value);
 
+    const showRequiredIndicator = required && isEmpty(value);
     const ReactSelectComponent = isCreatable ? ReactSelect.Creatable : CustomReactSelect;
 
     return (
