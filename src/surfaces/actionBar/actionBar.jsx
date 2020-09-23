@@ -267,7 +267,7 @@ const styles = (theme) => {
         '@global': {
             '.actions_button_drawer': {
                 '&--content': {
-                    padding: [[22, theme.spacing(1)]],
+                    padding: '22px 11px !important',
                 },
                 '&--title-hide': {
                     opacity: 0,
