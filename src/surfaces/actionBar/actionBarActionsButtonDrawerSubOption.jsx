@@ -55,25 +55,19 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
             requiresPrompt,
         } = subOption;
 
-        if (!isFunction(subOptionOnClick)) {
-            return null;
-        }
-
-        if (disable) {
-            return null;
+        if (!isFunction(subOptionOnClick) || disable) {
+            return;
         }
 
         if (requiresPrompt && isFunction(onRequestPrompt)) {
             onRequestPrompt(subOption);
 
-            return null;
+            return;
         }
 
         if (isFunction(subOptionOnClick)) {
             subOptionOnClick();
         }
-
-        return null;
     }
 
     onKeyDown(event) {
