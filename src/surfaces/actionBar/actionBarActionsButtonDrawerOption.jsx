@@ -29,7 +29,7 @@ const propTypes = {
 
 const defaultProps = {
     hide: false,
-    idNumber: null,
+    idNumber: 1,
     isSelected: false,
     onRequestPrompt: undefined,
 };
