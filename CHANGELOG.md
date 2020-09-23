@@ -1,6 +1,38 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.16.0 - 09/16/2020
+
+#### Feature
+- [PR #192](https://github.com/saddlebackdev/react-cm-ui/pull/192) / Merge Commit 8544d9b3119124f346b10a0d122b34cfb388f484
+  - DataGrid
+    - New `classes` prop.
+    - `moduleType` prop no longer required.
+    - Converted SCSS to JSS
+    - `className` is now in our new global constants file.
+  - Updated PersonContactInfo, PersonCoreMilestones, PersonPanel with new Enzyme helper
+  - Added height.actionBar heights to the theme.
+  - Added spacing to the theme.
+- [PR #194](https://github.com/saddlebackdev/react-cm-ui/pull/194) / Merge Commit 538b8f2defdac395b734ef4934d88fbb31e4a330
+  - Refactored DurationPicker.
+  - Updated versions with durationPicker versions.
+- [PR #203](https://github.com/saddlebackdev/react-cm-ui/pull/203) / Merge Commit 1eefc85592f4834d7a848e57d845c863b2257921
+  - Added `onKeyDown` prop and method to Button, DropdownButton, and Icon.
+  - Added `tabIndex` prop to DropdownButton and Icon.
+  - Added outline style to Button, DropdownButton, and Icon
+- [PR #195](https://github.com/saddlebackdev/react-cm-ui/pull/195) / Merge Commit 6a05e68ad5ba728e2746d82bb61d71fd3b54d2af
+  - New dependencies: `react-resize-detector` and `jest-react-hooks-shallow`.
+  - Added a theme to DropdownButton and DropdownMenu components.
+  - Converted DropdownMenu SCSS to JSS.
+  - New components: Breadcrumbs and SectionalTabs
+  - Updated versions with breadcrumbs and sectionalTabs versions.
+
+#### Bug Fix
+- [PR #201](https://github.com/saddlebackdev/react-cm-ui/pull/201) / Merge Commit 053c3500a7e787794defc2ed253b144721302246
+  - build(deps-dev): bump node-sass from 4.12.0 to 4.13.1
+- [PR #206](https://github.com/saddlebackdev/react-cm-ui/pull/206) / Merge Commit 79333088266dbfb3b951fde6e551787e569a2591
+  - Fixed outline styling for when click on a Button, DropdownButton or Icon.
+
 ## 9.15.2 - 08/27/2020
 
 #### Bug Fix
