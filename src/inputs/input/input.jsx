@@ -75,7 +75,9 @@ const propTypes = {
     showSpinners: PropTypes.bool,
     style: PropTypes.shape({}),
     /**
-     * Indicates whether or not the Input can be focused.
+     * Indicates whether or not the Input can be focused and where it participates in
+     * sequential keyboard navigation.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
      */
     tabIndex: PropTypes.number,
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
