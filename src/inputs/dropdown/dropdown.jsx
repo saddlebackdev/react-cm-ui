@@ -406,24 +406,36 @@ class Dropdown extends React.Component {
     }
 
     _menuRenderer(params) {
-        const items = _.map(params.options, (o, i) => {
-            if (this.props.selectionOptionComponent) {
-                const OptionComponent = this.props.selectionOptionComponent;
+        const { selectionOptionComponent } = this.props;
+        const { focusedOption, onFocus, options, selectValue, valueArray, valueKey } = params;
+        const items = _.map(options, (o, i) => {
+            const isFocused = o === focusedOption;
+            const isSelected = _.some(valueArray, (x) => x[valueKey] === o[valueKey]);
+
+            if (selectionOptionComponent) {
+                const OptionComponent = selectionOptionComponent;
 
                 return (
                     <OptionComponent
-                        isFocused={params.isFocused}
+                        isFocused={isFocused}
+                        isSelected={isSelected}
                         key={`select-option-key-${i}`}
-                        onFocus={() => params.onFocus(o)}
-                        onSelect={() => params.selectValue(o)}
+                        onFocus={() => onFocus(o)}
+                        onSelect={() => selectValue(o)}
                         option={o}
                     />
                 );
             }
 
+            const classes = ClassNames('Select-option', {
+                'is-disabled': o.disabled,
+                'is-focused': isFocused,
+                'is-selected': isSelected,
+            });
+
             return (
                 <div
-                    className="Select-option"
+                    className={classes}
                     key={`select-option-key-${i}`}
                     onClick={() => params.selectValue(o)}
                     onMouseOver={() => params.focusOption(o)}
