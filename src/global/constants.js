@@ -20,6 +20,7 @@ export const BEM_EMAIL_LINK = 'email_link';
 
 export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
+export const BEM_FILTERS_RAIL_ROW_COMONENTS = `${BEM_FILTERS_RAIL}--row_components`;
 
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
 export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';

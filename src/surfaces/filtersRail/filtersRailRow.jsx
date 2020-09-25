@@ -62,9 +62,7 @@ const useStyles = makeStyles((theme) => {
             marginBottom: 6,
         },
         isCollapsed: {},
-        root: {
-            zIndex: 0,
-        },
+        root: {},
     };
 });
 

@@ -8,7 +8,7 @@ import {
     PROP_TYPES_ROW_COMPONENT,
 } from './constants';
 import {
-    BEM_FILTERS_RAIL_ROW,
+    BEM_FILTERS_RAIL_ROW_COMONENTS,
 } from '../../global/constants';
 import Checkbox from '../../inputs/checkbox';
 import Grid from '../../layout/Grid';
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         marginRight: -theme.spacing(1),
     },
+    radioPill: {
+        margin: 0,
+    },
     root: {
         margin: [[theme.spacing(1), 0]],
     },
@@ -50,7 +53,7 @@ function FiltersRailRowComponent(props) {
     const classes = useStyles(props);
 
     const rootContainer = ClassNames(
-        BEM_FILTERS_RAIL_ROW,
+        BEM_FILTERS_RAIL_ROW_COMONENTS,
         classes.root,
     );
 
@@ -98,7 +101,10 @@ function FiltersRailRowComponent(props) {
             {type === 'radio' && (
                 <Radio
                     checked={componentProps.checked}
-                    classes={componentProps.classes}
+                    classes={{
+                        root: classes.radioPill,
+                        ...componentProps.classes,
+                    }}
                     className={componentProps.className}
                     fluid
                     id={componentProps.id}

@@ -119,6 +119,7 @@ function FiltersRailDrawerSample() {
                     <FiltersRail
                         isOpen={isFiltersRailOpen}
                         moduleType="drawer"
+                        rows={[]}
                     />
 
                     <Drawer.Content>

@@ -74,6 +74,8 @@ const useStyles = makeStyles((theme) => {
             minHeight: '100%',
             overflow: 'hidden',
             pointerEvents: 'auto',
+            position: 'relative',
+            zIndex: 1,
             '&::after': {
                 zIndex: -1,
             },
