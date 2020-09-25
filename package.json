@@ -60,7 +60,8 @@
     "react-sortablejs": "^2.0.11",
     "react-tether": "^2.0.2",
     "react-text-mask": "5.4.3",
-    "react-transition-group": "^1.2.1"
+    "react-transition-group": "^1.2.1",
+    "sortablejs": "^1.10.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
