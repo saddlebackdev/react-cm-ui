@@ -12,5 +12,6 @@ export { default as PhoneInput } from './phoneInput';
 export { default as Prompt } from './prompt';
 export { default as Radio } from './radio';
 export { default as SegmentedControls } from './segmentedControls';
+export { default as Select } from './select';
 export { default as TextArea } from './textArea';
 export { default as TimePicker } from './timePicker';
