@@ -79,6 +79,7 @@ class Dropdown extends React.Component {
             selectionMatchProp,
             value
         } = this.props;
+
         if (selection && autoScrollSelection && this.dropdownMenu && value) {
             const itemHeight = this.dropdownMenu.getScrollHeight()/_.size(options);
             const pageSize = this.dropdownMenu.getClientHeight()/itemHeight;
@@ -97,22 +98,45 @@ class Dropdown extends React.Component {
 
                 return o[selectionMatchProp] === value[selectionMatchProp];
             });
+
             const page = Math.floor(selectionIndex/pageSize);
+
             if (page >= 0) {
-                this.dropdownMenu.scrollTop(page*pageSize*itemHeight);
+                this.dropdownMenu.scrollTop(page * pageSize * itemHeight);
             }
         }
     }
 
     render() {
-        const { button, buttonColor, buttonCompact, children,
-            className, clearable, disable, fluid, iconColor,
-            iconInverse, iconPosition, iconSize, iconTitle, iconType,
-            id, inverse, label, labelStyle, options, placeholder, searchable,
-            selection, selectionCreatable, selectionMatchProp,
-            selectionMenuContainerStyle, selectionMenuStyle, selectionMobile,
-            selectionOptionComponent, selectionValueComponent, selectionMultiple,
-            selectionRequired, selectionUnderline, style, tabIndex, text, theme,
+        const {
+            button,
+            buttonColor, buttonCompact, children,
+            className,
+            clearable, disable, fluid, iconColor,
+            iconInverse,
+            iconPosition, iconSize, iconTitle, iconType,
+            id,
+            inverse,
+            label,
+            labelStyle,
+            options,
+            placeholder,
+            searchable,
+            selection,
+            selectionCreatable,
+            selectionMatchProp,
+            selectionMenuContainerStyle,
+            selectionMenuStyle,
+            selectionMobile,
+            selectionOptionComponent,
+            selectionValueComponent,
+            selectionMultiple,
+            selectionRequired,
+            selectionUnderline,
+            style,
+            tabIndex,
+            text,
+            theme,
         } = this.props;
 
         if (button) {
@@ -120,6 +144,7 @@ class Dropdown extends React.Component {
         }
 
         const { menuIsOpen, menuPositionStyle } = this.state;
+
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
             'dropdown-button-compact': buttonCompact,
@@ -438,7 +463,16 @@ class Dropdown extends React.Component {
 
     _menuRenderer(params) {
         const { selectionOptionComponent } = this.props;
-        const { focusedOption, onFocus, options, selectValue, valueArray, valueKey } = params;
+
+        const {
+            focusedOption,
+            onFocus,
+            options,
+            selectValue,
+            valueArray,
+            valueKey,
+        } = params;
+
         const items = _.map(options, (o, i) => {
             const isFocused = o === focusedOption;
             const isSelected = _.some(valueArray, (x) => x[valueKey] === o[valueKey]);
@@ -716,7 +750,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-    autoScrollSelection: true,
+    autoScrollSelection: false,
 };
 
 export default Dropdown;
