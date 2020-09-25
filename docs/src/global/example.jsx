@@ -11,6 +11,7 @@ import Highlighter from './highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    height: PropTypes.number,
     iframe: PropTypes.bool,
     maxWidth: PropTypes.number,
     rawCode: PropTypes.string,
@@ -18,6 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    height: null,
     iframe: false,
     maxWidth: null,
     rawCode: null,
@@ -66,6 +68,7 @@ const useStyles = makeStyles((theme) => {
 function Example(props) {
     const {
         children,
+        height,
         iframe,
         maxWidth,
         rawCode,
@@ -100,8 +103,9 @@ function Example(props) {
             >
                 {iframe ? (
                     <ExampleFrame
-                        title={title}
+                        height={height}
                         maxWidth={maxWidth}
+                        title={title}
                     >
                         {children}
                     </ExampleFrame>
