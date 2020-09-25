@@ -321,7 +321,7 @@ class Radio extends React.Component {
         }
     }
 
-    onClick(idArg) {
+    onClick(idArg, value) {
         const {
             disable,
             disabled,
@@ -335,7 +335,7 @@ class Radio extends React.Component {
 
         if (isNotDisabled) {
             if (isFunction(onChange)) {
-                onChange(pill ? idArg : id, newValue);
+                onChange(pill ? idArg : id, newValue, value);
             } else {
                 this.setState({ isChecked: newValue });
             }

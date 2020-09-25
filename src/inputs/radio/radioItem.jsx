@@ -45,9 +45,14 @@ class RadioItem extends React.Component {
     }
 
     onClick() {
-        const { id, index, onClick } = this.props;
+        const {
+            id,
+            index,
+            onClick,
+            value,
+        } = this.props;
 
-        onClick(id || index);
+        onClick(id || index, value);
     }
 
     onKeyDown(event) {
