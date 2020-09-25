@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import ClassNames from 'classnames';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
