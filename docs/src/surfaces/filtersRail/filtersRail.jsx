@@ -60,6 +60,7 @@ function DocsActionBar(props) {
                 </MarkdownContainer>
 
                 <Example
+                    height={700}
                     iframe
                     rawCode={require('!!raw-loader!./filtersRailPageSample').default}
                     title="Filters Rail Example"
