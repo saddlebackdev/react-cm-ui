@@ -11,7 +11,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string
+        PropTypes.string,
     ]),
     index: PropTypes.number,
     label: PropTypes.string,

@@ -76,9 +76,7 @@ const defaultProps = {
     value: '',
 };
 
-const isCheckedSingle = (id, index, isChecked) => {
-    return id === isChecked || index === isChecked;
-};
+const isCheckedSingle = (id, index, isChecked) => (id === isChecked || index === isChecked);
 
 const isCheckedMulti = (id, index, isChecked) => {
     const newId = id || index;
