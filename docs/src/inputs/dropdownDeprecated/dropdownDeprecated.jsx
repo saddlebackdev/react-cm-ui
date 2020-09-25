@@ -873,6 +873,12 @@ export default class ModulesDropdown extends React.Component {
     render() {
         const dropdownProps = [
             {
+                name: 'autoScrollSelection',
+                type: 'bool',
+                default: 'true',
+                description: 'A Dropdown Selection can auto scroll to the selected item.',
+                allowedTypes: '',
+            }, {
                 name: 'button',
                 type: 'bool',
                 default: '',

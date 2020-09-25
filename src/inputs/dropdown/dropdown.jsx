@@ -71,6 +71,37 @@ class Dropdown extends React.Component {
         if (!_.isEqual(currentPropsValue, previousPropsValue)) {
             this.setState({ menuIsOpen: false, value: currentPropsValue });
         }
+
+        const {
+            autoScrollSelection,
+            options,
+            selection,
+            selectionMatchProp,
+            value
+        } = this.props;
+        if (selection && autoScrollSelection && this.dropdownMenu && value) {
+            const itemHeight = this.dropdownMenu.getScrollHeight()/_.size(options);
+            const pageSize = this.dropdownMenu.getClientHeight()/itemHeight;
+            const selectionIndex = _.findIndex(options, (o) => {
+                if (selectionMatchProp === 'any') {
+                    const hasValue = _.has(o, 'value');
+                    const hasLabel = _.has(o, 'label');
+
+                    if (!hasValue && !hasLabel) {
+                        return false;
+                    }
+
+                    return (hasValue && o['value'] === value['value'] || o['value'] === value) ||
+                        (hasLabel && o['label'] === value['label'] || o['label'] === value);
+                }
+
+                return o[selectionMatchProp] === value[selectionMatchProp];
+            });
+            const page = Math.floor(selectionIndex/pageSize);
+            if (page >= 0) {
+                this.dropdownMenu.scrollTop(page*pageSize*itemHeight);
+            }
+        }
     }
 
     render() {
@@ -625,6 +656,7 @@ class Dropdown extends React.Component {
 Dropdown.Item = DropdownItem;
 
 Dropdown.propTypes = {
+    autoScrollSelection: PropTypes.bool,
     button: PropTypes.bool,
     buttonColor: PropTypes.oneOf(Utils.colorEnums()),
     buttonCompact: PropTypes.bool,
@@ -654,6 +686,7 @@ Dropdown.propTypes = {
     options: PropTypes.array,
     placeholder: PropTypes.string,
     searchable: PropTypes.bool,
+    selection: PropTypes.bool,
     selectionCreatable: PropTypes.bool,
     selectionMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
     selectionMenuContainerStyle: PropTypes.shape({}),
@@ -680,6 +713,10 @@ Dropdown.propTypes = {
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+};
+
+Dropdown.defaultProps = {
+    autoScrollSelection: true,
 };
 
 export default Dropdown;
