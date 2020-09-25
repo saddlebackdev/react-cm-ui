@@ -65,24 +65,24 @@ class Dropdown extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { value: currentPropsValue } = this.props;
+        const {
+            autoScrollSelection,
+            options,
+            selection,
+            selectionMatchProp,
+            value: currentPropsValue,
+        } = this.props;
+
         const { value: previousPropsValue } = prevProps;
 
         if (!_.isEqual(currentPropsValue, previousPropsValue)) {
             this.setState({ menuIsOpen: false, value: currentPropsValue });
         }
 
-        const {
-            autoScrollSelection,
-            options,
-            selection,
-            selectionMatchProp,
-            value
-        } = this.props;
-
-        if (selection && autoScrollSelection && this.dropdownMenu && value) {
+        if (selection && autoScrollSelection && this.dropdownMenu && currentPropsValue) {
             const itemHeight = this.dropdownMenu.getScrollHeight()/_.size(options);
             const pageSize = this.dropdownMenu.getClientHeight()/itemHeight;
+
             const selectionIndex = _.findIndex(options, (o) => {
                 if (selectionMatchProp === 'any') {
                     const hasValue = _.has(o, 'value');
@@ -92,11 +92,18 @@ class Dropdown extends React.Component {
                         return false;
                     }
 
-                    return (hasValue && o['value'] === value['value'] || o['value'] === value) ||
-                        (hasLabel && o['label'] === value['label'] || o['label'] === value);
+                    return (
+                        (
+                            hasValue && o['value'] === currentPropsValue['value']
+                        ) || o['value'] === currentPropsValue
+                    ) || (
+                        (
+                            hasLabel && o['label'] === currentPropsValue['label']
+                        ) || o['label'] === currentPropsValue
+                    );
                 }
 
-                return o[selectionMatchProp] === value[selectionMatchProp];
+                return o[selectionMatchProp] === currentPropsValue[selectionMatchProp];
             });
 
             const page = Math.floor(selectionIndex/pageSize);
