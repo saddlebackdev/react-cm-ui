@@ -4,16 +4,7 @@ import {
 import ClassNames from 'classnames';
 import React, { useState } from 'react';
 import {
-    PROP_TYPES_ROW_CLASS_NAME,
-    PROP_TYPES_ROW_CLASSES,
-    PROP_TYPES_ROW_COMPONENTS,
-    PROP_TYPES_ROW_COLLAPSIBLE,
-    PROP_TYPES_ROW_COMPONENT_COLLAPSE,
-    PROP_TYPES_ROW_HEADING,
-    PROP_TYPES_ROW_ID,
-    PROP_TYPES_ROW_OPTIONS,
-    PROP_TYPES_ROW_TYPE,
-    PROP_TYPES_ROW_COMPONENT_TYPE,
+    PROP_TYPES_ROW,
 } from './constants';
 import {
     BEM_FILTERS_RAIL_ROW,
@@ -26,14 +17,13 @@ import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
-    // eslint-disable-next-line react/no-unused-prop-types
-    classes: PROP_TYPES_ROW_CLASSES,
-    className: PROP_TYPES_ROW_CLASS_NAME,
-    collapse: PROP_TYPES_ROW_COMPONENT_COLLAPSE,
-    components: PROP_TYPES_ROW_COMPONENTS,
-    collapsible: PROP_TYPES_ROW_COLLAPSIBLE,
-    heading: PROP_TYPES_ROW_HEADING.isRequired,
-    id: PROP_TYPES_ROW_ID,
+    classes: PROP_TYPES_ROW.classes,
+    className: PROP_TYPES_ROW.className,
+    collapse: PROP_TYPES_ROW.collapse,
+    collapsible: PROP_TYPES_ROW.collapsible,
+    components: PROP_TYPES_ROW.components,
+    heading: PROP_TYPES_ROW.heading,
+    id: PROP_TYPES_ROW.id,
 };
 
 const defaultProps = {
@@ -42,6 +32,7 @@ const defaultProps = {
     collapse: false,
     components: [],
     collapsible: false,
+    heading: null,
     id: null,
 };
 
@@ -71,7 +62,9 @@ const useStyles = makeStyles((theme) => {
             marginBottom: 6,
         },
         isCollapsed: {},
-        root: {},
+        root: {
+            zIndex: 0,
+        },
     };
 });
 
@@ -100,8 +93,7 @@ function FiltersRailRow(props) {
     );
 
     const CollapseComponent = isCollapsible ? Collapse : React.Fragment;
-
-    const collpaseComponentProps = isCollapsed ? { in: isCollapsed } : null;
+    const collpaseComponentProps = isCollapsible ? { in: isCollapsed } : null;
 
     let rowKeyNum = 0;
 
@@ -164,10 +156,8 @@ function FiltersRailRow(props) {
                             className={component.className}
                             id={component.id}
                             key={`${BEM_FILTERS_RAIL_ROW}-${rowKeyNum}`}
-                            onChange={component.onChange}
-                            options={component.options}
+                            componentProps={component.props}
                             type={component.type}
-                            value={component.value}
                         />
                     );
                 })}

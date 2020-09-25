@@ -9,14 +9,8 @@ import {
     BEM_FILTERS_RAIL,
     BEM_FILTERS_RAIL_ROW,
 } from '../../global/constants';
-import {
-    PROP_TYPES_ROW_CLASS_NAME,
-    PROP_TYPES_ROW_CLASSES,
-    PROP_TYPES_ROW_COLLAPSIBLE,
-    PROP_TYPES_ROW_COMPONENTS,
-    PROP_TYPES_ROW_HEADING,
-    PROP_TYPES_ROW_ID,
-} from './constants';
+import { PROP_TYPES_ROW } from './constants';
+import FiltersRailClear from './filtersRailClear';
 import FiltersRailRow from './filtersRailRow';
 import Grid from '../../layout/grid';
 import makeStyles from '../../styles/makeStyles';
@@ -35,16 +29,19 @@ const propTypes = {
     }),
     className: PropTypes.string,
     id: PropTypes.string,
+    isFiltering: PropTypes.bool,
     isOpen: PropTypes.bool,
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    onClear: PropTypes.func,
     rows: PropTypes.arrayOf(
         PropTypes.shape({
-            classes: PROP_TYPES_ROW_CLASSES,
-            className: PROP_TYPES_ROW_CLASS_NAME,
-            components: PROP_TYPES_ROW_COMPONENTS,
-            collapsible: PROP_TYPES_ROW_COLLAPSIBLE,
-            heading: PROP_TYPES_ROW_HEADING.isRequired,
-            id: PROP_TYPES_ROW_ID,
+            classes: PROP_TYPES_ROW.classes,
+            className: PROP_TYPES_ROW.className,
+            collapse: PROP_TYPES_ROW.collapse,
+            collapsible: PROP_TYPES_ROW.collapsible,
+            components: PROP_TYPES_ROW.components,
+            heading: PROP_TYPES_ROW.heading,
+            id: PROP_TYPES_ROW.id,
         }),
     ),
     style: PropTypes.shape({}),
@@ -60,8 +57,10 @@ const defaultProps = {
     classes: null,
     className: undefined,
     id: undefined,
+    isFiltering: false,
     isOpen: undefined,
     moduleType: 'page',
+    onClear: null,
     rows: [],
     style: {},
 };
@@ -73,9 +72,13 @@ const useStyles = makeStyles((theme) => {
         innerContainer: {
             height: 'auto',
             minHeight: '100%',
+            overflow: 'hidden',
             pointerEvents: 'auto',
             '&::after': {
                 zIndex: -1,
+            },
+            '&$isOpen': {
+                overflow: 'visible',
             },
         },
         isInDrawer: {},
@@ -87,9 +90,7 @@ const useStyles = makeStyles((theme) => {
             position: 'absolute',
             width: railWidth,
             zIndex: 1,
-            '&$isInDrawer': {
-
-            },
+            '&$isInDrawer': {},
             '&$isNotInDrawer': {
                 marginLeft: -theme.gutters.page[496],
                 minHeight: '100%',
@@ -123,8 +124,10 @@ function FiltersRail(props) {
         children,
         className,
         id,
+        isFiltering,
         isOpen,
         moduleType,
+        onClear,
         rows,
         style,
         theme,
@@ -141,7 +144,7 @@ function FiltersRail(props) {
             const containerNode = filtersRailNode.closest(containerClassName);
             const containerOffsetTop = containerNode.offsetTop;
 
-            filtersRailNode.style.minHeight = `calc(100% - ${containerOffsetTop}px)`;
+            filtersRailNode.style.height = `calc(100% - ${containerOffsetTop}px)`;
         }
     }, [
         isMobile,
@@ -179,12 +182,18 @@ function FiltersRail(props) {
             >
                 <Rail
                     className={classes.innerContainer}
-                    position="left"
                 >
                     {!isEmpty(rows) && (
                         <Grid
                             spacing={3}
                         >
+                            <Grid.Column>
+                                <FiltersRailClear
+                                    disable={!isFiltering}
+                                    onClear={onClear}
+                                />
+                            </Grid.Column>
+
                             {map(rows, (row) => {
                                 rowKeyNum += 1;
 

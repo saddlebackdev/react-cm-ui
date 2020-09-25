@@ -1,66 +1,57 @@
 import {
     map,
-    isEmpty,
     kebabCase,
 } from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    PROP_TYPES_ROW_COMPONENT_CLASS_NAME,
-    PROP_TYPES_ROW_COMPONENT_ID,
-    PROP_TYPES_ROW_COMPONENT_ON_CHANGE,
-    PROP_TYPES_ROW_COMPONENT_PLACEHOLDER,
-    PROP_TYPES_ROW_COMPONENT_TAB_INDEX,
-    PROP_TYPES_ROW_COMPONENT_TYPE,
-    PROP_TYPES_ROW_COMPONENT_VAULE,
-    PROP_TYPES_ROW_OPTIONS,
+    PROP_TYPES_ROW_COMPONENT,
 } from './constants';
 import {
     BEM_FILTERS_RAIL_ROW,
 } from '../../global/constants';
-import FiltersRailCheckbox from './filtersRailCheckbox';
-import FiltersRailRadio from './filtersRailRadio';
+import Checkbox from '../../inputs/checkbox';
+import Grid from '../../layout/Grid';
 import Radio from '../../inputs/radio';
 import Select from '../../inputs/select';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    classes: PROP_TYPES_ROW_COMPONENT_CLASS_NAME,
-    className: PROP_TYPES_ROW_COMPONENT_CLASS_NAME,
-    id: PROP_TYPES_ROW_COMPONENT_ID,
-    onChange: PROP_TYPES_ROW_COMPONENT_ON_CHANGE,
-    options: PROP_TYPES_ROW_OPTIONS.isRequired,
-    placeholder: PROP_TYPES_ROW_COMPONENT_PLACEHOLDER,
-    tabIndex: PROP_TYPES_ROW_COMPONENT_TAB_INDEX,
-    type: PROP_TYPES_ROW_COMPONENT_TYPE.isRequired,
-    value: PROP_TYPES_ROW_COMPONENT_VAULE,
+    classes: PROP_TYPES_ROW_COMPONENT.classes,
+    className: PROP_TYPES_ROW_COMPONENT.className,
+    componentProps: PROP_TYPES_ROW_COMPONENT.componentProps,
+    id: PROP_TYPES_ROW_COMPONENT.id,
+    type: PROP_TYPES_ROW_COMPONENT.type.isRequired,
 };
 
 const defaultProps = {
     classes: null,
     className: null,
+    componentProps: null,
     id: null,
-    onChange: null,
-    placeholder: null,
-    tabIndex: -1,
-    value: null,
 };
+
+const useStyles = makeStyles((theme) => ({
+    countColumn: {
+        color: theme.palette.text.secondary,
+        marginRight: -theme.spacing(1),
+    },
+    root: {
+        margin: [[theme.spacing(1), 0]],
+    },
+}));
 
 function FiltersRailRowComponent(props) {
     const {
-        classes,
-        className,
-        id,
-        onChange,
-        options,
-        placeholder,
-        tabIndex,
+        componentProps,
         type,
-        value,
     } = props;
+
+    const classes = useStyles(props);
 
     const rootContainer = ClassNames(
         BEM_FILTERS_RAIL_ROW,
+        classes.root,
     );
 
     return (
@@ -68,13 +59,54 @@ function FiltersRailRowComponent(props) {
             className={rootContainer}
         >
             {type === 'checkbox' && (
-                <FiltersRailCheckbox />
+                <Checkbox
+                    checked={componentProps.checked}
+                    classes={componentProps.classes}
+                    className={componentProps.className}
+                    fluid
+                    id={componentProps.id}
+                    label={(
+                        <Grid>
+                            <Grid.Column
+                                sm
+                            >
+                                {componentProps.label}
+                            </Grid.Column>
+
+                            {componentProps.count && (
+                                <Grid.Column
+                                    classes={{
+                                        root: classes.countColumn,
+                                    }}
+                                >
+                                    10
+                                </Grid.Column>
+                            )}
+                        </Grid>
+                    )}
+                    labelStyle={{
+                        display: 'block',
+                    }}
+                    onChange={componentProps.onChange}
+                    size="small"
+                    tabIndex={componentProps.tabIndex}
+                />
             )}
 
             {type === 'jsx'}
 
             {type === 'radio' && (
-                <FiltersRailRadio />
+                <Radio
+                    checked={componentProps.checked}
+                    classes={componentProps.classes}
+                    className={componentProps.className}
+                    fluid
+                    id={componentProps.id}
+                    label={componentProps.label}
+                    name={componentProps.name}
+                    onChange={componentProps.onChange}
+                    tabIndex={componentProps.tabIndex}
+                />
             )}
 
             {type === 'radioPill' && (
@@ -82,7 +114,7 @@ function FiltersRailRowComponent(props) {
                     fluid
                     pill
                 >
-                    {!isEmpty(options) && map(options, (option, index) => (
+                    {map(componentProps.options, (option, index) => (
                         <Radio.Item
                             checked={option.checked}
                             className={option.className}
@@ -98,14 +130,14 @@ function FiltersRailRowComponent(props) {
 
             {type === 'select' && (
                 <Select
-                    classes={classes}
-                    className={className}
-                    id={id}
-                    onChange={onChange}
-                    options={options}
-                    placeholder={placeholder}
-                    value={value}
-                    tabIndex={tabIndex}
+                    classes={componentProps.classes}
+                    className={componentProps.className}
+                    id={componentProps.id}
+                    onChange={componentProps.onChange}
+                    options={componentProps.options}
+                    placeholder={componentProps.placeholder}
+                    value={componentProps.value}
+                    tabIndex={componentProps.tabIndex}
                     underline
                 />
             )}

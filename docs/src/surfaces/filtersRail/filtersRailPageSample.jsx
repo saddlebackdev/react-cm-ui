@@ -1,5 +1,6 @@
 import {
     FiltersRail,
+    Grid,
     Icon,
     Image,
     Page,
@@ -7,6 +8,7 @@ import {
 } from 'react-cm-ui';
 import React, { useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
+import { isEqual, cloneDeep } from 'lodash';
 
 const SHORT_PAUL = '/images/short_paul.jpg';
 
@@ -21,6 +23,26 @@ const SORT_BY_OPTIONS = [
     },
 ];
 
+const CHECKBOX_OPTION_ONE_LABEL = 'Label 1';
+const CHECKBOX_OPTION_TWO_LABEL = 'Label 2';
+const CHECKBOX_OPTION_THREE_LABEL = 'Label 3';
+const CHECKBOX_OPTION_FOUR_LABEL = 'Label 4';
+const CHECKBOX_OPTION_FIVE_LABEL = 'Label 5';
+const RADIO_OPTION_ONE_LABEL = 'Option 1';
+const RADIO_OPTION_TWO_LABEL = 'Option 2';
+const RADIO_OPTION_THREE_LABEL = 'Option 3';
+
+const DEFAULT_FILTER_VALUES = {
+    selectedCheckboxes: {
+        isLabelOneChecked: false,
+        isLabelTwoChecked: false,
+        isLabelThreeChecked: false,
+        isLabelFourChecked: false,
+        isLabelFiveChecked: false,
+    },
+    selectedRadio: RADIO_OPTION_ONE_LABEL,
+};
+
 const useStyles = makeStyles((theme) => ({
     actionBar: {
         left: '0 !important',
@@ -34,11 +56,71 @@ const useStyles = makeStyles((theme) => ({
 function FiltersRailPageSample() {
     const [isFiltersRailOpen, setIsFiltersRailOpen] = useState(true);
     const [sortByValue, setSortByValue] = useState(SORT_BY_OPTIONS[0]);
+    const [filterValues, setFilterValues] = useState(DEFAULT_FILTER_VALUES);
+    const [isFiltering, setIsFiltering] = useState(false);
 
     const classes = useStyles();
 
+    const onCheckboxChange = (option) => {
+        const newFilterValues = cloneDeep({
+            ...filterValues,
+        });
+
+        switch (option) {
+            case CHECKBOX_OPTION_ONE_LABEL:
+                newFilterValues.selectedCheckboxes.isLabelOneChecked =
+                    !filterValues.selectedCheckboxes.isLabelOneChecked;
+
+                break;
+            case CHECKBOX_OPTION_TWO_LABEL:
+                newFilterValues.selectedCheckboxes.isLabelTwoChecked =
+                    !filterValues.selectedCheckboxes.isLabelTwoChecked;
+
+                break;
+            case CHECKBOX_OPTION_THREE_LABEL:
+                newFilterValues.selectedCheckboxes.isLabelThreeChecked =
+                    !filterValues.selectedCheckboxes.isLabelThreeChecked;
+
+                break;
+            case CHECKBOX_OPTION_FOUR_LABEL:
+                newFilterValues.selectedCheckboxes.isLabelFourChecked =
+                    !filterValues.selectedCheckboxes.isLabelFourChecked;
+
+                break;
+            case CHECKBOX_OPTION_FIVE_LABEL:
+                newFilterValues.selectedCheckboxes.isLabelFiveChecked =
+                    !filterValues.selectedCheckboxes.isLabelFiveChecked;
+
+                break;
+            default:
+        }
+
+        setFilterValues(newFilterValues);
+        setIsFiltering(!isEqual(DEFAULT_FILTER_VALUES, newFilterValues));
+    };
+
+    const onClearFilters = () => {
+        setFilterValues(DEFAULT_FILTER_VALUES);
+        setIsFiltering(false);
+    };
+
     const onFiltersClick = () => {
         setIsFiltersRailOpen(!isFiltersRailOpen);
+    };
+
+    const onRadioChange = (option) => {
+        const newFilterValues = cloneDeep({
+            ...filterValues,
+        });
+
+        newFilterValues.selectedRadio = option;
+
+        setFilterValues(newFilterValues);
+        setIsFiltering(!isEqual(DEFAULT_FILTER_VALUES, newFilterValues));
+    };
+
+    const onRadioPillChange = () => {
+
     };
 
     const onSelectChange = (selectedOption) => {
@@ -108,76 +190,124 @@ function FiltersRailPageSample() {
 
             <Page.Container>
                 <FiltersRail
+                    isFiltering={isFiltering}
                     isOpen={isFiltersRailOpen}
+                    onClear={onClearFilters}
                     rows={[
                         {
                             heading: 'Sort By',
                             components: [
                                 {
+                                    props: {
+                                        onChange: onSelectChange,
+                                        options: SORT_BY_OPTIONS,
+                                        placeholder: 'test',
+                                        value: sortByValue,
+                                    },
                                     type: 'select',
-                                    onChange: onSelectChange,
-                                    options: SORT_BY_OPTIONS,
-                                    placeholder: 'test',
-                                    value: sortByValue,
                                 },
                             ],
                         }, {
                             components: [
                                 {
+                                    props: {
+                                        onChange: onRadioPillChange,
+                                        options: [
+                                            {
+                                                label: 'Active',
+                                            }, {
+                                                label: 'Inactive',
+                                            },
+                                        ],
+                                    },
                                     type: 'radioPill',
-                                    onChange: () => {},
-                                    options: [
-                                        {
-                                            label: 'Active',
-                                        }, {
-                                            label: 'Inactive',
-                                        },
-                                    ],
                                 },
                             ],
                         },
                         {
                             heading: 'Type',
-                            options: [
+                            components: [
                                 {
-                                    label: 'Option 1',
-                                    value: 1,
+                                    props: {
+                                        checked:
+                                            filterValues.selectedRadio === RADIO_OPTION_ONE_LABEL,
+                                        label: RADIO_OPTION_ONE_LABEL,
+                                        name: 'typeRadio',
+                                        onChange: () => onRadioChange(RADIO_OPTION_ONE_LABEL),
+                                    },
+                                    type: 'radio',
                                 },
                                 {
-                                    label: 'Option 2',
-                                    value: 2,
+                                    props: {
+                                        checked:
+                                            filterValues.selectedRadio === RADIO_OPTION_TWO_LABEL,
+                                        label: RADIO_OPTION_TWO_LABEL,
+                                        name: 'typeRadio',
+                                        onChange: () => onRadioChange(RADIO_OPTION_TWO_LABEL),
+                                    },
+                                    type: 'radio',
                                 },
                                 {
-                                    label: 'Option 3',
-                                    value: 3,
+                                    props: {
+                                        checked:
+                                            filterValues.selectedRadio === RADIO_OPTION_THREE_LABEL,
+                                        label: RADIO_OPTION_THREE_LABEL,
+                                        name: 'typeRadio',
+                                        onChange: () => onRadioChange(RADIO_OPTION_THREE_LABEL),
+                                    },
+                                    type: 'radio',
                                 },
                             ],
-                            type: 'radio',
                         }, {
+                            collapsible: true,
                             heading: 'Category',
-                            options: [
+                            components: [
                                 {
-                                    label: 'Option 1',
-                                    value: 1,
+                                    props: {
+                                        checked: filterValues.selectedCheckboxes.isLabelOneChecked,
+                                        count: 10,
+                                        label: CHECKBOX_OPTION_ONE_LABEL,
+                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_ONE_LABEL),
+                                    },
+                                    type: 'checkbox',
                                 },
                                 {
-                                    label: 'Option 2',
-                                    value: 2,
+                                    props: {
+                                        checked: filterValues.selectedCheckboxes.isLabelTwoChecked,
+                                        count: 10,
+                                        label: CHECKBOX_OPTION_TWO_LABEL,
+                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_TWO_LABEL),
+                                    },
+                                    type: 'checkbox',
                                 },
                                 {
-                                    label: 'Option 3',
-                                    value: 3,
+                                    props: {
+                                        checked: filterValues.selectedCheckboxes.isLabelThreeChecked,
+                                        count: 10,
+                                        label: CHECKBOX_OPTION_THREE_LABEL,
+                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_THREE_LABEL),
+                                    },
+                                    type: 'checkbox',
                                 },
                                 {
-                                    label: 'Option 4',
-                                    value: 4,
+                                    props: {
+                                        checked: filterValues.selectedCheckboxes.isLabelFourChecked,
+                                        count: 10,
+                                        label: CHECKBOX_OPTION_FOUR_LABEL,
+                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_FOUR_LABEL),
+                                    },
+                                    type: 'checkbox',
                                 },
                                 {
-                                    label: 'Option 5',
-                                    value: 5,
+                                    props: {
+                                        checked: filterValues.selectedCheckboxes.isLabelFiveChecked,
+                                        count: 10,
+                                        label: CHECKBOX_OPTION_FIVE_LABEL,
+                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_FIVE_LABEL),
+                                    },
+                                    type: 'checkbox',
                                 },
                             ],
-                            type: 'checkbox',
                         },
                     ]}
                 />
