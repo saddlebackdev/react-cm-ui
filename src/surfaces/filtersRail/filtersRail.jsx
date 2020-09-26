@@ -189,7 +189,9 @@ function FiltersRail(props) {
                         <Grid
                             spacing={3}
                         >
-                            <Grid.Column>
+                            <Grid.Column
+                                sm={12}
+                            >
                                 <FiltersRailClear
                                     disable={!isFiltering}
                                     onClear={onClear}

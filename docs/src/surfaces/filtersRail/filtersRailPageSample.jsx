@@ -31,6 +31,10 @@ const CHECKBOX_OPTION_FIVE_LABEL = 'Label 5';
 const RADIO_OPTION_ONE_LABEL = 'Option 1';
 const RADIO_OPTION_TWO_LABEL = 'Option 2';
 const RADIO_OPTION_THREE_LABEL = 'Option 3';
+const RESULT_TYPE_RADIO_ITEM_ACTIVE_ID = 'filters_rail--radio_item_active';
+const RESULT_TYPE_RADIO_ITEM_ACTIVE_INDEX = 0;
+const RESULT_TYPE_RADIO_ITEM_INACTIVE_ID = 'filters_rail--radio_item_inactive';
+const RESULT_TYPE_RADIO_ITEM_INACTIVE_INDEX = 1;
 
 const DEFAULT_FILTER_VALUES = {
     selectedCheckboxes: {
@@ -54,10 +58,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FiltersRailPageSample() {
-    const [isFiltersRailOpen, setIsFiltersRailOpen] = useState(true);
-    const [sortByValue, setSortByValue] = useState(SORT_BY_OPTIONS[0]);
     const [filterValues, setFilterValues] = useState(DEFAULT_FILTER_VALUES);
     const [isFiltering, setIsFiltering] = useState(false);
+    const [isFiltersRailOpen, setIsFiltersRailOpen] = useState(true);
+    const [resultTypeIndex, setResultTypeIndex] = useState(RESULT_TYPE_RADIO_ITEM_ACTIVE_INDEX);
+    const [sortByValue, setSortByValue] = useState(SORT_BY_OPTIONS[0]);
 
     const classes = useStyles();
 
@@ -119,8 +124,22 @@ function FiltersRailPageSample() {
         setIsFiltering(!isEqual(DEFAULT_FILTER_VALUES, newFilterValues));
     };
 
-    const onRadioPillChange = () => {
+    const onRadioPillChange = (radioItemId) => {
+        let newResultTypeIndex = resultTypeIndex;
 
+        switch (radioItemId) {
+            case RESULT_TYPE_RADIO_ITEM_ACTIVE_ID:
+                newResultTypeIndex = RESULT_TYPE_RADIO_ITEM_ACTIVE_INDEX;
+
+                break;
+            case RESULT_TYPE_RADIO_ITEM_INACTIVE_ID:
+                newResultTypeIndex = RESULT_TYPE_RADIO_ITEM_INACTIVE_INDEX;
+
+                break;
+            default:
+        }
+
+        setResultTypeIndex(newResultTypeIndex);
     };
 
     const onSelectChange = (selectedOption) => {
@@ -136,7 +155,7 @@ function FiltersRailPageSample() {
                 columns={[
                     {
                         iconFilter: {
-                            isFiltering: false,
+                            isFiltering,
                             onClick: onFiltersClick,
                             selected: isFiltersRailOpen,
                         },
@@ -211,11 +230,14 @@ function FiltersRailPageSample() {
                             components: [
                                 {
                                     props: {
+                                        checked: resultTypeIndex,
                                         onChange: onRadioPillChange,
                                         options: [
                                             {
+                                                id: RESULT_TYPE_RADIO_ITEM_ACTIVE_ID,
                                                 label: 'Active',
                                             }, {
+                                                id: RESULT_TYPE_RADIO_ITEM_INACTIVE_ID,
                                                 label: 'Inactive',
                                             },
                                         ],

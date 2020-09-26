@@ -8,6 +8,7 @@ import {
 } from './constants';
 import {
     BEM_FILTERS_RAIL_ROW,
+    BEM_FILTERS_RAIL_ROW_COMONENT,
 } from '../../global/constants';
 import FiltersRailRowComponent from './filtersRailRowComponent';
 import Collapse from '../../utils/collapse';
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => {
         collapseButtonColumn: {
             ...columnContent,
         },
+        collapseContainer: {},
         collapseIcon: {
             transition: theme.transitions.create('', {
                 duration: theme.transitions.duration.short,
@@ -59,7 +61,9 @@ const useStyles = makeStyles((theme) => {
             ...columnContent,
         },
         headingGrid: {
-            marginBottom: 6,
+            '& + div': {
+                marginTop: 18,
+            },
         },
         isCollapsed: {},
         root: {},
@@ -90,8 +94,11 @@ function FiltersRailRow(props) {
         className,
     );
 
-    const CollapseComponent = isCollapsible ? Collapse : React.Fragment;
-    const collpaseComponentProps = isCollapsible ? { in: isCollapsed } : null;
+    const CollapseComponent = isCollapsible ? Collapse : 'div';
+    const collpaseComponentProps = isCollapsible ? {
+        className: classes.collapseContainer,
+        in: isCollapsed,
+    } : null;
 
     let rowKeyNum = 0;
 

@@ -475,8 +475,6 @@ class ActionBar extends React.Component {
 
         const iconSearchColumn = find(columns, 'iconSearch');
 
-        console.log('columns', columns);
-
         return (
             <header
                 className={rootClasses}
