@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => {
             },
             '&$isOpen': {
                 [`& + .${BEM_CONTENT}`]: {
-                    overflowX: 'auto',
+                    overflow: 'auto',
                     transition: `margin ${theme.transitions.create('', {
                         duration: theme.transitions.duration.short,
                     })}`,
@@ -183,7 +183,12 @@ function FiltersRail(props) {
                 in={isOpen}
             >
                 <Rail
-                    className={classes.innerContainer}
+                    className={ClassNames(
+                        classes.innerContainer,
+                        {
+                            [classes.isOpen]: isOpen,
+                        },
+                    )}
                 >
                     {!isEmpty(rows) && (
                         <Grid
