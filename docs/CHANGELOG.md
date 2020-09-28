@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.10.1 - 09/28/2020
+
+### Feature
+- [PR #207](https://github.com/saddlebackdev/react-cm-ui/pull/207) / Merge Commit cb5233b6d19a73cd1892c172aaf6b375f2bc3014
+  - Updated Radio documentation and fixed some ESLINT issues.
+- [PR #209](https://github.com/saddlebackdev/react-cm-ui/pull/209) / Merge Commit 03dd9e479802c681d82dedd9962421b8eae759eb
+  - Added `autoScrollSelection` props description.
+
 ## 0.10.0 - 09/16/2020
 
 #### Feature
