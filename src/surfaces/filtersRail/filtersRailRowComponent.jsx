@@ -143,7 +143,10 @@ function FiltersRailRowComponent(props) {
 
             {type === 'select' && (
                 <Select
-                    classes={componentProps.classes}
+                    classes={{
+                        root: classes.radioPill,
+                        ...componentProps.classes,
+                    }}
                     className={componentProps.className}
                     id={componentProps.id}
                     onChange={componentProps.onChange}
