@@ -1,41 +1,65 @@
 /* eslint-disable linebreak-style */
-import React, {
-    useState,
-    useEffect,
-    useRef,
-} from 'react';
-import PropTypes from 'prop-types';
-import { get } from 'lodash';
 import Classnames from 'classnames';
-import Typography from '../../dataDisplay/typography';
-import ToolTip from '../../dataDisplay/tooltip';
+import { get } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { BEM_POPOVER } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
-// import { BEM_NAVIGATION_BREADCRUMBS } from '../../global/constants';
-
+import ToolTip from '../tooltip';
 
 const propTypes = {
     /**
-     * arrow
+     * The arrow can be enabled/disabled
      */
     arrow: PropTypes.bool,
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
     /**
      * Content
      */
     content: PropTypes.string,
     /**
-     * Instance of react-router core,
-     * breadcrumbs will be generated automatically using the routes object structure,
-     * location and push function.
+     * We can pass either a string or jsx elements
      */
-    children: PropTypes.shape({}), // TODO:: mark it as required
+    children: PropTypes.shape({}).isRequired,
     /**
-     * Placement
+     * Placement for the popover
      */
-    placement: PropTypes.string,
+    placement: PropTypes.oneOfType([
+        'bottom-end',
+        'bottom-start',
+        'bottom',
+        'left-end',
+        'left-start',
+        'left',
+        'right-end',
+        'right-start',
+        'right',
+        'top-end',
+        'top-start',
+        'top',
+    ]),
     /**
-     * maxWidth
+     * Popper container styles
+     */
+    popperStyles: PropTypes.shape({}),
+    /**
+     * Style applied to the root container
+     */
+    style: PropTypes.shape({}),
+    /**
+     * We can define the max width for the popover
      */
     maxWidth: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
+    /**
+     * We can define the width for the popover
+     */
+    width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
@@ -43,49 +67,40 @@ const propTypes = {
 
 const defaultProps = {
     arrow: true,
-    children: 'children',
-    maxWidth: 300,
+    content: undefined,
+    className: undefined,
+    maxWidth: undefined,
     placement: 'bottom',
-    content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sapiente, repellat aliquid atque dignissimos libero amet delectus ut optio obcaecati quam minima quidem sint ratione, in illum architecto ea quod?',
+    style: undefined,
+    popperStyles: undefined,
+    width: 250,
 };
 
-const useStyles = makeStyles((theme) => {
-    console.log('theme', theme);
-    const borderRadiusMain = get(theme, 'shape.borderRadius.main');
-    // const colorGrey500 = get(theme, 'palette.grey[500]');
-    // const colorHighlight = get(theme, 'palette.cyan[500]');
-    // const fontWeightBold = get(theme, 'typography.fontWeightBold');
-    // const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
-    // const textColorPrimary = get(theme, 'palette.text.primary');
-    // const textColorSecondary = get(theme, 'palette.text.secondary');
-    // const transitionDurationShortest = get(theme, 'transitions.duration.shortest');
-
-    return {
-        root: {
-            color: 'red',
-            width: 'fit-content',
-        },
-        tooltip: {
-            backgroundColor: theme.palette.common.white,
-            color: 'black',
-            // boxShadow: theme.shadows[1],
-            // fontSize: 11,
-            padding: 10,
-            border: '1px solid gray',
-            borderRadius: get(theme, 'shape.borderRadius.secondary'),
-            maxWidth: ({ maxWidth }) => maxWidth || 'none',
-            // maxWidth: 'none',
-            fontFamily: get(theme, 'typography.fontFamily'),
-            fontSize: get(theme, 'typography.fontSize'),
-            fontWeight: get(theme, 'typography.fontWeightRegular'),
-        },
-        arrow: {
-            color: 'cyan',
-        },
-    };
-});
+const useStyles = makeStyles((theme) => ({
+    arrow: {
+        color: get(theme, 'palette.common.white'),
+    },
+    popper: ({ popperStyles }) => (popperStyles || {}),
+    root: {
+        color: 'red',
+        width: 'fit-content',
+    },
+    tooltip: {
+        backgroundColor: get(theme, 'palette.common.white'),
+        color: 'black',
+        padding: 15,
+        borderRadius: get(theme, 'shape.borderRadius.secondary'),
+        maxWidth: ({ maxWidth }) => maxWidth || 'none',
+        fontFamily: get(theme, 'typography.fontFamily'),
+        fontSize: get(theme, 'typography.fontSize'),
+        fontWeight: get(theme, 'typography.fontWeightRegular'),
+        width: ({ width }) => width,
+    },
+}));
 
 /**
+ * The Popover is similar to tooltips, it is a pop-up box that appears when the user
+ * hovers on an element
  */
 function Popover(props) {
     const {
@@ -94,7 +109,7 @@ function Popover(props) {
         className,
         style,
         placement,
-        // ...restProps
+        ...restProps
     } = props;
 
     const classes = useStyles(props);
@@ -102,31 +117,28 @@ function Popover(props) {
         'container',
         className,
         classes.root,
+        `${BEM_POPOVER}--container`,
     );
     return (
-        <div className={popoverClassnames}>
+        <div
+            className={popoverClassnames}
+            style={style}
+        >
             <ToolTip
                 arrow
                 classes={{
                     tooltip: classes.tooltip,
                     arrow: classes.arrow,
+                    popper: classes.popper,
                 }}
-                style={style}
+                className={`${BEM_POPOVER}--popper`}
                 title={content}
-                // open={open}
                 placement={placement}
-
-
-                onOpen={() => {
-                    console.log('onOpen');
-                }}
-
-                onClose={() => {
-                    console.log('onClose');
-                }}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...restProps}
             >
                 <div
-                    className="children-container"
+                    className={`${BEM_POPOVER}--children_container`}
                 >
                     {children}
                 </div>
@@ -139,17 +151,3 @@ Popover.defaultProps = defaultProps;
 Popover.propTypes = propTypes;
 
 export default Popover;
-
-
-// 'bottom-end'
-// | 'bottom-start'
-// | 'bottom'
-// | 'left-end'
-// | 'left-start'
-// | 'left'
-// | 'right-end'
-// | 'right-start'
-// | 'right'
-// | 'top-end'
-// | 'top-start'
-// | 'top

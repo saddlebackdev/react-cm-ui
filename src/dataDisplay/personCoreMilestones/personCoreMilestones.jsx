@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
     includes,
 } from 'lodash';
@@ -25,8 +26,17 @@ import TimeFromNow from '../timeFromNow';
 import Typography from '../typography';
 import useMediaQuery from '../../utils/useMediaQuery';
 import useTheme from '../../styles/useTheme';
+import Popover from '../popover';
+import MilestonesPopoverContent from './aaa';
 
 const propTypes = {
+    acceptedChristDate: PropTypes.string,
+    attendedClass101Date: PropTypes.string,
+    attendedClass201Date: PropTypes.string,
+    attendedClass301Date: PropTypes.string,
+    attendedClass401Date: PropTypes.string,
+    baptismDate: PropTypes.string,
+    becameMemberDate: PropTypes.string,
     className: PropTypes.string,
     congregationDate: PropTypes.oneOfType([
         MomentPropTypes.momentString,
@@ -46,6 +56,7 @@ const propTypes = {
     hasTakenClass201: PropTypes.bool,
     hasTakenClass301: PropTypes.bool,
     hasTakenClass401: PropTypes.bool,
+    iconColor: PropTypes.string,
     iconSize: PropTypes.number,
     id: PropTypes.string,
     inverse: PropTypes.bool,
@@ -53,6 +64,8 @@ const propTypes = {
     isBaptised: PropTypes.bool,
     isInMinistry: PropTypes.bool,
     isInSmallGroup: PropTypes.bool,
+    ministryCovenantDate: PropTypes.string,
+    ministryDate: PropTypes.string,
     recordType: RECORD_TYPE_PROP_TYPE,
     removeAcceptedChristColumn: PropTypes.bool,
     removeBaptismColumn: PropTypes.bool,
@@ -62,9 +75,18 @@ const propTypes = {
     removeInMinistryColumn: PropTypes.bool,
     removeInTripsColumn: PropTypes.bool,
     removeSmallGroupColumn: PropTypes.bool,
+    smallGroupsDate: PropTypes.string,
+    tripsDate: PropTypes.string,
 };
 
 const defaultProps = {
+    acceptedChristDate: undefined,
+    attendedClass101Date: undefined,
+    attendedClass201Date: undefined,
+    attendedClass301Date: undefined,
+    attendedClass401Date: undefined,
+    baptismDate: undefined,
+    becameMemberDate: undefined,
     className: undefined,
     congregationDate: null,
     firstContactDate: null,
@@ -78,6 +100,7 @@ const defaultProps = {
     hasTakenClass201: false,
     hasTakenClass301: false,
     hasTakenClass401: false,
+    iconColor: undefined,
     iconSize: 16,
     id: null,
     inverse: false,
@@ -85,6 +108,8 @@ const defaultProps = {
     isBaptised: false,
     isInMinistry: false,
     isInSmallGroup: false,
+    ministryCovenantDate: undefined,
+    ministryDate: undefined,
     recordType: RECORD_TYPE_DEFAULT_PROP,
     removeAcceptedChristColumn: false,
     removeBaptismColumn: false,
@@ -94,6 +119,8 @@ const defaultProps = {
     removeInMinistryColumn: false,
     removeInTripsColumn: false,
     removeSmallGroupColumn: false,
+    smallGroupsDate: undefined,
+    tripsDate: undefined,
 };
 
 function getIconSize({ isMobile, iconSize }) {
@@ -129,7 +156,7 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            backgroundColor: palette.background.primary,
+            backgroundColor: ({ backgroundTransparent }) => (backgroundTransparent ? 'transparent' : palette.background.primary),
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
@@ -145,7 +172,8 @@ const useStyles = makeStyles((theme) => {
         },
         firstContactDateColumn: {
             flexGrow: 1,
-            padding: `0 ${columnHorizontalPadding}px`,
+            // padding: `0 ${columnHorizontalPadding}px`, // TODO:: remove
+            padding: '0 px !important',
             textAlign: 'right',
             width: 'auto !important',
         },
@@ -162,26 +190,36 @@ const useStyles = makeStyles((theme) => {
         grid: {
             margin: `0 -${columnHorizontalPadding}px !important`,
         },
-        hasTakenClass101: {},
+        hasTakenClass101: {
+            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        },
         hasSignedMembershipAgreement: {},
-        hasTakenClass201: {},
+        hasTakenClass201: {
+            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        },
         hasSignedMaturityCovenant: {},
-        hasTakenClass301: {},
+        hasTakenClass301: {
+            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        },
         hasSignedMinistryCovenant: {},
-        hasTakenClass401: {},
+        hasTakenClass401: {
+            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        },
         hasSignedMissionCovenant: {},
-        icon: {
+        icon: ({ iconColor }) => ({
+            opacity: iconColor ? 0.25 : 1,
             display: 'flex !important',
             '&.ui.icon .icon-use-path': {
-                fill: palette.static.main,
+                fill: `${iconColor || palette.static.main} !important`,
             },
-        },
+        }),
         inverse: {},
         isAdult: {},
         isChild: {},
         isStudent: {},
         iconBase: {
-            backgroundColor: palette.static.main,
+            backgroundColor: ({ iconColor }) => (iconColor ? 'transparent' : palette.static.main),
+            boxShadow: ({ iconColor }) => (iconColor ? `inset 0 0 0 2px ${iconColor} !important` : 'none'),
             height: '10.42px',
             position: 'absolute',
             width: '11.07px',
@@ -189,6 +227,8 @@ const useStyles = makeStyles((theme) => {
         iconBaseClass101: {
             borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
+        },
+        iconBaseColorClass101: {
             '&$hasSignedMembershipAgreement': {
                 '&$isAdult': {
                     '&$genderFemale': {
@@ -231,6 +271,8 @@ const useStyles = makeStyles((theme) => {
         iconBaseClass201: {
             borderRadius: `${borderRadius.main}px 0 0`,
             top: 0,
+        },
+        iconBaseColorClass201: {
             '&$hasSignedMaturityCovenant': {
                 '&$isAdult': {
                     '&$genderFemale': {
@@ -273,6 +315,8 @@ const useStyles = makeStyles((theme) => {
         iconBaseClass301: {
             borderRadius: `0 0 0 ${borderRadius.main}px`,
             bottom: 0,
+        },
+        iconBaseColorClass301: {
             '&$hasSignedMinistryCovenant': {
                 '&$isAdult': {
                     '&$genderFemale': {
@@ -316,6 +360,8 @@ const useStyles = makeStyles((theme) => {
             borderRadius: `0 0 ${borderRadius.main}px`,
             bottom: 0,
             right: 0,
+        },
+        iconBaseColorClass401: {
             '&$hasSignedMissionCovenant': {
                 '&$isAdult': {
                     '&$genderFemale': {
@@ -382,7 +428,6 @@ const useStyles = makeStyles((theme) => {
                     },
                     '&$genderMale .icon-use-path': {
                         fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
-                        // fill: ``,
                     },
                     '&$genderUndefined .icon-use-path': {
                         fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
@@ -480,11 +525,31 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
-        hasAcceptedChrist: {},
-        isBaptised: {},
-        isInSmallGroup: {},
-        isInMinistry: {},
-        isActiveInTrips: {},
+        hasAcceptedChrist: {
+            '&.icon': {
+                opacity: 1,
+            },
+        },
+        isBaptised: {
+            '&.icon': {
+                opacity: 1,
+            },
+        },
+        isInSmallGroup: {
+            '&.icon': {
+                opacity: 1,
+            },
+        },
+        isInMinistry: {
+            '&.icon': {
+                opacity: 1,
+            },
+        },
+        isActiveInTrips: {
+            '&.icon': {
+                opacity: 1,
+            },
+        },
     };
 });
 
@@ -519,6 +584,20 @@ export function PersonCoreMilestones(props) {
         removeInMinistryColumn,
         removeInTripsColumn,
         removeSmallGroupColumn,
+
+        iconColor,
+        acceptedChristDate,
+        baptismDate,
+        smallGroupsDate,
+        ministryDate,
+        tripsDate,
+        attendedClass101Date,
+        attendedClass201Date,
+        attendedClass301Date,
+        attendedClass401Date, // linger:: RAOUF/CAM
+        becameMemberDate, // NOT EXISTENT
+        ministryCovenantDate, // NOT EXISTENT
+
     } = props;
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
@@ -544,11 +623,12 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
+            [classes.iconBaseColorClass101]: !iconColor && hasTakenClass101,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
-            [classes.hasTakenClass101]: hasTakenClass101,
+            [classes.hasTakenClass101]: iconColor && hasTakenClass101,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -558,11 +638,12 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
+            [classes.iconBaseColorClass201]: !iconColor && hasTakenClass201,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
-            [classes.hasTakenClass201]: hasTakenClass201,
+            [classes.hasTakenClass201]: iconColor && hasTakenClass201,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -572,11 +653,12 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
+            [classes.iconBaseColorClass301]: !iconColor && hasTakenClass301,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
-            [classes.hasTakenClass301]: hasTakenClass301,
+            [classes.hasTakenClass301]: iconColor && hasTakenClass301,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -586,11 +668,12 @@ export function PersonCoreMilestones(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
+            [classes.iconBaseColorClass401]: !iconColor && hasTakenClass401,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
-            [classes.hasTakenClass401]: hasTakenClass401,
+            [classes.hasTakenClass401]: iconColor &&  hasTakenClass401,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -603,7 +686,7 @@ export function PersonCoreMilestones(props) {
     let class301Title;
     let class401Title;
 
-    if (hasTakenClass101) {
+    if (hasTakenClass101) { // linger:; what will happen with this labels?
         class101Title = 'Taken CLASS 101';
 
         if (hasSignedMembershipAgreement) {
@@ -701,6 +784,65 @@ export function PersonCoreMilestones(props) {
         congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
+    const popoverContentAcceptedChrist = (hasAcceptedChrist && acceptedChristDate) && (
+        <MilestonesPopoverContent
+            title="Accepted Christ"
+            milestonesDates={[
+                { label: 'On', date: moment(acceptedChristDate).format() },
+            ]}
+        />
+    );
+
+    const popoverContentBaptism = (isBaptised && baptismDate) && (
+        <MilestonesPopoverContent
+            title="Baptism"
+            milestonesDates={[
+                { label: 'On', date: baptismDate },
+            ]}
+        />
+    );
+
+    const popoverContentSmallGroup = (isInSmallGroup && smallGroupsDate) && (
+        <MilestonesPopoverContent
+            title="Active in Small Group"
+            milestonesDates={[
+                { label: 'On', date: smallGroupsDate },
+            ]}
+        />
+    );
+
+    const popoverContentInMinistry = (isInMinistry && ministryDate) && (
+        <MilestonesPopoverContent
+            title="Active in Ministry"
+            milestonesDates={[
+                { label: 'Since', date: ministryDate },
+            ]}
+        />
+    );
+
+    const popoverContentInTrips = (isActiveInTrips && tripsDate) && (
+        <MilestonesPopoverContent
+            title="Active in Ministry"
+            milestonesDates={[
+                { label: 'Since', date: tripsDate },
+            ]}
+        />
+    );
+
+    const popoverContentClass = isAdult && (
+        <MilestonesPopoverContent
+            title="C.L.A.S.S."
+            milestonesDates={[
+                { label: '101', date: attendedClass101Date },
+                { label: 'Became Member', date: becameMemberDate }, // NOT EXISTENT
+                { label: '201', date: attendedClass201Date },
+                { label: '301', date: attendedClass301Date },
+                { label: '401', date: attendedClass401Date }, // linger:: do we need this?
+                { label: 'Ministry Covenant', date: ministryCovenantDate }, // NOT EXISTENT
+            ]}
+        />
+    );
+
     return (
         <div
             className={rootClasses}
@@ -718,26 +860,35 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconAcceptedChrist,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.hasAcceptedChrist]: hasAcceptedChrist,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={hasAcceptedChrist ? 'Accepted Christ' : 'Has not accepted Christ'}
-                                type="heart"
-                            />
+                            <Popover
+                                content={popoverContentAcceptedChrist}
+                                popperStyles={{
+                                    ...(!hasAcceptedChrist && {
+                                        display: 'none',
+                                    }),
+                                }}
+                            >
+                                <Icon
+                                    className={ClassNames(
+                                        classes.iconAcceptedChrist,
+                                        classes.icon,
+                                        {
+                                            [classes.genderFemale]: isFemale,
+                                            [classes.genderMale]: isMale,
+                                            [classes.genderUndefined]: !isFemale && !isMale,
+                                            [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                            [classes.isAdult]: recordType === 'adult',
+                                            [classes.isChild]: recordType === 'child',
+                                            [classes.isStudent]: recordType === 'student',
+                                        },
+                                    )}
+                                    compact
+                                    inverse={inverse}
+                                    size={iconSize}
+                                    title={false}
+                                    type="heart"
+                                />
+                            </Popover>
                         </Grid.Column>
                     )}
 
@@ -748,26 +899,35 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconBaptised,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isBaptised]: isBaptised,
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isBaptised ? 'Baptized' : 'Not Baptized'}
-                                type="droplet"
-                            />
+                            <Popover
+                                content={popoverContentBaptism}
+                                popperStyles={{
+                                    ...(!isBaptised && {
+                                        display: 'none',
+                                    }),
+                                }}
+                            >
+                                <Icon
+                                    className={ClassNames(
+                                        classes.iconBaptised,
+                                        classes.icon,
+                                        {
+                                            [classes.genderFemale]: isFemale,
+                                            [classes.genderMale]: isMale,
+                                            [classes.genderUndefined]: !isFemale && !isMale,
+                                            [classes.isAdult]: recordType === 'adult',
+                                            [classes.isBaptised]: isBaptised,
+                                            [classes.isChild]: recordType === 'child',
+                                            [classes.isStudent]: recordType === 'student',
+                                        },
+                                    )}
+                                    compact
+                                    inverse={inverse}
+                                    size={iconSize}
+                                    title={false}
+                                    type="droplet"
+                                />
+                            </Popover>
                         </Grid.Column>
                     )}
 
@@ -778,46 +938,44 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <div
-                                className={classes.iconClassContainer}
+                            <Popover
+                                content={popoverContentClass}
                             >
                                 <div
-                                    className={classes.iconClassInnerContainer}
+                                    className={classes.iconClassContainer}
                                 >
                                     <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
-                                            iconBaseClass101Classes,
-                                        )}
-                                        title={class101Title}
-                                    />
+                                        className={classes.iconClassInnerContainer}
+                                    >
+                                        <div
+                                            className={ClassNames(
+                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
+                                                iconBaseClass101Classes,
+                                            )}
+                                        />
 
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
-                                            iconBaseClass201Classes,
-                                        )}
-                                        title={class201Title}
-                                    />
+                                        <div
+                                            className={ClassNames(
+                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
+                                                iconBaseClass201Classes,
+                                            )}
+                                        />
 
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
-                                            iconBaseClass301Classes,
-                                        )}
-                                        title={class301Title}
-                                    />
-
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
-                                            iconBaseClass401Classes,
-                                        )}
-                                        title={class401Title}
-                                    />
-
+                                        <div
+                                            className={ClassNames(
+                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
+                                                iconBaseClass301Classes,
+                                            )}
+                                        />
+                                        <div
+                                            className={ClassNames(
+                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
+                                                iconBaseClass401Classes,
+                                            )}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            </Popover>
                         </Grid.Column>
                     )}
 
@@ -828,26 +986,35 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconSmallGroup,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isInSmallGroup]: isInSmallGroup,
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isInSmallGroup ? 'Active in Small Group' : 'Not active in Small Group'}
-                                type="users"
-                            />
+                            <Popover
+                                content={popoverContentSmallGroup}
+                                popperStyles={{
+                                    ...(!isInSmallGroup && {
+                                        display: 'none',
+                                    }),
+                                }}
+                            >
+                                <Icon
+                                    className={ClassNames(
+                                        classes.iconSmallGroup,
+                                        classes.icon,
+                                        {
+                                            [classes.genderFemale]: isFemale,
+                                            [classes.genderMale]: isMale,
+                                            [classes.genderUndefined]: !isFemale && !isMale,
+                                            [classes.isAdult]: recordType === 'adult',
+                                            [classes.isChild]: recordType === 'child',
+                                            [classes.isInSmallGroup]: isInSmallGroup,
+                                            [classes.isStudent]: recordType === 'student',
+                                        },
+                                    )}
+                                    compact
+                                    inverse={inverse}
+                                    size={iconSize}
+                                    title={false}
+                                    type="users"
+                                />
+                            </Popover>
                         </Grid.Column>
                     )}
 
@@ -858,26 +1025,35 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconInMinistry,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isInMinistry]: isInMinistry,
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
-                                type="serving-opportunity"
-                            />
+                            <Popover
+                                content={popoverContentInMinistry}
+                                popperStyles={{
+                                    ...(!isInMinistry && {
+                                        display: 'none',
+                                    }),
+                                }}
+                            >
+                                <Icon
+                                    className={ClassNames(
+                                        classes.iconInMinistry,
+                                        classes.icon,
+                                        {
+                                            [classes.genderFemale]: isFemale,
+                                            [classes.genderMale]: isMale,
+                                            [classes.genderUndefined]: !isFemale && !isMale,
+                                            [classes.isAdult]: recordType === 'adult',
+                                            [classes.isChild]: recordType === 'child',
+                                            [classes.isInMinistry]: isInMinistry,
+                                            [classes.isStudent]: recordType === 'student',
+                                        },
+                                    )}
+                                    compact
+                                    inverse={inverse}
+                                    size={iconSize}
+                                    title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
+                                    type="serving-opportunity"
+                                />
+                            </Popover>
                         </Grid.Column>
                     )}
 
@@ -888,26 +1064,35 @@ export function PersonCoreMilestones(props) {
                                 classes.column,
                             )}
                         >
-                            <Icon
-                                className={ClassNames(
-                                    classes.iconInTrips,
-                                    classes.icon,
-                                    {
-                                        [classes.genderFemale]: isFemale,
-                                        [classes.genderMale]: isMale,
-                                        [classes.genderUndefined]: !isFemale && !isMale,
-                                        [classes.isActiveInTrips]: isActiveInTrips,
-                                        [classes.isAdult]: recordType === 'adult',
-                                        [classes.isChild]: recordType === 'child',
-                                        [classes.isStudent]: recordType === 'student',
-                                    },
-                                )}
-                                compact
-                                inverse={inverse}
-                                size={iconSize}
-                                title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
-                                type="shoe-prints"
-                            />
+                            <Popover
+                                content={popoverContentInTrips}
+                                popperStyles={{
+                                    ...(!isActiveInTrips && {
+                                        display: 'none',
+                                    }),
+                                }}
+                            >
+                                <Icon
+                                    className={ClassNames(
+                                        classes.iconInTrips,
+                                        classes.icon,
+                                        {
+                                            [classes.genderFemale]: isFemale,
+                                            [classes.genderMale]: isMale,
+                                            [classes.genderUndefined]: !isFemale && !isMale,
+                                            [classes.isActiveInTrips]: isActiveInTrips,
+                                            [classes.isAdult]: recordType === 'adult',
+                                            [classes.isChild]: recordType === 'child',
+                                            [classes.isStudent]: recordType === 'student',
+                                        },
+                                    )}
+                                    compact
+                                    inverse={inverse}
+                                    size={iconSize}
+                                    title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
+                                    type="shoe-prints"
+                                />
+                            </Popover>
                         </Grid.Column>
                     )}
 
