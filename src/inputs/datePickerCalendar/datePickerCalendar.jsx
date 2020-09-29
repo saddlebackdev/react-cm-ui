@@ -267,7 +267,7 @@ class DatePickerCalendar extends React.PureComponent {
     _onPreviousMonthChange() {
         this.setState((prev) => {
             const { onMonthChange } = this.props;
-            const dateInView = prev.dateInView.clone().subtract(1, 'month');
+            const dateInView = prev.dateInView.clone().subtract(1, 'months');
 
             if (!_.isUndefined(onMonthChange)) {
                 onMonthChange(dateInView.month(), dateInView.year());
@@ -283,7 +283,7 @@ class DatePickerCalendar extends React.PureComponent {
     _onNextMonthChange() {
         this.setState((prev) => {
             const { onMonthChange } = this.props;
-            const dateInView = prev.dateInView.clone().add(1, 'month');
+            const dateInView = prev.dateInView.clone().add(1, 'months');
 
             if (!_.isUndefined(onMonthChange)) {
                 onMonthChange(dateInView.month(), dateInView.year());
