@@ -27,7 +27,7 @@ import Typography from '../typography';
 import useMediaQuery from '../../utils/useMediaQuery';
 import useTheme from '../../styles/useTheme';
 import Popover from '../popover';
-import MilestonesPopoverContent from './aaa';
+import MilestonePopoverContent from './milestonePopoverContent';
 
 const propTypes = {
     acceptedChristDate: PropTypes.string,
@@ -149,7 +149,8 @@ const useStyles = makeStyles((theme) => {
     });
 
     /**
-     * This is the base icon size for the C.L.A.S.S. icon (which isn't an SVG), so that the
+     * This is the base icon size for the
+     * C.L.A.S.S. icon (which isn't an SVG), so that the
      * size can be scaled proportionally based on the given `size` from props.
      */
     const basesClassIconSize = 24;
@@ -190,27 +191,51 @@ const useStyles = makeStyles((theme) => {
         grid: {
             margin: `0 -${columnHorizontalPadding}px !important`,
         },
-        hasTakenClass101: {
-            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        hasTakenClass101: ({ iconColor, hasSignedMembershipAgreement }) => (
+            iconColor && !hasSignedMembershipAgreement
+        ) && ({
+            backgroundColor: 'transparent !important',
+            boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
+            opacity: '1 !important',
+        }),
+        hasSignedMembershipAgreement: {
+            opacity: '1 !important',
         },
-        hasSignedMembershipAgreement: {},
-        hasTakenClass201: {
-            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        hasTakenClass201: ({ iconColor, hasSignedMaturityCovenant }) => (
+            iconColor && !hasSignedMaturityCovenant
+        ) && ({
+            backgroundColor: 'transparent !important',
+            boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
+            opacity: '1 !important',
+        }),
+        hasSignedMaturityCovenant: {
+            opacity: '1 !important',
         },
-        hasSignedMaturityCovenant: {},
-        hasTakenClass301: {
-            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        hasTakenClass301: ({ iconColor, hasSignedMinistryCovenant }) => (
+            iconColor && !hasSignedMinistryCovenant
+        ) && ({
+            backgroundColor: 'transparent !important',
+            boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
+            opacity: '1 !important',
+        }),
+        hasSignedMinistryCovenant: {
+            opacity: '1 !important',
         },
-        hasSignedMinistryCovenant: {},
-        hasTakenClass401: {
-            backgroundColor: ({ iconColor }) => `${iconColor} !important`,
+        hasTakenClass401: ({ iconColor, hasSignedMissionCovenant }) => (
+            iconColor && !hasSignedMissionCovenant
+        ) && ({
+            backgroundColor: 'transparent !important',
+            boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
+            opacity: '1 !important',
+        }),
+        hasSignedMissionCovenant: {
+            opacity: '1 !important',
         },
-        hasSignedMissionCovenant: {},
         icon: ({ iconColor }) => ({
             opacity: iconColor ? 0.25 : 1,
             display: 'flex !important',
             '&.ui.icon .icon-use-path': {
-                fill: `${iconColor || palette.static.main} !important`,
+                fill: iconColor ? `${iconColor} !important` : palette.static.main,
             },
         }),
         inverse: {},
@@ -218,15 +243,16 @@ const useStyles = makeStyles((theme) => {
         isChild: {},
         isStudent: {},
         iconBase: {
-            backgroundColor: ({ iconColor }) => (iconColor ? 'transparent' : palette.static.main),
-            boxShadow: ({ iconColor }) => (iconColor ? `inset 0 0 0 2px ${iconColor} !important` : 'none'),
             height: '10.42px',
             position: 'absolute',
             width: '11.07px',
+            backgroundColor: ({ iconColor }) => `${iconColor || palette.static.main}`,
+            opacity: ({ iconColor }) => iconColor && 0.25,
         },
         iconBaseClass101: {
             borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
+
         },
         iconBaseColorClass101: {
             '&$hasSignedMembershipAgreement': {
@@ -628,7 +654,7 @@ export function PersonCoreMilestones(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
-            [classes.hasTakenClass101]: iconColor && hasTakenClass101,
+            [classes.hasTakenClass101]: hasTakenClass101,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -643,7 +669,7 @@ export function PersonCoreMilestones(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
-            [classes.hasTakenClass201]: iconColor && hasTakenClass201,
+            [classes.hasTakenClass201]: hasTakenClass201,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -658,7 +684,7 @@ export function PersonCoreMilestones(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
-            [classes.hasTakenClass301]: iconColor && hasTakenClass301,
+            [classes.hasTakenClass301]: hasTakenClass301,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -673,7 +699,7 @@ export function PersonCoreMilestones(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
-            [classes.hasTakenClass401]: iconColor &&  hasTakenClass401,
+            [classes.hasTakenClass401]: hasTakenClass401,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -785,7 +811,7 @@ export function PersonCoreMilestones(props) {
     }
 
     const popoverContentAcceptedChrist = (hasAcceptedChrist && acceptedChristDate) && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="Accepted Christ"
             milestonesDates={[
                 { label: 'On', date: moment(acceptedChristDate).format() },
@@ -794,7 +820,7 @@ export function PersonCoreMilestones(props) {
     );
 
     const popoverContentBaptism = (isBaptised && baptismDate) && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="Baptism"
             milestonesDates={[
                 { label: 'On', date: baptismDate },
@@ -803,7 +829,7 @@ export function PersonCoreMilestones(props) {
     );
 
     const popoverContentSmallGroup = (isInSmallGroup && smallGroupsDate) && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="Active in Small Group"
             milestonesDates={[
                 { label: 'On', date: smallGroupsDate },
@@ -812,7 +838,7 @@ export function PersonCoreMilestones(props) {
     );
 
     const popoverContentInMinistry = (isInMinistry && ministryDate) && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="Active in Ministry"
             milestonesDates={[
                 { label: 'Since', date: ministryDate },
@@ -821,7 +847,7 @@ export function PersonCoreMilestones(props) {
     );
 
     const popoverContentInTrips = (isActiveInTrips && tripsDate) && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="Active in Ministry"
             milestonesDates={[
                 { label: 'Since', date: tripsDate },
@@ -830,7 +856,7 @@ export function PersonCoreMilestones(props) {
     );
 
     const popoverContentClass = isAdult && (
-        <MilestonesPopoverContent
+        <MilestonePopoverContent
             title="C.L.A.S.S."
             milestonesDates={[
                 { label: '101', date: attendedClass101Date },
@@ -885,7 +911,7 @@ export function PersonCoreMilestones(props) {
                                     compact
                                     inverse={inverse}
                                     size={iconSize}
-                                    title={false}
+                                    title={hasAcceptedChrist ? false : 'Has not accepted Christ'}
                                     type="heart"
                                 />
                             </Popover>
@@ -924,7 +950,7 @@ export function PersonCoreMilestones(props) {
                                     compact
                                     inverse={inverse}
                                     size={iconSize}
-                                    title={false}
+                                    title={isBaptised ? false : 'Not Baptized'}
                                     type="droplet"
                                 />
                             </Popover>
@@ -952,6 +978,7 @@ export function PersonCoreMilestones(props) {
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
                                                 iconBaseClass101Classes,
                                             )}
+                                            title={class101Title}
                                         />
 
                                         <div
