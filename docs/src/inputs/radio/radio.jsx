@@ -1,7 +1,6 @@
 import {
     Radio, Card, Header, TitleBar,
 } from 'react-cm-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -59,7 +58,7 @@ export default class CheckedSample extends React.Component {
 
     render() {
         return (
-            <Radio checked={true} label="Do you want to check the box?" />
+            <Radio checked label="Do you want to check the box?" />
         );
     }
 
@@ -87,8 +86,8 @@ export default class FluidSample extends React.Component {
 
     render() {
         return (
-            <Radio align="left" fluid={true} label="It's better on the right, yeah?" />
-            <Radio align="right" fluid={true} label="It's better on the right, yeah?" />
+            <Radio align="left" fluid label="It's better on the right, yeah?" />
+            <Radio align="right" fluid label="It's better on the right, yeah?" />
         );
     }
 
@@ -125,12 +124,12 @@ export default class OnChangeSample extends React.Component {
             <Radio
                 checked={this.state.onChangeSample}
                 label="on change question."
-                onChange={this._onChange.bind(this)}
+                onChange={this.onChange.bind(this)}
             />
         );
     }
 
-    _onChange(id, checked) {
+    onChange(id, checked) {
         this.setState({ onChangeSample: checked });
     }
 
@@ -167,9 +166,9 @@ export default class RadioGroupPillSample extends React.Component {
                 </Radio><br /><br />
 
                 <Radio
-                    checked={this.state.checkedPill}
+                    checked={this.state.pillDisableValue}
                     name="pill-onchange-sample"
-                    onChange={this._onPillChange.bind(this)}
+                    onChange={this.onPillDisableChange.bind(this)}
                     pill
                     multi
                 >
@@ -195,14 +194,40 @@ export default class RadioGroupPillSample extends React.Component {
 }`;
 
 export default class ElementsRadio extends React.Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
             onChangeSample: false,
-            checkedPill: 0
+            pillValue: 0,
+            pillDisableValue: 0,
         };
+
+        this.onPillChange = this.onPillChange.bind(this);
+        this.onPillDisableChange = this.onPillDisableChange.bind(this);
+        this.onPillItemKeyDown = this.onPillItemKeyDown.bind(this);
+    }
+
+    onChange(id, checked) {
+        this.setState({ onChangeSample: checked });
+    }
+
+    onPillChange(id, value) {
+        this.setState({
+            pillValue: value,
+        });
+    }
+
+    onPillDisableChange(id, value) {
+        this.setState({
+            pillDisableValue: value,
+        });
+    }
+
+    onPillItemKeyDown(id, value) {
+        this.setState({
+            pillValue: value,
+        });
     }
 
     render() {
@@ -212,87 +237,92 @@ export default class ElementsRadio extends React.Component {
                 type: 'enum',
                 default: '',
                 description: 'Aligns the label\'s definition to the left or right.',
-                allowedTypes: 'left, right'
+                allowedTypes: 'left, right',
             }, {
                 name: 'checked',
                 type: 'bool',
                 default: '',
                 description: 'Indicates whether a radio input is checked or not.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'className',
                 type: 'string',
                 default: '',
                 description: 'Additional classes.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'disable',
                 type: 'bool',
                 default: '',
                 description: 'Indicates that the radio input is not available for interaction.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'fluid',
                 type: 'bool',
                 default: '',
                 description: 'A radio input can take on the size of its container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'id',
                 type: 'string',
                 default: '',
                 description: 'Give a radio input an id.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'label',
                 type: 'string',
                 default: '',
                 description: 'Optional label to display with the radio input.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'labelClick',
                 type: 'bool',
                 default: '',
                 description: 'Disable the label\'s definition onClick handler.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'multi',
                 type: 'bool',
                 default: 'false',
                 description: 'Force the radio button group to work in a multi checkbox mode.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'name',
                 type: 'string',
                 default: '',
                 description: 'Radio input\'s name.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'onChange',
                 type: 'func',
                 default: '',
                 description: 'Can handle an onChange event from parent.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'pill',
                 type: 'bool',
                 default: 'false',
                 description: 'Group radio buttons together in a pill container.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'style',
                 type: 'object',
                 default: '',
                 description: 'Supply any inline styles to the radio input\'s container. Mainly used for padding and margins.',
-                allowedTypes: ''
+                allowedTypes: '',
             }, {
                 name: 'value',
                 type: 'string',
                 default: '',
                 description: 'Radio input\'s value.',
-                allowedTypes: ''
-            }
+                allowedTypes: '',
+            },
         ];
+
+        const {
+            pillValue,
+            pillDisableValue,
+        } = this.state;
 
         return (
             <Main page="headers">
@@ -306,7 +336,7 @@ export default class ElementsRadio extends React.Component {
                     </Card>
 
                     {/* Radio */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Radio
                         <Header.Subheader>
                             A standard radio input.
@@ -320,28 +350,32 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* Label */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Label
                         <Header.Subheader>
                             A radio input can have a label defined.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio label="Do you want to check the box?" />
+                    <Radio
+                        label="Do you want to check the box?"
+                        tabIndex={0} />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {labelSample}
                     </Highlighter>
 
                     {/* Align */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Align
                         <Header.Subheader>
                             A label definition can sit on the right or left side of the radio input.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio align="left" label="Do you want to check the box?" /><br /><br />
+                    <Radio align="left" label="Do you want to check the box?" />
+                    <br />
+                    <br />
                     <Radio align="right" label="You know you want too, don't you?" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -349,36 +383,38 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* Checked */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Checked
                         <Header.Subheader>
-                            A radio input can be checked from it's parent.
+                            A radio input can be checked from it&apos;s parent.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio checked={true} label="Do you want to check the box?" />
+                    <Radio checked label="Do you want to check the box?" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {checkedSample}
                     </Highlighter>
 
                     {/* Disable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Disable
                         <Header.Subheader>
                             Disable a radio input.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio disable label="This radio input has been disabled, true or false?" /><br /><br />
-                    <Radio checked={true} disable label="This radio input has been disabled and is checked, true or false?" />
+                    <Radio disable label="This radio input has been disabled, true or false?" />
+                    <br />
+                    <br />
+                    <Radio checked disable label="This radio input has been disabled and is checked, true or false?" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {disabledSample}
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Fluid
                         <Header.Subheader>
                             A radio input can stretch as wide as the parent container.
@@ -386,11 +422,12 @@ export default class ElementsRadio extends React.Component {
                     </Header>
 
                     <Block style={{ maxWidth: '400px' }}>
-                        <Radio align="left" fluid={true} label="It's better on the right, yeah?" />
-                    </Block><br />
+                        <Radio align="left" fluid label="It's better on the right, yeah?" />
+                    </Block>
+                    <br />
 
                     <Block style={{ maxWidth: '400px' }}>
-                        <Radio align="right" fluid={true} label="It's better on the right, yeah?" />
+                        <Radio align="right" fluid label="It's better on the right, yeah?" />
                     </Block>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -398,7 +435,7 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* Label Click */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Label Click
                         <Header.Subheader>
                             Sometimes you may want to disable a radio from being checked by clicking it's label definition.
@@ -412,17 +449,20 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* OnChange */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         OnChange
                         <Header.Subheader>
-                            Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
+                            {/* eslint-disable react/jsx-one-expression-per-line */}
+                            Can handle an <code>onChange</code> event from parent. The
+                            <code>checked</code> prop is required along with this handler.
+                            {/* eslint-enable react/jsx-one-expression-per-line */}
                         </Header.Subheader>
                     </Header>
 
                     <Radio
                         checked={this.state.onChangeSample}
                         label="on change question."
-                        onChange={this._onChange.bind(this)}
+                        onChange={this.onChange.bind(this)}
                     />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -430,14 +470,16 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* Radio Group */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Radio Group
                         <Header.Subheader>
                             Group radio buttons together.
                         </Header.Subheader>
                     </Header>
 
-                    <Radio label="Choose me!" name="group-sample" /><br /><br />
+                    <Radio label="Choose me!" name="group-sample" />
+                    <br />
+                    <br />
                     <Radio label="No choose me!" name="group-sample" />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -445,36 +487,63 @@ export default class ElementsRadio extends React.Component {
                     </Highlighter>
 
                     {/* Radio Pill Group */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
                         Radio Pill Group
                         <Header.Subheader>
-                            Group Radio buttons together in a pill container.<br />
-                            <a className="font-size-xsmall" href="https://www.youtube.com/watch?v=xT4ksAgQouc" target="_blank">https://www.youtube.com/watch?v=xT4ksAgQouc</a>
+                            Group Radio buttons together in a pill container.
+                            <br />
+                            <a
+                                className="font-size-xsmall"
+                                href="https://www.youtube.com/watch?v=xT4ksAgQouc"
+                                target="_blank"
+                            >
+                                https://www.youtube.com/watch?v=xT4ksAgQouc
+                            </a>
                         </Header.Subheader>
                     </Header>
 
                     <Radio
+                        checked={pillValue}
                         id="block_name--element_name"
                         name="pillSample"
-                        onChange={(id, newValue) => console.log(`id: ${id}, newValue: ${newValue}`)}
+                        onChange={this.onPillChange}
+                        onKeyDown={this.onPillItemKeyDown}
                         pill
                     >
-                        <Radio.Item id="block_name--element_name-1" label="Option 01" />
-                        <Radio.Item id="block_name--element_name-2" label="Option 02" />
-                        <Radio.Item id="block_name--element_name-3" label="Option 03" />
-                    </Radio><br /><br />
+                        <Radio.Item
+                            id="block_name--element_name-1"
+                            label="Option 01"
+                            tabIndex={0}
+                        />
+
+                        <Radio.Item
+                            id="block_name--element_name-2"
+                            label="Option 02"
+                            tabIndex={0}
+                        />
+
+                        <Radio.Item
+                            id="block_name--element_name-3"
+                            label="Option 03"
+                            tabIndex={0}
+                        />
+                    </Radio>
+                    <br />
+                    <br />
 
                     <Radio
-                        checked={this.state.checkedPill}
+                        checked={pillDisableValue}
                         name="pillOnChangeSample"
-                        onChange={this._onPillChange.bind(this)}
+                        onChange={this.onPillDisableChange}
                         pill
                         multi
                     >
                         <Radio.Item label="Option 01" />
                         <Radio.Item label="Option 02" />
                         <Radio.Item label="Option 03" />
-                    </Radio><br /><br />
+                    </Radio>
+                    <br />
+                    <br />
 
                     <Radio
                         checked={2}
@@ -485,7 +554,9 @@ export default class ElementsRadio extends React.Component {
                         <Radio.Item label="Option 01" />
                         <Radio.Item label="Option 02" />
                         <Radio.Item label="Option 03" />
-                    </Radio><br /><br />
+                    </Radio>
+                    <br />
+                    <br />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {radioGroupPillSample}
@@ -494,13 +565,4 @@ export default class ElementsRadio extends React.Component {
             </Main>
         );
     }
-
-    _onChange(id, checked) {
-        this.setState({ onChangeSample: checked });
-    }
-
-    _onPillChange(id, value) {
-        this.setState({ checkedPill: value });
-    }
-
 }

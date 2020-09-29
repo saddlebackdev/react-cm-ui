@@ -1,6 +1,23 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.17.0 - 09/28/2020
+
+### Feature
+- [PR #207](https://github.com/saddlebackdev/react-cm-ui/pull/207) / Merge Commit cb5233b6d19a73cd1892c172aaf6b375f2bc3014
+  - Converted Radio SCSS to JSS
+  - Fixed Radio pill group id bug
+- [PR #208](https://github.com/saddlebackdev/react-cm-ui/pull/208) / Merge Commit f2e4cc19a390f40ebe9ebc8a3dd6d30453c13e3b
+  - New Select component.
+- [PR #210](https://github.com/saddlebackdev/react-cm-ui/pull/210) / Merge Commit a5f9e0972d5b4552c34f033a1998b392ad99deb0
+  - Fix ESLINT issues in Radio Button components
+- [PR #209](https://github.com/saddlebackdev/react-cm-ui/pull/209) / Merge Commit 03dd9e479802c681d82dedd9962421b8eae759eb
+  - Enhanced Dropdown select options by adding `is-disabled`, `is-focused`, `is-selected` classes and added auto scrolling to the item.
+
+### Bug Fix
+- [PR #211](https://github.com/saddlebackdev/react-cm-ui/pull/211) / Merge Commit d84f550e026b0555a557d3280efcf2e7c8c7dec8
+  - Fixed PersonPanel child/student records displaying incorrect age.
+
 ## 9.16.0 - 09/16/2020
 
 #### Feature
