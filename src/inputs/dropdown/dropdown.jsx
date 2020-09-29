@@ -65,23 +65,85 @@ class Dropdown extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { value: currentPropsValue } = this.props;
+        const {
+            autoScrollSelection,
+            options,
+            selection,
+            selectionMatchProp,
+            value: currentPropsValue,
+        } = this.props;
+
         const { value: previousPropsValue } = prevProps;
 
         if (!_.isEqual(currentPropsValue, previousPropsValue)) {
             this.setState({ menuIsOpen: false, value: currentPropsValue });
         }
+
+        if (selection && autoScrollSelection && this.dropdownMenu && currentPropsValue) {
+            const itemHeight = this.dropdownMenu.getScrollHeight()/_.size(options);
+            const pageSize = this.dropdownMenu.getClientHeight()/itemHeight;
+
+            const selectionIndex = _.findIndex(options, (o) => {
+                if (selectionMatchProp === 'any') {
+                    const hasValue = _.has(o, 'value');
+                    const hasLabel = _.has(o, 'label');
+
+                    if (!hasValue && !hasLabel) {
+                        return false;
+                    }
+
+                    return (
+                        (
+                            hasValue && o['value'] === currentPropsValue['value']
+                        ) || o['value'] === currentPropsValue
+                    ) || (
+                        (
+                            hasLabel && o['label'] === currentPropsValue['label']
+                        ) || o['label'] === currentPropsValue
+                    );
+                }
+
+                return o[selectionMatchProp] === currentPropsValue[selectionMatchProp];
+            });
+
+            const page = Math.floor(selectionIndex/pageSize);
+
+            if (page >= 0) {
+                this.dropdownMenu.scrollTop(page * pageSize * itemHeight);
+            }
+        }
     }
 
     render() {
-        const { button, buttonColor, buttonCompact, children,
-            className, clearable, disable, fluid, iconColor,
-            iconInverse, iconPosition, iconSize, iconTitle, iconType,
-            id, inverse, label, labelStyle, options, placeholder, searchable,
-            selection, selectionCreatable, selectionMatchProp,
-            selectionMenuContainerStyle, selectionMenuStyle, selectionMobile,
-            selectionOptionComponent, selectionValueComponent, selectionMultiple,
-            selectionRequired, selectionUnderline, style, tabIndex, text, theme,
+        const {
+            button,
+            buttonColor, buttonCompact, children,
+            className,
+            clearable, disable, fluid, iconColor,
+            iconInverse,
+            iconPosition, iconSize, iconTitle, iconType,
+            id,
+            inverse,
+            label,
+            labelStyle,
+            options,
+            placeholder,
+            searchable,
+            selection,
+            selectionCreatable,
+            selectionMatchProp,
+            selectionMenuContainerStyle,
+            selectionMenuStyle,
+            selectionMobile,
+            selectionOptionComponent,
+            selectionValueComponent,
+            selectionMultiple,
+            selectionRequired,
+            selectionUnderline,
+            style,
+            tabIndex,
+            text,
+            theme,
         } = this.props;
 
         if (button) {
@@ -89,6 +151,7 @@ class Dropdown extends React.Component {
         }
 
         const { menuIsOpen, menuPositionStyle } = this.state;
+
         const containerClasses = ClassNames('ui', 'dropdown', className, {
             'dropdown-button': button,
             'dropdown-button-compact': buttonCompact,
@@ -406,24 +469,45 @@ class Dropdown extends React.Component {
     }
 
     _menuRenderer(params) {
-        const items = _.map(params.options, (o, i) => {
-            if (this.props.selectionOptionComponent) {
-                const OptionComponent = this.props.selectionOptionComponent;
+        const { selectionOptionComponent } = this.props;
+
+        const {
+            focusedOption,
+            onFocus,
+            options,
+            selectValue,
+            valueArray,
+            valueKey,
+        } = params;
+
+        const items = _.map(options, (o, i) => {
+            const isFocused = o === focusedOption;
+            const isSelected = _.some(valueArray, (x) => x[valueKey] === o[valueKey]);
+
+            if (selectionOptionComponent) {
+                const OptionComponent = selectionOptionComponent;
 
                 return (
                     <OptionComponent
-                        isFocused={params.isFocused}
+                        isFocused={isFocused}
+                        isSelected={isSelected}
                         key={`select-option-key-${i}`}
-                        onFocus={() => params.onFocus(o)}
-                        onSelect={() => params.selectValue(o)}
+                        onFocus={() => onFocus(o)}
+                        onSelect={() => selectValue(o)}
                         option={o}
                     />
                 );
             }
 
+            const classes = ClassNames('Select-option', {
+                'is-disabled': o.disabled,
+                'is-focused': isFocused,
+                'is-selected': isSelected,
+            });
+
             return (
                 <div
-                    className="Select-option"
+                    className={classes}
                     key={`select-option-key-${i}`}
                     onClick={() => params.selectValue(o)}
                     onMouseOver={() => params.focusOption(o)}
@@ -613,6 +697,7 @@ class Dropdown extends React.Component {
 Dropdown.Item = DropdownItem;
 
 Dropdown.propTypes = {
+    autoScrollSelection: PropTypes.bool,
     button: PropTypes.bool,
     buttonColor: PropTypes.oneOf(Utils.colorEnums()),
     buttonCompact: PropTypes.bool,
@@ -642,6 +727,7 @@ Dropdown.propTypes = {
     options: PropTypes.array,
     placeholder: PropTypes.string,
     searchable: PropTypes.bool,
+    selection: PropTypes.bool,
     selectionCreatable: PropTypes.bool,
     selectionMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
     selectionMenuContainerStyle: PropTypes.shape({}),
@@ -668,6 +754,10 @@ Dropdown.propTypes = {
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+};
+
+Dropdown.defaultProps = {
+    autoScrollSelection: false,
 };
 
 export default Dropdown;
