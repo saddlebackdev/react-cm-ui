@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import ClassNames from 'classnames';
 import { get } from 'lodash';
 import moment from 'moment-timezone';
@@ -26,21 +25,25 @@ const defaultProps = {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        paddingBottom: '5px !important',
+        '& .grid-col': {
+            padding: 0,
+        },
+        '& .grid-row:not(:first-child)': {
+            padding: '5px 0 0 0',
+        },
     },
-    label: {
+    milestoneLabel: {
         fontWeight: get(theme, 'typography.fontWeightMedium'),
     },
     milestoneColumn: {
-        padding: '0 15px 5px 15px',
+        padding: '0',
         whiteSpace: 'nowrap',
+        fontSize: 16,
     },
     title: {
         fontWeight: `${get(theme, 'typography.fontWeightBold')} !important`,
-        fontSize: '16px !important',
-    },
-    titleContainer: {
-        padding: '10px 15px',
+        fontSize: '20px !important',
+        paddingBottom: '10px !important',
     },
 }));
 
@@ -51,7 +54,7 @@ function MilestonesPopoverContent(props) {
     } = props;
 
     const classes = useStyles();
-    const columnLabelClasses = ClassNames(classes.milestoneColumn, classes.label);
+    const labelColumnClasses = ClassNames(classes.milestoneColumn, classes.milestoneLabel);
 
     const milestonesDatesJsx = milestonesDates.map((milestoneDate) => {
         const {
@@ -62,7 +65,7 @@ function MilestonesPopoverContent(props) {
         return (
             <Grid.Row columns={2}>
                 <Grid.Column
-                    className={columnLabelClasses}
+                    className={labelColumnClasses}
                 >
                     {label}
                 </Grid.Column>
@@ -79,9 +82,7 @@ function MilestonesPopoverContent(props) {
     return (
         <Grid className={classes.root}>
             <Grid.Row columns={1}>
-                <Grid.Column
-                    className={classes.titleContainer}
-                >
+                <Grid.Column>
                     <Typography
                         className={classes.title}
                     >
