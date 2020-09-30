@@ -20,17 +20,30 @@ import useMediaQuery from '../../utils/useMediaQuery';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
+    /**
+     * The content of the ActionBar
+     */
     children: PropTypes.node,
     /**
-     * Override or extend the styles applied to ActionBar.
+     * Override or extend the styles applied to FiltersRail.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to ActionBar.
+     */
     className: PropTypes.string,
+    /**
+     * The `id` of the ActionBar.
+     */
     id: PropTypes.string,
     isFiltering: PropTypes.bool,
     isOpen: PropTypes.bool,
+    /**
+     * Assigns styling to the ActionBar dependant on
+     * whether it is a child of the Page or Drawer component.
+     */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
     onClear: PropTypes.func,
     rows: PropTypes.arrayOf(
@@ -44,7 +57,6 @@ const propTypes = {
             id: PROP_TYPES_ROW.id,
         }),
     ),
-    style: PropTypes.shape({}),
     theme: PropTypes.shape({
         breakpoints: PropTypes.shape({
             only: PropTypes.func,
@@ -62,7 +74,6 @@ const defaultProps = {
     moduleType: 'page',
     onClear: null,
     rows: [],
-    style: {},
 };
 
 const useStyles = makeStyles((theme) => {
@@ -131,7 +142,6 @@ function FiltersRail(props) {
         moduleType,
         onClear,
         rows,
-        style,
         theme,
     } = props;
 
@@ -176,7 +186,6 @@ function FiltersRail(props) {
             className={rootClasses}
             id={id}
             ref={filtersRailRef}
-            style={style}
         >
             <Slide
                 direction="right"
