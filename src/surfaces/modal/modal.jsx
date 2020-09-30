@@ -25,7 +25,13 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     autoHeight: PropTypes.bool,
+    /**
+     * The content of the Modal
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to Modal.
+     */
     classes: PropTypes.shape({
         closeButton: PropTypes.string,
         dimmer: PropTypes.string,
@@ -33,24 +39,46 @@ const propTypes = {
         root: PropTypes.string,
         scrollContainer: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to Modal.
+     */
     className: PropTypes.string,
+    /**
+     * The `height` of the Modal.
+     */
     height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `id` of the Modal.
+     */
+    id: PropTypes.string,
     isOpen: PropTypes.bool.isRequired,
+    /**
+     * The `maxHeight` of the Modal.
+     */
     maxHeight: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `maxWidth` of the Modal.
+     */
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `minHeight` of the Modal.
+     */
     minHeight: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `minWidth` of the Modal.
+     */
     minWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -58,6 +86,9 @@ const propTypes = {
     onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
     onOpenComplete: PropTypes.func,
+    /**
+     * The `width` of the Modal.
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -74,6 +105,7 @@ const defaultProps = {
      * for the scroll container to work appropriately, otherwise content inside is hidden.
      */
     height: null,
+    id: null,
     maxHeight: '100%',
     maxWidth: 'none',
     minHeight: null,
@@ -153,6 +185,9 @@ const styles = (theme) => ({
         position: 'relative',
         '& h2': {
             marginBottom: theme.spacing(2),
+        },
+        '& p': {
+            margin: [[theme.spacing(2), 0]],
         },
         [theme.breakpoints.up('md')]: {
             backgroundColor: theme.palette.background.primary,
@@ -461,6 +496,7 @@ class Modal extends React.Component {
             children,
             classes,
             className,
+            id,
             onClose: onCloseProp,
         } = this.props;
 
@@ -497,7 +533,10 @@ class Modal extends React.Component {
 
         return (
             <Portal>
-                <div className={rootClasses}>
+                <div
+                    className={rootClasses}
+                    id={id}
+                >
                     <div
                         className={ClassNames(
                             BEM_MODAL_INNER_CONTAINER,

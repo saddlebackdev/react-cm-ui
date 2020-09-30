@@ -47,7 +47,6 @@ function ModalSample() {
 
                     <Typography
                         color="textSecondary"
-                        gutterBottom
                         variant="body1"
                     >
                         Section Body Copy - quis nulla commodo, aliquam lectus sed, blandit augue.
