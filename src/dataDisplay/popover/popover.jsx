@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import Classnames from 'classnames';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -24,23 +23,6 @@ const propTypes = {
      * We can pass either a string or jsx elements
      */
     children: PropTypes.shape({}).isRequired,
-    /**
-     * Placement for the popover
-     */
-    placement: PropTypes.oneOfType([
-        'bottom-end',
-        'bottom-start',
-        'bottom',
-        'left-end',
-        'left-start',
-        'left',
-        'right-end',
-        'right-start',
-        'right',
-        'top-end',
-        'top-start',
-        'top',
-    ]),
     /**
      * Popper container styles
      */
@@ -70,9 +52,8 @@ const defaultProps = {
     content: undefined,
     className: undefined,
     maxWidth: undefined,
-    placement: 'bottom',
     style: undefined,
-    popperStyles: undefined,
+    popperStyles: {},
     width: 250,
 };
 
@@ -107,7 +88,6 @@ function Popover(props) {
         content,
         className,
         style,
-        placement,
         ...restProps
     } = props;
 
@@ -132,7 +112,6 @@ function Popover(props) {
                 }}
                 className={`${BEM_POPOVER}--popper`}
                 title={content}
-                placement={placement}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...restProps}
             >
