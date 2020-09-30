@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {
     includes,
 } from 'lodash';
@@ -278,7 +277,6 @@ const useStyles = makeStyles((theme) => {
         iconBaseClass101: {
             borderRadius: `0 ${borderRadius.main}px 0 0`,
             right: 0,
-
         },
         iconBaseColorClass101: {
             '&$hasSignedMembershipAgreement': {
@@ -738,7 +736,7 @@ export function PersonCoreMilestones(props) {
     let class301Title;
     let class401Title;
 
-    if (!hasTakenClass101) { // linger:; what will happen with this labels?
+    if (!hasTakenClass101) {
         class101Title = 'Has not taken CLASS 101';
     }
 
@@ -820,50 +818,50 @@ export function PersonCoreMilestones(props) {
         congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
-    const popoverContentAcceptedChrist = (hasAcceptedChrist && acceptedChristDate) && (
+    const popoverContentAcceptedChrist = (hasAcceptedChrist && acceptedChristDate) ? (
         <MilestonePopoverContent
             title="Accepted Christ"
             milestonesDates={[
                 { label: 'On', date: moment(acceptedChristDate).format() },
             ]}
         />
-    );
+    ) : '';
 
-    const popoverContentBaptism = (isBaptised && baptismDate) && (
+    const popoverContentBaptism = (isBaptised && baptismDate) ? (
         <MilestonePopoverContent
             title="Baptism"
             milestonesDates={[
                 { label: 'On', date: baptismDate },
             ]}
         />
-    );
+    ) : '';
 
-    const popoverContentSmallGroup = (isInSmallGroup && activeInSmallGroupsDate) && (
+    const popoverContentSmallGroup = (isInSmallGroup && activeInSmallGroupsDate) ? (
         <MilestonePopoverContent
             title="Active in Small Groups"
             milestonesDates={[
                 { label: 'Since', date: activeInSmallGroupsDate },
             ]}
         />
-    );
+    ) : '';
 
-    const popoverContentInMinistry = (isInMinistry && activeInMinistryDate) && (
+    const popoverContentInMinistry = (isInMinistry && activeInMinistryDate) ? (
         <MilestonePopoverContent
             title="Active in Ministry"
             milestonesDates={[
                 { label: 'Since', date: activeInMinistryDate },
             ]}
         />
-    );
+    ) : '';
 
-    const popoverContentInMissions = (isActiveInMissions && activeInMissionsDate) && (
+    const popoverContentInMissions = (isActiveInMissions && activeInMissionsDate) ? (
         <MilestonePopoverContent
             title="Active in Missions"
             milestonesDates={[
                 { label: 'Since', date: activeInMissionsDate },
             ]}
         />
-    );
+    ) : '';
 
     const milestonesClassesDates = [
         ...(attendedClass101Date ? [{ label: '101', date: attendedClass101Date }] : []), // Fancy ES6 syntax to avoid multiple if statements
@@ -876,12 +874,12 @@ export function PersonCoreMilestones(props) {
         ...(signedMissionCovenantDate ? [{ label: 'Mission Commitment', date: signedMissionCovenantDate }] : []),
     ];
 
-    const popoverContentClasses = (isAdult && milestonesClassesDates.length > 0) && (
+    const popoverContentClasses = (isAdult && milestonesClassesDates.length > 0) ? (
         <MilestonePopoverContent
             title="C.L.A.S.S."
             milestonesDates={milestonesClassesDates}
         />
-    );
+    ) : '';
 
     const shouldHideClassesPopover = milestonesClassesDates.length === 0;
 
@@ -998,7 +996,6 @@ export function PersonCoreMilestones(props) {
                                             )}
                                             title={class101Title}
                                         />
-
                                         <div
                                             className={ClassNames(
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
@@ -1006,7 +1003,6 @@ export function PersonCoreMilestones(props) {
                                             )}
                                             title={class201Title}
                                         />
-
                                         <div
                                             className={ClassNames(
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,

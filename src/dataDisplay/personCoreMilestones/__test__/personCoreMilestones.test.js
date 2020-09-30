@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test from the root folder, execute the following command:
  * npx jest ./src/dataDisplay/personCoreMilestones/__test__/personCoreMilestones.test.js
  */
 import { mount, shallow } from 'enzyme';
@@ -11,26 +11,39 @@ describe('<PersonCoreMilestones />', () => {
     const bemBlockName = 'person_core_milestones';
     const bemName = `${bemBlockName}--element_name-modifier`;
     const props = {
+        acceptedChristDate: '2001-10-10T12:00:00',
+        activeInSmallGroupsDate: '2001-10-10T12:00:00',
+        activeInMinistryDate: '2002-11-20T12:00:00',
+        activeInMissionsDate: '2003-12-30T12:00:00',
+        attendedClass101Date: '2001-10-10T12:00:00',
+        attendedClass201Date: '2001-10-10T12:00:00',
+        attendedClass301Date: '2001-10-10T12:00:00',
+        attendedClass401Date: '2001-10-10T12:00:00',
+        backgroundTransparent: true,
+        baptismDate: '2001-10-10T12:00:00',
         className: bemName,
-        congregationDate: '2000-12-01T12:00:00', // -
-        firstContactDate: '2001-12-01T12:00:00', // -
+        congregationDate: '2000-12-01T12:00:00',
+        firstContactDate: '2001-12-01T12:00:00',
         gender: 'm',
-        hasAcceptedChrist: false, // -
-        hasSignedMaturityCovenant: false, // -
-        hasSignedMembershipAgreement: false, // -
-        hasSignedMinistryCovenant: false, // -
-        hasSignedMissionCovenant: false, // -
-        hasTakenClass101: false, // - hasAttendedClass101
-        hasTakenClass201: false, // - hasAttendedClass102
-        hasTakenClass301: false, // - hasAttendedClass103
-        hasTakenClass401: false, // - hasAttendedClass104
+        hasAcceptedChrist: false,
+        hasSignedMaturityCovenant: false,
+        hasSignedMembershipAgreement: false,
+        hasSignedMinistryCovenant: false,
+        hasSignedMissionCovenant: false,
+        hasTakenClass101: false,
+        hasTakenClass201: false,
+        hasTakenClass301: false,
+        hasTakenClass401: false,
+        iconColor: 'white',
         iconSize: 16,
         id: bemName,
         inverse: false,
+        isActiveInMissions: true,
         isActiveInTrips: false,
-        isBaptised: true, // -
-        isInMinistry: false, // -
-        isInSmallGroup: false, // -
+        isBaptised: true,
+        isInMinistry: false,
+        isInSmallGroup: false,
+        isMobile: true,
         recordType: 'adult',
         removeAcceptedChristColumn: false,
         removeBaptismColumn: false,
@@ -40,12 +53,10 @@ describe('<PersonCoreMilestones />', () => {
         removeInMinistryColumn: false,
         removeInTripsColumn: false,
         removeSmallGroupColumn: false,
-
-        // also existing in client.store.coreMilestones.data
-        /**
-         * isPEACE
-         * uniquePersonID
-         */
+        signedMembershipAgreementDate: '2001-10-10T12:00:00',
+        signedMaturityCovenantDate: '2001-10-10T12:00:00',
+        signedMinistryCovenantDate: '2001-10-10T12:00:00',
+        signedMissionCovenantDate: '2001-10-10T12:00:00',
     };
 
     it('Should render without problems', () => {
@@ -113,7 +124,6 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.props().compact).toEqual(true);
         expect(column.props().inverse).toEqual(false);
         expect(column.props().size).toEqual(16);
-        expect(column.props().title).toEqual('Has not accepted Christ');
         expect(column.props().type).toEqual('heart');
 
         wrapper = mount(
@@ -128,7 +138,6 @@ describe('<PersonCoreMilestones />', () => {
         column = wrapper.find(`.${bemBlockName}--accepted_christ_column Icon`);
 
         expect(column.hasClass(/(makeStyles)-(hasAcceptedChrist)-(\d+)/)).toEqual(true);
-        expect(column.props().title).toEqual('Accepted Christ');
     });
 
     it('Should render with C.L.A.S.S. column', () => {
