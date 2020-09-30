@@ -24,13 +24,14 @@ import Icon from '../icon';
 import makeStyles from '../../styles/makeStyles';
 import TimeFromNow from '../timeFromNow';
 import Typography from '../typography';
-import useMediaQuery from '../../utils/useMediaQuery';
-import useTheme from '../../styles/useTheme';
 import Popover from '../popover';
 import MilestonePopoverContent from './milestonePopoverContent';
 
 const propTypes = {
     acceptedChristDate: PropTypes.string,
+    activeInMinistryDate: PropTypes.string,
+    activeInMissionsDate: PropTypes.string,
+    activeInSmallGroupsDate: PropTypes.string,
     attendedClass101Date: PropTypes.string,
     attendedClass201Date: PropTypes.string,
     attendedClass301Date: PropTypes.string,
@@ -60,12 +61,12 @@ const propTypes = {
     iconSize: PropTypes.number,
     id: PropTypes.string,
     inverse: PropTypes.bool,
-    isActiveInTrips: PropTypes.bool,
+    isActiveInMissions: PropTypes.bool,
     isBaptised: PropTypes.bool,
     isInMinistry: PropTypes.bool,
     isInSmallGroup: PropTypes.bool,
+    isMobile: PropTypes.bool,
     ministryCovenantDate: PropTypes.string,
-    ministryDate: PropTypes.string,
     recordType: RECORD_TYPE_PROP_TYPE,
     removeAcceptedChristColumn: PropTypes.bool,
     removeBaptismColumn: PropTypes.bool,
@@ -75,18 +76,23 @@ const propTypes = {
     removeInMinistryColumn: PropTypes.bool,
     removeInTripsColumn: PropTypes.bool,
     removeSmallGroupColumn: PropTypes.bool,
-    smallGroupsDate: PropTypes.string,
-    tripsDate: PropTypes.string,
+    signedMembershipAgreementDate: PropTypes.string,
+    signedMaturityCovenantDate: PropTypes.string,
+    signedMinistryCovenantDate: PropTypes.string,
+    signedMissionCovenantDate: PropTypes.string,
 };
 
 const defaultProps = {
-    acceptedChristDate: undefined,
-    attendedClass101Date: undefined,
-    attendedClass201Date: undefined,
-    attendedClass301Date: undefined,
-    attendedClass401Date: undefined,
-    baptismDate: undefined,
-    becameMemberDate: undefined,
+    acceptedChristDate: null,
+    activeInMinistryDate: null,
+    activeInSmallGroupsDate: null,
+    activeInMissionsDate: null,
+    attendedClass101Date: null,
+    attendedClass201Date: null,
+    attendedClass301Date: null,
+    attendedClass401Date: null,
+    baptismDate: null,
+    becameMemberDate: null,
     className: undefined,
     congregationDate: null,
     firstContactDate: null,
@@ -100,16 +106,16 @@ const defaultProps = {
     hasTakenClass201: false,
     hasTakenClass301: false,
     hasTakenClass401: false,
-    iconColor: undefined,
+    iconColor: null,
     iconSize: 16,
     id: null,
     inverse: false,
-    isActiveInTrips: false,
+    isActiveInMissions: false,
     isBaptised: false,
     isInMinistry: false,
     isInSmallGroup: false,
-    ministryCovenantDate: undefined,
-    ministryDate: undefined,
+    isMobile: false,
+    ministryCovenantDate: null,
     recordType: RECORD_TYPE_DEFAULT_PROP,
     removeAcceptedChristColumn: false,
     removeBaptismColumn: false,
@@ -119,8 +125,10 @@ const defaultProps = {
     removeInMinistryColumn: false,
     removeInTripsColumn: false,
     removeSmallGroupColumn: false,
-    smallGroupsDate: undefined,
-    tripsDate: undefined,
+    signedMembershipAgreementDate: null,
+    signedMaturityCovenantDate: null,
+    signedMinistryCovenantDate: null,
+    signedMissionCovenantDate: null,
 };
 
 function getIconSize({ isMobile, iconSize }) {
@@ -157,7 +165,19 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            backgroundColor: ({ backgroundTransparent }) => (backgroundTransparent ? 'transparent' : palette.background.primary),
+            backgroundColor: ({ backgroundTransparent, isMobile }) => {
+                let backgroundColorValue;
+
+                if (backgroundTransparent && !isMobile) {
+                    backgroundColorValue = 'transparent';
+                } else if (backgroundTransparent && isMobile) {
+                    backgroundColorValue = 'rgb(255, 255, 255, 0.25)';
+                } if (!backgroundTransparent) {
+                    backgroundColorValue = palette.background.primary;
+                }
+
+                return backgroundColorValue;
+            },
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
@@ -168,18 +188,24 @@ const useStyles = makeStyles((theme) => {
             padding: `0 ${columnHorizontalPadding}px`,
             width: 'auto !important',
         },
-        congregationDateHeading: {
-            color: palette.text.secondary,
+        congregationDateTypography: {
+            color: ({ backgroundTransparent }) => (backgroundTransparent ?
+                palette.text.contrastText :
+                palette.text.secondary
+            ),
         },
         firstContactDateColumn: {
-            flexGrow: 1,
+            // flexGrow: 1, // TODO:: add float right prop
             // padding: `0 ${columnHorizontalPadding}px`, // TODO:: remove
-            padding: '0 px !important',
-            textAlign: 'right',
+            padding: '10px 5px 10px 10px !important',
+            // textAlign: 'right',
             width: 'auto !important',
         },
-        firstContactDateHeading: {
-            color: palette.text.secondary,
+        firstContactDateTypography: {
+            color: ({ backgroundTransparent }) => (backgroundTransparent ?
+                palette.text.contrastText :
+                palette.text.secondary
+            ),
         },
         dateContainers: {
             display: 'inline-block',
@@ -531,7 +557,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconInTrips: {
-            '&$isActiveInTrips': {
+            '&$isActiveInMissions': {
                 '&$isAdult': {
                     '&$genderFemale .icon-use-path': {
                         fill: `${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`,
@@ -571,7 +597,7 @@ const useStyles = makeStyles((theme) => {
                 opacity: 1,
             },
         },
-        isActiveInTrips: {
+        isActiveInMissions: {
             '&.icon': {
                 opacity: 1,
             },
@@ -581,6 +607,15 @@ const useStyles = makeStyles((theme) => {
 
 export function PersonCoreMilestones(props) {
     const {
+        acceptedChristDate,
+        activeInMinistryDate,
+        activeInMissionsDate,
+        activeInSmallGroupsDate,
+        attendedClass101Date,
+        attendedClass201Date,
+        attendedClass301Date,
+        attendedClass401Date,
+        baptismDate,
         className,
         congregationDate: congregationDateProp,
         firstContactDate: firstContactDateProp,
@@ -594,13 +629,15 @@ export function PersonCoreMilestones(props) {
         hasSignedMaturityCovenant,
         hasSignedMinistryCovenant,
         hasSignedMissionCovenant,
+        iconColor,
         iconSize: iconSizeProp,
         id,
+        inverse,
+        isActiveInMissions,
         isBaptised,
         isInMinistry,
         isInSmallGroup,
-        isActiveInTrips,
-        inverse,
+        isMobile,
         recordType,
         removeAcceptedChristColumn,
         removeBaptismColumn,
@@ -610,24 +647,13 @@ export function PersonCoreMilestones(props) {
         removeInMinistryColumn,
         removeInTripsColumn,
         removeSmallGroupColumn,
-
-        iconColor,
-        acceptedChristDate,
-        baptismDate,
-        smallGroupsDate,
-        ministryDate,
-        tripsDate,
-        attendedClass101Date,
-        attendedClass201Date,
-        attendedClass301Date,
-        attendedClass401Date, // linger:: RAOUF/CAM
-        becameMemberDate, // NOT EXISTENT
-        ministryCovenantDate, // NOT EXISTENT
-
+        signedMembershipAgreementDate,
+        signedMaturityCovenantDate,
+        signedMinistryCovenantDate,
+        signedMissionCovenantDate,
     } = props;
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
-    const classes = useStyles({ ...props, isMobile });
+
+    const classes = useStyles(props);
     const isAdult = recordType === 'adult';
     const isFemale = includes(['f', 'F'], gender);
     const isMale = includes(['m', 'M'], gender);
@@ -712,67 +738,51 @@ export function PersonCoreMilestones(props) {
     let class301Title;
     let class401Title;
 
-    if (hasTakenClass101) { // linger:; what will happen with this labels?
-        class101Title = 'Taken CLASS 101';
-
-        if (hasSignedMembershipAgreement) {
-            class101Title += ' and Signed Membership Covenant';
-        } else {
-            class101Title += ' and has not Signed Membership Covenant';
-        }
-    } else {
+    if (!hasTakenClass101) { // linger:; what will happen with this labels?
         class101Title = 'Has not taken CLASS 101';
+    }
 
-        if (hasSignedMembershipAgreement) {
-            class101Title += ', but has signed Membership Covenant';
+    if (!hasSignedMembershipAgreement) {
+        if (class101Title) {
+            class101Title += ' and has not Signed Membership Covenant';
+        } else {
+            class101Title = 'Has not Signed Membership Covenant';
         }
     }
 
-    if (hasTakenClass201) {
-        class201Title = 'Taken CLASS 201';
-
-        if (hasSignedMaturityCovenant) {
-            class201Title += ' and Signed Maturity Covenant';
-        } else {
-            class201Title += ' and has not Signed Maturity Covenant';
-        }
-    } else {
+    if (!hasTakenClass201) {
         class201Title = 'Has not taken CLASS 201';
+    }
 
-        if (hasSignedMaturityCovenant) {
-            class201Title += ', but has signed Maturity Agreement';
+    if (!hasSignedMaturityCovenant) {
+        if (class201Title) {
+            class201Title += ' and has not Signed Maturity Covenant';
+        } else {
+            class201Title = 'Has not Signed Maturity Covenant';
         }
     }
 
-    if (hasTakenClass301) {
-        class301Title = 'Taken CLASS 301';
-
-        if (hasSignedMinistryCovenant) {
-            class301Title += ' and Signed Ministry Covenant';
-        } else {
-            class301Title += ' and has not Signed Ministry Covenant';
-        }
-    } else {
+    if (!hasTakenClass301) {
         class301Title = 'Has not taken CLASS 301';
+    }
 
-        if (hasSignedMaturityCovenant) {
-            class301Title += ', but has signed Ministry Covenant';
+    if (!hasSignedMinistryCovenant) {
+        if (class301Title) {
+            class301Title += ' and has not Signed Ministry Covenant';
+        } else {
+            class301Title = 'Has not Signed Ministry Covenant';
         }
     }
 
-    if (hasTakenClass401) {
-        class401Title = 'Taken CLASS 401';
-
-        if (hasSignedMissionCovenant) {
-            class401Title += ' and Signed Mission Covenant';
-        } else {
-            class401Title += ' and has not Signed Mission Covenant';
-        }
-    } else {
+    if (!hasTakenClass401) {
         class401Title = 'Has not taken CLASS 401';
+    }
 
-        if (hasSignedMaturityCovenant) {
-            class401Title += ', but has signed Mission Covenant';
+    if (!hasSignedMissionCovenant) {
+        if (class401Title) {
+            class401Title += ' and has not Signed Mission Covenant';
+        } else {
+            class401Title = 'Has not Signed Mission Covenant';
         }
     }
 
@@ -828,46 +838,52 @@ export function PersonCoreMilestones(props) {
         />
     );
 
-    const popoverContentSmallGroup = (isInSmallGroup && smallGroupsDate) && (
+    const popoverContentSmallGroup = (isInSmallGroup && activeInSmallGroupsDate) && (
         <MilestonePopoverContent
-            title="Active in Small Group"
+            title="Active in Small Groups"
             milestonesDates={[
-                { label: 'On', date: smallGroupsDate },
+                { label: 'Since', date: activeInSmallGroupsDate },
             ]}
         />
     );
 
-    const popoverContentInMinistry = (isInMinistry && ministryDate) && (
-        <MilestonePopoverContent
-            title="Active in Ministry"
-            milestonesDates={[
-                { label: 'Since', date: ministryDate },
-            ]}
-        />
-    );
-
-    const popoverContentInTrips = (isActiveInTrips && tripsDate) && (
+    const popoverContentInMinistry = (isInMinistry && activeInMinistryDate) && (
         <MilestonePopoverContent
             title="Active in Ministry"
             milestonesDates={[
-                { label: 'Since', date: tripsDate },
+                { label: 'Since', date: activeInMinistryDate },
             ]}
         />
     );
 
-    const popoverContentClass = isAdult && (
+    const popoverContentInMissions = (isActiveInMissions && activeInMissionsDate) && (
+        <MilestonePopoverContent
+            title="Active in Missions"
+            milestonesDates={[
+                { label: 'Since', date: activeInMissionsDate },
+            ]}
+        />
+    );
+
+    const milestonesClassesDates = [
+        ...(attendedClass101Date ? [{ label: '101', date: attendedClass101Date }] : []), // Fancy ES6 syntax to avoid multiple if statements
+        ...(signedMembershipAgreementDate ? [{ label: 'Became Member', date: signedMembershipAgreementDate }] : []),
+        ...(attendedClass201Date ? [{ label: '201', date: attendedClass201Date }] : []),
+        ...(signedMaturityCovenantDate ? [{ label: 'Maturity Covenant Card', date: signedMaturityCovenantDate }] : []),
+        ...(attendedClass301Date ? [{ label: '301', date: attendedClass301Date }] : []),
+        ...(signedMinistryCovenantDate ? [{ label: 'Ministry Covenant', date: signedMinistryCovenantDate }] : []),
+        ...(attendedClass401Date ? [{ label: '401', date: attendedClass401Date }] : []),
+        ...(signedMissionCovenantDate ? [{ label: 'Mission Commitment', date: signedMissionCovenantDate }] : []),
+    ];
+
+    const popoverContentClasses = (isAdult && milestonesClassesDates.length > 0) && (
         <MilestonePopoverContent
             title="C.L.A.S.S."
-            milestonesDates={[
-                { label: '101', date: attendedClass101Date },
-                { label: 'Became Member', date: becameMemberDate }, // NOT EXISTENT
-                { label: '201', date: attendedClass201Date },
-                { label: '301', date: attendedClass301Date },
-                { label: '401', date: attendedClass401Date }, // linger:: do we need this?
-                { label: 'Ministry Covenant', date: ministryCovenantDate }, // NOT EXISTENT
-            ]}
+            milestonesDates={milestonesClassesDates}
         />
     );
+
+    const shouldHideClassesPopover = milestonesClassesDates.length === 0;
 
     return (
         <div
@@ -965,7 +981,9 @@ export function PersonCoreMilestones(props) {
                             )}
                         >
                             <Popover
-                                content={popoverContentClass}
+                                content={popoverContentClasses}
+                                // eslint-disable-next-line react/jsx-props-no-spreading
+                                {...(shouldHideClassesPopover && { open: false })}
                             >
                                 <div
                                     className={classes.iconClassContainer}
@@ -986,6 +1004,7 @@ export function PersonCoreMilestones(props) {
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
                                                 iconBaseClass201Classes,
                                             )}
+                                            title={class201Title}
                                         />
 
                                         <div
@@ -993,12 +1012,14 @@ export function PersonCoreMilestones(props) {
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
                                                 iconBaseClass301Classes,
                                             )}
+                                            title={class301Title}
                                         />
                                         <div
                                             className={ClassNames(
                                                 `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
                                                 iconBaseClass401Classes,
                                             )}
+                                            title={class401Title}
                                         />
                                     </div>
                                 </div>
@@ -1038,7 +1059,7 @@ export function PersonCoreMilestones(props) {
                                     compact
                                     inverse={inverse}
                                     size={iconSize}
-                                    title={false}
+                                    title={!isInSmallGroup && 'Not active in Small Group'}
                                     type="users"
                                 />
                             </Popover>
@@ -1077,7 +1098,7 @@ export function PersonCoreMilestones(props) {
                                     compact
                                     inverse={inverse}
                                     size={iconSize}
-                                    title={isInMinistry ? 'Active in Ministry' : 'Not active in Ministry'}
+                                    title={!isInMinistry && 'Not active in Ministry'}
                                     type="serving-opportunity"
                                 />
                             </Popover>
@@ -1087,14 +1108,14 @@ export function PersonCoreMilestones(props) {
                     {!removeInTripsColumn && (
                         <Grid.Column
                             className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--in_trips_column`,
+                                `${BEM_PERSON_CORE_MILESTONES}--in_missions_column`,
                                 classes.column,
                             )}
                         >
                             <Popover
-                                content={popoverContentInTrips}
+                                content={popoverContentInMissions}
                                 popperStyles={{
-                                    ...(!isActiveInTrips && {
+                                    ...(!isActiveInMissions && {
                                         display: 'none',
                                     }),
                                 }}
@@ -1107,7 +1128,7 @@ export function PersonCoreMilestones(props) {
                                             [classes.genderFemale]: isFemale,
                                             [classes.genderMale]: isMale,
                                             [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.isActiveInTrips]: isActiveInTrips,
+                                            [classes.isActiveInMissions]: isActiveInMissions,
                                             [classes.isAdult]: recordType === 'adult',
                                             [classes.isChild]: recordType === 'child',
                                             [classes.isStudent]: recordType === 'student',
@@ -1116,7 +1137,7 @@ export function PersonCoreMilestones(props) {
                                     compact
                                     inverse={inverse}
                                     size={iconSize}
-                                    title={isActiveInTrips ? 'Active in Trips' : 'Not active in Trips'}
+                                    title={!isActiveInMissions && 'Not active in Missions'}
                                     type="shoe-prints"
                                 />
                             </Popover>
@@ -1134,7 +1155,7 @@ export function PersonCoreMilestones(props) {
                                 className={classes.dateContainers}
                             >
                                 <Typography
-                                    className={classes.firstContactDateHeading}
+                                    className={classes.firstContactDateTypography}
                                     variant="h6"
                                 >
                                     At Saddleback
@@ -1144,6 +1165,7 @@ export function PersonCoreMilestones(props) {
                                     className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
                                 >
                                     <TimeFromNow
+                                        className={classes.firstContactDateTypography}
                                         date={firstContactDate}
                                         relativeTime={relativeTime}
                                         relativeTimeThreshold={relativeTimeThreshold}
@@ -1165,7 +1187,7 @@ export function PersonCoreMilestones(props) {
                                 className={classes.dateContainers}
                             >
                                 <Typography
-                                    className={classes.congregationDateHeading}
+                                    className={classes.congregationDateTypography}
                                     variant="h6"
                                 >
                                     Member For
@@ -1175,6 +1197,7 @@ export function PersonCoreMilestones(props) {
                                     className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
                                 >
                                     <TimeFromNow
+                                        className={classes.congregationDateTypography}
                                         date={congregationDate}
                                         relativeTime={relativeTime}
                                         relativeTimeThreshold={relativeTimeThreshold}
