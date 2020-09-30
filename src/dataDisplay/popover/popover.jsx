@@ -82,13 +82,12 @@ const useStyles = makeStyles((theme) => ({
     },
     popper: ({ popperStyles }) => (popperStyles || {}),
     root: {
-        color: 'red',
         width: 'fit-content',
     },
     tooltip: {
-        backgroundColor: get(theme, 'palette.common.white'),
+        backgroundColor: get(theme, 'palette.background.primary'),
         color: 'black',
-        padding: 15,
+        padding: 22,
         borderRadius: get(theme, 'shape.borderRadius.secondary'),
         maxWidth: ({ maxWidth }) => maxWidth || 'none',
         fontFamily: get(theme, 'typography.fontFamily'),

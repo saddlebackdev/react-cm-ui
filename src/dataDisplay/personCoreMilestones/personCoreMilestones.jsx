@@ -195,10 +195,10 @@ const useStyles = makeStyles((theme) => {
             ),
         },
         firstContactDateColumn: {
-            // flexGrow: 1, // TODO:: add float right prop
-            // padding: `0 ${columnHorizontalPadding}px`, // TODO:: remove
-            padding: '10px 5px 10px 10px !important',
-            // textAlign: 'right',
+            padding: ({ isMobile }) => (isMobile ?
+                '5px 15px 5px 15px !important' :
+                '10px 15px 10px 5px !important'
+            ),
             width: 'auto !important',
         },
         firstContactDateTypography: {
@@ -974,16 +974,16 @@ export function PersonCoreMilestones(props) {
                     )}
 
                     {!removeClassColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
-                                classes.column,
-                            )}
+                        <Popover
+                            content={popoverContentClasses}
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...(shouldHideClassesPopover && { open: false })}
                         >
-                            <Popover
-                                content={popoverContentClasses}
-                                // eslint-disable-next-line react/jsx-props-no-spreading
-                                {...(shouldHideClassesPopover && { open: false })}
+                            <Grid.Column
+                                className={ClassNames(
+                                    `${BEM_PERSON_CORE_MILESTONES}--class_column`,
+                                    classes.column,
+                                )}
                             >
                                 <div
                                     className={classes.iconClassContainer}
@@ -1023,8 +1023,8 @@ export function PersonCoreMilestones(props) {
                                         />
                                     </div>
                                 </div>
-                            </Popover>
-                        </Grid.Column>
+                            </Grid.Column>
+                        </Popover>
                     )}
 
                     {!removeSmallGroupColumn && (
