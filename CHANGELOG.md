@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.16.1 - 09/30/2020
+#### Bug Fix
+- Fixed an issue in DatePickerCalendar component and its change event handlers for previous month and next month.
+  - Cherry-picked from [PR #212](https://github.com/saddlebackdev/react-cm-ui/pull/212) / Merge Commit 77896bc94f960cf1e425f42bbd8f977bfae57e91
+
+## 9.17.1 - 09/30/2020
+
+### Bug Fix
+- [PR #212](https://github.com/saddlebackdev/react-cm-ui/pull/212) / Merge Commit 77896bc94f960cf1e425f42bbd8f977bfae57e91
+  - Fixed an issue in DatePickerCalendar component and its change event handlers for previous month and next month.
+
 ## 9.17.0 - 09/28/2020
 
 ### Feature
