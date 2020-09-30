@@ -1,14 +1,13 @@
 import {
     FiltersRail,
-    Grid,
     Icon,
     Image,
     Page,
     Typography,
 } from 'react-cm-ui';
+import { isEqual, cloneDeep } from 'lodash';
 import React, { useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-import { isEqual, cloneDeep } from 'lodash';
 
 const SHORT_PAUL = '/images/short_paul.jpg';
 
@@ -289,7 +288,9 @@ function FiltersRailPageSample() {
                                         checked: filterValues.selectedCheckboxes.isLabelOneChecked,
                                         count: 10,
                                         label: CHECKBOX_OPTION_ONE_LABEL,
-                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_ONE_LABEL),
+                                        onChange: () => {
+                                            onCheckboxChange(CHECKBOX_OPTION_ONE_LABEL);
+                                        },
                                     },
                                     type: 'checkbox',
                                 },
@@ -298,16 +299,21 @@ function FiltersRailPageSample() {
                                         checked: filterValues.selectedCheckboxes.isLabelTwoChecked,
                                         count: 10,
                                         label: CHECKBOX_OPTION_TWO_LABEL,
-                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_TWO_LABEL),
+                                        onChange: () => {
+                                            onCheckboxChange(CHECKBOX_OPTION_TWO_LABEL);
+                                        },
                                     },
                                     type: 'checkbox',
                                 },
                                 {
                                     props: {
-                                        checked: filterValues.selectedCheckboxes.isLabelThreeChecked,
+                                        checked:
+                                            filterValues.selectedCheckboxes.isLabelThreeChecked,
                                         count: 10,
                                         label: CHECKBOX_OPTION_THREE_LABEL,
-                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_THREE_LABEL),
+                                        onChange: () => {
+                                            onCheckboxChange(CHECKBOX_OPTION_THREE_LABEL);
+                                        },
                                     },
                                     type: 'checkbox',
                                 },
@@ -316,7 +322,9 @@ function FiltersRailPageSample() {
                                         checked: filterValues.selectedCheckboxes.isLabelFourChecked,
                                         count: 10,
                                         label: CHECKBOX_OPTION_FOUR_LABEL,
-                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_FOUR_LABEL),
+                                        onChange: () => {
+                                            onCheckboxChange(CHECKBOX_OPTION_FOUR_LABEL);
+                                        },
                                     },
                                     type: 'checkbox',
                                 },
@@ -325,7 +333,9 @@ function FiltersRailPageSample() {
                                         checked: filterValues.selectedCheckboxes.isLabelFiveChecked,
                                         count: 10,
                                         label: CHECKBOX_OPTION_FIVE_LABEL,
-                                        onChange: () => onCheckboxChange(CHECKBOX_OPTION_FIVE_LABEL),
+                                        onChange: () => {
+                                            onCheckboxChange(CHECKBOX_OPTION_FIVE_LABEL);
+                                        },
                                     },
                                     type: 'checkbox',
                                 },
