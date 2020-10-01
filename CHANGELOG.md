@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.15.3 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+    - New component: Popover
+    - Refactored part of PersonCoreMilestones to use the new Popover component.
+    - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
 ## 9.15.2 - 08/27/2020
 
 #### Bug Fix
