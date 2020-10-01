@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.16.2',
+        package: '9.16.3',
         components: {
             inputs: {
                 durationPicker: {
