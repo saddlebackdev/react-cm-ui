@@ -169,7 +169,6 @@ function PersonPanelSimpleExample() {
                     prompt: true,
                     onYesClick: onViewRecordYesClick,
                 }}
-                isMobile={true}
             />
         </PersonPanel>
     );
