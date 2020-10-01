@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.10.2 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+    - Added Popover documentation.
+    - Fixed PersonPanel documentation to reflect new PersonCoreMilestone changes.
+
 ## 0.10.0 - 09/16/2020
 
 #### Feature
