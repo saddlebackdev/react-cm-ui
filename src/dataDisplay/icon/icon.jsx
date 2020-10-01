@@ -87,6 +87,7 @@ class Icon extends React.PureComponent {
             style,
             type,
             title,
+            ...restProps
         } = this.props;
         const containerClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
             'icon-align-left': (!align && !compact) || align === 'left',
@@ -1559,6 +1560,8 @@ class Icon extends React.PureComponent {
                 onClick={this.onClick}
                 style={containerStyle}
                 type={isButton ? 'button' : null}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...restProps}
             >
                 <IconSVG
                     circle={circle}

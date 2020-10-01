@@ -33,7 +33,7 @@ const propTypes = {
     id: PropTypes.string,
     /**
      * If `true`, the PersonPanelSummary is shown active and PersonPanelDetails is expanded.
-    */
+     */
     isExpanded: PropTypes.bool,
     /**
      * Event handler for consummer to control state outside of PersonPanel.

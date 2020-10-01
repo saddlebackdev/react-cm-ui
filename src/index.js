@@ -17,6 +17,7 @@ export { default as PersonCoreMilestones } from './dataDisplay/personCoreMilesto
 export { default as PersonPanel } from './dataDisplay/personPanel';
 export { default as PersonPanelDetails } from './dataDisplay/personPanel/personPanelDetails';
 export { default as PersonPanelSummary } from './dataDisplay/personPanel/personPanelSummary';
+export { default as Popover } from './dataDisplay/popover';
 export { default as Table } from './dataDisplay/table';
 export { default as TelephoneLink } from './dataDisplay/telephoneLink';
 export { default as TimeFromNow } from './dataDisplay/timeFromNow';
