@@ -2,7 +2,10 @@ import Classnames from 'classnames';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { BEM_POPOVER } from '../../global/constants';
+import {
+    UI_CLASS_NAME,
+    BEM_POPOVER,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 import ToolTip from '../tooltip';
 
@@ -11,6 +14,12 @@ const propTypes = {
      * The arrow can be enabled/disabled
      */
     arrow: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to PersonPanel.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     /**
      * Additional classes.
      */
@@ -24,13 +33,13 @@ const propTypes = {
      */
     children: PropTypes.shape({}).isRequired,
     /**
+     * The `id` of the Popover.
+     */
+    id: PropTypes.string,
+    /**
      * Popper container styles
      */
     popperStyles: PropTypes.shape({}),
-    /**
-     * Style applied to the root container
-     */
-    style: PropTypes.shape({}),
     /**
      * We can define the max width for the popover
      */
@@ -50,9 +59,10 @@ const propTypes = {
 const defaultProps = {
     arrow: true,
     content: undefined,
+    classes: undefined,
     className: undefined,
+    id: undefined,
     maxWidth: undefined,
-    style: undefined,
     popperStyles: {},
     width: 250,
 };
@@ -86,31 +96,30 @@ function Popover(props) {
     const {
         children,
         content,
+        classes: propClasses,
         className,
-        style,
+        id,
         ...restProps
     } = props;
 
     const classes = useStyles(props);
     const popoverClassnames = Classnames(
-        'container',
-        className,
+        BEM_POPOVER,
         classes.root,
-        `${BEM_POPOVER}--container`,
+        className,
+        propClasses,
+        UI_CLASS_NAME,
     );
+
     return (
         <div
             className={popoverClassnames}
-            style={style}
+            id={id}
         >
             <ToolTip
                 arrow
-                classes={{
-                    tooltip: classes.tooltip,
-                    arrow: classes.arrow,
-                    popper: classes.popper,
-                }}
                 className={`${BEM_POPOVER}--popper`}
+                classes={classes}
                 title={content}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...restProps}

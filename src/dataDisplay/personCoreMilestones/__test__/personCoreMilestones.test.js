@@ -12,8 +12,6 @@ describe('<PersonCoreMilestones />', () => {
     const bemName = `${bemBlockName}--element_name-modifier`;
     const props = {
         acceptedChristDate: '2001-10-10T12:00:00',
-        activeInSmallGroupsDate: '2001-10-10T12:00:00',
-        activeInMinistryDate: '2002-11-20T12:00:00',
         activeInMissionsDate: '2003-12-30T12:00:00',
         attendedClass101Date: '2001-10-10T12:00:00',
         attendedClass201Date: '2001-10-10T12:00:00',
@@ -24,6 +22,8 @@ describe('<PersonCoreMilestones />', () => {
         className: bemName,
         congregationDate: '2000-12-01T12:00:00',
         firstContactDate: '2001-12-01T12:00:00',
+        firstMinistryJoinDate: '2002-11-20T12:00:00',
+        firstSmallGroupJoinDate: '2001-10-10T12:00:00',
         gender: 'm',
         hasAcceptedChrist: false,
         hasSignedMaturityCovenant: false,
@@ -39,7 +39,7 @@ describe('<PersonCoreMilestones />', () => {
         id: bemName,
         inverse: false,
         isActiveInMissions: true,
-        isActiveInTrips: false,
+        IsActiveInMissions: false,
         isBaptised: true,
         isInMinistry: false,
         isInSmallGroup: false,
