@@ -856,7 +856,7 @@ export function PersonCoreMilestones(props) {
 
     const popoverContentBaptism = (isBaptised && baptismDate) ? (
         <MilestonePopoverContent
-            title="Baptism"
+            title="Baptized"
             milestonesDates={[
                 { label: 'On', date: baptismDate },
             ]}
