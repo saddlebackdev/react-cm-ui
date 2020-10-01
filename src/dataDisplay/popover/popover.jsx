@@ -70,6 +70,13 @@ const defaultProps = {
 const useStyles = makeStyles((theme) => ({
     arrow: {
         color: get(theme, 'palette.common.white'),
+        height: 23,
+        marginTop: '-20px !important',
+        width: 26,
+        '&:before': {
+            borderRadius: 4,
+            marginLeft: -3,
+        },
     },
     popper: ({ popperStyles }) => (popperStyles || {}),
     root: {
@@ -77,13 +84,14 @@ const useStyles = makeStyles((theme) => ({
     },
     tooltip: {
         backgroundColor: get(theme, 'palette.background.primary'),
-        color: 'black',
-        padding: 22,
         borderRadius: get(theme, 'shape.borderRadius.secondary'),
-        maxWidth: ({ maxWidth }) => maxWidth || 'none',
+        boxShadow: '0 7px 22px 0 rgba(0, 0, 0, 0.34)',
+        color: 'black',
         fontFamily: get(theme, 'typography.fontFamily'),
         fontSize: get(theme, 'typography.fontSize'),
         fontWeight: get(theme, 'typography.fontWeightRegular'),
+        maxWidth: ({ maxWidth }) => maxWidth || 'none',
+        padding: 22,
         width: ({ width }) => width,
     },
 }));
@@ -103,25 +111,25 @@ function Popover(props) {
 
     const classes = useStyles(props);
 
-    const popoverClassnames = Classnames(
+    const rootClasses = Classnames(
+        UI_CLASS_NAME,
         BEM_POPOVER,
         classes.root,
         className,
-        UI_CLASS_NAME,
     );
 
     return (
         <div
-            className={popoverClassnames}
+            className={rootClasses}
             id={id}
         >
             <ToolTip
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...restProps}
                 arrow
                 className={`${BEM_POPOVER}--popper`}
                 classes={classes}
                 title={content}
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...restProps}
             >
                 <div
                     className={`${BEM_POPOVER}--children_container`}

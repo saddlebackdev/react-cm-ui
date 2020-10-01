@@ -1,5 +1,5 @@
-import ClassNames from 'classnames';
 import { get } from 'lodash';
+import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -54,6 +54,7 @@ function MilestonesPopoverContent(props) {
     } = props;
 
     const classes = useStyles();
+
     const labelColumnClasses = ClassNames(classes.milestoneColumn, classes.milestoneLabel);
 
     const milestonesDatesJsx = milestonesDates.map((milestoneDate) => {
@@ -69,6 +70,7 @@ function MilestonesPopoverContent(props) {
                 >
                     {label}
                 </Grid.Column>
+
                 <Grid.Column
                     className={classes.milestoneColumn}
                     textAlign="right"
@@ -80,7 +82,12 @@ function MilestonesPopoverContent(props) {
     });
 
     return (
-        <Grid className={classes.root} style={{ margin: 0 }}>
+        <Grid
+            className={classes.root}
+            style={{
+                margin: 0,
+            }}
+        >
             <Grid.Row columns={1}>
                 <Grid.Column>
                     <Typography
@@ -90,6 +97,7 @@ function MilestonesPopoverContent(props) {
                     </Typography>
                 </Grid.Column>
             </Grid.Row>
+
             {milestonesDatesJsx}
         </Grid>
     );
