@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.17.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
+## 9.16.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
 ## 9.17.2 - 10/01/2020
 
 #### Feature
