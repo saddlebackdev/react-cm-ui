@@ -89,8 +89,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * The Popover is similar to tooltips, it is a pop-up box that appears when the user
- * hovers on an element
+ * The Popover is similar to a tooltip; it is a pop-up box that appears when the user
+ * hovers over an element
  */
 function Popover(props) {
     const {
