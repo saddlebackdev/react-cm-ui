@@ -70,13 +70,6 @@ const defaultProps = {
 const useStyles = makeStyles((theme) => ({
     arrow: {
         color: get(theme, 'palette.common.white'),
-        height: 23,
-        marginTop: '-20px !important',
-        width: 26,
-        '&:before': {
-            borderRadius: 4,
-            marginLeft: -3,
-        },
     },
     popper: ({ popperStyles }) => (popperStyles || {}),
     root: {
