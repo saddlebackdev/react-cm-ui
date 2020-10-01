@@ -1,9 +1,18 @@
 import React from 'react';
-import { Popover } from 'react-cm-ui';
+import {
+    Button,
+    Popover,
+} from 'react-cm-ui';
 
 function PopoverSample() {
     return (
-        <Popover />
+        <Popover
+            content="Some Popover content"
+        >
+            <Button>
+                Some JXS Children
+            </Button>
+        </Popover>
     );
 }
 
