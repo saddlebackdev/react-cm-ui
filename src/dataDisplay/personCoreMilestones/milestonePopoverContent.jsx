@@ -80,7 +80,7 @@ function MilestonesPopoverContent(props) {
     });
 
     return (
-        <Grid className={classes.root}>
+        <Grid className={classes.root} style={{ margin: 0 }}>
             <Grid.Row columns={1}>
                 <Grid.Column>
                     <Typography

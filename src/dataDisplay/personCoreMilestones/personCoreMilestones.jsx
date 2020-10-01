@@ -5,7 +5,10 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 import {
     GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
@@ -26,17 +29,21 @@ import Typography from '../typography';
 import Popover from '../popover';
 import MilestonePopoverContent from './milestonePopoverContent';
 
+const POPOVER_ACCEPTED_CHRIST = 'popoverAceptedChrist';
+const POPOVER_BAPTISM = 'popoverBaptism';
+const POPOVER_CLASSES = 'popoverClasses';
+const POPOVER_MINISTRY = 'popoverMinistry';
+const POPOVER_MISSIONS = 'popoverMissions';
+const POPOVER_SMALL_GROUP = 'popoverSmallGroup';
+
 const propTypes = {
     acceptedChristDate: PropTypes.string,
-    activeInMinistryDate: PropTypes.string,
     activeInMissionsDate: PropTypes.string,
-    activeInSmallGroupsDate: PropTypes.string,
     attendedClass101Date: PropTypes.string,
     attendedClass201Date: PropTypes.string,
     attendedClass301Date: PropTypes.string,
     attendedClass401Date: PropTypes.string,
     baptismDate: PropTypes.string,
-    becameMemberDate: PropTypes.string,
     className: PropTypes.string,
     congregationDate: PropTypes.oneOfType([
         MomentPropTypes.momentString,
@@ -46,6 +53,8 @@ const propTypes = {
         MomentPropTypes.momentString,
         PropTypes.oneOf([null]),
     ]),
+    firstMinistryJoinDate: PropTypes.string,
+    firstSmallGroupJoinDate: PropTypes.string,
     gender: GENDER_PROP_TYPE,
     hasAcceptedChrist: PropTypes.bool,
     hasSignedMaturityCovenant: PropTypes.bool,
@@ -65,7 +74,8 @@ const propTypes = {
     isInMinistry: PropTypes.bool,
     isInSmallGroup: PropTypes.bool,
     isMobile: PropTypes.bool,
-    ministryCovenantDate: PropTypes.string,
+    // eslint-disable-next-line react/no-unused-prop-types
+    parentConsumer: PropTypes.string,
     recordType: RECORD_TYPE_PROP_TYPE,
     removeAcceptedChristColumn: PropTypes.bool,
     removeBaptismColumn: PropTypes.bool,
@@ -83,18 +93,17 @@ const propTypes = {
 
 const defaultProps = {
     acceptedChristDate: null,
-    activeInMinistryDate: null,
-    activeInSmallGroupsDate: null,
     activeInMissionsDate: null,
     attendedClass101Date: null,
     attendedClass201Date: null,
     attendedClass301Date: null,
     attendedClass401Date: null,
     baptismDate: null,
-    becameMemberDate: null,
     className: undefined,
     congregationDate: null,
     firstContactDate: null,
+    firstMinistryJoinDate: null,
+    firstSmallGroupJoinDate: null,
     gender: GENDER_DEFAULT_TYPE,
     hasAcceptedChrist: false,
     hasSignedMaturityCovenant: false,
@@ -114,7 +123,7 @@ const defaultProps = {
     isInMinistry: false,
     isInSmallGroup: false,
     isMobile: false,
-    ministryCovenantDate: null,
+    parentConsumer: undefined,
     recordType: RECORD_TYPE_DEFAULT_PROP,
     removeAcceptedChristColumn: false,
     removeBaptismColumn: false,
@@ -170,7 +179,7 @@ const useStyles = makeStyles((theme) => {
                 if (backgroundTransparent && !isMobile) {
                     backgroundColorValue = 'transparent';
                 } else if (backgroundTransparent && isMobile) {
-                    backgroundColorValue = 'rgb(255, 255, 255, 0.25)';
+                    backgroundColorValue = 'rgb(255, 255, 255, 0.16)';
                 } if (!backgroundTransparent) {
                     backgroundColorValue = palette.background.primary;
                 }
@@ -187,24 +196,42 @@ const useStyles = makeStyles((theme) => {
             padding: `0 ${columnHorizontalPadding}px`,
             width: 'auto !important',
         },
-        congregationDateTypography: {
+        congregationDateLabelTypography: {
             color: ({ backgroundTransparent }) => (backgroundTransparent ?
                 palette.text.contrastText :
                 palette.text.secondary
             ),
         },
-        firstContactDateColumn: {
-            padding: ({ isMobile }) => (isMobile ?
-                '5px 15px 5px 15px !important' :
-                '10px 15px 10px 5px !important'
+        congregationDateTypography: {
+            color: ({ backgroundTransparent }) => backgroundTransparent &&
+                palette.text.contrastText,
+        },
+        firstContactDateColumn: ({ parentConsumer, isMobile }) => {
+            if (parentConsumer === 'personRecord') {
+                return {
+                    padding: isMobile ?
+                        '0px 5px 0px 15px !important' :
+                        '10px 15px 10px 5px !important',
+                    width: 'auto !important',
+                };
+            }
+
+            return {
+                flexGrow: 1,
+                padding: `0 ${columnHorizontalPadding}px`,
+                textAlign: 'right',
+                width: 'auto !important',
+            };
+        },
+        firstContactDateLabelTypography: {
+            color: ({ backgroundTransparent }) => (backgroundTransparent ?
+                palette.text.contrastText :
+                palette.text.secondary
             ),
-            width: 'auto !important',
         },
         firstContactDateTypography: {
-            color: ({ backgroundTransparent }) => (backgroundTransparent ?
-                palette.text.contrastText :
-                palette.text.secondary
-            ),
+            color: ({ backgroundTransparent }) => backgroundTransparent &&
+                palette.text.contrastText,
         },
         dateContainers: {
             display: 'inline-block',
@@ -484,10 +511,10 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&$isChild .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
                 },
                 '&$isStudent .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
                 },
             },
         },
@@ -505,10 +532,10 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&$isChild .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}  !important`,
                 },
                 '&$isStudent .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}  !important`,
                 },
             },
         },
@@ -526,10 +553,10 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&$isChild .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}  !important`,
                 },
                 '&$isStudent .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}  !important`,
                 },
             },
         },
@@ -547,10 +574,10 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&$isChild .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
                 },
                 '&$isStudent .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
                 },
             },
         },
@@ -568,10 +595,10 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&$isChild .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'child', theme })} !important`,
                 },
                 '&$isStudent .icon-use-path': {
-                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`,
+                    fill: `${RECORD_TYPE_COLOR({ recordType: 'student', theme })} !important`,
                 },
             },
         },
@@ -606,9 +633,7 @@ const useStyles = makeStyles((theme) => {
 export function PersonCoreMilestones(props) {
     const {
         acceptedChristDate,
-        activeInMinistryDate,
         activeInMissionsDate,
-        activeInSmallGroupsDate,
         attendedClass101Date,
         attendedClass201Date,
         attendedClass301Date,
@@ -617,6 +642,8 @@ export function PersonCoreMilestones(props) {
         className,
         congregationDate: congregationDateProp,
         firstContactDate: firstContactDateProp,
+        firstMinistryJoinDate,
+        firstSmallGroupJoinDate,
         gender,
         hasAcceptedChrist,
         hasTakenClass101,
@@ -836,20 +863,20 @@ export function PersonCoreMilestones(props) {
         />
     ) : '';
 
-    const popoverContentSmallGroup = (isInSmallGroup && activeInSmallGroupsDate) ? (
+    const popoverContentSmallGroup = (isInSmallGroup && firstSmallGroupJoinDate) ? (
         <MilestonePopoverContent
             title="Active in Small Groups"
             milestonesDates={[
-                { label: 'Since', date: activeInSmallGroupsDate },
+                { label: 'Since', date: firstSmallGroupJoinDate },
             ]}
         />
     ) : '';
 
-    const popoverContentInMinistry = (isInMinistry && activeInMinistryDate) ? (
+    const popoverContentInMinistry = (isInMinistry && firstMinistryJoinDate) ? (
         <MilestonePopoverContent
             title="Active in Ministry"
             milestonesDates={[
-                { label: 'Since', date: activeInMinistryDate },
+                { label: 'Since', date: firstMinistryJoinDate },
             ]}
         />
     ) : '';
@@ -881,7 +908,27 @@ export function PersonCoreMilestones(props) {
         />
     ) : '';
 
-    const shouldHideClassesPopover = milestonesClassesDates.length === 0;
+    const [openPopover, setOpenPopover] = useState();
+
+    useEffect(() => {
+        setOpenPopover(null);
+    }, [isMobile]);
+
+    const onMilestoneIconClick = (currentOpenPopover) => {
+        if (isMobile) {
+            if (openPopover) {
+                setOpenPopover(null);
+            } else {
+                setOpenPopover(currentOpenPopover);
+            }
+        }
+    };
+
+    const onIconBlur = () => {
+        if (isMobile) {
+            setOpenPopover(null);
+        }
+    };
 
     return (
         <div
@@ -902,6 +949,17 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentAcceptedChrist}
+                                onClose={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(null);
+                                    }
+                                }}
+                                onOpen={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(POPOVER_ACCEPTED_CHRIST);
+                                    }
+                                }}
+                                open={openPopover === POPOVER_ACCEPTED_CHRIST}
                                 popperStyles={{
                                     ...(!hasAcceptedChrist && {
                                         display: 'none',
@@ -924,6 +982,10 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
+                                    onBlur={onIconBlur}
+                                    onClick={() => {
+                                        onMilestoneIconClick(POPOVER_ACCEPTED_CHRIST);
+                                    }}
                                     size={iconSize}
                                     title={hasAcceptedChrist ? false : 'Has not accepted Christ'}
                                     type="heart"
@@ -941,6 +1003,17 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentBaptism}
+                                onClose={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(null);
+                                    }
+                                }}
+                                onOpen={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(POPOVER_BAPTISM);
+                                    }
+                                }}
+                                open={openPopover === POPOVER_BAPTISM}
                                 popperStyles={{
                                     ...(!isBaptised && {
                                         display: 'none',
@@ -962,6 +1035,8 @@ export function PersonCoreMilestones(props) {
                                         },
                                     )}
                                     compact
+                                    onBlur={onIconBlur}
+                                    onClick={() => { onMilestoneIconClick(POPOVER_BAPTISM); }}
                                     inverse={inverse}
                                     size={iconSize}
                                     title={isBaptised ? false : 'Not Baptized'}
@@ -974,8 +1049,18 @@ export function PersonCoreMilestones(props) {
                     {!removeClassColumn && isAdult && (
                         <Popover
                             content={popoverContentClasses}
-                            // eslint-disable-next-line react/jsx-props-no-spreading
-                            {...(shouldHideClassesPopover && { open: false })}
+                            onClose={() => {
+                                if (!isMobile) {
+                                    setOpenPopover(null);
+                                }
+                            }}
+                            onOpen={() => {
+                                if (!isMobile) {
+                                    setOpenPopover(POPOVER_CLASSES);
+                                }
+                            }}
+                            open={openPopover === POPOVER_CLASSES}
+                            width={300}
                         >
                             <Grid.Column
                                 className={ClassNames(
@@ -985,6 +1070,15 @@ export function PersonCoreMilestones(props) {
                             >
                                 <div
                                     className={classes.iconClassContainer}
+                                    onBlur={onIconBlur}
+                                    onClick={() => { onMilestoneIconClick(POPOVER_CLASSES); }}
+                                    role="presentation"
+                                    style={{
+                                        outline: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+                                    tabIndex={0}
                                 >
                                     <div
                                         className={classes.iconClassInnerContainer}
@@ -1032,6 +1126,17 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentSmallGroup}
+                                onClose={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(null);
+                                    }
+                                }}
+                                onOpen={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(POPOVER_SMALL_GROUP);
+                                    }
+                                }}
+                                open={openPopover === POPOVER_SMALL_GROUP}
                                 popperStyles={{
                                     ...(!isInSmallGroup && {
                                         display: 'none',
@@ -1054,6 +1159,8 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
+                                    onBlur={onIconBlur}
+                                    onClick={() => { onMilestoneIconClick(POPOVER_SMALL_GROUP); }}
                                     size={iconSize}
                                     title={!isInSmallGroup && 'Not active in Small Group'}
                                     type="users"
@@ -1071,6 +1178,17 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMinistry}
+                                onClose={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(null);
+                                    }
+                                }}
+                                onOpen={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(POPOVER_MINISTRY);
+                                    }
+                                }}
+                                open={openPopover === POPOVER_MINISTRY}
                                 popperStyles={{
                                     ...(!isInMinistry && {
                                         display: 'none',
@@ -1093,6 +1211,8 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
+                                    onBlur={onIconBlur}
+                                    onClick={() => { onMilestoneIconClick(POPOVER_MINISTRY); }}
                                     size={iconSize}
                                     title={!isInMinistry && 'Not active in Ministry'}
                                     type="serving-opportunity"
@@ -1110,6 +1230,17 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMissions}
+                                onClose={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(null);
+                                    }
+                                }}
+                                onOpen={() => {
+                                    if (!isMobile) {
+                                        setOpenPopover(POPOVER_MISSIONS);
+                                    }
+                                }}
+                                open={openPopover === POPOVER_MISSIONS}
                                 popperStyles={{
                                     ...(!isActiveInMissions && {
                                         display: 'none',
@@ -1135,6 +1266,8 @@ export function PersonCoreMilestones(props) {
                                     size={iconSize}
                                     title={!isActiveInMissions && 'Not active in Missions'}
                                     type="shoe-prints"
+                                    onClick={() => { onMilestoneIconClick(POPOVER_MISSIONS); }}
+                                    onBlur={onIconBlur}
                                 />
                             </Popover>
                         </Grid.Column>
@@ -1151,7 +1284,7 @@ export function PersonCoreMilestones(props) {
                                 className={classes.dateContainers}
                             >
                                 <Typography
-                                    className={classes.firstContactDateTypography}
+                                    className={classes.firstContactDateLabelTypography}
                                     variant="h6"
                                 >
                                     At Saddleback
@@ -1183,7 +1316,7 @@ export function PersonCoreMilestones(props) {
                                 className={classes.dateContainers}
                             >
                                 <Typography
-                                    className={classes.congregationDateTypography}
+                                    className={classes.congregationDateLabelTypography}
                                     variant="h6"
                                 >
                                     Member For
