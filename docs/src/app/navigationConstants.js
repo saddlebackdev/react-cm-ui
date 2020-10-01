@@ -129,6 +129,11 @@ export const navigationItems = [
                         path: 'person-panel',
                     },
                     {
+                        component: 'popover',
+                        label: 'Popover',
+                        path: 'popover',
+                    },
+                    {
                         component: 'table',
                         label: 'Table',
                         path: 'table',

@@ -68,8 +68,15 @@ function PersonPanelSimpleExample() {
         }
 
         setDetailsData({
+            acceptedChristDate: payloadPersonDude.acceptedChristDate,
+            activeInMissionsDate: payloadPersonDude.activeInMissionsDate,
             addresses,
             allergies: payloadPersonDude.allergies,
+            attendedClass101Date: payloadPersonDude.attendedClass101Date,
+            attendedClass201Date: payloadPersonDude.attendedClass201Date,
+            attendedClass301Date: payloadPersonDude.attendedClass301Date,
+            attendedClass401Date: payloadPersonDude.attendedClass401Date,
+            baptismDate: payloadPersonDude.baptismDate,
             birthdate: payloadPersonDude.birthDate,
             campus: payloadPersonDude.churchEntityName,
             commonlyAttendedService: payloadPersonDude.commonlyAttendedService,
@@ -82,6 +89,8 @@ function PersonPanelSimpleExample() {
             emergencyContactPreferMethod: primaryEmergencyContact.preferredMethod,
             emergencyContactRelation: primaryEmergencyContact.relationshipName,
             firstContactDate: payloadPersonDude.firstContactDate,
+            firstMinistryJoinDate: payloadPersonDude.firstMinistryJoinDate,
+            firstSmallGroupJoinDate: payloadPersonDude.firstSmallGroupJoinDate,
             gender: payloadPersonDude.gender,
             gradeLevel: payloadPersonDude.gradeLevel,
             hasAcceptedChrist: payloadPersonDude.hasAcceptedChrist,
@@ -93,7 +102,7 @@ function PersonPanelSimpleExample() {
             hasTakenClass201: payloadPersonDude.hasTakenClass201,
             hasTakenClass301: payloadPersonDude.hasTakenClass301,
             hasTakenClass401: payloadPersonDude.hasTakenClass401,
-            isActiveInTrips: payloadPersonDude.isActiveInTrips,
+            isActiveInMissions: payloadPersonDude.isActiveInMissions,
             isBaptised: payloadPersonDude.isBaptised,
             isDoNotContact: payloadPersonDude.contactPreferences.doNotContact,
             isInMinistry: payloadPersonDude.isInMinistry,
@@ -101,6 +110,10 @@ function PersonPanelSimpleExample() {
             phones,
             preferredService: payloadPersonDude.preferredService,
             recordType,
+            signedMembershipAgreementDate: payloadPersonDude.signedMembershipAgreementDate,
+            signedMaturityCovenantDate: payloadPersonDude.signedMaturityCovenantDate,
+            signedMinistryCovenantDate: payloadPersonDude.signedMinistryCovenantDate,
+            signedMissionCovenantDate: payloadPersonDude.signedMissionCovenantDate,
         });
 
         setSummaryData({
