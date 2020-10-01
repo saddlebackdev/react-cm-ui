@@ -15,7 +15,7 @@ const propTypes = {
      */
     arrow: PropTypes.bool,
     /**
-     * Override or extend the styles applied to PersonPanel.
+     * Override or extend the styles applied to Popover.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
@@ -41,14 +41,14 @@ const propTypes = {
      */
     popperStyles: PropTypes.shape({}),
     /**
-     * We can define the max width for the popover
+     * We can define the max width for the Popover
      */
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
     /**
-     * We can define the width for the popover
+     * We can define the width for the Popover
      */
     width: PropTypes.oneOfType([
         PropTypes.number,
@@ -96,18 +96,17 @@ function Popover(props) {
     const {
         children,
         content,
-        classes: propClasses,
         className,
         id,
         ...restProps
     } = props;
 
     const classes = useStyles(props);
+
     const popoverClassnames = Classnames(
         BEM_POPOVER,
         classes.root,
         className,
-        propClasses,
         UI_CLASS_NAME,
     );
 
