@@ -11,25 +11,25 @@ describe('<PersonCoreMilestones />', () => {
     const bemName = `${bemBlockName}--element_name-modifier`;
     const props = {
         className: bemName,
-        congregationDate: '2000-12-01T12:00:00',
-        firstContactDate: '2001-12-01T12:00:00',
+        congregationDate: '2000-12-01T12:00:00', // -
+        firstContactDate: '2001-12-01T12:00:00', // -
         gender: 'm',
-        hasAcceptedChrist: false,
-        hasSignedMaturityCovenant: false,
-        hasSignedMembershipAgreement: false,
-        hasSignedMinistryCovenant: false,
-        hasSignedMissionCovenant: false,
-        hasTakenClass101: false,
-        hasTakenClass201: false,
-        hasTakenClass301: false,
-        hasTakenClass401: false,
+        hasAcceptedChrist: false, // -
+        hasSignedMaturityCovenant: false, // -
+        hasSignedMembershipAgreement: false, // -
+        hasSignedMinistryCovenant: false, // -
+        hasSignedMissionCovenant: false, // -
+        hasTakenClass101: false, // - hasAttendedClass101
+        hasTakenClass201: false, // - hasAttendedClass102
+        hasTakenClass301: false, // - hasAttendedClass103
+        hasTakenClass401: false, // - hasAttendedClass104
         iconSize: 16,
         id: bemName,
         inverse: false,
         isActiveInTrips: false,
-        isBaptised: true,
-        isInMinistry: false,
-        isInSmallGroup: false,
+        isBaptised: true, // -
+        isInMinistry: false, // -
+        isInSmallGroup: false, // -
         recordType: 'adult',
         removeAcceptedChristColumn: false,
         removeBaptismColumn: false,
@@ -39,6 +39,12 @@ describe('<PersonCoreMilestones />', () => {
         removeInMinistryColumn: false,
         removeInTripsColumn: false,
         removeSmallGroupColumn: false,
+
+        // also existing in client.store.coreMilestones.data
+        /**
+         * isPEACE
+         * uniquePersonID
+         */
     };
 
     it('Should render without problems', () => {

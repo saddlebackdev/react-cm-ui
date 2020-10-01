@@ -382,6 +382,7 @@ const useStyles = makeStyles((theme) => {
                     },
                     '&$genderMale .icon-use-path': {
                         fill: `${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`,
+                        // fill: ``,
                     },
                     '&$genderUndefined .icon-use-path': {
                         fill: `${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`,
