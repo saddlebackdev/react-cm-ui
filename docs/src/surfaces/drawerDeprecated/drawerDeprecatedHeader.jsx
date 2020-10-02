@@ -1,6 +1,6 @@
 
 import {
-    Button, Card, Container, DrawerDeprecated, Header, Icon, TitleBar,
+    Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
@@ -912,7 +912,7 @@ export default class ModulesDrawer extends React.Component {
                     <Link to={{ pathname: '/modules/drawer' }}>Drawer</Link>
                 </Header>
 
-                {this._renderDrawer()}
+                {this._renderHeader()}
             </Main>
         );
     }
@@ -999,7 +999,19 @@ export default class ModulesDrawer extends React.Component {
         this.setState({ subNavIndex: index });
     }
 
-    _renderDrawer() {
+    _onBarDrawerClick() {
+        this.setState({
+            isBarDrawerOpen: !this.state.isBarDrawerOpen,
+        });
+    }
+
+    _onFooDrawerClick() {
+        this.setState({
+            isFooDrawerOpen: !this.state.isFooDrawerOpen,
+        });
+    }
+
+    _renderHeader() {
         const props = [
             {
                 name: 'className',
@@ -1014,58 +1026,10 @@ export default class ModulesDrawer extends React.Component {
                 description: 'A Drawer\'s close button can be changed using a string or giving custom JSX.',
                 allowedTypes: '',
             }, {
-                name: 'header',
-                type: 'bool',
-                default: '',
-                description: 'Required boolean for the Drawer\'s custom Header.',
-                allowedTypes: '',
-            }, {
-                name: 'inverse',
-                type: 'bool',
-                default: '',
-                description: 'A Dropdown can be inversed.',
-                allowedTypes: '',
-            }, {
-                name: 'isOpen',
-                type: 'bool',
-                default: 'false',
-                description: 'Required boolean for the Drawer\'s open/close state.',
-                allowedTypes: '',
-            }, {
-                name: 'maxWidth',
-                type: 'number || string',
-                default: '',
-                description: 'Give a Drawer a maximum width.',
-                allowedTypes: '',
-            }, {
-                name: 'onClickOutside',
-                type: 'bool',
-                default: 'false',
-                description: 'Ability to close Drawer if clicked outside of container.',
-                allowedTypes: '',
-            }, {
                 name: 'onClose',
                 type: 'func',
                 default: '',
                 description: 'Required function to change the state of the Drawer.',
-                allowedTypes: '',
-            }, {
-                name: 'onCloseComplete',
-                type: 'func',
-                default: '',
-                description: 'Alerts the parent component that the closing animation is complete.',
-                allowedTypes: '',
-            }, {
-                name: 'onOpenComplete',
-                type: 'func',
-                default: '',
-                description: 'Alerts the parent component that the opening animation is complete.',
-                allowedTypes: '',
-            }, {
-                name: 'scrollBar',
-                type: 'bool',
-                default: 'true',
-                description: 'Disable the custom scrollbars.',
                 allowedTypes: '',
             }, {
                 name: 'style',
@@ -1075,262 +1039,60 @@ export default class ModulesDrawer extends React.Component {
                 allowedTypes: '',
             }, {
                 name: 'title',
-                type: 'string || object',
+                type: 'string',
                 default: '',
                 description: 'Required string to give a Drawer a title.',
                 allowedTypes: '',
-            }, {
-                name: 'position',
-                type: 'string',
-                default: 'right',
-                description: 'The position of the Drawer.',
-                allowedTypes: 'left, right',
             },
         ];
-        const { subNavIndex } = this.state;
+        const { nestHeaderIndex, subNavIndex } = this.state;
+        const nestHeaderNavRender = (
+            <SubNavigation
+                drawer
+                onClick={this._onNestHeaderNavClick.bind(this)}
+                selected={nestHeaderIndex}
+                style={{ margin: 0 }}
+            >
+                <SubNavigation.Item label="Section 1" />
+                <SubNavigation.Item label="Section 2" />
+                <SubNavigation.Item label="Section 3" />
+            </SubNavigation>
+        );
 
-        if (subNavIndex === 0) {
-            return (
-                <div>
-                    <Card>
-                        <Header size="large">Props</Header>
+        return (
+            <div>
+                <Card>
+                    <Header size="large">Props</Header>
 
-                        <TableProps props={props} />
-                    </Card>
+                    <TableProps props={props} />
+                </Card>
 
-                    {/* Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Drawer
-                        <Header.Subheader>
-                            A basic drawer.
-                        </Header.Subheader>
-                    </Header>
+                {/* Header */}
+                <Header anchor="header" size="large" style={{ marginTop: '55px' }} sub>
+                    Header
+                    <Header.Subheader>
+                        A Drawer can be closed when click outside of it's container.
+                    </Header.Subheader>
+                </Header>
 
-                    <p className="font-size-xsmall color-static">
-                        <span className="font-weight-semibold">Note:</span>
-                        {' '}
-                        <code>isOpen</code>
-                        ,
-                        {' '}
-                        <code>onClose</code>
-                        , and
-                        {' '}
-                        <code>title</code>
-                        {' '}
-                        are all required props.
-                    </p>
+                <Button onClick={this._onDrawerHeaderClick.bind(this)}>Open The Drawer</Button>
 
-                    <Button onClick={this._onBasicDrawerClick.bind(this)}>Open The Basic Drawer</Button>
+                <DrawerDeprecated
+                    isOpen={this.state.isDrawerHeaderOpen}
+                    header
+                    onClose={this._onDrawerHeaderClick.bind(this)}
+                    title="Custom Header"
+                >
+                    <div>
+                        <DrawerDeprecated.Header>
+                            <SubNavigation style={{ margin: 0 }}>
+                                <SubNavigation.Item label="Button 1" />
+                                <SubNavigation.Item label="Button 2" />
+                                <SubNavigation.Item label="Button 3" />
+                                <SubNavigation.Item label="Button 4" />
+                            </SubNavigation>
+                        </DrawerDeprecated.Header>
 
-                    <DrawerDeprecated
-                        isOpen={this.state.isBasicDrawerOpen}
-                        onClose={this._onBasicDrawerClick.bind(this)}
-                        scrollBar={false}
-                        title="The Best Title"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
-                            <br />
-                            <br />
-
-                            <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <Button onClick={this._onFooDrawerClick.bind(this)}>Open Foo Drawer</Button>
-
-                            <DrawerDeprecated
-                                isOpen={this.state.isFooDrawerOpen}
-                                onClose={this._onFooDrawerClick.bind(this)}
-                                scrollBar={false}
-                                title="Foo Title"
-                            >
-                                <div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                    <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
-                                    <br />
-                                    <br />
-
-                                    <Button onClick={this._onBarDrawerClick.bind(this)}>Open Bar Drawer</Button>
-
-                                    <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                                    <DrawerDeprecated
-                                        isOpen={this.state.isBarDrawerOpen}
-                                        onClose={this._onBarDrawerClick.bind(this)}
-                                        scrollBar={false}
-                                        title="Bar Title"
-                                    >
-                                        <div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
-                                            <br />
-                                            <br />
-
-                                            <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
-
-                                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                                        </div>
-                                    </DrawerDeprecated>
-                                </div>
-                            </DrawerDeprecated>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {drawerSample}
-                    </Highlighter>
-
-                    {/* Left Side Drawer */}
-                    <Header anchor="left-side-drawer" size="large" style={{ marginTop: '55px' }} sub>
-                        Drawer
-                        <Header.Subheader>
-                            A left side drawer.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onBasicLeftDrawerClick.bind(this)}>Open The Left Side Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.isBasicLeftDrawerOpen}
-                        onClose={this._onBasicLeftDrawerClick.bind(this)}
-                        title="The Best Title"
-                        position="left"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {leftDrawerSample}
-                    </Highlighter>
-
-                    {/* Close Button */}
-                    <Header anchor="close-button" size="large" style={{ marginTop: '55px' }} sub>
-                        Close Button
-                        <Header.Subheader>
-                            A Drawer's close button can be changed using a string or giving custom JSX.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onCloseButtonDrawerClick.bind(this)}>A Chevron-WH-Right Close Button</Button>
-                    <br />
-                    <br />
-                    <Button onClick={this._onCustomCloseButtonDrawerClick.bind(this)}>A Custom Close Button</Button>
-
-                    <DrawerDeprecated
-                        closeButton="chevron-wh-right"
-                        isOpen={this.state.isCloseButtonDrawerOpen}
-                        onClose={this._onCloseButtonDrawerClick.bind(this)}
-                        title="What A Wonderful Close Button"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <DrawerDeprecated
-                        closeButton={(
-                            <Icon
-                                compact
-                                onClick={this._onCustomCloseButtonDrawerClick.bind(this)}
-                                type="times"
-                            />
-                        )}
-                        isOpen={this.state.isCustomCloseButtonDrawerOpen}
-                        onClose={this._onCustomCloseButtonDrawerClick.bind(this)}
-                        title="What A Wonderful Close Button"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {closeButtonsSample}
-                    </Highlighter>
-
-                    {/* Color */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
-                        Color
-                        <Header.Subheader>
-                            A Drawer can have different background colors.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onDrawerColorClick}>Open Drawer</Button>
-
-                    <DrawerDeprecated
-                        closeButton={(
-                            <Button
-                                color="outline"
-                                icon
-                                inverse
-                                onClick={this._onDrawerColorClick}
-                            >
-                                <Icon compact inverse type="times" />
-                            </Button>
-                        )}
-                        color="dark-blue"
-                        header={false}
-                        isOpen={this.state.isDrawerColorOpen}
-                        maxWidth={320}
-                        onClose={this._onDrawerColorClick}
-                    >
-                        <div>
-                            <Header>A Blue Drawer</Header>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {colorSample}
-                    </Highlighter>
-
-                    {/* Inverse */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
-                        Inverse
-                        <Header.Subheader>
-                            A Drawer can be inversed..
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onDrawerInverseClick.bind(this)}>Open The Inversed Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.isDrawerInverseOpen}
-                        inverse
-                        onClose={this._onDrawerInverseClick.bind(this)}
-                        title="A Inversed Drawer"
-                    >
                         <div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -1348,158 +1110,49 @@ export default class ModulesDrawer extends React.Component {
 
                             <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
                         </div>
-                    </DrawerDeprecated>
+                    </div>
+                </DrawerDeprecated>
 
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {inverseSample}
-                    </Highlighter>
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {headerSample}
+                </Highlighter>
 
-                    {/* onCloseComplete and onOpenComplete */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
-                        onCloseComplete and onOpenComplete
-                        <Header.Subheader>
-                            Alerts the parent component that the Drawer's open and closing animations are complete.
-                        </Header.Subheader>
-                    </Header>
+                {/* Child Component Header Nesting */}
+                <Header anchor="child-component-header-nesting" size="large" style={{ marginTop: '55px' }} sub>
+                    Child Component Header Nesting
+                    <Header.Subheader>
+                        Nest a Header inside of a child component.
+                    </Header.Subheader>
+                </Header>
 
-                    <Button onClick={this._onOpenCompleteClick}>Open Drawer</Button>
+                <Button onClick={this._onNestHeaderDrawerClick.bind(this)}>Open Test Drawer</Button>
 
-                    <DrawerDeprecated
-                        isOpen={this.state.isOnOpenAndCloseCompleteDrawerOpen}
-                        onClose={this._onOpenCompleteClick}
-                        onCloseComplete={this._onCloseComplete}
-                        onOpenComplete={this._onOpenComplete}
-                        title="A OnCloseComplete and OnOpenComplete Drawer"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
+                <DrawerDeprecated
+                    isOpen={this.state.nestHeaderDrawer}
+                    header
+                    onClose={this._onNestHeaderDrawerClick.bind(this)}
+                    title="Child Component Header Nesting"
+                >
+                    {nestHeaderIndex === 0 ? (
+                        <NestHeader1DrawerComponent>
+                            {nestHeaderNavRender}
+                        </NestHeader1DrawerComponent>
+                    ) : nestHeaderIndex === 1 ? (
+                        <NestHeader2DrawerComponent>
+                            {nestHeaderNavRender}
+                        </NestHeader2DrawerComponent>
+                    ) : nestHeaderIndex === 2 ? (
+                        <NestHeader3DrawerComponent>
+                            {nestHeaderNavRender}
+                        </NestHeader3DrawerComponent>
+                    ) : null}
+                </DrawerDeprecated>
 
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {onOpenAndCloseCompleteSample}
-                    </Highlighter>
-
-                    {/* Max Width */}
-                    <Header anchor="max-width" size="large" style={{ marginTop: '55px' }} sub>
-                        Max Width
-                        <Header.Subheader>
-                            A Drawer's max width can be defined and overwritten.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onMaxWidthDrawerClick.bind(this)}>Mini Drawer</Button>
-
-                    <DrawerDeprecated
-                        closeButton={(
-                            <Icon
-                                compact
-                                onClick={this._onMaxWidthDrawerClick.bind(this)}
-                                type="times"
-                            />
-                        )}
-                        isOpen={this.state.isMaxWidthDrawerOpen}
-                        onClose={this._onMaxWidthDrawerClick.bind(this)}
-                        maxWidth={320}
-                        title="So Small"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {maxWidthSample}
-                    </Highlighter>
-
-                    {/* On Click Outside */}
-                    <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub>
-                        On Click Outside
-                        <Header.Subheader>
-                            A Drawer can be closed when click outside of it's container.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onClickOutsideDrawerClick.bind(this)}>Open The Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.isOnClickOutsideDrawerOpen}
-                        onClickOutside
-                        onClose={this._onClickOutsideDrawerClick.bind(this)}
-                        title="Click Outside of The Drawer"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {onClickOutsideSample}
-                    </Highlighter>
-
-                    {/* Path */}
-                    <Header anchor="path" size="large" style={{ marginTop: '55px' }} sub>
-                        Path
-                        <Header.Subheader>
-                            Route to a different path from a drawer.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onPathDrawerClick.bind(this, '')}>Open The Basic Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.isPathDrawerOpen}
-                        onClose={this._onPathDrawerClick.bind(this, '')}
-                        path={this.state.drawerOnClosePath}
-                        title="The Best Title"
-                    >
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p><a onClick={this._onPathDrawerClick.bind(this, '/elements/button')}>Click me to close the Drawer and change the path.</a></p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {pathSample}
-                    </Highlighter>
-                </div>
-            );
-        }
-    }
-
-    _onBarDrawerClick() {
-        this.setState({
-            isBarDrawerOpen: !this.state.isBarDrawerOpen,
-        });
-    }
-
-    _onFooDrawerClick() {
-        this.setState({
-            isFooDrawerOpen: !this.state.isFooDrawerOpen,
-        });
+                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                    {nestHeaderSample}
+                </Highlighter>
+            </div>
+        );
     }
 }
 
