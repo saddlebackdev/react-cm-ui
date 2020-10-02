@@ -41,7 +41,7 @@ function SubNavigation(props) {
         return null;
     }
 
-    remove(fourthLevelItems, ['emit', true]);
+    remove(fourthLevelItems, ['omit', true]);
 
     const onSubNavItemClick = (index, label) => {
         const labelToPath = kebabCase(label);

@@ -53,6 +53,8 @@ class SubNavigation extends React.Component {
             onClick,
         } = this.props;
 
+        event.preventDefault();
+
         if (isFunction(onClick)) {
             onClick(index, label);
         } else {
@@ -62,8 +64,6 @@ class SubNavigation extends React.Component {
 
             this.setState({ selected: index });
         }
-
-        event.preventDefault();
     }
 
     render() {
