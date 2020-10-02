@@ -8,7 +8,7 @@ import {
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
-import DocsDropdownButtonSubNavigation from './dropdownButtonSubNavigation';
+import DropdownButtonSubNavigation from './dropdownButtonSubNavigation';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
@@ -72,7 +72,7 @@ function DocsDropdownButtonOption() {
         <Main page="headers">
             <TitleBar title="Dropdown Button" />
 
-            <DocsDropdownButtonSubNavigation />
+            <DropdownButtonSubNavigation />
 
             <Main.Content>
                 <Card>
