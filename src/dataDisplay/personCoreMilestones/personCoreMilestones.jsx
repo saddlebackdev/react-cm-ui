@@ -189,11 +189,11 @@ const useStyles = makeStyles((theme) => {
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
-            padding: `0 ${columnHorizontalPadding}px`,
+            padding: `0 ${columnHorizontalPadding}px !important`,
             width: (props) => `${getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }) + (columnHorizontalPadding * 2)}px !important`,
         },
         congregationDateColummn: {
-            padding: `0 ${columnHorizontalPadding}px`,
+            padding: `0 ${columnHorizontalPadding}px !important`,
             width: 'auto !important',
         },
         congregationDateLabelTypography: {
@@ -218,7 +218,7 @@ const useStyles = makeStyles((theme) => {
 
             return {
                 flexGrow: 1,
-                padding: `0 ${columnHorizontalPadding}px`,
+                padding: `0 ${columnHorizontalPadding}px !important`,
                 textAlign: 'right',
                 width: 'auto !important',
             };

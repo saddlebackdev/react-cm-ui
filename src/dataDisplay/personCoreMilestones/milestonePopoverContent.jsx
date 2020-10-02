@@ -24,20 +24,17 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .grid-col': {
-            padding: 0,
-        },
-        '& .grid-row:not(:first-child)': {
-            padding: '5px 0 0 0',
-        },
+    dateGrid: {
+        padding: '5px 0 0 0',
     },
     milestoneLabel: {
         fontWeight: get(theme, 'typography.fontWeightMedium'),
     },
     milestoneColumn: {
         fontSize: 16,
+        whiteSpace: 'nowrap',
     },
+    root: {},
     title: {
         fontWeight: `${get(theme, 'typography.fontWeightBold')} !important`,
         fontSize: '20px !important',
@@ -55,14 +52,16 @@ function MilestonesPopoverContent(props) {
 
     const labelColumnClasses = ClassNames(classes.milestoneColumn, classes.milestoneLabel);
 
-    const milestonesDatesJsx = milestonesDates.map((milestoneDate) => {
+    const milestonesDatesJsx = milestonesDates.map((milestoneDate, index) => {
         const {
             date,
             label,
         } = milestoneDate;
 
         return (
-            <React.Fragment>
+            <Grid
+                className={index >= 1 && classes.dateGrid}
+            >
                 <Grid.Column
                     className={labelColumnClasses}
                     sm
@@ -75,7 +74,7 @@ function MilestonesPopoverContent(props) {
                 >
                     {date && moment(date).format(DATE_FORMAT)}
                 </Grid.Column>
-            </React.Fragment>
+            </Grid>
         );
     });
 
