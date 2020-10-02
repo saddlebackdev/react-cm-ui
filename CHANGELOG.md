@@ -1,7 +1,44 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.17.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
+## 9.16.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
+## 9.17.2 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - New component: Popover
+  - Refactored part of PersonCoreMilestones to use the new Popover component.
+  - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
+## 9.16.2 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - New component: Popover
+  - Refactored part of PersonCoreMilestones to use the new Popover component.
+  - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
+## 9.15.3 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+    - New component: Popover
+    - Refactored part of PersonCoreMilestones to use the new Popover component.
+    - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
 ## 9.16.1 - 09/30/2020
+
 #### Bug Fix
 - Fixed an issue in DatePickerCalendar component and its change event handlers for previous month and next month.
   - Cherry-picked from [PR #212](https://github.com/saddlebackdev/react-cm-ui/pull/212) / Merge Commit 77896bc94f960cf1e425f42bbd8f977bfae57e91
