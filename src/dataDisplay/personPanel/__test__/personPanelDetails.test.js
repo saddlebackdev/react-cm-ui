@@ -101,7 +101,7 @@ describe('<PersonPanelDetails />', () => {
             hasTakenClass201: false,
             hasTakenClass301: false,
             hasTakenClass401: false,
-            isActiveInTrips: false,
+            IsActiveInMissions: false,
             isBaptised: true,
             isDoNotContact: false,
             isInMinistry: false,
