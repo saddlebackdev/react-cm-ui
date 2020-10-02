@@ -36,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: get(theme, 'typography.fontWeightMedium'),
     },
     milestoneColumn: {
-        padding: '0',
-        whiteSpace: 'nowrap',
         fontSize: 16,
     },
     title: {
@@ -64,39 +62,36 @@ function MilestonesPopoverContent(props) {
         } = milestoneDate;
 
         return (
-            <Grid.Row columns={2}>
+            <React.Fragment>
                 <Grid.Column
                     className={labelColumnClasses}
+                    sm
                 >
                     {label}
                 </Grid.Column>
 
                 <Grid.Column
-                    className={classes.milestoneColumn}
-                    textAlign="right"
+                    sm="auto"
                 >
                     {date && moment(date).format(DATE_FORMAT)}
                 </Grid.Column>
-            </Grid.Row>
+            </React.Fragment>
         );
     });
 
     return (
         <Grid
             className={classes.root}
-            style={{
-                margin: 0,
-            }}
         >
-            <Grid.Row columns={1}>
-                <Grid.Column>
-                    <Typography
-                        className={classes.title}
-                    >
-                        {title}
-                    </Typography>
-                </Grid.Column>
-            </Grid.Row>
+            <Grid.Column
+                sm={12}
+            >
+                <Typography
+                    className={classes.title}
+                >
+                    {title}
+                </Typography>
+            </Grid.Column>
 
             {milestonesDatesJsx}
         </Grid>
