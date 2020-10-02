@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import domUtils from '../../utils/domUtils';
-import DrawerActionBar from './drawerActionBar'; // eslint-disable-line import/no-cycle
+// import DrawerActionBar from './drawerActionBar'; // eslint-disable-line import/no-cycle
 import DrawerContainer from './drawerContainer';
 import DrawerContent from './drawerContent';
 import DrawerDataCards from './drawerDataCards';
 import DrawerDataGrid from './drawerDataGrid';
 import DrawerDataGroups from './drawerDataGroups';
-import DrawerDeprecatedFiltersDrawer from '../drawerDeprecated/drawerDeprecatedFiltersDrawer'; // eslint-disable-line import/no-cycle
+// import DrawerDeprecatedFiltersDrawer from '../drawerDeprecated/drawerDeprecatedFiltersDrawer'; // eslint-disable-line import/no-cycle
 import DrawerDetailsWindow from './drawerDetailsWindow';
-import DrawerFiltersDrawer from './drawerFiltersDrawer'; // eslint-disable-line import/no-cycle
+// import DrawerFiltersDrawer from './drawerFiltersDrawer'; // eslint-disable-line import/no-cycle
 import DrawerFiltersRail from './drawerFiltersRail'; // eslint-disable-line import/no-cycle
 import DrawerNavigation from './drawerNavigation';
 import DrawerTitleBar from './drawerTitleBar';
@@ -482,16 +482,16 @@ class Drawer extends React.Component {
     }
 }
 
-Drawer.ActionBar = DrawerActionBar;
+// Drawer.ActionBar = DrawerActionBar;
 Drawer.Container = DrawerContainer;
 Drawer.Content = DrawerContent;
 Drawer.DataCards = DrawerDataCards;
 Drawer.DataGrid = DrawerDataGrid;
 Drawer.DataGroups = DrawerDataGroups;
-Drawer.DeprecatedFiltersDrawer = DrawerDeprecatedFiltersDrawer;
+// Drawer.DeprecatedFiltersDrawer = DrawerDeprecatedFiltersDrawer;
 Drawer.Details = DrawerDetailsWindow; // TODO: Deprecated. Alias name for Drawer.DetailsWindow. Remove in a major release.
 Drawer.DetailsWindow = DrawerDetailsWindow;
-Drawer.FiltersDrawer = DrawerFiltersDrawer;
+// Drawer.FiltersDrawer = DrawerFiltersDrawer;
 Drawer.FiltersRail = DrawerFiltersRail;
 Drawer.Grid = DrawerDataCards; // TODO: Deprecated. Alias name for Drawer.DataGrid. Remove in a major release.
 Drawer.Navigation = DrawerNavigation;

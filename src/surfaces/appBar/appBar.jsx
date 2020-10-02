@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => {
 
     return {
         root: {
-            borderBottom: `1px solid ${borderColorPrimary}`,
+            // borderBottom: `1px solid ${borderColorPrimary}`,
             backgroundColor: get(theme, 'palette.background.primary'),
             boxShadow: `0 2px 1px -2px ${colorBlack}`,
             [theme.breakpoints.up('sm')]: {
