@@ -76,15 +76,13 @@ class Prompt extends React.Component {
         const { onClick } = this.props;
         const { show } = this.state;
 
-        if (show) { return false; }
-
-        if (!_.isUndefined(onClick)) {
-            onClick(option);
-        } else {
-            this.setState({ show: true });
+        if (!show) {
+            if (!_.isUndefined(onClick)) {
+                onClick(option);
+            } else {
+                this.setState({ show: true });
+            }
         }
-
-        return false;
     }
 
     onNoClick(event) {

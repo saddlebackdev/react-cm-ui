@@ -2,66 +2,115 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    MD_HEIGHT,
+    SM_HEIGHT,
+} from './actionBarConstants';
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
 import Button from '../../inputs/button';
-import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
+import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';
+import withTheme from '../../styles/withTheme';
 
 const propTypes = {
-    className: PropTypes.string.isRequired,
+    actionBarNode: PropTypes.shape({}),
+    className: PropTypes.string,
+    drawerContainer: PropTypes.shape({}),
     header: PropTypes.string.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconBackgroundHighlightColor: PropTypes.string,
     iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
-    moduleType: PropTypes.oneOf(['drawer', 'page']),
-    options: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        breakpoints: PropTypes.shape({
+            values: PropTypes.shape({
+                md: PropTypes.number,
+            }),
+        }),
+    }).isRequired,
 };
 
 const defaultProps = {
+    actionBarNode: null,
     className: undefined,
+    drawerContainer: null,
     iconBackgroundColor: 'alternate',
-    iconBackgroundHighlightColor: 'highlight',
+    iconBackgroundHighlightColor: 'primary',
     iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,
-    moduleType: undefined,
     style: {},
 };
 
 class ActionBarActionsButton extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
+            actionBarBottomPosY: null,
             isDrawerOpen: false,
             isPromptVisible: false,
             promptingOption: null,
             selectedOption: {},
         };
 
+        this.isDrawerClosing = false;
         this.onDrawerCloseComplete = this.onDrawerCloseComplete.bind(this);
         this.onDrawerToggle = this.onDrawerToggle.bind(this);
+        this.onDrawerClose = this.onDrawerClose.bind(this);
         this.onOptionClick = this.onOptionClick.bind(this);
         this.onPromptNoClick = this.onPromptNoClick.bind(this);
         this.onPromptRequested = this.onPromptRequested.bind(this);
         this.onPromptYesClick = this.onPromptYesClick.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        const {
+            isMobileSearchVisible: prevIsMobileSearchVisible,
+        } = prevProps;
+
+        const {
+            isMobileSearchVisible,
+        } = this.props;
+
+        const {
+            actionBarBottomPosY,
+        } = this.state;
+
+        if (!actionBarBottomPosY || prevIsMobileSearchVisible !== isMobileSearchVisible) {
+            this.setState({
+                actionBarBottomPosY: this.setActionBarBottomPosY(),
+            });
+        }
+    }
+
     onDrawerCloseComplete() {
+        this.isDrawerClosing = false;
+
         this.setState({
             selectedOption: {},
         });
     }
 
+    onDrawerClose() {
+        this.isDrawerClosing = true;
+
+        this.setState({
+            isDrawerOpen: false,
+        });
+    }
+
     onDrawerToggle() {
-        this.setState((prevState) => ({
-            isDrawerOpen: !prevState.isDrawerOpen,
-        }));
+        if (!this.isDrawerClosing) {
+            this.setState((prevState) => ({
+                isDrawerOpen: !prevState.isDrawerOpen,
+            }));
+        }
     }
 
     onOptionClick(option) {
@@ -99,19 +148,55 @@ class ActionBarActionsButton extends React.PureComponent {
         });
     }
 
+    setActionBarBottomPosY() {
+        const {
+            actionBarNode,
+            isMobileSearchVisible,
+            theme,
+        } = this.props;
+
+        if (actionBarNode) {
+            const bodyWidth = actionBarNode.closest('body').offsetWidth;
+
+            let actionBarHeight;
+
+            if (bodyWidth >= theme.breakpoints.values.md) {
+                actionBarHeight = MD_HEIGHT;
+            } else {
+                const searchVisibleHeightAdjustment = isMobileSearchVisible ? 55 : 0;
+
+                actionBarHeight = SM_HEIGHT + searchVisibleHeightAdjustment;
+            }
+
+            const actionBarPosY = actionBarNode.getBoundingClientRect().y;
+
+            return actionBarPosY + actionBarHeight;
+        }
+
+        return null;
+    }
+
     render() {
         const {
+            actionBarNode,
             className,
+            drawerContainer,
             header,
             iconBackgroundColor,
             iconBackgroundHighlightColor,
             iconType,
             id,
-            isMobileSearchVisible,
-            moduleType,
             options,
             style,
         } = this.props;
+
+        const {
+            actionBarBottomPosY,
+        } = this.state;
+
+        if (!actionBarNode || !actionBarBottomPosY) {
+            return null;
+        }
 
         const {
             isDrawerOpen,
@@ -121,20 +206,11 @@ class ActionBarActionsButton extends React.PureComponent {
         } = this.state;
 
         const hasSelectedOption = !_.isEmpty(selectedOption);
-        const containerClasses = ClassNames('action_bar--actions_button_drawer', className);
+        const drawerContainerClasses = ClassNames('action_bar--actions_button_drawer', className);
         const titleClasses = ClassNames('actions_button_drawer--title', {
             'actions_button_drawer--title-hide': hasSelectedOption,
             'actions_button_drawer--title-show': !hasSelectedOption,
         });
-
-        const headerHeight = 55;
-        const actionBarHeight = isMobileSearchVisible ? 105 : 50;
-
-        let navigationBarHeight = 0;
-
-        if (moduleType === 'drawer' && document.querySelector('.ui.drawer.drawer-has_navigation')) {
-            navigationBarHeight = 55;
-        }
 
         const promptMessage = !_.isEmpty(promptingOption) ?
             promptingOption.promptMessage :
@@ -144,7 +220,7 @@ class ActionBarActionsButton extends React.PureComponent {
             promptingOption.promptColor :
             undefined;
 
-        let optionKeyNum = 1;
+        let optionKeyNum = 0;
 
         return (
             <React.Fragment>
@@ -173,13 +249,15 @@ class ActionBarActionsButton extends React.PureComponent {
                 </Prompt>
 
                 <Drawer
-                    className={containerClasses}
+                    className={drawerContainerClasses}
+                    container={drawerContainer}
                     dimmer={false}
                     isOpen={isDrawerOpen}
                     maxWidth={224}
-                    onClose={this.onDrawerToggle}
+                    onClickOutside
+                    onClose={this.onDrawerClose}
                     onCloseComplete={this.onDrawerCloseComplete}
-                    positionYOffset={headerHeight + actionBarHeight + navigationBarHeight}
+                    positionYOffset={actionBarBottomPosY}
                     shadowSize="xsmall"
                 >
                     <Drawer.Content className="actions_button_drawer--content">
@@ -222,4 +300,4 @@ class ActionBarActionsButton extends React.PureComponent {
 ActionBarActionsButton.propTypes = propTypes;
 ActionBarActionsButton.defaultProps = defaultProps;
 
-export default ActionBarActionsButton;
+export default withTheme(ActionBarActionsButton);

@@ -22,6 +22,9 @@ import DrawerWing from './drawerWing';
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    container: PropTypes.shape({
+        classList: PropTypes.shape({}),
+    }),
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isModal: PropTypes.bool,
@@ -45,11 +48,12 @@ const propTypes = {
 const defaultProps = {
     children: undefined,
     className: undefined,
+    container: document.body,
     dimmer: true,
     isModal: true,
     maxHeight: undefined,
     maxWidth: undefined,
-    onClickOutside: undefined,
+    onClickOutside: false,
     onClose: undefined,
     onCloseComplete: undefined,
     onOpenComplete: undefined,
@@ -61,7 +65,6 @@ const defaultProps = {
     wing: undefined,
 };
 
-const BODY = document.body;
 const TRANSLATE_X_END = 'translate3d(0, 0, 0)';
 const TRANSLATE_X_LEFT_START = 'translate3d(-100%, 0, 0)';
 const TRANSLATE_X_RIGHT_START = 'translate3d(100%, 0, 0)';
@@ -70,22 +73,23 @@ const BOX_SHADOW_SMALL = '2px 0 7px 0 rgba(0, 0, 0, 0.17)';
 const BOX_SHADOW_LARGE = '12px 0 19px 0 rgba(0, 0, 0, .22)';
 const DEFAULT_DRAWER_WIDTH = 768;
 
-function toggleBodyStyle(isOpen) {
-    const { scrollY } = window;
-    const bodyStyleTop = BODY.style.top;
+function toggleBodyStyle({ container, isOpen }) {
+    const containerStyleTop = container.style.top;
+    const newContainer = container.closest('body') || document.body;
+    const scrollY = newContainer.scrollTop;
 
-    BODY.style.height = isOpen ? '100%' : '';
-    BODY.style.position = isOpen ? 'fixed' : '';
-    BODY.style.top = isOpen ? `-${scrollY}px` : '';
-    BODY.style.width = isOpen ? '100%' : '';
+    newContainer.style.height = isOpen ? '100%' : '';
+    newContainer.style.position = isOpen ? 'fixed' : '';
+    newContainer.style.top = isOpen ? `-${scrollY}px` : '';
+    newContainer.style.width = isOpen ? '100%' : '';
 
     if (!isOpen) {
-        BODY.classList.remove('drawer-open');
+        newContainer.classList.remove('drawer-open');
 
         // eslint-disable-next-line radix
-        window.scrollTo(0, parseInt(bodyStyleTop || '0') * -1);
+        newContainer.scrollTo(0, parseInt(containerStyleTop || '0') * -1);
     } else {
-        BODY.classList.add('drawer-open');
+        newContainer.classList.add('drawer-open');
     }
 }
 
@@ -160,6 +164,10 @@ class Drawer extends React.Component {
     }
 
     componentWillUnmount() {
+        const {
+            container,
+        } = this.props;
+
         const { isOpen } = this.state;
 
         /**
@@ -167,89 +175,102 @@ class Drawer extends React.Component {
          * closing animation never happens.
          */
         if (isOpen && this.useComponentWillUnmount) {
-            toggleBodyStyle(false);
+            toggleBodyStyle({ container, isOpen: false });
 
-            if (BODY.classList.contains('drawer-nubbin-open')) {
-                BODY.classList.remove('drawer-nubbin-open');
+            if (container.classList.contains('drawer-nubbin-open')) {
+                container.classList.remove('drawer-nubbin-open');
             }
 
-            if (BODY.classList.contains('drawer-dimmers')) {
-                BODY.classList.remove('drawer-dimmers');
+            if (container.classList.contains('drawer-dimmers')) {
+                container.classList.remove('drawer-dimmers');
             }
 
-            if (BODY.classList.contains('drawer-open-layered')) {
-                BODY.classList.remove('drawer-open-layered');
+            if (container.classList.contains('drawer-open-layered')) {
+                container.classList.remove('drawer-open-layered');
             }
 
-            if (BODY.classList.contains('drawer-animate-out')) {
-                BODY.classList.remove('drawer-animate-out');
+            if (container.classList.contains('drawer-animate-out')) {
+                container.classList.remove('drawer-animate-out');
             }
         }
     }
 
     onBeforeClose() {
+        const {
+            container,
+        } = this.props;
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
 
-        BODY.classList.add('drawer-animate-out');
+        container.classList.add('drawer-animate-out');
         this.drawerContainerRef.classList.add('drawer-animate-out');
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
         this.drawerContainerRef.addEventListener(animationEvent, this.onCloseAnimationComplete);
     }
 
+    // eslint-disable-next-line consistent-return
     onClickOutside(event) {
         const { onClickOutside } = this.props;
 
         if (this.drawerContainerRef.contains(event.target) || !onClickOutside) {
-            return;
+            return null;
         }
 
         this.onClose();
     }
 
     onClose() {
-        const { onClickOutside, onClose } = this.props;
+        const {
+            container,
+            onClickOutside,
+            onClose: onCloseProps,
+        } = this.props;
 
         if (onClickOutside) {
-            document.removeEventListener('click', this.onClickOutside);
+            container.closest('html').removeEventListener('click', this.onClickOutside);
         }
 
-        if (_.isFunction(onClose)) {
-            onClose(...arguments); // eslint-disable-line prefer-rest-params
+        if (_.isFunction(onCloseProps)) {
+            onCloseProps(...arguments); // eslint-disable-line prefer-rest-params
         } else {
             console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
         }
     }
 
     onCloseAnimationComplete() {
-        const { onCloseComplete, onClickOutside } = this.props;
+        const {
+            container,
+            onCloseComplete,
+            onClickOutside,
+        } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
 
         if (onClickOutside) {
-            document.removeEventListener('click', this.onClickOutside);
+            container.closest('html').removeEventListener('click', this.onClickOutside);
         }
 
         this.drawerContainerRef.removeEventListener(animationEvent, this.onCloseAnimationComplete);
 
         if (numberOfModalDrawers <= 2) {
-            BODY.classList.remove('drawer-open-layered');
+            container.classList.remove('drawer-open-layered');
         }
 
-        if (numberOfModalDrawers <= 1 || (numberOfModalDrawers > 1 && BODY.classList.contains('drawer-nubbin-open'))) {
+        if (numberOfModalDrawers <= 1 || (numberOfModalDrawers > 1 && container.classList.contains('drawer-nubbin-open'))) {
             const isOpen = false;
 
-            toggleBodyStyle(isOpen);
+            toggleBodyStyle({ container, isOpen });
 
-            if (BODY.classList.contains('drawer-dimmers')) {
-                BODY.classList.remove('drawer-dimmers');
+            if (container.classList.contains('drawer-dimmers')) {
+                container.classList.remove('drawer-dimmers');
             }
         }
 
-        if (numberOfModalDrawers <= 1 && BODY.classList.contains('drawer-nubbin-open')) {
-            BODY.classList.remove('drawer-nubbin-open');
+        if (numberOfModalDrawers <= 1 && container.classList.contains('drawer-nubbin-open')) {
+            container.classList.remove('drawer-nubbin-open');
         }
 
-        BODY.classList.remove('drawer-animate-out');
+        container.classList.remove('drawer-animate-out');
 
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
 
@@ -269,6 +290,7 @@ class Drawer extends React.Component {
         this.setStartOfTransform();
 
         const {
+            container,
             dimmer,
             isModal,
             maxWidth,
@@ -287,7 +309,7 @@ class Drawer extends React.Component {
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
         if (onClickOutside) {
-            document.addEventListener('click', this.onClickOutside);
+            container.closest('html').addEventListener('click', this.onClickOutside);
         }
 
         if (!dimmer || !isModal || numberOfModalDrawers >= 2) {
@@ -322,7 +344,7 @@ class Drawer extends React.Component {
                     default:
                 }
 
-                domUtils.addClassName(BODY, 'drawer-open-layered');
+                domUtils.addClassName(container, 'drawer-open-layered');
                 this.drawerRef.style.zIndex = newZIndex;
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this.drawerContainerRef.style.zIndex = newZIndex;
@@ -345,9 +367,9 @@ class Drawer extends React.Component {
                 if (!positionY && !maxHeight) {
                     const isOpen = true;
 
-                    toggleBodyStyle(isOpen);
+                    toggleBodyStyle({ container, isOpen });
                 } else {
-                    BODY.classList.add('drawer-nubbin-open');
+                    container.classList.add('drawer-nubbin-open');
                 }
 
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
@@ -375,10 +397,13 @@ class Drawer extends React.Component {
 
     onOpenAnimationComplete() {
         const {
+            container,
             dimmer,
             isModal,
         } = this.props;
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
+
         this.drawerContainerRef.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
         const { onOpenComplete } = this.props;
@@ -388,7 +413,7 @@ class Drawer extends React.Component {
         }
 
         if (dimmer && isModal) {
-            BODY.classList.add('drawer-dimmers');
+            container.classList.add('drawer-dimmers');
         }
     }
 
@@ -417,11 +442,13 @@ class Drawer extends React.Component {
         const {
             children,
             className,
+            container,
             isModal,
             positionYOffset,
             style,
             wing,
         } = this.props;
+
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -441,7 +468,9 @@ class Drawer extends React.Component {
         );
 
         return (
-            <Portal>
+            <Portal
+                node={container}
+            >
                 <div
                     className={containerClasses}
                     ref={(ref) => { this.drawerRef = ref; }}
