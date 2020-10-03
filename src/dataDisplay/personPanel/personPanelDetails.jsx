@@ -44,6 +44,8 @@ const propTypes = {
      * The data that the PersonPanelDetails uses to build the UI.
      */
     data: PropTypes.shape({
+        acceptedChristDate: PropTypes.string,
+        activeInMissionsDate: PropTypes.string,
         addresses: PropTypes.arrayOf(PropTypes.shape({
             address1: PropTypes.string,
             address2: PropTypes.string,
@@ -56,6 +58,11 @@ const propTypes = {
             regionCode: PropTypes.string,
         })),
         allergies: PropTypes.string,
+        attendedClass101Date: PropTypes.string,
+        attendedClass201Date: PropTypes.string,
+        attendedClass301Date: PropTypes.string,
+        attendedClass401Date: PropTypes.string,
+        baptismDate: PropTypes.string,
         birthdate: PropTypes.number,
         campus: PropTypes.string,
         churchEntities: PropTypes.arrayOf(PropTypes.shape({})),
@@ -94,6 +101,8 @@ const propTypes = {
             MomentPropTypes.momentString,
             PropTypes.oneOf([null]),
         ]),
+        firstMinistryJoinDate: PropTypes.string,
+        firstSmallGroupJoinDate: PropTypes.string,
         gender: GENDER_PROP_TYPE,
         gradeLevel: PropTypes.string,
         hasAcceptedChrist: PropTypes.bool,
@@ -105,7 +114,8 @@ const propTypes = {
         hasTakenClass201: PropTypes.bool,
         hasTakenClass301: PropTypes.bool,
         hasTakenClass401: PropTypes.bool,
-        isActiveInTrips: PropTypes.bool,
+        iconColor: PropTypes.string,
+        isActiveInMissions: PropTypes.bool,
         isBaptised: PropTypes.bool,
         isDoNotContact: PropTypes.bool,
         isInMinistry: PropTypes.bool,
@@ -124,6 +134,10 @@ const propTypes = {
         })),
         preferredService: PropTypes.string,
         recordType: RECORD_TYPE_PROP_TYPE,
+        signedMembershipAgreementDate: PropTypes.string,
+        signedMaturityCovenantDate: PropTypes.string,
+        signedMinistryCovenantDate: PropTypes.string,
+        signedMissionCovenantDate: PropTypes.string,
     }),
     /**
      * The `id` of the PersonPanelDetails.
@@ -134,6 +148,10 @@ const propTypes = {
      * If `true`, expand PersonPanelDetails, otherwise collapse it.
      */
     isExpanded: PropTypes.bool,
+    /**
+     * Flag used to handle mobile popover behaviors onTap
+     */
+    isMobile: PropTypes.bool,
     /**
      * Button `props` to setup the Select button.
      */
@@ -169,6 +187,7 @@ const defaultProps = {
     data: {},
     id: null,
     isExpanded: false,
+    isMobile: false,
     selectButtonProps: {},
     viewRecordButtonProps: {},
 };
@@ -634,6 +653,7 @@ function PersonPanelDetails(props) {
         data,
         id,
         isExpanded,
+        isMobile,
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
@@ -643,8 +663,15 @@ function PersonPanelDetails(props) {
     const [dataGroupsColumns, setDataGroupsColumns] = useState([]);
 
     const {
+        acceptedChristDate,
+        activeInMissionsDate,
         addresses,
         allergies,
+        attendedClass101Date,
+        attendedClass201Date,
+        attendedClass301Date,
+        attendedClass401Date,
+        baptismDate,
         birthdate,
         campus,
         churchEntities,
@@ -659,6 +686,8 @@ function PersonPanelDetails(props) {
         emergencyContactPreferMethod,
         emergencyContactRelation,
         firstContactDate,
+        firstMinistryJoinDate,
+        firstSmallGroupJoinDate,
         gender,
         gradeLevel,
         hasAcceptedChrist,
@@ -670,7 +699,8 @@ function PersonPanelDetails(props) {
         hasTakenClass201,
         hasTakenClass301,
         hasTakenClass401,
-        isActiveInTrips,
+        iconColor,
+        isActiveInMissions,
         isBaptised,
         isDoNotContact,
         isInMinistry,
@@ -678,6 +708,10 @@ function PersonPanelDetails(props) {
         phones,
         preferredService,
         recordType,
+        signedMembershipAgreementDate,
+        signedMaturityCovenantDate,
+        signedMinistryCovenantDate,
+        signedMissionCovenantDate,
     } = data;
 
     const isChild = recordType === 'child';
@@ -774,6 +808,15 @@ function PersonPanelDetails(props) {
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
                     <PersonCoreMilestones
+                        acceptedChristDate={acceptedChristDate}
+                        firstSmallGroupJoinDate={firstSmallGroupJoinDate}
+                        firstMinistryJoinDate={firstMinistryJoinDate}
+                        activeInMissionsDate={activeInMissionsDate}
+                        attendedClass101Date={attendedClass101Date}
+                        attendedClass201Date={attendedClass201Date}
+                        attendedClass301Date={attendedClass301Date}
+                        attendedClass401Date={attendedClass401Date}
+                        baptismDate={baptismDate}
                         className={classes.personCoreMilestones}
                         congregationDate={congregationDate}
                         firstContactDate={firstContactDate}
@@ -787,12 +830,18 @@ function PersonPanelDetails(props) {
                         hasTakenClass201={hasTakenClass201}
                         hasTakenClass301={hasTakenClass301}
                         hasTakenClass401={hasTakenClass401}
+                        iconColor={iconColor}
                         iconSize={16}
-                        isActiveInTrips={isActiveInTrips}
+                        isActiveInMissions={isActiveInMissions}
                         isBaptised={isBaptised}
                         isInMinistry={isInMinistry}
                         isInSmallGroup={isInSmallGroup}
+                        isMobile={isMobile}
                         recordType={recordType}
+                        signedMembershipAgreementDate={signedMembershipAgreementDate}
+                        signedMaturityCovenantDate={signedMaturityCovenantDate}
+                        signedMinistryCovenantDate={signedMinistryCovenantDate}
+                        signedMissionCovenantDate={signedMissionCovenantDate}
                     />
 
                     {shouldDataGroupsRender && (
