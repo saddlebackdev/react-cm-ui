@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, options) => {
     const isDevMode = options.mode === 'development';
@@ -105,6 +106,16 @@ module.exports = (env, options) => {
             },
         },
         optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    parallel: true,
+                    sourceMap: true,
+                    terserOptions: {
+                        mangle: false, // Pass false to skip mangling names.
+                        safari10: true,
+                    },
+                }),
+            ],
             splitChunks: {
                 minChunks: Infinity,
                 name: 'commons',
