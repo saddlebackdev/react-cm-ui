@@ -3,10 +3,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.10.2 - 10/01/2020
 
-#### Feature
-- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
-    - Added Popover documentation.
-    - Fixed PersonPanel documentation to reflect new PersonCoreMilestone changes.
+#### Bug
+- [PR #216](https://github.com/saddlebackdev/react-cm-ui/pull/216) / Merge Commit 3192b94644166ff9e0bf67f0d7f9fd843ecb3696
+    - Add a new SubNavigation component to handle all fourth level items in the `./docs/src/app/navigationConstants.js` file.
+    - Added all the necessary fourth level routes.
+    - Added a new Webpack production script: `npm run start:prod` to help with production issues.
+    - Added the Webpack Terser Plugin to overwrite Webpack's default minimization and disable mangling names.
+      - Person Panel documentation works now!
 
 ## 0.9.1 - 10/01/2020
 
