@@ -1,15 +1,15 @@
 import React from 'react';
 import SubNavigation from '../../global/subNavigation';
 
-function DrawerSubNavigation() {
+function DrawerDeprecatedSubNavigation() {
     return (
         <SubNavigation
             firstLevelPath="components"
             secondLevelPath="surfaces"
             thirdLevelLabel="Drawer"
-            thirdLevelPath="drawer"
+            thirdLevelPath="drawer-deprecated"
         />
     );
 }
 
-export default DrawerSubNavigation;
+export default DrawerDeprecatedSubNavigation;
