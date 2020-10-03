@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.17.4 - 10/02/2020
+
+#### Feature
+- [PR #216](https://github.com/saddlebackdev/react-cm-ui/pull/216) / Merge Commit 3192b94644166ff9e0bf67f0d7f9fd843ecb3696
+  - SubNavigation is now flat mapping through children instead of a regular ol' boring map.
+
 ## 9.17.3 - 10/01/2020
 
 #### Bug

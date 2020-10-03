@@ -1,15 +1,15 @@
 import React from 'react';
 import SubNavigation from '../../global/subNavigation';
 
-function DrawerSubNavigation() {
+function AccordionSubNavigation() {
     return (
         <SubNavigation
             firstLevelPath="components"
             secondLevelPath="surfaces"
-            thirdLevelLabel="Drawer"
-            thirdLevelPath="drawer"
+            thirdLevelLabel="Accordion"
+            thirdLevelPath="accordion-deprecated"
         />
     );
 }
 
-export default DrawerSubNavigation;
+export default AccordionSubNavigation;
