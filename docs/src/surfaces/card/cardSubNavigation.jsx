@@ -1,15 +1,15 @@
 import React from 'react';
 import SubNavigation from '../../global/subNavigation';
 
-function IconSubNavigation() {
+function CardSubNavigation() {
     return (
         <SubNavigation
             firstLevelPath="components"
-            secondLevelPath="data-display"
-            thirdLevelLabel="Icon"
-            thirdLevelPath="icon"
+            secondLevelPath="surfaces"
+            thirdLevelLabel="Card"
+            thirdLevelPath="card"
         />
     );
 }
 
-export default IconSubNavigation;
+export default CardSubNavigation;

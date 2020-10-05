@@ -9,7 +9,7 @@ import {
 import _ from 'lodash';
 import React from 'react';
 import { buttonDocProps } from '../button/buttonConstants';
-import DocsDropdownButtonSubNavigation from './dropdownButtonSubNavigation';
+import DropdownButtonSubNavigation from './dropdownButtonSubNavigation';
 import DropdownButtonExample from './dropdownButtonExample';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
@@ -53,7 +53,7 @@ function DocsDropdownButton() {
         <Main page="headers">
             <TitleBar title="Dropdown Button" />
 
-            <DocsDropdownButtonSubNavigation />
+            <DropdownButtonSubNavigation />
 
             <Main.Content>
                 <Card>
