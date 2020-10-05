@@ -8,10 +8,12 @@ import mountWithTheme, { createMatchMedia } from '../../../testUtils/enzymeHelpe
 import FiltersRailClear from '../filtersRailClear';
 
 describe('<FiltersRailClear />', () => {
+    const bemName = 'some_block--some_element_name';
     const onClearMock = jest.fn();
 
     const props = {
         disable: false,
+        id: bemName,
         onClear: onClearMock,
     };
 
@@ -45,7 +47,7 @@ describe('<FiltersRailClear />', () => {
             />,
         );
 
-        expect(wrapper.prop('id')).toEqual(props.id);
+        expect(wrapper.find('span').first().prop('id')).toEqual(`${props.id}--clear_button`);
     });
 
     it('Should not render if \'onClear\' event is not defined', () => {

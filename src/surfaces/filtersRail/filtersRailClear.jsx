@@ -10,12 +10,14 @@ const propTypes = {
         root: PropTypes.string,
     }),
     disable: PropTypes.bool,
+    id: PropTypes.string,
     onClear: PropTypes.func,
 };
 
 const defaultProps = {
     classes: null,
     disable: false,
+    id: null,
     onClear: null,
 };
 
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 function FiltersRailClear(props) {
     const {
         disable,
+        id,
         onClear,
     } = props;
 
@@ -43,7 +46,7 @@ function FiltersRailClear(props) {
                 root: classes.root,
             }}
             disable={disable}
-            id={`${BEM_FILTERS_RAIL}--clear_button`}
+            id={id ? `${id}--clear_button` : null}
             onClick={onClear}
         >
             Clear Filters
