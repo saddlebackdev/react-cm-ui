@@ -17,6 +17,7 @@ export { default as PersonCoreMilestones } from './dataDisplay/personCoreMilesto
 export { default as PersonPanel } from './dataDisplay/personPanel';
 export { default as PersonPanelDetails } from './dataDisplay/personPanel/personPanelDetails';
 export { default as PersonPanelSummary } from './dataDisplay/personPanel/personPanelSummary';
+export { default as Popover } from './dataDisplay/popover';
 export { default as Table } from './dataDisplay/table';
 export { default as TelephoneLink } from './dataDisplay/telephoneLink';
 export { default as TimeFromNow } from './dataDisplay/timeFromNow';
@@ -60,6 +61,7 @@ export { default as Tabs } from './navigation/tabs';
 // Surfaces
 export { default as Accordion } from './surfaces/accordion';
 export { default as ActionBar } from './surfaces/actionBar';
+export { default as AppBar } from './surfaces/appBar';
 export { default as Card } from './surfaces/card';
 export { default as DetailsWindow } from './surfaces/detailsWindow';
 export { default as Drawer } from './surfaces/drawer';
@@ -72,6 +74,7 @@ export { default as Rail } from './surfaces/rail';
 export { default as TitleBar } from './surfaces/titleBar';
 
 // Utils
+export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';

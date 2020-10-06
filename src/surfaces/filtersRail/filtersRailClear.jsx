@@ -1,20 +1,23 @@
+import { isFunction } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { BEM_FILTERS_RAIL } from '../../global/constants';
 import A from '../../navigation/a';
 import makeStyles from '../../styles/makeStyles';
-import { isFunction } from 'lodash';
 
 const propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
     disable: PropTypes.bool,
+    id: PropTypes.string,
     onClear: PropTypes.func,
 };
 
 const defaultProps = {
     classes: null,
     disable: false,
+    id: null,
     onClear: null,
 };
 
@@ -27,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 function FiltersRailClear(props) {
     const {
         disable,
+        id,
         onClear,
     } = props;
 
@@ -42,6 +46,7 @@ function FiltersRailClear(props) {
                 root: classes.root,
             }}
             disable={disable}
+            id={id ? `${id}_clear_button` : null}
             onClick={onClear}
         >
             Clear Filters

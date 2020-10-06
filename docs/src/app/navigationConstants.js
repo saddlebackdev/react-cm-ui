@@ -129,6 +129,11 @@ export const navigationItems = [
                         path: 'person-panel',
                     },
                     {
+                        component: 'popover',
+                        label: 'Popover',
+                        path: 'popover',
+                    },
+                    {
                         component: 'table',
                         label: 'Table',
                         path: 'table',
@@ -205,11 +210,25 @@ export const navigationItems = [
                     {
                         component: 'dropdownDeprecated',
                         label: 'Dropdown (Deprecated)',
+                        levelFour: [
+                            {
+                                component: 'dropdownItemDeprecated',
+                                label: 'Dropdown.Item',
+                                path: 'dropdown-item',
+                            },
+                        ],
                         path: 'dropdown-deprecated',
                     },
                     {
                         component: 'dropdownButton',
                         label: 'Dropdown Button',
+                        levelFour: [
+                            {
+                                component: 'dropdownButtonOption',
+                                label: 'Option',
+                                path: 'option',
+                            },
+                        ],
                         path: 'dropdown-button',
                     },
                     {
@@ -272,6 +291,59 @@ export const navigationItems = [
                     {
                         component: 'page',
                         label: 'Page',
+                        levelFour: [
+                            {
+                                component: 'pageDemo',
+                                label: 'Demo',
+                                omit: true,
+                                path: 'demo',
+                            },
+                            {
+                                component: 'pageActionBar',
+                                label: 'Action Bar',
+                                path: 'action-bar',
+                            },
+                            {
+                                component: 'pageContainer',
+                                label: 'Container',
+                                path: 'container',
+                            },
+                            {
+                                component: 'pageContent',
+                                label: 'Content',
+                                path: 'content',
+                            },
+                            {
+                                component: 'pageDataCards',
+                                label: 'Data Cards',
+                                path: 'data-cards',
+                            },
+                            {
+                                component: 'pageDataGrid',
+                                label: 'Data Grid',
+                                path: 'data-grid',
+                            },
+                            {
+                                component: 'pageDataGroups',
+                                label: 'Data Groups',
+                                path: 'data-groups',
+                            },
+                            {
+                                component: 'pageDetailsWindow',
+                                label: 'Details Window',
+                                path: 'details-window',
+                            },
+                            {
+                                component: 'pageFiltersDrawer',
+                                label: 'Filters Drawer',
+                                path: 'filters-drawer',
+                            },
+                            {
+                                component: 'pageFiltersRail',
+                                label: 'Filters Rail',
+                                path: 'filters-rail',
+                            },
+                        ],
                         path: 'page',
                     },
                 ],
@@ -316,6 +388,13 @@ export const navigationItems = [
                     {
                         component: 'accordionDeprecated',
                         label: 'Accordion (Deprecated)',
+                        levelFour: [
+                            {
+                                component: 'accordionItemDeprecated',
+                                label: 'Accordion.Item',
+                                path: 'accordion-item',
+                            },
+                        ],
                         path: 'accordion-deprecated',
                     },
                     {
@@ -324,8 +403,20 @@ export const navigationItems = [
                         path: 'action-bar',
                     },
                     {
+                        component: 'appBar',
+                        label: 'App Bar',
+                        path: 'app-bar',
+                    },
+                    {
                         component: 'card',
                         label: 'Card',
+                        levelFour: [
+                            {
+                                component: 'cardHeader',
+                                label: 'Header',
+                                path: 'header',
+                            },
+                        ],
                         path: 'card',
                     },
                     {
@@ -336,11 +427,80 @@ export const navigationItems = [
                     {
                         component: 'drawer',
                         label: 'Drawer',
+                        levelFour: [
+                            {
+                                component: 'drawerActionBar',
+                                label: 'Action Bar',
+                                path: 'action-bar',
+                            },
+                            {
+                                component: 'drawerContent',
+                                label: 'Content',
+                                path: 'content',
+                            },
+                            {
+                                component: 'drawerDataCards',
+                                label: 'Data Cards',
+                                path: 'data-cards',
+                            },
+                            {
+                                component: 'drawerDataGrid',
+                                label: 'Data Grid',
+                                path: 'data-grid',
+                            },
+                            {
+                                component: 'drawerDataGroups',
+                                label: 'Data Groups',
+                                path: 'data-groups',
+                            },
+                            {
+                                component: 'drawerDetailsWindow',
+                                label: 'Details Window',
+                                path: 'details-window',
+                            },
+                            {
+                                component: 'drawerFiltersDrawer',
+                                label: 'Filters Drawer',
+                                path: 'filters-drawer',
+                            },
+                            {
+                                component: 'drawerNavigation',
+                                label: 'Navigation',
+                                path: 'navigation',
+                            },
+                            {
+                                component: 'drawerSticky',
+                                label: 'Sticky',
+                                path: 'sticky',
+                            },
+                            {
+                                component: 'drawerTitleBar',
+                                label: 'Title Bar',
+                                path: 'title-bar',
+                            },
+                            {
+                                component: 'drawerWing',
+                                label: 'Wing',
+                                path: 'wing',
+                            },
+                        ],
                         path: 'drawer',
                     },
                     {
                         component: 'drawerDeprecated',
                         label: 'Drawer (Deprecated)',
+                        levelFour: [
+                            {
+                                component: 'drawerDeprecatedHeader',
+                                label: 'Header',
+                                path: 'header',
+                            },
+                            {
+                                component: 'drawerDeprecatedWing',
+                                label: 'Wing',
+                                path: 'wing',
+                            },
+                        ],
                         path: 'drawer-deprecated',
                     },
                     {

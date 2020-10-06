@@ -7,8 +7,7 @@ import {
     PROP_TYPES_ROW,
 } from './constants';
 import {
-    BEM_FILTERS_RAIL_ROW,
-    BEM_FILTERS_RAIL_ROW_COMONENT,
+    BEM_FILTERS_RAIL_ROW, BEM_FILTERS_RAIL_ROW_COMONENT,
 } from '../../global/constants';
 import FiltersRailRowComponent from './filtersRailRowComponent';
 import Collapse from '../../utils/collapse';
@@ -95,6 +94,7 @@ function FiltersRailRow(props) {
     );
 
     const CollapseComponent = isCollapsible ? Collapse : 'div';
+
     const collpaseComponentProps = isCollapsible ? {
         className: classes.collapseContainer,
         in: isCollapsed,
@@ -134,6 +134,7 @@ function FiltersRailRow(props) {
                             <Icon
                                 className={ClassNames(
                                     classes.collapseIcon,
+                                    `${BEM_FILTERS_RAIL_ROW_COMONENT}_collapse_icon`,
                                     {
                                         [classes.isCollapsed]: isCollapsed,
                                     },

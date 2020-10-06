@@ -1,7 +1,56 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.17.5 - 10/05/2020
+
+#### Feature
+- [PR #217](https://github.com/saddlebackdev/react-cm-ui/pull/217) / Merge Commit eb74b6f6fcf4bd8bd62145970346df69c9b51634
+  - DropdownButton now stops click event propagation when clicked to expand the dropdown menu.
+
+## 9.17.4 - 10/02/2020
+
+#### Feature
+- [PR #216](https://github.com/saddlebackdev/react-cm-ui/pull/216) / Merge Commit 3192b94644166ff9e0bf67f0d7f9fd843ecb3696
+  - SubNavigation is now flat mapping through children instead of a regular ol' boring map.
+
+## 9.17.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
+## 9.16.3 - 10/01/2020
+
+#### Bug
+- [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+
+## 9.17.2 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - New component: Popover
+  - Refactored part of PersonCoreMilestones to use the new Popover component.
+  - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
+## 9.16.2 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+  - New component: Popover
+  - Refactored part of PersonCoreMilestones to use the new Popover component.
+  - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
+## 9.15.3 - 10/01/2020
+
+#### Feature
+- [PR #214](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
+    - New component: Popover
+    - Refactored part of PersonCoreMilestones to use the new Popover component.
+    - Fixed bugs in PersonPanelDetails that were caused by some of the PersonCoreMilestones refactoring.
+
 ## 9.16.1 - 09/30/2020
+
 #### Bug Fix
 - Fixed an issue in DatePickerCalendar component and its change event handlers for previous month and next month.
   - Cherry-picked from [PR #212](https://github.com/saddlebackdev/react-cm-ui/pull/212) / Merge Commit 77896bc94f960cf1e425f42bbd8f977bfae57e91

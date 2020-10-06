@@ -51,7 +51,9 @@ const useStyles = makeStyles((theme) => ({
 
 function FiltersRailRowComponent(props) {
     const {
+        className,
         componentProps,
+        id,
         type,
     } = props;
 
@@ -60,11 +62,13 @@ function FiltersRailRowComponent(props) {
     const rootContainer = ClassNames(
         BEM_FILTERS_RAIL_ROW_COMONENT,
         classes.root,
+        className,
     );
 
     return (
         <div
             className={rootContainer}
+            id={id}
         >
             {type === 'checkbox' && (
                 <Checkbox
@@ -100,8 +104,6 @@ function FiltersRailRowComponent(props) {
                     tabIndex={componentProps.tabIndex}
                 />
             )}
-
-            {type === 'jsx'}
 
             {type === 'radio' && (
                 <Radio

@@ -17,7 +17,7 @@ export const PROP_TYPES_ROW_COMPONENT = {
         id: PropTypes.string,
         label: PropTypes.string,
         name: PropTypes.string,
-        options: PropTypes.shape({}),
+        options: PropTypes.arrayOf(PropTypes.shape({})),
         onChange: PropTypes.func,
         onKeyDown: PropTypes.func,
         placeholder: PropTypes.string,
@@ -25,7 +25,6 @@ export const PROP_TYPES_ROW_COMPONENT = {
     }),
     type: PropTypes.oneOf([
         'checkbox',
-        'jsx',
         'radio',
         'radioPill',
         'select',

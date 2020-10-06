@@ -2,6 +2,8 @@ export const ENTER_KEY_CODE = 13;
 
 export const UI_CLASS_NAME = 'cmui';
 
+export const BEM_APP_BAR = 'app_bar';
+
 export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_ACTION_BAR = 'action_bar';
@@ -39,6 +41,8 @@ export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';
 export const BEM_PERSON_PANEL = 'person_panel';
 export const BEM_PERSON_PANEL_DETAILS = `${BEM_PERSON_PANEL}--details`;
 export const BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON = `${BEM_PERSON_PANEL_DETAILS}_action_button`;
+
+export const BEM_POPOVER = 'popover';
 
 export const BEM_SELECT = 'select';
 

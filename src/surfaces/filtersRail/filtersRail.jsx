@@ -66,13 +66,13 @@ const propTypes = {
 
 const defaultProps = {
     children: undefined,
-    classes: null,
+    classes: undefined,
     className: undefined,
     id: undefined,
     isFiltering: false,
     isOpen: undefined,
     moduleType: 'page',
-    onClear: null,
+    onClear: undefined,
     rows: [],
 };
 

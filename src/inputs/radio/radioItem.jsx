@@ -20,6 +20,11 @@ const propTypes = {
     onKeyDown: PropTypes.func,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool,
+    ]),
 };
 
 const defaultProps = {
@@ -33,6 +38,7 @@ const defaultProps = {
     onKeyDown: null,
     style: null,
     tabIndex: -1,
+    value: undefined,
 };
 
 class RadioItem extends React.Component {
@@ -45,9 +51,14 @@ class RadioItem extends React.Component {
     }
 
     onClick() {
-        const { id, index, onClick } = this.props;
+        const {
+            id,
+            index,
+            onClick,
+            value: customValue,
+        } = this.props;
 
-        onClick(id || index);
+        onClick(id || index, customValue);
     }
 
     onKeyDown(event) {
