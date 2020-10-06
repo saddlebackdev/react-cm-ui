@@ -93,7 +93,8 @@ function DropdownButton(props) {
         return dropdownButtonRef.current;
     }
 
-    function onMenuToggle() {
+    function onMenuToggle(event) {
+        event.stopPropagation();
         setIsOpen(!isMenuOpen);
     }
 
