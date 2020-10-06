@@ -107,6 +107,128 @@ const defaultProps = {
     type: null,
 };
 
+const styles = (theme) => ({
+    hasError: {},
+    hasIcon: {},
+    isDisabled: {},
+    isFluid: {},
+    isFocused: {},
+    isLoading: {},
+    isNumberType: {},
+    root: {
+        color: theme.palette.text.primary,
+        display: 'inline-block',
+        fontSize: theme.typography.htmlFontSize,
+        position: 'relative',
+        '& .label': {
+            '&.label-bottom': {
+                marginTop: 8,
+            },
+            '&.label-top': {
+                marginBottom: 8,
+            },
+        },
+        '& .input-required-indicator': {
+            color: theme.palette.error.main,
+            display: 'inline-block',
+            fontSize: theme.typography.fontSize,
+            marginLeft: 3,
+        },
+        '& input': {
+            WebkitAppearance: 'none',
+            backgroundColor: theme.palette.background.primary,
+            borderRadius: 3,
+            border: `1px solid ${theme.palette.border.primary}`,
+            lineHeight: '42px',
+            margin: 0,
+            outline: 'none',
+            padding: [[0, 11]],
+            textAlign: 'left',
+            transition: 'border-color 150ms ease-out',
+            width: '100%',
+            '&::placeholder': {
+                color: theme.palette.text.secondary,
+            },
+        },
+        '& .input-actions': {
+            height: 44,
+            left: 0,
+            position: 'absolute',
+            width: '100%',
+        },
+        '&$isDisabled': {
+            '&.input-icon': {
+                color: theme.palette.text.secondary,
+            },
+            '& input': {
+                backgroundColor: theme.palette.background.secondary,
+                color: theme.palette.text.primary,
+            },
+        },
+        '&$hasError': {
+            '& input': {
+                borderColor: `${theme.palette.error.main} !important`,
+            },
+            '&.input-error-message': {
+                color: theme.palette.error.main,
+                fontSize: theme.typography.fontSize,
+            },
+        },
+        '&$isFluid': {
+            display: 'block',
+        },
+        '&$hasIcon': {
+            '& .input-actions': {
+                '& > .ui.icon, & > .input-icon-custom': {
+                    marginTop: -8,
+                    position: 'absolute',
+                    right: 11,
+                    top: '50%',
+                },
+            },
+            '& input': {
+                paddingRight: 38,
+            },
+        },
+        '&$isFocused': {
+            '& input': {
+                borderColor: theme.palette.cyan[500],
+            },
+        },
+        '&$isNumberType': {
+            '& input': {
+                MozAppearance: 'textfield',
+                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                    WebkitAppearance: 'none',
+                    margin: 0,
+                },
+            },
+            '& .input-number-controls': {
+                marginTop: -13,
+                position: 'absolute',
+                right: 11,
+                top: '50%',
+                '& button': {
+                    backgroundColor: 'transparent',
+                    border: 0,
+                    display: 'block',
+                    padding: 0,
+                    outline: 'none',
+                    '&:last-child': {
+                        marginTop: 2,
+                    },
+                },
+                '& svg': {
+                    display: 'block',
+                },
+            },
+        },
+        '& + *': {
+            marginTop: 33,
+        },
+    },
+});
+
 class Input extends React.PureComponent {
     constructor(props) {
         super(props);
