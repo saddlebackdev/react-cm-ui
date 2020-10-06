@@ -4,16 +4,18 @@
  */
 
 import React from 'react';
-import mountWithTheme, { createMatchMedia } from '../../../testUtils/enzymeHelpers';
+import {
+    BEM_NAME,
+} from './constants';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import FiltersRailClear from '../filtersRailClear';
 
 describe('<FiltersRailClear />', () => {
-    const bemName = 'some_block--some_element_name';
     const onClearMock = jest.fn();
 
     const props = {
         disable: false,
-        id: bemName,
+        id: BEM_NAME,
         onClear: onClearMock,
     };
 
@@ -24,7 +26,6 @@ describe('<FiltersRailClear />', () => {
             />,
         );
 
-        expect(wrapper).toBeDefined();
         expect(wrapper.exists()).toBe(true);
     });
 
@@ -47,7 +48,11 @@ describe('<FiltersRailClear />', () => {
             />,
         );
 
-        expect(wrapper.find('span').first().prop('id')).toEqual(`${props.id}--clear_button`);
+        expect(wrapper.find('span').first().prop('id')).toEqual(`${props.id}_clear_button`);
+
+        wrapper.setProps({ id: null });
+
+        expect(wrapper.find('span').first().prop('id')).toEqual(null);
     });
 
     it('Should not render if \'onClear\' event is not defined', () => {

@@ -46,7 +46,7 @@ function FiltersRailClear(props) {
                 root: classes.root,
             }}
             disable={disable}
-            id={id ? `${id}--clear_button` : null}
+            id={id ? `${id}_clear_button` : null}
             onClick={onClear}
         >
             Clear Filters

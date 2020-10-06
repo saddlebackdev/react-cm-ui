@@ -4,30 +4,24 @@
  */
 
 import React from 'react';
+import {
+    BEM_NAME,
+    ROW_COLLAPSIBLE,
+    ROW_HEADING,
+    ROW_COMPONENTS,
+} from './constants';
 import mountWithTheme, { createMatchMedia } from '../../../testUtils/enzymeHelpers';
 import FiltersRail from '../filtersRail';
 
 describe('<FiltersRail />', () => {
-    const bemName = 'some_block--some_element_name-some_modifier';
-
     const props = {
-        className: bemName,
-        id: bemName,
+        className: BEM_NAME,
+        id: BEM_NAME,
         rows: [
             {
-                collapsible: true,
-                heading: 'Category',
-                components: [
-                    {
-                        props: {
-                            checked: false,
-                            count: 10,
-                            label: 'Label 1',
-                            onChange: jest.fn(),
-                        },
-                        type: 'checkbox',
-                    },
-                ],
+                collapsible: ROW_COLLAPSIBLE,
+                heading: ROW_HEADING,
+                components: ROW_COMPONENTS,
             },
         ],
         isOpen: true,
@@ -38,7 +32,6 @@ describe('<FiltersRail />', () => {
             <FiltersRail />,
         );
 
-        expect(wrapper).toBeDefined();
         expect(wrapper.exists()).toBe(true);
     });
 

@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import * as React from 'react';
 import mediaQuery from 'css-mediaquery';
@@ -11,13 +12,21 @@ const getThemeProviderWrappingComponent = (customTheme) => ({ children }) => (
     </ThemeProvider>
 );
 
-export function createMatchMedia(width) {
+export const createMatchMedia = (width) => {
     return (query) => ({
         matches: mediaQuery.match(query, { width }),
         addListener: () => {},
         removeListener: () => {},
     });
-}
+};
+
+export const waitForComponentToPaint = async (wrapper) => {
+    await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+
+        wrapper.update();
+    });
+};
 
 function mountWithTheme(component, customTheme) {
     const wrapper = mount(
