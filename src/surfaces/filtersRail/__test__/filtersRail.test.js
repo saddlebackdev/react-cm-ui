@@ -74,9 +74,9 @@ describe('<FiltersRail />', () => {
             />,
         );
 
-        const root = wrapper.find('div').first();
+        const rootNode = wrapper.find('div').first();
 
-        expect(root.hasClass(rootOverride)).toEqual(true);
+        expect(rootNode.hasClass(rootOverride)).toEqual(true);
     });
 
     it('Should render with proper classNames', () => {
@@ -86,12 +86,12 @@ describe('<FiltersRail />', () => {
             />,
         );
 
-        const root = wrapper.find('div').first();
+        const rootNode = wrapper.find('div').first();
 
-        expect(root.hasClass('cmui')).toEqual(true);
-        expect(root.hasClass('filters_rail')).toEqual(true);
-        expect(root.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
-        expect(root.hasClass(props.className)).toEqual(true);
+        expect(rootNode.hasClass('cmui')).toEqual(true);
+        expect(rootNode.hasClass('filters_rail')).toEqual(true);
+        expect(rootNode.hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
+        expect(rootNode.hasClass(props.className)).toEqual(true);
     });
 
     it('Should have expected \'id\' prop', () => {

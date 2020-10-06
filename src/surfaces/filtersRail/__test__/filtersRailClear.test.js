@@ -36,9 +36,9 @@ describe('<FiltersRailClear />', () => {
             />,
         );
 
-        const root = wrapper.find('A');
+        const rootNode = wrapper.find('A');
 
-        expect(root.find('span').first().hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
+        expect(rootNode.find('span').first().hasClass(/(makeStyles)-(rootNode)-(\d+)/)).toEqual(true);
     });
 
     it('Should have expected \'id\' prop', () => {
@@ -63,9 +63,9 @@ describe('<FiltersRailClear />', () => {
             />,
         );
 
-        const root = wrapper.find('A');
+        const rootNode = wrapper.find('A');
 
-        expect(root.find('span').first().exists()).toBe(false);
+        expect(rootNode.find('span').first().exists()).toBe(false);
     });
 
     it('Should call \'onClear\' event onClick', () => {
