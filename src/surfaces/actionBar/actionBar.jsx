@@ -2,7 +2,7 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
+import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch';
 import Button from '../../inputs/button';
 import DropdownButton from '../../inputs/dropdownButton';
@@ -304,7 +304,7 @@ class ActionBar extends React.PureComponent {
                                                                 })}
                                                             >
                                                                 {/* eslint-disable max-len */}
-                                                                {/* {actionsButton && (
+                                                                {actionsButton && (
                                                                 <ActionBarActionsButton
                                                                     className={actionsButton.className}
                                                                     iconBackgroundColor={actionsButton.iconBackgroundColor}
@@ -317,7 +317,7 @@ class ActionBar extends React.PureComponent {
                                                                     options={actionsButton.options}
                                                                     style={actionsButton.style}
                                                                 />
-                                                                )} */}
+                                                                )}
                                                                 {/* eslint-enable max-len */}
 
                                                                 {iconBack && (
