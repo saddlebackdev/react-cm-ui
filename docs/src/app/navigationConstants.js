@@ -408,6 +408,11 @@ export const navigationItems = [
                         path: 'action-bar',
                     },
                     {
+                        component: 'appBar',
+                        label: 'App Bar',
+                        path: 'app-bar',
+                    },
+                    {
                         component: 'card',
                         label: 'Card',
                         levelFour: [

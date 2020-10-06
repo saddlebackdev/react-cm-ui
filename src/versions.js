@@ -21,6 +21,13 @@ const versions = {
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
             },
+            surfaces: {
+                appBar: {
+                    evLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
         },
         theme: {
             breakpoints: '1.0.0',
