@@ -8,10 +8,7 @@ import {
 import React, { useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 
-const useStyles = makeStyles((theme) => ({
-    bodyCopy: {
-        color: theme.palette.text.secondary,
-    },
+const useStyles = makeStyles(() => ({
     cancelButton: {
         marginLeft: 'auto',
     },
