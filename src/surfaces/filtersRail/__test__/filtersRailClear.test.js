@@ -38,7 +38,7 @@ describe('<FiltersRailClear />', () => {
 
         const rootNode = wrapper.find('A');
 
-        expect(rootNode.find('span').first().hasClass(/(makeStyles)-(rootNode)-(\d+)/)).toEqual(true);
+        expect(rootNode.find('span').first().hasClass(/(makeStyles)-(root)-(\d+)/)).toEqual(true);
     });
 
     it('Should have expected \'id\' prop', () => {
