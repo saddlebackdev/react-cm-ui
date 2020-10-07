@@ -575,7 +575,7 @@ class Modal extends React.Component {
 
                         <ScrollBar
                             autoHeight={autoHeight}
-                            autoHeightMax={autoHeightMax}
+                            autoHeightMax={autoHeightMax || null}
                             autoHide
                             onScrollStart={this.onScrollStart}
                             onScrollStop={this.onScrollStop}
