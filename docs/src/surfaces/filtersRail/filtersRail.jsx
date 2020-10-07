@@ -26,7 +26,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsActionBar(props) {
+function DocsFiltersRail(props) {
     const {
         location: {
             pathname,
@@ -97,6 +97,6 @@ function DocsActionBar(props) {
     );
 }
 
-DocsActionBar.propTypes = propTypes;
+DocsFiltersRail.propTypes = propTypes;
 
-export default DocsActionBar;
+export default DocsFiltersRail;

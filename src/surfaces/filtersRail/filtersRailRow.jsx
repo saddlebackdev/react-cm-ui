@@ -7,7 +7,8 @@ import {
     PROP_TYPES_ROW,
 } from './constants';
 import {
-    BEM_FILTERS_RAIL_ROW, BEM_FILTERS_RAIL_ROW_COMONENT,
+    BEM_FILTERS_RAIL_ROW,
+    BEM_FILTERS_RAIL_ROW_COMONENT,
 } from '../../global/constants';
 import FiltersRailRowComponent from './filtersRailRowComponent';
 import Collapse from '../../utils/collapse';
