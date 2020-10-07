@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function ModalSample() {
+function ModalLeftAlignedSample() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const classes = useStyles();
@@ -28,7 +28,7 @@ function ModalSample() {
             <Button
                 onClick={onToggle}
             >
-                Open Modal
+                Open Left Aligned Modal
             </Button>
 
             <Modal
@@ -92,28 +92,28 @@ function ModalSample() {
                             value: 1,
                         }}
                     />
-
-                    <Modal.Actions>
-                        <Button
-                            classes={{
-                                root: classes.cancelButton,
-                            }}
-                            color="alternate"
-                            onClick={onToggle}
-                        >
-                            Cancel
-                        </Button>
-
-                        <Button
-                            onClick={onToggle}
-                        >
-                            CTA Label
-                        </Button>
-                    </Modal.Actions>
                 </Modal.Content>
+
+                <Modal.Actions>
+                    <Button
+                        classes={{
+                            root: classes.cancelButton,
+                        }}
+                        color="alternate"
+                        onClick={onToggle}
+                    >
+                        Cancel
+                    </Button>
+
+                    <Button
+                        onClick={onToggle}
+                    >
+                        CTA Label
+                    </Button>
+                </Modal.Actions>
             </Modal>
         </div>
     );
 }
 
-export default ModalSample;
+export default ModalLeftAlignedSample;

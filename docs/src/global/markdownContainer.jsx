@@ -15,29 +15,31 @@ const defaultProps = {
 
 const useStyles = makeStyles(({
     root: {
-        '& .description': {
-            fontSize: '1.125rem',
-            lineHeight: 1.35,
-            margin: '44px 0',
-        },
-        '& h1': {},
-        '& h2': {
-            margin: '44px 0 8px',
-        },
-        '& h3': {
-            margin: '44px 0 11px',
-        },
-        '& h4': {},
-        '& h5': {},
-        '& h6': {},
-        '& p': {
-            marginBottom: '16px',
-        },
-        '& .prop_name': {
-            fontFamily: 'monospace',
-        },
-        '& .prop_type': {
-            fontFamily: 'monospace',
+        '& >': {
+            '& .description': {
+                fontSize: '1.125rem',
+                lineHeight: 1.35,
+                margin: '44px 0',
+            },
+            '& h1': {},
+            '& h2': {
+                margin: '44px 0 8px',
+            },
+            '& h3': {
+                margin: '44px 0 11px',
+            },
+            '& h4': {},
+            '& h5': {},
+            '& h6': {},
+            '& p': {
+                marginBottom: '16px',
+            },
+            '& .prop_name': {
+                fontFamily: 'monospace',
+            },
+            '& .prop_type': {
+                fontFamily: 'monospace',
+            },
         },
     },
 }));

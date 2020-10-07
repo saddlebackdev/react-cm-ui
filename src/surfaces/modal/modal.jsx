@@ -36,6 +36,7 @@ const propTypes = {
         closeButton: PropTypes.string,
         dimmer: PropTypes.string,
         innerContainerClasses: PropTypes.string,
+        padding: PropTypes.string,
         root: PropTypes.string,
         scrollContainer: PropTypes.string,
     }),
@@ -167,14 +168,14 @@ const styles = (theme) => ({
         animation: '$modalDimmerFadeIn 150ms ease-out forwards',
         animationDelay: '100ms',
         backfaceVisibility: 'hidden',
-        backgroundColor: 'rgba(255, 255, 255, .3)',
+        backgroundColor: 'rgba(255, 255, 255, .7)',
         height: '100%',
         left: 0,
         opacity: 0,
         position: 'absolute',
         top: 0,
         width: '100%',
-        zIndex: `${theme.zIndex.drawer} + 2`,
+        zIndex: `${theme.zIndex.drawer + 2}`,
     },
     innerContainerClasses: {
         animation: '$modalSlideIn 200ms ease-out forwards',
@@ -183,16 +184,11 @@ const styles = (theme) => ({
         borderRadius: theme.shape.borderRadius.main,
         boxShadow: '0 15px 28px 0 rgba(0, 0, 0, 0.13)',
         position: 'relative',
-        '& h2': {
-            marginBottom: theme.spacing(2),
-        },
-        '& p': {
-            margin: [[theme.spacing(2), 0]],
-        },
         [theme.breakpoints.up('md')]: {
             backgroundColor: theme.palette.background.primary,
         },
     },
+    padding: {},
     root: {
         alignItems: 'center',
         backfaceVisibility: 'hidden',
@@ -569,7 +565,10 @@ class Modal extends React.Component {
                             onScrollStop={this.onScrollStop}
                         >
                             <div
-                                className={classes.scrollContainer}
+                                className={ClassNames(
+                                    classes.scrollContainer,
+                                    classes.padding,
+                                )}
                                 ref={(ref) => { this.modalScrollContainerRef = ref; }}
                             >
                                 {children}

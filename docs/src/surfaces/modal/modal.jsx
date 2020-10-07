@@ -14,7 +14,8 @@ import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
-import ModalSample from './modalSample';
+import ModalLeftAlignedSample from './modalLeftAlignedSample';
+import ModalCenterAlignedSample from './modalCenterAlignedSample';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
 /* eslint-enable import/no-named-default, import/extensions */
@@ -54,15 +55,47 @@ function DocsActionBar(props) {
                         anchorLink="example"
                         variant="h2"
                     >
-                        Basic Modal
+                        Left Aligned Modal
                     </Heading>
-                </MarkdownContainer>
 
-                <Example
-                    rawCode={require('!!raw-loader!./modalSample').default}
-                >
-                    <ModalSample />
-                </Example>
+                    <Typography
+                        variant="body1"
+                    >
+                        Used in situations when 2 or more data capture elements are needed that
+                        differ in component type and or context. Exceptions to these principles are
+                        rare.
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./modalLeftAlignedSample').default}
+                    >
+                        <ModalLeftAlignedSample />
+                    </Example>
+
+                    <Heading
+                        anchorLink="example"
+                        variant="h2"
+                    >
+                        Center Aligned Modal
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Used in situations when only 1 data capture elements is needed to complete
+                        a process or a step in a process, or if 2 are needed that do not differ in
+                        component type and or context. A good deal of judgement is still required
+                        by a UI designer to decide in situations when it would be more appropriate
+                        to use a Left Aligned Dialog instead, as some data capture element in
+                        nature need more space to be useful (text areas, tag select, etc).
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./modalCenterAlignedSample').default}
+                    >
+                        <ModalCenterAlignedSample />
+                    </Example>
+                </MarkdownContainer>
 
                 <ComponentApi
                     docs={[

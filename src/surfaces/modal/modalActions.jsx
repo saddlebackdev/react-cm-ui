@@ -1,3 +1,4 @@
+import { camelCase } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,32 +8,83 @@ import {
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * Defines the `align-items` style property.
+     * It's applied for all screen sizes.
+     */
+    alignItems: PropTypes.oneOf([
+        'baseline',
+        'center',
+        'flex-end',
+        'flex-start',
+        'stretch',
+    ]),
     children: PropTypes.node,
     classes: PropTypes.shape({
+        margin: PropTypes.string,
         root: PropTypes.string,
     }),
     className: PropTypes.string,
+    /**
+     * Defines the `flex-direction` style property.
+     * It is applied for all screen sizes.
+     */
+    direction: PropTypes.oneOf([
+        'column-reverse',
+        'column',
+        'row-reverse',
+        'row',
+    ]),
     id: PropTypes.string,
 };
 
 const defaultProps = {
+    alignItems: 'flex-start',
     children: null,
     classes: null,
     className: null,
+    direction: 'row',
     id: null,
 };
 
 const useStyles = makeStyles((theme) => ({
+    'alignItems-center': {
+        alignItems: 'center',
+    },
+    'alignItems-flexStart': {
+        alignItems: 'flex-start',
+    },
+    'alignItems-flexEnd': {
+        alignItems: 'flex-end',
+    },
+    'alignItems-baseline': {
+        alignItems: 'baseline',
+    },
+    'direction-column': {
+        flexDirection: 'column',
+    },
+    'direction-columnReverse': {
+        flexDirection: 'column-reverse',
+    },
+    'direction-rowReverse': {
+        flexDirection: 'row-reverse',
+    },
+    'justifyContent-center': {
+        justifyContent: 'center',
+    },
+    margin: {},
     root: {
         display: 'flex',
-        marginTop: theme.spacing(5),
+        margin: [[theme.spacing(3), 0, 0]],
     },
 }));
 
 function ModalActions(props) {
     const {
+        alignItems,
         children,
         className,
+        direction,
         id,
     } = props;
 
@@ -44,6 +96,12 @@ function ModalActions(props) {
                 BEM_MODAL_ACTIONS,
                 classes.root,
                 className,
+                classes.margin,
+                {
+
+                    [classes[`alignItems-${camelCase(alignItems)}`]]: alignItems !== 'flex-start',
+                    [classes[`direction-${camelCase(direction)}`]]: direction !== 'row',
+                },
             )}
             id={id}
         >
