@@ -210,6 +210,9 @@ const useStyles = makeStyles((theme) => {
         },
         isFluid: {},
         isUnderlined: {},
+        label: {
+            marginBottom: 8,
+        },
         root: {
             display: 'inline-block',
             minWidth: 200,
@@ -272,7 +275,7 @@ const useStyles = makeStyles((theme) => {
                     top: -2,
                 },
                 '& .Select-value-label': {
-                    color: `${selectTextColor} !important`,
+                    color: `${p.text.contrastText} !important`,
                 },
                 '& .Select-arrow-zone, & .Select-clear-zone': {
                     '& .ui.icon .icon-use-path': {
@@ -459,8 +462,8 @@ const useStyles = makeStyles((theme) => {
                 display: 'block',
                 fontSize: '14px',
                 fontWeight: theme.typography.fontWeightMedium,
-                margin: `${selectOptionMarginVertical} 0`,
-                padding: `${selectOptionPaddingVertical} ${selectOptionPaddingHorizontal}`,
+                margin: `${selectOptionMarginVertical}px 0`,
+                padding: `${selectOptionPaddingVertical}px ${selectOptionPaddingHorizontal}px`,
                 whiteSpace: 'nowrap',
                 '&.is-selected': {
                     backgroundColor: selectOptionSelectedBg,
@@ -742,7 +745,10 @@ function Select(props) {
             {label && (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
                 <label
-                    className="label"
+                    className={ClassNames(
+                        'label',
+                        classes.label,
+                    )}
                 >
                     {label}
 
