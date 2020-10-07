@@ -21,7 +21,7 @@ import withTheme from '../../styles/withTheme';
 
 const propTypes = {
     /**
-     * The content of the ActionBar
+     * The content of the FiltersRail
      */
     children: PropTypes.node,
     /**
@@ -31,21 +31,34 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
-     * Assign additional class names to ActionBar.
+     * Assign additional class names to FiltersRail.
      */
     className: PropTypes.string,
     /**
-     * The `id` of the ActionBar.
+     * The `id` of the FiltersRail.
      */
     id: PropTypes.string,
+    /**
+     * If `true`, FiltersRail's clear button becomes actionable.
+     */
     isFiltering: PropTypes.bool,
+    /**
+     * If `true`, FiltersRail is open
+     */
     isOpen: PropTypes.bool,
     /**
-     * Assigns styling to the ActionBar dependant on
+     * Assigns styling to the FiltersRail dependant on
      * whether it is a child of the Page or Drawer component.
      */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    /**
+     * Event handler for consumer to clear filters.
+     */
     onClear: PropTypes.func,
+    /**
+     * Array of objects that are used to setup the grid system
+     * in the FiltersRail.
+     */
     rows: PropTypes.arrayOf(
         PropTypes.shape({
             classes: PROP_TYPES_ROW.classes,
@@ -57,6 +70,9 @@ const propTypes = {
             id: PROP_TYPES_ROW.id,
         }),
     ),
+    /**
+     * HC's theme.
+     */
     theme: PropTypes.shape({
         breakpoints: PropTypes.shape({
             only: PropTypes.func,

@@ -6,11 +6,23 @@ import A from '../../navigation/a';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to FiltersRailClear.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * If `true`, clear button is disabled.
+     */
     disable: PropTypes.bool,
+    /**
+     * The `id` of the FiltersRailClear.
+     */
     id: PropTypes.string,
+    /**
+     * Event handler for consumer to clear filters.
+     */
     onClear: PropTypes.func,
 };
 

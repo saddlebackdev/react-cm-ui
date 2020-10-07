@@ -18,12 +18,34 @@ import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to FiltersRailRow.
+     */
     classes: PROP_TYPES_ROW.classes,
+    /**
+     * Assign additional class names to FiltersRailRow.
+     */
     className: PROP_TYPES_ROW.className,
+    /**
+     * If `true`, FiltersRailRow is collapsed by default.
+     */
     collapse: PROP_TYPES_ROW.collapse,
+    /**
+     * If `true`, FiltersRailRow is collapsible.
+     */
     collapsible: PROP_TYPES_ROW.collapsible,
+    /**
+     * Array of objects that are used to setup each component within
+     * the FiltersRailRow
+     */
     components: PROP_TYPES_ROW.components,
+    /**
+     * Heading for the FiltersRailRow.
+     */
     heading: PROP_TYPES_ROW.heading,
+    /**
+     * The `id` of the FiltersRailRow.
+     */
     id: PROP_TYPES_ROW.id,
 };
 
