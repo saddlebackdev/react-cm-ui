@@ -19,11 +19,20 @@ const propTypes = {
         'flex-start',
         'stretch',
     ]),
+    /**
+     * The content of the ModalActions
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to ModalActions.
+     */
     classes: PropTypes.shape({
         margin: PropTypes.string,
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to ModalActions.
+     */
     className: PropTypes.string,
     /**
      * Defines the `flex-direction` style property.
@@ -35,6 +44,9 @@ const propTypes = {
         'row-reverse',
         'row',
     ]),
+    /**
+     * The `id` of the ModalActions.
+     */
     id: PropTypes.string,
 };
 

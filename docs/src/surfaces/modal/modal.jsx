@@ -18,6 +18,8 @@ import ModalLeftAlignedSample from './modalLeftAlignedSample';
 import ModalCenterAlignedSample from './modalCenterAlignedSample';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
+import { default as modalActionsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modalActions';
+import { default as modalContentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modalContent';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -84,10 +86,7 @@ function DocsActionBar(props) {
                     >
                         Used in situations when only 1 data capture elements is needed to complete
                         a process or a step in a process, or if 2 are needed that do not differ in
-                        component type and or context. A good deal of judgement is still required
-                        by a UI designer to decide in situations when it would be more appropriate
-                        to use a Left Aligned Dialog instead, as some data capture element in
-                        nature need more space to be useful (text areas, tag select, etc).
+                        component type and or context.
                     </Typography>
 
                     <Example
@@ -100,6 +99,8 @@ function DocsActionBar(props) {
                 <ComponentApi
                     docs={[
                         rootDoc,
+                        modalActionsDoc,
+                        modalContentDoc,
                     ]}
                 />
 

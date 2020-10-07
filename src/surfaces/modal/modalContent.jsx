@@ -19,11 +19,23 @@ const propTypes = {
         'flex-start',
         'stretch',
     ]),
+    /**
+     * The content of the ModalContent
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to ModalContent.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to ModalContent.
+     */
     className: PropTypes.string,
+    /**
+     * The `id` of the ModalContent.
+     */
     id: PropTypes.string,
 };
 

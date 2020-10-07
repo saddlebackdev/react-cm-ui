@@ -24,6 +24,9 @@ import ModalContent from './modalContent';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * If `true`, Modal's height will adjust to the content.
+     */
     autoHeight: PropTypes.bool,
     /**
      * The content of the Modal
@@ -55,6 +58,9 @@ const propTypes = {
      * The `id` of the Modal.
      */
     id: PropTypes.string,
+    /**
+     * If `true`, Modal is open.
+     */
     isOpen: PropTypes.bool.isRequired,
     /**
      * The `maxHeight` of the Modal.
@@ -84,8 +90,18 @@ const propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * Event handler that is called when user clicks outside of a Modal.
+     */
     onClickOutside: PropTypes.bool,
+    /**
+     * Event handler for closing the Modal.
+     * Only used when Modal needs a close button in the top right.
+     */
     onClose: PropTypes.func,
+    /**
+     * Event handler called after closing animation has completed.
+     */
     onOpenComplete: PropTypes.func,
     /**
      * The `width` of the Modal.
