@@ -14,7 +14,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     id: undefined,
-    isOpen: undefined,
+    isOpen: false,
     style: {},
 };
 

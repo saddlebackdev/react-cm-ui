@@ -17,10 +17,25 @@ import Select from '../../inputs/select';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to FiltersRailRowComponent.
+     */
     classes: PROP_TYPES_ROW_COMPONENT.classes,
+    /**
+     * Assign additional class names to FiltersRailRowComponent.
+     */
     className: PROP_TYPES_ROW_COMPONENT.className,
+    /**
+     * The props to be passed into the component.
+     */
     componentProps: PROP_TYPES_ROW_COMPONENT.componentProps,
+    /**
+     * The `id` of the FiltersRailRowComponent.
+     */
     id: PROP_TYPES_ROW_COMPONENT.id,
+    /**
+     * The type of component to be rendered.
+     */
     type: PROP_TYPES_ROW_COMPONENT.type.isRequired,
 };
 
