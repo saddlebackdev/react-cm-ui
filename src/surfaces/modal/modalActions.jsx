@@ -17,7 +17,6 @@ const propTypes = {
         'center',
         'flex-end',
         'flex-start',
-        'stretch',
     ]),
     /**
      * The content of the ModalActions
@@ -81,8 +80,8 @@ const useStyles = makeStyles((theme) => ({
     'direction-rowReverse': {
         flexDirection: 'row-reverse',
     },
-    'justifyContent-center': {
-        justifyContent: 'center',
+    'direction-row': {
+        flexDirection: 'row',
     },
     margin: {},
     root: {
@@ -109,11 +108,8 @@ function ModalActions(props) {
                 classes.root,
                 className,
                 classes.margin,
-                {
-
-                    [classes[`alignItems-${camelCase(alignItems)}`]]: alignItems !== 'flex-start',
-                    [classes[`direction-${camelCase(direction)}`]]: direction !== 'row',
-                },
+                classes[`alignItems-${camelCase(alignItems)}`],
+                classes[`direction-${camelCase(direction)}`],
             )}
             id={id}
         >

@@ -17,7 +17,6 @@ const propTypes = {
         'center',
         'flex-end',
         'flex-start',
-        'stretch',
     ]),
     /**
      * The content of the ModalContent
@@ -99,10 +98,7 @@ function ModalContent(props) {
                 BEM_MODAL_CONTENT,
                 classes.root,
                 className,
-                {
-
-                    [classes[`alignItems-${camelCase(alignItems)}`]]: alignItems !== 'flex-start',
-                },
+                classes[`alignItems-${camelCase(alignItems)}`],
             )}
             id={id}
         >

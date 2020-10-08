@@ -15,6 +15,7 @@ import {
     BEM_MODAL,
     BEM_MODAL_DIMMER,
     BEM_MODAL_INNER_CONTAINER,
+    BEM_MODAL_TITLE,
 } from '../../global/constants';
 import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';
@@ -362,11 +363,11 @@ class Modal extends React.Component {
 
     onCloseBefore() {
         // eslint-disable-next-line react/no-find-dom-node
-        const nodePortal = ReactDOM.findDOMNode(this);
-        const modalContainer = nodePortal.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
+        const portalNode = ReactDOM.findDOMNode(this);
+        const modalContainer = portalNode.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
         const animationEvent = domUtils.cssAnimationType(modalContainer);
 
-        nodePortal.classList.add(MODAL_ANIMATION_OUT_CLASS_NAME);
+        portalNode.classList.add(MODAL_ANIMATION_OUT_CLASS_NAME);
 
         this.modalContainerNode.addEventListener(animationEvent, this.onCloseAnimationComplete);
     }
@@ -379,9 +380,9 @@ class Modal extends React.Component {
         } = this.props;
 
         // eslint-disable-next-line react/no-find-dom-node
-        const nodePortal = ReactDOM.findDOMNode(this);
+        const portalNode = ReactDOM.findDOMNode(this);
 
-        this.modalContainerNode = nodePortal.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
+        this.modalContainerNode = portalNode.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
 
         const modalLength = document.querySelectorAll(`.${UI_CLASS_NAME}.${BEM_MODAL}`).length;
         const animationEvent = domUtils.cssAnimationType(this.modalContainerNode);
@@ -397,15 +398,15 @@ class Modal extends React.Component {
         if (modalLength >= 2) {
             zIndex += modalLength;
 
-            nodePortal.style.zIndex = zIndex;
+            portalNode.style.zIndex = zIndex;
 
             this.modalContainerNode.style.zIndex = zIndex;
 
-            nodePortal.querySelector('.modal-dimmer').style.display = 'none';
+            portalNode.querySelector(`.${BEM_MODAL_DIMMER}`).style.display = 'none';
         } else {
             this.toggleBodyStyle({ enable: true });
 
-            nodePortal.style.zIndex = zIndex - 1;
+            portalNode.style.zIndex = zIndex - 1;
 
             this.modalContainerNode.style.zIndex = zIndex + modalLength;
         }
@@ -423,9 +424,9 @@ class Modal extends React.Component {
         }
 
         if (autoHeight) {
-            const modalPaddingBottom = parseInt(getComputedStyle(nodePortal).paddingBottom, 10);
-            const modalPaddingTop = parseInt(getComputedStyle(nodePortal).paddingTop, 10);
-            const modalHeight = nodePortal.offsetHeight;
+            const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
+            const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
+            const modalHeight = portalNode.offsetHeight;
             const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
 
             this.setState({ autoHeightMax: newAutoHeightMax });
@@ -559,6 +560,7 @@ class Modal extends React.Component {
                     >
                         {isFunction(onCloseProp) && (
                             <Button
+                                className={`${BEM_MODAL}--close_button`}
                                 classes={{
                                     root: classes.closeButton,
                                 }}
