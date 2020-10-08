@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.0 - 10/08/2020
+
+#### Feature
+- [PR #218](https://github.com/saddlebackdev/react-cm-ui/pull/218) / Merge Commit 962dc32666ec4d3fcdc336e620a4e1af92d982a0
+  - AppBar gap closures.
+
+#### Bug
+- [PR #219](https://github.com/saddlebackdev/react-cm-ui/pull/219) / Merge Commit 2e2dc14f0c2307034de03aa9d411eac6ac694cc5
+  - Fixes disabled styling in Radio.
+- [PR #221](https://github.com/saddlebackdev/react-cm-ui/pull/221) / Merge Commit 2c058e0b0f623572320b5a7c26d6f19b144240fa
+  - Fixes styling issues in Select.
+
 ## 9.17.5 - 10/05/2020
 
 #### Feature
@@ -17,13 +29,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Bug
 - [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
-  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+  - Change the word "Baptism" to "Baptized" in PersonCoreMilestones.
 
 ## 9.16.3 - 10/01/2020
 
 #### Bug
 - [PR #215](https://github.com/saddlebackdev/react-cm-ui/pull/214) / Merge Commit 06c7a7236f9f6bbf6744e9cd17d714d95f198cbd
-  - Change the word "Bapstism" to "Baptized" in PersonCoreMilestones.
+  - Change the word "Baptism" to "Baptized" in PersonCoreMilestones.
 
 ## 9.17.2 - 10/01/2020
 
