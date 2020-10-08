@@ -12,10 +12,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from '../../dataDisplay/icon';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     autoComplete: PropTypes.oneOf(['off', 'on']),
     autoFocus: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to Input.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        hasError: PropTypes.string,
+        hasIcon: PropTypes.string,
+        isDisabled: PropTypes.string,
+        isFluid: PropTypes.string,
+        isFocused: PropTypes.string,
+        isLoading: PropTypes.string,
+        isNumberType: PropTypes.string,
+    }).isRequired,
     className: PropTypes.string,
     /**
      * An Input can be disabled.
@@ -60,10 +74,12 @@ const propTypes = {
     required: PropTypes.bool,
     showSpinners: PropTypes.bool,
     style: PropTypes.shape({}),
-    tabIndex: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    /**
+     * Indicates whether or not the Input can be focused and where it participates in
+     * sequential keyboard navigation.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+     */
+    tabIndex: PropTypes.number,
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -103,9 +119,132 @@ const defaultProps = {
     required: false,
     showSpinners: true,
     style: null,
-    tabIndex: null,
+    tabIndex: -1,
     type: null,
+    value: '',
 };
+
+const styles = (theme) => ({
+    hasError: {},
+    hasIcon: {},
+    isDisabled: {},
+    isFluid: {},
+    isFocused: {},
+    isLoading: {},
+    isNumberType: {},
+    root: {
+        color: theme.palette.text.primary,
+        display: 'inline-block',
+        fontSize: theme.typography.htmlFontSize,
+        position: 'relative',
+        '& .label': {
+            '&.label-bottom': {
+                marginTop: 8,
+            },
+            '&.label-top': {
+                marginBottom: 8,
+            },
+        },
+        '& .input-required-indicator': {
+            color: theme.palette.error.main,
+            display: 'inline-block',
+            fontSize: theme.typography.fontSize,
+            marginLeft: 3,
+        },
+        '& input': {
+            WebkitAppearance: 'none',
+            backgroundColor: theme.palette.background.primary,
+            borderRadius: 3,
+            border: `1px solid ${theme.palette.border.primary}`,
+            lineHeight: '42px',
+            margin: 0,
+            outline: 'none',
+            padding: [[0, 11]],
+            textAlign: 'left',
+            transition: 'border-color 150ms ease-out',
+            width: '100%',
+            '&::placeholder': {
+                color: theme.palette.text.secondary,
+            },
+        },
+        '& .input-actions': {
+            height: 44,
+            left: 0,
+            position: 'absolute',
+            width: '100%',
+        },
+        '&$isDisabled': {
+            '&.input-icon': {
+                color: theme.palette.text.secondary,
+            },
+            '& input': {
+                backgroundColor: theme.palette.background.secondary,
+                color: theme.palette.text.primary,
+            },
+        },
+        '&$hasError': {
+            '& input': {
+                borderColor: `${theme.palette.error.main} !important`,
+            },
+            '&.input-error-message': {
+                color: theme.palette.error.main,
+                fontSize: theme.typography.fontSize,
+            },
+        },
+        '&$isFluid': {
+            display: 'block',
+        },
+        '&$hasIcon': {
+            '& .input-actions': {
+                '& > .ui.icon, & > .input-icon-custom': {
+                    marginTop: -8,
+                    position: 'absolute',
+                    right: 11,
+                    top: '50%',
+                },
+            },
+            '& input': {
+                paddingRight: 38,
+            },
+        },
+        '&$isFocused': {
+            '& input': {
+                borderColor: theme.palette.cyan[500],
+            },
+        },
+        '&$isNumberType': {
+            '& input': {
+                MozAppearance: 'textfield',
+                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                    WebkitAppearance: 'none',
+                    margin: 0,
+                },
+            },
+            '& .input-number-controls': {
+                marginTop: -13,
+                position: 'absolute',
+                right: 11,
+                top: '50%',
+                '& button': {
+                    backgroundColor: 'transparent',
+                    border: 0,
+                    display: 'block',
+                    padding: 0,
+                    outline: 'none',
+                    '&:last-child': {
+                        marginTop: 2,
+                    },
+                },
+                '& svg': {
+                    display: 'block',
+                },
+            },
+        },
+        '& + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
+});
 
 class Input extends React.PureComponent {
     constructor(props) {
@@ -274,9 +413,10 @@ class Input extends React.PureComponent {
             max,
             min,
             type,
-            onChange,
         } = this.props;
+
         const isDisabled = disable || disabled;
+
         // eslint-disable-next-line no-underscore-dangle
         const { value } = this._input;
 
@@ -377,6 +517,7 @@ class Input extends React.PureComponent {
     render() {
         const {
             autoComplete,
+            classes,
             className,
             disable,
             disabled,
@@ -399,38 +540,49 @@ class Input extends React.PureComponent {
             name,
             placeholder,
             required,
+            showSpinners,
             style,
             tabIndex,
-            showSpinners,
             value,
         } = this.props;
+
         const {
             isFocused,
             inputActionsTopPosition,
             showRequiredIndicator,
         } = this.state;
+
         const type = this.getType();
         const newLabelPosition = labelPosition || 'top';
         const isDisabled = disable || disabled;
-        const containerClasses = ClassNames('ui', 'input', className, {
-            'input-disabled': isDisabled,
-            'input-error': error,
-            'input-fluid': fluid,
-            'input-has-value': value,
-            'input-icon': icon,
-            'input-focused': isFocused,
-            'input-inverse': inverse,
-            'input-loading': loading,
-            'input-type-email': type === 'email',
-            'input-type-number': type === 'number',
-            'input-type-password': type === 'password',
-            'input-type-tel': type === 'tel',
-            'input-type-text': type === 'text',
-        });
+
+        const containerClasses = ClassNames(
+            'ui',
+            'input',
+            classes.root,
+            className,
+            {
+                'input-has-value': value,
+                'input-inverse': inverse,
+                'input-type-email': type === 'email',
+                'input-type-password': type === 'password',
+                'input-type-tel': type === 'tel',
+                'input-type-text': type === 'text',
+                [classes.hasError]: error,
+                [classes.hasIcon]: icon || loading,
+                [classes.isDisabled]: isDisabled,
+                [classes.isFluid]: fluid,
+                [classes.isFocused]: isFocused,
+                [classes.isLoading]: loading,
+                [classes.isNumberType]: type === 'number',
+            },
+        );
+
         const labelContainerClassNames = ClassNames('label', {
             'label-bottom': newLabelPosition === 'bottom',
             'label-top': newLabelPosition === 'top',
         });
+
         const renderLabel = () => {
             if (!label) {
                 return null;
@@ -555,4 +707,4 @@ class Input extends React.PureComponent {
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
 
-export default Input;
+export default withStyles(styles)(Input);

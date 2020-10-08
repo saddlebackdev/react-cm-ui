@@ -2,12 +2,11 @@ import ClassNames from 'classnames';
 import React from 'react';
 
 function PhoneInputCountryDropdownValue(selectedOption) {
-    const containerClasses = ClassNames('Select-value');
-
     if (!selectedOption) {
         return null;
     }
 
+    const containerClasses = ClassNames('Select-value');
     const countryCode = selectedOption.value;
     const FlagIcon = selectedOption.icon;
 

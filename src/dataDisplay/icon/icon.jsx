@@ -112,6 +112,7 @@ class Icon extends React.PureComponent {
             tabIndex,
             type,
             title,
+            ...restProps
         } = this.props;
 
         const rootClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
@@ -1584,14 +1585,16 @@ class Icon extends React.PureComponent {
 
         return (
             <Container
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...restProps}
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
                 onMouseDown={this.onMouseDown}
                 style={containerStyle}
-                type={isButton ? 'button' : null}
                 tabIndex={tabIndex}
+                type={isButton ? 'button' : null}
             >
                 <IconSVG
                     circle={circle}

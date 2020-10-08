@@ -2,11 +2,11 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import colorStyles from '../../styles/colorExports'; // eslint-disable-line import/extensions
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
 import Icon from '../../dataDisplay/icon';
+import withTheme from '../../styles/withTheme';
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,
@@ -20,11 +20,16 @@ const propTypes = {
     onClick: PropTypes.func.isRequired,
     onRequestPrompt: PropTypes.func,
     option: PropTypes.shape(rootOptionPropTypeShape).isRequired,
+    theme: PropTypes.shape({
+        palette: PropTypes.shape({
+            grey: PropTypes.shape({}),
+        }),
+    }).isRequired,
 };
 
 const defaultProps = {
     hide: false,
-    idNumber: false,
+    idNumber: 1,
     isSelected: false,
     onRequestPrompt: undefined,
 };
@@ -45,23 +50,22 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
         } = this.props;
 
         if (_.isFunction(option.onClick)) {
-            if (option.disabled) {
-                return false;
+            if (option.disable) {
+                return;
             }
 
-            if (option.requiresPrompt) {
-                if (_.isFunction(onRequestPrompt)) {
-                    onRequestPrompt(option);
-                    return false;
-                }
+            if (option.requiresPrompt && _.isFunction(onRequestPrompt)) {
+                onRequestPrompt(option);
+
+                return;
             }
 
             option.onClick();
-            return false;
+
+            return;
         }
 
         onClick(isSelected ? {} : option);
-        return true;
     }
 
     render() {
@@ -71,6 +75,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             isSelected,
             onRequestPrompt,
             option,
+            theme,
         } = this.props;
 
         const containerClasses = ClassNames(
@@ -79,13 +84,13 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             `${hide ? `actions_button_drawer--option_container-${idNumber}-hide` : ''}`,
             `${!hide && !isSelected ? `actions_button_drawer--option_container-${idNumber}-show` : ''}`,
             {
-                'actions_button_drawer--option_container-selected': isSelected,
+                [`actions_button_drawer--option_container-${idNumber}-selected`]: isSelected,
             },
         );
 
         const parentOptionClasses = ClassNames('actions_button_drawer--option', {
             'actions_button_drawer--option-selected': isSelected,
-            'actions_button_drawer--option-disabled': option.disabled,
+            'actions_button_drawer--option-disabled': option.disable,
         });
 
         const subOptionsClasses = ClassNames('actions_button_drawer--sub_options', {
@@ -112,8 +117,8 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                             className="actions_button_drawer_option--icon_container"
                             id={option.id}
                             style={{
-                                backgroundColor: option.disabled ?
-                                    colorStyles.backgroundColorStatic :
+                                backgroundColor: option.disable ?
+                                    theme.palette.grey[400] :
                                     option.iconBackgroundColor,
                             }}
                         >
@@ -161,4 +166,4 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
 ActionBarActionsButtonDrawerOption.propTypes = propTypes;
 ActionBarActionsButtonDrawerOption.defaultProps = defaultProps;
 
-export default ActionBarActionsButtonDrawerOption;
+export default withTheme(ActionBarActionsButtonDrawerOption);

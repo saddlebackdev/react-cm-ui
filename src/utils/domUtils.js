@@ -82,10 +82,11 @@ const domUtils = {
             MozTransition: 'transitionend',
             WebkitTransition: 'webkitTransitionEnd',
         };
+
         let propValue;
 
         Object.keys(transitions).forEach((key) => {
-            if (!propValue && element.style[key] !== undefined) {
+            if (!propValue && element && element.style[key] !== undefined) {
                 propValue = transitions[key];
             }
         });

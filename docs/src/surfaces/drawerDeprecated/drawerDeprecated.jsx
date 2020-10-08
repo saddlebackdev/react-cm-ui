@@ -1,6 +1,6 @@
 
 import {
-    Button, Card, Container, DrawerDeprecated, Header, Icon, SubNavigation, TitleBar,
+    Button, Card, Container, DrawerDeprecated, Header, Icon, TitleBar,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
@@ -8,6 +8,7 @@ import React from 'react';
 import Main from '../../global/main';
 import Highlighter from '../../global/highlighter';
 import TableProps from '../../global/tableProps';
+import DrawerDeprecatedSubNavigation from './drawerDeprecatedSubNavigation';
 
 const drawerSample = `import React from 'react';
 
@@ -901,15 +902,7 @@ export default class ModulesDrawer extends React.Component {
             <Main page="headers">
                 <TitleBar title="Drawer" />
 
-                <SubNavigation
-                    onClick={this._onSubNavClick}
-                    selected={subNavIndex}
-                    style={{ marginBottom: '33px' }}
-                >
-                    <SubNavigation.Item label="Drawer" />
-                    <SubNavigation.Item label="Header" />
-                    <SubNavigation.Item label="Wing" />
-                </SubNavigation>
+                <DrawerDeprecatedSubNavigation />
 
                 <Header size="large" style={{ margin: '55px 0' }}>
                     This version of the Drawer component has been deprecated.
@@ -920,10 +913,6 @@ export default class ModulesDrawer extends React.Component {
                 </Header>
 
                 {this._renderDrawer()}
-
-                {this._renderHeader()}
-
-                {this._renderWing()}
             </Main>
         );
     }
@@ -1511,245 +1500,6 @@ export default class ModulesDrawer extends React.Component {
         this.setState({
             isFooDrawerOpen: !this.state.isFooDrawerOpen,
         });
-    }
-
-    _renderHeader() {
-        const props = [
-            {
-                name: 'className',
-                type: 'string',
-                default: '',
-                description: 'Additional classes.',
-                allowedTypes: '',
-            }, {
-                name: 'closeButton',
-                type: 'string || object',
-                default: '',
-                description: 'A Drawer\'s close button can be changed using a string or giving custom JSX.',
-                allowedTypes: '',
-            }, {
-                name: 'onClose',
-                type: 'func',
-                default: '',
-                description: 'Required function to change the state of the Drawer.',
-                allowedTypes: '',
-            }, {
-                name: 'style',
-                type: 'object',
-                default: '',
-                description: 'Supply any inline styles to the Drawer\'s container. Mainly used for padding and margins.',
-                allowedTypes: '',
-            }, {
-                name: 'title',
-                type: 'string',
-                default: '',
-                description: 'Required string to give a Drawer a title.',
-                allowedTypes: '',
-            },
-        ];
-        const { nestHeaderIndex, subNavIndex } = this.state;
-        const nestHeaderNavRender = (
-            <SubNavigation
-                drawer
-                onClick={this._onNestHeaderNavClick.bind(this)}
-                selected={nestHeaderIndex}
-                style={{ margin: 0 }}
-            >
-                <SubNavigation.Item label="Section 1" />
-                <SubNavigation.Item label="Section 2" />
-                <SubNavigation.Item label="Section 3" />
-            </SubNavigation>
-        );
-
-        if (subNavIndex === 1) {
-            return (
-                <div>
-                    <Card>
-                        <Header size="large">Props</Header>
-
-                        <TableProps props={props} />
-                    </Card>
-
-                    {/* Header */}
-                    <Header anchor="header" size="large" style={{ marginTop: '55px' }} sub>
-                        Header
-                        <Header.Subheader>
-                            A Drawer can be closed when click outside of it's container.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onDrawerHeaderClick.bind(this)}>Open The Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.isDrawerHeaderOpen}
-                        header
-                        onClose={this._onDrawerHeaderClick.bind(this)}
-                        title="Custom Header"
-                    >
-                        <div>
-                            <DrawerDeprecated.Header>
-                                <SubNavigation style={{ margin: 0 }}>
-                                    <SubNavigation.Item label="Button 1" />
-                                    <SubNavigation.Item label="Button 2" />
-                                    <SubNavigation.Item label="Button 3" />
-                                    <SubNavigation.Item label="Button 4" />
-                                </SubNavigation>
-                            </DrawerDeprecated.Header>
-
-                            <div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                                <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                            </div>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {headerSample}
-                    </Highlighter>
-
-                    {/* Child Component Header Nesting */}
-                    <Header anchor="child-component-header-nesting" size="large" style={{ marginTop: '55px' }} sub>
-                        Child Component Header Nesting
-                        <Header.Subheader>
-                            Nest a Header inside of a child component.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onNestHeaderDrawerClick.bind(this)}>Open Test Drawer</Button>
-
-                    <DrawerDeprecated
-                        isOpen={this.state.nestHeaderDrawer}
-                        header
-                        onClose={this._onNestHeaderDrawerClick.bind(this)}
-                        title="Child Component Header Nesting"
-                    >
-                        {nestHeaderIndex === 0 ? (
-                            <NestHeader1DrawerComponent>
-                                {nestHeaderNavRender}
-                            </NestHeader1DrawerComponent>
-                        ) : nestHeaderIndex === 1 ? (
-                            <NestHeader2DrawerComponent>
-                                {nestHeaderNavRender}
-                            </NestHeader2DrawerComponent>
-                        ) : nestHeaderIndex === 2 ? (
-                            <NestHeader3DrawerComponent>
-                                {nestHeaderNavRender}
-                            </NestHeader3DrawerComponent>
-                        ) : null}
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {nestHeaderSample}
-                    </Highlighter>
-                </div>
-            );
-        }
-    }
-
-    _renderWing() {
-        const props = [
-            {
-                name: 'color',
-                type: 'enum',
-                default: '',
-                description: 'A DrawerWing can have different background colors.',
-                allowedTypes: 'dark-blue, grey, white',
-            }, {
-                name: 'width',
-                type: 'number',
-                default: '',
-                description: 'A DrawerWing can have differnet widths.',
-                allowedTypes: '',
-            },
-        ];
-        const { subNavIndex } = this.state;
-        let wing;
-
-        switch (this.state.isWingOpen) {
-            case 1:
-                wing = <DrawerDeprecated.Wing key={1}>white wing render drawer wing</DrawerDeprecated.Wing>;
-
-                break;
-            case 2:
-                wing = <DrawerDeprecated.Wing color="dark-blue" key={2} width={320}>dark blue wing render drawer wing</DrawerDeprecated.Wing>;
-
-                break;
-            case 3:
-                wing = <DrawerDeprecated.Wing color="grey" key={3} width={320}>grey wing render drawer wing</DrawerDeprecated.Wing>;
-        }
-
-        if (subNavIndex === 2) {
-            return (
-                <div>
-                    <Card>
-                        <Header size="large">Props</Header>
-
-                        <TableProps props={props} />
-                    </Card>
-
-                    {/* Wing */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
-                        Wing
-                        <Header.Subheader>
-                            A Drawer can have different background colors.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Button onClick={this._onDrawerWingClick}>Open Drawer</Button>
-
-                    <DrawerDeprecated
-                        header={false}
-                        isOpen={this.state.isDrawerWingOpen}
-                        maxWidth={500}
-                        onClose={this._onDrawerWingClick}
-                        wing={wing}
-                    >
-                        <div>
-                            <Header>A Blue Drawer</Header>
-
-                            <Button onClick={() => this._openWing(1)}>White Wing</Button>
-
-                            <Button onClick={() => this._openWing(2)}>Dark Blue Wing</Button>
-
-                            <Button onClick={() => this._openWing(3)}>Grey Wing</Button>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
-
-                            <p>Nullam sed convallis ante. Vivamus tempus mauris nisi. Proin ultrices commodo posuere. Sed scelerisque tincidunt justo, in venenatis arcu viverra ut. Cras at nulla pellentesque, dignissim ex ac, venenatis sem. Proin sollicitudin, dolor sit amet porttitor sodales, lorem ligula lacinia lectus, posuere tempor nisi augue vel massa. Fusce eleifend accumsan nulla quis aliquet. Nulla eget dui in dui elementum viverra sit amet quis urna. Pellentesque arcu nibh, tincidunt nec cursus id, blandit sed risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sed tincidunt libero. Nam ut sem ac enim suscipit tristique. Aenean in tellus vitae elit blandit fermentum. Cras commodo volutpat suscipit.</p>
-                        </div>
-                    </DrawerDeprecated>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {wingSample}
-                    </Highlighter>
-                </div>
-            );
-        }
     }
 }
 

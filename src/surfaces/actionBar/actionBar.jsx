@@ -1,63 +1,386 @@
-import _ from 'lodash';
+import {
+    isEmpty,
+    isFunction,
+    find,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
+import {
+    UI_CLASS_NAME,
+    BEM_ACTION_BAR,
+    BEM_ACTION_BAR_SEARCH_VISIBLE,
+    BEM_CONTAINER,
+} from '../../global/constants';
+import { COLUMNS_PROP_TYPES } from './actionBarConstants';
+import ActionBarGridColumns from './actionBarGridColumns';
 import ActionBarSearch from './actionBarSearch';
-import Button from '../../inputs/button';
-import DropdownButton from '../../inputs/dropdownButton';
 import Grid from '../../layout/grid';
-import Icon from '../../dataDisplay/icon';
-import List from '../../dataDisplay/list';
-import Utils from '../../utils/utils';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    children: PropTypes.element,
+    /**
+     * The content of the ActionBar
+     */
+    children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to ActionBar.
+     */
+    classes: PropTypes.shape({
+        drawer: PropTypes.string,
+        grid: PropTypes.string,
+        page: PropTypes.string,
+        root: PropTypes.string,
+    }),
+    /**
+     * Assign additional class names to ActionBar.
+     */
     className: PropTypes.string,
-    columns: PropTypes.arrayOf(PropTypes.shape({
-        button: PropTypes.shape({}),
-        dropdownButton: PropTypes.shape({
-            className: PropTypes.string,
-            color: PropTypes.oneOf(Utils.colorEnums()),
-            disable: PropTypes.bool,
-            iconType: PropTypes.oneOf(['chevron-down', 'plus']),
-            id: PropTypes.string,
-            onClick: PropTypes.func,
-            style: PropTypes.shape({}),
-            title: PropTypes.string,
-        }),
-        jsx: PropTypes.node,
-        list: PropTypes.arrayOf(PropTypes.shape({
-            actionsButton: PropTypes.shape({}),
-            jsx: PropTypes.node,
-            iconBack: PropTypes.shape({}),
-            iconFilter: PropTypes.shape({}),
-            iconGrid: PropTypes.shape({}),
-            iconSearch: PropTypes.shape({}),
-            iconTable: PropTypes.shape({}),
-        })),
-        search: PropTypes.shape({}),
-    })),
+    /**
+     * Array of objects that are used to setup
+     * the grid system in the ActionBar.
+     */
+    columns: COLUMNS_PROP_TYPES,
+    /**
+     * The `id` of the ActionBar.
+     */
     id: PropTypes.string,
+    /**
+     * Defines the `justify-content` style property.
+     * It is applied for all screen sizes.
+     */
+    justifyContent: PropTypes.oneOf([
+        'center',
+        'flex-end',
+        'flex-start',
+        'space-around',
+        'space-between',
+        'space-evenly',
+    ]),
+    /**
+     * Assigns styling to the ActionBar dependant on
+     * whether it is a child of the Page or Drawer component.
+     */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    /**
+     * Event handler for consumer to control state outside
+     * of the ActionBar.
+     */
+    toggleSmSearchVisibleClassName: PropTypes.func,
 };
 
 const defaultProps = {
-    children: undefined,
-    className: undefined,
+    children: null,
+    classes: null,
+    className: null,
     columns: [],
-    id: undefined,
-    moduleType: undefined,
-    style: {},
+    id: null,
+    justifyContent: 'flex-start',
+    moduleType: null,
+    toggleSmSearchVisibleClassName: null,
 };
 
-const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer-has_action_bar';
-const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page-has_action_bar';
-const HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'drawer--content-has_action_bar_mobile_search_visible';
-const HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'page--container-has_action_bar_mobile_search_visible';
+const styles = (theme) => {
+    const actionsButtonDrawerOptionHeight = 55;
 
-class ActionBar extends React.PureComponent {
+    /**
+     * Forwards
+     * Step 1: Fade out title and non-selected parent options
+     */
+    const forwardsStep1Duration = theme.transitions.duration.shorter;
+
+    /**
+     * Step 2: Reveal selected parent option by highlighting it.
+     */
+    const forwardsStep2Delay = forwardsStep1Duration + 50;
+    const forwardsStep2Duration = theme.transitions.duration.standard;
+
+    /**
+     * Step 3: Move selected parent option to top of drawer and show --sub_options
+     */
+    const forwardsStep3Delay = forwardsStep1Duration + forwardsStep2Delay + forwardsStep2Duration;
+    const forwardsStep3Duration = theme.transitions.duration.standard;
+
+    /**
+     * Step 4: By staggering, fade in and move down sub options.
+     */
+    const forwardsStep4Delay = forwardsStep3Delay + forwardsStep3Duration;
+    const forwardsStep4Duration = theme.transitions.duration.standard;
+
+    /**
+     * Backwards
+     * Step 1: These will happen right away, in otherwords, no delay.
+     *         Move sub options up and fade out
+     *         Move selected option back down
+     */
+    const backwardsStep1Duration = theme.transitions.duration.shorter;
+
+    /**
+     * Step 2: Move selected parent option back down and hide --sub_options
+     */
+    const backwardsStep2Delay = backwardsStep1Duration + 50;
+    const backwardsStep2Duration = theme.transitions.duration.standard;
+
+    /**
+     * Step 3: Remove highlight on selected option
+     */
+    const backwardsStep3Delay = backwardsStep2Delay + backwardsStep2Duration;
+    const backwardsStep3Duration = theme.transitions.duration.standard;
+
+    /**
+     * Step 4: Fade in drawer title
+     *         By staggering, fade in and move down options.
+     */
+    const backwardsStep4Delay = backwardsStep3Delay + backwardsStep3Duration;
+    const backwardsStep4Duration = theme.transitions.duration.shorter;
+
+    let optionContainerStyles;
+    let subOptionStyles;
+
+    for (let i = 1; i <= 11; i += 1) {
+        const optionYPos = actionsButtonDrawerOptionHeight * (i - 1);
+        const titleBarheight = 61;
+        const optionContainerTranslateYPos = titleBarheight + optionYPos;
+
+        optionContainerStyles = {
+            ...optionContainerStyles,
+            [`&-${i}-selected`]: {
+                transform: `translateY(-${optionContainerTranslateYPos}px)`,
+            },
+            [`&-${i}-hide`]: {
+                opacity: 0,
+                pointerEvents: 'none',
+                transition: `opacity ${forwardsStep1Duration}ms ease-in-out`,
+            },
+            [`&-${i}-show`]: {
+                opacity: 1,
+                transform: 'translateY(0)',
+                transition: `opacity ${backwardsStep4Duration}ms ease-in-out ${backwardsStep4Delay + i * 50}ms,
+                            transform ${backwardsStep2Duration}ms ease-in-out ${backwardsStep2Delay}ms`,
+            },
+        };
+
+        subOptionStyles = {
+            ...subOptionStyles,
+            [`&-${i}`]: {
+                opacity: 0,
+                transform: `translateY(-${actionsButtonDrawerOptionHeight}px)`,
+                transition: `opacity ${backwardsStep1Duration}ms ease-in-out 0ms,
+                            transform ${backwardsStep1Duration}ms ease-in-out 0ms`,
+            },
+            [`&-${i}-show`]: {
+                opacity: 1,
+                transform: 'translateY(0)',
+                transition: `opacity ${forwardsStep4Duration}ms ease-in-out ${forwardsStep4Delay + i * 50}ms,
+                            transform ${forwardsStep4Duration}ms ease-in-out ${forwardsStep4Delay + i * 50}ms`,
+            },
+            [`&-${i}-disabled`]: {
+                color: theme.palette.text.secondary,
+                cursor: 'default',
+            },
+        };
+    }
+
+    return {
+        drawer: {},
+        grid: {
+            margin: [[0, -theme.spacing(0.5)]],
+        },
+        page: {},
+        root: {
+            alignItems: 'center',
+            borderBottom: `1px solid ${theme.palette.border.primary}`,
+            display: 'flex',
+            justifyContent: 'flex-start',
+            left: 0,
+            position: 'fixed',
+            right: 0,
+            [theme.breakpoints.down('md')]: {
+                minHeight: theme.height.actionBar.sm,
+                top: theme.height.appHeader.sm,
+                '& .button': {
+                    height: 32,
+                    minHeight: 32,
+                    '&-icon': {
+                        width: 32,
+                        '& .button-inner-container': {
+                            width: 32,
+                        },
+                    },
+                    '& .button-inner-container': {
+                        height: 32,
+                    },
+                },
+            },
+            [theme.breakpoints.up('md')]: {
+                padding: '0 22px',
+            },
+            '&$drawer': {
+                backgroundColor: theme.palette.background.primary,
+                padding: [[2.5, theme.spacing(1)]],
+                zIndex: theme.zIndex.drawer,
+                [theme.breakpoints.up('md')]: {
+                    height: theme.height.actionBar.md,
+                },
+            },
+            '&$page': {
+                backgroundColor: theme.palette.background.light,
+                borderTop: `1px solid ${theme.palette.border.primary}`,
+                minHeight: 50,
+                padding: [[2.5, theme.spacing(1)]],
+                top: actionsButtonDrawerOptionHeight,
+                width: 'auto',
+                zIndex: 3,
+                [theme.breakpoints.up('md')]: {
+                    left: 250,
+                    minHeight: 70,
+                    padding: '0 22px',
+                    top: 70,
+                },
+            },
+            '& .action_bar--search-mobile': {
+                height: 0,
+                opacity: 0,
+                overflow: 'hidden',
+                paddingTop: 0,
+                transition: 'height 333ms ease-in-out, opacity 333ms ease-in-out, padding-top 333ms ease-in-out',
+                '&-show': {
+                    height: 46.5,
+                    marginBottom: 8.5,
+                    opacity: 1,
+                    paddingTop: 2.5,
+                },
+            },
+            '& .action_bar--clear_search': {
+                alignItems: 'center',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                height: 33,
+                justifyContent: 'center',
+                transform: 'translate(8px, -8px)',
+                width: 33,
+            },
+            '& .action_bar--actions_button': {
+                marginRight: 0,
+            },
+        },
+        '@global': {
+            '.actions_button_drawer': {
+                '&--content': {
+                    padding: '22px 11px !important',
+                },
+                '&--title-hide': {
+                    opacity: 0,
+                    transition: `opacity ${forwardsStep1Duration}ms ease-in-out`,
+                },
+                '&--title-show': {
+                    opacity: 1,
+                    transition: `opacity ${backwardsStep4Duration}ms ease-in-out ${backwardsStep4Delay}ms`,
+                },
+                '&--option_container': {
+                    fontSize: 14,
+                    fontWeight: theme.typography.fontWeightMedium,
+                    margin: [[0, -theme.spacing(1)]],
+                    position: 'relative',
+                    transition: `transform ${forwardsStep3Duration}ms ease-in-out ${forwardsStep3Delay}ms`,
+                    '&:first-child': {
+                        borderTop: `1px solid ${theme.palette.border.primary}`,
+                    },
+                    ...optionContainerStyles,
+                    '&-selected': {
+                        '&:first-child': {
+                            borderTop: 0,
+                        },
+                    },
+                },
+            },
+            '.actions_button_drawer--option, .actions_button_drawer--sub_option': {
+                alignItems: 'center',
+                borderBottom: `1px solid ${theme.palette.border.primary}`,
+                color: theme.palette.text.primary,
+                cursor: 'pointer',
+                display: 'flex',
+                minHeight: 55,
+                opacity: 1,
+                outline: 'none',
+                padding: theme.spacing(1),
+                position: 'relative',
+            },
+            '.actions_button_drawer--option': {
+                transition: `color ${backwardsStep3Duration / 2}ms ease-in ${backwardsStep3Delay}ms`,
+                zIndex: 1,
+                '&::before': {
+                    backgroundColor: theme.palette.cyan[500],
+                    content: '""',
+                    height: 54,
+                    left: 0,
+                    opacity: 0,
+                    position: 'absolute',
+                    top: 0,
+                    transition: `opacity 1ms ease-in-out ${backwardsStep3Delay + backwardsStep3Duration}ms,
+                                width ${backwardsStep3Duration}ms ease-in-out ${backwardsStep3Delay}ms`,
+                    width: 0,
+                    zIndex: 0,
+                },
+                '&-disabled': {
+                    color: theme.palette.text.secondary,
+                    cursor: 'default',
+                },
+                '&-selected': {
+                    borderBottom: 0,
+                    color: theme.palette.text.contrastText,
+                    transition: `color ${forwardsStep2Duration / 2}ms ease-in ${forwardsStep2Delay}ms`,
+                    '&::before': {
+                        opacity: 1,
+                        transition: `width ${forwardsStep2Duration}ms ease-in-out ${forwardsStep2Delay}ms`,
+                        width: '100%',
+                    },
+                },
+            },
+            '.actions_button_drawer--sub_options': {
+                left: 0,
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                '&-hide': {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    transition: `opacity ${backwardsStep3Duration}ms ease-in-out ${backwardsStep3Delay}ms`,
+                },
+                '&-show': {
+                    opacity: 1,
+                    paddingTop: 55,
+                    transition: `opacity 1ms ease-in-out ${forwardsStep3Delay}ms,
+                                padding-top 1ms ease-in-out ${forwardsStep3Delay}ms`,
+                },
+            },
+            '.actions_button_drawer_option, .actions_button_drawer_sub_option': {
+                '&--icon_container, &--label': {
+                    zIndex: 1,
+                },
+                '&--icon_container': {
+                    alignItems: 'center',
+                    display: 'inline-flex',
+                    height: 32,
+                    justifyContent: 'center',
+                    marginRight: 16,
+                    transition: 'background-color 200ms ease-in',
+                    width: 32,
+                    zIndex: 1,
+                },
+            },
+            '.actions_button_drawer_option--icon_container': {
+                backgroundColor: theme.palette.background.contrastPrimary,
+                borderRadius: '50%',
+            },
+            '.actions_button_drawer--sub_option': {
+                ...subOptionStyles,
+            },
+        },
+    };
+};
+
+class ActionBar extends React.Component {
     constructor() {
         super();
 
@@ -65,350 +388,127 @@ class ActionBar extends React.PureComponent {
             isMobileSearchVisible: false,
         };
 
+        this.actionBarRef = React.createRef();
+        this.actionBarSearchRef = React.createRef();
         this.onMobileSearchIconToggle = this.onMobileSearchIconToggle.bind(this);
     }
 
-    componentDidMount() {
-        const { moduleType } = this.props;
+    componentDidUpdate(prevProps, prevState) {
+        const {
+            isMobileSearchVisible: prevIsMobileSearchVisible,
+        } = prevState;
 
-        if (moduleType === 'drawer') {
-            this.actionBarRef.closest('.ui.drawer').classList.add(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
-        }
+        const {
+            isMobileSearchVisible,
+        } = this.state;
 
-        if (moduleType === 'page') {
-            this.actionBarRef.closest('.ui.page').classList.add(HAS_PAGE_ACTION_BAR_CLASS_NAME);
+        if (prevIsMobileSearchVisible !== isMobileSearchVisible) {
+            this.toggleContainerSearchVisibleClass();
         }
     }
 
     componentWillUnmount() {
-        const { moduleType } = this.props;
-
-        if (moduleType === 'drawer') {
-            this.actionBarRef.closest('.ui.drawer').classList.remove(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
-        }
+        this.toggleContainerSearchVisibleClass();
     }
 
     onMobileSearchIconToggle() {
         this.setState((prevState) => ({
             isMobileSearchVisible: !prevState.isMobileSearchVisible,
         }), () => {
-            const { moduleType } = this.props;
+            const { toggleSmSearchVisibleClassName } = this.props;
             const { isMobileSearchVisible } = this.state;
-            if (moduleType === 'drawer') {
-                if (isMobileSearchVisible) {
-                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.add(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                } else {
-                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.remove(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                }
+
+            if (isMobileSearchVisible && this.actionBarSearchRef?.current?.rootRef?.current) {
+                const actionBarSearchNode = this.actionBarSearchRef.current.rootRef.current;
+
+                actionBarSearchNode.querySelector('input').focus();
             }
 
-            if (moduleType === 'page') {
-                if (isMobileSearchVisible) {
-                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                } else {
-                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.remove(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                }
+            if (isFunction(toggleSmSearchVisibleClassName)) {
+                toggleSmSearchVisibleClassName(isMobileSearchVisible);
             }
         });
+    }
+
+    toggleContainerSearchVisibleClass() {
+        if (this.actionBarRef) {
+            const actionBarNode = this.actionBarRef.current;
+            const containerNode = actionBarNode.parentElement.querySelector(
+                `.${UI_CLASS_NAME}.${BEM_CONTAINER}`,
+            );
+
+            if (containerNode && containerNode.classList.contains(BEM_ACTION_BAR_SEARCH_VISIBLE)) {
+                containerNode.classList.remove(BEM_ACTION_BAR_SEARCH_VISIBLE);
+            } else if (
+                containerNode &&
+                !containerNode.classList.contains(BEM_ACTION_BAR_SEARCH_VISIBLE)
+            ) {
+                containerNode.classList.add(BEM_ACTION_BAR_SEARCH_VISIBLE);
+            }
+        }
     }
 
     render() {
         const {
             children,
+            classes,
             className,
             columns,
             id,
+            justifyContent,
             moduleType,
-            style,
         } = this.props;
+
         const { isMobileSearchVisible } = this.state;
-        const containerClasses = ClassNames('ui', `${moduleType}--action_bar`, className);
-        let searchDataForMobile = null;
-        let gridColumnKeyNum = 1;
-        let gridColumnListItemKeyNum = 1;
+
+        const rootClasses = ClassNames(
+            UI_CLASS_NAME,
+            BEM_ACTION_BAR,
+            classes.root,
+            className,
+            {
+                [classes.drawer]: moduleType === 'drawer',
+                [classes.page]: !moduleType || moduleType === 'page',
+                [`${BEM_ACTION_BAR}-mobile_search_is_visible`]: isMobileSearchVisible,
+            },
+        );
+
+        const iconSearchColumn = find(columns, 'iconSearch');
 
         return (
             <header
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
-                ref={(ref) => { this.actionBarRef = ref; }}
-                style={style}
+                ref={this.actionBarRef}
             >
                 <div style={{ width: '100%' }}>
-                    {columns && (
+                    {!isEmpty(columns) && (
                         <React.Fragment>
                             <Grid
-                                className="action_bar--grid"
-                                verticalAlign="middle"
+                                alignItems="center"
+                                className={classes.grid}
+                                flexWrap="nowrap"
+                                justifyContent={justifyContent}
+                                spacing={1}
                             >
-                                {_.map(columns, (column) => {
-                                    const {
-                                        button,
-                                        dropdownButton,
-                                        columns, // eslint-disable-line no-shadow
-                                        jsx,
-                                        search,
-                                    } = column;
-                                    let { list } = column;
-                                    const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
-                                    const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`; // eslint-disable-line no-plusplus
-
-                                    if (columns) {
-                                        console.warn('ActionsBar\'s columns.columns is deprecated. Please use columns.list instead.'); // eslint-disable-line no-console
-
-                                        list = [...columns];
-                                    }
-
-                                    if (!button && !dropdownButton && !jsx && !list && !search) {
-                                        console.warn( // eslint-disable-line no-console
-                                            `${'<Page.ActionsBar>\'s column object must have one of the ' +
-                                            'following properties: button, jsx, or list.' +
-                                            'Please check this column object '}${JSON.stringify(column)}`,
-                                        );
-
-                                        return false;
-                                    }
-
-                                    let dropdownButtonOptionKeyNum = 1;
-
-                                    return (
-                                        <Grid.Column
-                                            className={gridColumnClasses}
-                                            key={gridColumnKey}
-                                            style={({
-                                                flexBasis: column.flexBasis || 'auto',
-                                                flexGrow: column.flexGrow || 0,
-                                                flexShrink: column.flexShrink || 0,
-                                                width: 'auto',
-                                                ...column.style,
-                                            })}
-                                        >
-                                            {button && (
-                                                <Button
-                                                    color={button.color}
-                                                    disabled={!!button.disabled}
-                                                    icon={button.iconType && !button.label}
-                                                    id={button.id}
-                                                    onClick={button.onClick}
-                                                    style={button.style}
-                                                >
-                                                    {button.iconType && <Icon type={button.iconType} />}
-                                                    {button.label && <span>{button.label}</span>}
-                                                </Button>
-                                            )}
-
-                                            {dropdownButton && (
-                                                <DropdownButton
-                                                    className={dropdownButton.className}
-                                                    color={dropdownButton.color}
-                                                    disable={dropdownButton.disable}
-                                                    iconType={dropdownButton.iconType}
-                                                    id={dropdownButton.id}
-                                                    label={dropdownButton.label}
-                                                    onClick={dropdownButton.onClick}
-                                                    style={dropdownButton.style}
-                                                    title={dropdownButton.title}
-                                                >
-                                                    {_.map(dropdownButton.options, (option) => {
-                                                        dropdownButtonOptionKeyNum += 1;
-
-                                                        return (
-                                                            <DropdownButton.Option
-                                                                className={option.className}
-                                                                disabled={!!option.disabled}
-                                                                id={option.id}
-                                                                key={`action_bar_dropdown_button_option-${dropdownButtonOptionKeyNum}`}
-                                                                label={option.label}
-                                                                onClick={option.onClick}
-                                                                onKeyDown={option.onKeyDown}
-                                                                style={option.style}
-                                                                tabIndex={option.tabIndex}
-                                                            />
-                                                        );
-                                                    })}
-                                                </DropdownButton>
-                                            )}
-
-                                            {list && _.isArray(list) && (
-                                                <List
-                                                    className="action_bar--list"
-                                                    horizontal
-                                                >
-                                                    {_.map(list, (item) => {
-                                                        const {
-                                                            actionsButton,
-                                                            jsx: listJsx,
-                                                            iconBack,
-                                                            iconFilter,
-                                                            iconGrid,
-                                                            iconSearch,
-                                                            iconTable,
-                                                        } = item;
-
-                                                        const divide = _.isUndefined(item.divide) ||
-                                                            item.divide;
-
-                                                        const listItemClassName = ClassNames('action_bar--list_item', {
-                                                            'action_bar--list_item-jsx': listJsx,
-                                                            'action_bar--list_item-icon_filter': iconFilter,
-                                                            'action_bar--list_item-icon_grid': iconGrid,
-                                                            'action_bar--list_item-icon_table': iconTable,
-                                                        });
-
-                                                        const itemKey = `action_bar--list_item-${gridColumnListItemKeyNum++}`; // eslint-disable-line no-plusplus
-
-                                                        if (!actionsButton &&
-                                                                !listJsx &&
-                                                                !iconBack &&
-                                                                !iconFilter &&
-                                                                !iconGrid &&
-                                                                !iconSearch &&
-                                                                !iconTable
-                                                        ) {
-                                                            console.warn( // eslint-disable-line no-console, max-len
-                                                                `${'<Page.ActionsBar>\'s column.list object must have one of the ' +
-                                                                    'following properties: actionsButton, iconBack, iconFilter, iconGrid, or iconTable.' +
-                                                                    'Please check this column.list object '}${JSON.stringify(item)}`,
-                                                            );
-
-                                                            return false;
-                                                        }
-
-                                                        if (iconSearch) {
-                                                            /* eslint-disable max-len */
-                                                            /* eslint-disable react/jsx-props-no-spreading */
-                                                            searchDataForMobile = (
-                                                                <ActionBarSearch
-                                                                    {...iconSearch}
-                                                                    isMobileSearch
-                                                                    isMobileSearchVisible={isMobileSearchVisible}
-                                                                    type="mobileSearch"
-                                                                />
-                                                            );
-                                                            /* eslint-enable react/jsx-props-no-spreading */
-                                                            /* eslint-enable max-len */
-                                                        }
-
-                                                        return (
-                                                            <List.Item
-                                                                className={listItemClassName}
-                                                                divide={divide}
-                                                                key={itemKey}
-                                                                style={({
-                                                                    alignItems: item.alignItems || 'flex-start',
-                                                                    flexBasis: item.flexBasis || 'auto',
-                                                                    flexGrow: item.flexGrow || 0,
-                                                                    flexShrink: item.flexShrink || 0,
-                                                                    width: 'auto',
-                                                                    ...list.style,
-                                                                })}
-                                                            >
-                                                                {/* eslint-disable max-len */}
-                                                                {actionsButton && (
-                                                                <ActionBarActionsButton
-                                                                    className={actionsButton.className}
-                                                                    iconBackgroundColor={actionsButton.iconBackgroundColor}
-                                                                    iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
-                                                                    iconType={actionsButton.iconType}
-                                                                    id={actionsButton.id}
-                                                                    isMobileSearchVisible={isMobileSearchVisible}
-                                                                    header={actionsButton.header}
-                                                                    moduleType={moduleType}
-                                                                    options={actionsButton.options}
-                                                                    style={actionsButton.style}
-                                                                />
-                                                                )}
-                                                                {/* eslint-enable max-len */}
-
-                                                                {iconBack && (
-                                                                <Icon
-                                                                    color={iconBack.selected ?
-                                                                        'highlight' :
-                                                                        null}
-                                                                    id={iconBack.id}
-                                                                    onClick={iconBack.onClick}
-                                                                    title={iconBack.title || 'Back'}
-                                                                    type="chevron-left"
-                                                                />
-                                                                )}
-
-                                                                {/* eslint-disable max-len */}
-                                                                {iconFilter && (
-                                                                <Icon
-                                                                    color={iconFilter.selected || iconFilter.isFiltering ?
-                                                                        'highlight' :
-                                                                        null}
-                                                                    id={iconFilter.id}
-                                                                    onClick={iconFilter.onClick}
-                                                                    title={iconFilter.title || 'Filter'}
-                                                                    type="filter"
-                                                                />
-                                                                )}
-                                                                {/* eslint-enable max-len */}
-
-                                                                {iconGrid && (
-                                                                <Icon
-                                                                    color={iconGrid.selected ?
-                                                                        'highlight' :
-                                                                        null}
-                                                                    id={iconGrid.id}
-                                                                    onClick={iconGrid.onClick}
-                                                                    title={iconGrid.title || 'Grid View'}
-                                                                    type="grid"
-                                                                />
-                                                                )}
-
-                                                                {/* eslint-disable max-len */}
-                                                                {iconSearch && (
-                                                                <Icon
-                                                                    className="action_bar--search_icon"
-                                                                    color={isMobileSearchVisible ?
-                                                                        'highlight' :
-                                                                        null}
-                                                                    id={iconSearch.id}
-                                                                    onClick={this.onMobileSearchIconToggle}
-                                                                    title={iconSearch.title || 'Search'}
-                                                                    type="search"
-                                                                />
-                                                                )}
-                                                                {/* eslint-enable max-len */}
-
-                                                                {iconTable && (
-                                                                <Icon
-                                                                    color={iconTable.selected ?
-                                                                        'highlight' :
-                                                                        null}
-                                                                    id={iconTable.id}
-                                                                    onClick={iconTable.onClick}
-                                                                    title={iconTable.title || 'Table View'}
-                                                                    type="list"
-                                                                />
-                                                                )}
-
-                                                                {listJsx}
-                                                            </List.Item>
-                                                        );
-                                                    })}
-                                                </List>
-                                            )}
-
-                                            {search && (
-                                                <ActionBarSearch
-                                                    id={search.id}
-                                                    onChange={search.onChange}
-                                                    onClearClick={search.onClearClick}
-                                                    onKeyDown={search.onKeyDown}
-                                                    value={search.value}
-                                                />
-                                            )}
-
-                                            {jsx}
-                                        </Grid.Column>
-                                    );
-                                })}
+                                <ActionBarGridColumns
+                                    columns={columns}
+                                    isMobileSearchVisible={isMobileSearchVisible}
+                                    onMobileSearchIconToggle={this.onMobileSearchIconToggle}
+                                />
                             </Grid>
 
-                            {searchDataForMobile}
+                            {iconSearchColumn && (
+                                <ActionBarSearch
+                                    // eslint-disable-next-line max-len
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
+                                    {...iconSearchColumn.iconSearch}
+                                    isMobileSearch
+                                    isMobileSearchVisible={isMobileSearchVisible}
+                                    ref={this.actionBarSearchRef}
+                                    type="mobileSearch"
+                                />
+                            )}
                         </React.Fragment>
                     )}
 
@@ -422,4 +522,4 @@ class ActionBar extends React.PureComponent {
 ActionBar.propTypes = propTypes;
 ActionBar.defaultProps = defaultProps;
 
-export default ActionBar;
+export default withStyles(styles)(ActionBar);
