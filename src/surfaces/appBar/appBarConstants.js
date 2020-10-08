@@ -1,0 +1,15 @@
+export const ALIGN_ITEMS_CENTER = 'center';
+export const ALIGN_ITEMS_END = 'flex-end';
+export const ALIGN_ITEMS_START = 'flex-start';
+export const JUSTIFY_CONTENT_CENTER = 'center';
+export const JUSTIFY_CONTENT_END = 'flex-end';
+export const JUSTIFY_CONTENT_START = 'flex-start';
+export const PLACEMENT_BOTTOM_CENTER = 'bottom-center';
+export const PLACEMENT_BOTTOM_LEFT = 'bottom-left';
+export const PLACEMENT_BOTTOM_RIGHT = 'bottom-right';
+export const PLACEMENT_MIDDLE_CENTER = 'middle-center';
+export const PLACEMENT_MIDDLE_LEFT = 'middle-left';
+export const PLACEMENT_MIDDLE_RIGHT = 'middle-right';
+export const PLACEMENT_TOP_CENTER = 'top-center';
+export const PLACEMENT_TOP_LEFT = 'top-left';
+export const PLACEMENT_TOP_RIGHT = 'top-right';

@@ -173,7 +173,7 @@ const styles = (theme) => {
                 },
             },
             '&$isDisabled': {
-                '& .label': {
+                '& .radio-item .label': {
                     cursor: 'auto',
                     '&::before': {
                         background: theme.palette.background.secondary,
@@ -182,12 +182,12 @@ const styles = (theme) => {
                         backgroundColor: theme.palette.grey[400],
                     },
                 },
-                radioPill: {
+                '&$isPill': {
                     '& .radio-item': {
                         '& .label': {
                             cursor: 'default',
                         },
-                        '& $input:checked + .label': {
+                        '& .input:checked + .label': {
                             backgroundColor: theme.palette.grey[400],
                             borderColor: theme.palette.grey[400],
                         },
@@ -319,7 +319,7 @@ class Radio extends React.Component {
         }
     }
 
-    onClick(idArg) {
+    onClick(idArg, customValue) {
         const {
             disable,
             disabled,
@@ -333,7 +333,7 @@ class Radio extends React.Component {
 
         if (isNotDisabled) {
             if (isFunction(onChange)) {
-                onChange(pill ? idArg : id, newValue);
+                onChange(pill ? idArg : id, newValue, customValue);
             } else {
                 this.setState({ isChecked: newValue });
             }

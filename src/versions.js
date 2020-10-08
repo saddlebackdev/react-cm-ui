@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.17.5',
+        package: '9.18.0',
         components: {
             inputs: {
                 durationPicker: {
@@ -17,6 +17,13 @@ const versions = {
                 },
                 sectionalTabs: {
                     devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
+            surfaces: {
+                appBar: {
+                    evLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
