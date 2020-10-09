@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonOutlineExample() {
+function ButtonPillOutlineExample() {
     return (
         <Grid
             spacing={4}
@@ -29,36 +29,9 @@ function ButtonOutlineExample() {
                     >
                         <Button
                             outline
+                            pill
                         >
                             Label
-                        </Button>
-                    </Grid.Column>
-                </Grid>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Grid
-                    direction="column"
-                    spacing={2}
-                >
-                    <Grid.Column>
-                        <Typography>
-                            Icon
-                        </Typography>
-                    </Grid.Column>
-
-                    <Grid.Column
-                        sm
-                    >
-                        <Button
-                            icon
-                            outline
-                        >
-                            <Icon
-                                type="shape-heart"
-                            />
                         </Button>
                     </Grid.Column>
                 </Grid>
@@ -82,6 +55,7 @@ function ButtonOutlineExample() {
                     >
                         <Button
                             outline
+                            pill
                         >
                             <Icon
                                 type="shape-heart"
@@ -96,4 +70,4 @@ function ButtonOutlineExample() {
     );
 }
 
-export default ButtonOutlineExample;
+export default ButtonPillOutlineExample;

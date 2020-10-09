@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonOutlineExample() {
+function ButtonTransparentButtonExample() {
     return (
         <Grid
             spacing={4}
@@ -28,7 +28,7 @@ function ButtonOutlineExample() {
                         sm
                     >
                         <Button
-                            outline
+                            transparent
                         >
                             Label
                         </Button>
@@ -54,7 +54,7 @@ function ButtonOutlineExample() {
                     >
                         <Button
                             icon
-                            outline
+                            transparent
                         >
                             <Icon
                                 type="shape-heart"
@@ -72,7 +72,9 @@ function ButtonOutlineExample() {
                     spacing={2}
                 >
                     <Grid.Column>
-                        <Typography>
+                        <Typography
+                            color="inherit"
+                        >
                             Label &amp; Icon
                         </Typography>
                     </Grid.Column>
@@ -81,7 +83,7 @@ function ButtonOutlineExample() {
                         sm
                     >
                         <Button
-                            outline
+                            transparent
                         >
                             <Icon
                                 type="shape-heart"
@@ -96,4 +98,4 @@ function ButtonOutlineExample() {
     );
 }
 
-export default ButtonOutlineExample;
+export default ButtonTransparentButtonExample;

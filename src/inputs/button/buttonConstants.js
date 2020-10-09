@@ -1,4 +1,4 @@
-import PropTypes, {bool} from 'prop-types';
+import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
 
 export const buttonPropTypes = {
@@ -14,7 +14,16 @@ export const buttonPropTypes = {
     /**
      * Color of the button.
      */
-    color: PropTypes.oneOf(Utils.colorEnums()),
+    color: PropTypes.oneOf([
+        'active',
+        'default',
+        'error',
+        'link',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+    ]),
     /**
      * A button can reduce its padding.
      */
@@ -56,6 +65,10 @@ export const buttonPropTypes = {
      */
     style: PropTypes.shape({}),
     target: PropTypes.oneOf(['_blank']),
+    /**
+     * If `true`, the button's text is only showed.
+     */
+    text: PropTypes.bool,
     title: PropTypes.string,
     /**
      * Set a fixed width.
@@ -77,7 +90,7 @@ export const buttonPropTypes = {
 export const buttonDefaultProps = {
     as: 'button',
     className: undefined,
-    color: 'primary',
+    color: 'default',
     compact: false,
     disable: false,
     disabled: false,
@@ -92,6 +105,7 @@ export const buttonDefaultProps = {
     relax: false,
     style: {},
     target: undefined,
+    text: false,
     title: undefined,
     width: undefined,
 };

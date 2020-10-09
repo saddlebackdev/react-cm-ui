@@ -84,7 +84,7 @@ const defaultProps = {
 const useStyles = (theme) => {
     const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
     const borderColorSecondary = get(theme, 'palette.border.secondary');
-    const colorActivePrimary = get(theme, 'palette.active.primary');
+    const colorActivePrimary = get(theme, 'palette.active.main');
     const colorHighlight = get(theme, 'palette.cyan[500]');
     const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
     const textColorSecondary = get(theme, 'palette.text.secondary');

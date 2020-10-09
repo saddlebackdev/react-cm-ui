@@ -40,6 +40,8 @@ function DocsActionBar(props) {
         displayName,
     } = rootDoc;
 
+    console.log(rootDoc);
+
     return (
         <Main page={camelCase(displayName)}>
             <TitleBar title={startCase(displayName)} />

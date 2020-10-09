@@ -1,12 +1,70 @@
-import { Button } from 'react-cm-ui';
+import {
+    Button,
+    Grid,
+    Icon,
+    Typography,
+} from 'react-cm-ui';
 import React from 'react';
 
 function ButtonPillExample() {
     return (
-        <div>
-            <Button width={170} pill>Pill Button</Button>
-            <Button width={170} pill outline>Pill Button</Button>
-        </div>
+        <Grid
+            spacing={4}
+        >
+            <Grid.Column
+                sm="auto"
+            >
+                <Grid
+                    direction="column"
+                    spacing={2}
+                >
+                    <Grid.Column>
+                        <Typography>
+                            Label
+                        </Typography>
+                    </Grid.Column>
+
+                    <Grid.Column
+                        sm
+                    >
+                        <Button
+                            pill
+                        >
+                            Label
+                        </Button>
+                    </Grid.Column>
+                </Grid>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Grid
+                    direction="column"
+                    spacing={2}
+                >
+                    <Grid.Column>
+                        <Typography>
+                            Label &amp; Icon
+                        </Typography>
+                    </Grid.Column>
+
+                    <Grid.Column
+                        sm
+                    >
+                        <Button
+                            pill
+                        >
+                            <Icon
+                                type="shape-heart"
+                            />
+
+                            <span>Label</span>
+                        </Button>
+                    </Grid.Column>
+                </Grid>
+            </Grid.Column>
+        </Grid>
     );
 }
 
