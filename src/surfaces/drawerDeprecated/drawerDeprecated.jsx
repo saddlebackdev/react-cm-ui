@@ -393,7 +393,7 @@ class DrawerDeprecated extends React.Component {
             }
 
             if (numberOfModalDrawers >= 2) {
-                zIndex = newZIndex + numberOfModalDrawers;
+                newZIndex = newZIndex + numberOfModalDrawers;
 
                 if (isModal) {
                     domUtils.addClassName(body, 'drawer-deprecated-open-layered');
@@ -678,7 +678,7 @@ DrawerDeprecated.Wing = DrawerDeprecatedWing;
 
 DrawerDeprecated.propTypes = {
     /**
-     * Override or extend the styles applied to Modal.
+     * Override or extend the styles applied to DrawerDeprecated.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
@@ -707,7 +707,7 @@ DrawerDeprecated.propTypes = {
     style: PropTypes.shape({}),
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
-            modal: PropTypes.number,
+            drawer: PropTypes.number,
         }),
     }),
     title: PropTypes.oneOfType([

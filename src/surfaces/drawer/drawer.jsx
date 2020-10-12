@@ -23,7 +23,7 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     children: PropTypes.node,
     /**
-     * Override or extend the styles applied to Modal.
+     * Override or extend the styles applied to Drawer.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
@@ -48,7 +48,7 @@ const propTypes = {
     style: PropTypes.shape({}),
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
-            modal: PropTypes.number,
+            drawer: PropTypes.number,
         }),
     }),
     wing: PropTypes.shape({}),
@@ -301,6 +301,7 @@ class Drawer extends React.Component {
             positionYOffset,
             positionY,
             shadowSize,
+            theme,
         } = this.props;
 
         this.useComponentWillUnmount = true;
