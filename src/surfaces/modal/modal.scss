@@ -26,17 +26,6 @@ body {
     }
 }
 .ui.modal {
-    align-items: center;
-    backface-visibility: hidden;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    left: 0;
-    min-width: 320px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: $zindex;
     .modal-container {
         animation: slideInModal 200ms ease-out forwards;
         backface-visibility: hidden;
