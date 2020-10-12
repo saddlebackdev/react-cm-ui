@@ -4,6 +4,10 @@ import {
 import ClassNames from 'classnames';
 import React from 'react';
 import { buttonPropTypes, buttonDefaultProps } from './buttonConstants';
+import {
+    UI_CLASS_NAME,
+    BEM_BUTTON,
+} from '../../global/constants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
@@ -316,8 +320,8 @@ class Button extends React.PureComponent {
         const ElementType = Utils.getElementType(as, this.props);
 
         const rootClasses = ClassNames(
-            'ui',
-            'button',
+            UI_CLASS_NAME,
+            BEM_BUTTON,
             classes.root,
             className,
             {

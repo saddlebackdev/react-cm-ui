@@ -82,11 +82,6 @@ export const navigationItems = [
                         path: 'email-link',
                     },
                     {
-                        component: 'headerDeprecated',
-                        label: 'Header (Deprecated)',
-                        path: 'header-deprecated',
-                    },
-                    {
                         component: 'icon',
                         label: 'Icon',
                         levelFour: [
@@ -198,26 +193,9 @@ export const navigationItems = [
                         path: 'date-picker-calendar',
                     },
                     {
-                        component: 'datePickerDeprecated',
-                        label: 'Date Picker (Deprecated)',
-                        path: 'date-picker-deprecated',
-                    },
-                    {
                         component: 'datePickerInput',
                         label: 'Date Picker Input',
                         path: 'date-picker-input',
-                    },
-                    {
-                        component: 'dropdownDeprecated',
-                        label: 'Dropdown (Deprecated)',
-                        levelFour: [
-                            {
-                                component: 'dropdownItemDeprecated',
-                                label: 'Dropdown.Item',
-                                path: 'dropdown-item',
-                            },
-                        ],
-                        path: 'dropdown-deprecated',
                     },
                     {
                         component: 'dropdownButton',
@@ -485,23 +463,6 @@ export const navigationItems = [
                             },
                         ],
                         path: 'drawer',
-                    },
-                    {
-                        component: 'drawerDeprecated',
-                        label: 'Drawer (Deprecated)',
-                        levelFour: [
-                            {
-                                component: 'drawerDeprecatedHeader',
-                                label: 'Header',
-                                path: 'header',
-                            },
-                            {
-                                component: 'drawerDeprecatedWing',
-                                label: 'Wing',
-                                path: 'wing',
-                            },
-                        ],
-                        path: 'drawer-deprecated',
                     },
                     {
                         component: 'filtersDrawer',
