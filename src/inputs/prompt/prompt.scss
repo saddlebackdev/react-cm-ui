@@ -3,19 +3,7 @@
 .ui.prompt {
     position: relative;
     &-inline {
-        display: inline-block;
         .prompt-actions {
-            align-items: center;
-            border-radius: 3px;
-            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .43);
-            color: color(colorInverse);
-            display: none;
-            flex: 0 1 auto;
-            font-size: rem(14px);
-            font-weight: $fontWeightSemiBold;
-            height: 33px;
-            position: absolute;
-            z-index: $prompt-zindex;
             .prompt- {
                 &message, &no-btn, &yes-btn { white-space: nowrap; }
                 &message {
