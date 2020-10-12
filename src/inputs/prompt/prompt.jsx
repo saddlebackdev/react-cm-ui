@@ -2,15 +2,22 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    className: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({}),
-    ]),
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
+    ]),
+    /**
+     * Override or extend the styles applied to Prompt.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    className: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({}),
     ]),
     id: PropTypes.string,
     inline: PropTypes.bool,
@@ -22,11 +29,17 @@ const propTypes = {
     onYesClick: PropTypes.func,
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     show: PropTypes.bool,
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            modal: PropTypes.number,
+        }),
+    }),
 };
 
 const defaultProps = {
-    className: undefined,
     children: null,
+    classes: null,
+    className: undefined,
     id: undefined,
     inline: false,
     inlineHorizontalAlign: 'left',
@@ -37,9 +50,32 @@ const defaultProps = {
     onYesClick: undefined,
     style: undefined,
     show: undefined,
+    theme: null,
 };
 
 const noop = () => {};
+
+const styles = (theme) => ({
+    actions: {},
+    root: {
+        '&.prompt-inline': {
+            display: 'inline-block',
+            '& $actions': {
+                alignItems: 'center',
+                borderRadius: 3,
+                boxShadow: '0 4px 4px 0 rgba(0, 0, 0, .43)',
+                color: theme.palette.text.contrastText,
+                display: 'none',
+                flex: '0 1 auto',
+                fontSize: theme.typography.pxToRem(14),
+                fontWeight: theme.typography.fontWeightMedium,
+                height: 33,
+                position: 'absolute',
+                zIndex: theme.zIndex.prompt,
+            },
+        },
+    },
+});
 
 class Prompt extends React.Component {
     constructor(props) {
@@ -119,6 +155,7 @@ class Prompt extends React.Component {
     render() {
         const {
             children,
+            classes,
             className,
             id,
             inline,
@@ -129,10 +166,17 @@ class Prompt extends React.Component {
         } = this.props;
 
         const { show, inlineVerticalAlign } = this.state;
-        const containerClasses = ClassNames('ui', 'prompt', className, {
-            'prompt-show': show,
-            'prompt-inline': inline,
-        });
+
+        const rootClasses = ClassNames(
+            'ui',
+            'prompt',
+            classes.root,
+            className,
+            {
+                'prompt-show': show,
+                'prompt-inline': inline,
+            },
+        );
 
         const messageClasses = ClassNames('prompt-message', {
             'promp-message-alert': inlineMessageColor === 'alert' || children.props.color === 'alert' || children.props.buttonColor === 'alert',
@@ -148,7 +192,7 @@ class Prompt extends React.Component {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 style={style}
             >
@@ -187,7 +231,13 @@ class Prompt extends React.Component {
                     </div>
                 )}
 
-                <div className="prompt-actions" style={promptActionsStyle}>
+                <div
+                    className={ClassNames(
+                        'prompt-actions',
+                        classes.actions,
+                    )}
+                    style={promptActionsStyle}
+                >
                     <div className={messageClasses}>{message}</div>
 
                     <div
@@ -218,4 +268,4 @@ class Prompt extends React.Component {
 Prompt.propTypes = propTypes;
 Prompt.defaultProps = defaultProps;
 
-export default Prompt;
+export default withStyles(styles, { withTheme: true })(Prompt);

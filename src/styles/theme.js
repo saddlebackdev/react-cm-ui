@@ -47,9 +47,10 @@ const theme = {
     zIndex: {
         drawer: 10000,
         modal: 11000,
-        prompt: 12000,
-        banner: 13000,
-        tooltip: 14000,
+        datePickerInputCalendar: 12000,
+        prompt: 13000,
+        banner: 14000,
+        tooltip: 15000,
     },
 };
 
