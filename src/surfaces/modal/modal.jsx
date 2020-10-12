@@ -142,16 +142,20 @@ class Modal extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (!prevProps.isOpen && this.props.isOpen) {
+    componentDidUpdate(prevProps) {
+        const {
+            isOpen,
+        } = this.props;
+
+        if (!prevProps.isOpen && isOpen) {
             this.setState({
-                isOpen: this.props.isOpen,
+                isOpen,
             }, () => {
                 this.onOpen();
             });
         }
 
-        if (prevProps.isOpen && !this.props.isOpen) {
+        if (prevProps.isOpen && !isOpen) {
             this._onBeforeClose();
         }
     }
