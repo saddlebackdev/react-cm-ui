@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import _ from 'lodash';
 import { Portal } from 'react-portal';
@@ -12,6 +10,7 @@ import Divider from '../../dataDisplay/divider';
 import domUtils from '../../utils/domUtils';
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
+import withStyles from '../../styles/withStyles';
 
 const DEFAULT_CONTAINER_PADDING_TOP = 27;
 const colorEnums = [ 'dark-blue', 'grey', 'white' ];
@@ -73,7 +72,7 @@ CloseButton.propTypes = {
 class DrawerDeprecatedWing extends React.Component {
     render() {
         const { children, className, color, width, style } = this.props;
-        const containerClasses = ClassNames('drawer-wing', className, {
+        const rootClasses = ClassNames('drawer-wing', className, {
             'color-dark-blue': color === 'dark-blue',
             'color-grey': color === 'grey',
         });
@@ -83,7 +82,7 @@ class DrawerDeprecatedWing extends React.Component {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 style={Object.assign({}, defaultStyle, style)}
             >
                 {children}
@@ -172,6 +171,19 @@ DrawerDeprecatedHeader.propTypes = {
     titleTruncate: PropTypes.bool,
 };
 
+const styles = (theme) => ({
+    root: {
+        backfaceVisibility: 'hidden',
+        height: '100%',
+        left: 0,
+        minWidth: 320,
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: theme.zIndex.drawer,
+    },
+});
+
 class DrawerDeprecated extends React.Component {
     constructor(props) {
         super(props);
@@ -188,9 +200,9 @@ class DrawerDeprecated extends React.Component {
         this._onClickOutside = this._onClickOutside.bind(this);
         this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
         this._onCloseWingAnimationComplete = this._onCloseWingAnimationComplete.bind(this);
-        this._onOpen = this._onOpen.bind(this);
-        this._onOpenAnimationComplete = this._onOpenAnimationComplete.bind(this);
-        this._onOpenWingToggle = this._onOpenWingToggle.bind(this);
+        this.onOpen = this.onOpen.bind(this);
+        this.onOpenAnimationComplete = this.onOpenAnimationComplete.bind(this);
+        this.onOpenWingToggle = this.onOpenWingToggle.bind(this);
         this._onClose = this._onClose.bind(this);
         this._onScrollStart = this._onScrollStart.bind(this);
         this._onScrollStop = this._onScrollStop.bind(this);
@@ -231,184 +243,13 @@ class DrawerDeprecated extends React.Component {
             this.setState({
                 isOpen: this.props.isOpen,
             }, () => {
-                this._onOpen();
+                this.onOpen();
             });
         }
 
         if (prevProps.isOpen && !this.props.isOpen) {
             this._onBeforeClose();
         }
-    }
-
-    render() {
-        const {
-            children,
-            className,
-            closeButton,
-            color,
-            header,
-            inverse,
-            isModal,
-            scrollBar,
-            title,
-            titleTruncate,
-            position,
-        } = this.props;
-        const { isOpen } = this.state;
-
-        if (!isOpen) {
-            return false;
-        }
-
-        const { transformValue, wing } = this.state;
-        const containerClasses = ClassNames(
-            'ui',
-            'drawer',
-            'deprecated',
-            className,
-            {
-                'drawer-is_modal': isModal,
-            }
-        );
-        const containerInnerClasses = ClassNames('drawer-container', {
-            'color-dark-blue': color === 'dark-blue',
-            'drawer-container-inverse': inverse,
-            'drawer-container-is-scrolled': this.state.isScrolled,
-            'drawer-container-no-header': header === false,
-            'left-position': position === 'left',
-        });
-        const wingClasses = ClassNames('drawer-wing-container', {
-            'left-position': position === 'left',
-        });
-        let renderContent;
-
-        if (_.isArray(children)) {
-            console.error('Please wrap the Drawer\'s children in an enclosing tag');
-            return false;
-        }
-
-        renderContent = React.Children.map(children, child => {
-            if (_.isFunction(child.type)) {
-                return React.cloneElement(child, {
-                    closeButton: closeButton,
-                    inverse: inverse,
-                    onClose: this._onClose,
-                    title: title,
-                    titleTruncate: titleTruncate,
-                });
-            } else {
-                return React.Children.map(child.props.children, secondaryChild => {
-                    if (_.isFunction(secondaryChild.type) && secondaryChild.type.name === 'DrawerDeprecatedHeader') {
-                        return (
-                            <DrawerDeprecatedHeader
-                                children={secondaryChild.props.children}
-                                closeButton={closeButton}
-                                inverse={inverse}
-                                onClose={this._onClose}
-                                title={title}
-                                titleTruncate={titleTruncate}
-                            />
-                        );
-                    } else {
-                        return secondaryChild;
-                    }
-                });
-            }
-        });
-
-        if (_.isUndefined(header)) {
-            renderContent.unshift(
-                <DrawerDeprecatedHeader
-                    closeButton={closeButton}
-                    inverse={inverse}
-                    key={`drawer-header-${_.kebabCase(title)}`}
-                    onClose={this._onClose}
-                    title={title}
-                    titleTruncate={titleTruncate}
-                />
-            );
-        }
-
-        renderContent = [
-            <div className="drawer-children" key={`drawer-children-${_.kebabCase(title)}`}>
-                {renderContent}
-            </div>,
-        ];
-
-        if (header === false) {
-            renderContent.unshift(
-                <CloseButton
-                    closeButton={closeButton}
-                    inverse={inverse}
-                    key="drawer-close-button"
-                    onClose={this._onClose}
-                />
-            );
-        }
-
-        return (
-            <Portal>
-                <div className={containerClasses}>
-                    <div
-                        className={containerInnerClasses}
-                        ref={el => this.drawerContainerRef = el}
-                        style={{ transform: transformValue }}
-                    >
-                        {position === 'left' && wing ? (
-                            <div className={wingClasses}>
-                                <div>
-                                    {React.cloneElement(wing, { onOpenToggle: this._onOpenWingToggle })}
-                                </div>
-                            </div>
-                        ) : null}
-
-                        {scrollBar === true || _.isUndefined(scrollBar) ? (
-                            <ScrollBar
-                                autoHide
-                                onScrollStart={this._onScrollStart}
-                                onScrollStop={this._onScrollStop}
-                            >
-                                <div
-                                    className="drawer-container-inner"
-                                    ref={el => this._drawerContainerInnerRef = el}
-                                    style={{
-                                        paddingBottom: '33px',
-                                        paddingLeft: '22px',
-                                        paddingRight: '22px',
-                                        paddingTop: header === false ? '22px' : null,
-                                    }}
-                                >
-                                    {renderContent}
-                                </div>
-                            </ScrollBar>
-                        ) : (
-                            <div
-                                className="drawer-container-inner"
-                                ref={el => this._drawerContainerInnerRef = el}
-                                style={{
-                                    paddingBottom: '33px',
-                                    paddingLeft: '22px',
-                                    paddingRight: '22px',
-                                    paddingTop: header === false ? '22px' : null,
-                                }}
-                            >
-                                {renderContent}
-                            </div>
-                        )}
-
-                        {position === 'right' && wing ? (
-                            <div className={wingClasses}>
-                                <div>
-                                    {React.cloneElement(wing, { onOpenToggle: this._onOpenWingToggle })}
-                                </div>
-                            </div>
-                        ) : null}
-                    </div>
-
-                    <div className="drawer-dimmer-deprecated" />
-                </div>
-            </Portal>
-        );
     }
 
     componentDidMount() {
@@ -418,7 +259,7 @@ class DrawerDeprecated extends React.Component {
             this.setState({
                 isOpen,
             }, () => {
-                this._onOpen();
+                this.onOpen();
             });
         }
     }
@@ -516,25 +357,31 @@ class DrawerDeprecated extends React.Component {
         });
     }
 
-    _onOpen() {
-        this._useComponentWillUnmount = true;
+    onOpen() {
         const {
             isModal,
             maxWidth,
             onClickOutside,
             position,
+            theme,
         } = this.props;
+
+        this._useComponentWillUnmount = true;
+
         const body = document.body;
         const nodePortal = ReactDOM.findDOMNode(this);
         const scrollPosition = window.pageYOffset;
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
+
         this._drawerContainer = nodePortal.querySelector('.drawer-container');
+
         const drawerDimmer = nodePortal.querySelector('.drawer-dimmer-deprecated');
         const layeredOffset = 11;
         const animationEvent = this._transitionProps(this._drawerContainer);
-        let zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
-        this._drawerContainer.addEventListener(animationEvent, this._onOpenAnimationComplete);
+        let newZIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+
+        this._drawerContainer.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
         if (onClickOutside) {
             document.addEventListener('click', this._onClickOutside);
@@ -546,15 +393,15 @@ class DrawerDeprecated extends React.Component {
             }
 
             if (numberOfModalDrawers >= 2) {
-                zIndex = zIndex + numberOfModalDrawers;
+                newZIndex = newZIndex + numberOfModalDrawers;
 
                 if (isModal) {
                     domUtils.addClassName(body, 'drawer-deprecated-open-layered');
                 }
 
-                nodePortal.style.zIndex = zIndex;
+                nodePortal.style.zIndex = newZIndex;
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}2px 0 7px 0 rgba(0, 0, 0, 0.17)`;
-                this._drawerContainer.style.zIndex = zIndex;
+                this._drawerContainer.style.zIndex = newZIndex;
             } else {
                 body.style.top = `-${scrollPosition}px`;
 
@@ -563,8 +410,8 @@ class DrawerDeprecated extends React.Component {
                 }
 
                 this._drawerContainer.style.boxShadow = `${position === 'right' ? '-' : ''}12px 0 19px 0 rgba(0, 0, 0, .22)`;
-                nodePortal.style.zIndex = zIndex - 1;
-                this._drawerContainer.style.zIndex = zIndex + numberOfModalDrawers;
+                nodePortal.style.zIndex = newZIndex - 1;
+                this._drawerContainer.style.zIndex = newZIndex + numberOfModalDrawers;
             }
 
             if (!_.isUndefined(maxWidth)) {
@@ -581,12 +428,12 @@ class DrawerDeprecated extends React.Component {
         }, 30);
     }
 
-    _onOpenAnimationComplete() {
+    onOpenAnimationComplete() {
         const {
             isModal,
         } = this.props;
         const animationEvent = this._transitionProps(this.drawerContainerRef);
-        this.drawerContainerRef.removeEventListener(animationEvent, this._onOpenAnimationComplete);
+        this.drawerContainerRef.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
         const { onOpenComplete } = this.props;
 
@@ -599,7 +446,7 @@ class DrawerDeprecated extends React.Component {
         }
     }
 
-    _onOpenWingToggle(width) {
+    onOpenWingToggle(width) {
         const { position } = this.props;
 
         this.setState({ transformValue: position === 'right' ? `translate(-${width}, 0)` : `translate(${width}, 0)` });
@@ -646,18 +493,196 @@ class DrawerDeprecated extends React.Component {
             }
         }
     }
+
+    render() {
+        const {
+            children,
+            classes,
+            className,
+            closeButton,
+            color,
+            header,
+            inverse,
+            isModal,
+            scrollBar,
+            title,
+            titleTruncate,
+            position,
+        } = this.props;
+
+        const { isOpen } = this.state;
+
+        if (!isOpen) {
+            return false;
+        }
+
+        const { transformValue, wing } = this.state;
+
+        const rootClasses = ClassNames(
+            'ui',
+            'drawer',
+            'deprecated',
+            classes.root,
+            className,
+            {
+                'drawer-is_modal': isModal,
+            }
+        );
+
+        const containerInnerClasses = ClassNames('drawer-container', {
+            'color-dark-blue': color === 'dark-blue',
+            'drawer-container-inverse': inverse,
+            'drawer-container-is-scrolled': this.state.isScrolled,
+            'drawer-container-no-header': header === false,
+            'left-position': position === 'left',
+        });
+
+        const wingClasses = ClassNames('drawer-wing-container', {
+            'left-position': position === 'left',
+        });
+
+        let renderContent;
+
+        if (_.isArray(children)) {
+            console.error('Please wrap the Drawer\'s children in an enclosing tag');
+            return false;
+        }
+
+        renderContent = React.Children.map(children, child => {
+            if (_.isFunction(child.type)) {
+                return React.cloneElement(child, {
+                    closeButton: closeButton,
+                    inverse: inverse,
+                    onClose: this._onClose,
+                    title: title,
+                    titleTruncate: titleTruncate,
+                });
+            } else {
+                return React.Children.map(child.props.children, secondaryChild => {
+                    if (_.isFunction(secondaryChild.type) && secondaryChild.type.name === 'DrawerDeprecatedHeader') {
+                        return (
+                            <DrawerDeprecatedHeader
+                                children={secondaryChild.props.children}
+                                closeButton={closeButton}
+                                inverse={inverse}
+                                onClose={this._onClose}
+                                title={title}
+                                titleTruncate={titleTruncate}
+                            />
+                        );
+                    } else {
+                        return secondaryChild;
+                    }
+                });
+            }
+        });
+
+        if (_.isUndefined(header)) {
+            renderContent.unshift(
+                <DrawerDeprecatedHeader
+                    closeButton={closeButton}
+                    inverse={inverse}
+                    key={`drawer-header-${_.kebabCase(title)}`}
+                    onClose={this._onClose}
+                    title={title}
+                    titleTruncate={titleTruncate}
+                />
+            );
+        }
+
+        renderContent = [
+            <div className="drawer-children" key={`drawer-children-${_.kebabCase(title)}`}>
+                {renderContent}
+            </div>,
+        ];
+
+        if (header === false) {
+            renderContent.unshift(
+                <CloseButton
+                    closeButton={closeButton}
+                    inverse={inverse}
+                    key="drawer-close-button"
+                    onClose={this._onClose}
+                />
+            );
+        }
+
+        return (
+            <Portal>
+                <div className={rootClasses}>
+                    <div
+                        className={containerInnerClasses}
+                        ref={el => this.drawerContainerRef = el}
+                        style={{ transform: transformValue }}
+                    >
+                        {position === 'left' && wing ? (
+                            <div className={wingClasses}>
+                                <div>
+                                    {React.cloneElement(wing, { onOpenToggle: this.onOpenWingToggle })}
+                                </div>
+                            </div>
+                        ) : null}
+
+                        {scrollBar === true || _.isUndefined(scrollBar) ? (
+                            <ScrollBar
+                                autoHide
+                                onScrollStart={this._onScrollStart}
+                                onScrollStop={this._onScrollStop}
+                            >
+                                <div
+                                    className="drawer-container-inner"
+                                    ref={el => this._drawerContainerInnerRef = el}
+                                    style={{
+                                        paddingBottom: '33px',
+                                        paddingLeft: '22px',
+                                        paddingRight: '22px',
+                                        paddingTop: header === false ? '22px' : null,
+                                    }}
+                                >
+                                    {renderContent}
+                                </div>
+                            </ScrollBar>
+                        ) : (
+                            <div
+                                className="drawer-container-inner"
+                                ref={el => this._drawerContainerInnerRef = el}
+                                style={{
+                                    paddingBottom: '33px',
+                                    paddingLeft: '22px',
+                                    paddingRight: '22px',
+                                    paddingTop: header === false ? '22px' : null,
+                                }}
+                            >
+                                {renderContent}
+                            </div>
+                        )}
+
+                        {position === 'right' && wing ? (
+                            <div className={wingClasses}>
+                                <div>
+                                    {React.cloneElement(wing, { onOpenToggle: this.onOpenWingToggle })}
+                                </div>
+                            </div>
+                        ) : null}
+                    </div>
+
+                    <div className="drawer-dimmer-deprecated" />
+                </div>
+            </Portal>
+        );
+    }
 }
 
 DrawerDeprecated.Header = DrawerDeprecatedHeader;
 DrawerDeprecated.Wing = DrawerDeprecatedWing;
 
-DrawerDeprecated.defaultProps = {
-    isModal: true,
-    isOpen: false,
-    position: 'right',
-};
-
 DrawerDeprecated.propTypes = {
+    /**
+     * Override or extend the styles applied to DrawerDeprecated.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     closeButton: PropTypes.oneOfType([
         PropTypes.shape({}),
@@ -680,6 +705,11 @@ DrawerDeprecated.propTypes = {
     position: PropTypes.oneOf([ 'left', 'right' ]),
     scrollBar: PropTypes.bool,
     style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            drawer: PropTypes.number,
+        }),
+    }),
     title: PropTypes.oneOfType([
         PropTypes.shape({}),
         PropTypes.string,
@@ -688,8 +718,15 @@ DrawerDeprecated.propTypes = {
     wing: PropTypes.shape({}),
 };
 
+DrawerDeprecated.defaultProps = {
+    isModal: true,
+    isOpen: false,
+    position: 'right',
+    theme: null,
+};
+
 DrawerDeprecated.contextTypes = {
     router: PropTypes.shape({}),
 };
 
-export default DrawerDeprecated;
+export default withStyles(styles, { withTheme: true })(DrawerDeprecated);

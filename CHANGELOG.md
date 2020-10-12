@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.1 - 10/12/2020
+
+#### Bug
+- [PR #223](https://github.com/saddlebackdev/react-cm-ui/pull/223) / Merge Commit c270ac2beffec3f4ad539899d7ca90ea760fb40b
+  - Applies `theme.zIndex` values to DatePickerInput's calendar, Drawer, DrawerDeprecated, Modal, and Prompt.
+
+## 9.16.4 - 10/12/2020
+
+#### Bug
+- [PR #223](https://github.com/saddlebackdev/react-cm-ui/pull/223) / Merge Commit c270ac2beffec3f4ad539899d7ca90ea760fb40b
+  - Applies `theme.zIndex` values to DatePickerInput's calendar, Drawer, DrawerDeprecated, Modal, and Prompt.
+
 ## 9.18.0 - 10/08/2020
 
 #### Feature
