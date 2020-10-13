@@ -8,7 +8,6 @@ import { Portal } from 'react-portal';
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import {
@@ -105,6 +104,14 @@ const propTypes = {
      * Event handler called after closing animation has completed.
      */
     onOpenComplete: PropTypes.func,
+    /**
+     * HC's theme.
+     */
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            modal: PropTypes.number,
+        }),
+    }).isRequired,
     /**
      * The `width` of the Modal.
      */
@@ -394,7 +401,7 @@ class Modal extends React.Component {
         if (onClickOutside) {
             document.addEventListener('click', this.onClickOutside);
         }
- 
+
         let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
 
         if (modalLength >= 2) {
@@ -606,91 +613,10 @@ class Modal extends React.Component {
             </Portal>
         );
     }
+}
 
 Modal.Actions = ModalActions;
 Modal.Content = ModalContent;
-
-Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
-
-export default withStyles(styles)(Modal);
-
-        const rootClasses = ClassNames(
-            'ui',
-            'modal',
-            classes.root,
-            className,
-        );
-
-        const containerInnerClasses = ClassNames('modal-container', {
-            'modal-container-inverse': inverse,
-            'modal-container-is-scrolled': isScrolled,
-        });
-
-        const containerInnerStyles = {
-            height,
-            maxHeight,
-            maxWidth,
-            minHeight,
-            minWidth,
-            width,
-            ...style,
-        };
-
-        const containerInnerScrollStyles = {
-            ...(fluidContent && {
-                height: '100%',
-            }),
-            ...((!title && !closeButton) && {
-                paddingTop: 33,
-            }),
-
-        };
-
-        return (
-            <Portal>
-                <div className={rootClasses}>
-                    <div
-                        className={containerInnerClasses}
-                        ref={(ref) => this.modalContainerRef = ref}
-                        style={containerInnerStyles}
-                    >
-                        <ScrollBar
-                            autoHeight={autoHeight}
-                            autoHeightMax={autoHeightMax}
-                            autoHide
-                            onScrollStart={this._onScrollStart}
-                            onScrollStop={this._onScrollStop}
-                        >
-                            <div
-                                className="modal-container-inner"
-                                ref={(el) => this.modalContainerInner = el}
-                                style={containerInnerScrollStyles}
-                            >
-                                {(title || closeButton) && (
-                                    <ModalHeader
-                                        closeButton={closeButton}
-                                        inverse={inverse}
-                                        key={`modal-header-${_.kebabCase(title)}`}
-                                        onClose={this._onClose}
-                                        title={title}
-                                        titleTruncate={titleTruncate}
-                                        style={headerStyle}
-                                    />
-                                )}
-                                <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
-                                    {this.props.children}
-                                </div>
-                            </div>
-                        </ScrollBar>
-                    </div>
-
-                    <div className="modal-dimmer" />
-                </div>
-            </Portal>
-        );
-    }
-}
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
