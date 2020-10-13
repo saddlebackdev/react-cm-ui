@@ -54,7 +54,7 @@ const versions = {
             transitions: '1.0.0',
             typography: '1.0.0',
             width: '1.0.0',
-            zIndex: '1.0.0',
+            zIndex: '1.1.0',
         },
     },
 };
