@@ -73,6 +73,7 @@
     "@jest/globals": "^26.0.1",
     "@mvnu/cpx": "^1.5.2",
     "babel-eslint": "^10.0.1",
+    "css-mediaquery": "^0.1.2",
     "del": "^5.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",

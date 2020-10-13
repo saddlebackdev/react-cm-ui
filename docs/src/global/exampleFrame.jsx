@@ -10,18 +10,20 @@ import ExampleFramed from './exampleFramed';
 
 const propTypes = {
     children: PropTypes.node,
+    height: PropTypes.number,
     maxWidth: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
     title: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
     children: null,
+    height: 400,
     maxWidth: null,
 };
 
 const useStyles = makeStyles(() => ({
     frame: {
-        height: 400,
+        height: (props) => props.height,
         border: 'none',
         maxWidth: (props) => props.maxWidth,
         width: '100%',

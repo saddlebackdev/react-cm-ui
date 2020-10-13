@@ -1,71 +1,46 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FiltersDrawer from '../../surfaces/filtersDrawer'; // eslint-disable-line import/no-cycle
+import FiltersRail from '../filtersRail';
 
 const propTypes = {
-    breakpointDown: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-    ]),
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
-    isDirty: PropTypes.bool.isRequired,
-    isFiltering: PropTypes.bool.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    onApply: PropTypes.func.isRequired,
-    onClear: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
-    rows: PropTypes.arrayOf(PropTypes.shape({})),
+    isOpen: PropTypes.bool,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
-    breakpointDown: undefined,
     children: undefined,
     className: undefined,
     id: undefined,
-    rows: undefined,
+    isOpen: false,
     style: {},
 };
 
-function DrawerFiltersDrawer(props) {
+function DrawerFiltersRail(props) {
     const {
-        breakpointDown,
         children,
         className,
         id,
-        isDirty,
-        isFiltering,
         isOpen,
-        onApply,
-        onClear,
-        onClose,
-        rows,
         style,
     } = props;
 
     return (
-        <FiltersDrawer
-            breakpointDown={breakpointDown}
+        <FiltersRail
             className={className}
             id={id}
-            isDirty={isDirty}
-            isFiltering={isFiltering}
             isOpen={isOpen}
             moduleType="drawer"
-            onApply={onApply}
-            onClear={onClear}
-            onClose={onClose}
-            rows={rows}
             style={style}
         >
             {children}
-        </FiltersDrawer>
+        </FiltersRail>
     );
 }
 
-DrawerFiltersDrawer.propTypes = propTypes;
-DrawerFiltersDrawer.defaultProps = defaultProps;
+DrawerFiltersRail.propTypes = propTypes;
+DrawerFiltersRail.defaultProps = defaultProps;
 
-export default DrawerFiltersDrawer;
+export default DrawerFiltersRail;
