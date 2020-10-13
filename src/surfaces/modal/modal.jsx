@@ -15,7 +15,6 @@ import {
     BEM_MODAL,
     BEM_MODAL_DIMMER,
     BEM_MODAL_INNER_CONTAINER,
-    BEM_MODAL_TITLE,
 } from '../../global/constants';
 import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';
@@ -402,7 +401,7 @@ class Modal extends React.Component {
             document.addEventListener('click', this.onClickOutside);
         }
 
-        let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+        let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the first .modal and .modal-dimmers- z-indexes
 
         if (modalLength >= 2) {
             newZIndex += modalLength;
@@ -579,7 +578,7 @@ class Modal extends React.Component {
                             >
                                 <Icon
                                     compact
-                                    type="times"
+                                    type="close"
                                 />
                             </Button>
                         )}
