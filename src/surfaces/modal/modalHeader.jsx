@@ -120,7 +120,10 @@ function ModalHeader(props) {
                         onClick={onClose}
                         icon
                     >
-                        <Icon inverse type={isString(closeButton) ? closeButton : 'times'} />
+                        <Icon
+                            inverse
+                            type={isString(closeButton) ? closeButton : 'close'}
+                        />
                     </Button>
                 )}
 
