@@ -93,7 +93,7 @@ function ButtonOutlineExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
+                    color="remove"
                     inverse
                     outline
                 >
@@ -101,7 +101,7 @@ function ButtonOutlineExample() {
                         type="shape-heart"
                     />
 
-                    <span>Error</span>
+                    <span>Remove</span>
                 </Button>
             </Grid.Column>
 

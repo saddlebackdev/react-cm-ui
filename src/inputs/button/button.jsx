@@ -129,20 +129,6 @@ const styles = (theme) => {
                 color: theme.palette.default.main,
             },
         },
-        colorError: {
-            '&:not($text)': {
-                backgroundColor: theme.palette.error.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.error.main}`,
-                    '& .icon .icon-use-path': {
-                        fill: theme.palette.error.main,
-                    },
-                },
-            },
-            '&$text': {
-                color: theme.palette.error.main,
-            },
-        },
         colorLink: {
             '&:not($text)': {
                 backgroundColor: theme.palette.link.main,
@@ -171,6 +157,20 @@ const styles = (theme) => {
                 color: theme.palette.primary.main,
             },
         },
+        colorRemove: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.remove.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.remove.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.remove.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.remove.main,
+            },
+        },
         colorSecondary: {
             '&:not($text)': {
                 backgroundColor: theme.palette.secondary.main,
@@ -178,6 +178,12 @@ const styles = (theme) => {
                     boxShadow: `${outlineWidth} ${theme.palette.secondary.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.secondary.main,
+                    },
+                    '&$inverse': {
+                        boxShadow: `${outlineWidth} ${theme.palette.secondary.constrastMain}`,
+                        '& .icon .icon-use-path': {
+                            fill: theme.palette.secondary.constrastMain,
+                        },
                     },
                 },
             },
@@ -327,9 +333,9 @@ class Button extends React.PureComponent {
             {
                 [classes.colorActive]: !disable && color === 'active',
                 [classes.colorDefault]: !disable && color === 'default',
-                [classes.colorError]: !disable && color === 'error',
                 [classes.colorLink]: !disable && color === 'link',
                 [classes.colorPrimary]: !disable && color === 'primary',
+                [classes.colorRemove]: !disable && color === 'remove',
                 [classes.colorSecondary]: !disable && color === 'secondary',
                 [classes.colorSuccess]: !disable && color === 'success',
                 [classes.colorWarning]: !disable && color === 'warning',

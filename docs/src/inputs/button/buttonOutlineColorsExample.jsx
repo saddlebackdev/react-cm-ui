@@ -88,29 +88,14 @@ function ButtonOutlineColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
+                    color="remove"
                     outline
                 >
                     <Icon
                         type="shape-heart"
                     />
 
-                    <span>Error</span>
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="link"
-                    outline
-                >
-                    <Icon
-                        type="shape-heart"
-                    />
-
-                    <span>Link</span>
+                    <span>Remove</span>
                 </Button>
             </Grid.Column>
 

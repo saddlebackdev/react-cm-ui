@@ -67,10 +67,10 @@ function ButtonSolidButtonExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
+                    color="remove"
                     text
                 >
-                    Error
+                    Remove
                 </Button>
             </Grid.Column>
 

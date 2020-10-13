@@ -61,26 +61,6 @@ function ButtonSolidExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
-                >
-                    Error
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="link"
-                >
-                    Link
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="success"
                 >
                     Success

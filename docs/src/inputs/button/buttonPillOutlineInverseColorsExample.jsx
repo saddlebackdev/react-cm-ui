@@ -98,7 +98,7 @@ function ButtonPillOutlineInverseColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
+                    color="remove"
                     inverse
                     outline
                     pill
@@ -107,24 +107,7 @@ function ButtonPillOutlineInverseColorsExample() {
                         type="shape-heart"
                     />
 
-                    <span>Error</span>
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="link"
-                    inverse
-                    outline
-                    pill
-                >
-                    <Icon
-                        type="shape-heart"
-                    />
-
-                    <span>Link</span>
+                    <span>Remove</span>
                 </Button>
             </Grid.Column>
 

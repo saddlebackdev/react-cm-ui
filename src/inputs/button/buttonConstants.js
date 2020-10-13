@@ -17,9 +17,9 @@ export const buttonPropTypes = {
     color: PropTypes.oneOf([
         'active',
         'default',
-        'error',
         'link',
         'primary',
+        'remove',
         'secondary',
         'success',
         'warning',

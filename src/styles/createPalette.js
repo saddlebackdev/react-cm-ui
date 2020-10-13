@@ -30,6 +30,16 @@ function hexToRGBA(hex, a) {
     return `rgba(${+r}, ${+g}, ${+b}, ${+a})`;
 }
 
+const defaultColor = {
+    constrastMain: common.white,
+    main: grey[600],
+};
+
+const errorColor = {
+    main: red[500],
+    dark: red[600],
+};
+
 export default function createPalette() {
     const palette = {
         active: {
@@ -47,15 +57,13 @@ export default function createPalette() {
             secondary: grey[200],
         },
         default: {
-            constrastMain: common.white,
-            main: grey[600],
+            ...defaultColor,
         },
         disable: {
             main: grey[300],
         },
         error: {
-            main: red[500],
-            dark: red[600],
+            ...errorColor,
         },
         link: {
             main: cyan[500],
@@ -63,9 +71,11 @@ export default function createPalette() {
         primary: {
             main: cyan[600],
         },
+        remove: {
+            ...errorColor,
+        },
         secondary: {
-            main: blue[500],
-            dark: blue[600],
+            ...defaultColor,
         },
         static: {
             main: grey[300],

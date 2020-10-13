@@ -67,28 +67,6 @@ function ButtonPillColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
-                    pill
-                >
-                    Error
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="link"
-                    pill
-                >
-                    Link
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="success"
                     pill
                 >
