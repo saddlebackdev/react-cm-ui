@@ -94,11 +94,7 @@ function ModalHeader(props) {
         titleTruncate,
     } = props;
 
-    const classes = useStyles();
-
-    const onCloseClick = () => {
-        onClose();
-    };
+    const classes = useStyles(props);
 
     return (
         <header className="modal-header">
@@ -121,10 +117,13 @@ function ModalHeader(props) {
                     <Button
                         className="modal-close-button"
                         color={inverse ? 'transparent' : 'alternate'}
-                        onClick={onCloseClick}
+                        onClick={onClose}
                         icon
                     >
-                        <Icon inverse type={isString(closeButton) ? closeButton : 'times'} />
+                        <Icon
+                            inverse
+                            type={isString(closeButton) ? closeButton : 'close'}
+                        />
                     </Button>
                 )}
 

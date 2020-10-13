@@ -99,8 +99,9 @@ describe('<ModalContent />', () => {
         const alignItemsCenterClassName = /(makeStyles)-(alignItems)-(center)-(\d+)/;
         const alignItemsFlexEndClassName = /(makeStyles)-(alignItems)-(flexEnd)-(\d+)/;
         const alignItemsFlexStartClassName = /(makeStyles)-(alignItems)-(flexStart)-(\d+)/;
+        const alignItemsStretchClassName = /(makeStyles)-(alignItems)-(stretch)-(\d+)/;
 
-        expect(wrapper.find('div').first().hasClass(alignItemsFlexStartClassName)).toEqual(true);
+        expect(wrapper.find('div').first().hasClass(alignItemsStretchClassName)).toEqual(true);
 
         wrapper.setProps({
             alignItems: 'baseline',
@@ -119,5 +120,11 @@ describe('<ModalContent />', () => {
         });
 
         expect(wrapper.find('div').first().hasClass(alignItemsFlexEndClassName)).toEqual(true);
+
+        wrapper.setProps({
+            alignItems: 'flex-start',
+        });
+
+        expect(wrapper.find('div').first().hasClass(alignItemsFlexStartClassName)).toEqual(true);
     });
 });

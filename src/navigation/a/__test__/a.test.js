@@ -2,9 +2,9 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/navigation/a/__test__/a.test.js
  */
-import { shallow } from 'enzyme';
 import React from 'react';
 import A from '../a';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 
 describe('<A />', () => {
     const props = {
@@ -13,7 +13,7 @@ describe('<A />', () => {
     };
 
     // eslint-disable-next-line react/jsx-props-no-spreading
-    const wrapper = shallow(<A {...props} />);
+    const wrapper = mountWithTheme(<A {...props} />);
 
     it('Should render without problems', () => {
         expect(wrapper).toBeDefined();

@@ -17,9 +17,16 @@ import DrawerFiltersRail from './drawerFiltersRail'; // eslint-disable-line impo
 import DrawerNavigation from './drawerNavigation';
 import DrawerTitleBar from './drawerTitleBar';
 import DrawerWing from './drawerWing';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to Drawer.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     container: PropTypes.shape({
         classList: PropTypes.shape({}),
@@ -41,11 +48,17 @@ const propTypes = {
     positionYOffset: PropTypes.number,
     shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
     style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            drawer: PropTypes.number,
+        }),
+    }),
     wing: PropTypes.shape({}),
 };
 
 const defaultProps = {
     children: undefined,
+    classes: null,
     className: undefined,
     container: document.body,
     dimmer: true,
@@ -61,6 +74,7 @@ const defaultProps = {
     positionYOffset: undefined,
     shadowSize: undefined,
     style: {},
+    theme: null,
     wing: undefined,
 };
 
@@ -91,6 +105,19 @@ function toggleBodyStyle({ container, isOpen }) {
         newContainer.classList.add('drawer-open');
     }
 }
+
+const styles = (theme) => ({
+    root: {
+        backfaceVisibility: 'hidden',
+        height: '100%',
+        left: 0,
+        minWidth: 320,
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: theme.zIndex.drawer,
+    },
+});
 
 class Drawer extends React.Component {
     constructor(props) {
@@ -285,9 +312,6 @@ class Drawer extends React.Component {
     }
 
     onOpen() {
-        this.useComponentWillUnmount = true;
-        this.setStartOfTransform();
-
         const {
             container,
             dimmer,
@@ -298,12 +322,18 @@ class Drawer extends React.Component {
             positionYOffset,
             positionY,
             shadowSize,
+            theme,
         } = this.props;
+
+        this.useComponentWillUnmount = true;
+        this.setStartOfTransform();
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         const boxShadowPositionX = this.isPositionX('right') ? '-' : '';
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
         const layeredOffset = 11;
-        const zIndex = 10002; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+
+        const zIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the first .drawer and .drawer-dimmers- z-indexes
 
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
@@ -328,6 +358,7 @@ class Drawer extends React.Component {
 
             if (numberOfModalDrawers >= 2) {
                 const newZIndex = zIndex + numberOfModalDrawers;
+
                 let boxShadow = BOX_SHADOW_SMALL;
 
                 switch (shadowSize) {
@@ -343,7 +374,8 @@ class Drawer extends React.Component {
                     default:
                 }
 
-                domUtils.addClassName(container, 'drawer-open-layered');
+                domUtils.addClassName(BODY, 'drawer-open-layered');
+
                 this.drawerRef.style.zIndex = newZIndex;
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
                 this.drawerContainerRef.style.zIndex = newZIndex;
@@ -440,6 +472,7 @@ class Drawer extends React.Component {
     render() {
         const {
             children,
+            classes,
             className,
             container,
             isModal,
@@ -454,9 +487,10 @@ class Drawer extends React.Component {
             return false;
         }
 
-        const containerClasses = ClassNames(
+        const rootClasses = ClassNames(
             'ui',
             'drawer',
+            classes.root,
             className,
             {
                 'left-position': this.isPositionX('left'),
@@ -471,7 +505,7 @@ class Drawer extends React.Component {
                 node={container}
             >
                 <div
-                    className={containerClasses}
+                    className={rootClasses}
                     ref={(ref) => { this.drawerRef = ref; }}
                 >
                     <div
@@ -526,4 +560,4 @@ Drawer.Wing = DrawerWing;
 Drawer.propTypes = propTypes;
 Drawer.defaultProps = defaultProps;
 
-export default Drawer;
+export default withStyles(styles, { withTheme: true })(Drawer);

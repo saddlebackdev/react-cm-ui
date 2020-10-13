@@ -8,7 +8,7 @@ import {
     PROP_TYPES_ROW_COMPONENT,
 } from './constants';
 import {
-    BEM_FILTERS_RAIL_ROW_COMONENT,
+    BEM_FILTERS_RAIL_ROW_COMPONENT,
 } from '../../global/constants';
 import Checkbox from '../../inputs/checkbox';
 import Grid from '../../layout/Grid';
@@ -75,7 +75,7 @@ function FiltersRailRowComponent(props) {
     const classes = useStyles(props);
 
     const rootContainer = ClassNames(
-        BEM_FILTERS_RAIL_ROW_COMONENT,
+        BEM_FILTERS_RAIL_ROW_COMPONENT,
         classes.root,
         className,
     );

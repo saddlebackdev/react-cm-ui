@@ -16,8 +16,15 @@ import DateUtils from '../../utils/dateUtils';
 import Icon from '../../dataDisplay/icon';
 import Input from '../input';
 import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to DatePickerInput.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
     date: PropTypes.shape({}),
     dateFrom: PropTypes.shape({}),
@@ -55,6 +62,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    classes: null,
     className: null,
     date: null,
     dateFrom: null,
@@ -81,6 +89,17 @@ const defaultProps = {
     style: null,
     tabIndex: -1,
 };
+
+const styles = (theme) => ({
+    root: {
+        display: 'inline-block',
+    },
+    '@global': {
+        '.date-picker-tether-element': {
+            zIndex: theme.zIndex.datePickerInputCalendar,
+        },
+    },
+});
 
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
@@ -334,6 +353,7 @@ class DatePickerInput extends React.PureComponent {
 
     render() {
         const {
+            classes,
             className,
             errorMessage,
             disable,
@@ -362,7 +382,12 @@ class DatePickerInput extends React.PureComponent {
             isFocused,
         } = this.state;
 
-        const rootClasses = ClassNames('ui', 'date-picker-input', className);
+        const rootClasses = ClassNames(
+            'ui',
+            'date-picker-input',
+            classes.root,
+            className,
+        );
 
         let iconColor;
 
@@ -385,7 +410,11 @@ class DatePickerInput extends React.PureComponent {
         }
 
         return (
-            <div className={rootClasses} id={id} style={style}>
+            <div
+                className={rootClasses}
+                id={id}
+                style={style}
+            >
                 <TetherComponent
                     attachment="top left"
                     classPrefix="date-picker-tether"
@@ -461,4 +490,4 @@ class DatePickerInput extends React.PureComponent {
 DatePickerInput.propTypes = propTypes;
 DatePickerInput.defaultProps = defaultProps;
 
-export default DatePickerInput;
+export default withStyles(styles)(DatePickerInput);

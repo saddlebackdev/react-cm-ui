@@ -28,7 +28,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsActionBar(props) {
+function DocsModal(props) {
     const {
         location: {
             pathname,
@@ -114,6 +114,6 @@ function DocsActionBar(props) {
     );
 }
 
-DocsActionBar.propTypes = propTypes;
+DocsModal.propTypes = propTypes;
 
-export default DocsActionBar;
+export default DocsModal;

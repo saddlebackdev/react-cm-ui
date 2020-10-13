@@ -17,6 +17,7 @@ const propTypes = {
         'center',
         'flex-end',
         'flex-start',
+        'stretch',
     ]),
     /**
      * The content of the ModalContent
@@ -39,7 +40,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    alignItems: 'flex-start',
+    alignItems: 'stretch',
     children: null,
     classes: null,
     className: null,
@@ -47,6 +48,9 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles(() => ({
+    'alignItems-baseline': {
+        alignItems: 'baseline',
+    },
     'alignItems-center': {
         alignItems: 'center',
     },
@@ -56,8 +60,8 @@ const useStyles = makeStyles(() => ({
     'alignItems-flexEnd': {
         alignItems: 'flex-end',
     },
-    'alignItems-baseline': {
-        alignItems: 'baseline',
+    'alignItems-stretch': {
+        alignItems: 'stretch',
     },
     root: {
         display: 'flex',

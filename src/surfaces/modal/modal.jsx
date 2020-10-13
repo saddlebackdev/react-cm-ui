@@ -15,7 +15,6 @@ import {
     BEM_MODAL,
     BEM_MODAL_DIMMER,
     BEM_MODAL_INNER_CONTAINER,
-    BEM_MODAL_TITLE,
 } from '../../global/constants';
 import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';
@@ -104,6 +103,14 @@ const propTypes = {
      * Event handler called after closing animation has completed.
      */
     onOpenComplete: PropTypes.func,
+    /**
+     * HC's theme.
+     */
+    theme: PropTypes.shape({
+        zIndex: PropTypes.shape({
+            modal: PropTypes.number,
+        }),
+    }).isRequired,
     /**
      * The `width` of the Modal.
      */
@@ -377,6 +384,7 @@ class Modal extends React.Component {
             autoHeight,
             onClickOutside,
             maxWidth,
+            theme,
         } = this.props;
 
         // eslint-disable-next-line react/no-find-dom-node
@@ -393,22 +401,22 @@ class Modal extends React.Component {
             document.addEventListener('click', this.onClickOutside);
         }
 
-        let zIndex = 12002; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+        let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the first .modal and .modal-dimmers- z-indexes
 
         if (modalLength >= 2) {
-            zIndex += modalLength;
+            newZIndex += modalLength;
 
-            portalNode.style.zIndex = zIndex;
+            portalNode.style.zIndex = newZIndex;
 
-            this.modalContainerNode.style.zIndex = zIndex;
+            this.modalContainerNode.style.zIndex = newZIndex;
 
             portalNode.querySelector(`.${BEM_MODAL_DIMMER}`).style.display = 'none';
         } else {
             this.toggleBodyStyle({ enable: true });
 
-            portalNode.style.zIndex = zIndex - 1;
+            portalNode.style.zIndex = newZIndex - 1;
 
-            this.modalContainerNode.style.zIndex = zIndex + modalLength;
+            this.modalContainerNode.style.zIndex = newZIndex + modalLength;
         }
 
         if (!isUndefined(maxWidth)) {
@@ -570,7 +578,7 @@ class Modal extends React.Component {
                             >
                                 <Icon
                                     compact
-                                    type="times"
+                                    type="close"
                                 />
                             </Button>
                         )}
@@ -612,4 +620,4 @@ Modal.Content = ModalContent;
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
 
-export default withStyles(styles)(Modal);
+export default withStyles(styles, { withTheme: true })(Modal);

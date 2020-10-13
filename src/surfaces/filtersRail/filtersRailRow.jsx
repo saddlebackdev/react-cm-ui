@@ -8,7 +8,7 @@ import {
 } from './constants';
 import {
     BEM_FILTERS_RAIL_ROW,
-    BEM_FILTERS_RAIL_ROW_COMONENT,
+    BEM_FILTERS_RAIL_ROW_COMPONENT,
 } from '../../global/constants';
 import FiltersRailRowComponent from './filtersRailRowComponent';
 import Collapse from '../../utils/collapse';
@@ -157,7 +157,7 @@ function FiltersRailRow(props) {
                             <Icon
                                 className={ClassNames(
                                     classes.collapseIcon,
-                                    `${BEM_FILTERS_RAIL_ROW_COMONENT}_collapse_icon`,
+                                    `${BEM_FILTERS_RAIL_ROW_COMPONENT}_collapse_icon`,
                                     {
                                         [classes.isCollapsed]: isCollapsed,
                                     },
