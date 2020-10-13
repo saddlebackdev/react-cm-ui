@@ -13,49 +13,6 @@ function ButtonSolidButtonExample() {
                 sm="auto"
             >
                 <Button
-                    text
-                >
-                    Default
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="primary"
-                    text
-                >
-                    Primary
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="secondary"
-                    text
-                >
-                    Secondary
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="active"
-                    text
-                >
-                    Active
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     disable
                     text
                 >
@@ -67,10 +24,10 @@ function ButtonSolidButtonExample() {
                 sm="auto"
             >
                 <Button
-                    color="remove"
+                    color="error"
                     text
                 >
-                    Remove
+                    Error
                 </Button>
             </Grid.Column>
 

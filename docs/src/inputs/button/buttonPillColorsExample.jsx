@@ -13,16 +13,6 @@ function ButtonPillColorsExample() {
                 sm="auto"
             >
                 <Button
-                    pill
-                >
-                    Default
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="primary"
                     pill
                 >

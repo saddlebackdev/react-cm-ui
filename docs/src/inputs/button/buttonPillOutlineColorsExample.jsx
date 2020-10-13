@@ -14,21 +14,6 @@ function ButtonPillOutlineColorsExample() {
                 sm="auto"
             >
                 <Button
-                    outline
-                    pill
-                >
-                    <Icon
-                        type="shape-heart"
-                    />
-
-                    <span>Default</span>
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="primary"
                     outline
                     pill
@@ -93,7 +78,7 @@ function ButtonPillOutlineColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="remove"
+                    color="error"
                     outline
                     pill
                 >
@@ -101,7 +86,7 @@ function ButtonPillOutlineColorsExample() {
                         type="shape-heart"
                     />
 
-                    <span>Remove</span>
+                    <span>Error</span>
                 </Button>
             </Grid.Column>
 

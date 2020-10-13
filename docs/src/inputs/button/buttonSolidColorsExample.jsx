@@ -12,14 +12,6 @@ function ButtonSolidExample() {
             <Grid.Column
                 sm="auto"
             >
-                <Button>
-                    Default
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
                 <Button
                     color="primary"
                 >
