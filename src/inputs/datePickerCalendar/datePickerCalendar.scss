@@ -36,7 +36,6 @@ $pointer-size: 8px;
 }
 
 .date-picker-tether-element {
-    z-index: 10000;
     .date-picker-pointer { content: ''; left: 50px; position: absolute; }
     &-attached-top .date-picker-pointer { @extend %triangle-pointer-up; }
     &-attached-bottom .date-picker-pointer { @extend %triangle-pointer-down; }

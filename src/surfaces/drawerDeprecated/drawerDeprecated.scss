@@ -11,14 +11,6 @@ html:not(.ua-ie-edge):not(.ua-ie-11) body {
     }
 }
 .ui.drawer.deprecated {
-    backface-visibility: hidden;
-    height: 100%;
-    left: 0;
-    min-width: 320px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: $zindex;
     .drawer-container {
         backface-visibility: hidden;
         background-color: color(backgroundColor);
