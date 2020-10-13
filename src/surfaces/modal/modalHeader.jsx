@@ -119,6 +119,7 @@ function ModalHeader(props) {
                         color={inverse ? 'transparent' : 'alternate'}
                         onClick={onClose}
                         icon
+                        title="Close"
                     >
                         <Icon
                             inverse
