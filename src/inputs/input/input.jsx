@@ -241,7 +241,7 @@ const styles = (theme) => ({
             },
         },
         '& + *': {
-            marginTop: 33,
+            marginTop: theme.spacing(2),
         },
     },
 });

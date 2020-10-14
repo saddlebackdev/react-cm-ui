@@ -1,7 +1,6 @@
 import {
     camelCase,
     isEmpty,
-    isNil,
     map,
     upperFirst,
 } from 'lodash';

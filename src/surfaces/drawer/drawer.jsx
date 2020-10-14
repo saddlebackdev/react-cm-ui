@@ -334,7 +334,7 @@ class Drawer extends React.Component {
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
         const layeredOffset = 11;
 
-        const zIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        const zIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the first .drawer and .drawer-dimmers- z-indexes
 
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
 

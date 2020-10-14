@@ -3,10 +3,11 @@ import {
     isString,
     lowerCase,
     map,
+    camelCase,
 } from 'lodash';
 import {
     Table,
-    Tooltip,
+    Popover,
     Typography,
 } from 'react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
@@ -29,9 +30,10 @@ const getPropTypeString = (type) => {
     const shape = type.value;
     const rst = {};
 
-    switch (lowerCase(type.name)) {
-        case 'instanceof':
+    switch (camelCase(type.name)) {
+        case 'instanceOf':
             return `Class(${type.value})`;
+
         case 'enum':
             if (type.computed) {
                 return type.value;
@@ -40,14 +42,18 @@ const getPropTypeString = (type) => {
             return type.value ?
                 type.value.map((v) => `${v.value}`).join(' │ ') :
                 type.raw;
+
         case 'union':
             return type.value ?
                 type.value.map((t) => `${getPropTypeString(t)}`).join(' │ ') :
                 type.raw;
+
         case 'array':
             return type.raw;
-        case 'arrayof':
+
+        case 'arrayOf':
             return `Array<${getPropTypeString(type.value)}>`;
+
         case 'custom':
             if (type.raw.indexOf('function') !== -1 || type.raw.indexOf('=>') !== -1) {
                 return 'Custom(Function)';
@@ -65,16 +71,20 @@ const getPropTypeString = (type) => {
             }
 
             return 'Custom';
+
         case 'bool':
             return 'Boolean';
+
         case 'func':
             return 'Function';
+
         case 'shape':
             Object.keys(shape).forEach((key) => {
                 rst[key] = getPropTypeString(shape[key]);
             });
 
-            return JSON.stringify(rst, null, 2);
+            return JSON.stringify(rst, null, 4);
+
         default:
             return capitalize(type.name);
     }
@@ -111,8 +121,13 @@ const getPropType = (classes, componentProp) => {
     }
 
     return (
-        <Tooltip
-            title={getPropTypeString(flowType || type)}
+        <Popover
+            content={(
+                <pre>
+                    {getPropTypeString(flowType || type)}
+                </pre>
+            )}
+            width="auto"
         >
             <Typography
                 className={classes.tooltipLink}
@@ -120,7 +135,7 @@ const getPropType = (classes, componentProp) => {
             >
                 {name}
             </Typography>
-        </Tooltip>
+        </Popover>
     );
 };
 

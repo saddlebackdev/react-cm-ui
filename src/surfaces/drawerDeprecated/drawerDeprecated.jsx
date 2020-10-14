@@ -379,7 +379,7 @@ class DrawerDeprecated extends React.Component {
         const layeredOffset = 11;
         const animationEvent = this._transitionProps(this._drawerContainer);
 
-        let newZIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
+        let newZIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the first .drawer and .drawer-dimmers- z-indexes
 
         this._drawerContainer.addEventListener(animationEvent, this.onOpenAnimationComplete);
 

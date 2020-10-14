@@ -90,6 +90,18 @@ describe('<ActionBar />', () => {
         const wrapper = mountWithTheme(
             <ActionBar
                 {...props}
+                columns={[
+                    {
+                        divide: true,
+                        iconSearch: {
+                            id: 'bem_block--search_input',
+                            onChange: jest.fn(),
+                            onClearClick: jest.fn(),
+                            onKeyDown: jest.fn(),
+                            value: '',
+                        },
+                    },
+                ]}
                 justifyContent={v}
             />,
         );

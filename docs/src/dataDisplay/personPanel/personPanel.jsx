@@ -39,15 +39,13 @@ function DocsPersonPanel() {
                     >
                         Simple Person Panel
                     </Heading>
-                </MarkdownContainer>
 
-                <Example
-                    rawCode={require('!!raw-loader!./personPanelSimpleExample').default}
-                >
-                    <PersonPanelSimpleExample />
-                </Example>
+                    <Example
+                        rawCode={require('!!raw-loader!./personPanelSimpleExample').default}
+                    >
+                        <PersonPanelSimpleExample />
+                    </Example>
 
-                <MarkdownContainer>
                     <Heading
                         anchorLink="children"
                         variant="h2"
@@ -61,16 +59,14 @@ function DocsPersonPanel() {
                         Extend the default person panel behavior to create an accordion with the
                         PersonPanel component.
                     </Typography>
-                </MarkdownContainer>
 
-                <Example
-                    // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
-                    rawCode={require('!!raw-loader!./personPanelControlledAccordionExample').default}
-                >
-                    <PersonPanelControlledAccordionExample />
-                </Example>
+                    <Example
+                        // eslint-disable-next-line global-require, import/no-webpack-loader-syntax
+                        rawCode={require('!!raw-loader!./personPanelControlledAccordionExample').default}
+                    >
+                        <PersonPanelControlledAccordionExample />
+                    </Example>
 
-                <MarkdownContainer>
                     <Heading
                         anchorLink="children"
                         variant="h2"
@@ -100,13 +96,13 @@ function DocsPersonPanel() {
                         The example below shows how you can have a checkbox column to the left and
                         some text to the right of the PersonPanelSummary.
                     </Typography>
-                </MarkdownContainer>
 
-                <Example
-                    rawCode={require('!!raw-loader!./personPanelCustomColumnsExample').default}
-                >
-                    <PersonPanelCustomColumnsExample />
-                </Example>
+                    <Example
+                        rawCode={require('!!raw-loader!./personPanelCustomColumnsExample').default}
+                    >
+                        <PersonPanelCustomColumnsExample />
+                    </Example>
+                </MarkdownContainer>
 
                 <ComponentApi
                     docs={[

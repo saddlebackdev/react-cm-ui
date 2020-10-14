@@ -90,6 +90,7 @@ function Example(props) {
 
     return (
         <Grid
+            className="example"
             classes={{
                 root: classes.root,
             }}
