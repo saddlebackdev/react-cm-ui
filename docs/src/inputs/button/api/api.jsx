@@ -1,6 +1,5 @@
 import {
     TitleBar,
-    Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
@@ -21,7 +20,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsActionBar() {
+function Api() {
     const {
         displayName,
     } = rootDoc;
@@ -43,6 +42,6 @@ function DocsActionBar() {
     );
 }
 
-DocsActionBar.propTypes = propTypes;
+Api.propTypes = propTypes;
 
-export default DocsActionBar;
+export default Api;

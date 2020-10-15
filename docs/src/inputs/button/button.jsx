@@ -30,7 +30,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsActionBar(props) {
+function DocsButton(props) {
     const {
         location: {
             pathname,
@@ -193,6 +193,6 @@ function DocsActionBar(props) {
     );
 }
 
-DocsActionBar.propTypes = propTypes;
+DocsButton.propTypes = propTypes;
 
-export default DocsActionBar;
+export default DocsButton;
