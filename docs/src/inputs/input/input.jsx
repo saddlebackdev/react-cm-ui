@@ -8,6 +8,7 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import InputSubNavigation from './InputSubNavigation';
 import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
