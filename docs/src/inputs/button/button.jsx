@@ -11,12 +11,12 @@ import React from 'react';
 import ButtonSubNavigation from './buttonSubNavigation';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-import ExampleOutline from './examples/buttonOutlineExample';
-import ExamplePill from './examples/buttonPillExample';
-import ExamplePillOutline from './examples/buttonPillOutlineExample';
-import ExampleSolid from './examples/buttonSolidExample';
-import ExampleTextExample from './examples/buttonTextExample';
-import ExampleTransparentExample from './examples/buttonTransparentButtonExample';
+import ExampleOutline from './examples/exampleButtonOutline';
+import ExamplePill from './examples/exampleButtonPill';
+import ExamplePillOutline from './examples/exampleButtonPillOutline';
+import ExampleSolid from './examples/exampleButtonSolid';
+import ExampleTextExample from './examples/exampleButtonText';
+import ExampleTransparentButton from './examples/exampleTransparentButton';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -74,7 +74,7 @@ function DocsActionBar(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonSolidExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleButtonSolid').default}
                     >
                         <ExampleSolid />
                     </Example>
@@ -96,7 +96,7 @@ function DocsActionBar(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonOutlineExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleButtonOutline').default}
                     >
                         <ExampleOutline />
                     </Example>
@@ -119,9 +119,9 @@ function DocsActionBar(props) {
 
                     <Example
                         inverse
-                        rawCode={require('!!raw-loader!./examples/buttonTransparentButtonExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleTransparentButton').default}
                     >
-                        <ExampleTransparentExample />
+                        <ExampleTransparentButton />
                     </Example>
 
                     {/**
@@ -141,7 +141,7 @@ function DocsActionBar(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonPillExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleButtonPill').default}
                     >
                         <ExamplePill />
                     </Example>
@@ -163,7 +163,7 @@ function DocsActionBar(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonPillOutlineExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleButtonPillOutline').default}
                     >
                         <ExamplePillOutline />
                     </Example>
@@ -179,7 +179,7 @@ function DocsActionBar(props) {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonTextExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleButtonText').default}
                     >
                         <ExampleTextExample />
                     </Example>
