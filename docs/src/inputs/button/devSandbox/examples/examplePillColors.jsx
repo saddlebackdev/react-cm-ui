@@ -4,7 +4,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonSolidExample() {
+function ExamplePillColors() {
     return (
         <Grid
             spacing={2}
@@ -14,6 +14,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     color="primary"
+                    pill
                 >
                     Primary
                 </Button>
@@ -24,6 +25,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     color="secondary"
+                    pill
                 >
                     Secondary
                 </Button>
@@ -34,6 +36,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     color="active"
+                    pill
                 >
                     Active
                 </Button>
@@ -44,6 +47,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     disable
+                    pill
                 >
                     Disable
                 </Button>
@@ -54,6 +58,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     color="success"
+                    pill
                 >
                     Success
                 </Button>
@@ -64,6 +69,7 @@ function ButtonSolidExample() {
             >
                 <Button
                     color="warning"
+                    pill
                 >
                     Warning
                 </Button>
@@ -72,4 +78,4 @@ function ButtonSolidExample() {
     );
 }
 
-export default ButtonSolidExample;
+export default ExamplePillColors;

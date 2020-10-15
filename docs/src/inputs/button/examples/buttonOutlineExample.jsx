@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonOutlineExample() {
+function ExampleOutline() {
     return (
         <Grid
             spacing={4}
@@ -96,4 +96,4 @@ function ButtonOutlineExample() {
     );
 }
 
-export default ButtonOutlineExample;
+export default ExampleOutline;

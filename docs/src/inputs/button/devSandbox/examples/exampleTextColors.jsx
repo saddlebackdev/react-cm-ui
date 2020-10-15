@@ -4,7 +4,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonPillColorsExample() {
+function ExampleTextColors() {
     return (
         <Grid
             spacing={2}
@@ -13,41 +13,8 @@ function ButtonPillColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="primary"
-                    pill
-                >
-                    Primary
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="secondary"
-                    pill
-                >
-                    Secondary
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="active"
-                    pill
-                >
-                    Active
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     disable
-                    pill
+                    text
                 >
                     Disable
                 </Button>
@@ -57,8 +24,30 @@ function ButtonPillColorsExample() {
                 sm="auto"
             >
                 <Button
+                    color="error"
+                    text
+                >
+                    Error
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
+                    color="link"
+                    text
+                >
+                    Link
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
                     color="success"
-                    pill
+                    text
                 >
                     Success
                 </Button>
@@ -69,7 +58,7 @@ function ButtonPillColorsExample() {
             >
                 <Button
                     color="warning"
-                    pill
+                    text
                 >
                     Warning
                 </Button>
@@ -78,4 +67,4 @@ function ButtonPillColorsExample() {
     );
 }
 
-export default ButtonPillColorsExample;
+export default ExampleTextColors;

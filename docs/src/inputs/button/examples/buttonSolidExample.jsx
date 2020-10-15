@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonSolidExample() {
+function ExampleSolid() {
     return (
         <Grid
             spacing={4}
@@ -91,4 +91,4 @@ function ButtonSolidExample() {
     );
 }
 
-export default ButtonSolidExample;
+export default ExampleSolid;

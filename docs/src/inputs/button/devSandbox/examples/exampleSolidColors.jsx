@@ -4,7 +4,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonSolidButtonExample() {
+function ExampleSolidColors() {
     return (
         <Grid
             spacing={2}
@@ -13,8 +13,37 @@ function ButtonSolidButtonExample() {
                 sm="auto"
             >
                 <Button
+                    color="primary"
+                >
+                    Primary
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
+                    color="secondary"
+                >
+                    Secondary
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
+                    color="active"
+                >
+                    Active
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
                     disable
-                    text
                 >
                     Disable
                 </Button>
@@ -24,30 +53,7 @@ function ButtonSolidButtonExample() {
                 sm="auto"
             >
                 <Button
-                    color="error"
-                    text
-                >
-                    Error
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
-                    color="link"
-                    text
-                >
-                    Link
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="success"
-                    text
                 >
                     Success
                 </Button>
@@ -58,7 +64,6 @@ function ButtonSolidButtonExample() {
             >
                 <Button
                     color="warning"
-                    text
                 >
                     Warning
                 </Button>
@@ -67,4 +72,4 @@ function ButtonSolidButtonExample() {
     );
 }
 
-export default ButtonSolidButtonExample;
+export default ExampleSolidColors;

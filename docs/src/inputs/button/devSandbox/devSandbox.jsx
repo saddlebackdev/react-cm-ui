@@ -6,37 +6,24 @@ import {
     camelCase,
     startCase,
 } from 'lodash';
-import PropTypes from 'prop-types';
 import React from 'react';
-import ButtonSubNavigation from './buttonSubNavigation';
-import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
-import Example from '../../global/example';
-import ExampleOutline from './examples/buttonOutlineExample';
-import ExamplePill from './examples/buttonPillExample';
-import ExamplePillOutline from './examples/buttonPillOutlineExample';
-import ExampleSolid from './examples/buttonSolidExample';
-import ExampleTextExample from './examples/buttonTextExample';
-import ExampleTransparentExample from './examples/buttonTransparentButtonExample';
-import Heading from '../../global/heading';
-import Main from '../../global/main';
-import MarkdownContainer from '../../global/markdownContainer';
+import ButtonSubNavigation from '../buttonSubNavigation';
+import Example from '../../../global/example';
+import ExampleOutlineColors from './examples/exampleOutlineColors';
+import ExampleOutlineInverseColors from './examples/exampleOutlineInverseColors';
+import ExamplePillColors from './examples/examplePillColors';
+import ExamplePillOutlineColors from './examples/examplePillOutlineColors';
+import ExamplePillOutlineInverseColors from './examples/examplePillOutlineInverseColors';
+import ExampleSolidColors from './examples/exampleSolidColors';
+import ExampleTextColors from './examples/exampleTextColors';
+import Heading from '../../../global/heading';
+import Main from '../../../global/main';
+import MarkdownContainer from '../../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string,
-    }).isRequired,
-};
-
-function DocsActionBar(props) {
-    const {
-        location: {
-            pathname,
-        },
-    } = props;
-
+function DocsButtonSandbox() {
     const {
         description,
         displayName,
@@ -64,19 +51,13 @@ function DocsActionBar(props) {
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Solid Button
+                        Solid Button Colors
                     </Heading>
 
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonSolidExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleSolidColors').default}
                     >
-                        <ExampleSolid />
+                        <ExampleSolidColors />
                     </Example>
 
                     {/**
@@ -86,19 +67,26 @@ function DocsActionBar(props) {
                         anchorLink="outline-button"
                         variant="h2"
                     >
-                        Outline Button
+                        Outline Button Colors
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleOutlineColors').default}
+                    >
+                        <ExampleOutlineColors />
+                    </Example>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Inverse Colors
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonOutlineExample').default}
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleOutlineInverseColors').default}
                     >
-                        <ExampleOutline />
+                        <ExampleOutlineInverseColors />
                     </Example>
 
                     {/**
@@ -108,21 +96,8 @@ function DocsActionBar(props) {
                         anchorLink="transparent-button"
                         variant="h2"
                     >
-                        Transparent Button
+                        Transparent Button Colors
                     </Heading>
-
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
-                    <Example
-                        inverse
-                        rawCode={require('!!raw-loader!./examples/buttonTransparentButtonExample').default}
-                    >
-                        <ExampleTransparentExample />
-                    </Example>
 
                     {/**
                       * Pill Button
@@ -131,19 +106,13 @@ function DocsActionBar(props) {
                         anchorLink="pill-button"
                         variant="h2"
                     >
-                        Pill Button
+                        Pill Button Colors
                     </Heading>
 
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonPillExample').default}
+                        rawCode={require('!!raw-loader!./examples/examplePillColors').default}
                     >
-                        <ExamplePill />
+                        <ExamplePillColors />
                     </Example>
 
                     {/**
@@ -153,19 +122,26 @@ function DocsActionBar(props) {
                         anchorLink="pill-outline-button"
                         variant="h2"
                     >
-                        Pill &amp; Outline Button
+                        Pill &amp; Outline Button Colors
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/examplePillOutlineColors').default}
+                    >
+                        <ExamplePillOutlineColors />
+                    </Example>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Inverse Colors
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonPillOutlineExample').default}
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/examplePillOutlineInverseColors').default}
                     >
-                        <ExamplePillOutline />
+                        <ExamplePillOutlineInverseColors />
                     </Example>
 
                     {/**
@@ -175,24 +151,18 @@ function DocsActionBar(props) {
                         anchorLink="pill-outline-button"
                         variant="h2"
                     >
-                        Text Button
+                        Text Button Colors
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/buttonTextExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleTextColors').default}
                     >
-                        <ExampleTextExample />
+                        <ExampleTextColors />
                     </Example>
                 </MarkdownContainer>
-
-                <ComponentVersionIdentifier
-                    pathname={pathname}
-                />
             </Main.Content>
         </Main>
     );
 }
 
-DocsActionBar.propTypes = propTypes;
-
-export default DocsActionBar;
+export default DocsButtonSandbox;

@@ -6,7 +6,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonTransparentButtonExample() {
+function ExampleTransparentButton() {
     return (
         <Grid
             spacing={4}
@@ -98,4 +98,4 @@ function ButtonTransparentButtonExample() {
     );
 }
 
-export default ButtonTransparentButtonExample;
+export default ExampleTransparentButton;

@@ -5,7 +5,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ButtonPillOutlineColorsExample() {
+function ExampleOutlineInverseColors() {
     return (
         <Grid
             spacing={2}
@@ -15,8 +15,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     color="primary"
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -31,8 +31,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     color="secondary"
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -47,8 +47,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     color="active"
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -63,8 +63,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     disable
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -79,8 +79,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     color="error"
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -94,9 +94,25 @@ function ButtonPillOutlineColorsExample() {
                 sm="auto"
             >
                 <Button
-                    color="success"
+                    color="link"
+                    inverse
                     outline
-                    pill
+                >
+                    <Icon
+                        type="shape-heart"
+                    />
+
+                    <span>Link</span>
+                </Button>
+            </Grid.Column>
+
+            <Grid.Column
+                sm="auto"
+            >
+                <Button
+                    color="success"
+                    inverse
+                    outline
                 >
                     <Icon
                         type="shape-heart"
@@ -111,8 +127,8 @@ function ButtonPillOutlineColorsExample() {
             >
                 <Button
                     color="warning"
+                    inverse
                     outline
-                    pill
                 >
                     <Icon
                         type="shape-heart"
@@ -125,4 +141,4 @@ function ButtonPillOutlineColorsExample() {
     );
 }
 
-export default ButtonPillOutlineColorsExample;
+export default ExampleOutlineInverseColors;
