@@ -1,7 +1,7 @@
 import React from 'react';
 import SubNavigation from '../../global/subNavigation';
 
-function ButtonSubNavigation() {
+function DocsButtonSubNavigation() {
     return (
         <SubNavigation
             firstLevelPath="components"
@@ -12,4 +12,4 @@ function ButtonSubNavigation() {
     );
 }
 
-export default ButtonSubNavigation;
+export default DocsButtonSubNavigation;

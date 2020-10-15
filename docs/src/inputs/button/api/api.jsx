@@ -20,7 +20,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function Api() {
+function DocsApi() {
     const {
         displayName,
     } = rootDoc;
@@ -42,6 +42,6 @@ function Api() {
     );
 }
 
-Api.propTypes = propTypes;
+DocsApi.propTypes = propTypes;
 
-export default Api;
+export default DocsApi;
