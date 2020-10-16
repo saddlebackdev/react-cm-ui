@@ -14,9 +14,22 @@ import Icon from '../../dataDisplay/icon';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * The actions container that should only contain a Button.
+     */
     actions: PropTypes.node,
+    /**
+     * Hint for form autofill feature.
+     */
     autoComplete: PropTypes.oneOf(['off', 'on']),
+    /**
+     * Automatically focus the form control when the page is loaded.
+     */
     autoFocus: PropTypes.bool,
+    /**
+     * Assign additional class names to Input.
+     */
+    className: PropTypes.string,
     /**
      * Override or extend the styles applied to Input.
      */
@@ -36,45 +49,116 @@ const propTypes = {
         isRequirementIncomplete: PropTypes.string,
         isThemeActiveConstrast: PropTypes.string,
     }).isRequired,
-    className: PropTypes.string,
     /**
-     * An Input can be disabled.
+     * A Input can be disabled.
      */
     disable: PropTypes.bool,
+    /**
+     * If `true`, Input's border will turn red.
+     * If a string, Input's border will turn red and a message below the Input will be displayed.
+     */
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
     ]),
+    /**
+     * The Input will be resized to its parent container's width.
+     */
     fluid: PropTypes.bool,
+    /**
+     * If `true`, Input will be in guide mode.
+     */
     guide: PropTypes.bool,
+    /**
+     * The `id` of the Input.
+     */
     id: PropTypes.string,
+    /**
+     * A Input can be formatted to appear on dark backgrounds better.
+     */
     inverse: PropTypes.bool,
+    /**
+     * If `true`, Input's general mask behavior will be changed.
+     */
     keepCharPositions: PropTypes.bool,
+    /**
+     * The label for the Input.
+     */
     label: PropTypes.string,
+    /**
+     * Mask is an array or a function that defines how the user input is going to be masked.
+     */
     mask: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.func,
     ]),
+    /**
+     * Maximum value.
+     */
     max: PropTypes.number,
+    /**
+     * Maximum length (number of characters) of `value`.
+     */
     maxLength: PropTypes.number,
+    /**
+     * Minimum value.
+     */
     min: PropTypes.number,
+    /**
+     * Minimum length (number of characters) of `value`.
+     */
     minLength: PropTypes.number,
+    /**
+     * Name of the form control. Submitted with the form as part of a name/value pair.
+     */
     name: PropTypes.string,
+    /**
+     * Event for consumer to handle `onBlur`.
+     */
     onBlur: PropTypes.func,
+    /**
+     * Event handler for consumer to change the value of the Input.
+     */
     onChange: PropTypes.func,
+    /**
+     * Event for consumer to handle `onClick`.
+     */
     onClick: PropTypes.func,
+    /**
+     * Event for consumer to handle `onFocus`.
+     */
     onFocus: PropTypes.func,
+    /**
+     * Event for consumer to handle `onKeyDown`.
+     */
     onKeyDown: PropTypes.func,
+    /**
+     * The Input's placeholder text.
+     */
     placeholder: PropTypes.string,
+    /**
+     * If `true`, the Input will show a requreiemnt indicator next to the label and different
+     * border colors dependent on the state of the input's value and focus.
+     */
     required: PropTypes.bool,
-    showSpinners: PropTypes.bool,
+    /**
+     * If `true` and `type="number"`, toggle buttons will be rendered in the actions container.
+     */
+    showNumberSpinners: PropTypes.bool,
     /**
      * Indicates whether or not the Input can be focused and where it participates in
      * sequential keyboard navigation.
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
      */
     tabIndex: PropTypes.number,
+    /**
+     * If `activeContrast`, when Input is focused and has a value the Input background color will
+     * be constrast.
+     */
     theme: PropTypes.oneOf(['activeContrast', 'default']),
+    /**
+     * The type of the single line Input.
+     */
     type: PropTypes.oneOf([
         'email',
         'number',
@@ -82,6 +166,9 @@ const propTypes = {
         'tel',
         'text',
     ]),
+    /**
+     * The value to pass to the Input node.
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -114,7 +201,7 @@ const defaultProps = {
     onKeyDown: null,
     placeholder: null,
     required: false,
-    showSpinners: true,
+    showNumberSpinners: true,
     tabIndex: -1,
     theme: 'default',
     type: null,
@@ -257,6 +344,9 @@ const styles = (theme) => ({
     },
 });
 
+/**
+ * The Input is used for gathering single line data from the user.
+ */
 class Input extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -509,7 +599,7 @@ class Input extends React.PureComponent {
             name,
             placeholder,
             required: isRequired,
-            showSpinners,
+            showNumberSpinners,
             tabIndex,
             theme,
             value,
@@ -624,7 +714,7 @@ class Input extends React.PureComponent {
                                 </div>
                             )}
 
-                            {type === 'number' && showSpinners && (
+                            {type === 'number' && showNumberSpinners && (
                                 <div className="input-number-controls" style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
                                     <Icon
                                         compact

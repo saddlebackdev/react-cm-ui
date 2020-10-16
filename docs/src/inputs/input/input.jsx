@@ -9,6 +9,7 @@ import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import ExampleButtonInput from './examples/exampleButtonInput';
+import ExampleDisabledButtonInput from './examples/exampleDisabledButtonInput';
 import ExampleDefaultInput from './examples/exampleDefaultInput';
 import ExampleDisabledInput from './examples/exampleDisabledInput';
 import ExampleRequiredInput from './examples/exampleRequiredInput';
@@ -121,6 +122,18 @@ function DocsInput(props) {
                         rawCode={require('!!raw-loader!./examples/exampleButtonInput').default}
                     >
                         <ExampleButtonInput />
+                    </Example>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Disabled
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleDisabledButtonInput').default}
+                    >
+                        <ExampleDisabledButtonInput />
                     </Example>
                 </MarkdownContainer>
 
