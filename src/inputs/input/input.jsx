@@ -10,54 +10,47 @@ import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Icon from '../../dataDisplay/icon';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    actions: PropTypes.node,
     autoComplete: PropTypes.oneOf(['off', 'on']),
     autoFocus: PropTypes.bool,
     /**
      * Override or extend the styles applied to Input.
      */
     classes: PropTypes.shape({
+        actions: PropTypes.string,
         root: PropTypes.string,
         hasError: PropTypes.string,
-        hasIcon: PropTypes.string,
+        hasActions: PropTypes.string,
         hasValue: PropTypes.string,
+        inputContainer: PropTypes.string,
         isDisabled: PropTypes.string,
         isFluid: PropTypes.string,
         isFocused: PropTypes.string,
-        isLoading: PropTypes.string,
         isNumberType: PropTypes.string,
         isRequired: PropTypes.string,
+        isRequirementComplete: PropTypes.string,
+        isRequirementIncomplete: PropTypes.string,
+        isThemeActiveConstrast: PropTypes.string,
     }).isRequired,
     className: PropTypes.string,
     /**
      * An Input can be disabled.
      */
     disable: PropTypes.bool,
-    /**
-     * Deprecated prop. Please use `disable` instead.
-     */
-    disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
     ]),
     fluid: PropTypes.bool,
     guide: PropTypes.bool,
-    icon: PropTypes.oneOfType([
-        PropTypes.shape({}),
-        PropTypes.string,
-    ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
     keepCharPositions: PropTypes.bool,
     label: PropTypes.string,
-    labelPosition: PropTypes.oneOf(['bottom', 'top']),
-    labelStyle: PropTypes.shape({}),
-    loading: PropTypes.bool,
     mask: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.func,
@@ -75,13 +68,13 @@ const propTypes = {
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     showSpinners: PropTypes.bool,
-    style: PropTypes.shape({}),
     /**
      * Indicates whether or not the Input can be focused and where it participates in
      * sequential keyboard navigation.
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
      */
     tabIndex: PropTypes.number,
+    theme: PropTypes.oneOf(['activeContrast', 'default']),
     type: PropTypes.oneOf([
         'email',
         'number',
@@ -96,22 +89,18 @@ const propTypes = {
 };
 
 const defaultProps = {
+    actions: null,
     autoComplete: null,
     autoFocus: null,
     className: null,
     disable: false,
-    disabled: false,
     error: null,
     fluid: false,
     guide: false,
-    icon: null,
     id: null,
     inverse: false,
     keepCharPositions: false,
     label: null,
-    labelPosition: null,
-    labelStyle: null,
-    loading: false,
     mask: null,
     max: null,
     maxLength: null,
@@ -126,35 +115,46 @@ const defaultProps = {
     placeholder: null,
     required: false,
     showSpinners: true,
-    style: null,
     tabIndex: -1,
+    theme: 'default',
     type: null,
-    value: '',
+    value: null,
 };
+
+const REQUIREMENT_FULLFILLMENT_COMPLETE = 'complete';
+const REQUIREMENT_FULLFILLMENT_INCOMPLETE = 'incomplete';
 
 const styles = (theme) => ({
     hasError: {},
-    hasIcon: {},
+    hasActions: {},
     hasValue: {},
-    isDefaultBorder: {},
+    inputContainer: {
+        position: 'relative',
+    },
     isDisabled: {},
     isFluid: {},
     isFocused: {},
-    isLoading: {},
     isNumberType: {},
     isRequired: {},
+    isRequirementComplete: {},
+    isRequirementIncomplete: {},
+    isThemeActiveConstrast: {},
+    actions: {
+        alignItems: 'center',
+        display: 'flex',
+        height: 44,
+        paddingRight: 6,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+    },
     root: {
         color: theme.palette.text.primary,
         display: 'inline-block',
         fontSize: theme.typography.htmlFontSize,
         position: 'relative',
         '& .label': {
-            '&.label-bottom': {
-                marginTop: 8,
-            },
-            '&.label-top': {
-                marginBottom: 8,
-            },
+            marginBottom: 8,
         },
         '& .input-required-indicator': {
             color: theme.palette.error.main,
@@ -178,12 +178,7 @@ const styles = (theme) => ({
                 color: theme.palette.text.secondary,
             },
         },
-        '& .input-actions': {
-            height: 44,
-            left: 0,
-            position: 'absolute',
-            width: '100%',
-        },
+
         '&$isDisabled': {
             '&.input-icon': {
                 color: theme.palette.text.secondary,
@@ -205,32 +200,27 @@ const styles = (theme) => ({
         '&$isFluid': {
             display: 'block',
         },
-        '&$hasIcon': {
-            '& .input-actions': {
-                '& > .ui.icon, & > .input-icon-custom': {
-                    marginTop: -8,
-                    position: 'absolute',
-                    right: 11,
-                    top: '50%',
-                },
-            },
+        '&$hasActions': {
             '& input': {
-                paddingRight: 38,
+                paddingRight: 43,
             },
         },
-        '&$isRequired$hasValue': {
-            '& input': {
+        '&$isRequired:not($isFocused)': {
+            '&$isRequirementComplete input': {
                 borderColor: theme.palette.success.main,
             },
+            '&$isRequirementIncomplete input': {
+                borderColor: theme.palette.error.main,
+            },
         },
-        // '&$isRequired:not($isDefaultBorder)': {
-        //     '& input': {
-        //         borderColor: theme.palette.error.main,
-        //     },
-        // },
         '&$isFocused': {
             '& input': {
                 borderColor: theme.palette.active.main,
+            },
+            '&$isThemeActiveConstrast$hasValue input': {
+                borderColor: theme.palette.background.contrastPrimary,
+                backgroundColor: theme.palette.background.contrastPrimary,
+                color: theme.palette.text.contrastText,
             },
         },
         '&$isNumberType': {
@@ -272,10 +262,9 @@ class Input extends React.PureComponent {
         super(props);
 
         this.state = {
-            hasValue: false,
-            isDefaultBorder: true,
+            hasValue: !!props.value,
             isFocused: false,
-            inputActionsTopPosition: 0,
+            requirementFullfillment: null,
         };
 
         this.onBlur = this.onBlur.bind(this);
@@ -286,26 +275,17 @@ class Input extends React.PureComponent {
         this.onNumberToggleDownClick = this.onNumberToggleDownClick.bind(this);
         this.onNumberToggleUpClick = this.onNumberToggleUpClick.bind(this);
 
+        this.inputRef = React.createRef();
         this.inputTimer = null;
         this.previousInputValue = '';
     }
 
     componentDidMount() {
-        const { autoFocus, icon, loading } = this.props;
-        const type = this.getType();
-
-        if (isString(icon) || isObject(icon) || loading || type === 'number') {
-            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            const inputTop = ReactDOM.findDOMNode(this.inputRef).offsetTop;
-
-            if (inputTop > 0) {
-                this.setState({ inputActionsTopPosition: inputTop });
-            }
-        }
+        const { autoFocus } = this.props;
 
         if (autoFocus) {
             // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            ReactDOM.findDOMNode(this.inputRef).focus();
+            // ReactDOM.findDOMNode(this.inputRef).focus();
 
             this.setState({
                 isFocused: true,
@@ -316,41 +296,25 @@ class Input extends React.PureComponent {
     onBlur(event) {
         const {
             onBlur,
-            required: isRequired,
         } = this.props;
 
         const newValue = event.target.value;
-        const hasValue = !!newValue;
 
         if (isFunction(onBlur)) {
             onBlur(newValue);
         }
-
-        let isDefaultBorder = null;
-
-        if (isRequired && hasValue) {
-            isDefaultBorder = true;
-        } else if (isRequired && !hasValue) {
-            isDefaultBorder = false;
-        }
-
         this.setState({
-            hasValue,
-            isDefaultBorder,
             isFocused: false,
         });
     }
 
     onChange(event) {
         const {
-            disable,
-            disabled,
+            disable: isDisabled,
             max,
             min,
             required,
         } = this.props;
-
-        const isDisabled = disable || disabled;
 
         if (!isDisabled) {
             const type = this.getType();
@@ -429,14 +393,11 @@ class Input extends React.PureComponent {
 
     onNumberToggleClick(action) {
         const {
-            disable,
-            disabled,
+            disable: isDisabled,
             max,
             min,
             type,
         } = this.props;
-
-        const isDisabled = disable || disabled;
 
         const { value } = this.inputRef;
 
@@ -515,28 +476,31 @@ class Input extends React.PureComponent {
         if (isFunction(onChange)) {
             onChange(value);
         } else {
-            this.inputRef.value = value;
+            this.inputRef.current.value = value;
         }
+
+        this.setState({
+            hasValue: !!value,
+            requirementFullfillment: value ?
+                REQUIREMENT_FULLFILLMENT_COMPLETE :
+                REQUIREMENT_FULLFILLMENT_INCOMPLETE,
+        });
     }
 
     render() {
         const {
+            actions,
             autoComplete,
             classes,
             className,
-            disable,
-            disabled,
+            disable: isDisabled,
             error,
             fluid,
             guide,
-            icon,
             id,
             inverse,
             keepCharPositions,
             label,
-            labelPosition,
-            labelStyle,
-            loading,
             mask,
             max,
             maxLength,
@@ -546,21 +510,18 @@ class Input extends React.PureComponent {
             placeholder,
             required: isRequired,
             showSpinners,
-            style,
             tabIndex,
+            theme,
             value,
         } = this.props;
 
         const {
             hasValue,
-            isDefaultBorder,
             isFocused,
-            inputActionsTopPosition,
+            requirementFullfillment,
         } = this.state;
 
         const type = this.getType();
-        const newLabelPosition = labelPosition || 'top';
-        const isDisabled = disable || disabled;
 
         const containerClasses = ClassNames(
             'ui',
@@ -574,133 +535,117 @@ class Input extends React.PureComponent {
                 'input-type-password': type === 'password',
                 'input-type-tel': type === 'tel',
                 'input-type-text': type === 'text',
-                [classes.isDefaultBorder]: isDefaultBorder,
                 [classes.hasError]: error,
-                [classes.hasIcon]: icon || loading,
+                [classes.hasActions]: actions,
+                [classes.hasValue]: hasValue,
                 [classes.isDisabled]: isDisabled,
                 [classes.isFluid]: fluid,
                 [classes.isFocused]: isFocused,
-                [classes.isLoading]: loading,
                 [classes.isNumberType]: type === 'number',
                 [classes.isRequired]: isRequired,
-                [classes.hasValue]: hasValue,
+                [classes.isRequirementComplete]:
+                    requirementFullfillment === REQUIREMENT_FULLFILLMENT_COMPLETE,
+                [classes.isRequirementIncomplete]:
+                    requirementFullfillment === REQUIREMENT_FULLFILLMENT_INCOMPLETE,
+                [classes.isThemeActiveConstrast]: theme === 'activeContrast',
             },
         );
 
-        const labelContainerClassNames = ClassNames('label', {
-            'label-bottom': newLabelPosition === 'bottom',
-            'label-top': newLabelPosition === 'top',
-        });
-
-        const renderLabel = () => {
-            if (!label) {
-                return null;
-            }
-
-            return (
-                <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
-                    {label}
-
-                    {isRequired && (
-                        <span className="input-required-indicator">*</span>
-                    )}
-                </label>
-            );
-        };
-
         return (
-            <div className={containerClasses} style={style}>
-                {newLabelPosition === 'top' && renderLabel()}
+            <div className={containerClasses}>
+                {label && (
+                    <label className="label" htmlFor={id}>
+                        {label}
 
-                {mask ? (
-                    <InputMasked
-                        autoComplete={autoComplete}
-                        disabled={isDisabled}
-                        guide={guide}
-                        id={id}
-                        keepCharPositions={keepCharPositions}
-                        name={name}
-                        mask={mask}
-                        maxLength={maxLength}
-                        minLength={minLength}
-                        onBlur={this.onBlur}
-                        onChange={this.onChange}
-                        onClick={this.onClick}
-                        onFocus={this.onFocus}
-                        onKeyDown={this.onKeyDown}
-                        placeholder={placeholder}
-                        ref={(ref) => { this.inputRef = ref; }}
-                        required={isRequired}
-                        tabIndex={tabIndex}
-                        type={type}
-                        value={value}
-                    />
-                ) : (
-                    <input
-                        autoComplete={autoComplete}
-                        disabled={isDisabled}
-                        id={id}
-                        name={name}
-                        max={max}
-                        maxLength={maxLength}
-                        min={min}
-                        minLength={minLength}
-                        onBlur={this.onBlur}
-                        onChange={this.onChange}
-                        onClick={this.onClick}
-                        onFocus={this.onFocus}
-                        onKeyDown={this.onKeyDown}
-                        placeholder={placeholder}
-                        ref={(ref) => { this.inputRef = ref; }}
-                        required={isRequired}
-                        tabIndex={tabIndex}
-                        type={type}
-                        value={value}
-                    />
+                        {isRequired && (
+                            <span className="input-required-indicator">*</span>
+                        )}
+                    </label>
                 )}
 
-                {newLabelPosition === 'bottom' && renderLabel()}
+                <div
+                    className={classes.inputContainer}
+                >
+                    {mask ? (
+                        <InputMasked
+                            autoComplete={autoComplete}
+                            disabled={isDisabled}
+                            guide={guide}
+                            id={id}
+                            keepCharPositions={keepCharPositions}
+                            name={name}
+                            mask={mask}
+                            maxLength={maxLength}
+                            minLength={minLength}
+                            onBlur={this.onBlur}
+                            onChange={this.onChange}
+                            onClick={this.onClick}
+                            onFocus={this.onFocus}
+                            onKeyDown={this.onKeyDown}
+                            placeholder={placeholder}
+                            ref={this.inputRef}
+                            required={isRequired}
+                            tabIndex={tabIndex}
+                            type={type}
+                            value={value}
+                        />
+                    ) : (
+                        <input
+                            autoComplete={autoComplete}
+                            disabled={isDisabled}
+                            id={id}
+                            name={name}
+                            max={max}
+                            maxLength={maxLength}
+                            min={min}
+                            minLength={minLength}
+                            onBlur={this.onBlur}
+                            onChange={this.onChange}
+                            onClick={this.onClick}
+                            onFocus={this.onFocus}
+                            onKeyDown={this.onKeyDown}
+                            placeholder={placeholder}
+                            ref={this.inputRef}
+                            required={isRequired}
+                            tabIndex={tabIndex}
+                            type={type}
+                            value={value}
+                        />
+                    )}
 
-                {(isString(icon) || isObject(icon) || loading || type === 'number') && (
-                    <div
-                        className="input-actions"
-                        ref={(ref) => { this.inputActionsRef = ref; }}
-                        style={{
-                            pointerEvents: 'none',
-                            top: inputActionsTopPosition,
-                        }}
-                    >
-                        {(isString(icon) || loading) && (
-                            <Icon compact spin={loading} type={loading ? 'spinner' : icon} />
-                        )}
+                    {(isObject(actions) || type === 'number') && (
+                        <div
+                            className="input--actions"
+                            ref={(ref) => { this.inputActionsRef = ref; }}
+                        >
+                            {isObject(actions) && (
+                                <div className={classes.actions}>
+                                    {actions}
+                                </div>
+                            )}
 
-                        {isObject(icon) && (
-                            <div className="input-icon-custom" style={{ pointerEvents: 'auto' }}>
-                                {icon}
-                            </div>
-                        )}
+                            {type === 'number' && showSpinners && (
+                                <div className="input-number-controls" style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
+                                    <Icon
+                                        compact
+                                        onClick={this.onNumberToggleUpClick}
+                                        size="xsmall"
+                                        title="Increase"
+                                        type="caret-up"
+                                    />
 
-                        {type === 'number' && showSpinners && (
-                            <div className="input-number-controls" style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
-                                <Icon
-                                    compact
-                                    onClick={this.onNumberToggleUpClick}
-                                    size="xsmall"
-                                    title="Increase"
-                                    type="caret-up"
-                                />
-
-                                <Icon
-                                    compact
-                                    onClick={this.onNumberToggleDownClick}
-                                    size="xsmall"
-                                    title="Decrease"
-                                    type="caret-down"
-                                />
-                            </div>
-                        )}
-                    </div>
-                )}
+                                    <Icon
+                                        compact
+                                        onClick={this.onNumberToggleDownClick}
+                                        size="xsmall"
+                                        title="Decrease"
+                                        type="caret-down"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 {error && isString(error) && (
                     <p className="input-error-message">{error}</p>

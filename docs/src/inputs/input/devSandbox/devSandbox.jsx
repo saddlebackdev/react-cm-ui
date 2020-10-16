@@ -1,4 +1,5 @@
 import {
+    Button,
     Header,
     Icon,
     Input,
@@ -95,27 +96,35 @@ export default class FluidSample extends React.Component {
 
 }`;
 
-const iconSample = `import React from 'react';
-import { Input } from 'react-cm-ui';
+const actionsSample = `import React from 'react';
+import {
+    Button,
+    Icon,
+    Input,
+} from 'react-cm-ui';
 
 export default class IconSample extends React.Component {
-
-    render() {
-        return (
-            <Input icon="calendar" /><br /><br />
-
-            <Input
-                icon={(
-                    <Icon fitted={true} type="calendar" onClick={this.onIconClick.bind(this)} />
-                )}
-            />
-        );
-    }
-
     onIconClick() {
         window.alert('Look at my action.');
     }
 
+    render() {
+        return (
+            <Input
+                actions={(
+                    <Button
+                        icon
+                        onClick={this.onIconClick.bind(this)}
+                    >
+                        <Icon
+                            compact
+                            type="calendar"
+                        />
+                    </Button>
+                )}
+            />
+        );
+    }
 }`;
 
 const inverseSample = `import React from 'react';
@@ -156,19 +165,6 @@ export default class LabelPositionSample extends React.Component {
 
                 <Input label="Top Label" labelPosition="top" />
             </div>
-        );
-    }
-
-}`;
-
-const loadingSample = `import React from 'react';
-import { Input } from 'react-cm-ui';
-
-export default class LoadingSample extends React.Component {
-
-    render() {
-        return (
-            <Input icon="search" label="Search" loading={true} />
         );
     }
 
@@ -505,19 +501,22 @@ class DocsDevSandbox extends React.Component {
                             </Header.Subheader>
                         </Header>
 
-                        <Input icon="calendar" />
-
-                        <br />
-                        <br />
-
                         <Input
-                            icon={(
-                                <Icon compact type="calendar" onClick={this.onIconClick.bind(this)} />
+                            actions={(
+                                <Button
+                                    icon
+                                    onClick={this.onIconClick.bind(this)}
+                                >
+                                    <Icon
+                                        compact
+                                        type="calendar"
+                                    />
+                                </Button>
                             )}
                         />
 
                         <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                            {iconSample}
+                            {actionsSample}
                         </Highlighter>
 
                         {/* Inverse */}
@@ -566,20 +565,6 @@ class DocsDevSandbox extends React.Component {
 
                         <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                             {labelPositionSample}
-                        </Highlighter>
-
-                        {/* Loading */}
-                        <Header anchor="loading" size="large" style={{ marginTop: '55px' }} sub>
-                            Loading
-                            <Header.Subheader>
-                                An icon input field can show that it is currently loading data.
-                            </Header.Subheader>
-                        </Header>
-
-                        <Input icon="search" label="Search" loading />
-
-                        <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                            {loadingSample}
                         </Highlighter>
 
                         {/* Max & Min */}

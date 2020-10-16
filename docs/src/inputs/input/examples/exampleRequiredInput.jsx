@@ -2,20 +2,20 @@ import { Input } from 'react-cm-ui';
 import React, { useState } from 'react';
 
 function ExampleDefaultInput() {
-    const [requiredValue, setRequiredValue] = useState('');
+    const [value, setValue] = useState('');
 
-    const onRequiredChange = (value) => {
-        setRequiredValue(value);
+    const onChange = (newValue) => {
+        setValue(newValue);
     };
 
     return (
         <Input
             fluid
             label="Label"
-            onRequiredChange={onRequiredChange}
+            onChange={onChange}
             placeholder="Placeholder"
             required
-            value={requiredValue}
+            value={value}
         />
     );
 }
