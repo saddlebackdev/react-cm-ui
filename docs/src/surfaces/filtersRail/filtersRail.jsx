@@ -79,12 +79,6 @@ function DocsFiltersRail(props) {
                     <FiltersRailDrawerSample />
                 </Example>
 
-                <ComponentApi
-                    docs={[
-                        rootDoc,
-                    ]}
-                />
-
                 <ComponentVersionIdentifier
                     pathname={pathname}
                 />

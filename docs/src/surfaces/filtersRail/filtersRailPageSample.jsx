@@ -162,7 +162,7 @@ function FiltersRailPageSample() {
                     },
                     {
                         button: {
-                            color: 'alternate',
+                            color: 'secondary',
                             iconType: 'comment-lines',
                             title: 'SMS',
                         },
@@ -173,7 +173,7 @@ function FiltersRailPageSample() {
                     },
                     {
                         dropdownButton: {
-                            color: 'alternate',
+                            color: 'secondary',
                             label: 'Actions',
                             options: [
                                 {
