@@ -1,12 +1,11 @@
 import {
-    Button,
+    Checkbox,
     Grid,
-    Icon,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
 
-function ExampleSolid() {
+function ExampleMiniCheckbox() {
     return (
         <Grid
             spacing={4}
@@ -20,14 +19,15 @@ function ExampleSolid() {
                 >
                     <Grid.Column>
                         <Typography>
-                            Label
+                            Unchecked
                         </Typography>
                     </Grid.Column>
 
                     <Grid.Column>
-                        <Button>
-                            Label
-                        </Button>
+                        <Checkbox
+                            label="Label"
+                            size="small"
+                        />
                     </Grid.Column>
                 </Grid>
             </Grid.Column>
@@ -41,18 +41,16 @@ function ExampleSolid() {
                 >
                     <Grid.Column>
                         <Typography>
-                            Icon
+                            Checked
                         </Typography>
                     </Grid.Column>
 
                     <Grid.Column>
-                        <Button
-                            icon
-                        >
-                            <Icon
-                                type="shape-heart"
-                            />
-                        </Button>
+                        <Checkbox
+                            checked
+                            label="Label"
+                            size="small"
+                        />
                     </Grid.Column>
                 </Grid>
             </Grid.Column>
@@ -66,18 +64,40 @@ function ExampleSolid() {
                 >
                     <Grid.Column>
                         <Typography>
-                            Label &amp; Icon
+                            Disabled Unchecked
                         </Typography>
                     </Grid.Column>
 
                     <Grid.Column>
-                        <Button>
-                            <Icon
-                                type="shape-heart"
-                            />
+                        <Checkbox
+                            disable
+                            label="Label"
+                            size="small"
+                        />
+                    </Grid.Column>
+                </Grid>
+            </Grid.Column>
 
-                            <span>Label</span>
-                        </Button>
+            <Grid.Column
+                sm="auto"
+            >
+                <Grid
+                    direction="column"
+                    spacing={2}
+                >
+                    <Grid.Column>
+                        <Typography>
+                            Disabled Checked
+                        </Typography>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <Checkbox
+                            disable
+                            checked
+                            label="Label"
+                            size="small"
+                        />
                     </Grid.Column>
                 </Grid>
             </Grid.Column>
@@ -85,4 +105,4 @@ function ExampleSolid() {
     );
 }
 
-export default ExampleSolid;
+export default ExampleMiniCheckbox;

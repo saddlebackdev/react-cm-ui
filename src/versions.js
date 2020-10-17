@@ -3,6 +3,21 @@ const versions = {
         package: '10.0.0',
         components: {
             inputs: {
+                button: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                checkbox: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                input: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
                 durationPicker: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
@@ -14,13 +29,6 @@ const versions = {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a',
-                },
-            },
-            surfaces: {
-                actionBar: {
-                    devLibraryVersion: '2.0.0 <',
-                    designLibraryVersion: '2.1.0',
-                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b',
                 },
             },
             navigation: {
@@ -36,8 +44,23 @@ const versions = {
                 },
             },
             surfaces: {
+                actionBar: {
+                    devLibraryVersion: '2.0.0 <',
+                    designLibraryVersion: '2.1.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b',
+                },
                 appBar: {
-                    evLibraryVersion: '1.0.0',
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                filtersRail: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                modal: {
+                    devLibraryVersion: '2.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
