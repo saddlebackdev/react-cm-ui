@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.2 - 10/17/2020
+
+#### Bug
+- [PR #225](https://github.com/saddlebackdev/react-cm-ui/pull/225) / Merge Commit 613c409c2df17b7cee1a551618117fce9d296f37
+  - Fixes a bug with PersonPanel's birthdate.
+
 ## 9.18.1 - 10/12/2020
 
 #### Bug
