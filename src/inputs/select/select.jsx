@@ -342,7 +342,7 @@ const useStyles = makeStyles((theme) => {
                     margin: 0,
                     outline: 'none',
                     lineHeight: '14px',
-                    padding: `((${selectInputInternalHeight} - 14) / 2 - 2)px 0 ((${selectInputInternalHeight} - 14) / 2 + 2)px`,
+                    padding: `${((selectInputInternalHeight - 14) / 2 - 2)}px 0 ${((selectInputInternalHeight - 14) / 2 + 2)}px`,
                     WebkitAppearance: 'none',
                     '& .is-focused &': {
                         cursor: 'text',
@@ -365,7 +365,7 @@ const useStyles = makeStyles((theme) => {
             },
             '& .Select-loading': {
                 animation: '$selectAnimationSpin 400ms infinite linear',
-                border: `floor((${selectLoadingSize} / 8)) solid ${selectLoadingColorBg}`,
+                border: `floor((${selectLoadingSize / 8})) solid ${selectLoadingColorBg}`,
                 borderRadius: '50%',
                 borderRightColor: selectLoadingColor,
                 boxSizing: 'border-box',
