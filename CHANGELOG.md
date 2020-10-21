@@ -1,6 +1,19 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.3 - 10/21/2020
+
+#### Feature
+- [PR #226](https://github.com/saddlebackdev/react-cm-ui/pull/226) / Merge Commit d6192e3e3823542288358ca4bc69d362b7d213bf
+  - Add `promptTextCreator` function prop to Select component so that this value can be specified and passed to underlying third-party React Select component for customization in "creatable" scenarios.
+
+#### Bug
+- [PR #224](https://github.com/saddlebackdev/react-cm-ui/pull/224) / Merge Commit 05f031b61a522260467288fdc5e850a3b0e4759a
+  - Ensure that click `event` object is passed into DropdownButton's `onMenuToggle` when DropdownMenu's `onClickOutside` is triggered.
+  - Also, add defensive check on `event` in DropdownButton's `onMenuToggle` before invoking `stopPropagation()` method on it.
+- [PR #226](https://github.com/saddlebackdev/react-cm-ui/pull/226) / Merge Commit d6192e3e3823542288358ca4bc69d362b7d213bf
+  - Fix some JSS styling bugs in Select. 
+
 ## 9.18.2 - 10/17/2020
 
 #### Bug
