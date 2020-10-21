@@ -1,3 +1,6 @@
+import {
+    isEmpty,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
@@ -94,7 +97,9 @@ function DropdownButton(props) {
     }
 
     function onMenuToggle(event) {
-        event.stopPropagation();
+        if (!isEmpty(event)) {
+            event.stopPropagation();
+        }
         setIsOpen(!isMenuOpen);
     }
 
