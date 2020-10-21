@@ -36,6 +36,7 @@ const propTypes = {
     optionComponent: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.shape({})),
     placeholder: PropTypes.string,
+    promptTextCreator: PropTypes.func,
     required: PropTypes.bool,
     searchable: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -62,6 +63,7 @@ const defaultProps = {
     onChange: null,
     optionComponent: null,
     options: [],
+    promptTextCreator: undefined,
     placeholder: null,
     required: false,
     searchable: false,
@@ -657,6 +659,7 @@ function Select(props) {
         optionComponent,
         options,
         placeholder,
+        promptTextCreator,
         required,
         searchable: isSearchable,
         tabIndex,
@@ -816,6 +819,7 @@ function Select(props) {
                 onChange={onChange}
                 optionComponent={optionComponent}
                 options={options}
+                promptTextCreator={isCreatable && promptTextCreator}
                 placeholder={placeholder}
                 searchable={isSearchable}
                 tabIndex={tabIndex}
