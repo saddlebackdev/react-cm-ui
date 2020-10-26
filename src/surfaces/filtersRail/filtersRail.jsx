@@ -33,10 +33,6 @@ const propTypes = {
      */
     id: PropTypes.string,
     /**
-     * If `true`, FiltersRail's clear button becomes actionable.
-     */
-    isFiltering: PropTypes.bool,
-    /**
      * If `true`, FiltersRail is open
      */
     isOpen: PropTypes.bool,
@@ -45,25 +41,6 @@ const propTypes = {
      * whether it is a child of the Page or Drawer component.
      */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
-    /**
-     * Event handler for consumer to clear filters.
-     */
-    onClear: PropTypes.func,
-    /**
-     * Array of objects that are used to setup the grid system
-     * in the FiltersRail.
-     */
-    rows: PropTypes.arrayOf(
-        PropTypes.shape({
-            classes: PROP_TYPES_ROW.classes,
-            className: PROP_TYPES_ROW.className,
-            collapse: PROP_TYPES_ROW.collapse,
-            collapsible: PROP_TYPES_ROW.collapsible,
-            components: PROP_TYPES_ROW.components,
-            heading: PROP_TYPES_ROW.heading,
-            id: PROP_TYPES_ROW.id,
-        }),
-    ),
     /**
      * HC's theme.
      */
@@ -79,11 +56,8 @@ const defaultProps = {
     classes: undefined,
     className: undefined,
     id: undefined,
-    isFiltering: false,
     isOpen: undefined,
     moduleType: 'page',
-    onClear: undefined,
-    rows: [],
 };
 
 const useStyles = makeStyles((theme) => {
@@ -147,11 +121,8 @@ function FiltersRail(props) {
         children,
         className,
         id,
-        isFiltering,
         isOpen,
         moduleType,
-        onClear,
-        rows,
         theme,
     } = props;
 
@@ -188,8 +159,6 @@ function FiltersRail(props) {
             [classes.isNotOpen]: !isOpen,
         },
     );
-
-    let rowKeyNum = 0;
 
     return (
         <div

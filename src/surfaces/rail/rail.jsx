@@ -27,7 +27,7 @@ const styles = (theme) => ({
     root: {
         backgroundColor: theme.palette.background.primary,
         height: '100%',
-        padding: 22,
+        padding: [[33, 22]],
         width: 250,
         '&$positionLeft, &$positionRight': {
             '&::after': {

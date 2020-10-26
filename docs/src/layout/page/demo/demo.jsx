@@ -17,6 +17,7 @@ import {
     backgroundColorAlert,
     backgroundColorSuccess,
 } from 'react-cm-ui/styles/colorExports';
+import DemoFiltersRail from './demoFiltersRail';
 
 const propTypes = {
     classes: PropTypes.shape({
@@ -1021,71 +1022,9 @@ class PageDemo extends React.PureComponent {
                             ]}
                         />
 
-                        <Page.FiltersRail
+                        <DemoFiltersRail
                             isOpen={isFiltersDrawerOpen}
-                        >
-                            <Radio pill>
-                                <Radio.Item
-                                    id="bem_name--radio_item_active"
-                                    label="Active"
-                                />
-
-                                <Radio.Item
-                                    id="bem_name--radio_item_inactive"
-                                    label="Inctive"
-                                />
-                            </Radio>
-
-                            <Header weight="bold">Sort By</Header>
-
-                            <Dropdown
-                                clearable={false}
-                                options={[
-                                    {
-                                        label: 'Name (Ascending)',
-                                        value: 'Name (Ascending)',
-                                    }, {
-                                        label: 'Name (Descending)',
-                                        value: 'Name (Descending)',
-                                    }, {
-                                        label: 'Create Date (Ascending)',
-                                        value: 'Create Date (Ascending)',
-                                    }, {
-                                        label: 'Create Date (Descending)',
-                                        value: 'Create Date (Descending)',
-                                    },
-                                ]}
-                                searchable={false}
-                                selection
-                                selectionUnderline
-                                value={{
-                                    label: 'Name (Ascending)',
-                                    value: 'Name (Ascending)',
-                                }}
-                            />
-
-                            <Header weight="bold">Campus</Header>
-
-                            <Dropdown
-                                clearable={false}
-                                options={[
-                                    {
-                                        label: 'All Campuses',
-                                        value: 'All Campuses',
-                                    }, {
-                                        label: 'Lake Forest',
-                                        value: 'Lake Forest',
-                                    },
-                                ]}
-                                searchable={false}
-                                selection
-                                selectionUnderline
-                                value={{
-                                    label: 'All Campuses',
-                                    value: 'All Campuses',
-                                }}
-                            />
-                        </Page.FiltersRail>
+                        />
 
                         <Page.Content
                             className="page-content-class-name"
