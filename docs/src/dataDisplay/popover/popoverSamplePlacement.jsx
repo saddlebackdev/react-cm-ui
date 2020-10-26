@@ -12,44 +12,45 @@ function PopoverSample() {
         </div>
     );
     return (
-        <Grid columns={4}>
-            <Grid.Row>
-                <Grid.Column>
-                    <Popover
-                        content={popoverContent}
-                        placement="top"
-                    >
-                        <Button>Top</Button>
-                    </Popover>
-                </Grid.Column>
+        <Grid
+            spacing={2}
+            sm={4}
+        >
+            <Grid.Column>
+                <Popover
+                    content={popoverContent}
+                    placement="top"
+                >
+                    <Button>Top</Button>
+                </Popover>
+            </Grid.Column>
 
-                <Grid.Column>
-                    <Popover
-                        content={popoverContent}
-                        placement="right"
-                    >
-                        <Button>Right</Button>
-                    </Popover>
-                </Grid.Column>
+            <Grid.Column>
+                <Popover
+                    content={popoverContent}
+                    placement="right"
+                >
+                    <Button>Right</Button>
+                </Popover>
+            </Grid.Column>
 
-                <Grid.Column>
-                    <Popover
-                        content={popoverContent}
-                        placement="bottom"
-                    >
-                        <Button>Bottom</Button>
-                    </Popover>
-                </Grid.Column>
+            <Grid.Column>
+                <Popover
+                    content={popoverContent}
+                    placement="bottom"
+                >
+                    <Button>Bottom</Button>
+                </Popover>
+            </Grid.Column>
 
-                <Grid.Column>
-                    <Popover
-                        content={popoverContent}
-                        placement="left"
-                    >
-                        <Button>Left</Button>
-                    </Popover>
-                </Grid.Column>
-            </Grid.Row>
+            <Grid.Column>
+                <Popover
+                    content={popoverContent}
+                    placement="left"
+                >
+                    <Button>Left</Button>
+                </Popover>
+            </Grid.Column>
         </Grid>
     );
 }

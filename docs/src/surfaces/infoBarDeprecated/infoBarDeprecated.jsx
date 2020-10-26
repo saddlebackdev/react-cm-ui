@@ -1,9 +1,6 @@
-
-import MediaQuery from 'react-responsive';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Header, InfoBar, List, TitleBar,
+    Card, Header, InfoBar,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -98,8 +95,6 @@ export default class ViewsInfoBar extends React.Component {
 
         return (
             <Main page="info-bar">
-                <TitleBar title="Info Bar" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

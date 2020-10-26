@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -22,8 +21,6 @@ function DocsPersonPanel() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Person Panel" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

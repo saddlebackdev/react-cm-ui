@@ -64,8 +64,6 @@ export default class ElementsRail extends React.PureComponent {
 
         return (
             <Main page="rail">
-                <TitleBar title="Rail" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

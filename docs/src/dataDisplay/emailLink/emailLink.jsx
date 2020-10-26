@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsEmailLink() {
 
     return (
         <Main page="email_link">
-            <TitleBar title="Email Link" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

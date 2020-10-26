@@ -26,8 +26,6 @@ import TableProps from '../../global/tableProps';
 function ElementsButton() {
     return (
         <Main page="headers">
-            <TitleBar title="Button" />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

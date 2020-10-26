@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
-    startCase,
     camelCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
@@ -40,9 +38,6 @@ function TabsExample(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-
-            <TitleBar title={startCase(displayName)} />
-
             <Main.Content>
 
                 <MarkdownContainer>

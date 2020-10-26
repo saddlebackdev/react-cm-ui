@@ -1,6 +1,5 @@
-import './main.scss';
-
 import ClassNames from 'classnames';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import MainContent from './mainContent';
@@ -18,6 +17,19 @@ const defaultProps = {
     style: undefined,
 };
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        minHeight: '100%',
+        padding: `${theme.height.appHeader.md}px 22px 22px`,
+        '& > h1:first-child': {
+            marginTop: 0,
+        },
+        '& > :last-child': {
+            marginBottom: 0,
+        },
+    },
+}));
+
 function Main(props) {
     const {
         children,
@@ -25,12 +37,23 @@ function Main(props) {
         page,
         style,
     } = props;
-    const containerClasses = ClassNames('main', className, {
-        [`page-${page}`]: !!page,
-    });
+
+    const classes = useStyles();
+
+    const rootClasses = ClassNames(
+        'main',
+        classes.root,
+        className,
+        {
+            [`page-${page}`]: !!page,
+        },
+    );
 
     return (
-        <main className={containerClasses} style={style}>
+        <main
+            className={rootClasses}
+            style={style}
+        >
             {children}
         </main>
     );

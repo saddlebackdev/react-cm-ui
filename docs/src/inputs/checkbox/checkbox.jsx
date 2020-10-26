@@ -1,7 +1,8 @@
 import {
-    Card, Checkbox, Header, TitleBar,
+    Card,
+    Checkbox,
+    Header,
 } from 'react-cm-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -254,8 +255,6 @@ export default class ElementsCheckbox extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Checkbox" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

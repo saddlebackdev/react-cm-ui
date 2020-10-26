@@ -1,10 +1,6 @@
 import {
-    Button,
     Card,
-    DropdownButton,
     Header,
-    Prompt,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -74,8 +70,6 @@ function DocsPrompt() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Prompt" />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

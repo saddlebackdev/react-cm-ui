@@ -1,5 +1,7 @@
 import {
-    Card, Header, List, SubNavigation, TitleBar,
+    Card,
+    Header,
+    List,
 } from 'react-cm-ui';
 import React from 'react';
 
@@ -22,17 +24,6 @@ export default class ElementsList extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="List" />
-
-                <SubNavigation
-                    onClick={this._onSubNavClick}
-                    selected={subNavIndex}
-                    style={{ marginBottom: '33px' }}
-                >
-                    <SubNavigation.Item label="List" />
-                    <SubNavigation.Item label="Item" />
-                </SubNavigation>
-
                 <Main.Content>
                     {this._renderList()}
 

@@ -676,8 +676,6 @@ export default class CollectionsGrid extends React.Component {
 
         return (
             <Main className="grid">
-                <TitleBar title="Grid" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

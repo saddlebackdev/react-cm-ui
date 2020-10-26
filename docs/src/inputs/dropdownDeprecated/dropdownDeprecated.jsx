@@ -13,7 +13,7 @@ import 'images/avatar3.jpg';
 import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
-import { Card, Dropdown, Grid, Header, TitleBar } from 'react-cm-ui';
+import { Card, Dropdown, Grid, Header } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -21,7 +21,6 @@ import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
-import SubNavigation from '../../global/subNavigation';
 
 const imageFilePath = '/images';
 const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
@@ -1278,15 +1277,6 @@ class ModulesDropdown extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Dropdown" />
-
-                <SubNavigation
-                    firstLevelPath="components"
-                    secondLevelPath="inputs"
-                    thirdLevelLabel="Dropdown"
-                    thirdLevelPath="dropdown-deprecated"
-                />
-
                 <Main.Content>
                     <Header size="large" style={{ marginTop: '55px' }}>
                         The prop 'button' has been deprecated.
@@ -1470,6 +1460,7 @@ class ModulesDropdown extends React.Component {
                                     </Dropdown>
                                 </Grid.Column>
                             </Grid.Row>
+                            
                             <Grid.Row stackable>
                                 <Grid.Column width={6} tablet={4} laptop={2}>
                                     <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary" style={{ maxWidth: '200px', width: '100%' }}>

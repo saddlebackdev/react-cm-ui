@@ -479,8 +479,6 @@ export default class ModulesModal extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Modal" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
