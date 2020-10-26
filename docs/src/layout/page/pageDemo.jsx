@@ -4,6 +4,7 @@ import {
     Header,
     Icon,
     Page,
+    Radio,
     Typography,
 } from 'react-cm-ui';
 import _ from 'lodash';
@@ -1023,6 +1024,18 @@ class PageDemo extends React.PureComponent {
                         <Page.FiltersRail
                             isOpen={isFiltersDrawerOpen}
                         >
+                            <Radio pill>
+                                <Radio.Item
+                                    id="bem_name--radio_item_active"
+                                    label="Active"
+                                />
+
+                                <Radio.Item
+                                    id="bem_name--radio_item_inactive"
+                                    label="Inctive"
+                                />
+                            </Radio>
+
                             <Header weight="bold">Sort By</Header>
 
                             <Dropdown
@@ -1176,14 +1189,14 @@ class PageDemo extends React.PureComponent {
                                 />
                             )}
 
-                            <div
+                            {/* <div
                                 className={classes.dataGroupsContainer}
                             >
                                 <Page.DataGroups
                                     columns={mainCoulumn}
                                     data={mainData}
                                 />
-                            </div>
+                            </div> */}
                         </Page.Content>
                     </Page.Container>
                 </Page>
