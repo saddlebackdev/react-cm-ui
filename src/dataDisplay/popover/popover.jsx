@@ -1,13 +1,13 @@
-import Classnames from 'classnames';
 import { get } from 'lodash';
+import Classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Tooltip from '@material-ui/core/Tooltip';
 import {
     UI_CLASS_NAME,
     BEM_POPOVER,
 } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
-import ToolTip from '../tooltip';
 
 const propTypes = {
     /**
@@ -19,6 +19,7 @@ const propTypes = {
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
+        popper: PropTypes.string,
     }),
     /**
      * Additional classes.
@@ -27,7 +28,10 @@ const propTypes = {
     /**
      * Content
      */
-    content: PropTypes.string,
+    content: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+    ]),
     /**
      * We can pass either a string or jsx elements
      */
@@ -36,10 +40,6 @@ const propTypes = {
      * The `id` of the Popover.
      */
     id: PropTypes.string,
-    /**
-     * Popper container styles
-     */
-    popperStyles: PropTypes.shape({}),
     /**
      * We can define the max width for the Popover
      */
@@ -63,7 +63,6 @@ const defaultProps = {
     className: undefined,
     id: undefined,
     maxWidth: undefined,
-    popperStyles: {},
     width: 250,
 };
 
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     arrow: {
         color: get(theme, 'palette.common.white'),
     },
-    popper: ({ popperStyles }) => (popperStyles || {}),
+    popper: {},
     root: {
         width: 'fit-content',
     },
@@ -99,7 +98,6 @@ function Popover(props) {
         content,
         className,
         id,
-        ...restProps
     } = props;
 
     const classes = useStyles(props);
@@ -116,12 +114,14 @@ function Popover(props) {
             className={rootClasses}
             id={id}
         >
-            <ToolTip
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...restProps}
+            <Tooltip
                 arrow
                 className={`${BEM_POPOVER}--popper`}
-                classes={classes}
+                classes={{
+                    arrow: classes.arrow,
+                    popper: classes.popper,
+                    tooltip: classes.tooltip,
+                }}
                 title={content}
             >
                 <div
@@ -129,7 +129,7 @@ function Popover(props) {
                 >
                     {children}
                 </div>
-            </ToolTip>
+            </Tooltip>
         </div>
     );
 }
