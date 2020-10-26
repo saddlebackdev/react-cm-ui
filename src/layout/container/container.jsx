@@ -1,41 +1,88 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ContainerActionBar from './containerActionBar';
-import ContainerContent from './containerContent';
-import Utils from '../../utils/utils';
+import makeStyles from '../../styles/makeStyles';
+import {
+    BEM_ACTION_BAR_SEARCH_VISIBLE,
+    BEM_CONTAINER,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 
-class Container extends React.Component {
-    render() {
-        const {
-            as, className, color, style,
-        } = this.props;
-        const containerClasses = ClassNames('ui', 'container', className, {
-            'container-color-inverse': color === 'inverse',
-            'container-color-light': color === 'light',
-            'container-color-nest': color === 'nest',
-            'container-color-transparent': color === 'transparent',
-        });
-        const ElementType = Utils.getElementType(as || 'main', this.props);
+const propTypes = {
+    children: PropTypes.node,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    className: PropTypes.string,
+    id: PropTypes.string,
+    moduleType: PropTypes.oneOf(['drawer', 'page']),
+};
 
-        return (
-            <ElementType className={containerClasses} style={style}>
-                {this.props.children}
-            </ElementType>
-        );
-    }
+const defaultProps = {
+    children: null,
+    classes: null,
+    className: null,
+    id: null,
+    moduleType: null,
+};
+
+const useStyles = makeStyles((theme) => {
+    const {
+        breakpoints,
+    } = theme;
+
+    return {
+        isDrawer: {},
+        isPage: {},
+        root: {
+            '&$isPage': {
+                marginTop: 50,
+                [breakpoints.down('md')]: {
+                    transition: 'margin-top 333ms ease-in-out',
+                    [`&.${BEM_ACTION_BAR_SEARCH_VISIBLE}`]: {
+                        marginTop: 105,
+                    },
+                },
+                [breakpoints.up('md')]: {
+                    marginTop: 70,
+                },
+            },
+        },
+    };
+});
+
+function Container(props) {
+    const {
+        children,
+        className,
+        id,
+        moduleType,
+    } = props;
+
+    const classes = useStyles(props);
+
+    const rootClasses = ClassNames(
+        UI_CLASS_NAME,
+        BEM_CONTAINER,
+        classes.root,
+        className,
+        {
+            [classes.isDrawer]: moduleType === 'drawer',
+            [classes.isPage]: !moduleType || moduleType === 'page',
+        },
+    );
+
+    return (
+        <div
+            className={rootClasses}
+            id={id}
+        >
+            {children}
+        </div>
+    );
 }
 
-Container.ActionBar = ContainerActionBar;
-Container.Content = ContainerContent;
-
-const asEnums = ['div', 'header', 'main', 'section'];
-
-Container.propTypes = {
-    as: PropTypes.oneOf(asEnums),
-    className: PropTypes.string,
-    color: PropTypes.oneOf(Utils.colorEnums()),
-    style: PropTypes.shape({}),
-};
+Container.propTypes = propTypes;
+Container.defaultProps = defaultProps;
 
 export default Container;

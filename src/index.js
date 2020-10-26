@@ -49,6 +49,7 @@ export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
+export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';
 
@@ -77,6 +78,7 @@ export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
+export { default as Slide } from './utils/slide';
 export { default as useMediaQuery } from './utils/useMediaQuery';
 export { default as Utils } from './utils/utils';
 export { default as withWidth } from './utils/withWidth/withWidth';
