@@ -3,7 +3,6 @@ import {
     Checkbox,
     Header,
     Rail,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';

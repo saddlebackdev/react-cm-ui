@@ -1,8 +1,8 @@
-
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Grid, Header, TitleBar,
+    Card,
+    Grid,
+    Header,
 } from 'react-cm-ui';
 
 // Docs UI Components

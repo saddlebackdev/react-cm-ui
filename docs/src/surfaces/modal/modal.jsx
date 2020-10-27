@@ -1,9 +1,11 @@
-
 import {
-    Button, Card, Header, Icon, Modal, TitleBar,
+    Button,
+    Card,
+    Header,
+    Icon,
+    Modal,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // Docs UI Components
