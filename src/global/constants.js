@@ -26,6 +26,8 @@ export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_component`;
 
+export const BEM_INPUT = 'input';
+
 export const BEM_MODAL = 'modal';
 export const BEM_MODAL_ACTIONS = `${BEM_MODAL}--actions`;
 export const BEM_MODAL_CONTENT = `${BEM_MODAL}--content`;
