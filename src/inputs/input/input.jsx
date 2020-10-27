@@ -10,6 +10,10 @@ import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+    BEM_INPUT,
+} from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import withStyles from '../../styles/withStyles';
 
@@ -613,9 +617,9 @@ class Input extends React.PureComponent {
 
         const type = this.getType();
 
-        const containerClasses = ClassNames(
-            'ui',
-            'input',
+        const rootClasses = ClassNames(
+            UI_CLASS_NAME,
+            BEM_INPUT,
             classes.root,
             className,
             {
@@ -642,7 +646,7 @@ class Input extends React.PureComponent {
         );
 
         return (
-            <div className={containerClasses}>
+            <div className={rootClasses}>
                 {label && (
                     <label className="label" htmlFor={id}>
                         {label}
