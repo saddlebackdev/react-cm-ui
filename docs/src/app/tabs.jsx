@@ -1,4 +1,7 @@
-import { browserHistory, withRouter } from 'react-router';
+import {
+    browserHistory,
+    withRouter,
+} from 'react-router';
 import {
     findIndex,
     map,
@@ -6,7 +9,11 @@ import {
 } from 'lodash';
 import { SectionalTabs } from 'react-cm-ui';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 
 const propTypes = {

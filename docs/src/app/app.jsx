@@ -7,8 +7,12 @@ import {
     Icon,
     Typography,
 } from 'react-cm-ui';
-import { Link, withRouter } from 'react-router';
-import _, {
+import {
+    Link,
+    withRouter,
+} from 'react-router';
+import {
+    debounce,
     find,
     pick,
 } from 'lodash';
@@ -67,7 +71,7 @@ class App extends React.Component {
         breakpointActions.update();
 
         this.curScrollPos = null;
-        this.onResizeDebounce = _.debounce(() => App.onResize(), 80);
+        this.onResizeDebounce = debounce(() => App.onResize(), 80);
         this.onToggleNavigation = this.onToggleNavigation.bind(this);
     }
 

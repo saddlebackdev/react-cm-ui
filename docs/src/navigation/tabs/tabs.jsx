@@ -1,6 +1,7 @@
-
 import {
-    Card, Header, Tabs,
+    Card,
+    Header,
+    Tabs,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
