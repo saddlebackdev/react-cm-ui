@@ -290,11 +290,14 @@ class DrawerDeprecated extends React.Component {
         const animationEvent = this._transitionProps(this._drawerContainer);
 
         document.body.classList.add('drawer-animate-out');
-        this._drawerContainer.classList.add('drawer-animate-out');
-        this._drawerContainer.style.transform = this.props.position === 'right' ?
-            'translate(100%, 0)' :
-            'translate(-100%, 0)';
-        this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
+
+        if (!!this._drawerContainer) {
+            this._drawerContainer.classList.add('drawer-animate-out');
+            this._drawerContainer.style.transform = this.props.position === 'right' ?
+                'translate(100%, 0)' :
+                'translate(-100%, 0)';
+            this._drawerContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
+        }
     }
 
     _onClickOutside(event) {
@@ -488,7 +491,7 @@ class DrawerDeprecated extends React.Component {
         };
 
         for (t in transitions) {
-            if (el.style[t] !== undefined) {
+            if (el?.style[t] !== undefined) {
                 return transitions[t];
             }
         }
