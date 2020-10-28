@@ -1,7 +1,7 @@
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import {
-    Card, Header, SubNavigation, TitleBar,
+    Card, Header, SubNavigation,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -130,8 +130,6 @@ export default class CollectionsSubNavigation extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Sub Navigation" />
-
                 <Card>
                     <Header size="large">Props</Header>
 

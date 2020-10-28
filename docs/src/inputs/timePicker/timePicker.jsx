@@ -1,7 +1,8 @@
 import {
-    Card, Header, TitleBar, TimePicker,
+    Card,
+    Header,
+    TimePicker,
 } from 'react-cm-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -176,7 +177,6 @@ export default class ZoneMatchPropSample extends React.Component {
 }`;
 
 export default class ModulesTimePicker extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -268,8 +268,6 @@ export default class ModulesTimePicker extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Time Picker" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

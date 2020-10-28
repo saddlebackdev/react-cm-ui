@@ -1,8 +1,8 @@
-
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Header, Icon, TitleBar,
+    Card,
+    Header,
+    Icon,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -289,8 +289,6 @@ export default class ElementsHeader extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Header" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

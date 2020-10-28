@@ -1,7 +1,8 @@
 import {
-    Card, Header, TextArea, TitleBar,
+    Card,
+    Header,
+    TextArea,
 } from 'react-cm-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -482,8 +483,6 @@ export default class ElementsTextArea extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Text Area" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

@@ -1,10 +1,8 @@
-import React from 'react';
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
+import React from 'react';
 import {
-    startCase,
     camelCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
@@ -34,11 +32,7 @@ function PopoverExample() {
 
     return (
         <Main page={camelCase(displayName)}>
-
-            <TitleBar title={startCase(displayName)} />
-
             <Main.Content>
-
                 <MarkdownContainer>
                     <Typography
                         className="description"
@@ -84,7 +78,7 @@ function PopoverExample() {
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./PopoverSamplePlacement.jsx').default}>
+                <Example rawCode={require('!!raw-loader!./popoverSamplePlacement.jsx').default}>
                     <PopoverSamplePlacement />
                 </Example>
 
@@ -103,9 +97,7 @@ function PopoverExample() {
                 </Example>
 
                 <ComponentApi docs={[rootDoc]} />
-
             </Main.Content>
-
         </Main>
     );
 }

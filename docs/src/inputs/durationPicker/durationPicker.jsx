@@ -1,10 +1,8 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
@@ -46,8 +44,6 @@ function DocsDurationPicker(props) {
 
     return (
         <Main page={camelCase(componentName)}>
-            <TitleBar title={startCase(componentName)} />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

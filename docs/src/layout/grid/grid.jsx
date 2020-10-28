@@ -1,8 +1,8 @@
-
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Grid, Header, TitleBar,
+    Card,
+    Grid,
+    Header,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -676,8 +676,6 @@ export default class CollectionsGrid extends React.Component {
 
         return (
             <Main className="grid">
-                <TitleBar title="Grid" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

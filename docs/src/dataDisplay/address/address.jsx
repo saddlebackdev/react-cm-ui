@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsAddress() {
 
     return (
         <Main page="address">
-            <TitleBar title="Address" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
