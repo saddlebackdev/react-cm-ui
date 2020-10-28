@@ -575,6 +575,7 @@ class Modal extends React.Component {
                                 color="alternate"
                                 onClick={this.onClose}
                                 icon
+                                title="Close"
                             >
                                 <Icon
                                     compact

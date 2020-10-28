@@ -1,5 +1,7 @@
 import {
-    Card, DatePickerCalendar, Header, TitleBar,
+    Card,
+    DatePickerCalendar,
+    Header,
 } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
@@ -243,8 +245,6 @@ export default class ModulesDatePickerCalendar extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Date Picker" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

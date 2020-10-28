@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
@@ -44,8 +43,6 @@ function DocsModal(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={startCase(displayName)} />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

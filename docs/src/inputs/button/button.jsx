@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
@@ -44,10 +43,6 @@ function DocsButton(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={startCase(displayName)} />
-
-            <ButtonSubNavigation />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

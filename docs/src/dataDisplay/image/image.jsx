@@ -4,7 +4,6 @@ import {
     Card,
     Header,
     Image,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -130,8 +129,6 @@ const MARTY_MCFLY_IMAGE_SRC = '/images/marty-mcfly.jpg';
 export default function ElementsImage() {
     return (
         <Main page="headers">
-            <TitleBar title="Image" />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
     versions,
 } from 'react-cm-ui';
@@ -45,8 +44,6 @@ function DocsGrid(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={displayName} />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

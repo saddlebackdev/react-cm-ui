@@ -6,11 +6,9 @@ import {
     Header,
     Icon,
     Input,
-    TitleBar,
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
-import DrawerSubNavigation from './drawerSubNavigation';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -478,10 +476,6 @@ class ModulesDrawerFiltersDrawer extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
-
-                <DrawerSubNavigation />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

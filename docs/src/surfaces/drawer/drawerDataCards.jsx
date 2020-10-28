@@ -5,11 +5,9 @@ import {
     Header,
     Icon,
     Input,
-    TitleBar,
 } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
-import DrawerSubNavigation from './drawerSubNavigation';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -252,10 +250,6 @@ class ModulesDrawerDataCards extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
-
-                <DrawerSubNavigation />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

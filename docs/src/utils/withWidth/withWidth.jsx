@@ -1,6 +1,3 @@
-import {
-    TitleBar,
-} from 'react-cm-ui';
 import React from 'react';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -9,8 +6,6 @@ import Main from '../../global/main';
 function DocsWithWidth() {
     return (
         <Main page="with_width">
-            <TitleBar title="With Width" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Heading
