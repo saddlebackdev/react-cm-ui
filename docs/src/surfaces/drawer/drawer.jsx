@@ -1,9 +1,8 @@
 import {
-    Button, Card, Drawer, Header, TitleBar,
+    Button, Card, Drawer, Header,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import React from 'react';
-import DrawerSubNavigation from './drawerSubNavigation';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -164,10 +163,6 @@ class ModulesDrawer extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
-
-                <DrawerSubNavigation />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

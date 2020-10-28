@@ -1,9 +1,11 @@
-
 import {
-    Button, Card, Header, Icon, Modal, TitleBar,
+    Button,
+    Card,
+    Header,
+    Icon,
+    Modal,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // Docs UI Components
@@ -479,8 +481,6 @@ export default class ModulesModal extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Modal" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

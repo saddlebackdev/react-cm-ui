@@ -2,7 +2,6 @@ import {
     Card,
     DropdownButton,
     Header,
-    Image,
     TitleBar,
 } from 'react-cm-ui';
 import MediaQuery from 'react-responsive';
@@ -112,8 +111,6 @@ export default class ViewsTitleBar extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Title Bar" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

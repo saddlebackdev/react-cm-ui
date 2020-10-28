@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-    Card, Divider, Header, TitleBar,
+    Card,
+    Divider,
+    Header,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -170,8 +172,6 @@ export default class ElementsDivider extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Divider" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

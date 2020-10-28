@@ -2,7 +2,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Banner, Card, Comment, Header, Image, TitleBar,
+    Banner,
+    Card,
+    Comment,
+    Header,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -264,8 +267,6 @@ export default class ElmentsComment extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Comment" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

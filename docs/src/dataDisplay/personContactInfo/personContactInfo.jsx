@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsPersonContactInfo() {
 
     return (
         <Main page="person_contact_info">
-            <TitleBar title="Person Contact Info" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

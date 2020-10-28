@@ -1,8 +1,8 @@
-
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Header, Loader, TitleBar,
+    Card,
+    Header,
+    Loader,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -51,8 +51,6 @@ export default class ElementsLoader extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Loader" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>
