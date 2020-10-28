@@ -1,7 +1,8 @@
 import {
-    Card, Header, SegmentedControls, TitleBar,
+    Card,
+    Header,
+    SegmentedControls,
 } from 'react-cm-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
@@ -168,8 +169,6 @@ export default class CollectionsSegmentedControls extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Segmented Controls" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

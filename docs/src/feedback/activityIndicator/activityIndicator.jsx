@@ -5,7 +5,6 @@
 import {
     Card,
     Header,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import ActivityIndicatorExample from './activityIndicatorExample';
@@ -55,8 +54,6 @@ function ElementsActivityIndicator() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Activity Indicator" />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

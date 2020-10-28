@@ -1,11 +1,9 @@
 import {
     Card,
     Header,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Main from '../../global/main';
-import PageSubNavigation from './pageSubNavigation';
 import TableProps from '../../global/tableProps';
 
 function ModulesPageContent() {
@@ -50,10 +48,6 @@ function ModulesPageContent() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Page" />
-
-            <PageSubNavigation />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

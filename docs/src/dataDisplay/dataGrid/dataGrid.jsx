@@ -1,8 +1,7 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
-import { camelCase, startCase } from 'lodash';
+import { camelCase } from 'lodash';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -38,9 +37,7 @@ function DocsDataGrid(props) {
     } = rootDoc;
 
     return (
-        <Main page={camelCase(name)}>
-            <TitleBar title={startCase(name)} />
-
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

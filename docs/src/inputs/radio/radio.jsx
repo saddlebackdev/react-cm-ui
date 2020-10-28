@@ -1,5 +1,7 @@
 import {
-    Radio, Card, Header, TitleBar,
+    Radio,
+    Card,
+    Header,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
@@ -326,8 +328,6 @@ export default class ElementsRadio extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Radio" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

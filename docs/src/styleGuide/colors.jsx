@@ -1,13 +1,11 @@
 
 import React from 'react';
-import { Grid, Header, TitleBar } from 'react-cm-ui';
+import { Grid, Header } from 'react-cm-ui';
 import Swatch from '../global/swatch';
 
 function StyleGuideColors() {
     return (
         <main className="main">
-            <TitleBar title="Colors" />
-
             {/* Primary Colors */}
             <Header size="large" style={{ marginTop: '55px' }}>
                 Primary Colors

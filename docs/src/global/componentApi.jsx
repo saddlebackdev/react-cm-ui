@@ -38,7 +38,9 @@ function ComponentApi(props) {
     const {
         docs,
     } = props;
+
     const classes = useStyles();
+
     const isDocsNotDefined = isEmpty(docs);
 
     if (isDocsNotDefined) {
@@ -49,15 +51,6 @@ function ComponentApi(props) {
         <div
             className={classes.root}
         >
-            <MarkdownContainer>
-                <Heading
-                    anchorLink="api"
-                    variant="h2"
-                >
-                    API
-                </Heading>
-            </MarkdownContainer>
-
             {map(docs, (doc, index) => {
                 const {
                     displayName,

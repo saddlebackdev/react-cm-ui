@@ -1,7 +1,10 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
 import Heading from '../../global/heading';
@@ -15,9 +18,7 @@ function DocsFiltersRail() {
     const descriptionCopy = filtersRailDoc.description;
 
     return (
-        <Main page="filters_rail">
-            <TitleBar title="Filters Rail" />
-
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
