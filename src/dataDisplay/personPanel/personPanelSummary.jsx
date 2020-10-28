@@ -133,7 +133,7 @@ const ageText = ({ birthdate }) => {
         return '';
     }
 
-    return `${moment().diff(moment().unix(birthdate), 'years')}yr`;
+    return `${moment().diff(moment.unix(birthdate).utc(), 'years')}yr`;
 };
 
 const birthdateText = ({ birthdate }) => {

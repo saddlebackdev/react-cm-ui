@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import Main from '../../global/main';
@@ -40,9 +38,6 @@ function BreadcrumbsExample(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-
-            <TitleBar title={startCase(displayName)} />
-
             <Main.Content>
 
                 <MarkdownContainer>

@@ -212,7 +212,7 @@ function DropdownMenu(props) {
                 !containsTarget ||
                 (containsTarget && event.target.className === OPTION_INNER_CLASS_NAME)
             ) {
-                onToggleOpen();
+                onToggleOpen(event);
             }
 
             return null;

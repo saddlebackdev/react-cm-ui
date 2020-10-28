@@ -36,6 +36,7 @@ const propTypes = {
     optionComponent: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.shape({})),
     placeholder: PropTypes.string,
+    promptTextCreator: PropTypes.func,
     required: PropTypes.bool,
     searchable: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -62,6 +63,7 @@ const defaultProps = {
     onChange: null,
     optionComponent: null,
     options: [],
+    promptTextCreator: undefined,
     placeholder: null,
     required: false,
     searchable: false,
@@ -342,7 +344,7 @@ const useStyles = makeStyles((theme) => {
                     margin: 0,
                     outline: 'none',
                     lineHeight: '14px',
-                    padding: `((${selectInputInternalHeight} - 14) / 2 - 2)px 0 ((${selectInputInternalHeight} - 14) / 2 + 2)px`,
+                    padding: `${((selectInputInternalHeight - 14) / 2 - 2)}px 0 ${((selectInputInternalHeight - 14) / 2 + 2)}px`,
                     WebkitAppearance: 'none',
                     '& .is-focused &': {
                         cursor: 'text',
@@ -365,7 +367,7 @@ const useStyles = makeStyles((theme) => {
             },
             '& .Select-loading': {
                 animation: '$selectAnimationSpin 400ms infinite linear',
-                border: `floor((${selectLoadingSize} / 8)) solid ${selectLoadingColorBg}`,
+                border: `floor((${selectLoadingSize / 8})) solid ${selectLoadingColorBg}`,
                 borderRadius: '50%',
                 borderRightColor: selectLoadingColor,
                 boxSizing: 'border-box',
@@ -657,6 +659,7 @@ function Select(props) {
         optionComponent,
         options,
         placeholder,
+        promptTextCreator,
         required,
         searchable: isSearchable,
         tabIndex,
@@ -816,6 +819,7 @@ function Select(props) {
                 onChange={onChange}
                 optionComponent={optionComponent}
                 options={options}
+                promptTextCreator={isCreatable && promptTextCreator}
                 placeholder={placeholder}
                 searchable={isSearchable}
                 tabIndex={tabIndex}

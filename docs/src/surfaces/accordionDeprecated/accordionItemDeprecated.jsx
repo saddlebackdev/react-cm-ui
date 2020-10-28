@@ -1,6 +1,6 @@
 
 import {
-    Accordion, Card, Header, SubNavigation, TitleBar,
+    Accordion, Card, Header, TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,7 +9,6 @@ import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
-import AccordionSubNavigation from './accordionSubNavigation';
 
 const accordionSample = `import React from 'react';
 
@@ -340,10 +339,6 @@ export default class CollectionsAccordion extends React.Component {
 
         return (
             <Main page="accordion">
-                <TitleBar title="Accordion" />
-
-                <AccordionSubNavigation />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Card, Grid, Header, SubNavigation, TitleBar,
+    Card, Header,
 } from 'react-cm-ui';
 
 // Docs UI Components
-import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
-import CardSubNavigation from './cardSubNavigation';
 
 const headerSample = `import React from 'react';
 import { Card } from 'react-cm-ui';
@@ -46,10 +43,6 @@ export default class ViewsTitleBar extends React.Component {
     render() {
         return (
             <Main page="headers">
-                <TitleBar title="Card" />
-
-                <CardSubNavigation />
-
                 <Main.Content>
                     {this._renderHeader()}
                 </Main.Content>

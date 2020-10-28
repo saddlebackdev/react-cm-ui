@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsDropdownMenu() {
 
     return (
         <Main page="dropdown_menu">
-            <TitleBar title="Dropdown Menu" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

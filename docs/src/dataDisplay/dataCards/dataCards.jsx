@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsDataCards() {
 
     return (
         <Main page="data_cards">
-            <TitleBar title="Data Cards" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

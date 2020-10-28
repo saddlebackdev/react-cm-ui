@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -34,8 +33,6 @@ function DocsTable() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Table" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

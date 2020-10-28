@@ -1,8 +1,7 @@
-import { Button, Card, Header, TitleBar } from 'react-cm-ui';
+import { Button, Card, Header } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
-import PageSubNavigation from './pageSubNavigation';
 import TableProps from '../../global/tableProps';
 
 const drawerSample = `import { Page } from 'react-cm-ui';
@@ -136,10 +135,6 @@ function ModulesPage() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Page" />
-
-            <PageSubNavigation />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

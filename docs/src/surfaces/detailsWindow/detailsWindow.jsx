@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsDetailsWindow() {
 
     return (
         <Main page="details_window">
-            <TitleBar title="Details Window" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
