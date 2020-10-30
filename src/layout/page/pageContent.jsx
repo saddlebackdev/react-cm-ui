@@ -11,6 +11,7 @@ const propTypes = {
     }),
     className: PropTypes.string,
     id: PropTypes.string,
+    style: PropTypes.shape({}),
 };
 
 const defaultProps = {
@@ -19,6 +20,7 @@ const defaultProps = {
     classes: null,
     className: null,
     id: null,
+    style: null,
 };
 
 function PageContent(props) {
@@ -28,6 +30,7 @@ function PageContent(props) {
         classes,
         className,
         id,
+        style,
     } = props;
 
     const bemName = 'page--content';
@@ -45,6 +48,7 @@ function PageContent(props) {
             className={rootClasses}
             id={id}
             moduleType="page"
+            style={style}
         >
             {children}
         </Content>
