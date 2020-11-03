@@ -1,9 +1,11 @@
 import {
+    AppBar,
     Dropdown,
     Header,
     Icon,
     Page,
-    TitleBar,
+    Radio,
+    Typography,
 } from 'react-cm-ui';
 import _ from 'lodash';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
@@ -15,6 +17,7 @@ import {
     backgroundColorAlert,
     backgroundColorSuccess,
 } from 'react-cm-ui/styles/colorExports';
+import DemoFiltersRail from './demoFiltersRail';
 
 const propTypes = {
     classes: PropTypes.shape({
@@ -29,11 +32,21 @@ const defaultProps = {
 
 const nop = () => {};
 
-const styles = {
+const styles = (theme) => ({
+    appBar: {
+        left: 0,
+        position: 'fixed',
+        right: 0,
+        top: 0,
+        zIndex: 4,
+        [theme.breakpoints.up('md')]: {
+            left: theme.width.navigation.md.expanded,
+        },
+    },
     dataGroupsContainer: {
         margin: '0 -11px',
     },
-};
+});
 
 class PageDemo extends React.PureComponent {
     constructor() {
@@ -174,6 +187,7 @@ class PageDemo extends React.PureComponent {
             classes,
             isMobile,
         } = this.props;
+
         const {
             appliedFilters,
             dirtyFilters,
@@ -182,13 +196,16 @@ class PageDemo extends React.PureComponent {
             searchValue,
             viewType,
         } = this.state;
+
         const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
         const isFiltering = !_.isEqual(this.defaultFilters, appliedFilters);
+
         const actionBarIconFilter = {
             selected: isFiltersDrawerOpen,
             isFiltering,
             onClick: this.onFiltersToggle,
         };
+
         const actionBarSearch = {
             onClearClick: this.onSearchClear,
             onChange: this.onSearchChange,
@@ -854,7 +871,17 @@ class PageDemo extends React.PureComponent {
                 <div>
                     <div className="hidden-spacer" />
 
-                    <TitleBar title="Page Components Demo" />
+                    <AppBar
+                        classes={{
+                            root: classes.appBar,
+                        }}
+                    >
+                        <Typography
+                            variant="h3"
+                        >
+                            Page Components Demo
+                        </Typography>
+                    </AppBar>
                 </div>
 
                 <Page
@@ -995,60 +1022,9 @@ class PageDemo extends React.PureComponent {
                             ]}
                         />
 
-                        <Page.FiltersRail
+                        <DemoFiltersRail
                             isOpen={isFiltersDrawerOpen}
-                            onClose={this.onFiltersToggle}
-                        >
-                            <Header weight="bold">Sort By</Header>
-
-                            <Dropdown
-                                clearable={false}
-                                options={[
-                                    {
-                                        label: 'Name (Ascending)',
-                                        value: 'Name (Ascending)',
-                                    }, {
-                                        label: 'Name (Descending)',
-                                        value: 'Name (Descending)',
-                                    }, {
-                                        label: 'Create Date (Ascending)',
-                                        value: 'Create Date (Ascending)',
-                                    }, {
-                                        label: 'Create Date (Descending)',
-                                        value: 'Create Date (Descending)',
-                                    },
-                                ]}
-                                searchable={false}
-                                selection
-                                selectionUnderline
-                                value={{
-                                    label: 'Name (Ascending)',
-                                    value: 'Name (Ascending)',
-                                }}
-                            />
-
-                            <Header weight="bold">Campus</Header>
-
-                            <Dropdown
-                                clearable={false}
-                                options={[
-                                    {
-                                        label: 'All Campuses',
-                                        value: 'All Campuses',
-                                    }, {
-                                        label: 'Lake Forest',
-                                        value: 'Lake Forest',
-                                    },
-                                ]}
-                                searchable={false}
-                                selection
-                                selectionUnderline
-                                value={{
-                                    label: 'All Campuses',
-                                    value: 'All Campuses',
-                                }}
-                            />
-                        </Page.FiltersRail>
+                        />
 
                         <Page.Content
                             className="page-content-class-name"
@@ -1152,14 +1128,18 @@ class PageDemo extends React.PureComponent {
                                 />
                             )}
 
-                            <div
+                            {/**
+                             * TODO: Move this to a Drawer or something.
+                             * For now, commenting it out to clean up Demo Page
+                             */}
+                            {/* <div
                                 className={classes.dataGroupsContainer}
                             >
                                 <Page.DataGroups
                                     columns={mainCoulumn}
                                     data={mainData}
                                 />
-                            </div>
+                            </div> */}
                         </Page.Content>
                     </Page.Container>
                 </Page>
