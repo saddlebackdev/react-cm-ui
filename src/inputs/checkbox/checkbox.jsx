@@ -1,5 +1,6 @@
 import {
     isFunction,
+    noop,
 } from 'lodash';
 import React from 'react';
 import ClassNames from 'classnames';
@@ -16,9 +17,18 @@ const propTypes = {
     align: PropTypes.oneOf(['right']),
     checked: PropTypes.bool,
     classes: PropTypes.shape({
+        alignRight: PropTypes.string,
+        isChecked: PropTypes.string,
         innerContainer: PropTypes.string,
+        isDisabled: PropTypes.string,
+        isFluid: PropTypes.string,
+        isInverse: PropTypes.string,
+        isSmall: PropTypes.string,
+        label: PropTypes.string,
+        labelContainer: PropTypes.string,
         labelNotClickable: PropTypes.string,
         root: PropTypes.string,
+        total: PropTypes.string,
     }).isRequired,
     className: PropTypes.string,
     /**
@@ -70,30 +80,46 @@ const defaultProps = {
     value: null,
 };
 
-const styles = (theme) => {
+const styles = ({
+    palette,
+    spacing,
+    typography,
+}) => {
     const size = 22;
     const sizeSmall = 18;
 
     return {
-        alignRight: {},
+        alignRight: {
+            textAlign: 'right',
+            '& $innerContainer': {
+                '& > span': {
+                    paddingLeft: 0,
+                    paddingRight: 33,
+                },
+                '&::before': {
+                    left: 'auto',
+                    right: 0,
+                },
+                '& .ui.icon-check': {
+                    left: 'auto',
+                    right: 6,
+                },
+            },
+        },
         innerContainer: {
-            color: theme.palette.text.primary,
+            color: palette.text.primary,
             cursor: 'pointer',
             display: 'block',
             position: 'relative',
             '& > .checkbox-label-text': {
-                display: 'inline-block',
-                fontSize: theme.typography.fontSize,
-                paddingLeft: 33,
-                paddingTop: 2,
                 '&-weight-bold': {
-                    fontWeight: theme.typography.fontWeightBold,
+                    fontWeight: typography.fontWeightBold,
                 },
                 '&-weight-normal': {
-                    fontWeight: theme.typography.fontWeightRegular,
+                    fontWeight: typography.fontWeightRegular,
                 },
                 '&-weight-semibold': {
-                    fontWeight: theme.typography.fontWeightMedium,
+                    fontWeight: typography.fontWeightMedium,
                 },
             },
             '&::before, & .ui.icon-check': {
@@ -105,8 +131,8 @@ const styles = (theme) => {
                 ],
             },
             '&::before': { // faux input
-                background: theme.palette.background.main,
-                border: `1px solid ${theme.palette.border.primary}`,
+                background: palette.background.main,
+                border: `1px solid ${palette.border.primary}`,
                 borderRadius: 3,
                 content: '""',
                 height: size,
@@ -126,87 +152,90 @@ const styles = (theme) => {
                 },
             },
         },
-        isDisabled: {},
-        isFluid: {},
-        isInversed: {},
-        isSmall: {},
+        isChecked: {},
+        isDisabled: {
+            '& .input': {
+                '& + $innerContainer, &:checked + $innerContainer': {
+                    cursor: 'auto !important',
+                    '&::before': {
+                        backgroundColor: `${palette.background.secondary} !important`,
+                        border: `1px solid ${palette.border.primary} !important`,
+                    },
+                    '& $label, & $total': {
+                        color: `${palette.text.secondary} !important`,
+                    },
+                },
+                '&:checked + $innerContainer .ui.icon-check': {
+                    opacity: 1,
+                },
+            },
+        },
+        isFluid: {
+            display: 'block',
+            marginRight: 0,
+        },
+        isInversed: {
+            '& $innerContainer': {
+                color: palette.text.contrastText,
+            },
+        },
+        isSmall: {
+            minHeight: sizeSmall,
+            '& $innerContainer': {
+                '&::before': {
+                    height: sizeSmall,
+                    width: sizeSmall,
+                },
+                '& $label': {
+                    fontSize: typography.pxToRem(12),
+                    paddingTop: 1,
+                },
+                '& .ui.icon-check': { // check
+                    left: 5,
+                    top: 5,
+                },
+            },
+            '&$isChecked $innerContainer': {
+                '& $label, & $total': {
+                    fontWeight: typography.fontWeightMedium,
+                },
+            },
+        },
         isToggle: {},
+        label: {
+            fontSize: typography.pxToRem(16),
+        },
+        labelContainer: {
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            paddingLeft: 33,
+        },
         root: {
             display: 'inline-block',
-            marginRight: 22,
             minHeight: size,
             outline: 'none',
             position: 'relative',
             textAlign: 'left',
             '&:focus $innerContainer::before': {
-                boxShadow: `0 0 0 1px ${theme.palette.active.main}`,
+                boxShadow: `0 0 0 1px ${palette.active.main}`,
             },
             '& .input': {
                 display: 'none',
             },
-            '&$isSmall': {
-                minHeight: sizeSmall,
-                '& label': {
-                    fontSize: '12px',
-                    '& > .checkbox-label-text': {
-                        fontSize: '12px',
-                        paddingTop: 1,
-                    },
-                    '&::before': {
-                        height: sizeSmall,
-                        width: sizeSmall,
-                    },
-                    '& .ui.icon-check': { // check
-                        left: 5,
-                        top: 5,
-                    },
-                },
-            },
-            '& .input:checked + label': {
+            '& .input:checked + $innerContainer': {
                 '&::before': {
-                    backgroundColor: theme.palette.active.main,
-                    border: `1px solid ${theme.palette.active.main}`,
+                    backgroundColor: palette.active.main,
+                    border: `1px solid ${palette.active.main}`,
                 },
                 '& .ui.icon-check': {
                     opacity: 1,
                 },
             },
-            '&$alignRight': {
-                textAlign: 'right',
-                '& label': {
-                    '& > span': {
-                        paddingLeft: 0,
-                        paddingRight: 33,
-                    },
-                    '&::before': {
-                        left: 'auto',
-                        right: 0,
-                    },
-                    '& .ui.icon-check': {
-                        left: 'auto',
-                        right: 6,
-                    },
-                },
-            },
-            '&$isDisabled .input': {
-                '& + label, &:checked + label': {
-                    cursor: 'auto',
-                    '&::before': {
-                        backgroundColor: theme.palette.background.secondary,
-                        border: `1px solid ${theme.palette.border.primary}`,
-                    },
-                },
-                '&:checked + label .ui.icon-check': {
-                    opacity: 1,
-                },
-            },
-            '&$isFluid': {
-                display: 'block',
-                marginRight: 0,
-            },
-            '&isInversed label': {
-                color: theme.palette.text.contrastText,
-            },
+        },
+        total: {
+            fontSize: typography.pxToRem(14),
+            paddingLeft: spacing(1),
         },
     };
 };
@@ -220,7 +249,6 @@ class Checkbox extends React.Component {
         this.onClick = this.onClick.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onLabelClick = this.onLabelClick.bind(this);
-        this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
 
         this.inputRef = React.createRef();
@@ -268,12 +296,6 @@ class Checkbox extends React.Component {
         if (isFunction(labelClick) && labelClick === false) {
             event.stopPropagation();
         }
-    }
-
-    onLabelKeyDown() {
-        /**
-         * NOTE: Need to use a prop function here someday
-         */
     }
 
     onMouseDown(event) {
@@ -340,6 +362,7 @@ class Checkbox extends React.Component {
             className,
             {
                 [classes.alignRight]: align === 'right',
+                [classes.isChecked]: isChecked,
                 [classes.isDisabled]: isDisabled,
                 [classes.isFluid]: isFluid,
                 [classes.isInverse]: isInverse,
@@ -347,18 +370,18 @@ class Checkbox extends React.Component {
             },
         );
 
-        const labelClasses = ClassNames(
+        const innerContainerClasses = ClassNames(
             classes.innerContainer,
             {
                 [classes.labelNotClickable]: isFunction(labelClick) && labelClick === false,
             },
         );
 
-        const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
-            'checkbox-label-text-weight-bold': labelWeight === 'bold',
-            'checkbox-label-text-weight-normal': !labelWeight || labelWeight === 'normal',
-            'checkbox-label-text-weight-semibold': labelWeight === 'semibold',
-        });
+        const labelContainerClasses = ClassNames(
+            'checkbox-label-text',
+            classes.labelContainer,
+            labelClassName,
+        );
 
         const iconCheckSize = isSmall ? 8 : 10;
         const inputId = id ? `${id}_hidden_input` : null;
@@ -388,20 +411,30 @@ class Checkbox extends React.Component {
                 />
 
                 <div
-                    className={labelClasses}
+                    className={innerContainerClasses}
                 >
                     {label && (
                         <div
-                            className={labelTextClasses}
+                            className={labelContainerClasses}
                             onClick={this.onLabelClick}
-                            onKeyDown={this.onLabelKeyDown}
+                            onKeyDown={noop()}
                             style={labelStyle}
                             role="button"
                             tabIndex={-1}
                         >
-                            {label}
+                            <div
+                                className={classes.label}
+                            >
+                                {label}
+                            </div>
 
-                            {total >= 0 && Number(total).toLocaleString()}
+                            {total >= 0 && (
+                                <div
+                                    className={classes.total}
+                                >
+                                    {Number(total).toLocaleString()}
+                                </div>
+                            )}
                         </div>
                     )}
 
