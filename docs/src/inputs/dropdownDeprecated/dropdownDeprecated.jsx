@@ -1476,7 +1476,7 @@ class ModulesDropdown extends React.Component {
                                         <Dropdown.Item label="Option 2" />
                                     </Dropdown>
                                 </Grid.Column>
-                                
+
                                 <Grid.Column
                                     sm={6}
                                     md="auto"

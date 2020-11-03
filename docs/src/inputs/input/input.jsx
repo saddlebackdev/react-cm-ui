@@ -1,21 +1,18 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import InputSubNavigation from './InputSubNavigation';
-import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
-import InputExample from './inputExample';
+import ExampleDefaultInput from './examples/exampleDefaultInput';
+import ExampleRequiredInput from './examples/exampleRequiredInput';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/input/input';
 /* eslint-enable import/no-named-default, import/extensions */
@@ -40,8 +37,6 @@ function DocsInput(props) {
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={startCase(displayName)} />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
@@ -58,27 +53,27 @@ function DocsInput(props) {
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Solid Button
+                        Standard Single Line Input
                     </Heading>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Text Only
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./inputExample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleDefaultInput').default}
                     >
-                        <InputExample />
+                        <ExampleDefaultInput />
+                    </Example>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleRequiredInput').default}
+                    >
+                        <ExampleRequiredInput />
                     </Example>
                 </MarkdownContainer>
-
-                <ComponentApi
-                    docs={[
-                        rootDoc,
-                    ]}
-                />
 
                 <ComponentVersionIdentifier
                     pathname={pathname}

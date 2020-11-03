@@ -1,13 +1,8 @@
 import {
-    TitleBar,
-} from 'react-cm-ui';
-import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import InputSubNavigation from '../inputSubNavigation';
 import ComponentApi from '../../../global/componentApi';
 import Main from '../../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
@@ -20,17 +15,13 @@ const propTypes = {
     }).isRequired,
 };
 
-function Api() {
+function DocsApi() {
     const {
         displayName,
     } = rootDoc;
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={startCase(displayName)} />
-
-            <InputSubNavigation />
-
             <Main.Content>
                 <ComponentApi
                     docs={[
@@ -42,6 +33,6 @@ function Api() {
     );
 }
 
-Api.propTypes = propTypes;
+DocsApi.propTypes = propTypes;
 
-export default Api;
+export default DocsApi;
