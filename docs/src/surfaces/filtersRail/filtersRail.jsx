@@ -11,11 +11,14 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as filtersRailDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/filtersRail/filtersRail';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/filtersRail/filtersRail';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsFiltersRail() {
-    const descriptionCopy = filtersRailDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
         <Main page={camelCase(displayName)}>
@@ -25,7 +28,7 @@ function DocsFiltersRail() {
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
@@ -38,7 +41,7 @@ function DocsFiltersRail() {
 
                 <ComponentApi
                     docs={[
-                        filtersRailDoc,
+                        rootDoc,
                     ]}
                 />
             </Main.Content>
