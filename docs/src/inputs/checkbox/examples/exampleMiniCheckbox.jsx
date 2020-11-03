@@ -27,6 +27,7 @@ function ExampleMiniCheckbox() {
                         <Checkbox
                             label="Label"
                             size="small"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -50,6 +51,7 @@ function ExampleMiniCheckbox() {
                             checked
                             label="Label"
                             size="small"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -73,6 +75,7 @@ function ExampleMiniCheckbox() {
                             disable
                             label="Label"
                             size="small"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -97,6 +100,7 @@ function ExampleMiniCheckbox() {
                             checked
                             label="Label"
                             size="small"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>

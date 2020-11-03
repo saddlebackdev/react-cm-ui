@@ -26,6 +26,7 @@ function ExampleStandardCheckbox() {
                     <Grid.Column>
                         <Checkbox
                             label="Label"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -48,6 +49,7 @@ function ExampleStandardCheckbox() {
                         <Checkbox
                             checked
                             label="Label"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -70,6 +72,7 @@ function ExampleStandardCheckbox() {
                         <Checkbox
                             disable
                             label="Label"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>
@@ -93,6 +96,7 @@ function ExampleStandardCheckbox() {
                             disable
                             checked
                             label="Label"
+                            tabIndex={0}
                         />
                     </Grid.Column>
                 </Grid>

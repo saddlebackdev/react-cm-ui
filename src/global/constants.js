@@ -16,8 +16,7 @@ export const BEM_DATA_GRID = 'data_grid';
 export const BEM_ACTION_BAR = 'action_bar';
 export const BEM_ACTION_BAR_GRID_COLUMN = `${BEM_ACTION_BAR}--grid_column`;
 export const BEM_ACTION_BAR_SEARCH = `${BEM_ACTION_BAR}--search`;
-
-
+export const BEM_CHECKBOX = 'checkbox';
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
 
