@@ -33,10 +33,6 @@ export const buttonPropTypes = {
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
-     */
-    disabled: PropTypes.bool,
-    /**
      * The Button will be resized to its parent container's width.
      */
     fluid: PropTypes.bool,
@@ -93,7 +89,6 @@ export const buttonDefaultProps = {
     color: 'default',
     compact: false,
     disable: false,
-    disabled: false,
     fluid: false,
     href: undefined,
     icon: false,

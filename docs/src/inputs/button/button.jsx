@@ -3,11 +3,9 @@ import {
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ButtonSubNavigation from './buttonSubNavigation';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import ExampleOutline from './examples/exampleButtonOutline';

@@ -1,13 +1,10 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import React from 'react';
-import ButtonSubNavigation from '../buttonSubNavigation';
 import Example from '../../../global/example';
 import ExampleOutlineColors from './examples/exampleOutlineColors';
 import ExampleOutlineInverseColors from './examples/exampleOutlineInverseColors';
@@ -31,10 +28,6 @@ function DocsButtonSandbox() {
 
     return (
         <Main page={camelCase(displayName)}>
-            <TitleBar title={startCase(displayName)} />
-
-            <ButtonSubNavigation />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
