@@ -59,7 +59,8 @@ const useStyles = makeStyles(({ palette }) => ({
     },
 }));
 
-const Rail = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const Rail = React.forwardRef(function Rail(props, ref) {
     const {
         children,
         className,
