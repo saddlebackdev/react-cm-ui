@@ -6,7 +6,10 @@ export const DOCS_PROPS_PROP_TYPE = PropTypes.shape({
         value: PropTypes.string,
     }),
     description: PropTypes.string,
-    required: PropTypes.bool,
+    required: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({}),
+    ]),
     type: PropTypes.shape({
         name: PropTypes.string,
         value: PropTypes.arrayOf(PropTypes.shape({

@@ -13,7 +13,7 @@ import DurationPickerDaysHoursMinutesSecondsExample from './durationPickerDaysHo
 import DurationPickerDisabledExample from './durationPickerDisabledExample';
 import DurationPickerErrorHandlingExample from './durationPickerErrorHandlingExample';
 import DurationPickerLabelExample from './durationPickerLabelExample';
-import DurationPickerRequiredExample from './DurationPickerRequiredExample';
+import DurationPickerRequiredExample from './durationPickerRequiredExample';
 import DurationPickerSimpleExample from './durationPickerSimpleExample';
 import DurationPickerYearsMonthsDaysExample from './durationPickerYearsMonthsDaysExample';
 import Example from '../../global/example';

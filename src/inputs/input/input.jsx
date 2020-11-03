@@ -24,11 +24,13 @@ const propTypes = {
         root: PropTypes.string,
         hasError: PropTypes.string,
         hasIcon: PropTypes.string,
+        hasValue: PropTypes.string,
         isDisabled: PropTypes.string,
         isFluid: PropTypes.string,
         isFocused: PropTypes.string,
         isLoading: PropTypes.string,
         isNumberType: PropTypes.string,
+        isRequired: PropTypes.string,
     }).isRequired,
     className: PropTypes.string,
     /**
@@ -80,7 +82,13 @@ const propTypes = {
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
      */
     tabIndex: PropTypes.number,
-    type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
+    type: PropTypes.oneOf([
+        'email',
+        'number',
+        'password',
+        'tel',
+        'text',
+    ]),
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -127,11 +135,14 @@ const defaultProps = {
 const styles = (theme) => ({
     hasError: {},
     hasIcon: {},
+    hasValue: {},
+    isDefaultBorder: {},
     isDisabled: {},
     isFluid: {},
     isFocused: {},
     isLoading: {},
     isNumberType: {},
+    isRequired: {},
     root: {
         color: theme.palette.text.primary,
         display: 'inline-block',
@@ -207,9 +218,19 @@ const styles = (theme) => ({
                 paddingRight: 38,
             },
         },
+        '&$isRequired$hasValue': {
+            '& input': {
+                borderColor: theme.palette.success.main,
+            },
+        },
+        // '&$isRequired:not($isDefaultBorder)': {
+        //     '& input': {
+        //         borderColor: theme.palette.error.main,
+        //     },
+        // },
         '&$isFocused': {
             '& input': {
-                borderColor: theme.palette.cyan[500],
+                borderColor: theme.palette.active.main,
             },
         },
         '&$isNumberType': {
@@ -251,10 +272,10 @@ class Input extends React.PureComponent {
         super(props);
 
         this.state = {
+            hasValue: false,
+            isDefaultBorder: true,
             isFocused: false,
             inputActionsTopPosition: 0,
-            showRequiredIndicator: props.required,
-            // value: props.value || props.value === 0 ? props.value : ''
         };
 
         this.onBlur = this.onBlur.bind(this);
@@ -275,7 +296,7 @@ class Input extends React.PureComponent {
 
         if (isString(icon) || isObject(icon) || loading || type === 'number') {
             // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            const inputTop = ReactDOM.findDOMNode(this._input).offsetTop;
+            const inputTop = ReactDOM.findDOMNode(this.inputRef).offsetTop;
 
             if (inputTop > 0) {
                 this.setState({ inputActionsTopPosition: inputTop });
@@ -284,7 +305,7 @@ class Input extends React.PureComponent {
 
         if (autoFocus) {
             // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            ReactDOM.findDOMNode(this._input).focus();
+            ReactDOM.findDOMNode(this.inputRef).focus();
 
             this.setState({
                 isFocused: true,
@@ -292,32 +313,32 @@ class Input extends React.PureComponent {
         }
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            required: prevRequired,
-        } = prevProps;
-        const {
-            required: nextRequired,
-            value: nextValue,
-        } = this.props;
-
-        if (prevRequired !== nextRequired) {
-            this.setState({
-                showRequiredIndicator: nextRequired && !nextValue,
-            });
-        }
-    }
-
     onBlur(event) {
         const {
             onBlur,
+            required: isRequired,
         } = this.props;
 
+        const newValue = event.target.value;
+        const hasValue = !!newValue;
+
         if (isFunction(onBlur)) {
-            onBlur(event.target.value);
+            onBlur(newValue);
         }
 
-        this.setState({ isFocused: false });
+        let isDefaultBorder = null;
+
+        if (isRequired && hasValue) {
+            isDefaultBorder = true;
+        } else if (isRequired && !hasValue) {
+            isDefaultBorder = false;
+        }
+
+        this.setState({
+            hasValue,
+            isDefaultBorder,
+            isFocused: false,
+        });
     }
 
     onChange(event) {
@@ -328,10 +349,12 @@ class Input extends React.PureComponent {
             min,
             required,
         } = this.props;
+
         const isDisabled = disable || disabled;
 
         if (!isDisabled) {
             const type = this.getType();
+
             let newValue = event.target.value;
 
             if (type === 'number') {
@@ -367,8 +390,6 @@ class Input extends React.PureComponent {
             }
 
             this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -417,8 +438,7 @@ class Input extends React.PureComponent {
 
         const isDisabled = disable || disabled;
 
-        // eslint-disable-next-line no-underscore-dangle
-        const { value } = this._input;
+        const { value } = this.inputRef;
 
         if (!isDisabled) {
             let newValue = value ? toNumber(value) : 0;
@@ -446,8 +466,6 @@ class Input extends React.PureComponent {
             }
 
             this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -497,20 +515,7 @@ class Input extends React.PureComponent {
         if (isFunction(onChange)) {
             onChange(value);
         } else {
-            // eslint-disable-next-line no-underscore-dangle
-            this._input.value = value;
-        }
-    }
-
-    shouldShowRequiredIndicator(value) {
-        const { required } = this.props;
-
-        if (required && this.previousInputValue !== value) {
-            this.previousInputValue = value;
-
-            this.setState({
-                showRequiredIndicator: required && !value,
-            });
+            this.inputRef.value = value;
         }
     }
 
@@ -539,7 +544,7 @@ class Input extends React.PureComponent {
             minLength,
             name,
             placeholder,
-            required,
+            required: isRequired,
             showSpinners,
             style,
             tabIndex,
@@ -547,9 +552,10 @@ class Input extends React.PureComponent {
         } = this.props;
 
         const {
+            hasValue,
+            isDefaultBorder,
             isFocused,
             inputActionsTopPosition,
-            showRequiredIndicator,
         } = this.state;
 
         const type = this.getType();
@@ -568,6 +574,7 @@ class Input extends React.PureComponent {
                 'input-type-password': type === 'password',
                 'input-type-tel': type === 'tel',
                 'input-type-text': type === 'text',
+                [classes.isDefaultBorder]: isDefaultBorder,
                 [classes.hasError]: error,
                 [classes.hasIcon]: icon || loading,
                 [classes.isDisabled]: isDisabled,
@@ -575,6 +582,8 @@ class Input extends React.PureComponent {
                 [classes.isFocused]: isFocused,
                 [classes.isLoading]: loading,
                 [classes.isNumberType]: type === 'number',
+                [classes.isRequired]: isRequired,
+                [classes.hasValue]: hasValue,
             },
         );
 
@@ -592,7 +601,7 @@ class Input extends React.PureComponent {
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                     {label}
 
-                    {showRequiredIndicator && (
+                    {isRequired && (
                         <span className="input-required-indicator">*</span>
                     )}
                 </label>
@@ -620,9 +629,8 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        // eslint-disable-next-line no-underscore-dangle
-                        ref={(ref) => { this._input = ref; }}
-                        required={required}
+                        ref={(ref) => { this.inputRef = ref; }}
+                        required={isRequired}
                         tabIndex={tabIndex}
                         type={type}
                         value={value}
@@ -643,9 +651,8 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        // eslint-disable-next-line no-underscore-dangle
-                        ref={(ref) => { this._input = ref; }}
-                        required={required}
+                        ref={(ref) => { this.inputRef = ref; }}
+                        required={isRequired}
                         tabIndex={tabIndex}
                         type={type}
                         value={value}
@@ -657,8 +664,7 @@ class Input extends React.PureComponent {
                 {(isString(icon) || isObject(icon) || loading || type === 'number') && (
                     <div
                         className="input-actions"
-                        // eslint-disable-next-line no-underscore-dangle
-                        ref={(ref) => { this._inputActions = ref; }}
+                        ref={(ref) => { this.inputActionsRef = ref; }}
                         style={{
                             pointerEvents: 'none',
                             top: inputActionsTopPosition,
