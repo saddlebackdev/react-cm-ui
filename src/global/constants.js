@@ -4,6 +4,8 @@ export const UI_CLASS_NAME = 'cmui';
 
 export const BEM_APP_BAR = 'app_bar';
 
+export const BEM_BUTTON = 'button';
+
 export const BEM_CONTAINER = 'container';
 export const BEM_ACTION_BAR_SEARCH_VISIBLE = `${BEM_CONTAINER}-action_bar_search_visible`;
 

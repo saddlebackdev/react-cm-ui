@@ -2,6 +2,7 @@ import {
     Button,
     Grid,
 } from 'react-cm-ui';
+import ClassNames from 'classnames';
 import Collapse from 'react-cm-ui/utils/collapse';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ const propTypes = {
     children: PropTypes.node.isRequired,
     height: PropTypes.number,
     iframe: PropTypes.bool,
+    inverse: PropTypes.bool,
     maxWidth: PropTypes.number,
     rawCode: PropTypes.string,
     title: PropTypes.string,
@@ -21,6 +23,7 @@ const propTypes = {
 const defaultProps = {
     height: null,
     iframe: false,
+    inverse: false,
     maxWidth: null,
     rawCode: null,
     title: null,
@@ -50,10 +53,15 @@ const useStyles = makeStyles((theme) => {
             borderRadius: shape.borderRadius.main,
             boxShadow: `0 0 0 1px ${palette.border.secondary}`,
             padding: 22,
+            '&$inverse': {
+                backgroundColor: palette.background.contrastPrimary,
+                color: palette.text.contrastText,
+            },
         },
         highlighter: {
             marginTop: '11px !important',
         },
+        inverse: {},
         root: {
             margin: '0',
             width: '100%',
@@ -70,6 +78,7 @@ function Example(props) {
         children,
         height,
         iframe,
+        inverse,
         maxWidth,
         rawCode,
         title,
@@ -97,6 +106,9 @@ function Example(props) {
             spacing={2}
         >
             <Grid.Column
+                className={ClassNames({
+                    [classes.inverse]: inverse,
+                })}
                 classes={{
                     root: classes.exampleColumn,
                 }}
@@ -122,10 +134,10 @@ function Example(props) {
                 <div>
                     <Button
                         className={classes.sourceButton}
-                        color="transparent"
                         icon
                         onClick={onCodeToggle}
                         title={codeButtonTitle}
+                        transparent
                     >
                         <span
                             className={classes.codeToggleIcon}
