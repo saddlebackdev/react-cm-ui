@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from '../../styles/withStyles';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     children: PropTypes.node,
@@ -21,11 +21,11 @@ const defaultProps = {
     position: 'left',
 };
 
-const styles = (theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
     positionLeft: {},
     positionRight: {},
     root: {
-        backgroundColor: theme.palette.background.primary,
+        backgroundColor: palette.background.primary,
         height: '100%',
         padding: [[33, 22]],
         width: 250,
@@ -39,7 +39,7 @@ const styles = (theme) => ({
             },
         },
         '&$positionLeft': {
-            boxShadow: `inset -1px 0 0 0 ${theme.palette.border.primary}`,
+            boxShadow: `inset -1px 0 0 0 ${palette.border.primary}`,
             left: 0,
             top: 0,
             '&::after': {
@@ -48,7 +48,7 @@ const styles = (theme) => ({
             },
         },
         '&$positionRight': {
-            boxShadow: `inset 1px 0 0 0 ${theme.palette.border.primary}`,
+            boxShadow: `inset 1px 0 0 0 ${palette.border.primary}`,
             right: 0,
             top: 0,
             '&::after': {
@@ -57,40 +57,39 @@ const styles = (theme) => ({
             },
         },
     },
-});
+}));
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Rail extends React.Component {
-    render() {
-        const {
-            classes,
-            children,
-            className,
-            position,
-        } = this.props;
+function Rail(props) {
+    const {
+        children,
+        className,
+        position,
+    } = props;
 
-        const rootClasses = ClassNames(
-            'ui',
-            'rail',
-            classes.root,
-            className,
-            {
-                [classes.positionLeft]: position === 'left',
-                [classes.positionRight]: position === 'right',
-            },
-        );
+    const classes = useStyles(props);
 
-        return (
-            <div
-                className={rootClasses}
-            >
-                {children}
-            </div>
-        );
-    }
+    const rootClasses = ClassNames(
+        'ui',
+        'rail',
+        classes.root,
+        className,
+        {
+            [classes.positionLeft]: position === 'left',
+            [classes.positionRight]: position === 'right',
+        },
+    );
+
+    return (
+        <div
+            className={rootClasses}
+        >
+            {children}
+        </div>
+    );
 }
 
 Rail.propTypes = propTypes;
 Rail.defaultProps = defaultProps;
 
-export default withStyles(styles)(Rail);
+export default Rail;

@@ -1128,6 +1128,10 @@ class PageDemo extends React.PureComponent {
                                 />
                             )}
 
+                            {/**
+                             * TODO: Move this to a Drawer or something.
+                             * For now, commenting it out to clean up Demo Page
+                             */}
                             {/* <div
                                 className={classes.dataGroupsContainer}
                             >

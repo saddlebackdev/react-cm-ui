@@ -38,13 +38,21 @@ describe('<FiltersRail />', () => {
     it('Should not render if breakpoint is below md.', () => {
         window.matchMedia = createMatchMedia(375);
 
-        const wrapper = mountWithTheme(
+        let wrapper;
+
+        wrapper = mountWithTheme(
             <FiltersRail />,
         );
 
         expect(wrapper.find('FiltersRail').find('div').first().exists()).toBe(false);
 
         window.matchMedia = createMatchMedia(window.innerWidth);
+
+        wrapper = mountWithTheme(
+            <FiltersRail />,
+        );
+
+        expect(wrapper.find('FiltersRail').find('div').first().exists()).toBe(true);
     });
 
     it('Should have expected \'children\'', () => {
@@ -58,8 +66,10 @@ describe('<FiltersRail />', () => {
             </FiltersRail>,
         );
 
-        expect(wrapper.find('.foo').exists()).toEqual(true);
-        expect(wrapper.find('.foo').text()).toEqual(text);
+        const fooNode = wrapper.find('.foo');
+
+        expect(fooNode.exists()).toEqual(true);
+        expect(fooNode.text()).toEqual(text);
     });
 
     it('Should render with the root classes override', () => {
@@ -104,10 +114,5 @@ describe('<FiltersRail />', () => {
         expect(wrapper.prop('id')).toEqual(props.id);
     });
 
-    it('Should set height of filters rail', () => {
-        /**
-         * TODO: Create test for the useEffect method that sets the
-         * height of the filters rail.
-         */
-    });
+    test.todo('Add should set height of filters rail');
 });
