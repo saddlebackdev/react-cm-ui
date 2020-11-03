@@ -224,8 +224,7 @@ class SectionalTabs extends Component {
                 }),
                 ...(didPropsItemsChange && {
                     items,
-                    // let's select the first tab when there's a different items source
-                    selectedTabKey: get(items, '[0].key'),
+                    selectedTabKey,
                 }),
             };
 
@@ -424,7 +423,7 @@ class SectionalTabs extends Component {
         return reducedItems;
     }
 
-    getTabProps(tab) {
+    getTabProps(tab = {}) {
         const {
             classes,
         } = this.props;

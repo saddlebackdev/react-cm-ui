@@ -3,7 +3,6 @@ import {
     Checkbox,
     Header,
     Rail,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
@@ -64,8 +63,6 @@ export default class ElementsRail extends React.PureComponent {
 
         return (
             <Main page="rail">
-                <TitleBar title="Rail" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

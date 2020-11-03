@@ -4,11 +4,8 @@
 import {
     Card,
     Header,
-    TitleBar,
 } from 'react-cm-ui';
-import _ from 'lodash';
 import React from 'react';
-import DropdownButtonSubNavigation from './dropdownButtonSubNavigation';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
@@ -70,10 +67,6 @@ function DocsDropdownButtonOption() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Dropdown Button" />
-
-            <DropdownButtonSubNavigation />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

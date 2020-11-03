@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsFiltersDrawer() {
 
     return (
         <Main page="filters_drawer">
-            <TitleBar title="Filters Drawer" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

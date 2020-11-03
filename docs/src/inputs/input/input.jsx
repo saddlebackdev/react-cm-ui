@@ -565,8 +565,6 @@ export default class ElementsButton extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Input" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

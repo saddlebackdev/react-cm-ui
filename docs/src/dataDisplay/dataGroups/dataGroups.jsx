@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsDataGroups() {
 
     return (
         <Main page="data_groups">
-            <TitleBar title="Data Groups" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

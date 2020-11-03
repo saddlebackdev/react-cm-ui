@@ -1,6 +1,28 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.0 - 11/03/2020
+
+#### Feature
+- [PR #228](https://github.com/saddlebackdev/react-cm-ui/pull/228) / Merge Commit 00b72e09f8c1835568b258c4aff4bfa320f71bec
+  - Added `css-mediaquery`.
+  - Renamed Container components to ContainerDeprecated
+  - Added new Container and Content component.
+  - Updated Page components to use new Container and Content components
+  - Updated Drawer components to use new Container and Content components
+  - Added `gutters.drawer.sm` to the theme.
+  - Coverted FiltersRail's SCSS to JSS.
+  - Coverted Rail's SCSS to JSS.
+  - New `createMatchMedia` and `waitForComponentToPaint` methods in enzymeHelpers.js
+  - Added Material-UI's Slide to our library.
+
+#### Bug
+- [PR #228](https://github.com/saddlebackdev/react-cm-ui/pull/228) / Merge Commit 00b72e09f8c1835568b258c4aff4bfa320f71bec
+  - Fixed the Filters Rail to push over (shrink) Content when open.
+  - Fixed the Radio Pill Group zIndex issue.
+- [PR #229](https://github.com/saddlebackdev/react-cm-ui/pull/229) / Merge Commit a6434f565b4294f2b2bf9ab00a53519511f34b64
+  - Fixed the warning that Material-UI was complaining about that had to do with the new Popover component.
+
 ## 9.18.3 - 10/21/2020
 
 #### Feature
@@ -12,7 +34,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - Ensure that click `event` object is passed into DropdownButton's `onMenuToggle` when DropdownMenu's `onClickOutside` is triggered.
   - Also, add defensive check on `event` in DropdownButton's `onMenuToggle` before invoking `stopPropagation()` method on it.
 - [PR #226](https://github.com/saddlebackdev/react-cm-ui/pull/226) / Merge Commit d6192e3e3823542288358ca4bc69d362b7d213bf
-  - Fix some JSS styling bugs in Select. 
+  - Fix some JSS styling bugs in Select.
 
 ## 9.18.2 - 10/17/2020
 
