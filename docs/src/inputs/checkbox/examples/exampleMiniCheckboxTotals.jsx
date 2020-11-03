@@ -25,6 +25,7 @@ function ExampleMiniCheckboxTotals() {
 
                     <Grid.Column>
                         <Checkbox
+                            fluid
                             label="Label"
                             size="small"
                             total={9999}
@@ -50,6 +51,7 @@ function ExampleMiniCheckboxTotals() {
                     <Grid.Column>
                         <Checkbox
                             checked
+                            fluid
                             label="Label"
                             size="small"
                             total={9999}
@@ -75,6 +77,7 @@ function ExampleMiniCheckboxTotals() {
                     <Grid.Column>
                         <Checkbox
                             disable
+                            fluid
                             label="Label"
                             size="small"
                             total={9999}
@@ -101,6 +104,7 @@ function ExampleMiniCheckboxTotals() {
                         <Checkbox
                             disable
                             checked
+                            fluid
                             label="Label"
                             size="small"
                             total={9999}

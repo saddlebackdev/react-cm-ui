@@ -14,8 +14,17 @@ import Icon from '../../dataDisplay/icon';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    align: PropTypes.oneOf(['right']),
+    /**
+     * Whether to align the checkbox to the right or left of a container.
+     */
+    align: PropTypes.oneOf(['left', 'right']),
+    /**
+     * If `true`, the checkbox will be checked.
+     */
     checked: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to Checkbox.
+     */
     classes: PropTypes.shape({
         alignRight: PropTypes.string,
         isChecked: PropTypes.string,
@@ -30,28 +39,62 @@ const propTypes = {
         root: PropTypes.string,
         total: PropTypes.string,
     }).isRequired,
+    /**
+     * Assign additional class names to Checkbox.
+     */
     className: PropTypes.string,
     /**
-     * A Checkbox can be disabled.
+     * If `true`, the Checkbox will be disabled.
      */
     disable: PropTypes.bool,
+    /**
+     * If `true`, the Checkbox will be resized to its parent container's width.
+     */
     fluid: PropTypes.bool,
+    /**
+     * The `id` of the Checkbox.
+     */
     id: PropTypes.string,
+    /**
+     * If `true`, the Checkbox will be formatted to appear on dark background.
+     */
     inverse: PropTypes.bool,
+    /**
+     * The label for the Checkbox.
+     */
     label: PropTypes.oneOfType([
         PropTypes.shape({}),
         PropTypes.string,
     ]),
-    labelClassName: PropTypes.string,
+    /**
+     * If `true`, the Label will be clickable.
+     */
     labelClick: PropTypes.bool,
-    labelStyle: PropTypes.shape({}),
-    labelWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
+    /**
+     * Name of the form control. Submitted with the form as part of a name/value pair.
+     */
     name: PropTypes.string,
+    /**
+     * Event handler for consumer to change the value of the Checkbox.
+     */
     onChange: PropTypes.func,
+    /**
+     * The size of a Checkbox
+     */
     size: PropTypes.oneOf(['small', 'large']),
-    style: PropTypes.shape({}),
+    /**
+     * Indicates whether or not the Checkbox can be focused and where it participates in
+     * sequential keyboard navigation.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+     */
     tabIndex: PropTypes.number,
+    /**
+     * The number (total) to be displayed to the right of the label.
+     */
     total: PropTypes.number,
+    /**
+     * The value to pass to the Checkbox input node.
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -59,22 +102,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-    align: null,
+    align: 'left',
     checked: false,
     className: null,
     disable: false,
     fluid: false,
     id: null,
-    inverse: null,
+    inverse: false,
     label: null,
-    labelClassName: null,
-    labelClick: null,
-    labelStyle: null,
-    labelWeight: null,
+    labelClick: true,
     name: null,
     onChange: null,
     size: null,
-    style: null,
     tabIndex: -1,
     total: -1,
     value: null,
@@ -170,10 +209,7 @@ const styles = ({
                 },
             },
         },
-        isFluid: {
-            display: 'block',
-            marginRight: 0,
-        },
+        isFluid: {},
         isInversed: {
             '& $innerContainer': {
                 color: palette.text.contrastText,
@@ -203,6 +239,7 @@ const styles = ({
         },
         isToggle: {},
         label: {
+            flexGrow: 1,
             fontSize: typography.pxToRem(16),
         },
         labelContainer: {
@@ -231,6 +268,9 @@ const styles = ({
                 '& .ui.icon-check': {
                     opacity: 1,
                 },
+            },
+            '&$isFluid': {
+                display: 'block',
             },
         },
         total: {
@@ -293,7 +333,7 @@ class Checkbox extends React.Component {
     onLabelClick(event) {
         const { labelClick } = this.props;
 
-        if (isFunction(labelClick) && labelClick === false) {
+        if (!labelClick) {
             event.stopPropagation();
         }
     }
@@ -339,13 +379,9 @@ class Checkbox extends React.Component {
             id,
             inverse: isInverse,
             label,
-            labelClassName,
             labelClick,
-            labelStyle,
-            labelWeight,
             name,
             size,
-            style,
             tabIndex,
             total,
             value,
@@ -373,14 +409,13 @@ class Checkbox extends React.Component {
         const innerContainerClasses = ClassNames(
             classes.innerContainer,
             {
-                [classes.labelNotClickable]: isFunction(labelClick) && labelClick === false,
+                [classes.labelNotClickable]: !labelClick,
             },
         );
 
         const labelContainerClasses = ClassNames(
-            'checkbox-label-text',
+            `${BEM_CHECKBOX}--label_container`,
             classes.labelContainer,
-            labelClassName,
         );
 
         const iconCheckSize = isSmall ? 8 : 10;
@@ -395,7 +430,6 @@ class Checkbox extends React.Component {
                 onKeyDown={this.onKeyDown}
                 onMouseDown={this.onMouseDown}
                 role="checkbox"
-                style={style}
                 tabIndex={tabIndex}
             >
                 <input
@@ -418,19 +452,24 @@ class Checkbox extends React.Component {
                             className={labelContainerClasses}
                             onClick={this.onLabelClick}
                             onKeyDown={noop()}
-                            style={labelStyle}
                             role="button"
                             tabIndex={-1}
                         >
                             <div
-                                className={classes.label}
+                                className={ClassNames(
+                                    `${BEM_CHECKBOX}--label`,
+                                    classes.label,
+                                )}
                             >
                                 {label}
                             </div>
 
                             {total >= 0 && (
                                 <div
-                                    className={classes.total}
+                                    className={ClassNames(
+                                        `${BEM_CHECKBOX}--total`,
+                                        classes.total,
+                                    )}
                                 >
                                     {Number(total).toLocaleString()}
                                 </div>
