@@ -4,6 +4,10 @@ import {
 import ClassNames from 'classnames';
 import React from 'react';
 import { buttonPropTypes, buttonDefaultProps } from './buttonConstants';
+import {
+    UI_CLASS_NAME,
+    BEM_BUTTON,
+} from '../../global/constants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
@@ -20,10 +24,14 @@ const styles = (theme) => {
         shape,
         typography,
     } = theme;
+
     const buttonSize = 32;
+    const buttonPillSize = 46;
+    const outlineWidth = 'inset 0 0 0 1.5px';
 
     return {
         root: {
+            backgroundColor: 'transparent',
             border: 0,
             borderRadius: shape.borderRadius.main,
             color: palette.text.contrastText,
@@ -59,127 +67,8 @@ const styles = (theme) => {
                 padding: 0,
                 width: buttonSize,
             },
-            '&$inverse': {
-                '&$colorOutline, &$colorTransparent': {
-                    color: palette.text.contrastText,
-                },
-                '&$colorAlert': {
-                    backgroundColor: palette.error.main,
-                },
-                '&$colorAlternate': {
-                    backgroundColor: palette.grey[500],
-                },
-                '&$colorDisable': {
-                    backgroundColor: palette.static.main,
-                    cursor: 'default',
-                },
-                '&$colorLight': {
-                    backgroundColor: palette.grey[100],
-                    color: palette.text.primary,
-                },
-                '&$colorOutline': {
-                    backgroundColor: 'rgba(255, 255, 255, .30)',
-                    boxShadow: `inset 0 0 0 1px ${palette.background.secondary}`,
-                    '& > .ui.icon .icon-use-path': {
-                        fill: palette.text.primary,
-                    },
-                },
-                '&$colorPrimary': {
-                    backgroundColor: palette.cyan[600],
-                },
-                '&$colorSuccess': {
-                    backgroundColor: palette.green[500],
-                },
-                '&$colorSecondary': {
-                    backgroundColor: palette.blue[500],
-                },
-                '&$colorTransparent': {
-                    backgroundColor: 'transparent',
-                },
-                '&$colorWarning': {
-                    backgroundColor: palette.warning.main,
-                },
-            },
-            '&$outlined': {
-                backgroundColor: 'transparent',
-                boxShadow: `inset 0 0 0 1px ${palette.grey[500]}`,
-                color: palette.text.primary,
-                '& .ui.icon .icon-use-path': {
-                    fill: palette.text.primary,
-                },
-                '&$colorAlert': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.error.main}`,
-                    color: palette.error.main,
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.error.main,
-                    },
-                },
-                '&$colorAlternate': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.grey[500]}`,
-                    color: palette.text.primary,
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.text.primary,
-                    },
-                },
-                '&$colorDisable': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.static.main}`,
-                    color: palette.text.disable,
-                    cursor: 'default',
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.text.disable,
-                    },
-                },
-                '&$colorLight': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.grey[100]}`,
-                    color: palette.grey[100],
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.grey[100],
-                    },
-                },
-                '&$colorOutline': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.grey[500]}`,
-                    color: palette.text.primary,
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.text.primary,
-                    },
-                },
-                '&$colorPrimary': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.cyan[600]}`,
-                    color: palette.cyan[600],
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.cyan[600],
-                    },
-                },
-                '&$colorSecondary': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.blue[500]}`,
-                    color: palette.blue[500],
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.blue[500],
-                    },
-                },
-                '&$colorSuccess': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.green[500]}`,
-                    color: palette.success.main,
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.success.main,
-                    },
-                },
-                '&$colorWarning': {
-                    backgroundColor: 'transparent',
-                    boxShadow: `inset 0 0 0 1px ${palette.warning.main}`,
-                    color: palette.warning.main,
-                    '& .ui.icon .icon-use-path': {
-                        fill: palette.warning.main,
-                    },
-                },
+            '& .icon .icon-use-path': {
+                fill: theme.palette.background.primary,
             },
         },
         innerContainer: {
@@ -190,9 +79,6 @@ const styles = (theme) => {
             '& .ui.icon': {
                 outline: 'none',
                 pointerEvents: 'none',
-            },
-            '& > .ui.icon .icon-use-path': {
-                fill: palette.text.contrastText,
             },
             '& span + .ui.icon': {
                 margin: '0 0 0 11px',
@@ -209,51 +95,129 @@ const styles = (theme) => {
                 },
             },
         },
-        inverse: {},
-        colorAlert: {
-            backgroundColor: palette.error.main,
-        },
-        colorAlternate: {
-            backgroundColor: palette.grey[500],
-        },
-        colorDisable: {
-            backgroundColor: palette.static.main,
-            cursor: 'default',
-        },
-        colorInverse: {},
-        colorLight: {
-            backgroundColor: palette.grey[100],
-            color: palette.text.primary,
-            '& .ui.icon .icon-use-path': {
-                fill: palette.text.primary,
+        colorActive: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.active.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.active.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.active.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.active.main,
             },
         },
-        colorOutline: {
-            backgroundColor: 'transparent',
-            boxShadow: `inset 0 0 0 1px ${palette.grey[500]}`,
-            color: palette.text.primary,
-            '& .ui.icon .icon-use-path': {
-                fill: palette.text.primary,
+        colorDefault: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.grey[600],
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.grey[600]}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.grey[600],
+                    },
+                    '&$inverse': {
+                        boxShadow: `${outlineWidth} ${theme.palette.common.white}`,
+                        '& .icon .icon-use-path': {
+                            fill: theme.palette.common.white,
+                        },
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.text.disable,
+            },
+        },
+        colorLink: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.link.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.link.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.link.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.link.main,
             },
         },
         colorPrimary: {
-            backgroundColor: palette.cyan[600],
+            '&:not($text)': {
+                backgroundColor: theme.palette.primary.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.primary.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.primary.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.primary.main,
+            },
+        },
+        colorError: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.error.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.error.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.error.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.error.main,
+            },
         },
         colorSecondary: {
-            backgroundColor: palette.blue[500],
+            '&:not($text)': {
+                backgroundColor: theme.palette.secondary.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.secondary.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.secondary.main,
+                    },
+                    '&$inverse': {
+                        boxShadow: `${outlineWidth} ${theme.palette.secondary.constrastMain}`,
+                        '& .icon .icon-use-path': {
+                            fill: theme.palette.secondary.constrastMain,
+                        },
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.secondary.main,
+            },
         },
         colorSuccess: {
-            backgroundColor: palette.green[500],
-        },
-        colorTransparent: {
-            backgroundColor: 'transparent',
-            color: palette.text.primary,
-            '& .ui.icon .icon-use-path': {
-                fill: palette.text.primary,
+            '&:not($text)': {
+                backgroundColor: theme.palette.success.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.success.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.success.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.success.main,
             },
         },
         colorWarning: {
-            backgroundColor: palette.warning.main,
+            '&:not($text)': {
+                backgroundColor: theme.palette.warning.main,
+                '&$outline': {
+                    boxShadow: `${outlineWidth} ${theme.palette.warning.main}`,
+                    '& .icon .icon-use-path': {
+                        fill: theme.palette.warning.main,
+                    },
+                },
+            },
+            '&$text': {
+                color: theme.palette.warning.main,
+            },
         },
         compact: {
             paddingLeft: 11,
@@ -267,10 +231,48 @@ const styles = (theme) => {
             paddingLeft: 0,
             paddingRight: 0,
         },
-        outlined: {},
+        outline: {
+            '&:not($text)': {
+                backgroundColor: 'transparent',
+                color: theme.palette.text.primary,
+            },
+        },
+        inverse: {
+            '&:not($text)': {
+                color: theme.palette.text.contrastText,
+            },
+        },
+        pill: {
+            borderRadius: buttonPillSize / 2,
+            fontWeight: theme.typography.fontWeightBold,
+            minHeight: buttonPillSize,
+        },
         relax: {
             paddingLeft: 33,
             paddingRight: 33,
+        },
+        text: {},
+        transparent: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.hexToRGBA(theme.palette.background.primary, 0.5),
+                boxShadow: `inset 0 0 0 1px ${theme.palette.border.contrastPrimary}`,
+            },
+        },
+        disable: {
+            '&:not($text)': {
+                backgroundColor: theme.palette.disable.main,
+                color: theme.palette.text.constrastText,
+            },
+            '&$outline': {
+                backgroundColor: 'transparent',
+                boxShadow: `${outlineWidth} ${theme.palette.disable.main}`,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.disable.main,
+                },
+            },
+            '&$text': {
+                color: theme.palette.disable.main,
+            },
         },
     };
 };
@@ -281,20 +283,6 @@ class Button extends React.PureComponent {
 
         this.onClick = this.onClick.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('Button (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
     }
 
     onClick(event) {
@@ -313,53 +301,58 @@ class Button extends React.PureComponent {
         const {
             as,
             children,
-            className,
             classes,
+            className,
             color,
             compact,
-            disable: disableProp,
-            disabled,
+            disable,
             fluid,
             href,
             icon,
             id,
             innerStyle,
             inverse,
-            outlined,
+            outline,
+            pill,
             relax,
             style,
+            text,
             target,
             title,
+            transparent,
             width,
         } = this.props;
-        const disable = disableProp || disabled;
+
         const ElementType = Utils.getElementType(as, this.props);
+
         const rootClasses = ClassNames(
-            'ui',
-            'button',
+            UI_CLASS_NAME,
+            BEM_BUTTON,
             classes.root,
             className,
             {
-                [classes.inverse]: inverse,
-                [classes.colorAlert]: !disable && color === 'alert',
-                [classes.colorAlternate]: !disable && color === 'alternate',
-                [classes.colorDisable]: disable || color === 'disable',
-                [classes.colorInverse]: !disable && color === 'inverse',
-                [classes.colorLight]: !disable && color === 'light',
-                [classes.colorOutline]: !disable && color === 'outline',
-                [classes.colorPrimary]: !disable && (!color || color === 'primary'),
+                [classes.colorActive]: !disable && color === 'active',
+                [classes.colorDefault]: !disable && color === 'default',
+                [classes.colorError]: !disable && color === 'error',
+                [classes.colorLink]: !disable && color === 'link',
+                [classes.colorPrimary]: !disable && color === 'primary',
                 [classes.colorSecondary]: !disable && color === 'secondary',
                 [classes.colorSuccess]: !disable && color === 'success',
-                [classes.colorTransparent]: !disable && color === 'transparent',
                 [classes.colorWarning]: !disable && color === 'warning',
                 [classes.compact]: compact,
+                [classes.disable]: disable,
+                [classes.fixedWidth]: !!width,
                 [classes.fluid]: fluid,
                 [classes.icon]: icon,
-                [classes.fixedWidth]: !!width,
-                [classes.outlined]: outlined,
+                [classes.inverse]: inverse,
+                [classes.outline]: outline,
+                [classes.pill]: pill,
                 [classes.relax]: relax,
+                [classes.text]: text,
+                [classes.transparent]: transparent,
             },
         );
+
         const innerContainerClasses = ClassNames(
             'button-inner-container',
             classes.innerContainer,

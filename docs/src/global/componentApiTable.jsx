@@ -18,11 +18,12 @@ import MarkdownContainer from './markdownContainer';
 import { replaceBackticksWithTag } from './utils';
 
 const propTypes = {
-    componentProps: DOCS_PROPS_PROP_TYPE.isRequired,
+    componentProps: DOCS_PROPS_PROP_TYPE,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
+    componentProps: null,
     style: null,
 };
 
@@ -146,6 +147,9 @@ const useStyles = makeStyles((theme) => {
     } = theme;
 
     return {
+        issueMessageContainer: {
+            margin: [[0, 22]],
+        },
         tooltipLink: {
             color: palette.text.link,
             cursor: 'pointer',
@@ -155,87 +159,103 @@ const useStyles = makeStyles((theme) => {
 });
 
 function ComponentApiTable(props) {
-    const classes = useStyles();
     const { componentProps, style } = props;
 
-    const TableRows = map(componentProps, (componentProp, key) => {
-        const {
-            defaultValue,
-            description,
-            required,
-        } = componentProp;
-
-        let name = key;
-
-        if (required) {
-            name += '*';
-        }
-
-        return (
-            <Table.Row key={`table_props--props_row_key-${key}`}>
-                <Table.Cell>
-                    <span
-                        className="prop_name"
-                    >
-                        {name}
-                    </span>
-                </Table.Cell>
-
-                <Table.Cell>
-                    <span
-                        className="prop_name"
-                    >
-                        {getPropType(classes, componentProp)}
-                    </span>
-                </Table.Cell>
-
-                <Table.Cell>
-                    {defaultValue && defaultValue.value && (
-                        <span
-                            // eslint-disable-next-line react/no-danger
-                            dangerouslySetInnerHTML={{ __html: defaultValue.value }}
-                        />
-                    )}
-                </Table.Cell>
-
-                <Table.Cell>
-                    <p
-                        // eslint-disable-next-line react/no-danger
-                        dangerouslySetInnerHTML={{
-                            __html: description && replaceBackticksWithTag(description),
-                        }}
-                    />
-                </Table.Cell>
-            </Table.Row>
-        );
-    });
+    const classes = useStyles();
 
     return (
         <MarkdownContainer>
-            <Table
-                basic
-                stretch="very"
-                style={{
-                    backgroundColor: 'transparent',
-                    ...style,
-                }}
-            >
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Name</Table.HeaderCell>
+            {!componentProps && (
+                <div
+                    className={classes.issueMessageContainer}
+                >
+                    <Typography
+                        color="textSecondary"
+                        variant="body1"
+                    >
+                        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                        Uh-oh! Either react-docgen is failing in returning <code>props</code> or
+                        something else clearly went wrong.
+                    </Typography>
+                </div>
+            )}
 
-                        <Table.HeaderCell>Type</Table.HeaderCell>
+            {componentProps && (
+                <Table
+                    basic
+                    stretch="very"
+                    style={{
+                        backgroundColor: 'transparent',
+                        ...style,
+                    }}
+                >
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Name</Table.HeaderCell>
 
-                        <Table.HeaderCell>Default</Table.HeaderCell>
+                            <Table.HeaderCell>Type</Table.HeaderCell>
 
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+                            <Table.HeaderCell>Default</Table.HeaderCell>
 
-                <Table.Body>
-                    {TableRows}
-                </Table.Body>
-            </Table>
+                            <Table.HeaderCell>Description</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                        {map(componentProps, (componentProp, key) => {
+                            const {
+                                defaultValue,
+                                description,
+                                required,
+                            } = componentProp;
+
+                            let name = key;
+
+                            if (required) {
+                                name += '*';
+                            }
+
+                            return (
+                                <Table.Row key={`table_props--props_row_key-${key}`}>
+                                    <Table.Cell>
+                                        <span
+                                            className="prop_name"
+                                        >
+                                            {name}
+                                        </span>
+                                    </Table.Cell>
+
+                                    <Table.Cell>
+                                        <span
+                                            className="prop_name"
+                                        >
+                                            {getPropType(classes, componentProp)}
+                                        </span>
+                                    </Table.Cell>
+
+                                    <Table.Cell>
+                                        {defaultValue && defaultValue.value && (
+                                            <span
+                                                // eslint-disable-next-line react/no-danger
+                                                dangerouslySetInnerHTML={{ __html: defaultValue.value }}
+                                            />
+                                        )}
+                                    </Table.Cell>
+
+                                    <Table.Cell>
+                                        <p
+                                            // eslint-disable-next-line react/no-danger
+                                            dangerouslySetInnerHTML={{
+                                                __html: description && replaceBackticksWithTag(description),
+                                            }}
+                                        />
+                                    </Table.Cell>
+                                </Table.Row>
+                            );
+                        })}
+                    </Table.Body>
+                </Table>
+            )}
         </MarkdownContainer>
     );
 }

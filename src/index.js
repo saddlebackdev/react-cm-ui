@@ -31,7 +31,6 @@ export { default as ActivityIndicator } from './feedback/activityIndicator';
 // Inputs
 export { default as Button } from './inputs/button';
 export { default as Checkbox } from './inputs/checkbox';
-export { default as DatePicker } from './inputs/datePickerDeprecated';
 export { default as DatePickerCalendar } from './inputs/datePickerCalendar';
 export { default as DatePickerInput } from './inputs/datePickerInput';
 export { default as Dropdown } from './inputs/dropdown';
@@ -49,6 +48,7 @@ export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
+export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';
@@ -65,7 +65,6 @@ export { default as AppBar } from './surfaces/appBar';
 export { default as Card } from './surfaces/card';
 export { default as DetailsWindow } from './surfaces/detailsWindow';
 export { default as Drawer } from './surfaces/drawer';
-export { default as DrawerDeprecated } from './surfaces/drawerDeprecated';
 export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
@@ -78,6 +77,7 @@ export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
+export { default as Slide } from './utils/slide';
 export { default as useMediaQuery } from './utils/useMediaQuery';
 export { default as Utils } from './utils/utils';
 export { default as withWidth } from './utils/withWidth/withWidth';

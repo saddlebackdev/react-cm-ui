@@ -7,7 +7,6 @@ import React from 'react';
 import Main from '../../global/main';
 import Highlighter from '../../global/highlighter';
 import TableProps from '../../global/tableProps';
-import DrawerDeprecatedSubNavigation from './drawerDeprecatedSubNavigation';
 
 const drawerSample = `import React from 'react';
 
@@ -899,10 +898,6 @@ export default class ModulesDrawer extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
-
-                <DrawerDeprecatedSubNavigation />
-
                 <Header size="large" style={{ margin: '55px 0' }}>
                     This version of the Drawer component has been deprecated.
                     <br />

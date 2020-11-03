@@ -960,11 +960,6 @@ export function PersonCoreMilestones(props) {
                                 }
                             }}
                             open={openPopover === POPOVER_ACCEPTED_CHRIST}
-                            popperStyles={{
-                                ...(!hasAcceptedChrist && {
-                                    display: 'none',
-                                }),
-                            }}
                         >
                             <Icon
                                 className={ClassNames(
@@ -1014,11 +1009,6 @@ export function PersonCoreMilestones(props) {
                                 }
                             }}
                             open={openPopover === POPOVER_BAPTISM}
-                            popperStyles={{
-                                ...(!isBaptised && {
-                                    display: 'none',
-                                }),
-                            }}
                         >
                             <Icon
                                 className={ClassNames(
@@ -1137,11 +1127,6 @@ export function PersonCoreMilestones(props) {
                                 }
                             }}
                             open={openPopover === POPOVER_SMALL_GROUP}
-                            popperStyles={{
-                                ...(!isInSmallGroup && {
-                                    display: 'none',
-                                }),
-                            }}
                         >
                             <Icon
                                 className={ClassNames(
@@ -1189,11 +1174,6 @@ export function PersonCoreMilestones(props) {
                                 }
                             }}
                             open={openPopover === POPOVER_MINISTRY}
-                            popperStyles={{
-                                ...(!isInMinistry && {
-                                    display: 'none',
-                                }),
-                            }}
                         >
                             <Icon
                                 className={ClassNames(
@@ -1241,11 +1221,6 @@ export function PersonCoreMilestones(props) {
                                 }
                             }}
                             open={openPopover === POPOVER_MISSIONS}
-                            popperStyles={{
-                                ...(!isActiveInMissions && {
-                                    display: 'none',
-                                }),
-                            }}
                         >
                             <Icon
                                 className={ClassNames(

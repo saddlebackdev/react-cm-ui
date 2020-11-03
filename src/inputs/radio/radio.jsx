@@ -170,7 +170,7 @@ const styles = (theme) => {
             position: 'relative',
             textAlign: 'left',
             '&:focus': {
-                boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+                boxShadow: `0 0 0 1px ${theme.palette.active.main}`,
             },
             '& .label': {
                 color: theme.palette.text.primary,
@@ -279,7 +279,7 @@ const styles = (theme) => {
                     display: 'inline-block',
                     outline: 'none',
                     '&:focus': {
-                        boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+                        boxShadow: `0 0 0 1px ${theme.palette.active.main}`,
                     },
                     '&:first-child:focus': {
                         borderRadius: '16px 0 0 16px',
