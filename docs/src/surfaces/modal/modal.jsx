@@ -39,8 +39,6 @@ function DocsModal(props) {
         displayName,
     } = rootDoc;
 
-    console.log(rootDoc);
-
     return (
         <Main page={camelCase(displayName)}>
             <Main.Content>
