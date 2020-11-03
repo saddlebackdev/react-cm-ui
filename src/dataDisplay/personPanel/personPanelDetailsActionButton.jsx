@@ -17,7 +17,7 @@ const propTypes = {
     onKeyDown: PropTypes.func,
     onPromptCancelClick: PropTypes.func,
     onPromptConfirmClick: PropTypes.func,
-    outlined: PropTypes.bool,
+    outline: PropTypes.bool,
     prompt: PropTypes.bool,
     promptId: PropTypes.string,
     title: PropTypes.string,
@@ -30,7 +30,7 @@ const defaultProps = {
     onKeyDown: null,
     onPromptCancelClick: null,
     onPromptConfirmClick: null,
-    outlined: false,
+    outline: false,
     prompt: false,
     promptId: null,
 };
@@ -51,7 +51,7 @@ function PersonPanelDetailsActionButton(props) {
         onKeyDown: onKeyDownProp,
         onNoClick: onNoClickProp,
         onYesClick: onYesClickProp,
-        outlined,
+        outline,
         prompt,
         promptId,
         title,
@@ -99,7 +99,7 @@ function PersonPanelDetailsActionButton(props) {
                 className,
             )}
             id={id}
-            outlined={outlined}
+            outline={outline}
             onClick={onClick}
             onKeyDown={onKeyDownClick}
             title={title}
