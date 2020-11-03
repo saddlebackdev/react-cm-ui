@@ -11,6 +11,7 @@ import DrawerContent from './drawerContent';
 import DrawerDataCards from './drawerDataCards';
 import DrawerDataGrid from './drawerDataGrid';
 import DrawerDataGroups from './drawerDataGroups';
+import DrawerDeprecatedFiltersDrawer from '../drawerDeprecated/drawerDeprecatedFiltersDrawer'; // eslint-disable-line import/no-cycle
 import DrawerDetailsWindow from './drawerDetailsWindow';
 import DrawerFiltersDrawer from './drawerFiltersDrawer'; // eslint-disable-line import/no-cycle
 import DrawerFiltersRail from './drawerFiltersRail'; // eslint-disable-line import/no-cycle
@@ -550,10 +551,14 @@ Drawer.Content = DrawerContent;
 Drawer.DataCards = DrawerDataCards;
 Drawer.DataGrid = DrawerDataGrid;
 Drawer.DataGroups = DrawerDataGroups;
+Drawer.DeprecatedFiltersDrawer = DrawerDeprecatedFiltersDrawer;
+Drawer.Details = DrawerDetailsWindow; // TODO: Deprecated. Alias name for Drawer.DetailsWindow. Remove in a major release.
 Drawer.DetailsWindow = DrawerDetailsWindow;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
 Drawer.FiltersRail = DrawerFiltersRail;
+Drawer.Grid = DrawerDataCards; // TODO: Deprecated. Alias name for Drawer.DataGrid. Remove in a major release.
 Drawer.Navigation = DrawerNavigation;
+Drawer.Table = DrawerDataGrid; // TODO: Deprecated. Alias name for Drawer.DataGrid. Remove in a major release.
 Drawer.TitleBar = DrawerTitleBar;
 Drawer.Wing = DrawerWing;
 

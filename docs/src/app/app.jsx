@@ -110,11 +110,11 @@ class App extends React.Component {
                         <div>
                             <Link to={{ pathname: '/' }}>
                                 <Button
+                                    color="transparent"
                                     compact
                                     style={{
                                         margin: '11px 0',
                                     }}
-                                    transparent
                                 >
                                     <Icon type="chevron-left" />
 

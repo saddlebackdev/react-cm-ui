@@ -30,6 +30,11 @@
 @import './inputs/datePickerCalendar/datePickerDropdownYear';
 @import './inputs/datePickerCalendar/datePickerMonth';
 @import './inputs/datePickerCalendar/datePickerWeek';
+@import './inputs/datePickerDeprecated/datePickerDeprecated';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedCalendar';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedDay';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedMonth';
+@import './inputs/datePickerDeprecated/datePickerDeprecatedWeek';
 @import './inputs/dropdown/dropdown';
 @import './inputs/phoneInput/phoneInput';
 @import './inputs/prompt/prompt';
@@ -39,6 +44,7 @@
 
 // Layout
 @import './layout/grid/grid';
+@import './layout/page/pageDeprecatedFiltersDrawer';
 
 // Navigation
 @import './navigation/subNavigation/subNavigation';
@@ -52,6 +58,7 @@
 @import './surfaces/drawer/drawerNavigation';
 @import './surfaces/drawer/drawerTitleBar';
 @import './surfaces/drawer/drawerWing';
+@import './surfaces/drawerDeprecated/drawerDeprecated';
 @import './surfaces/filtersDrawer/filtersDrawer';
 @import './surfaces/infoBar/infoBar';
 @import './surfaces/titleBar/titleBar';

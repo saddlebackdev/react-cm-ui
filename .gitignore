@@ -1,6 +1,5 @@
 *.tgz
 **/.DS_Store
-.idea/*
 build
 config.json
 config.local.json

@@ -5,18 +5,23 @@ class Utils {
         return [
             'action',
             'alert',
+            'alternate',
             'bright',
             'condition',
             'configuration',
             'disable',
             'highlight',
+            'inverse',
             'inverse-alternate',
+            'light',
             'nest',
+            'outline',
             'primary',
             'secondary',
             'static',
             'subject',
             'success',
+            'transparent',
             'warning',
         ];
     }

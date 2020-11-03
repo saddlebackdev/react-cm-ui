@@ -1,6 +1,6 @@
 const common = {
-    black: '#000000',
-    white: '#ffffff',
+    black: '#000',
+    white: '#fff',
 };
 
 export default common;
