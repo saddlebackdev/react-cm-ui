@@ -31,7 +31,6 @@ export { default as ActivityIndicator } from './feedback/activityIndicator';
 // Inputs
 export { default as Button } from './inputs/button';
 export { default as Checkbox } from './inputs/checkbox';
-export { default as DatePicker } from './inputs/datePickerDeprecated';
 export { default as DatePickerCalendar } from './inputs/datePickerCalendar';
 export { default as DatePickerInput } from './inputs/datePickerInput';
 export { default as Dropdown } from './inputs/dropdown';
@@ -65,7 +64,6 @@ export { default as AppBar } from './surfaces/appBar';
 export { default as Card } from './surfaces/card';
 export { default as DetailsWindow } from './surfaces/detailsWindow';
 export { default as Drawer } from './surfaces/drawer';
-export { default as DrawerDeprecated } from './surfaces/drawerDeprecated';
 export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';

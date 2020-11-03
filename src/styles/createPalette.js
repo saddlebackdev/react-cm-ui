@@ -12,10 +12,28 @@ import {
     teal,
 } from '../colors';
 
+function hexToRGBA(hex, a) {
+    let r = 0;
+    let g = 0;
+    let b = 0;
+
+    if (hex.length === 4) { // 3 digits
+        r = `0x${hex[1] + hex[1]}`;
+        g = `0x${hex[2] + hex[2]}`;
+        b = `0x${hex[3] + hex[3]}`;
+    } else if (hex.length === 7) { // 6 digits
+        r = `0x${hex[1] + hex[2]}`;
+        g = `0x${hex[3] + hex[4]}`;
+        b = `0x${hex[5] + hex[6]}`;
+    }
+
+    return `rgba(${+r}, ${+g}, ${+b}, ${+a})`;
+}
+
 export default function createPalette() {
     const palette = {
         active: {
-            primary: cyan[500],
+            main: cyan[500],
         },
         background: {
             contrastPrimary: grey[600],
@@ -28,16 +46,22 @@ export default function createPalette() {
             primary: grey[300],
             secondary: grey[200],
         },
+        disable: {
+            main: grey[300],
+        },
         error: {
             main: red[500],
             dark: red[600],
         },
+        link: {
+            main: cyan[500],
+        },
         primary: {
-            main: grey[600],
+            main: cyan[600],
         },
         secondary: {
-            main: blue[500],
-            dark: blue[600],
+            constrastMain: common.white,
+            main: grey[600],
         },
         static: {
             main: grey[300],
@@ -78,5 +102,6 @@ export default function createPalette() {
         redOrange,
         sky,
         teal,
+        hexToRGBA,
     };
 }

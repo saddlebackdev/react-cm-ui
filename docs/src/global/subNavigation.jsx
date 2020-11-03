@@ -43,14 +43,13 @@ function SubNavigation(props) {
 
     remove(fourthLevelItems, ['omit', true]);
 
-    const onSubNavItemClick = (index, label) => {
-        const labelToPath = kebabCase(label);
+    const onSubNavItemClick = (path) => {
         const pageLocation = `/${firstLevelPath}/${secondLevelPath}/${thirdLevelPath}`;
 
-        if (label === thirdLevelLabel) {
+        if (!path) {
             browserHistory.push(pageLocation);
         } else {
-            browserHistory.push(`${pageLocation}/${labelToPath}`);
+            browserHistory.push(`${pageLocation}/${path}`);
         }
     };
 
@@ -71,12 +70,12 @@ function SubNavigation(props) {
                 <SubNav.Item
                     key="sub_nav_items-third_level"
                     label={thirdLevelLabel}
-                    onClick={onSubNavItemClick}
+                    onClick={() => onSubNavItemClick('')}
                 />,
                 <SubNav.Item
                     key={`sub_nav_items-${index}`}
                     label={item.label}
-                    onClick={onSubNavItemClick}
+                    onClick={() => onSubNavItemClick(item.path)}
                 />,
             ];
         }
@@ -85,7 +84,7 @@ function SubNavigation(props) {
             <SubNav.Item
                 key={`sub_nav_items-${index}`}
                 label={item.label}
-                onClick={onSubNavItemClick}
+                onClick={() => onSubNavItemClick(item.path)}
             />
         );
     });

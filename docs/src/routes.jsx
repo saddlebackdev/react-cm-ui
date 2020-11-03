@@ -61,4 +61,6 @@ const routes = (
     </Route>
 );
 
+console.log(routes);
+
 export default routes;

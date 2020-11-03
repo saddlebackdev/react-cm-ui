@@ -3,7 +3,6 @@ export { default as ActionBar } from './actionBar';
 export { default as Card } from './card';
 export { default as DetailsWindow } from './detailsWindow';
 export { default as Drawer } from './drawer';
-export { default as DrawerDeprecated } from './drawerDeprecated';
 export { default as FiltersDrawer } from './filtersDrawer';
 export { default as FiltersRail } from './filtersRail';
 export { default as InfoBar } from './infoBar';

@@ -1,41 +1,29 @@
 import {
+    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import {
     camelCase,
     startCase,
 } from 'lodash';
-import PropTypes from 'prop-types';
 import React from 'react';
-import ButtonSubNavigation from './buttonSubNavigation';
-import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
-import Example from '../../global/example';
-import ExampleOutline from './examples/exampleButtonOutline';
-import ExamplePill from './examples/exampleButtonPill';
-import ExamplePillOutline from './examples/exampleButtonPillOutline';
-import ExampleSolid from './examples/exampleButtonSolid';
-import ExampleTextExample from './examples/exampleButtonText';
-import ExampleTransparentButton from './examples/exampleTransparentButton';
-import Heading from '../../global/heading';
-import Main from '../../global/main';
-import MarkdownContainer from '../../global/markdownContainer';
+import ButtonSubNavigation from '../buttonSubNavigation';
+import Example from '../../../global/example';
+import ExampleOutlineColors from './examples/exampleOutlineColors';
+import ExampleOutlineInverseColors from './examples/exampleOutlineInverseColors';
+import ExamplePillColors from './examples/examplePillColors';
+import ExamplePillOutlineColors from './examples/examplePillOutlineColors';
+import ExamplePillOutlineInverseColors from './examples/examplePillOutlineInverseColors';
+import ExampleSolidColors from './examples/exampleSolidColors';
+import ExampleTextColors from './examples/exampleTextColors';
+import Heading from '../../../global/heading';
+import Main from '../../../global/main';
+import MarkdownContainer from '../../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string,
-    }).isRequired,
-};
-
-function DocsButton(props) {
-    const {
-        location: {
-            pathname,
-        },
-    } = props;
-
+function DocsButtonSandbox() {
     const {
         description,
         displayName,
@@ -43,6 +31,10 @@ function DocsButton(props) {
 
     return (
         <Main page={camelCase(displayName)}>
+            <TitleBar title={startCase(displayName)} />
+
+            <ButtonSubNavigation />
+
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
@@ -59,19 +51,13 @@ function DocsButton(props) {
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Solid Button
+                        Solid Button Colors
                     </Heading>
 
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonSolid').default}
+                        rawCode={require('!!raw-loader!./examples/exampleSolidColors').default}
                     >
-                        <ExampleSolid />
+                        <ExampleSolidColors />
                     </Example>
 
                     {/**
@@ -81,19 +67,26 @@ function DocsButton(props) {
                         anchorLink="outline-button"
                         variant="h2"
                     >
-                        Outline Button
+                        Outline Button Colors
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleOutlineColors').default}
+                    >
+                        <ExampleOutlineColors />
+                    </Example>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Inverse Colors
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonOutline').default}
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleOutlineInverseColors').default}
                     >
-                        <ExampleOutline />
+                        <ExampleOutlineInverseColors />
                     </Example>
 
                     {/**
@@ -103,21 +96,8 @@ function DocsButton(props) {
                         anchorLink="transparent-button"
                         variant="h2"
                     >
-                        Transparent Button
+                        Transparent Button Colors
                     </Heading>
-
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
-                    <Example
-                        inverse
-                        rawCode={require('!!raw-loader!./examples/exampleTransparentButton').default}
-                    >
-                        <ExampleTransparentButton />
-                    </Example>
 
                     {/**
                       * Pill Button
@@ -126,19 +106,13 @@ function DocsButton(props) {
                         anchorLink="pill-button"
                         variant="h2"
                     >
-                        Pill Button
+                        Pill Button Colors
                     </Heading>
 
-                    <Typography
-                        variant="body1"
-                    >
-                        Types
-                    </Typography>
-
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonPill').default}
+                        rawCode={require('!!raw-loader!./examples/examplePillColors').default}
                     >
-                        <ExamplePill />
+                        <ExamplePillColors />
                     </Example>
 
                     {/**
@@ -148,19 +122,26 @@ function DocsButton(props) {
                         anchorLink="pill-outline-button"
                         variant="h2"
                     >
-                        Pill &amp; Outline Button
+                        Pill &amp; Outline Button Colors
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/examplePillOutlineColors').default}
+                    >
+                        <ExamplePillOutlineColors />
+                    </Example>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Inverse Colors
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonPillOutline').default}
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/examplePillOutlineInverseColors').default}
                     >
-                        <ExamplePillOutline />
+                        <ExamplePillOutlineInverseColors />
                     </Example>
 
                     {/**
@@ -170,24 +151,18 @@ function DocsButton(props) {
                         anchorLink="pill-outline-button"
                         variant="h2"
                     >
-                        Text Button
+                        Text Button Colors
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonText').default}
+                        rawCode={require('!!raw-loader!./examples/exampleTextColors').default}
                     >
-                        <ExampleTextExample />
+                        <ExampleTextColors />
                     </Example>
                 </MarkdownContainer>
-
-                <ComponentVersionIdentifier
-                    pathname={pathname}
-                />
             </Main.Content>
         </Main>
     );
 }
 
-DocsButton.propTypes = propTypes;
-
-export default DocsButton;
+export default DocsButtonSandbox;

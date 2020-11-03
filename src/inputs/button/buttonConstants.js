@@ -14,7 +14,16 @@ export const buttonPropTypes = {
     /**
      * Color of the button.
      */
-    color: PropTypes.oneOf(Utils.colorEnums()),
+    color: PropTypes.oneOf([
+        'active',
+        'default',
+        'error',
+        'link',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+    ]),
     /**
      * A button can reduce its padding.
      */
@@ -46,7 +55,7 @@ export const buttonPropTypes = {
     /**
      * A button can be outlined.
      */
-    outlined: PropTypes.bool,
+    outline: PropTypes.bool,
     /**
      * A button can relax its padding.
      */
@@ -56,6 +65,10 @@ export const buttonPropTypes = {
      */
     style: PropTypes.shape({}),
     target: PropTypes.oneOf(['_blank']),
+    /**
+     * If `true`, the button's text is only showed.
+     */
+    text: PropTypes.bool,
     title: PropTypes.string,
     /**
      * Set a fixed width.
@@ -64,12 +77,20 @@ export const buttonPropTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * Set transparent styles.
+     */
+    transparent: PropTypes.bool,
+    /**
+     * Set a button with a pill like form.
+     */
+    pill: PropTypes.bool,
 };
 
 export const buttonDefaultProps = {
     as: 'button',
     className: undefined,
-    color: 'primary',
+    color: 'default',
     compact: false,
     disable: false,
     disabled: false,
@@ -80,10 +101,11 @@ export const buttonDefaultProps = {
     innerStyle: {},
     inverse: false,
     onClick: undefined,
-    outlined: false,
+    outline: false,
     relax: false,
     style: {},
     target: undefined,
+    text: false,
     title: undefined,
     width: undefined,
 };
