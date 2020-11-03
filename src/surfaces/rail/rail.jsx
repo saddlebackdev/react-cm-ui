@@ -59,8 +59,7 @@ const useStyles = makeStyles(({ palette }) => ({
     },
 }));
 
-// eslint-disable-next-line react/prefer-stateless-function
-function Rail(props) {
+const Rail = React.forwardRef((props, ref) => {
     const {
         children,
         className,
@@ -83,11 +82,12 @@ function Rail(props) {
     return (
         <div
             className={rootClasses}
+            ref={ref}
         >
             {children}
         </div>
     );
-}
+});
 
 Rail.propTypes = propTypes;
 Rail.defaultProps = defaultProps;
