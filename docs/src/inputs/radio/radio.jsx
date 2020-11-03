@@ -1,13 +1,32 @@
+/* eslint-disable linebreak-style */
 import {
     Radio,
     Card,
     Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
+
+import Heading from '../../global/heading';
+import MarkdownContainer from '../../global/markdownContainer';
+import ComponentApi from '../../global/componentApi';
+import Example from '../../global/example';
+
+import RadioSample from './radioSample';
+import RadioSampleLabel from './radioSampleLabel';
+import RadioSampleAlign from './radioSampleAlign';
+import RadioSampleChecked from './radioSampleChecked';
+import RadioSampleDisable from './radioSampleDisable';
+import RadioSampleFluid from './radioSampleFluid';
+import RadioSampleLabelClick from './radioSampleLabelClick';
+import RadioSampleOnChange from './radioSampleOnChange';
+import RadioSampleGroup from './radioSampleGroup';
+
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/radio/radio';
 
 const radioSample = `import React from 'react';
 
@@ -233,93 +252,103 @@ export default class ElementsRadio extends React.Component {
     }
 
     render() {
-        const props = [
-            {
-                name: 'align',
-                type: 'enum',
-                default: '',
-                description: 'Aligns the label\'s definition to the left or right.',
-                allowedTypes: 'left, right',
-            }, {
-                name: 'checked',
-                type: 'bool',
-                default: '',
-                description: 'Indicates whether a radio input is checked or not.',
-                allowedTypes: '',
-            }, {
-                name: 'className',
-                type: 'string',
-                default: '',
-                description: 'Additional classes.',
-                allowedTypes: '',
-            }, {
-                name: 'disable',
-                type: 'bool',
-                default: '',
-                description: 'Indicates that the radio input is not available for interaction.',
-                allowedTypes: '',
-            }, {
-                name: 'fluid',
-                type: 'bool',
-                default: '',
-                description: 'A radio input can take on the size of its container.',
-                allowedTypes: '',
-            }, {
-                name: 'id',
-                type: 'string',
-                default: '',
-                description: 'Give a radio input an id.',
-                allowedTypes: '',
-            }, {
-                name: 'label',
-                type: 'string',
-                default: '',
-                description: 'Optional label to display with the radio input.',
-                allowedTypes: '',
-            }, {
-                name: 'labelClick',
-                type: 'bool',
-                default: '',
-                description: 'Disable the label\'s definition onClick handler.',
-                allowedTypes: '',
-            }, {
-                name: 'multi',
-                type: 'bool',
-                default: 'false',
-                description: 'Force the radio button group to work in a multi checkbox mode.',
-                allowedTypes: '',
-            }, {
-                name: 'name',
-                type: 'string',
-                default: '',
-                description: 'Radio input\'s name.',
-                allowedTypes: '',
-            }, {
-                name: 'onChange',
-                type: 'func',
-                default: '',
-                description: 'Can handle an onChange event from parent.',
-                allowedTypes: '',
-            }, {
-                name: 'pill',
-                type: 'bool',
-                default: 'false',
-                description: 'Group radio buttons together in a pill container.',
-                allowedTypes: '',
-            }, {
-                name: 'style',
-                type: 'object',
-                default: '',
-                description: 'Supply any inline styles to the radio input\'s container. Mainly used for padding and margins.',
-                allowedTypes: '',
-            }, {
-                name: 'value',
-                type: 'string',
-                default: '',
-                description: 'Radio input\'s value.',
-                allowedTypes: '',
+        const {
+            location: {
+                pathname,
             },
-        ];
+        } = this.props;
+
+        const {
+            description,
+            displayName,
+        } = rootDoc;
+        // const props = [
+        //     {
+        //         name: 'align',
+        //         type: 'enum',
+        //         default: '',
+        //         description: 'Aligns the label\'s definition to the left or right.',
+        //         allowedTypes: 'left, right',
+        //     }, {
+        //         name: 'checked',
+        //         type: 'bool',
+        //         default: '',
+        //         description: 'Indicates whether a radio input is checked or not.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'className',
+        //         type: 'string',
+        //         default: '',
+        //         description: 'Additional classes.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'disable',
+        //         type: 'bool',
+        //         default: '',
+        //         description: 'Indicates that the radio input is not available for interaction.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'fluid',
+        //         type: 'bool',
+        //         default: '',
+        //         description: 'A radio input can take on the size of its container.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'id',
+        //         type: 'string',
+        //         default: '',
+        //         description: 'Give a radio input an id.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'label',
+        //         type: 'string',
+        //         default: '',
+        //         description: 'Optional label to display with the radio input.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'labelClick',
+        //         type: 'bool',
+        //         default: '',
+        //         description: 'Disable the label\'s definition onClick handler.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'multi',
+        //         type: 'bool',
+        //         default: 'false',
+        //         description: 'Force the radio button group to work in a multi checkbox mode.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'name',
+        //         type: 'string',
+        //         default: '',
+        //         description: 'Radio input\'s name.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'onChange',
+        //         type: 'func',
+        //         default: '',
+        //         description: 'Can handle an onChange event from parent.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'pill',
+        //         type: 'bool',
+        //         default: 'false',
+        //         description: 'Group radio buttons together in a pill container.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'style',
+        //         type: 'object',
+        //         default: '',
+        //         description: 'Supply any inline styles to the radio input\'s container. Mainly used for padding and margins.',
+        //         allowedTypes: '',
+        //     }, {
+        //         name: 'value',
+        //         type: 'string',
+        //         default: '',
+        //         description: 'Radio input\'s value.',
+        //         allowedTypes: '',
+        //     },
+        // ];
 
         const {
             pillValue,
@@ -329,14 +358,35 @@ export default class ElementsRadio extends React.Component {
         return (
             <Main page="headers">
                 <Main.Content>
-                    <Card>
+                    {/* <Card>
                         <Header size="large">Props</Header>
 
                         <TableProps props={props} />
-                    </Card>
+                    </Card> */}
+
+                    <MarkdownContainer>
+                        <Typography
+                            className="description"
+                            variant="body1"
+                        >
+                            {description}
+                        </Typography>
+
+                        <Heading anchorLink="children" variant="h2">
+                            Radio
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A simple radio.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSample').default}>
+                        <RadioSample />
+                    </Example>
 
                     {/* Radio */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Radio
                         <Header.Subheader>
                             A standard radio input.
@@ -348,9 +398,10 @@ export default class ElementsRadio extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {radioSample}
                     </Highlighter>
+                    */}
 
                     {/* Label */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Label
                         <Header.Subheader>
                             A radio input can have a label defined.
@@ -363,10 +414,24 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {labelSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Label
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A radio input can have a label defined.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleLabel').default}>
+                        <RadioSampleLabel />
+                    </Example>
 
                     {/* Align */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Align
                         <Header.Subheader>
                             A label definition can sit on the right or left side of the radio input.
@@ -380,10 +445,24 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {alignSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Align
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A label definition can sit on the right or left side of the radio input.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleAlign').default}>
+                        <RadioSampleAlign />
+                    </Example>
 
                     {/* Checked */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Checked
                         <Header.Subheader>
                             A radio input can be checked from it&apos;s parent.
@@ -394,10 +473,24 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {checkedSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Checked
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A radio input can be checked from it&apos;s parent.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleChecked').default}>
+                        <RadioSampleChecked />
+                    </Example>
 
                     {/* Disable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Disable
                         <Header.Subheader>
                             Disable a radio input.
@@ -411,10 +504,24 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {disabledSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Disable
+                        </Heading>
+
+                        <Typography variant="body1">
+                            Disable a radio input.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleDisable').default}>
+                        <RadioSampleDisable />
+                    </Example>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Fluid
                         <Header.Subheader>
                             A radio input can stretch as wide as the parent container.
@@ -432,10 +539,24 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {fluidSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Fluid
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A radio input can stretch as wide as the parent container.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleFluid').default}>
+                        <RadioSampleFluid />
+                    </Example>
 
                     {/* Label Click */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Label Click
                         <Header.Subheader>
                             Sometimes you may want to disable a radio from being checked by clicking it's label definition.
@@ -446,16 +567,28 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {labelClickSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Label Click
+                        </Heading>
+
+                        <Typography variant="body1">
+                            Sometimes you may want to disable a radio from being checked by clicking it's label definition.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleLabelClick').default}>
+                        <RadioSampleLabelClick />
+                    </Example>
 
                     {/* OnChange */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         OnChange
                         <Header.Subheader>
-                            {/* eslint-disable react/jsx-one-expression-per-line */}
                             Can handle an <code>onChange</code> event from parent. The
                             <code>checked</code> prop is required along with this handler.
-                            {/* eslint-enable react/jsx-one-expression-per-line */}
                         </Header.Subheader>
                     </Header>
 
@@ -468,9 +601,27 @@ export default class ElementsRadio extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {onChangeSample}
                     </Highlighter>
+                    */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            OnChange
+                        </Heading>
+
+                        <Typography variant="body1">
+                            {/* eslint-disable react/jsx-one-expression-per-line */}
+                            Can handle an <code>onChange</code> event from parent. The
+                            <code>checked</code> prop is required along with this handler.
+                            {/* eslint-disable react/jsx-one-expression-per-line */}
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleOnChange').default}>
+                        <RadioSampleOnChange />
+                    </Example>
 
                     {/* Radio Group */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    {/* <Header size="large" style={{ marginTop: '55px' }} sub>
                         Radio Group
                         <Header.Subheader>
                             Group radio buttons together.
@@ -484,7 +635,21 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {radioGroupSample}
-                    </Highlighter>
+                    </Highlighter> */}
+
+                    <MarkdownContainer>
+                        <Heading anchorLink="children" variant="h2">
+                            Radio Group
+                        </Heading>
+
+                        <Typography variant="body1">
+                            Group radio buttons together.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example rawCode={require('!!raw-loader!./radioSampleGroup').default}>
+                        <RadioSampleGroup />
+                    </Example>
 
                     {/* Radio Pill Group */}
                     <Header size="large" style={{ marginTop: '55px' }} sub>
@@ -561,6 +726,8 @@ export default class ElementsRadio extends React.Component {
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {radioGroupPillSample}
                     </Highlighter>
+
+                    <ComponentApi docs={[rootDoc]} />
                 </Main.Content>
             </Main>
         );

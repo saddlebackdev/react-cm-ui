@@ -1,7 +1,12 @@
+/* eslint-disable linebreak-style */
 import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    BEM_RADIO_ITEM,
+    BEM_RADIO,
+} from '../../global/constants';
 
 const propTypes = {
     checked: PropTypes.oneOfType([
@@ -85,11 +90,20 @@ class RadioItem extends React.Component {
             label,
             name,
             tabIndex,
+            disable,
         } = this.props;
 
-        const rootClasses = ClassNames('radio-item', className, {
-            'radio-item-is-checked': isChecked,
-        });
+        const rootClasses = ClassNames(
+            BEM_RADIO,
+            BEM_RADIO_ITEM,
+            className,
+            {
+                [`${BEM_RADIO_ITEM}-is-checked`]: isChecked,
+                // 'radio-item-is-checked': isChecked,
+                [`${BEM_RADIO_ITEM}-is-disabled`]: disable,
+                // 'radio-item-is-disabled': disable,
+            },
+        );
 
         return (
             <div
