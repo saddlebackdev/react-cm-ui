@@ -8,14 +8,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-import ExampleMiniCheckbox from './examples/exampleMiniCheckbox';
-import ExampleMiniCheckboxTotals from './examples/exampleMiniCheckboxTotals';
-import ExampleStandardCheckbox from './examples/exampleStandardCheckbox';
+import ExampleMiniToggle from './examples/exampleMiniToggle';
+import ExampleStandardToggle from './examples/exampleStandardToggle';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/checkbox/checkbox';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/switch/switch';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -48,10 +47,10 @@ function DocsCheckbox(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="standard-checkbox"
+                        anchorLink="standard-toggle"
                         variant="h2"
                     >
-                        Standard Checkbox
+                        Standard Toggle
                     </Heading>
 
                     <Typography>
@@ -59,39 +58,22 @@ function DocsCheckbox(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleStandardCheckbox').default}
+                        rawCode={require('!!raw-loader!./examples/exampleStandardToggle').default}
                     >
-                        <ExampleStandardCheckbox />
+                        <ExampleStandardToggle />
                     </Example>
 
                     <Heading
-                        anchorLink="mini-checkbox"
+                        anchorLink="mini-toggle"
                         variant="h2"
                     >
-                        Mini Checkbox
-                    </Heading>
-
-                    <Typography>
-                        Used in the Filters Rail and Settings Rail
-                    </Typography>
-
-                    <Example
-                        rawCode={require('!!raw-loader!./examples/exampleMiniCheckbox').default}
-                    >
-                        <ExampleMiniCheckbox />
-                    </Example>
-
-                    <Heading
-                        anchorLink="mini-checkbox-with-totals"
-                        variant="h2"
-                    >
-                        Mini Checkbox with Totals
+                        Mini Toggle
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleMiniCheckboxTotals').default}
+                        rawCode={require('!!raw-loader!./examples/exampleMiniToggle').default}
                     >
-                        <ExampleMiniCheckboxTotals />
+                        <ExampleMiniToggle />
                     </Example>
                 </MarkdownContainer>
 

@@ -16,13 +16,11 @@ const propTypes = {
     align: PropTypes.oneOf(['right']),
     checked: PropTypes.bool,
     classes: PropTypes.shape({
-        innerContainer: PropTypes.string,
-        labelNotClickable: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
     className: PropTypes.string,
     /**
-     * A Checkbox can be disabled.
+     * A Switch can be disabled.
      */
     disable: PropTypes.bool,
     fluid: PropTypes.bool,
@@ -41,6 +39,7 @@ const propTypes = {
     size: PropTypes.oneOf(['small', 'large']),
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
+    toggle: PropTypes.bool,
     total: PropTypes.number,
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -66,6 +65,7 @@ const defaultProps = {
     size: null,
     style: null,
     tabIndex: -1,
+    toggle: null,
     total: -1,
     value: null,
 };
@@ -73,6 +73,8 @@ const defaultProps = {
 const styles = (theme) => {
     const size = 22;
     const sizeSmall = 18;
+    const sizeToggle = 52;
+    const paddingLabelToggle = 63;
 
     return {
         alignRight: {},
@@ -207,11 +209,95 @@ const styles = (theme) => {
             '&isInversed label': {
                 color: theme.palette.text.contrastText,
             },
+            '&$isToggle': {
+                '& label': {
+                    '& > span': {
+                        paddingLeft: paddingLabelToggle,
+                    },
+                    '&::before': {
+                        borderRadius: 11,
+                        display: 'block',
+                        height: size,
+                        width: sizeToggle,
+                        zIndex: 1,
+                    },
+                    '&::after': {
+                        backgroundColor: theme.palette.secondary.main,
+                        border: 0,
+                        borderRadius: 12.5,
+                        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.30)',
+                        content: '""',
+                        height: 25,
+                        left: 0,
+                        opacity: 1,
+                        position: 'absolute',
+                        top: -1.5,
+                        transition: [
+                            ['background-color', '300ms', 'ease'],
+                            ['left', '300ms', 'ease'],
+                            ['right', '300ms', 'ease'],
+                        ],
+                        width: 25,
+                        zIndex: 3,
+                    },
+                    '& .checkbox-toggle-text': {
+                        alignItems: 'center',
+                        display: 'inline-flex',
+                        fontSize: '12px',
+                        fontWeight: theme.typography.fontWeightMedium,
+                        height: size,
+                        justifyContent: 'center',
+                        left: 0,
+                        letterSpacing: '.4px',
+                        padding: '0 7px 0 8px',
+                        position: 'absolute',
+                        textAlign: 'left',
+                        top: 0,
+                        width: sizeToggle,
+                        zIndex: 2,
+                    },
+                    '& .checkbox-toggle-text-on, & .checkbox-toggle-text-off': {
+                        flex: '1 0 auto',
+                    },
+                    '& .checkbox-toggle-text-on': {
+                        color: theme.palette.text.contrastText,
+                    },
+                    '& .checkbox-toggle-text-off': {
+                        textAlign: 'right',
+                    },
+                },
+                '& .input:checked +': {
+                    '& label::after': {
+                        left: 27,
+                    },
+                },
+                '&$alignRight': {
+                    '& label': {
+                        '& > span': {
+                            paddingLeft: 0,
+                            paddingRight: paddingLabelToggle,
+                        },
+                        '& .checkbox-toggle-text': {
+                            left: 'auto',
+                            right: 0,
+                            textAlign: 'left',
+                        },
+                        '&::after': {
+                            left: 'auto',
+                            right: 27,
+                        },
+                    },
+                    '& .input:checked + label::after': {
+                        left: 'auto',
+                        right: 0,
+                    },
+                },
+            },
         },
     };
 };
 
-class Checkbox extends React.Component {
+class Switch extends React.Component {
     constructor(props) {
         super(props);
 
@@ -325,6 +411,7 @@ class Checkbox extends React.Component {
             size,
             style,
             tabIndex,
+            toggle: isToggle,
             total,
             value,
         } = this.props;
@@ -344,6 +431,7 @@ class Checkbox extends React.Component {
                 [classes.isFluid]: isFluid,
                 [classes.isInverse]: isInverse,
                 [classes.isSmall]: isSmall,
+                [classes.isToggle]: isToggle,
             },
         );
 
@@ -364,14 +452,13 @@ class Checkbox extends React.Component {
         const inputId = id ? `${id}_hidden_input` : null;
 
         return (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
-                aria-checked={isChecked}
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}
                 onMouseDown={this.onMouseDown}
-                role="checkbox"
                 style={style}
                 tabIndex={tabIndex}
             >
@@ -382,28 +469,36 @@ class Checkbox extends React.Component {
                     id={inputId}
                     name={name}
                     readOnly
+                    // eslint-disable-next-line no-underscore-dangle
                     ref={this.inputRef}
                     type="checkbox"
                     value={newValue}
                 />
 
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <div
                     className={labelClasses}
                 >
                     {label && (
+                        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                         <div
                             className={labelTextClasses}
                             onClick={this.onLabelClick}
                             onKeyDown={this.onLabelKeyDown}
                             style={labelStyle}
-                            role="button"
-                            tabIndex={-1}
                         >
                             {label}
 
                             {total >= 0 && Number(total).toLocaleString()}
                         </div>
                     )}
+
+                    {isToggle ? (
+                        <div className="checkbox-toggle-text">
+                            <span className="checkbox-toggle-text-on">On</span>
+                            <span className="checkbox-toggle-text-off">Off</span>
+                        </div>
+                    ) : null}
 
                     <Icon
                         color={isDisabled ? 'static' : 'primary'}
@@ -418,7 +513,7 @@ class Checkbox extends React.Component {
     }
 }
 
-Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
+Switch.propTypes = propTypes;
+Switch.defaultProps = defaultProps;
 
-export default withStyles(styles)(Checkbox);
+export default withStyles(styles)(Switch);

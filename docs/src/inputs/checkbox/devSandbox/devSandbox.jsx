@@ -138,23 +138,6 @@ export default class SizeSample extends React.Component {
     }
 }`;
 
-const toggleSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
-
-export default class ToggleSample extends React.Component {
-
-    render() {
-        return (
-            <Checkbox toggle={true} /><br /><br />
-            <Checkbox label="Give me the sweet checkbox!" toggle={true} /><br /><br />
-            <Checkbox align="right" label="It's better on the right, yeah?" toggle={true} /><br /><br />
-            <Checkbox align="left" fluid={true} label="It's better on the right, yeah?" toggle={true} />
-            <Checkbox align="right" fluid={true} label="It's better on the right, yeah?" toggle={true} />
-        );
-    }
-
-}`;
-
 export default class ElementsCheckbox extends React.Component {
     constructor(props) {
         super(props);
@@ -313,30 +296,6 @@ export default class ElementsCheckbox extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {sizeSample}
-                    </Highlighter>
-
-                    {/* Toggle */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
-                        Toggle
-                        <Header.Subheader>
-                            A checkbox can be transformed into a toggle switch.
-                        </Header.Subheader>
-                    </Header>
-
-                    <Checkbox toggle /><br /><br />
-                    <Checkbox label="Give me the sweet checkbox!" toggle /><br /><br />
-                    <Checkbox align="right" label="It's better on the right, yeah?" toggle /><br /><br />
-
-                    <Block style={{ maxWidth: '400px' }}>
-                        <Checkbox align="left" fluid label="It's better on the right, yeah?" toggle />
-                    </Block><br />
-
-                    <Block style={{ maxWidth: '400px' }}>
-                        <Checkbox align="right" fluid label="It's better on the right, yeah?" toggle />
-                    </Block>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {toggleSample}
                     </Highlighter>
                 </Main.Content>
             </Main>
