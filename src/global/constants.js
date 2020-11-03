@@ -6,16 +6,17 @@ export const BEM_APP_BAR = 'app_bar';
 
 export const BEM_BUTTON = 'button';
 
+export const BEM_CONTAINER = 'container';
+export const BEM_ACTION_BAR_SEARCH_VISIBLE = `${BEM_CONTAINER}-action_bar_search_visible`;
+
+export const BEM_CONTENT = 'content';
+
 export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_ACTION_BAR = 'action_bar';
 export const BEM_ACTION_BAR_GRID_COLUMN = `${BEM_ACTION_BAR}--grid_column`;
 export const BEM_ACTION_BAR_SEARCH = `${BEM_ACTION_BAR}--search`;
 
-export const BEM_CONTAINER = 'container';
-export const BEM_ACTION_BAR_SEARCH_VISIBLE = `${BEM_CONTAINER}-action_bar_search_visible`;
-
-export const BEM_CONTENT = 'content';
 
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;

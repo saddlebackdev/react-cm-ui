@@ -4,6 +4,7 @@ import * as React from 'react';
 import mediaQuery from 'css-mediaquery';
 import { theme, ThemeProvider } from '../styles';
 
+// eslint-disable-next-line react/prop-types
 const getThemeProviderWrappingComponent = (customTheme) => ({ children }) => (
     <ThemeProvider
         theme={customTheme || theme}
