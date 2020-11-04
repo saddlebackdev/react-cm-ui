@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -99,9 +98,7 @@ class RadioItem extends React.Component {
             className,
             {
                 [`${BEM_RADIO_ITEM}-is-checked`]: isChecked,
-                // 'radio-item-is-checked': isChecked,
                 [`${BEM_RADIO_ITEM}-is-disabled`]: disable,
-                // 'radio-item-is-disabled': disable,
             },
         );
 
