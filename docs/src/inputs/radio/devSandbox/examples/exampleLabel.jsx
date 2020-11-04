@@ -1,8 +1,7 @@
-/* eslint-disable linebreak-style */
 import React from 'react';
 import { Radio } from 'react-cm-ui';
 
-function RadioSampleLabel() {
+function ExampleLabel() {
     return (
         <Radio
             label="Do you want to check the box?"
@@ -11,4 +10,4 @@ function RadioSampleLabel() {
     );
 }
 
-export default RadioSampleLabel;
+export default ExampleLabel;

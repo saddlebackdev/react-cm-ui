@@ -1,8 +1,7 @@
-/* eslint-disable linebreak-style */
 import React from 'react';
 import { Radio } from 'react-cm-ui';
 
-function RadioSampleAlign() {
+function ExampleAlign() {
     return (
         <React.Fragment>
             <Radio align="left" label="Do you want to check the box?" />
@@ -13,4 +12,4 @@ function RadioSampleAlign() {
     );
 }
 
-export default RadioSampleAlign;
+export default ExampleAlign;

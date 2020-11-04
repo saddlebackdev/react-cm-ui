@@ -1,8 +1,7 @@
-/* eslint-disable linebreak-style */
 import React from 'react';
 import { Radio } from 'react-cm-ui';
 
-function RadioSampleDisable() {
+function ExampleDisable() {
     return (
         <React.Fragment>
             <Radio disable label="This radio input has been disabled, true or false?" />
@@ -13,4 +12,4 @@ function RadioSampleDisable() {
     );
 }
 
-export default RadioSampleDisable;
+export default ExampleDisable;

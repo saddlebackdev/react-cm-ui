@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {
     clone,
     includes,
@@ -30,7 +29,7 @@ const propTypes = {
         PropTypes.number,
     ]),
     /**
-     * children
+     * Children are used for pill mode
      */
     children: PropTypes.node,
     /**
@@ -88,7 +87,7 @@ const propTypes = {
      */
     onChange: PropTypes.func,
     /**
-     * onKeyDown
+     * Can handle an onChange onKeyDown event
      */
     onKeyDown: PropTypes.func,
     /**
@@ -96,11 +95,12 @@ const propTypes = {
      */
     pill: PropTypes.bool,
     /**
-     * Supply any inline styles to the radio input\'s container. Mainly used for padding and margins.
+     * Supply any inline styles to the radio input\'s container.
+     * Mainly used for padding and margins.
      */
     style: PropTypes.shape({}),
     /**
-     * tabIndex
+     * Radio input tabIndex
      */
     tabIndex: PropTypes.number,
     /**
@@ -154,6 +154,7 @@ const styles = (theme) => {
 
     return {
         isAlignedRight: {},
+        isChecked: {},
         isDisabled: {},
         isFluid: {},
         isPill: {},
@@ -253,18 +254,24 @@ const styles = (theme) => {
                             cursor: 'default',
                         },
                         '& .input:checked + .label': {
-                            backgroundColor: theme.palette.grey[400],
-                            borderColor: theme.palette.grey[400],
+                            backgroundColor: theme.palette.grey[300],
+                            borderColor: theme.palette.grey[300],
                         },
                         '&:last-child': {
                             input: {
                                 '&:checked + .label': {
-                                    borderRight: `1px solid ${theme.palette.grey[400]}`,
+                                    borderRight: `1px solid ${theme.palette.grey[300]}`,
                                 },
                             },
                         },
                         '&.radio-item-is-checked + .radio-item .label': {
-                            borderLeft: `1px solid ${theme.palette.grey[400]}`,
+                            borderLeft: `1px solid ${theme.palette.grey[300]}`,
+                        },
+                        '&.radio-item-is-disabled': {
+                            '& .label': {
+                                color: theme.palette.text.secondary,
+                                backgroundColor: theme.palette.grey[200],
+                            },
                         },
                     },
                 },
@@ -292,6 +299,7 @@ const styles = (theme) => {
                     },
                     '& .label': {
                         backgroundColor: theme.palette.background.primary,
+                        color: theme.palette.text.secondary,
                         border: `1px solid ${theme.palette.border.primary}`,
                         borderRight: 0,
                         display: 'inline-block',
@@ -328,6 +336,7 @@ const styles = (theme) => {
                         backgroundColor: theme.palette.cyan[500],
                         borderColor: theme.palette.cyan[500],
                         color: theme.palette.text.contrastText,
+                        fontWeight: theme.typography.fontWeightMedium,
                     },
                     '&:first-child .label': {
                         borderRadius: '15.5px 0 0 15.5px',

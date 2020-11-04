@@ -1,10 +1,9 @@
-/* eslint-disable linebreak-style */
 import React, {
     useState,
 } from 'react';
 import { Radio } from 'react-cm-ui';
 
-function RadioSampleOnChange() {
+function ExampleOnChange() {
     const [isChecked, setIsChecked] = useState(false);
 
     return (
@@ -16,4 +15,4 @@ function RadioSampleOnChange() {
     );
 }
 
-export default RadioSampleOnChange;
+export default ExampleOnChange;

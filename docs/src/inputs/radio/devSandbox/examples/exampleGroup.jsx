@@ -1,8 +1,7 @@
-/* eslint-disable linebreak-style */
 import React from 'react';
 import { Radio } from 'react-cm-ui';
 
-function RadioSampleGroup() {
+function ExampleGroup() {
     return (
         <React.Fragment>
             <Radio label="Choose me!" name="group-sample" />
@@ -13,4 +12,4 @@ function RadioSampleGroup() {
     );
 }
 
-export default RadioSampleGroup;
+export default ExampleGroup;
