@@ -1,5 +1,5 @@
 import {
-    Checkbox,
+    Switch,
     Grid,
     Typography,
 } from 'react-cm-ui';
@@ -41,8 +41,7 @@ function ExampleStandardToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
-                            toggle
+                        <Switch
                             tabIndex={0}
                         />
                     </Grid.Column>
@@ -71,9 +70,8 @@ function ExampleStandardToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             checked
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>
@@ -102,9 +100,8 @@ function ExampleStandardToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             disable
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>
@@ -133,10 +130,9 @@ function ExampleStandardToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             disable
                             checked
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>

@@ -50,6 +50,8 @@ export const BEM_POPOVER = 'popover';
 
 export const BEM_SELECT = 'select';
 
+export const BEM_SWITCH = 'switch';
+
 export const BEM_TELEPHONE_LINK = 'telphone_link';
 
 export const EMAIL_LINK_CLASSES = `${UI_CLASS_NAME} ${BEM_EMAIL_LINK}`;

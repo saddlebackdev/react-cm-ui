@@ -70,6 +70,12 @@ function DocsCheckbox(props) {
                         Mini Toggle
                     </Heading>
 
+                    <Typography
+                        variant="body1"
+                    >
+                        Used in the Settings Rail, and supports drag and drop
+                    </Typography>
+
                     <Example
                         rawCode={require('!!raw-loader!./examples/exampleMiniToggle').default}
                     >

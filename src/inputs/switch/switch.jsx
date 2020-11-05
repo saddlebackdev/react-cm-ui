@@ -1,46 +1,35 @@
 import {
     isFunction,
+    noop,
 } from 'lodash';
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import {
-    BEM_CHECKBOX,
+    BEM_SWITCH,
     ENTER_KEY_CODE,
     UI_CLASS_NAME,
 } from '../../global/constants';
-import Icon from '../../dataDisplay/icon';
+import Typography from '../../dataDisplay/typography';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    align: PropTypes.oneOf(['right']),
     checked: PropTypes.bool,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }).isRequired,
     className: PropTypes.string,
-    /**
-     * A Switch can be disabled.
-     */
     disable: PropTypes.bool,
     fluid: PropTypes.bool,
     id: PropTypes.string,
-    inverse: PropTypes.bool,
     label: PropTypes.oneOfType([
         PropTypes.shape({}),
         PropTypes.string,
     ]),
-    labelClassName: PropTypes.string,
-    labelClick: PropTypes.bool,
-    labelStyle: PropTypes.shape({}),
-    labelWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
     name: PropTypes.string,
     onChange: PropTypes.func,
     size: PropTypes.oneOf(['small', 'large']),
-    style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
-    toggle: PropTypes.bool,
-    total: PropTypes.number,
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -48,251 +37,189 @@ const propTypes = {
 };
 
 const defaultProps = {
-    align: null,
     checked: false,
     className: null,
     disable: false,
     fluid: false,
     id: null,
-    inverse: null,
     label: null,
-    labelClassName: null,
-    labelClick: null,
-    labelStyle: null,
-    labelWeight: null,
     name: null,
     onChange: null,
     size: null,
-    style: null,
     tabIndex: -1,
-    toggle: null,
-    total: -1,
     value: null,
 };
 
-const styles = (theme) => {
-    const size = 22;
-    const sizeSmall = 18;
-    const sizeToggle = 52;
-    const paddingLabelToggle = 63;
+const styles = ({
+    palette,
+    typography,
+}) => {
+    const largeContainerHeight = 22;
+    const largeContainerWidth = 52;
+    const largeToggleSize = 25;
+    const smallContainerHeight = 16;
+    const smallContainerWidth = 40;
+    const smallToggleSize = 18;
 
     return {
-        alignRight: {},
+        hasLabel: {},
         innerContainer: {
-            color: theme.palette.text.primary,
+            color: palette.text.primary,
             cursor: 'pointer',
             display: 'block',
+            flexBasis: largeContainerWidth,
+            height: largeContainerHeight,
             position: 'relative',
-            '& > .checkbox-label-text': {
-                display: 'inline-block',
-                fontSize: theme.typography.fontSize,
-                paddingLeft: 33,
-                paddingTop: 2,
-                '&-weight-bold': {
-                    fontWeight: theme.typography.fontWeightBold,
-                },
-                '&-weight-normal': {
-                    fontWeight: theme.typography.fontWeightRegular,
-                },
-                '&-weight-semibold': {
-                    fontWeight: theme.typography.fontWeightMedium,
-                },
-            },
-            '&::before, & .ui.icon-check': {
+            '&::before': { // switch ui container
+                background: palette.background.main,
+                border: `1px solid ${palette.border.primary}`,
+                borderRadius: 11,
+                content: '""',
+                display: 'block',
+                height: largeContainerHeight,
+                left: 0,
                 position: 'absolute',
+                top: 0,
                 transition: [
                     ['background', '150ms', 'ease'],
                     ['border', '150ms', 'ease'],
                     ['opacity', '150ms', 'ease'],
                 ],
+                width: largeContainerWidth,
+                zIndex: 1,
             },
-            '&::before': { // faux input
-                background: theme.palette.background.main,
-                border: `1px solid ${theme.palette.border.primary}`,
-                borderRadius: 3,
+            '&::after': { // switch ui toggle
+                backgroundColor: palette.secondary.main,
+                border: 0,
+                borderRadius: 12.5,
+                boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.30)',
                 content: '""',
-                height: size,
+                height: largeToggleSize,
                 left: 0,
-                top: 0,
-                width: size,
-            },
-            '& .ui.icon-check': {
-                left: 6,
-                opacity: 0,
-                top: 6,
-            },
-            '&.label-not-clickable': {
-                cursor: 'auto',
-                '&::before, &.ui.icon-check': {
-                    cursor: 'pointer',
-                },
+                opacity: 1,
+                position: 'absolute',
+                top: -1.5,
+                transition: [
+                    ['background-color', '300ms', 'ease'],
+                    ['left', '300ms', 'ease'],
+                    ['right', '300ms', 'ease'],
+                ],
+                width: largeToggleSize,
+                zIndex: 3,
             },
         },
         isDisabled: {},
         isFluid: {},
-        isInversed: {},
         isSmall: {},
-        isToggle: {},
-        root: {
+        input: {
+            display: 'none',
+        },
+        label: {
             display: 'inline-block',
-            marginRight: 22,
-            minHeight: size,
+            flexGrow: 1,
+            fontSize: typography.pxToRem(12),
+            paddingRight: 11,
+        },
+        root: {
+            alignItems: 'center',
+            display: 'flex',
+            minHeight: largeContainerHeight,
             outline: 'none',
             position: 'relative',
             textAlign: 'left',
             '&:focus $innerContainer::before': {
-                boxShadow: `0 0 0 1px ${theme.palette.active.main}`,
-            },
-            '& .input': {
-                display: 'none',
+                boxShadow: `0 0 0 1px ${palette.active.main}`,
             },
             '&$isSmall': {
-                minHeight: sizeSmall,
-                '& label': {
-                    fontSize: '12px',
-                    '& > .checkbox-label-text': {
-                        fontSize: '12px',
-                        paddingTop: 1,
+                minHeight: smallContainerHeight,
+                '& $innerContainer': {
+                    flexBasis: smallContainerWidth,
+                    height: smallContainerHeight,
+                    '&::before': { // switch ui container
+                        backgroundColor: palette.grey[300],
+                        boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.35)',
+                        height: smallContainerHeight,
+                        width: smallContainerWidth,
                     },
-                    '&::before': {
-                        height: sizeSmall,
-                        width: sizeSmall,
-                    },
-                    '& .ui.icon-check': { // check
-                        left: 5,
-                        top: 5,
+                    '&::after': { // switch ui toggle
+                        backgroundColor: palette.background.primary,
+                        boxShadow: '1px 2px 1px 0 rgba(0, 0, 0, 0.15)',
+                        height: smallToggleSize,
+                        top: -1,
+                        width: smallToggleSize,
                     },
                 },
+                '& $input:checked + $innerContainer::after': {
+                    left: 22,
+                },
             },
-            '& .input:checked + label': {
+            '& $input:checked + $innerContainer': {
                 '&::before': {
-                    backgroundColor: theme.palette.active.main,
-                    border: `1px solid ${theme.palette.active.main}`,
-                },
-                '& .ui.icon-check': {
-                    opacity: 1,
+                    backgroundColor: palette.active.main,
+                    border: `1px solid ${palette.active.main}`,
                 },
             },
-            '&$alignRight': {
-                textAlign: 'right',
-                '& label': {
-                    '& > span': {
-                        paddingLeft: 0,
-                        paddingRight: 33,
-                    },
-                    '&::before': {
-                        left: 'auto',
-                        right: 0,
-                    },
-                    '& .ui.icon-check': {
-                        left: 'auto',
-                        right: 6,
+            '&$isDisabled': {
+                '&:not($isSmall) $input': {
+                    '& + $innerContainer, &:checked + $innerContainer': {
+                        cursor: 'auto',
+                        '&::before': { // switch ui container
+                            backgroundColor: palette.grey[300],
+                            border: `1px solid ${palette.border.primary}`,
+                        },
+                        '&::after': { // switch ui toggle
+                            backgroundColor: palette.grey[400],
+                        },
                     },
                 },
-            },
-            '&$isDisabled .input': {
-                '& + label, &:checked + label': {
-                    cursor: 'auto',
-                    '&::before': {
-                        backgroundColor: theme.palette.background.secondary,
-                        border: `1px solid ${theme.palette.border.primary}`,
+                '&$isSmall $input': {
+                    '& + $innerContainer::after': { // switch ui toggle
+                        backgroundColor: `${palette.grey[200]}`,
                     },
-                },
-                '&:checked + label .ui.icon-check': {
-                    opacity: 1,
+                    '&:checked + $innerContainer': {
+                        '&::before': { // switch ui container
+                            backgroundColor: palette.grey[400],
+                            border: 0,
+                        },
+                    },
                 },
             },
             '&$isFluid': {
                 display: 'block',
-                marginRight: 0,
             },
-            '&isInversed label': {
-                color: theme.palette.text.contrastText,
-            },
-            '&$isToggle': {
-                '& label': {
-                    '& > span': {
-                        paddingLeft: paddingLabelToggle,
-                    },
-                    '&::before': {
-                        borderRadius: 11,
-                        display: 'block',
-                        height: size,
-                        width: sizeToggle,
-                        zIndex: 1,
-                    },
-                    '&::after': {
-                        backgroundColor: theme.palette.secondary.main,
-                        border: 0,
-                        borderRadius: 12.5,
-                        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.30)',
-                        content: '""',
-                        height: 25,
-                        left: 0,
-                        opacity: 1,
-                        position: 'absolute',
-                        top: -1.5,
-                        transition: [
-                            ['background-color', '300ms', 'ease'],
-                            ['left', '300ms', 'ease'],
-                            ['right', '300ms', 'ease'],
-                        ],
-                        width: 25,
-                        zIndex: 3,
-                    },
-                    '& .checkbox-toggle-text': {
-                        alignItems: 'center',
-                        display: 'inline-flex',
-                        fontSize: '12px',
-                        fontWeight: theme.typography.fontWeightMedium,
-                        height: size,
-                        justifyContent: 'center',
-                        left: 0,
-                        letterSpacing: '.4px',
-                        padding: '0 7px 0 8px',
-                        position: 'absolute',
-                        textAlign: 'left',
-                        top: 0,
-                        width: sizeToggle,
-                        zIndex: 2,
-                    },
-                    '& .checkbox-toggle-text-on, & .checkbox-toggle-text-off': {
-                        flex: '1 0 auto',
-                    },
-                    '& .checkbox-toggle-text-on': {
-                        color: theme.palette.text.contrastText,
-                    },
-                    '& .checkbox-toggle-text-off': {
-                        textAlign: 'right',
-                    },
-                },
-                '& .input:checked +': {
-                    '& label::after': {
-                        left: 27,
-                    },
-                },
-                '&$alignRight': {
-                    '& label': {
-                        '& > span': {
-                            paddingLeft: 0,
-                            paddingRight: paddingLabelToggle,
-                        },
-                        '& .checkbox-toggle-text': {
-                            left: 'auto',
-                            right: 0,
-                            textAlign: 'left',
-                        },
-                        '&::after': {
-                            left: 'auto',
-                            right: 27,
-                        },
-                    },
-                    '& .input:checked + label::after': {
-                        left: 'auto',
-                        right: 0,
-                    },
+            '&:not($isSmall) $input:checked +': {
+                '& $innerContainer::after': {
+                    left: 27,
                 },
             },
+        },
+        textContainer: {
+            alignItems: 'center',
+            display: 'inline-flex',
+            height: largeContainerHeight,
+            justifyContent: 'center',
+            left: 0,
+            letterSpacing: '.4px',
+            padding: '0 7px 0 8px',
+            position: 'absolute',
+            textAlign: 'left',
+            top: 0,
+            width: largeContainerWidth,
+            zIndex: 2,
+            '& $textOn, & $textOff': {
+                flex: '1 0 auto',
+                fontSize: typography.pxToRem(12),
+                lineHeight: 'inherit',
+            },
+        },
+        textOn: {
+            color: palette.text.contrastText,
+            fontWeight: typography.fontWeightBold,
+        },
+        textOff: {
+            color: palette.text.secondary,
+            fontWeight: typography.fontWeightMedium,
+            textAlign: 'right',
         },
     };
 };
@@ -301,12 +228,12 @@ class Switch extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { isChecked: props.checked || false };
+        this.state = {
+            isChecked: props.checked || false,
+        };
 
         this.onClick = this.onClick.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
-        this.onLabelClick = this.onLabelClick.bind(this);
-        this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
 
         this.inputRef = React.createRef();
@@ -348,20 +275,6 @@ class Switch extends React.Component {
         }
     }
 
-    onLabelClick(event) {
-        const { labelClick } = this.props;
-
-        if (isFunction(labelClick) && labelClick === false) {
-            event.stopPropagation();
-        }
-    }
-
-    onLabelKeyDown() {
-        /**
-         * NOTE: Need to use a prop function here someday
-         */
-    }
-
     onMouseDown(event) {
         event.preventDefault();
     }
@@ -395,24 +308,15 @@ class Switch extends React.Component {
 
     render() {
         const {
-            align,
             classes,
             className,
             disable: isDisabled,
             fluid: isFluid,
             id,
-            inverse: isInverse,
             label,
-            labelClassName,
-            labelClick,
-            labelStyle,
-            labelWeight,
             name,
             size,
-            style,
             tabIndex,
-            toggle: isToggle,
-            total,
             value,
         } = this.props;
 
@@ -422,33 +326,17 @@ class Switch extends React.Component {
 
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
-            BEM_CHECKBOX,
+            BEM_SWITCH,
             classes.root,
             className,
             {
-                [classes.alignRight]: align === 'right',
                 [classes.isDisabled]: isDisabled,
                 [classes.isFluid]: isFluid,
-                [classes.isInverse]: isInverse,
                 [classes.isSmall]: isSmall,
-                [classes.isToggle]: isToggle,
+                [classes.hasLabel]: label,
             },
         );
 
-        const labelClasses = ClassNames(
-            classes.innerContainer,
-            {
-                [classes.labelNotClickable]: isFunction(labelClick) && labelClick === false,
-            },
-        );
-
-        const labelTextClasses = ClassNames('checkbox-label-text', labelClassName, {
-            'checkbox-label-text-weight-bold': labelWeight === 'bold',
-            'checkbox-label-text-weight-normal': !labelWeight || labelWeight === 'normal',
-            'checkbox-label-text-weight-semibold': labelWeight === 'semibold',
-        });
-
-        const iconCheckSize = isSmall ? 8 : 10;
         const inputId = id ? `${id}_hidden_input` : null;
 
         return (
@@ -457,56 +345,70 @@ class Switch extends React.Component {
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
-                onKeyDown={this.onKeyDown}
+                onKeyDown={noop()}
                 onMouseDown={this.onMouseDown}
-                style={style}
                 tabIndex={tabIndex}
             >
+                {label && (
+                    <Typography
+                        className={ClassNames(
+                            `${BEM_SWITCH}--label`,
+                            classes.label
+                        )}
+                    >
+                        {label}
+                    </Typography>
+                )}
+
                 <input
                     checked={isChecked}
-                    className="input"
+                    className={ClassNames(
+                        `${BEM_SWITCH}--input`,
+                        classes.input
+                    )}
                     disabled={isDisabled}
                     id={inputId}
                     name={name}
                     readOnly
-                    // eslint-disable-next-line no-underscore-dangle
                     ref={this.inputRef}
                     type="checkbox"
                     value={newValue}
                 />
 
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <div
-                    className={labelClasses}
+                    className={ClassNames(
+                        `${BEM_SWITCH}--inner_container`,
+                        classes.innerContainer,
+                    )}
                 >
-                    {label && (
-                        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                    {!isSmall && (
                         <div
-                            className={labelTextClasses}
-                            onClick={this.onLabelClick}
-                            onKeyDown={this.onLabelKeyDown}
-                            style={labelStyle}
+                            className={ClassNames(
+                                `${BEM_SWITCH}--text_container`,
+                                classes.textContainer,
+                            )}
                         >
-                            {label}
+                            <Typography
+                                className={ClassNames(
+                                    `${BEM_SWITCH}--text_on`,
+                                    classes.textOn,
+                                )}
+                                component="span"
+                            >
+                                On
+                            </Typography>
 
-                            {total >= 0 && Number(total).toLocaleString()}
+                            <Typography
+                                className={ClassNames(
+                                    `${BEM_SWITCH}--text_off`,
+                                    classes.textOff
+                                )}
+                                component="span"
+                            >
+                                Off
+                            </Typography>
                         </div>
                     )}
-
-                    {isToggle ? (
-                        <div className="checkbox-toggle-text">
-                            <span className="checkbox-toggle-text-on">On</span>
-                            <span className="checkbox-toggle-text-off">Off</span>
-                        </div>
-                    ) : null}
-
-                    <Icon
-                        color={isDisabled ? 'static' : 'primary'}
-                        compact
-                        inverse
-                        size={iconCheckSize}
-                        type="check"
-                    />
                 </div>
             </div>
         );

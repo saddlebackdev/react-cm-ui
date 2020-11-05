@@ -1,5 +1,5 @@
 import {
-    Checkbox,
+    Switch,
     Grid,
     Typography,
 } from 'react-cm-ui';
@@ -20,7 +20,7 @@ function ExampleMiniToggle() {
             spacing={4}
         >
             <Grid.Column
-                sm="auto"
+                sm
             >
                 <Grid
                     direction="column"
@@ -41,16 +41,16 @@ function ExampleMiniToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
+                            label="Label"
                             size="small"
-                            toggle
                         />
                     </Grid.Column>
                 </Grid>
             </Grid.Column>
 
             <Grid.Column
-                sm="auto"
+                sm
             >
                 <Grid
                     direction="column"
@@ -71,10 +71,10 @@ function ExampleMiniToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             checked
+                            label="Label"
                             size="small"
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>
@@ -82,7 +82,7 @@ function ExampleMiniToggle() {
             </Grid.Column>
 
             <Grid.Column
-                sm="auto"
+                sm
             >
                 <Grid
                     direction="column"
@@ -103,10 +103,10 @@ function ExampleMiniToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             disable
+                            label="Label"
                             size="small"
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>
@@ -114,7 +114,7 @@ function ExampleMiniToggle() {
             </Grid.Column>
 
             <Grid.Column
-                sm="auto"
+                sm
             >
                 <Grid
                     direction="column"
@@ -135,11 +135,11 @@ function ExampleMiniToggle() {
                             root: classes.column,
                         }}
                     >
-                        <Checkbox
+                        <Switch
                             disable
                             checked
+                            label="Label"
                             size="small"
-                            toggle
                             tabIndex={0}
                         />
                     </Grid.Column>
