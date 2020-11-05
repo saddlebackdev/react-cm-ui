@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.3 - 11/05/2020
+
+#### Feature
+- [PR #236](https://github.com/saddlebackdev/react-cm-ui/pull/236) / Merge Commit e6d1af9ce14f448ca5913d440a29f94669b36c21
+  - Some cosmetic change to the Deprecated Dropdown's scroll section.
+
 ## 9.19.0 - 11/03/2020
 
 #### Feature
