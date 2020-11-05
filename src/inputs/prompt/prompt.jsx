@@ -3,8 +3,12 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import withStyles from '../../styles/withStyles';
+import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
+    /**
+     * Children(Button, Link) are used to initiate Prompt action.
+     */
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
@@ -14,24 +18,70 @@ const propTypes = {
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
+        actionBtn: PropTypes.string,
+        actions: PropTypes.string,
+        icon: PropTypes.string,
+        message: PropTypes.string,
+        noActionBtn: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to Prompt.
+     */
     className: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({}),
     ]),
+    /**
+     * Assign icon to Prompt message.
+     */
+    icon: PropTypes.string,
+    /**
+     * The `id` of the Prompt.
+     */
     id: PropTypes.string,
+    /**
+     * Prompts will be handled inline with the action.
+     */
     inline: PropTypes.bool,
+    /**
+     * Align inline Prompt horizontally to the left or the right.
+     */
     inlineHorizontalAlign: PropTypes.oneOf(['left', 'right']),
-    inlineMessageColor: PropTypes.oneOf(['alert', 'success', 'warning']),
+    /**
+     * Assign inline Prompt's action message a custom background color.
+     */
+    inlineMessageColor: PropTypes.oneOf(['alert', 'info', 'success', 'warning']),
+    /**
+     * Assign custom message to prompt
+     */
     message: PropTypes.string,
+    /**
+     * Event for Prompt to handle `onCLick`.
+     */
     onClick: PropTypes.func,
+    /**
+     * Event for Prompt to handle `onNoClick`.
+     */
     onNoClick: PropTypes.func,
+    /**
+     * Event for Prompt to handle `onYesClick`.
+     */
     onYesClick: PropTypes.func,
+    /**
+     * Supply any inline styles to the Prompt\'s container.
+     * Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    /**
+     * If `true`, Prompt message with `Yes` and `No` action button is shown.
+     */
     show: PropTypes.bool,
+    /**
+     * HC's theme.
+     */
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
-            modal: PropTypes.number,
+            prompt: PropTypes.number,
         }),
     }),
 };
@@ -40,6 +90,7 @@ const defaultProps = {
     children: null,
     classes: null,
     className: undefined,
+    icon: undefined,
     id: undefined,
     inline: false,
     inlineHorizontalAlign: 'left',
@@ -56,10 +107,84 @@ const defaultProps = {
 const noop = () => {};
 
 const styles = (theme) => ({
+    '@keyframes animateInActions': {
+        '0%': {
+            opacity: 0,
+            transform: 'translateY(-11px)',
+        },
+        '50%': {
+            opacity: 0,
+            transform: 'translateY(0px)',
+        },
+        '100%': {
+            opacity: 1,
+        },
+    },
+    actionBtn: {
+        '&:hover': {
+            backgroundColor: theme.palette.active.primary,
+        },
+        alignItems: 'center',
+        backgroundColor: theme.palette.grey['500'],
+        border: 0,
+        color: theme.palette.common.white,
+        cursor: 'pointer',
+        display: 'inline-flex',
+        height: 33,
+        letterSpacing: 1,
+        lineHeight: '1px',
+        outline: 'none',
+        overflow: 'Hidden',
+        padding: `0 ${theme.typography.pxToRem(11)}`,
+        textAlign: 'center',
+        textDecoration: 'none',
+        textTransform: 'capitalize',
+        transition: 'background-color 125ms linear, color 125ms linear, opacity 250ms ease-out',
+        verticalAlign: 'top',
+        whiteSpace: 'nowrap',
+    },
     actions: {},
+    icon: {
+        verticalAlign: 'middle',
+    },
+    message: {
+        backgroundColor: theme.palette.text.secondary,
+        whiteSpace: 'nowrap',
+        borderBottomLeftRadius: 3,
+        borderTopLeftRadius: 3,
+        lineHeight: '33px',
+        padding: '0 11px',
+        '&.prompt-message-alert': {
+            backgroundColor: theme.palette.error.main,
+        },
+        '&.prompt-message-info': {
+            backgroundColor: theme.palette.teal[500],
+        },
+        '&.prompt-message-success': {
+            backgroundColor: theme.palette.success.main,
+        },
+        '&.prompt-message-warning': {
+            backgroundColor: theme.palette.warning.main,
+        },
+    },
+    noActionBtn: {
+        borderLeft: `1px solid ${theme.palette.primary.main}`,
+        borderBottomRightRadius: 3,
+        borderTopRightRadius: 3,
+    },
     root: {
+        position: 'relative',
+        '&.prompt-action-disable': {
+            cursor: 'default',
+        },
         '&.prompt-inline': {
             display: 'inline-block',
+            '&.prompt-show': {
+                '& $actions': {
+                    animation: '$animateInActions 200ms ease-out forwards',
+                    display: 'inline-flex',
+                },
+            },
             '& $actions': {
                 alignItems: 'center',
                 borderRadius: 3,
@@ -155,6 +280,7 @@ class Prompt extends React.Component {
             children,
             classes,
             className,
+            icon,
             id,
             inline,
             inlineHorizontalAlign,
@@ -176,11 +302,16 @@ class Prompt extends React.Component {
             },
         );
 
-        const messageClasses = ClassNames('prompt-message', {
-            'promp-message-alert': inlineMessageColor === 'alert' || children.props.color === 'alert' || children.props.buttonColor === 'alert',
-            'promp-message-success': inlineMessageColor === 'success' || children.props.color === 'success' || children.props.buttonColor === 'success',
-            'promp-message-warning': inlineMessageColor === 'warning' || children.props.color === 'warning' || children.props.buttonColor === 'warning',
-        });
+        const messageClasses = ClassNames(
+            'prompt-message',
+            classes.message,
+            {
+                'prompt-message-alert': inlineMessageColor === 'alert' || children.props.color === 'alert' || children.props.buttonColor === 'alert',
+                'prompt-message-info': inlineMessageColor === 'info',
+                'prompt-message-success': inlineMessageColor === 'success' || children.props.color === 'success' || children.props.buttonColor === 'success',
+                'prompt-message-warning': inlineMessageColor === 'warning' || children.props.color === 'warning' || children.props.buttonColor === 'warning',
+            },
+        );
 
         const promptActionsStyle = {
             left: !inlineHorizontalAlign || inlineHorizontalAlign === 'left' ? 0 : null,
@@ -236,10 +367,23 @@ class Prompt extends React.Component {
                     )}
                     style={promptActionsStyle}
                 >
-                    <div className={messageClasses}>{message}</div>
+                    <div className={messageClasses}>
+                        {icon && (
+                            <Icon
+                                className={classes.icon}
+                                color="primary"
+                                inverse
+                                type={icon}
+                            />
+                        )}
+                        {message}
+                    </div>
 
                     <div
-                        className="prompt-yes-btn"
+                        className={ClassNames(
+                            'prompt-yes-btn',
+                            classes.actionBtn,
+                        )}
                         onClick={this.onYesClick}
                         onKeyDown={noop}
                         role="button"
@@ -249,7 +393,11 @@ class Prompt extends React.Component {
                     </div>
 
                     <div
-                        className="prompt-no-btn"
+                        className={ClassNames(
+                            'prompt-no-btn',
+                            classes.actionBtn,
+                            classes.noActionBtn,
+                        )}
                         onClick={this.onNoClick}
                         onKeyDown={noop}
                         role="button"
