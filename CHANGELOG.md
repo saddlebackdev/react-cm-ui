@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.18.3 - 11/05/2020
+
+#### Feature
+- [PR #236](https://github.com/saddlebackdev/react-cm-ui/pull/236) / Merge Commit e6d1af9ce14f448ca5913d440a29f94669b36c21
+  - Some cosmetic change to the Deprecated Dropdown's scroll section.
+
 ## 9.18.3 - 10/21/2020
 
 #### Feature
@@ -12,7 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - Ensure that click `event` object is passed into DropdownButton's `onMenuToggle` when DropdownMenu's `onClickOutside` is triggered.
   - Also, add defensive check on `event` in DropdownButton's `onMenuToggle` before invoking `stopPropagation()` method on it.
 - [PR #226](https://github.com/saddlebackdev/react-cm-ui/pull/226) / Merge Commit d6192e3e3823542288358ca4bc69d362b7d213bf
-  - Fix some JSS styling bugs in Select. 
+  - Fix some JSS styling bugs in Select.
 
 ## 9.18.2 - 10/17/2020
 
