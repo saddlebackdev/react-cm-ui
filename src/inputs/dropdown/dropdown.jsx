@@ -106,10 +106,10 @@ class Dropdown extends React.Component {
                 return o[selectionMatchProp] === currentPropsValue[selectionMatchProp];
             });
 
-            const page = Math.floor(selectionIndex/pageSize);
+            const scrollRatio = selectionIndex/pageSize;
 
-            if (page >= 0) {
-                this.dropdownMenu.scrollTop(page * pageSize * itemHeight);
+            if (scrollRatio >= 1) {
+                this.dropdownMenu.scrollTop(scrollRatio * pageSize * itemHeight);
             }
         }
     }
