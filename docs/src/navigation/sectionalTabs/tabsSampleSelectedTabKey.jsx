@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import {
     Input,
-    SectionalTabs,
+    Tabs,
 } from 'react-cm-ui';
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
@@ -14,13 +14,13 @@ const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
     title: `Example Tab ${tabNumber}`,
 }));
 
-function SectionalTabsSample() {
+function TabsSample() {
     const [selectedTabKey, setSelectedTabKey] = useState(1);
     const selectedTabKeyMaxInput = items.length;
 
     return (
         <React.Fragment>
-            <SectionalTabs
+            <Tabs
                 items={items}
                 selectedTabKey={`exampleTab${selectedTabKey}`}
             />
@@ -36,4 +36,4 @@ function SectionalTabsSample() {
     );
 }
 
-export default SectionalTabsSample;
+export default TabsSample;

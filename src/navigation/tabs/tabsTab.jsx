@@ -19,26 +19,26 @@ const propTypes = {
      */
     classNames: PropTypes.string.isRequired,
     /**
-     * Aditional classes passed from the parent <SectionalTabs /> component to override the label styling.
+     * Aditional classes passed from the parent <TabsTabs /> component to override the label styling.
      */
     classes: PropTypes.shape({
         sectionalTabLabel: PropTypes.string,
         sectionalTabLabelSelected: PropTypes.string,
     }),
     /**
-     * Sectional Tab identifier
+     * Tab identifier
      */
     id: PropTypes.string.isRequired,
     /**
-     * General <SectionalTabs /> onChange function, called on <SectionalTab /> click.
+     * General <TabsTabs /> onChange function, called on <TabsTab /> click.
      */
     onChange: PropTypes.func,
     /**
-     * Independent <SectionalTab /> onClick function.
+     * Independent <TabsTab /> onClick function.
      */
     onClick: PropTypes.func,
     /**
-     * Key passed from the <SectionalTabs /> items objects.
+     * Key passed from the <TabsTabs /> items objects.
      */
     originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     /**
@@ -55,9 +55,9 @@ const defaultProps = {
 };
 
 /**
- * Used to render pages sections, built from the <SectionalTabs /> parent component.
+ * Used to render pages sections, built from the <TabsTabs /> parent component.
  */
-class SectionalTab extends Component {
+class TabsTab extends Component {
     constructor(props) {
         super(props);
         this.onTabClick = this.onTabClick.bind(this);
@@ -137,7 +137,7 @@ class SectionalTab extends Component {
     }
 }
 
-SectionalTab.propTypes = propTypes;
-SectionalTab.defaultProps = defaultProps;
+TabsTab.propTypes = propTypes;
+TabsTab.defaultProps = defaultProps;
 
-export default SectionalTab;
+export default TabsTab;

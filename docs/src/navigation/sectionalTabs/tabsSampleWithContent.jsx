@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionalTabs } from 'react-cm-ui';
+import { Tabs } from 'react-cm-ui';
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
     getContent: () => `Example Tab ${tabNumber} content`,
@@ -9,9 +9,9 @@ const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
     title: `Example Tab ${tabNumber}`,
 }));
 
-function SectionalTabsSample() {
+function TabsSample() {
     return (
-        <SectionalTabs
+        <Tabs
             items={items}
             selectedTabKey={items[0].key}
             withContent
@@ -19,4 +19,4 @@ function SectionalTabsSample() {
     );
 }
 
-export default SectionalTabsSample;
+export default TabsSample;

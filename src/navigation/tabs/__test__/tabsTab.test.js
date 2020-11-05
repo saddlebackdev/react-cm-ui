@@ -1,12 +1,13 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/sectionalTabs/__test__/sectionalTab.test.js
+ * npx jest ./src/navigation/tabsTabs/__test__/tabsTab.test.js
  */
 import { shallow } from 'enzyme';
 import React from 'react';
-import SectionalTab from '../sectionalTab';
+import TabsTab from '../tabsTab';
 
 let wrapper;
+
 const componentProps = {
     children: 'Example Tab',
     classNames: '',
@@ -17,14 +18,14 @@ const componentProps = {
     selected: false,
 };
 
-describe('<SectionalTab />', () => {
+describe('<TabsTab />', () => {
     it('renders without crashing', () => {
-        wrapper = shallow(<SectionalTab {...componentProps} />);
+        wrapper = shallow(<TabsTab {...componentProps} />);
         expect(wrapper.length).toBe(1);
     });
 
     it('triggers onClick and calls onChange when both defined', () => {
-        wrapper = shallow(<SectionalTab {...componentProps} />);
+        wrapper = shallow(<TabsTab {...componentProps} />);
         wrapper.prop('onClick')();
         expect(componentProps.onClick).toHaveBeenCalledTimes(1);
         expect(componentProps.onChange).toHaveBeenCalledTimes(1);
@@ -35,7 +36,7 @@ describe('<SectionalTab />', () => {
             ...componentProps,
             selected: true,
         };
-        wrapper = shallow(<SectionalTab {...testCaseProps} />);
+        wrapper = shallow(<TabsTab {...testCaseProps} />);
         const tabClasses = wrapper.find('WithStyles(ForwardRef(Typography))').prop('className');
         const doesIncludeSelectedClass = tabClasses.includes('navigation_sectional_tabs--tab-label_selected');
         expect(doesIncludeSelectedClass).toBe(true);

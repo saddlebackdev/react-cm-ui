@@ -11,7 +11,7 @@ const propTypes = {
      */
     classNames: PropTypes.string.isRequired,
     /**
-     * Main function to get the content, is passed from the <SectionalTabs /> items objects.
+     * Main function to get the content, is passed from the <Tabs /> items objects.
      * It could return a string, an object or an array.
      */
     getContent: PropTypes.func,
@@ -26,7 +26,7 @@ const defaultProps = {
     getContent: undefined,
 };
 
-function SectionalTabContent(props) {
+function TabsContent(props) {
     const {
         children,
         classNames,
@@ -48,7 +48,7 @@ function SectionalTabContent(props) {
     );
 }
 
-SectionalTabContent.propTypes = propTypes;
-SectionalTabContent.defaultProps = defaultProps;
+TabsContent.propTypes = propTypes;
+TabsContent.defaultProps = defaultProps;
 
-export default SectionalTabContent;
+export default TabsContent;

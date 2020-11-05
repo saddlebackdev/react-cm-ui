@@ -390,11 +390,6 @@ export const navigationItems = [
                         path: 'tabs',
                     },
                     {
-                        component: 'sectionalTabs',
-                        label: 'Sectional Tabs',
-                        path: 'sectional-tabs',
-                    },
-                    {
                         component: 'breadcrumbs',
                         label: 'Breadcrumbs',
                         path: 'breadcrumbs',

@@ -37,7 +37,7 @@ const versions = {
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
-                sectionalTabs: {
+                tabs: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link

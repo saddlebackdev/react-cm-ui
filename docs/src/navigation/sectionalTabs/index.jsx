@@ -12,11 +12,11 @@ import MarkdownContainer from '../../global/markdownContainer';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import ComponentApi from '../../global/componentApi';
-import SectionalTabsSample from './sectionalTabsSample';
-import SectionalTabsSampleWithContent from './sectionalTabsSampleWithContent';
-import SectionalTabsSampleSelectedTabKey from './sectionalTabsSampleSelectedTabKey';
+import TabsSample from './tabsSample';
+import TabsSampleWithContent from './tabsSampleWithContent';
+import TabsSampleSelectedTabKey from './tabsSampleSelectedTabKey';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/sectionalTabs/sectionalTabs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/tabs';
 
 const propTypes = {
     location: PropTypes.shape({
@@ -49,16 +49,16 @@ function TabsExample(props) {
                     </Typography>
 
                     <Heading anchorLink="children" variant="h2">
-                        Simple Sectional Tabs panel
+                        Simple Tabs panel
                     </Heading>
 
                     <Typography variant="body1">
-                        A simple Sectional Tabs panel.
+                        A simple Tabs panel.
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./sectionalTabsSample.jsx').default}>
-                    <SectionalTabsSample />
+                <Example rawCode={require('!!raw-loader!./tabsSample.jsx').default}>
+                    <TabsSample />
                 </Example>
 
                 <MarkdownContainer>
@@ -70,8 +70,8 @@ function TabsExample(props) {
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./sectionalTabsSampleWithContent.jsx').default}>
-                    <SectionalTabsSampleWithContent />
+                <Example rawCode={require('!!raw-loader!./tabsSampleWithContent.jsx').default}>
+                    <TabsSampleWithContent />
                 </Example>
 
                 <MarkdownContainer>
@@ -83,8 +83,8 @@ function TabsExample(props) {
                     </Typography>
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./sectionalTabsSampleSelectedTabKey.jsx').default}>
-                    <SectionalTabsSampleSelectedTabKey />
+                <Example rawCode={require('!!raw-loader!./tabsSampleSelectedTabKey.jsx').default}>
+                    <TabsSampleSelectedTabKey />
                 </Example>
 
                 <ComponentApi docs={[rootDoc]} />

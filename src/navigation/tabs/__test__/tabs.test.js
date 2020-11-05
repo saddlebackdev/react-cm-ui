@@ -1,13 +1,13 @@
 /**
  * To run this test from the root folder, execute the following command:
- * npx jest ./src/navigation/sectionalTabs/__test__/sectionalTabs.test.js
+ * npx jest ./src/navigation/tabs/__test__/tabs.test.js
  */
 import React from 'react';
-import SectionalTabs from '../sectionalTabs';
+import Tabs from '../tabs';
 import {
     items,
     tabsState,
-} from './sectionalTabsMockups';
+} from './tabsMockups';
 import mountWithTheme from '../../../testUtils/enzymeHelpers';
 
 let wrapper;
@@ -17,10 +17,10 @@ const componentProps = {
     selectedTabKey: 'exampleTab1',
 };
 
-describe('<SectionalTabs />', () => {
+describe('<Tabs />', () => {
     beforeEach(() => {
-        wrapper = mountWithTheme(<SectionalTabs {...componentProps} />);
-        wrapper.find('SectionalTabs').instance().setState(tabsState);
+        wrapper = mountWithTheme(<Tabs {...componentProps} />);
+        wrapper.find('Tabs').instance().setState(tabsState);
     });
 
     it('renders without crashing', () => {
@@ -28,7 +28,7 @@ describe('<SectionalTabs />', () => {
     });
 
     it('renders all tabs as visible when the container width is greater than the tabs total width', () => {
-        const visibleTabs = wrapper.find('SectionalTab').map((tab) => tab.prop('children'));
+        const visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -43,12 +43,12 @@ describe('<SectionalTabs />', () => {
     });
 
     it('renders 5 tabs as hidden when the container width is lower than the tabs total width', () => {
-        wrapper.find('SectionalTabs').instance().setState({
+        wrapper.find('Tabs').instance().setState({
             ...tabsState,
             blockWidth: 500,
         });
         wrapper.update();
-        const visibleTabs = wrapper.find('SectionalTab').find('h4').map((tab) => tab.prop('children'));
+        const visibleTabs = wrapper.find('TabsTab').find('h4').map((tab) => tab.prop('children'));
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -60,24 +60,24 @@ describe('<SectionalTabs />', () => {
     });
 
     it('swaps a hidden tab from the dropdown to the visible panel on click', () => {
-        wrapper.find('SectionalTabs').instance().setState({
+        wrapper.find('Tabs').instance().setState({
             ...tabsState,
             blockWidth: 500,
         });
         wrapper.update();
         const hiddenTabs = wrapper.find('.dropdown_menu--option');
         hiddenTabs.at(0).simulate('click');
-        const visibleTabs = wrapper.find('SectionalTab').map((tab) => tab.prop('children'));
+        const visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
         expect(visibleTabs[3]).toBe('Example Tab 5');
     });
 
     it('handles resize events swapping the tabs from the hidden dropdown to the visible panel', () => {
-        wrapper.find('SectionalTabs').instance().setState({
+        wrapper.find('Tabs').instance().setState({
             ...tabsState,
             blockWidth: 500,
         });
         wrapper.update();
-        let visibleTabs = wrapper.find('SectionalTab').map((tab) => tab.prop('children'));
+        let visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -85,12 +85,12 @@ describe('<SectionalTabs />', () => {
             'Example Tab 4',
         ]);
 
-        wrapper.find('SectionalTabs').instance().setState({
+        wrapper.find('Tabs').instance().setState({
             ...tabsState,
             blockWidth: 1000,
         });
         wrapper.update();
-        visibleTabs = wrapper.find('SectionalTab').map((tab) => tab.prop('children'));
+        visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -102,12 +102,12 @@ describe('<SectionalTabs />', () => {
             'Example Tab 8',
         ]);
 
-        wrapper.find('SectionalTabs').instance().setState({
+        wrapper.find('Tabs').instance().setState({
             ...tabsState,
             blockWidth: 200,
         });
         wrapper.update();
-        visibleTabs = wrapper.find('SectionalTab').map((tab) => tab.prop('children'));
+        visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
         expect(visibleTabs).toEqual([
             'Example Tab 1',
         ]);
