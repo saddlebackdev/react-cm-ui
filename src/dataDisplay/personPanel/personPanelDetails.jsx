@@ -872,7 +872,7 @@ function PersonPanelDetails(props) {
                                     // eslint-disable-next-line react/jsx-props-no-spreading
                                     {...viewRecordButtonProps}
                                     label="View Record"
-                                    outlined
+                                    outline
                                 />
                             )}
                         </div>

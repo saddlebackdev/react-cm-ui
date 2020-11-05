@@ -1,6 +1,5 @@
 export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
-export { default as DatePicker } from './datePickerDeprecated';
 export { default as DatePickerCalendar } from './datePickerCalendar';
 export { default as DatePickerInput } from './datePickerInput';
 export { default as Dropdown } from './dropdown';
