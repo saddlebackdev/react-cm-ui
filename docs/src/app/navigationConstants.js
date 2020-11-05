@@ -165,11 +165,6 @@ export const navigationItems = [
                         label: 'Activity Indicator',
                         path: 'activity-indicator',
                     },
-                    {
-                        component: 'loader',
-                        label: 'Loader',
-                        path: 'loader',
-                    },
                 ],
                 path: 'feedback',
             },
