@@ -298,8 +298,9 @@ class Checkbox extends React.Component {
         const { checked } = this.props;
 
         if (checked && this.inputRef.current) {
-            // isChecked is already set by the props.checked in the constructor.
-            // eslint-disable-next-line no-underscore-dangle
+            /**
+             * isChecked is already set by the props.checked in the constructor.
+             */
             this.inputRef.current.checked = checked;
         }
     }

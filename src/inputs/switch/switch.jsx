@@ -14,22 +14,65 @@ import Typography from '../../dataDisplay/typography';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * If `true`, the checkbox will be checked.
+     */
     checked: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to Switch.
+     */
     classes: PropTypes.shape({
+        hasLabel: PropTypes.string,
+        innerContainer: PropTypes.string,
+        input: PropTypes.string,
+        isDisabled: PropTypes.string,
+        isSmall: PropTypes.string,
+        label: PropTypes.string,
         root: PropTypes.string,
+        textContainer: PropTypes.string,
+        textOff: PropTypes.string,
+        textOn: PropTypes.string,
     }).isRequired,
+    /**
+     * Assign additional class names to Switch.
+     */
     className: PropTypes.string,
+    /**
+     * If `true`, the Switch will be disabled.
+     */
     disable: PropTypes.bool,
-    fluid: PropTypes.bool,
+    /**
+     * The `id` of the Switch.
+     */
     id: PropTypes.string,
+    /**
+     * The label for the Switch.
+     */
     label: PropTypes.oneOfType([
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+    /**
+     * Name of the form control. Submitted with the form as part of a name/value pair.
+     */
     name: PropTypes.string,
+    /**
+     * Event handler for consumer to change the value of the Switch.
+     */
     onChange: PropTypes.func,
+    /**
+     * The size of a Switch
+     */
     size: PropTypes.oneOf(['small', 'large']),
+    /**
+     * Indicates whether or not the Switch can be focused and where it participates in
+     * sequential keyboard navigation.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+     */
     tabIndex: PropTypes.number,
+    /**
+     * The value to pass to the Switch input node.
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -40,7 +83,6 @@ const defaultProps = {
     checked: false,
     className: null,
     disable: false,
-    fluid: false,
     id: null,
     label: null,
     name: null,
@@ -109,7 +151,6 @@ const styles = ({
             },
         },
         isDisabled: {},
-        isFluid: {},
         isSmall: {},
         input: {
             display: 'none',
@@ -184,9 +225,6 @@ const styles = ({
                     },
                 },
             },
-            '&$isFluid': {
-                display: 'block',
-            },
             '&:not($isSmall) $input:checked +': {
                 '& $innerContainer::after': {
                     left: 27,
@@ -244,7 +282,6 @@ class Switch extends React.Component {
 
         if (checked && this.inputRef.current) {
             // isChecked is already set by the props.checked in the constructor.
-            // eslint-disable-next-line no-underscore-dangle
             this.inputRef.current.checked = checked;
         }
     }
@@ -311,7 +348,6 @@ class Switch extends React.Component {
             classes,
             className,
             disable: isDisabled,
-            fluid: isFluid,
             id,
             label,
             name,
@@ -321,6 +357,7 @@ class Switch extends React.Component {
         } = this.props;
 
         const { isChecked } = this.state;
+
         const newValue = value || '';
         const isSmall = size === 'small';
 
@@ -331,7 +368,6 @@ class Switch extends React.Component {
             className,
             {
                 [classes.isDisabled]: isDisabled,
-                [classes.isFluid]: isFluid,
                 [classes.isSmall]: isSmall,
                 [classes.hasLabel]: label,
             },
@@ -340,20 +376,21 @@ class Switch extends React.Component {
         const inputId = id ? `${id}_hidden_input` : null;
 
         return (
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
+                aria-checked={isChecked}
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={noop()}
                 onMouseDown={this.onMouseDown}
+                role="checkbox"
                 tabIndex={tabIndex}
             >
                 {label && (
                     <Typography
                         className={ClassNames(
                             `${BEM_SWITCH}--label`,
-                            classes.label
+                            classes.label,
                         )}
                     >
                         {label}
@@ -364,7 +401,7 @@ class Switch extends React.Component {
                     checked={isChecked}
                     className={ClassNames(
                         `${BEM_SWITCH}--input`,
-                        classes.input
+                        classes.input,
                     )}
                     disabled={isDisabled}
                     id={inputId}
@@ -401,7 +438,7 @@ class Switch extends React.Component {
                             <Typography
                                 className={ClassNames(
                                     `${BEM_SWITCH}--text_off`,
-                                    classes.textOff
+                                    classes.textOff,
                                 )}
                                 component="span"
                             >
