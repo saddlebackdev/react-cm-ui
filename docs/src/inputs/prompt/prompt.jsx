@@ -49,18 +49,7 @@ function DocsPrompt(props) {
                     </Typography>
 
                     <Heading
-                        variant="h2"
-                    >
-                        Button With Confirming Prompt
-                    </Heading>
-
-                    <Example
-                        rawCode={require('!!raw-loader!./examples/exampleSuccessPrompt').default}
-                    >
-                        <ExampleSuccessPrompt />
-                    </Example>
-
-                    <Heading
+                        anchorLink="alert-button"
                         variant="h2"
                     >
                         Button With Alert Prompt
@@ -73,6 +62,7 @@ function DocsPrompt(props) {
                     </Example>
 
                     <Heading
+                        anchorLink="warning-button"
                         variant="h2"
                     >
                         Button With Warning Prompt
@@ -85,6 +75,7 @@ function DocsPrompt(props) {
                     </Example>
 
                     <Heading
+                        anchorLink="info-button"
                         variant="h2"
                     >
                         Button With Informative Prompt
@@ -94,6 +85,19 @@ function DocsPrompt(props) {
                         rawCode={require('!!raw-loader!./examples/exampleInformativePrompt').default}
                     >
                         <ExampleInformativePrompt />
+                    </Example>
+
+                    <Heading
+                        anchorLink="confirm-button"
+                        variant="h2"
+                    >
+                        Button With Confirming Prompt
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleSuccessPrompt').default}
+                    >
+                        <ExampleSuccessPrompt />
                     </Example>
                 </MarkdownContainer>
 
