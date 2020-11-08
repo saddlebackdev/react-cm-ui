@@ -1,6 +1,3 @@
-import {
-    TitleBar,
-} from 'react-cm-ui';
 import React from 'react';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -9,8 +6,6 @@ import Main from '../../global/main';
 function DocsTypography() {
     return (
         <Main page="typography">
-            <TitleBar title="Typography" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Heading

@@ -3,7 +3,6 @@ import {
     Button,
     Card,
     Header,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -305,8 +304,6 @@ export default class ViewsBanner extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Banner" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

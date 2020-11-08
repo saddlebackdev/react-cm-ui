@@ -298,7 +298,7 @@ export const navigationItems = [
                         label: 'Page',
                         levelFour: [
                             {
-                                component: 'pageDemo',
+                                component: 'demo',
                                 label: 'Demo',
                                 omit: true,
                                 path: 'demo',

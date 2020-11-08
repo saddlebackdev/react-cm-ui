@@ -1,5 +1,4 @@
 import {
-    TitleBar,
     Typography,
 } from 'react-cm-ui';
 import React from 'react';
@@ -16,8 +15,6 @@ function DocsTelephoneLink() {
 
     return (
         <Main page="telephone-link">
-            <TitleBar title="Telephone Link" />
-
             <Main.Content>
                 <MarkdownContainer>
                     <Typography

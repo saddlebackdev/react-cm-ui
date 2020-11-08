@@ -3,11 +3,9 @@
 import {
     Card,
     Header,
-    TitleBar,
 } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
-import DrawerSubNavigation from './drawerSubNavigation';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -68,10 +66,6 @@ function ModulesDrawerDataGrid() {
 
     return (
         <Main page="headers">
-            <TitleBar title="Drawer" />
-
-            <DrawerSubNavigation />
-
             <Main.Content>
                 <Card>
                     <Header size="large">Props</Header>

@@ -1,6 +1,7 @@
-
 import {
-    Card, Header, Tabs, TitleBar,
+    Card,
+    Header,
+    Tabs,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
@@ -104,8 +105,6 @@ export default class CollectionsTabs extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Tabs" />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

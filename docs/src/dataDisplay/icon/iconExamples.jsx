@@ -2,12 +2,10 @@ import {
     Card,
     Header,
     Icon,
-    TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
-import IconSubNavigation from './iconSubNavigation';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
@@ -269,10 +267,6 @@ class ElementsIconExamples extends React.PureComponent {
 
         return (
             <Main page="headers">
-                <TitleBar title="Icon" />
-
-                <IconSubNavigation />
-
                 <Main.Content>
                     <Card>
                         <Header size="large">Props</Header>

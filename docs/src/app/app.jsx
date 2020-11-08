@@ -1,20 +1,41 @@
 import './app.scss';
 
-import _ from 'lodash';
-import { Button, domUtils, Icon } from 'react-cm-ui';
-import { Link } from 'react-router';
+import {
+    AppBar,
+    Button,
+    domUtils,
+    Icon,
+    Typography,
+} from 'react-cm-ui';
+import {
+    Link,
+    withRouter,
+} from 'react-router';
+import {
+    debounce,
+    find,
+    pick,
+} from 'lodash';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
+import withStyles from 'react-cm-ui/styles/withStyles';
+import { navigationItems } from './navigationConstants';
 import breakpointActions from '../global/breakpointActions';
 import Header from './header';
 import Navigation from './navigation';
+import Tabs from './tabs';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    classes: PropTypes.shape({
+        appBar: PropTypes.string,
+        appBarInner: PropTypes.string,
+    }).isRequired,
     location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
     }).isRequired,
+    router: PropTypes.shape({}).isRequired,
 };
 
 // eslint-disable-next-line no-restricted-globals
@@ -22,6 +43,21 @@ if (location.hash && location.hash[0] === '#' && location.hash[1] === '!') {
     // eslint-disable-next-line no-restricted-globals
     history.pushState({}, '', location.hash.substring(2));
 }
+
+const styles = (theme) => ({
+    appBar: {
+        [theme.breakpoints.up('md')]: {
+            left: theme.width.navigation.md.expanded,
+            position: 'fixed',
+            right: 0,
+            zIndex: 1,
+        },
+    },
+    appBarInner: {
+        position: 'relative',
+        width: '100%',
+    },
+});
 
 class App extends React.Component {
     static onResize() {
@@ -35,12 +71,13 @@ class App extends React.Component {
         breakpointActions.update();
 
         this.curScrollPos = null;
-        this.onResizeDebounce = _.debounce(() => App.onResize(), 80);
+        this.onResizeDebounce = debounce(() => App.onResize(), 80);
         this.onToggleNavigation = this.onToggleNavigation.bind(this);
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.onResizeDebounce);
+
         App.onResize();
     }
 
@@ -57,7 +94,13 @@ class App extends React.Component {
     }
 
     render() {
-        const { children, location } = this.props;
+        const {
+            children,
+            classes,
+            location,
+            router,
+        } = this.props;
+
         const isDemo = location.pathname.split('/').pop() === 'demo';
 
         if (isDemo) {
@@ -74,6 +117,7 @@ class App extends React.Component {
                                     }}
                                 >
                                     <Icon type="chevron-left" />
+
                                     <span>Back to Docs</span>
                                 </Button>
                             </Link>
@@ -89,6 +133,29 @@ class App extends React.Component {
             );
         }
 
+        const firstLevelPath = router?.routes[1]?.path;
+        const secondLevelPath = router?.routes[2]?.path;
+        const thirdLevelPath = router?.routes[3]?.path;
+
+        const activeLevelTwoItems = find(navigationItems, { path: firstLevelPath })?.levelTwo;
+        const activeLevelTwoItem = find(activeLevelTwoItems, { path: secondLevelPath });
+        const activeLevelThreeItem = find(activeLevelTwoItem?.levelThree, { path: thirdLevelPath });
+
+        const pageHeading = activeLevelThreeItem ?
+            activeLevelThreeItem.label :
+            activeLevelTwoItem?.label;
+
+        let pageTabsItems = [];
+
+        if (activeLevelThreeItem?.levelFour) {
+            pageTabsItems = [
+                {
+                    ...pick(activeLevelThreeItem, ['component', 'label', 'path']),
+                },
+                ...activeLevelThreeItem.levelFour,
+            ];
+        }
+
         return (
             <section className="core-app-root">
                 <Navigation toggleNavigation={this.onToggleNavigation} />
@@ -97,6 +164,28 @@ class App extends React.Component {
                     <MediaQuery maxWidth={767}>
                         <Header onToggleNavigation={this.onToggleNavigation} />
                     </MediaQuery>
+
+                    {firstLevelPath && (
+                        <AppBar
+                            classes={{
+                                root: classes.appBar,
+                            }}
+                        >
+                            <div
+                                className={classes.appBarInner}
+                            >
+                                <Typography
+                                    variant="h2"
+                                >
+                                    {pageHeading}
+                                </Typography>
+
+                                <Tabs
+                                    items={pageTabsItems}
+                                />
+                            </div>
+                        </AppBar>
+                    )}
 
                     {children}
                 </div>
@@ -107,4 +196,4 @@ class App extends React.Component {
 
 App.propTypes = propTypes;
 
-export default App;
+export default withRouter(withStyles(styles)(App));

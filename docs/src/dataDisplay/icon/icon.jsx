@@ -3,7 +3,6 @@ import {
     Grid,
     Header,
     Icon,
-    TitleBar,
 } from 'react-cm-ui';
 import {
     flatten,
@@ -12,8 +11,8 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from 'react-cm-ui/styles';
-import IconSubNavigation from './iconSubNavigation';
+import withStyles from 'react-cm-ui/styles/withStyles';
+import withWidth from 'react-cm-ui/utils/withWidth';
 import Main from '../../global/main';
 
 const propTypes = {
@@ -361,10 +360,6 @@ class ElementsIconSet extends React.PureComponent {
 
         return (
             <Main page="headers">
-                <TitleBar title="Icon" />
-
-                <IconSubNavigation />
-
                 <Main.Content>
                     <Grid columns={1} style={{ marginBottom: '22px' }}>
                         <Grid.Column style={{ textAlign: 'right' }}>
