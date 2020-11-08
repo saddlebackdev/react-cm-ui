@@ -39,7 +39,6 @@ function TabsExample(props) {
     return (
         <Main page={camelCase(displayName)}>
             <Main.Content>
-
                 <MarkdownContainer>
                     <Typography
                         className="description"
@@ -87,12 +86,8 @@ function TabsExample(props) {
                     <TabsSampleSelectedTabKey />
                 </Example>
 
-                <ComponentApi docs={[rootDoc]} />
-
                 <ComponentVersionIdentifier pathname={pathname} />
-
             </Main.Content>
-
         </Main>
     );
 }
