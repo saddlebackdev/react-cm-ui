@@ -39,7 +39,6 @@ function BreadcrumbsExample(props) {
     return (
         <Main page={camelCase(displayName)}>
             <Main.Content>
-
                 <MarkdownContainer>
                     <Typography
                         className="description"
@@ -87,12 +86,8 @@ function BreadcrumbsExample(props) {
                     <BreadcrumbsSampleDividerString />
                 </Example>
 
-                <ComponentApi docs={[rootDoc]} />
-
                 <ComponentVersionIdentifier pathname={pathname} />
-
             </Main.Content>
-
         </Main>
     );
 }

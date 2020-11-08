@@ -377,21 +377,37 @@ export const navigationItems = [
                     {
                         component: 'a',
                         label: 'A',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'a',
-                    },
-                    {
-                        component: 'subNavigationDeprecated',
-                        label: 'Sub Navigation (Deprecated)',
-                        path: 'sub-navigation-deprecated',
                     },
                     {
                         component: 'tabs',
                         label: 'Tabs',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'tabs',
                     },
                     {
                         component: 'breadcrumbs',
                         label: 'Breadcrumbs',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'breadcrumbs',
                     },
                 ],
