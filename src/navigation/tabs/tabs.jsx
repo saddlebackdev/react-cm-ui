@@ -254,6 +254,7 @@ class Tabs extends Component {
 
         if (isFunction(beforeChange)) {
             const beforeChangeRes = beforeChange({ selectedTabKey, nextTabKey });
+
             if (beforeChangeRes === false) {
                 if (evt) {
                     evt.preventDefault();
@@ -307,6 +308,9 @@ class Tabs extends Component {
         } = this.state;
 
         const selectedTabKey = this.getSelectedTabKey();
+
+        console.log('selectedTabKey', selectedTabKey);
+
         let tabIndex = 0;
         let availableWidth = blockWidth - (
             tabsTotalWidth > blockWidth ?
@@ -327,13 +331,16 @@ class Tabs extends Component {
                     title,
                 } = item;
 
-                const selected = selectedTabKey === key;
+                // eslint-disable-next-line eqeqeq
+                const selected = selectedTabKey == key;
+
                 const payload = {
                     disabled,
                     key,
                     selected,
                     tabIndex,
                 };
+
                 const tabPayload = {
                     ...payload,
                     className: tabClassName,
@@ -528,6 +535,8 @@ class Tabs extends Component {
             return items[0].key;
         }
 
+        console.log('selectedTabKey', selectedTabKey);
+
         return selectedTabKey;
     }
 
@@ -610,6 +619,7 @@ class Tabs extends Component {
 
                         return result;
                     }, [])}
+
                     {hiddenTabsDropDown}
                 </div>
 

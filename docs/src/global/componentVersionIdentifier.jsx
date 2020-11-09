@@ -50,6 +50,7 @@ function ComponentVersionIdentifier(props) {
             </Typography>
 
             <Typography
+                component="div"
                 variant="body1"
             >
                 {map(version, (v, key) => {
