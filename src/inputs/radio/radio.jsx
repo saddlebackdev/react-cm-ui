@@ -10,8 +10,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    ENTER_KEY_CODE,
     BEM_RADIO,
+    ENTER_KEY_CODE,
+    UI_CLASS_NAME,
 } from '../../global/constants';
 import RadioItem from './radioItem';
 import withStyles from '../../styles/withStyles';
@@ -33,7 +34,7 @@ const propTypes = {
      */
     children: PropTypes.node,
     /**
-     * classes
+     * Override or extend the styles applied to Input.
      */
     classes: PropTypes.shape({
         input: PropTypes.string,
@@ -47,7 +48,7 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
-     * Additional classes.
+     * Assign additional class names to Radio.
      */
     className: PropTypes.string,
     /**
@@ -177,7 +178,7 @@ const styles = (theme) => {
                 color: theme.palette.text.primary,
                 cursor: 'pointer',
                 display: 'block',
-                fontSize: 16,
+                fontSize: theme.typography.pxToRem(16),
                 position: 'relative',
                 '&::before, &::after': {
                     content: '""',
@@ -510,7 +511,7 @@ class Radio extends React.Component {
         const isDisabled = disable || disabled;
 
         const rootClasses = ClassNames(
-            'ui',
+            UI_CLASS_NAME,
             BEM_RADIO,
             classes.root,
             className,

@@ -34,11 +34,11 @@ export default function ElementsRadio() {
                     </Typography>
 
                     <Heading anchorLink="children" variant="h2">
-                        Radio
+                        Standard Radio Buttons
                     </Heading>
 
                     <Typography variant="body1">
-                        A simple radio.
+                        General use.
                     </Typography>
                 </MarkdownContainer>
 

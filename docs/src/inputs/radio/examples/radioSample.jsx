@@ -1,29 +1,42 @@
 import React from 'react';
-import { Radio } from 'react-cm-ui';
+import {
+    Grid,
+    Radio,
+} from 'react-cm-ui';
 
 function RadioSample() {
     return (
-        <React.Fragment>
-            <Radio
-                label="Unselected"
-                checked
-            />
+        <Grid
+            spacing={4}
+        >
+            <Grid.Column sm="auto">
+                <Radio
+                    label="Unselected"
+                    checked
+                />
+            </Grid.Column>
 
-            <Radio
-                label="Selected"
-            />
+            <Grid.Column sm="auto">
+                <Radio
+                    label="Selected"
+                />
+            </Grid.Column>
 
-            <Radio
-                disable
-                label="Disabled Unselected"
-            />
+            <Grid.Column sm="auto">
+                <Radio
+                    disable
+                    label="Disabled Unselected"
+                />
+            </Grid.Column>
 
-            <Radio
-                checked
-                disable
-                label="Disabled Selected"
-            />
-        </React.Fragment>
+            <Grid.Column sm="auto">
+                <Radio
+                    checked
+                    disable
+                    label="Disabled Selected"
+                />
+            </Grid.Column>
+        </Grid>
     );
 }
 
