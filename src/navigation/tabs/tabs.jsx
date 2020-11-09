@@ -19,7 +19,7 @@ import TabsContent from './tabsContent';
 import withStyles from '../../styles/withStyles';
 import DropdownButton from '../../inputs/dropdownButton';
 import {
-    BEM_NAVIGATION_SECTIONAL_TABS,
+    BEM_NAVIGATION_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
 
@@ -81,7 +81,7 @@ const defaultProps = {
     withContent: false,
 };
 
-const useStyles = (theme) => {
+const styles = (theme) => {
     const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
     const borderColorSecondary = get(theme, 'palette.border.secondary');
     const colorActivePrimary = get(theme, 'palette.active.main');
@@ -90,7 +90,7 @@ const useStyles = (theme) => {
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const textColorPrimary = get(theme, 'palette.text.primary');
 
-    const styles = {
+    return {
         root: {
             position: 'relative',
             '& .button_dropdown': {
@@ -141,8 +141,6 @@ const useStyles = (theme) => {
             borderBottom: `2px solid ${colorActivePrimary}`,
         },
     };
-
-    return styles;
 };
 
 /**
@@ -505,7 +503,7 @@ class Tabs extends Component {
             case 'content':
                 return Classnames(
                     classes.tabsPanelContent,
-                    `${BEM_NAVIGATION_SECTIONAL_TABS}--content`,
+                    `${BEM_NAVIGATION_TABS}--content`,
                     className,
                 );
             default:
@@ -555,19 +553,22 @@ class Tabs extends Component {
         } = this.getTabs();
 
         const selectedTabKey = this.getSelectedTabKey();
+
         const containerClasses = Classnames(
             classes.root,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
+            `${BEM_NAVIGATION_TABS}--container`,
         );
+
         const tabsClasses = Classnames(
             classes.tabsPanel,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
+            `${BEM_NAVIGATION_TABS}--panel`,
         );
+
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
                 iconType="ellipsis-h"
                 optionsTheme="light"
-                color="transparent"
+                text
             >
                 {tabsHidden.map((tab) => {
                     const {
@@ -611,7 +612,9 @@ class Tabs extends Component {
                     }, [])}
                     {hiddenTabsDropDown}
                 </div>
+
                 {withContent && this.getExpandedTabs(panels, selectedTabKey)}
+
                 {<ResizeDetector handleWidth onResize={this.onResizeThrottled} />}
             </div>
         );
@@ -621,5 +624,6 @@ class Tabs extends Component {
 Tabs.propTypes = propTypes;
 Tabs.defaultProps = defaultProps;
 
-const TabsWithStyles = withStyles(useStyles, { withTheme: true })(Tabs);
+const TabsWithStyles = withStyles(styles, { withTheme: true })(Tabs);
+
 export default TabsWithStyles;

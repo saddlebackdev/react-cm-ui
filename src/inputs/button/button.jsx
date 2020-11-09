@@ -107,6 +107,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.active.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.active.main,
+                },
             },
         },
         colorDefault: {
@@ -127,6 +130,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.text.disable,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.text.primary,
+                },
             },
         },
         colorLink: {
@@ -141,6 +147,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.link.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.link.main,
+                },
             },
         },
         colorPrimary: {
@@ -155,6 +164,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.primary.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.primary.main,
+                },
             },
         },
         colorError: {
@@ -169,6 +181,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.error.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.error.main,
+                },
             },
         },
         colorSecondary: {
@@ -189,6 +204,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.secondary.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.secondary.main,
+                },
             },
         },
         colorSuccess: {
@@ -203,6 +221,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.success.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.success.main,
+                },
             },
         },
         colorWarning: {
@@ -217,6 +238,9 @@ const styles = (theme) => {
             },
             '&$text': {
                 color: theme.palette.warning.main,
+                '& .icon .icon-use-path': {
+                    fill: theme.palette.warning.main,
+                },
             },
         },
         compact: {

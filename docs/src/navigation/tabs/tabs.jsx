@@ -11,7 +11,6 @@ import Example from '../../global/example';
 import MarkdownContainer from '../../global/markdownContainer';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
-import ComponentApi from '../../global/componentApi';
 import TabsSample from './tabsSample';
 import TabsSampleWithContent from './tabsSampleWithContent';
 import TabsSampleSelectedTabKey from './tabsSampleSelectedTabKey';

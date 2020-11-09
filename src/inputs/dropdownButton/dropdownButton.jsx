@@ -66,8 +66,11 @@ const useStyles = makeStyles({
 
 function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
+
     const [isMenuOpen, setIsOpen] = useState(false);
+
     const classes = useStyles();
+
     const {
         children,
         className,
@@ -88,6 +91,7 @@ function DropdownButton(props) {
         style,
         tabIndex,
         target,
+        text,
         title,
         width,
     } = props;
@@ -104,6 +108,7 @@ function DropdownButton(props) {
     }
 
     const bemClassName = 'button_dropdown';
+
     const rootClasses = ClassNames(
         bemClassName,
         className,
@@ -130,6 +135,7 @@ function DropdownButton(props) {
             relax={relax}
             style={style}
             target={target}
+            text={text}
             title={title}
             width={width}
             tabIndex={tabIndex}
@@ -138,7 +144,6 @@ function DropdownButton(props) {
                 <Icon
                     compact={icon && !label}
                     size={iconSize}
-                    inverse
                     style={{ margin: icon && !label ? 0 : null }}
                     type={iconType}
                 />

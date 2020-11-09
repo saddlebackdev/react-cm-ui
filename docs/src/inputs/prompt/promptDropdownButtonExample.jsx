@@ -3,9 +3,18 @@ import {
     Prompt,
 } from 'react-cm-ui';
 import React, { useState } from 'react';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
+
+const useStyles = makeStyles(() => ({
+    moreButton: {
+        margin: 0,
+    },
+}));
 
 function PromptDropdownButtonExample() {
     const [showPrompt, setShowPrompt] = useState(false);
+
+    const classes = useStyles();
 
     function onPromptClick(type) {
         switch (type) {
@@ -51,10 +60,10 @@ function PromptDropdownButtonExample() {
             show={showPrompt}
         >
             <DropdownButton
-                color="outline"
+                className={classes.moreButton}
                 icon
                 iconType="ellipsis-h"
-                style={{ margin: 0 }}
+                outline
             >
                 <DropdownButton.Option
                     id="edit"

@@ -22,8 +22,8 @@ const propTypes = {
      * Aditional classes passed from the parent <TabsTabs /> component to override the label styling.
      */
     classes: PropTypes.shape({
-        sectionalTabLabel: PropTypes.string,
-        sectionalTabLabelSelected: PropTypes.string,
+        tabLabel: PropTypes.string,
+        tabLabelSelected: PropTypes.string,
     }),
     /**
      * Tab identifier
@@ -42,7 +42,7 @@ const propTypes = {
      */
     originalKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     /**
-     * Boolean used to apply the 'sectionalTabLabelSelected' class.
+     * Boolean used to apply the 'tabLabelSelected' class.
      */
     selected: PropTypes.bool.isRequired,
 };
@@ -99,10 +99,10 @@ class TabsTab extends Component {
         } = this.props;
 
         const tabLabelClassNames = Classnames(
-            classes.sectionalTabLabel,
+            classes.tabLabel,
             `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
             {
-                [classes.sectionalTabLabelSelected]: selected,
+                [classes.tabLabelSelected]: selected,
                 [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
             },
         );
