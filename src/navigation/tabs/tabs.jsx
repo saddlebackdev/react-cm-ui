@@ -259,6 +259,7 @@ class Tabs extends Component {
                 if (evt) {
                     evt.preventDefault();
                 }
+
                 return null;
             }
         }
@@ -309,9 +310,8 @@ class Tabs extends Component {
 
         const selectedTabKey = this.getSelectedTabKey();
 
-        console.log('selectedTabKey', selectedTabKey);
-
         let tabIndex = 0;
+
         let availableWidth = blockWidth - (
             tabsTotalWidth > blockWidth ?
                 HIDDEN_TABS_ICON_WIDTH :
@@ -353,8 +353,10 @@ class Tabs extends Component {
                     content,
                     getContent,
                 };
+
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
+
                 const isTabVisible = // initial call
                                     !blockWidth ||
                                     tabsTotalWidth === 0 ||
@@ -402,6 +404,7 @@ class Tabs extends Component {
                 1,
                 hiddenSelectedTab,
             );
+
             reducedItems.tabsHidden.splice(hiddenSelectedTabIndex, 1, lastVisibleTab);
             sortedHiddenTabs = sortBy(reducedItems.tabsHidden, ['key']);
             sortedVisibleTabs = sortBy(reducedItems.tabsVisible, ['key']);
@@ -499,7 +502,7 @@ class Tabs extends Component {
             case 'tab':
                 return Classnames(
                     classes.tab,
-                    `${BEM_NAVIGATION_TAB_ROOT_CLASS}`,
+                    BEM_NAVIGATION_TAB_ROOT_CLASS,
                     className,
                     {
                         [`${BEM_NAVIGATION_TAB_ROOT_CLASS}--first`]: !tabIndex,
@@ -534,8 +537,6 @@ class Tabs extends Component {
 
             return items[0].key;
         }
-
-        console.log('selectedTabKey', selectedTabKey);
 
         return selectedTabKey;
     }
