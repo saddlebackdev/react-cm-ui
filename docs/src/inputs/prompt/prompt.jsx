@@ -1,132 +1,114 @@
 import {
-    Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import Highlighter from '../../global/highlighter';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleAlertPrompt from './examples/exampleAlertPrompt';
+import ExampleInformativePrompt from './examples/exampleInformativePrompt';
+import ExampleSuccessPrompt from './examples/exampleSuccessPrompt';
+import ExampleWarningPrompt from './examples/exampleWarningPrompt';
+import Heading from '../../global/heading';
 import Main from '../../global/main';
-import PromptDropdownButtonExample from './promptDropdownButtonExample';
-import PromptExample from './promptExample';
-import TableProps from '../../global/tableProps';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/prompt/prompt';
+/* eslint-enable import/no-named-default, import/extensions */
 
-function DocsPrompt() {
-    const tableProps = [
-        {
-            name: 'className',
-            type: 'string',
-            default: '',
-            description: 'Additional classes.',
-            allowedTypes: '',
-        }, {
-            name: 'inline',
-            type: 'bool',
-            default: '',
-            description: 'Prompts will be handled inline with the action.',
-            allowedTypes: '',
-        }, {
-            name: 'inlineMessageColor',
-            type: 'enum',
-            default: '',
-            description: 'Give an inline Prompt\'s action message a custom background color.',
-            allowedTypes: 'alert, success, warning',
-        }, {
-            name: 'inlineHorizontalAlign',
-            type: 'enum',
-            default: 'left',
-            description: 'An inline Prompt can be horizontal aligned to the left or the right.',
-            allowedTypes: 'left, right',
-        }, {
-            name: 'message',
-            type: 'string',
-            default: '',
-            description: 'Supply a Prompt a custom message.',
-            allowedTypes: '',
-        }, {
-            name: 'onClick',
-            type: 'func',
-            default: '',
-            description: 'Prompts can handle an onClick event.',
-            allowedTypes: '',
-        }, {
-            name: 'onNoClick',
-            type: 'func',
-            default: '',
-            description: 'An onClick event handler for the no button.',
-            allowedTypes: '',
-        }, {
-            name: 'onYesClick',
-            type: 'func',
-            default: '',
-            description: 'An onClick event handler for the yes button.',
-            allowedTypes: '',
-        }, {
-            name: 'style',
-            type: 'object',
-            default: '',
-            description: 'Supply any inline styles to the Prompt\'s container. Mainly used for padding and margins.',
-            allowedTypes: '',
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsPrompt(props) {
+    const {
+        location: {
+            pathname,
         },
-    ];
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="headers">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
-                <Card>
-                    <Header size="large">Props</Header>
+                <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {description}
+                    </Typography>
 
-                    <TableProps props={tableProps} />
-                </Card>
+                    <Heading
+                        anchorLink="alert-button"
+                        variant="h2"
+                    >
+                        Button With Alert Prompt
+                    </Heading>
 
-                {/* Inline */}
-                <Header anchor="inline" size="large" style={{ marginTop: '55px' }} sub>
-                    Inline Prompt
-                    <Header.Subheader>
-                        A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
-                    </Header.Subheader>
-                </Header>
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleAlertPrompt').default}
+                    >
+                        <ExampleAlertPrompt />
+                    </Example>
 
-                <p>
-                    Note that the prompt will suppress actions from the wrapped control--button and link <code>onClick</code>,
-                    dropdown <code>onChange</code>, etc.  You handle the <code>Prompt</code> component's events instead
-                    (<code>onClick</code>, <code>onYesClick</code> and <code>onNoClick</code>).
-                </p>
+                    <Heading
+                        anchorLink="warning-button"
+                        variant="h2"
+                    >
+                        Button With Warning Prompt
+                    </Heading>
 
-                <PromptExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleWarningPrompt').default}
+                    >
+                        <ExampleWarningPrompt />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./promptExample').default}
-                </Highlighter>
+                    <Heading
+                        anchorLink="info-button"
+                        variant="h2"
+                    >
+                        Button With Informative Prompt
+                    </Heading>
 
-                {/* Dropdown with only some items prompting */}
-                <Header anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub>
-                    Selective Prompting for Dropdown Options
-                    <Header.Subheader>
-                        Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
-                        but we only want <em>certain</em> options to trigger not prompt, not all options (i.e. we need to trigger
-                        the prompt <em>selectively</em>). Note that in the sample above with the dropdown button menu,
-                        the prompt is triggered on <em>all options</em>.
-                    </Header.Subheader>
-                </Header>
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleInformativePrompt').default}
+                    >
+                        <ExampleInformativePrompt />
+                    </Example>
 
-                <p>
-                    In order to achieve selective triggering of the prompt, you will have to add some logic to the
-                    function that handles the prompt's <code>onClick</code> event (where you will switch on the selected
-                    option to determine what to do) and use prompt's <code>show</code> prop to selectively show and hide
-                    the prompt as appropriate.
-                </p>
-                <p>
-                    The example below shows a sample Dropdown button action menu that contains Edit and Delete actions.<br />
-                    Only the <strong>Delete</strong> option should prompt. The <strong>Edit</strong> option shouldn't prompt.
-                </p>
+                    <Heading
+                        anchorLink="confirm-button"
+                        variant="h2"
+                    >
+                        Button With Confirming Prompt
+                    </Heading>
 
-                <PromptDropdownButtonExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleSuccessPrompt').default}
+                    >
+                        <ExampleSuccessPrompt />
+                    </Example>
+                </MarkdownContainer>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./promptDropdownButtonExample').default}
-                </Highlighter>
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
+
+DocsPrompt.propTypes = propTypes;
 
 export default DocsPrompt;
