@@ -5,7 +5,8 @@
 
 /**
  * NOTE: This unit test fixture does not provide full coverage for the Input component.
- * Only tests needed cover pieces touched from the gap (v1 - v2) have been written at this time.
+ * We're only testing aspects having to do with what I, Cameron, subjectively think will
+ * get us by until we are able to make another pass to reach 100% or near 100% code coverage.
  */
 
 import React from 'react';
