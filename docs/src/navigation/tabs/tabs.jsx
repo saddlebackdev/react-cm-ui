@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Typography,
 } from 'react-cm-ui';
@@ -6,16 +5,15 @@ import {
     camelCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
-import Main from '../../global/main';
-import Example from '../../global/example';
-import MarkdownContainer from '../../global/markdownContainer';
+import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
 import Heading from '../../global/heading';
-import TabsSample from './tabsSample';
-import TabsSampleWithContent from './tabsSampleWithContent';
-import TabsSampleSelectedTabKey from './tabsSampleSelectedTabKey';
-// eslint-disable-next-line import/no-named-default, import/extensions
+import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/tabs';
+/* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
     location: PropTypes.shape({
@@ -23,7 +21,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function TabsExample(props) {
+function DocsTabs(props) {
     const {
         location: {
             pathname,
@@ -46,51 +44,37 @@ function TabsExample(props) {
                         {description}
                     </Typography>
 
-                    <Heading anchorLink="children" variant="h2">
-                        Simple Tabs panel
+                    {/**
+                     * Solid Button
+                     */}
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Solid Button
                     </Heading>
 
-                    <Typography variant="body1">
-                        A simple Tabs panel.
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
                     </Typography>
+
+                    {/* <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonSolid').default}
+                    >
+                        <ExampleSolid />
+                    </Example> */}
                 </MarkdownContainer>
 
-                <Example rawCode={require('!!raw-loader!./tabsSample.jsx').default}>
-                    <TabsSample />
-                </Example>
-
-                <MarkdownContainer>
-                    <Heading anchorLink="children" variant="h2">
-                        Panel With Content
-                    </Heading>
-                    <Typography variant="body1">
-                        The panel content can be set inside the tab item object.
-                    </Typography>
-                </MarkdownContainer>
-
-                <Example rawCode={require('!!raw-loader!./tabsSampleWithContent.jsx').default}>
-                    <TabsSampleWithContent />
-                </Example>
-
-                <MarkdownContainer>
-                    <Heading anchorLink="children" variant="h2">
-                        Selected Tab Key
-                    </Heading>
-                    <Typography variant="body1">
-                        The selected tab can programmatically be changed.
-                    </Typography>
-                </MarkdownContainer>
-
-                <Example rawCode={require('!!raw-loader!./tabsSampleSelectedTabKey.jsx').default}>
-                    <TabsSampleSelectedTabKey />
-                </Example>
-
-                <ComponentVersionIdentifier pathname={pathname} />
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
 
-TabsExample.propTypes = propTypes;
+DocsTabs.propTypes = propTypes;
 
-export default TabsExample;
+export default DocsTabs;

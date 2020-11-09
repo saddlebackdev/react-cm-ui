@@ -4,10 +4,11 @@ import React, {
 import {
     isFunction,
 } from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Classnames from 'classnames';
-import Typography from '../../dataDisplay/typography';
 import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
+import withStyles from '../../styles/withStyles';
+import Typography from '../../dataDisplay/typography';
 
 const propTypes = {
     /**
@@ -22,6 +23,8 @@ const propTypes = {
      * Aditional classes passed from the parent <TabsTabs /> component to override the label styling.
      */
     classes: PropTypes.shape({
+        inverse: PropTypes.string,
+        root: PropTypes.string,
         tabLabel: PropTypes.string,
         tabLabelSelected: PropTypes.string,
     }),
@@ -29,6 +32,10 @@ const propTypes = {
      * Tab identifier
      */
     id: PropTypes.string.isRequired,
+    /**
+     * If `true`, Tab will be formatted to appear on dark backgrounds.
+     */
+    inverse: PropTypes.bool,
     /**
      * General <TabsTabs /> onChange function, called on <TabsTab /> click.
      */
@@ -50,8 +57,14 @@ const propTypes = {
 const defaultProps = {
     classes: {},
     children: undefined,
+    inverse: false,
     onChange: undefined,
     onClick: undefined,
+};
+
+const styles = {
+    inverse: {},
+    root: {},
 };
 
 /**
@@ -98,19 +111,18 @@ class TabsTab extends Component {
             selected,
         } = this.props;
 
-        const tabLabelClassNames = Classnames(
-            classes.tabLabel,
-            `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
-            {
-                [classes.tabLabelSelected]: selected,
-                [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
-            },
-        );
-
         return (
             <Typography
+                className={ClassNames(
+                    `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
+                    classes.tabLabel,
+                    {
+                        [classes.tabLabelSelected]: selected,
+                        [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
+                    },
+                )}
+                component="div"
                 variant="h4"
-                className={tabLabelClassNames}
             >
                 {children}
             </Typography>
@@ -119,13 +131,23 @@ class TabsTab extends Component {
 
     render() {
         const {
+            classes,
             classNames,
             id,
+            inverse,
         } = this.props;
+
+        const rootClasses = ClassNames(
+            classes.root,
+            classNames,
+            {
+                [classes.inverse]: inverse,
+            },
+        );
 
         return (
             <div
-                className={classNames}
+                className={rootClasses}
                 id={id}
                 onClick={this.onTabClick}
                 ref={(e) => { this.tab = e; }}
@@ -140,4 +162,4 @@ class TabsTab extends Component {
 TabsTab.propTypes = propTypes;
 TabsTab.defaultProps = defaultProps;
 
-export default TabsTab;
+export default withStyles(styles)(TabsTab);

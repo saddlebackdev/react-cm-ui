@@ -37,15 +37,16 @@ const propTypes = {
      * Custom classes to override the default styling
      */
     classes: PropTypes.shape({
+        inverse: PropTypes.string,
         root: PropTypes.string,
         tab: PropTypes.string,
         tabsPanel: PropTypes.string,
         tabsPanelContent: PropTypes.string,
     }),
     /**
-     * onChange active tab callback
+     * If `true`, Tabs will be formatted to appear on dark backgrounds.
      */
-    onChange: PropTypes.func,
+    inverse: PropTypes.bool,
     /**
      * List of the tabs objects
      */
@@ -57,6 +58,10 @@ const propTypes = {
             onClick: PropTypes.func,
         }),
     ),
+    /**
+     * onChange active tab callback
+     */
+    onChange: PropTypes.func,
     /**
      * Resize recalculation frecuency in milliseconds
      */
@@ -74,6 +79,7 @@ const propTypes = {
 const defaultProps = {
     beforeChange: undefined,
     classes: null,
+    inverse: false,
     items: [],
     onChange: undefined,
     resizeThrottle: 100,
@@ -91,6 +97,7 @@ const styles = (theme) => {
     const textColorPrimary = get(theme, 'palette.text.primary');
 
     return {
+        inverse: {},
         root: {
             position: 'relative',
             '& .button_dropdown': {
@@ -553,6 +560,7 @@ class Tabs extends Component {
     render() {
         const {
             classes,
+            inverse,
             withContent,
         } = this.props;
 
@@ -564,9 +572,12 @@ class Tabs extends Component {
 
         const selectedTabKey = this.getSelectedTabKey();
 
-        const containerClasses = Classnames(
+        const rootClasses = Classnames(
             classes.root,
             `${BEM_NAVIGATION_TABS}--container`,
+            {
+                [classes.inverse]: inverse,
+            },
         );
 
         const tabsClasses = Classnames(
@@ -609,7 +620,7 @@ class Tabs extends Component {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 ref={(ref) => { this.tabsWrapper = ref; }}
                 role="presentation"
             >

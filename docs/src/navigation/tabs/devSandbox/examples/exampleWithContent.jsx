@@ -5,14 +5,18 @@ const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
     getContent: () => `Example Tab ${tabNumber} content`,
     key: `exampleTab${tabNumber}`,
     // eslint-disable-next-line no-console
-    onClick: (tabObject) => { console.log(`Example Tab ${tabNumber} clicked`, tabObject); },
+    onClick: (clickedTab) => { console.log(`Example Tab ${tabNumber} clicked`, clickedTab); },
     title: `Example Tab ${tabNumber}`,
 }));
 
-function TabsSample() {
+function ExampleWithContent() {
     return (
-        <Tabs items={items} />
+        <Tabs
+            items={items}
+            selectedTabKey={items[0].key}
+            withContent
+        />
     );
 }
 
-export default TabsSample;
+export default ExampleWithContent;
