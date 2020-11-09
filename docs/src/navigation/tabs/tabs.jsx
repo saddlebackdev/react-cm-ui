@@ -8,6 +8,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
+import ExampleContainedTabs from './examples/exampleContainedTabs';
+import ExampleStandardTabs from './examples/exampleStandardTabs';
+import ExampleStandardTabsDarkBackground from './examples/exampleStandardTabsDarkBackground';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -44,27 +47,64 @@ function DocsTabs(props) {
                         {description}
                     </Typography>
 
-                    {/**
-                     * Solid Button
-                     */}
                     <Heading
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Solid Button
+                        Standard Tabs
                     </Heading>
 
                     <Typography
                         variant="body1"
                     >
-                        Types
+                        Light background.
                     </Typography>
 
-                    {/* <Example
-                        rawCode={require('!!raw-loader!./examples/exampleButtonSolid').default}
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleStandardTabs').default}
                     >
-                        <ExampleSolid />
-                    </Example> */}
+                        <ExampleStandardTabs />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Standard Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleStandardTabsDarkBackground').default}
+                    >
+                        <ExampleStandardTabsDarkBackground />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Contained Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleContainedTabs').default}
+                    >
+                        <ExampleContainedTabs />
+                    </Example>
                 </MarkdownContainer>
 
                 <ComponentVersionIdentifier

@@ -17,7 +17,6 @@ import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/na
 
 function DocsTabsSandbox() {
     const {
-        description,
         displayName,
     } = rootDoc;
 
@@ -25,13 +24,6 @@ function DocsTabsSandbox() {
         <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
-                    <Typography
-                        className="description"
-                        variant="body1"
-                    >
-                        {description}
-                    </Typography>
-
                     <Heading anchorLink="children" variant="h2">
                         Simple Tabs panel
                     </Heading>

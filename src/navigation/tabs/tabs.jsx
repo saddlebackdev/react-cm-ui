@@ -37,12 +37,19 @@ const propTypes = {
      * Custom classes to override the default styling
      */
     classes: PropTypes.shape({
+        contained: PropTypes.string,
         inverse: PropTypes.string,
+        label: PropTypes.string,
         root: PropTypes.string,
+        selected: PropTypes.string,
         tab: PropTypes.string,
         tabsPanel: PropTypes.string,
         tabsPanelContent: PropTypes.string,
     }),
+    /**
+     * If `true`, Tabs will be contained.
+     */
+    contained: PropTypes.bool,
     /**
      * If `true`, Tabs will be formatted to appear on dark backgrounds.
      */
@@ -79,6 +86,7 @@ const propTypes = {
 const defaultProps = {
     beforeChange: undefined,
     classes: null,
+    contained: false,
     inverse: false,
     items: [],
     onChange: undefined,
@@ -88,16 +96,10 @@ const defaultProps = {
 };
 
 const styles = (theme) => {
-    const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
     const borderColorSecondary = get(theme, 'palette.border.secondary');
-    const colorActivePrimary = get(theme, 'palette.active.main');
     const colorHighlight = get(theme, 'palette.cyan[500]');
-    const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
-    const textColorSecondary = get(theme, 'palette.text.secondary');
-    const textColorPrimary = get(theme, 'palette.text.primary');
 
     return {
-        inverse: {},
         root: {
             position: 'relative',
             '& .button_dropdown': {
@@ -121,31 +123,6 @@ const styles = (theme) => {
         tabsPanelContent: {
             padding: '10px 0 10px 0',
             borderTop: `1px solid ${borderColorSecondary}`,
-        },
-        tab: {
-            cursor: 'pointer',
-            zIndex: 1,
-            whiteSpace: 'nowrap',
-            padding: '10px 10px 0 0',
-            outline: 'none',
-            '&:not(:first-child)': {
-                padding: '10px 10px 0 10px',
-            },
-        },
-        tabLabel: {
-            fontSize: 14,
-            fontWeight: fontWeightMedium,
-            color: textColorSecondary,
-            paddingBottom: 5,
-            transition: 'color 0.1s, border-bottom 0.1s',
-            borderBottom: `2px solid ${borderColorContrastPrimary}`,
-            '&:hover': {
-                color: textColorPrimary,
-            },
-        },
-        tabLabelSelected: {
-            color: `${textColorPrimary} !important`,
-            borderBottom: `2px solid ${colorActivePrimary}`,
         },
     };
 };
@@ -441,6 +418,8 @@ class Tabs extends Component {
     getTabProps(tab = {}) {
         const {
             classes,
+            contained,
+            inverse,
         } = this.props;
 
         const {
@@ -456,6 +435,11 @@ class Tabs extends Component {
 
         return {
             children: title,
+            classes: {
+                contained: classes.contained,
+                label: classes.label,
+                selected: classes.selected,
+            },
             classNames: this.getClassNamesFor('tab', {
                 className,
                 collapsed,
@@ -463,8 +447,9 @@ class Tabs extends Component {
                 selected,
                 tabIndex,
             }),
-            classes,
+            contained,
             id: PREFIX_TAB + key,
+            inverse,
             key: PREFIX_TAB + key,
             originalKey: key,
             onClick,
@@ -560,7 +545,6 @@ class Tabs extends Component {
     render() {
         const {
             classes,
-            inverse,
             withContent,
         } = this.props;
 
@@ -575,9 +559,6 @@ class Tabs extends Component {
         const rootClasses = Classnames(
             classes.root,
             `${BEM_NAVIGATION_TABS}--container`,
-            {
-                [classes.inverse]: inverse,
-            },
         );
 
         const tabsClasses = Classnames(

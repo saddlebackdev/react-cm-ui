@@ -20,14 +20,20 @@ const propTypes = {
      */
     classNames: PropTypes.string.isRequired,
     /**
-     * Aditional classes passed from the parent <TabsTabs /> component to override the label styling.
+     * Aditional classes passed from the parent <TabsTabs /> component to
+     * override the label styling.
      */
     classes: PropTypes.shape({
+        contained: PropTypes.string,
         inverse: PropTypes.string,
         root: PropTypes.string,
-        tabLabel: PropTypes.string,
-        tabLabelSelected: PropTypes.string,
+        label: PropTypes.string,
+        selected: PropTypes.string,
     }),
+    /**
+     * If `true`, Tab will be contained.
+     */
+    contained: PropTypes.bool,
     /**
      * Tab identifier
      */
@@ -57,15 +63,77 @@ const propTypes = {
 const defaultProps = {
     classes: {},
     children: undefined,
+    contained: false,
     inverse: false,
     onChange: undefined,
     onClick: undefined,
 };
 
-const styles = {
+const styles = ({
+    palette,
+    shape,
+    typography,
+}) => ({
+    contained: {},
     inverse: {},
-    root: {},
-};
+    label: {
+        color: palette.text.secondary,
+        fontSize: 14,
+        fontWeight: typography.fontWeightMedium,
+        paddingBottom: 5,
+        position: 'relative',
+        transition: 'color 0.1s, border-bottom 0.1s',
+        '&:hover': {
+            color: palette.text.primary,
+        },
+        '&$contained': {
+            borderRadius: shape.borderRadius.main,
+            backgroundColor: palette.hexToRGBA(palette.background.primary, 0.31),
+            color: palette.text.primary,
+            fontWeight: typography.fontWeightBold,
+            lineHeight: '30px',
+            padding: [[0, 11]],
+        },
+        '&$inverse:not($contained)': {
+            color: palette.hexToRGBA(palette.background.primary, 0.31),
+            fontWeight: typography.fontWeightBold,
+        },
+    },
+    root: {
+        cursor: 'pointer',
+        zIndex: 1,
+        whiteSpace: 'nowrap',
+        padding: '10px 10px 0 0',
+        outline: 'none',
+        '&:not(:first-child):not($contained)': {
+            padding: '10px 11px 0 11px',
+        },
+        '&$contained': {
+            padding: [[10, 4, 0]],
+        },
+    },
+    selected: {
+        color: palette.text.primary,
+        '&:not($contained)::after': {
+            backgroundColor: palette.active.main,
+            bottom: -3,
+            content: '""',
+            height: 2,
+            left: 0,
+            position: 'absolute',
+            right: 0,
+        },
+        '&$contained': {
+            backgroundColor: palette.background.primary,
+        },
+        '&:not($contained)$inverse': {
+            color: palette.text.contrastText,
+            '&::after': {
+                backgroundColor: palette.background.primary,
+            },
+        },
+    },
+});
 
 /**
  * Used to render pages sections, built from the <TabsTabs /> parent component.
@@ -74,7 +142,6 @@ class TabsTab extends Component {
     constructor(props) {
         super(props);
         this.onTabClick = this.onTabClick.bind(this);
-        this.renderTab = this.renderTab.bind(this);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -104,44 +171,22 @@ class TabsTab extends Component {
         }
     }
 
-    renderTab() {
+    render() {
         const {
             children,
             classes,
-            selected,
-        } = this.props;
-
-        return (
-            <Typography
-                className={ClassNames(
-                    `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
-                    classes.tabLabel,
-                    {
-                        [classes.tabLabelSelected]: selected,
-                        [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
-                    },
-                )}
-                component="div"
-                variant="h4"
-            >
-                {children}
-            </Typography>
-        );
-    }
-
-    render() {
-        const {
-            classes,
             classNames,
+            contained,
             id,
             inverse,
+            selected,
         } = this.props;
 
         const rootClasses = ClassNames(
             classes.root,
             classNames,
             {
-                [classes.inverse]: inverse,
+                [classes.contained]: contained,
             },
         );
 
@@ -153,7 +198,22 @@ class TabsTab extends Component {
                 ref={(e) => { this.tab = e; }}
                 role="presentation"
             >
-                {this.renderTab()}
+                <Typography
+                    className={ClassNames(
+                        `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
+                        classes.label,
+                        {
+                            [classes.contained]: contained,
+                            [classes.inverse]: inverse,
+                            [classes.selected]: selected,
+                            [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
+                        },
+                    )}
+                    component="div"
+                    variant="h4"
+                >
+                    {children}
+                </Typography>
             </div>
         );
     }
