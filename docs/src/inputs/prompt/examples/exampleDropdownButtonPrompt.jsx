@@ -4,7 +4,7 @@ import {
 } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function PromptDropdownButtonExample() {
+function ExampleDropdownButtonPrompt() {
     const [showPrompt, setShowPrompt] = useState(false);
 
     function onPromptClick(type) {
@@ -71,4 +71,4 @@ function PromptDropdownButtonExample() {
     );
 }
 
-export default PromptDropdownButtonExample;
+export default ExampleDropdownButtonPrompt;
