@@ -21,9 +21,9 @@ const propTypes = {
         PropTypes.shape({}),
     ),
     router: PropTypes.shape({
-        routes: PropTypes.shape({
+        routes: PropTypes.arrayOf(PropTypes.shape({
             path: PropTypes.string,
-        }),
+        })),
     }).isRequired,
 };
 
@@ -69,7 +69,7 @@ function Tabs(props) {
             map(items, (item, index) => {
                 if (!item.omit) {
                     return {
-                        key: index,
+                        key: `${index}`,
                         onClick: () => onTabClick(item.path, index),
                         title: item.label,
                     };
