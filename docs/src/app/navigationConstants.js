@@ -104,11 +104,6 @@ export const navigationItems = [
                         path: 'label',
                     },
                     {
-                        component: 'list',
-                        label: 'List',
-                        path: 'list',
-                    },
-                    {
                         component: 'personContactInfo',
                         label: 'Person Contact Info',
                         path: 'person-contact-info',
@@ -220,11 +215,6 @@ export const navigationItems = [
                             },
                         ],
                         path: 'dropdown-button',
-                    },
-                    {
-                        component: 'dropdownMenu',
-                        label: 'Dropdown Menu',
-                        path: 'dropdown-menu',
                     },
                     {
                         component: 'durationPicker',
@@ -524,11 +514,6 @@ export const navigationItems = [
                         component: 'rail',
                         label: 'Rail',
                         path: 'rail',
-                    },
-                    {
-                        component: 'titleBar',
-                        label: 'Title Bar',
-                        path: 'title-bar',
                     },
                 ],
                 path: 'surfaces',

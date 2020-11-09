@@ -7,10 +7,8 @@ export { default as DataGrid } from './dataDisplay/dataGrid';
 export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
 export { default as EmailLink } from './dataDisplay/emailLink';
-export { default as Header } from './dataDisplay/header';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
-export { default as Label } from './dataDisplay/label';
 export { default as List } from './dataDisplay/list';
 export { default as PersonContactInfo } from './dataDisplay/personContactInfo';
 export { default as PersonCoreMilestones } from './dataDisplay/personCoreMilestones';
@@ -33,7 +31,6 @@ export { default as Button } from './inputs/button';
 export { default as Checkbox } from './inputs/checkbox';
 export { default as DatePickerCalendar } from './inputs/datePickerCalendar';
 export { default as DatePickerInput } from './inputs/datePickerInput';
-export { default as Dropdown } from './inputs/dropdown';
 export { default as DropdownButton } from './inputs/dropdownButton';
 export { default as DropdownMenu } from './inputs/dropdownMenu';
 export { default as DurationPicker } from './inputs/durationPicker';
@@ -48,7 +45,6 @@ export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
-export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';
@@ -70,7 +66,6 @@ export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
 export { default as Modal } from './surfaces/modal';
 export { default as Rail } from './surfaces/rail';
-export { default as TitleBar } from './surfaces/titleBar';
 
 // Utils
 export { default as Collapse } from './utils/collapse';

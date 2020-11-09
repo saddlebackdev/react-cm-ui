@@ -9,13 +9,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BannerItem from './bannerItem';
-import Header from '../header';
+import Typography from '../typography';
 import Icon from '../icon';
 import domUtils from '../../utils/domUtils';
-import withTheme from '../../styles/withTheme';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        heading: PropTypes.shape,
+    }),
     className: PropTypes.string,
     id: PropTypes.oneOfType([
         PropTypes.number,
@@ -51,6 +54,7 @@ const propTypes = {
 
 const defaultProps = {
     children: undefined,
+    classes: null,
     className: undefined,
     level: undefined,
     levelIcon: undefined,
@@ -62,6 +66,19 @@ const defaultProps = {
     topPosition: undefined,
     type: undefined,
 };
+
+const styles = () => ({
+    heading: {
+        marginBottom: '5px',
+        paddingRight: ({ type }) => {
+            if (type === 'notification') {
+                return 16;
+            }
+
+            return null;
+        },
+    },
+});
 
 class Banner extends React.Component {
     constructor(props) {
@@ -184,6 +201,7 @@ class Banner extends React.Component {
     render() {
         const {
             children,
+            classes,
             className,
             id,
             level,
@@ -193,6 +211,7 @@ class Banner extends React.Component {
             title,
             type,
         } = this.props;
+
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -237,15 +256,14 @@ class Banner extends React.Component {
                         </div>
 
                         <div className="banner-message-container">
-                            <Header
-                                size="small"
-                                style={{
-                                    marginBottom: '5px',
-                                    paddingRight: hasCloseButton ? '16px' : null,
+                            <Typography
+                                classes={{
+                                    root: classes.heading,
                                 }}
+                                variant="h4"
                             >
                                 {title}
-                            </Header>
+                            </Typography>
 
                             {message ? (
                                 <span className="font-size-xxsmall">{message}</span>
@@ -280,4 +298,4 @@ Banner.Item = BannerItem;
 Banner.propTypes = propTypes;
 Banner.defaultProps = defaultProps;
 
-export default withTheme(Banner);
+export default withStyles(styles, { withTheme: true })(Banner);

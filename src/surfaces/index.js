@@ -8,4 +8,3 @@ export { default as FiltersRail } from './filtersRail';
 export { default as InfoBar } from './infoBar';
 export { default as Modal } from './modal';
 export { default as Rail } from './rail';
-export { default as TitleBar } from './titleBar';
