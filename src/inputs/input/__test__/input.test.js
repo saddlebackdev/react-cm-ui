@@ -4,8 +4,8 @@
  */
 
 /**
- * NOTE: This unit test is not done for the Input, they were only introduced to test peices touched
- * from the gap (v1 - v2).
+ * NOTE: This unit test fixture does not provide full coverage for the Input component.
+ * Only tests needed cover pieces touched from the gap (v1 - v2) have been written at this time.
  */
 
 import React from 'react';
