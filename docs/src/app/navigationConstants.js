@@ -268,6 +268,18 @@ export const navigationItems = [
                     {
                         component: 'prompt',
                         label: 'Prompt',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'prompt',
                     },
                     {

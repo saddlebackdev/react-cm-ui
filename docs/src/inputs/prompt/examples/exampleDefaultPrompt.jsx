@@ -1,11 +1,11 @@
+import React from 'react';
 import {
     A,
     Button,
     Prompt,
 } from 'react-cm-ui';
-import React from 'react';
 
-function PromptExample() {
+function ExampleDefaultPrompt() {
     return (
         <div>
             <Prompt inline>
@@ -22,4 +22,4 @@ function PromptExample() {
     );
 }
 
-export default PromptExample;
+export default ExampleDefaultPrompt;

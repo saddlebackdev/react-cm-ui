@@ -62,7 +62,7 @@ export const buttonPropTypes = {
     style: PropTypes.shape({}),
     target: PropTypes.oneOf(['_blank']),
     /**
-     * If `true`, the button's text is only showed.
+     * If `true`, only the button's text is shown.
      */
     text: PropTypes.bool,
     title: PropTypes.string,
