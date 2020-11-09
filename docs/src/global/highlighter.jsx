@@ -1,11 +1,10 @@
-import './highlighter.scss';
-
 import { prism, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import ClassNames from 'classnames';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -28,6 +27,59 @@ const defaultProps = {
     type: 'block',
 };
 
+const useStyles = makeStyles((theme) => ({
+    block: {
+        borderBottom: `1px solid ${theme.palette.border.primary}`,
+        borderTop: `1px solid ${theme.palette.border.primary}`,
+        '& > div': {
+            borderRadius: 3,
+        },
+        '& pre': {
+            fontSize: theme.typography.pxToRem(13.5),
+            lineHeight: 20,
+            padding: '22px 11px !important',
+            margin: '0 !important',
+        },
+        '& code': {
+            backgroundColor: 'transparent',
+            color: 'inherit',
+            fontSize: 'inherit',
+            padding: 0,
+        },
+        '&:last-child': {
+            marginBottom: '0 !important',
+        },
+        '& + .highlighter': {
+            marginTop: 33,
+        },
+    },
+    inline: {
+        margin: '22px 22px 33px',
+        '&:not($themeDark)': {
+            backgroundColor: `${theme.palette.background.secondary} !important`,
+        },
+        '& pre': {
+            border: 0,
+            display: 'inline-block !important',
+            fontSize: theme.typography.pxToRem(13.5),
+            margin: '0 !important',
+        },
+        '& code': {
+            backgroundColor: 'transparent',
+            color: 'inherit',
+            fontSize: 'inherit',
+            padding: 0,
+        },
+    },
+    root: {
+        [theme.breakpoints.up('md')]: {
+            margin: '44px 0',
+        },
+    },
+    themeDark: {},
+    themeLight: {},
+}));
+
 function Highlighter(props) {
     const {
         children,
@@ -39,12 +91,21 @@ function Highlighter(props) {
         theme,
         type,
     } = props;
-    const containerClasses = ClassNames('highlighter', className, {
-        block: type === 'block',
-        inline: type === 'inline',
-        theme_dark: theme === 'dark',
-        theme_light: theme === 'light',
-    });
+
+    const classes = useStyles();
+
+    const rootClasses = ClassNames(
+        'highlighter',
+        classes.root,
+        className,
+        {
+            [classes.block]: type === 'block',
+            [classes.inline]: type === 'inline',
+            [classes.themeDark]: theme === 'dark',
+            [classes.themeLight]: theme === 'light',
+        },
+    );
+
     const syntaxHighlighter = (
         <SyntaxHighlighter
             customStyle={customStyle}
@@ -67,7 +128,10 @@ function Highlighter(props) {
 
     if (type === 'block') {
         return (
-            <div className={containerClasses} style={style}>
+            <div
+                className={rootClasses}
+                style={style}
+            >
                 <ScrollBar
                     autoHeight
                     autoHeightMin={328}
@@ -83,7 +147,7 @@ function Highlighter(props) {
     }
 
     return (
-        <div className={containerClasses} style={style}>
+        <div className={rootClasses} style={style}>
             {syntaxHighlighter}
         </div>
     );

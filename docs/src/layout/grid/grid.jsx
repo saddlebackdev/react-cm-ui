@@ -1,9 +1,8 @@
 import {
     Typography,
-    versions,
 } from 'react-cm-ui';
 import {
-    filter, camelCase,
+    camelCase,
 } from 'lodash';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';

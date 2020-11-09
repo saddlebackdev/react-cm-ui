@@ -1,7 +1,7 @@
 import { Input } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function ExampleDefaultInput() {
+function ExampleThemeActiveConstrastInput() {
     const [value, setValue] = useState('');
 
     const onChange = (newValue) => {
@@ -14,9 +14,10 @@ function ExampleDefaultInput() {
             label="Label"
             onChange={onChange}
             placeholder="Placeholder"
+            theme="activeContrast"
             value={value}
         />
     );
 }
 
-export default ExampleDefaultInput;
+export default ExampleThemeActiveConstrastInput;

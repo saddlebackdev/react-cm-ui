@@ -188,7 +188,6 @@ class CoreAppNavigation extends React.PureComponent {
                         <Divider
                             className={classes.divider}
                             color="inverse"
-                            inverse
                             relaxed
                         />
                     )}

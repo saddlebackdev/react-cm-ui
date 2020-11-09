@@ -3,7 +3,6 @@ import {
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';

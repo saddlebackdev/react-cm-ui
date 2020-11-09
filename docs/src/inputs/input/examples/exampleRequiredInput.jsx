@@ -14,6 +14,7 @@ function ExampleDefaultInput() {
             label="Label"
             onChange={onChange}
             placeholder="Placeholder"
+            required
             value={value}
         />
     );
