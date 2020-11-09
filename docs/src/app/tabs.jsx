@@ -33,7 +33,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(() => ({
     root: {
-        marginTop: -4,
+        marginTop: -2,
     },
 }));
 
