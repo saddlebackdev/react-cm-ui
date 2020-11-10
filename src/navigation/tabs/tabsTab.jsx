@@ -24,16 +24,12 @@ const propTypes = {
      * override the label styling.
      */
     classes: PropTypes.shape({
-        contained: PropTypes.string,
+        mobile: PropTypes.string,
         inverse: PropTypes.string,
         root: PropTypes.string,
         label: PropTypes.string,
         selected: PropTypes.string,
     }),
-    /**
-     * If `true`, Tab will be contained.
-     */
-    contained: PropTypes.bool,
     /**
      * Tab identifier
      */
@@ -42,6 +38,10 @@ const propTypes = {
      * If `true`, Tab will be formatted to appear on dark backgrounds.
      */
     inverse: PropTypes.bool,
+    /**
+     * If `true`, Tabs will look more like actionable buttons.
+     */
+    mobile: PropTypes.bool,
     /**
      * General <TabsTabs /> onChange function, called on <TabsTab /> click.
      */
@@ -63,8 +63,8 @@ const propTypes = {
 const defaultProps = {
     classes: {},
     children: undefined,
-    contained: false,
     inverse: false,
+    mobile: false,
     onChange: undefined,
     onClick: undefined,
 };
@@ -72,10 +72,11 @@ const defaultProps = {
 const styles = ({
     palette,
     shape,
+    spacing,
     typography,
 }) => ({
-    contained: {},
     inverse: {},
+    mobile: {},
     label: {
         color: palette.text.secondary,
         fontSize: 14,
@@ -86,35 +87,34 @@ const styles = ({
         '&:hover': {
             color: palette.text.primary,
         },
-        '&$contained': {
+        '&$mobile': {
             borderRadius: shape.borderRadius.main,
             backgroundColor: palette.hexToRGBA(palette.background.primary, 0.31),
-            color: palette.text.primary,
+            color: palette.text.contrastText,
             fontWeight: typography.fontWeightBold,
             lineHeight: '30px',
             padding: [[0, 11]],
         },
-        '&$inverse:not($contained)': {
+        '&$inverse:not($mobile)': {
             color: palette.hexToRGBA(palette.background.primary, 0.31),
             fontWeight: typography.fontWeightBold,
         },
     },
     root: {
         cursor: 'pointer',
-        zIndex: 1,
-        whiteSpace: 'nowrap',
-        padding: '10px 10px 0 0',
         outline: 'none',
-        '&:not(:first-child):not($contained)': {
-            padding: '10px 11px 0 11px',
+        padding: [[0, spacing(1)]],
+        whiteSpace: 'nowrap',
+        '&:not(:first-child):not($mobile)': {
+            padding: [[0, spacing(1)]],
         },
-        '&$contained': {
-            padding: [[10, 4, 0]],
+        '&$mobile': {
+            padding: [[0, 4, 0]],
         },
     },
     selected: {
         color: palette.text.primary,
-        '&:not($contained)::after': {
+        '&:not($mobile)::after': {
             backgroundColor: palette.active.main,
             bottom: -3,
             content: '""',
@@ -123,10 +123,11 @@ const styles = ({
             position: 'absolute',
             right: 0,
         },
-        '&$contained': {
+        '&$mobile': {
             backgroundColor: palette.background.primary,
+            color: palette.text.primary,
         },
-        '&:not($contained)$inverse': {
+        '&:not($mobile)$inverse': {
             color: palette.text.contrastText,
             '&::after': {
                 backgroundColor: palette.background.primary,
@@ -176,7 +177,7 @@ class TabsTab extends Component {
             children,
             classes,
             classNames,
-            contained,
+            mobile,
             id,
             inverse,
             selected,
@@ -186,7 +187,7 @@ class TabsTab extends Component {
             classes.root,
             classNames,
             {
-                [classes.contained]: contained,
+                [classes.mobile]: mobile,
             },
         );
 
@@ -203,7 +204,7 @@ class TabsTab extends Component {
                         `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
                         classes.label,
                         {
-                            [classes.contained]: contained,
+                            [classes.mobile]: mobile,
                             [classes.inverse]: inverse,
                             [classes.selected]: selected,
                             [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,

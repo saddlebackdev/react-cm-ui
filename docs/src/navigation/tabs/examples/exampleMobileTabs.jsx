@@ -3,10 +3,9 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ExampleContainedTabs() {
+function ExampleMobileTabs() {
     return (
         <Tabs
-            contained
             inverse
             items={[
                 {
@@ -22,8 +21,9 @@ function ExampleContainedTabs() {
                     title: 'Label',
                 },
             ]}
+            mobile
         />
     );
 }
 
-export default ExampleContainedTabs;
+export default ExampleMobileTabs;

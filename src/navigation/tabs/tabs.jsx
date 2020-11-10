@@ -6,7 +6,6 @@ import Classnames from 'classnames';
 import {
     find,
     findIndex,
-    get,
     isFunction,
     isEqual,
     sortBy,
@@ -37,19 +36,17 @@ const propTypes = {
      * Custom classes to override the default styling
      */
     classes: PropTypes.shape({
-        contained: PropTypes.string,
         inverse: PropTypes.string,
         label: PropTypes.string,
+        mobile: PropTypes.string,
+        moreButton: PropTypes.string,
+        moreButtonInnerContainer: PropTypes.string,
         root: PropTypes.string,
         selected: PropTypes.string,
         tab: PropTypes.string,
         tabsPanel: PropTypes.string,
         tabsPanelContent: PropTypes.string,
     }),
-    /**
-     * If `true`, Tabs will be contained.
-     */
-    contained: PropTypes.bool,
     /**
      * If `true`, Tabs will be formatted to appear on dark backgrounds.
      */
@@ -65,6 +62,10 @@ const propTypes = {
             onClick: PropTypes.func,
         }),
     ),
+    /**
+     * If `true`, Tabs will look more like actionable buttons.
+     */
+    mobile: PropTypes.bool,
     /**
      * onChange active tab callback
      */
@@ -86,46 +87,50 @@ const propTypes = {
 const defaultProps = {
     beforeChange: undefined,
     classes: null,
-    contained: false,
     inverse: false,
     items: [],
+    mobile: false,
     onChange: undefined,
     resizeThrottle: 100,
     selectedTabKey: undefined,
     withContent: false,
 };
 
-const styles = (theme) => {
-    const borderColorSecondary = get(theme, 'palette.border.secondary');
-    const colorHighlight = get(theme, 'palette.cyan[500]');
-
-    return {
-        root: {
-            position: 'relative',
-            '& .button_dropdown': {
-                margin: '0',
-                padding: 0,
-                width: HIDDEN_TABS_ICON_WIDTH,
-                '& .icon': {
-                    marginRight: '00 !important',
-                },
-                '&-open': {
-                    '& .icon-use-path': {
-                        fill: `${colorHighlight} !important`,
-                    },
-                },
+const styles = ({ palette, spacing }) => ({
+    mobile: {},
+    moreButton: {
+        height: '26px !important',
+        margin: 0,
+        minHeight: '26px !important',
+        padding: 0,
+        '&.button_dropdown-open': {
+            '& .icon-use-path': {
+                fill: `${palette.cyan[500]} !important`,
             },
         },
-        tabsPanel: {
-            display: 'flex',
-            flexWrap: 'wrap',
+        '& .ui.icon': {
+            marginTop: '-4px !important',
         },
-        tabsPanelContent: {
-            padding: '10px 0 10px 0',
-            borderTop: `1px solid ${borderColorSecondary}`,
+    },
+    moreButtonInnerContainer: {
+        minHeight: 26,
+    },
+    root: {
+        margin: [[0, -spacing(1)]],
+        position: 'relative',
+        '&$mobile': {
+            margin: [[0, -4]],
         },
-    };
-};
+    },
+    tabsPanel: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    tabsPanelContent: {
+        padding: [[spacing(1)]],
+        borderTop: `1px solid ${palette.border.secondary}`,
+    },
+});
 
 /**
  * Component capable to hide/show its tabs under a drop down button according to the container size.
@@ -418,7 +423,7 @@ class Tabs extends Component {
     getTabProps(tab = {}) {
         const {
             classes,
-            contained,
+            mobile,
             inverse,
         } = this.props;
 
@@ -436,8 +441,8 @@ class Tabs extends Component {
         return {
             children: title,
             classes: {
-                contained: classes.contained,
                 label: classes.label,
+                mobile: classes.mobile,
                 selected: classes.selected,
             },
             classNames: this.getClassNamesFor('tab', {
@@ -447,10 +452,10 @@ class Tabs extends Component {
                 selected,
                 tabIndex,
             }),
-            contained,
             id: PREFIX_TAB + key,
             inverse,
             key: PREFIX_TAB + key,
+            mobile,
             originalKey: key,
             onClick,
             onChange: this.onChangeTab,
@@ -545,6 +550,7 @@ class Tabs extends Component {
     render() {
         const {
             classes,
+            mobile,
             withContent,
         } = this.props;
 
@@ -559,6 +565,9 @@ class Tabs extends Component {
         const rootClasses = Classnames(
             classes.root,
             `${BEM_NAVIGATION_TABS}--container`,
+            {
+                [classes.mobile]: mobile,
+            },
         );
 
         const tabsClasses = Classnames(
@@ -568,6 +577,12 @@ class Tabs extends Component {
 
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
+                classes={{
+                    root: classes.moreButton,
+                    innerContainer: classes.moreButtonInnerContainer,
+                }}
+                compact
+                icon
                 iconType="ellipsis-h"
                 optionsTheme="light"
                 text

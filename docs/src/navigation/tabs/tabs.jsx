@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-import ExampleContainedTabs from './examples/exampleContainedTabs';
+import ExampleWithContentTabs from './examples/exampleWithContentTabs';
+import ExampleMobileTabs from './examples/exampleMobileTabs';
 import ExampleStandardTabs from './examples/exampleStandardTabs';
 import ExampleStandardTabsDarkBackground from './examples/exampleStandardTabsDarkBackground';
 import Heading from '../../global/heading';
@@ -70,7 +71,7 @@ function DocsTabs(props) {
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Standard Tabs
+                        Standard Inversed Tabs
                     </Heading>
 
                     <Typography
@@ -90,7 +91,7 @@ function DocsTabs(props) {
                         anchorLink="solid-button"
                         variant="h2"
                     >
-                        Contained Tabs
+                        Mobile Tabs
                     </Heading>
 
                     <Typography
@@ -101,9 +102,28 @@ function DocsTabs(props) {
 
                     <Example
                         inverse
-                        rawCode={require('!!raw-loader!./examples/exampleContainedTabs').default}
+                        rawCode={require('!!raw-loader!./examples/exampleMobileTabs').default}
                     >
-                        <ExampleContainedTabs />
+                        <ExampleMobileTabs />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Contained Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleWithContentTabs').default}
+                    >
+                        <ExampleWithContentTabs />
                     </Example>
                 </MarkdownContainer>
 
