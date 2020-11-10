@@ -23,7 +23,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsCheckbox(props) {
+function DocsSwitch(props) {
     const {
         location: {
             pathname,
@@ -91,6 +91,6 @@ function DocsCheckbox(props) {
     );
 }
 
-DocsCheckbox.propTypes = propTypes;
+DocsSwitch.propTypes = propTypes;
 
-export default DocsCheckbox;
+export default DocsSwitch;

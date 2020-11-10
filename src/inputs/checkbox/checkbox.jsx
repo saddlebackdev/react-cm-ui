@@ -15,11 +15,11 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**
-     * Whether to align the checkbox to the right or left of a container.
+     * Whether to align the Checkbox to the right or left of a container.
      */
     align: PropTypes.oneOf(['left', 'right']),
     /**
-     * If `true`, the checkbox will be checked.
+     * If `true`, the Checkbox will be checked.
      */
     checked: PropTypes.bool,
     /**
