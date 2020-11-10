@@ -1,3 +1,10 @@
+/**
+ * NOTE: Greater than, lesser than symbols signifies a gap.
+ * e.g. designItems[0].version: '2.0.0 >' and devVersion: '2.0.0 <'. signifies that the dev
+ * component needs to be advanced to close the gap. Visa-versa would signify that design needs to
+ * advanced their component.
+ */
+
 const versions = {
     'react-cm-ui': {
         package: '10.0.0',
