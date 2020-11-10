@@ -54,7 +54,7 @@ const propTypes = {
         isThemeActiveConstrast: PropTypes.string,
     }).isRequired,
     /**
-     * A Input can be disabled.
+     * If `true`, the Input will be disabled.
      */
     disable: PropTypes.bool,
     /**
@@ -78,7 +78,7 @@ const propTypes = {
      */
     id: PropTypes.string,
     /**
-     * A Input can be formatted to appear on dark backgrounds better.
+     * If `true`, the Input will be formatted to appear on dark backgrounds better.
      */
     inverse: PropTypes.bool,
     /**
@@ -358,7 +358,7 @@ class Input extends React.PureComponent {
         this.state = {
             hasValue: !!props.value,
             isFocused: false,
-            requirementFullfillment: null,
+            requirementFulfillment: null,
         };
 
         this.onBlur = this.onBlur.bind(this);
@@ -378,9 +378,6 @@ class Input extends React.PureComponent {
         const { autoFocus } = this.props;
 
         if (autoFocus) {
-            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            // ReactDOM.findDOMNode(this.inputRef).focus();
-
             this.setState({
                 isFocused: true,
             });
@@ -575,7 +572,7 @@ class Input extends React.PureComponent {
 
         this.setState({
             hasValue: !!value,
-            requirementFullfillment: value ?
+            requirementFulfillment: value ?
                 REQUIREMENT_FULLFILLMENT_COMPLETE :
                 REQUIREMENT_FULLFILLMENT_INCOMPLETE,
         });
@@ -612,7 +609,7 @@ class Input extends React.PureComponent {
         const {
             hasValue,
             isFocused,
-            requirementFullfillment,
+            requirementFulfillment,
         } = this.state;
 
         const type = this.getType();
@@ -638,9 +635,9 @@ class Input extends React.PureComponent {
                 [classes.isNumberType]: type === 'number',
                 [classes.isRequired]: isRequired,
                 [classes.isRequirementComplete]:
-                    requirementFullfillment === REQUIREMENT_FULLFILLMENT_COMPLETE,
+                    requirementFulfillment === REQUIREMENT_FULLFILLMENT_COMPLETE,
                 [classes.isRequirementIncomplete]:
-                    requirementFullfillment === REQUIREMENT_FULLFILLMENT_INCOMPLETE,
+                    requirementFulfillment === REQUIREMENT_FULLFILLMENT_INCOMPLETE,
                 [classes.isThemeActiveConstrast]: theme === 'activeContrast',
             },
         );

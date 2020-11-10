@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function PromptDropdownButtonExample() {
+function ExampleDropdownButtonPrompt() {
     const [showPrompt, setShowPrompt] = useState(false);
 
     const classes = useStyles();
@@ -80,4 +80,4 @@ function PromptDropdownButtonExample() {
     );
 }
 
-export default PromptDropdownButtonExample;
+export default ExampleDropdownButtonPrompt;

@@ -15,7 +15,7 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**
-     * If `true`, the checkbox will be checked.
+     * If `true`, the Switch will be checked.
      */
     checked: PropTypes.bool,
     /**
@@ -334,7 +334,6 @@ class Switch extends React.Component {
                 this.setState({
                     isChecked: !isChecked,
                 }, () => {
-                    // eslint-disable-next-line no-underscore-dangle
                     this.inputRef.current.checked = !isChecked;
                 });
             }
