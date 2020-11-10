@@ -1,10 +1,9 @@
 /* eslint-disable react/no-danger */
 
-import './TableProps.scss';
-
-import _ from 'lodash';
 import { Table } from 'react-cm-ui';
+import _ from 'lodash';
 import ClassNames from 'classnames';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -23,10 +22,102 @@ const defaultProps = {
     style: {},
 };
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        margin: '11px -22px 0',
+        [theme.breakpoints.up(1024)]: {
+            margin: 'calc(2rem - .14285em) -22px 0',
+            '& .allowed-types': {
+                marginTop: 11,
+            },
+            '& .table_props--table_cell_name > .table_props--prop_name': {
+                display: 'block',
+            },
+            '& .table_props--mobile_info': {
+                display: 'none',
+            },
+        },
+        '& .ui.table': {
+            borderCollapse: 'separate',
+            borderSpacing: 0,
+            fontSize: theme.typography.pxToRem(16),
+            textAlign: 'left',
+            width: '100%',
+        },
+        '& th, & td': {
+            fontWeight: theme.typography.fontWeightBold,
+            padding: 11,
+            '&:first-child': {
+                paddingLeft: 0,
+            },
+            '&:last-child': {
+                paddingRight: 0,
+            },
+        },
+        '& p': {
+            margin: 0,
+        },
+        '& .table_props--allowed_types': {
+            color: theme.palette.text.secondary,
+            marginTop: 4,
+            '& .type': {
+                fontWeight: theme.typography.fontWeightMedium,
+                textTransform: 'capitalize',
+            },
+        },
+        '& td': {
+            fontSize: theme.typography.pxToRem(14),
+            fontWeight: theme.typography.fontWeightRegular,
+        },
+        '& .table_props--table_cell_name > code': {
+            display: 'none',
+        },
+        '& .table_props--mobile_info': {
+            margin: 0,
+            padding: 0,
+            '& dd, & dt': {
+                margin: 0,
+                padding: 0,
+            },
+            '& dt': {
+                color: theme.palette.text.secondary,
+                fontSize: theme.typography.pxToRem(14),
+                fontWeight: theme.typography.fontWeightMedium,
+                margin: '11px 0 1px',
+                '&:first-child': {
+                    marginTop: 0,
+                },
+            },
+            '& code': {
+                marginLeft: '-3px',
+            },
+        },
+        '& .table_props--prop_name, & .table_props--prop_type, & .table_props--prop_default': {
+            fontFamily: 'monospace',
+            fontSize: '90%',
+            padding: '2px 0',
+        },
+        '& .table_props--table_cell_name > .table_props--prop_name': {
+            display: 'none',
+        },
+    },
+}));
+
 function TableProps(props) {
-    const { props: componentProps, style } = props;
+    const {
+        props: componentProps,
+        style,
+    } = props;
+
+    const classes = useStyles();
+
     const bemBlockName = 'table_props';
-    const containerClasses = ClassNames(bemBlockName);
+
+    const rootClasses = ClassNames(
+        bemBlockName,
+        classes.root,
+    );
+
     let TableRowKey = 1;
 
     const TableRows = _.map(componentProps, (componentProp, index) => {
@@ -34,7 +125,9 @@ function TableProps(props) {
         const { description } = componentProp;
 
         return (
-            <Table.Row key={`${bemBlockName}--props_row_key-${TableRowKey}`}>
+            <Table.Row
+                key={`${bemBlockName}--props_row_key-${TableRowKey}`}
+            >
                 <Table.Cell className={`${bemBlockName}--table_cell_name`}>
                     <div className={`${bemBlockName}--prop_name`}>
                         {componentProp.name}
@@ -130,7 +223,9 @@ function TableProps(props) {
     });
 
     return (
-        <div className={containerClasses}>
+        <div
+            className={rootClasses}
+        >
             <Table
                 basic
                 fontSize="xsmall"

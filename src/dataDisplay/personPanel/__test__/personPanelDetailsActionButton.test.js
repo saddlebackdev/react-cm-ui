@@ -16,7 +16,7 @@ describe('<personPanelDetailsActionButton />', () => {
         onKeyDown: jest.fn(),
         onNoClick: jest.fn(),
         onYesClick: jest.fn(),
-        outlined: false,
+        outline: false,
         prompt: false,
         promptId: 'block_name--element_name-modifier',
         title: 'Example Title',
@@ -51,13 +51,13 @@ describe('<personPanelDetailsActionButton />', () => {
         wrapper = mountWithTheme(
             <PersonPanelDetailsActionButton
                 {...props}
-                outlined
+                outline
             />,
         );
 
         root = wrapper.find('button');
 
-        expect(root.hasClass(/(Button)-(outlined)-(\d+)/)).toEqual(true);
+        expect(root.hasClass(/(Button)-(outline)-(\d+)/)).toEqual(true);
     });
 
     it('Should render with the prompt classes', () => {
