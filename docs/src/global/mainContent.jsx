@@ -1,6 +1,5 @@
-import './mainContent.scss';
-
 import ClassNames from 'classnames';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,16 +14,34 @@ const defaultProps = {
     style: undefined,
 };
 
+const useStyles = makeStyles(() => ({
+    root: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        maxWidth: 980,
+    },
+}));
+
 function Main(props) {
     const {
         children,
         className,
         style,
     } = props;
-    const containerClasses = ClassNames('main--content', className);
+
+    const classes = useStyles();
+
+    const rootClasses = ClassNames(
+        'main--content',
+        classes.root,
+        className,
+    );
 
     return (
-        <div className={containerClasses} style={style}>
+        <div
+            className={rootClasses}
+            style={style}
+        >
             {children}
         </div>
     );

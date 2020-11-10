@@ -11,7 +11,7 @@ import {
     BEM_FILTERS_RAIL_ROW_COMPONENT,
 } from '../../global/constants';
 import Checkbox from '../../inputs/checkbox';
-import Grid from '../../layout/Grid';
+import Grid from '../../layout/grid';
 import Radio from '../../inputs/radio';
 import Select from '../../inputs/select';
 import makeStyles from '../../styles/makeStyles';

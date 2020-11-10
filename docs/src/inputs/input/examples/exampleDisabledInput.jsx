@@ -1,7 +1,7 @@
 import { Input } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function ExampleDefaultInput() {
+function ExampleDisabledInput() {
     const [value, setValue] = useState('');
 
     const onChange = (newValue) => {
@@ -10,6 +10,7 @@ function ExampleDefaultInput() {
 
     return (
         <Input
+            disable
             fluid
             label="Label"
             onChange={onChange}
@@ -19,4 +20,4 @@ function ExampleDefaultInput() {
     );
 }
 
-export default ExampleDefaultInput;
+export default ExampleDisabledInput;
