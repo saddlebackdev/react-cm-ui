@@ -9,13 +9,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
-import DurationPickerDaysHoursMinutesSecondsExample from './durationPickerDaysHoursMinutesSecondsExample';
-import DurationPickerDisabledExample from './durationPickerDisabledExample';
-import DurationPickerErrorHandlingExample from './durationPickerErrorHandlingExample';
-import DurationPickerLabelExample from './durationPickerLabelExample';
-import DurationPickerRequiredExample from './durationPickerRequiredExample';
-import DurationPickerSimpleExample from './durationPickerSimpleExample';
-import DurationPickerYearsMonthsDaysExample from './durationPickerYearsMonthsDaysExample';
+import ExampleDurationPickerDaysHoursMinutesSeconds from './examples/exampleDurationPickerDaysHoursMinutesSeconds';
+import ExampleDurationPickerDisabled from './examples/exampleDurationPickerDisabled';
+import ExampleDurationPickerErrorHandling from './examples/exampleDurationPickerErrorHandling';
+import ExampleDurationPickerLabel from './examples/exampleDurationPickerLabel';
+import ExampleDurationPickerRequired from './examples/exampleDurationPickerRequired';
+import ExampleDurationPickerSimple from './examples/exampleDurationPickerSimple';
+import ExampleDurationPickerYearsMonthsDays from './examples/exampleDurationPickerYearsMonthsDays';
 import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -70,9 +70,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerSimpleExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerSimple').default}
                 >
-                    <DurationPickerSimpleExample />
+                    <ExampleDurationPickerSimple />
                 </Example>
 
                 <MarkdownContainer>
@@ -89,9 +89,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerDaysHoursMinutesSecondsExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerDaysHoursMinutesSeconds').default}
                 >
-                    <DurationPickerDaysHoursMinutesSecondsExample />
+                    <ExampleDurationPickerDaysHoursMinutesSeconds />
                 </Example>
 
                 <MarkdownContainer>
@@ -107,9 +107,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerYearsMonthsDaysExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerYearsMonthsDays').default}
                 >
-                    <DurationPickerYearsMonthsDaysExample />
+                    <ExampleDurationPickerYearsMonthsDays />
                 </Example>
 
                 <MarkdownContainer>
@@ -130,9 +130,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerLabelExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerLabel').default}
                 >
-                    <DurationPickerLabelExample />
+                    <ExampleDurationPickerLabel />
                 </Example>
 
                 <MarkdownContainer>
@@ -153,9 +153,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerRequiredExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerRequired').default}
                 >
-                    <DurationPickerRequiredExample />
+                    <ExampleDurationPickerRequired />
                 </Example>
 
                 <MarkdownContainer>
@@ -176,9 +176,9 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerErrorHandlingExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerErrorHandling').default}
                 >
-                    <DurationPickerErrorHandlingExample />
+                    <ExampleDurationPickerErrorHandling />
                 </Example>
 
                 <MarkdownContainer>
@@ -199,16 +199,10 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerDisabledExample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleDurationPickerDisabled').default}
                 >
-                    <DurationPickerDisabledExample />
+                    <ExampleDurationPickerDisabled />
                 </Example>
-
-                <ComponentApi
-                    docs={[
-                        componentDoc,
-                    ]}
-                />
 
                 <ComponentVersionIdentifier
                     pathname={pathname}

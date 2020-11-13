@@ -17,13 +17,13 @@ import React from 'react';
 import Button from '../../inputs/button';
 import Checkbox from '../../inputs/checkbox/checkbox';
 import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
-import Dropdown from '../../inputs/dropdown/dropdown';
-import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
+import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
 import Header from '../../dataDisplay/header';
 import Icon from '../../dataDisplay/icon';
+import Select from '../../inputs/select';
 
 const breakpoints = {
     values: {
@@ -498,7 +498,7 @@ class FiltersDrawer extends React.Component {
                                                         className={itemClassName}
                                                         key={itemKey}
                                                     >
-                                                        <Dropdown
+                                                        <Select
                                                             clearable={false}
                                                             className={dropdown.className}
                                                             fluid
@@ -508,8 +508,7 @@ class FiltersDrawer extends React.Component {
                                                             }}
                                                             options={dropdown.options}
                                                             searchable={false}
-                                                            selection
-                                                            selectionOptionComponent={
+                                                            optionComponent={
                                                                 dropdown.selectionCustomComponent
                                                             }
                                                             style={dropdown.style}
@@ -557,7 +556,7 @@ class FiltersDrawer extends React.Component {
                                                         className={className}
                                                         key={itemKey}
                                                     >
-                                                        <Dropdown
+                                                        <Select
                                                             clearable={false}
                                                             className={multiSelect.className}
                                                             fluid
@@ -573,8 +572,7 @@ class FiltersDrawer extends React.Component {
                                                             options={modifiedOptions}
                                                             placeholder={multiSelect.placeholder}
                                                             searchable={false}
-                                                            selection
-                                                            selectionOptionComponent={
+                                                            optionComponent={
                                                                 multiSelect.selectionCustomComponent
                                                             }
                                                             style={multiSelect.style}

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from '../dropdown';
+import Select from '../select';
 import PhoneInputCountryDropdownItem from './phoneInputCountryDropdownItem';
 import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue';
 
@@ -84,17 +84,16 @@ class PhoneInputCountryDropdown extends React.PureComponent {
         const { selectedOption } = this.state;
 
         return (
-            <Dropdown
+            <Select
                 clearable={false}
                 disable={disable || disabled}
                 iconSize={10}
                 iconType="caret-down"
                 onChange={this.onChange}
                 options={options}
-                selection
-                selectionMenuContainerStyle={{ width: 'auto' }}
-                selectionOptionComponent={PhoneInputCountryDropdownItem}
-                selectionValueComponent={() => PhoneInputCountryDropdownValue(selectedOption)}
+                menuContainerStyle={{ width: 'auto' }}
+                optionComponent={PhoneInputCountryDropdownItem}
+                valueComponent={() => PhoneInputCountryDropdownValue(selectedOption)}
                 value={selectedOption}
             />
         );
