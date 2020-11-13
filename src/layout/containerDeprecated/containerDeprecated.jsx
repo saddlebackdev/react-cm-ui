@@ -63,46 +63,6 @@ const useStyles = makeStyles(({
                 maxWidth: `${1024 - width.navigation.md.expanded - 44}px`,
             },
         },
-        '& .ui.rail': {
-            position: 'absolute',
-        },
-        '& .container-action-bar': {
-            alignItems: 'center',
-            backgroundColor: palette.background.primary,
-            borderBottom: `1px solid ${palette.border.primary}`,
-            borderTop: `1px solid ${palette.border.primary}`,
-            display: 'flex',
-            justifyContent: 'flex-start',
-            minHeight: 70,
-            padding: '0 22px',
-            width: 'auto',
-            '&.container-action-bar-color': {
-                '&-inverse': {
-                    backgroundColor: palette.background.contrastPrimary,
-                },
-                '&-light': {
-                    backgroundColor: palette.background.light,
-                },
-                '&-nest': {
-                    backgroundColor: palette.background.secondary,
-                },
-                '&-primary': {
-                    backgroundColor: palette.background.primary,
-                },
-                '&-transparent': {
-                    backgroundColor: 'transparent',
-                },
-            },
-            '&.container-action-bar-stretch': {
-                margin: '0 -11px',
-                [breakpoints.up('md')]: {
-                    margin: '0 -22px',
-                },
-            },
-        },
-        '& .ui.sub-navigation + .container-action-bar': {
-            borderTop: 0,
-        },
     },
 }));
 
