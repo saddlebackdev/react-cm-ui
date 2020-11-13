@@ -84,12 +84,13 @@ function ContainerDeprecatedActionBar(props) {
         classes.root,
         className,
         {
-        'container-action-bar-color-inverse': color === 'inverse',
-        'container-action-bar-color-light': color === 'light',
-        'container-action-bar-color-nest': color === 'nest',
-        'container-action-bar-color-transparent': color === 'transparent',
-        'container-stretch': stretch,
-    });
+            'container-action-bar-color-inverse': color === 'inverse',
+            'container-action-bar-color-light': color === 'light',
+            'container-action-bar-color-nest': color === 'nest',
+            'container-action-bar-color-transparent': color === 'transparent',
+            'container-stretch': stretch,
+        },
+    );
 
     const ElementType = Utils.getElementType(as || 'header', props);
 
