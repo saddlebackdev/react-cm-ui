@@ -1,5 +1,5 @@
 import {
-    Button, Card, Drawer, Header, Icon, Input,
+    Button, Card, Drawer, Typography, Icon, Input,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -203,18 +203,19 @@ class ModulesDrawerNavigation extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Navigation */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Navigation
-                        <Header.Subheader>
-                            <span>For those times UI requires a navigation in the header to populate Drawer with different content.</span>
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        <span>For those times UI requires a navigation in the header to populate Drawer with different content.</span>
+                    </Typography>
 
                     <p>
                         <span>

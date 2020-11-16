@@ -1,7 +1,7 @@
 import {
     Card,
     Checkbox,
-    Header,
+    Typography,
     Rail,
 } from 'react-cm-ui';
 import React from 'react';
@@ -18,7 +18,7 @@ export default class PositionSample extends React.Component {
         return (
             <div>
                 <Rail position="left">
-                    <Header weight="bold">Select an Option</Header>
+                    <Typography weight="bold">Select an Option</Typography>
 
                     <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
                     <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
@@ -26,7 +26,7 @@ export default class PositionSample extends React.Component {
                 </Rail>
 
                 <Rail position="right">
-                    <Header weight="bold">Select an Option</Header>
+                    <Typography weight="bold">Select an Option</Typography>
 
                     <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
                     <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
@@ -65,22 +65,23 @@ export default class ElementsRail extends React.PureComponent {
             <Main page="rail">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Position */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
                         Position
-                        <Header.Subheader>
-                            Position a Rail to either the left or right.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        Position a Rail to either the left or right.
+                    </Typography>
 
                     <Block style={{ height: '400px', position: 'relative' }}>
                         <Rail position="left">
-                            <Header weight="bold">Select an Option</Header>
+                            <Typography weight="bold">Select an Option</Typography>
 
                             <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
                             <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
@@ -88,7 +89,7 @@ export default class ElementsRail extends React.PureComponent {
                         </Rail>
 
                         <Rail position="right">
-                            <Header weight="bold">Select an Option</Header>
+                            <Typography weight="bold">Select an Option</Typography>
 
                             <Checkbox fluid label="Option 1" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />
                             <Checkbox fluid label="Option 2" labelWeight="semibold" size="small" style={{ marginBottom: '11px' }} />

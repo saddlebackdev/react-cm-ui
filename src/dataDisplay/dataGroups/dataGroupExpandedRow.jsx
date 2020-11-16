@@ -2,16 +2,32 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../../inputs/button';
-import Header from '../header';
-import Icon from '../icon';
 import { rowPropTypes } from './dataGroupsPropTypes';
+import Button from '../../inputs/button';
+import Typography from '../typography';
+import Icon from '../icon';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     bemClassName: PropTypes.string.isRequired,
+    classes: PropTypes.shape({
+        heading: PropTypes.string,
+    }),
     data: PropTypes.shape({}).isRequired,
     row: rowPropTypes.isRequired,
 };
+
+const defaultProps = {
+    classes: null,
+};
+
+const useStyles = makeStyles(({ typography }) => ({
+    heading: {
+        fontSize: typography.pxToRem(12),
+        lineHeight: '14px',
+        margin: 0,
+    },
+}));
 
 function DataGroupExpandedRow(props) {
     const {
@@ -28,10 +44,14 @@ function DataGroupExpandedRow(props) {
             style,
         },
     } = props;
+
+    const classes = useStyles();
     const bemClassName = `${parentBemClassName}_row`;
+
     const containerClasses = ClassNames(`${bemClassName}`, className, {
         [`${bemClassName}-header_icon`]: iconType || header,
     });
+
     let accessedData;
 
     if (_.isString(accessor)) {
@@ -75,16 +95,14 @@ function DataGroupExpandedRow(props) {
                     }}
                 >
                     {fieldName && (
-                        <Header
-                            className={`${bemClassName}_header`}
-                            size="xsmall"
-                            style={{
-                                margin: 0,
-                                lineHeight: '14px',
+                        <Typography
+                            classes={{
+                                root: classes.heading,
                             }}
+                            className={`${bemClassName}_header`}
                         >
                             {fieldName}
-                        </Header>
+                        </Typography>
                     )}
 
                     <div
@@ -99,5 +117,6 @@ function DataGroupExpandedRow(props) {
 }
 
 DataGroupExpandedRow.propTypes = propTypes;
+DataGroupExpandedRow.defaultProps = defaultProps;
 
 export default DataGroupExpandedRow;

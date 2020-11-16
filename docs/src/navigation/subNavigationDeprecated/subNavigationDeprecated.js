@@ -1,10 +1,9 @@
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import {
-    Card, Header, SubNavigation,
+    Card, Typography, SubNavigation,
 } from 'react-cm-ui';
-
-// Docs UI Components
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -131,18 +130,19 @@ export default class CollectionsSubNavigation extends React.Component {
         return (
             <Main page="headers">
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={props} />
                 </Card>
 
                 {/* Sub Navigation */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading variant="h2">
                     Sub Navigation
-                    <Header.Subheader>
-                        A standard Sub Navigation.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    A standard Sub Navigation.
+                </Typography>
 
                 <MediaQuery maxWidth={767}>
                     {(matches) => (
@@ -162,12 +162,13 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* Selected */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading variant="h2">
                     Selected
-                    <Header.Subheader>
-                        A Sub Navigation can change the default selected button.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    A Sub Navigation can change the default selected button.
+                </Typography>
 
                 <MediaQuery maxWidth={767}>
                     {(matches) => (
@@ -187,16 +188,17 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Parent Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading variant="h2">
                     onClick Parent Handler
-                    <Header.Subheader>
-                        A Sub Navigation can a have
-                        {' '}
-                        <code>onClick</code>
-                        {' '}
-                        event handler.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    A Sub Navigation can a have
+                    {' '}
+                    <code>onClick</code>
+                    {' '}
+                    event handler.
+                </Typography>
 
                 <MediaQuery maxWidth={767}>
                     {(matches) => (
@@ -216,12 +218,13 @@ export default class CollectionsSubNavigation extends React.Component {
                 </Highlighter>
 
                 {/* onClick Children Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading variant="h2">
                     onClick Children Handler
-                    <Header.Subheader>
-                        Can handle an onClick event from parent.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    Can handle an onClick event from parent.
+                </Typography>
 
                 <MediaQuery maxWidth={767}>
                     {(matches) => (

@@ -1,10 +1,11 @@
 import {
     Card,
-    Header,
+    Typography,
     Tabs,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -107,18 +108,19 @@ export default class CollectionsTabs extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Tabs */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Tabs
-                        <Header.Subheader>
-                            Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                    </Typography>
 
                     <Tabs id="tabs">
                         <Tabs.Item label="Tab 1">
@@ -135,15 +137,16 @@ export default class CollectionsTabs extends React.Component {
                     </Highlighter>
 
                     {/* Nested Tabs */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Nested Tabs
-                        <Header.Subheader>
-                            Tabs can give the appearance of being nested. The parent's background color needs to be set to
-                            {' '}
-                            <code>color(backgroundColorNest)</code>
-                            .
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Tabs can give the appearance of being nested. The parent's background color needs to be set to
+                        {' '}
+                        <code>color(backgroundColorNest)</code>
+                        .
+                    </Typography>
 
                     <Block
                         nest

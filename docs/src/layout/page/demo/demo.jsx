@@ -1,7 +1,7 @@
 import {
     AppBar,
     Dropdown,
-    Header,
+    Typography,
     Icon,
     Page,
     Radio,

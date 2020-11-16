@@ -2,7 +2,7 @@ import {
     Button,
     Card,
     Drawer,
-    Header,
+    Typography,
     Icon,
     Input,
 } from 'react-cm-ui';
@@ -367,18 +367,19 @@ class ModulesDrawerDetailsWindow extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Details Window */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Details Window
-                        <Header.Subheader>
-                            For those times the UI requires an Details Window.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        For those times the UI requires an Details Window.
+                    </Typography>
 
                     <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 

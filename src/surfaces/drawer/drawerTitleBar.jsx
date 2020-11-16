@@ -2,9 +2,13 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    classes: PropTypes.shape({
+        heading: PropTypes.string,
+    }),
     className: PropTypes.string,
     closeButton: PropTypes.shape({}),
     closeButtonStyle: PropTypes.shape({}),
@@ -27,6 +31,12 @@ const defaultProps = {
 
 const hasClassName = 'drawer-has_title_bar';
 const hasWingClassName = 'drawer--wing-has_title_bar';
+
+const styles = () => ({
+    heading: ({ titleStyle }) => ({
+        ...titleStyle,
+    }),
+});
 
 class DrawerTitleBar extends React.PureComponent {
     componentDidMount() {
@@ -61,6 +71,7 @@ class DrawerTitleBar extends React.PureComponent {
 
     render() {
         const {
+            classes,
             className,
             closeButton,
             closeButtonStyle,
@@ -68,11 +79,16 @@ class DrawerTitleBar extends React.PureComponent {
             title,
             titleStyle,
         } = this.props;
-        const containerClasses = ClassNames('ui', 'drawer--title_bar', className);
+
+        const rootClasses = ClassNames(
+            'ui',
+            'drawer--title_bar',
+            className,
+        );
 
         return (
             <header
-                className={containerClasses}
+                className={rootClasses}
                 ref={(ref) => { this.drawerTitleBarRef = ref; }}
                 style={style}
             >
@@ -82,9 +98,16 @@ class DrawerTitleBar extends React.PureComponent {
                     {_.isObject(title) && title}
 
                     {_.isString(title) && (
-                        <Header as="h2" className="title" style={titleStyle}>
+                        <Typography
+                            classes={{
+                                root: classes.heading,
+                            }}
+                            className="title"
+                            variant="h2"
+                            style={titleStyle}
+                        >
                             {title}
-                        </Header>
+                        </Typography>
                     )}
 
                     {_.isObject(closeButton) ? (
@@ -101,4 +124,4 @@ class DrawerTitleBar extends React.PureComponent {
 DrawerTitleBar.propTypes = propTypes;
 DrawerTitleBar.defaultProps = defaultProps;
 
-export default DrawerTitleBar;
+export default withStyles(styles)(DrawerTitleBar);

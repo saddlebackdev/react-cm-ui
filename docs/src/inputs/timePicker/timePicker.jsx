@@ -1,10 +1,11 @@
 import {
     Card,
-    Header,
+    Typography,
     TimePicker,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -270,18 +271,19 @@ export default class ModulesTimePicker extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Time Picker */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Time Picker
-                        <Header.Subheader>
-                            A basic Time Picker.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A basic Time Picker.
+                    </Typography>
 
                     <TimePicker
                         id="foo_time_picker"
@@ -294,12 +296,13 @@ export default class ModulesTimePicker extends React.Component {
                     </Highlighter>
 
                     {/* Disable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Disable
-                        <Header.Subheader>
-                            Indicates that the Time Picker is not available for interaction.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Indicates that the Time Picker is not available for interaction.
+                    </Typography>
 
                     <TimePicker
                         disable
@@ -312,12 +315,13 @@ export default class ModulesTimePicker extends React.Component {
                     </Highlighter>
 
                     {/* Nest */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Nest
-                        <Header.Subheader>
-                            A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
+                    </Typography>
 
                     <Block
                         nest
@@ -335,12 +339,13 @@ export default class ModulesTimePicker extends React.Component {
                     </Highlighter>
 
                     {/* Range */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Range
-                        <Header.Subheader>
-                            A Time Picker can be used in range mode, specifing a start time and an end time for the range.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A Time Picker can be used in range mode, specifing a start time and an end time for the range.
+                    </Typography>
 
                     <Block
                         nest
@@ -358,12 +363,13 @@ export default class ModulesTimePicker extends React.Component {
                     </Highlighter>
 
                     {/* Zone Options */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Zone Options
-                        <Header.Subheader>
-                            Provide a custom list of timezones to the Time Picker.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Provide a custom list of timezones to the Time Picker.
+                    </Typography>
 
                     <TimePicker
                         onChange={this._onTimePickerChange.bind(this)}
@@ -376,12 +382,13 @@ export default class ModulesTimePicker extends React.Component {
                     </Highlighter>
 
                     {/* Zone Match Props */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Zone Match Props
-                        <Header.Subheader>
-                            Whether to match the value, label or both values of each selection option when filtering.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Whether to match the value, label or both values of each selection option when filtering.
+                    </Typography>
 
                     <TimePicker
                         onChange={this._onTimePickerChange.bind(this)}

@@ -2,7 +2,7 @@ import {
     Button,
     Card,
     Drawer,
-    Header,
+    Typography,
     Icon,
     Input,
 } from 'react-cm-ui';
@@ -252,19 +252,20 @@ class ModulesDrawerDataCards extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Data Cards */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Data Cards
-                        <Header.Subheader>
-                            UI for displaying a data in a grid. Users can usualy toggle between
-                            this and the Drawer.DataGrid sub-components.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        UI for displaying a data in a grid. Users can usualy toggle between
+                        this and the Drawer.DataGrid sub-components.
+                    </Typography>
 
                     <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
 

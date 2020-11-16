@@ -2,9 +2,10 @@ import {
     Banner,
     Button,
     Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -306,18 +307,19 @@ export default class ViewsBanner extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Banner */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Banner
-                        <Header.Subheader>
-                            A standard Banner.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A standard Banner.
+                    </Typography>
 
                     <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
 
@@ -357,12 +359,13 @@ export default class ViewsBanner extends React.Component {
                     </Highlighter>
 
                     {/* On After Close */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         On After Close
-                        <Header.Subheader>
-                            After a Banner's close animation handler.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        After a Banner's close animation handler.
+                    </Typography>
 
                     <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
                     <Button onClick={this._onAcBannerClick.bind(this, 1)}>AC Banner 2</Button>
@@ -376,12 +379,13 @@ export default class ViewsBanner extends React.Component {
                     </Highlighter>
 
                     {/* Type */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Type
-                        <Header.Subheader>
-                            Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Banner's have two different types of UX. A notification notifies an end-user something has happened during their workflow. An alert gives the end-user context that they'll need to interact with the workflow to proceed.
+                    </Typography>
 
                     <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>
 

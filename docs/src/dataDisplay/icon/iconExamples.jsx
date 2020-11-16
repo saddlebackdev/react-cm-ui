@@ -1,10 +1,11 @@
 import {
     Card,
-    Header,
+    Typography,
     Icon,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -269,22 +270,23 @@ class ElementsIconExamples extends React.PureComponent {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Icon */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Icon
-                        <Header.Subheader>
-                            A standard icon. The
-                            {' '}
-                            <code>type</code>
-                            {' '}
-                            prop is required.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A standard icon. The
+                        {' '}
+                        <code>type</code>
+                        {' '}
+                        prop is required.
+                    </Typography>
 
                     <Icon type="activity" />
 
@@ -293,12 +295,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Align */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Align
-                        <Header.Subheader>
-                            Icons can change the side the margin is positioned on.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can change the side the margin is positioned on.
+                    </Typography>
 
                     <Icon align="left" type="activity" />
                     <Icon align="left" type="award" />
@@ -317,12 +320,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Color
-                        <Header.Subheader>
-                            Icons can be formatted with different colors.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can be formatted with different colors.
+                    </Typography>
 
                     <Icon color="alert" type="activity" />
                     <Icon color="disable" type="heart" />
@@ -344,12 +348,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Inverse
-                        <Header.Subheader>
-                            Icon colors can be inverted to appear on darker backgrounds better.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icon colors can be inverted to appear on darker backgrounds better.
+                    </Typography>
 
                     <Block inverse>
                         <Icon color="alert" inverse type="activity" />
@@ -373,12 +378,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Compact
-                        <Header.Subheader>
-                            Icons can appear without space to left or right.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can appear without space to left or right.
+                    </Typography>
 
                     <Icon compact type="activity" />
                     <Icon compact type="calendar" />
@@ -390,12 +396,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* onClick Event Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         onClick Event Handler
-                        <Header.Subheader>
-                            Icons can handle an onClick event.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can handle an onClick event.
+                    </Typography>
 
                     <Icon type="activity" onClick={onIconClick} tabIndex={0} />
 
@@ -404,12 +411,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Rotate */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Rotate
-                        <Header.Subheader>
-                            Icons can be rotated.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can be rotated.
+                    </Typography>
 
                     <Icon rotate={-90} type="heart" />
                     <Icon rotate={180} type="chevron-wh-up" />
@@ -419,12 +427,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Size */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Size
-                        <Header.Subheader>
-                            Icons can have different sizes.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can have different sizes.
+                    </Typography>
 
                     <Icon size={64} type="cloud-upload" />
                     <Icon size={32} type="heart" />
@@ -440,12 +449,13 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Spin */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Spin
-                        <Header.Subheader>
-                            Icons can spin clockwise.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can spin clockwise.
+                    </Typography>
 
                     <Icon spin type="activity" />
                     <Icon spin type="award" />
@@ -459,16 +469,17 @@ class ElementsIconExamples extends React.PureComponent {
                     </Highlighter>
 
                     {/* Title */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Title
-                        <Header.Subheader>
-                            Icons can have a
-                            {' '}
-                            <code>title</code>
-                            {' '}
-                            prop that gives them a &ldquo;tooltip&rdquo;.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Icons can have a
+                        {' '}
+                        <code>title</code>
+                        {' '}
+                        prop that gives them a &ldquo;tooltip&rdquo;.
+                    </Typography>
 
                     <Icon type="activity" title="I am an Activity Icon!" />
 

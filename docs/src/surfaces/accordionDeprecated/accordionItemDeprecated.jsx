@@ -1,11 +1,8 @@
-
 import {
-    Accordion, Card, Header, TitleBar,
+    Accordion, Card, Typography, TitleBar,
 } from 'react-cm-ui';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ScrollBar from 'react-custom-scrollbars';
-import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -341,19 +338,20 @@ export default class CollectionsAccordion extends React.Component {
             <Main page="accordion">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={itemProps} />
                     </Card>
 
                     <div>
                         {/* Nested Accordions */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Nested Accordions
-                            <Header.Subheader>
-                                A Accordion can be nested within an Accordion.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A Accordion can be nested within an Accordion.
+                        </Typography>
 
                         <Accordion basic>
                             <Accordion.Item>
@@ -412,12 +410,13 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Summary */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Summary
-                            <Header.Subheader>
-                                You can supply custom content within an Accordion's Item.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            You can supply custom content within an Accordion's Item.
+                        </Typography>
 
                         <Accordion basic>
                             <Accordion.Item>

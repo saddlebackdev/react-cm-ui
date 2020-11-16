@@ -1,7 +1,7 @@
 import {
     Card,
     DatePickerCalendar,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
@@ -247,15 +247,15 @@ export default class ModulesDatePickerCalendar extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Date Picker Calendar */}
-                    <Header anchor="date-picker-calendar" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="date-picker-calendar" size="large" style={{ marginTop: '55px' }}>
                         Date Picker Calendar
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar />
 
@@ -264,9 +264,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* Events */}
-                    <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="events" size="large" style={{ marginTop: '55px' }}>
                         Events
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         events={[
@@ -282,9 +282,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* Filter Dates */}
-                    <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
                         Filter Dates
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         filterDates={this._isWeekday}
@@ -295,9 +295,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* Locale */}
-                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="locale" size="large" style={{ marginTop: '55px' }}>
                         Locale
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         locale={moment().locale()}
@@ -308,9 +308,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* Max Date */}
-                    <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
                         Max Date
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         maxDate={moment()}
@@ -321,9 +321,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* Min Date */}
-                    <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
                         Min Date
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         minDate={moment().subtract(10, 'years')}
@@ -334,9 +334,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* onChange Event Handler */}
-                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="on-change" size="large" style={{ marginTop: '55px' }}>
                         onChange Event Handler
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         date={onChangeDate}
@@ -348,9 +348,9 @@ export default class ModulesDatePickerCalendar extends React.Component {
                     </Highlighter>
 
                     {/* onMonthChange */}
-                    <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
                         onMonthChange Event Handler
-                    </Header>
+                    </Typography>
 
                     <DatePickerCalendar
                         onMonthChange={() => window.alert('The month was changed!') }

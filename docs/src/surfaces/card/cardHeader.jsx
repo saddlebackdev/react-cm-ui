@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-    Card, Header,
+    Card, Typography,
 } from 'react-cm-ui';
-
-// Docs UI Components
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -97,18 +96,19 @@ export default class ViewsTitleBar extends React.Component {
         return (
             <div>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={props} />
                 </Card>
 
                 {/* Collapsable */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading variant="h2">
                     Header
-                    <Header.Subheader>
-                        Cards can have a custom header.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    Cards can have a custom header.
+                </Typography>
 
                 <Card header>
                     <Card.Header attached color="blue">

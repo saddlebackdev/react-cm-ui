@@ -4,7 +4,7 @@
 
 import {
     Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import ActivityIndicatorExample from './activityIndicatorExample';
@@ -56,21 +56,22 @@ function ElementsActivityIndicator() {
         <Main page="headers">
             <Main.Content>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={props} />
                 </Card>
 
                 {/* Activity Indicators */}
-                <Header anchor="activityIndicator" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="activityIndicator" size="large" style={{ marginTop: '55px' }} sub>
                     Activity Indicator
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            An activity indicator cycles through bars while loading or synchronizing
-                            data is being performed.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        An activity indicator cycles through bars while loading or synchronizing
+                        data is being performed.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorExample />
 
@@ -79,16 +80,17 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* className */}
-                <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" size="large" style={{ marginTop: '55px' }} sub>
                     className
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>className</code> prop to pass a block and element class
-                            name (e.g. <code>foo_block_name--bar_element_name</code>)
-                            to Activity Indicator. This needs to be unique.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>className</code> prop to pass a block and element class
+                        name (e.g. <code>foo_block_name--bar_element_name</code>)
+                        to Activity Indicator. This needs to be unique.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorClassNameExample />
 
@@ -97,15 +99,16 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* color */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="color" size="large" style={{ marginTop: '55px' }} sub>
                     color
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>color</code> prop to better fit how the Activity
-                            Indicator should be displayed relavant location with the webapp.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>color</code> prop to better fit how the Activity
+                        Indicator should be displayed relavant location with the webapp.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorColorExample />
 
@@ -114,16 +117,17 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* id */}
-                <Header anchor="id" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="id" size="large" style={{ marginTop: '55px' }} sub>
                     id
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>id</code> prop to pass a block and element class
-                            name (e.g. <code>foo_block_name--bar_element_name</code>)
-                            to Activity Indicator. This needs to be unique and always implemented.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>id</code> prop to pass a block and element class
+                        name (e.g. <code>foo_block_name--bar_element_name</code>)
+                        to Activity Indicator. This needs to be unique and always implemented.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorIdExample />
 
@@ -132,15 +136,16 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* size */}
-                <Header anchor="size" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="size" size="large" style={{ marginTop: '55px' }} sub>
                     size
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>size</code> prop to change the size of the Activity Indicator
-                            when needed to suit the needs of your relavant location within the app.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>size</code> prop to change the size of the Activity Indicator
+                        when needed to suit the needs of your relavant location within the app.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorSizeExample />
 
@@ -149,16 +154,17 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* style */}
-                <Header anchor="style" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="style" size="large" style={{ marginTop: '55px' }} sub>
                     style
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>style</code> prop to pass some inline styles to the
-                            container. Only to be used when needed based on its relavant
-                            location within the app.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>style</code> prop to pass some inline styles to the
+                        container. Only to be used when needed based on its relavant
+                        location within the app.
+                    </p>
+                </Typography>
 
                 <ActivityIndicatorStyleExample />
 

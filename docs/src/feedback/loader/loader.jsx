@@ -1,11 +1,10 @@
 import React from 'react';
 import {
     Card,
-    Header,
+    Typography,
     Loader,
 } from 'react-cm-ui';
-
-// Docs UI Components
+import Heading from '../../global/heading';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
@@ -53,18 +52,19 @@ export default class ElementsLoader extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Loader */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Loader
-                        <Header.Subheader>
-                            A standard loader. To be used to alert the user that something is happening.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A standard loader. To be used to alert the user that something is happening.
+                    </Typography>
 
                     <Loader />
 
@@ -73,12 +73,13 @@ export default class ElementsLoader extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Fluid
-                        <Header.Subheader>
-                            A Loader's container can take on the size of its parent container.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        A Loader's container can take on the size of its parent container.
+                    </Typography>
 
                     <Block style={{ maxWidth: '450px' }}>
                         <Loader fluid />

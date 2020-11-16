@@ -1,5 +1,5 @@
 import {
-    Button, Card, Drawer, Header,
+    Button, Card, Drawer, Typography,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import React from 'react';
@@ -165,26 +165,27 @@ class ModulesDrawer extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                         Drawer
-                        <Header.Subheader>
-                            <span>A basic drawer.</span>
+                    </Typography>
 
-                            <p className="font-size-xsmall color-static">
-                                <span className="font-weight-semibold">Note:</span>
-                                {' '}
-                                <code>isOpen</code>
-                                {' '}
-                                is a required prop.
-                            </p>
-                        </Header.Subheader>
-                    </Header>
+                    <Typography variant="body1">
+                        <span>A basic drawer.</span>
+
+                        <p className="font-size-xsmall color-static">
+                            <span className="font-weight-semibold">Note:</span>
+                            {' '}
+                            <code>isOpen</code>
+                            {' '}
+                            is a required prop.
+                        </p>
+                    </Typography>
 
                     <Button onClick={this._onDrawerToggle}>Open The Drawer</Button>
 

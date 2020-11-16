@@ -4,7 +4,7 @@ import {
     Button,
     Card,
     Grid,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -65,8 +65,8 @@ class Home extends React.PureComponent {
                     </div>
 
                     <div>
-                        <Header
-                            as="h1"
+                        <Typography
+                            variant="h1"
                             className={`${bemBlockClassName}--title`}
                             style={{
                                 fontSize: '32px',
@@ -75,7 +75,7 @@ class Home extends React.PureComponent {
                             weight="semibold"
                         >
                             React - CM - UI
-                        </Header>
+                        </Typography>
 
                         <p
                             className={`${bemBlockClassName}--sub_title`}
@@ -104,14 +104,14 @@ class Home extends React.PureComponent {
                         <Grid.Column
                             sm={12}
                         >
-                            <Header
+                            <Typography
                                 color="static"
                                 size="large"
                                 style={{ textAlign: 'center' }}
                                 weight="semibold"
                             >
                                 Quick Start
-                            </Header>
+                            </Typography>
                         </Grid.Column>
 
                         <Grid.Column
@@ -119,7 +119,7 @@ class Home extends React.PureComponent {
                             sm={12}
                         >
                             <Card style={{ height: '100%' }}>
-                                <Header size="medium">Installation</Header>
+                                <Typography size="medium">Installation</Typography>
 
                                 <Highlighter
                                     className={`${bemBlockClassName}--highlighter`}
@@ -151,7 +151,7 @@ class Home extends React.PureComponent {
                             sm={12}
                         >
                             <Card style={{ height: '100%' }}>
-                                <Header size="medium">Usage</Header>
+                                <Typography size="medium">Usage</Typography>
 
                                 <Highlighter
                                     className={`${bemBlockClassName}--highlighter`}

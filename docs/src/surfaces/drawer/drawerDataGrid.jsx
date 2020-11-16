@@ -2,7 +2,7 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import {
     Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -67,19 +67,20 @@ function ModulesDrawerDataGrid() {
         <Main page="headers">
             <Main.Content>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={tableProps} />
                 </Card>
 
                 {/* Data Grid */}
-                <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
                     Data Grid
-                    <Header.Subheader>
-                        UI for displaying a data in a table. Users can usualy toggle between
-                        this and the Drawer.DataCards sub-components.
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    UI for displaying a data in a table. Users can usualy toggle between
+                    this and the Drawer.DataCards sub-components.
+                </Typography>
 
                 <DrawerDataGrid />
 

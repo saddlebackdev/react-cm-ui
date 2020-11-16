@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-    Card, Header, InfoBar,
+    Card, Typography, InfoBar,
 } from 'react-cm-ui';
-
-// Docs UI Components
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -97,18 +96,19 @@ export default class ViewsInfoBar extends React.Component {
             <Main page="info-bar">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Color */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Color
-                        <Header.Subheader>
-                            Info Bars have different colors.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Info Bars have different colors.
+                    </Typography>
 
                     <InfoBar color={1}>
                         Super Cool Info Bar - Color: 1

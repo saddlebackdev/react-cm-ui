@@ -5,7 +5,7 @@ import {
     Banner,
     Card,
     Comment,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -269,18 +269,19 @@ export default class ElmentsComment extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Comment */}
-                    <Header anchor="comment" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="comment" size="large" style={{ marginTop: '55px' }} sub>
                         Comment
-                        <Header.Subheader>
-                            A user's comment.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        A user's comment.
+                    </Typography>
 
                     <Comment name="Joe Smith" time={1536941364}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor.
@@ -291,12 +292,13 @@ export default class ElmentsComment extends React.Component {
                     </Highlighter>
 
                     {/* Editable Comment */}
-                    <Header anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="editable-comment" size="large" style={{ marginTop: '55px' }} sub>
                         Editable Comments
-                        <Header.Subheader>
-                            A comment can be editable and deletable.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1">
+                        A comment can be editable and deletable.
+                    </Typography>
 
                     <p>
                         Use the

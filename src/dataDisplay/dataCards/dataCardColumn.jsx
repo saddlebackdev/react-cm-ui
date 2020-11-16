@@ -2,16 +2,33 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../header';
+import makeStyles from '../../styles/makeStyles';
+import Typography from '../typography';
 
 const propTypes = {
+    classes: PropTypes.shape({
+        heading: PropTypes.string,
+    }),
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
 };
 
+const defaultProps = {
+    classes: null,
+};
+
+const useStyles = makeStyles(({ palette, typography }) => ({
+    heading: {
+        color: palette.text.secondary,
+        fontSize: typography.pxToRem(12),
+        margin: 0,
+    },
+}));
+
 function DataCardColumn(props) {
     const { columns, data, moduleType } = props;
+    const classes = useStyles();
     const elementClassName = `${moduleType}--data_card_column`;
 
     return _.map(columns, (column, index) => {
@@ -40,13 +57,13 @@ function DataCardColumn(props) {
                 }}
             >
                 {column.header && (
-                    <Header
-                        color="static"
-                        size="xsmall"
-                        style={{ margin: 0 }}
+                    <Typography
+                        classes={{
+                            root: classes.heading,
+                        }}
                     >
                         {column.header}
-                    </Header>
+                    </Typography>
                 )}
 
                 <span className={accessorClasses}>
@@ -58,5 +75,6 @@ function DataCardColumn(props) {
 }
 
 DataCardColumn.propTypes = propTypes;
+DataCardColumn.defaultProps = defaultProps;
 
 export default DataCardColumn;
