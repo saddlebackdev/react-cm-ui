@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Label from '../../dataDisplay/label';
+import Tag from '../../dataDisplay/tag';
 
 const propTypes = {
     color: PropTypes.string,
@@ -33,7 +33,7 @@ class FiltersDrawerMultiSelectLabel extends React.PureComponent {
         const { color, label } = this.props;
 
         return (
-            <Label
+            <Tag
                 color={color || 'highlight'}
                 onClearClick={this.onClearClick}
                 style={{
@@ -42,7 +42,7 @@ class FiltersDrawerMultiSelectLabel extends React.PureComponent {
                 }}
             >
                 {label}
-            </Label>
+            </Tag>
         );
     }
 }

@@ -99,11 +99,6 @@ export const navigationItems = [
                         path: 'image',
                     },
                     {
-                        component: 'label',
-                        label: 'Label',
-                        path: 'label',
-                    },
-                    {
                         component: 'list',
                         label: 'List',
                         path: 'list',
@@ -132,6 +127,18 @@ export const navigationItems = [
                         component: 'table',
                         label: 'Table',
                         path: 'table',
+                    },
+                    {
+                        component: 'tag',
+                        label: 'Tag',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'tag',
                     },
                     {
                         component: 'telephoneLink',
