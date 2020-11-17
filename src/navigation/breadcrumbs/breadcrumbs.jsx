@@ -62,9 +62,9 @@ const propTypes = {
 const defaultProps = {
     dividerString: '/',
     router: undefined,
-    staticCrumbs: [],
     routesNameMapper: [],
     showOnlyPreviousRoute: false,
+    staticCrumbs: [],
     titlesMaxLength: 20,
 };
 
