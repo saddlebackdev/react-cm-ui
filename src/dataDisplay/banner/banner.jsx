@@ -8,20 +8,46 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import withStyles from '../../styles/withStyles';
 import BannerItem from './bannerItem';
 import Header from '../header';
 import Icon from '../icon';
 import domUtils from '../../utils/domUtils';
-import withTheme from '../../styles/withTheme';
 
 const propTypes = {
+    /**
+     * Additional Content
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to Prompt.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        bannerContainer: PropTypes.string,
+        bannerLevelType: PropTypes.string,
+        bannerMessage: PropTypes.string,
+        bannerMessageContainer: PropTypes.string,
+    }),
+    /**
+     * Assign additional class names to Banner.
+     */
     className: PropTypes.string,
+    /**
+     * The `id` of the Banner.
+     */
     id: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]).isRequired,
+    /**
+     * Required: A boolean that is supplied the Banner for the animation..
+     */
     isOpen: PropTypes.bool.isRequired,
+    /**
+     * A Banner's level.
+     * enums:error, purple, secondary, success, teal, warning
+     */
     level: PropTypes.oneOf([
         'error',
         'purple',
@@ -30,19 +56,50 @@ const propTypes = {
         'teal',
         'warning',
     ]),
+    /**
+     * A Banner's type of level icon.
+     */
     levelIcon: PropTypes.string,
+    /**
+     * A Banner's custom message.
+     */
     message: PropTypes.string,
+    /**
+     * Called after the Banner's close animation.
+     */
     onAfterClose: PropTypes.func,
+    /**
+     * Required: Handler for closing the Banner.
+     */
     onClose: PropTypes.func.isRequired,
+    /**
+     * Called before the Banner's animation.
+     */
     onOpen: PropTypes.func,
+    /**
+     * Supply any inline styles to the Banner's container. Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}),
+    /**
+     * HC's theme.
+     */
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
             banner: PropTypes.number,
         }),
     }).isRequired,
+    /**
+     * A Banner's title.
+     */
     title: PropTypes.string,
+    /**
+     * Changes the Banner's top position relative to the top of the viewport.
+     */
     topPosition: PropTypes.number,
+    /**
+     * A Banner's Type.
+     * enums:alert, notification
+     */
     type: PropTypes.oneOf([
         'alert',
         'notification',
@@ -51,6 +108,7 @@ const propTypes = {
 
 const defaultProps = {
     children: undefined,
+    classes: null,
     className: undefined,
     level: undefined,
     levelIcon: undefined,
@@ -61,6 +119,98 @@ const defaultProps = {
     title: undefined,
     topPosition: undefined,
     type: undefined,
+};
+
+const styles = (theme) => {
+    const top = '88px';
+    const borderRadius = '3px 0 0 3px';
+
+    return {
+        '@keyframes slideInBanner': {
+            '0%': {
+                transform: 'translate(100%, 0)',
+            },
+            '100%': {
+                transform: 'translate(0, 0)',
+            },
+        },
+        '@keyframes slideOutBanner': {
+            '0%': {
+                transform: 'translate(0, 0)',
+            },
+            '100%': {
+                transform: 'translate(100%, 0)',
+            },
+        },
+        bannerContainer: {
+            alignItems: 'flex-start',
+            animation: '$slideInBanner 150ms ease-out forwards',
+            backfaceVisibility: 'hidden',
+            borderRadius,
+            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.43)',
+            color: theme.palette.common.white,
+            display: 'flex',
+            justifyContent: 'flex-start',
+            overflowX: 'hidden',
+            pointerEvents: 'auto',
+            position: 'absolute',
+            right: 0,
+            top,
+            transition: 'top 150ms ease-out',
+            width: '282px',
+            '&.animate-out': {
+                animation: '$slideOutBanner 333ms forwards',
+            },
+        },
+        bannerLevelType: {
+            alignItems: 'center',
+            alignSelf: 'stretch',
+            display: 'inline-flex',
+            flex: '0 1 1px',
+            justifyContent: 'center',
+            maxWidth: '44px',
+            minWidth: '44px',
+        },
+        bannerMessage: {
+            fontSize: '14px',
+        },
+        bannerMessageContainer: {
+            alignSelf: 'stretch',
+            backgroundColor: theme.palette.background.contrastPrimary,
+            flex: '1 1 auto',
+            padding: '18px 22px',
+        },
+        root: {
+            backfaceVisibility: 'hidden',
+            height: '100%',
+            left: 0,
+            minWidth: '320px',
+            pointerEvents: 'none',
+            position: 'fixed',
+            top: 0,
+            width: '100%',
+            '&.banner-level-': {
+                '&error .banner-container': {
+                    background: theme.palette.error.main,
+                },
+                '&purple .banner-container': {
+                    background: theme.palette.purple['500'],
+                },
+                '&secondary .banner-container': {
+                    background: theme.palette.active.main,
+                },
+                '&success .banner-container': {
+                    background: theme.palette.success.main,
+                },
+                '&teal .banner-container': {
+                    background: theme.palette.teal['500'],
+                },
+                '&warning .banner-container': {
+                    background: theme.palette.warning.main,
+                },
+            },
+        },
+    };
 };
 
 class Banner extends React.Component {
@@ -184,6 +334,7 @@ class Banner extends React.Component {
     render() {
         const {
             children,
+            classes,
             className,
             id,
             level,
@@ -199,17 +350,35 @@ class Banner extends React.Component {
             return false;
         }
 
-        const containerClasses = ClassNames('ui', 'banner', className, {
-            'banner-level-error': level === 'error',
-            'banner-level-purple': level === 'purple', // Rename when better defined.
-            'banner-level-secondary': !level || level === 'secondary',
-            'banner-level-success': level === 'success',
-            'banner-level-teal': level === 'teal', // Rename when better defined.
-            'banner-level-warning': level === 'warning',
-            'banner-type-alert': type === 'alert',
-            'banner-type-notification': type === 'notification',
-        });
-        const containerInnerClasses = ClassNames('banner-container', className);
+        const containerClasses = ClassNames(
+            'ui',
+            'banner',
+            classes.root,
+            className,
+            {
+                'banner-level-error': level === 'error',
+                'banner-level-purple': level === 'purple', // Rename when better defined.
+                'banner-level-secondary': !level || level === 'secondary',
+                'banner-level-success': level === 'success',
+                'banner-level-teal': level === 'teal', // Rename when better defined.
+                'banner-level-warning': level === 'warning',
+                'banner-type-alert': type === 'alert',
+                'banner-type-notification': type === 'notification',
+            },
+        );
+        const containerInnerClasses = ClassNames(
+            'banner-container',
+            classes.bannerContainer,
+            className,
+        );
+        const bannerLevelTypeClasses = ClassNames(
+            'banner-level-type',
+            classes.bannerLevelType,
+        );
+        const bannerMessageContainerClasses = ClassNames(
+            'banner-message-container',
+            classes.bannerMessageContainer,
+        );
         const hasCloseButton = type === 'notification';
         let levelBasedIcon;
 
@@ -232,11 +401,11 @@ class Banner extends React.Component {
             <Portal>
                 <div className={containerClasses} id={id} style={style}>
                     <div className={containerInnerClasses}>
-                        <div className="banner-level-type">
+                        <div className={bannerLevelTypeClasses}>
                             <Icon compact inverse type={levelIcon || levelBasedIcon} />
                         </div>
 
-                        <div className="banner-message-container">
+                        <div className={bannerMessageContainerClasses}>
                             <Header
                                 size="small"
                                 style={{
@@ -248,7 +417,7 @@ class Banner extends React.Component {
                             </Header>
 
                             {message ? (
-                                <span className="font-size-xxsmall">{message}</span>
+                                <span className={classes.bannerMessage}>{message}</span>
                             ) : null}
 
                             {children}
@@ -280,4 +449,4 @@ Banner.Item = BannerItem;
 Banner.propTypes = propTypes;
 Banner.defaultProps = defaultProps;
 
-export default withTheme(Banner);
+export default withStyles(styles, { withTheme: true })(Banner);
