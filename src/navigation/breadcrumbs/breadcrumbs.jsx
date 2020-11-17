@@ -271,6 +271,7 @@ function Breadcrumbs(props) {
                             title;
                         const isFirst = index === 0;
                         const isLast = index === arr.length - 1;
+
                         const breadcrumbClasses = Classnames(
                             classes.breadcrumb,
                             `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`,
@@ -279,6 +280,7 @@ function Breadcrumbs(props) {
                                 [`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_is_last`]: isLast,
                             },
                         );
+
                         const breadcrumbSeparatorClasses = Classnames(
                             classes.breadCrumbSeparator,
                             `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`,
