@@ -13,14 +13,14 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
-import TabsTab from './tabsTab';
-import TabsContent from './tabsContent';
-import withStyles from '../../styles/withStyles';
-import DropdownButton from '../../inputs/dropdownButton';
 import {
     BEM_NAVIGATION_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
+import TabsTab from './tabsTab';
+import TabsContent from './tabsContent';
+import withStyles from '../../styles/withStyles';
+import DropdownButton from '../../inputs/dropdownButton';
 
 const PREFIX_TAB = 'tab-';
 const CONTENT_PREFIX = 'content-';
@@ -46,6 +46,7 @@ const propTypes = {
         tab: PropTypes.string,
         tabsPanel: PropTypes.string,
         tabsPanelContent: PropTypes.string,
+        withContent: PropTypes.string,
     }),
     /**
      * If `true`, Tabs will be formatted to appear on dark backgrounds.
@@ -125,11 +126,13 @@ const styles = ({ palette, spacing }) => ({
     tabsPanel: {
         display: 'flex',
         flexWrap: 'wrap',
+        '&$withContent': {
+            marginBottom: -1,
+            position: 'relative',
+            zIndex: 5,
+        },
     },
-    tabsPanelContent: {
-        padding: [[spacing(1)]],
-        borderTop: `1px solid ${palette.border.secondary}`,
-    },
+    withContent: {},
 });
 
 /**
@@ -275,7 +278,12 @@ class Tabs extends Component {
         tabRefsKeys.forEach((key) => {
             if (this.tabRefs[key]) {
                 const width = this.tabRefs[key].tab.offsetWidth;
-                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
+
+                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = {
+                    width,
+                    offset: updatedTabsTotalWidth,
+                };
+
                 updatedTabsTotalWidth += width;
             }
         });
@@ -425,6 +433,7 @@ class Tabs extends Component {
             classes,
             mobile,
             inverse,
+            withContent,
         } = this.props;
 
         const {
@@ -444,6 +453,7 @@ class Tabs extends Component {
                 label: classes.label,
                 mobile: classes.mobile,
                 selected: classes.selected,
+                withContent: classes.withContent,
             },
             classNames: this.getClassNamesFor('tab', {
                 className,
@@ -461,6 +471,7 @@ class Tabs extends Component {
             onChange: this.onChangeTab,
             ref: (ref) => { this.tabRefs[PREFIX_TAB + key] = ref; },
             selected,
+            withContent,
         };
     }
 
@@ -540,8 +551,17 @@ class Tabs extends Component {
 
     getExpandedTabs(panels, selectedTabKey) {
         if (panels[selectedTabKey]) {
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            return <TabsContent {...this.getPanelProps(panels[selectedTabKey])} />;
+            const {
+                withContent,
+            } = this.props;
+
+            return (
+                <TabsContent
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...this.getPanelProps(panels[selectedTabKey])}
+                    withContent={withContent}
+                />
+            );
         }
 
         return null;
@@ -573,6 +593,9 @@ class Tabs extends Component {
         const tabsClasses = Classnames(
             classes.tabsPanel,
             `${BEM_NAVIGATION_TABS}--panel`,
+            {
+                [classes.withContent]: classes.withContent,
+            },
         );
 
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
@@ -622,8 +645,12 @@ class Tabs extends Component {
             >
                 <div className={tabsClasses}>
                     {tabsVisible.reduce((result, tab) => {
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        result.push(<TabsTab {...this.getTabProps(tab)} />);
+                        result.push(
+                            <TabsTab
+                                // eslint-disable-next-line react/jsx-props-no-spreading
+                                {...this.getTabProps(tab)}
+                            />,
+                        );
 
                         return result;
                     }, [])}
@@ -633,7 +660,10 @@ class Tabs extends Component {
 
                 {withContent && this.getExpandedTabs(panels, selectedTabKey)}
 
-                {<ResizeDetector handleWidth onResize={this.onResizeThrottled} />}
+                <ResizeDetector
+                    handleWidth
+                    onResize={this.onResizeThrottled}
+                />
             </div>
         );
     }

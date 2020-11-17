@@ -29,6 +29,7 @@ const propTypes = {
         root: PropTypes.string,
         label: PropTypes.string,
         selected: PropTypes.string,
+        withContent: PropTypes.string,
     }),
     /**
      * Tab identifier
@@ -58,6 +59,10 @@ const propTypes = {
      * Boolean used to apply the 'tabLabelSelected' class.
      */
     selected: PropTypes.bool.isRequired,
+    /**
+     * Renders the content set inside the item object under the tabs panel
+     */
+    withContent: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -67,6 +72,7 @@ const defaultProps = {
     mobile: false,
     onChange: undefined,
     onClick: undefined,
+    withContent: false,
 };
 
 const styles = ({
@@ -79,15 +85,15 @@ const styles = ({
     mobile: {},
     label: {
         color: palette.text.secondary,
-        fontSize: 14,
+        fontSize: typography.pxToRem(14),
         fontWeight: typography.fontWeightMedium,
         paddingBottom: 5,
         position: 'relative',
         transition: 'color 0.1s, border-bottom 0.1s',
-        '&:hover': {
+        '&:not($withContent):hover': {
             color: palette.text.primary,
         },
-        '&$mobile': {
+        '&:not($withContent)$mobile': {
             borderRadius: shape.borderRadius.main,
             backgroundColor: palette.hexToRGBA(palette.background.primary, 0.31),
             color: palette.text.contrastText,
@@ -95,9 +101,39 @@ const styles = ({
             lineHeight: '30px',
             padding: [[0, 11]],
         },
-        '&$inverse:not($mobile)': {
+        '&:not($mobile):not($withContent)$inverse': {
             color: palette.hexToRGBA(palette.background.primary, 0.31),
             fontWeight: typography.fontWeightBold,
+        },
+        '&:not($withContent)$selected': {
+            color: palette.text.primary,
+            '&:not($mobile):not($withContent)::after': {
+                backgroundColor: palette.active.main,
+                bottom: -3,
+                content: '""',
+                height: 2,
+                left: 0,
+                position: 'absolute',
+                right: 0,
+            },
+            '&$mobile': {
+                backgroundColor: palette.background.primary,
+                color: palette.text.primary,
+            },
+            '&:not($mobile):not($withContent)$inverse': {
+                color: palette.text.contrastText,
+                '&::after': {
+                    backgroundColor: palette.background.primary,
+                },
+            },
+        },
+        '&$withContent': {
+            color: palette.text.contrastText,
+            lineHeight: 'inherit',
+            padding: 0,
+            '&$selected': {
+                color: palette.text.primary,
+            },
         },
     },
     root: {
@@ -105,35 +141,72 @@ const styles = ({
         outline: 'none',
         padding: [[0, spacing(1)]],
         whiteSpace: 'nowrap',
-        '&:not(:first-child):not($mobile)': {
+        '&:not(:first-child):not($mobile):not($withContent)': {
             padding: [[0, spacing(1)]],
         },
-        '&$mobile': {
+        '&:not($withContent)$mobile': {
             padding: [[0, 4, 0]],
         },
-    },
-    selected: {
-        color: palette.text.primary,
-        '&:not($mobile)::after': {
-            backgroundColor: palette.active.main,
-            bottom: -3,
-            content: '""',
-            height: 2,
-            left: 0,
-            position: 'absolute',
-            right: 0,
-        },
-        '&$mobile': {
-            backgroundColor: palette.background.primary,
+        '&$withContent': {
+            alignItems: 'center',
+            backgroundColor: palette.grey[500],
+            border: 0,
+            borderRadius: [[shape.borderRadius.main, shape.borderRadius.main, 0, 0]],
             color: palette.text.primary,
-        },
-        '&:not($mobile)$inverse': {
-            color: palette.text.contrastText,
+            display: 'inline-flex',
+            fontSize: typography.pxToRem(14),
+            fontWeight: typography.fontWeightMedium,
+            height: 39,
+            justifyContent: 'center',
+            letterSpacing: '.7px',
+            lineHeight: '39px',
+            outline: 'none',
+            padding: [[0, spacing(2), 3]],
+            position: 'relative',
+            transition: 'background-color 200ms linear, background-image 250ms linear, box-shadow 200ms linear, color 200ms linear',
+            zIndex: 1,
+            '&:not(:first-child)::before, &::after': {
+                backgroundRepeat: 'no-repeat',
+                bottom: 0,
+                content: '""',
+                height: shape.borderRadius.main,
+                opacity: 0,
+                position: 'absolute',
+                transition: 'opacity 200ms linear',
+                visibility: 'hidden',
+                width: shape.borderRadius.main,
+                zIndex: 3,
+            },
+            '&::before': {
+                backgroundImage: 'url(\'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iM3B4IiBoZWlnaHQ9IjNweCIgdmlld0JveD0iNTEyIDExMyAzIDMiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDM5LjEgKDMxNzIwKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPHBhdGggZD0iTTUxMiwxMTMgQzUxMi40ODE1NjcsMTE1Ljc1NjM0OCA1MTUsMTE2IDUxNSwxMTYgTDUxNC41MDQ1MTcsMTE2IEw1MTIsMTE2IEw1MTIsMTEzIFoiIGlkPSJUcmlhbmdsZS1Db3B5IiBzdHJva2U9Im5vbmUiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEzLjUwMDAwMCwgMTE0LjUwMDAwMCkgc2NhbGUoLTEsIDEpIHRyYW5zbGF0ZSgtNTEzLjUwMDAwMCwgLTExNC41MDAwMDApICI+PC9wYXRoPgo8L3N2Zz4=\')',
+                left: -shape.borderRadius.main,
+            },
             '&::after': {
+                backgroundImage: 'url(\'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNHB4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iNDk2IDExMyA0IDQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8cGF0aCBkPSJNNDk3LDExMyBDNDk3LjQ4MTU2NywxMTUuNzU2MzQ4IDUwMCwxMTYgNTAwLDExNiBMNDk5LjUwNDUxNywxMTYgTDQ5NywxMTYgTDQ5NywxMTMgWiIgaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PC9wYXRoPgo8L3N2Zz4=\')',
+                right: -2,
+            },
+            '&:not(:first-child)': {
+                boxShadow: `inset 1px 0px 0 0 ${palette.grey[600]}`,
+                marginLeft: -shape.borderRadius.main,
+            },
+            '&:not(:first-child):not($selected)': {
+                borderRadius: [[0, shape.borderRadius.main, 0, 0]],
+            },
+            '&$selected': {
                 backgroundColor: palette.background.primary,
+                boxShadow: `inset 1px 1px 0 0 ${palette.border.secondary}, inset -1px 0 0 0 ${palette.border.secondary}`,
+                color: palette.text.primary,
+                cursor: 'auto',
+                zIndex: 2,
+                '&::before, &::after': {
+                    opacity: 1,
+                    visibility: 'visible',
+                },
             },
         },
     },
+    selected: {},
+    withContent: {},
 });
 
 /**
@@ -142,6 +215,7 @@ const styles = ({
 class TabsTab extends Component {
     constructor(props) {
         super(props);
+
         this.onTabClick = this.onTabClick.bind(this);
     }
 
@@ -167,6 +241,7 @@ class TabsTab extends Component {
         if (isFunction(onClick)) {
             onClick(this.props);
         }
+
         if (isFunction(onChange)) {
             onChange(originalKey, evt);
         }
@@ -181,6 +256,7 @@ class TabsTab extends Component {
             id,
             inverse,
             selected,
+            withContent,
         } = this.props;
 
         const rootClasses = ClassNames(
@@ -188,6 +264,8 @@ class TabsTab extends Component {
             classNames,
             {
                 [classes.mobile]: mobile,
+                [classes.withContent]: withContent,
+                [classes.selected]: selected,
             },
         );
 
@@ -208,6 +286,7 @@ class TabsTab extends Component {
                             [classes.inverse]: inverse,
                             [classes.selected]: selected,
                             [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
+                            [classes.withContent]: withContent,
                         },
                     )}
                     component="div"
