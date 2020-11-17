@@ -234,7 +234,7 @@ function Breadcrumbs(props) {
     );
 
     const shouldUseStaticBreadcrumbs = Array.isArray(staticCrumbs);
-    const shouldUseDynamicBreadcrumbs = !!(staticCrumbs?.length === 0 && router);
+    const shouldUseDynamicBreadcrumbs = !!(staticCrumbs.length === 0 && router);
     let finalBreadcrumbs;
 
     if (shouldUseStaticBreadcrumbs) {
