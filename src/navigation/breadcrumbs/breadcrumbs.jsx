@@ -1,13 +1,10 @@
-/* eslint-disable linebreak-style */
 import React, {
     useState,
     useEffect,
     useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-    get,
-} from 'lodash';
+import { get } from 'lodash';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
@@ -31,10 +28,15 @@ const propTypes = {
      */
     router: PropTypes.shape({}),
     /**
-     * TODO:: rename this
+     * Manually defines the crumbs
      */
-    routes: PropTypes.arrayOf(
-        PropTypes.shape({}),
+    staticCrumbs: PropTypes.arrayOf(
+        PropTypes.shape({
+            onBreadcrumbClick: PropTypes.string,
+            originalPath: PropTypes.string,
+            title: PropTypes.string,
+            to: PropTypes.string,
+        }),
     ),
     /**
      * You can pass an object to apply custom titles
@@ -60,7 +62,7 @@ const propTypes = {
 const defaultProps = {
     dividerString: '/',
     router: undefined,
-    routes: [],
+    staticCrumbs: [],
     routesNameMapper: [],
     showOnlyPreviousRoute: false,
     titlesMaxLength: 20,
@@ -158,10 +160,10 @@ const ICON_TYPE_FIRST_BREADCRUMB = 'chevron-left';
 function Breadcrumbs(props) {
     const {
         dividerString,
-        routes,
         router,
         routesNameMapper,
         showOnlyPreviousRoute,
+        staticCrumbs,
         titlesMaxLength,
     } = props;
 
@@ -175,7 +177,7 @@ function Breadcrumbs(props) {
     const routerPushFunction = get(router, 'push');
 
     useEffect(() => {
-        if (!routes.length > 0 && router) {
+        if (!staticCrumbs.length > 0 && router) {
             const routerRoutes = get(router, 'routes', []);
             const currentExistentRoutes = routesToArray(routerRoutes);
             setExistentRoutes(currentExistentRoutes);
@@ -193,7 +195,7 @@ function Breadcrumbs(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        const shouldUpdatePathBreadcrumbs = !routes.length > 0 && router &&
+        const shouldUpdatePathBreadcrumbs = !staticCrumbs.length > 0 && router &&
             prevPathName.current && prevPathName.current !== pathName;
 
         if (shouldUpdatePathBreadcrumbs) {
@@ -231,14 +233,14 @@ function Breadcrumbs(props) {
         `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_title_typography`,
     );
 
-    const shouldUseStaticBreadcrumbs = Array.isArray(routes);
-    const shouldUseDinamicBreadcrumbs = !!(routes?.length === 0 && router);
+    const shouldUseStaticBreadcrumbs = Array.isArray(staticCrumbs);
+    const shouldUseDynamicBreadcrumbs = !!(staticCrumbs?.length === 0 && router);
     let finalBreadcrumbs;
 
     if (shouldUseStaticBreadcrumbs) {
-        finalBreadcrumbs = routes;
+        finalBreadcrumbs = staticCrumbs;
     }
-    if (shouldUseDinamicBreadcrumbs) {
+    if (shouldUseDynamicBreadcrumbs) {
         finalBreadcrumbs = pathBreadcrumbs;
     }
 
