@@ -7,8 +7,8 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
-import withStyles from '../../styles/withStyles';
 import Typography from '../../dataDisplay/typography';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**

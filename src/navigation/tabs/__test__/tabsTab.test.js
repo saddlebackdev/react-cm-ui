@@ -2,11 +2,9 @@
  * To run this test from the root folder, execute the following command:
  * npx jest ./src/navigation/tabsTabs/__test__/tabsTab.test.js
  */
-import { shallow } from 'enzyme';
 import React from 'react';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import TabsTab from '../tabsTab';
-
-let wrapper;
 
 const componentProps = {
     children: 'Example Tab',
@@ -20,13 +18,24 @@ const componentProps = {
 
 describe('<TabsTab />', () => {
     it('renders without crashing', () => {
-        wrapper = shallow(<TabsTab {...componentProps} />);
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...componentProps}
+            />,
+        );
+
         expect(wrapper.length).toBe(1);
     });
 
     it('triggers onClick and calls onChange when both defined', () => {
-        wrapper = shallow(<TabsTab {...componentProps} />);
-        wrapper.prop('onClick')();
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...componentProps}
+            />,
+        );
+
+        wrapper.find('div').first().prop('onClick')();
+
         expect(componentProps.onClick).toHaveBeenCalledTimes(1);
         expect(componentProps.onChange).toHaveBeenCalledTimes(1);
     });
@@ -36,9 +45,16 @@ describe('<TabsTab />', () => {
             ...componentProps,
             selected: true,
         };
-        wrapper = shallow(<TabsTab {...testCaseProps} />);
+
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...testCaseProps}
+            />,
+        );
+
         const tabClasses = wrapper.find('WithStyles(ForwardRef(Typography))').prop('className');
         const doesIncludeSelectedClass = tabClasses.includes('navigation_tabs--tab-label_selected');
+
         expect(doesIncludeSelectedClass).toBe(true);
     });
 });

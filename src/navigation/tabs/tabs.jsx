@@ -17,10 +17,10 @@ import {
     BEM_NAVIGATION_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
+import DropdownButton from '../../inputs/dropdownButton';
 import TabsTab from './tabsTab';
 import TabsContent from './tabsContent';
 import withStyles from '../../styles/withStyles';
-import DropdownButton from '../../inputs/dropdownButton';
 
 const PREFIX_TAB = 'tab-';
 const CONTENT_PREFIX = 'content-';

@@ -2,15 +2,16 @@
  * To run this test from the root folder, execute the following command:
  * npx jest ./src/navigation/tabs/__test__/tabsContent.test.js
  */
-import { shallow } from 'enzyme';
 import React from 'react';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import TabsContent from '../tabsContent';
 
-let wrapper;
+const getContentText = 'tab content';
+
 const componentProps = {
     children: 'Hello',
     classNames: '',
-    getContent: () => ('tab content'),
+    getContent: () => getContentText,
     id: '1',
     isHidden: false,
     tabId: '1',
@@ -18,27 +19,51 @@ const componentProps = {
 
 describe('<TabsContent />', () => {
     it('renders withouth crashing', () => {
-        wrapper = shallow(<TabsContent {...componentProps} />);
+        const wrapper = mountWithTheme(
+            <TabsContent
+                {...componentProps}
+            />,
+        );
+
         expect(wrapper.length).toBe(1);
     });
 
     it('renders the content when getContent is defined with a returning a string/component/element', () => {
-        wrapper = shallow(<TabsContent {...componentProps} />);
-        expect(wrapper.prop('children')).toBe('tab content');
+        let wrapper = mountWithTheme(
+            <TabsContent
+                {...componentProps}
+            />,
+        );
+
+        expect(wrapper.find('div').text()).toBe(getContentText);
+
+        const divClassName = 'foo';
 
         let testCaseProps = {
             ...componentProps,
-            getContent: () => ([<div key="1" />]),
+            getContent: () => [<div className={divClassName} key="1" />],
         };
-        wrapper = shallow(<TabsContent {...testCaseProps} />);
-        expect(wrapper.prop('children')[0].type).toBe('div');
+
+        wrapper = mountWithTheme(
+            <TabsContent
+                {...testCaseProps}
+            />,
+        );
+
+        expect(wrapper.find('.foo').exists()).toEqual(true);
 
         testCaseProps = {
             ...componentProps,
-            getContent: () => (<div key="1" />),
+            getContent: () => <div className={divClassName} key="1" />,
         };
-        wrapper = shallow(<TabsContent {...testCaseProps} />);
-        expect(wrapper.prop('children').type).toBe('div');
+
+        wrapper = mountWithTheme(
+            <TabsContent
+                {...testCaseProps}
+            />,
+        );
+
+        expect(wrapper.find('.foo').exists()).toEqual(true);
     });
 
     it('renders the children when getContent is not defined', () => {
@@ -46,7 +71,13 @@ describe('<TabsContent />', () => {
             ...componentProps,
             getContent: undefined,
         };
-        wrapper = shallow(<TabsContent {...testCaseProps} />);
+
+        const wrapper = mountWithTheme(
+            <TabsContent
+                {...testCaseProps}
+            />,
+        );
+
         expect(wrapper.prop('children')).toBe('Hello');
     });
 });

@@ -29,6 +29,7 @@ describe('<Tabs />', () => {
 
     it('renders all tabs as visible when the container width is greater than the tabs total width', () => {
         const visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
+
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -39,6 +40,7 @@ describe('<Tabs />', () => {
             'Example Tab 7',
             'Example Tab 8',
         ]);
+
         expect(wrapper.find('Dropdown').length).toBe(0);
     });
 
@@ -47,14 +49,21 @@ describe('<Tabs />', () => {
             ...tabsState,
             blockWidth: 500,
         });
+
         wrapper.update();
-        const visibleTabs = wrapper.find('TabsTab').find('h4').map((tab) => tab.prop('children'));
+
+        const visibleTabs = wrapper
+            .find('TabsTab')
+            .find('div.navigation_tabs--tab-label')
+            .map((tab) => tab.prop('children'));
+
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
             'Example Tab 3',
             'Example Tab 4',
         ]);
+
         expect(wrapper.find('DropdownButton').length).toBe(1);
         expect(wrapper.find('DropdownMenuOption').length).toBe(4);
     });
@@ -64,10 +73,15 @@ describe('<Tabs />', () => {
             ...tabsState,
             blockWidth: 500,
         });
+
         wrapper.update();
+
         const hiddenTabs = wrapper.find('.dropdown_menu--option');
+
         hiddenTabs.at(0).simulate('click');
+
         const visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
+
         expect(visibleTabs[3]).toBe('Example Tab 5');
     });
 
@@ -76,8 +90,11 @@ describe('<Tabs />', () => {
             ...tabsState,
             blockWidth: 500,
         });
+
         wrapper.update();
+
         let visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
+
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -89,8 +106,11 @@ describe('<Tabs />', () => {
             ...tabsState,
             blockWidth: 1000,
         });
+
         wrapper.update();
+
         visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
+
         expect(visibleTabs).toEqual([
             'Example Tab 1',
             'Example Tab 2',
@@ -106,8 +126,11 @@ describe('<Tabs />', () => {
             ...tabsState,
             blockWidth: 200,
         });
+
         wrapper.update();
+
         visibleTabs = wrapper.find('TabsTab').map((tab) => tab.prop('children'));
+
         expect(visibleTabs).toEqual([
             'Example Tab 1',
         ]);

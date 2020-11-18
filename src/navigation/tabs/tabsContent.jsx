@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import ClassNames from 'classnames';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
