@@ -53,8 +53,60 @@ describe('<TabsTab />', () => {
         );
 
         const tabClasses = wrapper.find('WithStyles(ForwardRef(Typography))').prop('className');
-        const doesIncludeSelectedClass = tabClasses.includes('navigation_tabs--tab-label_selected');
+        const doesIncludeSelectedClass = tabClasses.includes('navigation_tabs--tab_label-selected');
 
         expect(doesIncludeSelectedClass).toBe(true);
+    });
+
+    it('should render \'inverse\' styling', () => {
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...componentProps}
+                inverse
+            />,
+        );
+
+        const labelNode = wrapper.find('div').first().find('.navigation_tabs--tab_label').first();
+
+        expect(labelNode.exists()).toEqual(true);
+        expect(labelNode.hasClass(/(TabsTab)-(inverse)-(\d+)/)).toEqual(true);
+    });
+
+    it('should render \'mobile\' styling', () => {
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...componentProps}
+                mobile
+            />,
+        );
+
+        const rootNode = wrapper.find('div').first();
+
+        expect(rootNode.exists()).toEqual(true);
+        expect(rootNode.hasClass(/(TabsTab)-(mobile)-(\d+)/)).toEqual(true);
+
+        const labelNode = rootNode.find('.navigation_tabs--tab_label').first();
+
+        expect(labelNode.exists()).toEqual(true);
+        expect(labelNode.hasClass(/(TabsTab)-(mobile)-(\d+)/)).toEqual(true);
+    });
+
+    it('should render \'withContent\' styling', () => {
+        const wrapper = mountWithTheme(
+            <TabsTab
+                {...componentProps}
+                withContent
+            />,
+        );
+
+        const rootNode = wrapper.find('div').first();
+
+        expect(rootNode.exists()).toEqual(true);
+        expect(rootNode.hasClass(/(TabsTab)-(withContent)-(\d+)/)).toEqual(true);
+
+        const labelNode = rootNode.find('.navigation_tabs--tab_label').first();
+
+        expect(labelNode.exists()).toEqual(true);
+        expect(labelNode.hasClass(/(TabsTab)-(withContent)-(\d+)/)).toEqual(true);
     });
 });

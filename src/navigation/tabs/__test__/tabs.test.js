@@ -14,6 +14,7 @@ let wrapper;
 
 const componentProps = {
     items,
+    mobile: true,
     selectedTabKey: 'exampleTab1',
 };
 
@@ -54,7 +55,7 @@ describe('<Tabs />', () => {
 
         const visibleTabs = wrapper
             .find('TabsTab')
-            .find('div.navigation_tabs--tab-label')
+            .find('div.navigation_tabs--tab_label')
             .map((tab) => tab.prop('children'));
 
         expect(visibleTabs).toEqual([
@@ -134,5 +135,23 @@ describe('<Tabs />', () => {
         expect(visibleTabs).toEqual([
             'Example Tab 1',
         ]);
+    });
+
+    it('should render \'mobile\' styling', () => {
+        const rootNode = wrapper.find('.navigation_tabs--container');
+
+        expect(rootNode.exists()).toEqual(true);
+        expect(rootNode.hasClass(/(Tabs)-(mobile)-(\d+)/)).toEqual(true);
+    });
+
+    it('should render \'withContent\' styling', () => {
+        wrapper.setProps({
+            withContent: true,
+        });
+
+        const panelNode = wrapper.find('.navigation_tabs--panel');
+
+        expect(panelNode.exists()).toEqual(true);
+        expect(panelNode.hasClass(/(Tabs)-(withContent)-(\d+)/)).toEqual(true);
     });
 });

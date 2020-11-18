@@ -279,13 +279,13 @@ class TabsTab extends Component {
             >
                 <Typography
                     className={ClassNames(
-                        `${BEM_NAVIGATION_TAB_ROOT_CLASS}-label`,
+                        `${BEM_NAVIGATION_TAB_ROOT_CLASS}_label`,
                         classes.label,
                         {
                             [classes.mobile]: mobile,
                             [classes.inverse]: inverse,
                             [classes.selected]: selected,
-                            [`${BEM_NAVIGATION_TAB_ROOT_CLASS}-label_selected`]: selected,
+                            [`${BEM_NAVIGATION_TAB_ROOT_CLASS}_label-selected`]: selected,
                             [classes.withContent]: withContent,
                         },
                     )}

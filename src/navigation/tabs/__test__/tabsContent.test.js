@@ -80,4 +80,18 @@ describe('<TabsContent />', () => {
 
         expect(wrapper.prop('children')).toBe('Hello');
     });
+
+    it('should render \'withContent\' styling', () => {
+        const wrapper = mountWithTheme(
+            <TabsContent
+                {...componentProps}
+                withContent
+            />,
+        );
+
+        const rootNode = wrapper.find('div').first();
+
+        expect(rootNode.exists()).toEqual(true);
+        expect(rootNode.hasClass(/(makeStyles)-(withContent)-(\d+)/)).toEqual(true);
+    });
 });
