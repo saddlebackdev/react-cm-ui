@@ -288,6 +288,23 @@ export const navigationItems = [
                         path: 'radio',
                     },
                     {
+                        component: 'select',
+                        label: 'Select',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'select',
+                    },
+                    {
                         component: 'segmentedControls',
                         label: 'Segmented Controls',
                         path: 'segmented-controls',

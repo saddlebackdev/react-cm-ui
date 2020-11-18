@@ -16,32 +16,108 @@ import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to Prompt.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+    * Assign additional class names to Prompt.
+    */
     className: PropTypes.string,
+    /**
+    * A Select can clear its value using close icon
+    */
     clearable: PropTypes.bool,
+    /**
+    * A Select can create custom options
+    */
     creatable: PropTypes.bool,
+    /**
+    * A Select can be disabled
+    */
     disable: PropTypes.bool,
+    /**
+    * Supply style to dropdown menu container
+    */
     dropdownMenuContainerStyle: PropTypes.shape({}),
+    /**
+    * Supply dropdown menu maximum height
+    */
     dropdownMenuMaxHeight: PropTypes.number,
+    /**
+    * Supply dropdown menu minimum height
+    */
     dropdownMenuMinHeight: PropTypes.number,
+    /**
+    * Supply dropdown menu style
+    */
     dropdownMenuStyle: PropTypes.shape({}),
+    /**
+     * A Select will be resized to its parent container's width.
+     */
     fluid: PropTypes.bool,
+    /**
+     * The `id` of the Select.
+     */
     id: PropTypes.string,
+    /**
+     * The label for the Select.
+     */
     label: PropTypes.string,
+    /**
+     * Whether to match the value, label or both values of each selection option when filtering.
+     * enums:any, label, value
+     */
     matchProp: PropTypes.oneOf(['any', 'label', 'value']),
+    /**
+     * A Select can have multiple values
+     */
     multiple: PropTypes.bool,
+    /**
+     * The onChange event handler.
+     */
     onChange: PropTypes.func,
+    /**
+     * A Select can have custom option component
+     */
     optionComponent: PropTypes.func,
+    /**
+     * Supply a list of options that the user can select from.
+     */
     options: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+     * Supply a placeholder text for the best UX.
+     */
     placeholder: PropTypes.string,
+    /**
+     * Supply a custom label option, when creatable is true
+     */
     promptTextCreator: PropTypes.func,
+    /**
+     * A Select can be required
+     */
     required: PropTypes.bool,
+    /**
+    * A Select can enable option search
+    */
     searchable: PropTypes.bool,
+    /**
+     * Indicates whether or not the Select can be focused.
+     */
     tabIndex: PropTypes.number,
+    /**
+     * Underlined Select selection.
+     */
     underline: PropTypes.bool,
+    /**
+     * Changes the value of the Select.
+     */
     value: PropTypes.shape({}),
+    /**
+     * A Select can have custom value component
+     */
     valueComponent: PropTypes.func,
 };
 
