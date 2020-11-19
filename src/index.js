@@ -25,7 +25,6 @@ export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
 // Feedback
-export { default as Loader } from './feedback/loader';
 export { default as ActivityIndicator } from './feedback/activityIndicator';
 
 // Inputs
