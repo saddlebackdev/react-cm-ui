@@ -14,7 +14,7 @@ import DrawerDataGroups from './drawerDataGroups';
 import DrawerDetailsWindow from './drawerDetailsWindow';
 import DrawerFiltersDrawer from './drawerFiltersDrawer'; // eslint-disable-line import/no-cycle
 import DrawerFiltersRail from './drawerFiltersRail'; // eslint-disable-line import/no-cycle
-import DrawerNavigation from './drawerNavigation';
+import DrawerTabs from './drawerTabs';
 import DrawerTitleBar from './drawerTitleBar';
 import DrawerWing from './drawerWing';
 import withStyles from '../../styles/withStyles';
@@ -29,7 +29,12 @@ const propTypes = {
     }),
     className: PropTypes.string,
     container: PropTypes.shape({
-        classList: PropTypes.shape({}),
+        classList: PropTypes.shape({
+            add: PropTypes.func,
+            contains: PropTypes.func,
+            remove: PropTypes.func,
+        }),
+        closest: PropTypes.func,
     }),
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
@@ -374,7 +379,7 @@ class Drawer extends React.Component {
                     default:
                 }
 
-                domUtils.addClassName(BODY, 'drawer-open-layered');
+                domUtils.addClassName(container, 'drawer-open-layered');
 
                 this.drawerRef.style.zIndex = newZIndex;
                 this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
@@ -553,7 +558,7 @@ Drawer.DataGroups = DrawerDataGroups;
 Drawer.DetailsWindow = DrawerDetailsWindow;
 Drawer.FiltersDrawer = DrawerFiltersDrawer;
 Drawer.FiltersRail = DrawerFiltersRail;
-Drawer.Navigation = DrawerNavigation;
+Drawer.Tabs = DrawerTabs;
 Drawer.TitleBar = DrawerTitleBar;
 Drawer.Wing = DrawerWing;
 

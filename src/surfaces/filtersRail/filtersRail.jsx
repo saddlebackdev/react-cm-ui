@@ -1,15 +1,18 @@
-import { map, isEmpty } from 'lodash';
+import { map, isEmpty, isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import {
-    UI_CLASS_NAME,
     BEM_CONTAINER,
     BEM_CONTENT,
     BEM_FILTERS_RAIL,
     BEM_FILTERS_RAIL_ROW,
+    UI_CLASS_NAME,
 } from '../../global/constants';
-import { PROP_TYPES_ROW } from './constants';
+import {
+    PROP_TYPES_ROOT,
+    DEFAULT_PROPS_ROOT,
+} from './constants';
 import FiltersRailClear from './filtersRailClear';
 import FiltersRailRow from './filtersRailRow';
 import Grid from '../../layout/grid';
@@ -20,56 +23,7 @@ import useMediaQuery from '../../utils/useMediaQuery';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
-    /**
-     * The content of the FiltersRail
-     */
-    children: PropTypes.node,
-    /**
-     * Override or extend the styles applied to FiltersRail.
-     */
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-    }),
-    /**
-     * Assign additional class names to FiltersRail.
-     */
-    className: PropTypes.string,
-    /**
-     * The `id` of the FiltersRail.
-     */
-    id: PropTypes.string,
-    /**
-     * If `true`, FiltersRail's clear button becomes actionable.
-     */
-    isFiltering: PropTypes.bool,
-    /**
-     * If `true`, FiltersRail is open
-     */
-    isOpen: PropTypes.bool,
-    /**
-     * Assigns styling to the FiltersRail dependant on
-     * whether it is a child of the Page or Drawer component.
-     */
-    moduleType: PropTypes.oneOf(['drawer', 'page']),
-    /**
-     * Event handler for consumer to clear filters.
-     */
-    onClear: PropTypes.func,
-    /**
-     * Array of objects that are used to setup the grid system
-     * in the FiltersRail.
-     */
-    rows: PropTypes.arrayOf(
-        PropTypes.shape({
-            classes: PROP_TYPES_ROW.classes,
-            className: PROP_TYPES_ROW.className,
-            collapse: PROP_TYPES_ROW.collapse,
-            collapsible: PROP_TYPES_ROW.collapsible,
-            components: PROP_TYPES_ROW.components,
-            heading: PROP_TYPES_ROW.heading,
-            id: PROP_TYPES_ROW.id,
-        }),
-    ),
+    ...PROP_TYPES_ROOT,
     /**
      * HC's theme.
      */
@@ -81,15 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    children: undefined,
-    classes: undefined,
-    className: undefined,
-    id: undefined,
-    isFiltering: false,
-    isOpen: undefined,
-    moduleType: 'page',
-    onClear: undefined,
-    rows: [],
+    ...DEFAULT_PROPS_ROOT,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -219,14 +165,16 @@ function FiltersRail(props) {
                         <Grid
                             spacing={3}
                         >
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <FiltersRailClear
-                                    disable={!isFiltering}
-                                    onClear={onClear}
-                                />
-                            </Grid.Column>
+                            {isFunction(onClear) && (
+                                <Grid.Column
+                                    sm={12}
+                                >
+                                    <FiltersRailClear
+                                        disable={!isFiltering}
+                                        onClear={onClear}
+                                    />
+                                </Grid.Column>
+                            )}
 
                             {map(rows, (row) => {
                                 rowKeyNum += 1;

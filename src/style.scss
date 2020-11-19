@@ -36,16 +36,11 @@
 // Layout
 @import './layout/grid/grid';
 
-// Navigation
-@import './navigation/subNavigation/subNavigation';
-
 // Surfaces
 @import './surfaces/accordion/accordion';
 @import './surfaces/detailsWindow/detailsWindow';
 @import './surfaces/drawer/drawer';
 @import './surfaces/drawer/drawerFiltersDrawer';
-@import './surfaces/drawer/drawerNavigation';
-@import './surfaces/drawer/drawerTitleBar';
 @import './surfaces/drawer/drawerWing';
 @import './surfaces/filtersDrawer/filtersDrawer';
 @import './surfaces/infoBar/infoBar';

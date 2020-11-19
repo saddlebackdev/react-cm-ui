@@ -17,6 +17,10 @@ import {
     BEM_NAVIGATION_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
+import {
+    PROP_TYPES_ITEMS,
+    PROP_TYPES_SELECTED_TAB_KEY,
+} from './constants';
 import DropdownButton from '../../inputs/dropdownButton';
 import TabsTab from './tabsTab';
 import TabsContent from './tabsContent';
@@ -55,14 +59,7 @@ const propTypes = {
     /**
      * List of the tabs objects
      */
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            key: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            getContent: PropTypes.func,
-            onClick: PropTypes.func,
-        }),
-    ),
+    items: PROP_TYPES_ITEMS,
     /**
      * If `true`, Tabs will look more like actionable buttons.
      */
@@ -78,7 +75,7 @@ const propTypes = {
     /**
      * Use this prop to programatically change the selected tab
      */
-    selectedTabKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    selectedTabKey: PROP_TYPES_SELECTED_TAB_KEY,
     /**
      * Renders the content set inside the item object under the tabs panel
      */
