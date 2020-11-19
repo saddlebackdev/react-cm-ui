@@ -3,20 +3,18 @@ import {
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
+import ExampleMiniToggle from './examples/exampleMiniToggle';
+import ExampleStandardToggle from './examples/exampleStandardToggle';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
-import ModalLeftAlignedSample from './modalLeftAlignedSample';
-import ModalCenterAlignedSample from './modalCenterAlignedSample';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/switch/switch';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -25,7 +23,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsModal(props) {
+function DocsSwitch(props) {
     const {
         location: {
             pathname,
@@ -49,45 +47,39 @@ function DocsModal(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="standard-toggle"
                         variant="h2"
                     >
-                        Left Aligned Modal
+                        Standard Toggle
                     </Heading>
 
-                    <Typography
-                        variant="body1"
-                    >
-                        Used in situations when 2 or more data capture elements are needed that
-                        differ in component type and or context. Exceptions to these principles are
-                        rare.
+                    <Typography>
+                        General Use
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./modalLeftAlignedSample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleStandardToggle').default}
                     >
-                        <ModalLeftAlignedSample />
+                        <ExampleStandardToggle />
                     </Example>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="mini-toggle"
                         variant="h2"
                     >
-                        Center Aligned Modal
+                        Mini Toggle
                     </Heading>
 
                     <Typography
                         variant="body1"
                     >
-                        Used in situations when only 1 data capture elements is needed to complete
-                        a process or a step in a process, or if 2 are needed that do not differ in
-                        component type and or context.
+                        Used in the Settings Rail, and supports drag and drop
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./modalCenterAlignedSample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleMiniToggle').default}
                     >
-                        <ModalCenterAlignedSample />
+                        <ExampleMiniToggle />
                     </Example>
                 </MarkdownContainer>
 
@@ -99,6 +91,6 @@ function DocsModal(props) {
     );
 }
 
-DocsModal.propTypes = propTypes;
+DocsSwitch.propTypes = propTypes;
 
-export default DocsModal;
+export default DocsSwitch;

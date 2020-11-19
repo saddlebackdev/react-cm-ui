@@ -42,6 +42,7 @@ export { default as Prompt } from './inputs/prompt';
 export { default as Radio } from './inputs/radio';
 export { default as SegmentedControls } from './inputs/segmentedControls';
 export { default as Select } from './inputs/select';
+export { default as Switch } from './inputs/switch';
 export { default as TextArea } from './inputs/textArea';
 export { default as TimePicker } from './inputs/timePicker';
 

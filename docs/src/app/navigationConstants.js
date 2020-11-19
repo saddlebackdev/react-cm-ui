@@ -192,6 +192,18 @@ export const navigationItems = [
                     {
                         component: 'checkbox',
                         label: 'Checkbox',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'checkbox',
                     },
                     {
@@ -286,6 +298,18 @@ export const navigationItems = [
                         component: 'segmentedControls',
                         label: 'Segmented Controls',
                         path: 'segmented-controls',
+                    },
+                    {
+                        component: 'switch',
+                        label: 'Switch',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'switch',
                     },
                     {
                         component: 'textArea',
@@ -421,6 +445,13 @@ export const navigationItems = [
                     {
                         component: 'actionBar',
                         label: 'Action Bar',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'action-bar',
                     },
                     {
@@ -515,6 +546,13 @@ export const navigationItems = [
                     {
                         component: 'filtersRail',
                         label: 'Filters Rail',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'filters-rail',
                     },
                     {
@@ -525,6 +563,13 @@ export const navigationItems = [
                     {
                         component: 'modal',
                         label: 'Modal',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'modal',
                     },
                     {

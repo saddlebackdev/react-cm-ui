@@ -1,6 +1,7 @@
 import {
     filter,
     get,
+    isArray,
     map,
     startCase,
 } from 'lodash';
@@ -8,6 +9,7 @@ import {
     Typography,
     versions,
 } from 'react-cm-ui';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import MarkdownContainer from './markdownContainer';
@@ -16,10 +18,21 @@ const propTypes = {
     pathname: PropTypes.string.isRequired,
 };
 
+const useStyles = makeStyles(({ typography }) => ({
+    pre: {
+        display: 'inline',
+        fontFamily: typography.fontFamily,
+        margin: 0,
+        padding: 0,
+    },
+}));
+
 function ComponentVersionIdentifier(props) {
     const {
         pathname,
     } = props;
+
+    const classes = useStyles();
 
     const pathNameArray = map(
         filter(
@@ -49,22 +62,20 @@ function ComponentVersionIdentifier(props) {
                 Version
             </Typography>
 
-            <Typography
-                variant="body1"
-            >
+            <div>
                 {map(version, (v, key) => {
-                    if (key === 'designLibraryDoc') {
+                    if (isArray(v)) {
                         return (
                             <div
                                 key={key}
                             >
-                                {`${startCase(key)}: `}
+                                {`"${startCase(key)}": `}
 
-                                <a
-                                    href={v}
+                                <pre
+                                    className={classes.pre}
                                 >
-                                    {v}
-                                </a>
+                                    {JSON.stringify(v, null, 4)}
+                                </pre>
                             </div>
                         );
                     }
@@ -73,11 +84,11 @@ function ComponentVersionIdentifier(props) {
                         <div
                             key={key}
                         >
-                            {`${startCase(key)}: ${v}`}
+                            {`"${startCase(key)}": "${v}"`}
                         </div>
                     );
                 })}
-            </Typography>
+            </div>
         </MarkdownContainer>
     );
 }
