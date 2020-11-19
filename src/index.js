@@ -25,7 +25,6 @@ export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
 // Feedback
-export { default as Loader } from './feedback/loader';
 export { default as ActivityIndicator } from './feedback/activityIndicator';
 
 // Inputs
@@ -49,7 +48,6 @@ export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
-export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';
