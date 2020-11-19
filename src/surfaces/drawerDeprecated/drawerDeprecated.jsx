@@ -291,7 +291,7 @@ class DrawerDeprecated extends React.Component {
 
         document.body.classList.add('drawer-animate-out');
 
-        if (!!this._drawerContainer) {
+        if (this._drawerContainer) {
             this._drawerContainer.classList.add('drawer-animate-out');
             this._drawerContainer.style.transform = this.props.position === 'right' ?
                 'translate(100%, 0)' :
@@ -491,7 +491,7 @@ class DrawerDeprecated extends React.Component {
         };
 
         for (t in transitions) {
-            if (el?.style[t] !== undefined) {
+            if (el?.style && el.style[t] !== undefined) {
                 return transitions[t];
             }
         }

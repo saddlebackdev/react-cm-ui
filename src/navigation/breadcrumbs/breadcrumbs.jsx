@@ -4,7 +4,10 @@ import React, {
     useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
+import {
+    get,
+    isNil,
+} from 'lodash';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
@@ -18,7 +21,7 @@ import {
 
 const propTypes = {
     /**
-     * Separation String between breadcrumbs
+     * Separation string between breadcrumbs
      */
     dividerString: PropTypes.string,
     /**
@@ -32,7 +35,7 @@ const propTypes = {
      */
     staticCrumbs: PropTypes.arrayOf(
         PropTypes.shape({
-            onBreadcrumbClick: PropTypes.string,
+            onBreadcrumbClick: PropTypes.func,
             originalPath: PropTypes.string,
             title: PropTypes.string,
             to: PropTypes.string,
@@ -177,7 +180,7 @@ function Breadcrumbs(props) {
     const routerPushFunction = get(router, 'push');
 
     useEffect(() => {
-        if (!staticCrumbs.length > 0 && router) {
+        if (staticCrumbs.length === 0 && router) {
             const routerRoutes = get(router, 'routes', []);
             const currentExistentRoutes = routesToArray(routerRoutes);
             setExistentRoutes(currentExistentRoutes);
@@ -195,7 +198,7 @@ function Breadcrumbs(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        const shouldUpdatePathBreadcrumbs = !staticCrumbs.length > 0 && router &&
+        const shouldUpdatePathBreadcrumbs = staticCrumbs.length === 0 && router &&
             prevPathName.current && prevPathName.current !== pathName;
 
         if (shouldUpdatePathBreadcrumbs) {
@@ -233,13 +236,9 @@ function Breadcrumbs(props) {
         `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_title_typography`,
     );
 
-    const shouldUseStaticBreadcrumbs = Array.isArray(staticCrumbs);
-    const shouldUseDynamicBreadcrumbs = !!(staticCrumbs.length === 0 && router);
-    let finalBreadcrumbs;
+    let finalBreadcrumbs = staticCrumbs;
+    const shouldUseDynamicBreadcrumbs = staticCrumbs.length === 0 && !isNil(router);
 
-    if (shouldUseStaticBreadcrumbs) {
-        finalBreadcrumbs = staticCrumbs;
-    }
     if (shouldUseDynamicBreadcrumbs) {
         finalBreadcrumbs = pathBreadcrumbs;
     }
@@ -265,8 +264,8 @@ function Breadcrumbs(props) {
                             title,
                         } = breadcrumb;
 
-                        const shouldTitleBeEllipsed = title.length > titlesMaxLength;
-                        const parsedTitle = shouldTitleBeEllipsed ?
+                        const shouldTitleBeTruncated = title.length > titlesMaxLength;
+                        const parsedTitle = shouldTitleBeTruncated ?
                             `${title.substring(0, titlesMaxLength)}...` :
                             title;
                         const isFirst = index === 0;
@@ -298,7 +297,7 @@ function Breadcrumbs(props) {
                             </Typography>
                         );
 
-                        if (shouldTitleBeEllipsed) {
+                        if (shouldTitleBeTruncated) {
                             breadcrumbTo = (
                                 <ToolTip
                                     title={title}
