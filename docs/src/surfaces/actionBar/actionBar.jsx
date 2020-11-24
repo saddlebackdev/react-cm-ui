@@ -129,12 +129,6 @@ function DocsActionBar(props) {
                     <ActionBarBasicSearchMdSample />
                 </Example>
 
-                <ComponentApi
-                    docs={[
-                        rootDoc,
-                    ]}
-                />
-
                 <ComponentVersionIdentifier
                     pathname={pathname}
                 />

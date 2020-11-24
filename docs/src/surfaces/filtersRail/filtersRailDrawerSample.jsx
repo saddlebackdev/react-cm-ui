@@ -154,6 +154,7 @@ function FiltersRailDrawerSample() {
     return (
         <div>
             <Button
+                color="primary"
                 onClick={onOpenDrawerToggle}
             >
                 Open Drawer
@@ -165,7 +166,6 @@ function FiltersRailDrawerSample() {
                 <Drawer.TitleBar
                     closeButton={(
                         <Button
-                            color="alternate"
                             icon
                             onClick={onOpenDrawerToggle}
                         >
@@ -187,7 +187,7 @@ function FiltersRailDrawerSample() {
                         },
                         {
                             button: {
-                                color: 'alternate',
+                                color: 'secondary',
                                 iconType: 'comment-lines',
                                 title: 'SMS',
                             },
@@ -198,7 +198,7 @@ function FiltersRailDrawerSample() {
                         },
                         {
                             dropdownButton: {
-                                color: 'alternate',
+                                color: 'secondary',
                                 label: 'Actions',
                                 options: [
                                     {

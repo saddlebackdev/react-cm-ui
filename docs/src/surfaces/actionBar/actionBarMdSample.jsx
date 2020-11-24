@@ -20,7 +20,7 @@ function ActionBarSample() {
             columns={[
                 {
                     button: {
-                        color: 'alternate',
+                        color: 'secondary',
                         iconType: 'envelope',
                         title: 'Email',
                     },
@@ -31,7 +31,7 @@ function ActionBarSample() {
                 },
                 {
                     button: {
-                        color: 'alternate',
+                        color: 'secondary',
                         iconType: 'comment-lines',
                         title: 'SMS',
                     },
@@ -42,7 +42,7 @@ function ActionBarSample() {
                 },
                 {
                     dropdownButton: {
-                        color: 'alternate',
+                        color: 'secondary',
                         label: 'Actions',
                         options: [
                             {
