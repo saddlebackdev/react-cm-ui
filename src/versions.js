@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.19.1',
+        package: '9.19.2',
         components: {
             inputs: {
                 durationPicker: {
@@ -11,12 +11,12 @@ const versions = {
             },
             navigation: {
                 breadcrumbs: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
                 sectionalTabs: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
