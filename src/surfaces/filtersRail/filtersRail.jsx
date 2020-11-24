@@ -134,12 +134,6 @@ const useStyles = makeStyles((theme) => {
                         duration: theme.transitions.duration.short,
                     })}`,
                 },
-                [`&$isNotInDrawer + .${BEM_CONTENT}`]: {
-                    marginLeft: railWidth - theme.gutters.page.sm,
-                    [theme.breakpoints.up(496)]: {
-                        marginLeft: railWidth - theme.gutters.page[496],
-                    },
-                },
                 [`&$isInDrawer + .${BEM_CONTENT}`]: {
                     marginLeft: railWidth,
                 },
