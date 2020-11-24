@@ -132,8 +132,7 @@ const styles = ({ palette, spacing }) => ({
 });
 
 /**
- * Tabs organize and allow navigation between groups of related feature pages and or drawer content
- * at the same level of hierarchy.
+ * Tabs are used for lateral navigation of content or pages.
  */
 class Tabs extends Component {
     constructor(props) {
