@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import React, {
     Component,
 } from 'react';
@@ -133,8 +132,8 @@ const styles = ({ palette, spacing }) => ({
 });
 
 /**
- * Component capable to hide/show its tabs under a drop down button according to the container size.
- * It swipes the hidden tabs on click making them visible.
+ * Tabs organize and allow navigation between groups of related feature pages and or drawer content
+ * at the same level of hierarchy.
  */
 class Tabs extends Component {
     constructor(props) {
@@ -249,7 +248,7 @@ class Tabs extends Component {
                     evt.preventDefault();
                 }
 
-                return null;
+                return;
             }
         }
 
@@ -258,13 +257,11 @@ class Tabs extends Component {
         if (isFunction(onChange)) {
             onChange(nextTabKey);
         }
-
-        return null;
     }
 
     setTabsDimensions() {
         if (!this.tabsWrapper) {
-            return null;
+            return;
         }
 
         const blockWidth = this.tabsWrapper.offsetWidth;
@@ -290,8 +287,6 @@ class Tabs extends Component {
             tabsTotalWidth: updatedTabsTotalWidth,
             blockWidth,
         });
-
-        return null;
     }
 
     getTabs() {
@@ -483,9 +478,9 @@ class Tabs extends Component {
         return {
             getContent,
             children: content,
-            key: CONTENT_PREFIX + key,
-            id: CONTENT_PREFIX + key,
-            tabId: PREFIX_TAB + key,
+            key: `${CONTENT_PREFIX}${key}`,
+            id: `${CONTENT_PREFIX}${key}`,
+            tabId: `${PREFIX_TAB}${key}`,
             classNames: this.getClassNamesFor('content', { className, isHidden }),
             isHidden,
         };

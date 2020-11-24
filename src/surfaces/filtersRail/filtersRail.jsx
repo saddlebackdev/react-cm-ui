@@ -1,4 +1,8 @@
-import { map, isEmpty, isFunction } from 'lodash';
+import {
+    map,
+    isEmpty,
+    isFunction,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';

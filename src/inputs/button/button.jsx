@@ -129,7 +129,7 @@ const styles = (theme) => {
                 },
             },
             '&$text': {
-                color: theme.palette.text.disable,
+                color: theme.palette.text.primary,
                 '& .icon .icon-use-path': {
                     fill: theme.palette.text.primary,
                 },

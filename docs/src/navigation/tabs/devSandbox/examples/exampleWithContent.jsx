@@ -1,21 +1,36 @@
-import React from 'react';
 import { Tabs } from 'react-cm-ui';
+import React from 'react';
+import makeStyles from 'react-cm-ui/styles/makeStyles';
 
-const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
-    getContent: () => `Example Tab ${tabNumber} content`,
-    key: `exampleTab${tabNumber}`,
-    // eslint-disable-next-line no-console
-    onClick: (clickedTab) => { console.log(`Example Tab ${tabNumber} clicked`, clickedTab); },
-    title: `Example Tab ${tabNumber}`,
+const useStyles = makeStyles(({ spacing }) => ({
+    root: {
+        padding: spacing(1),
+    },
 }));
 
 function ExampleWithContent() {
+    const classes = useStyles();
+
+    const items = [1, 2, 3, 4, 5, 6, 7, 8].map((tabNumber) => ({
+        getContent: () => `Example Tab ${tabNumber} content`,
+        key: `exampleTab${tabNumber}`,
+        onClick: (clickedTab) => {
+            // eslint-disable-next-line no-console
+            console.log(`Example Tab ${tabNumber} clicked`, clickedTab);
+        },
+        title: `Example Tab ${tabNumber}`,
+    }));
+
     return (
-        <Tabs
-            items={items}
-            selectedTabKey={items[0].key}
-            withContent
-        />
+        <div
+            className={classes.root}
+        >
+            <Tabs
+                items={items}
+                selectedTabKey={items[0].key}
+                withContent
+            />
+        </div>
     );
 }
 
