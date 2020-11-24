@@ -24,7 +24,6 @@ export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
 // Feedback
-export { default as Loader } from './feedback/loader';
 export { default as ActivityIndicator } from './feedback/activityIndicator';
 
 // Inputs
@@ -42,12 +41,12 @@ export { default as Prompt } from './inputs/prompt';
 export { default as Radio } from './inputs/radio';
 export { default as SegmentedControls } from './inputs/segmentedControls';
 export { default as Select } from './inputs/select';
+export { default as Switch } from './inputs/switch';
 export { default as TextArea } from './inputs/textArea';
 export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
-export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';

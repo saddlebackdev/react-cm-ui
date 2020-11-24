@@ -114,7 +114,7 @@ function ModalHeader(props) {
                 {(isUndefined(closeButton) || isString(closeButton)) && (
                     <Button
                         className="modal-close-button"
-                        color={inverse ? 'transparent' : 'alternate'}
+                        color={inverse ? 'transparent' : 'secondary'}
                         onClick={onClose}
                         icon
                         title="Close"

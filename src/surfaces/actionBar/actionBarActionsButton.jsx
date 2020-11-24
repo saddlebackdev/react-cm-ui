@@ -39,7 +39,7 @@ const defaultProps = {
     actionBarNode: null,
     className: undefined,
     drawerContainer: null,
-    iconBackgroundColor: 'alternate',
+    iconBackgroundColor: 'secondary',
     iconBackgroundHighlightColor: 'primary',
     iconType: 'ellipsis-h',
     id: undefined,

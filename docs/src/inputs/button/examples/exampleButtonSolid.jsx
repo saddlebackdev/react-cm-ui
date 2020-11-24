@@ -24,9 +24,7 @@ function ExampleSolid() {
                         </Typography>
                     </Grid.Column>
 
-                    <Grid.Column
-                        sm
-                    >
+                    <Grid.Column>
                         <Button>
                             Label
                         </Button>
@@ -47,9 +45,7 @@ function ExampleSolid() {
                         </Typography>
                     </Grid.Column>
 
-                    <Grid.Column
-                        sm
-                    >
+                    <Grid.Column>
                         <Button
                             icon
                         >
@@ -74,9 +70,7 @@ function ExampleSolid() {
                         </Typography>
                     </Grid.Column>
 
-                    <Grid.Column
-                        sm
-                    >
+                    <Grid.Column>
                         <Button>
                             <Icon
                                 type="shape-heart"

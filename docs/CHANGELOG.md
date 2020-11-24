@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.11.0 - 10/01/2020
+
+#### Feature
+- [PR #228](https://github.com/saddlebackdev/react-cm-ui/pull/228) / Merge Commit 00b72e09f8c1835568b258c4aff4bfa320f71bec
+  - Cleaned up Page components Demo a bit.
+- [PR #230](https://github.com/saddlebackdev/react-cm-ui/pull/230) / Merge Commit e428f5acc483676faa2d8880d9747891b11f0342
+  - Added a new fourth level navigation using our Sectional Tabs component in the root layout.
+
 ## 0.10.2 - 10/01/2020
 
 #### Bug

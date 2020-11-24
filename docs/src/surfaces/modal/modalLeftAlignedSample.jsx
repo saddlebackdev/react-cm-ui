@@ -26,6 +26,7 @@ function ModalLeftAlignedSample() {
     return (
         <div>
             <Button
+                color="primary"
                 onClick={onToggle}
             >
                 Open Left Aligned Modal
@@ -99,13 +100,13 @@ function ModalLeftAlignedSample() {
                         classes={{
                             root: classes.cancelButton,
                         }}
-                        color="alternate"
                         onClick={onToggle}
                     >
                         Cancel
                     </Button>
 
                     <Button
+                        color="primary"
                         onClick={onToggle}
                     >
                         CTA Label
