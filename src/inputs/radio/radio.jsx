@@ -9,17 +9,33 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
+import {
+    BEM_RADIO,
+    ENTER_KEY_CODE,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import RadioItem from './radioItem';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * Aligns the label\'s definition to the left or right.
+     */
     align: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Indicates whether a radio input is checked or not.
+     */
     checked: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,
     ]),
+    /**
+     * Children are used for pill mode
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to Input.
+     */
     classes: PropTypes.shape({
         input: PropTypes.string,
         isAlignedRight: PropTypes.string,
@@ -31,6 +47,9 @@ const propTypes = {
         labelNotClickable: PropTypes.string,
         root: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to Radio.
+     */
     className: PropTypes.string,
     /**
      * A Radio can be disabled.
@@ -40,17 +59,54 @@ const propTypes = {
      * Deprecated prop. Please use `disable` instead.
      */
     disabled: PropTypes.bool,
+    /**
+     * A radio input can take on the size of its container.
+     */
     fluid: PropTypes.bool,
+    /**
+     * Give a radio input an id.
+     */
     id: PropTypes.string,
+    /**
+     * Optional label to display with the radio input.
+     */
     label: PropTypes.string,
+    /**
+     * Disable the label\'s definition onClick handler.
+     */
     labelClick: PropTypes.bool,
+    /**
+     * Force the radio button group to work in a multi checkbox mode.
+     */
     multi: PropTypes.bool,
+    /**
+     * Radio input\'s name.
+     */
     name: PropTypes.string,
+    /**
+     * Can handle an onChange event from parent.
+     */
     onChange: PropTypes.func,
+    /**
+     * Can handle an onChange onKeyDown event
+     */
     onKeyDown: PropTypes.func,
+    /**
+     * Group radio buttons together in a pill container.
+     */
     pill: PropTypes.bool,
+    /**
+     * Supply any inline styles to the radio input\'s container.
+     * Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}),
+    /**
+     * Radio input tabIndex
+     */
     tabIndex: PropTypes.number,
+    /**
+     * Radio input\'s value.
+     */
     value: PropTypes.string,
 };
 
@@ -99,6 +155,7 @@ const styles = (theme) => {
 
     return {
         isAlignedRight: {},
+        isChecked: {},
         isDisabled: {},
         isFluid: {},
         isPill: {},
@@ -121,7 +178,7 @@ const styles = (theme) => {
                 color: theme.palette.text.primary,
                 cursor: 'pointer',
                 display: 'block',
-                fontSize: 14,
+                fontSize: theme.typography.pxToRem(16),
                 position: 'relative',
                 '&::before, &::after': {
                     content: '""',
@@ -182,24 +239,40 @@ const styles = (theme) => {
                         backgroundColor: theme.palette.grey[400],
                     },
                 },
+                '& .label': {
+                    cursor: 'auto',
+                    color: theme.palette.text.secondary,
+                    '&::before': {
+                        background: theme.palette.background.secondary,
+                    },
+                    '&::after': {
+                        backgroundColor: theme.palette.grey[400],
+                    },
+                },
                 '&$isPill': {
                     '& .radio-item': {
                         '& .label': {
                             cursor: 'default',
                         },
                         '& .input:checked + .label': {
-                            backgroundColor: theme.palette.grey[400],
-                            borderColor: theme.palette.grey[400],
+                            backgroundColor: theme.palette.grey[300],
+                            borderColor: theme.palette.grey[300],
                         },
                         '&:last-child': {
                             input: {
                                 '&:checked + .label': {
-                                    borderRight: `1px solid ${theme.palette.grey[400]}`,
+                                    borderRight: `1px solid ${theme.palette.grey[300]}`,
                                 },
                             },
                         },
                         '&.radio-item-is-checked + .radio-item .label': {
-                            borderLeft: `1px solid ${theme.palette.grey[400]}`,
+                            borderLeft: `1px solid ${theme.palette.grey[300]}`,
+                        },
+                        '&.radio-item-is-disabled': {
+                            '& .label': {
+                                color: theme.palette.text.secondary,
+                                backgroundColor: theme.palette.grey[200],
+                            },
                         },
                     },
                 },
@@ -227,6 +300,7 @@ const styles = (theme) => {
                     },
                     '& .label': {
                         backgroundColor: theme.palette.background.primary,
+                        color: theme.palette.text.secondary,
                         border: `1px solid ${theme.palette.border.primary}`,
                         borderRight: 0,
                         display: 'inline-block',
@@ -263,6 +337,7 @@ const styles = (theme) => {
                         backgroundColor: theme.palette.cyan[500],
                         borderColor: theme.palette.cyan[500],
                         color: theme.palette.text.contrastText,
+                        fontWeight: theme.typography.fontWeightMedium,
                     },
                     '&:first-child .label': {
                         borderRadius: '15.5px 0 0 15.5px',
@@ -436,8 +511,8 @@ class Radio extends React.Component {
         const isDisabled = disable || disabled;
 
         const rootClasses = ClassNames(
-            'ui',
-            'radio',
+            UI_CLASS_NAME,
+            BEM_RADIO,
             classes.root,
             className,
             {
@@ -473,6 +548,9 @@ class Radio extends React.Component {
                         onKeyDown: this.onKeyDown,
                         style: child.props.style,
                         tabIndex: child.props.tabIndex,
+                        ...(isDisabled && {
+                            disable: isDisabled,
+                        }),
                     }))}
                 </div>
             );

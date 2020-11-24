@@ -21,6 +21,13 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
+     * Change the position of the icon.
+     */
+    iconPosition: PropTypes.oneOf([
+        'left',
+        'right',
+    ]),
+    /**
      * The size of the icon that sits to the left of the label.
      */
     iconSize: PropTypes.number,
@@ -53,6 +60,7 @@ const propTypes = {
 const defaultProps = {
     ...buttonDefaultProps,
     iconSize: 16,
+    iconPosition: 'left',
     iconType: 'chevron-down',
     optionsTheme: 'dark',
     tabIndex: -1,
@@ -81,6 +89,7 @@ function DropdownButton(props) {
         fluid,
         id,
         icon,
+        iconPosition,
         iconSize,
         iconType,
         innerStyle,
@@ -116,6 +125,19 @@ function DropdownButton(props) {
         { [`${bemClassName}-open`]: isMenuOpen },
     );
 
+    const dropdownIcon = (
+        <Icon
+            compact={icon && !label}
+            size={iconSize}
+            inverse
+            style={{ margin: icon && !label ? 0 : null }}
+            type={iconType}
+        />
+    );
+
+    const iconOnLeft = (iconType && iconPosition === 'left') && dropdownIcon;
+    const iconOnRight = (iconType && iconPosition === 'right') && dropdownIcon;
+
     return (
         <Button
             className={rootClasses}
@@ -142,16 +164,11 @@ function DropdownButton(props) {
             width={width}
             tabIndex={tabIndex}
         >
-            {iconType && (
-                <Icon
-                    compact={icon && !label}
-                    size={iconSize}
-                    style={{ margin: icon && !label ? 0 : null }}
-                    type={iconType}
-                />
-            )}
+            {iconOnLeft}
 
             {label && <span>{label}</span>}
+
+            {iconOnRight}
 
             <DropdownMenu
                 className={`${bemClassName}--menu`}

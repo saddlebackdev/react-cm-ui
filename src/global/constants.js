@@ -48,6 +48,9 @@ export const BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON = `${BEM_PERSON_PANEL_DETAIL
 
 export const BEM_POPOVER = 'popover';
 
+export const BEM_RADIO = 'radio';
+export const BEM_RADIO_ITEM = `${BEM_RADIO}-item`;
+
 export const BEM_SELECT = 'select';
 
 export const BEM_SWITCH = 'switch';

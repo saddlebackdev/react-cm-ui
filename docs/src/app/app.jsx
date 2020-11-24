@@ -25,7 +25,6 @@ import breakpointActions from '../global/breakpointActions';
 import Header from './header';
 import Navigation from './navigation';
 import Tabs from './tabs';
-import moment from 'moment-timezone';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
@@ -59,8 +58,6 @@ const styles = (theme) => ({
         width: '100%',
     },
 });
-
-console.log(moment.tz.guess());
 
 class App extends React.Component {
     static onResize() {
