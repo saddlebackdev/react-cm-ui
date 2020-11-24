@@ -321,6 +321,7 @@ class Button extends React.PureComponent {
             title,
             transparent,
             width,
+            ...otherProps
         } = this.props;
 
         const ElementType = Utils.getElementType(as, this.props);
@@ -360,6 +361,8 @@ class Button extends React.PureComponent {
 
         return (
             <ElementType
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...otherProps}
                 className={rootClasses}
                 disabled={disable}
                 id={id}

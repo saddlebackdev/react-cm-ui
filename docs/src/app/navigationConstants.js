@@ -146,6 +146,13 @@ export const navigationItems = [
                     {
                         component: 'tooltip',
                         label: 'Tooltip',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'tooltip',
                     },
                     {

@@ -70,6 +70,9 @@ const dateUtils = {
         }
 
         if (_.isNumber(data)) {
+            /**
+             * L = 09/04/1986
+             */
             return moment.unix(data).utc().format('L');
         }
 
