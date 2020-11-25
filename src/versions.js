@@ -9,6 +9,19 @@ const versions = {
     'react-cm-ui': {
         package: '10.0.0',
         components: {
+            dataDisplay: {
+                tooltip: {
+                    designArea: 'Tooltip',
+                    designItems: [
+                        {
+                            doc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/a/3RRWYw',
+                            name: 'Tooltips',
+                            version: '2.0.0 >',
+                        },
+                    ],
+                    devVersion: '2.0.0 <',
+                },
+            },
             inputs: {
                 button: {
                     designArea: 'Buttons',

@@ -4,7 +4,10 @@ import {
     Icon,
     Tooltip,
 } from 'react-cm-ui';
-import React from 'react';
+import React, {
+    useCallback,
+    useState,
+} from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
@@ -15,7 +18,26 @@ const useStyles = makeStyles(() => ({
 }));
 
 function ExampleButtonsBehaviors() {
+    const [isEmailOpen, setIsEmailOpen] = useState(true);
     const classes = useStyles();
+
+    let triggered = false;
+
+    const onSmsMouseEnter = useCallback(() => {
+        setIsEmailOpen(false);
+    }, [setIsEmailOpen]);
+
+    const onEmailMouseEnter = useCallback(() => {
+        if (triggered) {
+            setIsEmailOpen(true);
+        }
+    }, [setIsEmailOpen]);
+
+    const onEmailMouseLeave = useCallback(() => {
+        triggered = true;
+
+        setIsEmailOpen(false);
+    }, [setIsEmailOpen]);
 
     return (
         <div
@@ -29,6 +51,7 @@ function ExampleButtonsBehaviors() {
                         title="Compose New SMS"
                     >
                         <Button
+                            onMouseEnter={onSmsMouseEnter}
                             icon
                         >
                             <Icon
@@ -40,10 +63,12 @@ function ExampleButtonsBehaviors() {
 
                 <Grid.Column>
                     <Tooltip
-                        open
+                        open={isEmailOpen}
                         title="Compose New Email"
                     >
                         <Button
+                            onMouseEnter={onEmailMouseEnter}
+                            onMouseLeave={onEmailMouseLeave}
                             icon
                         >
                             <Icon

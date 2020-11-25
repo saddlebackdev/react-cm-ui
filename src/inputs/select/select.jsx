@@ -634,7 +634,8 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-function Select(props) {
+// eslint-disable-next-line prefer-arrow-callback
+const Select = React.forwardRef(function Select(props, ref) {
     const {
         className,
         clearable: isClearable,
@@ -650,6 +651,8 @@ function Select(props) {
         matchProp,
         multiple,
         onChange: onChangeProp,
+        onClose,
+        onOpen,
         optionComponent,
         options,
         placeholder,
@@ -739,6 +742,7 @@ function Select(props) {
             {...otherProps}
             className={rootClasses}
             id={id}
+            ref={ref}
         >
             {label && (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -812,6 +816,8 @@ function Select(props) {
                 multi={multiple}
                 name="firstSelect"
                 onChange={onChange}
+                onClose={onClose}
+                onOpen={onOpen}
                 optionComponent={optionComponent}
                 options={options}
                 promptTextCreator={isCreatable && promptTextCreator}
@@ -825,7 +831,7 @@ function Select(props) {
             </ReactSelectComponent>
         </div>
     );
-}
+});
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;

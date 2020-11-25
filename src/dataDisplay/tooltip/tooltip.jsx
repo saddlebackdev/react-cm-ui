@@ -25,11 +25,6 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
-     * Set to `true` if the `title` acts as an accessible description.
-     * By default the `title` acts as an accessible label for the child.
-     */
-    describeChild: PropTypes.bool,
-    /**
      * Do not respond to focus events.
      */
     disableFocusListener: PropTypes.bool,
@@ -37,11 +32,6 @@ const propTypes = {
      * Do not respond to hover events.
      */
     disableHoverListener: PropTypes.bool,
-    /**
-     * Makes a tooltip not interactive, i.e. it will close when the user
-     * hovers over the tooltip before the `leaveDelay` is expired.
-     */
-    disableInteractive: PropTypes.bool,
     /**
      * Do not respond to long press touch events.
      */
@@ -61,14 +51,15 @@ const propTypes = {
      */
     enterTouchDelay: PropTypes.number,
     /**
-     * If `true`, the tooltip follow the cursor over the wrapped element.
-     */
-    followCursor: PropTypes.bool,
-    /**
      * This prop is used to help implement the accessibility logic.
      * If you don't provide this prop. It falls back to a randomly generated id.
      */
     id: PropTypes.string,
+    /**
+     * Makes a tooltip interactive, i.e. will not close when the user hovers over the
+     * tooltip before the leaveDelay is expired.
+     */
+    interactive: PropTypes.bool,
     /**
      * The number of milliseconds to wait before hiding the tooltip.
      * This prop won't impact the leave touch delay (`leaveTouchDelay`).
@@ -134,31 +125,29 @@ const propTypes = {
     TransitionProps: PropTypes.shape({}),
 };
 
-// const defaultProps = {
-//     arrow: false,
-//     classes: undefined,
-//     className: undefined,
-//     describeChild: false,
-//     disableFocusListener: false,
-//     disableHoverListener: false,
-//     disableInteractive: false,
-//     disableTouchListener: false,
-//     enterDelay: 100,
-//     enterNextDelay: 0,
-//     enterTouchDelay: 700,
-//     followCursor: false,
-//     id: undefined,
-//     leaveDelay: 0,
-//     leaveTouchDelay: 1500,
-//     onClose: undefined,
-//     onOpen: undefined,
-//     open: undefined,
-//     placement: 'bottom',
-//     PopperComponent: 'Popper',
-//     PopperProps: {},
-//     TransitionComponent: 'Grow',
-//     TransitionProps: undefined,
-// };
+const defaultProps = {
+    arrow: false,
+    classes: undefined,
+    className: undefined,
+    disableFocusListener: false,
+    disableHoverListener: false,
+    disableTouchListener: false,
+    enterDelay: 100,
+    enterNextDelay: 0,
+    enterTouchDelay: 700,
+    id: undefined,
+    interactive: false,
+    leaveDelay: 0,
+    leaveTouchDelay: 1500,
+    onClose: undefined,
+    onOpen: undefined,
+    open: undefined,
+    placement: 'bottom',
+    PopperComponent: 'Popper',
+    PopperProps: {},
+    TransitionComponent: 'Grow',
+    TransitionProps: undefined,
+};
 
 const useStyles = makeStyles(({
     palette,
@@ -182,7 +171,6 @@ function Tooltip(props) {
         children,
         classes: classesProp,
         className,
-        followCursor,
         id,
         open,
         placement,
@@ -198,7 +186,6 @@ function Tooltip(props) {
                 ...classesProp,
             }}
             className={className}
-            followCursor={followCursor}
             id={id}
             open={open}
             placement={placement}
@@ -210,6 +197,6 @@ function Tooltip(props) {
 }
 
 Tooltip.propTypes = propTypes;
-// Tooltip.defaultProps = defaultProps;
+Tooltip.defaultProps = defaultProps;
 
 export default Tooltip;

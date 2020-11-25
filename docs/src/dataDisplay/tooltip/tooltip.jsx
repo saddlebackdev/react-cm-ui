@@ -90,13 +90,6 @@ function DocsTooltip(props) {
                     >
                         <ExampleSelectBehaviors />
                     </Example>
-
-                    <Typography
-                        variant="body1"
-                    >
-                        If a Tooltip is neeeded for a small object or a text string, it attaches to
-                        the curosr instead of the target.
-                    </Typography>
                 </MarkdownContainer>
 
                 <ComponentVersionIdentifier
