@@ -1,8 +1,8 @@
+// eslint-disable-next-line import/no-named-default
+import { default as MUITooltip } from '@material-ui/core/Tooltip';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// eslint-disable-next-line import/no-named-default
-import { default as MUITooltip } from '@material-ui/core/Tooltip';
 import {
     BEM_TOOLTIP,
 } from '../../global/constants';
@@ -147,7 +147,7 @@ const defaultProps = {
     onOpen: undefined,
     open: undefined,
     placement: 'bottom',
-    PopperComponent: 'Popper',
+    PopperComponent: undefined,
     PopperProps: {},
     TransitionComponent: 'Grow',
     TransitionProps: undefined,
@@ -169,8 +169,8 @@ const useStyles = makeStyles(({
     },
 }));
 
-// eslint-disable-next-line react/prefer-stateless-function
-function Tooltip(props) {
+// eslint-disable-next-line prefer-arrow-callback
+const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     const {
         arrow,
         children,
@@ -197,6 +197,9 @@ function Tooltip(props) {
 
     const classes = useStyles(props);
 
+    /**
+     * NOTE: These classNames are rendered on the child itself and not the tooltip.
+     */
     const rootClasses = ClassNames(
         BEM_TOOLTIP,
         className,
@@ -225,13 +228,14 @@ function Tooltip(props) {
             open={open}
             placement={placement}
             PopperComponent={PopperComponent}
+            ref={ref}
             title={title}
             TransitionComponent={TransitionComponent}
         >
             {children}
         </MUITooltip>
     );
-}
+});
 
 Tooltip.propTypes = propTypes;
 Tooltip.defaultProps = defaultProps;
