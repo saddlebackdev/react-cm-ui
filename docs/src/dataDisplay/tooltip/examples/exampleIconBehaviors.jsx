@@ -17,21 +17,20 @@ const useStyles = makeStyles(() => ({
 
 function ExampleIconBehaviors() {
     const [isOpen, setIsOpen] = useState(true);
+    const [isTriggered, setIsTriggered] = useState(false);
+
     const classes = useStyles();
 
-    let triggered = false;
-
     const onMouseEnter = useCallback(() => {
-        if (triggered) {
+        if (isTriggered) {
             setIsOpen(true);
         }
-    }, [setIsOpen]);
+    }, [isTriggered, setIsOpen]);
 
     const onMouseLeave = useCallback(() => {
-        triggered = true;
-
+        setIsTriggered(true);
         setIsOpen(false);
-    }, [setIsOpen]);
+    }, [setIsOpen, setIsTriggered]);
 
     return (
         <div

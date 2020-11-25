@@ -16,34 +16,35 @@ const useStyles = makeStyles(() => ({
 
 function ExampleSelectBehaviors() {
     const [isOpen, setIsOpen] = useState(true);
+    const [isTriggered, setIsTriggered] = useState(false);
+    const [selectMenuIsOpen, setSelectMenuIsOpen] = useState(false);
+
     const classes = useStyles();
 
-    let selectMenuIsOpen = false;
-    let triggered = false;
-
     const onSelectMouseEnter = useCallback(() => {
-        if (triggered && !selectMenuIsOpen) {
+        if (isTriggered && !selectMenuIsOpen) {
             setIsOpen(true);
         }
-    }, [setIsOpen]);
+    }, [
+        isTriggered,
+        selectMenuIsOpen,
+        setIsOpen,
+    ]);
 
     const onSelectMouseLeave = useCallback(() => {
-        triggered = true;
-
+        setIsTriggered(true);
         setIsOpen(false);
     }, [setIsOpen]);
 
     const onSelectOpen = useCallback(() => {
-        selectMenuIsOpen = true;
-
+        setSelectMenuIsOpen(true);
         setIsOpen(false);
-    }, [setIsOpen]);
+    }, [setIsOpen, setSelectMenuIsOpen]);
 
     const onSelectClose = useCallback(() => {
-        selectMenuIsOpen = false;
-
+        setSelectMenuIsOpen(false);
         setIsOpen(false);
-    }, [setIsOpen]);
+    }, [setIsOpen, setSelectMenuIsOpen]);
 
     const options = [
         {

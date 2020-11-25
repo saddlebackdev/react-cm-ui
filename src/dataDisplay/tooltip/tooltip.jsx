@@ -1,7 +1,11 @@
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 // eslint-disable-next-line import/no-named-default
 import { default as MUITooltip } from '@material-ui/core/Tooltip';
+import {
+    BEM_TOOLTIP,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -168,28 +172,61 @@ const useStyles = makeStyles(({
 // eslint-disable-next-line react/prefer-stateless-function
 function Tooltip(props) {
     const {
+        arrow,
         children,
         classes: classesProp,
         className,
+        disableFocusListener,
+        disableHoverListener,
+        disableTouchListener,
+        enterDelay,
+        enterNextDelay,
+        enterTouchDelay,
         id,
+        interactive,
+        leaveDelay,
+        leaveTouchDelay,
+        onClose,
+        onOpen,
         open,
         placement,
+        PopperComponent,
         title,
+        TransitionComponent,
     } = props;
 
     const classes = useStyles(props);
 
+    const rootClasses = ClassNames(
+        BEM_TOOLTIP,
+        className,
+    );
+
     return (
         <MUITooltip
+            arrow={arrow}
             classes={{
                 tooltip: classes.tooltip,
                 ...classesProp,
             }}
-            className={className}
+            className={rootClasses}
+            disableFocusListener={disableFocusListener}
+            disableHoverListener={disableHoverListener}
+            disableTouchListener={disableTouchListener}
+            enterDelay={enterDelay}
+            enterNextDelay={enterNextDelay}
+            enterTouchDelay={enterTouchDelay}
             id={id}
+            interactive={interactive}
+            leaveDelay={leaveDelay}
+            leaveTouchDelay={leaveTouchDelay}
+            onClose={onClose}
+            onOpen={onOpen}
             open={open}
             placement={placement}
+            PopperComponent={PopperComponent}
             title={title}
+            TransitionComponent={TransitionComponent}
         >
             {children}
         </MUITooltip>

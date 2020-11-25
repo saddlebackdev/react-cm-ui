@@ -19,25 +19,24 @@ const useStyles = makeStyles(() => ({
 
 function ExampleButtonsBehaviors() {
     const [isEmailOpen, setIsEmailOpen] = useState(true);
-    const classes = useStyles();
+    const [isTriggered, setIsTriggered] = useState(false);
 
-    let triggered = false;
+    const classes = useStyles();
 
     const onSmsMouseEnter = useCallback(() => {
         setIsEmailOpen(false);
     }, [setIsEmailOpen]);
 
     const onEmailMouseEnter = useCallback(() => {
-        if (triggered) {
+        if (isTriggered) {
             setIsEmailOpen(true);
         }
-    }, [setIsEmailOpen]);
+    }, [isTriggered, setIsEmailOpen]);
 
     const onEmailMouseLeave = useCallback(() => {
-        triggered = true;
-
+        setIsTriggered(true);
         setIsEmailOpen(false);
-    }, [setIsEmailOpen]);
+    }, [setIsEmailOpen, setIsTriggered]);
 
     return (
         <div
