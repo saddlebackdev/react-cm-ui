@@ -67,7 +67,7 @@ function ActionBarBasicSearchMdSample() {
                 },
                 {
                     button: {
-                        color: 'alternate',
+                        color: 'secondary',
                         iconType: 'envelope',
                         id: 'bem_block--email_button',
                         title: 'Email',
@@ -79,7 +79,7 @@ function ActionBarBasicSearchMdSample() {
                 },
                 {
                     button: {
-                        color: 'alternate',
+                        color: 'secondary',
                         iconType: 'comment-lines',
                         id: 'bem_block--sms_button',
                         title: 'SMS',
@@ -91,7 +91,7 @@ function ActionBarBasicSearchMdSample() {
                 },
                 {
                     dropdownButton: {
-                        color: 'alternate',
+                        color: 'secondary',
                         id: 'bem_block--actions_dropdown_button',
                         label: 'Actions',
                         options: [

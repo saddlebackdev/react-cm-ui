@@ -1,11 +1,13 @@
-/* eslint-disable linebreak-style */
 import React, {
     useState,
     useEffect,
     useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
+import {
+    get,
+    isNil,
+} from 'lodash';
 import Classnames from 'classnames';
 import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
@@ -19,25 +21,54 @@ import {
 
 const propTypes = {
     /**
+     * Separation string between breadcrumbs
+     */
+    dividerString: PropTypes.string,
+    /**
      * Instance of react-router core,
      * breadcrumbs will be generated automatically using the routes object structure,
      * location and push function.
      */
-    router: PropTypes.shape({}).isRequired,
+    router: PropTypes.shape({}),
+    /**
+     * Manually defines the crumbs
+     */
+    staticCrumbs: PropTypes.arrayOf(
+        PropTypes.shape({
+            onBreadcrumbClick: PropTypes.func,
+            originalPath: PropTypes.string,
+            title: PropTypes.string,
+            to: PropTypes.string,
+        }),
+    ),
+    /**
+     * You can pass an object to apply custom titles
+     * when using a router instance to build the breadcrumbs automatically.
+     */
+    routesNameMapper: PropTypes.arrayOf(
+        PropTypes.shape({
+            route: PropTypes.string,
+            title: PropTypes.string,
+        }),
+    ),
     /**
      * When true, it'll show only the current location breadcrumb and the previous path breadcrumb.
      * When false, it'll show the whole navigation breadcrumbs structure for the current location.
      */
     showOnlyPreviousRoute: PropTypes.bool,
     /**
-     * Separation String between breadcrumbs
+     * Max breadcrumb title length
      */
-    dividerString: PropTypes.string,
+    titlesMaxLength: PropTypes.number,
 };
 
 const defaultProps = {
-    showOnlyPreviousRoute: false,
     dividerString: '/',
+    router: undefined,
+    routesNameMapper: [],
+    showOnlyPreviousRoute: false,
+    staticCrumbs: [],
+    titlesMaxLength: 20,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -65,7 +96,7 @@ const useStyles = makeStyles((theme) => {
             padding: 0,
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
-            margin: '-3px 0 -3px 0',
+            margin: '0 0 -1px 0',
         },
         breadcrumb: {
             color: textColorSecondary,
@@ -122,7 +153,6 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-const BREADCRUMB_TITLE_MAX_LENGTH = 20;
 const ICON_TYPE_FIRST_BREADCRUMB = 'chevron-left';
 
 /**
@@ -132,9 +162,12 @@ const ICON_TYPE_FIRST_BREADCRUMB = 'chevron-left';
  */
 function Breadcrumbs(props) {
     const {
-        router,
-        showOnlyPreviousRoute,
         dividerString,
+        router,
+        routesNameMapper,
+        showOnlyPreviousRoute,
+        staticCrumbs,
+        titlesMaxLength,
     } = props;
 
     const classes = useStyles(props);
@@ -143,26 +176,30 @@ function Breadcrumbs(props) {
     const pathName = get(router, 'location.pathname');
     const pathParams = get(router, 'params');
     const prevPathName = useRef();
+    const prevRoutesNameMapper = useRef();
     const routerPushFunction = get(router, 'push');
 
     useEffect(() => {
-        const routes = get(router, 'routes', []);
-        const currentExistentRoutes = routesToArray(routes);
-        setExistentRoutes(currentExistentRoutes);
-        const currentBreadCrumbs = getPathNameBreadcrumbs(
-            pathName,
-            pathParams,
-            routerPushFunction,
-            currentExistentRoutes,
-        );
-        setPathBreadcrumbs(currentBreadCrumbs);
+        if (staticCrumbs.length === 0 && router) {
+            const routerRoutes = get(router, 'routes', []);
+            const currentExistentRoutes = routesToArray(routerRoutes);
+            setExistentRoutes(currentExistentRoutes);
+            const currentBreadCrumbs = getPathNameBreadcrumbs(
+                pathName,
+                pathParams,
+                routerPushFunction,
+                currentExistentRoutes,
+                routesNameMapper,
+            );
+            setPathBreadcrumbs(currentBreadCrumbs);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // didMount
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        const shouldUpdatePathBreadcrumbs = prevPathName.current &&
-            prevPathName.current !== pathName;
+        const shouldUpdatePathBreadcrumbs = staticCrumbs.length === 0 && router &&
+            prevPathName.current && prevPathName.current !== pathName;
 
         if (shouldUpdatePathBreadcrumbs) {
             const currentBreadCrumbs = getPathNameBreadcrumbs(
@@ -170,22 +207,21 @@ function Breadcrumbs(props) {
                 pathParams,
                 routerPushFunction,
                 existentRoutes,
+                routesNameMapper,
             );
 
             setPathBreadcrumbs(currentBreadCrumbs);
         }
 
         prevPathName.current = pathName;
+        prevRoutesNameMapper.current = routesNameMapper;
     }); // didUpdate
 
     const breadcrumbsListClasses = Classnames(
         `${BEM_NAVIGATION_BREADCRUMBS}--list`,
         classes.breadcrumbsList,
     );
-    const breadcrumbSeparatorClasses = Classnames(
-        classes.breadCrumbSeparator,
-        `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`,
-    );
+
     const breadcrumbSeparatorTypographyClasses = Classnames(
         classes.breadCrumbSeparatorTypography,
         `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator_typography`,
@@ -200,15 +236,22 @@ function Breadcrumbs(props) {
         `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_title_typography`,
     );
 
+    let finalBreadcrumbs = staticCrumbs;
+    const shouldUseDynamicBreadcrumbs = staticCrumbs.length === 0 && !isNil(router);
+
+    if (shouldUseDynamicBreadcrumbs) {
+        finalBreadcrumbs = pathBreadcrumbs;
+    }
+
     return (
         <div className={classes.root}>
             <ul className={breadcrumbsListClasses}>
-                {pathBreadcrumbs
-                    .filter((breadcrumb, index) => {
+                {finalBreadcrumbs
+                    .filter((breadcrumb, index, originalArray) => {
                         const shouldRenderBreadcrumb = !showOnlyPreviousRoute || (
                             showOnlyPreviousRoute && (
-                                index === pathBreadcrumbs.length - 1 || // last route
-                                index === pathBreadcrumbs.length - 2 // previous route from the current one
+                                index === originalArray.length - 1 || // last route
+                                index === originalArray.length - 2 // previous route from the current one
                             )
                         );
 
@@ -221,18 +264,27 @@ function Breadcrumbs(props) {
                             title,
                         } = breadcrumb;
 
-                        const shouldTitleBeEllipsed = title.length > BREADCRUMB_TITLE_MAX_LENGTH;
-                        const parsedTitle = shouldTitleBeEllipsed ?
-                            `${title.substring(0, BREADCRUMB_TITLE_MAX_LENGTH)}...` :
+                        const shouldTitleBeTruncated = title.length > titlesMaxLength;
+                        const parsedTitle = shouldTitleBeTruncated ?
+                            `${title.substring(0, titlesMaxLength)}...` :
                             title;
                         const isFirst = index === 0;
                         const isLast = index === arr.length - 1;
+
                         const breadcrumbClasses = Classnames(
                             classes.breadcrumb,
                             `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb`,
                             {
                                 [classes.breadcrumbLast]: isLast,
                                 [`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_is_last`]: isLast,
+                            },
+                        );
+
+                        const breadcrumbSeparatorClasses = Classnames(
+                            classes.breadCrumbSeparator,
+                            `${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_separator`,
+                            {
+                                [`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb-divider_first`]: isFirst,
                             },
                         );
 
@@ -245,7 +297,7 @@ function Breadcrumbs(props) {
                             </Typography>
                         );
 
-                        if (shouldTitleBeEllipsed) {
+                        if (shouldTitleBeTruncated) {
                             breadcrumbTo = (
                                 <ToolTip
                                     title={title}
@@ -261,8 +313,8 @@ function Breadcrumbs(props) {
                         return (
                             <li
                                 className={breadcrumbClasses}
-                                key={`${BEM_NAVIGATION_BREADCRUMBS}--breadcruumb_key_${to}`}
-                                onClick={!isLast && onBreadcrumbClick}
+                                key={`${BEM_NAVIGATION_BREADCRUMBS}--breadcrumb_key_${to}`}
+                                onClick={onBreadcrumbClick}
                                 role="presentation"
                             >
                                 <div className={breadcrumbSeparatorClasses}>

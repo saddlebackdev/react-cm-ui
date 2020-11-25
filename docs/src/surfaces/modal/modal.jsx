@@ -17,8 +17,6 @@ import ModalLeftAlignedSample from './modalLeftAlignedSample';
 import ModalCenterAlignedSample from './modalCenterAlignedSample';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
-import { default as modalActionsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modalActions';
-import { default as modalContentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modalContent';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -92,14 +90,6 @@ function DocsModal(props) {
                         <ModalCenterAlignedSample />
                     </Example>
                 </MarkdownContainer>
-
-                <ComponentApi
-                    docs={[
-                        rootDoc,
-                        modalActionsDoc,
-                        modalContentDoc,
-                    ]}
-                />
 
                 <ComponentVersionIdentifier
                     pathname={pathname}

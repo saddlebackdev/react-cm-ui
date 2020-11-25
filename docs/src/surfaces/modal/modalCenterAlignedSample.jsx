@@ -40,6 +40,7 @@ function ModalLeftAlignedSample() {
     return (
         <div>
             <Button
+                color="primary"
                 onClick={onToggle}
             >
                 Open Center Aligned Modal
@@ -99,10 +100,10 @@ function ModalLeftAlignedSample() {
                     </Button>
 
                     <Button
+                        color="primary"
                         classes={{
                             root: classes.buttons,
                         }}
-                        color="alternate"
                         onClick={onToggle}
                     >
                         Cancel

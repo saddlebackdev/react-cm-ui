@@ -170,6 +170,7 @@ export const getPathNameBreadcrumbs = (
     pathParams,
     routerPushFunction,
     existentRoutes,
+    routesNameMapper,
 ) => {
     const originalPath = parsePath(pathName, pathParams);
     const pathNames = pathName.split('/').filter((x) => x);
@@ -178,14 +179,15 @@ export const getPathNameBreadcrumbs = (
     const pathBreadcrumbs = pathNames
         .reduce((currentBreadcrumbs, path, index) => {
             const reverseParsedPath = `/${originalPathNames.slice(0, index + 1).join('/')}`;
-            const existenPath = find(existentRoutes, { path: reverseParsedPath });
+            const existentPath = find(existentRoutes, { path: reverseParsedPath });
 
-            if (existenPath) {
+            if (existentPath) {
                 const to = `/${pathNames.slice(0, index + 1).join('/')}`;
+                const customRouteNameMapper = find(routesNameMapper, { route: existentPath.path });
                 currentBreadcrumbs.push({
                     to,
                     originalPath: reverseParsedPath,
-                    title: existenPath.title,
+                    title: get(customRouteNameMapper, 'title') || existentPath.title,
                     onBreadcrumbClick: () => routerPushFunction(to),
                 });
             }
