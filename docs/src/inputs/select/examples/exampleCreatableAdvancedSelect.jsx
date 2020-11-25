@@ -1,4 +1,7 @@
-import { isEmpty } from 'lodash';
+import {
+    isEmpty,
+    noop,
+} from 'lodash';
 import React, { useState } from 'react';
 import {
     Icon,
@@ -23,8 +26,8 @@ function ExampleCreatableAdvancedSelect() {
             className="Select-option"
             key={key}
             onClick={() => onSelect(option)}
-            onFocus={() => {}}
-            onKeyDown={() => {}}
+            onFocus={noop()}
+            onKeyDown={noop()}
             onMouseOver={() => onFocus(option)}
             role="option"
             aria-selected="true"
@@ -79,7 +82,6 @@ function ExampleCreatableAdvancedSelect() {
                 placeholder="Select Option"
                 promptTextCreator={formatCreatableLabelOption}
                 searchable
-                selection
                 value={!isEmpty(selectedValue) ? selectedValue : null}
                 valueComponent={!isEmpty(selectedValue) ? formatValueComponent : undefined}
             />

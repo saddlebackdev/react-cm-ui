@@ -22,7 +22,6 @@ function ExampleCreatableSelect() {
                 onChange={onSelect}
                 placeholder="Select Option"
                 searchable
-                selection
                 value={!isEmpty(selectedValue) ? selectedValue : null}
             />
         </div>
