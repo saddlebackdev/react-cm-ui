@@ -49,7 +49,7 @@ function ExampleStandardBanner() {
                 >
                     <Grid.Column>
                         <Typography>
-                            Auto dismisses on a timer
+                            Simple Banner
                         </Typography>
                     </Grid.Column>
                     <Grid.Column>
