@@ -34,6 +34,14 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
+     * A Banner's Color (Overrides banner color provided by level prop).
+     * enums:purple, teal,
+     */
+    color: PropTypes.oneOf([
+        'purple',
+        'teal',
+    ]),
+    /**
      * The `id` of the Banner.
      */
     id: PropTypes.oneOfType([
@@ -110,6 +118,7 @@ const defaultProps = {
     children: undefined,
     classes: null,
     className: undefined,
+    color: undefined,
     level: undefined,
     levelIcon: undefined,
     message: undefined,
@@ -189,21 +198,23 @@ const styles = (theme) => {
             position: 'fixed',
             top: 0,
             width: '100%',
+            '&.banner-color-': {
+                '&purple .banner-container': {
+                    background: theme.palette.purple['500'],
+                },
+                '&teal .banner-container': {
+                    background: theme.palette.teal['500'],
+                },
+            },
             '&.banner-level-': {
                 '&error .banner-container': {
                     background: theme.palette.error.main,
-                },
-                '&purple .banner-container': {
-                    background: theme.palette.purple['500'],
                 },
                 '&secondary .banner-container': {
                     background: theme.palette.active.main,
                 },
                 '&success .banner-container': {
                     background: theme.palette.success.main,
-                },
-                '&teal .banner-container': {
-                    background: theme.palette.teal['500'],
                 },
                 '&warning .banner-container': {
                     background: theme.palette.warning.main,
@@ -336,6 +347,7 @@ class Banner extends React.Component {
             children,
             classes,
             className,
+            color,
             id,
             level,
             levelIcon,
@@ -357,13 +369,13 @@ class Banner extends React.Component {
             className,
             {
                 'banner-level-error': level === 'error',
-                'banner-level-purple': level === 'purple', // Rename when better defined.
                 'banner-level-secondary': !level || level === 'secondary',
                 'banner-level-success': level === 'success',
-                'banner-level-teal': level === 'teal', // Rename when better defined.
                 'banner-level-warning': level === 'warning',
                 'banner-type-alert': type === 'alert',
                 'banner-type-notification': type === 'notification',
+                'banner-color-purple': color === 'purple',
+                'banner-color-teal': color === 'teal',
             },
         );
         const containerInnerClasses = ClassNames(
