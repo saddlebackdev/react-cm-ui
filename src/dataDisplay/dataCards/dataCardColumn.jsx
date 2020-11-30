@@ -43,7 +43,7 @@ function DataCardColumn(props) {
                 style={{
                     marginBottom: column.width ? '11px' : null,
                     width: column.width,
-                    ...column.style,
+                    ...(column.style || {}),
                 }}
             >
                 {column.header && (
