@@ -26,8 +26,8 @@ function ExampleCreatableAdvancedSelect() {
             className="Select-option"
             key={key}
             onClick={() => onSelect(option)}
-            onFocus={noop()}
-            onKeyDown={noop()}
+            onFocus={noop}
+            onKeyDown={noop}
             onMouseOver={() => onFocus(option)}
             role="option"
             aria-selected="true"
