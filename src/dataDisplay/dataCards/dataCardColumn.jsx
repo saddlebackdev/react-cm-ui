@@ -5,13 +5,19 @@ import React from 'react';
 import Header from '../header';
 
 const propTypes = {
-    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        style: PropTypes.shape({}),
+    })).isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
 };
 
 function DataCardColumn(props) {
-    const { columns, data, moduleType } = props;
+    const {
+        columns,
+        data,
+        moduleType,
+    } = props;
     const elementClassName = `${moduleType}--data_card_column`;
 
     return _.map(columns, (column, index) => {
@@ -37,6 +43,7 @@ function DataCardColumn(props) {
                 style={{
                     marginBottom: column.width ? '11px' : null,
                     width: column.width,
+                    ...(column.style || {}),
                 }}
             >
                 {column.header && (
