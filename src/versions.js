@@ -1,7 +1,14 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.19.2',
+        package: '9.19.3',
         components: {
+            dataDisplay: {
+                dataCard: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+            },
             inputs: {
                 durationPicker: {
                     devLibraryVersion: '2.0.0',
@@ -23,7 +30,7 @@ const versions = {
             },
             surfaces: {
                 appBar: {
-                    evLibraryVersion: '1.0.0',
+                    devLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
