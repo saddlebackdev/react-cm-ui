@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.2 - 11/24/2020
+#### Feature
+
+#### Bug
+- [PR #241](https://github.com/saddlebackdev/react-cm-ui/pull/241) / Merge Commit bb739813d679a0914c53d9abc3745e187c087181
+  - Fixed Container Deprecated styling.
+- [PR #246](https://github.com/saddlebackdev/react-cm-ui/pull/246) / Merge Commit e196f78e9648842960bc9e38742d39e200ac9d01
+  - Minor Breadcrumbs, DropdownButtons improvements to match HC's Navigation 3.0.
+
 ## 9.19.1 - 11/05/2020
 
 #### Feature
