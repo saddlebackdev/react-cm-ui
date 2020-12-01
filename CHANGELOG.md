@@ -1,8 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.3 - 12/1/2020
+
+#### Bug
+- [PR #250](https://github.com/saddlebackdev/react-cm-ui/pull/250) / Merge Commit ed80399f0cc75eb22f0df309f7c07f3de8d5d1d0
+  - Spread styles object for each columns on DataCard.
+
 ## 9.19.2 - 11/24/2020
-#### Feature
 
 #### Bug
 - [PR #241](https://github.com/saddlebackdev/react-cm-ui/pull/241) / Merge Commit bb739813d679a0914c53d9abc3745e187c087181
