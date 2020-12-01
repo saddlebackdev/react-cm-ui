@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "9.18.3",
+  "version": "9.19.1",
   "description": "React UI for Healthy Church",
   "main": "core/",
   "jsnext:main": "src/",
@@ -94,7 +94,7 @@
     "jest-junit": "^10.0.0",
     "jest-react-hooks-shallow": "^1.4.1",
     "jsdom": "^16.2.2",
-    "node-sass": "~4.13.1",
+    "node-sass": "~4.14.1",
     "rimraf": "^2.6.1"
   }
 }

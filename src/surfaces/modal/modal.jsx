@@ -572,7 +572,7 @@ class Modal extends React.Component {
                                 classes={{
                                     root: classes.closeButton,
                                 }}
-                                color="alternate"
+                                color="secondary"
                                 onClick={this.onClose}
                                 icon
                                 title="Close"

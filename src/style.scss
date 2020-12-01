@@ -3,7 +3,6 @@
 @import './styles/typography';
 
 // Data Display
-@import './dataDisplay/banner/banner';
 @import './dataDisplay/dataCards/dataCards';
 @import './dataDisplay/dataGroups/dataGroups';
 @import './dataDisplay/header/header';
@@ -13,11 +12,9 @@
 @import './dataDisplay/list/list';
 
 // Feedback
-@import './feedback/loader/loader';
 @import './feedback/activityIndicator/activityIndicator';
 
 // Inputs
-@import './inputs/checkbox/checkbox';
 @import './inputs/datePickerCalendar/datePickerCalendar';
 @import './inputs/datePickerCalendar/datePickerDay';
 @import './inputs/datePickerCalendar/datePickerDropdownMonth';

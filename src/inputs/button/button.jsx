@@ -54,7 +54,7 @@ const styles = (theme) => {
             whiteSpace: 'normal',
             width: (props) => props.width || '',
             '&:focus': {
-                boxShadow: `0 0 0 1px ${theme.palette.active.primary}`,
+                boxShadow: `0 0 0 1px ${theme.palette.active.main}`,
             },
             '&:last-child': {
                 marginRight: 0,
