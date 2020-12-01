@@ -11,12 +11,17 @@ import {
     TH_MAX_WIDTH_PERCENTAGE_DESKTOP,
     TH_MAX_WIDTH_PERCENTAGE_MOBILE,
 } from './tableConstants';
+import { withStyles } from '../../styles';
+import useStyles from './tableStyles';
 
 const columnNumberEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const propTypes = {
     adjacentStickyColumnsTotalWidth: PropTypes.number,
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        tableHeaderCell: PropTypes.string,
+    }),
     className: PropTypes.string,
     collapsing: PropTypes.bool,
     desktop: PropTypes.oneOfType([
@@ -67,6 +72,7 @@ const propTypes = {
 
 const defaultProps = {
     adjacentStickyColumnsTotalWidth: 0,
+    classes: {},
     forceTableUpdate: undefined,
     isResizable: false,
     resizableColumnWidthPercentage: undefined,
@@ -383,6 +389,7 @@ class TableHeaderCell extends React.PureComponent {
         const {
             children,
             className,
+            classes,
             collapsing,
             desktop,
             desktopLarge,
@@ -409,6 +416,7 @@ class TableHeaderCell extends React.PureComponent {
         const containerClasses = ClassNames(
             'table-header-cell',
             'table-cell',
+            classes.tableHeaderCell,
             _.isNumber(width) ?
                 `${cellPrefix}-${Utils.numberToWord(width)}` :
                 width === true || width === 'auto' ?
@@ -515,4 +523,4 @@ class TableHeaderCell extends React.PureComponent {
 TableHeaderCell.propTypes = propTypes;
 TableHeaderCell.defaultProps = defaultProps;
 
-export default TableHeaderCell;
+export default withStyles(useStyles, { withTheme: true })(TableHeaderCell);

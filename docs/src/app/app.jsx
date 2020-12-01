@@ -50,7 +50,7 @@ const styles = (theme) => ({
             left: theme.width.navigation.md.expanded,
             position: 'fixed',
             right: 0,
-            zIndex: 1,
+            zIndex: 2,
         },
     },
     appBarInner: {

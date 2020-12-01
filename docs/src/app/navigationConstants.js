@@ -65,6 +65,18 @@ export const navigationItems = [
                         component: 'dataGrid',
                         label: 'Data Grid',
                         path: 'data-grid',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                     },
                     {
                         component: 'dataGroups',
@@ -131,6 +143,18 @@ export const navigationItems = [
                     {
                         component: 'table',
                         label: 'Table',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'table',
                     },
                     {

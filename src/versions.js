@@ -2,6 +2,13 @@ const versions = {
     'react-cm-ui': {
         package: '10.0.0',
         components: {
+            dataDisplay: {
+                table: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
             inputs: {
                 durationPicker: {
                     devLibraryVersion: '2.0.0',
@@ -22,6 +29,11 @@ const versions = {
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b',
                 },
+                appBar: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
             },
             navigation: {
                 breadcrumbs: {
@@ -31,13 +43,6 @@ const versions = {
                 },
                 sectionalTabs: {
                     devLibraryVersion: '2.0.0',
-                    designLibraryVersion: '', // TODO: Add Design Library version
-                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
-                },
-            },
-            surfaces: {
-                appBar: {
-                    evLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },

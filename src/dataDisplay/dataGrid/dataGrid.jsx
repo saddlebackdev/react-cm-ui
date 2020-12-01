@@ -1,43 +1,90 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BEM_DATA_GRID } from '../../global/constants';
 import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTable from './dataGridTable';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * If <code>true</code>, the component will bleed to the edge of the parent component.
+     */
     bleed: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to the Data Grid.
+     */
     classes: PropTypes.shape({
         bleed: PropTypes.string,
         root: PropTypes.string,
     }),
+    /**
+     * Add additional classes to the Table.
+     */
     className: PropTypes.string,
+    /**
+     * Columns applied to Data grid
+     */
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    /**
+     * Data to render
+     */
     data: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.shape({})),
             PropTypes.shape({}),
         ]),
     ).isRequired,
+    /**
+     * Change the font size of text in the Data Grid.
+     */
     fontSize: PropTypes.string,
+    /**
+     * Add an id to the Data Grid.
+     */
     id: PropTypes.string.isRequired,
-    minWidth: PropTypes.number,
+    /**
+     * Used Adds a specific helper class.
+     */
     moduleType: PropTypes.oneOf(['drawer', 'page']),
+    /**
+     * Initial resizable column width percentaje.
+     * (stickyColumns must be set)
+     */
     resizableColumnWidthPercentage: PropTypes.number,
+    /**
+     * Props applied for each row
+     */
     rowProps: PropTypes.func,
+    /**
+     * Change the cells vertical size in the Data Grid.
+     */
     size: PropTypes.oneOf([
         'small',
         'medium',
     ]),
+    /**
+     * Makes the Data Grid sortable
+     */
     sortable: PropTypes.arrayOf(SORTABLE_PROP_TYPES),
+    /**
+     * Applies small styling.
+     */
     small: PropTypes.bool,
-    stickyColumnWidth: PropTypes.number,
+    /**
+     * Enables a resisable handler in the column number set in this prop.
+     */
     stickyColumns: PropTypes.number,
+    /**
+     * If <code>true</code> or <code>very</code>, the Data Grid will bleed off the edge.
+     */
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
         PropTypes.bool,
     ]),
+    /**
+     * Supply any inline styles to the Data Grid container.
+     */
     style: PropTypes.shape({}),
 };
 
@@ -46,7 +93,6 @@ const defaultProps = {
     classes: null,
     className: undefined,
     fontSize: undefined,
-    minWidth: 800,
     moduleType: null,
     resizableColumnWidthPercentage: undefined,
     rowProps: () => ({
@@ -60,7 +106,6 @@ const defaultProps = {
     small: false,
     sortable: null,
     stickyColumns: 0,
-    stickyColumnWidth: 30,
     stretch: false,
     style: {},
 };
@@ -110,25 +155,16 @@ function DataGrid(props) {
         data,
         fontSize,
         id,
-        minWidth: minWidthProp,
         moduleType,
         rowProps,
         size: sizeProp,
         small: smallProp,
         sortable,
         stickyColumns,
-        stickyColumnWidth,
         resizableColumnWidthPercentage,
         stretch,
         style,
     } = props;
-
-    let minWidth;
-
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        minWidth = minWidthProp;
-    }, []);
 
     const classes = useStyles(props);
 
@@ -166,12 +202,10 @@ function DataGrid(props) {
                 data={data}
                 fontSize={fontSize}
                 id={id}
-                minWidth={minWidth}
                 moduleType={moduleType}
                 rowProps={rowProps}
                 size={size}
                 sortable={sortable}
-                stickyColumnWidth={stickyColumnWidth}
                 stickyColumns={stickyColumns}
                 resizableColumnWidthPercentage={resizableColumnWidthPercentage}
                 stretch={stretch}
