@@ -1,6 +1,26 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.4 - 12/09/2020
+
+#### Bug
+- [PR #252](https://github.com/saddlebackdev/react-cm-ui/pull/252) / Merge Commit d835fe74d94a19f31d83fcf7cd99ba703b03151f
+  - Fixed Filters Rail to push over content.
+
+## 9.19.3 - 12/1/2020
+
+#### Bug
+- [PR #250](https://github.com/saddlebackdev/react-cm-ui/pull/250) / Merge Commit ed80399f0cc75eb22f0df309f7c07f3de8d5d1d0
+  - Spread styles object for each columns on DataCard.
+
+## 9.19.2 - 11/24/2020
+
+#### Bug
+- [PR #241](https://github.com/saddlebackdev/react-cm-ui/pull/241) / Merge Commit bb739813d679a0914c53d9abc3745e187c087181
+  - Fixed Container Deprecated styling.
+- [PR #246](https://github.com/saddlebackdev/react-cm-ui/pull/246) / Merge Commit e196f78e9648842960bc9e38742d39e200ac9d01
+  - Minor Breadcrumbs, DropdownButtons improvements to match HC's Navigation 3.0.
+
 ## 9.19.1 - 11/05/2020
 
 #### Feature

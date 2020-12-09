@@ -23,14 +23,13 @@ const propTypes = {
     /**
      * Event handler for consumer to clear filters.
      */
-    onClear: PropTypes.func,
+    onClear: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
     classes: null,
     disable: false,
     id: null,
-    onClear: null,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -47,10 +46,6 @@ function FiltersRailClear(props) {
     } = props;
 
     const classes = useStyles();
-
-    if (!isFunction(onClear)) {
-        return null;
-    }
 
     return (
         <A

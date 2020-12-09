@@ -163,7 +163,7 @@ const versions = {
                     designItems: [],
                     devVersion: '2.0.0',
                 },
-                sectionalTabs: {
+                tabs: {
                     designArea: 'Content Navigation',
                     designItems: [
                         {
