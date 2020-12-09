@@ -1,101 +1,178 @@
-import _ from 'lodash';
+import {
+    isObject,
+    isString,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import Header from '../../dataDisplay/header';
+import React, { useEffect, useRef } from 'react';
+import Typography from '../../dataDisplay/typography';
+import makeStyles from '../../styles/makeStyles';
+import { theme } from '../../styles';
 
 const propTypes = {
+    children: PropTypes.node,
+    classes: PropTypes.shape({
+        closeButton: PropTypes.string,
+        root: PropTypes.string,
+        title: PropTypes.string,
+    }),
     className: PropTypes.string,
     closeButton: PropTypes.shape({}),
-    closeButtonStyle: PropTypes.shape({}),
     style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
-        PropTypes.shape({}),
+        PropTypes.node,
         PropTypes.string,
     ]),
-    titleStyle: PropTypes.shape({}),
 };
 
 const defaultProps = {
+    children: null,
+    classes: null,
     className: undefined,
     closeButton: undefined,
-    closeButtonStyle: {},
     style: {},
     title: undefined,
-    titleStyle: {},
 };
 
-const hasClassName = 'drawer-has_title_bar';
-const hasWingClassName = 'drawer--wing-has_title_bar';
+const useStyles = makeStyles(({
+    breakpoints,
+    height,
+    palette,
+    spacing,
+    typography,
+    zIndex,
+}) => ({
+    closeButton: {
+        alignItems: 'center',
+        display: 'flex',
+        height: spacing(4),
+        justifyContent: 'flex-end',
+        position: 'absolute',
+        right: 0,
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: spacing(4),
+    },
+    root: {
+        backgroundColor: palette.background.primary,
+        borderBottom: `1px solid ${palette.border.secondary}`,
+        height: height.drawerTitleBar.sm,
+        left: 0,
+        padding: [[0, spacing(1)]],
+        position: 'fixed',
+        top: 0,
+        transform: 'translateZ(0)',
+        width: '100%',
+        zIndex: zIndex.drawer,
+        [breakpoints.up('md')]: {
+            height: height.drawerTitleBar.md,
+            padding: [[0, spacing(2)]],
+        },
+        '& > div': {
+            height: height.drawerTitleBar.sm,
+            position: 'relative',
+            [breakpoints.up('md')]: {
+                height: height.drawerTitleBar.md,
+            },
+        },
+    },
+    title: {
+        display: 'block',
+        lineHeight: typography.pxToRem(20),
+        margin: 0,
+        overflow: 'hidden',
+        padding: [[14, spacing(8), 0, 0]],
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        width: '100%',
+    },
+}));
 
-class DrawerTitleBar extends React.PureComponent {
-    componentDidMount() {
-        const closestDrawer = this.drawerTitleBarRef.closest('.ui.drawer');
-        const closestWing = this.drawerTitleBarRef.closest('.ui.drawer--wing');
+const HAS_CLASS_NAME = 'drawer-has_title_bar';
+const HAS_WING_CLASS_NAME = 'drawer--wing-has_title_bar';
+
+function DrawerTitleBar(props) {
+    const {
+        children,
+        className,
+        closeButton,
+        style,
+        title,
+    } = props;
+
+    const classes = useStyles(props);
+    const rootRef = useRef();
+
+    useEffect(() => {
+        const closestDrawer = rootRef.current.closest('.ui.drawer');
+        const closestWing = rootRef.current.closest('.ui.drawer--wing');
 
         if (closestWing) {
-            closestWing.classList.add(hasWingClassName);
+            closestWing.classList.add(HAS_WING_CLASS_NAME);
 
             return null;
         }
 
-        closestDrawer.classList.add(hasClassName);
+        closestDrawer.classList.add(HAS_CLASS_NAME);
 
-        return null;
-    }
+        return () => {
+            if (closestWing) {
+                closestWing.classList.remove(HAS_WING_CLASS_NAME);
 
-    componentWillUnmount() {
-        const closestDrawer = this.drawerTitleBarRef.closest('.ui.drawer');
-        const closestWing = this.drawerTitleBarRef.closest('.ui.drawer--wing');
+                return null;
+            }
 
-        if (closestWing) {
-            closestWing.classList.remove(hasWingClassName);
+            closestDrawer.classList.remove(HAS_CLASS_NAME);
 
             return null;
-        }
+        };
+    }, []);
 
-        closestDrawer.classList.remove(hasClassName);
+    const rootClasses = ClassNames(
+        'ui',
+        'drawer--title_bar',
+        classes.root,
+        className,
+    );
 
-        return null;
-    }
-
-    render() {
-        const {
-            className,
-            closeButton,
-            closeButtonStyle,
-            style,
-            title,
-            titleStyle,
-        } = this.props;
-        const containerClasses = ClassNames('ui', 'drawer--title_bar', className);
-
-        return (
-            <header
-                className={containerClasses}
-                ref={(ref) => { this.drawerTitleBarRef = ref; }}
-                style={style}
+    return (
+        <header
+            className={rootClasses}
+            ref={rootRef}
+            style={style}
+        >
+            <div
+                className="drawer--title_bar_inner"
             >
-                <div
-                    className="drawer--title_bar_inner"
-                >
-                    {_.isObject(title) && title}
+                {isObject(title) && title}
 
-                    {_.isString(title) && (
-                        <Header as="h2" className="title" style={titleStyle}>
-                            {title}
-                        </Header>
-                    )}
+                {isString(title) && (
+                    <Typography
+                        className={ClassNames(
+                            'title',
+                            classes.title,
+                        )}
+                        variant="h3"
+                    >
+                        {title}
+                    </Typography>
+                )}
 
-                    {_.isObject(closeButton) ? (
-                        <div className="close-button" style={closeButtonStyle}>
-                            {closeButton}
-                        </div>
-                    ) : null}
-                </div>
-            </header>
-        );
-    }
+                {isObject(closeButton) && (
+                    <div
+                        className={ClassNames(
+                            'close-button',
+                            classes.closeButton,
+                        )}
+                    >
+                        {closeButton}
+                    </div>
+                )}
+
+                {children}
+            </div>
+        </header>
+    );
 }
 
 DrawerTitleBar.propTypes = propTypes;

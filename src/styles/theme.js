@@ -32,6 +32,10 @@ const theme = {
             sm: 55,
             md: 70,
         },
+        drawerTitleBar: {
+            sm: 55,
+            md: 70,
+        },
     },
     palette: createPalette(),
     shape,
