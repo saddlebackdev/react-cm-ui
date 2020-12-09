@@ -9,6 +9,13 @@ const versions = {
     'react-cm-ui': {
         package: '10.0.0',
         components: {
+            dataDisplay: {
+                dataCard: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+            },
             inputs: {
                 button: {
                     designArea: 'Buttons',

@@ -30,6 +30,11 @@ export const navigationItems = [
                 label: 'Colors',
                 path: 'colors',
             },
+            {
+                component: 'typography',
+                label: 'Typography',
+                path: 'typography',
+            },
         ],
         path: 'style-guide',
     },
