@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.12.0
+
+#### Feature
+- [PR #252](https://github.com/saddlebackdev/react-cm-ui/pull/252) / Merge Commit d835fe74d94a19f31d83fcf7cd99ba703b03151f
+  - New Typography styles documentation.
+
 ## 0.11.0 - 10/01/2020
 
 #### Feature
