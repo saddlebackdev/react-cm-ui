@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.4 - 12/09/2020
+
+#### Bug
+- [PR #252](https://github.com/saddlebackdev/react-cm-ui/pull/252) / Merge Commit d835fe74d94a19f31d83fcf7cd99ba703b03151f
+  - Fixed Filters Rail to push over content.
+
 ## 9.19.3 - 12/1/2020
 
 #### Bug
