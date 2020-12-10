@@ -36,8 +36,8 @@ export const BEM_MODAL_INNER_CONTAINER = `${BEM_MODAL}--inner_container`;
 export const BEM_MODAL_TITLE = `${BEM_MODAL}--title`;
 
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
-export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
-export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;
+export const BEM_NAVIGATION_TABS = 'navigation_tabs';
+export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
 
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
 export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';

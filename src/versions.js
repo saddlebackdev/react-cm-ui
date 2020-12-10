@@ -10,6 +10,11 @@ const versions = {
         package: '10.0.0',
         components: {
             dataDisplay: {
+                dataCard: {
+                    devLibraryVersion: 'N/A',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 dataGrid: {
                     devLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
@@ -167,7 +172,7 @@ const versions = {
                     designItems: [],
                     devVersion: '2.0.0',
                 },
-                sectionalTabs: {
+                tabs: {
                     designArea: 'Content Navigation',
                     designItems: [
                         {
