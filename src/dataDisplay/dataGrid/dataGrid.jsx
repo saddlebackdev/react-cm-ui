@@ -8,7 +8,7 @@ import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
-     * If <code>true</code>, the component will bleed to the edge of the parent component.
+     * If `true`, the component will bleed to the edge of the parent component.
      */
     bleed: PropTypes.bool,
     /**
@@ -76,7 +76,7 @@ const propTypes = {
      */
     stickyColumns: PropTypes.number,
     /**
-     * If <code>true</code> or <code>very</code>, the Data Grid will bleed off the edge.
+     * If `true` or `very`, the Data Grid will bleed off the edge.
      */
     stretch: PropTypes.oneOfType([
         PropTypes.oneOf(['very']),
