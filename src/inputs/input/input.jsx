@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
     isEmpty,
     isFunction,
@@ -5,6 +6,7 @@ import {
     isObject,
     isString,
     toNumber,
+    isNil,
 } from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
@@ -490,7 +492,7 @@ class Input extends React.PureComponent {
             type,
         } = this.props;
 
-        const { value } = this.inputRef;
+        const { value } = this.inputRef.current;
 
         if (!isDisabled) {
             let newValue = value ? toNumber(value) : 0;
@@ -700,7 +702,7 @@ class Input extends React.PureComponent {
                             required={isRequired}
                             tabIndex={tabIndex}
                             type={type}
-                            value={value}
+                            value={this.inputRef.current?.value || value}
                         />
                     )}
 
