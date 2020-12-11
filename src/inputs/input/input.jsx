@@ -6,7 +6,6 @@ import {
     isObject,
     isString,
     toNumber,
-    isNil,
 } from 'lodash';
 import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
