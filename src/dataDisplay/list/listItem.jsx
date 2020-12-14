@@ -6,6 +6,7 @@ import Utils from '../../utils/utils';
 
 const propTypes = {
     as: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
     divide: PropTypes.bool,
     onClick: PropTypes.func,
@@ -14,8 +15,9 @@ const propTypes = {
 
 const defaultProps = {
     as: null,
+    children: null,
     className: null,
-    divide: null,
+    divide: false,
     onClick: null,
     style: null,
 };
