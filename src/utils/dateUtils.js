@@ -71,7 +71,7 @@ const dateUtils = {
 
         if (_.isNumber(data)) {
             /**
-             * L = 09/04/1986
+             * L = MM/DD/YYYY for enUS Locale.
              */
             return moment.unix(data).utc().format('L');
         }
