@@ -174,4 +174,38 @@ describe('<Input />', () => {
 
         expect(props.onKeyDown).toHaveBeenCalledTimes(1);
     });
+
+    it('handles up/down click events when type is \'number\'', () => {
+        const wrapper = mountWithTheme(
+            <Input
+                {...props}
+                type="number"
+                onChange={undefined}
+            />,
+        );
+        const inputInstance = wrapper.find('Input').instance();
+        const icons = wrapper.find('Icon');
+        const iconUp = icons.at(0);
+        const iconDown = icons.at(1);
+
+        iconUp.simulate('click');
+        iconUp.simulate('click');
+        iconUp.simulate('click');
+        iconUp.simulate('click');
+        iconUp.simulate('click');
+        iconUp.simulate('click');
+
+        expect(inputInstance.inputRef.current.value).toBe('6');
+
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+        iconDown.simulate('click');
+
+        expect(inputInstance.inputRef.current.value).toBe('-2');
+    });
 });
