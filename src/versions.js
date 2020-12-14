@@ -21,6 +21,16 @@ const versions = {
                     ],
                     devVersion: '2.0.0 <',
                 },
+                dataGrid: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                table: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
             },
             inputs: {
                 button: {
@@ -155,6 +165,11 @@ const versions = {
                         },
                     ],
                     devVersion: '2.0.0',
+                },
+                appBar: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
             },
             navigation: {
