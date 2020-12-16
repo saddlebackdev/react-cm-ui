@@ -7,6 +7,7 @@ import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 import {
     UI_CLASS_NAME,
+    BEM_TAG,
 } from '../../global/constants';
 
 const propTypes = {
@@ -69,7 +70,7 @@ const styles = ({
         textTransform: 'capitalize',
         transition: 'background-color 125ms linear, color 125ms linear, opacity 250ms ease-out',
         whiteSpace: 'normal',
-        '&.label-color-': {
+        [`&.${BEM_TAG}-color-`]: {
             '&alert, &highlight, &success, &warning': {
                 boxShadow: 'none',
                 color: palette.border.contrastPrimary,
@@ -96,7 +97,7 @@ const styles = ({
                 backgroundColor: palette.warning.main,
             },
         },
-        '&.label-inverse.label-color-': {
+        [`&.${BEM_TAG}-inverse.${BEM_TAG}-color-`]: {
             '&alert, &highlight, &success, &warning': {
                 boxShadow: 'none',
                 color: palette.border.contrastPrimary,
@@ -124,9 +125,9 @@ const styles = ({
                 backgroundColor: palette.warning.main,
             },
         },
-        '&.label-clearable': {
+        [`&.${BEM_TAG}-clearable`]: {
             paddingRight: 0,
-            '& .label-clearable-button': {
+            [`& .${BEM_TAG}-clearable-button`]: {
                 alignItems: 'center',
                 backgroundColor: palette.grey[400],
                 borderRadius: [[0, shape.borderRadius.main, shape.borderRadius.main, 0]],
@@ -152,9 +153,9 @@ const styles = ({
                     color: palette.text.secondary,
                 },
             },
-            '&.label-color-': {
+            [`&.${BEM_TAG}-color-`]: {
                 '&alert, &highlight, &success, &warning': {
-                    '& .label-clearable-button': {
+                    [`& .${BEM_TAG}-clearable-button`]: {
                         boxShadow: 'none',
                         '&:hover': {
                             backgroundColor: 'transparent',
@@ -162,20 +163,20 @@ const styles = ({
                         },
                     },
                 },
-                '&alert .label-clearable-button': {
+                [`&alert .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: palette.error.dark,
                     '&:hover': {
                         boxShadow: `inset 1px 0 0 ${palette.error.dark}`,
                     },
                 },
-                '&highlight .label-clearable-button': {
+                [`&highlight .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: palette.active.main,
                     boxShadow: `inset 1px 0 0 ${palette.primary.main}`,
                     '&:hover': {
                         backgroundColor: palette.primary.main,
                     },
                 },
-                '&primary .label-clearable-button': {
+                [`&primary .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: palette.grey[400],
                     boxShadow: `inset 1px 0 0 ${palette.grey[400]}`,
                     '&:hover': {
@@ -184,19 +185,19 @@ const styles = ({
                         color: palette.text.secondary,
                     },
                 },
-                '&success .label-clearable-button': {
+                [`&success .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: palette.success.main,
                     boxShadow: `inset 1px 0 0 ${palette.success.dark}`,
                     '&:hover': {
                         backgroundColor: palette.success.dark,
                     },
                 },
-                '&transparent .label-clearable-button': {
+                [`&transparent .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: 'transparent',
                     boxShadow: 'none',
                     color: palette.text.secondary,
                 },
-                '&warning .label-clearable-button': {
+                [`&warning .${BEM_TAG}-clearable-button`]: {
                     backgroundColor: palette.warning.dark,
                     '&:hover': {
                         boxShadow: `inset 1px 0 0 ${palette.warning.dark}`,
@@ -204,19 +205,19 @@ const styles = ({
                 },
             },
         },
-        '&.label-clickable': {
+        [`&.${BEM_TAG}-clickable`]: {
             cursor: 'pointer',
         },
-        '&.label-fluid': {
+        [`&.${BEM_TAG}-fluid`]: {
             width: '100%',
         },
-        '& .label-inner-container': {
+        [`& .${BEM_TAG}-inner-container`]: {
             width: '100%',
         },
     },
 });
 
-class Label extends React.Component {
+class Tag extends React.Component {
     constructor() {
         super();
 
@@ -282,20 +283,20 @@ class Label extends React.Component {
 
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
-            'label',
+            BEM_TAG,
             classes.root,
             className,
             {
-                'label-clickable': onClick,
-                'label-color-alert': color === 'alert',
-                'label-color-highlight': color === 'highlight',
-                'label-color-primary': color === 'primary',
-                'label-color-success': color === 'success',
-                'label-color-transparent': color === 'transparent',
-                'label-color-warning': color === 'warning',
-                'label-fluid': fluid,
-                'label-inverse': inverse,
-                'label-clearable': onClearClick,
+                [`${BEM_TAG}-clickable`]: onClick,
+                [`${BEM_TAG}-color-alert`]: color === 'alert',
+                [`${BEM_TAG}-color-highlight`]: color === 'highlight',
+                [`${BEM_TAG}-color-primary`]: color === 'primary',
+                [`${BEM_TAG}-color-success`]: color === 'success',
+                [`${BEM_TAG}-color-transparent`]: color === 'transparent',
+                [`${BEM_TAG}-color-warning`]: color === 'warning',
+                [`${BEM_TAG}-fluid`]: fluid,
+                [`${BEM_TAG}-inverse`]: inverse,
+                [`${BEM_TAG}-clearable`]: onClearClick,
             },
         );
 
@@ -308,12 +309,12 @@ class Label extends React.Component {
                 style={style}
                 tabIndex={tabIndex}
             >
-                <span className="label-inner-container">
+                <span className={`${BEM_TAG}-inner-container`}>
                     {children}
 
                     {onClearClick && (
                         <span
-                            className="label-clearable-button"
+                            className={`${BEM_TAG}-clearable-button`}
                             onClick={this.onClearClick}
                             onKeyDown={this.onClearKeyDown}
                             role="button"
@@ -323,6 +324,7 @@ class Label extends React.Component {
                                 compact
                                 inverse
                                 size="xxsmall"
+                                title={false}
                                 type="times"
                             />
                         </span>
@@ -333,7 +335,7 @@ class Label extends React.Component {
     }
 }
 
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
+Tag.propTypes = propTypes;
+Tag.defaultProps = defaultProps;
 
-export default withStyles(styles)(Label);
+export default withStyles(styles)(Tag);

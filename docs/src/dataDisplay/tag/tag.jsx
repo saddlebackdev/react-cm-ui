@@ -43,12 +43,12 @@ function DocsTag(props) {
 
     const onClick = useCallback(() => {
         // eslint-disable-next-line no-console
-        console.log('Label has been clicked!');
+        console.log('Tag has been clicked!');
     }, []);
 
     const onClearClick = useCallback(() => {
         // eslint-disable-next-line no-console
-        console.log('Label removed.');
+        console.log('Tag removed.');
     }, []);
 
     return (

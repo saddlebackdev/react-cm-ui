@@ -55,6 +55,8 @@ export const BEM_SELECT = 'select';
 
 export const BEM_SWITCH = 'switch';
 
+export const BEM_TAG = 'tag';
+
 export const BEM_TELEPHONE_LINK = 'telphone_link';
 
 export const BEM_TOOLTIP = 'tooltip';
