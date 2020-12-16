@@ -1,7 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.12.0
+## 0.13.0 - 12/16/2020
+
+#### Feature
+- [PR #259](https://github.com/saddlebackdev/react-cm-ui/pull/259) / Merge Commit 18da8f65b924c8f3aadcf60287f44d012c603f4a
+  - Update Prompt example.
+- [PR #260](https://github.com/saddlebackdev/react-cm-ui/pull/260) / Merge Commit fcbd3f118804305b4fc4ab5c3d07ca77e1d10980
+  - Add "view" Icon type.
+
+## 0.12.0 - 12/09/2020
 
 #### Feature
 - [PR #252](https://github.com/saddlebackdev/react-cm-ui/pull/252) / Merge Commit d835fe74d94a19f31d83fcf7cd99ba703b03151f
