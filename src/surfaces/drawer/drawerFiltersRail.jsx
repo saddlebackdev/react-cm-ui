@@ -1,46 +1,54 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import FiltersRail from '../../surfaces/filtersRail';
+import {
+    PROP_TYPES_ROOT,
+    DEFAULT_PROPS_ROOT,
+} from '../filtersRail/constants';
+import FiltersRail from '../filtersRail';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    breakpointUp: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-    ]),
-    children: PropTypes.node,
-    className: PropTypes.string,
-    id: PropTypes.string,
-    isOpen: PropTypes.bool,
-    style: PropTypes.shape({}),
+    ...PROP_TYPES_ROOT,
 };
 
 const defaultProps = {
-    breakpointUp: undefined,
-    children: undefined,
-    className: undefined,
-    id: undefined,
-    isOpen: undefined,
-    style: {},
+    ...DEFAULT_PROPS_ROOT,
 };
+
+const useStyles = makeStyles(() => ({
+    innerContainer: {
+        '&::after': {
+            display: 'none',
+        },
+    },
+}));
 
 function DrawerFiltersRail(props) {
     const {
-        breakpointUp,
         children,
+        classes: classesProp,
         className,
         id,
+        isFiltering,
         isOpen,
-        style,
+        onClear,
+        rows,
     } = props;
+
+    const classes = useStyles(props);
 
     return (
         <FiltersRail
-            breakpointUp={breakpointUp}
+            classes={{
+                ...classesProp,
+                innerContainer: classes.innerContainer,
+            }}
             className={className}
             id={id}
+            isFiltering={isFiltering}
             isOpen={isOpen}
             moduleType="drawer"
-            style={style}
+            onClear={onClear}
+            rows={rows}
         >
             {children}
         </FiltersRail>

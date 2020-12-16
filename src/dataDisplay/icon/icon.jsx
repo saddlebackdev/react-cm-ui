@@ -112,7 +112,7 @@ class Icon extends React.PureComponent {
             tabIndex,
             type,
             title,
-            ...restProps
+            ...otherProps
         } = this.props;
 
         const rootClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
@@ -1745,12 +1745,12 @@ class Icon extends React.PureComponent {
         }
 
         const isButton = isFunction(onClick);
-        const Container = isButton ? 'button' : 'div';
+        const ElementType = isButton ? 'button' : 'div';
 
         return (
-            <Container
+            <ElementType
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                {...restProps}
+                {...otherProps}
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
@@ -1772,7 +1772,7 @@ class Icon extends React.PureComponent {
                     type={type}
                     viewBox={viewBox}
                 />
-            </Container>
+            </ElementType>
         );
     }
 }

@@ -1,4 +1,3 @@
-
 import {
     isFunction,
 } from 'lodash';
@@ -6,6 +5,8 @@ import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
+import { withStyles } from '../../styles';
+import useStyles from './tableStyles';
 
 const propTypes = {
     active: PropTypes.bool,
@@ -13,6 +14,9 @@ const propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
     ]).isRequired,
+    classes: PropTypes.shape({
+        tableRow: PropTypes.string,
+    }),
     className: PropTypes.string,
     /**
      * A TableRow can be disabled.
@@ -38,6 +42,7 @@ const propTypes = {
 
 const defaultProps = {
     active: false,
+    classes: {},
     className: null,
     disable: false,
     disabled: false,
@@ -159,6 +164,7 @@ class TableRow extends React.Component {
             active,
             children,
             className,
+            classes,
             disable,
             disabled,
             draggable,
@@ -174,6 +180,7 @@ class TableRow extends React.Component {
 
         const containerClasses = ClassNames(
             'table-row',
+            classes.tableRow,
             {
                 'table-row-active': active,
                 'table-row-disabled': disable || disabled,
@@ -217,4 +224,4 @@ class TableRow extends React.Component {
 TableRow.propTypes = propTypes;
 TableRow.defaultProps = defaultProps;
 
-export default TableRow;
+export default withStyles(useStyles, { withTheme: true })(TableRow);
