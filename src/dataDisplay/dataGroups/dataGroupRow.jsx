@@ -2,9 +2,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { rowPropTypes } from './dataGroupsPropTypes';
 import Header from '../header';
 import Icon from '../icon';
-import { rowPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     bemClassName: PropTypes.string.isRequired,
@@ -28,10 +28,17 @@ function DataGroupRow(props) {
             style,
         },
     } = props;
+
     const bemClassName = `${parentBemClassName}_row`;
-    const containerClasses = ClassNames(`${bemClassName}`, className, {
-        [`${bemClassName}-header_icon`]: iconType || header,
-    });
+
+    const rootClasses = ClassNames(
+        `${bemClassName}`,
+        className,
+        {
+            [`${bemClassName}-header_icon`]: iconType || header,
+        },
+    );
+
     let accessedData;
 
     if (_.isString(accessor)) {
@@ -42,7 +49,7 @@ function DataGroupRow(props) {
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
             id={id}
             style={style}
         >

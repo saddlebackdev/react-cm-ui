@@ -16,6 +16,7 @@ export const rowPropTypes = PropTypes.shape({
         PropTypes.oneOf(Utils.sizeEnums()),
         PropTypes.number,
     ]),
+    style: PropTypes.shape({}),
 });
 
 export const groupPropTypes = PropTypes.shape({ // eslint-disable-line import/prefer-default-export
@@ -28,17 +29,7 @@ export const groupPropTypes = PropTypes.shape({ // eslint-disable-line import/pr
             rows: PropTypes.arrayOf(
                 PropTypes.shape({
                     header: PropTypes.string,
-                    rows: PropTypes.arrayOf(
-                        PropTypes.shape({
-                            accessor: PropTypes.oneOfType([
-                                PropTypes.func,
-                                PropTypes.string,
-                            ]).isRequired,
-                            fieldName: PropTypes.string.isRequired,
-                            iconColor: PropTypes.string,
-                            iconType: PropTypes.string,
-                        }),
-                    ),
+                    rows: PropTypes.arrayOf(rowPropTypes),
                 }),
             ),
         }),
