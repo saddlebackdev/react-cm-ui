@@ -23,7 +23,8 @@ const defaultProps = {
     style: {},
 };
 
-const PageDetailsWindow = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const PageDetailsWindow = React.forwardRef(function PageDetailsWindow(props, ref) {
     const {
         bleed,
         className,

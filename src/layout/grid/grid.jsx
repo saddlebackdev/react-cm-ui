@@ -206,7 +206,7 @@ const useStyles = makeStyles((theme) => {
 const Grid = React.forwardRef(
     /* eslint-disable react-hooks/rules-of-hooks */
     // eslint-disable-next-line prefer-arrow-callback
-    function grid(props, ref) {
+    function Grid(props, ref) {
         const {
             alignContent,
             alignItems,

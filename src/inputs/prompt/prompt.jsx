@@ -1,7 +1,11 @@
-import _ from 'lodash';
+import {
+    isFunction,
+    isUndefined,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ENTER_KEY_CODE } from '../../global/constants';
 import withStyles from '../../styles/withStyles';
 import Icon from '../../dataDisplay/icon';
 
@@ -59,6 +63,7 @@ const propTypes = {
      * Event for Prompt to handle `onCLick`.
      */
     onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
     /**
      * Event for Prompt to handle `onNoClick`.
      */
@@ -98,6 +103,7 @@ const defaultProps = {
     message: 'Are you sure?',
     onClick: undefined,
     onNoClick: undefined,
+    onKeyDown: undefined,
     onYesClick: undefined,
     style: undefined,
     show: undefined,
@@ -106,43 +112,12 @@ const defaultProps = {
 
 const noop = () => {};
 
-const styles = (theme) => ({
-    '@keyframes animateInActions': {
-        '0%': {
-            opacity: 0,
-            transform: 'translateY(-11px)',
-        },
-        '50%': {
-            opacity: 0,
-            transform: 'translateY(0px)',
-        },
-        '100%': {
-            opacity: 1,
-        },
-    },
-    actionBtn: {
-        '&:hover': {
-            backgroundColor: theme.palette.active.primary,
-        },
-        alignItems: 'center',
-        backgroundColor: theme.palette.grey['500'],
-        border: 0,
-        color: theme.palette.common.white,
-        cursor: 'pointer',
-        display: 'inline-flex',
-        height: 33,
-        letterSpacing: 1,
-        lineHeight: '1px',
-        outline: 'none',
-        overflow: 'Hidden',
-        padding: `0 ${theme.typography.pxToRem(11)}`,
-        textAlign: 'center',
-        textDecoration: 'none',
-        textTransform: 'capitalize',
-        transition: 'background-color 125ms linear, color 125ms linear, opacity 250ms ease-out',
-        verticalAlign: 'top',
-        whiteSpace: 'nowrap',
-    },
+const styles = ({
+    palette,
+    spacing,
+    typography,
+    zIndex,
+}) => ({
     actions: {},
     icon: {
         verticalAlign: 'middle',
@@ -189,14 +164,56 @@ const styles = (theme) => ({
                 alignItems: 'center',
                 borderRadius: 3,
                 boxShadow: '0 4px 4px 0 rgba(0, 0, 0, .43)',
-                color: theme.palette.text.contrastText,
+                color: palette.text.contrastText,
                 display: 'none',
                 flex: '0 1 auto',
-                fontSize: theme.typography.pxToRem(14),
-                fontWeight: theme.typography.fontWeightMedium,
+                fontSize: typography.pxToRem(14),
+                fontWeight: typography.fontWeightMedium,
                 height: 33,
                 position: 'absolute',
-                zIndex: theme.zIndex.prompt,
+                zIndex: zIndex.prompt,
+            },
+            '& .prompt': {
+                '&-no-btn, &-yes-btn': {
+                    alignItems: 'center',
+                    backgroundColor: palette.grey[500],
+                    border: 0,
+                    // boxShadow: `inset 0 0 0 1px ${palette.grey[600]}`,
+                    color: palette.text.contrastText,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    height: 33,
+                    letterSpacing: 1,
+                    lineHeight: 1,
+                    outline: 'none',
+                    overflow: 'hidden',
+                    padding: [[0, spacing(1)]],
+                    position: 'relative',
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    textTransform: 'capitalize',
+                    transition: 'background-color 125ms linear, color 125ms linear, opacity 250ms ease-out',
+                    verticalAlign: 'top',
+                    '&:focus': {
+                        boxShadow: `0 0 0 1px ${palette.active.primary}`,
+                    },
+                    '&:hover': {
+                        backgroundColor: palette.active.primary,
+                    },
+                },
+                '&-no-btn': {
+                    borderTopRightRadius: 3,
+                    borderBottomRightRadius: 3,
+                    '&::before': {
+                        backgroundColor: palette.grey[600],
+                        content: '""',
+                        height: 33,
+                        left: 0,
+                        position: 'absolute',
+                        top: 0,
+                        width: 1,
+                    },
+                },
             },
         },
     },
@@ -212,6 +229,8 @@ class Prompt extends React.Component {
         };
 
         this.onClick = this.onClick.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
         this.onNoClick = this.onNoClick.bind(this);
         this.onYesClick = this.onYesClick.bind(this);
     }
@@ -238,7 +257,7 @@ class Prompt extends React.Component {
         const { show } = this.state;
 
         if (!show) {
-            if (!_.isUndefined(onClick)) {
+            if (!isUndefined(onClick)) {
                 onClick(option);
             } else {
                 this.setState({ show: true });
@@ -246,10 +265,26 @@ class Prompt extends React.Component {
         }
     }
 
+    onKeyDown(event) {
+        const {
+            onKeyDown,
+        } = this.props;
+
+        if (isFunction(onKeyDown)) {
+            onKeyDown(event);
+        } else if (event.keyCode === ENTER_KEY_CODE) {
+            this.onClick();
+        }
+    }
+
+    onMouseDown(event) {
+        event.preventDefault();
+    }
+
     onNoClick(event) {
         const { onNoClick } = this.props;
 
-        if (!_.isUndefined(onNoClick)) {
+        if (!isUndefined(onNoClick)) {
             onNoClick(event);
         } else {
             this.setState({ show: false });
@@ -259,7 +294,7 @@ class Prompt extends React.Component {
     onYesClick(event) {
         const { onYesClick } = this.props;
 
-        if (!_.isUndefined(onYesClick)) {
+        if (!isUndefined(onYesClick)) {
             onYesClick(event);
         } else {
             this.setState({ show: false });
@@ -348,7 +383,7 @@ class Prompt extends React.Component {
                 ) : (
                     <div
                         onClick={this.onClick}
-                        onKeyDown={noop}
+                        onKeyDown={this.onKeyDown}
                         ref={(ref) => { this.childrenRef = ref; }}
                         role="button"
                         tabIndex={-1}
@@ -386,8 +421,9 @@ class Prompt extends React.Component {
                         )}
                         onClick={this.onYesClick}
                         onKeyDown={noop}
+                        onMouseDown={this.onMouseDown}
                         role="button"
-                        tabIndex={-1}
+                        tabIndex={0}
                     >
                         Yes
                     </div>
@@ -400,8 +436,9 @@ class Prompt extends React.Component {
                         )}
                         onClick={this.onNoClick}
                         onKeyDown={noop}
+                        onMouseDown={this.onMouseDown}
                         role="button"
-                        tabIndex={-1}
+                        tabIndex={0}
                     >
                         No
                     </div>

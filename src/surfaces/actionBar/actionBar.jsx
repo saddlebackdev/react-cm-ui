@@ -462,6 +462,7 @@ class ActionBar extends React.Component {
 
         const { isMobileSearchVisible } = this.state;
 
+
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
             BEM_ACTION_BAR,
