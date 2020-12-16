@@ -2,8 +2,8 @@
  * To run this test from the church-management/client folder, execute the following command:
  * npx jest ./src/navigation/a/__test__/a.test.js
  */
-import { shallow } from 'enzyme';
 import React from 'react';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import A from '../a';
 
 describe('<A />', () => {
@@ -12,19 +12,19 @@ describe('<A />', () => {
         onClick: jest.fn(),
     };
 
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    const wrapper = shallow(<A {...props} />);
+    const wrapper = mountWithTheme(<A {...props} />);
+    const subjectUnderTest = wrapper.find('A');
 
     it('Should render without problems', () => {
-        expect(wrapper).toBeDefined();
+        expect(wrapper.exists()).toBe(true);
     });
 
     it('Should have expected \'id\' prop', () => {
-        expect(wrapper.prop('id')).toEqual(props.id);
+        expect(subjectUnderTest.prop('id')).toEqual(props.id);
     });
 
     it('Fires onClick()', () => {
-        wrapper.simulate('click');
+        subjectUnderTest.simulate('click');
         expect(props.onClick).toHaveBeenCalledTimes(1);
     });
 });
