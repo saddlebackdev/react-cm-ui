@@ -30,7 +30,8 @@ const defaultProps = {
     verticalAlign: undefined,
 };
 
-const GridRow = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const GridRow = React.forwardRef(function GridRow(props, ref) {
     const {
         children,
         className,
