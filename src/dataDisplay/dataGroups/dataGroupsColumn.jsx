@@ -17,11 +17,12 @@ function DataGroupsColumn(props) {
         data,
         moduleType,
     } = props;
+
     const bemClassName = `${moduleType}--data_groups_column`;
-    const containerClasses = ClassNames(bemClassName);
+    const rootClasses = ClassNames(bemClassName);
 
     return (
-        <div className={containerClasses}>
+        <div className={rootClasses}>
             {_.map(column, (group, index) => {
                 const id = group.id ? _.kebabCase(group.id) : index;
 
