@@ -1,10 +1,19 @@
+import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {
+    useCallback,
+} from 'react';
+import { ENTER_KEY_CODE } from '../../global/constants';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     className: PropTypes.string,
+    disable: PropTypes.bool,
     id: PropTypes.string,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
@@ -13,37 +22,100 @@ const propTypes = {
 };
 
 const defaultProps = {
-    children: undefined,
-    className: undefined,
-    id: undefined,
-    onClick: () => {},
-    onKeyDown: () => {},
+    children: null,
+    classes: null,
+    className: null,
+    disable: false,
+    id: null,
+    onClick: null,
+    onKeyDown: null,
     tabIndex: -1,
     style: {},
 };
+
+const useStyles = makeStyles(({
+    palette,
+    typography,
+}) => ({
+    isDisabled: {},
+    root: {
+        color: palette.cyan[500],
+        cursor: 'pointer',
+        fontWeight: typography.fontWeightMedium,
+        textDecoration: 'none',
+        '&$isDisabled': {
+            color: palette.text.disable,
+            cursor: 'default',
+        },
+        '&:focus': {
+            boxShadow: `0 0 0 1px ${palette.active.main}`,
+        },
+    },
+}));
 
 function A(props) {
     const {
         children,
         className,
         id,
-        onClick,
-        onKeyDown,
+        disable: isDisabled,
+        onClick: onClickProp,
+        onKeyDown: onKeyDownProp,
         style,
         tabIndex,
     } = props;
+
+    const classes = useStyles(props);
+
+    const onClick = useCallback((event) => {
+        if (isFunction(onClickProp) && !isDisabled) {
+            onClickProp(event);
+        }
+    }, [
+        onClickProp,
+        isDisabled,
+    ]);
+
+    const onKeyDown = useCallback((event) => {
+        if (!isDisabled) {
+            if (isFunction(onKeyDownProp)) {
+                onKeyDownProp(event);
+            } else if (event.keyCode === ENTER_KEY_CODE) {
+                onClick();
+            }
+        }
+    }, [
+        isDisabled,
+        onClick,
+        onKeyDownProp,
+    ]);
+
+    const onMouseDown = useCallback((event) => {
+        event.preventDefault();
+    }, []);
+
     const bemBlockName = 'a';
-    const containerClassName = ClassNames('ui', bemBlockName, className);
+
+    const rootClasses = ClassNames(
+        'ui',
+        bemBlockName,
+        classes.root,
+        className,
+        {
+            [classes.isDisabled]: isDisabled,
+        },
+    );
 
     return (
         <span
-            className={containerClassName}
+            className={rootClasses}
             id={id}
             onClick={onClick}
             onKeyDown={onKeyDown}
+            onMouseDown={onMouseDown}
             role="button"
-            tabIndex={tabIndex}
             style={style}
+            tabIndex={tabIndex}
         >
             {children}
         </span>
