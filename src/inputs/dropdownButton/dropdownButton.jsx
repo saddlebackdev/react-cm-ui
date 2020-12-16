@@ -17,6 +17,7 @@ const propTypes = {
      * Override or extend the styles applied to ButtonDropdown.
      */
     classes: PropTypes.shape({
+        innerContainer: PropTypes.string,
         root: PropTypes.string,
     }),
     /**
@@ -74,8 +75,10 @@ const useStyles = makeStyles({
 
 function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
+
     const [isMenuOpen, setIsOpen] = useState(false);
-    const classes = useStyles();
+
+    const classes = useStyles(props);
 
     const {
         children,
@@ -140,6 +143,7 @@ function DropdownButton(props) {
             className={rootClasses}
             classes={{
                 root: classes.root,
+                innerContainer: classes.innerContainer,
             }}
             color={color}
             compact={compact}
@@ -155,6 +159,7 @@ function DropdownButton(props) {
             relax={relax}
             style={style}
             target={target}
+            text={text}
             title={title}
             text={text}
             width={width}

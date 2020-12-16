@@ -221,6 +221,7 @@ const styles = (theme) => {
                 zIndex: theme.zIndex.drawer,
                 [theme.breakpoints.up('md')]: {
                     height: theme.height.actionBar.md,
+                    padding: [[0, theme.spacing(2)]],
                 },
             },
             '&$page': {
@@ -234,7 +235,7 @@ const styles = (theme) => {
                 [theme.breakpoints.up('md')]: {
                     left: 250,
                     minHeight: 70,
-                    padding: '0 22px',
+                    padding: [[0, theme.spacing(2)]],
                     top: 70,
                 },
             },
@@ -460,6 +461,7 @@ class ActionBar extends React.Component {
         } = this.props;
 
         const { isMobileSearchVisible } = this.state;
+
 
         const rootClasses = ClassNames(
             UI_CLASS_NAME,

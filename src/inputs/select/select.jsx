@@ -16,32 +16,108 @@ import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
+    /**
+     * Override or extend the styles applied to Prompt.
+     */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+    * Assign additional class names to Prompt.
+    */
     className: PropTypes.string,
+    /**
+    * A Select can clear its value using close icon
+    */
     clearable: PropTypes.bool,
+    /**
+    * A Select can create custom options
+    */
     creatable: PropTypes.bool,
+    /**
+    * A Select can be disabled
+    */
     disable: PropTypes.bool,
+    /**
+    * Supply style to dropdown menu container
+    */
     dropdownMenuContainerStyle: PropTypes.shape({}),
+    /**
+    * Supply dropdown menu maximum height
+    */
     dropdownMenuMaxHeight: PropTypes.number,
+    /**
+    * Supply dropdown menu minimum height
+    */
     dropdownMenuMinHeight: PropTypes.number,
+    /**
+    * Supply dropdown menu style
+    */
     dropdownMenuStyle: PropTypes.shape({}),
+    /**
+     * A Select will be resized to its parent container's width.
+     */
     fluid: PropTypes.bool,
+    /**
+     * The `id` of the Select.
+     */
     id: PropTypes.string,
+    /**
+     * The label for the Select.
+     */
     label: PropTypes.string,
+    /**
+     * Whether to match the value, label or both values of each selection option when filtering.
+     * enums:any, label, value
+     */
     matchProp: PropTypes.oneOf(['any', 'label', 'value']),
+    /**
+     * A Select can have multiple values
+     */
     multiple: PropTypes.bool,
+    /**
+     * The onChange event handler.
+     */
     onChange: PropTypes.func,
+    /**
+     * A Select can have custom option component
+     */
     optionComponent: PropTypes.func,
+    /**
+     * Supply a list of options that the user can select from.
+     */
     options: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+     * Supply a placeholder text for the best UX.
+     */
     placeholder: PropTypes.string,
+    /**
+     * Supply a custom label option, when creatable is true
+     */
     promptTextCreator: PropTypes.func,
+    /**
+     * A Select can be required
+     */
     required: PropTypes.bool,
+    /**
+    * A Select can enable option search
+    */
     searchable: PropTypes.bool,
+    /**
+     * Indicates whether or not the Select can be focused.
+     */
     tabIndex: PropTypes.number,
+    /**
+     * Underlined Select selection.
+     */
     underline: PropTypes.bool,
+    /**
+     * Changes the value of the Select.
+     */
     value: PropTypes.shape({}),
+    /**
+     * A Select can have custom value component
+     */
     valueComponent: PropTypes.func,
 };
 
@@ -148,7 +224,6 @@ const useStyles = makeStyles((theme) => {
     const selectMenuBg = p.grey[500];
     const selectMenuBorderRadius = 3;
     const selectMenuMarginTop = 4;
-    const selectMenuMaxHeight = 200;
     const selectMenuPaddingVertical = 11;
     const selectMenuZindex = 1000;
 
@@ -184,15 +259,10 @@ const useStyles = makeStyles((theme) => {
     // multi-select item
     const selectItemBorderRadius = 2;
     const selectItemGutter = 5;
-    const selectItemPaddingVertical = 2;
-    const selectItemPaddingHorizontal = 5;
     const selectItemFontSize = '.9em';
     const selectItemColor = '#08c';
     const selectItemBg = '#f2f9fc';
     const selectItemBorderColor = selectItemBg;
-    const selectItemHoverColor = selectItemColor;
-    const selectItemHoverBg = selectItemBg;
-    const selectItemDisabledColor = '#333';
     const selectItemDisabledBg = '#fcfcfc';
     const selectItemDisabledBorderColor = selectItemDisabledBg;
 
@@ -640,7 +710,8 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-function Select(props) {
+// eslint-disable-next-line prefer-arrow-callback
+const Select = React.forwardRef(function Select(props, ref) {
     const {
         className,
         clearable: isClearable,
@@ -656,6 +727,8 @@ function Select(props) {
         matchProp,
         multiple,
         onChange: onChangeProp,
+        onClose,
+        onOpen,
         optionComponent,
         options,
         placeholder,
@@ -666,11 +739,11 @@ function Select(props) {
         underline: isUnderlined,
         value,
         valueComponent,
+        ...otherProps
     } = props;
 
     const classes = useStyles(props);
     const dropdownMenuRef = useRef();
-    const selectRef = useRef();
 
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
@@ -741,9 +814,11 @@ function Select(props) {
 
     return (
         <div
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...otherProps}
             className={rootClasses}
             id={id}
-            ref={selectRef}
+            ref={ref}
         >
             {label && (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -817,6 +892,8 @@ function Select(props) {
                 multi={multiple}
                 name="firstSelect"
                 onChange={onChange}
+                onClose={onClose}
+                onOpen={onOpen}
                 optionComponent={optionComponent}
                 options={options}
                 promptTextCreator={isCreatable && promptTextCreator}
@@ -830,7 +907,7 @@ function Select(props) {
             </ReactSelectComponent>
         </div>
     );
-}
+});
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;

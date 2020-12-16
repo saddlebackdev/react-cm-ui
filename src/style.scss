@@ -3,7 +3,6 @@
 @import './styles/typography';
 
 // Data Display
-@import './dataDisplay/banner/banner';
 @import './dataDisplay/dataCards/dataCards';
 @import './dataDisplay/dataGroups/dataGroups';
 @import './dataDisplay/header/header';
@@ -11,11 +10,6 @@
 @import './dataDisplay/image/image';
 @import './dataDisplay/label/label';
 @import './dataDisplay/list/list';
-@import './dataDisplay/table/table';
-@import './dataDisplay/table/tableCell';
-@import './dataDisplay/table/tableHeader';
-@import './dataDisplay/table/tableHeaderCell';
-@import './dataDisplay/table/tableRow';
 
 // Feedback
 @import './feedback/activityIndicator/activityIndicator';
@@ -35,17 +29,11 @@
 // Layout
 @import './layout/grid/grid';
 
-// Navigation
-@import './navigation/subNavigation/subNavigation';
-@import './navigation/tabs/tabs';
-
 // Surfaces
 @import './surfaces/accordion/accordion';
 @import './surfaces/detailsWindow/detailsWindow';
 @import './surfaces/drawer/drawer';
 @import './surfaces/drawer/drawerFiltersDrawer';
-@import './surfaces/drawer/drawerNavigation';
-@import './surfaces/drawer/drawerTitleBar';
 @import './surfaces/drawer/drawerWing';
 @import './surfaces/filtersDrawer/filtersDrawer';
 @import './surfaces/infoBar/infoBar';

@@ -30,6 +30,11 @@ export const navigationItems = [
                 label: 'Colors',
                 path: 'colors',
             },
+            {
+                component: 'typography',
+                label: 'Typography',
+                path: 'typography',
+            },
         ],
         path: 'style-guide',
     },
@@ -49,6 +54,18 @@ export const navigationItems = [
                     {
                         component: 'banner',
                         label: 'Banner',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'banner',
                     },
                     {
@@ -65,6 +82,18 @@ export const navigationItems = [
                         component: 'dataGrid',
                         label: 'Data Grid',
                         path: 'data-grid',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                     },
                     {
                         component: 'dataGroups',
@@ -131,6 +160,18 @@ export const navigationItems = [
                     {
                         component: 'table',
                         label: 'Table',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'table',
                     },
                     {
@@ -146,6 +187,13 @@ export const navigationItems = [
                     {
                         component: 'tooltip',
                         label: 'Tooltip',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'tooltip',
                     },
                     {
@@ -302,6 +350,23 @@ export const navigationItems = [
                         path: 'radio',
                     },
                     {
+                        component: 'select',
+                        label: 'Select',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'select',
+                    },
+                    {
                         component: 'segmentedControls',
                         label: 'Segmented Controls',
                         path: 'segmented-controls',
@@ -408,26 +473,42 @@ export const navigationItems = [
                     {
                         component: 'a',
                         label: 'A',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'a',
-                    },
-                    {
-                        component: 'subNavigationDeprecated',
-                        label: 'Sub Navigation (Deprecated)',
-                        path: 'sub-navigation-deprecated',
                     },
                     {
                         component: 'tabs',
                         label: 'Tabs',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'tabs',
-                    },
-                    {
-                        component: 'sectionalTabs',
-                        label: 'Sectional Tabs',
-                        path: 'sectional-tabs',
                     },
                     {
                         component: 'breadcrumbs',
                         label: 'Breadcrumbs',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'breadcrumbs',
                     },
                 ],
@@ -488,59 +569,9 @@ export const navigationItems = [
                         label: 'Drawer',
                         levelFour: [
                             {
-                                component: 'drawerActionBar',
-                                label: 'Action Bar',
-                                path: 'action-bar',
-                            },
-                            {
-                                component: 'drawerContent',
-                                label: 'Content',
-                                path: 'content',
-                            },
-                            {
-                                component: 'drawerDataCards',
-                                label: 'Data Cards',
-                                path: 'data-cards',
-                            },
-                            {
-                                component: 'drawerDataGrid',
-                                label: 'Data Grid',
-                                path: 'data-grid',
-                            },
-                            {
-                                component: 'drawerDataGroups',
-                                label: 'Data Groups',
-                                path: 'data-groups',
-                            },
-                            {
-                                component: 'drawerDetailsWindow',
-                                label: 'Details Window',
-                                path: 'details-window',
-                            },
-                            {
-                                component: 'drawerFiltersDrawer',
-                                label: 'Filters Drawer',
-                                path: 'filters-drawer',
-                            },
-                            {
-                                component: 'drawerNavigation',
-                                label: 'Navigation',
-                                path: 'navigation',
-                            },
-                            {
-                                component: 'drawerSticky',
-                                label: 'Sticky',
-                                path: 'sticky',
-                            },
-                            {
-                                component: 'drawerTitleBar',
-                                label: 'Title Bar',
-                                path: 'title-bar',
-                            },
-                            {
-                                component: 'drawerWing',
-                                label: 'Wing',
-                                path: 'wing',
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
                             },
                         ],
                         path: 'drawer',

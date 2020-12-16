@@ -9,6 +9,29 @@ const versions = {
     'react-cm-ui': {
         package: '10.0.0',
         components: {
+            dataDisplay: {
+                tooltip: {
+                    designArea: 'Tooltip',
+                    designItems: [
+                        {
+                            doc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/a/3RRWYw',
+                            name: 'Tooltips',
+                            version: '2.0.0 >',
+                        },
+                    ],
+                    devVersion: '2.0.0 <',
+                },
+                dataGrid: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+                table: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
+            },
             inputs: {
                 button: {
                     designArea: 'Buttons',
@@ -143,6 +166,11 @@ const versions = {
                     ],
                     devVersion: '2.0.0',
                 },
+                appBar: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                },
             },
             navigation: {
                 breadcrumbs: { // TODO: Design needs to add documentation.
@@ -150,7 +178,7 @@ const versions = {
                     designItems: [],
                     devVersion: '2.0.0',
                 },
-                sectionalTabs: {
+                tabs: {
                     designArea: 'Content Navigation',
                     designItems: [
                         {

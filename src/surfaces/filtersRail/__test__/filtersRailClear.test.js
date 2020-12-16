@@ -55,19 +55,6 @@ describe('<FiltersRailClear />', () => {
         expect(wrapper.find('span').first().prop('id')).toEqual(null);
     });
 
-    it('Should not render if \'onClear\' event is not defined', () => {
-        const wrapper = mountWithTheme(
-            <FiltersRailClear
-                {...props}
-                onClear={null}
-            />,
-        );
-
-        const rootNode = wrapper.find('A');
-
-        expect(rootNode.find('span').first().exists()).toBe(false);
-    });
-
     it('Should call \'onClear\' event onClick', () => {
         const wrapper = mountWithTheme(
             <FiltersRailClear

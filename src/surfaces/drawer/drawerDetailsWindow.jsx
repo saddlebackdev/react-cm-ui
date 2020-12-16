@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { columnPropTypesShape } from '../../surfaces/detailsWindow/detailsWindowPropTypes';
-import DetailsWindow from '../../surfaces/detailsWindow';
+import { columnPropTypesShape } from '../detailsWindow/detailsWindowPropTypes';
+import DetailsWindow from '../detailsWindow';
 
 const propTypes = {
     bleed: PropTypes.bool,
@@ -23,7 +23,8 @@ const defaultProps = {
     style: {},
 };
 
-const DrawerDetailsWindow = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const DrawerDetailsWindow = React.forwardRef(function DrawerDetailsWindow(props, ref) {
     const {
         bleed,
         className,

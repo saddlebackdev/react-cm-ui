@@ -39,6 +39,7 @@ const POPOVER_SMALL_GROUP = 'popoverSmallGroup';
 const propTypes = {
     acceptedChristDate: PropTypes.string,
     activeInMissionsDate: PropTypes.string,
+    align: PropTypes.oneOf(['left', 'right']),
     attendedClass101Date: PropTypes.string,
     attendedClass201Date: PropTypes.string,
     attendedClass301Date: PropTypes.string,
@@ -94,6 +95,7 @@ const propTypes = {
 const defaultProps = {
     acceptedChristDate: null,
     activeInMissionsDate: null,
+    align: 'left',
     attendedClass101Date: null,
     attendedClass201Date: null,
     attendedClass301Date: null,
@@ -186,6 +188,10 @@ const useStyles = makeStyles((theme) => {
 
                 return backgroundColorValue;
             },
+            float: ({ align }) => align,
+        },
+        fitContent: {
+            width: 'fit-content',
         },
         column: {
             height: (props) => getIconSize({ isMobile: props.isMobile, iconSize: props.iconSize }),
@@ -634,6 +640,7 @@ export function PersonCoreMilestones(props) {
     const {
         acceptedChristDate,
         activeInMissionsDate,
+        align,
         attendedClass101Date,
         attendedClass201Date,
         attendedClass301Date,
@@ -644,6 +651,7 @@ export function PersonCoreMilestones(props) {
         firstContactDate: firstContactDateProp,
         firstMinistryJoinDate,
         firstSmallGroupJoinDate,
+        fitContent,
         gender,
         hasAcceptedChrist,
         hasTakenClass101,
@@ -687,6 +695,7 @@ export function PersonCoreMilestones(props) {
         classes.root,
         className,
         {
+            [classes.fitContent]: fitContent,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
