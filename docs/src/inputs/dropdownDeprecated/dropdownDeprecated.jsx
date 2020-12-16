@@ -1296,7 +1296,7 @@ class ModulesDropdown extends React.Component {
 
                     <div>
                         {/* Dropdown */}
-                        <Typography anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="dropdown" variant="h2" style={{ marginTop: '55px' }} sub>
                             Dropdown
                         </Typography>
 
@@ -1329,7 +1329,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button */}
-                        <Typography anchor="button" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button" variant="h2" style={{ marginTop: '55px' }} sub>
                             Button
                         </Typography>
 
@@ -1349,7 +1349,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Dropdown Controlled Component */}
-                        <Typography anchor="button-controlled" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-controlled" variant="h2" style={{ marginTop: '55px' }} sub>
                             Button Dropdown as a Controlled Component
                         </Typography>
 
@@ -1376,7 +1376,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Menu - Auto-collapse even if value doesn't change */}
-                        <Typography anchor="button-menu" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-menu" variant="h2" style={{ marginTop: '55px' }} sub>
                             Button Dropdown Menu
                         </Typography>
 
@@ -1413,7 +1413,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Color */}
-                        <Typography anchor="button-color" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-color" variant="h2" style={{ marginTop: '55px' }} sub>
                             Button Color
                         </Typography>
 
@@ -1543,7 +1543,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Compact */}
-                        <Typography anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-compact" variant="h2" style={{ marginTop: '55px' }} sub>
                             Button Compact
                         </Typography>
 
@@ -1563,7 +1563,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Disable */}
-                        <Typography anchor="disable" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }} sub>
                             Disable
                         </Typography>
 
@@ -1604,7 +1604,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Icon */}
-                        <Typography anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="icon-type" variant="h2" style={{ marginTop: '55px' }} sub>
                             Icon
                         </Typography>
 
@@ -1655,7 +1655,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Inverse */}
-                        <Typography anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }} sub>
                             Inverse
                         </Typography>
 
@@ -1680,7 +1680,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Menu Height */}
-                        <Typography anchor="menu-maximum-height" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="menu-maximum-height" variant="h2" style={{ marginTop: '55px' }} sub>
                             Menu Height
                         </Typography>
 
@@ -1702,7 +1702,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* onChange */}
-                        <Typography anchor="on-change" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="on-change" variant="h2" style={{ marginTop: '55px' }} sub>
                             onChange
                         </Typography>
 
@@ -1722,7 +1722,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Match Props */}
-                        <Typography anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mobile" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Match Props
                         </Typography>
 
@@ -1744,7 +1744,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Creatable */}
-                        <Typography anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-creatable" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Creatable
                         </Typography>
 
@@ -1767,7 +1767,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Mobile */}
-                        <Typography anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mobile" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Mobile
                         </Typography>
 
@@ -1789,7 +1789,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Multiple */}
-                        <Typography anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mutiple" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Multiple
                         </Typography>
 
@@ -1811,7 +1811,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Option Component */}
-                        <Typography anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-option-component" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Option Component
                         </Typography>
 
@@ -1833,7 +1833,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Underline */}
-                        <Typography anchor="selection-underline" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-underline" variant="h2" style={{ marginTop: '55px' }} sub>
                             Selection Underline
                         </Typography>
 
@@ -1855,7 +1855,7 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Theme */}
-                        <Typography anchor="theme" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="theme" variant="h2" style={{ marginTop: '55px' }} sub>
                             Theme
                         </Typography>
 

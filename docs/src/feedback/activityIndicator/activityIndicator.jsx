@@ -62,7 +62,7 @@ function ElementsActivityIndicator() {
                 </Card>
 
                 {/* Activity Indicators */}
-                <Typography anchor="activityIndicator" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="activityIndicator" variant="h2" style={{ marginTop: '55px' }} sub>
                     Activity Indicator
                 </Typography>
 
@@ -80,7 +80,7 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* className */}
-                <Typography anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }} sub>
                     className
                 </Typography>
 
@@ -99,7 +99,7 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* color */}
-                <Typography anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="color" variant="h2" style={{ marginTop: '55px' }} sub>
                     color
                 </Typography>
 
@@ -117,7 +117,7 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* id */}
-                <Typography anchor="id" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="id" variant="h2" style={{ marginTop: '55px' }} sub>
                     id
                 </Typography>
 
@@ -136,7 +136,7 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* size */}
-                <Typography anchor="size" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="size" variant="h2" style={{ marginTop: '55px' }} sub>
                     size
                 </Typography>
 
@@ -154,7 +154,7 @@ function ElementsActivityIndicator() {
                 </Highlighter>
 
                 {/* style */}
-                <Typography anchor="style" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="style" variant="h2" style={{ marginTop: '55px' }} sub>
                     style
                 </Typography>
 

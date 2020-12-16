@@ -290,11 +290,11 @@ class ModulesDrawerContent extends React.Component {
                     </Card>
 
                     {/* Content */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Content
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Where content (forms, text, etc) is supposed to be placed inside a drawer.
                     </Typography>
 

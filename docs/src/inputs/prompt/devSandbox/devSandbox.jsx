@@ -24,11 +24,11 @@ function ElementsPrompt() {
             <Main.Content>
                 <MarkdownContainer>
                     {/* Inline */}
-                    <Typography anchor="inline" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inline" variant="h2" style={{ marginTop: '55px' }} sub>
                         Inline Prompt
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
                     </Typography>
 
@@ -64,11 +64,11 @@ function ElementsPrompt() {
                     </Highlighter>
 
                     {/* Dropdown with only some items prompting */}
-                    <Typography anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="selective-prompt" variant="h2" style={{ marginTop: '55px' }} sub>
                         Selective Prompting for Dropdown Options
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
                         but we only want
                         {' '}

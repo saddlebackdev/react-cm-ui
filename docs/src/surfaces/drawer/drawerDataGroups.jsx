@@ -271,11 +271,11 @@ class ModulesDrawerDataGroups extends React.Component {
                     </Card>
 
                     {/* Drawer Infobar Details */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Drawer Data Groups
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         For those times the UI requires an Drawer Data Groups Section.
                     </Typography>
 

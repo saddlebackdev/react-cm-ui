@@ -181,7 +181,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         Segmented Controls
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Basic segmented controls with labels.
                     </Typography>
 
@@ -199,7 +199,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         Icons
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A segmented control can have an icon either along with a label or by itself.
                     </Typography>
 
@@ -224,7 +224,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         Fluid
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Segmented controls can take on the size of its container.
                     </Typography>
 
@@ -243,7 +243,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         Selected
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Change the default selected button.
                     </Typography>
 
@@ -262,7 +262,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         onClick Parent Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an onClick event from parent.
                     </Typography>
 
@@ -280,7 +280,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                         onClick Children Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an onClick event from parent.
                     </Typography>
 

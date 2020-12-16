@@ -209,11 +209,11 @@ export default class ElementsDivider extends React.Component {
                     </Card>
 
                     {/* Divider */}
-                    <Typography anchor="divider" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="divider" variant="h2" style={{ marginTop: '55px' }} sub>
                         Divider
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A basic divider.
                     </Typography>
 
@@ -224,11 +224,11 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Typography anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="color" variant="h2" style={{ marginTop: '55px' }} sub>
                         Color
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Divider's color can be changed.
                     </Typography>
 
@@ -243,11 +243,11 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Typography anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }} sub>
                         Inverse
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Divider's color can be set to the appropriate color when on a dark background.
                     </Typography>
 
@@ -264,11 +264,11 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Typography anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="compact" variant="h2" style={{ marginTop: '55px' }} sub>
                         Compact
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Divider can be compact, not having any margin above or below.
                     </Typography>
 
@@ -281,11 +281,11 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Hidden */}
-                    <Typography anchor="hidden" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="hidden" variant="h2" style={{ marginTop: '55px' }} sub>
                         Hidden
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Divider can divide content without a line.
                     </Typography>
 
@@ -298,11 +298,11 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Relaxed */}
-                    <Typography anchor="relaxed" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="relaxed" variant="h2" style={{ marginTop: '55px' }} sub>
                         Relaxed
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Divider can increase it's margin above and below.
                     </Typography>
 

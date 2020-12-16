@@ -281,7 +281,7 @@ export default class ModulesTimePicker extends React.Component {
                         Time Picker
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A basic Time Picker.
                     </Typography>
 
@@ -300,7 +300,7 @@ export default class ModulesTimePicker extends React.Component {
                         Disable
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Indicates that the Time Picker is not available for interaction.
                     </Typography>
 
@@ -319,7 +319,7 @@ export default class ModulesTimePicker extends React.Component {
                         Nest
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Time Picker can give the appearance of being nested. The parent's background color needs to be set to <code>color(backgroundColorNest)</code>.
                     </Typography>
 
@@ -343,7 +343,7 @@ export default class ModulesTimePicker extends React.Component {
                         Range
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Time Picker can be used in range mode, specifing a start time and an end time for the range.
                     </Typography>
 
@@ -367,7 +367,7 @@ export default class ModulesTimePicker extends React.Component {
                         Zone Options
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Provide a custom list of timezones to the Time Picker.
                     </Typography>
 
@@ -386,7 +386,7 @@ export default class ModulesTimePicker extends React.Component {
                         Zone Match Props
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Whether to match the value, label or both values of each selection option when filtering.
                     </Typography>
 

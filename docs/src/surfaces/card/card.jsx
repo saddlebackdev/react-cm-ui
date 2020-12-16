@@ -288,7 +288,7 @@ export default class ViewsTitleBar extends React.Component {
                         Card
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A basic card has a faint border wrapping its contents. Its box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
@@ -317,7 +317,7 @@ export default class ViewsTitleBar extends React.Component {
                         Nested Card
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A card can give the appearance of being nested. The parent's background color needs to be set to
                         {' '}
                         <code>color(backgroundColorNest)</code>
@@ -352,7 +352,7 @@ export default class ViewsTitleBar extends React.Component {
                         Compact
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A card can have its padding reduced.
                     </Typography>
 
@@ -386,7 +386,7 @@ export default class ViewsTitleBar extends React.Component {
                         Card onClick Event Handler
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A card can handle an onClick event.
                     </Typography>
 
@@ -420,7 +420,7 @@ export default class ViewsTitleBar extends React.Component {
                         Active
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Cards can have an active state.
                     </Typography>
 
@@ -454,7 +454,7 @@ export default class ViewsTitleBar extends React.Component {
                         Collapsable
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Cards can be collapsable.
                     </Typography>
 
@@ -545,7 +545,7 @@ export default class ViewsTitleBar extends React.Component {
                         Header
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Cards can have a custom header.
                     </Typography>
 

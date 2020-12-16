@@ -280,7 +280,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Icon
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A standard icon. The
                         {' '}
                         <code>type</code>
@@ -299,7 +299,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Align
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can change the side the margin is positioned on.
                     </Typography>
 
@@ -324,7 +324,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Color
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can be formatted with different colors.
                     </Typography>
 
@@ -352,7 +352,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Inverse
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icon colors can be inverted to appear on darker backgrounds better.
                     </Typography>
 
@@ -382,7 +382,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Compact
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can appear without space to left or right.
                     </Typography>
 
@@ -400,7 +400,7 @@ class ElementsIconExamples extends React.PureComponent {
                         onClick Event Handler
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can handle an onClick event.
                     </Typography>
 
@@ -415,7 +415,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Rotate
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can be rotated.
                     </Typography>
 
@@ -431,7 +431,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Size
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can have different sizes.
                     </Typography>
 
@@ -453,7 +453,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Spin
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can spin clockwise.
                     </Typography>
 
@@ -473,7 +473,7 @@ class ElementsIconExamples extends React.PureComponent {
                         Title
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Icons can have a
                         {' '}
                         <code>title</code>

@@ -106,7 +106,7 @@ export default class ViewsInfoBar extends React.Component {
                         Color
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Info Bars have different colors.
                     </Typography>
 

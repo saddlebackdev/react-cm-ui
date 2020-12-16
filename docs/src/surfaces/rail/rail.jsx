@@ -75,7 +75,7 @@ export default class ElementsRail extends React.PureComponent {
                         Position
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Position a Rail to either the left or right.
                     </Typography>
 

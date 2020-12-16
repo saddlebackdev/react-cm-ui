@@ -46,7 +46,7 @@ export default function ElementsRadio() {
                         Radio
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A standard radio input.
                     </Typography>
                 </MarkdownContainer>
@@ -60,7 +60,7 @@ export default function ElementsRadio() {
                         Label
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A radio input can have a label defined.
                     </Typography>
                 </MarkdownContainer>
@@ -74,7 +74,7 @@ export default function ElementsRadio() {
                         Align
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A label definition can sit on the right or left side of the radio input.
                     </Typography>
                 </MarkdownContainer>
@@ -88,7 +88,7 @@ export default function ElementsRadio() {
                         Checked
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A radio input can be checked from it&apos;s parent.
                     </Typography>
                 </MarkdownContainer>
@@ -102,7 +102,7 @@ export default function ElementsRadio() {
                         Disable
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Disable a radio input.
                     </Typography>
                 </MarkdownContainer>
@@ -116,7 +116,7 @@ export default function ElementsRadio() {
                         Fluid
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A radio input can stretch as wide as the parent container.
                     </Typography>
                 </MarkdownContainer>
@@ -130,7 +130,7 @@ export default function ElementsRadio() {
                         Label Click
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Sometimes you may want to disable a radio from being checked by clicking
                         &nbsp;it&apos;s label definition.
                     </Typography>
@@ -145,7 +145,7 @@ export default function ElementsRadio() {
                         OnChange
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         {/* eslint-disable react/jsx-one-expression-per-line */}
                         Can handle an <code>onChange</code> event from parent. The
                         <code>checked</code> prop is required along with this handler.
@@ -162,7 +162,7 @@ export default function ElementsRadio() {
                         Radio Group
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Group radio buttons together.
                     </Typography>
                 </MarkdownContainer>
@@ -176,7 +176,7 @@ export default function ElementsRadio() {
                         Radio Pill Group
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Group Radio buttons together in a pill container.
                         <br />
                         <a
@@ -199,7 +199,7 @@ export default function ElementsRadio() {
                         Multiple Selection
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Radio Pill can have multiple selections.
                     </Typography>
                 </MarkdownContainer>
@@ -213,7 +213,7 @@ export default function ElementsRadio() {
                         Radio Pills Disabled
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Radio Pills can be disabled.
                     </Typography>
                 </MarkdownContainer>

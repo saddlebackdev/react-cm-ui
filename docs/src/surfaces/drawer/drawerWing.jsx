@@ -152,11 +152,11 @@ class ModulesDrawerWing extends React.Component {
                     </Card>
 
                     {/* Drawer */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Wing
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         <span>For when UI requires developers to be sneaky by hiding content and actions out of the viewport.</span>
                     </Typography>
 

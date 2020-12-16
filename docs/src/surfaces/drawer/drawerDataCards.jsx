@@ -258,11 +258,11 @@ class ModulesDrawerDataCards extends React.Component {
                     </Card>
 
                     {/* Data Cards */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Data Cards
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         UI for displaying a data in a grid. Users can usualy toggle between
                         this and the Drawer.DataGrid sub-components.
                     </Typography>

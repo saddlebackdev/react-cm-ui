@@ -124,7 +124,7 @@ export default class ViewsTitleBar extends React.Component {
                         Title Bar
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
                     </Typography>
 
@@ -145,7 +145,7 @@ export default class ViewsTitleBar extends React.Component {
                         Sub Title
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Title Bars can have a sub title.
                     </Typography>
 
@@ -166,7 +166,7 @@ export default class ViewsTitleBar extends React.Component {
                         Children
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Title Bars can return its children on the right side of the bar.
                     </Typography>
 

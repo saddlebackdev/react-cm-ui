@@ -213,7 +213,7 @@ export default class ElementsList extends React.Component {
                         Inverse
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A List's color can be set to the appropriate color when on a dark background.
                     </Typography>
 

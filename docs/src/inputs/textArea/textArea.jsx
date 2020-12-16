@@ -495,7 +495,7 @@ export default class ElementsTextArea extends React.Component {
                         Text Area
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A standard text area.
                     </Typography>
 
@@ -510,7 +510,7 @@ export default class ElementsTextArea extends React.Component {
                         Auto Height
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A text area can auto resize based on it's content.
                     </Typography>
 
@@ -525,7 +525,7 @@ export default class ElementsTextArea extends React.Component {
                         Auto Focus
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A text area that will be focused upon loading.
                     </Typography>
 
@@ -540,7 +540,7 @@ export default class ElementsTextArea extends React.Component {
                         Disable
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Indicates that the text area is not available for interaction.
                     </Typography>
 
@@ -555,7 +555,7 @@ export default class ElementsTextArea extends React.Component {
                         Error
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Indicates that the text area has an error. You can either supply a boolean value or a string with a message.
                     </Typography>
 
@@ -572,7 +572,7 @@ export default class ElementsTextArea extends React.Component {
                         Fluid
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A text area can take on the size of its container.
                     </Typography>
 
@@ -587,7 +587,7 @@ export default class ElementsTextArea extends React.Component {
                         Inverse
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Format to appear on dark backgrounds.
                     </Typography>
 
@@ -604,7 +604,7 @@ export default class ElementsTextArea extends React.Component {
                         Label
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Optional Label to display on top of the text area.
                     </Typography>
 
@@ -619,7 +619,7 @@ export default class ElementsTextArea extends React.Component {
                         Max Height
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies the maximum number of characters that the user can enter.
                     </Typography>
 
@@ -634,7 +634,7 @@ export default class ElementsTextArea extends React.Component {
                         Max Length
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies the maximum number of characters that the user can enter.
                     </Typography>
 
@@ -649,7 +649,7 @@ export default class ElementsTextArea extends React.Component {
                         Min Height
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies the minimum number of characters that the user needs to enter.
                     </Typography>
 
@@ -664,7 +664,7 @@ export default class ElementsTextArea extends React.Component {
                         Min Length
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies the minimum number of characters that the user needs to enter.
                     </Typography>
 
@@ -679,7 +679,7 @@ export default class ElementsTextArea extends React.Component {
                         onBlur Event Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an <code>onBlur</code> event from parent.
                     </Typography>
 
@@ -694,7 +694,7 @@ export default class ElementsTextArea extends React.Component {
                         onChange Event Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
                     </Typography>
 
@@ -709,7 +709,7 @@ export default class ElementsTextArea extends React.Component {
                         onClick Event Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an <code>onClick</code> event from parent.
                     </Typography>
 
@@ -724,7 +724,7 @@ export default class ElementsTextArea extends React.Component {
                         onFocus Event Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an <code>onFocus</code> event from parent.
                     </Typography>
 
@@ -739,7 +739,7 @@ export default class ElementsTextArea extends React.Component {
                         onKeyDown Event Handler
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Can handle an <code>onKeyDown</code> event from parent.
                     </Typography>
 
@@ -759,7 +759,7 @@ export default class ElementsTextArea extends React.Component {
                         Placeholder
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A hint to the user of what can be entered in the text area.
                     </Typography>
 
@@ -774,7 +774,7 @@ export default class ElementsTextArea extends React.Component {
                         Required
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies that the user must fill in a value before submitting a form.
                     </Typography>
 
@@ -789,7 +789,7 @@ export default class ElementsTextArea extends React.Component {
                         Resize
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Specifies that the user must fill in a value before submitting a form.
                     </Typography>
 

@@ -313,11 +313,11 @@ class ModulesDrawerActionBar extends React.Component {
                     </Card>
 
                     {/* Action Bar */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Action Bar
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         For those times the UI requires an Action Bar.
                     </Typography>
 

@@ -51,7 +51,7 @@ function BreadcrumbsExample(props) {
                         Breadcrumbs
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A simple navigation tabs panel.
                     </Typography>
                 </MarkdownContainer>

@@ -187,11 +187,11 @@ class ModulesDrawerSticky extends React.Component {
                     </Card>
 
                     {/* Drawer */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Drawer
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         <span>A Sticky drawer.</span>
 
                         <p className="font-size-xsmall color-static">

@@ -28,7 +28,7 @@ function DocsTabsSandbox() {
                         Simple Tabs panel
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A simple Tabs panel.
                     </Typography>
                 </MarkdownContainer>
@@ -42,7 +42,7 @@ function DocsTabsSandbox() {
                         Panel With Content
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         The panel content can be set inside the tab item object.
                     </Typography>
                 </MarkdownContainer>
@@ -56,7 +56,7 @@ function DocsTabsSandbox() {
                         Selected Tab Key
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         The selected tab can programmatically be changed.
                     </Typography>
                 </MarkdownContainer>

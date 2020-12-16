@@ -189,7 +189,7 @@ export default class ElementsLabel extends React.Component {
                         Label
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A standard label that can be attached to something, giving information about it.
                     </Typography>
 
@@ -204,7 +204,7 @@ export default class ElementsLabel extends React.Component {
                         Color
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Labels can have different colors.
                     </Typography>
 
@@ -224,7 +224,7 @@ export default class ElementsLabel extends React.Component {
                         Fluid
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Label's container can take on the size of its parent container.
                     </Typography>
 
@@ -239,7 +239,7 @@ export default class ElementsLabel extends React.Component {
                         Inverse
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Labels can have different colors.
                     </Typography>
 
@@ -261,7 +261,7 @@ export default class ElementsLabel extends React.Component {
                         onClick Handler
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Label can be have a onClick handler.
                     </Typography>
 
@@ -276,7 +276,7 @@ export default class ElementsLabel extends React.Component {
                         onClearClick Handler
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A Label can be removed using the onClearClick handler.
                     </Typography>
 

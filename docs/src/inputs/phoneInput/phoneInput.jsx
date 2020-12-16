@@ -159,7 +159,7 @@ export default class ModulesPhoneInput extends React.Component {
                         Phone Input
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         We use <a href="https://github.com/catamphetamine/react-phone-number-input" target="_blank">
                         react-phone-number-input</a> and wrap it in our own component.
                     </Typography>

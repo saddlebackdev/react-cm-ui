@@ -173,11 +173,11 @@ class ModulesDrawerTitleBar extends React.Component {
                     </Card>
 
                     {/* Title Bar */}
-                    <Typography anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
                         Title Bar
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         <span>
                             In most cases this is a sub component that will need to be used. There are going to be
                             cases where you will have a
