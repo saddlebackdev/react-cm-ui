@@ -104,10 +104,6 @@ export default class ElementsList extends React.Component {
                         List
                     </Heading>
 
-                    <Typography variant="body1">
-                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
-                    </Typography>
-
                     <List>
                         <List.Item>
                             <Typography color="static" size="xsmall" style={{ margin: 0 }}>
@@ -124,10 +120,6 @@ export default class ElementsList extends React.Component {
                     <Heading variant="h2">
                         Horizontal
                     </Heading>
-
-                    <Typography variant="body1">
-                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
-                    </Typography>
 
                     <List horizontal>
                         <List.Item>
@@ -155,10 +147,6 @@ export default class ElementsList extends React.Component {
                     <Heading variant="h2">
                         Divide
                     </Heading>
-
-                    <Typography variant="body1">
-                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
-                    </Typography>
 
                     <List divide>
                         <List.Item>
@@ -338,10 +326,6 @@ export default class ElementsList extends React.Component {
                     <Heading variant="h2">
                         List
                     </Heading>
-
-                    <Typography variant="body1">
-                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
-                    </Typography>
 
                     <List horizontal>
                         <List.Item style={{ backgroundColor: '#c0c0c0' }}>
