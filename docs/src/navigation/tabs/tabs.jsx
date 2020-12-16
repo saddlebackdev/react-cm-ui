@@ -1,173 +1,140 @@
 import {
-    Card,
     Typography,
-    Tabs,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import Block from '../../global/block';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleWithContentTabs from './examples/exampleWithContentTabs';
+import ExampleMobileTabs from './examples/exampleMobileTabs';
+import ExampleStandardTabs from './examples/exampleStandardTabs';
+import ExampleStandardTabsDarkBackground from './examples/exampleStandardTabsDarkBackground';
 import Heading from '../../global/heading';
-import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
-import TableProps from '../../global/tableProps';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/tabs/tabs';
+/* eslint-enable import/no-named-default, import/extensions */
 
-const tabsSample = `import React from 'react';
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
 
-import TabsItem from '../app/Collections/TabsItem.react';
-import Tabs from '../app/Collections/Tabs.react';
+function DocsTabs(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
 
-export default class TabsSample extends React.Component {
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
-    render() {
-        return (
-            <Tabs>
-                <Tabs.Item label="Tab 1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                </Tabs.Item>
-
-                <Tabs.Item label="Tab 2">
-                    <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                </Tabs.Item>
-            </Tabs>
-        );
-    }
-
-}`;
-
-const nestSample = `import React from 'react';
-
-import TabsItem from '../app/Collections/TabsItem.react';
-import Tabs from '../app/Collections/Tabs.react';
-
-export default class NestSample extends React.Component {
-
-    render() {
-        return (
-            <Tabs nest={true}>
-                <Tabs.Item label="Tab 1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                </Tabs.Item>
-
-                <Tabs.Item label="Tab 2">
-                    <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                </Tabs.Item>
-            </Tabs>
-        );
-    }
-
-}`;
-
-export default class CollectionsTabs extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { tabIndex: 0 };
-    }
-
-    render() {
-        const props = [
-            {
-                name: 'className',
-                type: 'string',
-                default: '',
-                description: 'Additional classes.',
-                allowedTypes: '',
-            }, {
-                name: 'id',
-                type: 'string',
-                default: '',
-                description: 'An identifier.',
-                allowedTypes: '',
-            }, {
-                name: 'nest',
-                type: 'bool',
-                default: '',
-                description: 'Tabs may be placed in a nested background color.',
-                allowedTypes: '',
-            }, {
-                name: 'onClick',
-                type: 'func',
-                default: '',
-                description: 'Tabs can handle an onClick event.',
-                allowedTypes: '',
-            }, {
-                name: 'selected',
-                type: 'number',
-                default: '',
-                description: 'Change the default selected tab.',
-                allowedTypes: '',
-            }, {
-                name: 'style',
-                type: 'object',
-                default: '',
-                description: 'Supply any inline styles to the Tabs\'s container. Mainly used for padding and margins.',
-                allowedTypes: '',
-            },
-        ];
-
-        return (
-            <Main page="headers">
-                <Main.Content>
-                    <Card>
-                        <Typography size="large">Props</Typography>
-
-                        <TableProps props={props} />
-                    </Card>
-
-                    {/* Tabs */}
-                    <Heading variant="h2">
-                        Tabs
-                    </Heading>
-
-                    <Typography variant="body1">
-                        Basic tabs has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                    </Typography>
-
-                    <Tabs id="tabs">
-                        <Tabs.Item label="Tab 1">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                        </Tabs.Item>
-
-                        <Tabs.Item label="Tab 2">
-                            <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                        </Tabs.Item>
-                    </Tabs>
-
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {tabsSample}
-                    </Highlighter>
-
-                    {/* Nested Tabs */}
-                    <Heading variant="h2">
-                        Nested Tabs
-                    </Heading>
-
-                    <Typography variant="body1">
-                        Tabs can give the appearance of being nested. The parent's background color needs to be set to
-                        {' '}
-                        <code>color(backgroundColorNest)</code>
-                        .
-                    </Typography>
-
-                    <Block
-                        nest
-                        style={{ padding: '22px' }}
+    return (
+        <Main page={camelCase(displayName)}>
+            <Main.Content>
+                <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
                     >
-                        <Tabs nest>
-                            <Tabs.Item label="Tab 1">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tempus dui, ac cursus urna. Phasellus eu leo et neque ultrices euismod in in tellus. Ut facilisis quis neque vel mattis. Donec pharetra lacinia viverra. Aenean vestibulum non sem vitae ornare. Donec lobortis lectus nec elit egestas viverra. Etiam varius ex velit.</p>
-                            </Tabs.Item>
+                        {description}
+                    </Typography>
 
-                            <Tabs.Item label="Tab 2">
-                                <p>In et justo non ligula vulputate mollis. Fusce nibh felis, sollicitudin eget libero id, maximus placerat felis. Praesent aliquam euismod dapibus. Quisque dignissim elit vitae maximus gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras bibendum ipsum et sagittis gravida. Ut imperdiet cursus vulputate. Sed dictum sem at maximus consequat.</p>
-                            </Tabs.Item>
-                        </Tabs>
-                    </Block>
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Standard Tabs
+                    </Heading>
 
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {nestSample}
-                    </Highlighter>
-                </Main.Content>
-            </Main>
-        );
-    }
+                    <Typography
+                        variant="body1"
+                    >
+                        Light background.
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleStandardTabs').default}
+                    >
+                        <ExampleStandardTabs />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Standard Inversed Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleStandardTabsDarkBackground').default}
+                    >
+                        <ExampleStandardTabsDarkBackground />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Mobile Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleMobileTabs').default}
+                    >
+                        <ExampleMobileTabs />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Contained Tabs
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Dark background.
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleWithContentTabs').default}
+                    >
+                        <ExampleWithContentTabs />
+                    </Example>
+                </MarkdownContainer>
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
+            </Main.Content>
+        </Main>
+    );
 }
+
+DocsTabs.propTypes = propTypes;
+
+export default DocsTabs;

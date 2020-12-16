@@ -36,8 +36,8 @@ export const BEM_MODAL_INNER_CONTAINER = `${BEM_MODAL}--inner_container`;
 export const BEM_MODAL_TITLE = `${BEM_MODAL}--title`;
 
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
-export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
-export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;
+export const BEM_NAVIGATION_TABS = 'navigation_tabs';
+export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
 
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
 export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';
@@ -56,6 +56,8 @@ export const BEM_SELECT = 'select';
 export const BEM_SWITCH = 'switch';
 
 export const BEM_TELEPHONE_LINK = 'telphone_link';
+
+export const BEM_TOOLTIP = 'tooltip';
 
 export const EMAIL_LINK_CLASSES = `${UI_CLASS_NAME} ${BEM_EMAIL_LINK}`;
 export const PERSON_CORE_MILESTONES_CLASSES = `${UI_CLASS_NAME} ${BEM_PERSON_CORE_MILESTONES}`;

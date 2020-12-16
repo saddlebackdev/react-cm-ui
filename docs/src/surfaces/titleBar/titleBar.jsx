@@ -175,10 +175,10 @@ export default class ViewsTitleBar extends React.Component {
                             <Card style={{ padding: matches ? '0 11px' : '0 22px' }}>
                                 <TitleBar subTitle="The Best Title Bar" title="An Even Better Title">
                                     <DropdownButton
-                                        color="transparent"
                                         iconSize={10}
                                         iconType="caret-down"
                                         label="Marty McFly"
+                                        transparent
                                     >
                                         <DropdownButton.Option label="Item 1" />
                                         <DropdownButton.Option label="Item 2" />

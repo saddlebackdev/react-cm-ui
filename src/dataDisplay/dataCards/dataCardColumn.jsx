@@ -6,10 +6,9 @@ import makeStyles from '../../styles/makeStyles';
 import Typography from '../typography';
 
 const propTypes = {
-    classes: PropTypes.shape({
-        heading: PropTypes.string,
-    }),
-    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        style: PropTypes.shape({}),
+    })).isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.oneOf(['drawer', 'page']).isRequired,
 };
@@ -27,8 +26,11 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 }));
 
 function DataCardColumn(props) {
-    const { columns, data, moduleType } = props;
-    const classes = useStyles();
+    const {
+        columns,
+        data,
+        moduleType,
+    } = props;
     const elementClassName = `${moduleType}--data_card_column`;
 
     return _.map(columns, (column, index) => {
@@ -54,6 +56,7 @@ function DataCardColumn(props) {
                 style={{
                     marginBottom: column.width ? '11px' : null,
                     width: column.width,
+                    ...(column.style || {}),
                 }}
             >
                 {column.header && (

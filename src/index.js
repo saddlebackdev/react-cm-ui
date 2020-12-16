@@ -53,7 +53,7 @@ export { default as Page } from './layout/page';
 
 // Navigation
 export { default as A } from './navigation/a';
-export { default as SubNavigation } from './navigation/subNavigation';
+export { default as Breadcrumbs } from './navigation/breadcrumbs';
 export { default as Tabs } from './navigation/tabs';
 
 // Surfaces
@@ -82,7 +82,3 @@ export { default as withWidth } from './utils/withWidth/withWidth';
 
 // Other
 export { default as versions } from './versions';
-
-// Navigation
-export { default as SectionalTabs } from './navigation/sectionalTabs';
-export { default as Breadcrumbs } from './navigation/breadcrumbs';

@@ -5,6 +5,8 @@ import React, { useEffect } from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
+import { withStyles } from '../../styles';
+import useStyles from './tableStyles';
 
 const columnNumberEnums = [
     'auto',
@@ -25,6 +27,7 @@ const columnNumberEnums = [
 const propTypes = {
     active: PropTypes.bool,
     children: PropTypes.node,
+    classes: PropTypes.shape({}),
     className: PropTypes.string,
     collapsing: PropTypes.bool,
     desktop: PropTypes.oneOfType([
@@ -93,6 +96,7 @@ const propTypes = {
 const defaultProps = {
     active: false,
     children: null,
+    classes: {},
     className: null,
     collapsing: false,
     desktop: null,
@@ -120,6 +124,7 @@ function TableCell(props) {
         active,
         children,
         className,
+        classes,
         collapsing,
         desktop,
         desktopLarge,
@@ -152,6 +157,7 @@ function TableCell(props) {
 
     const containerClasses = ClassNames(
         'table-cell',
+        classes.tableCell,
         {
             'table-cell-active': active,
             'table-cell-collapsing': collapsing,
@@ -212,4 +218,4 @@ function TableCell(props) {
 TableCell.propTypes = propTypes;
 TableCell.defaultProps = defaultProps;
 
-export default TableCell;
+export default withStyles(useStyles, { withTheme: true })(TableCell);

@@ -7,7 +7,7 @@ import {
     map,
     remove,
 } from 'lodash';
-import { SectionalTabs } from 'react-cm-ui';
+import { Tabs as TabsUI } from 'react-cm-ui';
 import PropTypes from 'prop-types';
 import React, {
     useCallback,
@@ -21,9 +21,9 @@ const propTypes = {
         PropTypes.shape({}),
     ),
     router: PropTypes.shape({
-        routes: PropTypes.shape({
+        routes: PropTypes.arrayOf(PropTypes.shape({
             path: PropTypes.string,
-        }),
+        })),
     }).isRequired,
 };
 
@@ -33,7 +33,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(() => ({
     root: {
-        marginTop: -4,
+        marginTop: 5,
     },
 }));
 
@@ -43,7 +43,7 @@ function Tabs(props) {
         router,
     } = props;
 
-    const [sectionalTabsItems, setSectionTabsItems] = useState([]);
+    const [tabsItems, setTabsItems] = useState([]);
 
     const classes = useStyles();
 
@@ -64,12 +64,12 @@ function Tabs(props) {
     useEffect(() => {
         remove(items, ['omit', true]);
 
-        setSectionTabsItems(
+        setTabsItems(
             // eslint-disable-next-line consistent-return
             map(items, (item, index) => {
                 if (!item.omit) {
                     return {
-                        key: index,
+                        key: `${index}`,
                         onClick: () => onTabClick(item.path, index),
                         title: item.label,
                     };
@@ -86,11 +86,11 @@ function Tabs(props) {
     const selectedTabKey = findIndex(items, (item) => item.path === lastPathname);
 
     return (
-        <SectionalTabs
+        <TabsUI
             classes={{
                 root: classes.root,
             }}
-            items={sectionalTabsItems}
+            items={tabsItems}
             selectedTabKey={selectedTabKey}
         />
     );
