@@ -57,6 +57,8 @@ export const BEM_SWITCH = 'switch';
 
 export const BEM_TELEPHONE_LINK = 'telphone_link';
 
+export const BEM_TOOLTIP = 'tooltip';
+
 export const EMAIL_LINK_CLASSES = `${UI_CLASS_NAME} ${BEM_EMAIL_LINK}`;
 export const PERSON_CORE_MILESTONES_CLASSES = `${UI_CLASS_NAME} ${BEM_PERSON_CORE_MILESTONES}`;
 export const PERSON_CONTACT_INFO_CLASSES = `${UI_CLASS_NAME} ${BEM_PERSON_CONTACT_INFO}`;

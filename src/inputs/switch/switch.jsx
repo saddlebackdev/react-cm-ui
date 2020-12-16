@@ -380,7 +380,7 @@ class Switch extends React.Component {
                 className={rootClasses}
                 id={id}
                 onClick={this.onClick}
-                onKeyDown={noop()}
+                onKeyDown={noop}
                 onMouseDown={this.onMouseDown}
                 role="checkbox"
                 tabIndex={tabIndex}

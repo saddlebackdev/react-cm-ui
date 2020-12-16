@@ -10,10 +10,16 @@ const versions = {
         package: '10.0.0',
         components: {
             dataDisplay: {
-                dataCard: {
-                    devLibraryVersion: 'N/A',
-                    designLibraryVersion: 'N/A',
-                    designLibraryDoc: 'N/A',
+                tooltip: {
+                    designArea: 'Tooltip',
+                    designItems: [
+                        {
+                            doc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/a/3RRWYw',
+                            name: 'Tooltips',
+                            version: '2.0.0 >',
+                        },
+                    ],
+                    devVersion: '2.0.0 <',
                 },
                 dataGrid: {
                     devLibraryVersion: '1.0.0',

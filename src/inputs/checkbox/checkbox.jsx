@@ -452,7 +452,7 @@ class Checkbox extends React.Component {
                         <div
                             className={labelContainerClasses}
                             onClick={this.onLabelClick}
-                            onKeyDown={noop()}
+                            onKeyDown={noop}
                             role="button"
                             tabIndex={-1}
                         >

@@ -224,7 +224,6 @@ const useStyles = makeStyles((theme) => {
     const selectMenuBg = p.grey[500];
     const selectMenuBorderRadius = 3;
     const selectMenuMarginTop = 4;
-    const selectMenuMaxHeight = 200;
     const selectMenuPaddingVertical = 11;
     const selectMenuZindex = 1000;
 
@@ -260,15 +259,10 @@ const useStyles = makeStyles((theme) => {
     // multi-select item
     const selectItemBorderRadius = 2;
     const selectItemGutter = 5;
-    const selectItemPaddingVertical = 2;
-    const selectItemPaddingHorizontal = 5;
     const selectItemFontSize = '.9em';
     const selectItemColor = '#08c';
     const selectItemBg = '#f2f9fc';
     const selectItemBorderColor = selectItemBg;
-    const selectItemHoverColor = selectItemColor;
-    const selectItemHoverBg = selectItemBg;
-    const selectItemDisabledColor = '#333';
     const selectItemDisabledBg = '#fcfcfc';
     const selectItemDisabledBorderColor = selectItemDisabledBg;
 
@@ -716,7 +710,8 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-function Select(props) {
+// eslint-disable-next-line prefer-arrow-callback
+const Select = React.forwardRef(function Select(props, ref) {
     const {
         className,
         clearable: isClearable,
@@ -732,6 +727,8 @@ function Select(props) {
         matchProp,
         multiple,
         onChange: onChangeProp,
+        onClose,
+        onOpen,
         optionComponent,
         options,
         placeholder,
@@ -742,11 +739,11 @@ function Select(props) {
         underline: isUnderlined,
         value,
         valueComponent,
+        ...otherProps
     } = props;
 
     const classes = useStyles(props);
     const dropdownMenuRef = useRef();
-    const selectRef = useRef();
 
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
@@ -817,9 +814,11 @@ function Select(props) {
 
     return (
         <div
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...otherProps}
             className={rootClasses}
             id={id}
-            ref={selectRef}
+            ref={ref}
         >
             {label && (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -893,6 +892,8 @@ function Select(props) {
                 multi={multiple}
                 name="firstSelect"
                 onChange={onChange}
+                onClose={onClose}
+                onOpen={onOpen}
                 optionComponent={optionComponent}
                 options={options}
                 promptTextCreator={isCreatable && promptTextCreator}
@@ -906,7 +907,7 @@ function Select(props) {
             </ReactSelectComponent>
         </div>
     );
-}
+});
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
