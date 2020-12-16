@@ -28,10 +28,13 @@ function DataGroupExpandedRow(props) {
             style,
         },
     } = props;
+
     const bemClassName = `${parentBemClassName}_row`;
-    const containerClasses = ClassNames(`${bemClassName}`, className, {
+
+    const rootClasses = ClassNames(`${bemClassName}`, className, {
         [`${bemClassName}-header_icon`]: iconType || header,
     });
+
     let accessedData;
 
     if (_.isString(accessor)) {
@@ -42,7 +45,7 @@ function DataGroupExpandedRow(props) {
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
             id={id}
             style={style}
         >

@@ -1,6 +1,22 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.19.5 - 12/16/2020
+
+#### Feature
+- [PR #258](https://github.com/saddlebackdev/react-cm-ui/pull/258) / Merge Commit 0f909289fc25507f090efc0dfe001a071a0d5ecf
+  - Use named callback functions (rather than lambda/"fat arrow" anonymous functions) for some components using `React.forwardRef()` for improved representation in React Developer Tools in the browser.
+- [PR #260](https://github.com/saddlebackdev/react-cm-ui/pull/260) / Merge Commit fcbd3f118804305b4fc4ab5c3d07ca77e1d10980
+  - Add "view" Icon type.
+- [PR #261](https://github.com/saddlebackdev/react-cm-ui/pull/261) / Merge Commit 047b205f00a43eafb4784f77700f43f90680567a
+  - DataGroups light code clean up.
+
+#### Bug
+- [PR #257](https://github.com/saddlebackdev/react-cm-ui/pull/257) / Merge Commit 09ecd18c0f14ef6ae25c903d12ed31d8fc36df38
+  - Removed Grid Container In ActionsBar If `columns` is empty.
+- [PR #259](https://github.com/saddlebackdev/react-cm-ui/pull/259) / Merge Commit 18da8f65b924c8f3aadcf60287f44d012c603f4a
+  - Removed unwanted outline when A's are focused and enhanced Prompt's keyboard functionality (tab index and triggering on Enter key).
+
 ## 9.19.4 - 12/09/2020
 
 #### Bug

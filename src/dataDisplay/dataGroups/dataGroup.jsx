@@ -56,9 +56,11 @@ class DataGroup extends React.PureComponent {
             data,
             moduleType,
         } = this.props;
+
         const { isExpanded } = this.state;
         const bemClassName = `${moduleType}--data_group`;
-        const containerClasses = ClassNames(bemClassName, className, {
+
+        const rootClasses = ClassNames(bemClassName, className, {
             [`${bemClassName}-is_expandable`]: isExpandable,
             [`${bemClassName}-expanded`]: isExpandable && isExpanded,
         });
@@ -133,7 +135,7 @@ class DataGroup extends React.PureComponent {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 onClick={this.onToggleExpandClick}
                 role="presentation"
@@ -147,6 +149,7 @@ class DataGroup extends React.PureComponent {
                         />
                     </div>
                 )}
+
                 <div
                     className={`${bemClassName}_inner_container`}
                 >
@@ -181,7 +184,9 @@ class DataGroup extends React.PureComponent {
                             </div>
                         )}
                     </div>
+
                     {rowJSX}
+
                     {isExpandable && !_.isEmpty(expandableSections) && (
                         expandableJSX
                     )}

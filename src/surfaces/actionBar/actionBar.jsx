@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import {
+    isArray,
+    isEmpty,
+    isUndefined,
+    map,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -29,6 +34,7 @@ const propTypes = {
         jsx: PropTypes.node,
         list: PropTypes.arrayOf(PropTypes.shape({
             actionsButton: PropTypes.shape({}),
+            divide: PropTypes.bool,
             jsx: PropTypes.node,
             iconBack: PropTypes.shape({}),
             iconFilter: PropTypes.shape({}),
@@ -121,8 +127,10 @@ class ActionBar extends React.PureComponent {
             moduleType,
             style,
         } = this.props;
+
         const { isMobileSearchVisible } = this.state;
         const containerClasses = ClassNames('ui', `${moduleType}--action_bar`, className);
+
         let searchDataForMobile = null;
         let gridColumnKeyNum = 1;
         let gridColumnListItemKeyNum = 1;
@@ -135,13 +143,13 @@ class ActionBar extends React.PureComponent {
                 style={style}
             >
                 <div style={{ width: '100%' }}>
-                    {columns && (
+                    {!isEmpty(columns) && (
                         <React.Fragment>
                             <Grid
                                 className="action_bar--grid"
                                 verticalAlign="middle"
                             >
-                                {_.map(columns, (column) => {
+                                {map(columns, (column) => {
                                     const {
                                         button,
                                         dropdownButton,
@@ -209,7 +217,7 @@ class ActionBar extends React.PureComponent {
                                                     style={dropdownButton.style}
                                                     title={dropdownButton.title}
                                                 >
-                                                    {_.map(dropdownButton.options, (option) => {
+                                                    {map(dropdownButton.options, (option) => {
                                                         dropdownButtonOptionKeyNum += 1;
 
                                                         return (
@@ -229,14 +237,15 @@ class ActionBar extends React.PureComponent {
                                                 </DropdownButton>
                                             )}
 
-                                            {list && _.isArray(list) && (
+                                            {isArray(list) && (
                                                 <List
                                                     className="action_bar--list"
                                                     horizontal
                                                 >
-                                                    {_.map(list, (item) => {
+                                                    {map(list, (item) => {
                                                         const {
                                                             actionsButton,
+                                                            divide,
                                                             jsx: listJsx,
                                                             iconBack,
                                                             iconFilter,
@@ -244,9 +253,6 @@ class ActionBar extends React.PureComponent {
                                                             iconSearch,
                                                             iconTable,
                                                         } = item;
-
-                                                        const divide = _.isUndefined(item.divide) ||
-                                                            item.divide;
 
                                                         const listItemClassName = ClassNames('action_bar--list_item', {
                                                             'action_bar--list_item-jsx': listJsx,
@@ -292,7 +298,7 @@ class ActionBar extends React.PureComponent {
                                                         return (
                                                             <List.Item
                                                                 className={listItemClassName}
-                                                                divide={divide}
+                                                                divide={!!divide}
                                                                 key={itemKey}
                                                                 style={({
                                                                     alignItems: item.alignItems || 'flex-start',

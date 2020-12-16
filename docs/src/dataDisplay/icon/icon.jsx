@@ -44,6 +44,7 @@ const categorizedIconSet = [
             'undo',
             'upload-1',
             'upload-2',
+            'view',
         ],
     }, {
         category: 'App Features',

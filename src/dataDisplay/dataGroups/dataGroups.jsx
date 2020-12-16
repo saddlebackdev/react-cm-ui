@@ -106,11 +106,11 @@ class DataGroups extends React.PureComponent {
         } = this.props;
         const { columns } = this.state;
         const bemClassName = `${moduleType}--data_groups`;
-        const containerClasses = ClassNames('ui', bemClassName, className);
+        const rootClasses = ClassNames('ui', bemClassName, className);
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 ref={(ref) => { this.dataGroups = ref; }}
                 style={style}
             >
