@@ -49,7 +49,8 @@ const defaultProps = {
     width: undefined,
 };
 
-const GridColumn = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const GridColumn = React.forwardRef(function GridColumn(props, ref) {
     const {
         align,
         children,

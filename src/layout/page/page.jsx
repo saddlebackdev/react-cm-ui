@@ -122,7 +122,8 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-const Page = React.forwardRef((props, ref) => {
+// eslint-disable-next-line prefer-arrow-callback
+const Page = React.forwardRef(function Page(props, ref) {
     const {
         children,
         className,
