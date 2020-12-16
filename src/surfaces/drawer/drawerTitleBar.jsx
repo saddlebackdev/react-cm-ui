@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import Typography from '../../dataDisplay/typography';
 import makeStyles from '../../styles/makeStyles';
-import { theme } from '../../styles';
 
 const propTypes = {
     children: PropTypes.node,
@@ -178,4 +177,4 @@ function DrawerTitleBar(props) {
 DrawerTitleBar.propTypes = propTypes;
 DrawerTitleBar.defaultProps = defaultProps;
 
-export default withStyles(styles)(DrawerTitleBar);
+export default DrawerTitleBar;

@@ -419,11 +419,10 @@ class Banner extends React.Component {
                         </div>
 
                         <div className={bannerMessageContainerClasses}>
-                            <Header
-                                size="small"
+                            <Typography
                                 style={{
-                                    marginBottom: '5px',
-                                    paddingRight: hasCloseButton ? '16px' : null,
+                                    marginBottom: 5,
+                                    paddingRight: hasCloseButton ? 16 : null,
                                 }}
                                 variant="h4"
                             >
