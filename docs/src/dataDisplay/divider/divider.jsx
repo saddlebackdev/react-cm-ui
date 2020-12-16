@@ -124,6 +124,7 @@ export default class RelaxedSample extends React.Component {
 
 export default class ElementsDivider extends React.Component {
     onBlur() {
+        // eslint-disable-next-line no-console
         console.log('Are you sure you are done?');
     }
 
@@ -132,18 +133,22 @@ export default class ElementsDivider extends React.Component {
     }
 
     onClick() {
+        // eslint-disable-next-line no-alert
         window.alert('You did it! You clicked the text area.');
     }
 
     onFocus() {
+        // eslint-disable-next-line no-console
         console.log('Your focus determins your reality.');
     }
 
     onKeyDown(event) {
+        // eslint-disable-next-line no-alert
         window.alert(`You just pressed the ${event.key} key`);
     }
 
     onIconClick() {
+        // eslint-disable-next-line no-alert
         window.alert('Look at my action.');
     }
 

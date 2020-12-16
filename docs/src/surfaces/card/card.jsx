@@ -289,7 +289,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A basic card has a faint border wrapping its contents. Its box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
                     <Card>
@@ -353,7 +353,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A card can have it's padding reduced.
+                        A card can have its padding reduced.
                     </Typography>
 
                     <Block

@@ -146,7 +146,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        Title Bar's can have a sub title.
+                        Title Bars can have a sub title.
                     </Typography>
 
                     <MediaQuery maxWidth={767}>
@@ -167,7 +167,7 @@ export default class ViewsTitleBar extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        Title Bar's can return it's children on the right side of the bar.
+                        Title Bars can return its children on the right side of the bar.
                     </Typography>
 
                     <MediaQuery maxWidth={767}>

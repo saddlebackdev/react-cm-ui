@@ -105,7 +105,7 @@ export default class ElementsList extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
                     <List>
@@ -126,7 +126,7 @@ export default class ElementsList extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
                     <List horizontal>
@@ -157,7 +157,7 @@ export default class ElementsList extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
                     <List divide>
@@ -340,7 +340,7 @@ export default class ElementsList extends React.Component {
                     </Heading>
 
                     <Typography variant="body1">
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
+                        A basic card has a faint border wrapping its contents. It's box model is fluid so that it can adapt to its parent container's width.
                     </Typography>
 
                     <List horizontal>
