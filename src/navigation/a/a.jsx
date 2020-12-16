@@ -1,7 +1,10 @@
 import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {
+    useCallback,
+} from 'react';
+import { ENTER_KEY_CODE } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -28,16 +31,22 @@ const defaultProps = {
     tabIndex: -1,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
+    palette,
+    typography,
+}) => ({
     isDisabled: {},
     root: {
-        color: theme.palette.cyan[500],
+        color: palette.cyan[500],
         cursor: 'pointer',
-        fontWeight: theme.typography.fontWeightMedium,
+        fontWeight: typography.fontWeightMedium,
         textDecoration: 'none',
         '&$isDisabled': {
-            color: theme.palette.text.disable,
+            color: palette.text.disable,
             cursor: 'default',
+        },
+        '&:focus': {
+            boxShadow: `0 0 0 1px ${palette.active.main}`,
         },
     },
 }));
@@ -50,22 +59,38 @@ function A(props) {
         disable: isDisabled,
         onClick: onClickProp,
         onKeyDown: onKeyDownProp,
+        style,
         tabIndex,
     } = props;
 
     const classes = useStyles(props);
 
-    const onClick = (event) => {
+    const onClick = useCallback((event) => {
         if (isFunction(onClickProp) && !isDisabled) {
             onClickProp(event);
         }
-    };
+    }, [
+        onClickProp,
+        isDisabled,
+    ]);
 
-    const onKeyDown = (event) => {
-        if (isFunction(onKeyDownProp) && !isDisabled) {
-            onKeyDownProp(event);
+    const onKeyDown = useCallback((event) => {
+        if (!isDisabled) {
+            if (isFunction(onKeyDownProp)) {
+                onKeyDownProp(event);
+            } else if (event.keyCode === ENTER_KEY_CODE) {
+                onClick();
+            }
         }
-    };
+    }, [
+        isDisabled,
+        onClick,
+        onKeyDownProp,
+    ]);
+
+    const onMouseDown = useCallback((event) => {
+        event.preventDefault();
+    }, []);
 
     const bemBlockName = 'a';
 
@@ -85,7 +110,9 @@ function A(props) {
             id={id}
             onClick={onClick}
             onKeyDown={onKeyDown}
+            onMouseDown={onMouseDown}
             role="button"
+            style={style}
             tabIndex={tabIndex}
         >
             {children}

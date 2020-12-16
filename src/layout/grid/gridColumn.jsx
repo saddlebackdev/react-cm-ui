@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
 const GridColumn = React.forwardRef(
     /* eslint-disable react-hooks/rules-of-hooks */
     // eslint-disable-next-line prefer-arrow-callback
-    function gridColumn(props, ref) {
+    function GridColumn(props, ref) {
         const {
             children,
             className,
