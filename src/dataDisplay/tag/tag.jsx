@@ -2,13 +2,13 @@ import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../icon';
-import Utils from '../../utils/utils';
-import withStyles from '../../styles/withStyles';
 import {
     UI_CLASS_NAME,
     BEM_TAG,
 } from '../../global/constants';
+import Icon from '../icon';
+import Utils from '../../utils/utils';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     children: PropTypes.string,

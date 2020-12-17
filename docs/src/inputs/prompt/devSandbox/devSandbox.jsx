@@ -8,7 +8,7 @@ import React from 'react';
 import Highlighter from '../../../global/highlighter';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
-import ExampleDropdownButtonPrompt from '../examples/exampleDropdownButtonPrompt';
+import ExampleDropdownButtonPrompt from './examples/exampleDropdownButtonPrompt';
 import ExampleDefaultPrompt from './examples/exampleDefaultPrompt';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/prompt/prompt';
@@ -116,7 +116,7 @@ function ElementsPrompt() {
                     <ExampleDropdownButtonPrompt />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {require('!!raw-loader!../examples/exampleDropdownButtonPrompt').default}
+                        {require('!!raw-loader!./examples/exampleDropdownButtonPrompt').default}
                     </Highlighter>
                 </MarkdownContainer>
             </Main.Content>
