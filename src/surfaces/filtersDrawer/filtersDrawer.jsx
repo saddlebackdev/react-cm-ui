@@ -1,6 +1,6 @@
 import {
     cloneDeep,
-    differenceBy,
+    differenceWith,
     find,
     filter,
     isArray,
@@ -555,10 +555,13 @@ class FiltersDrawer extends React.Component {
                                                 multiSelect
                                             ) {
                                                 // Multi Select
-                                                const modifiedOptions = differenceBy(
+                                                const modifiedOptions = differenceWith(
                                                     multiSelect.options,
                                                     multiSelect.value,
-                                                    'value',
+                                                    (option, value) => {
+                                                        const selectedValue = isObject(value) ? value.value : value;
+                                                        return option.value === selectedValue;
+                                                    },
                                                 );
 
                                                 return (
@@ -592,7 +595,8 @@ class FiltersDrawer extends React.Component {
 
                                                         {!isEmpty(multiSelect.value) &&
                                                                 map(multiSelect.value, (v) => {
-                                                                    const selectedOption = v;
+                                                                    const selectedValue = isObject(v) ? v.value : v;
+                                                                    const selectedOption = find(multiSelect.options, { value: selectedValue });
                                                                     multiSelectLabelKeyNum += 1;
 
                                                                     return (
@@ -600,7 +604,7 @@ class FiltersDrawer extends React.Component {
                                                                             color={multiSelect.labelColor}
                                                                             key={`multi-select-label-${multiSelectLabelKeyNum}`}
                                                                             onItemChange={multiSelect.onChange}
-                                                                            label={v.label}
+                                                                            label={selectedOption.label}
                                                                             selectedOption={selectedOption}
                                                                             value={multiSelect.value}
                                                                         />

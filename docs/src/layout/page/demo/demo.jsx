@@ -53,7 +53,7 @@ class PageDemo extends React.PureComponent {
         super();
 
         this.defaultFilters = {
-            multiSelectValue: [],
+            multiSelectValue: [1, 3],
             nestedTogglesBarValue: [1],
             nestedTogglesFooValue: [],
             searchValue: '',
