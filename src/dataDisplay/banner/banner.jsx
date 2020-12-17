@@ -8,11 +8,11 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import withStyles from '../../styles/withStyles';
 import BannerItem from './bannerItem';
-import Typography from '../typography';
-import Icon from '../icon';
 import domUtils from '../../utils/domUtils';
+import Icon from '../icon';
+import Typography from '../typography';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**
@@ -379,19 +379,23 @@ class Banner extends React.Component {
                 'banner-color-teal': color === 'teal',
             },
         );
+
         const containerInnerClasses = ClassNames(
             'banner-container',
             classes.bannerContainer,
             className,
         );
+
         const bannerLevelTypeClasses = ClassNames(
             'banner-level-type',
             classes.bannerLevelType,
         );
+
         const bannerMessageContainerClasses = ClassNames(
             'banner-message-container',
             classes.bannerMessageContainer,
         );
+
         const hasCloseButton = type === 'notification';
         let levelBasedIcon;
 
@@ -429,9 +433,9 @@ class Banner extends React.Component {
                                 {title}
                             </Typography>
 
-                            {message ? (
+                            {message && (
                                 <span className={classes.bannerMessage}>{message}</span>
-                            ) : null}
+                            )}
 
                             {children}
                         </div>

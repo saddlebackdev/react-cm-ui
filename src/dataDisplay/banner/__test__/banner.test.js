@@ -35,6 +35,7 @@ describe('<Banner />', () => {
 
     it('Should render with proper classNames', () => {
         const rootNode = wrapper.find('div').first();
+
         expect(rootNode.hasClass('ui')).toEqual(true);
         expect(rootNode.hasClass('banner')).toEqual(true);
         expect(rootNode.hasClass(/(Banner)-(root)-(\d+)/)).toEqual(true);
@@ -45,11 +46,13 @@ describe('<Banner />', () => {
             ...componentProps,
             className: additionalClassName,
         };
+
         wrapper = mountWithTheme(
             <Banner
                 {...props}
             />,
         );
+
         expect(wrapper.find('Banner').prop('className')).toBe(additionalClassName);
     });
 
@@ -59,11 +62,13 @@ describe('<Banner />', () => {
 
     it('Should render with props title', () => {
         const bannerMessageContainer = wrapper.find('.banner-message-container');
-        expect(bannerMessageContainer.find('.header').text()).toBe(componentProps.title);
+
+        expect(bannerMessageContainer.find('h4').text()).toBe(componentProps.title);
     });
 
     it('Should render with props custom message', () => {
         const bannerMessageContainer = wrapper.find('.banner-message-container');
+
         expect(bannerMessageContainer.find('span').text()).toBe(componentProps.message);
     });
 });

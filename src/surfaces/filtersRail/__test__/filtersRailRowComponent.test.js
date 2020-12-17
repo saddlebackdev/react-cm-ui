@@ -164,6 +164,6 @@ describe('<FiltersRailRowComponent />', () => {
             />,
         );
 
-        expect(wrapper.find('Select').exists()).toBe(true);
+        expect(wrapper.find('ForwardRef(Select)').exists()).toBe(true);
     });
 });
