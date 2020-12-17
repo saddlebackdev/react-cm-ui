@@ -7,8 +7,8 @@ import {
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
 import ExampleDurationPickerDaysHoursMinutesSeconds from './examples/exampleDurationPickerDaysHoursMinutesSeconds';
 import ExampleDurationPickerDisabled from './examples/exampleDurationPickerDisabled';
 import ExampleDurationPickerErrorHandling from './examples/exampleDurationPickerErrorHandling';
@@ -16,10 +16,9 @@ import ExampleDurationPickerLabel from './examples/exampleDurationPickerLabel';
 import ExampleDurationPickerRequired from './examples/exampleDurationPickerRequired';
 import ExampleDurationPickerSimple from './examples/exampleDurationPickerSimple';
 import ExampleDurationPickerYearsMonthsDays from './examples/exampleDurationPickerYearsMonthsDays';
-import Example from '../../global/example';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/durationPicker/durationPicker';
 /* eslint-enable import/no-named-default, import/extensions */

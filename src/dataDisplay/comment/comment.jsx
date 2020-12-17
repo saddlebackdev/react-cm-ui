@@ -1,8 +1,12 @@
-import _, { noop } from 'lodash';
+import {
+    isFunction,
+    noop,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
+import A from '../../navigation/a';
 import DropdownButton from '../../inputs/dropdownButton';
 import Image from '../image';
 import Prompt from '../../inputs/prompt';
@@ -12,6 +16,7 @@ const propTypes = {
     avatarSrc: PropTypes.string,
     canDelete: PropTypes.bool,
     canEdit: PropTypes.bool,
+    children: PropTypes.node,
     className: PropTypes.string,
     detailsPosition: PropTypes.oneOf(['left', 'right']),
     isEditable: PropTypes.bool,
@@ -28,6 +33,7 @@ const defaultProps = {
     avatarSrc: null,
     canDelete: false,
     canEdit: false,
+    children: null,
     className: null,
     detailsPosition: 'left',
     isEditable: false,
@@ -63,7 +69,7 @@ class Comment extends React.Component {
     onActionMenuClick(menuIsOpen) {
         const { onActionMenuClick } = this.props;
 
-        if (_.isFunction(onActionMenuClick)) {
+        if (isFunction(onActionMenuClick)) {
             onActionMenuClick(menuIsOpen);
         }
     }
@@ -89,7 +95,7 @@ class Comment extends React.Component {
 
     onDeletePromptYesClick() {
         const { onDelete } = this.props;
-        if (_.isFunction(onDelete)) {
+        if (isFunction(onDelete)) {
             onDelete();
         }
 
@@ -97,6 +103,8 @@ class Comment extends React.Component {
     }
 
     onEditOrDeletePromptClick(selectedOption) {
+        const { onActionMenuClick } = this.props;
+
         switch (selectedOption.id) {
             case 'delete':
                 this.setState({ showDeleteConfirmation: true });
@@ -104,10 +112,7 @@ class Comment extends React.Component {
             case 'edit':
                 this.setState({ isEditMode: true });
 
-                // eslint-disable-next-line no-case-declarations
-                const { onActionMenuClick } = this.props;
-
-                if (_.isFunction(onActionMenuClick)) {
+                if (isFunction(onActionMenuClick)) {
                     onActionMenuClick(false);
                 }
 
@@ -125,7 +130,7 @@ class Comment extends React.Component {
 
     onSaveClick() {
         const { onSaveEdit } = this.props;
-        if (_.isFunction(onSaveEdit)) {
+        if (isFunction(onSaveEdit)) {
             onSaveEdit(this.editableCommentTextArea.textArea.value);
         }
 
@@ -159,8 +164,18 @@ class Comment extends React.Component {
             time,
         } = this.props;
 
-        const { isEditMode, showDeleteConfirmation, updatedCommentText } = this.state;
-        const containerClasses = ClassNames('ui', 'comment', className);
+        const {
+            isEditMode,
+            showDeleteConfirmation,
+            updatedCommentText,
+        } = this.state;
+
+        const rootClasses = ClassNames(
+            'ui',
+            'comment',
+            className,
+        );
+
         const isRightAligned = detailsPosition === 'right';
         const editActionMenuAlignment = isRightAligned ? 'left' : 'right';
 
@@ -175,7 +190,7 @@ class Comment extends React.Component {
         }
 
         return (
-            <div className={containerClasses} style={style}>
+            <div className={rootClasses} style={style}>
                 {((name && time) || (avatarSrc && time)) && (
                     <div
                         className="comment-details"
@@ -210,30 +225,32 @@ class Comment extends React.Component {
                                     textAlign: editActionMenuAlignment,
                                 }}
                             >
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a
+                                <A
                                     className="cancel-link font-size-xsmall color-text"
                                     onClick={this.onCancelEditClick}
-                                    onKeyDown={noop()}
-                                    role="button"
-                                    style={{ display: 'inline-block' }}
+                                    onKeyDown={noop}
+                                    style={{
+                                        display: 'inline-block',
+                                    }}
                                     tabIndex={0}
                                 >
                                     Cancel
-                                </a>
+                                </A>
 
                                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a
+                                <A
                                     className="save-link font-size-xsmall"
                                     disabled={!canEdit}
-                                    onKeyDown={noop()}
+                                    onKeyDown={noop}
                                     onClick={this.onSaveClick}
-                                    role="button"
-                                    style={{ display: 'inline-block', marginLeft: '22px' }}
+                                    style={{
+                                        display: 'inline-block',
+                                        marginLeft: 22,
+                                    }}
                                     tabIndex={0}
                                 >
                                     Save
-                                </a>
+                                </A>
                             </div>
                         )}
 

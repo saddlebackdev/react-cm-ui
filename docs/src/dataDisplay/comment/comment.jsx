@@ -41,11 +41,11 @@ export default class CommentSample extends React.Component {
             isSaveBannerOpen: false
         };
 
-        this._onMenuClick = this._onMenuClick.bind(this);
-        this._onCloseRemoveBanner = this._onCloseRemoveBanner.bind(this);
-        this._onCloseSaveBanner = this._onCloseSaveBanner.bind(this);
-        this._onRemoveComment = this._onRemoveComment.bind(this);
-        this._onSaveComment = this._onSaveComment.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
+        this.onCloseRemoveBanner = this.onCloseRemoveBanner.bind(this);
+        this.onCloseSaveBanner = this.onCloseSaveBanner.bind(this);
+        this.onRemoveComment = this.onRemoveComment.bind(this);
+        this.onSaveComment = this.onSaveComment.bind(this);
     }
 
     render() {
@@ -59,9 +59,9 @@ export default class CommentSample extends React.Component {
                     detailsPosition="right"
                     isEditable
                     name="Joe Smith"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(1, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(1)}
-                    onSaveEdit={(updatedCommentText) => this._onSaveComment(1, updatedCommentText)}
+                    onActionMenuClick={(menuIsOpen) => this.onMenuClick(1, menuIsOpen)}
+                    onDelete={() => this.onRemoveComment(1)}
+                    onSaveEdit={(updatedCommentText) => this.onSaveComment(1, updatedCommentText)}
                     text={editableCommentText}
                     time={1536941364}
                 >
@@ -73,8 +73,8 @@ export default class CommentSample extends React.Component {
                     canEdit={false}
                     isEditable
                     name="Jessica Jones"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(2, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(2)}
+                    onActionMenuClick={(menuIsOpen) => this.onMenuClick(2, menuIsOpen)}
+                    onDelete={() => this.onRemoveComment(2)}
                     time={1536941520}
                 >
                     {'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
@@ -86,9 +86,9 @@ export default class CommentSample extends React.Component {
                     detailsPosition="right"
                     isEditable
                     name="Joe Smith"
-                    onActionMenuClick={(menuIsOpen) => this._onMenuClick(3, menuIsOpen)}
-                    onDelete={() => this._onRemoveComment(3)}
-                    onSaveEdit={(updatedCommentText) => this._onSaveComment(3, updatedCommentText)}
+                    onActionMenuClick={(menuIsOpen) => this.onMenuClick(3, menuIsOpen)}
+                    onDelete={() => this.onRemoveComment(3)}
+                    onSaveEdit={(updatedCommentText) => this.onSaveComment(3, updatedCommentText)}
                     text={editableComment2Text}
                     time={1536941640}
                 >
@@ -100,7 +100,7 @@ export default class CommentSample extends React.Component {
                     level="success"
                     isOpen={isRemoveBannerOpen}
                     message="Comment Removed!"
-                    onClose={this._onCloseRemoveBanner}
+                    onClose={this.onCloseRemoveBanner}
                     title="Comment Removed"
                     type="notification"
                 />
@@ -110,7 +110,7 @@ export default class CommentSample extends React.Component {
                     level="success"
                     isOpen={isSaveBannerOpen}
                     message="Comment Saved!"
-                    onClose={this._onCloseSaveBanner}
+                    onClose={this.onCloseSaveBanner}
                     title="Comment Saved"
                     type="notification"
                 />
@@ -118,15 +118,15 @@ export default class CommentSample extends React.Component {
         );
     }
 
-    _onCloseRemoveBanner() {
+    onCloseRemoveBanner() {
         this.setState({ isRemoveBannerOpen: false });
     }
 
-    _onCloseSaveBanner() {
+    onCloseSaveBanner() {
         this.setState({ isSaveBannerOpen: false });
     }
 
-    _onRemoveComment(id) {
+    onRemoveComment(id) {
         // TODO - Issue API call or whatever to delete the persisted comment data
 
         this.setState({ isRemoveBannerOpen: true }, () => {
@@ -134,7 +134,7 @@ export default class CommentSample extends React.Component {
         });
     }
 
-    _onSaveComment(id, updatedComment) {
+    onSaveComment(id, updatedComment) {
         // TODO - Issue API call or whatever to update the persisted comment data
 
         const updatedState = { isSaveBannerOpen: true };
@@ -149,7 +149,7 @@ export default class CommentSample extends React.Component {
         });
     }
 
-    _onMenuClick(id, menuIsOpen) {
+    onMenuClick(id, menuIsOpen) {
         console.log(\`Action menu for comment \$\{id\} clicked!  Menu open: \$\{menuIsOpen\}\`);
     }
 }`;
@@ -165,11 +165,41 @@ export default class ElmentsComment extends React.Component {
             isSaveBannerOpen: false,
         };
 
-        this._onMenuClick = this._onMenuClick.bind(this);
-        this._onCloseRemoveBanner = this._onCloseRemoveBanner.bind(this);
-        this._onCloseSaveBanner = this._onCloseSaveBanner.bind(this);
-        this._onRemoveComment = this._onRemoveComment.bind(this);
-        this._onSaveComment = this._onSaveComment.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
+        this.onCloseRemoveBanner = this.onCloseRemoveBanner.bind(this);
+        this.onCloseSaveBanner = this.onCloseSaveBanner.bind(this);
+        this.onRemoveComment = this.onRemoveComment.bind(this);
+        this.onSaveComment = this.onSaveComment.bind(this);
+    }
+
+    onCloseRemoveBanner() {
+        this.setState({ isRemoveBannerOpen: false });
+    }
+
+    onCloseSaveBanner() {
+        this.setState({ isSaveBannerOpen: false });
+    }
+
+    onRemoveComment() {
+        this.setState({ isRemoveBannerOpen: true }, () => {
+            setTimeout(() => this.setState({ isRemoveBannerOpen: false }), 2000);
+        });
+    }
+
+    onSaveComment(id, updatedComment) {
+        const updatedState = { isSaveBannerOpen: true };
+
+        if (id === 1) updatedState.editableCommentText = updatedComment;
+        else if (id === 3) updatedState.editableComment2Text = updatedComment;
+
+        this.setState(updatedState, () => {
+            setTimeout(() => this.setState({ isSaveBannerOpen: false }), 2000);
+        });
+    }
+
+    onMenuClick(id, menuIsOpen) {
+        // eslint-disable-next-line no-console
+        console.log(`Action menu for comment ${id} clicked!  Menu open: ${menuIsOpen}`);
     }
 
     render() {
@@ -349,9 +379,9 @@ export default class ElmentsComment extends React.Component {
                         detailsPosition="right"
                         isEditable
                         name="Joe Smith"
-                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(1, menuIsOpen)}
-                        onDelete={() => this._onRemoveComment(1)}
-                        onSaveEdit={(updatedCommentText) => this._onSaveComment(1, updatedCommentText)}
+                        onActionMenuClick={(menuIsOpen) => this.onMenuClick(1, menuIsOpen)}
+                        onDelete={() => this.onRemoveComment(1)}
+                        onSaveEdit={(updatedCommentText) => this.onSaveComment(1, updatedCommentText)}
                         text={editableCommentText}
                         time={1536941364}
                     >
@@ -363,8 +393,8 @@ export default class ElmentsComment extends React.Component {
                         canEdit={false}
                         isEditable
                         name="Jessica Jones"
-                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(2, menuIsOpen)}
-                        onDelete={() => this._onRemoveComment(2)}
+                        onActionMenuClick={(menuIsOpen) => this.onMenuClick(2, menuIsOpen)}
+                        onDelete={() => this.onRemoveComment(2)}
                         time={1536941520}
                     >
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -376,9 +406,9 @@ export default class ElmentsComment extends React.Component {
                         detailsPosition="right"
                         isEditable
                         name="Joe Smith"
-                        onActionMenuClick={(menuIsOpen) => this._onMenuClick(3, menuIsOpen)}
-                        onDelete={() => this._onRemoveComment(3)}
-                        onSaveEdit={(updatedCommentText) => this._onSaveComment(3, updatedCommentText)}
+                        onActionMenuClick={(menuIsOpen) => this.onMenuClick(3, menuIsOpen)}
+                        onDelete={() => this.onRemoveComment(3)}
+                        onSaveEdit={(updatedCommentText) => this.onSaveComment(3, updatedCommentText)}
                         text={editableComment2Text}
                         time={1536941640}
                     >
@@ -394,7 +424,7 @@ export default class ElmentsComment extends React.Component {
                         level="success"
                         isOpen={isRemoveBannerOpen}
                         message="Comment Removed!"
-                        onClose={this._onCloseRemoveBanner}
+                        onClose={this.onCloseRemoveBanner}
                         title="Comment Removed"
                         type="notification"
                     />
@@ -404,41 +434,12 @@ export default class ElmentsComment extends React.Component {
                         level="success"
                         isOpen={isSaveBannerOpen}
                         message="Comment Saved!"
-                        onClose={this._onCloseSaveBanner}
+                        onClose={this.onCloseSaveBanner}
                         title="Comment Saved"
                         type="notification"
                     />
                 </Main.Content>
             </Main>
         );
-    }
-
-    _onCloseRemoveBanner() {
-        this.setState({ isRemoveBannerOpen: false });
-    }
-
-    _onCloseSaveBanner() {
-        this.setState({ isSaveBannerOpen: false });
-    }
-
-    _onRemoveComment(id) {
-        this.setState({ isRemoveBannerOpen: true }, () => {
-            setTimeout(() => this.setState({ isRemoveBannerOpen: false }), 2000);
-        });
-    }
-
-    _onSaveComment(id, updatedComment) {
-        const updatedState = { isSaveBannerOpen: true };
-
-        if (id === 1) updatedState.editableCommentText = updatedComment;
-        else if (id === 3) updatedState.editableComment2Text = updatedComment;
-
-        this.setState(updatedState, () => {
-            setTimeout(() => this.setState({ isSaveBannerOpen: false }), 2000);
-        });
-    }
-
-    _onMenuClick(id, menuIsOpen) {
-        console.log(`Action menu for comment ${id} clicked!  Menu open: ${menuIsOpen}`);
     }
 }

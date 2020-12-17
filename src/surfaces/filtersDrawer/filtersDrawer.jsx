@@ -24,6 +24,7 @@ import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogg
 import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 import Select from '../../inputs/select';
+import withStyles from '../../styles/withStyles';
 
 const breakpoints = {
     values: {
