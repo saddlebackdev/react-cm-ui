@@ -71,7 +71,7 @@ export default class ElementsRail extends React.PureComponent {
                     </Card>
 
                     {/* Position */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Position
                     </Typography>
 

@@ -177,7 +177,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Card>
 
                     {/* Segmented Controls */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Segmented Controls
                     </Typography>
 
@@ -195,7 +195,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Icons */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Icons
                     </Typography>
 
@@ -220,7 +220,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Fluid
                     </Typography>
 
@@ -239,7 +239,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Selected */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Selected
                     </Typography>
 
@@ -258,7 +258,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* onClick Parent Handler */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         onClick Parent Handler
                     </Typography>
 
@@ -276,7 +276,7 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* onClick Children Handler */}
-                    <Typography size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         onClick Children Handler
                     </Typography>
 
