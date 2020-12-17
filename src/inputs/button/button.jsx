@@ -275,7 +275,11 @@ const styles = (theme) => {
             paddingLeft: 33,
             paddingRight: 33,
         },
-        text: {},
+        text: {
+            '& .icon .icon-use-path': {
+                fill: theme.palette.text.primary,
+            },
+        },
         transparent: {
             '&:not($text)': {
                 backgroundColor: theme.palette.hexToRGBA(theme.palette.background.primary, 0.5),

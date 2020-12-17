@@ -5,7 +5,7 @@ import React from 'react';
 
 const ERROR_MESSAGE = 'This value is required';
 
-class DurationPickerErrorHandlingExample extends React.PureComponent {
+class ExampleDurationPickerErrorHandling extends React.PureComponent {
     constructor() {
         super();
 
@@ -47,4 +47,4 @@ class DurationPickerErrorHandlingExample extends React.PureComponent {
     }
 }
 
-export default DurationPickerErrorHandlingExample;
+export default ExampleDurationPickerErrorHandling;

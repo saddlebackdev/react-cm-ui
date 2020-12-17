@@ -2,7 +2,7 @@ import { DurationPicker } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React, { useState } from 'react';
 
-function DurationPickerSimpleExample() {
+function ExampleDurationPickerSimple() {
     const [durationPickerValue, onDurationPickerChange] = useState(moment.duration({ hours: 2 }));
 
     return (
@@ -13,4 +13,4 @@ function DurationPickerSimpleExample() {
     );
 }
 
-export default DurationPickerSimpleExample;
+export default ExampleDurationPickerSimple;

@@ -17,6 +17,7 @@ const propTypes = {
     id: PropTypes.string,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
+    style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
 };
 
@@ -28,6 +29,7 @@ const defaultProps = {
     id: null,
     onClick: null,
     onKeyDown: null,
+    style: null,
     tabIndex: -1,
 };
 

@@ -3,9 +3,9 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Dropdown from '../dropdown/dropdown';
 import Icon from '../../dataDisplay/icon';
 import Input from '../input';
+import Select from '../select';
 
 const propTypes = {
     className: PropTypes.string,
@@ -341,7 +341,7 @@ class TimePicker extends React.Component {
                     value={value && value.timeDisplay ? value.timeDisplay : null}
                 />
 
-                <Dropdown
+                <Select
                     className="time-picker-zone-dropdown"
                     clearable={false}
                     disable={disable}
@@ -349,8 +349,7 @@ class TimePicker extends React.Component {
                     onChange={this.onZoneDropdownChange.bind(this)}
                     options={zoneOptions}
                     placeholder={zonePlaceholderText || 'Select a Time Zone'}
-                    selection
-                    selectionMatchProp={zoneMatchProp || 'label'}
+                    matchProp={zoneMatchProp || 'label'}
                     menuMaxHeight={448}
                     tabIndex={isTimePopoverActive ? 5 : 2}
                     value={value.timeZone}
@@ -366,13 +365,12 @@ class TimePicker extends React.Component {
                         ) : null}
 
                         <div>
-                            <Dropdown
+                            <Select
                                 clearable={false}
                                 id={id ? `${id}-hour_dropdown` : null}
                                 onChange={this.onTimeDropdownChange.bind(this, 'hour')}
                                 options={hourOptions}
                                 placeholder="hh"
-                                selection
                                 menuMaxHeight={448}
                                 style={{
                                     minWidth: 72,
@@ -383,15 +381,14 @@ class TimePicker extends React.Component {
 
                             <span className="colon">:</span>
 
-                            <Dropdown
+                            <Select
                                 clearable={false}
                                 id={id ? `${id}-minute_dropdown` : null}
                                 onChange={this.onTimeDropdownChange.bind(this, 'minute')}
                                 options={minuteOptions}
                                 placeholder="mm"
-                                selection
                                 menuMaxHeight={448}
-                                selectionCreatable
+                                creatable
                                 style={{
                                     minWidth: 72,
                                 }}
@@ -399,13 +396,12 @@ class TimePicker extends React.Component {
                                 value={minuteFromDropdownValue}
                             />
 
-                            <Dropdown
+                            <Select
                                 clearable={false}
                                 id={id ? `${id}-period_dropdown` : null}
                                 onChange={this.onTimeDropdownChange.bind(this, 'period')}
                                 options={periodOptions}
                                 placeholder="AM"
-                                selection
                                 menuMaxHeight={448}
                                 style={{
                                     minWidth: 72,
@@ -419,13 +415,12 @@ class TimePicker extends React.Component {
 
                         {this.props.range ? (
                             <div>
-                                <Dropdown
+                                <Select
                                     clearable={false}
                                     id={id ? `${id}-hour_to_dropdown` : null}
                                     onChange={this.onTimeDropdownChange.bind(this, 'hourTo')}
                                     options={hourOptions}
                                     placeholder="hh"
-                                    selection
                                     menuMaxHeight={448}
                                     style={{
                                         minWidth: 72,
@@ -436,15 +431,14 @@ class TimePicker extends React.Component {
 
                                 <span className="colon">:</span>
 
-                                <Dropdown
+                                <Select
                                     clearable={false}
                                     id={id ? `${id}-minute_to_dropdown` : null}
                                     onChange={this.onTimeDropdownChange.bind(this, 'minuteTo')}
                                     options={minuteOptions}
                                     placeholder="mm"
-                                    selection
                                     menuMaxHeight={448}
-                                    selectionCreatable
+                                    creatable
                                     style={{
                                         minWidth: 72,
                                     }}
@@ -452,13 +446,12 @@ class TimePicker extends React.Component {
                                     value={minuteToDropdownValue}
                                 />
 
-                                <Dropdown
+                                <Select
                                     clearable={false}
                                     id={id ? `${id}-period_to_dropdown` : null}
                                     onChange={this.onTimeDropdownChange.bind(this, 'periodTo')}
                                     options={periodOptions}
                                     placeholder="PM"
-                                    selection
                                     menuMaxHeight={448}
                                     style={{
                                         minWidth: 72,

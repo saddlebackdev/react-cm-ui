@@ -37,12 +37,14 @@ describe('<Select />', () => {
             ...componentProps,
             className: additionalClassName,
         };
+
         wrapper = mountWithTheme(
             <Select
                 {...props}
             />,
         );
-        expect(wrapper.find('Select').prop('className')).toBe(additionalClassName);
+
+        expect(wrapper.find('ForwardRef(Select)').prop('className')).toBe(additionalClassName);
     });
 
     it('Should have expected \'id\' prop', () => {
@@ -51,6 +53,7 @@ describe('<Select />', () => {
 
     it('Should render with proper classNames', () => {
         const rootNode = wrapper.find('div').first();
+
         expect(rootNode.hasClass('cmui')).toEqual(true);
         expect(rootNode.hasClass('select')).toEqual(true);
     });
@@ -62,7 +65,9 @@ describe('<Select />', () => {
                 disable
             />,
         );
+
         const rootNode = wrapper.find('.Select').first();
+
         expect(rootNode.hasClass('is-disabled')).toEqual(true);
     });
 });

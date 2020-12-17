@@ -1,18 +1,19 @@
 import { DurationPicker } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function DurationPickerRequiredExample() {
+function ExampleDurationPickerYearsMonthsDays() {
     const [durationPickerValue, onDurationPickerChange] = useState(null);
 
     return (
         <DurationPicker
-            label="Tasks due after:"
             onChange={onDurationPickerChange}
-            required
-            showMinutes
+            maxYears={10}
+            showHours={false}
+            showMonths
+            showYears
             value={durationPickerValue}
         />
     );
 }
 
-export default DurationPickerRequiredExample;
+export default ExampleDurationPickerYearsMonthsDays;

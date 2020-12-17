@@ -1,7 +1,7 @@
 import { DurationPicker } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function DurationPickerDaysHoursMinutesSecondsExample() {
+function ExampleDurationPickerDaysHoursMinutesSeconds() {
     const [durationPickerValue, onDurationPickerChange] = useState(null);
 
     return (
@@ -14,4 +14,4 @@ function DurationPickerDaysHoursMinutesSecondsExample() {
     );
 }
 
-export default DurationPickerDaysHoursMinutesSecondsExample;
+export default ExampleDurationPickerDaysHoursMinutesSeconds;

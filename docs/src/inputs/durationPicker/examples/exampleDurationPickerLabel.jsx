@@ -1,7 +1,7 @@
 import { DurationPicker } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function DurationPickerLabelExample() {
+function ExampleDurationPickerLabel() {
     const [durationPickerValue, onDurationPickerChange] = useState(null);
 
     return (
@@ -14,4 +14,4 @@ function DurationPickerLabelExample() {
     );
 }
 
-export default DurationPickerLabelExample;
+export default ExampleDurationPickerLabel;

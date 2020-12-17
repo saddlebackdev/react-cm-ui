@@ -1,18 +1,18 @@
 import { DurationPicker } from 'react-cm-ui';
 import React, { useState } from 'react';
 
-function DurationPickerDisabledExample() {
+function ExampleDurationPickerRequired() {
     const [durationPickerValue, onDurationPickerChange] = useState(null);
 
     return (
         <DurationPicker
-            disable
             label="Tasks due after:"
             onChange={onDurationPickerChange}
+            required
             showMinutes
             value={durationPickerValue}
         />
     );
 }
 
-export default DurationPickerDisabledExample;
+export default ExampleDurationPickerRequired;

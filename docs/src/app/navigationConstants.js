@@ -291,6 +291,13 @@ export const navigationItems = [
                     {
                         component: 'durationPicker',
                         label: 'Duration Picker',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'duration-picker',
                     },
                     {

@@ -2,7 +2,6 @@ export { default as Button } from './button';
 export { default as Checkbox } from './checkbox';
 export { default as DatePickerCalendar } from './datePickerCalendar';
 export { default as DatePickerInput } from './datePickerInput';
-export { default as Dropdown } from './dropdown';
 export { default as DropdownButton } from './dropdownButton';
 export { default as DropdownMenu } from './dropdownMenu';
 export { default as DurationPicker } from './durationPicker';

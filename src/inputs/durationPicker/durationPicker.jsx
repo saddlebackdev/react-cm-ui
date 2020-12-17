@@ -34,7 +34,7 @@ import {
 } from './constants';
 import { UI_CLASS_NAME } from '../../global/constants';
 import { withStyles } from '../../styles';
-import Dropdown from '../dropdown';
+import Select from '../select';
 import Grid from '../../layout/grid';
 import Typography from '../../dataDisplay/typography';
 
@@ -44,7 +44,6 @@ const propTypes = {
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
-        dropdown: PropTypes.string,
         dropdownColumn: PropTypes.string,
         error: PropTypes.string,
         errorColumn: PropTypes.string,
@@ -52,6 +51,7 @@ const propTypes = {
         label: PropTypes.string,
         labelColumn: PropTypes.string,
         required: PropTypes.string,
+        select: PropTypes.string,
     }),
     /**
      * Assign additional class names to the DurationPicker.
@@ -151,22 +151,12 @@ const useStyles = (theme) => ({
     root: {
 
     },
-    grid: {
-        '&.ui.grid': {
-            margin: -5.5,
-        },
-    },
-    dropdown: {
-        '&.ui.dropdown.dropdown-selection': {
-            minWidth: 'auto',
-        },
+    select: {
+        minWidth: 'auto',
     },
     dropdownColumn: {
         flexBasis: 106,
-        flexGrow: 1,
         maxWidth: 106, // 95px content + 11px padding
-        minWidth: 'auto',
-        padding: 5.5,
     },
     error: {
         color: theme.palette.error.main,
@@ -470,11 +460,13 @@ class DurationPicker extends React.PureComponent {
                 className={rootClasses}
                 id={realId}
             >
-                <Grid className={classes.grid}>
+                <Grid
+                    spacing={1}
+                >
                     {label && (
                         <Grid.Column
                             className={classes.labelColumn}
-                            width={12}
+                            sm={12}
                         >
                             <Typography
                                 classes={{
@@ -495,16 +487,16 @@ class DurationPicker extends React.PureComponent {
                     {showYears && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--years_dropdown`}
                                 onChange={this.onYearsChange}
                                 options={this.yearsOptions}
-                                selection
                                 value={find(this.yearsOptions, (opt) => opt.value === years)}
                             />
                         </Grid.Column>
@@ -513,16 +505,16 @@ class DurationPicker extends React.PureComponent {
                     {showMonths && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--months_dropdown`}
                                 onChange={this.onMonthsChange}
                                 options={this.monthsOptions}
-                                selection
                                 value={find(this.monthsOptions, (opt) => opt.value === months)}
                             />
                         </Grid.Column>
@@ -531,16 +523,16 @@ class DurationPicker extends React.PureComponent {
                     {showDays && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--days_dropdown`}
                                 onChange={this.onDaysChange}
                                 options={this.daysOptions}
-                                selection
                                 value={find(this.daysOptions, (opt) => opt.value === days)}
                             />
                         </Grid.Column>
@@ -549,16 +541,16 @@ class DurationPicker extends React.PureComponent {
                     {showHours && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--hours_dropdown`}
                                 onChange={this.onHoursChange}
                                 options={this.hoursOptions}
-                                selection
                                 value={find(this.hoursOptions, (opt) => opt.value === hours)}
                             />
                         </Grid.Column>
@@ -567,16 +559,16 @@ class DurationPicker extends React.PureComponent {
                     {showMinutes && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--minutes_dropdown`}
                                 onChange={this.onMinutesChange}
                                 options={this.minutesOptions}
-                                selection
                                 value={find(this.minutesOptions, (opt) => opt.value === minutes)}
                             />
                         </Grid.Column>
@@ -585,23 +577,26 @@ class DurationPicker extends React.PureComponent {
                     {showSeconds && (
                         <Grid.Column
                             className={classes.dropdownColumn}
+                            sm="auto"
                         >
-                            <Dropdown
-                                className={classes.dropdown}
+                            <Select
+                                className={classes.select}
                                 clearable={false}
                                 disable={disable}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--seconds_dropdown`}
                                 onChange={this.onSecondsChange}
                                 options={this.secondsOptions}
-                                selection
                                 value={find(this.secondsOptions, (opt) => opt.value === seconds)}
                             />
                         </Grid.Column>
                     )}
 
                     {isString(error) && (
-                        <Grid.Column className={classes.errorColumn} width={12}>
+                        <Grid.Column
+                            className={classes.errorColumn}
+                            sm={12}
+                        >
                             <Typography
                                 classes={{
                                     body2: classes.error,
