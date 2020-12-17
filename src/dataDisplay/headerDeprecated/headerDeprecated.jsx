@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import HeaderSubheader from './headerSubheader';
+import HeaderDeprecatedSubheader from './headerDeprecatedSubheader';
 import Icon from '../icon';
 import Utils from '../../utils/utils';
 
@@ -37,7 +37,7 @@ const defaultProps = {
     weight: undefined,
 };
 
-class Header extends React.PureComponent {
+class HeaderDeprecated extends React.PureComponent {
     constructor() {
         super();
 
@@ -155,9 +155,9 @@ class Header extends React.PureComponent {
     }
 }
 
-Header.Subheader = HeaderSubheader;
+HeaderDeprecated.Subheader = HeaderDeprecatedSubheader;
 
-Header.propTypes = propTypes;
-Header.defaultProps = defaultProps;
+HeaderDeprecated.propTypes = propTypes;
+HeaderDeprecated.defaultProps = defaultProps;
 
-export default Header;
+export default HeaderDeprecated;

@@ -6,7 +6,7 @@ export { default as DataGrid } from './dataGrid';
 export { default as DataGroups } from './dataGroups';
 export { default as Divider } from './divider';
 export { default as EmailLink } from './emailLink';
-export { default as Header } from './header';
+export { default as HeaderDeprecated } from './headerDeprecated';
 export { default as Icon } from './icon';
 export { default as Image } from './image';
 export { default as List } from './list';

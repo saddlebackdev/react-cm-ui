@@ -1,6 +1,6 @@
 import {
     Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Main from '../../global/main';
@@ -40,7 +40,7 @@ function ModulesPageActionBar() {
         <Main page="headers">
             <Main.Content>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={tableProps} />
                 </Card>

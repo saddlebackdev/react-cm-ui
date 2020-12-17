@@ -3,14 +3,27 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { rowPropTypes } from './dataGroupsPropTypes';
-import Header from '../header';
+import Typography from '../typography';
 import Icon from '../icon';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     bemClassName: PropTypes.string.isRequired,
     data: PropTypes.shape({}).isRequired,
     row: rowPropTypes.isRequired,
 };
+
+const useStyles = makeStyles(({ palette, typography }) => ({
+    fieldName: {
+        color: palette.text.secondary,
+        fontSize: typography.pxToRem(12),
+        margin: 0,
+    },
+    heading: {
+        margin: 0,
+        lineHeight: '16px',
+    },
+}));
 
 function DataGroupRow(props) {
     const {
@@ -29,6 +42,7 @@ function DataGroupRow(props) {
         },
     } = props;
 
+    const classes = useStyles();
     const bemClassName = `${parentBemClassName}_row`;
 
     const rootClasses = ClassNames(
@@ -69,17 +83,15 @@ function DataGroupRow(props) {
 
                     <div className={`${bemClassName}_data`}>
                         {header && (
-                            <Header
-                                className={`${bemClassName}_header`}
-                                size="medium"
-                                style={{
-                                    margin: 0,
-                                    lineHeight: '16px',
+                            <Typography
+                                classes={{
+                                    root: classes.heading,
                                 }}
-                                weight="semibold"
+                                className={`${bemClassName}_header`}
+                                variant="h3"
                             >
                                 {header}
-                            </Header>
+                            </Typography>
                         )}
 
                         <div
@@ -97,14 +109,14 @@ function DataGroupRow(props) {
                         {accessedData}
                     </div>
 
-                    <Header
+                    <Typography
+                        classes={{
+                            root: classes.fieldName,
+                        }}
                         className={`${bemClassName}_field_name`}
-                        color="static"
-                        size="xxsmall"
-                        style={{ margin: 0 }}
                     >
                         {fieldName}
-                    </Header>
+                    </Typography>
                 </React.Fragment>
             )}
         </div>

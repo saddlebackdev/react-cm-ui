@@ -1,5 +1,10 @@
 import {
-    Button, Card, Drawer, Header, Icon, Input,
+    Button,
+    Card,
+    Drawer,
+    Typography,
+    Icon,
+    Input,
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
@@ -411,18 +416,19 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Filters Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Filters Drawer
-                        <Header.Subheader>
-                            For filtering data/content in the parent Drawer.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        For filtering data/content in the parent Drawer.
+                    </Typography>
 
                     Optional and Required Properties for
                     {' '}

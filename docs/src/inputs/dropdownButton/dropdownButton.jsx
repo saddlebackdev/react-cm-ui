@@ -3,7 +3,7 @@
 
 import {
     Card,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
@@ -51,7 +51,7 @@ function DocsDropdownButton() {
         <Main page="headers">
             <Main.Content>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={tableProps} />
                 </Card>

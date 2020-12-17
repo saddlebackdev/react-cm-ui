@@ -1,6 +1,6 @@
 import {
     Card,
-    Header,
+    Typography,
     PhoneInput,
 } from 'react-cm-ui';
 import React from 'react';
@@ -149,22 +149,23 @@ export default class ModulesPhoneInput extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Phone Input */}
-                    <Header size="large" style={{ margin: '55px 0 0' }} sub>
+                    <Typography size="large" style={{ margin: '55px 0 0' }} sub>
                         Phone Input
-                        <Header.Subheader>
-                            We use <a href="https://github.com/catamphetamine/react-phone-number-input" target="_blank">
-                            react-phone-number-input</a> and wrap it in our own component.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        We use <a href="https://github.com/catamphetamine/react-phone-number-input" target="_blank">
+                        react-phone-number-input</a> and wrap it in our own component.
+                    </Typography>
 
                     <div style={{ margin: '22px 0 22px' }}>
-                        <Header size="small" style={{ margin: 0 }} weight="bold">Props Overwritten:</Header>
+                        <Typography size="small" style={{ margin: 0 }} weight="bold">Props Overwritten:</Typography>
 
                         <div>
                             <code>className</code>, <code>countryOptions</code>, <code>countrySelectComponent</code>,
@@ -173,7 +174,7 @@ export default class ModulesPhoneInput extends React.Component {
                     </div>
 
                     <div style={{ margin: '0 0 33px' }}>
-                        <Header size="small" style={{ margin: 0 }} weight="bold">Fake Test Numbers:</Header>
+                        <Typography size="small" style={{ margin: 0 }} weight="bold">Fake Test Numbers:</Typography>
 
                         <div className="color-static"><span className="font-weight-bold">Canada:</span> +16135550162</div>
 

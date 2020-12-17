@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 
 const propTypes = {
     attached: PropTypes.bool,
@@ -44,9 +44,11 @@ function CardHeader(props) {
             style={style}
         >
             {title ? (
-                <Header size="large">
+                <Typography
+                    variant="h2"
+                >
                     {title}
-                </Header>
+                </Typography>
             ) : children}
         </header>
     );

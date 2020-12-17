@@ -2,7 +2,7 @@ import {
     camelCase,
 } from 'lodash';
 import {
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../../global/highlighter';
@@ -24,12 +24,13 @@ function ElementsPrompt() {
             <Main.Content>
                 <MarkdownContainer>
                     {/* Inline */}
-                    <Header anchor="inline" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inline" variant="h2" style={{ marginTop: '55px' }}>
                         Inline Prompt
-                        <Header.Subheader>
-                            A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Button, Dropdown, or Link can have prompt attached to it asking for a confirmation from the end-user.
+                    </Typography>
 
                     <p>
                         Note that the prompt will suppress actions from the wrapped control--button and link
@@ -63,25 +64,26 @@ function ElementsPrompt() {
                     </Highlighter>
 
                     {/* Dropdown with only some items prompting */}
-                    <Header anchor="selective-prompt" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="selective-prompt" variant="h2" style={{ marginTop: '55px' }}>
                         Selective Prompting for Dropdown Options
-                        <Header.Subheader>
-                            Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
-                            but we only want
-                            {' '}
-                            <em>certain</em>
-                            {' '}
-                            options to trigger not prompt, not all options (i.e. we need to trigger
-                            the prompt
-                            {' '}
-                            <em>selectively</em>
-                            ). Note that in the sample above with the dropdown button menu,
-                            the prompt is triggered on
-                            {' '}
-                            <em>all options</em>
-                            .
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Let's say we have a Dropdown button acting as an action menu with an inline prompt wrapping it,
+                        but we only want
+                        {' '}
+                        <em>certain</em>
+                        {' '}
+                        options to trigger not prompt, not all options (i.e. we need to trigger
+                        the prompt
+                        {' '}
+                        <em>selectively</em>
+                        ). Note that in the sample above with the dropdown button menu,
+                        the prompt is triggered on
+                        {' '}
+                        <em>all options</em>
+                        .
+                    </Typography>
 
                     <p>
                         In order to achieve selective triggering of the prompt, you will have to add some logic to the

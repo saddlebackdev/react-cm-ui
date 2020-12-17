@@ -37,7 +37,7 @@ export default function ElementsRadio() {
                         Standard Radio Buttons
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         General use.
                     </Typography>
                 </MarkdownContainer>
@@ -51,7 +51,7 @@ export default function ElementsRadio() {
                         Standard Radio Button Group
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Group Radio buttons together in a pill container
                     </Typography>
                 </MarkdownContainer>

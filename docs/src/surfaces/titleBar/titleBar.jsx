@@ -1,11 +1,12 @@
 import {
     Card,
     DropdownButton,
-    Header,
+    Typography,
     TitleBar,
 } from 'react-cm-ui';
 import MediaQuery from 'react-responsive';
 import React from 'react';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -113,18 +114,19 @@ export default class ViewsTitleBar extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Title Bar */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Title Bar
-                        <Header.Subheader>
-                            A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A title bar is a wrapper for the a page title. It is to be placed at the very top of each page according to the design.
+                    </Typography>
 
                     <MediaQuery maxWidth={767}>
                         {(matches) => (
@@ -139,12 +141,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Sub Title */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Sub Title
-                        <Header.Subheader>
-                            Title Bar's can have a sub title.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Title Bars can have a sub title.
+                    </Typography>
 
                     <MediaQuery maxWidth={767}>
                         {(matches) => (
@@ -159,12 +162,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Children */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Children
-                        <Header.Subheader>
-                            Title Bar's can return it's children on the right side of the bar.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Title Bars can return its children on the right side of the bar.
+                    </Typography>
 
                     <MediaQuery maxWidth={767}>
                         {(matches) => (

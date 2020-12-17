@@ -1,4 +1,4 @@
-import { Button, Card, Header } from 'react-cm-ui';
+import { Button, Card, Typography } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
@@ -137,7 +137,7 @@ function ModulesPage() {
         <Main page="headers">
             <Main.Content>
                 <Card>
-                    <Header size="large">Props</Header>
+                    <Typography size="large">Props</Typography>
 
                     <TableProps props={tableProps} />
                 </Card>
@@ -147,89 +147,94 @@ function ModulesPage() {
                 <Button href={`${window.location.pathname}/demo`} target="_blank">Demo Page</Button>
 
                 {/* Page */}
-                <Header anchor="page" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="page" variant="h2" style={{ marginTop: '55px' }}>
                     Page
-                    <Header.Subheader>
-                        <span>
-                            <p style={{ marginTop: 0 }}>
-                                This is a template component, meaning it facilitates in styling a basic page,
-                                excluding the side navigation and TitleBar, by using its sub components.
-                            </p>
+                </Typography>
 
-                            <p>
-                                It can also wrap other atoms, molecules, and organisms that are non Page sub
-                                components to build up a page. But by using these types of components, Page may not
-                                neccearily know how to apply logic and styling to them.
-                            </p>
-                        </span>
-                    </Header.Subheader>
-                </Header>
+                <Typography variant="body1">
+                    <span>
+                        <p style={{ marginTop: 0 }}>
+                            This is a template component, meaning it facilitates in styling a basic page,
+                            excluding the side navigation and TitleBar, by using its sub components.
+                        </p>
+
+                        <p>
+                            It can also wrap other atoms, molecules, and organisms that are non Page sub
+                            components to build up a page. But by using these types of components, Page may not
+                            necessarily know how to apply logic and styling to them.
+                        </p>
+                    </span>
+                </Typography>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {drawerSample}
                 </Highlighter>
 
                 {/* className */}
-                <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }}>
                     className
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>className</code> prop to pass a block class name to Page. This needs to
-                            be unique and always implemented.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>className</code> prop to pass a block class name to Page. This needs to
+                        be unique and always implemented.
+                    </p>
+                </Typography>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {classNameSample}
                 </Highlighter>
 
                 {/* id */}
-                <Header anchor="className" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }}>
                     id
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>id</code> prop to pass a block id name to Page. Because our QA automation
-                            looks for these, this needs to be unique and always implemented.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>id</code> prop to pass a block id name to Page. Because our QA automation
+                        looks for these, this needs to be unique and always implemented.
+                    </p>
+                </Typography>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {idSample}
                 </Highlighter>
 
                 {/* isDataFetching */}
-                <Header anchor="isDataFetching" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="isDataFetching" variant="h2" style={{ marginTop: '55px' }}>
                     isDataFetching
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            While loading or synchronizing data is being performed don't show Page's children. Use <code>isFetching</code> from
-                            Redux state to pass a boolean into Page's <code>isDataFetching</code> prop.
-                        </p>
+                </Typography>
 
-                        <p>
-                            Children won't animate in. This is to be handled, for right now, case-by-case. The
-                            Activity Indicator will fade in upon mount and out upon <code>isDataFetching</code> being
-                            toggled to <code>false</code>.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        While loading or synchronizing data is being performed don't show Page's children. Use <code>isFetching</code> from
+                        Redux state to pass a boolean into Page's <code>isDataFetching</code> prop.
+                    </p>
+
+                    <p>
+                        Children won't animate in. This is to be handled, for right now, case-by-case. The
+                        Activity Indicator will fade in upon mount and out upon <code>isDataFetching</code> being
+                        toggled to <code>false</code>.
+                    </p>
+                </Typography>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {isDataFetchingSample}
                 </Highlighter>
 
                 {/* style */}
-                <Header anchor="style" size="large" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="style" variant="h2" style={{ marginTop: '55px' }}>
                     style
-                    <Header.Subheader>
-                        <p style={{ marginTop: 0 }}>
-                            Use the <code>style</code> prop to pass some inline styles to the container. Only to be used
-                            when needed based on its relavant location within the app.
-                        </p>
-                    </Header.Subheader>
-                </Header>
+                </Typography>
+
+                <Typography variant="body1">
+                    <p style={{ marginTop: 0 }}>
+                        Use the <code>style</code> prop to pass some inline styles to the container. Only to be used
+                        when needed based on its relavant location within the app.
+                    </p>
+                </Typography>
 
                 <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                     {styleSample}

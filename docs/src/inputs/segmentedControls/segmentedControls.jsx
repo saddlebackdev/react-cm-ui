@@ -1,6 +1,6 @@
 import {
     Card,
-    Header,
+    Typography,
     SegmentedControls,
 } from 'react-cm-ui';
 import React from 'react';
@@ -171,18 +171,19 @@ export default class CollectionsSegmentedControls extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Segmented Controls */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Segmented Controls
-                        <Header.Subheader>
-                            A Basic segmented controls with labels.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Basic segmented controls with labels.
+                    </Typography>
 
                     <SegmentedControls>
                         <SegmentedControls.Item label="Button 1" />
@@ -194,12 +195,13 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Icons */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Icons
-                        <Header.Subheader>
-                            A segmented control can have an icon either along with a label or by itself.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A segmented control can have an icon either along with a label or by itself.
+                    </Typography>
 
                     <SegmentedControls>
                         <SegmentedControls.Item icon="circle" label="Button 1" />
@@ -218,12 +220,13 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Fluid
-                        <Header.Subheader>
-                            Segmented controls can take on the size of its container.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Segmented controls can take on the size of its container.
+                    </Typography>
 
                     <SegmentedControls fluid={true}>
                         <SegmentedControls.Item label="Button 1" />
@@ -236,12 +239,13 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* Selected */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         Selected
-                        <Header.Subheader>
-                            Change the default selected button.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Change the default selected button.
+                    </Typography>
 
                     <SegmentedControls selected={this.state.selected}>
                         <SegmentedControls.Item label="Button 1" />
@@ -254,12 +258,13 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* onClick Parent Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         onClick Parent Handler
-                        <Header.Subheader>
-                            Can handle an onClick event from parent.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Can handle an onClick event from parent.
+                    </Typography>
 
                     <SegmentedControls onClick={this._onParentClick.bind(this)} selected={this.state.clickSelected}>
                         <SegmentedControls.Item label="Button 1" />
@@ -271,12 +276,13 @@ export default class CollectionsSegmentedControls extends React.Component {
                     </Highlighter>
 
                     {/* onClick Children Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub={true}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         onClick Children Handler
-                        <Header.Subheader>
-                            Can handle an onClick event from parent.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Can handle an onClick event from parent.
+                    </Typography>
 
                     <SegmentedControls>
                         <SegmentedControls.Item label="Button One" onClick={this._onChildClick.bind(this)} />
