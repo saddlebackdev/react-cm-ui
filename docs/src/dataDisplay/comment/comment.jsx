@@ -1,5 +1,3 @@
-
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
     Banner,
@@ -7,9 +5,6 @@ import {
     Comment,
     Typography,
 } from 'react-cm-ui';
-
-// Docs UI Components
-import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
