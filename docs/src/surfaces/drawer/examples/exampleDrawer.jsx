@@ -2,7 +2,6 @@ import {
     Button,
     Drawer,
     Icon,
-    Tabs,
     Typography,
 } from 'react-cm-ui';
 import React, { useCallback, useState } from 'react';

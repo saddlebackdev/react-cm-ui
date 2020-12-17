@@ -1,5 +1,8 @@
 import {
-    Button, Card, Drawer, Typography,
+    Button,
+    Card,
+    Drawer,
+    Typography,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import React from 'react';

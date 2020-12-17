@@ -40,7 +40,7 @@ export default class NestedCardSample extends React.Component {
 
     render() {
         return (
-            <Card nest={true}>
+            <Card nest>
                 <Typography size="large">Look How Nested I Am</Typography>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
@@ -64,7 +64,7 @@ export default class CompactSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true}>
+            <Card compact={true} nest>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
@@ -92,7 +92,7 @@ export default class CardOnClickSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
+            <Card compact={true} nest onClick={this._onClick.bind(this)}>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
@@ -120,7 +120,7 @@ export default class ActiveSample extends React.Component {
 
     render() {
         return (
-            <Card active={true} compact={true} nest={true}>
+            <Card active={true} compact={true} nest>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />

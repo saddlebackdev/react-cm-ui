@@ -1,5 +1,10 @@
 import {
-    Button, Card, Drawer, Typography, Icon, Input,
+    Button,
+    Card,
+    Drawer,
+    Typography,
+    Icon,
+    Input,
 } from 'react-cm-ui';
 import _ from 'lodash';
 import React from 'react';

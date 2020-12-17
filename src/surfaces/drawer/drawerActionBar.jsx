@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActionBar from '../../surfaces/actionBar'; // eslint-disable-line import/no-cycle
+import ActionBar from '../actionBar'; // eslint-disable-line import/no-cycle
 
 const propTypes = {
     children: PropTypes.node,

@@ -161,7 +161,7 @@ function ModulesPage() {
                         <p>
                             It can also wrap other atoms, molecules, and organisms that are non Page sub
                             components to build up a page. But by using these types of components, Page may not
-                            neccearily know how to apply logic and styling to them.
+                            necessarily know how to apply logic and styling to them.
                         </p>
                     </span>
                 </Typography>
