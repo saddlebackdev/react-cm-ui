@@ -237,7 +237,6 @@ class Comment extends React.Component {
                                     Cancel
                                 </A>
 
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <A
                                     className="save-link font-size-xsmall"
                                     disabled={!canEdit}
