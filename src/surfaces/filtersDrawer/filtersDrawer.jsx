@@ -120,6 +120,7 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
+                singleSelection: PropTypes.bool,
                 value: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
@@ -227,7 +228,9 @@ class FiltersDrawer extends React.Component {
         const { nestedTogglesData } = this.state;
         let selectedOptions;
 
-        if (some(nestedTogglesData.value, selectedOption)) { // Subtract
+        if (nestedTogglesData.singleSelection) {
+            selectedOptions = [selectedOption];
+        } else if (some(nestedTogglesData.value, selectedOption)) { // Subtract
             selectedOptions = filter(nestedTogglesData.value, (d) => (
                 d.value !== selectedOption.value
             ));

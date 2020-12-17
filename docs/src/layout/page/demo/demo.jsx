@@ -1014,6 +1014,7 @@ class PageDemo extends React.PureComponent {
                                                         value: 3,
                                                     },
                                                 ],
+                                                singleSelection: true,
                                                 value: dirtyFilters.nestedTogglesBarValue,
                                             },
                                         },
