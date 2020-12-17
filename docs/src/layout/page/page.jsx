@@ -147,7 +147,7 @@ function ModulesPage() {
                 <Button href={`${window.location.pathname}/demo`} target="_blank">Demo Page</Button>
 
                 {/* Page */}
-                <Typography anchor="page" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="page" variant="h2" style={{ marginTop: '55px' }}>
                     Page
                 </Typography>
 
@@ -171,7 +171,7 @@ function ModulesPage() {
                 </Highlighter>
 
                 {/* className */}
-                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }}>
                     className
                 </Typography>
 
@@ -187,7 +187,7 @@ function ModulesPage() {
                 </Highlighter>
 
                 {/* id */}
-                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="className" variant="h2" style={{ marginTop: '55px' }}>
                     id
                 </Typography>
 
@@ -203,7 +203,7 @@ function ModulesPage() {
                 </Highlighter>
 
                 {/* isDataFetching */}
-                <Typography anchor="isDataFetching" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="isDataFetching" variant="h2" style={{ marginTop: '55px' }}>
                     isDataFetching
                 </Typography>
 
@@ -225,7 +225,7 @@ function ModulesPage() {
                 </Highlighter>
 
                 {/* style */}
-                <Typography anchor="style" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="style" variant="h2" style={{ marginTop: '55px' }}>
                     style
                 </Typography>
 

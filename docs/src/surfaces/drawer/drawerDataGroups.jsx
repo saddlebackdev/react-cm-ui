@@ -271,7 +271,7 @@ class ModulesDrawerDataGroups extends React.Component {
                     </Card>
 
                     {/* Drawer Infobar Details */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Drawer Data Groups
                     </Typography>
 

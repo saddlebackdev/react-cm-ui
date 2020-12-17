@@ -417,7 +417,7 @@ class ModulesDeprecatedDrawerFiltersDrawer extends React.Component {
                     </Card>
 
                     {/* Filters Drawer */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Filters Drawer
                     </Typography>
 

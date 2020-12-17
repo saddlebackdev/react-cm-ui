@@ -313,7 +313,7 @@ class ModulesDrawerActionBar extends React.Component {
                     </Card>
 
                     {/* Action Bar */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Action Bar
                     </Typography>
 

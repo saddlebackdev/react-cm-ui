@@ -222,7 +222,7 @@ export default class ElementsCheckbox extends React.Component {
                     </Heading>
 
                     <Typography>
-                        A checkbox can be checked from it's parent.
+                        A checkbox can be checked from its parent.
                     </Typography>
 
                     <Checkbox checked label="Do you want to check the box?" />
@@ -286,7 +286,7 @@ export default class ElementsCheckbox extends React.Component {
                     </Heading>
 
                     <Typography>
-                        Sometimes you may want to disable a checkbox from being checked by clicking it's label definition.
+                        Sometimes you may want to disable a checkbox from being checked by clicking its label definition.
                     </Typography>
                     <Checkbox labelClick={false} label="Sorry, you can no longer click here to check the box." />
 

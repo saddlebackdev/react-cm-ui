@@ -258,7 +258,7 @@ class ModulesDrawerDataCards extends React.Component {
                     </Card>
 
                     {/* Data Cards */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Data Cards
                     </Typography>
 

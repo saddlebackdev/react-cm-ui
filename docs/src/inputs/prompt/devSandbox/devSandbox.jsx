@@ -24,7 +24,7 @@ function ElementsPrompt() {
             <Main.Content>
                 <MarkdownContainer>
                     {/* Inline */}
-                    <Typography anchor="inline" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inline" variant="h2" style={{ marginTop: '55px' }}>
                         Inline Prompt
                     </Typography>
 
@@ -64,7 +64,7 @@ function ElementsPrompt() {
                     </Highlighter>
 
                     {/* Dropdown with only some items prompting */}
-                    <Typography anchor="selective-prompt" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="selective-prompt" variant="h2" style={{ marginTop: '55px' }}>
                         Selective Prompting for Dropdown Options
                     </Typography>
 

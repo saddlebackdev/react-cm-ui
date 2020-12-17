@@ -122,7 +122,7 @@ export default class RelaxedSample extends React.Component {
 
 }`;
 
-export default class ElementsDivider extends React.Component {
+export default class DocsDivider extends React.Component {
     onBlur() {
         // eslint-disable-next-line no-console
         console.log('Are you sure you are done?');
@@ -139,7 +139,7 @@ export default class ElementsDivider extends React.Component {
 
     onFocus() {
         // eslint-disable-next-line no-console
-        console.log('Your focus determins your reality.');
+        console.log('Your focus determines your reality.');
     }
 
     onKeyDown(event) {
@@ -209,7 +209,7 @@ export default class ElementsDivider extends React.Component {
                     </Card>
 
                     {/* Divider */}
-                    <Typography anchor="divider" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="divider" variant="h2" style={{ marginTop: '55px' }}>
                         Divider
                     </Typography>
 
@@ -224,7 +224,7 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Typography anchor="color" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="color" variant="h2" style={{ marginTop: '55px' }}>
                         Color
                     </Typography>
 
@@ -243,7 +243,7 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }}>
                         Inverse
                     </Typography>
 
@@ -264,7 +264,7 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Typography anchor="compact" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="compact" variant="h2" style={{ marginTop: '55px' }}>
                         Compact
                     </Typography>
 
@@ -281,7 +281,7 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Hidden */}
-                    <Typography anchor="hidden" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="hidden" variant="h2" style={{ marginTop: '55px' }}>
                         Hidden
                     </Typography>
 
@@ -298,7 +298,7 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Relaxed */}
-                    <Typography anchor="relaxed" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="relaxed" variant="h2" style={{ marginTop: '55px' }}>
                         Relaxed
                     </Typography>
 

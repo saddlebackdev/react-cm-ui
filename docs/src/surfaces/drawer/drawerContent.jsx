@@ -290,7 +290,7 @@ class ModulesDrawerContent extends React.Component {
                     </Card>
 
                     {/* Content */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Content
                     </Typography>
 

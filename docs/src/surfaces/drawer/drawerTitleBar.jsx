@@ -173,7 +173,7 @@ class ModulesDrawerTitleBar extends React.Component {
                     </Card>
 
                     {/* Title Bar */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Title Bar
                     </Typography>
 

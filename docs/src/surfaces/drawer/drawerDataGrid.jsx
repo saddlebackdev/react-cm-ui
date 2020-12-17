@@ -73,7 +73,7 @@ function ModulesDrawerDataGrid() {
                 </Card>
 
                 {/* Data Grid */}
-                <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                     Data Grid
                 </Typography>
 

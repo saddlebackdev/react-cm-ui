@@ -373,7 +373,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
                     </Card>
 
                     {/* Details Window */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Details Window
                     </Typography>
 

@@ -402,7 +402,7 @@ class DocsDevSandbox extends React.Component {
                 <Main.Content>
                     <MarkdownContainer>
                         {/* Input */}
-                        <Typography anchor="input" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="input" variant="h2" style={{ marginTop: '55px' }}>
                             Input
                         </Typography>
 
@@ -417,7 +417,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Auto Complete */}
-                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }}>
                             Auto Complete
                         </Typography>
 
@@ -433,7 +433,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Auto Focus */}
-                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }}>
                             Auto Focus
                         </Typography>
 
@@ -448,7 +448,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Disabled */}
-                        <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }}>
                             Disable
                         </Typography>
 
@@ -463,7 +463,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Error */}
-                        <Typography anchor="error" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="error" variant="h2" style={{ marginTop: '55px' }}>
                             Error
                         </Typography>
 
@@ -484,7 +484,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Fluid */}
-                        <Typography anchor="fluid" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="fluid" variant="h2" style={{ marginTop: '55px' }}>
                             Fluid
                         </Typography>
 
@@ -499,7 +499,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Icon */}
-                        <Typography anchor="icon" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="icon" variant="h2" style={{ marginTop: '55px' }}>
                             Icon
                         </Typography>
 
@@ -527,7 +527,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Inverse */}
-                        <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }}>
                             Inverse
                         </Typography>
 
@@ -544,7 +544,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Label */}
-                        <Typography anchor="label" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="label" variant="h2" style={{ marginTop: '55px' }}>
                             Label
                         </Typography>
 
@@ -559,7 +559,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Label Position */}
-                        <Typography anchor="label-position" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="label-position" variant="h2" style={{ marginTop: '55px' }}>
                             Label Position
                         </Typography>
 
@@ -578,7 +578,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Max & Min */}
-                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }}>
                             Max & Min
                         </Typography>
 
@@ -599,7 +599,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Max Length */}
-                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }}>
                             Max Length
                         </Typography>
 
@@ -614,7 +614,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Min Length */}
-                        <Typography anchor="min-length" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="min-length" variant="h2" style={{ marginTop: '55px' }}>
                             Min Length
                         </Typography>
 
@@ -629,7 +629,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onBlur Event Handler */}
-                        <Typography anchor="onblur" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onblur" variant="h2" style={{ marginTop: '55px' }}>
                             onBlur Event Handler
                         </Typography>
 
@@ -648,7 +648,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onChange Event Handler */}
-                        <Typography anchor="onchange" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onchange" variant="h2" style={{ marginTop: '55px' }}>
                             onChange Event Handler
                         </Typography>
 
@@ -671,7 +671,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onClick Event Handler */}
-                        <Typography anchor="onclick" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onclick" variant="h2" style={{ marginTop: '55px' }}>
                             onClick Event Handler
                         </Typography>
 
@@ -690,7 +690,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onFocus Event Handler */}
-                        <Typography anchor="onfocus" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onfocus" variant="h2" style={{ marginTop: '55px' }}>
                             onFocus Event Handler
                         </Typography>
 
@@ -709,7 +709,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onKeyDown Event Handler */}
-                        <Typography anchor="onkeydown" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onkeydown" variant="h2" style={{ marginTop: '55px' }}>
                             onKeyDown Event Handler
                         </Typography>
 
@@ -728,7 +728,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Placeholder */}
-                        <Typography anchor="placeholder" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="placeholder" variant="h2" style={{ marginTop: '55px' }}>
                             Placeholder
                         </Typography>
 
@@ -743,7 +743,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Required */}
-                        <Typography anchor="required" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="required" variant="h2" style={{ marginTop: '55px' }}>
                             Required
                         </Typography>
 
@@ -759,7 +759,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Type */}
-                        <Typography anchor="type" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="type" variant="h2" style={{ marginTop: '55px' }}>
                             Type
                         </Typography>
 
@@ -793,7 +793,7 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Mask */}
-                        <Typography anchor="mask" variant="h2" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="mask" variant="h2" style={{ marginTop: '55px' }}>
                             Mask
                         </Typography>
 

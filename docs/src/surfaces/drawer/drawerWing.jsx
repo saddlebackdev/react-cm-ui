@@ -152,7 +152,7 @@ class ModulesDrawerWing extends React.Component {
                     </Card>
 
                     {/* Drawer */}
-                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Wing
                     </Typography>
 

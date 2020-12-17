@@ -275,7 +275,7 @@ export default class ElmentsComment extends React.Component {
                     </Card>
 
                     {/* Comment */}
-                    <Typography anchor="comment" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="comment" variant="h2" style={{ marginTop: '55px' }}>
                         Comment
                     </Typography>
 
@@ -292,7 +292,7 @@ export default class ElmentsComment extends React.Component {
                     </Highlighter>
 
                     {/* Editable Comment */}
-                    <Typography anchor="editable-comment" variant="h2" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="editable-comment" variant="h2" style={{ marginTop: '55px' }}>
                         Editable Comments
                     </Typography>
 
