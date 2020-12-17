@@ -1,5 +1,10 @@
 import {
-    Button, Card, Drawer, Header, Icon, Input,
+    Button,
+    Card,
+    Drawer,
+    Typography,
+    Icon,
+    Input,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -307,18 +312,19 @@ class ModulesDrawerActionBar extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Action Bar */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Action Bar
-                        <Header.Subheader>
-                            For those times the UI requires an Action Bar.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        For those times the UI requires an Action Bar.
+                    </Typography>
 
                     Optional and Required Properties for
                     {' '}

@@ -7,7 +7,7 @@ export { default as DataGrid } from './dataDisplay/dataGrid';
 export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
 export { default as EmailLink } from './dataDisplay/emailLink';
-export { default as Header } from './dataDisplay/header';
+export { default as HeaderDeprecated } from './dataDisplay/headerDeprecated';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as Label } from './dataDisplay/label';

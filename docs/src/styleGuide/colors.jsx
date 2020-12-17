@@ -1,15 +1,15 @@
 
 import React from 'react';
-import { Grid, Header } from 'react-cm-ui';
+import { Grid, Typography } from 'react-cm-ui';
 import Swatch from '../global/swatch';
 
 function StyleGuideColors() {
     return (
         <main className="main">
             {/* Primary Colors */}
-            <Header size="large" style={{ marginTop: '55px' }}>
+            <Typography size="large" style={{ marginTop: '55px' }}>
                 Primary Colors
-            </Header>
+            </Typography>
 
             <Grid
                 spacing={2}
@@ -72,9 +72,9 @@ function StyleGuideColors() {
             </Grid>
 
             {/* Secondary Colors */}
-            <Header size="large" style={{ marginTop: '55px' }}>
+            <Typography size="large" style={{ marginTop: '55px' }}>
                 Secondary Colors
-            </Header>
+            </Typography>
 
             <Grid
                 spacing={2}

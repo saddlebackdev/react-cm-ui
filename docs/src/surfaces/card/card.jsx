@@ -1,10 +1,9 @@
 import React from 'react';
 import {
-    Card, Grid, Header,
+    Card, Grid, Typography,
 } from 'react-cm-ui';
-
-// Docs UI Components
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -18,7 +17,7 @@ export default class CardSample extends React.Component {
     render() {
         return (
             <Card>
-                <Header size="large">Look at me!!!</Header>
+                <Typography size="large">Look at me!!!</Typography>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                     Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
@@ -41,8 +40,8 @@ export default class NestedCardSample extends React.Component {
 
     render() {
         return (
-            <Card nest={true}>
-                <Header size="large">Look How Nested I Am</Header>
+            <Card nest>
+                <Typography size="large">Look How Nested I Am</Typography>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                     Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
@@ -65,17 +64,18 @@ export default class CompactSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true}>
+            <Card compact={true} nest>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                     </Grid.Column>
 
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                        <Header size="small" sub={true}>
+                        <Typography size="small" sub={true}>
                             A Title
-                            <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -92,17 +92,18 @@ export default class CardOnClickSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
+            <Card compact={true} nest onClick={this._onClick.bind(this)}>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                     </Grid.Column>
 
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                        <Header size="small" sub={true}>
+                        <Typography size="small" sub={true}>
                             A Title
-                            <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                        </Header>
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -119,17 +120,18 @@ export default class ActiveSample extends React.Component {
 
     render() {
         return (
-            <Card active={true} compact={true} nest={true}>
+            <Card active={true} compact={true} nest>
                 <Grid spacing={2}>
                     <Grid.Column style={{ padding: 0, width: '44px' }}>
                         <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                     </Grid.Column>
 
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                        <Header size="small" sub={true}>
+                        <Typography size="small" sub={true}>
                             A Title
-                            <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                        </Header>
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -153,10 +155,11 @@ export default class CollapsableSample extends React.Component {
                     </Grid.Column>
 
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                        <Header size="small" sub={true}>
+                        <Typography size="small" sub={true}>
                             A Title
-                            <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                        </Header>
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -275,21 +278,22 @@ export default class ViewsTitleBar extends React.Component {
             return (
                 <div>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Card */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Card
-                        <Header.Subheader>
-                            A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A basic card has a faint border wrapping its contents. Its box model is fluid so that it can adapt to its parent container's width.
+                    </Typography>
 
                     <Card>
-                        <Header size="large">Look at me!!!</Header>
+                        <Typography size="large">Look at me!!!</Typography>
 
                         {null}
 
@@ -309,22 +313,23 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Nested Card */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Nested Card
-                        <Header.Subheader>
-                            A card can give the appearance of being nested. The parent's background color needs to be set to
-                            {' '}
-                            <code>color(backgroundColorNest)</code>
-                            .
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A card can give the appearance of being nested. The parent's background color needs to be set to
+                        {' '}
+                        <code>color(backgroundColorNest)</code>
+                        .
+                    </Typography>
 
                     <Block
                         nest
                         style={{ padding: '22px' }}
                     >
                         <Card nest>
-                            <Header size="large">Look How Nested I Am</Header>
+                            <Typography size="large">Look How Nested I Am</Typography>
 
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
@@ -343,12 +348,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Compact
-                        <Header.Subheader>
-                            A card can have it's padding reduced.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A card can have its padding reduced.
+                    </Typography>
 
                     <Block
                         nest
@@ -361,10 +367,11 @@ export default class ViewsTitleBar extends React.Component {
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
                             </Grid>
                         </Card>
@@ -375,12 +382,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Card onClick Event Handler */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Card onClick Event Handler
-                        <Header.Subheader>
-                            A card can handle an onClick event.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A card can handle an onClick event.
+                    </Typography>
 
                     <Block
                         nest
@@ -393,10 +401,11 @@ export default class ViewsTitleBar extends React.Component {
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
                             </Grid>
                         </Card>
@@ -407,12 +416,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Active */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Active
-                        <Header.Subheader>
-                            Cards can have an active state.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Cards can have an active state.
+                    </Typography>
 
                     <Block
                         nest
@@ -425,10 +435,11 @@ export default class ViewsTitleBar extends React.Component {
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
                             </Grid>
                         </Card>
@@ -439,12 +450,13 @@ export default class ViewsTitleBar extends React.Component {
                     </Highlighter>
 
                     {/* Collapsable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Collapsable
-                        <Header.Subheader>
-                            Cards can be collapsable.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Cards can be collapsable.
+                    </Typography>
 
                     <Block
                         nest
@@ -523,18 +535,19 @@ export default class ViewsTitleBar extends React.Component {
             return (
                 <div>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Collapsable */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Header
-                        <Header.Subheader>
-                            Cards can have a custom header.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Cards can have a custom header.
+                    </Typography>
 
                     <Card header>
                         <Card.Header attached color="blue">

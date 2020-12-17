@@ -1,12 +1,11 @@
 import React from 'react';
 import {
     Card,
-    Header,
+    Typography,
     Label,
 } from 'react-cm-ui';
-
-// Docs UI Components
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -180,18 +179,19 @@ export default class ElementsLabel extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Label */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Label
-                        <Header.Subheader>
-                            A standard label that can be attached to something, giving information about it.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A standard label that can be attached to something, giving information about it.
+                    </Typography>
 
                     <Label>Label</Label>
 
@@ -200,12 +200,13 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Color
-                        <Header.Subheader>
-                            Labels can have different colors.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Labels can have different colors.
+                    </Typography>
 
                     <Label color="alert">Alert</Label>
                     <Label color="highlight">Highlight</Label>
@@ -219,12 +220,13 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Fluid
-                        <Header.Subheader>
-                            A Label's container can take on the size of its parent container.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Label's container can take on the size of its parent container.
+                    </Typography>
 
                     <Label fluid>A Fluid Label</Label>
 
@@ -233,12 +235,13 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Inverse
-                        <Header.Subheader>
-                            Labels can have different colors.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Labels can have different colors.
+                    </Typography>
 
                     <Block inverse style={{ marginTop: '33px' }}>
                         <Label color="alert" inverse>Alert</Label>
@@ -254,12 +257,13 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* onClick */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         onClick Handler
-                        <Header.Subheader>
-                            A Label can be have a onClick handler.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Label can be have a onClick handler.
+                    </Typography>
 
                     <Label onClick={this._onClick.bind(this)}>Click Me</Label>
 
@@ -268,12 +272,13 @@ export default class ElementsLabel extends React.Component {
                     </Highlighter>
 
                     {/* onClearClick */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         onClearClick Handler
-                        <Header.Subheader>
-                            A Label can be removed using the onClearClick handler.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Label can be removed using the onClearClick handler.
+                    </Typography>
 
                     <Label color="alert" onClearClick={this._onClearClick.bind(this)}>Alert</Label>
                     <Label color="highlight" onClearClick={this._onClearClick.bind(this)}>Highlight</Label>

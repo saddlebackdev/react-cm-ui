@@ -9,7 +9,7 @@ import {
 import ActionBarActionsButtonDrawerOption from './actionBarActionsButtonDrawerOption';
 import Button from '../../inputs/button';
 import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';
 import withTheme from '../../styles/withTheme';
@@ -207,10 +207,14 @@ class ActionBarActionsButton extends React.PureComponent {
 
         const hasSelectedOption = !_.isEmpty(selectedOption);
         const drawerContainerClasses = ClassNames('action_bar--actions_button_drawer', className);
-        const titleClasses = ClassNames('actions_button_drawer--title', {
-            'actions_button_drawer--title-hide': hasSelectedOption,
-            'actions_button_drawer--title-show': !hasSelectedOption,
-        });
+
+        const titleClasses = ClassNames(
+            'actions_button_drawer--title',
+            {
+                'actions_button_drawer--title-hide': hasSelectedOption,
+                'actions_button_drawer--title-show': !hasSelectedOption,
+            },
+        );
 
         const promptMessage = !_.isEmpty(promptingOption) ?
             promptingOption.promptMessage :
@@ -261,13 +265,12 @@ class ActionBarActionsButton extends React.PureComponent {
                     shadowSize="xsmall"
                 >
                     <Drawer.Content className="actions_button_drawer--content">
-                        <Header
+                        <Typography
                             className={titleClasses}
-                            size="small"
-                            fontWeight="bold"
+                            variant="h4"
                         >
                             {header}
-                        </Header>
+                        </Typography>
 
                         <div className="actions_button_drawer--options">
                             {_.map(options, (option) => {

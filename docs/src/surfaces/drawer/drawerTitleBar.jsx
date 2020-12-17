@@ -1,5 +1,10 @@
 import {
-    Button, Card, Drawer, Header, Icon, Input,
+    Button,
+    Card,
+    Drawer,
+    Typography,
+    Icon,
+    Input,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -162,31 +167,32 @@ class ModulesDrawerTitleBar extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Title Bar */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Title Bar
-                        <Header.Subheader>
-                            <span>
-                                In most cases this is a sub component that will need to be used. There are going to be
-                                cases where you will have a
-                                {' '}
-                                <code>title</code>
-                                {' '}
-                                and others that don't require one. And
-                                as well, there'll be cases for no
-                                {' '}
-                                <code>closeButton</code>
-                                {' '}
-                                and case for different types
-                                buttons to close the drawer.
-                            </span>
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        <span>
+                            In most cases this is a sub component that will need to be used. There are going to be
+                            cases where you will have a
+                            {' '}
+                            <code>title</code>
+                            {' '}
+                            and others that don't require one. And
+                            as well, there'll be cases for no
+                            {' '}
+                            <code>closeButton</code>
+                            {' '}
+                            and case for different types
+                            buttons to close the drawer.
+                        </span>
+                    </Typography>
 
                     <Button onClick={() => this._onDrawerToggle(true, true)}>
                         Open Drawer with Navigation & ActionBar

@@ -14,10 +14,10 @@ import {
     DEBOUNCE_WAIT_TIME,
     TH_RESIZABLE_MAX_WIDTH,
 } from './tableConstants';
+import styles from './tableStyles';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import TableHeaderCell from './tableHeaderCell';
-import useStyles from './tableStyles';
 
 const propTypes = {
     /**
@@ -620,4 +620,4 @@ Table.Row = TableRow;
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-export default withStyles(useStyles, { withTheme: true })(Table);
+export default withStyles(styles, { withTheme: true })(Table);

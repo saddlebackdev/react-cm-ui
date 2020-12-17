@@ -1,6 +1,6 @@
 import {
     Button,
-    Header,
+    Typography,
     Icon,
     Input,
 } from 'react-cm-ui';
@@ -402,12 +402,13 @@ class DocsDevSandbox extends React.Component {
                 <Main.Content>
                     <MarkdownContainer>
                         {/* Input */}
-                        <Header anchor="input" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="input" variant="h2" style={{ marginTop: '55px' }}>
                             Input
-                            <Header.Subheader>
-                                A standard input is text input.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A standard input is text input.
+                        </Typography>
 
                         <Input />
 
@@ -416,13 +417,14 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Auto Complete */}
-                        <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }}>
                             Auto Complete
-                            <Header.Subheader>
-                                Indicates whether the value of the control can be automatically
-                                completed by the browser.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Indicates whether the value of the control can be automatically
+                            completed by the browser.
+                        </Typography>
 
                         <Input autoComplete="off" />
 
@@ -431,12 +433,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Auto Focus */}
-                        <Header anchor="auto-complete" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="auto-complete" variant="h2" style={{ marginTop: '55px' }}>
                             Auto Focus
-                            <Header.Subheader>
-                                Allows the Input to receive focus on load.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Allows the Input to receive focus on load.
+                        </Typography>
 
                         <Input autoFocus />
 
@@ -445,12 +448,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Disabled */}
-                        <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }}>
                             Disable
-                            <Header.Subheader>
-                                Indicates that the input is not available for interaction.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Indicates that the input is not available for interaction.
+                        </Typography>
 
                         <Input disable value="So cool!" />
 
@@ -459,13 +463,14 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Error */}
-                        <Header anchor="error" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="error" variant="h2" style={{ marginTop: '55px' }}>
                             Error
-                            <Header.Subheader>
-                                Indicates that the input has an error. You can either supply a
-                                boolean value or a string with a message.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Indicates that the input has an error. You can either supply a
+                            boolean value or a string with a message.
+                        </Typography>
 
                         <Input error value="No, you did it wrong!" />
 
@@ -479,12 +484,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Fluid */}
-                        <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="fluid" variant="h2" style={{ marginTop: '55px' }}>
                             Fluid
-                            <Header.Subheader>
-                                An input can take on the size of its container.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            An input can take on the size of its container.
+                        </Typography>
 
                         <Input fluid value="I'm totally the longest string you have ever seen. Ship it!" />
 
@@ -493,13 +499,14 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Icon */}
-                        <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="icon" variant="h2" style={{ marginTop: '55px' }}>
                             Icon
-                            <Header.Subheader>
-                                An input can be formatted with an icon. You can either supply a
-                                string or add a custom icon by passing a node.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            An input can be formatted with an icon. You can either supply a
+                            string or add a custom icon by passing a node.
+                        </Typography>
 
                         <Input
                             actions={(
@@ -520,12 +527,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Inverse */}
-                        <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }}>
                             Inverse
-                            <Header.Subheader>
-                                Format to appear on dark backgrounds.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Format to appear on dark backgrounds.
+                        </Typography>
 
                         <Block inverse>
                             <Input inverse />
@@ -536,12 +544,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Label */}
-                        <Header anchor="label" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="label" variant="h2" style={{ marginTop: '55px' }}>
                             Label
-                            <Header.Subheader>
-                                Optional Label to display on top of the Input.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Optional Label to display on top of the Input.
+                        </Typography>
 
                         <Input label="Name" />
 
@@ -550,12 +559,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Label Position */}
-                        <Header anchor="label-position" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="label-position" variant="h2" style={{ marginTop: '55px' }}>
                             Label Position
-                            <Header.Subheader>
-                                Position the label above or below the input.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Position the label above or below the input.
+                        </Typography>
 
                         <Input label="Bottom Label" labelPosition="bottom" />
                         <br />
@@ -568,12 +578,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Max & Min */}
-                        <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }}>
                             Max & Min
-                            <Header.Subheader>
-                                Specifies the minimum and maximum value that the field can have.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Specifies the minimum and maximum value that the field can have.
+                        </Typography>
 
                         <Input label="How many years has it been since the Reformation?" max={510} type="number" />
                         <br />
@@ -588,12 +599,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Max Length */}
-                        <Header anchor="max-length" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="max-length" variant="h2" style={{ marginTop: '55px' }}>
                             Max Length
-                            <Header.Subheader>
-                                Specifies the maximum number of characters that the user can enter.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Specifies the maximum number of characters that the user can enter.
+                        </Typography>
 
                         <Input label="Maximum Characters Is 2" maxLength={2} />
 
@@ -602,12 +614,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Min Length */}
-                        <Header anchor="min-length" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="min-length" variant="h2" style={{ marginTop: '55px' }}>
                             Min Length
-                            <Header.Subheader>
-                                Specifies the minimum number of characters that the user needs to enter.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Specifies the minimum number of characters that the user needs to enter.
+                        </Typography>
 
                         <Input label="Minimum Characters Is 2" maxLength={2} />
 
@@ -616,16 +629,17 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onBlur Event Handler */}
-                        <Header anchor="onblur" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onblur" variant="h2" style={{ marginTop: '55px' }}>
                             onBlur Event Handler
-                            <Header.Subheader>
-                                Can handle an
-                                {' '}
-                                <code>onBlur</code>
-                                {' '}
-                                event from parent.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Can handle an
+                            {' '}
+                            <code>onBlur</code>
+                            {' '}
+                            event from parent.
+                        </Typography>
 
                         <Input label="Check It!" onBlur={this.onBlur.bind(this)} />
 
@@ -634,20 +648,21 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onChange Event Handler */}
-                        <Header anchor="onchange" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onchange" variant="h2" style={{ marginTop: '55px' }}>
                             onChange Event Handler
-                            <Header.Subheader>
-                                Can handle an
-                                {' '}
-                                <code>onChange</code>
-                                {' '}
-                                event from parent. The
-                                {' '}
-                                <code>value</code>
-                                {' '}
-                                prop is required along with this handler.
-                                </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Can handle an
+                            {' '}
+                            <code>onChange</code>
+                            {' '}
+                            event from parent. The
+                            {' '}
+                            <code>value</code>
+                            {' '}
+                            prop is required along with this handler.
+                        </Typography>
 
                         <Input label="Check It!" onChange={this.onChange.bind(this)} value={this.state.onChangeValue} />
 
@@ -656,16 +671,17 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onClick Event Handler */}
-                        <Header anchor="onclick" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onclick" variant="h2" style={{ marginTop: '55px' }}>
                             onClick Event Handler
-                            <Header.Subheader>
-                                Can handle an
-                                {' '}
-                                <code>onClick</code>
-                                {' '}
-                                event from parent.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Can handle an
+                            {' '}
+                            <code>onClick</code>
+                            {' '}
+                            event from parent.
+                        </Typography>
 
                         <Input label="Check It!" onClick={this.onClick.bind(this)} />
 
@@ -674,16 +690,17 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onFocus Event Handler */}
-                        <Header anchor="onfocus" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onfocus" variant="h2" style={{ marginTop: '55px' }}>
                             onFocus Event Handler
-                            <Header.Subheader>
-                                Can handle an
-                                {' '}
-                                <code>onFocus</code>
-                                {' '}
-                                event from parent.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Can handle an
+                            {' '}
+                            <code>onFocus</code>
+                            {' '}
+                            event from parent.
+                        </Typography>
 
                         <Input label="Check It!" onFocus={this.onFocus.bind(this)} />
 
@@ -692,16 +709,17 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* onKeyDown Event Handler */}
-                        <Header anchor="onkeydown" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="onkeydown" variant="h2" style={{ marginTop: '55px' }}>
                             onKeyDown Event Handler
-                            <Header.Subheader>
-                                Can handle an
-                                {' '}
-                                <code>onKeyDown</code>
-                                {' '}
-                                event from parent.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Can handle an
+                            {' '}
+                            <code>onKeyDown</code>
+                            {' '}
+                            event from parent.
+                        </Typography>
 
                         <Input label="Check It!" onKeyDown={this.onKeyDown.bind(this)} />
 
@@ -710,12 +728,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Placeholder */}
-                        <Header anchor="placeholder" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="placeholder" variant="h2" style={{ marginTop: '55px' }}>
                             Placeholder
-                            <Header.Subheader>
-                                A hint to the user of what can be entered in the input.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A hint to the user of what can be entered in the input.
+                        </Typography>
 
                         <Input label="Name" placeholder="First & Last Name" />
 
@@ -724,13 +743,14 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Required */}
-                        <Header anchor="required" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="required" variant="h2" style={{ marginTop: '55px' }}>
                             Required
-                            <Header.Subheader>
-                                Specifies that the user must fill in a value before submitting a
-                                form.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Specifies that the user must fill in a value before submitting a
+                            form.
+                        </Typography>
 
                         <Input label="Name" placeholder="First & Last Name" required />
 
@@ -739,12 +759,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Type */}
-                        <Header anchor="type" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="type" variant="h2" style={{ marginTop: '55px' }}>
                             Type
-                            <Header.Subheader>
-                                The HTML input type.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            The HTML input type.
+                        </Typography>
 
                         <Input label="Email" type="email" />
                         <br />
@@ -772,12 +793,13 @@ class DocsDevSandbox extends React.Component {
                         </Highlighter>
 
                         {/* Mask */}
-                        <Header anchor="mask" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="mask" variant="h2" style={{ marginTop: '55px' }}>
                             Mask
-                            <Header.Subheader>
-                                Is an array that defines how the user input is going to be masked.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Is an array that defines how the user input is going to be masked.
+                        </Typography>
 
                         <Input
                             guide

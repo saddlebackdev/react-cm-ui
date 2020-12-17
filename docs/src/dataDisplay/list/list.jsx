@@ -1,12 +1,11 @@
 import {
     Card,
-    Header,
+    Typography,
     List,
 } from 'react-cm-ui';
 import React from 'react';
-
-// Docs UI Components
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
@@ -95,24 +94,21 @@ export default class ElementsList extends React.Component {
             return (
                 <div>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* List */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         List
-                        <Header.Subheader>
-                            A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
                     <List>
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Another Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 300
@@ -121,18 +117,15 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Horizontal */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Horizontal
-                        <Header.Subheader>
-                            A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
                     <List horizontal>
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 A Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 20
@@ -140,9 +133,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Another Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 300
@@ -151,18 +144,15 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Divide */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Divide
-                        <Header.Subheader>
-                            A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
                     <List divide>
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 A Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 20
@@ -170,9 +160,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Another Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 300
@@ -184,9 +174,9 @@ export default class ElementsList extends React.Component {
 
                     <List divide horizontal>
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 A Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 20
@@ -194,9 +184,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Another Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 300
@@ -204,9 +194,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 A Long Item Header
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 15
@@ -219,19 +209,20 @@ export default class ElementsList extends React.Component {
                     </List>
 
                     {/* Inverse */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         Inverse
-                        <Header.Subheader>
-                            A List's color can be set to the appropriate color when on a dark background.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A List's color can be set to the appropriate color when on a dark background.
+                    </Typography>
 
                     <Block inverse>
                         <List inverse divide>
                             <List.Item>
-                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                <Typography inverse size="xsmall" style={{ margin: 0 }}>
                                     A Header
-                                </Header>
+                                </Typography>
 
                                 <div className="font-weight-semibold font-size-small">
                                     20
@@ -239,9 +230,9 @@ export default class ElementsList extends React.Component {
                             </List.Item>
 
                             <List.Item>
-                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                <Typography inverse size="xsmall" style={{ margin: 0 }}>
                                     Another Header
-                                </Header>
+                                </Typography>
 
                                 <div className="font-weight-semibold font-size-small">
                                     300
@@ -253,9 +244,9 @@ export default class ElementsList extends React.Component {
 
                         <List divide inverse horizontal>
                             <List.Item>
-                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                <Typography inverse size="xsmall" style={{ margin: 0 }}>
                                     A Header
-                                </Header>
+                                </Typography>
 
                                 <div className="font-weight-semibold font-size-small">
                                     20
@@ -263,9 +254,9 @@ export default class ElementsList extends React.Component {
                             </List.Item>
 
                             <List.Item>
-                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                <Typography inverse size="xsmall" style={{ margin: 0 }}>
                                     Another Header
-                                </Header>
+                                </Typography>
 
                                 <div className="font-weight-semibold font-size-small">
                                     300
@@ -273,9 +264,9 @@ export default class ElementsList extends React.Component {
                             </List.Item>
 
                             <List.Item>
-                                <Header inverse size="xsmall" style={{ margin: 0 }}>
+                                <Typography inverse size="xsmall" style={{ margin: 0 }}>
                                     A Long Item Header
-                                </Header>
+                                </Typography>
 
                                 <div className="font-weight-semibold font-size-small">
                                     15
@@ -326,24 +317,21 @@ export default class ElementsList extends React.Component {
             return (
                 <div>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* List */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading variant="h2">
                         List
-                        <Header.Subheader>
-                            A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
                     <List horizontal>
                         <List.Item style={{ backgroundColor: '#c0c0c0' }}>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Received
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 640
@@ -351,9 +339,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Closed
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 320
@@ -361,9 +349,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item divide>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Open
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 200
@@ -371,9 +359,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Blocked
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 120
@@ -381,9 +369,9 @@ export default class ElementsList extends React.Component {
                         </List.Item>
 
                         <List.Item divide>
-                            <Header color="static" size="xsmall" style={{ margin: 0 }}>
+                            <Typography color="static" size="xsmall" style={{ margin: 0 }}>
                                 Past Due
-                            </Header>
+                            </Typography>
 
                             <div className="font-weight-semibold font-size-small">
                                 70

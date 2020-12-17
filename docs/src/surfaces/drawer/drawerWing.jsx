@@ -1,5 +1,8 @@
 import {
-    Button, Card, Drawer, Header,
+    Button,
+    Card,
+    Drawer,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -146,18 +149,19 @@ class ModulesDrawerWing extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Wing
-                        <Header.Subheader>
-                            <span>For when UI requires developers to be sneaky by hiding content and actions out of the viewport.</span>
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        <span>For when UI requires developers to be sneaky by hiding content and actions out of the viewport.</span>
+                    </Typography>
 
                     <Button onClick={this._onDrawerWingToggle}>Open Drawer Full of Wings</Button>
 

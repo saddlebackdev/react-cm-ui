@@ -10,7 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import withStyles from '../../styles/withStyles';
 import BannerItem from './bannerItem';
-import Header from '../header';
+import Typography from '../typography';
 import Icon from '../icon';
 import domUtils from '../../utils/domUtils';
 
@@ -356,6 +356,7 @@ class Banner extends React.Component {
             title,
             type,
         } = this.props;
+
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -418,15 +419,15 @@ class Banner extends React.Component {
                         </div>
 
                         <div className={bannerMessageContainerClasses}>
-                            <Header
-                                size="small"
+                            <Typography
                                 style={{
-                                    marginBottom: '5px',
-                                    paddingRight: hasCloseButton ? '16px' : null,
+                                    marginBottom: 5,
+                                    paddingRight: hasCloseButton ? 16 : null,
                                 }}
+                                variant="h4"
                             >
                                 {title}
-                            </Header>
+                            </Typography>
 
                             {message ? (
                                 <span className={classes.bannerMessage}>{message}</span>

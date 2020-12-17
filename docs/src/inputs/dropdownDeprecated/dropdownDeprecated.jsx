@@ -13,7 +13,7 @@ import 'images/avatar3.jpg';
 import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
-import { Card, Dropdown, Grid, Header } from 'react-cm-ui';
+import { Card, Dropdown, Grid, Typography } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -1278,14 +1278,14 @@ class ModulesDropdown extends React.Component {
         return (
             <Main page="headers">
                 <Main.Content>
-                    <Header size="large" style={{ marginTop: '55px' }}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         The prop 'button' has been deprecated.
                         <br />
                         Please use <Link to={{ pathname: '/molecules/dropdown-button' }}>Dropdown Button</Link> component instead.
-                    </Header>
+                    </Typography>
 
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         {this.state.subNavIndex === 1 ? (
                             <TableProps props={dropdownItemProps} />
@@ -1296,12 +1296,13 @@ class ModulesDropdown extends React.Component {
 
                     <div>
                         {/* Dropdown */}
-                        <Header anchor="dropdown" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="dropdown" variant="h2" style={{ marginTop: '55px' }}>
                             Dropdown
-                            <Header.Subheader>
-                                A basic Dropdown.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A basic Dropdown.
+                        </Typography>
 
                         <Dropdown
                             collapseMenuOnChange
@@ -1328,12 +1329,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button */}
-                        <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button" variant="h2" style={{ marginTop: '55px' }}>
                             Button
-                            <Header.Subheader>
-                                A Dropdown can take on the style of a Button.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown can take on the style of a Button.
+                        </Typography>
 
                         <Dropdown button collapseMenuOnChange placeholder="Button Dropdown">
                             <Dropdown.Item label="Option 1" />
@@ -1347,14 +1349,15 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Dropdown Controlled Component */}
-                        <Header anchor="button-controlled" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-controlled" variant="h2" style={{ marginTop: '55px' }}>
                             Button Dropdown as a Controlled Component
-                            <Header.Subheader>
-                                A Button Dropdown can act as a typical React controlled component.  This means that we set the
-                                <code>value</code> prop, handle the <code>onChange</code> event and update whatever state we
-                                we're using for <code>value</code>.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Button Dropdown can act as a typical React controlled component.  This means that we set the
+                            <code>value</code> prop, handle the <code>onChange</code> event and update whatever state we
+                            we're using for <code>value</code>.
+                        </Typography>
 
                         <Dropdown
                             button
@@ -1373,17 +1376,18 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Menu - Auto-collapse even if value doesn't change */}
-                        <Header anchor="button-menu" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-menu" variant="h2" style={{ marginTop: '55px' }}>
                             Button Dropdown Menu
-                            <Header.Subheader>
-                                This is an example of how to use a Button Dropdown as a "menu".  We're not actually updating
-                                its value when an option is selected because we don't want the text of the button to change,
-                                but we are taking advantage of its <code>onChange</code> event do possibly do things in response
-                                to the selection, and we're also setting <code>collapseMenuOnChange</code> in order to force
-                                it to retract the menu.  (This latter is not necessary if we were to use it normally as a
-                                controlled component and update the value; contrast this example with the example above.)
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            This is an example of how to use a Button Dropdown as a "menu".  We're not actually updating
+                            its value when an option is selected because we don't want the text of the button to change,
+                            but we are taking advantage of its <code>onChange</code> event do possibly do things in response
+                            to the selection, and we're also setting <code>collapseMenuOnChange</code> in order to force
+                            it to retract the menu.  (This latter is not necessary if we were to use it normally as a
+                            controlled component and update the value; contrast this example with the example above.)
+                        </Typography>
 
                         {this.state.buttonMenuAction ? (
                             <p>You selected: <strong>{this.state.buttonMenuAction}</strong></p>
@@ -1409,12 +1413,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Color */}
-                        <Header anchor="button-color" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-color" variant="h2" style={{ marginTop: '55px' }}>
                             Button Color
-                            <Header.Subheader>
-                                Button Dropdowns can be different colors.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Button Dropdowns can be different colors.
+                        </Typography>
 
                         <Grid spacing={2}>
                                 <Grid.Column
@@ -1538,12 +1543,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Button Compact */}
-                        <Header anchor="button-compact" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="button-compact" variant="h2" style={{ marginTop: '55px' }}>
                             Button Compact
-                            <Header.Subheader>
-                                A Dropdown Button can be made compact.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown Button can be made compact.
+                        </Typography>
 
                         <Dropdown button buttonCompact collapseMenuOnChange placeholder="Button Compact Dropdown">
                             <Dropdown.Item label="Option 1" />
@@ -1557,12 +1563,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Disable */}
-                        <Header anchor="disable" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }}>
                             Disable
-                            <Header.Subheader>
-                                A Dropdown can be disabled.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown can be disabled.
+                        </Typography>
 
                         <Dropdown button disable placeholder="Disabled Button Dropdown">
                             <Dropdown.Item label="Option 1" />
@@ -1597,12 +1604,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Icon */}
-                        <Header anchor="icon-type" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="icon-type" variant="h2" style={{ marginTop: '55px' }}>
                             Icon
-                            <Header.Subheader>
-                                A Dropdown's icon.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown's icon.
+                        </Typography>
 
                         <Dropdown collapseMenuOnChange iconType="plus" placeholder="select">
                             <Dropdown.Item label="Option 1" />
@@ -1647,12 +1655,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Inverse */}
-                        <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }}>
                             Inverse
-                            <Header.Subheader>
-                                A Dropdown can be formatted to appear on dark backgrounds better.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown can be formatted to appear on dark backgrounds better.
+                        </Typography>
 
                         <Block inverse style={{ height: '300px', marginTop: '33px' }}>
                             <Dropdown
@@ -1671,12 +1680,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Menu Height */}
-                        <Header anchor="menu-maximum-height" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="menu-maximum-height" variant="h2" style={{ marginTop: '55px' }}>
                             Menu Height
-                            <Header.Subheader>
-                                A Dropdown's menu's maximum and minimum height can be set.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown's menu's maximum and minimum height can be set.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionChange.bind(this)}
@@ -1692,12 +1702,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* onChange */}
-                        <Header anchor="on-change" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="on-change" variant="h2" style={{ marginTop: '55px' }}>
                             onChange
-                            <Header.Subheader>
-                                onChange event handler.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            onChange event handler.
+                        </Typography>
 
                         <Dropdown onChange={this._onSampleOnChange} text="Marty McFly">
                             <Dropdown.Item label="Option 1" />
@@ -1711,12 +1722,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Match Props */}
-                        <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mobile" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Match Props
-                            <Header.Subheader>
-                                Whether to match the value, label or both values of each selection option when filtering
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Whether to match the value, label or both values of each selection option when filtering
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionChange.bind(this)}
@@ -1732,12 +1744,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Creatable */}
-                        <Header anchor="selection-creatable" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-creatable" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Creatable
-                            <Header.Subheader>
-                                A Dropdown can be a select dropdown where you can choose and create items.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown can be a select dropdown where you can choose and create items.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionMultipleCreatableChange.bind(this)}
@@ -1754,12 +1767,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Mobile */}
-                        <Header anchor="selection-mobile" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mobile" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Mobile
-                            <Header.Subheader>
-                                A Dropdown Selection can be user friendly on mobile devices. Go ahead, shrink that browser.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown Selection can be user friendly on mobile devices. Go ahead, shrink that browser.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionChange.bind(this)}
@@ -1775,12 +1789,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Multiple */}
-                        <Header anchor="selection-mutiple" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-mutiple" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Multiple
-                            <Header.Subheader>
-                                A Dropdown can be a select dropdown where you can choose multiple items.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown can be a select dropdown where you can choose multiple items.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionMultipleChange.bind(this)}
@@ -1796,12 +1811,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Option Component */}
-                        <Header anchor="selection-option-component" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-option-component" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Option Component
-                            <Header.Subheader>
-                                Give a Dropdown Selection custom options.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Give a Dropdown Selection custom options.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -1817,12 +1833,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Selection Underline */}
-                        <Header anchor="selection-underline" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="selection-underline" variant="h2" style={{ marginTop: '55px' }}>
                             Selection Underline
-                            <Header.Subheader>
-                                A Dropdown selection can be styled to have an underline.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            A Dropdown selection can be styled to have an underline.
+                        </Typography>
 
                         <Dropdown
                             onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -1838,12 +1855,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Theme */}
-                        <Header anchor="theme" size="large" style={{ marginTop: '55px' }} sub>
+                        <Typography anchor="theme" variant="h2" style={{ marginTop: '55px' }}>
                             Theme
-                            <Header.Subheader>
-                                Changes the menu's color.
-                            </Header.Subheader>
-                        </Header>
+                        </Typography>
+
+                        <Typography variant="body1">
+                            Changes the menu's color.
+                        </Typography>
 
                         <Dropdown button placeholder="Button Dropdown" theme="dark">
                             <Dropdown.Item label="Option 1" />

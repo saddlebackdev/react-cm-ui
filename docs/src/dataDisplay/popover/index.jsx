@@ -45,7 +45,7 @@ function PopoverExample() {
                         Simple popover sample
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Simple popover sample.
                     </Typography>
                 </MarkdownContainer>
@@ -59,7 +59,7 @@ function PopoverExample() {
                         Controlled Popover
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Open/Close the popover programmatically.
                     </Typography>
                 </MarkdownContainer>
@@ -73,7 +73,7 @@ function PopoverExample() {
                         Placement
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         The popover position can be changed.
                     </Typography>
                 </MarkdownContainer>
@@ -87,7 +87,7 @@ function PopoverExample() {
                         Custom content
                     </Heading>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         The content can be either a string or custom jsx
                     </Typography>
                 </MarkdownContainer>

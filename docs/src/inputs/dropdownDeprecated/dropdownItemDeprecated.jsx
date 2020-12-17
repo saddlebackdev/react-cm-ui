@@ -13,11 +13,12 @@ import 'images/avatar3.jpg';
 import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
-import { Card, Dropdown, Grid, Header } from 'react-cm-ui';
+import { Card, Dropdown, Grid, Typography } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -1278,26 +1279,27 @@ class ModulesDropdown extends React.Component {
         return (
             <Main page="headers">
                 <Main.Content>
-                    <Header size="large" style={{ marginTop: '55px' }}>
+                    <Typography size="large" style={{ marginTop: '55px' }}>
                         The prop 'button' has been deprecated.
                         <br />
                         Please use <Link to={{ pathname: '/molecules/dropdown-button' }}>Dropdown Button</Link> component instead.
-                    </Header>
+                    </Typography>
 
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={dropdownItemProps} />
                     </Card>
 
                     <div>
                         {/* Icon */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Icon
-                            <Header.Subheader>
-                                An Item can have an icon.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            An Item can have an icon.
+                        </Typography>
 
                         <Dropdown button placeholder="Button Dropdown">
                             <Dropdown.Item iconType="block" label="Option 1" />
@@ -1311,12 +1313,13 @@ class ModulesDropdown extends React.Component {
                         </Highlighter>
 
                         {/* Disable */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Disable
-                            <Header.Subheader>
-                                An Item can be be <em>disabled</em>, preventing its selection.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            An Item can be be <em>disabled</em>, preventing its selection.
+                        </Typography>
 
                         <Dropdown
                             button
