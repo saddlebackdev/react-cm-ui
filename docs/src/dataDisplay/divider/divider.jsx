@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Card,
     Divider,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 
 // Docs UI Components
@@ -122,7 +122,36 @@ export default class RelaxedSample extends React.Component {
 
 }`;
 
-export default class ElementsDivider extends React.Component {
+export default class DocsDivider extends React.Component {
+    onBlur() {
+        // eslint-disable-next-line no-console
+        console.log('Are you sure you are done?');
+    }
+
+    onChange(value) {
+        this.setState({ onChangeValue: value });
+    }
+
+    onClick() {
+        // eslint-disable-next-line no-alert
+        window.alert('You did it! You clicked the text area.');
+    }
+
+    onFocus() {
+        // eslint-disable-next-line no-console
+        console.log('Your focus determines your reality.');
+    }
+
+    onKeyDown(event) {
+        // eslint-disable-next-line no-alert
+        window.alert(`You just pressed the ${event.key} key`);
+    }
+
+    onIconClick() {
+        // eslint-disable-next-line no-alert
+        window.alert('Look at my action.');
+    }
+
     render() {
         const props = [
             {
@@ -174,18 +203,19 @@ export default class ElementsDivider extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Divider */}
-                    <Header anchor="divider" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="divider" variant="h2" style={{ marginTop: '55px' }}>
                         Divider
-                        <Header.Subheader>
-                            A basic divider.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A basic divider.
+                    </Typography>
 
                     <Divider />
 
@@ -194,12 +224,13 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Color */}
-                    <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="color" variant="h2" style={{ marginTop: '55px' }}>
                         Color
-                        <Header.Subheader>
-                            A Divider's color can be changed.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Divider's color can be changed.
+                    </Typography>
 
                     <Divider color="alternate" />
                     <Divider color="highlight" />
@@ -212,12 +243,13 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Inverse */}
-                    <Header anchor="inverse" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="inverse" variant="h2" style={{ marginTop: '55px' }}>
                         Inverse
-                        <Header.Subheader>
-                            A Divider's color can be set to the appropriate color when on a dark background.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Divider's color can be set to the appropriate color when on a dark background.
+                    </Typography>
 
                     <Block inverse>
                         <Divider color="alternate" inverse />
@@ -232,12 +264,13 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Compact */}
-                    <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="compact" variant="h2" style={{ marginTop: '55px' }}>
                         Compact
-                        <Header.Subheader>
-                            A Divider can be compact, not having any margin above or below.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Divider can be compact, not having any margin above or below.
+                    </Typography>
 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
                     <Divider compact />
@@ -248,12 +281,13 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Hidden */}
-                    <Header anchor="hidden" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="hidden" variant="h2" style={{ marginTop: '55px' }}>
                         Hidden
-                        <Header.Subheader>
-                            A Divider can divide content without a line.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Divider can divide content without a line.
+                    </Typography>
 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.
                     <Divider hidden />
@@ -264,12 +298,13 @@ export default class ElementsDivider extends React.Component {
                     </Highlighter>
 
                     {/* Relaxed */}
-                    <Header anchor="relaxed" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="relaxed" variant="h2" style={{ marginTop: '55px' }}>
                         Relaxed
-                        <Header.Subheader>
-                            A Divider can increase it's margin above and below.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A Divider can increase it's margin above and below.
+                    </Typography>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem.</p>
                     <Divider relaxed />
@@ -286,29 +321,5 @@ export default class ElementsDivider extends React.Component {
                 </Main.Content>
             </Main>
         );
-    }
-
-    _onBlur() {
-        console.log('Are you sure you are done?');
-    }
-
-    _onChange(value) {
-        this.setState({ onChangeValue: value });
-    }
-
-    _onClick() {
-        window.alert('You did it! You clicked the text area.');
-    }
-
-    _onFocus() {
-        console.log('Your focus determins your reality.');
-    }
-
-    _onKeyDown(event) {
-        window.alert(`You just pressed the ${event.key} key`);
-    }
-
-    _onIconClick() {
-        window.alert('Look at my action.');
     }
 }

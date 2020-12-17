@@ -1,6 +1,6 @@
 import {
     Divider,
-    Header,
+    Typography,
     Icon,
 } from 'react-cm-ui';
 import {
@@ -192,14 +192,14 @@ class CoreAppNavigation extends React.PureComponent {
                         />
                     )}
 
-                    <Header
+                    <Typography
                         className={ClassNames(classes.header, classes.headerSection)}
                         inverse
                         size="medium"
                         style={{ marginTop: 0 }}
                     >
                         {levelOne.label}
-                    </Header>
+                    </Typography>
 
                     <ul
                         className={classes.ul}
@@ -219,7 +219,7 @@ class CoreAppNavigation extends React.PureComponent {
 
                             return (
                                 <li key={`level_two-${levelTwoKeyNum}`}>
-                                    <Header
+                                    <Typography
                                         className={ClassNames(
                                             classes.header,
                                             classes.headerSubSection,
@@ -228,7 +228,7 @@ class CoreAppNavigation extends React.PureComponent {
                                         size="small"
                                     >
                                         {levelTwo.label}
-                                    </Header>
+                                    </Typography>
 
                                     <ul
                                         className={classes.ul}
@@ -315,7 +315,7 @@ class CoreAppNavigation extends React.PureComponent {
                     <div className={classes.scrollBarInner}>
                         <div className={classes.logoContainer}>
                             <Link to={{ pathname: '/' }}>
-                                <Header
+                                <Typography
                                     className={classes.logo}
                                     inverse
                                     onClick={this.onLogoClick}
@@ -323,7 +323,7 @@ class CoreAppNavigation extends React.PureComponent {
                                     weight="semibold"
                                 >
                                     React-CM-UI
-                                </Header>
+                                </Typography>
                             </Link>
 
                             <div className={`text-xsmall text-semibold text-italics ${classes.packageVersion}`}>{`v${version}`}</div>

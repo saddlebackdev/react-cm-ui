@@ -123,27 +123,27 @@ const styles = ({
         verticalAlign: 'middle',
     },
     message: {
-        backgroundColor: theme.palette.text.secondary,
+        backgroundColor: palette.text.secondary,
         whiteSpace: 'nowrap',
         borderBottomLeftRadius: 3,
         borderTopLeftRadius: 3,
         lineHeight: '33px',
         padding: '0 11px',
         '&.prompt-message-alert': {
-            backgroundColor: theme.palette.error.main,
+            backgroundColor: palette.error.main,
         },
         '&.prompt-message-info': {
-            backgroundColor: theme.palette.teal[500],
+            backgroundColor: palette.teal[500],
         },
         '&.prompt-message-success': {
-            backgroundColor: theme.palette.success.main,
+            backgroundColor: palette.success.main,
         },
         '&.prompt-message-warning': {
-            backgroundColor: theme.palette.warning.main,
+            backgroundColor: palette.warning.main,
         },
     },
     noActionBtn: {
-        borderLeft: `1px solid ${theme.palette.primary.main}`,
+        borderLeft: `1px solid ${palette.primary.main}`,
         borderBottomRightRadius: 3,
         borderTopRightRadius: 3,
     },
@@ -195,10 +195,10 @@ const styles = ({
                     transition: 'background-color 125ms linear, color 125ms linear, opacity 250ms ease-out',
                     verticalAlign: 'top',
                     '&:focus': {
-                        boxShadow: `0 0 0 1px ${palette.active.primary}`,
+                        boxShadow: `0 0 0 1px ${palette.active.main}`,
                     },
                     '&:hover': {
-                        backgroundColor: palette.active.primary,
+                        backgroundColor: palette.active.main,
                     },
                 },
                 '&-no-btn': {

@@ -1,5 +1,10 @@
 import {
-    Button, Card, Drawer, Header, Icon, Input,
+    Button,
+    Card,
+    Drawer,
+    Typography,
+    Icon,
+    Input,
 } from 'react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -284,18 +289,19 @@ class ModulesDrawerContent extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Content */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Content
-                        <Header.Subheader>
-                            Where content (forms, text, etc) is supposed to be placed inside a drawer.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Where content (forms, text, etc) is supposed to be placed inside a drawer.
+                    </Typography>
 
                     <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
 

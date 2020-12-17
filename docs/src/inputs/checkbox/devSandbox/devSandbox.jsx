@@ -1,11 +1,12 @@
 import {
     Checkbox,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import Block from '../../../global/block';
 import Highlighter from '../../../global/highlighter';
 import Main from '../../../global/main';
+import Heading from '../../../global/heading';
 
 const checkboxSample = `import React from 'react';
 
@@ -158,12 +159,16 @@ export default class ElementsCheckbox extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     {/* Checkbox */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="checkbox"
+                        variant="h2"
+                    >
                         Checkbox
-                        <Header.Subheader>
-                            A standard checkbox.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A standard checkbox.
+                    </Typography>
 
                     <Checkbox id="ui-checkbox--basic" />
 
@@ -172,12 +177,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Label */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="label"
+                        variant="h2"
+                    >
                         Label
-                        <Header.Subheader>
-                            A checkbox can have a label defined.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A checkbox can have a label defined.
+                    </Typography>
 
                     <Checkbox label="Do you want to check the box?" />
 
@@ -186,12 +195,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Align */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="align"
+                        variant="h2"
+                    >
                         Align
-                        <Header.Subheader>
-                            A label definition can sit on the right or left side of the checkbox.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A label definition can sit on the right or left side of the checkbox.
+                    </Typography>
 
                     <Checkbox align="left" label="Do you want to check the box?" /><br /><br />
                     <Checkbox align="right" label="You know you want too, don't you?" />
@@ -201,12 +214,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Checked */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="checked"
+                        variant="h2"
+                    >
                         Checked
-                        <Header.Subheader>
-                            A checkbox can be checked from it's parent.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A checkbox can be checked from its parent.
+                    </Typography>
 
                     <Checkbox checked label="Do you want to check the box?" />
 
@@ -215,12 +232,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Disabled */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="disabled"
+                        variant="h2"
+                    >
                         Disabled
-                        <Header.Subheader>
-                            Disable a checkbox.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        Disable a checkbox.
+                    </Typography>
 
                     <Checkbox
                         disable
@@ -233,12 +254,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Fluid */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="fluid"
+                        variant="h2"
+                    >
                         Fluid
-                        <Header.Subheader>
-                            A checkbox can stretch as wide as the parent container.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A checkbox can stretch as wide as the parent container.
+                    </Typography>
 
                     <Block style={{ maxWidth: '400px' }}>
                         <Checkbox align="left" fluid label="It's better on the right, yeah?" />
@@ -253,13 +278,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Label Click */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="label-click"
+                        variant="h2"
+                    >
                         Label Click
-                        <Header.Subheader>
-                            Sometimes you may want to disable a checkbox from being checked by clicking it's label definition.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
+                    <Typography>
+                        Sometimes you may want to disable a checkbox from being checked by clicking its label definition.
+                    </Typography>
                     <Checkbox labelClick={false} label="Sorry, you can no longer click here to check the box." />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
@@ -267,12 +295,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* OnChange */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="on-change"
+                        variant="h2"
+                    >
                         OnChange
-                        <Header.Subheader>
-                            Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        Can handle an <code>onChange</code> event from parent. The <code>checked</code> prop is required along with this handler.
+                    </Typography>
 
                     <Checkbox
                         checked={this.state.onChangeSample}
@@ -285,12 +317,16 @@ export default class ElementsCheckbox extends React.Component {
                     </Highlighter>
 
                     {/* Size */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="size"
+                        variant="h2"
+                    >
                         Size
-                        <Header.Subheader>
-                            A checkbox can be small or large.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A checkbox can be small or large.
+                    </Typography>
 
                     <Checkbox size="small" />
 

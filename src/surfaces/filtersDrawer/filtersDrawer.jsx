@@ -16,12 +16,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../../inputs/button';
 import Checkbox from '../../inputs/checkbox/checkbox';
-import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
-import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
+import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
+import FiltersDrawerMultiSelectTag from './filtersDrawerMultiSelectTag';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 import Select from '../../inputs/select';
 
@@ -40,6 +40,10 @@ const propTypes = {
         PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
     ]),
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        rowHeading: PropTypes.string,
+        wingHeading: PropTypes.string,
+    }),
     className: PropTypes.string,
     id: PropTypes.string,
     isDirty: PropTypes.bool.isRequired,
@@ -153,11 +157,19 @@ const propTypes = {
 const defaultProps = {
     breakpointDown: breakpoints.values.md,
     children: undefined,
+    classes: null,
     className: undefined,
     id: undefined,
     rows: undefined,
     style: {},
 };
+
+const styles = ({ typography }) => ({
+    rowHeading: {},
+    wingHeading: {
+        fontSize: typography.pxToRem(14),
+    },
+});
 
 class FiltersDrawer extends React.Component {
     static onMultiSelectChange(onItemChange, value, selectedOption) {
@@ -252,6 +264,7 @@ class FiltersDrawer extends React.Component {
         const {
             breakpointDown,
             children,
+            classes,
             className,
             id,
             isDirty,
@@ -262,6 +275,7 @@ class FiltersDrawer extends React.Component {
             rows,
             style,
         } = this.props;
+
         const { nestedTogglesData } = this.state;
         const bemClassName = `${moduleType}--filters_drawer`;
         const bemBlockClassName = `${moduleType}_filters_drawer`;
@@ -306,13 +320,14 @@ class FiltersDrawer extends React.Component {
                             <Drawer.Content
                                 className="nested_toggles_wing--content"
                             >
-                                <Header
+                                <Typography
+                                    classes={{
+                                        root: classes.wingHeading,
+                                    }}
                                     className="nested_toggles_wing--title"
-                                    size="small"
-                                    weight="bold"
                                 >
                                     {nestedTogglesData.label}
-                                </Header>
+                                </Typography>
 
                                 <div
                                     className="nested_toggles_wing--options"
@@ -421,12 +436,15 @@ class FiltersDrawer extends React.Component {
                                     key={`${bemBlockClassName}--filters-drawer-row-${rowKeyNum}`}
                                 >
                                     {row.header && (
-                                        <Header
+                                        <Typography
+                                            classes={{
+                                                root: classes.rowHeading,
+                                            }}
                                             className={`${bemBlockClassName}--header`}
-                                            weight="bold"
+                                            variant="h4"
                                         >
                                             {row.header}
-                                        </Header>
+                                        </Typography>
                                     )}
 
                                     <div
@@ -585,7 +603,7 @@ class FiltersDrawer extends React.Component {
                                                                     multiSelectLabelKeyNum += 1;
 
                                                                     return (
-                                                                        <FiltersDrawerMultiSelectLabel
+                                                                        <FiltersDrawerMultiSelectTag
                                                                             color={multiSelect.labelColor}
                                                                             key={`multi-select-label-${multiSelectLabelKeyNum}`}
                                                                             onItemChange={multiSelect.onChange}
@@ -716,4 +734,4 @@ class FiltersDrawer extends React.Component {
 FiltersDrawer.propTypes = propTypes;
 FiltersDrawer.defaultProps = defaultProps;
 
-export default FiltersDrawer;
+export default withStyles(styles)(FiltersDrawer);

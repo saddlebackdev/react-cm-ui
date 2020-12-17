@@ -5,7 +5,6 @@
 import React from 'react';
 import mountWithTheme from '../../../testUtils/enzymeHelpers';
 import A from '../a';
-import mountWithTheme from '../../../testUtils/enzymeHelpers';
 
 describe('<A />', () => {
     const props = {

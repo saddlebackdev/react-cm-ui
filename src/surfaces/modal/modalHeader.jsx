@@ -7,7 +7,7 @@ import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import Button from '../../inputs/button';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
@@ -98,19 +98,17 @@ function ModalHeader(props) {
 
     return (
         <header className="modal-header">
-            <Header
-                as="h3"
+            <Typography
+                variant="h3"
                 className={ClassNames(
                     classes.title,
                     {
                         'modal-title-truncate': titleTruncate,
                     },
                 )}
-                title={title}
-                weight="bold"
             >
                 {title}
-            </Header>
+            </Typography>
 
             <div className={classes.closeButtonContainer}>
                 {(isUndefined(closeButton) || isString(closeButton)) && (

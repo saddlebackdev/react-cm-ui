@@ -2,14 +2,15 @@ import {
     camelCase,
 } from 'lodash';
 import {
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import React from 'react';
+import ExampleDefaultBanner from '../examples/exampleDefaultBanner';
+import ExampleOnAfterCloseBanner from '../examples/exampleOnAfterCloseBanner';
+import Heading from '../../../global/heading';
 import Highlighter from '../../../global/highlighter';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
-import ExampleDefaultBanner from '../examples/exampleDefaultBanner';
-import ExampleOnAfterCloseBanner from '../examples/exampleOnAfterCloseBanner';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/banner/banner';
 /* eslint-enable import/no-named-default, import/extensions */
@@ -23,12 +24,16 @@ function ElementsBanner() {
         <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="banner"
+                        variant="h2"
+                    >
                         Banner
-                        <Header.Subheader>
-                            A standard Banner.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        A standard Banner.
+                    </Typography>
 
                     <ExampleDefaultBanner />
 
@@ -36,19 +41,22 @@ function ElementsBanner() {
                         {require('!!raw-loader!../examples/exampleDefaultBanner').default}
                     </Highlighter>
 
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="on-after-close"
+                        variant="h2"
+                    >
                         On After Close
-                        <Header.Subheader>
-                            After a Banner's close animation handler.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
+
+                    <Typography>
+                        After a Banner's close animation handler.
+                    </Typography>
 
                     <ExampleOnAfterCloseBanner />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {require('!!raw-loader!../examples/exampleOnAfterCloseBanner').default}
                     </Highlighter>
-
                 </MarkdownContainer>
             </Main.Content>
         </Main>

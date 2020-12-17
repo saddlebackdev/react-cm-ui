@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import Typography from '../../dataDisplay/typography';
 import makeStyles from '../../styles/makeStyles';
-import { theme } from '../../styles';
 
 const propTypes = {
     children: PropTypes.node,

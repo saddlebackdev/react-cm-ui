@@ -2,7 +2,7 @@ import {
     Card,
     DatePickerInput,
     Grid,
-    Header,
+    Typography,
 } from 'react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
@@ -450,15 +450,15 @@ export default class ModulesDatePickerInput extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Date Picker Input */}
-                    <Header anchor="date-picker-input" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="date-picker-input" variant="h2" style={{ marginTop: '55px' }}>
                         Date Picker Input
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput />
 
@@ -467,9 +467,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Disable */}
-                    <Header anchor="disable" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="disable" variant="h2" style={{ marginTop: '55px' }}>
                         Disable
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         date={dateOnChange}
@@ -482,9 +482,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Events */}
-                    <Header anchor="events" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="events" variant="h2" style={{ marginTop: '55px' }}>
                         Events
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         events={[
@@ -500,9 +500,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Exclude Dates */}
-                    <Header anchor="exclude-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="exclude-dates" variant="h2" style={{ marginTop: '55px' }}>
                         Exclude Dates
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         excludeDates={[
@@ -518,9 +518,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Filter Dates */}
-                    <Header anchor="filter-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="filter-dates" variant="h2" style={{ marginTop: '55px' }}>
                         Filter Dates
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         filterDates={this.isWeekend}
@@ -531,9 +531,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Include Dates */}
-                    <Header anchor="include-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="include-dates" variant="h2" style={{ marginTop: '55px' }}>
                         Include Dates
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         includeDates={[
@@ -547,9 +547,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Label */}
-                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="locale" variant="h2" style={{ marginTop: '55px' }}>
                         Label
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput label="The Coolest Label Ever"/>
 
@@ -558,9 +558,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Locale */}
-                    <Header anchor="locale" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="locale" variant="h2" style={{ marginTop: '55px' }}>
                         Locale
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         locale={moment().locale()}
@@ -571,9 +571,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Max Date */}
-                    <Header anchor="max-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="max-dates" variant="h2" style={{ marginTop: '55px' }}>
                         Max Date
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         maxDate={moment()}
@@ -584,9 +584,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Min Date */}
-                    <Header anchor="min-dates" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="min-dates" variant="h2" style={{ marginTop: '55px' }}>
                         Min Date
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         minDate={moment().subtract(10, 'years')}
@@ -597,9 +597,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* onChange Event Handler */}
-                    <Header anchor="on-change" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="on-change" variant="h2" style={{ marginTop: '55px' }}>
                         onChange Event Handler
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         date={dateOnChange}
@@ -611,9 +611,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* onMonthChange */}
-                    <Header anchor="on-month-change" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="on-month-change" variant="h2" style={{ marginTop: '55px' }}>
                         onMonthChange Event Handler
-                    </Header>
+                    </Typography>
 
                     <DatePickerInput
                         onMonthChange={() => window.alert('The month was changed!') }
@@ -624,9 +624,9 @@ export default class ModulesDatePickerInput extends React.Component {
                     </Highlighter>
 
                     {/* Range */}
-                    <Header anchor="range" size="large" style={{ marginTop: '55px' }}>
+                    <Typography anchor="range" variant="h2" style={{ marginTop: '55px' }}>
                         Range
-                    </Header>
+                    </Typography>
 
                     <Grid spacing={2}>
                         <Grid.Column

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
 import Button from '../../inputs/button';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
@@ -139,9 +139,11 @@ class DetailsWindowColumn extends React.PureComponent {
                 )}
 
                 {header && (
-                    <Header size="xsmall" style={{ margin: 0 }}>
+                    <Typography
+                        variant="h4"
+                    >
                         {header}
-                    </Header>
+                    </Typography>
                 )}
 
                 <div className={accessorClasses}>

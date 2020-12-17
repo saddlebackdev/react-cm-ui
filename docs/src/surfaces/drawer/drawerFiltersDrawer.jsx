@@ -3,7 +3,7 @@ import {
     Card,
     Drawer,
     Dropdown,
-    Header,
+    Typography,
     Icon,
     Input,
 } from 'react-cm-ui';
@@ -478,18 +478,19 @@ class ModulesDrawerFiltersDrawer extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     {/* Filters Drawer */}
-                    <Header anchor="drawer" size="large" style={{ marginTop: '55px' }} sub>
+                    <Typography anchor="drawer" variant="h2" style={{ marginTop: '55px' }}>
                         Filters Drawer
-                        <Header.Subheader>
-                            For filtering data/content in the parent Drawer.
-                        </Header.Subheader>
-                    </Header>
+                    </Typography>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        For filtering data/content in the parent Drawer.
+                    </Typography>
 
                     Optional and Required Properties for <code>columns</code>:
 
@@ -651,7 +652,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                             />
 
                             <Drawer.FiltersRail isOpen={isFiltersDrawerOpen}>
-                                <Header weight="bold">Sort By</Header>
+                                <Typography weight="bold">Sort By</Typography>
 
                                 <Dropdown
                                     clearable={false}
@@ -679,7 +680,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                     }}
                                 />
 
-                                <Header weight="bold">Campus</Header>
+                                <Typography weight="bold">Campus</Typography>
 
                                 <Dropdown
                                     clearable={false}

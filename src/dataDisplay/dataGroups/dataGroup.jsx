@@ -2,15 +2,20 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { groupPropTypes } from './dataGroupsPropTypes';
 import ActivityIndicator from '../../feedback/activityIndicator';
-import Header from '../header';
-import Icon from '../icon';
-import List from '../list';
 import DataGroupExpandedRow from './dataGroupExpandedRow';
 import DataGroupRow from './dataGroupRow';
-import { groupPropTypes } from './dataGroupsPropTypes';
+import Icon from '../icon';
+import List from '../list';
+import Typography from '../typography';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    classes: PropTypes.shape({
+        heading: PropTypes.string,
+        expandRowHeading: PropTypes.string,
+    }),
     group: groupPropTypes.isRequired,
     data: PropTypes.shape({}).isRequired,
     moduleType: PropTypes.string.isRequired,
@@ -18,8 +23,20 @@ const propTypes = {
 };
 
 const defaultProps = {
+    classes: null,
     style: {},
 };
+
+const styles = () => ({
+    heading: {
+        margin: 0,
+        lineHeight: '16px',
+    },
+    expandRowHeading: {
+        marginBottom: 22,
+        lineHeight: '16px',
+    },
+});
 
 class DataGroup extends React.PureComponent {
     constructor(props) {
@@ -44,6 +61,7 @@ class DataGroup extends React.PureComponent {
 
     render() {
         const {
+            classes,
             group: {
                 className,
                 expandableSections,
@@ -56,9 +74,11 @@ class DataGroup extends React.PureComponent {
             data,
             moduleType,
         } = this.props;
+
         const { isExpanded } = this.state;
         const bemClassName = `${moduleType}--data_group`;
-        const containerClasses = ClassNames(bemClassName, className, {
+
+        const rootClasses = ClassNames(bemClassName, className, {
             [`${bemClassName}-is_expandable`]: isExpandable,
             [`${bemClassName}-expanded`]: isExpandable && isExpanded,
         });
@@ -97,17 +117,15 @@ class DataGroup extends React.PureComponent {
                             key={`${bemClassName}_expand_section_list-${expandIndex}`}
                         >
                             {expandRow.header && (
-                                <Header
-                                    className={`${bemClassName}_header`}
-                                    size="medium"
-                                    style={{
-                                        marginBottom: '22px',
-                                        lineHeight: '16px',
+                                <Typography
+                                    classes={{
+                                        root: classes.expandRowHeading,
                                     }}
-                                    weight="semibold"
+                                    className={`${bemClassName}_header`}
+                                    variant="h3"
                                 >
                                     {expandRow.header}
-                                </Header>
+                                </Typography>
                             )}
 
                             <List
@@ -133,7 +151,7 @@ class DataGroup extends React.PureComponent {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 onClick={this.onToggleExpandClick}
                 role="presentation"
@@ -147,6 +165,7 @@ class DataGroup extends React.PureComponent {
                         />
                     </div>
                 )}
+
                 <div
                     className={`${bemClassName}_inner_container`}
                 >
@@ -157,17 +176,15 @@ class DataGroup extends React.PureComponent {
                         }}
                     >
                         {header && (
-                            <Header
-                                className={`${bemClassName}_header_title`}
-                                weight="bold"
-                                size="large"
-                                style={{
-                                    margin: '0',
-                                    lineHeight: '16px',
+                            <Typography
+                                classes={{
+                                    root: classes.heading,
                                 }}
+                                className={`${bemClassName}_header_title`}
+                                variant="h2"
                             >
                                 {header}
-                            </Header>
+                            </Typography>
                         )}
 
                         {isExpandable && !_.isEmpty(expandableSections) && (
@@ -181,7 +198,9 @@ class DataGroup extends React.PureComponent {
                             </div>
                         )}
                     </div>
+
                     {rowJSX}
+
                     {isExpandable && !_.isEmpty(expandableSections) && (
                         expandableJSX
                     )}
@@ -194,4 +213,4 @@ class DataGroup extends React.PureComponent {
 DataGroup.propTypes = propTypes;
 DataGroup.defaultProps = defaultProps;
 
-export default DataGroup;
+export default withStyles(styles)(DataGroup);

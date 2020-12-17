@@ -15,7 +15,7 @@ const defaultProps = {
     style: {},
 };
 
-function HeaderSubheader(props) {
+function HeaderDeprecatedSubheader(props) {
     const {
         children,
         className,
@@ -35,7 +35,7 @@ function HeaderSubheader(props) {
     );
 }
 
-HeaderSubheader.propTypes = propTypes;
-HeaderSubheader.defaultProps = defaultProps;
+HeaderDeprecatedSubheader.propTypes = propTypes;
+HeaderDeprecatedSubheader.defaultProps = defaultProps;
 
-export default HeaderSubheader;
+export default HeaderDeprecatedSubheader;

@@ -1,11 +1,12 @@
 
 import {
-    Accordion, Card, Header,
+    Accordion, Card, Typography,
 } from 'react-cm-ui';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
@@ -234,7 +235,7 @@ export default class SelectedSample extends React.Component {
 
 const controlledSample = `import React from 'react';
 
-import { Accordion, Header } from 'react-cm-ui';
+import { Accordion, Typography } from 'react-cm-ui';
 
 export default class ControlledSample extends React.Component {
 
@@ -251,7 +252,7 @@ export default class ControlledSample extends React.Component {
             <Accordion selected={selectedIndex}>
                 <Accordion.Item>
                     <Accordion.Summary onClick={this._onClickAccordionItem}>
-                        <Header size="small">{'Option One'}</Header>
+                        <Typography size="small">{'Option One'}</Typography>
                     </Accordion.Summary>
                     <Accordion.Content>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -260,7 +261,7 @@ export default class ControlledSample extends React.Component {
 
                 <Accordion.Item>
                     <Accordion.Summary onClick={this._onClickAccordionItem}>
-                        <Header size="small">{'Option Two'}</Header>
+                        <Typography size="small">{'Option Two'}</Typography>
                     </Accordion.Summary>
                     <Accordion.Content>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -496,19 +497,20 @@ export default class CollectionsAccordion extends React.Component {
             <Main page="accordion">
                 <Main.Content>
                     <Card>
-                        <Header size="large">Props</Header>
+                        <Typography size="large">Props</Typography>
 
                         <TableProps props={props} />
                     </Card>
 
                     <div>
                         {/* Accordion */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Accordion
-                            <Header.Subheader>
-                                A basic Accordion can be inverted to appear on darker backgrounds better.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A basic Accordion can be inverted to appear on darker backgrounds better.
+                        </Typography>
 
                         <Accordion id="accordion-demo-id">
                             <Accordion.Item>
@@ -537,12 +539,13 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Basic */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Basic
-                            <Header.Subheader>
-                                A basic Accordion.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A basic Accordion.
+                        </Typography>
 
                         <Accordion basic>
                             <Accordion.Item
@@ -599,12 +602,13 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Exclusive */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Exclusive
-                            <Header.Subheader>
-                                An Accordion can have multiple items at the same time.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            An Accordion can have multiple items at the same time.
+                        </Typography>
 
                         <Accordion basic exclusive={false} selected={[1, 2]}>
                             <Accordion.Item title="Option One">
@@ -625,12 +629,13 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Inverse */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Inverse
-                            <Header.Subheader>
-                                A basic Accordion can be inverted to appear on darker backgrounds better.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            A basic Accordion can be inverted to appear on darker backgrounds better.
+                        </Typography>
 
                         <Block inverse style={{ height: '205px' }}>
                             <ScrollBar autoHide className="accordion-scrollbar">
@@ -704,16 +709,17 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Selected */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Selected
-                            <Header.Subheader>
-                                You can specify the
-                                {' '}
-                                <strong>selected</strong>
-                                {' '}
-                                prop to expand one of the items by default.
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            You can specify the
+                            {' '}
+                            <strong>selected</strong>
+                            {' '}
+                            prop to expand one of the items by default.
+                        </Typography>
 
                         <Accordion basic selected={1}>
                             <Accordion.Item title="Option One">
@@ -730,22 +736,23 @@ export default class CollectionsAccordion extends React.Component {
                         </Highlighter>
 
                         {/* Controlled */}
-                        <Header size="large" style={{ marginTop: '55px' }} sub>
+                        <Heading variant="h2">
                             Controlled Component
-                            <Header.Subheader>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: `You can use the Accordion as a controlled component via the <strong>selected</strong> prop
-                                        by passing an <strong>onClick</strong> handler function to each item&rsquo;s summary.`,
-                                    }}
-                                />
-                            </Header.Subheader>
-                        </Header>
+                        </Heading>
+
+                        <Typography variant="body1">
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: `You can use the Accordion as a controlled component via the <strong>selected</strong> prop
+                                    by passing an <strong>onClick</strong> handler function to each item&rsquo;s summary.`,
+                                }}
+                            />
+                        </Typography>
 
                         <Accordion selected={controlledExampleSelectedIndex}>
                             <Accordion.Item>
                                 <Accordion.Summary onClick={this._onClickAccordionItem}>
-                                    <Header size="small">Option One</Header>
+                                    <Typography size="small">Option One</Typography>
                                 </Accordion.Summary>
                                 <Accordion.Content>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
@@ -754,7 +761,7 @@ export default class CollectionsAccordion extends React.Component {
 
                             <Accordion.Item>
                                 <Accordion.Summary onClick={this._onClickAccordionItem}>
-                                    <Header size="small">Option Two</Header>
+                                    <Typography size="small">Option Two</Typography>
                                 </Accordion.Summary>
                                 <Accordion.Content>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>

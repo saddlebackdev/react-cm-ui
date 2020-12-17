@@ -1,7 +1,7 @@
 import {
     DropdownButton,
     Grid,
-    Header,
+    Typography,
     Icon,
 } from 'react-cm-ui';
 import {
@@ -46,6 +46,7 @@ const categorizedIconSet = [
             'undo',
             'upload-1',
             'upload-2',
+            'view',
         ],
     }, {
         category: 'App Features',
@@ -388,9 +389,9 @@ class ElementsIconSet extends React.PureComponent {
                     <Grid.Column
                         sm={12}
                     >
-                        <Header size="large" style={{ margin: '0 0 22px' }}>
+                        <Typography size="large" style={{ margin: '0 0 22px' }}>
                             {iconSet.category}
-                        </Header>
+                        </Typography>
                     </Grid.Column>
 
                     {map(iconSet.types, (type, childIndex) => (
@@ -460,9 +461,9 @@ class ElementsIconSet extends React.PureComponent {
                         <Grid.Column
                             sm={12}
                         >
-                            <Header size="large" style={{ margin: '0 0 22px' }}>
+                            <Typography size="large" style={{ margin: '0 0 22px' }}>
                                 Older Icons
-                            </Header>
+                            </Typography>
                         </Grid.Column>
 
                         <Grid.Column
