@@ -19,7 +19,7 @@ import Checkbox from '../../inputs/checkbox/checkbox';
 import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
 import Dropdown from '../../inputs/dropdown/dropdown';
 import FiltersDrawerNestedTogglesLabel from './filtersDrawerNestedTogglesLabel';
-import FiltersDrawerMultiSelectLabel from './filtersDrawerMultiSelectLabel';
+import FiltersDrawerMultiSelectTag from './filtersDrawerMultiSelectTag';
 import FiltersDrawerNestedTogglesValueLabel from './filtersDrawerNestedTogglesValueLabel';
 import FiltersDrawerNestedTogglesWingOptionLabel from './filtersDrawerNestedTogglesWingOptionLabel';
 import Typography from '../../dataDisplay/typography';
@@ -606,7 +606,7 @@ class FiltersDrawer extends React.Component {
                                                                     multiSelectLabelKeyNum += 1;
 
                                                                     return (
-                                                                        <FiltersDrawerMultiSelectLabel
+                                                                        <FiltersDrawerMultiSelectTag
                                                                             color={multiSelect.labelColor}
                                                                             key={`multi-select-label-${multiSelectLabelKeyNum}`}
                                                                             onItemChange={multiSelect.onChange}
