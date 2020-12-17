@@ -1,9 +1,11 @@
 import {
     cloneDeep,
     differenceBy,
+    find,
     filter,
     isArray,
     isEmpty,
+    isObject,
     map,
     mapValues,
     some,
@@ -230,7 +232,7 @@ class FiltersDrawer extends React.Component {
                 d.value !== selectedOption.value
             ));
         } else { // Add
-            selectedOptions = sortBy([...nestedTogglesData.value, selectedOption], ['value']);
+            selectedOptions = sortBy([...(nestedTogglesData.value) || [], selectedOption], ['value']);
         }
 
         const newNestedTogglesData = mapValues(nestedTogglesData, (data, key) => {
@@ -323,7 +325,10 @@ class FiltersDrawer extends React.Component {
                                             nestedTogglesOptionLabelKeyNum += 1;
                                             const isSelected = some(
                                                 nestedTogglesData.value,
-                                                option,
+                                                (v) => {
+                                                    const selectedValue = isObject(v) ? v.value : v;
+                                                    return option.value === selectedValue;
+                                                },
                                             );
 
                                             return (
@@ -626,8 +631,10 @@ class FiltersDrawer extends React.Component {
                                                             <div>
                                                                 {map(
                                                                     nestedToggles.value,
-                                                                    (option) => {
+                                                                    (value) => {
                                                                         nestedTogglesValueLabelKeyNum += 1;
+                                                                        const selectedValue = isObject(value) ? value.value : value;
+                                                                        const option = find(nestedToggles.options, { value: selectedValue });
 
                                                                         return (
                                                                             <FiltersDrawerNestedTogglesValueLabel
