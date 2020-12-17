@@ -111,6 +111,7 @@ const propTypes = {
                 })),
             }),
             nestedToggles: PropTypes.shape({
+                clearable: PropTypes.bool,
                 label: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({

@@ -1000,6 +1000,7 @@ class PageDemo extends React.PureComponent {
                                             },
                                         }, {
                                             nestedToggles: {
+                                                clearable: false,
                                                 label: 'Bar Filters',
                                                 onChange: this.onNestedTogglesBarChange,
                                                 options: [
