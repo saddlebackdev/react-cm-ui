@@ -161,7 +161,6 @@ function DropdownButton(props) {
             target={target}
             text={text}
             title={title}
-            text={text}
             width={width}
             tabIndex={tabIndex}
         >
