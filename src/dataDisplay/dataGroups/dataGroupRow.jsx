@@ -2,9 +2,9 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { rowPropTypes } from './dataGroupsPropTypes';
 import Typography from '../typography';
 import Icon from '../icon';
-import { rowPropTypes } from './dataGroupsPropTypes';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -45,9 +45,13 @@ function DataGroupRow(props) {
     const classes = useStyles();
     const bemClassName = `${parentBemClassName}_row`;
 
-    const rootClasses = ClassNames(`${bemClassName}`, className, {
-        [`${bemClassName}-header_icon`]: iconType || header,
-    });
+    const rootClasses = ClassNames(
+        `${bemClassName}`,
+        className,
+        {
+            [`${bemClassName}-header_icon`]: iconType || header,
+        },
+    );
 
     let accessedData;
 
