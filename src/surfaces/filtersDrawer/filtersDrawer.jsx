@@ -1,9 +1,11 @@
 import {
     cloneDeep,
-    differenceBy,
+    differenceWith,
+    find,
     filter,
     isArray,
     isEmpty,
+    isObject,
     map,
     mapValues,
     some,
@@ -109,6 +111,7 @@ const propTypes = {
                 })),
             }),
             nestedToggles: PropTypes.shape({
+                clearable: PropTypes.bool,
                 label: PropTypes.string,
                 onChange: PropTypes.func,
                 options: PropTypes.arrayOf(PropTypes.shape({
@@ -118,6 +121,7 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
+                singleSelection: PropTypes.bool,
                 value: PropTypes.arrayOf(PropTypes.shape({
                     label: PropTypes.string,
                     value: PropTypes.oneOfType([
@@ -225,12 +229,14 @@ class FiltersDrawer extends React.Component {
         const { nestedTogglesData } = this.state;
         let selectedOptions;
 
-        if (some(nestedTogglesData.value, selectedOption)) { // Subtract
+        if (nestedTogglesData.singleSelection) {
+            selectedOptions = [selectedOption];
+        } else if (some(nestedTogglesData.value, selectedOption)) { // Subtract
             selectedOptions = filter(nestedTogglesData.value, (d) => (
                 d.value !== selectedOption.value
             ));
         } else { // Add
-            selectedOptions = sortBy([...nestedTogglesData.value, selectedOption], ['value']);
+            selectedOptions = sortBy([...nestedTogglesData.value || [], selectedOption], ['value']);
         }
 
         const newNestedTogglesData = mapValues(nestedTogglesData, (data, key) => {
@@ -323,7 +329,10 @@ class FiltersDrawer extends React.Component {
                                             nestedTogglesOptionLabelKeyNum += 1;
                                             const isSelected = some(
                                                 nestedTogglesData.value,
-                                                option,
+                                                (v) => {
+                                                    const selectedValue = isObject(v) ? v.value : v;
+                                                    return option.value === selectedValue;
+                                                },
                                             );
 
                                             return (
@@ -546,10 +555,13 @@ class FiltersDrawer extends React.Component {
                                                 multiSelect
                                             ) {
                                                 // Multi Select
-                                                const modifiedOptions = differenceBy(
+                                                const modifiedOptions = differenceWith(
                                                     multiSelect.options,
                                                     multiSelect.value,
-                                                    'value',
+                                                    (option, value) => {
+                                                        const selectedValue = isObject(value) ? value.value : value;
+                                                        return option.value === selectedValue;
+                                                    },
                                                 );
 
                                                 return (
@@ -583,7 +595,8 @@ class FiltersDrawer extends React.Component {
 
                                                         {!isEmpty(multiSelect.value) &&
                                                                 map(multiSelect.value, (v) => {
-                                                                    const selectedOption = v;
+                                                                    const selectedValue = isObject(v) ? v.value : v;
+                                                                    const selectedOption = find(multiSelect.options, { value: selectedValue });
                                                                     multiSelectLabelKeyNum += 1;
 
                                                                     return (
@@ -591,7 +604,7 @@ class FiltersDrawer extends React.Component {
                                                                             color={multiSelect.labelColor}
                                                                             key={`multi-select-label-${multiSelectLabelKeyNum}`}
                                                                             onItemChange={multiSelect.onChange}
-                                                                            label={v.label}
+                                                                            label={selectedOption.label}
                                                                             selectedOption={selectedOption}
                                                                             value={multiSelect.value}
                                                                         />
@@ -626,8 +639,10 @@ class FiltersDrawer extends React.Component {
                                                             <div>
                                                                 {map(
                                                                     nestedToggles.value,
-                                                                    (option) => {
+                                                                    (value) => {
                                                                         nestedTogglesValueLabelKeyNum += 1;
+                                                                        const selectedValue = isObject(value) ? value.value : value;
+                                                                        const option = find(nestedToggles.options, { value: selectedValue });
 
                                                                         return (
                                                                             <FiltersDrawerNestedTogglesValueLabel
