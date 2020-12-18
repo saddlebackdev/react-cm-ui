@@ -236,7 +236,7 @@ class FiltersDrawer extends React.Component {
                 d.value !== selectedOption.value
             ));
         } else { // Add
-            selectedOptions = sortBy([...(nestedTogglesData.value) || [], selectedOption], ['value']);
+            selectedOptions = sortBy([...nestedTogglesData.value || [], selectedOption], ['value']);
         }
 
         const newNestedTogglesData = mapValues(nestedTogglesData, (data, key) => {
