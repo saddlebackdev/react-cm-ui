@@ -53,8 +53,8 @@ class PageDemo extends React.PureComponent {
         super();
 
         this.defaultFilters = {
-            multiSelectValue: [],
-            nestedTogglesBarValue: [],
+            multiSelectValue: [1, 3],
+            nestedTogglesBarValue: [1],
             nestedTogglesFooValue: [],
             searchValue: '',
             sort: {
@@ -1000,6 +1000,7 @@ class PageDemo extends React.PureComponent {
                                             },
                                         }, {
                                             nestedToggles: {
+                                                clearable: false,
                                                 label: 'Bar Filters',
                                                 onChange: this.onNestedTogglesBarChange,
                                                 options: [
@@ -1014,6 +1015,7 @@ class PageDemo extends React.PureComponent {
                                                         value: 3,
                                                     },
                                                 ],
+                                                singleSelection: true,
                                                 value: dirtyFilters.nestedTogglesBarValue,
                                             },
                                         },
