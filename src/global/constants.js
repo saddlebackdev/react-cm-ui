@@ -19,6 +19,7 @@ export const BEM_ACTION_BAR_SEARCH = `${BEM_ACTION_BAR}--search`;
 export const BEM_CHECKBOX = 'checkbox';
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
+export const BEM_GRID_ROW = `${BEM_GRID}--row`;
 
 export const BEM_EMAIL_LINK = 'email_link';
 

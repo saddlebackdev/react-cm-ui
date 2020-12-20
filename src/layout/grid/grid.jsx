@@ -14,6 +14,7 @@ import {
     SPACINGS,
 } from './gridConstants';
 import GridColumn from './gridColumn';
+import GridRowDeprecated from './gridRowDeprecated';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -191,18 +192,6 @@ const useStyles = makeStyles(({ spacing }) => {
                 [`& .${BEM_GRID_COLUMN}`]: {
                     paddingBottom: 16.5,
                     paddingTop: 16.5,
-                    '&--form_field': {
-                        '&_checkbox, &_radio': {
-                            paddingBottom: 5.5,
-                            paddingTop: 5.5,
-                            '&:last-child': {
-                                paddingBottom: 16.5,
-                            },
-                        },
-                        '&_legend': {
-                            paddingBottom: 0,
-                        },
-                    },
                 },
             },
             '&$deprecatedHorizontalCenter': {
@@ -400,6 +389,7 @@ const Grid = React.forwardRef(
 );
 
 Grid.Column = GridColumn;
+Grid.RowDeprecated = GridRowDeprecated;
 
 Grid.propTypes = propTypes;
 Grid.defaultProps = defaultProps;

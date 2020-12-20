@@ -258,7 +258,59 @@ const useStyles = makeStyles((theme) => {
     const foo = {
         root: {
             margin: 0,
+            '&$deprecatedAlignStretch': {
+                alignSelf: 'stretch',
+            },
+            '&$deprecatedFieldTypeCheckbox, &$deprecatedFieldTypeRadio': {
+                paddingBottom: 5.5,
+                paddingTop: 5.5,
+                '&:last-child': {
+                    paddingBottom: 16.5,
+                },
+            },
+            '&$deprecatedFieldTypeLegend': {
+                paddingBottom: 0,
+            },
+            '&$deprecatedFloatedLeft': {
+                marginRight: 'auto',
+            },
+            '&$deprecatedFloatedRight': {
+                marginLeft: 'auto',
+            },
+            '&$deprecatedTextAlignCenter': {
+                textAlign: 'center',
+            },
+            '&$deprecatedTextAlignLeft': {
+                textAlign: 'left',
+            },
+            '&$deprecatedTextAlignRight': {
+                textAlign: 'right',
+            },
+            '&$deprecatedVerticalAlignBottom': {
+                alignItems: 'bottom',
+                display: 'flex',
+            },
+            '&$deprecatedVerticalAlignCenter': {
+                alignItems: 'center',
+                display: 'flex',
+            },
+            '&$deprecatedVerticalAlignTop': {
+                alignItems: 'top',
+                display: 'flex',
+            },
         },
+        deprecatedAlignStretch: {},
+        deprecatedFieldTypeCheckbox: {},
+        deprecatedFieldTypeLegend: {},
+        deprecatedFieldTypeRadio: {},
+        deprecatedFloatedLeft: {},
+        deprecatedFloatedRight: {},
+        deprecatedTextAlignCenter: {},
+        deprecatedTextAlignLeft: {},
+        deprecatedTextAlignRight: {},
+        deprecatedVerticalAlignBottom: {},
+        deprecatedVerticalAlignCenter: {},
+        deprecatedVerticalAlignTop: {},
         ...reduce(
             tempBreakpointKeys,
             (accumulator, key) => {
@@ -328,8 +380,6 @@ const GridColumn = React.forwardRef(
 
         return (
             <div
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...otherProps}
                 className={containerClasses}
                 id={id}
                 ref={ref}
