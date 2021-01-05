@@ -17,7 +17,7 @@ BannerItem.propTypes = {
     levelIcon: PropTypes.string,
     message: PropTypes.string,
     style: PropTypes.shape({}),
-    title: PropTypes.string
+    title: PropTypes.string,
 };
 
 export default BannerItem;
