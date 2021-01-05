@@ -22,8 +22,8 @@ class DatePickerCalendar extends React.PureComponent {
                     props.date,
                     props.dateFrom,
                     props.maxDate,
-                    props.minDate
-                )
+                    props.minDate,
+                ),
             ),
             showDropdownMonth: false,
             showDropdownYear: false,
@@ -60,9 +60,9 @@ class DatePickerCalendar extends React.PureComponent {
                         date,
                         dateFrom,
                         maxDate,
-                        minDate
-                    )
-                )
+                        minDate,
+                    ),
+                ),
             });
         }
     }

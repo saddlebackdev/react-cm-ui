@@ -65,9 +65,9 @@ class DatePickerCalendar extends React.Component {
                         this.props.dateStart,
                         this.props.dateSecondaryStart,
                         this.props.maxDate,
-                        this.props.minDate
-                    )
-                )
+                        this.props.minDate,
+                    ),
+                ),
             });
         }
     }
@@ -137,14 +137,14 @@ class DatePickerCalendar extends React.Component {
 
         this.setState({
             dateInView: this.state.dateInView.clone().set('month', month),
-            showDropdownMonth: false
+            showDropdownMonth: false,
         });
     }
 
     onChangeYear(year) {
         this.setState({
             dateInView: this.state.dateInView.clone().set('year', year),
-            showDropdownYear: false
+            showDropdownYear: false,
         });
     }
 
@@ -187,7 +187,7 @@ class DatePickerCalendar extends React.Component {
             'date-picker-deprecated-calendar-service-period-range': type === 'servicePeriodRange' ||
                 type === 'servicePeriodRangeEnd' ||
                 type === 'servicePeriodRangeStart',
-            'date-picker-deprecated-calendar-single-date': type === 'singleDate'
+            'date-picker-deprecated-calendar-single-date': type === 'singleDate',
         });
 
         return (
