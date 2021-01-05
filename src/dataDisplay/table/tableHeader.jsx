@@ -60,7 +60,7 @@ class TableHeader extends React.Component {
                 desktopLarge === false ?
                     `${cellPrefix}-desktop-hide` :
                     null,
-            className
+            className,
         );
 
         return (
