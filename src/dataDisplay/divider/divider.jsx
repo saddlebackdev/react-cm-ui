@@ -36,7 +36,7 @@ Divider.propTypes = {
     inverse: PropTypes.bool,
     relaxed: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.oneOf([ 'very' ])
+        PropTypes.oneOf([ 'very' ]),
     ]),
     style: PropTypes.shape({}),
 };
