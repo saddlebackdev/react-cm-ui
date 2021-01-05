@@ -118,7 +118,7 @@ class DatePickerCalendar extends React.Component {
                     {day.localeData().weekdaysMin(day)}
                 </div>
             );
-        })
+        });
     }
 
     localizeMoment(date) {
