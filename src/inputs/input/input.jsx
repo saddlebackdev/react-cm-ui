@@ -150,6 +150,10 @@ const propTypes = {
      */
     showNumberSpinners: PropTypes.bool,
     /**
+     * Override the styles applied to Input.
+     */
+    style: PropTypes.shape({}),
+    /**
      * Indicates whether or not the Input can be focused and where it participates in
      * sequential keyboard navigation.
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
@@ -206,6 +210,7 @@ const defaultProps = {
     placeholder: null,
     required: false,
     showNumberSpinners: true,
+    style: null,
     tabIndex: -1,
     theme: 'default',
     type: null,
@@ -601,6 +606,7 @@ class Input extends React.PureComponent {
             placeholder,
             required: isRequired,
             showNumberSpinners,
+            style,
             tabIndex,
             theme,
             value,
@@ -643,7 +649,10 @@ class Input extends React.PureComponent {
         );
 
         return (
-            <div className={rootClasses}>
+            <div
+                className={rootClasses}
+                style={style}
+            >
                 {label && (
                     <label className="label" htmlFor={id}>
                         {label}
