@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import {
+    get,
+    isEmpty,
+    isFunction,
+    isString,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,7 +37,6 @@ const useStyles = makeStyles(({ typography }) => ({
 function DataGroupExpandedRow(props) {
     const {
         bemClassName: parentBemClassName,
-        classes,
         data,
         row: {
             accessor,
@@ -46,6 +50,7 @@ function DataGroupExpandedRow(props) {
         },
     } = props;
 
+    const classes = useStyles(props);
     const bemClassName = `${parentBemClassName}_row`;
 
     const rootClasses = ClassNames(`${bemClassName}`, className, {
@@ -54,9 +59,9 @@ function DataGroupExpandedRow(props) {
 
     let accessedData;
 
-    if (_.isString(accessor)) {
-        accessedData = _.get(data, accessor);
-    } else if (_.isFunction(accessor)) {
+    if (isString(accessor)) {
+        accessedData = get(data, accessor);
+    } else if (isFunction(accessor)) {
         accessedData = accessor(data);
     }
 
@@ -91,7 +96,7 @@ function DataGroupExpandedRow(props) {
                 <div
                     className={`${bemClassName}_data`}
                     style={{
-                        marginLeft: !_.isEmpty(iconType) ? 0 : '49px',
+                        marginLeft: !isEmpty(iconType) ? 0 : '49px',
                     }}
                 >
                     {fieldName && (
