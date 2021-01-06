@@ -47,6 +47,7 @@ export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
 export { default as Container } from './layout/container';
+export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
 export { default as Page } from './layout/page';
@@ -55,6 +56,7 @@ export { default as Page } from './layout/page';
 export { default as A } from './navigation/a';
 export { default as Breadcrumbs } from './navigation/breadcrumbs';
 export { default as Tabs } from './navigation/tabs';
+export { default as SubNavigationDeprecated } from './navigation/subNavigationDeprecated';
 
 // Surfaces
 export { default as Accordion } from './surfaces/accordion';
@@ -63,6 +65,7 @@ export { default as AppBar } from './surfaces/appBar';
 export { default as Card } from './surfaces/card';
 export { default as DetailsWindow } from './surfaces/detailsWindow';
 export { default as Drawer } from './surfaces/drawer';
+export { default as DrawerDeprecated } from './surfaces/drawerDeprecated';
 export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
