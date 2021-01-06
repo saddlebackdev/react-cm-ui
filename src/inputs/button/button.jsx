@@ -67,7 +67,7 @@ const styles = (theme) => {
                 padding: 0,
                 width: buttonSize,
             },
-            '& .icon .icon-use-path': {
+            '& .icon.icon-color-primary .icon-use-path': {
                 fill: theme.palette.background.primary,
             },
         },
@@ -284,6 +284,9 @@ const styles = (theme) => {
             '&:not($text)': {
                 backgroundColor: theme.palette.hexToRGBA(theme.palette.background.primary, 0.5),
                 boxShadow: `inset 0 0 0 1px ${theme.palette.border.contrastPrimary}`,
+            },
+            '& .icon.icon-color-primary .icon-use-path': {
+                fill: theme.palette.background.contrastPrimary,
             },
         },
         disable: {

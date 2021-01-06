@@ -24,6 +24,10 @@ const propTypes = {
     getParentContainer: PropTypes.func,
     onToggleOpen: PropTypes.func.isRequired,
     /**
+     * The onChange event handler.
+     */
+    onChange: PropTypes.func,
+    /**
      * Options list theme
      */
     optionsTheme: PropTypes.oneOf([
@@ -43,6 +47,7 @@ const defaultProps = {
     id: undefined,
     style: undefined,
     getParentContainer: undefined,
+    onChange: undefined,
     tabIndex: -1,
 };
 const useStyles = makeStyles((theme) => {
@@ -51,7 +56,7 @@ const useStyles = makeStyles((theme) => {
     const borderColorPrimary = get(theme, 'palette.border.primary');
     const borderRadiusMain = get(theme, 'shape.borderRadius.main');
     const colorHighlight = get(theme, 'palette.cyan[500]');
-    const colorPrimary = get(theme, 'palette.primary.main');
+    const colorPrimary = get(theme, 'palette.background.contrastPrimary');
     const colorStatic = get(theme, 'palette.text.secondary');
     const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
     const textColorConstrast = get(theme, 'palette.text.contrastText');
@@ -111,7 +116,7 @@ const useStyles = makeStyles((theme) => {
                                 textColorConstrast :
                                 textColorPrimary
                             ),
-                            '& .ui.icon-color-primary.icon-inverse': {
+                            '& .ui.icon': {
                                 '& .icon-use-path': {
                                     fill: colorPrimary,
                                 },
@@ -143,8 +148,9 @@ function DropdownMenu(props) {
         getParentContainer,
         id,
         isOpen,
-        optionsTheme,
+        onChange,
         onToggleOpen,
+        optionsTheme,
         style,
         tabIndex,
     } = props;
@@ -254,7 +260,11 @@ function DropdownMenu(props) {
             }}
             tabIndex={tabIndex}
         >
-            {children}
+            {React.Children.map(children, (child, index) => React.cloneElement(child, {
+                ...child.props,
+                index,
+                onChange,
+            }))}
         </div>
     );
 }

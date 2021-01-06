@@ -1,3 +1,7 @@
+import {
+    isFunction,
+    noop,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,6 +13,7 @@ const propTypes = {
     disable: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string,
+    onChange: PropTypes.func,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
     style: PropTypes.shape({}),
@@ -21,8 +26,9 @@ const defaultProps = {
     disable: false,
     id: undefined,
     label: undefined,
-    onClick: () => {},
-    onKeyDown: () => {},
+    onChange: undefined,
+    onClick: noop,
+    onKeyDown: noop,
     style: undefined,
     tabIndex: -1,
 };
@@ -33,27 +39,33 @@ function DropdownMenuOption(props) {
         className,
         disable,
         id,
+        onChange,
         onClick,
         onKeyDown,
         label,
         style,
         tabIndex,
     } = props;
+
     const containerClasses = ClassNames(OPTION_CLASS_NAME, className, {
         [`${OPTION_CLASS_NAME}-disable`]: disable,
     });
 
-    function handleOnClick(event) {
+    const handleOnClick = (event) => {
         event.stopPropagation();
 
-        onClick(event, id, label);
-    }
+        if (isFunction(onChange)) {
+            onChange({ id, label });
+        } else {
+            onClick(event, id, label);
+        }
+    };
 
-    function handleOnKeyDown(event) {
+    const handleOnKeyDown = (event) => {
         event.stopPropagation();
 
         onKeyDown(event, id, label);
-    }
+    };
 
     return (
         <div

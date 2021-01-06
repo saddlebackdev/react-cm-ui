@@ -43,7 +43,14 @@ const propTypes = {
     /**
      * The ButtonDropdown's label.
      */
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+    ]),
+    /**
+     * The Dropdown's Menu onChange event handler.
+     */
+    onChange: PropTypes.func,
     /**
      * Options list theme
      */
@@ -62,6 +69,7 @@ const defaultProps = {
     iconSize: 16,
     iconPosition: 'left',
     iconType: 'chevron-down',
+    onChange: null,
     optionsTheme: 'dark',
     tabIndex: -1,
 };
@@ -75,9 +83,7 @@ const useStyles = makeStyles({
 
 function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
-
     const [isMenuOpen, setIsOpen] = useState(false);
-
     const classes = useStyles(props);
 
     const {
@@ -95,7 +101,8 @@ function DropdownButton(props) {
         innerStyle,
         inverse,
         label,
-        outlined,
+        onChange,
+        outline,
         optionsTheme,
         relax,
         style,
@@ -103,6 +110,7 @@ function DropdownButton(props) {
         target,
         text,
         title,
+        transparent,
         width,
     } = props;
 
@@ -154,13 +162,14 @@ function DropdownButton(props) {
             innerStyle={innerStyle}
             inverse={inverse}
             onClick={onMenuToggle}
-            outlined={outlined}
+            outline={outline}
             ref={dropdownButtonRef}
             relax={relax}
             style={style}
             target={target}
             text={text}
             title={title}
+            transparent={transparent}
             width={width}
             tabIndex={tabIndex}
         >
@@ -175,6 +184,7 @@ function DropdownButton(props) {
                 isOpen={isMenuOpen}
                 onToggleOpen={onMenuToggle}
                 getParentContainer={getParentContainer}
+                onChange={onChange}
                 optionsTheme={optionsTheme}
             >
                 {children}
