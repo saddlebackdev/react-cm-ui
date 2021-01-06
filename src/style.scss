@@ -25,10 +25,14 @@
 @import './inputs/textArea/textArea';
 @import './inputs/timePicker/timePicker';
 
+// Navigation
+@import './navigation/subNavigationDeprecated/subNavigationDeprecated';
+
 // Surfaces
 @import './surfaces/accordion/accordion';
 @import './surfaces/detailsWindow/detailsWindow';
 @import './surfaces/drawer/drawer';
+@import './surfaces/drawerDeprecated/drawerDeprecated';
 @import './surfaces/drawer/drawerFiltersDrawer';
 @import './surfaces/drawer/drawerWing';
 @import './surfaces/filtersDrawer/filtersDrawer';
