@@ -32,6 +32,7 @@ const useStyles = makeStyles(({ typography }) => ({
 function DataGroupExpandedRow(props) {
     const {
         bemClassName: parentBemClassName,
+        classes,
         data,
         row: {
             accessor,
