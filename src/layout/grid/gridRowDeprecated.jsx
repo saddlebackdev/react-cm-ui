@@ -103,6 +103,7 @@ const GridRowDeprecated = React.forwardRef(
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
             BEM_GRID_ROW,
+            classes.root,
             className,
             {
                 [`grid-row-columns-${Utils.numberToWord(columns)}`]: columns,
