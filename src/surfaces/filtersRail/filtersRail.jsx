@@ -117,9 +117,11 @@ function FiltersRail(props) {
             const filtersRailNode = filtersRailRef.current;
             const containerClassName = `.${UI_CLASS_NAME}.${BEM_CONTAINER}`;
             const containerNode = filtersRailNode.closest(containerClassName);
-            const containerOffsetTop = containerNode.offsetTop;
+            const containerOffsetTop = containerNode && containerNode.offsetTop;
 
-            filtersRailNode.style.height = `calc(100% - ${containerOffsetTop}px)`;
+            if (containerOffsetTop) {
+                filtersRailNode.style.height = `calc(100% - ${containerOffsetTop}px)`;
+            }
         }
     }, [
         isMobile,
