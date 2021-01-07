@@ -31,6 +31,8 @@ function DataCardColumn(props) {
         data,
         moduleType,
     } = props;
+
+    const classes = useStyles(props);
     const elementClassName = `${moduleType}--data_card_column`;
 
     return _.map(columns, (column, index) => {
