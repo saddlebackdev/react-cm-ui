@@ -107,7 +107,7 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    horizontalAlign: PropTypes.bool,
+    horizontalAlign: PropTypes.oneOf(['center', 'left', 'right']),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
@@ -119,11 +119,11 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    textAlign: PropTypes.bool,
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    verticalAlign: PropTypes.bool,
+    verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
 };
 
 const defaultProps = {
@@ -375,8 +375,6 @@ const Grid = React.forwardRef(
 
         return (
             <div
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...otherProps}
                 className={rootClasses}
                 id={id}
                 ref={ref}
