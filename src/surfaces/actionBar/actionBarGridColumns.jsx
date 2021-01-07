@@ -88,7 +88,9 @@ function ActionBarGridColumns(props) {
 
     useEffect(() => {
         setTimeout(() => {
-            setActionBarNode(rootRef.current.closest(`.${UI_CLASS_NAME}.${BEM_ACTION_BAR}`));
+            if (rootRef.current.closest(`.${UI_CLASS_NAME}.${BEM_ACTION_BAR}`)) {
+                setActionBarNode(rootRef.current.closest(`.${UI_CLASS_NAME}.${BEM_ACTION_BAR}`));
+            }
         }, 100);
     }, []);
 
