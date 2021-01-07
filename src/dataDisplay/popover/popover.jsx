@@ -130,17 +130,11 @@ const Popover = function Popover(props) {
         transformVertical,
     } = props;
 
-    const anchorOrigin = {
-        anchorHorizontal,
-        anchorVertical,
-    };
-
-    const transformOrigin = {
-        transformHorizontal,
-        transformVertical,
-    };
-
     const classes = useStyles(props);
+
+    // todo : onClick handlers
+    // todo: both in the component, or the implementation.
+    //
 
     const rootClasses = Classnames(
         UI_CLASS_NAME,
@@ -149,7 +143,18 @@ const Popover = function Popover(props) {
         className,
     );
 
-    const [childRef, setChildRef] = useState(null)
+    const anchorOrigin = {
+        horizontal: anchorHorizontal,
+        vertical: anchorVertical,
+    };
+
+    const transformOrigin = {
+        horizontal: transformHorizontal,
+        vertical: transformVertical,
+    };
+
+    const [childRef, setChildRef] = useState(null);
+    // This variable controls the antive hover of this component
     const open = Boolean(childRef);
 
     const handlePopoverOpen = (event) => {
@@ -178,14 +183,8 @@ const Popover = function Popover(props) {
                 }}
                 open={open}
                 anchorEl={childRef}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
+                anchorOrigin={anchorOrigin}
+                transformOrigin={transformOrigin}
                 onClose={handlePopoverClose}
                 disableRestoreFocus
             >
