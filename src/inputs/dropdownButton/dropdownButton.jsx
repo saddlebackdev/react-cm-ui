@@ -1,5 +1,5 @@
 import {
-    isEmpty,
+    isEmpty, isFunction,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -52,6 +52,14 @@ const propTypes = {
      */
     onChange: PropTypes.func,
     /**
+     * The onClose event handler.
+     */
+    onClose: PropTypes.func,
+    /**
+     * The onOpen event handler.
+     */
+    onOpen: PropTypes.func,
+    /**
      * Options list theme
      */
     optionsTheme: PropTypes.oneOf([
@@ -70,6 +78,8 @@ const defaultProps = {
     iconPosition: 'left',
     iconType: 'chevron-down',
     onChange: null,
+    onClose: null,
+    onOpen: null,
     optionsTheme: 'dark',
     tabIndex: -1,
 };
@@ -102,6 +112,8 @@ function DropdownButton(props) {
         inverse,
         label,
         onChange,
+        onClose,
+        onOpen,
         outline,
         optionsTheme,
         relax,
@@ -118,12 +130,21 @@ function DropdownButton(props) {
         return dropdownButtonRef.current;
     }
 
-    function onMenuToggle(event) {
+    const onMenuToggle = (event) => {
         if (!isEmpty(event)) {
             event.stopPropagation();
         }
+
         setIsOpen(!isMenuOpen);
-    }
+
+        if (isMenuOpen && isFunction(onClose)) {
+            onClose(event);
+        }
+
+        if (!isMenuOpen && isFunction(onOpen)) {
+            onOpen(event);
+        }
+    };
 
     const bemClassName = 'button_dropdown';
 
