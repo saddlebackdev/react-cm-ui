@@ -7,10 +7,11 @@ import React from 'react';
 function PopoverSample() {
     return (
         <Popover
-            content="Some Popover Content"
+            content="Wow! Slick Mouse Events"
+            mouseEvent="onMouseEnter"
         >
             <Button>
-                Open Popover
+                Hover With A Popover
             </Button>
         </Popover>
     );
