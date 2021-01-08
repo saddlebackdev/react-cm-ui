@@ -5,10 +5,7 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
-import React, {
-    useState,
-    useEffect,
-} from 'react';
+import React from 'react';
 import {
     GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
@@ -28,13 +25,6 @@ import TimeFromNow from '../timeFromNow';
 import Typography from '../typography';
 import Popover from '../popover';
 import MilestonePopoverContent from './milestonePopoverContent';
-
-const POPOVER_ACCEPTED_CHRIST = 'popoverAceptedChrist';
-const POPOVER_BAPTISM = 'popoverBaptism';
-const POPOVER_CLASSES = 'popoverClasses';
-const POPOVER_MINISTRY = 'popoverMinistry';
-const POPOVER_MISSIONS = 'popoverMissions';
-const POPOVER_SMALL_GROUP = 'popoverSmallGroup';
 
 const propTypes = {
     acceptedChristDate: PropTypes.string,
@@ -682,6 +672,7 @@ export function PersonCoreMilestones(props) {
     const isAdult = recordType === 'adult';
     const isFemale = includes(['f', 'F'], gender);
     const isMale = includes(['m', 'M'], gender);
+
     const rootClasses = ClassNames(
         PERSON_CORE_MILESTONES_CLASSES,
         classes.root,
@@ -696,6 +687,7 @@ export function PersonCoreMilestones(props) {
             [classes.isStudent]: recordType === 'student',
         },
     );
+
     const iconBaseClass101Classes = ClassNames(
         classes.iconBaseClass101,
         classes.iconBase,
@@ -711,6 +703,7 @@ export function PersonCoreMilestones(props) {
             [classes.isStudent]: recordType === 'student',
         },
     );
+
     const iconBaseClass201Classes = ClassNames(
         classes.iconBaseClass201,
         classes.iconBase,
@@ -726,6 +719,7 @@ export function PersonCoreMilestones(props) {
             [classes.isStudent]: recordType === 'student',
         },
     );
+
     const iconBaseClass301Classes = ClassNames(
         classes.iconBaseClass301,
         classes.iconBase,
@@ -741,6 +735,7 @@ export function PersonCoreMilestones(props) {
             [classes.isStudent]: recordType === 'student',
         },
     );
+
     const iconBaseClass401Classes = ClassNames(
         classes.iconBaseClass401,
         classes.iconBase,
@@ -756,6 +751,7 @@ export function PersonCoreMilestones(props) {
             [classes.isStudent]: recordType === 'student',
         },
     );
+
     const iconSize = getIconSize({ isMobile, iconSize: iconSizeProp });
 
     let class101Title;
@@ -825,6 +821,7 @@ export function PersonCoreMilestones(props) {
         y: '1 year',
         yy: '%d years',
     };
+
     const relativeTimeThreshold = {
         s: 60,
         m: 60,
@@ -832,6 +829,7 @@ export function PersonCoreMilestones(props) {
         d: 31,
         M: 12,
     };
+
     const relativeTimeRounding = Math.floor;
     const userTimeZone = dateUtils.getDetectedTimeZone();
     let firstContactDate;
@@ -908,28 +906,6 @@ export function PersonCoreMilestones(props) {
         />
     ) : '';
 
-    const [openPopover, setOpenPopover] = useState();
-
-    useEffect(() => {
-        setOpenPopover(null);
-    }, [isMobile]);
-
-    const onMilestoneIconClick = (currentOpenPopover) => {
-        if (isMobile) {
-            if (openPopover) {
-                setOpenPopover(null);
-            } else {
-                setOpenPopover(currentOpenPopover);
-            }
-        }
-    };
-
-    const onIconBlur = () => {
-        if (isMobile) {
-            setOpenPopover(null);
-        }
-    };
-
     return (
         <div
             className={rootClasses}
@@ -949,17 +925,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentAcceptedChrist}
-                                onClose={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(null);
-                                    }
-                                }}
-                                onOpen={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(POPOVER_ACCEPTED_CHRIST);
-                                    }
-                                }}
-                                open={openPopover === POPOVER_ACCEPTED_CHRIST}
+                                mouseEvent="onMouseEnter"
                             >
                                 <Icon
                                     className={ClassNames(
@@ -977,10 +943,6 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
-                                    onBlur={onIconBlur}
-                                    onClick={() => {
-                                        onMilestoneIconClick(POPOVER_ACCEPTED_CHRIST);
-                                    }}
                                     size={iconSize}
                                     title={hasAcceptedChrist ? false : 'Has not accepted Christ'}
                                     type="heart"
@@ -998,17 +960,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentBaptism}
-                                onClose={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(null);
-                                    }
-                                }}
-                                onOpen={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(POPOVER_BAPTISM);
-                                    }
-                                }}
-                                open={openPopover === POPOVER_BAPTISM}
+                                mouseEvent="onMouseEnter"
                             >
                                 <Icon
                                     className={ClassNames(
@@ -1025,8 +977,6 @@ export function PersonCoreMilestones(props) {
                                         },
                                     )}
                                     compact
-                                    onBlur={onIconBlur}
-                                    onClick={() => { onMilestoneIconClick(POPOVER_BAPTISM); }}
                                     inverse={inverse}
                                     size={iconSize}
                                     title={isBaptised ? false : 'Not Baptized'}
@@ -1037,31 +987,19 @@ export function PersonCoreMilestones(props) {
                     )}
 
                     {!removeClassColumn && isAdult && (
-                        <Popover
-                            content={popoverContentClasses}
-                            onClose={() => {
-                                if (!isMobile) {
-                                    setOpenPopover(null);
-                                }
-                            }}
-                            onOpen={() => {
-                                if (!isMobile) {
-                                    setOpenPopover(POPOVER_CLASSES);
-                                }
-                            }}
-                            open={openPopover === POPOVER_CLASSES}
-                            width={300}
+                        <Grid.Column
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
+                                classes.column,
+                            )}
                         >
-                            <Grid.Column
-                                className={ClassNames(
-                                    `${BEM_PERSON_CORE_MILESTONES}--class_column`,
-                                    classes.column,
-                                )}
+                            <Popover
+                                content={popoverContentClasses}
+                                mouseEvent="onMouseEnter"
+                                width={300}
                             >
                                 <div
                                     className={classes.iconClassContainer}
-                                    onBlur={onIconBlur}
-                                    onClick={() => { onMilestoneIconClick(POPOVER_CLASSES); }}
                                     role="presentation"
                                     style={{
                                         outline: 'none',
@@ -1103,8 +1041,8 @@ export function PersonCoreMilestones(props) {
                                         />
                                     </div>
                                 </div>
-                            </Grid.Column>
-                        </Popover>
+                            </Popover>
+                        </Grid.Column>
                     )}
 
                     {!removeSmallGroupColumn && (
@@ -1116,17 +1054,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentSmallGroup}
-                                onClose={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(null);
-                                    }
-                                }}
-                                onOpen={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(POPOVER_SMALL_GROUP);
-                                    }
-                                }}
-                                open={openPopover === POPOVER_SMALL_GROUP}
+                                mouseEvent="onMouseEnter"
                             >
                                 <Icon
                                     className={ClassNames(
@@ -1144,8 +1072,6 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
-                                    onBlur={onIconBlur}
-                                    onClick={() => { onMilestoneIconClick(POPOVER_SMALL_GROUP); }}
                                     size={iconSize}
                                     title={!isInSmallGroup && 'Not active in Small Group'}
                                     type="users"
@@ -1163,17 +1089,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMinistry}
-                                onClose={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(null);
-                                    }
-                                }}
-                                onOpen={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(POPOVER_MINISTRY);
-                                    }
-                                }}
-                                open={openPopover === POPOVER_MINISTRY}
+                                mouseEvent="onMouseEnter"
                             >
                                 <Icon
                                     className={ClassNames(
@@ -1191,8 +1107,6 @@ export function PersonCoreMilestones(props) {
                                     )}
                                     compact
                                     inverse={inverse}
-                                    onBlur={onIconBlur}
-                                    onClick={() => { onMilestoneIconClick(POPOVER_MINISTRY); }}
                                     size={iconSize}
                                     title={!isInMinistry && 'Not active in Ministry'}
                                     type="serving-opportunity"
@@ -1210,17 +1124,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMissions}
-                                onClose={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(null);
-                                    }
-                                }}
-                                onOpen={() => {
-                                    if (!isMobile) {
-                                        setOpenPopover(POPOVER_MISSIONS);
-                                    }
-                                }}
-                                open={openPopover === POPOVER_MISSIONS}
+                                mouseEvent="onMouseEnter"
                             >
                                 <Icon
                                     className={ClassNames(
@@ -1241,8 +1145,6 @@ export function PersonCoreMilestones(props) {
                                     size={iconSize}
                                     title={!isActiveInMissions && 'Not active in Missions'}
                                     type="shoe-prints"
-                                    onClick={() => { onMilestoneIconClick(POPOVER_MISSIONS); }}
-                                    onBlur={onIconBlur}
                                 />
                             </Popover>
                         </Grid.Column>

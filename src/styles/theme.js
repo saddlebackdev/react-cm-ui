@@ -55,7 +55,8 @@ const theme = {
         datePickerInputCalendar: 12000,
         prompt: 13000,
         banner: 14000,
-        tooltip: 15000,
+        popover: 15000,
+        tooltip: 16000,
     },
 };
 
