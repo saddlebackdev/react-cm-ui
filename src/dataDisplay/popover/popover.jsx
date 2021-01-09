@@ -53,7 +53,7 @@ const propTypes = {
      */
     maxWidth: PropTypes.number,
     /**
-     * Popper.js is based on a "plugin-like" architecture,
+     * Popper.js is based on a "plugin-like" architecture;
      * most of its features are fully encapsulated "modifiers".
      *
      * A modifier is a function that is called each time Popper.js needs to
