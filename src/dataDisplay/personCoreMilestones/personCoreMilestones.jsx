@@ -925,6 +925,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentAcceptedChrist}
+                                disable={!popoverContentAcceptedChrist}
                                 mouseEvent="onMouseEnter"
                             >
                                 <Icon
@@ -960,6 +961,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentBaptism}
+                                disable={!popoverContentBaptism}
                                 mouseEvent="onMouseEnter"
                             >
                                 <Icon
@@ -995,6 +997,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentClasses}
+                                disable={!popoverContentClasses}
                                 mouseEvent="onMouseEnter"
                                 width={300}
                             >
@@ -1054,6 +1057,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentSmallGroup}
+                                disable={!popoverContentSmallGroup}
                                 mouseEvent="onMouseEnter"
                             >
                                 <Icon
@@ -1089,6 +1093,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMinistry}
+                                disable={!popoverContentInMinistry}
                                 mouseEvent="onMouseEnter"
                             >
                                 <Icon
@@ -1124,6 +1129,7 @@ export function PersonCoreMilestones(props) {
                         >
                             <Popover
                                 content={popoverContentInMissions}
+                                disable={!popoverContentInMissions}
                                 mouseEvent="onMouseEnter"
                             >
                                 <Icon
