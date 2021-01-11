@@ -206,6 +206,7 @@ function Popover(props) {
         id,
         modifiers,
         mouseEvent,
+        onClickAway: onClickAwayProp,
         open: openProp,
         placement,
     } = props;
@@ -229,7 +230,7 @@ function Popover(props) {
             onClick: onClickChildProp,
         } = childProps;
 
-        if (mouseEvent === 'onClick') {
+        if (event && event.currentTarget && mouseEvent === 'onClick') {
             if (isFunction(onClickChildProp)) {
                 onClickChildProp(event);
             }
@@ -243,7 +244,7 @@ function Popover(props) {
             onMouseEnter: onMouseEnterChildProp,
         } = childProps;
 
-        if (mouseEvent === 'onMouseEnter') {
+        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
             if (isFunction(onMouseEnterChildProp)) {
                 onMouseEnterChildProp(event);
             }
@@ -266,9 +267,13 @@ function Popover(props) {
         }
     }, [mouseEvent]);
 
-    const onClickAway = useCallback(() => {
+    const onClickAway = useCallback((event) => {
+        if (isFunction(onClickAwayProp)) {
+            onClickAwayProp(event);
+        }
+
         setChildRef(null);
-    }, []);
+    }, [onClickAwayProp]);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
@@ -291,7 +296,10 @@ function Popover(props) {
 
             <MUIPopper
                 anchorEl={childRef}
-                className={classes.popper}
+                className={ClassNames(
+                    `${BEM_POPOVER}--popper`,
+                    classes.popper,
+                )}
                 modifiers={{
                     arrow: {
                         enabled: true,
@@ -322,7 +330,10 @@ function Popover(props) {
                                     <span className={classes.arrow} ref={setArrowRef} />
 
                                     <div
-                                        className={classes.content}
+                                        className={ClassNames(
+                                            `${BEM_POPOVER}--content`,
+                                            classes.content,
+                                        )}
                                     >
                                         {content}
                                     </div>
