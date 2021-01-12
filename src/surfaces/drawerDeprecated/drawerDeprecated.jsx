@@ -529,7 +529,7 @@ class DrawerDeprecated extends React.Component {
             className,
             {
                 'drawer-is_modal': isModal,
-            }
+            },
         );
 
         const containerInnerClasses = ClassNames('drawer-container', {
@@ -589,7 +589,7 @@ class DrawerDeprecated extends React.Component {
                     onClose={this._onClose}
                     title={title}
                     titleTruncate={titleTruncate}
-                />
+                />,
             );
         }
 
@@ -606,7 +606,7 @@ class DrawerDeprecated extends React.Component {
                     inverse={inverse}
                     key="drawer-close-button"
                     onClose={this._onClose}
-                />
+                />,
             );
         }
 
