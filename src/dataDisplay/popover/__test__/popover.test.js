@@ -1,7 +1,8 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/dataDisplay/popover/__test__/popover.test.js
  */
+
 import React from 'react';
 import mountWithTheme, {
     waitForComponentToPaint,

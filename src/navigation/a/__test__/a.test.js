@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/navigation/a/__test__/a.test.js
  */
 import React from 'react';
