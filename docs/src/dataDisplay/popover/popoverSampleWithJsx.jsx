@@ -24,7 +24,7 @@ function PopoverSample() {
             )}
         >
             <Button>
-                Some JXS Children
+                Some JSX Children
             </Button>
         </Popover>
     );

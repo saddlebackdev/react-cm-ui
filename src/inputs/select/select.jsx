@@ -219,7 +219,7 @@ const useStyles = makeStyles((theme) => {
             display: 'inline-block',
             minWidth: 200,
             position: 'relative',
-            '&$isFlud': {
+            '&$isFluid': {
                 display: 'block',
             },
             '& .Select': {

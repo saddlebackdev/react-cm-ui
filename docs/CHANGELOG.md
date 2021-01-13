@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14.1 - 01/12/2021
+- [PR #265](https://github.com/saddlebackdev/react-cm-ui/pull/265) / Merge Commit e6a07b579852588157949b947b6815d4bead6953
+  - Update Demo Page to showcase some enhancements to the Filters Drawer Nested Toggles and Multi Select components.
+
 ## 0.14.0 - 12/18/2020
 - [PR #262](https://github.com/saddlebackdev/react-cm-ui/pull/262) / Merge Commit 0706f42ca8a9d78715c62d938fc86e8ac6f50223
   - Update Demo Page to showcase some enhancements to the Filters Drawer Nested Toggles and Multi Select components.

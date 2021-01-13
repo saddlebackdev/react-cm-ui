@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/dataDisplay/header/__test__/header.test.js
  */
 import { shallow } from 'enzyme';

@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.0 - 01/12/2021
+
+#### Feature
+- [PR #265](https://github.com/saddlebackdev/react-cm-ui/pull/265) / Merge Commit e6a07b579852588157949b947b6815d4bead6953
+  - Refactored Popover to use MUI Popper.
+  - Refactored PersonCoreMilestones to use new Popover API.
+- [PR #264](https://github.com/saddlebackdev/react-cm-ui/pull/264) / Merge Commit 2949c0735df4ab31f6e6d15a4bea527c6f9e359c
+  - Minor Eslint Clean Up
+
 ## 9.19.6 - 12/18/2020
 
 #### Feature

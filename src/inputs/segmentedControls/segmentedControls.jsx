@@ -21,7 +21,7 @@ class SegmentedControls extends React.Component {
 
         this.state = {
             buttonWidth: null,
-            selected: props.selected || 0
+            selected: props.selected || 0,
         };
     }
 
@@ -69,14 +69,14 @@ class SegmentedControls extends React.Component {
     render() {
         const { children, className, fluid, style } = this.props;
         const containerClasses = ClassNames('ui', 'segmented-controls', className, {
-            'segmented-controls-fluid': fluid
+            'segmented-controls-fluid': fluid,
         });
         const convertChildren = _.isArray(children) ? children : [ children ];
         let buttons = _.map(convertChildren, (child, index) => {
             const { icon, label, onClick } = child.props;
             const isActiveClass = ClassNames('segmented-controls-button', {
                 'segmented-controls-button-icon': icon,
-                'segmented-controls-button-is-active': this.state.selected === index
+                'segmented-controls-button-is-active': this.state.selected === index,
             });
 
             return (
@@ -91,7 +91,7 @@ class SegmentedControls extends React.Component {
                             alignItems: 'center',
                             display: 'inline-flex',
                             justifyContent: 'center',
-                            width: this.state.buttonWidth
+                            width: this.state.buttonWidth,
                         }}
                     >
                         {!_.isUndefined(label) ? (

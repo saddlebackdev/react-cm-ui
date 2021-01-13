@@ -4,12 +4,12 @@ import React from 'react';
 SegmentedControlsItem.propTypes = {
     icon: PropTypes.string,
     label: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
 };
 
 function SegmentedControlsItem(props) {
     const {
-        children
+        children,
     } = props;
 
     return (

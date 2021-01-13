@@ -22,9 +22,9 @@ function PopoverSample() {
             )}
             open={isTooltipOpen}
         >
-            <div>
-                <Button onClick={toggleOpenTooltip}>Click to Open/Close popover</Button>
-            </div>
+            <Button onClick={toggleOpenTooltip}>
+                Click to Open/Close popover
+            </Button>
         </Popover>
     );
 }

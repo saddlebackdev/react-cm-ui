@@ -127,7 +127,7 @@ class DatePickerDay extends React.Component {
             'date-picker-deprecated-day-selected': this.isDaySelected(),
             'date-picker-deprecated-day-start-selected': this.isDayStartSelected(),
             'date-picker-deprecated-day-today': this.isToday(),
-            'date-picker-deprecated-day-weekend': this.isWeekend()
+            'date-picker-deprecated-day-weekend': this.isWeekend(),
         });
 
         return (
