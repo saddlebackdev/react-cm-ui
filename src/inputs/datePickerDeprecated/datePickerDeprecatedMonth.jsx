@@ -60,7 +60,7 @@ class DatePickerMonth extends React.Component {
                 includeDates={this.props.includeDates}
                 type={this.props.type}
                 uxMode={this.props.uxMode}
-            />
+            />,
         );
     }
 

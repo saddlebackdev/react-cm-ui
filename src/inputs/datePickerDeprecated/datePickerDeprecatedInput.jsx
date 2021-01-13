@@ -52,8 +52,8 @@ class DatePickerInput extends React.Component {
                 dateEnd: this.safeDateFormat(props.dateEnd, props.locale),
                 dateSecondaryEnd: this.safeDateFormat(props.dateSecondaryEnd, props.locale),
                 dateSecondaryStart: this.safeDateFormat(props.dateSecondaryStart, props.locale),
-                dateStart: this.safeDateFormat(props.dateStart, props.locale)
-            }
+                dateStart: this.safeDateFormat(props.dateStart, props.locale),
+            },
         };
 
         this.onErrorRef = this.onError.bind(this);
@@ -87,8 +87,8 @@ class DatePickerInput extends React.Component {
                     dateEnd: this.safeDateFormat(dateEnd, locale),
                     dateSecondaryEnd: this.safeDateFormat(dateSecondaryEnd, locale),
                     dateSecondaryStart: this.safeDateFormat(dateSecondaryStart, locale),
-                    dateStart: this.safeDateFormat(dateStart, locale)
-                }
+                    dateStart: this.safeDateFormat(dateStart, locale),
+                },
             });
         }
     }
@@ -114,8 +114,8 @@ class DatePickerInput extends React.Component {
             maybeDate: isSingleDateOrServicePeriod ? this.safeDateFormat(date, locale) : this.state.maybeDate,
             maybeDateRange: isDateRange ? {
                 dateEnd: this.safeDateFormat(dateEnd, locale),
-                dateStart: this.safeDateFormat(dateStart, locale)
-            } : this.state.maybeDateRange
+                dateStart: this.safeDateFormat(dateStart, locale),
+            } : this.state.maybeDateRange,
         });
     }
 
@@ -146,8 +146,8 @@ class DatePickerInput extends React.Component {
             this.setState({
                 maybeDateRange: {
                     dateEnd: value ? datesArray[1].trim() : '',
-                    dateStart: value ? datesArray[0].trim() : ''
-                }
+                    dateStart: value ? datesArray[0].trim() : '',
+                },
             });
         } else if (uxMode === 'calendar' || uxMode === 'input' && type === 'singleDate') {
             const date = moment(value, this._dateFormats, newLocale, true);
@@ -166,8 +166,8 @@ class DatePickerInput extends React.Component {
                 this.setState({
                     maybeDateRange: {
                         dateEnd: dateType === 'dateEnd' ? value : this.state.maybeDateRange.dateEnd,
-                        dateStart: dateType === 'dateStart' ? value : this.state.maybeDateRange.dateStart
-                    }
+                        dateStart: dateType === 'dateStart' ? value : this.state.maybeDateRange.dateStart,
+                    },
                 });
             }
         }
@@ -229,7 +229,7 @@ class DatePickerInput extends React.Component {
             'date-picker-input-type-service-period': type === 'servicePeriod',
             'date-picker-input-type-service-period-range': type === 'servicePeriodRange',
             'date-picker-input-type-single-date': type === 'singleDate',
-            'ignore-react-onclickoutside': open
+            'ignore-react-onclickoutside': open,
         }, className);
         let mask, placeholder, value;
 
@@ -242,7 +242,7 @@ class DatePickerInput extends React.Component {
             mask = [
                 /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
                 ' ', '-', ' ',
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
+                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
             ];
             placeholder = 'mm/dd/yyyy - mm/dd/yyyy';
 
@@ -253,7 +253,7 @@ class DatePickerInput extends React.Component {
             }
         } else {
             mask = [
-                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/
+                /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/,
             ];
             placeholder = 'mm/dd/yyyy';
             value = this.state.maybeDate;
