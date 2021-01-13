@@ -1,58 +1,157 @@
-import React from 'react';
 import {
     Button,
-    Popover,
     Grid,
+    Popover,
+    Select,
 } from 'react-cm-ui';
+import {
+    upperCase,
+} from 'lodash';
+import React, {
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 
-function PopoverSample() {
-    const popoverContent = (
-        <div>
-            Some cool tooltip content
-        </div>
-    );
+function PopoverSamplePlacement() {
+    const [placementValue, setPlacementValue] = useState(null);
+
+    const placementOptions = [
+        {
+            label: 'bottom-end',
+            value: 'bottom-end',
+        },
+        {
+            label: 'bottom-start',
+            value: 'bottom-start',
+        },
+        {
+            label: 'bottom',
+            value: 'bottom',
+        },
+        {
+            label: 'left-end',
+            value: 'left-end',
+        },
+        {
+            label: 'left-start',
+            value: 'left-start',
+        },
+        {
+            label: 'left',
+            value: 'left',
+        },
+        {
+            label: 'right-end',
+            value: 'right-end',
+        },
+        {
+            label: 'right-start',
+            value: 'right-start',
+        },
+        {
+            label: 'right',
+            value: 'right',
+        },
+        {
+            label: 'top-end',
+            value: 'top-end',
+        },
+        {
+            label: 'top-start',
+            value: 'top-start',
+        },
+        {
+            label: 'top',
+            value: 'top',
+        },
+    ];
+
+    useEffect(() => {
+        setPlacementValue(placementOptions[2]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const onSelectChange = useCallback((selectedOption) => {
+        setPlacementValue(selectedOption);
+    }, []);
+
     return (
-        <Grid
-            spacing={2}
-            sm={4}
-        >
-            <Grid.Column>
+        <Grid>
+            <Grid.Column sm={12}>
                 <Popover
-                    content={popoverContent}
-                    placement="top"
+                    content={(
+                        <div>
+                            Some cool tooltip content
+                        </div>
+                    )}
+                    placement={placementValue?.value}
                 >
-                    <Button>Top</Button>
+                    <Button>
+                        {upperCase(placementValue?.label)}
+                    </Button>
                 </Popover>
             </Grid.Column>
 
-            <Grid.Column>
-                <Popover
-                    content={popoverContent}
-                    placement="right"
-                >
-                    <Button>Right</Button>
-                </Popover>
-            </Grid.Column>
-
-            <Grid.Column>
-                <Popover
-                    content={popoverContent}
-                    placement="bottom"
-                >
-                    <Button>Bottom</Button>
-                </Popover>
-            </Grid.Column>
-
-            <Grid.Column>
-                <Popover
-                    content={popoverContent}
-                    placement="left"
-                >
-                    <Button>Left</Button>
-                </Popover>
+            <Grid.Column sm={12}>
+                <Select
+                    label="Placement"
+                    onChange={onSelectChange}
+                    options={[
+                        {
+                            label: 'bottom-end',
+                            value: 'bottom-end',
+                        },
+                        {
+                            label: 'bottom-start',
+                            value: 'bottom-start',
+                        },
+                        {
+                            label: 'bottom',
+                            value: 'bottom',
+                        },
+                        {
+                            label: 'left-end',
+                            value: 'left-end',
+                        },
+                        {
+                            label: 'left-start',
+                            value: 'left-start',
+                        },
+                        {
+                            label: 'left',
+                            value: 'left',
+                        },
+                        {
+                            label: 'right-end',
+                            value: 'right-end',
+                        },
+                        {
+                            label: 'right-start',
+                            value: 'right-start',
+                        },
+                        {
+                            label: 'right',
+                            value: 'right',
+                        },
+                        {
+                            label: 'top-end',
+                            value: 'top-end',
+                        },
+                        {
+                            label: 'top-start',
+                            value: 'top-start',
+                        },
+                        {
+                            label: 'top',
+                            value: 'top',
+                        },
+                    ]}
+                    value={placementValue}
+                />
             </Grid.Column>
         </Grid>
     );
 }
 
-export default PopoverSample;
+export default PopoverSamplePlacement;

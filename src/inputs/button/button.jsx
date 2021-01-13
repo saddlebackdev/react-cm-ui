@@ -331,9 +331,12 @@ class Button extends React.PureComponent {
             target,
             title,
             width,
+            ...otherProps
         } = this.props;
+
         const disable = disableProp || disabled;
         const ElementType = Utils.getElementType(as, this.props);
+
         const rootClasses = ClassNames(
             'ui',
             'button',
@@ -360,6 +363,7 @@ class Button extends React.PureComponent {
                 [classes.relax]: relax,
             },
         );
+
         const innerContainerClasses = ClassNames(
             'button-inner-container',
             classes.innerContainer,
@@ -367,6 +371,8 @@ class Button extends React.PureComponent {
 
         return (
             <ElementType
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...otherProps}
                 className={rootClasses}
                 disabled={disable}
                 id={id}
