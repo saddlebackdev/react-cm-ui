@@ -4,7 +4,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function PopoverSample() {
+function PopoverMouseEnterSample() {
     return (
         <Popover
             content="Wow! Slick Mouse Events"
@@ -17,4 +17,4 @@ function PopoverSample() {
     );
 }
 
-export default PopoverSample;
+export default PopoverMouseEnterSample;
