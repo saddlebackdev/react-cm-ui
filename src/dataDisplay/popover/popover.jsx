@@ -206,7 +206,6 @@ function Popover(props) {
         id,
         modifiers,
         mouseEvent,
-        onClickAway: onClickAwayProp,
         open: openProp,
         placement,
     } = props;
@@ -230,11 +229,11 @@ function Popover(props) {
             onClick: onClickChildProp,
         } = childProps;
 
-        if (event && event.currentTarget && mouseEvent === 'onClick') {
-            if (isFunction(onClickChildProp)) {
-                onClickChildProp(event);
-            }
+        if (isFunction(onClickChildProp)) {
+            onClickChildProp(event);
+        }
 
+        if (event && event.currentTarget && mouseEvent === 'onClick') {
             setChildRef(event.currentTarget);
         }
     }, [mouseEvent]);
@@ -244,11 +243,11 @@ function Popover(props) {
             onMouseEnter: onMouseEnterChildProp,
         } = childProps;
 
-        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
-            if (isFunction(onMouseEnterChildProp)) {
-                onMouseEnterChildProp(event);
-            }
+        if (isFunction(onMouseEnterChildProp)) {
+            onMouseEnterChildProp(event);
+        }
 
+        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
             setChildRef(event.currentTarget);
         }
     }, [mouseEvent]);
@@ -258,27 +257,38 @@ function Popover(props) {
             onMouseLeave: onMouseLeaveChildProp,
         } = childProps;
 
-        if (mouseEvent === 'onMouseEnter') {
-            if (isFunction(onMouseLeaveChildProp)) {
-                onMouseLeaveChildProp(event);
-            }
-
-            setChildRef(null);
-        }
-    }, [mouseEvent]);
-
-    const onClickAway = useCallback((event) => {
-        if (isFunction(onClickAwayProp)) {
-            onClickAwayProp(event);
+        if (isFunction(onMouseLeaveChildProp)) {
+            onMouseLeaveChildProp();
         }
 
         setChildRef(null);
-    }, [onClickAwayProp]);
+    }, []);
+
+    const onClickAway = useCallback(() => {
+        setChildRef(null);
+    }, []);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_POPOVER,
         className,
+    );
+
+    const popoverRootNode = (
+        <div
+            className={classes.popoverRoot}
+        >
+            <span className={classes.arrow} ref={setArrowRef} />
+
+            <div
+                className={ClassNames(
+                    `${BEM_POPOVER}--content`,
+                    classes.content,
+                )}
+            >
+                {content}
+            </div>
+        </div>
     );
 
     return (
@@ -321,23 +331,10 @@ function Popover(props) {
                     >
                         <div>
                             <ClickAwayListener
-                                mouseEvent={mouseEvent === 'onMouseEnter' ? false : 'onClick'}
+                                mouseEvent="onClick"
                                 onClickAway={onClickAway}
                             >
-                                <div
-                                    className={classes.popoverRoot}
-                                >
-                                    <span className={classes.arrow} ref={setArrowRef} />
-
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_POPOVER}--content`,
-                                            classes.content,
-                                        )}
-                                    >
-                                        {content}
-                                    </div>
-                                </div>
+                                {popoverRootNode}
                             </ClickAwayListener>
                         </div>
                     </Grow>
