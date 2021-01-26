@@ -33,7 +33,7 @@ function DocsDataGrid(props) {
 
     const {
         description,
-        name,
+        displayName,
     } = rootDoc;
 
     return (
