@@ -67,6 +67,10 @@ const propTypes = {
      */
     mouseEvent: PropTypes.oneOf(['onClick', 'onMouseEnter']),
     /**
+     * Event handler for when cursor clicks off of target.
+     */
+    onClickAway: PropTypes.func,
+    /**
      * If `true`, the Popover is visible.
      */
     open: PropTypes.bool,
@@ -101,6 +105,7 @@ const defaultProps = {
     maxWidth: undefined,
     modifiers: undefined,
     mouseEvent: 'onClick',
+    onClickAway: undefined,
     open: undefined,
     placement: 'bottom',
     width: 250,
@@ -206,6 +211,7 @@ function Popover(props) {
         id,
         modifiers,
         mouseEvent,
+        onClickAway: onClickAwayProp,
         open: openProp,
         placement,
     } = props;
@@ -265,8 +271,12 @@ function Popover(props) {
     }, []);
 
     const onClickAway = useCallback(() => {
+        if (isFunction(onClickAwayProp)) {
+            onClickAwayProp();
+        }
+
         setChildRef(null);
-    }, []);
+    }, [onClickAwayProp]);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
