@@ -69,7 +69,7 @@ $cell-border-side-left-color: color(borderColor);
             &:last-child { padding-right: rem(11px); }
         }
         &-very .table-header-cell {
-            padding: 0 rem(11px) rem(11px);
+            padding: 0 11px;
             &:first-child { padding-left: rem(22px); }
             &:last-child { padding-right: rem(22px); }
         }
