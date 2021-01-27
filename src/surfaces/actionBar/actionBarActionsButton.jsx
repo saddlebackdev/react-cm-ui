@@ -10,7 +10,7 @@ import Icon from '../../dataDisplay/icon';
 import Prompt from '../../inputs/prompt';
 
 const propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     header: PropTypes.string.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconBackgroundHighlightColor: PropTypes.string,
