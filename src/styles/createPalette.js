@@ -6,6 +6,7 @@ import {
     grey,
     orange,
     pink,
+    purple,
     red,
     redOrange,
     sky,
@@ -93,6 +94,7 @@ export default function createPalette() {
             900: grey[500], // DO NOT USE
         },
         pink,
+        purple,
         redOrange,
         sky,
         teal,

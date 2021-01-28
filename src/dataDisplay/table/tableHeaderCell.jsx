@@ -339,12 +339,14 @@ class TableHeaderCell extends React.PureComponent {
                 onClick={(e) => e.stopPropagation()}
                 onDoubleClick={this.onDoubleClick}
                 style={{
-                    position: 'absolute',
-                    width: 10,
-                    right: 0,
-                    top: '40%',
                     cursor: 'col-resize',
+                    height: 14,
+                    marginRight: -4,
+                    position: 'absolute',
+                    right: 0,
+                    top: '50%',
                     transform: 'translateY(-50%)',
+                    width: 14,
                     ...(shouldDisableResizeHandler && {
                         display: 'none',
                     }),

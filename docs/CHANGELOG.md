@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14.2 - 01/28/2021
+- [PR #267](https://github.com/saddlebackdev/react-cm-ui/pull/267) / Merge Commit 8b2b641e716d828b6b8bf04c3e709e187785df97
+  - DataGrid documentation bug fix.
+
 ## 0.14.1 - 01/12/2021
 - [PR #265](https://github.com/saddlebackdev/react-cm-ui/pull/265) / Merge Commit e6a07b579852588157949b947b6815d4bead6953
   - Update Demo Page to showcase some enhancements to the Filters Drawer Nested Toggles and Multi Select components.

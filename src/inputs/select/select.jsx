@@ -41,7 +41,10 @@ const propTypes = {
     searchable: PropTypes.bool,
     tabIndex: PropTypes.number,
     underline: PropTypes.bool,
-    value: PropTypes.shape({}),
+    value: PropTypes.oneOfType([
+        PropTypes.shape({}),
+        PropTypes.string,
+    ]),
     valueComponent: PropTypes.func,
 };
 

@@ -67,6 +67,10 @@ const propTypes = {
      */
     mouseEvent: PropTypes.oneOf(['onClick', 'onMouseEnter']),
     /**
+     * Event handler for when cursor clicks off of target.
+     */
+    onClickAway: PropTypes.func,
+    /**
      * If `true`, the Popover is visible.
      */
     open: PropTypes.bool,
@@ -101,6 +105,7 @@ const defaultProps = {
     maxWidth: undefined,
     modifiers: undefined,
     mouseEvent: 'onClick',
+    onClickAway: undefined,
     open: undefined,
     placement: 'bottom',
     width: 250,
@@ -230,11 +235,11 @@ function Popover(props) {
             onClick: onClickChildProp,
         } = childProps;
 
-        if (event && event.currentTarget && mouseEvent === 'onClick') {
-            if (isFunction(onClickChildProp)) {
-                onClickChildProp(event);
-            }
+        if (isFunction(onClickChildProp)) {
+            onClickChildProp(event);
+        }
 
+        if (event && event.currentTarget && mouseEvent === 'onClick') {
             setChildRef(event.currentTarget);
         }
     }, [mouseEvent]);
@@ -244,11 +249,11 @@ function Popover(props) {
             onMouseEnter: onMouseEnterChildProp,
         } = childProps;
 
-        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
-            if (isFunction(onMouseEnterChildProp)) {
-                onMouseEnterChildProp(event);
-            }
+        if (isFunction(onMouseEnterChildProp)) {
+            onMouseEnterChildProp(event);
+        }
 
+        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
             setChildRef(event.currentTarget);
         }
     }, [mouseEvent]);
@@ -258,18 +263,16 @@ function Popover(props) {
             onMouseLeave: onMouseLeaveChildProp,
         } = childProps;
 
-        if (mouseEvent === 'onMouseEnter') {
-            if (isFunction(onMouseLeaveChildProp)) {
-                onMouseLeaveChildProp(event);
-            }
-
-            setChildRef(null);
+        if (isFunction(onMouseLeaveChildProp)) {
+            onMouseLeaveChildProp();
         }
-    }, [mouseEvent]);
 
-    const onClickAway = useCallback((event) => {
+        setChildRef(null);
+    }, []);
+
+    const onClickAway = useCallback(() => {
         if (isFunction(onClickAwayProp)) {
-            onClickAwayProp(event);
+            onClickAwayProp();
         }
 
         setChildRef(null);
@@ -279,6 +282,23 @@ function Popover(props) {
         UI_CLASS_NAME,
         BEM_POPOVER,
         className,
+    );
+
+    const popoverRootNode = (
+        <div
+            className={classes.popoverRoot}
+        >
+            <span className={classes.arrow} ref={setArrowRef} />
+
+            <div
+                className={ClassNames(
+                    `${BEM_POPOVER}--content`,
+                    classes.content,
+                )}
+            >
+                {content}
+            </div>
+        </div>
     );
 
     return (
@@ -321,23 +341,10 @@ function Popover(props) {
                     >
                         <div>
                             <ClickAwayListener
-                                mouseEvent={mouseEvent === 'onMouseEnter' ? false : 'onClick'}
+                                mouseEvent="onClick"
                                 onClickAway={onClickAway}
                             >
-                                <div
-                                    className={classes.popoverRoot}
-                                >
-                                    <span className={classes.arrow} ref={setArrowRef} />
-
-                                    <div
-                                        className={ClassNames(
-                                            `${BEM_POPOVER}--content`,
-                                            classes.content,
-                                        )}
-                                    >
-                                        {content}
-                                    </div>
-                                </div>
+                                {popoverRootNode}
                             </ClickAwayListener>
                         </div>
                     </Grow>

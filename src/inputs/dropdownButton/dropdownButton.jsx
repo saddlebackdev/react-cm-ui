@@ -42,7 +42,10 @@ const propTypes = {
     /**
      * The ButtonDropdown's label.
      */
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+    ]),
     /**
      * Options list theme
      */

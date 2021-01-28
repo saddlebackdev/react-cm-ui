@@ -1,6 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.1 - 01/28/2021
+
+#### Feature
+- [PR #268](https://github.com/saddlebackdev/react-cm-ui/pull/268) / Merge Commit 47efeb9a855a6f61f26221d6205f4958613fffdc
+  - Added purple to `./src/styles/createPalette.js`
+
+#### Bug
+- [PR #269](https://github.com/saddlebackdev/react-cm-ui/pull/269) / Merge Commit 0db4126cb8d0f79b789a07b74a16a7685139a737
+  - Fixed Some PropType Warnings and ActionBarActionsDrawer Styling
+- [PR #266](https://github.com/saddlebackdev/react-cm-ui/pull/266) / Merge Commit c2ffd51a053675bb525d60b40eb907bee2168467
+  - bump gsap from 2.1.3 to 3.6.0
+- [PR #267](https://github.com/saddlebackdev/react-cm-ui/pull/267) / Merge Commit 8b2b641e716d828b6b8bf04c3e709e187785df97
+  - Popover Fix and Table Header Styling Fix
+
 ## 9.20.0 - 01/12/2021
 
 #### Feature
