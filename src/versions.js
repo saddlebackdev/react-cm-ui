@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.20.0',
+        package: '9.20.1',
         components: {
             dataDisplay: {
                 dataCard: {
