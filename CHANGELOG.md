@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.2 - 02/01/2021
+
+#### Bug
+- [PR #270](https://github.com/saddlebackdev/react-cm-ui/pull/270) / Merge Commit 887e9dcb1fa03222e63c90be385e574bdb7c1bce
+  - Fixed button Dropdown active state.
+  - Added `colorActive` to Button.
+  - Updated `theme.palatte.cyan[600]` value to match design docs.
+  - Fixed ActivityIndicator's `theme` PropTypes.
+  - Fixed ActionBarActionsButton's Active color state.
+
 ## 9.20.1 - 01/28/2021
 
 #### Feature
