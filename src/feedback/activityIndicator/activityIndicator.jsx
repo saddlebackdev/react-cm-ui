@@ -16,8 +16,8 @@ const propTypes = {
     style: PropTypes.shape({}),
     theme: PropTypes.shape({
         palette: PropTypes.shape({
-            cyan: PropTypes.string,
-            grey: PropTypes.string,
+            cyan: PropTypes.shape({}),
+            grey: PropTypes.shape({}),
         }),
     }),
 };
