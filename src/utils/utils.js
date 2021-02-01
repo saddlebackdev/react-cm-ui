@@ -3,6 +3,7 @@ import _ from 'lodash';
 class Utils {
     static colorEnums() {
         return [
+            'active',
             'action',
             'alert',
             'alternate',

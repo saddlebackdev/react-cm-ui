@@ -141,7 +141,7 @@ function DropdownButton(props) {
             classes={{
                 root: classes.root,
             }}
-            color={color}
+            color={isMenuOpen ? 'active' : color}
             compact={compact}
             disable={disable}
             fluid={fluid}

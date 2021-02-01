@@ -13,7 +13,7 @@ const propTypes = {
     className: PropTypes.string,
     header: PropTypes.string.isRequired,
     iconBackgroundColor: PropTypes.string,
-    iconBackgroundHighlightColor: PropTypes.string,
+    iconBackgroundActiveColor: PropTypes.string,
     iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
@@ -25,7 +25,7 @@ const propTypes = {
 const defaultProps = {
     className: undefined,
     iconBackgroundColor: 'alternate',
-    iconBackgroundHighlightColor: 'highlight',
+    iconBackgroundActiveColor: 'active',
     iconType: 'ellipsis-h',
     id: undefined,
     isMobileSearchVisible: false,
@@ -104,7 +104,7 @@ class ActionBarActionsButton extends React.PureComponent {
             className,
             header,
             iconBackgroundColor,
-            iconBackgroundHighlightColor,
+            iconBackgroundActiveColor,
             iconType,
             id,
             isMobileSearchVisible,
@@ -160,7 +160,7 @@ class ActionBarActionsButton extends React.PureComponent {
                 >
                     <Button
                         className="action_bar--actions_button"
-                        color={isDrawerOpen ? iconBackgroundHighlightColor : iconBackgroundColor}
+                        color={isDrawerOpen ? iconBackgroundActiveColor : iconBackgroundColor}
                         icon
                         id={id}
                         style={style}

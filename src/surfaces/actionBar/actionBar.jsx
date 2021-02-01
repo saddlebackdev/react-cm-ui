@@ -314,7 +314,7 @@ class ActionBar extends React.PureComponent {
                                                                 <ActionBarActionsButton
                                                                     className={actionsButton.className}
                                                                     iconBackgroundColor={actionsButton.iconBackgroundColor}
-                                                                    iconBackgroundHighlightColor={actionsButton.iconBackgroundHighlightColor}
+                                                                    iconBackgroundActiveColor={actionsButton.iconBackgroundActiveColor}
                                                                     iconType={actionsButton.iconType}
                                                                     id={actionsButton.id}
                                                                     isMobileSearchVisible={isMobileSearchVisible}
