@@ -210,6 +210,9 @@ const styles = (theme) => {
             },
         },
         inverse: {},
+        colorActive: {
+            backgroundColor: palette.active.primary,
+        },
         colorAlert: {
             backgroundColor: palette.error.main,
         },
@@ -344,6 +347,7 @@ class Button extends React.PureComponent {
             className,
             {
                 [classes.inverse]: inverse,
+                [classes.colorActive]: !disable && color === 'active',
                 [classes.colorAlert]: !disable && color === 'alert',
                 [classes.colorAlternate]: !disable && color === 'alternate',
                 [classes.colorDisable]: disable || color === 'disable',
