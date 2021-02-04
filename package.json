@@ -72,6 +72,7 @@
     "@babel/register": "^7.4.4",
     "@jest/globals": "^26.0.1",
     "@mvnu/cpx": "^1.5.2",
+    "@selfisekai/gulp-sass": "~4.2.0",
     "babel-eslint": "^10.0.1",
     "css-mediaquery": "^0.1.2",
     "del": "^5.1.0",
@@ -88,13 +89,12 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
-    "gulp-sass": "^4.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
     "jest-junit": "^10.0.0",
     "jest-react-hooks-shallow": "^1.4.1",
     "jsdom": "^16.2.2",
-    "node-sass": "~4.14.1",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "sass": "^1.32.6"
   }
 }

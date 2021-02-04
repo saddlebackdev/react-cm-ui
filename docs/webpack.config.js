@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -52,7 +53,7 @@ module.exports = (env, options) => {
                             loader: 'postcss-loader',
                             options: {
                                 plugins: [
-                                    require('autoprefixer')(),
+                                    autoprefixer(),
                                 ],
                                 sourceMap: true,
                             },
@@ -61,10 +62,10 @@ module.exports = (env, options) => {
                         `sass-loader?outputStyle=expanded&includePaths[]=${path.resolve(__dirname, 'src/scss')}&includePaths[]=${path.resolve(__dirname, '../src/scss')}`,
                     ],
                 }, {
-                    test: /\.(ico|png|jpg|gif|svg|eot|ttf|woff|woff(2)?)(\?[a-z0-9=\.]+)?$/,
+                    test: /\.(ico|png|jpg|gif|svg|eot|ttf|woff|woff(2)?)(\?[a-z0-9=.]+)?$/,
                     loader: 'file-loader?name=[path][name].[ext]?[hash]&context=./src',
                 }, {
-                    test: /\.(sketch|pdf?)(\?[a-z0-9=\.]+)?$/,
+                    test: /\.(sketch|pdf?)(\?[a-z0-9=.]+)?$/,
                     loader: 'file-loader?name=files/[name].[ext]?[hash]&context=./src',
                 },
             ],
