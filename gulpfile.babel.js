@@ -7,8 +7,10 @@ import {
 } from 'gulp';
 import babel from 'gulp-babel';
 import cleanCSS from 'gulp-clean-css';
-import sass from 'gulp-sass';
+import sass from '@selfisekai/gulp-sass';
 import del from 'del';
+
+sass.compiler = require('sass');
 
 const paths = {
     images: {
