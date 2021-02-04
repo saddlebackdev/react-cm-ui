@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.14.3 - 02/04/2021
+
+#### Bug
+- [PR #272](https://github.com/saddlebackdev/react-cm-ui/pull/272) / Merge Commit 233d95e
+  - Fixes `node-gyp` build issues.
+
 ## 0.14.2 - 01/28/2021
 - [PR #267](https://github.com/saddlebackdev/react-cm-ui/pull/267) / Merge Commit 8b2b641e716d828b6b8bf04c3e709e187785df97
   - DataGrid documentation bug fix.
