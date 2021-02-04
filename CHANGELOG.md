@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.3 - 02/04/2021
+
+#### Feature
+- [PR #271](https://github.com/saddlebackdev/react-cm-ui/pull/271) / Merge Commit a1a1270
+  - Added `otherDataGroups` to PersonPanelDetails.
+
+#### Bug
+- [PR #271](https://github.com/saddlebackdev/react-cm-ui/pull/271) / Merge Commit a1a1270
+  - Fixed some PropType warnings.
+- [PR #272](https://github.com/saddlebackdev/react-cm-ui/pull/272) / Merge Commit 233d95e
+  - Fixes `node-gyp` build issues.
+
 ## 9.20.2 - 02/01/2021
 
 #### Bug
