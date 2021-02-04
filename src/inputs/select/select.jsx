@@ -42,6 +42,7 @@ const propTypes = {
     tabIndex: PropTypes.number,
     underline: PropTypes.bool,
     value: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.shape({})),
         PropTypes.shape({}),
         PropTypes.string,
     ]),
