@@ -1,24 +1,31 @@
-import { get } from 'lodash';
-import Classnames from 'classnames';
+import {
+    get,
+    isFunction,
+} from 'lodash';
+import ClassNames from 'classnames';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import PropTypes from 'prop-types';
-import React from 'react';
-import Tooltip from '@material-ui/core/Tooltip';
+import MUIPopper from '@material-ui/core/Popper';
+import React, {
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import {
     UI_CLASS_NAME,
     BEM_POPOVER,
 } from '../../global/constants';
+import Grow from '../../utils/grow';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
-     * The arrow can be enabled/disabled
-     */
-    arrow: PropTypes.bool,
-    /**
      * Override or extend the styles applied to Popover.
      */
     classes: PropTypes.shape({
-        root: PropTypes.string,
+        arrow: PropTypes.string,
+        content: PropTypes.string,
+        popoverRoot: PropTypes.string,
         popper: PropTypes.string,
     }),
     /**
@@ -26,87 +33,272 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
-     * Content
+     * The anchor element.
      */
-    content: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.node,
-    ]),
+    children: PropTypes.node.isRequired,
     /**
-     * We can pass either a string or jsx elements
+     * The content in the Popover.
      */
-    children: PropTypes.shape({}).isRequired,
+    content: PropTypes.node.isRequired,
+    /**
+     * If `true`, Popover will not be fired.
+     */
+    disable: PropTypes.bool,
     /**
      * The `id` of the Popover.
      */
     id: PropTypes.string,
     /**
-     * We can define the max width for the Popover
+     * The max-width of the Popover
      */
-    maxWidth: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
+    maxWidth: PropTypes.number,
+    /**
+     * Popper.js is based on a "plugin-like" architecture;
+     * most of its features are fully encapsulated "modifiers".
+     *
+     * A modifier is a function that is called each time Popper.js needs to
+     * compute the position of the popper.
+     * For this reason, modifiers should be very performant to avoid bottlenecks.
+     * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
+     */
+    modifiers: PropTypes.shape({}),
+    /**
+     * The mouse event to listen to.
+     */
+    mouseEvent: PropTypes.oneOf(['onClick', 'onMouseEnter']),
+    /**
+     * Event handler for when cursor clicks off of target.
+     */
+    onClickAway: PropTypes.func,
+    /**
+     * If `true`, the Popover is visible.
+     */
+    open: PropTypes.bool,
+    /**
+     * Popper placement.
+     */
+    placement: PropTypes.oneOf([
+        'bottom-end',
+        'bottom-start',
+        'bottom',
+        'left-end',
+        'left-start',
+        'left',
+        'right-end',
+        'right-start',
+        'right',
+        'top-end',
+        'top-start',
+        'top',
     ]),
     /**
-     * We can define the width for the Popover
+     * The width of the Popover
      */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    width: PropTypes.number,
 };
 
 const defaultProps = {
-    arrow: true,
-    content: undefined,
     classes: undefined,
     className: undefined,
     id: undefined,
+    disable: false,
     maxWidth: undefined,
+    modifiers: undefined,
+    mouseEvent: 'onClick',
+    onClickAway: undefined,
+    open: undefined,
+    placement: 'bottom',
     width: 250,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
+    palette,
+    shadows,
+    shape,
+    spacing,
+    typography,
+    zIndex,
+}) => ({
     arrow: {
-        color: get(theme, 'palette.common.white'),
+        boxSizing: 'border-box',
+        color: get(palette, 'background.primary'),
+        height: '0.71em',
+        overflow: 'hidden',
+        position: 'absolute',
+        width: '1em',
+        '&::before': {
+            backgroundColor: 'currentColor',
+            boxShadow: shadows[1],
+            content: '""',
+            display: 'block',
+            height: '100%',
+            margin: 'auto',
+            transform: 'rotate(45deg)',
+            width: '100%',
+        },
     },
-    popper: {},
-    root: {
-        width: 'fit-content',
-    },
-    tooltip: {
-        backgroundColor: get(theme, 'palette.background.primary'),
-        borderRadius: get(theme, 'shape.borderRadius.secondary'),
+    popoverRoot: {
+        backgroundColor: get(palette, 'background.primary'),
+        borderRadius: get(shape, 'borderRadius.secondary'),
         boxShadow: '0 7px 22px 0 rgba(0, 0, 0, 0.34)',
-        color: 'black',
-        fontFamily: get(theme, 'typography.fontFamily'),
-        fontSize: get(theme, 'typography.fontSize'),
-        fontWeight: get(theme, 'typography.fontWeightRegular'),
+        color: get(palette, 'text.primary'),
+        fontFamily: get(typography, 'fontFamily'),
+        fontSize: get(typography, 'fontSize'),
+        fontWeight: get(typography, 'fontWeightRegular'),
         maxWidth: ({ maxWidth }) => maxWidth || 'none',
-        padding: 22,
+        overflow: 'visible',
+        padding: spacing(2),
+        position: 'relative',
         width: ({ width }) => width,
     },
+    popper: {
+        zIndex: zIndex.popover,
+        '&[x-placement*="bottom"] $arrow': {
+            top: 0,
+            left: 0,
+            marginTop: '-0.71em',
+            marginLeft: 4,
+            marginRight: 4,
+            '&::before': {
+                transformOrigin: '0 100%',
+            },
+        },
+        '&[x-placement*="top"] $arrow': {
+            bottom: 0,
+            left: 0,
+            marginBottom: '-0.71em',
+            marginLeft: 4,
+            marginRight: 4,
+            '&::before': {
+                transformOrigin: '100% 0',
+            },
+        },
+        '&[x-placement*="right"] $arrow': {
+            left: 0,
+            marginLeft: '-0.71em',
+            height: '1em',
+            width: '0.71em',
+            marginTop: 4,
+            marginBottom: 4,
+            '&::before': {
+                transformOrigin: '100% 100%',
+            },
+        },
+        '&[x-placement*="left"] $arrow': {
+            right: 0,
+            marginRight: '-0.71em',
+            height: '1em',
+            width: '0.71em',
+            marginTop: 4,
+            marginBottom: 4,
+            '&::before': {
+                transformOrigin: '0 0',
+            },
+        },
+    },
+    content: {},
 }));
 
 /**
- * The Popover is similar to a tooltip; it is a pop-up box that appears when the user
- * hovers over an element
+ * The Popover is used to display some content on top of another.
  */
 function Popover(props) {
     const {
         children,
-        content,
         className,
+        content,
+        disable,
         id,
+        modifiers,
+        mouseEvent,
+        onClickAway: onClickAwayProp,
+        open: openProp,
+        placement,
     } = props;
 
     const classes = useStyles(props);
 
-    const rootClasses = Classnames(
+    const [arrowRef, setArrowRef] = useState(null);
+    const [childRef, setChildRef] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        if (openProp === true || openProp === false) {
+            setIsOpen(!disable && openProp);
+        } else {
+            setIsOpen(!disable && Boolean(childRef));
+        }
+    }, [childRef, disable, openProp]);
+
+    const onClick = useCallback((event, childProps) => {
+        const {
+            onClick: onClickChildProp,
+        } = childProps;
+
+        if (isFunction(onClickChildProp)) {
+            onClickChildProp(event);
+        }
+
+        if (event && event.currentTarget && mouseEvent === 'onClick') {
+            setChildRef(event.currentTarget);
+        }
+    }, [mouseEvent]);
+
+    const onMouseEnter = useCallback((event, childProps) => {
+        const {
+            onMouseEnter: onMouseEnterChildProp,
+        } = childProps;
+
+        if (isFunction(onMouseEnterChildProp)) {
+            onMouseEnterChildProp(event);
+        }
+
+        if (event && event.currentTarget && mouseEvent === 'onMouseEnter') {
+            setChildRef(event.currentTarget);
+        }
+    }, [mouseEvent]);
+
+    const onMouseLeave = useCallback((event, childProps) => {
+        const {
+            onMouseLeave: onMouseLeaveChildProp,
+        } = childProps;
+
+        if (isFunction(onMouseLeaveChildProp)) {
+            onMouseLeaveChildProp();
+        }
+
+        setChildRef(null);
+    }, []);
+
+    const onClickAway = useCallback(() => {
+        if (isFunction(onClickAwayProp)) {
+            onClickAwayProp();
+        }
+
+        setChildRef(null);
+    }, [onClickAwayProp]);
+
+    const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_POPOVER,
-        classes.root,
         className,
+    );
+
+    const popoverRootNode = (
+        <div
+            className={classes.popoverRoot}
+        >
+            <span className={classes.arrow} ref={setArrowRef} />
+
+            <div
+                className={ClassNames(
+                    `${BEM_POPOVER}--content`,
+                    classes.content,
+                )}
+            >
+                {content}
+            </div>
+        </div>
     );
 
     return (
@@ -114,22 +306,50 @@ function Popover(props) {
             className={rootClasses}
             id={id}
         >
-            <Tooltip
-                arrow
-                className={`${BEM_POPOVER}--popper`}
-                classes={{
-                    arrow: classes.arrow,
-                    popper: classes.popper,
-                    tooltip: classes.tooltip,
+            {React.cloneElement(
+                children, {
+                    onClick: (event) => onClick(event, children.props),
+                    onMouseEnter: (event) => onMouseEnter(event, children.props),
+                    onMouseLeave: (event) => onMouseLeave(event, children.props),
+                },
+            )}
+
+            <MUIPopper
+                anchorEl={childRef}
+                className={ClassNames(
+                    `${BEM_POPOVER}--popper`,
+                    classes.popper,
+                )}
+                modifiers={{
+                    arrow: {
+                        enabled: true,
+                        element: arrowRef,
+                    },
+                    offset: {
+                        offset: '0, 11',
+                    },
+                    ...modifiers,
                 }}
-                title={content}
+                open={isOpen}
+                placement={placement}
+                transition
             >
-                <div
-                    className={`${BEM_POPOVER}--children_container`}
-                >
-                    {children}
-                </div>
-            </Tooltip>
+                {({ TransitionProps }) => (
+                    <Grow
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...TransitionProps}
+                    >
+                        <div>
+                            <ClickAwayListener
+                                mouseEvent="onClick"
+                                onClickAway={onClickAway}
+                            >
+                                {popoverRootNode}
+                            </ClickAwayListener>
+                        </div>
+                    </Grow>
+                )}
+            </MUIPopper>
         </div>
     );
 }

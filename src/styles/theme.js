@@ -1,6 +1,7 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import transitions from '@material-ui/core/styles/transitions';
 import createSpacing from '@material-ui/core/styles/createSpacing';
+import shadows from "@material-ui/core/styles/shadows";
 import {
     keys as breakpointsKeys,
     values as breakpointsValues,
@@ -38,6 +39,7 @@ const theme = {
         },
     },
     palette: createPalette(),
+    shadows,
     shape,
     spacing: createSpacing(11),
     transitions,
@@ -57,7 +59,8 @@ const theme = {
         datePickerInputCalendar: 12000,
         prompt: 13000,
         banner: 14000,
-        tooltip: 15000,
+        popover: 15000,
+        tooltip: 16000,
     },
 };
 

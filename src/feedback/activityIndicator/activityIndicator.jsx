@@ -1,8 +1,35 @@
+import {
+    Back,
+    Power1,
+    TimelineMax,
+} from 'gsap';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { TimelineMax } from 'gsap';
-import colorStyles from '../../styles/colorExports';
+import withTheme from '../../styles/withTheme';
+
+const propTypes = {
+    className: PropTypes.string,
+    color: PropTypes.oneOf(['backgroundColorHighlight', 'backgroundColorStatic']),
+    id: PropTypes.string,
+    size: PropTypes.number,
+    style: PropTypes.shape({}),
+    theme: PropTypes.shape({
+        palette: PropTypes.shape({
+            cyan: PropTypes.shape({}),
+            grey: PropTypes.shape({}),
+        }),
+    }),
+};
+
+const defaultProps = {
+    className: undefined,
+    color: 'backgroundColorHighlight',
+    id: undefined,
+    size: 68,
+    style: {},
+    theme: undefined,
+};
 
 const BLOCK_CLASS = 'activity_indicator';
 const BAR_CLASS = `${BLOCK_CLASS}--bar`;
@@ -32,15 +59,18 @@ class ActivityIndicator extends React.PureComponent {
             height: BAR_HEIGHT,
             opacity: 1,
         };
+
         const barToDownOptions = {
             ease: Back.easeOut.config(1.5), // eslint-disable-line no-undef
             height: CIRCLE_SIZE,
             opacity: 0,
         };
+
         const circleToUpOptions = {
             ease: Power1.easeOut, // eslint-disable-line no-undef
             y: CIRCLE_UP_Y_POS,
         };
+
         const circleToDownOptions = {
             ease: Back.easeOut.config(1.5), // eslint-disable-line no-undef
             y: 0,
@@ -159,19 +189,34 @@ class ActivityIndicator extends React.PureComponent {
             id,
             size,
             style,
+            theme,
         } = this.props;
-        const containerClasses = ClassNames('ui', BLOCK_CLASS, className);
+
+        const {
+            palette: {
+                cyan,
+                grey,
+            },
+        } = theme;
+
+        const rootClasses = ClassNames(
+            'ui',
+            BLOCK_CLASS,
+            className,
+        );
+
         const transformScaleDecimal = (1 / 68) * size;
+
         let backgroundColorStyle;
 
         switch (color) {
             case 'backgroundColorStatic':
-                backgroundColorStyle = colorStyles.backgroundColorStatic;
+                backgroundColorStyle = grey[400];
 
                 break;
 
             case 'backgroundColorHighlight':
-                backgroundColorStyle = colorStyles.backgroundColorHighlight;
+                backgroundColorStyle = cyan[500];
 
                 break;
             default:
@@ -180,7 +225,7 @@ class ActivityIndicator extends React.PureComponent {
 
         return (
             <div
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 style={{
                     ...style,
@@ -246,20 +291,7 @@ class ActivityIndicator extends React.PureComponent {
     }
 }
 
-ActivityIndicator.propTypes = {
-    className: PropTypes.string,
-    color: PropTypes.oneOf(['backgroundColorHighlight', 'backgroundColorStatic']),
-    id: PropTypes.string,
-    size: PropTypes.number,
-    style: PropTypes.shape({}),
-};
+ActivityIndicator.propTypes = propTypes;
+ActivityIndicator.defaultProps = defaultProps;
 
-ActivityIndicator.defaultProps = {
-    className: undefined,
-    color: 'backgroundColorHighlight',
-    id: undefined,
-    size: 68,
-    style: {},
-};
-
-export default ActivityIndicator;
+export default withTheme(ActivityIndicator);

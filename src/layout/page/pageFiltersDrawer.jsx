@@ -1,3 +1,6 @@
+import {
+    noop,
+} from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FiltersDrawer from '../../surfaces/filtersDrawer';
@@ -6,12 +9,12 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
-    isDirty: PropTypes.bool.isRequired,
+    isDirty: PropTypes.bool,
     isFiltering: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    onApply: PropTypes.func.isRequired,
-    onClear: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onApply: PropTypes.func,
+    onClear: PropTypes.func,
+    onClose: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.shape({})),
     style: PropTypes.shape({}),
 };
@@ -20,6 +23,10 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     id: undefined,
+    isDirty: false,
+    onApply: noop,
+    onClear: noop,
+    onClose: noop,
     rows: undefined,
     style: {},
 };

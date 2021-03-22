@@ -43,7 +43,10 @@ const propTypes = {
     /**
      * The ButtonDropdown's label.
      */
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+    ]),
     /**
      * Options list theme
      */
@@ -145,7 +148,7 @@ function DropdownButton(props) {
                 root: classes.root,
                 innerContainer: classes.innerContainer,
             }}
-            color={color}
+            color={isMenuOpen ? 'active' : color}
             compact={compact}
             disable={disable}
             fluid={fluid}

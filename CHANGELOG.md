@@ -1,6 +1,51 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.3 - 02/04/2021
+
+#### Feature
+- [PR #271](https://github.com/saddlebackdev/react-cm-ui/pull/271) / Merge Commit a1a1270
+  - Added `otherDataGroups` to PersonPanelDetails.
+
+#### Bug
+- [PR #271](https://github.com/saddlebackdev/react-cm-ui/pull/271) / Merge Commit a1a1270
+  - Fixed some PropType warnings.
+- [PR #272](https://github.com/saddlebackdev/react-cm-ui/pull/272) / Merge Commit 233d95e
+  - Fixes `node-gyp` build issues.
+
+## 9.20.2 - 02/01/2021
+
+#### Bug
+- [PR #270](https://github.com/saddlebackdev/react-cm-ui/pull/270) / Merge Commit 887e9dcb1fa03222e63c90be385e574bdb7c1bce
+  - Fixed button Dropdown active state.
+  - Added `colorActive` to Button.
+  - Updated `theme.palatte.cyan[600]` value to match design docs.
+  - Fixed ActivityIndicator's `theme` PropTypes.
+  - Fixed ActionBarActionsButton's Active color state.
+
+## 9.20.1 - 01/28/2021
+
+#### Feature
+- [PR #268](https://github.com/saddlebackdev/react-cm-ui/pull/268) / Merge Commit 47efeb9a855a6f61f26221d6205f4958613fffdc
+  - Added purple to `./src/styles/createPalette.js`
+
+#### Bug
+- [PR #269](https://github.com/saddlebackdev/react-cm-ui/pull/269) / Merge Commit 0db4126cb8d0f79b789a07b74a16a7685139a737
+  - Fixed Some PropType Warnings and ActionBarActionsDrawer Styling
+- [PR #266](https://github.com/saddlebackdev/react-cm-ui/pull/266) / Merge Commit c2ffd51a053675bb525d60b40eb907bee2168467
+  - bump gsap from 2.1.3 to 3.6.0
+- [PR #267](https://github.com/saddlebackdev/react-cm-ui/pull/267) / Merge Commit 8b2b641e716d828b6b8bf04c3e709e187785df97
+  - Popover Fix and Table Header Styling Fix
+
+## 9.20.0 - 01/12/2021
+
+#### Feature
+- [PR #265](https://github.com/saddlebackdev/react-cm-ui/pull/265) / Merge Commit e6a07b579852588157949b947b6815d4bead6953
+  - Refactored Popover to use MUI Popper.
+  - Refactored PersonCoreMilestones to use new Popover API.
+- [PR #264](https://github.com/saddlebackdev/react-cm-ui/pull/264) / Merge Commit 2949c0735df4ab31f6e6d15a4bea527c6f9e359c
+  - Minor Eslint Clean Up
+
 ## 9.19.6 - 12/18/2020
 
 #### Feature

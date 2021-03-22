@@ -15,6 +15,7 @@ import PopoverSample from './popoverSample';
 import PopoverSampleControlled from './popoverSampleControlled';
 import PopoverSamplePlacement from './popoverSamplePlacement';
 import PopoverSampleWithJsx from './popoverSampleWithJsx';
+import PopoverMouseEnterSample from './popoverMouseEnterSample';
 // eslint-disable-next-line import/extensions, import/no-named-default
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/popover/popover';
 
@@ -52,6 +53,20 @@ function PopoverExample() {
 
                 <Example rawCode={require('!!raw-loader!./popoverSample.jsx').default}>
                     <PopoverSample />
+                </Example>
+
+                <MarkdownContainer>
+                    <Heading anchorLink="children" variant="h2">
+                        Mouse Enter Popover
+                    </Heading>
+
+                    <Typography variant="body1">
+                        Open a popover by mouse enter.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example rawCode={require('!!raw-loader!./popoverSampleControlled.jsx').default}>
+                    <PopoverMouseEnterSample />
                 </Example>
 
                 <MarkdownContainer>

@@ -20,7 +20,7 @@ const propTypes = {
     drawerContainer: PropTypes.shape({}),
     header: PropTypes.string.isRequired,
     iconBackgroundColor: PropTypes.string,
-    iconBackgroundHighlightColor: PropTypes.string,
+    iconBackgroundActiveColor: PropTypes.string,
     iconType: PropTypes.string,
     id: PropTypes.string,
     isMobileSearchVisible: PropTypes.bool,
@@ -183,7 +183,7 @@ class ActionBarActionsButton extends React.PureComponent {
             drawerContainer,
             header,
             iconBackgroundColor,
-            iconBackgroundHighlightColor,
+            iconBackgroundActiveColor,
             iconType,
             id,
             options,
@@ -240,7 +240,7 @@ class ActionBarActionsButton extends React.PureComponent {
                 >
                     <Button
                         className="action_bar--actions_button"
-                        color={isDrawerOpen ? iconBackgroundHighlightColor : iconBackgroundColor}
+                        color={isDrawerOpen ? iconBackgroundActiveColor : iconBackgroundColor}
                         icon
                         id={id}
                         style={style}

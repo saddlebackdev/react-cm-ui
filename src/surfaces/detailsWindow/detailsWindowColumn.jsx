@@ -101,9 +101,7 @@ class DetailsWindowColumn extends React.PureComponent {
             flexBasisInlineStyleValue = flexBasis || 'auto';
             flexGrowInlineStyleValue = flexGrow || 0;
             flexShrinkInlineStyleValue = flexShrink || 0;
-            horizontalSpacingInlineStyleValue = horizontalSpacing ?
-                `${horizontalSpacing}px` :
-                null;
+            horizontalSpacingInlineStyleValue = horizontalSpacing || null;
         }
 
         return (

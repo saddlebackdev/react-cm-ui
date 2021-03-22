@@ -2,6 +2,7 @@ import {
     filter,
     find,
     isEmpty,
+    isNil,
     map,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -153,6 +154,10 @@ const propTypes = {
      */
     isMobile: PropTypes.bool,
     /**
+     * For passing in custom Data Groups.
+     */
+    otherDataGroups: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
      * Button `props` to setup the Select button.
      */
     selectButtonProps: PropTypes.shape({
@@ -188,6 +193,7 @@ const defaultProps = {
     id: null,
     isExpanded: false,
     isMobile: false,
+    otherDataGroups: null,
     selectButtonProps: {},
     viewRecordButtonProps: {},
 };
@@ -654,6 +660,7 @@ function PersonPanelDetails(props) {
         id,
         isExpanded,
         isMobile,
+        otherDataGroups,
         selectButtonProps,
         viewRecordButtonProps,
     } = props;
@@ -758,13 +765,34 @@ function PersonPanelDetails(props) {
             emergencyContactRelation,
         });
 
-        setDataGroupsColumns([
+        let newDataGroupsColumns = [
             ...personalDataGroup,
             ...phoneDataGroup,
             ...emailDataGroup,
             ...addressDataGroup,
             ...emergencyContactDataGroup,
-        ]);
+        ];
+
+        if (!isNil(otherDataGroups)) {
+            newDataGroupsColumns = [
+                ...personalDataGroup,
+                ...phoneDataGroup,
+                ...emailDataGroup,
+                ...addressDataGroup,
+                ...emergencyContactDataGroup,
+                ...otherDataGroups,
+            ];
+        } else {
+            newDataGroupsColumns = [
+                ...personalDataGroup,
+                ...phoneDataGroup,
+                ...emailDataGroup,
+                ...addressDataGroup,
+                ...emergencyContactDataGroup,
+            ];
+        }
+
+        setDataGroupsColumns(newDataGroupsColumns);
     }, [
         addresses,
         allergies,
@@ -784,6 +812,7 @@ function PersonPanelDetails(props) {
         isChild,
         isDoNotContact,
         isStudent,
+        otherDataGroups,
         phones,
         preferredService,
     ]);

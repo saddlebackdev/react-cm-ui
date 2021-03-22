@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/surfaces/filtersRail/__test__/filtersRail.test.js
  */
 

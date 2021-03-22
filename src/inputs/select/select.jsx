@@ -111,13 +111,11 @@ const propTypes = {
      * Underlined Select selection.
      */
     underline: PropTypes.bool,
-    /**
-     * Changes the value of the Select.
-     */
-    value: PropTypes.shape({}),
-    /**
-     * A Select can have custom value component
-     */
+    value: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.shape({})),
+        PropTypes.shape({}),
+        PropTypes.string,
+    ]),
     valueComponent: PropTypes.func,
 };
 
