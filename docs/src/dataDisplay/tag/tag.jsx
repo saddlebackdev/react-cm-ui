@@ -1,5 +1,4 @@
 import {
-    Header,
     Tag,
     Typography,
 } from 'react-cm-ui';
@@ -16,6 +15,7 @@ import {
 } from './examples/examples';
 import Block from '../../global/block';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -63,13 +63,16 @@ function DocsTag(props) {
                     </Typography>
                 </MarkdownContainer>
 
-                {/* Label */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Label
-                    <Header.Subheader>
-                        A standard label that can be attached to something, giving information about it.
-                    </Header.Subheader>
-                </Header>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
+                    Tag
+                </Heading>
+
+                <Typography variant="body1">
+                    A standard tag that can be attached to something, giving information about it.
+                </Typography>
 
                 <Tag>Label</Tag>
 
@@ -77,13 +80,16 @@ function DocsTag(props) {
                     {LABEL_SAMPLE}
                 </Highlighter>
 
-                {/* Color */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
                     Color
-                    <Header.Subheader>
-                        Labels can have different colors.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                Labels can have different colors.
+                </Typography>
 
                 <Tag color="alert">Alert</Tag>
                 <Tag color="highlight">Highlight</Tag>
@@ -96,13 +102,16 @@ function DocsTag(props) {
                     {COLOR_SAMPLE}
                 </Highlighter>
 
-                {/* Fluid */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
                     Fluid
-                    <Header.Subheader>
-                        A Label's container can take on the size of its parent container.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    A Tag's container can take on the size of its parent container.
+                </Typography>
 
                 <Tag fluid>A Fluid Label</Tag>
 
@@ -110,13 +119,16 @@ function DocsTag(props) {
                     {FLUID_SAMPLE}
                 </Highlighter>
 
-                {/* Inverse */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
                     Inverse
-                    <Header.Subheader>
-                        Labels can have different colors.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    Labels can have different colors.
+                </Typography>
 
                 <Block inverse style={{ marginTop: '33px' }}>
                     <Tag color="alert" inverse>Alert</Tag>
@@ -131,13 +143,16 @@ function DocsTag(props) {
                     {INVERSE_SAMPLE}
                 </Highlighter>
 
-                {/* onClick */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
                     onClick Handler
-                    <Header.Subheader>
-                        A Label can be have a onClick handler.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                A Label can be have a onClick handler.
+                </Typography>
 
                 <Tag onClick={onClick}>Click Me</Tag>
 
@@ -145,13 +160,16 @@ function DocsTag(props) {
                     {ON_CLICK_SAMPLE}
                 </Highlighter>
 
-                {/* onClearClick */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
+                <Heading
+                    anchorLink="alert-banner"
+                    variant="h2"
+                >
                     onClearClick Handler
-                    <Header.Subheader>
-                        A Label can be removed using the onClearClick handler.
-                    </Header.Subheader>
-                </Header>
+                </Heading>
+
+                <Typography variant="body1">
+                    A Label can be removed using the onClearClick handler.
+                </Typography>
 
                 <Tag color="alert" onClearClick={onClearClick}>Alert</Tag>
                 <Tag color="highlight" onClearClick={onClearClick}>Highlight</Tag>
