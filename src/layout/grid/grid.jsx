@@ -7,12 +7,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     BEM_GRID,
+    BEM_GRID_COLUMN,
     UI_CLASS_NAME,
 } from '../../global/constants';
 import {
     SPACINGS,
 } from './gridConstants';
 import GridColumn from './gridColumn';
+import GridRowDeprecated from './gridRowDeprecated';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -83,6 +85,10 @@ const propTypes = {
      */
     spacing: PropTypes.oneOf(SPACINGS),
     /**
+     * Override styles applied to the component.
+     */
+    style: PropTypes.shape({}),
+    /**
      * Defines the `flex-wrap` style property.
      * It's applied for all screen sizes.
      */
@@ -91,6 +97,33 @@ const propTypes = {
         'wrap-reverse',
         'wrap',
     ]),
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    form: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    horizontalAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    relaxed: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    stressed: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
 };
 
 const defaultProps = {
@@ -103,10 +136,20 @@ const defaultProps = {
     id: null,
     justifyContent: 'flex-start',
     spacing: 0,
+    style: null,
     wrap: 'wrap',
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
+    form: undefined,
+    horizontalAlign: undefined,
+    relaxed: undefined,
+    stressed: undefined,
+    textAlign: undefined,
+    verticalAlign: undefined,
 };
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(({ spacing }) => {
     function getOffset(val, div = 1) {
         const parse = parseFloat(val);
 
@@ -116,14 +159,14 @@ const useStyles = makeStyles((theme) => {
     const gutters = {};
 
     // eslint-disable-next-line consistent-return
-    forEach(SPACINGS, (spacing) => {
-        const themeSpacing = theme.spacing(spacing);
+    forEach(SPACINGS, (value) => {
+        const themeSpacing = spacing(value);
 
         if (themeSpacing === 0) {
             return null;
         }
 
-        gutters[`spacing-${spacing}`] = {
+        gutters[`spacing-${value}`] = {
             margin: `-${getOffset(themeSpacing, 2)}`,
             width: `calc(100% + ${getOffset(themeSpacing)})`,
             '& > .grid--column': {
@@ -137,6 +180,66 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             flexWrap: 'wrap',
             width: '100%',
+            /**
+             * Deprecated classses
+             */
+            [`& .${BEM_GRID_COLUMN}`]: {
+                width: (columns) => `${(1 / columns) * 100}%`,
+            },
+            '&$deprecatedForm': {
+                marginBottom: 16.5,
+                marginTop: 16.5,
+                [`& .${BEM_GRID_COLUMN}`]: {
+                    paddingBottom: 16.5,
+                    paddingTop: 16.5,
+                },
+            },
+            '&$deprecatedHorizontalCenter': {
+                justifyContent: 'center',
+            },
+            '&$deprecatedHorizontalLeft': {
+                justifyContent: 'flex-start',
+            },
+            '&$deprecatedHorizontalTop': {
+                justifyContent: 'flex-end',
+            },
+            '&$deprecatedRelaxed': {
+                marginLeft: -22,
+                marginRight: -22,
+                [`& .${BEM_GRID_COLUMN}`]: {
+                    paddingLeft: 22,
+                    paddingRight: 22,
+                },
+            },
+            '&$deprecatedStressed': {
+                marginLeft: 0,
+                marginRight: 0,
+                [`& .${BEM_GRID_COLUMN}`]: {
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                },
+            },
+            '&$deprecatedTextAlignCenter': {
+                textAlign: 'center',
+            },
+            '&$deprecatedTextAlignLeft': {
+                textAlign: 'left',
+            },
+            '&$deprecatedTextAlignRight': {
+                textAlign: 'right',
+            },
+            '&$deprecatedVerticalAlignBottom': {
+                alignItems: 'flex-end',
+            },
+            '&$deprecatedVerticalAlignMiddle': {
+                alignItems: 'center',
+            },
+            '&$deprecatedVerticalAlignTop': {
+                alignItems: 'flex-start',
+            },
+            /**
+             * End of deprecated classes
+             */
         },
         'alignContent-center': {
             alignContent: 'center',
@@ -165,6 +268,24 @@ const useStyles = makeStyles((theme) => {
         'alignItems-baseline': {
             alignItems: 'baseline',
         },
+        /**
+         * Deprecated classses
+         */
+        deprecatedForm: {},
+        deprecatedHorizontalCenter: {},
+        deprecatedHorizontalLeft: {},
+        deprecatedHorizontalTop: {},
+        deprecatedRelaxed: {},
+        deprecatedStressed: {},
+        deprecatedTextAlignCenter: {},
+        deprecatedTextAlignLeft: {},
+        deprecatedTextAlignRight: {},
+        deprecatedVerticalAlignBottom: {},
+        deprecatedVerticalAlignMiddle: {},
+        deprecatedVerticalAlignTop: {},
+        /**
+         * End of deprecated classses
+         */
         'direction-column': {
             flexDirection: 'column',
         },
@@ -200,13 +321,12 @@ const useStyles = makeStyles((theme) => {
 });
 
 /**
- * The Grid layout responsivly adapts to screen size, aiding in dividing up content into their own
- * regions.
+ * The Grid layout responsivly adapts to screen size, aiding in dividing
+ * up content into their own regions.
  */
 const Grid = React.forwardRef(
-    /* eslint-disable react-hooks/rules-of-hooks */
     // eslint-disable-next-line prefer-arrow-callback
-    function grid(props, ref) {
+    function Grid(props, ref) {
         const {
             alignContent,
             alignItems,
@@ -216,7 +336,9 @@ const Grid = React.forwardRef(
             direction,
             justifyContent,
             spacing,
+            style,
             wrap,
+            ...otherProps
         } = props;
 
         const classes = useStyles(props);
@@ -233,6 +355,21 @@ const Grid = React.forwardRef(
                 [classes[`justifyContent-${camelCase(justifyContent)}`]]: justifyContent !== 'flex-start',
                 [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
                 [classes[`wrap-${camelCase(wrap)}`]]: wrap !== 'wrap',
+                /**
+                 * Deprecated classses
+                 */
+                [classes.deprecatedForm]: otherProps.deprecatedForm === true,
+                [classes.deprecatedHorizontalAlignCenter]: otherProps.horizontalAlign === 'center',
+                [classes.deprecatedHorizontalAlignLeft]: otherProps.horizontalAlign === 'left',
+                [classes.deprecatedHorizontalAlignRight]: otherProps.horizontalAlign === 'right',
+                [classes.deprecatedRelaxed]: otherProps.relaxed === true,
+                [classes.deprecatedStressed]: otherProps.stressed === true,
+                [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
+                [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
+                [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
+                [classes.deprecatedVerticalAlignBottom]: otherProps.verticalAlign === 'bottom',
+                [classes.deprecatedVerticalAlignMiddle]: otherProps.verticalAlign === 'middle',
+                [classes.deprecatedVerticalAlignTop]: otherProps.verticalAlign === 'top',
             },
         );
 
@@ -241,15 +378,16 @@ const Grid = React.forwardRef(
                 className={rootClasses}
                 id={id}
                 ref={ref}
+                style={style}
             >
                 {children}
             </div>
         );
     },
-    /* eslint-enable react-hooks/rules-of-hooks */
 );
 
 Grid.Column = GridColumn;
+Grid.RowDeprecated = GridRowDeprecated;
 
 Grid.propTypes = propTypes;
 Grid.defaultProps = defaultProps;
