@@ -1,14 +1,14 @@
-import React from 'react';
 import {
-    Card, Grid, Header,
+    Card,
+    Grid,
+    Typography,
 } from 'react-cm-ui';
-
-// Docs UI Components
+import React from 'react';
 import Block from '../../global/block';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
-import CardSubNavigation from './cardSubNavigation';
 
 const cardSample = `import React from 'react';
 
@@ -19,7 +19,7 @@ export default class CardSample extends React.Component {
     render() {
         return (
             <Card>
-                <Header size="large">Look at me!!!</Header>
+                <Typography size="large">Look at me!!!</Typography>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                     Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
@@ -42,8 +42,8 @@ export default class NestedCardSample extends React.Component {
 
     render() {
         return (
-            <Card nest={true}>
-                <Header size="large">Look How Nested I Am</Header>
+            <Card nest>
+                <Typography size="large">Look How Nested I Am</Typography>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                     Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
@@ -66,20 +66,19 @@ export default class CompactSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true}>
-                <Grid stressed={true}>
-                    <Grid.Row>
-                        <Grid.Column style={{ padding: 0, width: '44px' }}>
-                            <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </Grid.Column>
+            <Card compact={true} nest>
+                <Grid spacing={2}>
+                    <Grid.Column style={{ padding: 0, width: '44px' }}>
+                        <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
+                    </Grid.Column>
 
-                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                            <Header size="small" sub={true}>
-                                A Title
-                                <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                            </Header>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Typography size="small" sub={true}>
+                            A Title
+                        </Typography>
+
+                        <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                    </Grid.Column>
                 </Grid>
             </Card>
         );
@@ -95,20 +94,19 @@ export default class CardOnClickSample extends React.Component {
 
     render() {
         return (
-            <Card compact={true} nest={true} onClick={this._onClick.bind(this)}>
-                <Grid stressed={true}>
-                    <Grid.Row>
-                        <Grid.Column style={{ padding: 0, width: '44px' }}>
-                            <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </Grid.Column>
+            <Card compact={true} nest onClick={this._onClick.bind(this)}>
+                <Grid spacing={2}>
+                    <Grid.Column style={{ padding: 0, width: '44px' }}>
+                        <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
+                    </Grid.Column>
 
-                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                            <Header size="small" sub={true}>
-                                A Title
-                                <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                            </Header>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Typography size="small" sub={true}>
+                            A Title
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                    </Grid.Column>
                 </Grid>
             </Card>
         );
@@ -124,20 +122,19 @@ export default class ActiveSample extends React.Component {
 
     render() {
         return (
-            <Card active={true} compact={true} nest={true}>
-                <Grid stressed={true}>
-                    <Grid.Row>
-                        <Grid.Column style={{ padding: 0, width: '44px' }}>
-                            <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </Grid.Column>
+            <Card active={true} compact={true} nest>
+                <Grid spacing={2}>
+                    <Grid.Column style={{ padding: 0, width: '44px' }}>
+                        <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
+                    </Grid.Column>
 
-                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                            <Header size="small" sub={true}>
-                                A Title
-                                <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                            </Header>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Typography size="small" sub={true}>
+                            A Title
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                    </Grid.Column>
                 </Grid>
             </Card>
         );
@@ -154,19 +151,18 @@ export default class CollapsableSample extends React.Component {
     render() {
         return (
             <Card collapsable nest>
-                <Grid stressed={true}>
-                    <Grid.Row>
-                        <Grid.Column style={{ padding: 0, width: '44px' }}>
-                            <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
-                        </Grid.Column>
+                <Grid spacing={2}>
+                    <Grid.Column style={{ padding: 0, width: '44px' }}>
+                        <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
+                    </Grid.Column>
 
-                        <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                            <Header size="small" sub={true}>
-                                A Title
-                                <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                            </Header>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
+                        <Typography size="small" sub={true}>
+                            A Title
+                            </Typography>
+
+                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                    </Grid.Column>
                 </Grid>
             </Card>
         );
@@ -211,6 +207,8 @@ export default class ViewsTitleBar extends React.Component {
             <Main page="headers">
                 <Main.Content>
                     {this._renderCard()}
+
+                    {this._renderHeader()}
                 </Main.Content>
             </Main>
         );
@@ -278,191 +276,286 @@ export default class ViewsTitleBar extends React.Component {
             },
         ];
 
-        return (
-            <div>
-                <Card>
-                    <Header size="large">Props</Header>
+        if (subNavIndex === 0) {
+            return (
+                <div>
+                    <Card>
+                        <Typography size="large">Props</Typography>
 
-                    <TableProps props={props} />
-                </Card>
+                        <TableProps props={props} />
+                    </Card>
 
-                {/* Card */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Card
-                    <Header.Subheader>
-                        A basic card has a faint border wrapping it's contents. It's box model is fluid so that it can adapt to it's parent container's width.
-                    </Header.Subheader>
-                </Header>
+                    {/* Card */}
+                    <Heading variant="h2">
+                        Card
+                    </Heading>
 
-                <Card>
-                    <Header size="large">Look at me!!!</Header>
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A basic card has a faint border wrapping its contents. Its box model is fluid so that it can adapt to its parent container's width.
+                    </Typography>
 
-                    {null}
+                    <Card>
+                        <Typography size="large">Look at me!!!</Typography>
 
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
-                        Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
-                        Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
-                        Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
-                        dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                        himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                        sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
-                    </p>
-                </Card>
+                        {null}
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {cardSample}
-                </Highlighter>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                            Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                            Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                            Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                            dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                        </p>
+                    </Card>
 
-                {/* Nested Card */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Nested Card
-                    <Header.Subheader>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {cardSample}
+                    </Highlighter>
+
+                    {/* Nested Card */}
+                    <Heading variant="h2">
+                        Nested Card
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A card can give the appearance of being nested. The parent's background color needs to be set to
                         {' '}
                         <code>color(backgroundColorNest)</code>
                         .
-                    </Header.Subheader>
-                </Header>
+                    </Typography>
 
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Card nest>
-                        <Header size="large">Look How Nested I Am</Header>
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Card nest>
+                            <Typography size="large">Look How Nested I Am</Typography>
 
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
-                            Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
-                            Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
-                            Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
-                            dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                            himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
-                        </p>
-                    </Card>
-                </Block>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                                Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                                Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                                Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                                dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
+                        </Card>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {nestedCardSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {nestedCardSample}
+                    </Highlighter>
 
-                {/* Compact */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Compact
-                    <Header.Subheader>
-                        A card can have it's padding reduced.
-                    </Header.Subheader>
-                </Header>
+                    {/* Compact */}
+                    <Heading variant="h2">
+                        Compact
+                    </Heading>
 
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Card compact nest>
-                        <Grid stressed>
-                            <Grid.Row>
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        A card can have its padding reduced.
+                    </Typography>
+
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Card compact nest>
+                            <Grid spacing={2}>
                                 <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Card>
-                </Block>
+                            </Grid>
+                        </Card>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {compactSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {compactSample}
+                    </Highlighter>
 
-                {/* Card onClick Event Handler */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Card onClick Event Handler
-                    <Header.Subheader>
+                    {/* Card onClick Event Handler */}
+                    <Heading variant="h2">
+                        Card onClick Event Handler
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         A card can handle an onClick event.
-                    </Header.Subheader>
-                </Header>
+                    </Typography>
 
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Card compact nest onClick={this._onClick.bind(this)}>
-                        <Grid stressed>
-                            <Grid.Row>
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Card compact nest onClick={this._onClick.bind(this)}>
+                            <Grid spacing={2}>
                                 <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Card>
-                </Block>
+                            </Grid>
+                        </Card>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {cardOnClickSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {cardOnClickSample}
+                    </Highlighter>
 
-                {/* Active */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Active
-                    <Header.Subheader>
+                    {/* Active */}
+                    <Heading variant="h2">
+                        Active
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Cards can have an active state.
-                    </Header.Subheader>
-                </Header>
+                    </Typography>
 
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Card active compact nest>
-                        <Grid stressed>
-                            <Grid.Row>
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Card active compact nest>
+                            <Grid spacing={2}>
                                 <Grid.Column style={{ padding: 0, width: '44px' }}>
                                     <img style={{ display: 'block' }} src="http://placehold.it/44x44/dbe0e3/1c2530" />
                                 </Grid.Column>
 
                                 <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
-                                    <Header size="small" sub>
+                                    <Typography size="small" sub>
                                         A Title
-                                        <Header.Subheader>Lorem ipsum dolor sit amet, consectetur adipiscing.</Header.Subheader>
-                                    </Header>
+                                    </Typography>
+
+                                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                                 </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Card>
-                </Block>
+                            </Grid>
+                        </Card>
+                    </Block>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {activeSample}
-                </Highlighter>
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {activeSample}
+                    </Highlighter>
 
-                {/* Collapsable */}
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Collapsable
-                    <Header.Subheader>
+                    {/* Collapsable */}
+                    <Heading variant="h2">
+                        Collapsable
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
                         Cards can be collapsable.
-                    </Header.Subheader>
-                </Header>
+                    </Typography>
 
-                <Block
-                    nest
-                    style={{ padding: '22px' }}
-                >
-                    <Card collapsable nest title="Collapsable Card">
+                    <Block
+                        nest
+                        style={{ padding: '22px' }}
+                    >
+                        <Card collapsable nest title="Collapsable Card">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                                Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                                Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                                Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                                dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
+                        </Card>
+
+                        <Card compact collapsable nest title="Compact Collapsable Card">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
+                                Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
+                                Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
+                                Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
+                                dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
+                                sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
+                            </p>
+                        </Card>
+                    </Block>
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {collapsableSample}
+                    </Highlighter>
+                </div>
+            );
+        }
+    }
+
+    _renderHeader() {
+        const { subNavIndex } = this.state;
+        const props = [
+            {
+                name: 'attached',
+                type: 'bool',
+                default: '',
+                description: 'Attach edges to the parent container.',
+                allowedTypes: '',
+            }, {
+                name: 'children',
+                type: 'node',
+                default: '',
+                description: 'Primary content.',
+                allowedTypes: '',
+            }, {
+                name: 'className',
+                type: 'string',
+                default: '',
+                description: 'Additional classes.',
+                allowedTypes: '',
+            }, {
+                name: 'color',
+                type: 'enum',
+                default: '',
+                description: 'A Card.Header\'s background color.',
+                allowedTypes: 'blue, green, pink',
+            }, {
+                name: 'style',
+                type: 'object',
+                default: '',
+                description: 'Supply any inline styles to the Card.Header\'s container. Mainly used for padding and margins.',
+                allowedTypes: '',
+            },
+        ];
+
+        if (subNavIndex === 1) {
+            return (
+                <div>
+                    <Card>
+                        <Typography size="large">Props</Typography>
+
+                        <TableProps props={props} />
+                    </Card>
+
+                    {/* Collapsable */}
+                    <Heading variant="h2">
+                        Header
+                    </Heading>
+
+                    <Typography variant="body1" style={{ marginBottom: 16 }}>
+                        Cards can have a custom header.
+                    </Typography>
+
+                    <Card header>
+                        <Card.Header attached color="blue">
+                            Custom Header
+                        </Card.Header>
+
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
                             Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
@@ -474,23 +567,11 @@ export default class ViewsTitleBar extends React.Component {
                         </p>
                     </Card>
 
-                    <Card compact collapsable nest title="Compact Collapsable Card">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices non diam vitae blandit.
-                            Curabitur quis velit eu nibh cursus convallis ac in arcu. Aenean malesuada sed leo eget cursus.
-                            Nunc urna magna, sodales eget rutrum et, facilisis id velit. Pellentesque eu ornare tellus.
-                            Pellentesque aliquet a nibh consectetur vestibulum. Aenean in ipsum tincidunt, congue ante a,
-                            dictum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                            himenaeos. Aenean in tortor porttitor, tristique eros convallis, viverra nunc. Morbi dignissim
-                            sapien ac dui convallis molestie. Donec consequat odio in egestas lacinia.
-                        </p>
-                    </Card>
-                </Block>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {collapsableSample}
-                </Highlighter>
-            </div>
-        );
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {headerSample}
+                    </Highlighter>
+                </div>
+            );
+        }
     }
 }

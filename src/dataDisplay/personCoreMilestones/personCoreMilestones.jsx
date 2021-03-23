@@ -912,10 +912,10 @@ export function PersonCoreMilestones(props) {
             id={id}
         >
             <Grid
+                alignItems="center"
                 className={classes.grid}
-                verticalAlign="middle"
+                spacing={1}
             >
-                <Grid.Row>
                     {!removeAcceptedChristColumn && (
                         <Grid.Column
                             className={ClassNames(
@@ -1219,7 +1219,6 @@ export function PersonCoreMilestones(props) {
                             </div>
                         </Grid.Column>
                     )}
-                </Grid.Row>
             </Grid>
         </div>
     );

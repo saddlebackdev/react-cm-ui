@@ -1,6 +1,10 @@
-
 import {
-    Button, Card, Container, DrawerDeprecated, Header, Icon, TitleBar,
+    Button,
+    Card,
+    Container,
+    DrawerDeprecated,
+    Header,
+    Icon,
 } from 'react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
@@ -900,10 +904,6 @@ export default class ModulesDrawer extends React.Component {
 
         return (
             <Main page="headers">
-                <TitleBar title="Drawer" />
-
-                <DrawerDeprecatedSubNavigation />
-
                 <Header size="large" style={{ margin: '55px 0' }}>
                     This version of the Drawer component has been deprecated.
                     <br />
