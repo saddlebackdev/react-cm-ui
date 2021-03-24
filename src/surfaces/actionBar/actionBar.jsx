@@ -296,7 +296,7 @@ const styles = (theme) => {
                     paddingRight: 0,
                 },
             },
-            '&.action_bar--list': {
+            '& .action_bar--list': {
                 alignItems: 'center',
                 display: 'flex',
             },
@@ -564,6 +564,18 @@ class ActionBar extends React.Component {
                                             lg={column.lg}
                                             md={column.md}
                                             sm={column.sm}
+                                            /**
+                                             * NOTE: Remove `flexBasis`, `flexGrow`, `flexShrink`,
+                                             * and `width` when we finally remove the deprecated
+                                             * style prop.
+                                             */
+                                            style={({
+                                                flexBasis: column.flexBasis || null,
+                                                flexGrow: column.flexGrow || null,
+                                                flexShrink: column.flexShrink || null,
+                                                width: 'auto',
+                                                ...column.style,
+                                            })}
                                             xl={column.xl}
                                         >
                                             <div
