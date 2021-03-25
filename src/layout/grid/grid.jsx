@@ -8,6 +8,7 @@ import React from 'react';
 import {
     BEM_GRID,
     BEM_GRID_COLUMN,
+    BEM_GRID_ROW,
     UI_CLASS_NAME,
 } from '../../global/constants';
 import {
@@ -103,10 +104,6 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    form: PropTypes.bool,
-    /**
-     * Deprecated prop. Please use `classes` to override styles.
-     */
     textAlign: PropTypes.oneOf(['center', 'left', 'right']),
     /**
      * Deprecated prop. Please use `classes` to override styles.
@@ -129,7 +126,6 @@ const defaultProps = {
     // ****
     // NOTE: All props below are deprecated and should not be used.
     // ****
-    form: undefined,
     textAlign: undefined,
     verticalAlign: undefined,
 };
@@ -154,7 +150,13 @@ const useStyles = makeStyles(({ spacing }) => {
         gutters[`spacing-${value}`] = {
             margin: `-${getOffset(themeSpacing, 2)}`,
             width: `calc(100% + ${getOffset(themeSpacing)})`,
-            '& > .grid--column': {
+            [`& > .${BEM_GRID_COLUMN}`]: {
+                padding: getOffset(themeSpacing, 2),
+            },
+            /**
+             * Note: Remove once Grid.RowDeprecated has been removed.
+             */
+            [`& > .${BEM_GRID_ROW} > .${BEM_GRID_COLUMN}`]: {
                 padding: getOffset(themeSpacing, 2),
             },
         };
@@ -170,14 +172,6 @@ const useStyles = makeStyles(({ spacing }) => {
              */
             [`& .${BEM_GRID_COLUMN}`]: {
                 width: (columns) => `${(1 / columns) * 100}%`,
-            },
-            '&$deprecatedForm': {
-                marginBottom: 16.5,
-                marginTop: 16.5,
-                [`& .${BEM_GRID_COLUMN}`]: {
-                    paddingBottom: 16.5,
-                    paddingTop: 16.5,
-                },
             },
             '&$deprecatedTextAlignCenter': {
                 textAlign: 'center',
@@ -231,7 +225,6 @@ const useStyles = makeStyles(({ spacing }) => {
         /**
          * Deprecated classses
          */
-        deprecatedForm: {},
         deprecatedTextAlignCenter: {},
         deprecatedTextAlignLeft: {},
         deprecatedTextAlignRight: {},
@@ -313,7 +306,6 @@ const Grid = React.forwardRef(
                 /**
                  * Deprecated classses
                  */
-                [classes.deprecatedForm]: otherProps.deprecatedForm === true,
                 [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
                 [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
                 [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',

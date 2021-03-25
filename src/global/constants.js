@@ -12,6 +12,7 @@ export const BEM_DATA_GRID = 'data_grid';
 
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
+export const BEM_GRID_ROW = `${BEM_GRID}--row`;
 
 export const BEM_EMAIL_LINK = 'email_link';
 
