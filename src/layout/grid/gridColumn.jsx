@@ -1,6 +1,4 @@
 import {
-    isNumber,
-    map,
     reduce,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -14,7 +12,6 @@ import {
     GRID_SIZES,
 } from './gridConstants';
 import makeStyles from '../../styles/makeStyles';
-import utils from '../../utils/utils';
 
 const propTypes = {
     /**
@@ -126,9 +123,6 @@ const propTypes = {
      * Deprecated prop. Please use `classes` to override styles.
      */
     width: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    /**
-     * Deprecated prop. Please use `classes` to override styles.
-     */
 };
 
 const defaultProps = {
@@ -353,7 +347,8 @@ const GridColumn = React.forwardRef(
             classes.root,
             className,
             {
-                [classes[`${BEM_GRID_COLUMN}-sm-${String(sm)}`]]: sm !== false,
+                [classes[`${BEM_GRID_COLUMN}-sm-${String(sm || otherProps.width)}`]]:
+                    sm !== false || otherProps.width !== false,
                 /**
                  * `otherProps.tablet` is a deprecated prop. It is using the same breakpoint (768)
                  * as `md`, so we're combining in order to have less JSS.
@@ -377,8 +372,6 @@ const GridColumn = React.forwardRef(
                     otherProps.desktop !== false,
                 [classes[`${BEM_GRID_COLUMN}-desktop-large-${String(otherProps.desktopLarge)}`]]:
                     otherProps.desktopLarge !== false,
-                [classes[`${BEM_GRID_COLUMN}-width-${String(otherProps.width)}`]]:
-                    otherProps.width !== false,
                 [classes.deprecatedAlignStretch]: otherProps.align === 'stretch',
                 [classes.deprecatedFloatedLeft]: otherProps.floated === 'left',
                 [classes.deprecatedFloatedRight]: otherProps.floated === 'right',
