@@ -107,18 +107,6 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    horizontalAlign: PropTypes.oneOf(['center', 'left', 'right']),
-    /**
-     * Deprecated prop. Please use `classes` to override styles.
-     */
-    relaxed: PropTypes.bool,
-    /**
-     * Deprecated prop. Please use `classes` to override styles.
-     */
-    stressed: PropTypes.bool,
-    /**
-     * Deprecated prop. Please use `classes` to override styles.
-     */
     textAlign: PropTypes.oneOf(['center', 'left', 'right']),
     /**
      * Deprecated prop. Please use `classes` to override styles.
@@ -142,9 +130,6 @@ const defaultProps = {
     // NOTE: All props below are deprecated and should not be used.
     // ****
     form: undefined,
-    horizontalAlign: undefined,
-    relaxed: undefined,
-    stressed: undefined,
     textAlign: undefined,
     verticalAlign: undefined,
 };
@@ -192,31 +177,6 @@ const useStyles = makeStyles(({ spacing }) => {
                 [`& .${BEM_GRID_COLUMN}`]: {
                     paddingBottom: 16.5,
                     paddingTop: 16.5,
-                },
-            },
-            '&$deprecatedHorizontalCenter': {
-                justifyContent: 'center',
-            },
-            '&$deprecatedHorizontalLeft': {
-                justifyContent: 'flex-start',
-            },
-            '&$deprecatedHorizontalTop': {
-                justifyContent: 'flex-end',
-            },
-            '&$deprecatedRelaxed': {
-                marginLeft: -22,
-                marginRight: -22,
-                [`& .${BEM_GRID_COLUMN}`]: {
-                    paddingLeft: 22,
-                    paddingRight: 22,
-                },
-            },
-            '&$deprecatedStressed': {
-                marginLeft: 0,
-                marginRight: 0,
-                [`& .${BEM_GRID_COLUMN}`]: {
-                    paddingLeft: 0,
-                    paddingRight: 0,
                 },
             },
             '&$deprecatedTextAlignCenter': {
@@ -272,11 +232,6 @@ const useStyles = makeStyles(({ spacing }) => {
          * Deprecated classses
          */
         deprecatedForm: {},
-        deprecatedHorizontalCenter: {},
-        deprecatedHorizontalLeft: {},
-        deprecatedHorizontalTop: {},
-        deprecatedRelaxed: {},
-        deprecatedStressed: {},
         deprecatedTextAlignCenter: {},
         deprecatedTextAlignLeft: {},
         deprecatedTextAlignRight: {},
@@ -359,11 +314,6 @@ const Grid = React.forwardRef(
                  * Deprecated classses
                  */
                 [classes.deprecatedForm]: otherProps.deprecatedForm === true,
-                [classes.deprecatedHorizontalAlignCenter]: otherProps.horizontalAlign === 'center',
-                [classes.deprecatedHorizontalAlignLeft]: otherProps.horizontalAlign === 'left',
-                [classes.deprecatedHorizontalAlignRight]: otherProps.horizontalAlign === 'right',
-                [classes.deprecatedRelaxed]: otherProps.relaxed === true,
-                [classes.deprecatedStressed]: otherProps.stressed === true,
                 [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
                 [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
                 [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
