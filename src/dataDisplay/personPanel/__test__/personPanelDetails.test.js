@@ -255,4 +255,29 @@ describe('<PersonPanelDetails />', () => {
         expect(props.viewRecordButtonProps.onClick).toHaveBeenCalledTimes(1);
         expect(props.viewRecordButtonProps.onKeyDown).toHaveBeenCalledTimes(1);
     });
+
+
+    it('Should disable select record button and apply a custom label', () => {
+        const testCaseProps = {
+            ...props,
+            selectButtonProps: {
+                ...props.selectButtonProps,
+                disable: true,
+                label: 'My Custom Label'
+            }
+        }
+
+        const wrapper = mountWithTheme(
+            <PersonPanelDetails {...testCaseProps}/>,
+        );
+
+        const selectRecordButton = wrapper.find('.block_name--select').at(0);
+
+        expect(selectRecordButton.find('button').prop('disabled')).toBe(true);
+
+        expect(
+            selectRecordButton
+                .find('.button-inner-container').prop('children')
+        ).toBe('My Custom Label');
+    });
 });

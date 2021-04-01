@@ -162,7 +162,9 @@ const propTypes = {
      */
     selectButtonProps: PropTypes.shape({
         className: PropTypes.string,
+        disable: PropTypes.bool,
         id: PropTypes.string,
+        label: PropTypes.string,
         onClick: PropTypes.func,
         onKeyDown: PropTypes.func,
         onPromptCancelClick: PropTypes.func,
@@ -194,7 +196,10 @@ const defaultProps = {
     isExpanded: false,
     isMobile: false,
     otherDataGroups: null,
-    selectButtonProps: {},
+    selectButtonProps: {
+        label: 'Select',
+        disable: false,
+    },
     viewRecordButtonProps: {},
 };
 
@@ -891,8 +896,8 @@ function PersonPanelDetails(props) {
                             {!isEmpty(selectButtonProps) && (
                                 <PersonPanelDetailsActionButton
                                     // eslint-disable-next-line react/jsx-props-no-spreading
-                                    {...selectButtonProps}
                                     label="Select"
+                                    {...selectButtonProps}
                                 />
                             )}
 
