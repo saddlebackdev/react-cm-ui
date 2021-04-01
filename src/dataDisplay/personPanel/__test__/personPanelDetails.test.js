@@ -257,7 +257,7 @@ describe('<PersonPanelDetails />', () => {
     });
 
 
-    it('Should disable select record button and apply a custom label', () => {
+    it('Should disable select record button and apply a custom label using \'selectButtonProps\'', () => {
         const testCaseProps = {
             ...props,
             selectButtonProps: {
@@ -274,7 +274,6 @@ describe('<PersonPanelDetails />', () => {
         const selectRecordButton = wrapper.find('.block_name--select').at(0);
 
         expect(selectRecordButton.find('button').prop('disabled')).toBe(true);
-
         expect(
             selectRecordButton
                 .find('.button-inner-container').prop('children')
