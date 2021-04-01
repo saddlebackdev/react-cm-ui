@@ -26,7 +26,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    disable: false;
+    disable: false,
     id: null,
     onClick: null,
     onKeyDown: null,
