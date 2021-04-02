@@ -232,6 +232,7 @@ const useStyles = makeStyles((theme) => {
         genderUndefined: {},
         grid: {
             margin: `0 -${columnHorizontalPadding}px !important`,
+            width: 'auto',
         },
         hasTakenClass101: ({ iconColor, hasSignedMembershipAgreement }) => (
             iconColor && !hasSignedMembershipAgreement
@@ -914,311 +915,311 @@ export function PersonCoreMilestones(props) {
             <Grid
                 alignItems="center"
                 className={classes.grid}
-                spacing={1}
+                spacing={0}
             >
-                    {!removeAcceptedChristColumn && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
-                                classes.column,
-                            )}
+                {!removeAcceptedChristColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--accepted_christ_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentAcceptedChrist}
+                            disable={!popoverContentAcceptedChrist}
+                            mouseEvent="onMouseEnter"
                         >
-                            <Popover
-                                content={popoverContentAcceptedChrist}
-                                disable={!popoverContentAcceptedChrist}
-                                mouseEvent="onMouseEnter"
-                            >
-                                <Icon
-                                    className={ClassNames(
-                                        classes.iconAcceptedChrist,
-                                        classes.icon,
-                                        {
-                                            [classes.genderFemale]: isFemale,
-                                            [classes.genderMale]: isMale,
-                                            [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.hasAcceptedChrist]: hasAcceptedChrist,
-                                            [classes.isAdult]: recordType === 'adult',
-                                            [classes.isChild]: recordType === 'child',
-                                            [classes.isStudent]: recordType === 'student',
-                                        },
-                                    )}
-                                    compact
-                                    inverse={inverse}
-                                    size={iconSize}
-                                    title={hasAcceptedChrist ? false : 'Has not accepted Christ'}
-                                    type="heart"
-                                />
-                            </Popover>
-                        </Grid.Column>
-                    )}
+                            <Icon
+                                className={ClassNames(
+                                    classes.iconAcceptedChrist,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.hasAcceptedChrist]: hasAcceptedChrist,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
+                                compact
+                                inverse={inverse}
+                                size={iconSize}
+                                title={hasAcceptedChrist ? false : 'Has not accepted Christ'}
+                                type="heart"
+                            />
+                        </Popover>
+                    </Grid.Column>
+                )}
 
-                    {!removeBaptismColumn && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
-                                classes.column,
-                            )}
+                {!removeBaptismColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--baptism_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentBaptism}
+                            disable={!popoverContentBaptism}
+                            mouseEvent="onMouseEnter"
                         >
-                            <Popover
-                                content={popoverContentBaptism}
-                                disable={!popoverContentBaptism}
-                                mouseEvent="onMouseEnter"
-                            >
-                                <Icon
-                                    className={ClassNames(
-                                        classes.iconBaptised,
-                                        classes.icon,
-                                        {
-                                            [classes.genderFemale]: isFemale,
-                                            [classes.genderMale]: isMale,
-                                            [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.isAdult]: recordType === 'adult',
-                                            [classes.isBaptised]: isBaptised,
-                                            [classes.isChild]: recordType === 'child',
-                                            [classes.isStudent]: recordType === 'student',
-                                        },
-                                    )}
-                                    compact
-                                    inverse={inverse}
-                                    size={iconSize}
-                                    title={isBaptised ? false : 'Not Baptized'}
-                                    type="droplet"
-                                />
-                            </Popover>
-                        </Grid.Column>
-                    )}
+                            <Icon
+                                className={ClassNames(
+                                    classes.iconBaptised,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isBaptised]: isBaptised,
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
+                                compact
+                                inverse={inverse}
+                                size={iconSize}
+                                title={isBaptised ? false : 'Not Baptized'}
+                                type="droplet"
+                            />
+                        </Popover>
+                    </Grid.Column>
+                )}
 
-                    {!removeClassColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--class_column`,
-                                classes.column,
-                            )}
+                {!removeClassColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--class_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentClasses}
+                            disable={!popoverContentClasses}
+                            mouseEvent="onMouseEnter"
+                            width={300}
                         >
-                            <Popover
-                                content={popoverContentClasses}
-                                disable={!popoverContentClasses}
-                                mouseEvent="onMouseEnter"
-                                width={300}
+                            <div
+                                className={classes.iconClassContainer}
+                                role="presentation"
+                                style={{
+                                    outline: 'none',
+                                    cursor: 'pointer',
+                                }}
+                                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+                                tabIndex={0}
                             >
                                 <div
-                                    className={classes.iconClassContainer}
-                                    role="presentation"
-                                    style={{
-                                        outline: 'none',
-                                        cursor: 'pointer',
-                                    }}
-                                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-                                    tabIndex={0}
+                                    className={classes.iconClassInnerContainer}
                                 >
                                     <div
-                                        className={classes.iconClassInnerContainer}
-                                    >
-                                        <div
-                                            className={ClassNames(
-                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
-                                                iconBaseClass101Classes,
-                                            )}
-                                            title={class101Title}
-                                        />
-                                        <div
-                                            className={ClassNames(
-                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
-                                                iconBaseClass201Classes,
-                                            )}
-                                            title={class201Title}
-                                        />
-                                        <div
-                                            className={ClassNames(
-                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
-                                                iconBaseClass301Classes,
-                                            )}
-                                            title={class301Title}
-                                        />
-                                        <div
-                                            className={ClassNames(
-                                                `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
-                                                iconBaseClass401Classes,
-                                            )}
-                                            title={class401Title}
-                                        />
-                                    </div>
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_101`,
+                                            iconBaseClass101Classes,
+                                        )}
+                                        title={class101Title}
+                                    />
+                                    <div
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_201`,
+                                            iconBaseClass201Classes,
+                                        )}
+                                        title={class201Title}
+                                    />
+                                    <div
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_301`,
+                                            iconBaseClass301Classes,
+                                        )}
+                                        title={class301Title}
+                                    />
+                                    <div
+                                        className={ClassNames(
+                                            `${BEM_PERSON_CORE_MILESTONES}--icon_base_class_401`,
+                                            iconBaseClass401Classes,
+                                        )}
+                                        title={class401Title}
+                                    />
                                 </div>
-                            </Popover>
-                        </Grid.Column>
-                    )}
-
-                    {!removeSmallGroupColumn && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
-                                classes.column,
-                            )}
-                        >
-                            <Popover
-                                content={popoverContentSmallGroup}
-                                disable={!popoverContentSmallGroup}
-                                mouseEvent="onMouseEnter"
-                            >
-                                <Icon
-                                    className={ClassNames(
-                                        classes.iconSmallGroup,
-                                        classes.icon,
-                                        {
-                                            [classes.genderFemale]: isFemale,
-                                            [classes.genderMale]: isMale,
-                                            [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.isAdult]: recordType === 'adult',
-                                            [classes.isChild]: recordType === 'child',
-                                            [classes.isInSmallGroup]: isInSmallGroup,
-                                            [classes.isStudent]: recordType === 'student',
-                                        },
-                                    )}
-                                    compact
-                                    inverse={inverse}
-                                    size={iconSize}
-                                    title={!isInSmallGroup && 'Not active in Small Group'}
-                                    type="users"
-                                />
-                            </Popover>
-                        </Grid.Column>
-                    )}
-
-                    {!removeInMinistryColumn && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
-                                classes.column,
-                            )}
-                        >
-                            <Popover
-                                content={popoverContentInMinistry}
-                                disable={!popoverContentInMinistry}
-                                mouseEvent="onMouseEnter"
-                            >
-                                <Icon
-                                    className={ClassNames(
-                                        classes.iconInMinistry,
-                                        classes.icon,
-                                        {
-                                            [classes.genderFemale]: isFemale,
-                                            [classes.genderMale]: isMale,
-                                            [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.isAdult]: recordType === 'adult',
-                                            [classes.isChild]: recordType === 'child',
-                                            [classes.isInMinistry]: isInMinistry,
-                                            [classes.isStudent]: recordType === 'student',
-                                        },
-                                    )}
-                                    compact
-                                    inverse={inverse}
-                                    size={iconSize}
-                                    title={!isInMinistry && 'Not active in Ministry'}
-                                    type="serving-opportunity"
-                                />
-                            </Popover>
-                        </Grid.Column>
-                    )}
-
-                    {!removeInTripsColumn && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--in_missions_column`,
-                                classes.column,
-                            )}
-                        >
-                            <Popover
-                                content={popoverContentInMissions}
-                                disable={!popoverContentInMissions}
-                                mouseEvent="onMouseEnter"
-                            >
-                                <Icon
-                                    className={ClassNames(
-                                        classes.iconInTrips,
-                                        classes.icon,
-                                        {
-                                            [classes.genderFemale]: isFemale,
-                                            [classes.genderMale]: isMale,
-                                            [classes.genderUndefined]: !isFemale && !isMale,
-                                            [classes.isActiveInMissions]: isActiveInMissions,
-                                            [classes.isAdult]: recordType === 'adult',
-                                            [classes.isChild]: recordType === 'child',
-                                            [classes.isStudent]: recordType === 'student',
-                                        },
-                                    )}
-                                    compact
-                                    inverse={inverse}
-                                    size={iconSize}
-                                    title={!isActiveInMissions && 'Not active in Missions'}
-                                    type="shoe-prints"
-                                />
-                            </Popover>
-                        </Grid.Column>
-                    )}
-
-                    {firstContactDate && !removeFirstContactDateColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
-                                classes.firstContactDateColumn,
-                            )}
-                        >
-                            <div
-                                className={classes.dateContainers}
-                            >
-                                <Typography
-                                    className={classes.firstContactDateLabelTypography}
-                                    variant="h6"
-                                >
-                                    At Saddleback
-                                </Typography>
-
-                                <span
-                                    className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
-                                >
-                                    <TimeFromNow
-                                        className={classes.firstContactDateTypography}
-                                        date={firstContactDate}
-                                        relativeTime={relativeTime}
-                                        relativeTimeThreshold={relativeTimeThreshold}
-                                        relativeTimeRounding={relativeTimeRounding}
-                                    />
-                                </span>
                             </div>
-                        </Grid.Column>
-                    )}
+                        </Popover>
+                    </Grid.Column>
+                )}
 
-                    {congregationDate && !removeCongregationDateColumn && isAdult && (
-                        <Grid.Column
-                            className={ClassNames(
-                                `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
-                                classes.congregationDateColummn,
-                            )}
+                {!removeSmallGroupColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--small_group_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentSmallGroup}
+                            disable={!popoverContentSmallGroup}
+                            mouseEvent="onMouseEnter"
                         >
-                            <div
-                                className={classes.dateContainers}
-                            >
-                                <Typography
-                                    className={classes.congregationDateLabelTypography}
-                                    variant="h6"
-                                >
-                                    Member For
-                                </Typography>
+                            <Icon
+                                className={ClassNames(
+                                    classes.iconSmallGroup,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isInSmallGroup]: isInSmallGroup,
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
+                                compact
+                                inverse={inverse}
+                                size={iconSize}
+                                title={!isInSmallGroup && 'Not active in Small Group'}
+                                type="users"
+                            />
+                        </Popover>
+                    </Grid.Column>
+                )}
 
-                                <span
-                                    className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
-                                >
-                                    <TimeFromNow
-                                        className={classes.congregationDateTypography}
-                                        date={congregationDate}
-                                        relativeTime={relativeTime}
-                                        relativeTimeThreshold={relativeTimeThreshold}
-                                        relativeTimeRounding={relativeTimeRounding}
-                                    />
-                                </span>
-                            </div>
-                        </Grid.Column>
-                    )}
+                {!removeInMinistryColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--in_ministry_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentInMinistry}
+                            disable={!popoverContentInMinistry}
+                            mouseEvent="onMouseEnter"
+                        >
+                            <Icon
+                                className={ClassNames(
+                                    classes.iconInMinistry,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isInMinistry]: isInMinistry,
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
+                                compact
+                                inverse={inverse}
+                                size={iconSize}
+                                title={!isInMinistry && 'Not active in Ministry'}
+                                type="serving-opportunity"
+                            />
+                        </Popover>
+                    </Grid.Column>
+                )}
+
+                {!removeInTripsColumn && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--in_missions_column`,
+                            classes.column,
+                        )}
+                    >
+                        <Popover
+                            content={popoverContentInMissions}
+                            disable={!popoverContentInMissions}
+                            mouseEvent="onMouseEnter"
+                        >
+                            <Icon
+                                className={ClassNames(
+                                    classes.iconInTrips,
+                                    classes.icon,
+                                    {
+                                        [classes.genderFemale]: isFemale,
+                                        [classes.genderMale]: isMale,
+                                        [classes.genderUndefined]: !isFemale && !isMale,
+                                        [classes.isActiveInMissions]: isActiveInMissions,
+                                        [classes.isAdult]: recordType === 'adult',
+                                        [classes.isChild]: recordType === 'child',
+                                        [classes.isStudent]: recordType === 'student',
+                                    },
+                                )}
+                                compact
+                                inverse={inverse}
+                                size={iconSize}
+                                title={!isActiveInMissions && 'Not active in Missions'}
+                                type="shoe-prints"
+                            />
+                        </Popover>
+                    </Grid.Column>
+                )}
+
+                {firstContactDate && !removeFirstContactDateColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
+                            classes.firstContactDateColumn,
+                        )}
+                    >
+                        <div
+                            className={classes.dateContainers}
+                        >
+                            <Typography
+                                className={classes.firstContactDateLabelTypography}
+                                variant="h6"
+                            >
+                                At Saddleback
+                            </Typography>
+
+                            <span
+                                className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
+                            >
+                                <TimeFromNow
+                                    className={classes.firstContactDateTypography}
+                                    date={firstContactDate}
+                                    relativeTime={relativeTime}
+                                    relativeTimeThreshold={relativeTimeThreshold}
+                                    relativeTimeRounding={relativeTimeRounding}
+                                />
+                            </span>
+                        </div>
+                    </Grid.Column>
+                )}
+
+                {congregationDate && !removeCongregationDateColumn && isAdult && (
+                    <Grid.Column
+                        className={ClassNames(
+                            `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
+                            classes.congregationDateColummn,
+                        )}
+                    >
+                        <div
+                            className={classes.dateContainers}
+                        >
+                            <Typography
+                                className={classes.congregationDateLabelTypography}
+                                variant="h6"
+                            >
+                                Member For
+                            </Typography>
+
+                            <span
+                                className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
+                            >
+                                <TimeFromNow
+                                    className={classes.congregationDateTypography}
+                                    date={congregationDate}
+                                    relativeTime={relativeTime}
+                                    relativeTimeThreshold={relativeTimeThreshold}
+                                    relativeTimeRounding={relativeTimeRounding}
+                                />
+                            </span>
+                        </div>
+                    </Grid.Column>
+                )}
             </Grid>
         </div>
     );
