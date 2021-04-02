@@ -210,9 +210,6 @@ const styles = (theme) => {
                     },
                 },
             },
-            [theme.breakpoints.up('md')]: {
-                padding: '0 22px',
-            },
             '&.drawer-has_action_bar': {
                 '& .drawer-container-inner, & .drawer--wing-container-inner': {
                     paddingTop: theme.height.actionBar.sm,
@@ -269,6 +266,8 @@ const styles = (theme) => {
                 zIndex: theme.zIndex.drawer,
                 [theme.breakpoints.up('md')]: {
                     height: theme.height.actionBar.md,
+                    paddingLeft: theme.spacing(2),
+                    paddingRight: theme.spacing(2),
                 },
             },
             '&$page': {
@@ -287,8 +286,7 @@ const styles = (theme) => {
                 },
             },
             '& .action_bar--grid_column': {
-                paddingBottom: 0,
-                paddingTop: 0,
+                padding: [[0, theme.spacing(1)]],
                 '&:first-child': {
                     paddingLeft: 0,
                 },
@@ -525,7 +523,7 @@ class ActionBar extends React.Component {
                                 className="action_bar--grid"
                                 flexWrap="nowrap"
                                 justifyContent={justifyContent}
-                                spacing={1}
+                                spacing={0}
                             >
                                 {map(columns, (column) => {
                                     const {

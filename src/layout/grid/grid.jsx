@@ -102,6 +102,10 @@ const propTypes = {
     // NOTE: All props below are deprecated and should not be used.
     // ****
     /**
+     * Deprecated prop. Please use breakpoint props on the Grid.Column
+     */
+    columns: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
      * Deprecated prop. Please use `classes` to override styles.
      */
     textAlign: PropTypes.oneOf(['center', 'left', 'right']),
@@ -126,6 +130,7 @@ const defaultProps = {
     // ****
     // NOTE: All props below are deprecated and should not be used.
     // ****
+    columns: undefined,
     textAlign: undefined,
     verticalAlign: undefined,
 };
@@ -171,7 +176,7 @@ const useStyles = makeStyles(({ spacing }) => {
              * Deprecated classses
              */
             [`& .${BEM_GRID_COLUMN}`]: {
-                width: (columns) => `${(1 / columns) * 100}%`,
+                width: ({ columns }) => `${(1 / columns) * 100}%`,
             },
             '&$deprecatedTextAlignCenter': {
                 textAlign: 'center',
