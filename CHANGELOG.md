@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20.4 - 04/06/2021
+- [PR #277](https://github.com/saddlebackdev/react-cm-ui/pull/277) / Merge Commit 801d85a
+  - New PersonPanelDetails prop: selectButtonProps.
+    - Accepts `label` and `disable` as child keys.
+
 ## 9.20.3 - 02/04/2021
 
 #### Feature
