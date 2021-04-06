@@ -895,8 +895,8 @@ function PersonPanelDetails(props) {
                         >
                             {!isEmpty(selectButtonProps) && (
                                 <PersonPanelDetailsActionButton
-                                    // eslint-disable-next-line react/jsx-props-no-spreading
                                     label="Select"
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
                                     {...selectButtonProps}
                                 />
                             )}
