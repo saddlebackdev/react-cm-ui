@@ -45,8 +45,6 @@ function Tabs(props) {
         router,
     } = props;
 
-    console.log('router', router);
-
     const [sectionalTabsItems, setSectionTabsItems] = useState([]);
 
     const classes = useStyles();
