@@ -1,5 +1,5 @@
 import {
-    includes,
+    includes, isEmpty,
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -7,10 +7,8 @@ import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    GENDER_DEFAULT_TYPE,
     GENDER_PROP_TYPE,
     RECORD_TYPE_COLOR,
-    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -27,46 +25,52 @@ import Popover from '../popover';
 import MilestonePopoverContent from './milestonePopoverContent';
 
 const propTypes = {
-    acceptedChristDate: PropTypes.string,
-    activeInMissionsDate: PropTypes.string,
-    attendedClass101Date: PropTypes.string,
-    attendedClass201Date: PropTypes.string,
-    attendedClass301Date: PropTypes.string,
-    attendedClass401Date: PropTypes.string,
-    baptismDate: PropTypes.string,
+    data: PropTypes.shape({
+        acceptedChristDate: PropTypes.string,
+        activeInMissionsDate: PropTypes.string,
+        attendedClass101Date: PropTypes.string,
+        attendedClass201Date: PropTypes.string,
+        attendedClass301Date: PropTypes.string,
+        attendedClass401Date: PropTypes.string,
+        baptismDate: PropTypes.string,
+        congregationDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
+        firstContactDate: PropTypes.oneOfType([
+            MomentPropTypes.momentString,
+            PropTypes.oneOf([null]),
+        ]),
+        firstMinistryJoinDate: PropTypes.string,
+        firstSmallGroupJoinDate: PropTypes.string,
+        gender: GENDER_PROP_TYPE,
+        hasAcceptedChrist: PropTypes.bool,
+        hasSignedMaturityCovenant: PropTypes.bool,
+        hasSignedMembershipAgreement: PropTypes.bool,
+        hasSignedMinistryCovenant: PropTypes.bool,
+        hasSignedMissionCovenant: PropTypes.bool,
+        hasTakenClass101: PropTypes.bool,
+        hasTakenClass201: PropTypes.bool,
+        hasTakenClass301: PropTypes.bool,
+        hasTakenClass401: PropTypes.bool,
+        isActiveInMissions: PropTypes.bool,
+        isBaptised: PropTypes.bool,
+        isInMinistry: PropTypes.bool,
+        isInSmallGroup: PropTypes.bool,
+        recordType: RECORD_TYPE_PROP_TYPE,
+        signedMembershipAgreementDate: PropTypes.string,
+        signedMaturityCovenantDate: PropTypes.string,
+        signedMinistryCovenantDate: PropTypes.string,
+        signedMissionCovenantDate: PropTypes.string,
+    }),
     className: PropTypes.string,
-    congregationDate: PropTypes.oneOfType([
-        MomentPropTypes.momentString,
-        PropTypes.oneOf([null]),
-    ]),
-    firstContactDate: PropTypes.oneOfType([
-        MomentPropTypes.momentString,
-        PropTypes.oneOf([null]),
-    ]),
-    firstMinistryJoinDate: PropTypes.string,
-    firstSmallGroupJoinDate: PropTypes.string,
-    gender: GENDER_PROP_TYPE,
-    hasAcceptedChrist: PropTypes.bool,
-    hasSignedMaturityCovenant: PropTypes.bool,
-    hasSignedMembershipAgreement: PropTypes.bool,
-    hasSignedMinistryCovenant: PropTypes.bool,
-    hasSignedMissionCovenant: PropTypes.bool,
-    hasTakenClass101: PropTypes.bool,
-    hasTakenClass201: PropTypes.bool,
-    hasTakenClass301: PropTypes.bool,
-    hasTakenClass401: PropTypes.bool,
     iconColor: PropTypes.string,
     iconSize: PropTypes.number,
     id: PropTypes.string,
     inverse: PropTypes.bool,
-    isActiveInMissions: PropTypes.bool,
-    isBaptised: PropTypes.bool,
-    isInMinistry: PropTypes.bool,
-    isInSmallGroup: PropTypes.bool,
     isMobile: PropTypes.bool,
     // eslint-disable-next-line react/no-unused-prop-types
     parentConsumer: PropTypes.string,
-    recordType: RECORD_TYPE_PROP_TYPE,
     removeAcceptedChristColumn: PropTypes.bool,
     removeBaptismColumn: PropTypes.bool,
     removeClassColumn: PropTypes.bool,
@@ -75,46 +79,17 @@ const propTypes = {
     removeInMinistryColumn: PropTypes.bool,
     removeInTripsColumn: PropTypes.bool,
     removeSmallGroupColumn: PropTypes.bool,
-    signedMembershipAgreementDate: PropTypes.string,
-    signedMaturityCovenantDate: PropTypes.string,
-    signedMinistryCovenantDate: PropTypes.string,
-    signedMissionCovenantDate: PropTypes.string,
 };
 
 const defaultProps = {
-    acceptedChristDate: null,
-    activeInMissionsDate: null,
-    attendedClass101Date: null,
-    attendedClass201Date: null,
-    attendedClass301Date: null,
-    attendedClass401Date: null,
-    baptismDate: null,
+    data: null,
     className: undefined,
-    congregationDate: null,
-    firstContactDate: null,
-    firstMinistryJoinDate: null,
-    firstSmallGroupJoinDate: null,
-    gender: GENDER_DEFAULT_TYPE,
-    hasAcceptedChrist: false,
-    hasSignedMaturityCovenant: false,
-    hasSignedMembershipAgreement: false,
-    hasSignedMinistryCovenant: false,
-    hasSignedMissionCovenant: false,
-    hasTakenClass101: false,
-    hasTakenClass201: false,
-    hasTakenClass301: false,
-    hasTakenClass401: false,
     iconColor: null,
     iconSize: 16,
     id: null,
     inverse: false,
-    isActiveInMissions: false,
-    isBaptised: false,
-    isInMinistry: false,
-    isInSmallGroup: false,
     isMobile: false,
     parentConsumer: undefined,
-    recordType: RECORD_TYPE_DEFAULT_PROP,
     removeAcceptedChristColumn: false,
     removeBaptismColumn: false,
     removeClassColumn: false,
@@ -123,10 +98,6 @@ const defaultProps = {
     removeInMinistryColumn: false,
     removeInTripsColumn: false,
     removeSmallGroupColumn: false,
-    signedMembershipAgreementDate: null,
-    signedMaturityCovenantDate: null,
-    signedMinistryCovenantDate: null,
-    signedMissionCovenantDate: null,
 };
 
 function getIconSize({ isMobile, iconSize }) {
@@ -144,11 +115,14 @@ const useStyles = makeStyles((theme) => {
             borderRadius,
         },
     } = theme;
+
     const columnHorizontalPadding = 5.5;
+
     const hasAttendedStyles = (boxShadowColor) => ({
         backgroundColor: 'transparent',
         boxShadow: `inset 0 0 0 2px ${boxShadowColor}`,
     });
+
     const hasSignedStyles = (backgroundColor) => ({
         backgroundColor,
         boxShadow: 'none',
@@ -622,6 +596,28 @@ const useStyles = makeStyles((theme) => {
 
 export function PersonCoreMilestones(props) {
     const {
+        data,
+        className,
+        iconColor,
+        iconSize: iconSizeProp,
+        id,
+        inverse,
+        isMobile,
+        removeAcceptedChristColumn,
+        removeBaptismColumn,
+        removeClassColumn,
+        removeCongregationDateColumn,
+        removeFirstContactDateColumn,
+        removeInMinistryColumn,
+        removeInTripsColumn,
+        removeSmallGroupColumn,
+    } = props;
+
+    if (isEmpty(data)) {
+        return null;
+    }
+
+    const {
         acceptedChristDate,
         activeInMissionsDate,
         attendedClass101Date,
@@ -629,7 +625,6 @@ export function PersonCoreMilestones(props) {
         attendedClass301Date,
         attendedClass401Date,
         baptismDate,
-        className,
         congregationDate: congregationDateProp,
         firstContactDate: firstContactDateProp,
         firstMinistryJoinDate,
@@ -644,29 +639,16 @@ export function PersonCoreMilestones(props) {
         hasSignedMaturityCovenant,
         hasSignedMinistryCovenant,
         hasSignedMissionCovenant,
-        iconColor,
-        iconSize: iconSizeProp,
-        id,
-        inverse,
         isActiveInMissions,
         isBaptised,
         isInMinistry,
         isInSmallGroup,
-        isMobile,
         recordType,
-        removeAcceptedChristColumn,
-        removeBaptismColumn,
-        removeClassColumn,
-        removeCongregationDateColumn,
-        removeFirstContactDateColumn,
-        removeInMinistryColumn,
-        removeInTripsColumn,
-        removeSmallGroupColumn,
         signedMembershipAgreementDate,
         signedMaturityCovenantDate,
         signedMinistryCovenantDate,
         signedMissionCovenantDate,
-    } = props;
+    } = data;
 
     const classes = useStyles(props);
     const isAdult = recordType === 'adult';
