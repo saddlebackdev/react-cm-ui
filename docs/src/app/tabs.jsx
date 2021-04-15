@@ -21,9 +21,11 @@ const propTypes = {
         PropTypes.shape({}),
     ),
     router: PropTypes.shape({
-        routes: PropTypes.shape({
-            path: PropTypes.string,
-        }),
+        routes: PropTypes.arrayOf(
+            PropTypes.shape({
+                path: PropTypes.string,
+            }),
+        ),
     }).isRequired,
 };
 
@@ -42,6 +44,8 @@ function Tabs(props) {
         items,
         router,
     } = props;
+
+    console.log('router', router);
 
     const [sectionalTabsItems, setSectionTabsItems] = useState([]);
 

@@ -1,4 +1,7 @@
-import { get } from 'lodash';
+import {
+    get,
+    snakeCase,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -57,46 +60,46 @@ function MilestonesPopoverContent(props) {
 
     const labelColumnClasses = ClassNames(classes.milestoneColumn, classes.milestoneLabel);
 
-    const milestonesDatesJsx = milestonesDates.map((milestoneDate) => {
+    const milestonesDatesJsx = milestonesDates.map((milestoneDate, index) => {
         const {
             date,
             label,
         } = milestoneDate;
 
         return (
-            <Grid.Row columns={2}>
+            <Grid
+                className={index >= 1 && classes.dateGrid}
+                key={`person_core_milestone-${snakeCase(label)}`}
+            >
                 <Grid.Column
                     className={labelColumnClasses}
+                    sm
                 >
                     {label}
                 </Grid.Column>
 
                 <Grid.Column
-                    className={classes.milestoneColumn}
-                    textAlign="right"
+                    sm="auto"
                 >
                     {date && moment(date).format(DATE_FORMAT)}
                 </Grid.Column>
-            </Grid.Row>
+            </Grid>
         );
     });
 
     return (
         <Grid
             className={classes.root}
-            style={{
-                margin: 0,
-            }}
         >
-            <Grid.Row columns={1}>
-                <Grid.Column>
-                    <Typography
-                        className={classes.title}
-                    >
-                        {title}
-                    </Typography>
-                </Grid.Column>
-            </Grid.Row>
+            <Grid.Column
+                sm={12}
+            >
+                <Typography
+                    className={classes.title}
+                >
+                    {title}
+                </Typography>
+            </Grid.Column>
 
             {milestonesDatesJsx}
         </Grid>

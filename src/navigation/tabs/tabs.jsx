@@ -4,6 +4,15 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import TabsItem from './tabsItem';
 
+const propTypes = {
+    className: PropTypes.string,
+    id: PropTypes.string,
+    nest: PropTypes.bool,
+    onClick: PropTypes.func,
+    selected: PropTypes.number,
+    style: PropTypes.shape({}),
+};
+
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
@@ -15,6 +24,16 @@ class Tabs extends React.Component {
         if (this.props.selected !== prevProps.selected) {
             this.setState({ selected: this.props.selected });
         }
+    }
+
+    _onTabClick(index, event) {
+        if (!_.isUndefined(this.props.onClick)) {
+            this.props.onClick(index);
+        } else {
+            this.setState({ selected: index });
+        }
+
+        event.preventDefault();
     }
 
     render() {
@@ -60,27 +79,10 @@ class Tabs extends React.Component {
             </div>
         );
     }
-
-    _onTabClick(index, event) {
-        if (!_.isUndefined(this.props.onClick)) {
-            this.props.onClick(index);
-        } else {
-            this.setState({ selected: index });
-        }
-
-        event.preventDefault();
-    }
 }
 
 Tabs.Item = TabsItem;
 
-Tabs.propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.string,
-    nest: PropTypes.bool,
-    onClick: PropTypes.func,
-    selected: PropTypes.number,
-    style: PropTypes.shape({}),
-};
+Tabs.propTypes = propTypes;
 
 export default Tabs;

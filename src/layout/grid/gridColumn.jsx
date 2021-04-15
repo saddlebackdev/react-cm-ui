@@ -74,11 +74,11 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    desktop: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    desktop: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    desktopLarge: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    desktopLarge: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
@@ -90,19 +90,19 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    laptop: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    laptop: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    mobile: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    mobile: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    mobileLarge: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    mobileLarge: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    mobileMedium: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    mobileMedium: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
@@ -110,7 +110,7 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    tablet: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    tablet: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
@@ -122,7 +122,7 @@ const propTypes = {
     /**
      * Deprecated prop. Please use `classes` to override styles.
      */
-    width: PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    width: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 };
 
 const defaultProps = {
