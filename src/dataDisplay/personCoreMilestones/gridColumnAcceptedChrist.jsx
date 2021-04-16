@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -11,6 +12,8 @@ import {
 } from '../../global/constants';
 import {
     ACCEPTED_CHRIST_DATE_PROP_TYPE,
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     HAS_ACCEPTED_CHRIST_PROP_TYPE,
     ICON_SIZE_DEFAULT_PROP,
     ICON_SIZE_PROP_TYPE,
@@ -31,6 +34,7 @@ const propTypes = {
         icon: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     hasAcceptedChrist: HAS_ACCEPTED_CHRIST_PROP_TYPE,
     iconSize: ICON_SIZE_PROP_TYPE,
     inverse: INVERSE_PROP_TYPE,
@@ -42,12 +46,13 @@ const propTypes = {
 
 const defaultProps = {
     acceptedChristDate: null,
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     hasAcceptedChrist: null,
     iconSize: ICON_SIZE_DEFAULT_PROP,
     inverse: INVERSE_DEFAULT_PROP,
     isFemale: PropTypes.bool,
     isMale: PropTypes.bool,
-    recordType: RECORD_TYPE_PROP_TYPE,
+    recordType: RECORD_TYPE_DEFAULT_PROP,
     removeAcceptedChristColumn: REMOVE_ACCEPTED_CHRIST_COLUMN_DEFAULT_PROP,
 };
 
@@ -86,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 function GridColumnAcceptedChrist(props) {
     const {
         acceptedChristDate,
+        disablePopover,
         hasAcceptedChrist,
         iconSize,
         inverse,
@@ -101,15 +107,6 @@ function GridColumnAcceptedChrist(props) {
         return null;
     }
 
-    const popoverContentAcceptedChrist = (hasAcceptedChrist && acceptedChristDate) ? (
-        <MilestonePopoverContent
-            title="Accepted Christ"
-            milestonesDates={[
-                { label: 'On', date: moment(acceptedChristDate).format() },
-            ]}
-        />
-    ) : '';
-
     const acceptedChristIcon = (
         <Icon
             className={ClassNames(
@@ -119,7 +116,7 @@ function GridColumnAcceptedChrist(props) {
                     [classes.genderMale]: isMale,
                     [classes.genderUndefined]: !isFemale && !isMale,
                     [classes.hasAcceptedChrist]: hasAcceptedChrist,
-                    [classes.isAdult]: recordType === 'adult',
+                    [classes.isAdult]: !recordType || recordType === 'adult',
                     [classes.isChild]: recordType === 'child',
                     [classes.isStudent]: recordType === 'student',
                 },
@@ -132,6 +129,25 @@ function GridColumnAcceptedChrist(props) {
         />
     );
 
+    const popoverNode = !disablePopover && hasAcceptedChrist && acceptedChristDate ? (
+        <Popover
+            content={(
+                <MilestonePopoverContent
+                    title="Accepted Christ"
+                    milestonesDates={[
+                        {
+                            label: 'On',
+                            date: moment(acceptedChristDate).format(),
+                        },
+                    ]}
+                />
+            )}
+            mouseEvent="onMouseEnter"
+        >
+            {acceptedChristIcon}
+        </Popover>
+    ) : null;
+
     return (
         <Grid.Column
             className={ClassNames(
@@ -139,14 +155,7 @@ function GridColumnAcceptedChrist(props) {
                 classes.root,
             )}
         >
-            {popoverContentAcceptedChrist ? (
-                <Popover
-                    content={popoverContentAcceptedChrist}
-                    mouseEvent="onMouseEnter"
-                >
-                    {acceptedChristIcon}
-                </Popover>
-            ) : acceptedChristIcon}
+            {popoverNode || acceptedChristIcon}
         </Grid.Column>
     );
 }

@@ -3,7 +3,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ExampleSolid() {
+function ExampleAdultFemale() {
     const data = {
         acceptedChristDate: '1991-03-31T00:00:00',
         activeInMissionsDate: '1991-03-31T00:00:00',
@@ -16,7 +16,7 @@ function ExampleSolid() {
         firstContactDate: null,
         firstMinistryJoinDate: '1991-03-31T00:00:00',
         firstSmallGroupJoinDate: '1991-03-31T00:00:00',
-        gender: 'M',
+        gender: 'F',
         hasAcceptedChrist: true,
         hasSignedMaturityCovenant: false,
         hasSignedMembershipAgreement: true,
@@ -44,4 +44,4 @@ function ExampleSolid() {
     );
 }
 
-export default ExampleSolid;
+export default ExampleAdultFemale;

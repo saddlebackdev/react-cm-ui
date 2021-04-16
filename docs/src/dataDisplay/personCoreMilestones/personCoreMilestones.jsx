@@ -8,7 +8,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-import ExamplePersonCoreMilestones from './examples/examplePersonCoreMilestones';
+import ExampleAdultFemale from './examples/exampleAdultFemale';
+import ExampleAdultMale from './examples/exampleAdultMale';
+import ExampleChild from './examples/exampleChild';
+import ExampleDisable from './examples/exampleDisable';
+import ExampleStudent from './examples/exampleStudent';
+import ExampleUndefined from './examples/exampleUndefined';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -55,13 +60,74 @@ function DocsButton(props) {
                     <Typography
                         variant="body1"
                     >
-                        Adult Male Record
+                        Adult Male Record Type
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/examplePersonCoreMilestones').default}
+                        rawCode={require('!!raw-loader!./examples/exampleAdultMale').default}
                     >
-                        <ExamplePersonCoreMilestones />
+                        <ExampleAdultMale />
+                    </Example>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Adult Female Record Type
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleAdultFemale').default}
+                    >
+                        <ExampleAdultFemale />
+                    </Example>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Student Record Type
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleStudent').default}
+                    >
+                        <ExampleStudent />
+                    </Example>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Child Record Type
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleChild').default}
+                    >
+                        <ExampleChild />
+                    </Example>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Undefined Record Type
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleUndefined').default}
+                    >
+                        <ExampleUndefined />
+                    </Example>
+
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Disabled Popovers
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleDisable').default}
+                    >
+                        <ExampleDisable />
                     </Example>
                 </MarkdownContainer>
 

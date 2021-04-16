@@ -9,6 +9,8 @@ export const ATTENDED_CLASS201_DATE_PROP_TYPE = PropTypes.string;
 export const ATTENDED_CLASS301_DATE_PROP_TYPE = PropTypes.string;
 export const ATTENDED_CLASS401_DATE_PROP_TYPE = PropTypes.string;
 export const BAPTISM_DATE_PROP_TYPE = PropTypes.string;
+export const DISABLE_POPOVER_PROP_TYPE = PropTypes.bool;
+export const DISABLE_POPOVER_DEFAULT_PROP = false;
 export const HAS_ACCEPTED_CHRIST_PROP_TYPE = PropTypes.bool;
 export const CONGREGATION_DATE_PROP_TYPE = PropTypes.oneOfType([
     MomentPropTypes.momentString,

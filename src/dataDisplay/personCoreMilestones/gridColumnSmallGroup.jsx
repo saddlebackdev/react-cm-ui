@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
     BEM_PERSON_CORE_MILESTONES,
 } from '../../global/constants';
 import {
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     FIRST_MINISTRY_JOIN_DATE_PROP_TYPE,
     ICON_SIZE_DEFAULT_PROP,
     ICON_SIZE_PROP_TYPE,
@@ -30,6 +33,7 @@ const propTypes = {
         icon: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     isInSmallGroup: IS_IN_SMALL_GROUP_PROP_TYPE,
     iconSize: ICON_SIZE_PROP_TYPE,
     inverse: INVERSE_PROP_TYPE,
@@ -40,13 +44,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     firstSmallGroupJoinDate: null,
     isInSmallGroup: null,
     iconSize: ICON_SIZE_DEFAULT_PROP,
     inverse: INVERSE_DEFAULT_PROP,
     isFemale: PropTypes.bool,
     isMale: PropTypes.bool,
-    recordType: RECORD_TYPE_PROP_TYPE,
+    recordType: RECORD_TYPE_DEFAULT_PROP,
     removeSmallGroupColumn: REMOVE_SMALL_GROUP_COLUMN_DEFAULT_PROP,
 };
 
@@ -84,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
 
 function GridColumnSmallGroup(props) {
     const {
+        disablePopover,
         firstSmallGroupJoinDate,
         iconSize,
         inverse,
@@ -99,15 +105,6 @@ function GridColumnSmallGroup(props) {
     if (removeSmallGroupColumn) {
         return null;
     }
-
-    const popoverContentSmallGroup = (isInSmallGroup && firstSmallGroupJoinDate) ? (
-        <MilestonePopoverContent
-            title="Active in Small Groups"
-            milestonesDates={[
-                { label: 'Since', date: firstSmallGroupJoinDate },
-            ]}
-        />
-    ) : '';
 
     const smallGroupIcon = (
         <Icon
@@ -132,6 +129,25 @@ function GridColumnSmallGroup(props) {
         />
     );
 
+    const popoverNode = !disablePopover && isInSmallGroup && firstSmallGroupJoinDate ? (
+        <Popover
+            content={(
+                <MilestonePopoverContent
+                    title="Active in Small Groups"
+                    milestonesDates={[
+                        {
+                            label: 'Since',
+                            date: firstSmallGroupJoinDate,
+                        },
+                    ]}
+                />
+            )}
+            mouseEvent="onMouseEnter"
+        >
+            {smallGroupIcon}
+        </Popover>
+    ) : null;
+
     return (
         <Grid.Column
             className={ClassNames(
@@ -139,14 +155,7 @@ function GridColumnSmallGroup(props) {
                 classes.root,
             )}
         >
-            {popoverContentSmallGroup ? (
-                <Popover
-                    content={popoverContentSmallGroup}
-                    mouseEvent="onMouseEnter"
-                >
-                    {smallGroupIcon}
-                </Popover>
-            ) : smallGroupIcon}
+            {popoverNode || smallGroupIcon}
         </Grid.Column>
     );
 }

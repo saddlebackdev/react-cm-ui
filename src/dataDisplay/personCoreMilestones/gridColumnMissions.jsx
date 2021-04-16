@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -10,6 +11,8 @@ import {
 } from '../../global/constants';
 import {
     ACTIVE_IN_MISSIONS_DATE_PROP_TYPE,
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     ICON_SIZE_DEFAULT_PROP,
     ICON_SIZE_PROP_TYPE,
     INVERSE_DEFAULT_PROP,
@@ -30,6 +33,7 @@ const propTypes = {
         icon: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     iconSize: ICON_SIZE_PROP_TYPE,
     inverse: INVERSE_PROP_TYPE,
     isActiveInMissions: IS_ACTIVE_IN_MISSIONS_PROP_TYPE,
@@ -41,12 +45,13 @@ const propTypes = {
 
 const defaultProps = {
     activeInMissionsDate: null,
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     iconSize: ICON_SIZE_DEFAULT_PROP,
     inverse: INVERSE_DEFAULT_PROP,
     isActiveInMissions: null,
     isFemale: PropTypes.bool,
     isMale: PropTypes.bool,
-    recordType: RECORD_TYPE_PROP_TYPE,
+    recordType: RECORD_TYPE_DEFAULT_PROP,
     removeInTripsColumn: REMOVE_IN_TRIPS_COLUMN_DEFAULT_PROP,
 };
 
@@ -85,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
 function GridColumnSmallGroup(props) {
     const {
         activeInMissionsDate,
+        disablePopover,
         iconSize,
         inverse,
         isFemale,
@@ -99,15 +105,6 @@ function GridColumnSmallGroup(props) {
     if (removeInTripsColumn) {
         return null;
     }
-
-    const popoverContentInMissions = (isActiveInMissions && activeInMissionsDate) ? (
-        <MilestonePopoverContent
-            title="Active in Missions"
-            milestonesDates={[
-                { label: 'Since', date: activeInMissionsDate },
-            ]}
-        />
-    ) : '';
 
     const missionsIcon = (
         <Icon
@@ -132,6 +129,25 @@ function GridColumnSmallGroup(props) {
         />
     );
 
+    const popoverNode = !disablePopover && isActiveInMissions && activeInMissionsDate ? (
+        <Popover
+            content={(
+                <MilestonePopoverContent
+                    title="Active in Missions"
+                    milestonesDates={[
+                        {
+                            label: 'Since',
+                            date: activeInMissionsDate,
+                        },
+                    ]}
+                />
+            )}
+            mouseEvent="onMouseEnter"
+        >
+            {missionsIcon}
+        </Popover>
+    ) : null;
+
     return (
         <Grid.Column
             className={ClassNames(
@@ -139,14 +155,7 @@ function GridColumnSmallGroup(props) {
                 classes.root,
             )}
         >
-            {popoverContentInMissions ? (
-                <Popover
-                    content={popoverContentInMissions}
-                    mouseEvent="onMouseEnter"
-                >
-                    {missionsIcon}
-                </Popover>
-            ) : missionsIcon}
+            {popoverNode || missionsIcon}
         </Grid.Column>
     );
 }

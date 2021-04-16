@@ -14,6 +14,8 @@ import {
     ATTENDED_CLASS201_DATE_PROP_TYPE,
     ATTENDED_CLASS301_DATE_PROP_TYPE,
     ATTENDED_CLASS401_DATE_PROP_TYPE,
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -49,6 +51,7 @@ const propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     hasSignedMaturityCovenant: HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     hasSignedMembershipAgreement: HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     hasSignedMinistryCovenant: HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -79,6 +82,7 @@ const defaultProps = {
     attendedClass301Date: null,
     attendedClass401Date: null,
     classes: null,
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     hasSignedMaturityCovenant: null,
     hasSignedMembershipAgreement: null,
     hasSignedMinistryCovenant: null,
@@ -386,6 +390,7 @@ function GridColumnBaseClasses(props) {
         attendedClass201Date,
         attendedClass301Date,
         attendedClass401Date,
+        disablePopover,
         hasSignedMaturityCovenant,
         hasSignedMembershipAgreement,
         hasSignedMinistryCovenant,
@@ -540,13 +545,6 @@ function GridColumnBaseClasses(props) {
         }
     }
 
-    const popoverContentClasses = (isAdult && milestonesClassesDates.length > 0) ? (
-        <MilestonePopoverContent
-            title="C.L.A.S.S."
-            milestonesDates={milestonesClassesDates}
-        />
-    ) : '';
-
     const baseClassIcon = (
         <div
             className={classes.iconClassContainer}
@@ -593,6 +591,20 @@ function GridColumnBaseClasses(props) {
         </div>
     );
 
+    const popoverNode = !disablePopover && isAdult && milestonesClassesDates.length > 0 ? (
+        <Popover
+            content={(
+                <MilestonePopoverContent
+                    title="C.L.A.S.S."
+                    milestonesDates={milestonesClassesDates}
+                />
+            )}
+            mouseEvent="onMouseEnter"
+        >
+            {baseClassIcon}
+        </Popover>
+    ) : null;
+
     return (
         <Grid.Column
             className={ClassNames(
@@ -600,14 +612,7 @@ function GridColumnBaseClasses(props) {
                 classes.root,
             )}
         >
-            {popoverContentClasses ? (
-                <Popover
-                    content={popoverContentClasses}
-                    mouseEvent="onMouseEnter"
-                >
-                    {baseClassIcon}
-                </Popover>
-            ) : baseClassIcon}
+            {popoverNode || baseClassIcon}
         </Grid.Column>
     );
 }

@@ -1,5 +1,6 @@
 import {
-    includes, isEmpty,
+    includes,
+    isEmpty,
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
@@ -7,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     GENDER_PROP_TYPE,
-    RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -23,6 +23,8 @@ import {
     ATTENDED_CLASS401_DATE_PROP_TYPE,
     BAPTISM_DATE_PROP_TYPE,
     CONGREGATION_DATE_PROP_TYPE,
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     FIRST_CONTACT_DATE_PROP_TYPE,
     FIRST_MINISTRY_JOIN_DATE_PROP_TYPE,
     FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE,
@@ -113,6 +115,7 @@ const propTypes = {
         signedMissionCovenantDate: SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
     }),
     className: PropTypes.string,
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     iconColor: ICON_COLOR_PROP_TYPE,
     iconSize: ICON_SIZE_PROP_TYPE,
     id: PropTypes.string,
@@ -133,6 +136,7 @@ const propTypes = {
 const defaultProps = {
     data: null,
     className: undefined,
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     iconColor: ICON_COLOR_DEFAULT_PROP,
     iconSize: ICON_SIZE_DEFAULT_PROP,
     id: null,
@@ -246,6 +250,7 @@ function PersonCoreMilestones(props) {
     const {
         data,
         className,
+        disablePopover,
         iconColor,
         iconSize: iconSizeProp,
         id,
@@ -373,6 +378,7 @@ function PersonCoreMilestones(props) {
                             root: classes.column,
                             icon: classes.icon,
                         }}
+                        disablePopover={disablePopover}
                         hasAcceptedChrist={hasAcceptedChrist}
                         iconSize={iconSize}
                         inverse={inverse}
@@ -388,6 +394,7 @@ function PersonCoreMilestones(props) {
                             root: classes.column,
                             icon: classes.icon,
                         }}
+                        disablePopover={disablePopover}
                         isBaptised={isBaptised}
                         iconSize={iconSize}
                         inverse={inverse}
@@ -405,6 +412,7 @@ function PersonCoreMilestones(props) {
                         classes={{
                             root: classes.column,
                         }}
+                        disablePopover={disablePopover}
                         hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                         hasSignedMembershipAgreement={hasSignedMembershipAgreement}
                         hasSignedMinistryCovenant={hasSignedMinistryCovenant}
@@ -434,6 +442,7 @@ function PersonCoreMilestones(props) {
                             root: classes.column,
                             icon: classes.icon,
                         }}
+                        disablePopover={disablePopover}
                         firstSmallGroupJoinDate={firstSmallGroupJoinDate}
                         iconSize={iconSize}
                         inverse={inverse}
@@ -449,6 +458,7 @@ function PersonCoreMilestones(props) {
                             root: classes.column,
                             icon: classes.icon,
                         }}
+                        disablePopover={disablePopover}
                         firstMinistryJoinDate={firstMinistryJoinDate}
                         iconSize={iconSize}
                         inverse={inverse}
@@ -465,6 +475,7 @@ function PersonCoreMilestones(props) {
                             root: classes.column,
                             icon: classes.icon,
                         }}
+                        disablePopover={disablePopover}
                         iconSize={iconSize}
                         inverse={inverse}
                         isActiveInMissions={isActiveInMissions}

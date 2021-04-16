@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     RECORD_TYPE_COLOR,
+    RECORD_TYPE_DEFAULT_PROP,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -11,6 +12,8 @@ import {
 } from '../../global/constants';
 import {
     BAPTISM_DATE_PROP_TYPE,
+    DISABLE_POPOVER_DEFAULT_PROP,
+    DISABLE_POPOVER_PROP_TYPE,
     ICON_SIZE_DEFAULT_PROP,
     ICON_SIZE_PROP_TYPE,
     INVERSE_DEFAULT_PROP,
@@ -31,6 +34,7 @@ const propTypes = {
         icon: PropTypes.string,
         root: PropTypes.string,
     }).isRequired,
+    disablePopover: DISABLE_POPOVER_PROP_TYPE,
     isBaptised: IS_BAPTISED_PROP_TYPE,
     iconSize: ICON_SIZE_PROP_TYPE,
     inverse: INVERSE_PROP_TYPE,
@@ -42,12 +46,13 @@ const propTypes = {
 
 const defaultProps = {
     baptismDate: null,
+    disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
     isBaptised: null,
     iconSize: ICON_SIZE_DEFAULT_PROP,
     inverse: INVERSE_DEFAULT_PROP,
     isFemale: PropTypes.bool,
     isMale: PropTypes.bool,
-    recordType: RECORD_TYPE_PROP_TYPE,
+    recordType: RECORD_TYPE_DEFAULT_PROP,
     removeBaptismColumn: REMOVE_BAPTISM_COLUMN_DEFAULT_PROP,
 };
 
@@ -86,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 function GridColumnBaptised(props) {
     const {
         baptismDate,
+        disablePopover,
         isBaptised,
         iconSize,
         inverse,
@@ -100,18 +106,6 @@ function GridColumnBaptised(props) {
     if (removeBaptismColumn) {
         return null;
     }
-
-    const popoverContentBaptism = (isBaptised && baptismDate) ? (
-        <MilestonePopoverContent
-            title="Baptized"
-            milestonesDates={[
-                {
-                    label: 'On',
-                    date: baptismDate,
-                },
-            ]}
-        />
-    ) : '';
 
     const baptisedIcon = (
         <Icon
@@ -135,6 +129,25 @@ function GridColumnBaptised(props) {
         />
     );
 
+    const popoverNode = !disablePopover && isBaptised && baptismDate ? (
+        <Popover
+            content={(
+                <MilestonePopoverContent
+                    title="Baptized"
+                    milestonesDates={[
+                        {
+                            label: 'On',
+                            date: baptismDate,
+                        },
+                    ]}
+                />
+            )}
+            mouseEvent="onMouseEnter"
+        >
+            {baptisedIcon}
+        </Popover>
+    ) : null;
+
     return (
         <Grid.Column
             className={ClassNames(
@@ -142,14 +155,7 @@ function GridColumnBaptised(props) {
                 classes.root,
             )}
         >
-            {popoverContentBaptism ? (
-                <Popover
-                    content={popoverContentBaptism}
-                    mouseEvent="onMouseEnter"
-                >
-                    {baptisedIcon}
-                </Popover>
-            ) : baptisedIcon}
+            {popoverNode || baptisedIcon}
         </Grid.Column>
     );
 }
