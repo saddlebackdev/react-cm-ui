@@ -16,7 +16,7 @@ function ExampleSolid() {
     const firstContactDate = null;
     const firstMinistryJoinDate = null;
     const firstSmallGroupJoinDate = null;
-    const gender = 'man';
+    const gender = 'M';
     const hasAcceptedChrist = true;
     const hasSignedMaturityCovenant = false;
     const hasSignedMembershipAgreement = false;

@@ -55,7 +55,7 @@ function DocsButton(props) {
                     <Typography
                         variant="body1"
                     >
-                        Adult Record
+                        Adult Male Record
                     </Typography>
 
                     <Example
