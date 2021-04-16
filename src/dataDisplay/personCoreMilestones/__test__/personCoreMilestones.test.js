@@ -127,7 +127,7 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find('GridColumnBaseClasses');
+        const column = wrapper.find('GridColumnClassBaseballDiamond');
 
         expect(column.children()).toHaveLength(1);
     });
@@ -172,7 +172,7 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find('GridColumnBaseClasses');
+        const column = wrapper.find('GridColumnClassBaseballDiamond');
 
         expect(column.props().attendedClass101Date).toEqual(props.data.attendedClass101Date);
         expect(column.props().attendedClass20Date).toEqual(props.data.attendedClass20Date);

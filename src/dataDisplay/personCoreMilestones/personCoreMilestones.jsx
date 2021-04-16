@@ -73,7 +73,7 @@ import dateUtils from '../../utils/dateUtils';
 import Grid from '../../layout/grid';
 import GridColumnAcceptedChrist from './gridColumnAcceptedChrist';
 import GridColumnBaptised from './gridColumnBaptised';
-import GridColumnBaseClasses from './gridColumnBaseClasses';
+import GridColumnClassBaseballDiamond from './gridColumnClassBaseballDiamond';
 import GridColumnMinistry from './gridColumnMinistry';
 import GridColumnSmallGroup from './gridColumnSmallGroup';
 import GridColumnMissions from './gridColumnMissions';
@@ -404,7 +404,7 @@ function PersonCoreMilestones(props) {
                         removeBaptismColumn={removeBaptismColumn}
                     />
 
-                    <GridColumnBaseClasses
+                    <GridColumnClassBaseballDiamond
                         attendedClass101Date={attendedClass101Date}
                         attendedClass201Date={attendedClass201Date}
                         attendedClass301Date={attendedClass301Date}

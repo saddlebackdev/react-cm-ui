@@ -384,7 +384,7 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-function GridColumnBaseClasses(props) {
+function GridColumnClassBaseballDiamond(props) {
     const {
         attendedClass101Date,
         attendedClass201Date,
@@ -617,7 +617,7 @@ function GridColumnBaseClasses(props) {
     );
 }
 
-GridColumnBaseClasses.propTypes = propTypes;
-GridColumnBaseClasses.defaultProps = defaultProps;
+GridColumnClassBaseballDiamond.propTypes = propTypes;
+GridColumnClassBaseballDiamond.defaultProps = defaultProps;
 
-export default GridColumnBaseClasses;
+export default GridColumnClassBaseballDiamond;
