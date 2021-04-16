@@ -842,40 +842,42 @@ function PersonPanelDetails(props) {
             <Collapse in={isExpanded}>
                 <div className={classes.innerContainer}>
                     <PersonCoreMilestones
-                        acceptedChristDate={acceptedChristDate}
-                        firstSmallGroupJoinDate={firstSmallGroupJoinDate}
-                        firstMinistryJoinDate={firstMinistryJoinDate}
-                        activeInMissionsDate={activeInMissionsDate}
-                        attendedClass101Date={attendedClass101Date}
-                        attendedClass201Date={attendedClass201Date}
-                        attendedClass301Date={attendedClass301Date}
-                        attendedClass401Date={attendedClass401Date}
-                        baptismDate={baptismDate}
                         className={classes.personCoreMilestones}
-                        congregationDate={congregationDate}
-                        firstContactDate={firstContactDate}
-                        gender={gender}
-                        hasAcceptedChrist={hasAcceptedChrist}
-                        hasSignedMaturityCovenant={hasSignedMaturityCovenant}
-                        hasSignedMembershipAgreement={hasSignedMembershipAgreement}
-                        hasSignedMinistryCovenant={hasSignedMinistryCovenant}
-                        hasSignedMissionCovenant={hasSignedMissionCovenant}
-                        hasTakenClass101={hasTakenClass101}
-                        hasTakenClass201={hasTakenClass201}
-                        hasTakenClass301={hasTakenClass301}
-                        hasTakenClass401={hasTakenClass401}
+                        data={{
+                            acceptedChristDate,
+                            firstSmallGroupJoinDate,
+                            firstMinistryJoinDate,
+                            activeInMissionsDate,
+                            attendedClass101Date,
+                            attendedClass201Date,
+                            attendedClass301Date,
+                            attendedClass401Date,
+                            baptismDate,
+                            congregationDate,
+                            firstContactDate,
+                            gender,
+                            hasAcceptedChrist,
+                            hasSignedMaturityCovenant,
+                            hasSignedMembershipAgreement,
+                            hasSignedMinistryCovenant,
+                            hasSignedMissionCovenant,
+                            hasTakenClass101,
+                            hasTakenClass201,
+                            hasTakenClass301,
+                            hasTakenClass401,
+                            isActiveInMissions,
+                            isBaptised,
+                            isInMinistry,
+                            isInSmallGroup,
+                            recordType,
+                            signedMembershipAgreementDate,
+                            signedMaturityCovenantDate,
+                            signedMinistryCovenantDate,
+                            signedMissionCovenantDate,
+                        }}
                         iconColor={iconColor}
                         iconSize={16}
-                        isActiveInMissions={isActiveInMissions}
-                        isBaptised={isBaptised}
-                        isInMinistry={isInMinistry}
-                        isInSmallGroup={isInSmallGroup}
                         isMobile={isMobile}
-                        recordType={recordType}
-                        signedMembershipAgreementDate={signedMembershipAgreementDate}
-                        signedMaturityCovenantDate={signedMaturityCovenantDate}
-                        signedMinistryCovenantDate={signedMinistryCovenantDate}
-                        signedMissionCovenantDate={signedMissionCovenantDate}
                     />
 
                     {shouldDataGroupsRender && (
