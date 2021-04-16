@@ -316,42 +316,44 @@ function Popover(props) {
                         },
                     )}
 
-                    <MUIPopper
-                        anchorEl={childRef}
-                        className={ClassNames(
-                            `${BEM_POPOVER}--popper`,
-                            classes.popper,
-                        )}
-                        modifiers={{
-                            arrow: {
-                                enabled: true,
-                                element: arrowRef,
-                            },
-                            offset: {
-                                offset: '0, 11',
-                            },
-                            ...modifiers,
-                        }}
-                        open={isOpen}
-                        placement={placement}
-                        transition
-                    >
-                        {({ TransitionProps }) => (
-                            <Grow
-                                // eslint-disable-next-line react/jsx-props-no-spreading
-                                {...TransitionProps}
-                            >
-                                <div>
-                                    <ClickAwayListener
-                                        mouseEvent="onClick"
-                                        onClickAway={onClickAway}
-                                    >
-                                        {popoverRootNode}
-                                    </ClickAwayListener>
-                                </div>
-                            </Grow>
-                        )}
-                    </MUIPopper>
+                    {childRef && (
+                        <MUIPopper
+                            anchorEl={childRef}
+                            className={ClassNames(
+                                `${BEM_POPOVER}--popper`,
+                                classes.popper,
+                            )}
+                            modifiers={{
+                                arrow: {
+                                    enabled: true,
+                                    element: arrowRef,
+                                },
+                                offset: {
+                                    offset: '0, 11',
+                                },
+                                ...modifiers,
+                            }}
+                            open={isOpen}
+                            placement={placement}
+                            transition
+                        >
+                            {({ TransitionProps }) => (
+                                <Grow
+                                    // eslint-disable-next-line react/jsx-props-no-spreading
+                                    {...TransitionProps}
+                                >
+                                    <div>
+                                        <ClickAwayListener
+                                            mouseEvent="onClick"
+                                            onClickAway={onClickAway}
+                                        >
+                                            {popoverRootNode}
+                                        </ClickAwayListener>
+                                    </div>
+                                </Grow>
+                            )}
+                        </MUIPopper>
+                    )}
                 </React.Fragment>
             ) : children}
         </div>
