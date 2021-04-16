@@ -51,10 +51,10 @@ function DocsButton(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="solid-button"
+                        anchorLink="record-types"
                         variant="h2"
                     >
-                        Person Core Milestones
+                        Person Record Types
                     </Heading>
 
                     <Typography
@@ -118,10 +118,10 @@ function DocsButton(props) {
                     </Example>
 
                     <Heading
-                        anchorLink="solid-button"
+                        anchorLink="disable-popover"
                         variant="h2"
                     >
-                        Disabled Popovers
+                        Disable Popovers
                     </Heading>
 
                     <Example
