@@ -594,7 +594,7 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-export function PersonCoreMilestones(props) {
+function PersonCoreMilestones(props) {
     const {
         data,
         className,
