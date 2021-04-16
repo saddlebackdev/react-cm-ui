@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     isStudent: {},
 }));
 
-function GridColumnSmallGroup(props) {
+function GridColumnMissions(props) {
     const {
         activeInMissionsDate,
         disablePopover,
@@ -160,7 +160,7 @@ function GridColumnSmallGroup(props) {
     );
 }
 
-GridColumnSmallGroup.propTypes = propTypes;
-GridColumnSmallGroup.defaultProps = defaultProps;
+GridColumnMissions.propTypes = propTypes;
+GridColumnMissions.defaultProps = defaultProps;
 
-export default GridColumnSmallGroup;
+export default GridColumnMissions;

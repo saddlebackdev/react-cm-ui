@@ -401,7 +401,7 @@ function PersonCoreMilestones(props) {
                         isFemale={isFemale}
                         isMale={isMale}
                         recordType={recordType}
-                        removeAcceptedChristColumn={removeBaptismColumn}
+                        removeBaptismColumn={removeBaptismColumn}
                     />
 
                     <GridColumnBaseClasses
@@ -425,11 +425,9 @@ function PersonCoreMilestones(props) {
                         iconSize={iconSize}
                         inverse={inverse}
                         isAdult={isAdult}
-                        isBaptised={isBaptised}
                         isFemale={isFemale}
                         isMale={isMale}
                         recordType={recordType}
-                        removeAcceptedChristColumn={removeBaptismColumn}
                         removeClassColumn={removeClassColumn}
                         signedMaturityCovenantDate={signedMaturityCovenantDate}
                         signedMembershipAgreementDate={signedMembershipAgreementDate}

@@ -10,40 +10,46 @@ describe('<PersonCoreMilestones />', () => {
     const bemBlockName = 'person_core_milestones';
     const bemName = `${bemBlockName}--element_name-modifier`;
     const props = {
-        acceptedChristDate: '2001-10-10T12:00:00',
-        activeInMissionsDate: '2003-12-30T12:00:00',
-        attendedClass101Date: '2001-10-10T12:00:00',
-        attendedClass201Date: '2001-10-10T12:00:00',
-        attendedClass301Date: '2001-10-10T12:00:00',
-        attendedClass401Date: '2001-10-10T12:00:00',
+        data: {
+            acceptedChristDate: '2001-10-10T12:00:00',
+            activeInMissionsDate: '2003-12-30T12:00:00',
+            attendedClass101Date: '2001-10-10T12:00:00',
+            attendedClass201Date: '2001-10-10T12:00:00',
+            attendedClass301Date: '2001-10-10T12:00:00',
+            attendedClass401Date: '2001-10-10T12:00:00',
+            baptismDate: '2001-10-10T12:00:00',
+            congregationDate: '2000-12-01T12:00:00',
+            firstContactDate: '2001-12-01T12:00:00',
+            firstMinistryJoinDate: '2002-11-20T12:00:00',
+            firstSmallGroupJoinDate: '2001-10-10T12:00:00',
+            gender: 'm',
+            hasAcceptedChrist: false,
+            hasSignedMaturityCovenant: false,
+            hasSignedMembershipAgreement: false,
+            hasSignedMinistryCovenant: false,
+            hasSignedMissionCovenant: false,
+            hasTakenClass101: false,
+            hasTakenClass201: false,
+            hasTakenClass301: false,
+            hasTakenClass401: false,
+            isActiveInMissions: true,
+            IsActiveInMissions: false,
+            isBaptised: true,
+            isInMinistry: false,
+            isInSmallGroup: false,
+            recordType: 'adult',
+            signedMembershipAgreementDate: '2001-10-10T12:00:00',
+            signedMaturityCovenantDate: '2001-10-10T12:00:00',
+            signedMinistryCovenantDate: '2001-10-10T12:00:00',
+            signedMissionCovenantDate: '2001-10-10T12:00:00',
+        },
         backgroundTransparent: true,
-        baptismDate: '2001-10-10T12:00:00',
         className: bemName,
-        congregationDate: '2000-12-01T12:00:00',
-        firstContactDate: '2001-12-01T12:00:00',
-        firstMinistryJoinDate: '2002-11-20T12:00:00',
-        firstSmallGroupJoinDate: '2001-10-10T12:00:00',
-        gender: 'm',
-        hasAcceptedChrist: false,
-        hasSignedMaturityCovenant: false,
-        hasSignedMembershipAgreement: false,
-        hasSignedMinistryCovenant: false,
-        hasSignedMissionCovenant: false,
-        hasTakenClass101: false,
-        hasTakenClass201: false,
-        hasTakenClass301: false,
-        hasTakenClass401: false,
         iconColor: 'white',
         iconSize: 16,
         id: bemName,
         inverse: false,
-        isActiveInMissions: true,
-        IsActiveInMissions: false,
-        isBaptised: true,
-        isInMinistry: false,
-        isInSmallGroup: false,
         isMobile: true,
-        recordType: 'adult',
         removeAcceptedChristColumn: false,
         removeBaptismColumn: false,
         removeClassColumn: false,
@@ -52,10 +58,6 @@ describe('<PersonCoreMilestones />', () => {
         removeInMinistryColumn: false,
         removeInTripsColumn: false,
         removeSmallGroupColumn: false,
-        signedMembershipAgreementDate: '2001-10-10T12:00:00',
-        signedMaturityCovenantDate: '2001-10-10T12:00:00',
-        signedMinistryCovenantDate: '2001-10-10T12:00:00',
-        signedMissionCovenantDate: '2001-10-10T12:00:00',
     };
 
     it('Should render without problems', () => {
@@ -99,45 +101,19 @@ describe('<PersonCoreMilestones />', () => {
     });
 
     it('Should render with accepted Christ column', () => {
-        let wrapper;
-        let column;
-
-        wrapper = mountWithTheme(
+        const wrapper = mountWithTheme(
             <PersonCoreMilestones
                 {...props}
             />,
         );
 
-        column = wrapper.find(`.${bemBlockName}--accepted_christ_column Icon`);
+        const column = wrapper.find('GridColumnAcceptedChrist');
 
-        expect(column.hasClass(/(makeStyles)-(icon)-(\d+)/)).toEqual(true);
-        expect(column.hasClass(/(makeStyles)-(iconAcceptedChrist)-(\d+)/)).toEqual(true);
-        expect(column.props().compact).toEqual(true);
-        expect(column.props().inverse).toEqual(false);
-        expect(column.props().size).toEqual(16);
-        expect(column.props().type).toEqual('heart');
-
-        wrapper = mountWithTheme(
-            <PersonCoreMilestones
-                {...props}
-                hasAcceptedChrist
-            />,
-        );
-
-        column = wrapper.find(`.${bemBlockName}--accepted_christ_column Icon`);
-
-        expect(column.hasClass(/(makeStyles)-(hasAcceptedChrist)-(\d+)/)).toEqual(true);
+        expect(column.children()).toHaveLength(1);
     });
 
     it('Should render with C.L.A.S.S. column', () => {
-        let wrapper;
-        let column;
-        let iconBaseClass101;
-        let iconBaseClass201;
-        let iconBaseClass301;
-        let iconBaseClass401;
-
-        wrapper = mountWithTheme(
+        const wrapper = mountWithTheme(
             <PersonCoreMilestones
                 {...props}
                 hasSignedMaturityCovenant
@@ -151,96 +127,9 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        column = wrapper.find(`.${bemBlockName}--class_column`).first();
+        const column = wrapper.find('GridColumnBaseClasses');
 
-        expect(column.hasClass(/(makeStyles)-(column)-(\d+)/)).toEqual(true);
-        expect(column.hasClass('person_core_milestones--class_column')).toEqual(true);
-
-        iconBaseClass101 = column.find('.person_core_milestones--icon_base_class_101');
-
-        expect(iconBaseClass101.exists()).toEqual(true);
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(iconBaseClass101)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(genderMale)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(isAdult)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(hasTakenClass101)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(hasSignedMembershipAgreement)-(\d+)/)).toEqual(true);
-
-        iconBaseClass201 = column.find('.person_core_milestones--icon_base_class_201');
-
-        expect(iconBaseClass201.exists()).toEqual(true);
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(iconBaseClass201)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(genderMale)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(isAdult)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(hasTakenClass201)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(hasSignedMaturityCovenant)-(\d+)/)).toEqual(true);
-
-        iconBaseClass301 = column.find('.person_core_milestones--icon_base_class_301');
-
-        expect(iconBaseClass301.exists()).toEqual(true);
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(iconBaseClass301)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(genderMale)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(isAdult)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(hasTakenClass301)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(hasSignedMinistryCovenant)-(\d+)/)).toEqual(true);
-
-        iconBaseClass401 = column.find('.person_core_milestones--icon_base_class_401');
-
-        expect(iconBaseClass401.exists()).toEqual(true);
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(iconBaseClass401)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(genderMale)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(isAdult)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(hasTakenClass401)-(\d+)/)).toEqual(true);
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(hasSignedMissionCovenant)-(\d+)/)).toEqual(true);
-
-        wrapper = mountWithTheme(
-            <PersonCoreMilestones
-                {...props}
-                gender="f"
-            />,
-        );
-
-        column = wrapper.find(`.${bemBlockName}--class_column`).first();
-
-        iconBaseClass101 = column.find('.person_core_milestones--icon_base_class_101');
-
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(genderFemale)-(\d+)/)).toEqual(true);
-
-        iconBaseClass201 = column.find('.person_core_milestones--icon_base_class_201');
-
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(genderFemale)-(\d+)/)).toEqual(true);
-
-        iconBaseClass301 = column.find('.person_core_milestones--icon_base_class_301');
-
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(genderFemale)-(\d+)/)).toEqual(true);
-
-        iconBaseClass401 = column.find('.person_core_milestones--icon_base_class_401');
-
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(genderFemale)-(\d+)/)).toEqual(true);
-
-        wrapper = mountWithTheme(
-            <PersonCoreMilestones
-                {...props}
-                gender={null}
-            />,
-        );
-
-        column = wrapper.find(`.${bemBlockName}--class_column`).first();
-
-        iconBaseClass101 = column.find('.person_core_milestones--icon_base_class_101');
-
-        expect(iconBaseClass101.hasClass(/(makeStyles)-(genderUndefined)-(\d+)/)).toEqual(true);
-
-        iconBaseClass201 = column.find('.person_core_milestones--icon_base_class_201');
-
-        expect(iconBaseClass201.hasClass(/(makeStyles)-(genderUndefined)-(\d+)/)).toEqual(true);
-
-        iconBaseClass301 = column.find('.person_core_milestones--icon_base_class_301');
-
-        expect(iconBaseClass301.hasClass(/(makeStyles)-(genderUndefined)-(\d+)/)).toEqual(true);
-
-        iconBaseClass401 = column.find('.person_core_milestones--icon_base_class_401');
-
-        expect(iconBaseClass401.hasClass(/(makeStyles)-(genderUndefined)-(\d+)/)).toEqual(true);
+        expect(column.children()).toHaveLength(1);
     });
 
     it('Should render without accepted Christ column', () => {
@@ -251,9 +140,12 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--accepted_christ_column`);
+        const column = wrapper.find('GridColumnAcceptedChrist');
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().acceptedChristDate).toEqual(props.data.acceptedChristDate);
+        expect(column.props().hasAcceptedChrist).toEqual(props.data.hasAcceptedChrist);
+        expect(column.props().removeAcceptedChristColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 
     it('Should render without baptism column', () => {
@@ -264,9 +156,12 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--baptism_column`);
+        const column = wrapper.find('GridColumnBaptised');
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().baptismDate).toEqual(props.data.baptismDate);
+        expect(column.props().isBaptised).toEqual(props.data.isBaptised);
+        expect(column.props().removeBaptismColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 
     it('Should render without C.L.A.S.S column', () => {
@@ -277,9 +172,34 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--class_column`);
+        const column = wrapper.find('GridColumnBaseClasses');
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().attendedClass101Date).toEqual(props.data.attendedClass101Date);
+        expect(column.props().attendedClass20Date).toEqual(props.data.attendedClass20Date);
+        expect(column.props().attendedClass301Date).toEqual(props.data.attendedClass301Date);
+        expect(column.props().attendedClass401Date).toEqual(props.data.attendedClass401Date);
+        expect(column.props().hasSignedMaturityCovenant)
+            .toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasSignedMembershipAgreement)
+            .toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasSignedMinistryCovenant)
+            .toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasSignedMissionCovenant)
+            .toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasTakenClass101).toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasTakenClass201).toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasTakenClass301).toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().hasTakenClass401).toEqual(props.data.hasSignedMaturityCovenant);
+        expect(column.props().signedMaturityCovenantDate)
+            .toEqual(props.data.signedMaturityCovenantDate);
+        expect(column.props().signedMembershipAgreementDate)
+            .toEqual(props.data.signedMembershipAgreementDate);
+        expect(column.props().signedMinistryCovenantDate)
+            .toEqual(props.data.signedMinistryCovenantDate);
+        expect(column.props().signedMissionCovenantDate)
+            .toEqual(props.data.signedMissionCovenantDate);
+        expect(column.props().removeClassColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 
     it('Should render without congregation date column', () => {
@@ -316,9 +236,12 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--in_ministry_column`);
+        const column = wrapper.find('GridColumnMinistry');
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().firstMinistryJoinDate).toEqual(props.data.firstMinistryJoinDate);
+        expect(column.props().isInMinistry).toEqual(props.data.isInMinistry);
+        expect(column.props().removeInMinistryColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 
     it('Should render without in trips column', () => {
@@ -329,9 +252,12 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--in_trips_column`);
+        const column = wrapper.find('GridColumnMissions');
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().activeInMissionsDate).toEqual(props.data.activeInMissionsDate);
+        expect(column.props().isActiveInMissions).toEqual(props.data.isActiveInMissions);
+        expect(column.props().removeInTripsColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 
     it('Should render without small group column', () => {
@@ -342,8 +268,11 @@ describe('<PersonCoreMilestones />', () => {
             />,
         );
 
-        const column = wrapper.find(`.${bemBlockName}--small_group_column`);
+        const column = wrapper.find('GridColumnSmallGroup').first();
 
-        expect(column.exists()).toEqual(false);
+        expect(column.props().firstSmallGroupJoinDate).toEqual(props.data.firstSmallGroupJoinDate);
+        expect(column.props().isInSmallGroup).toEqual(props.data.isInSmallGroup);
+        expect(column.props().removeSmallGroupColumn).toEqual(true);
+        expect(column.children()).toHaveLength(0);
     });
 });
