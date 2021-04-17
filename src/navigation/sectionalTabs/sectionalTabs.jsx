@@ -51,7 +51,10 @@ const propTypes = {
      */
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            key: PropTypes.string.isRequired,
+            key: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number,
+            ]).isRequired,
             title: PropTypes.string.isRequired,
             getContent: PropTypes.func,
             onClick: PropTypes.func,
