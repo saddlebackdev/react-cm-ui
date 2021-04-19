@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.0 - 04/16/2021
+
+#### Bug
+- [PR #279](https://github.com/saddlebackdev/react-cm-ui/pull/279) / Merge Commit 5fe25c4
+  - PersonCoreMilestones documentation
+  - SCSS import fixes
+
 ## 0.14.3 - 02/04/2021
 
 #### Bug
