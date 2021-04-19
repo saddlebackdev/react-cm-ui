@@ -11,6 +11,7 @@ import { BEM_PERSON_PANEL_DETAILS_ACTION_BUTTON } from '../../global/constants';
 
 const propTypes = {
     className: PropTypes.string,
+    disable: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
@@ -25,6 +26,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
+    disable: false,
     id: null,
     onClick: null,
     onKeyDown: null,
@@ -45,6 +47,7 @@ const useStyles = makeStyles({
 function PersonPanelDetailsActionButton(props) {
     const {
         className,
+        disable,
         id,
         label,
         onClick: onClickProp,
@@ -98,6 +101,7 @@ function PersonPanelDetailsActionButton(props) {
                 classes.button,
                 className,
             )}
+            disable={disable}
             id={id}
             outline={outline}
             onClick={onClick}
@@ -108,7 +112,7 @@ function PersonPanelDetailsActionButton(props) {
         </Button>
     );
 
-    if (prompt) {
+    if (prompt && !disable) {
         return (
             <Prompt
                 className={ClassNames(

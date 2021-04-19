@@ -1,4 +1,7 @@
-import { get } from 'lodash';
+import {
+    get,
+    snakeCase,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -61,6 +64,7 @@ function MilestonesPopoverContent(props) {
         return (
             <Grid
                 className={index >= 1 && classes.dateGrid}
+                key={snakeCase(label)}
             >
                 <Grid.Column
                     className={labelColumnClasses}

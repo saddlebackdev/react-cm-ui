@@ -140,6 +140,13 @@ export const navigationItems = [
                     {
                         component: 'personCoreMilestones',
                         label: 'Person Core Milestones',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'person-core-milestones',
                     },
                     {
