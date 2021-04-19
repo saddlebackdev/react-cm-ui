@@ -255,16 +255,6 @@ const useStyles = makeStyles((theme) => ({
         '&$deprecatedFloatedRight': {
             marginLeft: 'auto',
         },
-        '&$deprecatedFormFieldCheckbox, &$deprecatedFormFieldRadio': {
-            paddingBottom: 5.5,
-            paddingTop: 5.5,
-            '&:last-child': {
-                paddingBottom: 16.5,
-            },
-        },
-        '&$deprecatedFormFieldLegend': {
-            paddingBottom: 0,
-        },
         '&$deprecatedTextAlignCenter': {
             textAlign: 'center',
         },
@@ -296,9 +286,6 @@ const useStyles = makeStyles((theme) => ({
     deprecatedAlignStretch: {},
     deprecatedFloatedLeft: {},
     deprecatedFloatedRight: {},
-    deprecatedFormFieldCheckbox: {},
-    deprecatedFormFieldLegend: {},
-    deprecatedFormFieldRadio: {},
     deprecatedTextAlignCenter: {},
     deprecatedTextAlignLeft: {},
     deprecatedTextAlignRight: {},
@@ -375,9 +362,6 @@ const GridColumn = React.forwardRef(
                 [classes.deprecatedAlignStretch]: otherProps.align === 'stretch',
                 [classes.deprecatedFloatedLeft]: otherProps.floated === 'left',
                 [classes.deprecatedFloatedRight]: otherProps.floated === 'right',
-                [classes.deprecatedFormFieldCheckbox]: otherProps.fieldType === 'checkbox',
-                [classes.deprecatedFormFieldLegend]: otherProps.fieldType === 'legend',
-                [classes.deprecatedFormFieldRadio]: otherProps.fieldType === 'radio',
                 [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
                 [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
                 [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
