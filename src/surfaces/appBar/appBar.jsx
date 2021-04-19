@@ -44,7 +44,7 @@ const propTypes = {
      * Additional classes object.
      */
     classes: PropTypes.shape({
-        root: PropTypes.shape({}),
+        root: PropTypes.string,
     }),
     /**
      * Content position.

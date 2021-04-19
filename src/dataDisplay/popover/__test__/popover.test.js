@@ -195,7 +195,7 @@ describe('<PersonPanel />', () => {
 
         waitForComponentToPaint(wrapper);
 
-        let button
+        let button;
 
         button = wrapper.find(`.${buttonClassName}`).find('button').first();
 
