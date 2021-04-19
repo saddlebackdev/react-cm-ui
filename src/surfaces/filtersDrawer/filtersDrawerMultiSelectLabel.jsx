@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import {
+    filter,
+    isObject,
+} from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Label from '../../dataDisplay/label';
@@ -7,7 +10,9 @@ const propTypes = {
     color: PropTypes.string,
     label: PropTypes.string.isRequired,
     onItemChange: PropTypes.func.isRequired,
-    selectedOption: PropTypes.shape({}).isRequired,
+    selectedOption: PropTypes.shape({
+        value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    }).isRequired,
     value: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
@@ -24,7 +29,11 @@ class FiltersDrawerMultiSelectLabel extends React.PureComponent {
 
     onClearClick() {
         const { onItemChange, selectedOption, value } = this.props;
-        const filteredOptions = _.differenceBy(value, [selectedOption], 'value');
+
+        const filteredOptions = filter(value, (v) => {
+            const currentValue = isObject(v) ? v.value : v;
+            return currentValue !== selectedOption.value;
+        });
 
         onItemChange(filteredOptions);
     }
