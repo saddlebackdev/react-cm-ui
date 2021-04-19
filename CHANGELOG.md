@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.21.1 - 04/19/2021
+- [PR #278](https://github.com/saddlebackdev/react-cm-ui/pull/278) / Merge Commit e5c01e7
+  - FiltersDrawerMultiSelectLabel fix
+
 ## 9.21.0 - 04/16/2021
 - [PR #279](https://github.com/saddlebackdev/react-cm-ui/pull/279) / Merge Commit 5fe25c4
   - PersonCoreMilestones Performance Improvments
