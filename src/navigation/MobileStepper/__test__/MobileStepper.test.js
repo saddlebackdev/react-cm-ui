@@ -46,12 +46,25 @@ describe('<Stepper />', () => {
 
     it('Should render "Next Action Button", simulate click and add 1 step', () => {
         wrapper.find(`#${props.id}--button_next`).simulate('click');
+
         expect(wrapper.find(`#${props.id}--button_back`).length).toBe(1);
+    });
+
+    it('Should render simulate click and reduce 1 step', () => {
+        wrapper.find(`#${props.id}--button_next`).simulate('click');
+
+        expect(wrapper.find(`#${props.id}--button_back`).length).toBe(1);
+
+        wrapper.find(`#${props.id}--button_back`).simulate('click');
+
+        expect(wrapper.find(`#${props.id}--button_back`).length).toBe(0);
+        expect(wrapper.find(`#${props.id}--button_next`).length).toBe(1);
     });
 
     it('Should not render "Next Action Button" if is the last step and will be render "Last Action Button"', () => {
         wrapper.setProps({ steps: 2 });
         wrapper.find(`#${props.id}--button_next`).simulate('click');
+
         expect(wrapper.find(`#${props.id}--button_back`).length).toBe(1);
         expect(wrapper.find(`#${props.id}--button_last`).length).toBe(1);
     });
