@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '@material-ui/core/Button';
+import { Button } from 'react-cm-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import { MobileStepper } from '@material-ui/core';
+import { BEM_NAVIGATION_MOBILE_STEPPER } from '../../global/constants';
 
 const propTypes = {
     id: PropTypes.string,
@@ -24,7 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    id: null,
+    id: BEM_NAVIGATION_MOBILE_STEPPER,
     style: null,
     buttons: {
         next: {
@@ -35,7 +36,6 @@ const defaultProps = {
         },
         last: {
             label: 'Got it!',
-            onFinish: () => console.log('Got it!'),
         },
     },
 };
@@ -53,45 +53,57 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'space-between',
+        backgroundColor: 'none !important',
     },
 });
 
-const Stepper = (props) => {
-    const {
-        id, steps, style, buttons,
-    } = props;
-
+const Stepper = ({
+    buttons,
+    id,
+    steps,
+    style,
+}) => {
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
 
-    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
-    const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
-
-    const nextButton =
-        activeStep < steps - 1 ? (
-            <Button id={`${id}--button_next`} onClick={handleNext}>
-                {buttons.next.label}
-            </Button>
-        ) : null;
+    const handleBack = () => setActiveStep(activeStep - 1);
+    const handleNext = () => setActiveStep(activeStep + 1);
 
     const backButton =
         activeStep > 0 ? (
-            <Button id={`${id}--button_back`} onClick={handleBack}>
+            <Button
+                color="light"
+                id={`${id}--button_back`}
+                onClick={handleBack}
+            >
                 {buttons.back.label}
             </Button>
         ) : null;
 
     const lastButton =
         activeStep === steps - 1 ? (
-            <Button id={`${id}--button_last`} onClick={buttons.last.onFinish}>
+            <Button
+                color="success"
+                id={`${id}--button_last`}
+                onClick={buttons.last.onFinish}
+            >
                 {buttons.last.label}
+            </Button>
+        ) : null;
+
+    const nextButton =
+        activeStep < steps - 1 ? (
+            <Button
+                color="primary"
+                id={`${id}--button_next`}
+                onClick={handleNext}
+            >
+                {buttons.next.label}
             </Button>
         ) : null;
 
     return (
         <div className={classes.root}>
-            {activeStep}
             <div className={classes.mobileStepper}>
                 {backButton}
                 <MobileStepper

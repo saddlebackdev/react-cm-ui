@@ -1,12 +1,12 @@
 /**
  * To run this test:
- * npx jest ./src/navigation/stepper/__test__/stepper.test.js
+ * npx jest ./src/navigation/MobileStepper/__test__/MobileStepper.test
  */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Stepper from '../MobileStepper';
+import MobileStepper from '../MobileStepper';
 
-describe('<Stepper />', () => {
+describe('<MobileStepper />', () => {
     let wrapper;
 
     const props = {
@@ -21,13 +21,13 @@ describe('<Stepper />', () => {
                 label: 'Next',
             },
         },
-        id: 'mobile-stepper--some_element_name-some_modifier',
+        id: 'navigation_mobile_stepper--some_element_name-some_modifier',
         steps: 6,
         style: {},
     };
 
     beforeEach(() => {
-        wrapper = shallow(<Stepper {...props} />);
+        wrapper = shallow(<MobileStepper {...props} />);
     });
 
     it('Should render without problems', () => {

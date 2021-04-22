@@ -56,6 +56,7 @@ export { default as Page } from './layout/page';
 
 // Navigation
 export { default as A } from './navigation/a';
+export { default as MobileStepper } from './navigation/mobileStepper';
 export { default as SubNavigation } from './navigation/subNavigation';
 export { default as Tabs } from './navigation/tabs';
 

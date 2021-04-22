@@ -4,9 +4,10 @@
   "scripts": {
     "build": "webpack",
     "build:clean": "rimraf build",
-    "start": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+    "start:local": "cd .. && rimraf node_modules && npm install -S && cd docs && rimraf node_modules && npm install -S && npm run start",
     "start:prod": "npm run build && webpack-dev-server --mode production --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
-    "start:stats": "webpack --display-modules --display-chunks --json > stats.json --progress"
+    "start:stats": "webpack --display-modules --display-chunks --json > stats.json --progress",
+    "start": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0"
   },
   "dependencies": {
     "@babel/register": "^7.4.4",

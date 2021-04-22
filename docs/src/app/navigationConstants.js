@@ -376,6 +376,21 @@ export const navigationItems = [
                         path: 'a',
                     },
                     {
+                        component: 'breadcrumbs',
+                        label: 'Breadcrumbs',
+                        path: 'breadcrumbs',
+                    },
+                    {
+                        component: 'mobileStepper',
+                        label: 'Mobile Stepper',
+                        path: 'mobile-stepper',
+                    },
+                    {
+                        component: 'sectionalTabs',
+                        label: 'Sectional Tabs',
+                        path: 'sectional-tabs',
+                    },
+                    {
                         component: 'subNavigationDeprecated',
                         label: 'Sub Navigation (Deprecated)',
                         path: 'sub-navigation-deprecated',
@@ -384,16 +399,6 @@ export const navigationItems = [
                         component: 'tabs',
                         label: 'Tabs',
                         path: 'tabs',
-                    },
-                    {
-                        component: 'sectionalTabs',
-                        label: 'Sectional Tabs',
-                        path: 'sectional-tabs',
-                    },
-                    {
-                        component: 'breadcrumbs',
-                        label: 'Breadcrumbs',
-                        path: 'breadcrumbs',
                     },
                 ],
                 path: 'navigation',
