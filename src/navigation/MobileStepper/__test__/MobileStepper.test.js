@@ -1,6 +1,6 @@
 /**
  * To run this test:
- * npx jest ./src/navigation/MobileStepper/__test__/MobileStepper.test
+ * npx jest ./src/navigation/mobileStepper/__test__/MobileStepper.test
  */
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -13,12 +13,15 @@ describe('<MobileStepper />', () => {
         buttons: {
             back: {
                 label: 'Back',
+                onClick: jest.fn(),
             },
             last: {
                 label: 'Got it!',
+                onClick: jest.fn(),
             },
             next: {
                 label: 'Next',
+                onClick: jest.fn(),
             },
         },
         id: 'navigation_mobile_stepper--some_element_name-some_modifier',

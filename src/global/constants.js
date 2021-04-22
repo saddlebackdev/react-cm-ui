@@ -2,6 +2,8 @@ export const ENTER_KEY_CODE = 13;
 
 export const UI_CLASS_NAME = 'cmui';
 
+export const BEM_ACTION_BAR_SEARCH_VISIBLE = 'action-bar-search-visible';
+
 export const BEM_APP_BAR = 'app_bar';
 
 export const BEM_CONTAINER = 'container';

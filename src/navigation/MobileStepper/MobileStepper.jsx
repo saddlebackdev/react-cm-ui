@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from 'react-cm-ui';
-import { makeStyles } from '@material-ui/core/styles';
-import { MobileStepper } from '@material-ui/core';
-import { BEM_NAVIGATION_MOBILE_STEPPER } from '../../global/constants';
+import { MobileStepper as Stepper } from '@material-ui/core';
 
 const propTypes = {
     id: PropTypes.string,
@@ -13,61 +11,65 @@ const propTypes = {
     buttons: PropTypes.shape({
         back: PropTypes.shape({
             label: PropTypes.string,
+            onClick: PropTypes.func,
         }),
         next: PropTypes.shape({
             label: PropTypes.string,
+            onClick: PropTypes.func,
         }),
         last: PropTypes.shape({
             label: PropTypes.string,
-            onFinish: PropTypes.func,
+            onClick: PropTypes.func,
         }),
     }),
 };
 
 const defaultProps = {
-    id: BEM_NAVIGATION_MOBILE_STEPPER,
+    id: 'navigation_mobile_stepper',
     style: null,
     buttons: {
         next: {
             label: 'Next',
+            onClick: null,
         },
         back: {
             label: 'Back',
+            onClick: null,
         },
         last: {
             label: 'Got it!',
+            onClick: null,
         },
     },
 };
 
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'space-around',
-    },
-    mobileStepper: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'space-between',
-        backgroundColor: 'none !important',
-    },
-});
-
-const Stepper = ({
+const MobileStepper = ({
     buttons,
     id,
     steps,
     style,
 }) => {
-    const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
 
-    const handleBack = () => setActiveStep(activeStep - 1);
-    const handleNext = () => setActiveStep(activeStep + 1);
+    const handleBack = () => {
+        if (buttons.back.onClick) {
+            buttons.back.onClick();
+        }
+        setActiveStep(activeStep - 1);
+    };
+
+    const handleNext = () => {
+        if (buttons.next.onClick) {
+            buttons.next.onClick();
+        }
+        setActiveStep(activeStep + 1);
+    };
+
+    const handleLast = () => {
+        if (buttons.last.onClick) {
+            buttons.last.onClick();
+        }
+    };
 
     const backButton =
         activeStep > 0 ? (
@@ -85,7 +87,7 @@ const Stepper = ({
             <Button
                 color="success"
                 id={`${id}--button_last`}
-                onClick={buttons.last.onFinish}
+                onClick={handleLast}
             >
                 {buttons.last.label}
             </Button>
@@ -103,25 +105,23 @@ const Stepper = ({
         ) : null;
 
     return (
-        <div className={classes.root}>
-            <div className={classes.mobileStepper}>
-                {backButton}
-                <MobileStepper
-                    activeStep={activeStep}
-                    id={id}
-                    steps={steps}
-                    style={style}
-                    variant="dots"
-                    position="static"
-                />
-                {nextButton}
-                {lastButton}
-            </div>
+        <div>
+            {backButton}
+            <Stepper
+                activeStep={activeStep}
+                id={id}
+                steps={steps}
+                style={style}
+                variant="dots"
+                position="static"
+            />
+            {nextButton}
+            {lastButton}
         </div>
     );
 };
 
-Stepper.propTypes = propTypes;
-Stepper.defaultProps = defaultProps;
+MobileStepper.propTypes = propTypes;
+MobileStepper.defaultProps = defaultProps;
 
-export default Stepper;
+export default MobileStepper;
