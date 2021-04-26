@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.21.0-hotfix - 04/26/2021
+- [PR #281](https://github.com/saddlebackdev/react-cm-ui/pull/281) / Merge Commit 89ad6a2
+  - PersonCoreMilestones fixes.
+
 ## 9.21.0 - 04/16/2021
 - [PR #279](https://github.com/saddlebackdev/react-cm-ui/pull/279) / Merge Commit 5fe25c4
   - PersonCoreMilestones Performance Improvments
