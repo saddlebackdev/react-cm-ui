@@ -81,7 +81,11 @@ const useStyles = makeStyles((theme) => ({
     genderMale: {},
     genderUndefined: {},
     icon: {},
-    isActiveInMissions: {},
+    isActiveInMissions: {
+        '&.icon': {
+            opacity: 1,
+        },
+    },
     isAdult: {},
     isChild: {},
     isStudent: {},

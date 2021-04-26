@@ -71,7 +71,6 @@ const propTypes = {
     recordType: RECORD_TYPE_PROP_TYPE,
     removeClassColumn: REMOVE_CLASS_COLUMN_PROP_TYPE,
     signedMaturityCovenantDate: SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
-    signedMembershipAgreementDate: SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
     signedMinistryCovenantDate: SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
     signedMissionCovenantDate: SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
 };
@@ -99,7 +98,6 @@ const defaultProps = {
     recordType: RECORD_TYPE_DEFAULT_PROP,
     removeClassColumn: REMOVE_CLASS_COLUMN_DEFAULT_PROP,
     signedMaturityCovenantDate: null,
-    signedMembershipAgreementDate: null,
     signedMinistryCovenantDate: null,
     signedMissionCovenantDate: null,
 };
@@ -390,6 +388,7 @@ function GridColumnClassBaseballDiamond(props) {
         attendedClass201Date,
         attendedClass301Date,
         attendedClass401Date,
+        congregationDate,
         disablePopover,
         hasSignedMaturityCovenant,
         hasSignedMembershipAgreement,
@@ -406,7 +405,6 @@ function GridColumnClassBaseballDiamond(props) {
         recordType,
         removeClassColumn,
         signedMaturityCovenantDate,
-        signedMembershipAgreementDate,
         signedMinistryCovenantDate,
         signedMissionCovenantDate,
     } = props;
@@ -483,7 +481,7 @@ function GridColumnClassBaseballDiamond(props) {
 
     const milestonesClassesDates = [
         ...(attendedClass101Date ? [{ label: '101', date: attendedClass101Date }] : []),
-        ...(signedMembershipAgreementDate ? [{ label: 'Became Member', date: signedMembershipAgreementDate }] : []),
+        ...(congregationDate ? [{ label: 'Became Member', date: congregationDate }] : []),
         ...(attendedClass201Date ? [{ label: '201', date: attendedClass201Date }] : []),
         ...(signedMaturityCovenantDate ? [{ label: 'Maturity Covenant Card', date: signedMaturityCovenantDate }] : []),
         ...(attendedClass301Date ? [{ label: '301', date: attendedClass301Date }] : []),
