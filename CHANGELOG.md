@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.21.0-hotfix-2 - 04/26/2021
+- Fixed PersonCoreMilestones unit test.
+
 ## 9.21.3 - 04/26/2021
 - Fixed PersonCoreMilestones unit test.
 
