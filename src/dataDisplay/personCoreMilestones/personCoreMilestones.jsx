@@ -109,7 +109,6 @@ const propTypes = {
         isInMinistry: IS_IN_MINISTRY_PROP_TYPE,
         isInSmallGroup: IS_IN_SMALL_GROUP_PROP_TYPE,
         recordType: RECORD_TYPE_PROP_TYPE,
-        signedMembershipAgreementDate: SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
         signedMaturityCovenantDate: SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
         signedMinistryCovenantDate: SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
         signedMissionCovenantDate: SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
@@ -293,7 +292,6 @@ function PersonCoreMilestones(props) {
         isInMinistry,
         isInSmallGroup,
         recordType,
-        signedMembershipAgreementDate,
         signedMaturityCovenantDate,
         signedMinistryCovenantDate,
         signedMissionCovenantDate,
@@ -412,6 +410,7 @@ function PersonCoreMilestones(props) {
                         classes={{
                             root: classes.column,
                         }}
+                        congregationDate={congregationDate}
                         disablePopover={disablePopover}
                         hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                         hasSignedMembershipAgreement={hasSignedMembershipAgreement}
@@ -430,7 +429,6 @@ function PersonCoreMilestones(props) {
                         recordType={recordType}
                         removeClassColumn={removeClassColumn}
                         signedMaturityCovenantDate={signedMaturityCovenantDate}
-                        signedMembershipAgreementDate={signedMembershipAgreementDate}
                         signedMinistryCovenantDate={signedMinistryCovenantDate}
                         signedMissionCovenantDate={signedMissionCovenantDate}
                     />
