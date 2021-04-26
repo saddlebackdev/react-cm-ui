@@ -64,7 +64,6 @@ import {
     REMOVE_SMALL_GROUP_COLUMN_DEFAULT_PROP,
     REMOVE_SMALL_GROUP_COLUMN_PROP_TYPE,
     SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
-    SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
     SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
     SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
 } from './constants';
@@ -349,15 +348,15 @@ function PersonCoreMilestones(props) {
 
     const relativeTimeRounding = Math.floor;
     const userTimeZone = dateUtils.getDetectedTimeZone();
-    let firstContactDate;
-    let congregationDate;
+    let atSaddlebackDate;
+    let memberForDate;
 
     if (firstContactDateProp) {
-        firstContactDate = moment.utc(firstContactDateProp).tz(userTimeZone);
+        atSaddlebackDate = moment.utc(firstContactDateProp).tz(userTimeZone);
     }
 
     if (congregationDateProp) {
-        congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
+        memberForDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
     return (
@@ -410,7 +409,7 @@ function PersonCoreMilestones(props) {
                         classes={{
                             root: classes.column,
                         }}
-                        congregationDate={congregationDate}
+                        congregationDate={congregationDateProp}
                         disablePopover={disablePopover}
                         hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                         hasSignedMembershipAgreement={hasSignedMembershipAgreement}
@@ -481,7 +480,7 @@ function PersonCoreMilestones(props) {
                         removeInTripsColumn={removeInTripsColumn}
                     />
 
-                    {firstContactDate && !removeFirstContactDateColumn && isAdult && (
+                    {atSaddlebackDate && !removeFirstContactDateColumn && isAdult && (
                         <Grid.Column
                             className={ClassNames(
                                 `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
@@ -503,7 +502,7 @@ function PersonCoreMilestones(props) {
                                 >
                                     <TimeFromNow
                                         className={classes.firstContactDateTypography}
-                                        date={firstContactDate}
+                                        date={atSaddlebackDate}
                                         relativeTime={relativeTime}
                                         relativeTimeThreshold={relativeTimeThreshold}
                                         relativeTimeRounding={relativeTimeRounding}
@@ -513,7 +512,7 @@ function PersonCoreMilestones(props) {
                         </Grid.Column>
                     )}
 
-                    {congregationDate && !removeCongregationDateColumn && isAdult && (
+                    {memberForDate && !removeCongregationDateColumn && isAdult && (
                         <Grid.Column
                             className={ClassNames(
                                 `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
@@ -535,7 +534,7 @@ function PersonCoreMilestones(props) {
                                 >
                                     <TimeFromNow
                                         className={classes.congregationDateTypography}
-                                        date={congregationDate}
+                                        date={memberForDate}
                                         relativeTime={relativeTime}
                                         relativeTimeThreshold={relativeTimeThreshold}
                                         relativeTimeRounding={relativeTimeRounding}
