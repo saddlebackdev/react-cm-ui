@@ -170,6 +170,8 @@ const generateGrid = (globalStyles, theme, breakpoint) => {
             breakpoint === 'desktop-large'
         ) {
             styles[key] = {
+                flexBasis: width,
+                maxWidth: width,
                 width,
             };
 
