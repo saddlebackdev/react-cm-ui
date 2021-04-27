@@ -1,31 +1,32 @@
 import { MobileStepper } from 'react-cm-ui';
-import React from 'react';
+import React, { useState } from 'react';
 
 const MobileStepperExample = () => {
-    const renderButtons = {
-        buttons: {
-            back: {
-                label: 'Back',
-                onClick: console.log('Go back 1 step!'),
-            },
-            last: {
-                label: 'Got it!',
-                onClick: console.log('This was the last step!'),
-            },
-            next: {
-                label: 'Next',
-                onClick: console.log('Move to the next step!'),
-            },
-        },
-        steps: 6,
-        style: {},
+    const [activeStep, setActiveStep] = useState(0);
+
+    const totalSteps = 4;
+    const callToAction = {
+        text: 'Learn More',
+        url: '#',
     };
+
+    const onBack = () => setActiveStep(activeStep - 1);
+
+    const onNext = () => setActiveStep(activeStep + 1);
+
+    const onClose = () => console.log('Last Step');
 
     return (
         <MobileStepper
-            buttons={renderButtons}
-            id="navigation_mobile_stepper--some_element_name-some_modifier"
-            steps={4}
+            activeStep={activeStep}
+            backStepAction={onBack}
+            backStepLabel="Back"
+            callToAction={callToAction}
+            lastStepAction={onClose}
+            lastStepLabel="Got it!"
+            nextStepAction={onNext}
+            nextStepLabel="Next"
+            steps={totalSteps}
         />
     );
 };
