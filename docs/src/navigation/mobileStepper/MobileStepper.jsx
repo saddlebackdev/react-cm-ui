@@ -8,7 +8,7 @@ import ComponentApi from '../../global/componentApi';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 import Example from '../../global/example';
-import MobileStepperExample from './MobileStepperExample';
+import MobileStepperExample from './examples/mobileStepperExample';
 
 function DocsMobileStepper() {
     const descriptionCopy = mobileStepperDoc.description;

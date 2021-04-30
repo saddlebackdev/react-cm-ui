@@ -1,10 +1,13 @@
-import { MobileStepper } from 'react-cm-ui';
+import {
+    MobileStepper
+} from 'react-cm-ui';
 import React, { useState } from 'react';
 
-const MobileStepperExample = () => {
+function MobileStepperExample() {
     const [activeStep, setActiveStep] = useState(0);
 
     const totalSteps = 4;
+
     const callToAction = {
         text: 'Learn More',
         url: '#',

@@ -1,38 +1,39 @@
+import { BEM_NAVIGATION_MOBILE_STEPPER } from '../../global/constants';
 import { Button } from 'react-cm-ui';
+import { isEmpty } from 'lodash';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { isEmpty } from 'lodash';
 
 const propTypes = {
     activeStep: PropTypes.number.isRequired,
     backStepAction: PropTypes.func.isRequired,
     backStepLabel: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    lastStepAction: PropTypes.func.isRequired,
-    lastStepLabel: PropTypes.string.isRequired,
     callToAction: PropTypes.shape({
         text: PropTypes.string,
         url: PropTypes.string,
     }),
+    id: PropTypes.string,
+    lastStepAction: PropTypes.func.isRequired,
+    lastStepLabel: PropTypes.string.isRequired,
     nextStepAction: PropTypes.func.isRequired,
     nextStepLabel: PropTypes.string.isRequired,
     steps: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-    id: 'navigation_mobile_stepper',
     callToAction: null,
+    id: 'navigation_mobile_stepper',
 };
 
-const MobileStepper = ({
+const mobileStepper = ({
     activeStep,
     backStepAction,
     backStepLabel,
+    callToAction,
     id,
     lastStepAction,
     lastStepLabel,
-    callToAction,
     nextStepAction,
     nextStepLabel,
     steps,
@@ -103,7 +104,7 @@ const MobileStepper = ({
         activeStep > 0 && steps - 1 ? (
             <Button
                 className={classes.backButton}
-                id={`${id}--button_back`}
+                id={`${BEM_NAVIGATION_MOBILE_STEPPER}--button_back-${id}`}
                 onClick={backStepAction}
                 width={90}
             >
@@ -116,7 +117,7 @@ const MobileStepper = ({
             <Button
                 className={classes.nextButton}
                 color="success"
-                id={`${id}--button_last`}
+                id={`${BEM_NAVIGATION_MOBILE_STEPPER}--button_last-${id}`}
                 onClick={lastStepAction}
                 width={90}
             >
@@ -129,7 +130,7 @@ const MobileStepper = ({
             <Button
                 className={classes.nextButton}
                 color="primary"
-                id={`${id}--button_next`}
+                id={`${BEM_NAVIGATION_MOBILE_STEPPER}--button_next-${id}`}
                 onClick={nextStepAction}
                 width={activeStep === 0 ? 200 : 90}
             >
@@ -164,8 +165,11 @@ const MobileStepper = ({
     };
 
     return (
-        steps > 0 && (
-            <div className={classes.mobileStepper}>
+        steps > 0 ? (
+            <div
+                className={classes.mobileStepper}
+                id={BEM_NAVIGATION_MOBILE_STEPPER}
+            >
                 {backButton}
                 {callToActionButton}
                 {nextButton}
@@ -174,11 +178,11 @@ const MobileStepper = ({
                     {stepperIndicator()}
                 </div>
             </div>
-        )
+        ) : null
     );
 };
 
-MobileStepper.propTypes = propTypes;
-MobileStepper.defaultProps = defaultProps;
+mobileStepper.propTypes = propTypes;
+mobileStepper.defaultProps = defaultProps;
 
-export default MobileStepper;
+export default mobileStepper;
