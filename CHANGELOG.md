@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20-hotfix-3 - 05/06/2021
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
+  - Fixes PersonCoreMilestones Baptism `title`.
+
 ## 9.21.3 - 04/26/2021
 - Fixed PersonCoreMilestones unit test.
 
