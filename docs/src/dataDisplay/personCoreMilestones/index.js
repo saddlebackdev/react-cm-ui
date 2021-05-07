@@ -1,1 +1,1 @@
-export { default } from './personCoreMilestones';
+export { default } from './modal';

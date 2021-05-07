@@ -536,8 +536,27 @@ export const navigationItems = [
                         path: 'info-bar-deprecated',
                     },
                     {
+                        component: 'modalDeprecated',
+                        label: 'Modal (Deprecated)',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'modal-deprecated',
+                    },
+                    {
                         component: 'modal',
                         label: 'Modal',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'modal',
                     },
                     {
