@@ -538,13 +538,6 @@ export const navigationItems = [
                     {
                         component: 'modalDeprecated',
                         label: 'Modal (Deprecated)',
-                        levelFour: [
-                            {
-                                component: 'api/index.js',
-                                label: 'API',
-                                path: 'api',
-                            },
-                        ],
                         path: 'modal-deprecated',
                     },
                     {
