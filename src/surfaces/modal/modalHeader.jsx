@@ -1,18 +1,23 @@
 import {
-    isFunction,
-    isNil,
-    isObject,
+    isUndefined,
     isString,
+    isObject,
 } from 'lodash';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 import Button from '../../inputs/button';
-import Header from '../../dataDisplay/header';
+import Typography from '../../dataDisplay/typography';
 import Icon from '../../dataDisplay/icon';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     children: PropTypes.node,
+    classes: PropTypes.shape({
+        closeButtonContainer: PropTypes.string,
+        root: PropTypes.string,
+        title: PropTypes.string,
+    }),
     closeButton: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.shape({}),
@@ -20,92 +25,117 @@ const propTypes = {
     ]),
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
-    style: PropTypes.shape({}),
     title: PropTypes.string,
     titleTruncate: PropTypes.bool,
 };
 
 const defaultProps = {
     children: null,
+    classes: null,
     closeButton: null,
-    inverse: false,
+    inverse: null,
     onClose: null,
-    style: null,
     title: null,
-    titleTruncate: false,
+    titleTruncate: null,
 };
 
-class ModalHeader extends React.Component {
-    constructor() {
-        super();
+const useStyles = makeStyles((theme) => ({
+    closeButtonContainer: {
+        alignItems: 'center',
+        display: 'flex',
+        flex: '0 1 1px',
+        height: 29,
+        justifyContent: 'center',
+        marginBottom: 0,
+        width: 16,
+        [theme.breakpoints.up('md')]: {
+            height: 33,
+            width: 33,
+        },
+    },
+    root: {
+        alignItems: 'center',
+        backgroundColor: theme.palette.background.contrastPrimary,
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        left: 0,
+        padding: `${theme.spacing(3)}px 11px`,
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        '& .ui.divider': {
+            flex: '0 1 100%',
+            margin: '11px 0 0',
+        },
+        [theme.breakpoints.up('md')]: {
+            backgroundColor: theme.palette.background.primary,
+            padding: `${theme.spacing(3)}px ${theme.spacing(3)}px 22px`,
+        },
+    },
+    title: {
+        alignItems: 'flex-start',
+        display: 'flex',
+        flex: '1 1 1px',
+        justifyContent: 'flex-start',
+        margin: 0,
+        paddingRight: theme.spacing(3),
+        width: '100%',
+    },
+}));
 
-        this.onCloseClick = this.onCloseClick.bind(this);
-    }
+function ModalHeader(props) {
+    const {
+        children,
+        closeButton,
+        inverse,
+        onClose,
+        title,
+        titleTruncate,
+    } = props;
 
-    onCloseClick() {
-        const {
-            onClose,
-        } = this.props;
+    const classes = useStyles(props);
 
-        if (isFunction(onClose)) {
-            onClose();
-        }
-    }
-
-    render() {
-        const {
-            children,
-            closeButton,
-            inverse,
-            style,
-            title,
-            titleTruncate,
-        } = this.props;
-
-        const titleClass = ClassNames('title', {
-            'modal-title-truncate': titleTruncate,
-        });
-
-        return (
-            <header
-                className="modal-header"
-                style={style}
-            >
-                <Header
-                    as="h3"
-                    className={titleClass}
-                    title={title}
-                    weight="bold"
-                >
-                    {title}
-                </Header>
-
-                <div className="modal-close-button-container">
-                    {(isNil(closeButton) || isString(closeButton)) && (
-                        <Button
-                            className="modal-close-button"
-                            color={inverse ? 'transparent' : 'alternate'}
-                            onClick={this.onCloseClick}
-                            icon
-                        >
-                            <Icon
-                                inverse
-                                type={isString(closeButton) ? closeButton : 'times'}
-                            />
-                        </Button>
-                    )}
-
-                    {isObject(closeButton) && closeButton}
-                </div>
-
-                {children && (
-                    <div className="modal-header-children">
-                        {children}
-                    </div>
+    return (
+        <header className="modal-header">
+            <Typography
+                variant="h3"
+                className={ClassNames(
+                    classes.title,
+                    {
+                        'modal-title-truncate': titleTruncate,
+                    },
                 )}
-            </header>
-        );
-    }
+            >
+                {title}
+            </Typography>
+
+            <div className={classes.closeButtonContainer}>
+                {(isUndefined(closeButton) || isString(closeButton)) && (
+                    <Button
+                        className="modal-close-button"
+                        color={inverse ? 'transparent' : 'secondary'}
+                        onClick={onClose}
+                        icon
+                        title="Close"
+                    >
+                        <Icon
+                            inverse
+                            type={isString(closeButton) ? closeButton : 'close'}
+                        />
+                    </Button>
+                )}
+
+                {isObject(closeButton) && closeButton}
+            </div>
+
+            {children && (
+                <div className="modal-header-children">
+                    {children}
+                </div>
+            )}
+        </header>
+    );
 }
 
 ModalHeader.propTypes = propTypes;
