@@ -20,6 +20,8 @@ export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_component`;
 
+export const BEM_MOBILE_STEPPER = 'mobile_stepper';
+
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
 export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
 export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;

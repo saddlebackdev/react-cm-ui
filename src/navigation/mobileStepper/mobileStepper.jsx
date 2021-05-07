@@ -1,6 +1,11 @@
+import ClassNames from 'classnames';
 import MUIMobileStepper from '@material-ui/core/MobileStepper';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    BEM_MOBILE_STEPPER,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -55,10 +60,21 @@ const defaultProps = {
     variant: 'dots',
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({
+    palette,
+}) => ({
+    dot: {
+        margin: [[0, 2.5]],
+    },
+    dotActive: {
+        backgroundColor: palette.active.primary,
+    },
     root: {},
 }));
 
+/**
+ * A Mobile Stepper informs the user about progress through numbered steps.
+ */
 function MobileStepper(props) {
     const {
         activeStep,
@@ -74,6 +90,12 @@ function MobileStepper(props) {
 
     const classes = useStyles(props);
 
+    const rootClasses = ClassNames(
+        UI_CLASS_NAME,
+        BEM_MOBILE_STEPPER,
+        className,
+    );
+
     return (
         <MUIMobileStepper
             // eslint-disable-next-line react/jsx-props-no-spreading
@@ -81,7 +103,7 @@ function MobileStepper(props) {
             activeStep={activeStep}
             backButton={backButton}
             classes={classes}
-            className={className}
+            className={rootClasses}
             LinearProgressProps={linearProgressProps}
             nextButton={nextButton}
             position={position}
