@@ -81,7 +81,11 @@ const useStyles = makeStyles((theme) => ({
     genderFemale: {},
     genderMale: {},
     genderUndefined: {},
-    hasAcceptedChrist: {},
+    hasAcceptedChrist: {
+        '&.icon': {
+            opacity: 1,
+        },
+    },
     icon: {},
     isAdult: {},
     isChild: {},

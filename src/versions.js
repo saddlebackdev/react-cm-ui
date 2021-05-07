@@ -1,6 +1,6 @@
 const versions = {
     'react-cm-ui': {
-        package: '10.0.0',
+        package: '9.21.4',
         components: {
             layout: {
                 grid: {

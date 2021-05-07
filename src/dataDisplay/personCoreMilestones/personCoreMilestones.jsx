@@ -65,7 +65,6 @@ import {
     REMOVE_SMALL_GROUP_COLUMN_DEFAULT_PROP,
     REMOVE_SMALL_GROUP_COLUMN_PROP_TYPE,
     SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
-    SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
     SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
     SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
 } from './constants';
@@ -110,7 +109,6 @@ const propTypes = {
         isInMinistry: IS_IN_MINISTRY_PROP_TYPE,
         isInSmallGroup: IS_IN_SMALL_GROUP_PROP_TYPE,
         recordType: RECORD_TYPE_PROP_TYPE,
-        signedMembershipAgreementDate: SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
         signedMaturityCovenantDate: SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
         signedMinistryCovenantDate: SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
         signedMissionCovenantDate: SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
@@ -295,7 +293,6 @@ function PersonCoreMilestones(props) {
         isInMinistry,
         isInSmallGroup,
         recordType,
-        signedMembershipAgreementDate,
         signedMaturityCovenantDate,
         signedMinistryCovenantDate,
         signedMissionCovenantDate,
@@ -353,15 +350,15 @@ function PersonCoreMilestones(props) {
 
     const relativeTimeRounding = Math.floor;
     const userTimeZone = dateUtils.getDetectedTimeZone();
-    let firstContactDate;
-    let congregationDate;
+    let atSaddlebackDate;
+    let memberForDate;
 
     if (firstContactDateProp) {
-        firstContactDate = moment.utc(firstContactDateProp).tz(userTimeZone);
+        atSaddlebackDate = moment.utc(firstContactDateProp).tz(userTimeZone);
     }
 
     if (congregationDateProp) {
-        congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
+        memberForDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
     return (
@@ -414,6 +411,7 @@ function PersonCoreMilestones(props) {
                         classes={{
                             root: classes.column,
                         }}
+                        congregationDate={congregationDateProp}
                         disablePopover={disablePopover}
                         hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                         hasSignedMembershipAgreement={hasSignedMembershipAgreement}
@@ -432,7 +430,6 @@ function PersonCoreMilestones(props) {
                         recordType={recordType}
                         removeClassColumn={removeClassColumn}
                         signedMaturityCovenantDate={signedMaturityCovenantDate}
-                        signedMembershipAgreementDate={signedMembershipAgreementDate}
                         signedMinistryCovenantDate={signedMinistryCovenantDate}
                         signedMissionCovenantDate={signedMissionCovenantDate}
                     />
@@ -485,15 +482,12 @@ function PersonCoreMilestones(props) {
                         removeInTripsColumn={removeInTripsColumn}
                     />
 
-                {firstContactDate && !removeFirstContactDateColumn && isAdult && (
-                    <Grid.Column
-                        className={ClassNames(
-                            `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
-                            classes.firstContactDateColumn,
-                        )}
-                    >
-                        <div
-                            className={classes.dateContainers}
+                    {atSaddlebackDate && !removeFirstContactDateColumn && isAdult && (
+                        <Grid.Column
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
+                                classes.firstContactDateColumn,
+                            )}
                         >
                             <Typography
                                 className={classes.firstContactDateLabelTypography}
@@ -507,25 +501,21 @@ function PersonCoreMilestones(props) {
                             >
                                 <TimeFromNow
                                     className={classes.firstContactDateTypography}
-                                    date={firstContactDate}
+                                    date={atSaddlebackDate}
                                     relativeTime={relativeTime}
                                     relativeTimeThreshold={relativeTimeThreshold}
                                     relativeTimeRounding={relativeTimeRounding}
                                 />
                             </span>
-                        </div>
-                    </Grid.Column>
-                )}
+                        </Grid.Column>
+                    )}
 
-                {congregationDate && !removeCongregationDateColumn && isAdult && (
-                    <Grid.Column
-                        className={ClassNames(
-                            `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
-                            classes.congregationDateColummn,
-                        )}
-                    >
-                        <div
-                            className={classes.dateContainers}
+                    {memberForDate && !removeCongregationDateColumn && isAdult && (
+                        <Grid.Column
+                            className={ClassNames(
+                                `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
+                                classes.congregationDateColummn,
+                            )}
                         >
                             <Typography
                                 className={classes.congregationDateLabelTypography}
@@ -536,18 +526,18 @@ function PersonCoreMilestones(props) {
 
                             <span
                                 className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
-                            >
+                            >                                
                                 <TimeFromNow
                                     className={classes.congregationDateTypography}
-                                    date={congregationDate}
+                                    date={memberForDate}
                                     relativeTime={relativeTime}
                                     relativeTimeThreshold={relativeTimeThreshold}
                                     relativeTimeRounding={relativeTimeRounding}
                                 />
                             </span>
-                        </div>
-                    </Grid.Column>
-                )}
+                        </Grid.Column>
+                    )}
+                </Grid.Row>
             </Grid>
         </div>
     );

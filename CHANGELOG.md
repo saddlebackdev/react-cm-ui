@@ -1,6 +1,25 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 9.20-hotfix-3 - 05/06/2021
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
+  - Fixes PersonCoreMilestones Baptism `title`.
+
+## 9.21.4 - 05/06/2021
+  - Fixes PersonCoreMilestones Baptism `title`.
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
+
+## 9.21.3 - 04/26/2021
+- Fixed PersonCoreMilestones unit test.
+
+## 9.21.2 - 04/26/2021
+- [PR #281](https://github.com/saddlebackdev/react-cm-ui/pull/281) / Merge Commit 89ad6a2
+  - PersonCoreMilestones fixes.
+
+## 9.21.0-hotfix - 04/26/2021
+- [PR #281](https://github.com/saddlebackdev/react-cm-ui/pull/281) / Merge Commit 89ad6a2
+  - PersonCoreMilestones fixes.
+
 ## 9.21.1 - 04/19/2021
 - [PR #278](https://github.com/saddlebackdev/react-cm-ui/pull/278) / Merge Commit e5c01e7
   - FiltersDrawerMultiSelectLabel fix

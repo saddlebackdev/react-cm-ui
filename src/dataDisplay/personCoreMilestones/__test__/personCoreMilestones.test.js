@@ -38,7 +38,6 @@ describe('<PersonCoreMilestones />', () => {
             isInMinistry: false,
             isInSmallGroup: false,
             recordType: 'adult',
-            signedMembershipAgreementDate: '2001-10-10T12:00:00',
             signedMaturityCovenantDate: '2001-10-10T12:00:00',
             signedMinistryCovenantDate: '2001-10-10T12:00:00',
             signedMissionCovenantDate: '2001-10-10T12:00:00',
@@ -192,8 +191,8 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.props().hasTakenClass401).toEqual(props.data.hasSignedMaturityCovenant);
         expect(column.props().signedMaturityCovenantDate)
             .toEqual(props.data.signedMaturityCovenantDate);
-        expect(column.props().signedMembershipAgreementDate)
-            .toEqual(props.data.signedMembershipAgreementDate);
+        expect(column.props().congregationDate)
+            .toEqual(props.data.congregationDate);
         expect(column.props().signedMinistryCovenantDate)
             .toEqual(props.data.signedMinistryCovenantDate);
         expect(column.props().signedMissionCovenantDate)
