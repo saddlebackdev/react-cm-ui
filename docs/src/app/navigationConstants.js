@@ -376,6 +376,18 @@ export const navigationItems = [
                         path: 'a',
                     },
                     {
+                        component: 'mobileStepper',
+                        label: 'Mobile Stepper',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'mobile-stepper',
+                    },
+                    {
                         component: 'subNavigationDeprecated',
                         label: 'Sub Navigation (Deprecated)',
                         path: 'sub-navigation-deprecated',
