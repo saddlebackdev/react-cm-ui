@@ -48,14 +48,8 @@ function DocsMobileStepper(props) {
                         anchorLink="record-types"
                         variant="h2"
                     >
-                        Person Record Types
+                        Mobile Stepper
                     </Heading>
-
-                    <Typography
-                        variant="body1"
-                    >
-                        Adult Male Record Type
-                    </Typography>
 
                     <Example
                         rawCode={require('!!raw-loader!./examples/example').default}
