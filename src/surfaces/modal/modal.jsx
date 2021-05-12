@@ -143,7 +143,13 @@ const defaultProps = {
 
 const MODAL_ANIMATION_OUT_CLASS_NAME = `${BEM_MODAL}-animation_out`;
 
-const styles = (theme) => ({
+const styles = ({
+    breakpoints,
+    palette,
+    shape,
+    spacing,
+    zIndex,
+}) => ({
     '@keyframes modalDimmerFadeIn': {
         '0%': {
             opacity: 0,
@@ -181,12 +187,16 @@ const styles = (theme) => ({
         },
     },
     closeButton: {
-        borderRadius: theme.spacing(1.5),
+        borderRadius: spacing(1.5),
         margin: 0,
         position: 'absolute',
-        right: -theme.spacing(1.5),
-        top: -theme.spacing(1.5),
+        right: spacing(1),
+        top: spacing(1),
         zIndex: 1,
+        [breakpoints.up('md')]: {
+            right: -spacing(1.5),
+            top: -spacing(1.5),
+        },
     },
     dimmer: {
         animation: '$modalDimmerFadeIn 150ms ease-out forwards',
@@ -199,18 +209,15 @@ const styles = (theme) => ({
         position: 'absolute',
         top: 0,
         width: '100%',
-        zIndex: `${theme.zIndex.drawer + 2}`,
+        zIndex: `${zIndex.drawer + 2}`,
     },
     innerContainerClasses: {
         animation: '$modalSlideIn 200ms ease-out forwards',
         backfaceVisibility: 'hidden',
-        backgroundColor: theme.palette.background.contrastPrimary,
-        borderRadius: theme.shape.borderRadius.main,
+        backgroundColor: palette.background.primary,
+        borderRadius: shape.borderRadius.main,
         boxShadow: '0 15px 28px 0 rgba(0, 0, 0, 0.13)',
         position: 'relative',
-        [theme.breakpoints.up('md')]: {
-            backgroundColor: theme.palette.background.primary,
-        },
     },
     padding: {},
     root: {
@@ -224,9 +231,9 @@ const styles = (theme) => ({
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: theme.zIndex.drawer,
-        [theme.breakpoints.up('md')]: {
-            padding: theme.spacing(3),
+        zIndex: zIndex.drawer,
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
         },
         [`&.${MODAL_ANIMATION_OUT_CLASS_NAME}`]: {
             [`& .${BEM_MODAL_INNER_CONTAINER}`]: {
@@ -238,12 +245,10 @@ const styles = (theme) => ({
         },
     },
     scrollContainer: {
-        color: theme.palette.text.contrastText,
-        padding: [[88, 11, theme.spacing(3)]],
+        padding: [[spacing(5), spacing(2), spacing(2)]],
         position: 'relative',
-        [theme.breakpoints.up('md')]: {
-            color: 'inherit',
-            padding: theme.spacing(3),
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
         },
     },
 });
@@ -572,7 +577,7 @@ class Modal extends React.Component {
                                 classes={{
                                     root: classes.closeButton,
                                 }}
-                                color="secondary"
+                                color="alternate" // Change to 'secondary' with UI Button gap closure
                                 onClick={this.onClose}
                                 icon
                                 title="Close"
