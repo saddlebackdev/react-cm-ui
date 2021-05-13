@@ -58,7 +58,9 @@ const defaultProps = {
     id: null,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
+    spacing,
+}) => ({
     'alignItems-center': {
         alignItems: 'center',
     },
@@ -86,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     margin: {},
     root: {
         display: 'flex',
-        margin: [[theme.spacing(3), 0, 0]],
+        margin: [[spacing(5), 0, 0]],
     },
 }));
 

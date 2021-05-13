@@ -34,7 +34,7 @@ function ModalLeftAlignedSample() {
 
             <Modal
                 isOpen={isModalOpen}
-                maxWidth={490}
+                width={490}
             >
                 <Modal.Content>
                     <Typography

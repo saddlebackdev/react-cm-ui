@@ -265,10 +265,11 @@ class Modal extends React.Component {
         this.mounted = false;
         this.modalContainerNode = null;
 
-        this.onCloseBefore = this.onCloseBefore.bind(this);
+        this.getAutoHeightMax = this.getAutoHeightMax.bind(this);
         this.onClickOutside = this.onClickOutside.bind(this);
-        this.onCloseAnimationComplete = this.onCloseAnimationComplete.bind(this);
         this.onClose = this.onClose.bind(this);
+        this.onCloseAnimationComplete = this.onCloseAnimationComplete.bind(this);
+        this.onCloseBefore = this.onCloseBefore.bind(this);
         this.onOpen = this.onOpen.bind(this);
         this.onOpenAnimationComplete = this.onOpenAnimationComplete.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -437,12 +438,11 @@ class Modal extends React.Component {
         }
 
         if (autoHeight) {
-            const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
-            const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
-            const modalHeight = portalNode.offsetHeight;
-            const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
+            const newAutoHeightMax = this.getAutoHeightMax();
 
-            this.setState({ autoHeightMax: newAutoHeightMax });
+            this.setState({
+                autoHeightMax: newAutoHeightMax,
+            });
         }
     }
 
@@ -465,6 +465,7 @@ class Modal extends React.Component {
 
     getDimensions() {
         const {
+            autoHeight,
             height,
             maxHeight,
             maxWidth,
@@ -493,7 +494,37 @@ class Modal extends React.Component {
             };
         }
 
+        if (autoHeight) {
+            const newAutoHeightMax = this.getAutoHeightMax();
+
+            dimensions = {
+                ...dimensions,
+                autoHeightMax: newAutoHeightMax,
+            };
+        }
+
         return dimensions;
+    }
+
+    getAutoHeightMax() {
+        const {
+            isOpen,
+        } = this.props;
+
+        if (this.mounted && isOpen) {
+            // eslint-disable-next-line react/no-find-dom-node
+            const portalNode = ReactDOM.findDOMNode(this);
+
+            if (portalNode) {
+                const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
+                const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
+                const modalHeight = portalNode.offsetHeight;
+
+                return modalHeight - modalPaddingBottom - modalPaddingTop;
+            }
+        }
+
+        return null;
     }
 
     toggleBodyStyle({ enable }) {
