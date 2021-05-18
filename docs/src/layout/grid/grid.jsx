@@ -7,20 +7,18 @@ import {
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-import GridAutoLayoutSample from './gridAutoLayoutSample';
-import GridBreakpointsSample from './gridBreakpointsSample';
-import GridInteractive from './gridInteractive';
-import GridNestedGridSample from './gridNestedGridSample';
-import GridSample from './gridSample';
+import ExampleGridAutoLayout from './examples/exampleGridAutoLayout';
+import ExampleGridBreakpoints from './examples/exampleGridBreakpoints';
+import ExampleGridInteractive from './examples/exampleGridInteractive';
+import ExampleNestedGrid from './examples/exampleNestedGrid';
+import ExampleGrid from './examples/exampleGrid';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/grid';
-import { default as rootDocColumn } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/grid/gridColumn';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -53,7 +51,7 @@ function DocsGrid(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="standard-grid"
                         variant="h2"
                     >
                         Standard Grid
@@ -67,14 +65,14 @@ function DocsGrid(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./gridSample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleGrid').default}
                 >
-                    <GridSample />
+                    <ExampleGrid />
                 </Example>
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="children"
+                        anchorLink="grid-with-breakpoints"
                         variant="h2"
                     >
                         Grid with Breakpoints
@@ -89,14 +87,14 @@ function DocsGrid(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./gridBreakpointsSample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleGridBreakpoints').default}
                 >
-                    <GridBreakpointsSample />
+                    <ExampleGridBreakpoints />
                 </Example>
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="children"
+                        anchorLink="auto-layout"
                         variant="h2"
                     >
                         Auto Layout
@@ -111,14 +109,14 @@ function DocsGrid(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./gridAutoLayoutSample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleGridAutoLayout').default}
                 >
-                    <GridAutoLayoutSample />
+                    <ExampleGridAutoLayout />
                 </Example>
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="children"
+                        anchorLink="nested-grids"
                         variant="h2"
                     >
                         Nested Grids
@@ -132,14 +130,14 @@ function DocsGrid(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./gridNestedGridSample').default}
+                    rawCode={require('!!raw-loader!./examples/exampleNestedGrid').default}
                 >
-                    <GridNestedGridSample />
+                    <ExampleNestedGrid />
                 </Example>
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="children"
+                        anchorLink="interactive-grid-system"
                         variant="h2"
                     >
                         Interactive Grid System
@@ -153,15 +151,8 @@ function DocsGrid(props) {
                 </MarkdownContainer>
 
                 <Example>
-                    <GridInteractive />
+                    <ExampleGridInteractive />
                 </Example>
-
-                <ComponentApi
-                    docs={[
-                        rootDoc,
-                        rootDocColumn,
-                    ]}
-                />
 
                 <ComponentVersionIdentifier
                     pathname={pathname}
