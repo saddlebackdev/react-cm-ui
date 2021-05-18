@@ -496,6 +496,7 @@ class ActionBar extends React.Component {
         const containerClasses = ClassNames(
             'ui',
             'action_bar',
+            `${moduleType}--action_bar`,
             classes.root,
             className,
             {
