@@ -3,7 +3,7 @@ import {
 } from 'react-cm-ui';
 import React from 'react';
 
-function ExampleSolid() {
+function ExamplePersonCoreMilestones() {
     const data = {
         acceptedChristDate: '1991-03-31T00:00:00',
         activeInMissionsDate: null,
@@ -44,4 +44,4 @@ function ExampleSolid() {
     );
 }
 
-export default ExampleSolid;
+export default ExamplePersonCoreMilestones;
