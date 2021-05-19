@@ -1,85 +1,72 @@
 import {
-    A,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleA from './examples/exampleA';
 import Heading from '../../global/heading';
-import Highlighter from '../../global/highlighter';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as aDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/a/a';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/a/a';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const names = ['Link One', 'Link Two', 'Link Three'];
-const myId = 'myId';
-const disable = false;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
 
-const aSample = `import React from 'react';
+function DocsA(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
 
-import Loader from '../app/Elements/Loader.react';
-
-export default class TypeSample extends React.Component {    
-
-    constructor(props) {
-        super(props);        
-    }
-    
-    const names = ['Link One', 'Link Two', 'Link Three'];
-    const myId = 'myId';
-    const disable = false;
-
-    render() {
-        return (
-            <div>
-                <A
-                    id={myId}
-                    children={names}
-                    onClick={() => console.log('Click!')}
-                    disable={disable}
-                    onKeyDown={() => console.log('keyDown!')}
-                />
-            </div>
-        );
-    }
-}`;
-
-function DocsA() {
-    const descriptionCopy = aDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="a">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
+
+                    <Heading
+                        anchorLink="record-types"
+                        variant="h2"
+                    >
+                        A
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleA').default}
+                    >
+                        <ExampleA />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        aDoc,
-                    ]}
-                />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {aSample}
-                </Highlighter>
-
-                <A
-                    id={myId}
-                    children={names}
-                    onClick={() => console.log('Click!')}
-                    disable={disable}
-                    onKeyDown={() => console.log('keyDown!')}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
+
+DocsA.propTypes = propTypes;
 
 export default DocsA;

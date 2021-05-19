@@ -422,6 +422,13 @@ export const navigationItems = [
                     {
                         component: 'a',
                         label: 'A',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'a',
                     },
                     {

@@ -1834,7 +1834,7 @@ export default class ModulesDropdown extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }}>
                         The prop 'button' has been deprecated.
                         <br />
-                        Please use <Link to={{ pathname: '/molecules/dropdown-button' }}>Dropdown Button</Link> component instead.
+                        Please use <Link to={{ pathname: '/components/inputs/dropdown-button' }}>Dropdown Button</Link> component instead.
                     </Header>
 
                     <Card>
