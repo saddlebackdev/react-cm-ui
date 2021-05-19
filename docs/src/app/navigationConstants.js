@@ -303,6 +303,13 @@ export const navigationItems = [
                     {
                         component: 'grid',
                         label: 'Grid',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'grid',
                     },
                     {

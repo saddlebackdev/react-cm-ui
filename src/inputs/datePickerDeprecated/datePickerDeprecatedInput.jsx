@@ -293,63 +293,62 @@ class DatePickerInput extends React.Component {
             );
         } else if (uxMode === 'calendar') {
             return (
-                <div
+                <Grid
+                    columns={2}
+                    spacing={2}
                     style={{
-                        margin: '7px 0 5px',
+                        marginBottom: 5,
+                        marginTop: 7,
                     }}
                 >
-                    <Grid
-                        spacing={2}
-                    >
-                        <Grid.Column>
-                            <Input
-                                autoComplete="off"
-                                className={containerClasses}
-                                data-parsley-error-message={this.props.errorMessage}
-                                disabled={disabled}
-                                guide={true}
-                                id={this.props.id}
-                                keepCharPositions={true}
-                                label="From"
-                                mask={mask}
-                                onBlur={this.onBlur}
-                                onChange={this.onChange.bind(this, 'dateStart')}
-                                onClick={this.onClick}
-                                onFocus={this.onFocus}
-                                placeholder={placeholder}
-                                ref="inputStart"
-                                required={this.props.required}
-                                tabIndex={this.props.tabIndex}
-                                type="text"
-                                value={this.state.maybeDateRange.dateStart}
-                            />
-                        </Grid.Column>
+                    <Grid.Column>
+                        <Input
+                            autoComplete="off"
+                            className={containerClasses}
+                            data-parsley-error-message={this.props.errorMessage}
+                            disabled={disabled}
+                            guide={true}
+                            id={this.props.id}
+                            keepCharPositions={true}
+                            label="From"
+                            mask={mask}
+                            onBlur={this.onBlur}
+                            onChange={this.onChange.bind(this, 'dateStart')}
+                            onClick={this.onClick}
+                            onFocus={this.onFocus}
+                            placeholder={placeholder}
+                            ref="inputStart"
+                            required={this.props.required}
+                            tabIndex={this.props.tabIndex}
+                            type="text"
+                            value={this.state.maybeDateRange.dateStart}
+                        />
+                    </Grid.Column>
 
-                        <Grid.Column>
-                            <Input
-                                autoComplete="off"
-                                className={containerClasses}
-                                data-parsley-error-message={this.props.errorMessage}
-                                disabled={disabled}
-                                guide={true}
-                                id={this.props.id}
-                                keepCharPositions={true}
-                                label="To"
-                                mask={mask}
-                                onBlur={this.onBlur}
-                                onChange={this.onChange.bind(this, 'dateEnd')}
-                                onClick={this.onClick}
-                                onFocus={this.onFocus}
-                                placeholder={placeholder}
-                                ref="inputEnd"
-                                required={this.props.required}
-                                tabIndex={this.props.tabIndex}
-                                type="text"
-                                value={this.state.maybeDateRange.dateEnd}
-                            />
-                        </Grid.Column>
-                    </Grid>
-                </div>
+                    <Grid.Column>
+                        <Input
+                            autoComplete="off"
+                            className={containerClasses}
+                            data-parsley-error-message={this.props.errorMessage}
+                            disabled={disabled}
+                            guide={true}
+                            id={this.props.id}
+                            keepCharPositions={true}
+                            label="To"
+                            mask={mask}
+                            onBlur={this.onBlur}
+                            onChange={this.onChange.bind(this, 'dateEnd')}
+                            onClick={this.onClick}
+                            onFocus={this.onFocus}
+                            placeholder={placeholder}
+                            ref="inputEnd"
+                            required={this.props.required}
+                            tabIndex={this.props.tabIndex}
+                            type="text"
+                            value={this.state.maybeDateRange.dateEnd}
+                        />
+                    </Grid.Column>
+                </Grid>
             );
         }
     }
