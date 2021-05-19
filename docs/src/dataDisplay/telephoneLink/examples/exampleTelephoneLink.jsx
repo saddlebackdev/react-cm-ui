@@ -7,9 +7,9 @@ function ExampleTelephoneLink() {
     return (
         <TelephoneLink
             className="block_name--element_name"
-            formattedNumberSample="MX"
+            formattedNumber="(949) 609-8002"
             id="block_name--element_name"
-            number="(949) 609-8002"
+            number="+19496098002"
         />
     );
 }
