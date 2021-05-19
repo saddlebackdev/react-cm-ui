@@ -21,7 +21,7 @@ const persons = [
     },
 ];
 
-function ExampleAddress() {
+function ExampleDataCards() {
     return (
         <DataCards
             cardProps={() => ({
@@ -45,4 +45,4 @@ function ExampleAddress() {
     );
 }
 
-export default ExampleAddress;
+export default ExampleDataCards;
