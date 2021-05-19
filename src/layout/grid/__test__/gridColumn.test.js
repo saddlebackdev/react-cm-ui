@@ -1,6 +1,6 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
- * npx jest ./src/layout/grid/__test__/grid.test.js
+ * To run this test:
+ * npx jest ./src/layout/grid/__test__/gridColumn.test.js
  */
 
 import { camelCase } from 'lodash';

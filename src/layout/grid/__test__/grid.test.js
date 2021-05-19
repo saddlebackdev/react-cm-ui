@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/layout/grid/__test__/grid.test.js
  */
 
@@ -18,7 +18,7 @@ describe('<Grid />', () => {
     it('Should render without problems', () => {
         const wrapper = mountWithTheme(<Grid {...props} />);
 
-        expect(wrapper).toBeDefined();
+        expect(wrapper.exists()).toBe(true);
     });
 
     it.each([

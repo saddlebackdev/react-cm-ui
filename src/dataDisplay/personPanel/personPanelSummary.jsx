@@ -554,7 +554,6 @@ function PersonPanelSummary(props) {
                     className={classes.nameColumn}
                 >
                     <Typography
-                        component="h4"
                         variant="h4"
                     >
                         {`${prefix || ''} ${firstName} ${(nickName && `(${nickName})`) || ''} ${lastName} ${suffix || ''}`}
