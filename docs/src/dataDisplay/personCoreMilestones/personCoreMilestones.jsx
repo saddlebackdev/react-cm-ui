@@ -27,7 +27,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsButton(props) {
+function DocsPersonCoreMilestones(props) {
     const {
         location: {
             pathname,
@@ -139,6 +139,6 @@ function DocsButton(props) {
     );
 }
 
-DocsButton.propTypes = propTypes;
+DocsPersonCoreMilestones.propTypes = propTypes;
 
-export default DocsButton;
+export default DocsPersonCoreMilestones;
