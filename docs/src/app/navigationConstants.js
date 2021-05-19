@@ -303,6 +303,13 @@ export const navigationItems = [
                     {
                         component: 'grid',
                         label: 'Grid',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'grid',
                     },
                     {
@@ -548,8 +555,20 @@ export const navigationItems = [
                         path: 'info-bar-deprecated',
                     },
                     {
+                        component: 'modalDeprecated',
+                        label: 'Modal (Deprecated)',
+                        path: 'modal-deprecated',
+                    },
+                    {
                         component: 'modal',
                         label: 'Modal',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'modal',
                     },
                     {

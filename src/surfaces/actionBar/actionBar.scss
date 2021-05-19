@@ -93,7 +93,7 @@ $backwards-step4-duration: $standard-fifth-timing;
     }
 }
 
-.ui {
+.ui, .cmui {
     &.drawer--action_bar, &.page--action_bar {
         align-items: center;
         border-bottom: 1px solid color(borderColor);
