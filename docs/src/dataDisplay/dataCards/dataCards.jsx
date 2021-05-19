@@ -46,7 +46,7 @@ function DocsDataCards(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="data-cards"
                         variant="h2"
                     >
                         Data Cards

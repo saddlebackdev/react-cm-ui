@@ -26,7 +26,7 @@ function ExampleDataCards() {
         <DataCards
             cardProps={() => ({
                 // eslint-disable-next-line no-console
-                onClick: () => console.log('Click!'),
+                onClick: () => { console.log('Click!'); },
             })}
             columns={[
                 {

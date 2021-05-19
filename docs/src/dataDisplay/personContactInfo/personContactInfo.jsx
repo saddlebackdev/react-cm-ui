@@ -46,7 +46,7 @@ function DocsPersonContactInfo(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="person-contact-info"
                         variant="h2"
                     >
                         Person Contact Info

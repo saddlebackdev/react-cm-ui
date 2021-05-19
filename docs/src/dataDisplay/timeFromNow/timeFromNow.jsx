@@ -46,7 +46,7 @@ function DocsTimeFromNow(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="time-from-now"
                         variant="h2"
                     >
                         Time From Now

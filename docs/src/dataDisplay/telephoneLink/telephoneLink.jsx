@@ -46,7 +46,7 @@ function DocsTelephoneLink(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="telephone-link"
                         variant="h2"
                     >
                         Telephone Link
