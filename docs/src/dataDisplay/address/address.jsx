@@ -13,7 +13,7 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/address/address';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataCards/dataCards';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {

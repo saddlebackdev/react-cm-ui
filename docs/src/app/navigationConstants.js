@@ -71,6 +71,13 @@ export const navigationItems = [
                     {
                         component: 'dataCards',
                         label: 'Data Cards',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'data-cards',
                     },
                     {
