@@ -98,6 +98,13 @@ export const navigationItems = [
                     {
                         component: 'emailLink',
                         label: 'Email Link',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'email-link',
                     },
                     {
@@ -135,6 +142,13 @@ export const navigationItems = [
                     {
                         component: 'personContactInfo',
                         label: 'Person Contact Info',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'person-contact-info',
                     },
                     {

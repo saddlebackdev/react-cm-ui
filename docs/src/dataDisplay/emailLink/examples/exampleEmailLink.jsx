@@ -13,4 +13,4 @@ function ExampleEmailLink() {
     );
 }
 
-export default ExampleAddress;
+export default ExampleEmailLink;

@@ -22,7 +22,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsButton(props) {
+function DocsDataCards(props) {
     const {
         location: {
             pathname,
@@ -67,6 +67,6 @@ function DocsButton(props) {
     );
 }
 
-DocsButton.propTypes = propTypes;
+DocsDataCards.propTypes = propTypes;
 
-export default DocsButton;
+export default DocsDataCards;
