@@ -49,6 +49,13 @@ export const navigationItems = [
                     {
                         component: 'address',
                         label: 'Address',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'address',
                     },
                     {

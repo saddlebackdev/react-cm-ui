@@ -1,97 +1,72 @@
 import {
-    Header,
-    Address,
-    Typography
+    Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleAddress from './examples/exampleAddress';
 import Heading from '../../global/heading';
-import Highlighter from '../../global/highlighter';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as addressDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/address/address';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/address/address';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const address1 = `My Address`;
-const address2 = `My Address 2`;
-const city = `LA`;
-const country = `USA`;
-const addressAlpha = `USA Alpha`;
-const postalCode = `12345`;
-const region = `Region`;
-const regionCode = `Region Code`;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
 
-const addressSample = `import React from 'react';
+function DocsButton(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
 
-import Loader from '../app/Elements/Loader.react';
-
-export default class TypeSample extends React.Component {
-
-    constructor(props) {
-        super(props);        
-    }
-
-    render() {
-        return (
-            <div>
-                <Address
-                    address1={address1}
-                    address2={address2}
-                    city={city}
-                    region={region}
-                    postalCode={postalCode}
-                    country={country}                    
-                /> 
-            </div>
-        );
-    }
-}`;
-
-function DocsAddress() {
-    const descriptionCopy = addressDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="address">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
+
+                    <Heading
+                        anchorLink="record-types"
+                        variant="h2"
+                    >
+                        Address
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleAddress').default}
+                    >
+                        <ExampleAddress />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        addressDoc,
-                    ]}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
-                {/* Address */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
-                        Address
-                        <Header.Subheader>
-                            Address component.
-                        </Header.Subheader>
-                </Header>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {addressSample}
-                </Highlighter>
-
-                <Address
-                    address1={address1}
-                    address2={address2}
-                    city={city}
-                    region={region}
-                    regionCode={ regionCode}
-                    postalCode={postalCode}
-                    country={country}
-                /> 
             </Main.Content>
         </Main>
     );
 }
 
-export default DocsAddress;
+DocsButton.propTypes = propTypes;
+
+export default DocsButton;
