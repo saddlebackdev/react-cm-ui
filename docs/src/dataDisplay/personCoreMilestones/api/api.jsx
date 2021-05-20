@@ -5,7 +5,7 @@ import React from 'react';
 import ComponentApi from '../../../global/componentApi';
 import Main from '../../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personCoreMilestones/personCoreMilestones';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsApi() {

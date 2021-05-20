@@ -1,8 +1,8 @@
 import {
-    isString,
-    isNumber,
-    isUndefined,
     isFunction,
+    isNumber,
+    isString,
+    isUndefined,
 } from 'lodash';
 import { Portal } from 'react-portal';
 import React from 'react';
@@ -11,10 +11,10 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import {
-    UI_CLASS_NAME,
-    BEM_MODAL,
     BEM_MODAL_DIMMER,
     BEM_MODAL_INNER_CONTAINER,
+    BEM_MODAL,
+    UI_CLASS_NAME,
 } from '../../global/constants';
 import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';

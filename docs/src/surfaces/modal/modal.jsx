@@ -47,7 +47,7 @@ function DocsModal(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="left-aligned-modal"
                         variant="h2"
                     >
                         Left Aligned Modal
@@ -68,7 +68,7 @@ function DocsModal(props) {
                     </Example>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="center-aligned-modal"
                         variant="h2"
                     >
                         Center Aligned Modal

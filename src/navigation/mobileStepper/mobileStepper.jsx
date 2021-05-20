@@ -20,11 +20,11 @@ const propTypes = {
     backButton: PropTypes.node,
     /**
      * Override or extend the styles applied to the component.
-     * See [CSS API](#css) below for more details.
+     * See [CSS API](https://material-ui.com/api/mobile-stepper/#css) for more details.
      */
     classes: PropTypes.shape({}),
     /**
-     * @ignore
+     * Assign additional class names to Mobile Stepper.
      */
     className: PropTypes.string,
     /**
