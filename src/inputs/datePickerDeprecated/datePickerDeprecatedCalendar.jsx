@@ -254,35 +254,74 @@ class DatePickerCalendar extends React.Component {
                 </div>
 
                 {buttonClear === true || _.isFunction(onApplyClick) ? (
-                    <Grid columns={2} style={{ marginTop: '11px' }} verticalAlign="middle">
-                        <Grid.Row>
-                            {buttonClear === true && dateStart || dateSecondaryStart ? (
-                                <Grid.Column floated="left">
-                                    <a className="font-size-xsmall color-alert" onClick={this.onClearClick.bind(this)}>Clear</a>
-                                </Grid.Column>
+                    <Grid
+                        alignItems="center"
+                        justifyContent="space-between"
+                        spacing={2}
+                        style={{
+                            marginTop: 11,
+                        }}
+                    >
+                        <Grid.Column>
+                            {buttonClear === true && (dateStart || dateSecondaryStart) ? (
+                                <a
+                                    className="font-size-xsmall color-alert"
+                                    onClick={this.onClearClick.bind(this)}
+                                >
+                                    Clear
+                                </a>
                             ) : null}
+                        </Grid.Column>
 
-                            {_.isFunction(onApplyClick) ? (
-                                <Grid.Column floated="right" textAlign="right">
-                                    <Button
-                                        color={
-                                            (type === 'singleDate' && date) ||
-                                            ((type === 'dateRange' || type === 'servicePeriod') && dateStart && dateEnd) ||
-                                            (type === 'servicePeriodRange' && dateStart && dateEnd && dateSecondaryStart && dateSecondaryEnd) ?
-                                                'primary' : 'disable'
-                                        }
-                                        onClick={date || dateStart && dateEnd || dateSecondaryStart && dateSecondaryEnd ? this.onApplyClick.bind(this) : null}
-                                    >
-                                        {(type === 'singleDate' && date) ||
-                                        ((type === 'dateRange' || type === 'servicePeriod') && dateStart && dateEnd) ||
-                                        (type === 'servicePeriodRange' && dateStart && dateEnd && dateSecondaryStart && dateSecondaryEnd) ?
-                                            'Apply' :
-                                            'Select'
-                                        }
-                                    </Button>
-                                </Grid.Column>
-                            ) : null}
-                        </Grid.Row>
+                        {_.isFunction(onApplyClick) ? (
+                            <Grid.Column>
+                                <Button
+                                    color={
+                                        (type === 'singleDate' && date) ||
+                                        (
+                                            (type === 'dateRange' || type === 'servicePeriod') &&
+                                            dateStart && dateEnd
+                                        ) ||
+                                        (
+                                            type === 'servicePeriodRange' &&
+                                            dateStart &&
+                                            dateEnd &&
+                                            dateSecondaryStart &&
+                                            dateSecondaryEnd
+                                        ) ?
+                                            'primary' : 'disable'
+                                    }
+                                    onClick={
+                                        date ||
+                                        (dateStart && dateEnd) ||
+                                        (dateSecondaryStart && dateSecondaryEnd) ?
+                                            this.onApplyClick.bind(this) :
+                                            null
+                                    }
+                                >
+                                    {
+                                    (type === 'singleDate' && date) ||
+                                    (
+                                        (
+                                            type === 'dateRange' ||
+                                            type === 'servicePeriod'
+                                        ) &&
+                                        dateStart &&
+                                        dateEnd
+                                    ) ||
+                                    (
+                                        type === 'servicePeriodRange' &&
+                                        dateStart &&
+                                        dateEnd &&
+                                        dateSecondaryStart &&
+                                        dateSecondaryEnd
+                                    ) ?
+                                        'Apply' :
+                                        'Select'
+                                    }
+                                </Button>
+                            </Grid.Column>
+                        ) : null}
                     </Grid>
                 ) : null}
             </div>

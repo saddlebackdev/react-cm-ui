@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import React, {
+    useEffect,
+} from 'react';
 import {
     BEM_CONTAINER,
     UI_CLASS_NAME,
@@ -46,7 +48,7 @@ function PageActionBar(props) {
     }, []);
 
     const toggleSmSearchVisibleClassName = (isVisible) => {
-        const containerClassName = `.${UI_CLASS_NAME}.${BEM_CONTAINER}`;
+        const containerClassName = `.ui.${BEM_CONTAINER}`;
 
         if (isVisible) {
             document

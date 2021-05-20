@@ -299,11 +299,13 @@ const useStyles = makeStyles((theme) => {
         avatarColumn: {
             maxWidth: 55,
             minWidth: 55,
-            paddingRight: 0,
+            padding: [[theme.spacing(1), 0, theme.spacing(1), theme.spacing(1)]],
             width: 'auto !important',
         },
         contactInfoColumn: {
             display: 'none',
+            padding: theme.spacing(1),
+            textAlign: 'right',
             width: 'auto !important',
             '&$hasContactInfo': {
                 marginLeft: 'auto',
@@ -315,9 +317,7 @@ const useStyles = makeStyles((theme) => {
         isExpanded: {},
         hasContactInfo: {},
         grid: {
-            margin: '0 !important',
             position: 'relative',
-            width: '100%',
             zIndex: 2,
         },
         gridRow: {
@@ -328,12 +328,14 @@ const useStyles = makeStyles((theme) => {
         metaInfo: {},
         nameColumn: {
             marginRight: 'auto',
+            padding: theme.spacing(1),
             width: 'auto !important',
         },
         noContactInfo: {},
         personIdColumn: {
+            padding: theme.spacing(1),
+            textAlign: 'right',
             width: 'auto !important',
-            wordWrap: 'nowrap',
             '&$noContactInfo': {
                 marginLeft: 'auto',
             },
@@ -530,62 +532,62 @@ function PersonPanelSummary(props) {
             tabIndex={tabIndex}
             role="button"
         >
-            <Grid className={classes.grid}>
-                <Grid.Row
-                    className={classes.gridRow}
+            <Grid
+                alignItems="center"
+                className={classes.grid}
+                spacing={0}
+                wrap="nowrap"
+            >
+                <Grid.Column
+                    className={classes.avatarColumn}
                 >
-                    <Grid.Column
-                        className={classes.avatarColumn}
+                    <Image
+                        className={classes.avatar}
+                        name={firstName && lastName ? `${firstName} ${lastName}` : null}
+                        size={44}
+                        src={avatar}
+                        type="person"
+                    />
+                </Grid.Column>
+
+                <Grid.Column
+                    className={classes.nameColumn}
+                >
+                    <Typography
+                        variant="h4"
                     >
-                        <Image
-                            className={classes.avatar}
-                            name={firstName && lastName ? `${firstName} ${lastName}` : null}
-                            size={44}
-                            src={avatar}
-                            type="person"
-                        />
-                    </Grid.Column>
+                        {`${prefix || ''} ${firstName} ${(nickName && `(${nickName})`) || ''} ${lastName} ${suffix || ''}`}
+                    </Typography>
 
-                    <Grid.Column
-                        className={classes.nameColumn}
+                    <Typography
+                        className={metaInfoClasses}
+                        color={isExpanded ? 'inherit' : 'textSecondary'}
+                        variant="caption"
                     >
-                        <Typography
-                            component="h4"
-                            variant="h4"
-                        >
-                            {`${prefix || ''} ${firstName} ${(nickName && `(${nickName})`) || ''} ${lastName} ${suffix || ''}`}
-                        </Typography>
+                        {metaInfoText}
+                    </Typography>
+                </Grid.Column>
 
-                        <Typography
-                            className={metaInfoClasses}
-                            color={isExpanded ? 'inherit' : 'textSecondary'}
-                            variant="caption"
-                        >
-                            {metaInfoText}
-                        </Typography>
-                    </Grid.Column>
-
-                    {renderContactInfo && (
-                        <Grid.Column
-                            className={contactInfoColumnClasses}
-                            textAlign="right"
-                        >
-                            {renderContactInfo}
-                        </Grid.Column>
-                    )}
-
+                {renderContactInfo && (
                     <Grid.Column
-                        className={personIdColumnClasses}
+                        className={contactInfoColumnClasses}
                         textAlign="right"
                     >
-                        <Typography
-                            className={classes.personId}
-                            variant="caption"
-                        >
-                            {`Id: ${personId}`}
-                        </Typography>
+                        {renderContactInfo}
                     </Grid.Column>
-                </Grid.Row>
+                )}
+
+                <Grid.Column
+                    className={personIdColumnClasses}
+                    textAlign="right"
+                >
+                    <Typography
+                        className={classes.personId}
+                        variant="caption"
+                    >
+                        {`Id: ${personId}`}
+                    </Typography>
+                </Grid.Column>
             </Grid>
         </div>
     );

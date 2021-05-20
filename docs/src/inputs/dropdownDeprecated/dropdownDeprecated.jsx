@@ -26,11 +26,8 @@ const imageFilePath = '/images';
 const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class DropdownSample extends React.Component {
-
     render() {
         return (
             <Dropdown
@@ -45,15 +42,11 @@ export default class DropdownSample extends React.Component {
             </Dropdown>
         );
     }
-
 }`;
 
 const buttonSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ButtonSample extends React.Component {
-
     render() {
         return (
             <Dropdown button collapseMenuOnChange placeholder="Button Dropdown">
@@ -64,25 +57,18 @@ export default class ButtonSample extends React.Component {
             </Dropdown>
         );
     }
-
 }`;
 
 const buttonControlledSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ButtonControlledSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             buttonDropdownValue: null
         };
-
         this._onButtonDropDownChange = this._onButtonDropDownChange.bind(this);
     }
-
     render() {
         return (
             <Dropdown
@@ -98,28 +84,21 @@ export default class ButtonControlledSample extends React.Component {
             </Dropdown>
         );
     }
-
     _onButtonDropDownChange(selectedOption) {
         this.setState({ buttonDropdownValue: selectedOption });
     }
 }`;
 
 const buttonMenuSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ButtonMenuSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             buttonMenuAction: null
         };
-
         this._onButtonDropDownMenuChange = this._onButtonDropDownMenuChange.bind(this);
     }
-
     render() {
         return (
             <div>
@@ -128,7 +107,6 @@ export default class ButtonMenuSample extends React.Component {
                 ) : (
                     <p>Select something...</p>
                 )}
-
                 <Dropdown
                     button
                     collapseMenuOnChange
@@ -143,7 +121,6 @@ export default class ButtonMenuSample extends React.Component {
             </div>
         );
     }
-
     _onButtonDropDownMenuChange(selectedOption) {
         // TODO: Do whatever it is you want to do with the selected option
         this.setState({ buttonMenuAction: selectedOption.label }, () => {
@@ -154,7 +131,6 @@ export default class ButtonMenuSample extends React.Component {
 
 const buttonColorSample = `import React from 'react';
 import { Dropdown } from 'react-cm-ui';
-
 export default class ButtonColorSample extends React.Component {
     render() {
         return (
@@ -163,47 +139,38 @@ export default class ButtonColorSample extends React.Component {
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="alternate" collapseMenuOnChange text="Alternate">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="disable" collapseMenuOnChange text="Disable">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="light" collapseMenuOnChange text="Light">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="outline" collapseMenuOnChange text="Outline">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="primary" collapseMenuOnChange text="Primary">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="success" collapseMenuOnChange text="Success">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown button buttonColor="warning" collapseMenuOnChange text="Warning">
                     <Dropdown.Item label="Option 1" />
                     <Dropdown.Item label="Option 2" />
                 </Dropdown>
-
                 <Dropdown
                     button
                     buttonColor="transparent"
@@ -224,11 +191,8 @@ export default class ButtonColorSample extends React.Component {
 }`;
 
 const buttonCompactSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ButtonCompactSample extends React.Component {
-
     render() {
         return (
             <Dropdown button buttonCompact collapseMenuOnChange placeholder="Button Compact Dropdown">
@@ -239,24 +203,18 @@ export default class ButtonCompactSample extends React.Component {
             </Dropdown>
         );
     }
-
 }`;
 
 const disableSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class DisableSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             selectionCustomOptionsValue: null,
             selectionMultipleDisableValue: [0, 1, 2]
         };
     }
-
     render() {
         const selectionCustomOptions = [
             {
@@ -291,7 +249,6 @@ export default class DisableSample extends React.Component {
                 'value': 34
             }
         ];
-
         return (
             <div>
                 <Dropdown button disable placeholder="Disabled Button Dropdown">
@@ -300,7 +257,6 @@ export default class DisableSample extends React.Component {
                     <Dropdown.Item label="Option 3" />
                     <Dropdown.Item label="Option 4" />
                 </Dropdown><br /><br />
-
                 <Dropdown
                     disable
                     onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -310,7 +266,6 @@ export default class DisableSample extends React.Component {
                     selection
                     value={this.state.selectionCustomOptionsValue}
                 /><br /><br />
-
                 <Dropdown
                     disable
                     onChange={this._onSelectionMultipleDisableChange.bind(this)}
@@ -324,27 +279,19 @@ export default class DisableSample extends React.Component {
             </div>
         );
     }
-
     _onSelectionCustomOptionsChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionCustomOptionsValue: selectedOption });
     }
-
     _onSelectionMultipleDisableChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionMultipleDisableValue: selectedOption });
     }
-
 }`;
 
 const iconSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class IconSample extends React.Component {
-
     render() {
         return (
             <div>
@@ -361,7 +308,6 @@ export default class IconSample extends React.Component {
                     <Dropdown.Item label="Option 3" />
                     <Dropdown.Item label="Option 4" />
                 </Dropdown>
-
                 <Dropdown
                     iconType="plus"
                     onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -374,21 +320,15 @@ export default class IconSample extends React.Component {
             </div<
         );
     }
-
 }`;
 
 const menuHeightSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class MenuHeightSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionValue: null };
     }
-
     render() {
         return (
             <Dropdown
@@ -401,26 +341,19 @@ export default class MenuHeightSample extends React.Component {
             />
         );
     }
-
     _onSelectionChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionValue: selectedOption });
     }
-
 }`;
 
 const onChangeSample = `import React from 'react';
 import { Dropdown } from 'react-cm-ui';
-
 export default class OnChangeSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this._onSampleOnChange = this._onSampleOnChange.bind(this);
     }
-
     render() {
         return (
             <Dropdown onChange={this._onSampleOnChange} text="Marty McFly">
@@ -431,26 +364,19 @@ export default class OnChangeSample extends React.Component {
             </Dropdown>
         );
     }
-
     _onSampleOnChange(test) {
         console.log('_onSampleOnChange');
         console.log('test', test);
     }
-
 }`;
 
 const selectionMatchPropSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionMatchPropSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionValue: null };
     }
-
     render() {
         return (
             <Dropdown
@@ -463,27 +389,19 @@ export default class SelectionMatchPropSample extends React.Component {
             />
         );
     }
-
     _onSelectionChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionValue: selectedOption });
     }}
-
 }`;
 
 const selectionCreatableSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionCreatableSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionMultipleCreatableValue: null };
     }
-
     render() {
         return (
             <Dropdown
@@ -497,27 +415,19 @@ export default class SelectionCreatableSample extends React.Component {
             />
         );
     }
-
     _onSelectionMultipleCreatableChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionMultipleCreatableValue: selectedOption });
     }
-
 }`;
 
 const selectionMobileSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionMobileSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionValue: null };
     }
-
     render() {
         return (
             <Dropdown
@@ -530,27 +440,19 @@ export default class SelectionMobileSample extends React.Component {
             />
         );
     }
-
     _onSelectionChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionValue: selectedOption });
     }
-
 }`;
 
 const selectionMultipleSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionMultipleSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionMultipleValue: null };
     }
-
     render() {
         return (
             <Dropdown
@@ -563,27 +465,19 @@ export default class SelectionMultipleSample extends React.Component {
             />
         );
     }
-
     _onSelectionMultipleChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionMultipleValue: selectedOption });
     }
-
 }`;
 
 const selectionOptionComponentSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionOptionComponentSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionCustomOptionsValue: null };
     }
-
     render() {
         const selectionCustomOptions = [
             {
@@ -618,7 +512,6 @@ export default class SelectionOptionComponentSample extends React.Component {
                 'value': 34
             }
         ];
-
         return (
             <Dropdown
                 onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -630,27 +523,19 @@ export default class SelectionOptionComponentSample extends React.Component {
             />
         );
     }
-
     _onSelectionCustomOptionsChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionCustomOptionsValue: selectedOption });
     }
-
 }`;
 
 const selectionUnderlineSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class SelectionUnderlineSample extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = { selectionCustomOptionsValue: null };
     }
-
     render() {
         const selectionCustomOptions = [
             {
@@ -685,7 +570,6 @@ export default class SelectionUnderlineSample extends React.Component {
                 'value': 34
             }
         ];
-
         return (
             <Dropdown
                 onChange={this._onSelectionCustomOptionsChange.bind(this)}
@@ -697,21 +581,15 @@ export default class SelectionUnderlineSample extends React.Component {
             />
         );
     }
-
     _onSelectionCustomOptionsChange(selectedOption) {
         console.log('Parent component has the object now and can do what needs to be done');
-
         this.setState({ selectionCustomOptionsValue: selectedOption });
     }
-
 }`;
 
 const themeSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ThemeSample extends React.Component {
-
     render() {
         return (
             <Dropdown button placeholder="Button Dropdown" theme="dark">
@@ -722,15 +600,11 @@ export default class ThemeSample extends React.Component {
             </Dropdown>
         );
     }
-
 }`;
 
 const itemIconSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ItemIconSample extends React.Component {
-
     render() {
         return (
             <Dropdown button placeholder="Button Dropdown">
@@ -741,19 +615,15 @@ export default class ItemIconSample extends React.Component {
             </Dropdown>
         );
     }
-
 }`;
 
 const itemDisabledSample = `import React from 'react';
-
 import { Dropdown } from 'react-cm-ui';
-
 export default class ItemIconSample extends React.Component {
     constructor(props) {
         super(props);
         this._onButtonDropDownMenuChange = this._onButtonDropDownMenuChange.bind(this);
     }
-
     render() {
         return (
             <Dropdown
@@ -769,12 +639,10 @@ export default class ItemIconSample extends React.Component {
             </Dropdown>
         );
     }
-
     _onButtonDropDownMenuChange(selectedOption) {
         // TODO: Do whatever it is you want to do with the selected option
         console.log('This got selected:', selectedOption);
     }
-
 }`;
 
 class SelectionCustomComponent extends React.Component {
@@ -1281,7 +1149,7 @@ class ModulesDropdown extends React.Component {
                     <Header size="large" style={{ marginTop: '55px' }}>
                         The prop 'button' has been deprecated.
                         <br />
-                        Please use <Link to={{ pathname: '/molecules/dropdown-button' }}>Dropdown Button</Link> component instead.
+                        Please use <Link to={{ pathname: '/components/inputs/dropdown-button' }}>Dropdown Button</Link> component instead.
                     </Header>
 
                     <Card>
@@ -1460,7 +1328,7 @@ class ModulesDropdown extends React.Component {
                                     </Dropdown>
                                 </Grid.Column>
                             </Grid.Row>
-                            
+
                             <Grid.Row stackable>
                                 <Grid.Column width={6} tablet={4} laptop={2}>
                                     <Dropdown button buttonColor="secondary" collapseMenuOnChange text="Secondary" style={{ maxWidth: '200px', width: '100%' }}>

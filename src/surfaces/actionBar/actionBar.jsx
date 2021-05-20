@@ -1,12 +1,12 @@
 import {
     isArray,
     isEmpty,
-    isUndefined,
     map,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { GRID_SIZES } from '../../layout/grid/gridConstants';
 import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch';
 import Button from '../../inputs/button';
@@ -32,6 +32,7 @@ const propTypes = {
             title: PropTypes.string,
         }),
         jsx: PropTypes.node,
+        lg: PropTypes.oneOf(GRID_SIZES),
         list: PropTypes.arrayOf(PropTypes.shape({
             actionsButton: PropTypes.shape({}),
             divide: PropTypes.bool,
@@ -42,9 +43,24 @@ const propTypes = {
             iconSearch: PropTypes.shape({}),
             iconTable: PropTypes.shape({}),
         })),
+        md: PropTypes.oneOf(GRID_SIZES),
         search: PropTypes.shape({}),
+        sm: PropTypes.oneOf(GRID_SIZES),
+        xl: PropTypes.oneOf(GRID_SIZES),
     })),
     id: PropTypes.string,
+    /**
+     * Defines the `justify-content` style property.
+     * It is applied for all screen sizes.
+     */
+    justifyContent: PropTypes.oneOf([
+        'center',
+        'flex-end',
+        'flex-start',
+        'space-around',
+        'space-between',
+        'space-evenly',
+    ]),
     moduleType: PropTypes.oneOf(['drawer', 'page']),
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
 };
@@ -54,6 +70,7 @@ const defaultProps = {
     className: undefined,
     columns: [],
     id: undefined,
+    justifyContent: 'flex-start',
     moduleType: undefined,
     style: {},
 };
@@ -124,12 +141,19 @@ class ActionBar extends React.PureComponent {
             className,
             columns,
             id,
+            justifyContent,
             moduleType,
             style,
         } = this.props;
 
         const { isMobileSearchVisible } = this.state;
-        const containerClasses = ClassNames('ui', `${moduleType}--action_bar`, className);
+
+        const containerClasses = ClassNames(
+            'ui',
+            `${moduleType}--action_bar`,
+            'action_bar',
+            className,
+        );
 
         let searchDataForMobile = null;
         let gridColumnKeyNum = 1;
@@ -146,8 +170,11 @@ class ActionBar extends React.PureComponent {
                     {!isEmpty(columns) && (
                         <React.Fragment>
                             <Grid
+                                alignItems="center"
                                 className="action_bar--grid"
-                                verticalAlign="middle"
+                                flexWrap="nowrap"
+                                justifyContent={justifyContent}
+                                spacing={2}
                             >
                                 {map(columns, (column) => {
                                     const {
@@ -183,13 +210,22 @@ class ActionBar extends React.PureComponent {
                                         <Grid.Column
                                             className={gridColumnClasses}
                                             key={gridColumnKey}
+                                            lg={column.lg}
+                                            md={column.md}
+                                            sm={column.sm}
+                                            /**
+                                             * NOTE: Remove `flexBasis`, `flexGrow`, `flexShrink`,
+                                             * and `width` when we finally remove the deprecated
+                                             * style prop.
+                                             */
                                             style={({
-                                                flexBasis: column.flexBasis || 'auto',
-                                                flexGrow: column.flexGrow || 0,
-                                                flexShrink: column.flexShrink || 0,
+                                                flexBasis: column.flexBasis || null,
+                                                flexGrow: column.flexGrow || null,
+                                                flexShrink: column.flexShrink || null,
                                                 width: 'auto',
                                                 ...column.style,
                                             })}
+                                            xl={column.xl}
                                         >
                                             {button && (
                                                 <Button

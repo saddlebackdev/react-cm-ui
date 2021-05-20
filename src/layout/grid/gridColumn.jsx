@@ -1,119 +1,391 @@
-import { isNumber } from 'lodash';
+import {
+    reduce,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../../utils/utils';
-
-const alignEnums = ['stretch'];
-const columnEnums = ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const floatedEnums = ['left', 'right'];
-const textAlignEnums = ['center', 'left', 'right'];
-const verticalAlignEnums = ['bottom', 'middle', 'top'];
+import {
+    BEM_GRID_COLUMN,
+    UI_CLASS_NAME,
+} from '../../global/constants';
+import {
+    GRID_SIZES,
+} from './gridConstants';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    align: PropTypes.oneOf(alignEnums),
-    children: PropTypes.node.isRequired,
+    /**
+     * The content of the GridColumn
+     */
+    children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    /**
+     * Assign additional class names to GridColumn.
+     */
     className: PropTypes.string,
-    desktop: PropTypes.oneOf(columnEnums),
-    desktopLarge: PropTypes.oneOf(columnEnums),
-    fieldType: PropTypes.oneOf(['checkbox', 'legend', 'radio']),
-    floated: PropTypes.oneOf(floatedEnums),
+    /**
+     * The `id` of the GridColumn.
+     */
     id: PropTypes.string,
-    laptop: PropTypes.oneOf(columnEnums),
-    mobile: PropTypes.oneOf(columnEnums),
-    mobileLarge: PropTypes.oneOf(columnEnums),
-    mobileMedium: PropTypes.oneOf(columnEnums),
+    /**
+     * Defines the number of columns the component is going to use.
+     * It's applied for the `lg` breakpoint and wider screens if not overridden.
+     */
+    lg: PropTypes.oneOfType([
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+        PropTypes.bool,
+    ]),
+    /**
+     * Defines the number of columns the component is going to use.
+     * It's applied for the `md` breakpoint and wider screens if not overridden.
+     */
+    md: PropTypes.oneOfType([
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+        PropTypes.bool,
+    ]),
+    /**
+     * Defines the number of columns the component is going to use.
+     * It's applied for the `sm` breakpoint and wider screens if not overridden.
+     */
+    sm: PropTypes.oneOfType([
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+        PropTypes.bool,
+    ]),
+    /**
+     * Defines the number of columns the component is going to use.
+     * It's applied for the `xl` breakpoint and wider screens if not overridden.
+     */
+    xl: PropTypes.oneOfType([
+        PropTypes.oneOf(['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+        PropTypes.bool,
+    ]),
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    align: PropTypes.oneOf(['stretch']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    desktop: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    desktopLarge: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    fieldType: PropTypes.oneOf(['checkbox', 'legend', 'radio']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    floated: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    laptop: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    mobile: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    mobileLarge: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    mobileMedium: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
     style: PropTypes.shape({}),
-    tablet: PropTypes.oneOf(columnEnums),
-    textAlign: PropTypes.oneOf(textAlignEnums),
-    verticalAlign: PropTypes.oneOf(verticalAlignEnums),
-    width: PropTypes.oneOf(columnEnums),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    tablet: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    width: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 };
 
 const defaultProps = {
+    classes: null,
+    children: null,
+    className: null,
+    id: null,
+    lg: false,
+    md: false,
+    sm: false,
+    xl: false,
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
     align: undefined,
-    className: undefined,
-    desktop: undefined,
-    desktopLarge: undefined,
+    desktop: false,
+    desktopLarge: false,
     fieldType: undefined,
     floated: undefined,
-    id: undefined,
-    laptop: undefined,
-    mobile: undefined,
-    mobileLarge: undefined,
-    mobileMedium: undefined,
-    style: {},
-    tablet: undefined,
+    laptop: false,
+    mobile: false,
+    mobileLarge: false,
+    mobileMedium: false,
+    style: null,
+    tablet: false,
     textAlign: undefined,
     verticalAlign: undefined,
-    width: undefined,
+    width: false,
 };
 
-// eslint-disable-next-line prefer-arrow-callback
-const GridColumn = React.forwardRef(function GridColumn(props, ref) {
-    const {
-        align,
-        children,
-        className,
-        desktop,
-        desktopLarge,
-        fieldType,
-        floated,
-        id,
-        laptop,
-        mobile,
-        mobileLarge,
-        mobileMedium,
-        style,
-        tablet,
-        textAlign,
-        verticalAlign,
-        width,
-    } = props;
-    const colPrefix = 'grid-col';
+const generateGrid = (globalStyles, theme, breakpoint) => {
+    const styles = {};
 
-    const containerClasses = ClassNames('ui', colPrefix, className, {
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktop)}`]: isNumber(desktop),
-        [`${colPrefix}-desktop-${Utils.numberToWord(desktopLarge)}`]: isNumber(desktopLarge),
-        [`${colPrefix}-laptop-${Utils.numberToWord(laptop)}`]: isNumber(laptop),
-        [`${colPrefix}-mobile-${Utils.numberToWord(mobile)}`]: isNumber(mobile),
-        [`${colPrefix}-mobile-large-${Utils.numberToWord(mobileLarge)}`]: isNumber(mobileLarge),
-        [`${colPrefix}-mobile-medium-${Utils.numberToWord(mobileMedium)}`]: isNumber(mobileMedium),
-        [`${colPrefix}-tablet-${Utils.numberToWord(tablet)}`]: isNumber(tablet),
-        [`${colPrefix}-${Utils.numberToWord(width)}`]: isNumber(width),
-        [`${colPrefix}-desktop-auto`]: desktop === 'auto',
-        [`${colPrefix}-desktop-large-auto`]: desktopLarge === 'auto',
-        [`${colPrefix}-laptop-auto`]: laptop === 'auto',
-        [`${colPrefix}-mobile-auto`]: mobile === 'auto',
-        [`${colPrefix}-mobile-large-auto`]: mobileLarge === 'auto',
-        [`${colPrefix}-mobile-medium-auto`]: mobileMedium === 'auto',
-        [`${colPrefix}-tablet-auto`]: tablet === 'auto',
-        [`${colPrefix}-auto`]: width === 'auto',
-        'grid-col-floated-left': floated === 'left',
-        'grid-col-floated-right': floated === 'right',
-        'grid-col-align-stretch': align === 'stretch',
-        'grid-col-text-align-center': textAlign === 'center',
-        'grid-col-text-align-left': textAlign === 'left',
-        'grid-col-text-align-right': textAlign === 'right',
-        'grid-col-vertical-align-bottom': verticalAlign === 'bottom',
-        'grid-col-vertical-align-center': verticalAlign === 'center',
-        'grid-col-vertical-align-top': verticalAlign === 'top',
-        'grid-col-form_field_checkbox': fieldType === 'checkbox',
-        'grid-col-form_field_legend': fieldType === 'legend',
-        'grid-col-form_field_radio': fieldType === 'radio',
+    GRID_SIZES.forEach((size) => {
+        const key = `${BEM_GRID_COLUMN}-${breakpoint}-${size}`;
+        const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+
+        if (
+            breakpoint === 'mobile' ||
+            breakpoint === 'mobile-medium' ||
+            breakpoint === 'mobile-large' ||
+            breakpoint === 'tablet' ||
+            breakpoint === 'laptop' ||
+            breakpoint === 'desktop' ||
+            breakpoint === 'desktop-large'
+        ) {
+            styles[key] = {
+                flexBasis: width,
+                maxWidth: width,
+                width,
+            };
+
+            return;
+        }
+
+        if (size === true) {
+            // For the auto layouting
+            styles[key] = {
+                flexBasis: 0,
+                flexGrow: 1,
+                maxWidth: '100%',
+            };
+
+            return;
+        }
+
+        if (size === 'auto') {
+            styles[key] = {
+                flexBasis: 'auto',
+                flexGrow: 0,
+                maxWidth: 'none',
+            };
+
+            return;
+        }
+
+        styles[key] = {
+            flexBasis: width,
+            flexGrow: 0,
+            maxWidth: width,
+        };
     });
 
-    return (
-        <div
-            className={containerClasses}
-            id={id}
-            ref={ref}
-            style={style}
-        >
-            {children}
-        </div>
-    );
-});
+    switch (breakpoint) {
+        /* eslint-disable no-param-reassign */
+        case 'mobile':
+            globalStyles[theme.breakpoints.down(374)] = styles;
+
+            break;
+        case 'mobile-medium':
+            globalStyles[theme.breakpoints.up(375)] = styles;
+
+            break;
+        case 'mobile-large':
+            globalStyles[theme.breakpoints.up(425)] = styles;
+
+            break;
+        case 'laptop':
+            globalStyles[theme.breakpoints.up(1024)] = styles;
+
+            break;
+        case 'desktop':
+            globalStyles[theme.breakpoints.up(1440)] = styles;
+
+            break;
+        case 'desktop-large':
+            globalStyles[theme.breakpoints.up(1720)] = styles;
+
+            break;
+        case 'sm':
+            Object.assign(globalStyles, styles);
+
+            break;
+        default:
+            globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+        /* eslint-enable no-param-reassign */
+    }
+};
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        margin: 0,
+        /**
+         * Deprecated classses
+         */
+        '&$deprecatedAlignStretch': {
+            alignSelf: 'stretch',
+        },
+        '&deprecatedFloatedLeft': {
+            marginRight: 'auto',
+        },
+        '&$deprecatedFloatedRight': {
+            marginLeft: 'auto',
+        },
+        '&$deprecatedTextAlignCenter': {
+            textAlign: 'center',
+        },
+        '&$deprecatedTextAlignLeft': {
+            textAlign: 'left',
+        },
+        '&$deprecatedTextAlignRight': {
+            textAlign: 'right',
+        },
+        '&$deprecatedVerticalAlignBottom': {
+            alignItems: 'bottom',
+            display: 'flex',
+        },
+        '&$deprecatedVerticalAlignCenter': {
+            alignItems: 'center',
+            display: 'flex',
+        },
+        '&$deprecatedVerticalAlignTop': {
+            alignItems: 'top',
+            display: 'flex',
+        },
+        /**
+         * End of deprecated classes
+         */
+    },
+    /**
+     * Deprecated classses
+     */
+    deprecatedAlignStretch: {},
+    deprecatedFloatedLeft: {},
+    deprecatedFloatedRight: {},
+    deprecatedTextAlignCenter: {},
+    deprecatedTextAlignLeft: {},
+    deprecatedTextAlignRight: {},
+    deprecatedVerticalAlignBottom: {},
+    deprecatedVerticalAlignCenter: {},
+    deprecatedVerticalAlignTop: {},
+    /**
+     * End of deprecated classes
+     */
+    ...reduce([
+        ...theme.breakpoints.keys,
+        'mobile',
+        'mobile-medium',
+        'mobile-large',
+        'laptop',
+        'desktop',
+        'desktop-large',
+    ], (accumulator, key) => {
+        generateGrid(accumulator, theme, key);
+
+        return accumulator;
+    }, {}),
+}));
+
+const GridColumn = React.forwardRef(
+    /* eslint-disable react-hooks/rules-of-hooks */
+    // eslint-disable-next-line prefer-arrow-callback
+    function GridColumn(props, ref) {
+        const {
+            children,
+            className,
+            id,
+            lg,
+            md,
+            sm,
+            style,
+            xl,
+            ...otherProps
+        } = props;
+
+        const classes = useStyles(props);
+
+        const rootClasses = ClassNames(
+            UI_CLASS_NAME,
+            BEM_GRID_COLUMN,
+            classes.root,
+            className,
+            {
+                [classes[`${BEM_GRID_COLUMN}-sm-${String(sm || otherProps.width)}`]]:
+                    sm !== false || otherProps.width !== false,
+                /**
+                 * `otherProps.tablet` is a deprecated prop. It is using the same breakpoint (768)
+                 * as `md`, so we're combining in order to have less JSS.
+                 */
+                [classes[`${BEM_GRID_COLUMN}-md-${String(md || otherProps.tablet)}`]]:
+                    md !== false || otherProps.tablet !== false,
+                [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false,
+                [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false,
+                /**
+                 * Deprecated classes below
+                 */
+                [classes[`${BEM_GRID_COLUMN}-mobile-${String(otherProps.mobile)}`]]:
+                    otherProps.mobile !== false,
+                [classes[`${BEM_GRID_COLUMN}-mobile-medium-${String(otherProps.mobileMedium)}`]]:
+                    otherProps.mobileMedium !== false,
+                [classes[`${BEM_GRID_COLUMN}-mobile-large-${String(otherProps.mobileLarge)}`]]:
+                    otherProps.mobileLarge !== false,
+                [classes[`${BEM_GRID_COLUMN}-laptop-${String(otherProps.laptop)}`]]:
+                    otherProps.laptop !== false,
+                [classes[`${BEM_GRID_COLUMN}-desktop-${String(otherProps.desktop)}`]]:
+                    otherProps.desktop !== false,
+                [classes[`${BEM_GRID_COLUMN}-desktop-large-${String(otherProps.desktopLarge)}`]]:
+                    otherProps.desktopLarge !== false,
+                [classes.deprecatedAlignStretch]: otherProps.align === 'stretch',
+                [classes.deprecatedFloatedLeft]: otherProps.floated === 'left',
+                [classes.deprecatedFloatedRight]: otherProps.floated === 'right',
+                [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
+                [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
+                [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
+                [classes.deprecatedVerticalAlignBottom]: otherProps.verticalAlign === 'bottom',
+                [classes.deprecatedVerticalAlignCenter]: otherProps.verticalAlign === 'center',
+                [classes.deprecatedVerticalAlignTop]: otherProps.verticalAlign === 'top',
+            },
+        );
+
+        return (
+            <div
+                className={rootClasses}
+                id={id}
+                ref={ref}
+                style={style}
+            >
+                {children}
+            </div>
+        );
+    },
+    /* eslint-enable react-hooks/rules-of-hooks */
+);
 
 GridColumn.propTypes = propTypes;
 GridColumn.defaultProps = defaultProps;
