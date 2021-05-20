@@ -41,9 +41,17 @@ function Address(props) {
 
             <br />
 
-            {address2 && <span>{address2}</span>}
+            {address2 && (
+                <React.Fragment>
+                    <span>{address2}</span>
 
-            <span>{`${city}, ${countryAlpha2 === 'US' ? regionCode : region} ${postalCode || ''}`}</span>
+                    <br />
+                </React.Fragment>
+            )}
+
+            <span>
+                {`${city}, ${countryAlpha2 === 'US' ? regionCode : region} ${postalCode || ''}`}
+            </span>
 
             <br />
 

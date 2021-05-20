@@ -68,7 +68,7 @@ function MilestonesPopoverContent(props) {
 
         return (
             <Grid
-                className={index >= 1 && classes.dateGrid}
+                className={index >= 1 ? classes.dateGrid : undefined}
                 key={`person_core_milestone-${snakeCase(label)}`}
             >
                 <Grid.Column

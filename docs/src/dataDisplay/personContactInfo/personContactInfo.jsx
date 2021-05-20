@@ -1,130 +1,72 @@
 import {
-    Header,
-    PersonContactInfo,
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExamplePersonContactInfo from './examples/examplePersonContactInfo';
 import Heading from '../../global/heading';
-import Highlighter from '../../global/highlighter';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as personContactInfoDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personContactInfo/personContactInfo';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/personContactInfo/personContactInfo';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const myId = '1234';
-const email = 'myEmail@domain.com';
-const emergencyContactEmail='emergencyMail@mail.com';
-const emergencyContactPhone='5212345667890';
-const emergencyContactRelationshipName='Wife';
-const isDoNotContact=false;
-const isDoNotEmail=false;
-const isDoNotMail=false;
-const isDoNotPhone=false;
-const isDoNotText=false;
-const phone='myPhone';
-const preferredMethod='email';
-const recordType = 'adult';
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
 
-const personContactSample = `import React from 'react';
+function DocsPersonContactInfo(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
 
-import Loader from '../app/Elements/Loader.react';
-
-export default class TypeSample extends React.Component {    
-
-    constructor(props) {
-        super(props);        
-    }
-    
-    const myId = '1234';
-    const email = 'myEmail@domain.com';
-    const emergencyContactEmail='emergencyMail@mail.com';
-    const emergencyContactPhone='5212345667890';
-    const emergencyContactRelationshipName='Wife';
-    const isDoNotContact=false;
-    const isDoNotEmail=false;
-    const isDoNotMail=false;
-    const isDoNotPhone=false;
-    const isDoNotText=false;
-    const phone='myPhone';
-    const preferredMethod='email'; // enum => email, phone
-    const recordType = 'adult'; // emum => adult, student, child
-
-    render() {
-        return (
-            <div>
-                <PersonContactInfo
-                    id={myId}
-                    email={email}
-                    emergencyContactEmail={emergencyContactEmail}
-                    emergencyContactPhone={emergencyContactPhone}
-                    emergencyContactRelationshipName={emergencyContactRelationshipName}
-                    isDoNotContact={isDoNotContact}
-                    isDoNotEmail={isDoNotEmail}
-                    isDoNotMail={isDoNotMail}
-                    isDoNotPhone={isDoNotPhone}
-                    isDoNotText={isDoNotText}
-                    phone={phone}
-                    preferredMethod={preferredMethod}
-                    recordType={recordType}
-                />
-            </div>
-        );
-    }
-}`;
-
-function DocsPersonContactInfo() {
-    const descriptionCopy = personContactInfoDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="person_contact_info">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
+                    <Heading
+                        anchorLink="person-contact-info"
+                        variant="h2"
+                    >
+                        Person Contact Info
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/examplePersonContactInfo').default}
+                    >
+                        <ExamplePersonContactInfo />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        personContactInfoDoc,
-                    ]}
-                />
-
-                <Header size="large" style={{ marginTop: '55px' }} sub>
-                    Person Contact Info
-                    <Header.Subheader>
-                        Person Contact Info component.
-                    </Header.Subheader>
-                </Header>
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {personContactSample}
-                </Highlighter>
-
-                <PersonContactInfo
-                    id={myId}
-                    email={email}
-                    emergencyContactEmail={emergencyContactEmail}
-                    emergencyContactPhone={emergencyContactPhone}
-                    emergencyContactRelationshipName={emergencyContactRelationshipName}
-                    isDoNotContact={isDoNotContact}
-                    isDoNotEmail={isDoNotEmail}
-                    isDoNotMail={isDoNotMail}
-                    isDoNotPhone={isDoNotPhone}
-                    isDoNotText={isDoNotText}
-                    phone={phone}
-                    preferredMethod={preferredMethod}
-                    recordType={recordType}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
+
+DocsPersonContactInfo.propTypes = propTypes;
 
 export default DocsPersonContactInfo;

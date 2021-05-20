@@ -1,105 +1,72 @@
 import {
-    Header,
-    TimeFromNow,
-    Typography
+    Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleTimeFromNow from './examples/exampleTimeFromNow';
 import Heading from '../../global/heading';
-import Highlighter from '../../global/highlighter';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as DocsTimeFromNowDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/TimeFromNow/TimeFromNow';
-import moment from 'moment';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/timeFromNow/timeFromNow';
 /* eslint-enable import/no-named-default, import/extensions */
 
-const classNameSample = 'myClass';
-const dateSample = moment(new Date());
-const idSample = 'myId';
-const localeSample = 'en';
-const styleSample = '';
-const relativeTimeSample = '';
-const relativeTimeRoundingSample = '';
-const relativeTimeThresholdSample = '';
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
 
-const timeFromNowSample = `import React from 'react';
+function DocsTimeFromNow(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
 
-import Loader from '../app/Elements/Loader.react';
-
-export default class TypeSample extends React.Component {    
-
-    constructor(props) {
-        super(props);        
-    }
-    
-    const classNameSample = 'myClass';
-    const dateSample = moment(new Date());
-    const idSample = 'myId';
-    const localeSample = 'en';
-    const styleSample = '';
-    const relativeTimeSample = '';
-    const relativeTimeRoundingSample = '';
-    const relativeTimeThresholdSample = '';
-
-    render() {
-        return (
-            <div>
-                <TimeFromNow
-                    className={classNameSample}
-                    date={dateSample}
-                    id={idSample}
-                    locale={localeSample}
-                />
-            </div>
-        );
-    }
-}`;
-
-function DocsTimeFromNow() {
-    const descriptionCopy = DocsTimeFromNowDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="time_from_now">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
-                    <MarkdownContainer>
-                        <Typography
-                            className="description"
-                            variant="body1"
-                        >
-                            {descriptionCopy}
-                        </Typography>
-                    </MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {description}
+                    </Typography>
 
-                    <ComponentApi
-                        docs={[
-                            DocsTimeFromNowDoc,
-                        ]}
-                    />
-
-                    {/* Data Card */}
-                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                    <Heading
+                        anchorLink="time-from-now"
+                        variant="h2"
+                    >
                         Time From Now
-                        <Header.Subheader>
-                            Time From Now component.
-                        </Header.Subheader>
-                    </Header>
+                    </Heading>
 
-                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                        {timeFromNowSample}
-                    </Highlighter>
-
-                    <TimeFromNow
-                        className={classNameSample}
-                        date={dateSample}
-                        id={idSample}
-                        locale={localeSample}
-                    />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleTimeFromNow').default}
+                    >
+                        <ExampleTimeFromNow />
+                    </Example>
                 </MarkdownContainer>
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
+
+DocsTimeFromNow.propTypes = propTypes;
 
 export default DocsTimeFromNow;
