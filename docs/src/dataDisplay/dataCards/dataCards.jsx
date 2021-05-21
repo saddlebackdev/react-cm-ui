@@ -1,45 +1,72 @@
 import {
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleDataCards from './examples/exampleDataCards';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as dataCardsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataCards/dataCards';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataCards/dataCards';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsDataCards() {
-    const descriptionCopy = dataCardsDoc.description;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsDataCards(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="data_cards">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="data-cards"
                         variant="h2"
                     >
-                        Coming soon.
+                        Data Cards
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleDataCards').default}
+                    >
+                        <ExampleDataCards />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        dataCardsDoc,
-                    ]}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
+
+DocsDataCards.propTypes = propTypes;
 
 export default DocsDataCards;

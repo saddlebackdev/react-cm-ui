@@ -27,7 +27,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsButton(props) {
+function DocsPersonCoreMilestones(props) {
     const {
         location: {
             pathname,
@@ -51,7 +51,7 @@ function DocsButton(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="person-record-types"
                         variant="h2"
                     >
                         Person Record Types
@@ -139,6 +139,6 @@ function DocsButton(props) {
     );
 }
 
-DocsButton.propTypes = propTypes;
+DocsPersonCoreMilestones.propTypes = propTypes;
 
-export default DocsButton;
+export default DocsPersonCoreMilestones;

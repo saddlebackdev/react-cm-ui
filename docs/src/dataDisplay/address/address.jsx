@@ -1,45 +1,72 @@
 import {
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleAddress from './examples/exampleAddress';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as addressDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/address/address';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/address/address';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsAddress() {
-    const descriptionCopy = addressDoc.description;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsAddress(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="address">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="address"
                         variant="h2"
                     >
-                        Coming soon.
+                        Address
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleAddress').default}
+                    >
+                        <ExampleAddress />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        addressDoc,
-                    ]}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
+
+DocsAddress.propTypes = propTypes;
 
 export default DocsAddress;

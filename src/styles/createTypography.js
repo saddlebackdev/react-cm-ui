@@ -25,6 +25,7 @@ export default function createTypography() {
         body1: buildVariant(fontWeightRegular, 16, 1.25),
         body2: buildVariant(fontWeightRegular, 14, 1.43),
         caption: buildVariant(fontWeightRegular, 14, 1.66),
+        subtitle1: buildVariant(fontWeightRegular, 16, 1.25),
     };
 
     return {

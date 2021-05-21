@@ -1,63 +1,119 @@
+import {
+    isFunction,
+    isNumber,
+    isString,
+    isUndefined,
+} from 'lodash';
 import { Portal } from 'react-portal';
-import _ from 'lodash';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
+import {
+    BEM_MODAL_DIMMER,
+    BEM_MODAL_INNER_CONTAINER,
+    BEM_MODAL,
+    UI_CLASS_NAME,
+} from '../../global/constants';
+import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';
-import ModalHeader from './modalHeader';
+import Icon from '../../dataDisplay/icon';
+import ModalActions from './modalActions';
+import ModalContent from './modalContent';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    /**
+     * If `true`, Modal's height will adjust to the content.
+     */
     autoHeight: PropTypes.bool,
+    /**
+     * The content of the Modal
+     */
+    children: PropTypes.node,
     /**
      * Override or extend the styles applied to Modal.
      */
     classes: PropTypes.shape({
+        closeButton: PropTypes.string,
+        dimmer: PropTypes.string,
+        innerContainerClasses: PropTypes.string,
+        padding: PropTypes.string,
         root: PropTypes.string,
+        scrollContainer: PropTypes.string,
     }),
+    /**
+     * Assign additional class names to Modal.
+     */
     className: PropTypes.string,
-    closeButton: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.shape({}),
-        PropTypes.string,
-    ]),
-    fluidContent: PropTypes.bool,
-    header: PropTypes.bool,
-    headerStyle: PropTypes.shape({}),
+    /**
+     * The `height` of the Modal.
+     */
     height: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
-    inverse: PropTypes.bool,
+    /**
+     * The `id` of the Modal.
+     */
+    id: PropTypes.string,
+    /**
+     * If `true`, Modal is open.
+     */
     isOpen: PropTypes.bool.isRequired,
+    /**
+     * The `maxHeight` of the Modal.
+     */
     maxHeight: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `maxWidth` of the Modal.
+     */
     maxWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `minHeight` of the Modal.
+     */
     minHeight: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The `minWidth` of the Modal.
+     */
     minWidth: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * Event handler that is called when user clicks outside of a Modal.
+     */
     onClickOutside: PropTypes.bool,
-    onClose: PropTypes.func.isRequired,
-    style: PropTypes.shape({}),
+    /**
+     * Event handler for closing the Modal.
+     * Only used when Modal needs a close button in the top right.
+     */
+    onClose: PropTypes.func,
+    /**
+     * Event handler called after closing animation has completed.
+     */
+    onOpenComplete: PropTypes.func,
+    /**
+     * HC's theme.
+     */
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
             modal: PropTypes.number,
         }),
-    }),
-    title: PropTypes.string,
-    titleTruncate: PropTypes.bool,
+    }).isRequired,
+    /**
+     * The `width` of the Modal.
+     */
     width: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -65,12 +121,105 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoHeight: true,
+    children: null,
     classes: null,
-    headerStyle: undefined,
-    theme: null,
+    className: null,
+    /**
+     * If autoHeight is false the Inner Container's height needs to have a pixel value
+     * for the scroll container to work appropriately, otherwise content inside is hidden.
+     */
+    height: null,
+    id: null,
+    maxHeight: '100%',
+    maxWidth: 'none',
+    minHeight: null,
+    minWidth: '375px',
+    onClickOutside: false,
+    onClose: null,
+    onOpenComplete: null,
+    width: null,
 };
 
-const styles = (theme) => ({
+const MODAL_ANIMATION_OUT_CLASS_NAME = `${BEM_MODAL}-animation_out`;
+
+const styles = ({
+    breakpoints,
+    palette,
+    shape,
+    spacing,
+    zIndex,
+}) => ({
+    '@keyframes modalDimmerFadeIn': {
+        '0%': {
+            opacity: 0,
+        },
+        '100%': {
+            opacity: 1,
+        },
+    },
+    '@keyframes modalDimmerFadeOut': {
+        '0%': {
+            opacity: 1,
+        },
+        '100%': {
+            opacity: 0,
+        },
+    },
+    '@keyframes modalSlideIn': {
+        '0%': {
+            opacity: 0,
+            transform: 'translateY(-44px)',
+        },
+        '100%': {
+            opacity: 1,
+            transform: 'translateY(0)',
+        },
+    },
+    '@keyframes modalSlideOut': {
+        '0%': {
+            opacity: 1,
+            transform: 'translateY(0)',
+        },
+        '100%': {
+            opacity: 0,
+            transform: 'translateY(-44px)',
+        },
+    },
+    closeButton: {
+        borderRadius: spacing(1.5),
+        margin: 0,
+        position: 'absolute',
+        right: spacing(1),
+        top: spacing(1),
+        zIndex: 1,
+        [breakpoints.up('md')]: {
+            right: -spacing(1.5),
+            top: -spacing(1.5),
+        },
+    },
+    dimmer: {
+        animation: '$modalDimmerFadeIn 150ms ease-out forwards',
+        animationDelay: '100ms',
+        backfaceVisibility: 'hidden',
+        backgroundColor: 'rgba(255, 255, 255, .7)',
+        height: '100%',
+        left: 0,
+        opacity: 0,
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        zIndex: `${zIndex.drawer + 2}`,
+    },
+    innerContainerClasses: {
+        animation: '$modalSlideIn 200ms ease-out forwards',
+        backfaceVisibility: 'hidden',
+        backgroundColor: palette.background.primary,
+        borderRadius: shape.borderRadius.main,
+        boxShadow: '0 15px 28px 0 rgba(0, 0, 0, 0.13)',
+        position: 'relative',
+    },
+    padding: {},
     root: {
         alignItems: 'center',
         backfaceVisibility: 'hidden',
@@ -82,7 +231,25 @@ const styles = (theme) => ({
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: theme.zIndex.modal,
+        zIndex: zIndex.drawer,
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
+        },
+        [`&.${MODAL_ANIMATION_OUT_CLASS_NAME}`]: {
+            [`& .${BEM_MODAL_INNER_CONTAINER}`]: {
+                animation: '$modalSlideOut 333ms forwards',
+            },
+            [`& ${BEM_MODAL_DIMMER}`]: {
+                animation: '$modalDimmerFadeOut 150ms ease-out forwards',
+            },
+        },
+    },
+    scrollContainer: {
+        padding: [[spacing(5), spacing(2), spacing(2)]],
+        position: 'relative',
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
+        },
     },
 });
 
@@ -90,48 +257,31 @@ class Modal extends React.Component {
     constructor(props) {
         super(props);
 
-        this._defaultDimensions = {
-            autoHeightMax: null,
-            height: '100%',
-            maxHeight: '100%',
-            maxWidth: 'none',
-            minHeight: 'auto',
-            minWidth: '320px',
-            width: '100%',
-        };
-
         this.state = {
-            height: this._defaultDimensions.height,
+            ...this.getDimensions(),
             isOpen: props.isOpen,
-            isScrolled: false,
-            maxHeight: this._defaultDimensions.maxHeight,
-            maxWidth: this._defaultDimensions.maxWidth,
-            minHeight: this._defaultDimensions.minHeight,
-            minWidth: this._defaultDimensions.minWidth,
-            width: this._defaultDimensions.width,
         };
 
-        this._mounted = false;
-        this.modalContainer = null;
+        this.mounted = false;
+        this.modalContainerNode = null;
 
-        this._onBeforeClose = this._onBeforeClose.bind(this);
-        this._onClickOutside = this._onClickOutside.bind(this);
-        this._onCloseAnimationComplete = this._onCloseAnimationComplete.bind(this);
-        this._onClose = this._onClose.bind(this);
+        this.getAutoHeightMax = this.getAutoHeightMax.bind(this);
+        this.onClickOutside = this.onClickOutside.bind(this);
+        this.onClose = this.onClose.bind(this);
+        this.onCloseAnimationComplete = this.onCloseAnimationComplete.bind(this);
+        this.onCloseBefore = this.onCloseBefore.bind(this);
         this.onOpen = this.onOpen.bind(this);
         this.onOpenAnimationComplete = this.onOpenAnimationComplete.bind(this);
-        this._onResize = this._onResize.bind(this);
-        this._onScrollStart = this._onScrollStart.bind(this);
-        this._onScrollStop = this._onScrollStop.bind(this);
+        this.onResize = this.onResize.bind(this);
     }
 
     componentDidMount() {
         const { isOpen } = this.props;
-        this._mounted = true;
+        this.mounted = true;
 
-        window.addEventListener('resize', this._onResize);
+        window.addEventListener('resize', this.onResize);
 
-        this._onResize();
+        this.onResize();
 
         if (isOpen) {
             this.setState({
@@ -144,7 +294,13 @@ class Modal extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {
+            height,
             isOpen,
+            maxHeight,
+            maxWidth,
+            minHeight,
+            minWidth,
+            width,
         } = this.props;
 
         if (!prevProps.isOpen && isOpen) {
@@ -156,103 +312,77 @@ class Modal extends React.Component {
         }
 
         if (prevProps.isOpen && !isOpen) {
-            this._onBeforeClose();
+            this.onCloseBefore();
+        }
+
+        if (
+            prevProps.height !== height ||
+            prevProps.maxHeight !== maxHeight ||
+            prevProps.maxWidth !== maxWidth ||
+            prevProps.minHeight !== minHeight ||
+            prevProps.minWidth !== minWidth ||
+            prevProps.width !== width
+        ) {
+            this.setState(this.getDimensions());
         }
     }
-
 
     componentWillUnmount() {
-        this._mounted = false;
+        this.mounted = false;
 
-        window.removeEventListener('resize', this._onResize);
-
-        if (document.body.classList.contains('modal-open')) {
-            document.body.classList.remove('modal-open');
-        }
-
-        if (document.body.classList.contains('modal-dimmer')) {
-            document.body.classList.remove('modal-dimmer');
-        }
-
-        if (document.body.classList.contains('modal-open-layered')) {
-            document.body.classList.remove('modal-open-layered');
-        }
-
-        if (document.body.classList.contains('modal-animate-out')) {
-            document.body.classList.remove('modal-animate-out');
-        }
+        window.removeEventListener('resize', this.onResize);
     }
 
-    animationProps(el) {
-        let a;
-        const animations = {
-            animation: 'animationend',
-            OAnimation: 'oAnimationEnd',
-            MozAnimation: 'animationend',
-            WebkitAnimation: 'webkitAnimationEnd',
-        };
+    onClickOutside(event) {
+        const {
+            onClickOutside,
+            onClose,
+        } = this.props;
 
-        for (a in animations) {
-            if (el.style[a] !== undefined) {
-                return animations[a];
-            }
-        }
-    }
-
-    _onBeforeClose() {
-        const nodePortal = ReactDOM.findDOMNode(this);
-        const modalContainer = nodePortal.querySelector('.modal-container');
-        const animationEvent = this.animationProps(modalContainer);
-
-        document.body.classList.add('modal-animate-out');
-        nodePortal.classList.add('modal-animate-out');
-
-        this.modalContainer.addEventListener(animationEvent, this._onCloseAnimationComplete);
-    }
-
-    _onClickOutside(event) {
-        if (this.modalContainerRef.contains(event.target) || !this.props.onClickOutside) {
+        if (this.modalContainerRef.contains(event.target) || !onClickOutside) {
             return;
         }
 
-        this._onClose();
+        if (isFunction(onClose)) {
+            this.onClose();
+        }
     }
 
-    _onClose() {
-        const { onClickOutside, onClose } = this.props;
+    onClose() {
+        const {
+            onClickOutside,
+            onClose,
+        } = this.props;
 
         if (onClickOutside) {
-            document.removeEventListener('click', this._onClickOutside);
+            document.removeEventListener('click', this.onClickOutside);
         }
 
-        onClose();
+        if (isFunction(onClose)) {
+            onClose();
+        }
     }
 
-    _onCloseAnimationComplete() {
-        const { body } = document;
-        const animationEvent = this.animationProps(this.modalContainerRef);
-        this.modalContainerRef.removeEventListener(animationEvent, this._onCloseAnimationComplete);
+    onCloseAnimationComplete() {
+        const animationEvent = domUtils.cssAnimationType(this.modalContainerRef);
+        this.modalContainerRef.removeEventListener(animationEvent, this.onCloseAnimationComplete);
 
-        const element = document.body;
-        const modalLength = document.querySelectorAll('.ui.modal').length;
-
-        if (modalLength <= 2) {
-            body.classList.remove('modal-open-layered');
-        }
-
-        if (modalLength <= 1) {
-            const scrollPosition = parseInt(element.style.top, 10);
-
-            body.classList.remove('modal-open');
-            window.scroll(0, Math.abs(scrollPosition));
-            body.style.top = null;
-        }
-
-        body.classList.remove('modal-animate-out');
+        this.toggleBodyStyle({ enable: false });
 
         this.setState({
             isOpen: false,
         });
+    }
+
+    onCloseBefore() {
+        // eslint-disable-next-line react/no-find-dom-node
+        const portalNode = ReactDOM.findDOMNode(this);
+        const modalContainer = portalNode.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
+        const animationEvent = domUtils.cssAnimationType(modalContainer);
+
+        portalNode.classList.add(MODAL_ANIMATION_OUT_CLASS_NAME);
+
+        this.modalContainerNode.addEventListener(animationEvent, this.onCloseAnimationComplete);
     }
 
     onOpen() {
@@ -263,59 +393,62 @@ class Modal extends React.Component {
             theme,
         } = this.props;
 
-        const { body } = document;
-        const nodePortal = ReactDOM.findDOMNode(this);
-        const scrollPosition = window.pageYOffset;
-        const modalLength = document.querySelectorAll('.ui.modal').length;
-        this.modalContainer = nodePortal.querySelector('.modal-container');
-        const modalDimmer = nodePortal.querySelector('.modal-dimmer');
-        const animationEvent = this.animationProps(this.modalContainer);
+        // eslint-disable-next-line react/no-find-dom-node
+        const portalNode = ReactDOM.findDOMNode(this);
 
-        let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the frist .modal and .modal-dimmers- z-indexes
+        this.modalContainerNode = portalNode.querySelector(`.${BEM_MODAL_INNER_CONTAINER}`);
 
-        this.modalContainer.addEventListener(animationEvent, this.onOpenAnimationComplete);
+        const modalLength = document.querySelectorAll(`.${UI_CLASS_NAME}.${BEM_MODAL}`).length;
+        const animationEvent = domUtils.cssAnimationType(this.modalContainerNode);
+
+        this.modalContainerNode.addEventListener(animationEvent, this.onOpenAnimationComplete);
 
         if (onClickOutside) {
-            document.addEventListener('click', this._onClickOutside);
+            document.addEventListener('click', this.onClickOutside);
         }
 
-        if (domUtils.hasClassName(body, 'modal-open')) {
+        let newZIndex = theme.zIndex.modal + 2; // adding 2 accounts for the first .modal and .modal-dimmers- z-indexes
+
+        if (modalLength >= 2) {
             newZIndex += modalLength;
-            domUtils.addClassName(body, 'modal-open-layered');
 
-            nodePortal.style.zIndex = newZIndex;
-            this.modalContainer.style.zIndex = newZIndex;
-            modalDimmer.style.display = 'none';
+            portalNode.style.zIndex = newZIndex;
+
+            this.modalContainerNode.style.zIndex = newZIndex;
+
+            portalNode.querySelector(`.${BEM_MODAL_DIMMER}`).style.display = 'none';
         } else {
-            body.style.top = `-${scrollPosition}px`;
-            domUtils.addClassName(body, 'modal-open');
-            nodePortal.style.zIndex = newZIndex - 1;
-            this.modalContainer.style.zIndex = newZIndex + modalLength;
+            this.toggleBodyStyle({ enable: true });
+
+            portalNode.style.zIndex = newZIndex - 1;
+
+            this.modalContainerNode.style.zIndex = newZIndex + modalLength;
         }
 
-        if (!_.isUndefined(maxWidth)) {
-            this.modalContainer.style.maxWidth = _.isNumber(maxWidth) ?
-                `${maxWidth}px` :
-                _.isString(maxWidth) ?
-                    maxWidth :
-                    null;
+        if (!isUndefined(maxWidth)) {
+            if (isNumber(maxWidth)) {
+                this.modalContainerNode.style.maxWidth = `${maxWidth}px`;
+            } else if (isString(maxWidth)) {
+                this.modalContainerNode.style.maxWidth = maxWidth;
+            } else {
+                this.modalContainerNode.style.maxWidth = null;
+            }
         } else {
-            this.modalContainer.style.maxWidth = '768px';
+            this.modalContainerNode.style.maxWidth = '768px';
         }
 
         if (autoHeight) {
-            const modalPaddingBottom = parseInt(getComputedStyle(nodePortal).paddingBottom);
-            const modalPaddingTop = parseInt(getComputedStyle(nodePortal).paddingTop);
-            const modalHeight = nodePortal.offsetHeight;
-            const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
+            const newAutoHeightMax = this.getAutoHeightMax();
 
-            this.setState({ autoHeightMax: newAutoHeightMax });
+            this.setState({
+                autoHeightMax: newAutoHeightMax,
+            });
         }
     }
 
     onOpenAnimationComplete() {
-        const animationEvent = this.animationProps(this.modalContainerRef);
-        this.modalContainer.removeEventListener(animationEvent, this.onOpenAnimationComplete);
+        const animationEvent = domUtils.cssAnimationType(this.modalContainerRef);
+        this.modalContainerNode.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
         const { onOpenComplete } = this.props;
 
@@ -324,65 +457,110 @@ class Modal extends React.Component {
         }
     }
 
-    _onResize() {
-        if (this._mounted) {
-            let dimensions = {};
-
-            if (window.matchMedia('(min-width: 768px)').matches === true) {
-                dimensions = {
-                    height: this.props.height || '500px',
-                    maxHeight: this.props.maxHeight || this._defaultDimensions.maxHeight,
-                    maxWidth: this.props.maxWidth || this._defaultDimensions.maxWidth,
-                    minHeight: this.props.minHeight || '305px',
-                    minWidth: this.props.minWidth || this._defaultDimensions.minWidth,
-                    width: this.props.width || '640px',
-                };
-            } else {
-                dimensions = {
-                    height: this._defaultDimensions.height,
-                    maxHeight: this._defaultDimensions.maxHeight,
-                    maxWidth: this._defaultDimensions.maxWidth,
-                    minHeight: this._defaultDimensions.minHeight,
-                    minWidth: this._defaultDimensions.minWidth,
-                    width: this._defaultDimensions.width,
-                };
-            }
-
-            this.setState(dimensions);
+    onResize() {
+        if (this.mounted) {
+            this.setState(this.getDimensions());
         }
     }
 
-    _onScrollStart() {
-        const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
+    getDimensions() {
+        const {
+            autoHeight,
+            height,
+            maxHeight,
+            maxWidth,
+            minHeight,
+            minWidth,
+            width,
+        } = this.props;
 
-        this.setState({ isScrolled: scrollContainerPos > 0 });
+        let dimensions = {
+            height: '100%',
+            maxHeight: '100%',
+            maxWidth: 'none',
+            minHeight: 'auto',
+            minWidth: '375px',
+            width: '100%',
+        };
+
+        if (window.matchMedia('(min-width: 768px)').matches === true) {
+            dimensions = {
+                height,
+                maxHeight,
+                maxWidth,
+                minHeight,
+                minWidth,
+                width,
+            };
+        }
+
+        if (autoHeight) {
+            const newAutoHeightMax = this.getAutoHeightMax();
+
+            dimensions = {
+                ...dimensions,
+                autoHeightMax: newAutoHeightMax,
+            };
+        }
+
+        return dimensions;
     }
 
-    _onScrollStop() {
-        const scrollContainerPos = this.modalContainerInner.parentNode.scrollTop;
+    getAutoHeightMax() {
+        const {
+            isOpen,
+        } = this.props;
 
-        this.setState({ isScrolled: scrollContainerPos > 0 });
+        if (this.mounted && isOpen) {
+            // eslint-disable-next-line react/no-find-dom-node
+            const portalNode = ReactDOM.findDOMNode(this);
+
+            if (portalNode) {
+                const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
+                const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
+                const modalHeight = portalNode.offsetHeight;
+
+                return modalHeight - modalPaddingBottom - modalPaddingTop;
+            }
+        }
+
+        return null;
+    }
+
+    toggleBodyStyle({ enable }) {
+        if (enable) {
+            const { pageYOffset } = window;
+
+            document.body.style.overflowY = 'scroll';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${pageYOffset}px`;
+            document.body.style.width = '100%';
+        } else {
+            const topPosition = parseInt(document.body.style.top, 10);
+
+            document.body.style.overflowY = null;
+            document.body.style.position = null;
+            document.body.style.top = null;
+            document.body.style.width = null;
+
+            window.scroll(0, Math.abs(topPosition));
+        }
     }
 
     render() {
         const {
             autoHeight,
+            children,
             classes,
             className,
-            closeButton,
-            fluidContent,
-            headerStyle,
-            inverse,
-            title,
-            titleTruncate,
-            style,
+            id,
+            onClose: onCloseProp,
         } = this.props;
 
         const {
             autoHeightMax,
             height,
             isOpen,
-            isScrolled,
             maxHeight,
             maxWidth,
             minHeight,
@@ -391,20 +569,15 @@ class Modal extends React.Component {
         } = this.state;
 
         if (!isOpen) {
-            return false;
+            return null;
         }
 
         const rootClasses = ClassNames(
-            'ui',
-            'modal',
+            UI_CLASS_NAME,
+            BEM_MODAL,
             classes.root,
             className,
         );
-
-        const containerInnerClasses = ClassNames('modal-container', {
-            'modal-container-inverse': inverse,
-            'modal-container-is-scrolled': isScrolled,
-        });
 
         const containerInnerStyles = {
             height,
@@ -413,63 +586,73 @@ class Modal extends React.Component {
             minHeight,
             minWidth,
             width,
-            ...style,
-        };
-
-        const containerInnerScrollStyles = {
-            ...(fluidContent && {
-                height: '100%',
-            }),
-            ...((!title && !closeButton) && {
-                paddingTop: 33,
-            }),
-
         };
 
         return (
             <Portal>
-                <div className={rootClasses}>
+                <div
+                    className={rootClasses}
+                    id={id}
+                >
                     <div
-                        className={containerInnerClasses}
-                        ref={(ref) => this.modalContainerRef = ref}
+                        className={ClassNames(
+                            BEM_MODAL_INNER_CONTAINER,
+                            classes.innerContainerClasses,
+                        )}
+                        ref={(ref) => { this.modalContainerRef = ref; }}
                         style={containerInnerStyles}
                     >
+                        {isFunction(onCloseProp) && (
+                            <Button
+                                className={`${BEM_MODAL}--close_button`}
+                                classes={{
+                                    root: classes.closeButton,
+                                }}
+                                color="alternate" // Change to 'secondary' with UI Button gap closure
+                                onClick={this.onClose}
+                                icon
+                                title="Close"
+                            >
+                                <Icon
+                                    compact
+                                    type="close"
+                                />
+                            </Button>
+                        )}
+
                         <ScrollBar
                             autoHeight={autoHeight}
-                            autoHeightMax={autoHeightMax}
+                            autoHeightMax={autoHeightMax || null}
                             autoHide
-                            onScrollStart={this._onScrollStart}
-                            onScrollStop={this._onScrollStop}
+                            onScrollStart={this.onScrollStart}
+                            onScrollStop={this.onScrollStop}
                         >
                             <div
-                                className="modal-container-inner"
-                                ref={(el) => this.modalContainerInner = el}
-                                style={containerInnerScrollStyles}
-                            >
-                                {(title || closeButton) && (
-                                    <ModalHeader
-                                        closeButton={closeButton}
-                                        inverse={inverse}
-                                        key={`modal-header-${_.kebabCase(title)}`}
-                                        onClose={this._onClose}
-                                        title={title}
-                                        titleTruncate={titleTruncate}
-                                        style={headerStyle}
-                                    />
+                                className={ClassNames(
+                                    classes.scrollContainer,
+                                    classes.padding,
                                 )}
-                                <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
-                                    {this.props.children}
-                                </div>
+                                ref={(ref) => { this.modalScrollContainerRef = ref; }}
+                            >
+                                {children}
                             </div>
                         </ScrollBar>
                     </div>
 
-                    <div className="modal-dimmer" />
+                    <div
+                        className={ClassNames(
+                            BEM_MODAL_DIMMER,
+                            classes.dimmer,
+                        )}
+                    />
                 </div>
             </Portal>
         );
     }
 }
+
+Modal.Actions = ModalActions;
+Modal.Content = ModalContent;
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;

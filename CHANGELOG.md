@@ -1,12 +1,28 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 9.21.4 - 05/06/2021
+## 10.0.0
+_May 21, 2021_
+
+### Core
+- New Mobile Stepper component. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [2.0.0]
+- New Modal component. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [2.0.0]
+- Deprecated old Modal. Now renamed to ModalDeprecated. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [1.5.1]
+- Updated Grid Component. Most old props deprecated now. [PR #275](https://github.com/saddlebackdev/react-cm-ui/pull/275) [2.0.0]
+
+### Docs
+- Renamed old Modal to ModalDeprecated.
+- New Modal docs
+- New Mobile Stepper docs
+- New Grid docs.
+
+## 9.20-hotfix-3 - 05/06/2021
 - [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
   - Fixes PersonCoreMilestones Baptism `title`.
 
-## 9.21.0-hotfix-2 - 04/26/2021
-- Fixed PersonCoreMilestones unit test.
+## 9.21.4 - 05/06/2021
+  - Fixes PersonCoreMilestones Baptism `title`.
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
 
 ## 9.21.3 - 04/26/2021
 - Fixed PersonCoreMilestones unit test.

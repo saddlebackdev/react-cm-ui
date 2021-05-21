@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => {
     return {
         codeContainerColumn: {
             padding: '11px 0',
+            textAlign: 'right',
         },
         codeToggleIcon: {
             color: (props) => (
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => {
             fontWeight: typography.fontWeightBold,
         },
         exampleColumn: {
-            borderRadius: shape.borderRadius,
+            borderRadius: shape.borderRadius.main,
             boxShadow: `0 0 0 1px ${palette.border.secondary}`,
             padding: 22,
         },
@@ -47,7 +48,8 @@ const useStyles = makeStyles((theme) => {
             marginTop: '11px !important',
         },
         root: {
-            margin: '0 !important',
+            margin: '0',
+            width: '100%',
             '& .highlighter.block': {
                 marginBottom: '11px !important',
             },
@@ -61,6 +63,7 @@ function Example(props) {
         children,
         rawCode,
     } = props;
+
     const [isCodeExpanded, setIsCodeExpanded] = useState(false);
 
     const onCodeToggle = () => {
@@ -75,54 +78,57 @@ function Example(props) {
 
     return (
         <Grid
-            className={classes.root}
-            columns={1}
+            classes={{
+                root: classes.root,
+            }}
+            spacing={2}
         >
-            <Grid.Row>
-                <Grid.Column
-                    className={classes.exampleColumn}
-                >
-                    {children}
-                </Grid.Column>
-            </Grid.Row>
+            <Grid.Column
+                classes={{
+                    root: classes.exampleColumn,
+                }}
+                sm={12}
+            >
+                {children}
+            </Grid.Column>
 
-            <Grid.Row>
-                <Grid.Column
-                    className={classes.codeContainerColumn}
-                    textAlign="right"
-                >
-                    <div>
-                        <Button
-                            className={classes.sourceButton}
-                            color="transparent"
-                            icon
-                            onClick={onCodeToggle}
-                            title={codeButtonTitle}
+            <Grid.Column
+                classes={{
+                    root: classes.codeContainerColumn,
+                }}
+                sm={12}
+            >
+                <div>
+                    <Button
+                        className={classes.sourceButton}
+                        color="transparent"
+                        icon
+                        onClick={onCodeToggle}
+                        title={codeButtonTitle}
+                    >
+                        <span
+                            className={classes.codeToggleIcon}
                         >
-                            <span
-                                className={classes.codeToggleIcon}
-                            >
-                                {'</>'}
-                            </span>
-                        </Button>
-                    </div>
+                            {'</>'}
+                        </span>
+                    </Button>
+                </div>
 
-                    {rawCode && (
-                        <Collapse in={isCodeExpanded}>
-                            <Highlighter
-                                className={classes.highlighter}
-                                customStyle={{
-                                    marginBottom: '44px',
-                                    marginTop: '0',
-                                }}
-                                language="jsx"
-                            >
-                                {rawCode}
-                            </Highlighter>
-                        </Collapse>
-                    )}
-                </Grid.Column>
-            </Grid.Row>
+                {rawCode && (
+                    <Collapse in={isCodeExpanded}>
+                        <Highlighter
+                            className={classes.highlighter}
+                            customStyle={{
+                                marginBottom: '44px',
+                                marginTop: '0',
+                            }}
+                            language="jsx"
+                        >
+                            {rawCode}
+                        </Highlighter>
+                    </Collapse>
+                )}
+            </Grid.Column>
         </Grid>
     );
 }

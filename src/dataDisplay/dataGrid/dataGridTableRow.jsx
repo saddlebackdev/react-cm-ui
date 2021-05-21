@@ -59,11 +59,7 @@ const styles = {
         flexWrap: 'nowrap !important',
     },
     handleGridColumn: {
-        flexBasis: 16,
-        flexGrow: 0,
         height: 16,
-        maxWidth: 16,
-        padding: '0 11px 0 8px',
     },
 };
 
@@ -143,10 +139,13 @@ class DataGridTableRow extends React.Component {
                         >
                             {handle && index === 0 ? (
                                 <Grid
+                                    alignItems="center"
                                     className={classes.handleGrid}
                                 >
                                     <Grid.Column
-                                        className={classes.handleGridColumn}
+                                        classes={{
+                                            root: classes.handleGridColumn,
+                                        }}
                                     >
                                         <Icon
                                             color="static"

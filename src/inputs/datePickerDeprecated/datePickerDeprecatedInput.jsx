@@ -293,7 +293,14 @@ class DatePickerInput extends React.Component {
             );
         } else if (uxMode === 'calendar') {
             return (
-                <Grid columns={2} style={{ marginBottom: '5px', marginTop: '7px' }}>
+                <Grid
+                    columns={2}
+                    spacing={2}
+                    style={{
+                        marginBottom: 5,
+                        marginTop: 7,
+                    }}
+                >
                     <Grid.Column>
                         <Input
                             autoComplete="off"

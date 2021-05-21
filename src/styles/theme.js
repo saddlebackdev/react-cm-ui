@@ -10,6 +10,8 @@ import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shape from './shape';
 
+const spacing = 11;
+
 const theme = {
     breakpoints: createBreakpoints({
         keys: breakpointsKeys,
@@ -17,11 +19,11 @@ const theme = {
     }),
     gutters: {
         drawer: {
-            sm: 22,
+            sm: spacing * 2,
         },
         page: {
-            sm: 22,
-            496: 44,
+            sm: spacing * 2,
+            496: spacing * 4,
         },
     },
     height: {
@@ -30,14 +32,14 @@ const theme = {
             md: 70,
         },
         appHeader: {
-            sm: 55,
+            sm: spacing * 5,
             md: 70,
         },
     },
     palette: createPalette(),
     shadows,
     shape,
-    spacing: createSpacing(11),
+    spacing: createSpacing(spacing),
     transitions,
     typography: createTypography(),
     width: {

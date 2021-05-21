@@ -97,87 +97,86 @@ class Home extends React.PureComponent {
                 </div>
 
                 <div>
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column width={12}>
-                                <Header
-                                    color="static"
-                                    size="large"
-                                    style={{ textAlign: 'center' }}
-                                    weight="semibold"
+                    <Grid
+                        alignContent="stretch"
+                        spacing={2}
+                    >
+                        <Grid.Column
+                            sm={12}
+                        >
+                            <Header
+                                color="static"
+                                size="large"
+                                style={{ textAlign: 'center' }}
+                                weight="semibold"
+                            >
+                                Quick Start
+                            </Header>
+                        </Grid.Column>
+
+                        <Grid.Column
+                            md={6}
+                            sm={12}
+                        >
+                            <Card style={{ height: '100%' }}>
+                                <Header size="medium">Installation</Header>
+
+                                <Highlighter
+                                    className={`${bemBlockClassName}--highlighter`}
+                                    showLineNumbers={false}
+                                    style={{
+                                        margin: '22px 0 0',
+                                    }}
+                                    theme="dark"
+                                    type="inline"
                                 >
-                                    Quick Start
-                                </Header>
-                            </Grid.Column>
-                        </Grid.Row>
+                                    {INSTALLATION_EXAMPLE}
+                                </Highlighter>
 
-                        <Grid.Row>
-                            <Grid.Column
-                                align="stretch"
-                                laptop={6}
-                                width={12}
-                            >
-                                <Card style={{ height: '100%' }}>
-                                    <Header size="medium">Installation</Header>
+                                <Button
+                                    className={`${bemBlockClassName}--get_started`}
+                                    color="light"
+                                    onClick={this.onGetStartedClick}
+                                    style={{
+                                        margin: '22px 0',
+                                    }}
+                                >
+                                    Read Installation Doc
+                                </Button>
+                            </Card>
+                        </Grid.Column>
 
-                                    <Highlighter
-                                        className={`${bemBlockClassName}--highlighter`}
-                                        showLineNumbers={false}
-                                        style={{
-                                            margin: '22px 0 0',
-                                        }}
-                                        theme="dark"
-                                        type="inline"
-                                    >
-                                        {INSTALLATION_EXAMPLE}
-                                    </Highlighter>
+                        <Grid.Column
+                            md={6}
+                            sm={12}
+                        >
+                            <Card style={{ height: '100%' }}>
+                                <Header size="medium">Usage</Header>
 
-                                    <Button
-                                        className={`${bemBlockClassName}--get_started`}
-                                        color="light"
-                                        onClick={this.onGetStartedClick}
-                                        style={{
-                                            margin: '22px 0',
-                                        }}
-                                    >
-                                        Read Installation Doc
-                                    </Button>
-                                </Card>
-                            </Grid.Column>
+                                <Highlighter
+                                    className={`${bemBlockClassName}--highlighter`}
+                                    showLineNumbers={false}
+                                    style={{
+                                        margin: '22px 0',
+                                    }}
+                                    theme="dark"
+                                    type="inline"
+                                >
+                                    {USAGE_EXAMPLE}
+                                </Highlighter>
 
-                            <Grid.Column
-                                align="stretch"
-                                laptop={6}
-                                width={12}
-                            >
-                                <Card style={{ height: '100%' }}>
-                                    <Header size="medium">Usage</Header>
-
-                                    <Highlighter
-                                        className={`${bemBlockClassName}--highlighter`}
-                                        showLineNumbers={false}
-                                        style={{
-                                            margin: '22px 0',
-                                        }}
-                                        theme="dark"
-                                        type="inline"
-                                    >
-                                        {USAGE_EXAMPLE}
-                                    </Highlighter>
-
-                                    <Button
-                                        className={`${bemBlockClassName}--get_started`}
-                                        color="light"
-                                        onClick={this.onGetStartedClick}
-                                        style={{
-                                            margin: '0 0 13px',
-                                        }}
-                                    >
-                                        Read Usage Doc
-                                    </Button>
-                                </Card>
-                            </Grid.Column>
-                        </Grid.Row>
+                                <Button
+                                    className={`${bemBlockClassName}--get_started`}
+                                    color="light"
+                                    onClick={this.onGetStartedClick}
+                                    style={{
+                                        margin: '0 0 13px',
+                                    }}
+                                >
+                                    Read Usage Doc
+                                </Button>
+                            </Card>
+                        </Grid.Column>
                     </Grid>
                 </div>
             </Main>

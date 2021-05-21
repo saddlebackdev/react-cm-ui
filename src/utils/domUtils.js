@@ -67,7 +67,7 @@ const domUtils = {
         let propValue;
 
         Object.keys(animations).forEach((key) => {
-            if (!propValue && element.style[key] !== undefined) {
+            if (!propValue && element && element.style[key] !== undefined) {
                 propValue = animations[key];
             }
         });
