@@ -1,12 +1,31 @@
 const versions = {
     'react-cm-ui': {
-        package: '9.21.4',
+        package: '10.0.0',
         components: {
             layout: {
                 grid: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
-                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
+                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/p/1b8c113b-c408-44f1-85de-0b0c6ed705b2',
+                },
+            },
+            navigation: {
+                mobileStepper: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: '',
+                },
+            },
+            surfaces: {
+                modalDeprecated: {
+                    devLibraryVersion: '1.5.1',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: '',
+                },
+                modal: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: '',
                 },
             },
         },
