@@ -51,7 +51,7 @@ function DocsPersonCoreMilestones(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="person-record-types"
                         variant="h2"
                     >
                         Person Record Types

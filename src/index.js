@@ -56,6 +56,7 @@ export { default as Page } from './layout/page';
 
 // Navigation
 export { default as A } from './navigation/a';
+export { default as MobileStepper } from './navigation/mobileStepper';
 export { default as SubNavigation } from './navigation/subNavigation';
 export { default as Tabs } from './navigation/tabs';
 
@@ -71,6 +72,7 @@ export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
 export { default as Modal } from './surfaces/modal';
+export { default as ModalDeprecated } from './surfaces/modalDeprecated';
 export { default as Rail } from './surfaces/rail';
 export { default as TitleBar } from './surfaces/titleBar';
 

@@ -33,6 +33,9 @@ function hexToRGBA(hex, a) {
 
 export default function createPalette() {
     const palette = {
+        action: {
+            disabled: grey[300],
+        },
         active: {
             primary: cyan[500],
         },

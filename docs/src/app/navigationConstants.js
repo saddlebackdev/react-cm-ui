@@ -432,6 +432,18 @@ export const navigationItems = [
                         path: 'a',
                     },
                     {
+                        component: 'mobileStepper',
+                        label: 'Mobile Stepper',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'mobile-stepper',
+                    },
+                    {
                         component: 'subNavigationDeprecated',
                         label: 'Sub Navigation (Deprecated)',
                         path: 'sub-navigation-deprecated',
@@ -592,8 +604,20 @@ export const navigationItems = [
                         path: 'info-bar-deprecated',
                     },
                     {
+                        component: 'modalDeprecated',
+                        label: 'Modal (Deprecated)',
+                        path: 'modal-deprecated',
+                    },
+                    {
                         component: 'modal',
                         label: 'Modal',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'modal',
                     },
                     {

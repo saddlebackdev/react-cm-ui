@@ -20,6 +20,15 @@ export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_component`;
 
+export const BEM_MOBILE_STEPPER = 'mobile_stepper';
+
+export const BEM_MODAL = 'modal';
+export const BEM_MODAL_ACTIONS = `${BEM_MODAL}--actions`;
+export const BEM_MODAL_CONTENT = `${BEM_MODAL}--content`;
+export const BEM_MODAL_DIMMER = `${BEM_MODAL}--dimmer`;
+export const BEM_MODAL_INNER_CONTAINER = `${BEM_MODAL}--inner_container`;
+export const BEM_MODAL_TITLE = `${BEM_MODAL}--title`;
+
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
 export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
 export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;
