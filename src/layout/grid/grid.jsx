@@ -1,6 +1,7 @@
 import {
     camelCase,
     forEach,
+    isNumber,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -175,9 +176,6 @@ const useStyles = makeStyles(({ spacing }) => {
             /**
              * Deprecated classses
              */
-            [`& .${BEM_GRID_COLUMN}`]: {
-                width: ({ columns }) => `${(1 / columns) * 100}%`,
-            },
             '&$deprecatedTextAlignCenter': {
                 textAlign: 'center',
             },
@@ -230,6 +228,11 @@ const useStyles = makeStyles(({ spacing }) => {
         /**
          * Deprecated classses
          */
+        deprecatedColumns: {
+            [`& > .${BEM_GRID_COLUMN}, & > .${BEM_GRID_ROW} > .${BEM_GRID_COLUMN}`]: {
+                width: ({ columns }) => `${(1 / columns) * 100}%`,
+            },
+        },
         deprecatedTextAlignCenter: {},
         deprecatedTextAlignLeft: {},
         deprecatedTextAlignRight: {},
@@ -311,6 +314,7 @@ const Grid = React.forwardRef(
                 /**
                  * Deprecated classses
                  */
+                [classes.deprecatedColumns]: isNumber(otherProps.columns),
                 [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
                 [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
                 [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
