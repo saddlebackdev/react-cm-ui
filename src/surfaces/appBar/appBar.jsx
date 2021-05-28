@@ -47,6 +47,10 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
      * Content position.
      */
     placement: PropTypes.oneOf([
@@ -69,6 +73,7 @@ const propTypes = {
 const defaultProps = {
     className: '',
     classes: {},
+    dataTestId: `${UI_CLASS_NAME}-${BEM_APP_BAR}`,
     placement: 'top-left',
     style: undefined,
 };
@@ -143,11 +148,13 @@ function AppBar(props) {
         children,
         classes,
         className,
+        dataTestId,
         style,
         ...restProps
     } = props;
 
     const innerClasses = useStyles(props);
+
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_APP_BAR,
@@ -159,6 +166,7 @@ function AppBar(props) {
     return (
         <div
             className={rootClasses}
+            data-testid={dataTestId}
             style={style}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...restProps}
