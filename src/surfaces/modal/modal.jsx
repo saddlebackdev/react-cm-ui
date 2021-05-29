@@ -48,6 +48,10 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
      * The `height` of the Modal.
      */
     height: PropTypes.oneOfType([
@@ -125,6 +129,7 @@ const defaultProps = {
     children: null,
     classes: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-modal`,
     /**
      * If autoHeight is false the Inner Container's height needs to have a pixel value
      * for the scroll container to work appropriately, otherwise content inside is hidden.
@@ -553,6 +558,7 @@ class Modal extends React.Component {
             children,
             classes,
             className,
+            dataTestId,
             id,
             onClose: onCloseProp,
         } = this.props;
@@ -592,6 +598,7 @@ class Modal extends React.Component {
             <Portal>
                 <div
                     className={rootClasses}
+                    data-testid={dataTestId}
                     id={id}
                 >
                     <div

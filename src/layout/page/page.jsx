@@ -1,7 +1,13 @@
 import { CSSTransitionGroup } from 'react-transition-group';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, {
+    useEffect,
+    useState,
+} from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import ActivityIndicator from '../../feedback/activityIndicator';
 import makeStyles from '../../styles/makeStyles';
 import PageActionBar from './pageActionBar';
@@ -29,6 +35,10 @@ const propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     isDataFetching: PropTypes.bool,
     style: PropTypes.shape({}),
@@ -38,6 +48,7 @@ const defaultProps = {
     backgroundColor: 'grey',
     className: null,
     classes: null,
+    dataTestId: `${UI_CLASS_NAME}-page`,
     id: null,
     isDataFetching: false,
     style: null,
@@ -127,6 +138,7 @@ const Page = React.forwardRef(function Page(props, ref) {
     const {
         children,
         className,
+        dataTestId,
         id,
         isDataFetching,
         style,
@@ -151,6 +163,7 @@ const Page = React.forwardRef(function Page(props, ref) {
             id={id}
             ref={ref}
             style={style}
+            data-testid={dataTestId}
         >
             <CSSTransitionGroup
                 transitionEnterTimeout={ACTIVITY_INDICATOR_DURATION}

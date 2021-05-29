@@ -16,6 +16,9 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import Button from '../../inputs/button';
 import Checkbox from '../../inputs/checkbox/checkbox';
 import Drawer from '../../surfaces/drawer'; // eslint-disable-line import/no-cycle
@@ -43,6 +46,10 @@ const propTypes = {
     ]),
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
@@ -158,6 +165,7 @@ const defaultProps = {
     breakpointDown: breakpoints.values.md,
     children: undefined,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-fitlersDrawer`,
     id: undefined,
     rows: undefined,
     style: {},
@@ -259,6 +267,7 @@ class FiltersDrawer extends React.Component {
             breakpointDown,
             children,
             className,
+            dataTestId,
             id,
             isDirty,
             isFiltering,
@@ -268,6 +277,7 @@ class FiltersDrawer extends React.Component {
             rows,
             style,
         } = this.props;
+
         const { nestedTogglesData } = this.state;
         const bemClassName = `${moduleType}--filters_drawer`;
         const bemBlockClassName = `${moduleType}_filters_drawer`;
@@ -288,6 +298,7 @@ class FiltersDrawer extends React.Component {
             >
                 <Drawer
                     className={containerClasses}
+                    data-testid={dataTestId}
                     id={id}
                     isOpen={isOpen}
                     onClose={onClose}

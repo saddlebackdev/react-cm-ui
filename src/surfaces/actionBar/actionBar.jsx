@@ -7,6 +7,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { GRID_SIZES } from '../../layout/grid/gridConstants';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarSearch from './actionBarSearch';
 import Button from '../../inputs/button';
@@ -48,6 +51,10 @@ const propTypes = {
         sm: PropTypes.oneOf(GRID_SIZES),
         xl: PropTypes.oneOf(GRID_SIZES),
     })),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     /**
      * Defines the `justify-content` style property.
@@ -69,6 +76,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     columns: [],
+    dataTestId: `${UI_CLASS_NAME}-action_bar`,
     id: undefined,
     justifyContent: 'flex-start',
     moduleType: undefined,
@@ -140,6 +148,7 @@ class ActionBar extends React.PureComponent {
             children,
             className,
             columns,
+            dataTestId,
             id,
             justifyContent,
             moduleType,
@@ -162,6 +171,7 @@ class ActionBar extends React.PureComponent {
         return (
             <header
                 className={containerClasses}
+                data-testid={dataTestId}
                 id={id}
                 ref={(ref) => { this.actionBarRef = ref; }}
                 style={style}
