@@ -3,7 +3,13 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { columnPropTypesShape, columnPropsPropTypesShape } from './detailsWindowPropTypes';
+import {
+    columnPropTypesShape,
+    columnPropsPropTypesShape,
+} from './detailsWindowPropTypes';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import InfoBar from '../infoBar';
 import DetailsWindowColumnContainer from './detailsWindowColumnContainer';
 import domUtils from '../../utils/domUtils';
@@ -15,6 +21,10 @@ const propTypes = {
     columnProps: columnPropsPropTypesShape,
     columns: PropTypes.arrayOf(columnPropTypesShape).isRequired,
     data: PropTypes.shape({}).isRequired,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     forwardedRef: PropTypes.oneOfType([
         PropTypes.func,
@@ -31,6 +41,7 @@ const defaultProps = {
     className: undefined,
     color: undefined,
     columnProps: undefined,
+    dataTestId: `${UI_CLASS_NAME}-details_window`,
     expandableColumns: undefined,
     forwardedRef: undefined,
     moduleType: undefined,
@@ -122,17 +133,21 @@ class DetailsWindow extends React.PureComponent {
             columnProps,
             columns,
             data,
+            dataTestId,
             expandableColumns,
             forwardedRef,
             style,
             moduleType,
         } = this.props;
+
         const { isExpanded } = this.state;
         const hasExpandableColumns = !_.isEmpty(expandableColumns);
         const bemClassName = `${moduleType}--details_window`;
+
         const containerClasses = ClassNames('ui', bemClassName, className, {
             [`${bemClassName}-bleed`]: bleed,
         });
+
         let detailsColumnKeyNum = 1;
         let detailsColumnKeyNumExpanded = 1;
         let horizontalSpacing;
@@ -180,6 +195,7 @@ class DetailsWindow extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
+                data-testid={dataTestId}
                 ref={forwardedRef}
                 style={style}
             >

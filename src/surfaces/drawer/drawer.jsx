@@ -4,6 +4,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import domUtils from '../../utils/domUtils';
 import DrawerActionBar from './drawerActionBar'; // eslint-disable-line import/no-cycle
 import DrawerContainer from './drawerContainer';
@@ -29,6 +32,10 @@ const propTypes = {
         root: PropTypes.string,
     }),
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isModal: PropTypes.bool,
@@ -58,6 +65,7 @@ const defaultProps = {
     children: undefined,
     classes: null,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-drawer`,
     dimmer: true,
     isModal: true,
     maxHeight: undefined,
@@ -450,6 +458,7 @@ class Drawer extends React.Component {
             children,
             classes,
             className,
+            dataTestId,
             isModal,
             positionYOffset,
             style,
@@ -479,6 +488,7 @@ class Drawer extends React.Component {
             <Portal>
                 <div
                     className={rootClasses}
+                    data-testid={dataTestId}
                     ref={(ref) => { this.drawerRef = ref; }}
                 >
                     <div

@@ -7,7 +7,6 @@ import {
     BEM_CONTENT,
     BEM_FILTERS_RAIL,
 } from '../../global/constants';
-import { PROP_TYPES_ROW } from './constants';
 import makeStyles from '../../styles/makeStyles';
 import Rail from '../rail';
 import Slide from '../../utils/slide';
@@ -29,6 +28,10 @@ const propTypes = {
      * Assign additional class names to FiltersRail.
      */
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     /**
      * The `id` of the FiltersRail.
      */
@@ -56,6 +59,7 @@ const defaultProps = {
     children: undefined,
     classes: undefined,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
     id: undefined,
     isOpen: undefined,
     moduleType: 'page',
@@ -118,6 +122,7 @@ function FiltersRail(props) {
     const {
         children,
         className,
+        dataTestId,
         id,
         isOpen,
         moduleType,
@@ -161,6 +166,7 @@ function FiltersRail(props) {
     return (
         <div
             className={rootClasses}
+            data-testid={dataTestId}
             id={id}
             ref={filtersRailRef}
         >

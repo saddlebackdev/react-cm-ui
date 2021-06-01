@@ -1,6 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.1
+_May 21, 2021_
+
+### Core
+- Fixed Grid's width styling issue. [PR #296](https://github.com/saddlebackdev/react-cm-ui/pull/296)
+- Added `dataTestId` props to: [PR #298](https://github.com/saddlebackdev/react-cm-ui/pull/298)
+  - ActionBar
+  - AppBar
+  - DetailsWindow
+  - Drawer
+  - FiltersDrawer
+  - FiltersRail
+  - Modal
+  - Page
+
 ## 10.0.0
 _May 21, 2021_
 
