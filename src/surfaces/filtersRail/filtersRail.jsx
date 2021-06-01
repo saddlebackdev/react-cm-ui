@@ -1,6 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
+import ScrollBar from 'react-custom-scrollbars';
 import {
     UI_CLASS_NAME,
     BEM_CONTENT,
@@ -175,7 +176,20 @@ function FiltersRail(props) {
                         },
                     )}
                 >
-                    {children}
+                    <ScrollBar
+                        renderView={(renderProps) => (
+                            <div
+                                {...renderProps} // eslint-disable-line react/jsx-props-no-spreading
+                                style={{
+                                    ...renderProps.style,
+                                    position: 'relative',
+                                }}
+                            />
+                        )}
+                        style={{ width: 222 }}
+                    >
+                        {children}
+                    </ScrollBar>
                 </Rail>
             </Slide>
         </div>
