@@ -70,9 +70,9 @@ const useStyles = makeStyles((theme) => {
 
     return {
         innerContainer: {
-            height: 'auto',
             minHeight: '100%',
             overflow: 'hidden',
+            padding: [[0, 0, 0, theme.spacing(2)]],
             pointerEvents: 'auto',
             position: 'relative',
             zIndex: 1,
@@ -114,6 +114,10 @@ const useStyles = makeStyles((theme) => {
                     marginLeft: railWidth,
                 },
             },
+        },
+        scrollableChildrenContainer: {
+            padding: [[theme.spacing(3), theme.spacing(2), theme.spacing(3), 0]],
+            position: 'relative',
         },
     };
 });
@@ -182,19 +186,10 @@ function FiltersRail(props) {
                         },
                     )}
                 >
-                    <ScrollBar
-                        renderView={(renderProps) => (
-                            <div
-                                {...renderProps} // eslint-disable-line react/jsx-props-no-spreading
-                                style={{
-                                    ...renderProps.style,
-                                    position: 'relative',
-                                }}
-                            />
-                        )}
-                        style={{ width: 222 }}
-                    >
-                        {children}
+                    <ScrollBar autoHide>
+                        <div className={classes.scrollableChildrenContainer}>
+                            {children}
+                        </div>
                     </ScrollBar>
                 </Rail>
             </Slide>
