@@ -41,6 +41,11 @@ const propTypes = {
      */
     isOpen: PropTypes.bool,
     /**
+     * If `true`, the children of the FiltersRail will be contained within a
+     * `ScrollBar` from the React Custom Scrollbars package.
+     */
+    isScrollable: PropTypes.bool,
+    /**
      * Assigns styling to the FiltersRail dependant on
      * whether it is a child of the Page or Drawer component.
      */
@@ -62,6 +67,7 @@ const defaultProps = {
     dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
     id: undefined,
     isOpen: undefined,
+    isScrollable: false,
     moduleType: 'page',
 };
 
@@ -72,7 +78,6 @@ const useStyles = makeStyles((theme) => {
         innerContainer: {
             minHeight: '100%',
             overflow: 'hidden',
-            padding: [[0, 0, 0, theme.spacing(2)]],
             pointerEvents: 'auto',
             position: 'relative',
             zIndex: 1,
@@ -82,11 +87,19 @@ const useStyles = makeStyles((theme) => {
             '&$isOpen': {
                 overflow: 'visible',
             },
+            '&$isScrollable': {
+                padding: [[0, 0, 0, theme.spacing(2)]],
+            },
+            '&$isNotScrollable': {
+                height: 'auto',
+            },
         },
         isInDrawer: {},
         isNotOpen: {},
         isNotInDrawer: {},
+        isNotScrollable: {},
         isOpen: {},
+        isScrollable: {},
         root: {
             pointerEvents: 'none',
             position: 'absolute',
@@ -129,6 +142,7 @@ function FiltersRail(props) {
         dataTestId,
         id,
         isOpen,
+        isScrollable,
         moduleType,
         theme,
     } = props;
@@ -183,14 +197,19 @@ function FiltersRail(props) {
                         classes.innerContainer,
                         {
                             [classes.isOpen]: isOpen,
+                            [classes.isScrollable]: isScrollable,
+                            [classes.isNotScrollable]: !isScrollable,
                         },
                     )}
                 >
-                    <ScrollBar autoHide>
-                        <div className={classes.scrollableChildrenContainer}>
-                            {children}
-                        </div>
-                    </ScrollBar>
+                    {isScrollable ? (
+                        <ScrollBar autoHide>
+                            <div className={classes.scrollableChildrenContainer}>
+                                {children}
+                            </div>
+                        </ScrollBar>
+                    ) :
+                        children}
                 </Rail>
             </Slide>
         </div>

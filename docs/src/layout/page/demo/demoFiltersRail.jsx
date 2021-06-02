@@ -76,6 +76,7 @@ function DemoFiltersRail(props) {
     return (
         <Page.FiltersRail
             isOpen={isOpen}
+            isScrollable
         >
             <Grid
                 className={classes.grid}
