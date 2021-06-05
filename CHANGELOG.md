@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.2
+_June 05, 2021_
+
+### Core
+- Fixed Drawer's refs in `onOpen` to be defensive.
+- Added `data-testid`s to Drawer's shadow container and dimmer.
+
 ## 10.0.1
 _May 21, 2021_
 

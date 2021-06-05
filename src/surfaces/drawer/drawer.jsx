@@ -226,6 +226,7 @@ class Drawer extends React.Component {
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
 
         BODY.classList.add('drawer-animate-out');
+
         this.drawerContainerRef.classList.add('drawer-animate-out');
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
         this.drawerContainerRef.addEventListener(animationEvent, this.onCloseAnimationComplete);
@@ -335,81 +336,88 @@ class Drawer extends React.Component {
         }
 
         setTimeout(() => {
-            if (this.isPositionX('left')) {
-                this.shadowContainerRef.style.right = '-30px';
-                this.shadowRef.style.marginRight = '30px';
-            } else {
-                this.shadowContainerRef.style.left = '-30px';
-                this.shadowRef.style.marginLeft = '30px';
-            }
-
-            if (numberOfModalDrawers >= 2) {
-                const newZIndex = zIndex + numberOfModalDrawers;
-
-                let boxShadow = BOX_SHADOW_SMALL;
-
-                switch (shadowSize) {
-                    case 'large':
-                        boxShadow = BOX_SHADOW_LARGE;
-
-                        break;
-                    case 'xsmall':
-                        boxShadow = BOX_SHADOW_XSMALL;
-
-                        break;
-
-                    default:
-                }
-
-                domUtils.addClassName(BODY, 'drawer-open-layered');
-
-                this.drawerRef.style.zIndex = newZIndex;
-                this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
-                this.drawerContainerRef.style.zIndex = newZIndex;
-            } else {
-                let boxShadow = BOX_SHADOW_LARGE;
-
-                switch (shadowSize) {
-                    case 'small':
-                        boxShadow = BOX_SHADOW_SMALL;
-
-                        break;
-                    case 'xsmall':
-                        boxShadow = BOX_SHADOW_XSMALL;
-
-                        break;
-
-                    default:
-                }
-
-                if (!positionY && !maxHeight) {
-                    const isOpen = true;
-
-                    toggleBodyStyle(isOpen);
+            if (
+                this.shadowContainerRef &&
+                this.shadowRef &&
+                this.drawerRef &&
+                this.drawerContainerRef
+            ) {
+                if (this.isPositionX('left')) {
+                    this.shadowContainerRef.style.right = '-30px';
+                    this.shadowRef.style.marginRight = '30px';
                 } else {
-                    BODY.classList.add('drawer-nubbin-open');
+                    this.shadowContainerRef.style.left = '-30px';
+                    this.shadowRef.style.marginLeft = '30px';
                 }
 
-                this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
-                this.drawerRef.style.zIndex = zIndex - 1;
-                this.drawerContainerRef.style.zIndex = zIndex + numberOfModalDrawers;
-            }
+                if (numberOfModalDrawers >= 2) {
+                    const newZIndex = zIndex + numberOfModalDrawers;
 
-            if (!_.isUndefined(maxWidth)) {
-                this.drawerContainerRef.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` :
-                    maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
-            } else {
-                this.drawerContainerRef.style.maxWidth =
-                    `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (numberOfModalDrawers - 1))}px`;
-            }
+                    let boxShadow = BOX_SHADOW_SMALL;
 
-            if (!_.isUndefined(maxHeight)) {
-                this.drawerContainerRef.style.maxHeight = `${maxHeight}px`;
-            }
+                    switch (shadowSize) {
+                        case 'large':
+                            boxShadow = BOX_SHADOW_LARGE;
 
-            this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
-                `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
-                TRANSLATE_X_END;
+                            break;
+                        case 'xsmall':
+                            boxShadow = BOX_SHADOW_XSMALL;
+
+                            break;
+
+                        default:
+                    }
+
+                    domUtils.addClassName(BODY, 'drawer-open-layered');
+
+                    this.drawerRef.style.zIndex = newZIndex;
+                    this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
+                    this.drawerContainerRef.style.zIndex = newZIndex;
+                } else {
+                    let boxShadow = BOX_SHADOW_LARGE;
+
+                    switch (shadowSize) {
+                        case 'small':
+                            boxShadow = BOX_SHADOW_SMALL;
+
+                            break;
+                        case 'xsmall':
+                            boxShadow = BOX_SHADOW_XSMALL;
+
+                            break;
+
+                        default:
+                    }
+
+                    if (!positionY && !maxHeight) {
+                        const isOpen = true;
+
+                        toggleBodyStyle(isOpen);
+                    } else {
+                        BODY.classList.add('drawer-nubbin-open');
+                    }
+
+                    this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
+                    this.drawerRef.style.zIndex = zIndex - 1;
+                    this.drawerContainerRef.style.zIndex = zIndex + numberOfModalDrawers;
+                }
+
+                if (!_.isUndefined(maxWidth)) {
+                    this.drawerContainerRef.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` :
+                        maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
+                } else {
+                    this.drawerContainerRef.style.maxWidth =
+                        `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (numberOfModalDrawers - 1))}px`;
+                }
+
+                if (!_.isUndefined(maxHeight)) {
+                    this.drawerContainerRef.style.maxHeight = `${maxHeight}px`;
+                }
+
+                this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
+                    `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
+                    TRANSLATE_X_END;
+            }
         }, 30);
     }
 
@@ -511,6 +519,7 @@ class Drawer extends React.Component {
 
                         <div
                             className="shadow_container"
+                            data-testid={`${dataTestId}_shadow_container`}
                             ref={(ref) => { this.shadowContainerRef = ref; }}
                         >
                             <div ref={(ref) => { this.shadowRef = ref; }} />
@@ -519,6 +528,7 @@ class Drawer extends React.Component {
 
                     <div
                         className="drawer-dimmer"
+                        data-testid={`${dataTestId}_dimmer`}
                         ref={(ref) => { this.drawerDimmerRef = ref; }}
                     />
                 </div>
