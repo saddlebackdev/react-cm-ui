@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.3
+_June 08, 2021_
+
+### Core
+- Added new `onCloseComplete` prop to Modal.
+
 ## 10.0.2
 _June 05, 2021_
 
