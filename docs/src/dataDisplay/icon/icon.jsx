@@ -1,11 +1,13 @@
 import {
     DropdownButton,
     Grid,
-    Header,
+    Typography,
     Icon,
 } from 'react-cm-ui';
 import {
+    camelCase,
     flatten,
+    kebabCase,
     map,
     sortBy,
 } from 'lodash';
@@ -13,12 +15,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import withStyles from 'react-cm-ui/styles/withStyles';
 import withWidth from 'react-cm-ui/utils/withWidth';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Heading from '../../global/heading';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/icon/icon';
+/* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
     classes: PropTypes.shape({
         dropdownButton: PropTypes.string,
         iconGridColumn: PropTypes.string,
+    }).isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
     }).isRequired,
     width: PropTypes.string.isRequired,
 };
@@ -61,81 +72,89 @@ const categorizedIconSet = [
     }, {
         category: 'Communication',
         types: [
-            'at',
-            'bell',
-            'bell-recurring',
+            'alert',
+            'attachment',
             'comment',
-            'comment-lines',
-            'envelope',
-            'file-alt',
-            'inbox-in',
-            'newspaper',
-            'paperclip',
-            'paper-plane',
+            'contact-info',
+            'email',
+            'mention',
+            'newsletter',
+            'note',
             'phone',
             'phone-cell',
             'phone-home',
             'phone-work',
+            'receive',
+            'recurring-alert',
             'reply',
+            'send',
+            'share',
+            'sms',
             'snail-mail',
         ],
     }, {
-        category: 'Data Elements',
+        category: 'Data Components',
         types: [
-            'element-calendar',
-            'element-checkbox',
-            'element-button',
-            'element-input',
-            'element-input-number',
-            'element-select',
-            'element-select-multi',
-            'element-time',
-            'element-toggle',
+            'button',
+            'checkbox',
+            'date-select',
+            'multi-select',
+            'numerical-select',
+            'single-select',
+            'slot',
+            'slot-add',
+            'slot-recurring',
+            'text-field',
+            'time-select',
+            'toggle',
         ],
     }, {
         category: 'Data States',
         types: [
             'archive',
-            'broadcast',
-            'check-square',
-            'lock',
-            'power-square',
-            'power-off-square',
-            'question',
-            'square-filled-partial',
-            'square-outline',
-            'star',
-            'times-square',
+            'blank-or-null',
+            'favorite',
+            'filled-or-exists',
+            'live',
+            'locked',
+            'not-selected',
+            'off',
+            'on',
+            'selected',
+            'unknown',
         ],
     }, {
         category: 'Data Types - Custom',
         types: [
+            'category',
+            'help',
             'info',
+            'keywords',
             'link',
-            'list-category',
-            'question-circle',
-            'quotation',
+            'password',
+            'playlist',
             'status',
         ],
     }, {
         category: 'Data Types - Date & Time',
         types: [
-            'calendar',
-            'calendar-range',
-            'clock-period',
-            'hourglass',
+            'date',
+            'date-range',
+            'future',
+            'history',
             'recurring',
             'time',
-            'time-future',
-            'time-history',
+            'time-period',
+            'wait',
         ],
     }, {
         category: 'Data Types - File',
         types: [
-            'file',
+            'audio',
+            'document',
             'image',
-            'video-reel',
-            'volume',
+            'spreadsheet',
+            'video',
         ],
     }, {
         category: 'Data Types - Person',
@@ -154,37 +173,35 @@ const categorizedIconSet = [
             'fingerprinted',
             'gender',
             'giving',
+            'leadership',
             'membership',
             'milestone',
             'occupation',
+            'shape-abilities',
             'shape-experiences',
             'shape-heart',
             'shape-personality',
             'shape-spiritual-gifts',
-            // Need to move the below types to the proper category
-            'award',
-            'marital-status',
-            'user',
         ],
     }, {
         category: 'Data Types - Text',
         types: [
-            'sort-alpha',
-            'sort-alpha-numeric',
-            'sort-numeric',
+            'alphabetical',
+            'alpha-numeric',
+            'numerical',
             'text',
         ],
     }, {
         category: 'Data Values',
         types: [
-            'check-circle',
-            'equal-circle',
-            'greater-than-equal-circle',
-            'less-than-equal-circle',
-            'minus-circle',
-            'not-equal-circle',
+            'equal-to',
+            'false',
+            'equal-to-greater-than',
+            'equal-to-lesser-than',
+            'minus',
+            'not-equal-to',
             'plus-circle',
-            'times-circle',
+            'true',
         ],
     }, {
         category: 'Interface',
@@ -240,29 +257,44 @@ const categorizedIconSet = [
     }, {
         category: 'People',
         types: [
-            'address-book',
-            'briefcase-user',
+            'baby',
             'child',
-            'hand-stop',
+            'people',
+            'person',
+            'roster',
+            'staff',
+            'team',
             'user',
-            'user-circle',
-            'users',
-            'users-circle',
+            'volunteer',
         ],
     }, {
         category: 'Places',
         types: [
             'building',
-            'church',
-            'map-marker',
+            'camp-summer',
+            'camp-winter',
+            'campus',
+            'location',
             'venue',
         ],
     }, {
-        category: 'Workflow',
+        category: 'Follow Ups',
         types: [
             'blocked',
-            'circle',
-            'reassign',
+            'open',
+            'reassigned',
+            'replied-successful',
+            'replied-unsuccessful',
+        ],
+    },
+    {
+        category: 'Temporary Icons',
+        types: [
+            'file-alt',
+            'file',
+            'award',
+            'marital-status',
+            'user',
         ],
     },
 ];
@@ -295,7 +327,7 @@ const useStyles = () => ({
     },
 });
 
-class ElementsIconSet extends React.PureComponent {
+class DocsIcon extends React.PureComponent {
     constructor() {
         super();
 
@@ -318,12 +350,21 @@ class ElementsIconSet extends React.PureComponent {
     render() {
         const {
             classes,
+            location: {
+                pathname,
+            },
             width,
         } = this.props;
+
+        const {
+            description,
+            displayName,
+        } = rootDoc;
 
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
+
         let renderCategories;
 
         if (sortSelectedOption.id === 'alphabetical_asc') {
@@ -368,9 +409,12 @@ class ElementsIconSet extends React.PureComponent {
                     <Grid.Column
                         sm={12}
                     >
-                        <Header size="large" style={{ margin: '0 0 22px' }}>
+                        <Heading
+                            anchorLink={kebabCase(iconSet.category)}
+                            variant="h2"
+                        >
                             {iconSet.category}
-                        </Header>
+                        </Heading>
                     </Grid.Column>
 
                     {map(iconSet.types, (type, childIndex) => (
@@ -403,161 +447,175 @@ class ElementsIconSet extends React.PureComponent {
         }
 
         return (
-            <Main page="headers">
+            <Main page={camelCase(displayName)}>
                 <Main.Content>
-                    <Grid
-                        alignItems="flex-start"
-                        justifyContent="flex-end"
-                        spacing={2}
-                    >
-                        <Grid.Column
-                            sm="auto"
+                    <MarkdownContainer>
+                        <Typography
+                            className="description"
+                            variant="body1"
                         >
-                            <DropdownButton
-                                className={classes.dropdownButton}
-                                style={{ margin: 0 }}
-                                label={`Sort by: ${sortSelectedOption.label}`}
-                            >
-                                {map(sortByOptions, (option) => (
-                                    <DropdownButton.Option
-                                        key={option.id}
-                                        id={option.id}
-                                        label={option.label}
-                                        onClick={this.onSortAscendingClick}
-                                    />
-                                ))}
-                            </DropdownButton>
-                        </Grid.Column>
-                    </Grid>
+                            {description}
+                        </Typography>
 
-                    <Grid
-                        alignItems="flex-start"
-                        justify="center"
-                        spacing={2}
-                    >
-                        {renderCategories}
-
-                        <Grid.Column
-                            sm={12}
+                        <Grid
+                            spacing={2}
                         >
-                            <Header size="large" style={{ margin: '0 0 22px' }}>
-                                Older Icons
-                            </Header>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
-                            <p className="icon-type-name">circle-filled</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="text-lines" />
-                            <p className="icon-type-name">text-lines</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-up" />
-                            <p className="icon-type-name">caret-up</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-right" />
-                            <p className="icon-type-name">caret-right</p>
-                        </Grid.Column>
-
-                        {width === 'lg' ? (
                             <Grid.Column
-                                lg={12}
-                            />
-                        ) : null}
+                                sm="auto"
+                            >
+                                <DropdownButton
+                                    className={classes.dropdownButton}
+                                    style={{ margin: 0 }}
+                                    label={`Sort by: ${sortSelectedOption.label}`}
+                                >
+                                    {map(sortByOptions, (option) => (
+                                        <DropdownButton.Option
+                                            key={option.id}
+                                            id={option.id}
+                                            label={option.label}
+                                            onClick={this.onSortAscendingClick}
+                                        />
+                                    ))}
+                                </DropdownButton>
+                            </Grid.Column>
+                        </Grid>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
+                        <Grid
+                            alignItems="flex-start"
+                            justify="center"
+                            spacing={2}
                         >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-down" />
-                            <p className="icon-type-name">caret-down</p>
-                        </Grid.Column>
+                            {renderCategories}
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-left" />
-                            <p className="icon-type-name">caret-left</p>
-                        </Grid.Column>
+                            <Grid.Column
+                                sm={12}
+                            >
+                                <Heading
+                                    anchorLink="older-icons"
+                                    variant="h2"
+                                >
+                                    Older Icons
+                                </Heading>
+                            </Grid.Column>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
-                            <p className="icon-type-name">arrows-alt</p>
-                        </Grid.Column>
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
+                                <p className="icon-type-name">circle-filled</p>
+                            </Grid.Column>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="spinner" />
-                            <p className="icon-type-name">spinner</p>
-                        </Grid.Column>
-                    </Grid>
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="text-lines" />
+                                <p className="icon-type-name">text-lines</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-up" />
+                                <p className="icon-type-name">caret-up</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-right" />
+                                <p className="icon-type-name">caret-right</p>
+                            </Grid.Column>
+
+                            {width === 'lg' ? (
+                                <Grid.Column
+                                    lg={12}
+                                />
+                            ) : null}
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-down" />
+                                <p className="icon-type-name">caret-down</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-left" />
+                                <p className="icon-type-name">caret-left</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
+                                <p className="icon-type-name">arrows-alt</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="spinner" />
+                                <p className="icon-type-name">spinner</p>
+                            </Grid.Column>
+                        </Grid>
+                    </MarkdownContainer>
+
+                    <ComponentVersionIdentifier
+                        pathname={pathname}
+                    />
                 </Main.Content>
             </Main>
         );
     }
 }
 
-ElementsIconSet.propTypes = propTypes;
+DocsIcon.propTypes = propTypes;
 
 export default withStyles(
     useStyles,
     {
         withTheme: true,
     },
-)(withWidth()(ElementsIconSet));
+)(withWidth()(DocsIcon));

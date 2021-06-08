@@ -20,6 +20,8 @@ export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_component`;
 
+export const BEM_ICON = 'icon';
+
 export const BEM_MOBILE_STEPPER = 'mobile_stepper';
 
 export const BEM_MODAL = 'modal';

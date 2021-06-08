@@ -121,6 +121,11 @@ export const navigationItems = [
                                 label: 'Examples',
                                 path: 'examples',
                             },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
                         ],
                         path: 'icon',
                     },
