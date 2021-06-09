@@ -40,7 +40,7 @@ const propTypes = {
      */
     disable: PropTypes.bool,
     /**
-     * The `id` of the Modal.
+     * The `id` of the icon.
      */
     id: PropTypes.string,
     /**
