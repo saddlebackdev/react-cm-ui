@@ -309,7 +309,7 @@ const sortByOptions = [
     },
 ];
 
-const useStyles = () => ({
+const styles = () => ({
     iconGridColumn: {
         textAlign: 'center',
     },
@@ -614,7 +614,7 @@ class DocsIcon extends React.PureComponent {
 DocsIcon.propTypes = propTypes;
 
 export default withStyles(
-    useStyles,
+    styles,
     {
         withTheme: true,
     },
