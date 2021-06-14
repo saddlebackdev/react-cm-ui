@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.0.2',
+        package: '10.0.3',
         components: {
             layout: {
                 grid: {
@@ -64,7 +64,7 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
                 modal: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
