@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FiltersRail from '../../surfaces/filtersRail';
+import FiltersRail from '../filtersRail';
 
 const propTypes = {
     breakpointUp: PropTypes.oneOfType([
@@ -11,6 +11,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
+    isScrollable: PropTypes.bool,
     style: PropTypes.shape({}),
 };
 
@@ -20,6 +21,7 @@ const defaultProps = {
     className: undefined,
     id: undefined,
     isOpen: undefined,
+    isScrollable: false,
     style: {},
 };
 
@@ -30,6 +32,7 @@ function DrawerFiltersRail(props) {
         className,
         id,
         isOpen,
+        isScrollable,
         style,
     } = props;
 
@@ -39,6 +42,7 @@ function DrawerFiltersRail(props) {
             className={className}
             id={id}
             isOpen={isOpen}
+            isScrollable={isScrollable}
             moduleType="drawer"
             style={style}
         >

@@ -104,7 +104,11 @@ const propTypes = {
      */
     onClose: PropTypes.func,
     /**
-     * Event handler called after closing animation has completed.
+     * Event handler called after close animation has completed.
+     */
+    onCloseComplete: PropTypes.func,
+    /**
+     * Event handler called after open animation has completed.
      */
     onOpenComplete: PropTypes.func,
     /**
@@ -142,7 +146,8 @@ const defaultProps = {
     minWidth: '375px',
     onClickOutside: false,
     onClose: null,
-    onOpenComplete: null,
+    onCloseComplete: undefined,
+    onOpenComplete: undefined,
     width: null,
 };
 
@@ -376,6 +381,12 @@ class Modal extends React.Component {
 
         this.setState({
             isOpen: false,
+        }, () => {
+            const { onCloseComplete } = this.props;
+
+            if (isFunction(onCloseComplete)) {
+                onCloseComplete();
+            }
         });
     }
 
@@ -532,7 +543,7 @@ class Modal extends React.Component {
         return null;
     }
 
-    toggleBodyStyle({ enable }) {
+    toggleBodyStyle({ enable } = { enable: false }) {
         if (enable) {
             const { pageYOffset } = window;
 
@@ -651,6 +662,7 @@ class Modal extends React.Component {
                             BEM_MODAL_DIMMER,
                             classes.dimmer,
                         )}
+                        data-testid={`${dataTestId}_dimmer`}
                     />
                 </div>
             </Portal>

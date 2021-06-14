@@ -1,6 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.4
+_June 14, 2021_
+
+### Core
+- Added ability to add a Custom Scrollbar to the FiltersRail. [PR #300](https://github.com/saddlebackdev/react-cm-ui/pull/300)
+
+### Docs
+- Updated Demo Page and Demo Page's Filters Rail to demonstrate custom scrollbars and also fix some functionality/state-management issues. 
+
+## 10.0.3
+_June 08, 2021_
+
+### Core
+- Added new `onCloseComplete` prop to Modal.
+
 ## 10.0.2
 _June 05, 2021_
 

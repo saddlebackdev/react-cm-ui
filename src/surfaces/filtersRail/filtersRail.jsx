@@ -1,6 +1,7 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
+import ScrollBar from 'react-custom-scrollbars';
 import {
     UI_CLASS_NAME,
     BEM_CONTENT,
@@ -40,6 +41,11 @@ const propTypes = {
      */
     isOpen: PropTypes.bool,
     /**
+     * If `true`, the children of the FiltersRail will be contained within a
+     * `ScrollBar` from the React Custom Scrollbars package.
+     */
+    isScrollable: PropTypes.bool,
+    /**
      * Assigns styling to the FiltersRail dependant on
      * whether it is a child of the Page or Drawer component.
      */
@@ -61,6 +67,7 @@ const defaultProps = {
     dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
     id: undefined,
     isOpen: undefined,
+    isScrollable: false,
     moduleType: 'page',
 };
 
@@ -69,7 +76,6 @@ const useStyles = makeStyles((theme) => {
 
     return {
         innerContainer: {
-            height: 'auto',
             minHeight: '100%',
             overflow: 'hidden',
             pointerEvents: 'auto',
@@ -81,11 +87,19 @@ const useStyles = makeStyles((theme) => {
             '&$isOpen': {
                 overflow: 'visible',
             },
+            '&$isScrollable': {
+                padding: [[0, 0, 0, theme.spacing(2)]],
+            },
+            '&$isNotScrollable': {
+                height: 'auto',
+            },
         },
         isInDrawer: {},
         isNotOpen: {},
         isNotInDrawer: {},
+        isNotScrollable: {},
         isOpen: {},
+        isScrollable: {},
         root: {
             pointerEvents: 'none',
             position: 'absolute',
@@ -114,6 +128,10 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
+        scrollableChildrenContainer: {
+            padding: [[theme.spacing(3), theme.spacing(2), theme.spacing(3), 0]],
+            position: 'relative',
+        },
     };
 });
 
@@ -124,6 +142,7 @@ function FiltersRail(props) {
         dataTestId,
         id,
         isOpen,
+        isScrollable,
         moduleType,
         theme,
     } = props;
@@ -178,10 +197,19 @@ function FiltersRail(props) {
                         classes.innerContainer,
                         {
                             [classes.isOpen]: isOpen,
+                            [classes.isScrollable]: isScrollable,
+                            [classes.isNotScrollable]: !isScrollable,
                         },
                     )}
                 >
-                    {children}
+                    {isScrollable ? (
+                        <ScrollBar autoHide>
+                            <div className={classes.scrollableChildrenContainer}>
+                                {children}
+                            </div>
+                        </ScrollBar>
+                    ) :
+                        children}
                 </Rail>
             </Slide>
         </div>
