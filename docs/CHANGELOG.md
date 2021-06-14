@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.1 - 06/14/2021
+
+#### Feature
+- [PR #300](https://github.com/saddlebackdev/react-cm-ui/pull/300) / Merge Commit f0cd0a0
+  - Updated Demo Page and Demo Page's Filters Rail to demonstrate custom scrollbars and also fix some functionality/state-management issues.
+
 ## 0.15.0 - 04/16/2021
 
 #### Bug
