@@ -1,12 +1,19 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import ActionBar from '../../surfaces/actionBar'; // eslint-disable-line import/no-cycle
 
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     style: PropTypes.shape({}),
 };
@@ -15,6 +22,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     columns: undefined,
+    dataTestId: `${UI_CLASS_NAME}-drawer_action_bar`,
     id: undefined,
     style: {},
 };
@@ -58,13 +66,16 @@ class DrawerActionBar extends React.PureComponent {
             children,
             className,
             columns,
+            dataTestId,
             id,
             style,
         } = this.props;
+
         const containerClasses = ClassNames('drawer--action_bar', className);
 
         return (
             <div
+                data-testid={dataTestId}
                 ref={(ref) => { this.drawerActionBarRef = ref; }}
             >
                 <ActionBar
