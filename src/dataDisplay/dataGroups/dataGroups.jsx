@@ -7,19 +7,29 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    groupPropTypes,
+} from './dataGroupsPropTypes';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import DataGroupsColumn from './dataGroupsColumn';
-import { groupPropTypes } from './dataGroupsPropTypes';
 
 const propTypes = {
     className: PropTypes.string,
     columns: PropTypes.arrayOf(groupPropTypes).isRequired,
     data: PropTypes.shape({}).isRequired,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     moduleType: PropTypes.string.isRequired,
     style: PropTypes.shape({}),
 };
 
 const defaultProps = {
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-data_groups`,
     style: {},
 };
 
@@ -101,9 +111,11 @@ class DataGroups extends React.PureComponent {
         const {
             className,
             data,
+            dataTestId,
             moduleType,
             style,
         } = this.props;
+
         const { columns } = this.state;
         const bemClassName = `${moduleType}--data_groups`;
         const rootClasses = ClassNames('ui', bemClassName, className);
@@ -111,6 +123,7 @@ class DataGroups extends React.PureComponent {
         return (
             <div
                 className={rootClasses}
+                dataTestId={dataTestId}
                 ref={(ref) => { this.dataGroups = ref; }}
                 style={style}
             >

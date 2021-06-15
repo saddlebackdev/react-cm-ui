@@ -1,7 +1,10 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { BEM_DATA_GRID } from '../../global/constants';
+import {
+    BEM_DATA_GRID,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTable from './dataGridTable';
 import makeStyles from '../../styles/makeStyles';
@@ -20,6 +23,10 @@ const propTypes = {
             PropTypes.shape({}),
         ]),
     ).isRequired,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     fontSize: PropTypes.string,
     id: PropTypes.string.isRequired,
     minWidth: PropTypes.number,
@@ -45,6 +52,7 @@ const defaultProps = {
     bleed: true,
     classes: null,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-${BEM_DATA_GRID}`,
     fontSize: undefined,
     minWidth: 800,
     moduleType: null,
@@ -108,6 +116,7 @@ function DataGrid(props) {
         className,
         columns,
         data,
+        dataTestId,
         fontSize,
         id,
         minWidth: minWidthProp,
@@ -157,6 +166,7 @@ function DataGrid(props) {
     return (
         <div
             className={rootClasses}
+            data-testid={dataTestId}
             style={style}
         >
             <DataGridTable
