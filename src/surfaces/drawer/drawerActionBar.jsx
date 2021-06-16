@@ -32,7 +32,6 @@ const hasWingClassName = 'drawer--wing-has_action_bar';
 
 class DrawerActionBar extends React.PureComponent {
     componentDidMount() {
-        const closestDrawer = this.drawerActionBarRef.closest('.ui.drawer');
         const closestWing = this.drawerActionBarRef.closest('.ui.drawer--wing');
 
         if (closestWing) {
@@ -41,13 +40,16 @@ class DrawerActionBar extends React.PureComponent {
             return null;
         }
 
-        closestDrawer.classList.add(hasClassName);
+        const closestDrawer = this.drawerActionBarRef.closest('.ui.drawer');
+
+        if (closestDrawer) {
+            closestDrawer.classList.add(hasClassName);
+        }
 
         return null;
     }
 
     componentWillUnmount() {
-        const closestDrawer = this.drawerActionBarRef.closest('.ui.drawer');
         const closestWing = this.drawerActionBarRef.closest('.ui.drawer--wing');
 
         if (closestWing) {
@@ -56,7 +58,11 @@ class DrawerActionBar extends React.PureComponent {
             return null;
         }
 
-        closestDrawer.classList.remove(hasClassName);
+        const closestDrawer = this.drawerActionBarRef.closest('.ui.drawer');
+
+        if (closestDrawer) {
+            closestDrawer.classList.add(hasClassName);
+        }
 
         return null;
     }
