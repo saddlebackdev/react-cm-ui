@@ -56,6 +56,10 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
      * Defines the `flex-direction` style property.
      * It is applied for all screen sizes.
      */
@@ -122,6 +126,7 @@ const defaultProps = {
     children: null,
     classes: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-${BEM_GRID}`,
     direction: 'row',
     id: null,
     justifyContent: 'flex-start',
@@ -288,6 +293,7 @@ const Grid = React.forwardRef(
             alignItems,
             children,
             className,
+            dataTestId,
             id,
             direction,
             justifyContent,
@@ -327,6 +333,7 @@ const Grid = React.forwardRef(
         return (
             <div
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 ref={ref}
                 style={style}
