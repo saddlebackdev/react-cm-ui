@@ -102,20 +102,30 @@ class ActionBar extends React.PureComponent {
     componentDidMount() {
         const { moduleType } = this.props;
 
-        if (moduleType === 'drawer') {
-            this.actionBarRef.closest('.ui.drawer').classList.add(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
-        }
+        if (this.actionBarRef) {
+            const closestDrawer = this.actionBarRef.closest('.ui.drawer');
 
-        if (moduleType === 'page') {
-            this.actionBarRef.closest('.ui.page').classList.add(HAS_PAGE_ACTION_BAR_CLASS_NAME);
+            if (moduleType === 'drawer' && closestDrawer) {
+                closestDrawer.classList.add(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
+            }
+
+            const closestPage = this.actionBarRef.closest('.ui.page');
+
+            if (moduleType === 'page' && closestPage) {
+                closestPage.classList.add(HAS_PAGE_ACTION_BAR_CLASS_NAME);
+            }
         }
     }
 
     componentWillUnmount() {
         const { moduleType } = this.props;
 
-        if (moduleType === 'drawer') {
-            this.actionBarRef.closest('.ui.drawer').classList.remove(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
+        if (this.actionBarRef) {
+            const closestDrawer = this.actionBarRef.closest('.ui.drawer');
+
+            if (moduleType === 'drawer' && closestDrawer) {
+                closestDrawer.classList.remove(HAS_DRAWER_ACTION_BAR_CLASS_NAME);
+            }
         }
     }
 
@@ -125,19 +135,46 @@ class ActionBar extends React.PureComponent {
         }), () => {
             const { moduleType } = this.props;
             const { isMobileSearchVisible } = this.state;
-            if (moduleType === 'drawer') {
-                if (isMobileSearchVisible) {
-                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.add(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                } else {
-                    this.actionBarRef.closest('.ui.drawer').querySelector('.ui.drawer--content').classList.remove(HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                }
-            }
 
-            if (moduleType === 'page') {
-                if (isMobileSearchVisible) {
-                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-                } else {
-                    this.actionBarRef.closest('.ui.page').querySelector('.ui.page--container').classList.remove(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+            if (this.actionBarRef) {
+                const closestDrawer = this.actionBarRef.closest('.ui.drawer');
+
+                if (moduleType === 'drawer' && closestDrawer) {
+                    if (isMobileSearchVisible) {
+                        closestDrawer
+                            .querySelector('.ui.drawer--content')
+                            .classList
+                            .add(
+                                HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME,
+                            );
+                    } else {
+                        closestDrawer
+                            .querySelector('.ui.drawer--content')
+                            .classList
+                            .remove(
+                                HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME,
+                            );
+                    }
+                }
+
+                const closestPage = this.actionBarRef.closest('.ui.page]');
+
+                if (moduleType === 'page' && closestPage) {
+                    if (isMobileSearchVisible) {
+                        closestPage
+                            .querySelector('.ui.page--container')
+                            .classList
+                            .add(
+                                HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME,
+                            );
+                    } else {
+                        closestPage
+                            .querySelector('.ui.page--container')
+                            .classList
+                            .remove(
+                                HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME,
+                            );
+                    }
                 }
             }
         });
@@ -246,8 +283,10 @@ class ActionBar extends React.PureComponent {
                                                     onClick={button.onClick}
                                                     style={button.style}
                                                 >
-                                                    {button.iconType && <Icon type={button.iconType} />}
-                                                    {button.label && <span>{button.label}</span>}
+                                                    {button.iconType &&
+                                                        <Icon type={button.iconType} />}
+                                                    {button.label &&
+                                                        <span>{button.label}</span>}
                                                 </Button>
                                             )}
 
@@ -347,10 +386,13 @@ class ActionBar extends React.PureComponent {
                                                                 divide={!!divide}
                                                                 key={itemKey}
                                                                 style={({
-                                                                    alignItems: item.alignItems || 'flex-start',
-                                                                    flexBasis: item.flexBasis || 'auto',
+                                                                    alignItems: item.alignItems ||
+                                                                        'flex-start',
+                                                                    flexBasis: item.flexBasis ||
+                                                                        'auto',
                                                                     flexGrow: item.flexGrow || 0,
-                                                                    flexShrink: item.flexShrink || 0,
+                                                                    flexShrink: item.flexShrink ||
+                                                                        0,
                                                                     width: 'auto',
                                                                     ...list.style,
                                                                 })}

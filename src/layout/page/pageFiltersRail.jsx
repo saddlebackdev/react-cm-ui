@@ -7,6 +7,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool,
+    isScrollable: PropTypes.bool,
     style: PropTypes.shape({}),
 };
 
@@ -15,6 +16,7 @@ const defaultProps = {
     className: undefined,
     id: undefined,
     isOpen: undefined,
+    isScrollable: false,
     style: {},
 };
 
@@ -24,6 +26,7 @@ function PageFiltersRail(props) {
         className,
         id,
         isOpen,
+        isScrollable,
         style,
     } = props;
 
@@ -32,6 +35,7 @@ function PageFiltersRail(props) {
             className={className}
             id={id}
             isOpen={isOpen}
+            isScrollable={isScrollable}
             moduleType="page"
             style={style}
         >

@@ -1,6 +1,34 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.5
+_June 17, 2021_
+
+### Core
+- New `data-testid`s for: [PR #304](https://github.com/saddlebackdev/react-cm-ui/pull/304), [PR #305](https://github.com/saddlebackdev/react-cm-ui/pull/305), [PR #306](https://github.com/saddlebackdev/react-cm-ui/pull/306)
+  - DataCard
+  - DataGrid
+  - DataGroups
+  - Drawer and its sub components
+  - Grid and its sub components
+  - PageActionBar
+- To help with unit testing the Drawer's DOM query's are now defensive.
+
+## 10.0.4
+_June 14, 2021_
+
+### Core
+- Added ability to add a Custom Scrollbar to the FiltersRail. [PR #300](https://github.com/saddlebackdev/react-cm-ui/pull/300)
+
+### Docs
+- Updated Demo Page and Demo Page's Filters Rail to demonstrate custom scrollbars and also fix some functionality/state-management issues.
+
+## 10.0.3
+_June 08, 2021_
+
+### Core
+- Added new `onCloseComplete` prop to Modal.
+
 ## 10.0.2
 _June 05, 2021_
 
