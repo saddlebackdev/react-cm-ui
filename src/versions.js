@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.0.3',
+        package: '10.0.3-hotfix',
         components: {
             layout: {
                 grid: {
@@ -44,7 +44,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/35D0905B-98F5-42E8-B95A-CDBB28612450',
                 },
                 drawer: {
-                    devLibraryVersion: '< 1.0.1',
+                    devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/04BAC452-896D-4D93-8239-F70B41633674',
                 },
