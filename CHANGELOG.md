@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.6
+_June 22, 2021_
+
+### Core
+- Moved Drawer's `onCloseComplete` func call to the `setState` callback.
+
 ## 10.0.3-hotfix
 _June 22, 2021_
 
