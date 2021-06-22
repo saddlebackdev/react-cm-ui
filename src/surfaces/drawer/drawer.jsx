@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import _, {
+    isFunction,
+} from 'lodash';
 import { Portal } from 'react-portal';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -249,7 +251,7 @@ class Drawer extends React.Component {
             document.removeEventListener('click', this.onClickOutside);
         }
 
-        if (_.isFunction(onClose)) {
+        if (isFunction(onClose)) {
             onClose(...arguments); // eslint-disable-line prefer-rest-params
         } else {
             console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
@@ -289,14 +291,14 @@ class Drawer extends React.Component {
 
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
 
-        if (_.isFunction(onCloseComplete)) {
-            onCloseComplete(true);
-        }
-
         this.useComponentWillUnmount = false;
 
         this.setState({
             isOpen: false,
+        }, () => {
+            if (isFunction(onCloseComplete)) {
+                onCloseComplete(true);
+            }
         });
     }
 
