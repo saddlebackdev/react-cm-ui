@@ -1,6 +1,9 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 import Utils from '../../utils/utils';
 
@@ -8,6 +11,10 @@ const propTypes = {
     as: PropTypes.oneOf(['div', 'header', 'main', 'section']),
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     isFiltersRailOpen: PropTypes.bool,
     scrollable: PropTypes.bool,
@@ -18,6 +25,7 @@ const defaultProps = {
     as: 'section',
     children: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-drawer_content`,
     id: null,
     isFiltersRailOpen: false,
     scrollable: false,
@@ -59,6 +67,7 @@ function DrawerContent(props) {
         as,
         children,
         className,
+        dataTestId,
         id,
         isFiltersRailOpen,
         scrollable,
@@ -86,6 +95,7 @@ function DrawerContent(props) {
     return (
         <ElementType
             className={rootClasses}
+            data-testid={dataTestId}
             id={id}
             style={style}
         >

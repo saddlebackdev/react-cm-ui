@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import FiltersDrawer from '../../surfaces/filtersDrawer'; // eslint-disable-line import/no-cycle
 
 const propTypes = {
@@ -9,6 +12,10 @@ const propTypes = {
     ]),
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
@@ -24,6 +31,7 @@ const defaultProps = {
     breakpointDown: undefined,
     children: undefined,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-drawer_filters_drawer`,
     id: undefined,
     rows: undefined,
     style: {},
@@ -34,6 +42,7 @@ function DrawerFiltersDrawer(props) {
         breakpointDown,
         children,
         className,
+        dataTestId,
         id,
         isDirty,
         isFiltering,
@@ -49,6 +58,7 @@ function DrawerFiltersDrawer(props) {
         <FiltersDrawer
             breakpointDown={breakpointDown}
             className={className}
+            data-testid={dataTestId}
             id={id}
             isDirty={isDirty}
             isFiltering={isFiltering}
