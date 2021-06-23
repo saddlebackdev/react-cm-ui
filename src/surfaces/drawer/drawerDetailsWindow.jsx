@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import { columnPropTypesShape } from '../detailsWindow/detailsWindowPropTypes';
 import DetailsWindow from '../detailsWindow';
 
@@ -10,6 +13,10 @@ const propTypes = {
     columnProps: PropTypes.shape({}),
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.shape({}).isRequired,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     expandableColumns: PropTypes.arrayOf(columnPropTypesShape),
     style: PropTypes.shape({}),
 };
@@ -19,6 +26,7 @@ const defaultProps = {
     className: undefined,
     color: undefined,
     columnProps: undefined,
+    dataTestId: `${UI_CLASS_NAME}-drawer_details_window`,
     expandableColumns: undefined,
     style: {},
 };
@@ -32,6 +40,7 @@ const DrawerDetailsWindow = React.forwardRef(function DrawerDetailsWindow(props,
         columnProps,
         columns,
         data,
+        dataTestId,
         expandableColumns,
         style,
     } = props;
@@ -44,6 +53,7 @@ const DrawerDetailsWindow = React.forwardRef(function DrawerDetailsWindow(props,
             columnProps={columnProps}
             columns={columns}
             data={data}
+            data-testid={dataTestId}
             expandableColumns={expandableColumns}
             forwardedRef={ref}
             style={style}

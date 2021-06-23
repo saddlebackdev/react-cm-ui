@@ -2,6 +2,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import domUtils from '../../utils/domUtils';
 
 const propTypes = {
@@ -9,6 +12,10 @@ const propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(['blue', 'grey', 'white']),
     isOpen: PropTypes.bool,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     position: PropTypes.oneOf(['left', 'right']),
     style: PropTypes.shape({}),
     width: PropTypes.string,
@@ -18,6 +25,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     color: 'white',
+    dataTestId: `${UI_CLASS_NAME}-drawer_wing`,
     isOpen: undefined,
     position: 'right',
     style: {},
@@ -105,10 +113,12 @@ class DrawerWing extends React.PureComponent {
             children,
             className,
             color,
+            dataTestId,
             position,
             style,
             width,
         } = this.props;
+
         const { isOpen } = this.state;
 
         if (!isOpen) {
@@ -116,6 +126,7 @@ class DrawerWing extends React.PureComponent {
         }
 
         const isPositionLeft = position === 'left';
+
         const containerClasses = ClassNames('ui', 'drawer--wing', className, {
             'color-blue': color === 'blue',
             'color-grey': color === 'grey',
@@ -126,6 +137,7 @@ class DrawerWing extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
+                data-testid={dataTestId}
                 ref={(ref) => { this.drawerWingRef = ref; }}
                 style={style}
             >

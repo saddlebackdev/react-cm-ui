@@ -5,6 +5,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
+    BEM_GRID,
     BEM_GRID_COLUMN,
     UI_CLASS_NAME,
 } from '../../global/constants';
@@ -28,6 +29,10 @@ const propTypes = {
      * Assign additional class names to GridColumn.
      */
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     /**
      * The `id` of the GridColumn.
      */
@@ -129,6 +134,7 @@ const defaultProps = {
     classes: null,
     children: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-${BEM_GRID}_column`,
     id: null,
     lg: false,
     md: false,
@@ -319,6 +325,7 @@ const GridColumn = React.forwardRef(
         const {
             children,
             className,
+            dataTestId,
             id,
             lg,
             md,
@@ -376,6 +383,7 @@ const GridColumn = React.forwardRef(
         return (
             <div
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 ref={ref}
                 style={style}

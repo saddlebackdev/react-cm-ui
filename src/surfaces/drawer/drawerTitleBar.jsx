@@ -2,12 +2,19 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import Header from '../../dataDisplay/header';
 
 const propTypes = {
     className: PropTypes.string,
     closeButton: PropTypes.shape({}),
     closeButtonStyle: PropTypes.shape({}),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
         PropTypes.shape({}),
@@ -20,6 +27,7 @@ const defaultProps = {
     className: undefined,
     closeButton: undefined,
     closeButtonStyle: {},
+    dataTestId: `${UI_CLASS_NAME}-drawer_title_bar`,
     style: {},
     title: undefined,
     titleStyle: {},
@@ -64,15 +72,18 @@ class DrawerTitleBar extends React.PureComponent {
             className,
             closeButton,
             closeButtonStyle,
+            dataTestId,
             style,
             title,
             titleStyle,
         } = this.props;
+
         const containerClasses = ClassNames('ui', 'drawer--title_bar', className);
 
         return (
             <header
                 className={containerClasses}
+                data-testid={dataTestId}
                 ref={(ref) => { this.drawerTitleBarRef = ref; }}
                 style={style}
             >
