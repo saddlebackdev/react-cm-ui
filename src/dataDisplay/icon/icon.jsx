@@ -36,7 +36,7 @@ const propTypes = {
      */
     dataTestId: PropTypes.string,
     /**
-     * If `true`, a icon can be disabled.
+     * If `true`, an icon can be disabled.
      */
     disable: PropTypes.bool,
     /**
@@ -92,7 +92,7 @@ const defaultProps = {
     align: 'left',
     className: null,
     color: 'primary',
-    dataTestId: `${UI_CLASS_NAME}-drawer`,
+    dataTestId: `${UI_CLASS_NAME}-icon`,
     compact: false,
     disable: false,
     id: null,
