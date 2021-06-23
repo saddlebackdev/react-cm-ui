@@ -73,7 +73,8 @@ function hexToRGBA(hex, a) {
 export default function createPalette() {
     const palette = {
         active: {
-            primary: cyan[500],
+            main: cyan[500],
+            primary: cyan[500], // Delete one day.
         },
         border: {
             contrastPrimary: common.white,
@@ -86,11 +87,11 @@ export default function createPalette() {
             dark: red[600],
         },
         primary: {
-            main: grey[600],
+            main: cyan[600], // Changed from grey[600]
         },
         secondary: {
-            main: blue[500],
-            dark: blue[600],
+            constrastMain: common.white,
+            main: grey[600], // Changed from blue[500]
         },
         static: {
             main: grey[300],
