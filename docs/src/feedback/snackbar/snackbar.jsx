@@ -46,19 +46,11 @@ function DocsSnackbar(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="left-aligned-modal"
+                        anchorLink="snackbar"
                         variant="h2"
                     >
-                        Left Aligned Modal
+                        Snackbar
                     </Heading>
-
-                    <Typography
-                        variant="body1"
-                    >
-                        Used in situations when 2 or more data capture elements are needed that
-                        differ in component type and or context. Exceptions to these principles are
-                        rare.
-                    </Typography>
 
                     <Example
                         rawCode={require('!!raw-loader!./examples/exampleSnackbar').default}
