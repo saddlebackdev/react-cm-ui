@@ -18,7 +18,7 @@ const propTypes = {
      */
     classes: PropTypes.shape({}),
     /**
-     * Assign additional class names to Mobile Stepper.
+     * Assign additional class names to Snackbar.
      */
     className: PropTypes.string,
     /**
