@@ -24,13 +24,13 @@ const propTypes = {
      */
     autoScrollSelection: PropTypes.bool,
     /**
-     * Override or extend the styles applied to Prompt.
+     * Override or extend the styles applied to Select.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
     /**
-    * Assign additional class names to Prompt.
+    * Assign additional class names to Select.
     */
     className: PropTypes.string,
     /**
