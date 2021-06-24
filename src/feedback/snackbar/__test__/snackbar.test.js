@@ -1,6 +1,6 @@
 /**
  * To run this test:
- * npx jest ./src/navigation/mobileStepper/__test__/mobileStepper.test.js
+ * npx jest ./src/feedback/snackbar/__test__/snackbar.test.js
  */
 import React from 'react';
 import mountWithTheme from '../../../testUtils/enzymeHelpers';
