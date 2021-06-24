@@ -229,6 +229,18 @@ export const navigationItems = [
                         label: 'Loader',
                         path: 'loader',
                     },
+                    {
+                        component: 'snackbar',
+                        label: 'Snackbar',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'snackbar',
+                    },
                 ],
                 path: 'feedback',
             },

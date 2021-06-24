@@ -22,6 +22,8 @@ export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_componen
 
 export const BEM_MOBILE_STEPPER = 'mobile_stepper';
 
+export const BEM_SNACKBAR = 'snackbar';
+
 export const BEM_MODAL = 'modal';
 export const BEM_MODAL_ACTIONS = `${BEM_MODAL}--actions`;
 export const BEM_MODAL_CONTENT = `${BEM_MODAL}--content`;
