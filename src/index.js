@@ -81,6 +81,7 @@ export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
+export { default as Fade } from './utils/fade';
 export { default as Grow } from './utils/grow';
 export { default as Slide } from './utils/slide';
 export { default as useMediaQuery } from './utils/useMediaQuery';
