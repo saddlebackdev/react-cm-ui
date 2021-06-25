@@ -121,6 +121,11 @@ export const navigationItems = [
                                 label: 'Examples',
                                 path: 'examples',
                             },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
                         ],
                         path: 'icon',
                     },
@@ -228,6 +233,18 @@ export const navigationItems = [
                         component: 'loader',
                         label: 'Loader',
                         path: 'loader',
+                    },
+                    {
+                        component: 'snackbar',
+                        label: 'Snackbar',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'snackbar',
                     },
                 ],
                 path: 'feedback',

@@ -25,8 +25,9 @@ export { default as Tooltip } from './dataDisplay/tooltip';
 export { default as Typography } from './dataDisplay/typography';
 
 // Feedback
-export { default as Loader } from './feedback/loader';
 export { default as ActivityIndicator } from './feedback/activityIndicator';
+export { default as Loader } from './feedback/loader';
+export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs
 export { default as Button } from './inputs/button';
@@ -81,6 +82,7 @@ export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
+export { default as Fade } from './utils/fade';
 export { default as Grow } from './utils/grow';
 export { default as Slide } from './utils/slide';
 export { default as useMediaQuery } from './utils/useMediaQuery';
