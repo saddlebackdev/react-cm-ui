@@ -1,6 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.0
+_June 25, 2021_
+
+### Core
+- New Snackbar component and `theme.palette` updates. [PR #310](https://github.com/saddlebackdev/react-cm-ui/pull/310)
+- New icons added to our Icon set and fixes. [PR #303](https://github.com/saddlebackdev/react-cm-ui/pull/303)
+- New tranistion Fade component. [PR #311](https://github.com/saddlebackdev/react-cm-ui/pull/311)
+- Select updates and fixes. [PR #309](https://github.com/saddlebackdev/react-cm-ui/pull/309)
+
+### Docs
+- New Snackbar docs.
+- Updated Icon docs.
+- New Select docs
+
 ## 10.0.7
 _June 25, 2021_
 
