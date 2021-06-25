@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.7
+_June 25, 2021_
+
+### Core
+- Fixed a typo in ActionBar, causing a JS error.
+
 ## 10.0.6
 _June 22, 2021_
 
