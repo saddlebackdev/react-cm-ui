@@ -121,6 +121,11 @@ export const navigationItems = [
                                 label: 'Examples',
                                 path: 'examples',
                             },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
                         ],
                         path: 'icon',
                     },
@@ -229,6 +234,18 @@ export const navigationItems = [
                         label: 'Loader',
                         path: 'loader',
                     },
+                    {
+                        component: 'snackbar',
+                        label: 'Snackbar',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'snackbar',
+                    },
                 ],
                 path: 'feedback',
             },
@@ -319,6 +336,23 @@ export const navigationItems = [
                         component: 'segmentedControls',
                         label: 'Segmented Controls',
                         path: 'segmented-controls',
+                    },
+                    {
+                        component: 'select',
+                        label: 'Select',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'select',
                     },
                     {
                         component: 'textArea',

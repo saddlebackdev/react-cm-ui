@@ -157,7 +157,7 @@ class ActionBar extends React.PureComponent {
                     }
                 }
 
-                const closestPage = this.actionBarRef.closest('.ui.page]');
+                const closestPage = this.actionBarRef.closest('.ui.page');
 
                 if (moduleType === 'page' && closestPage) {
                     if (isMobileSearchVisible) {

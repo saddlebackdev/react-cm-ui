@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.0.6',
+        package: '10.0.7',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -23,6 +23,25 @@ const versions = {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
+                },
+                icon: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/E1DB6E1A-4679-47B6-AFBC-3A23CB13C6D1',
+                },
+            },
+            feedback: {
+                snackbar: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/5747fcab-493c-4f90-bde8-c2096f2db6bf/a/rbM1GbA',
+                },
+            },
+            inputs: {
+                select: {
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
                 },
             },
             layout: {
@@ -51,7 +70,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/p/577E033D-4ACB-46BE-BC78-81042803D4AD',
                 },
                 actionBar: {
-                    devLibraryVersion: '< 1.0.1',
+                    devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
                 },

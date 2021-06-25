@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => {
     const borderColorPrimary = get(theme, 'palette.border.primary');
     const borderRadiusMain = get(theme, 'shape.borderRadius.main');
     const colorHighlight = get(theme, 'palette.cyan[500]');
-    const colorPrimary = get(theme, 'palette.primary.main');
+    const colorPrimary = get(theme, 'palette.grey[600]');
     const colorStatic = get(theme, 'palette.text.secondary');
     const fontWeightMedium = get(theme, 'typography.fontWeightMedium');
     const textColorConstrast = get(theme, 'palette.text.contrastText');
