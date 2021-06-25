@@ -338,6 +338,23 @@ export const navigationItems = [
                         path: 'segmented-controls',
                     },
                     {
+                        component: 'select',
+                        label: 'Select',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'select',
+                    },
+                    {
                         component: 'textArea',
                         label: 'Text Area',
                         path: 'text-area',
