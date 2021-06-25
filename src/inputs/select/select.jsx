@@ -578,7 +578,7 @@ const useStyles = makeStyles((theme) => {
                 color: selectNoresultsColor,
                 cursor: 'default',
                 display: 'block',
-                padding: `${selectOptionPaddingVertical} ${selectOptionPaddingHorizontal}`,
+                padding: `${selectOptionPaddingVertical}px ${selectOptionPaddingHorizontal}px`,
             },
             '& .Select.Select--multi': {
                 '& .Select-control': {
