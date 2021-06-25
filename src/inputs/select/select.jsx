@@ -497,8 +497,8 @@ const useStyles = makeStyles((theme) => {
             '& .Select--multi .Select-clear-zone': {
                 width: selectClearWidth,
             },
-            '& .Select--multi .Select-multi-value-wrapper': {
-                display: 'inline-block',
+            '& .Select-multi-value-wrapper': {
+                position: 'relative',
             },
             '& .Select .Select-aria-only': {
                 display: 'inline-block',
