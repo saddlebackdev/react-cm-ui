@@ -69,7 +69,7 @@ function Snackbar(props) {
         ...otherProps
     } = props;
 
-    const contentPropsClasses = useStyles(props);
+    const contentPropsClasses = useStyles(ContentProps);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
@@ -88,7 +88,7 @@ function Snackbar(props) {
                 classes: {
                     root: contentPropsClasses.snackBarContentRoot,
                     message: contentPropsClasses.snackBarContentMessageRoot,
-                    ...get(ContentProps, 'classes'),
+                    ...get(ContentProps, 'contentPropsClasses'),
                 },
             }}
         />
