@@ -172,6 +172,25 @@ function TypographyGridColumn(props) {
                         root: classes.typography,
                     }}
                     color={color}
+                    variant="h6"
+                >
+                    h6. Heading
+                </Typography>
+
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
+                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h6.fontSize)} - ${theme.typography.h6.lineHeight}`}
+                </Typography>
+
+                <Typography
+                    classes={{
+                        root: classes.typography,
+                    }}
+                    color={color}
                     variant="subtitle1"
                 >
                     subtitle1.
@@ -183,7 +202,7 @@ function TypographyGridColumn(props) {
                     variant="caption"
                     classes={{ root: classes.info }}
                 >
-                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h6.fontSize)} - ${theme.typography.h6.lineHeight}`}
+                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.subtitle1.fontSize)} - ${theme.typography.subtitle1.lineHeight}`}
                 </Typography>
 
                 <Typography
@@ -202,7 +221,7 @@ function TypographyGridColumn(props) {
                     variant="caption"
                     classes={{ root: classes.info }}
                 >
-                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h6.fontSize)} - ${theme.typography.h6.lineHeight}`}
+                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.subtitle2.fontSize)} - ${theme.typography.subtitle2.lineHeight}`}
                 </Typography>
 
                 <Typography
@@ -263,14 +282,13 @@ function TypographyGridColumn(props) {
                     variant="caption"
                     classes={{ root: classes.info }}
                 >
-                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.caption.fontSize)} - ${theme.typography.caption.lineHeight}`}
+                    {`${fontFamily} - ${fontWeightBold} - ${fontSize(theme.typography.button.fontSize)} - ${theme.typography.button.lineHeight}`}
                 </Typography>
 
                 <Typography
                     classes={{
                         root: classes.typography,
                     }}
-                    color="textSecondary"
                     color={color}
                     variant="caption"
                 >
