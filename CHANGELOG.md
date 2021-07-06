@@ -2,6 +2,12 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 10.1.0
+_July 06, 2021_
+
+### Core
+- Fix warning messages we were getting from MUI about `ContentProps`. [PR #312](https://github.com/saddlebackdev/react-cm-ui/pull/312)
+
+## 10.1.0
 _June 25, 2021_
 
 ### Core
