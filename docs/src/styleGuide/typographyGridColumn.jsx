@@ -16,13 +16,10 @@ const propTypes = {
 const useStyles = makeStyles(({
     palette,
     spacing,
-    typography,
 }) => ({
     backgroundColorPrimary: {},
     backgroundColorContrastPrimary: {},
-    column: {
-
-    },
+    column: {},
     innerContainer: {
         padding: spacing(1),
         '&$backgroundColorPrimary': {
@@ -33,8 +30,6 @@ const useStyles = makeStyles(({
         },
     },
     info: {
-        color: palette.text.secondary,
-        fontSize: typography.pxToRem(12),
         marginBottom: spacing(2),
         '&:last-child': {
             marginBottom: 0,
@@ -65,6 +60,8 @@ function TypographyGridColumn(props) {
     return (
         <Grid.Column
             className={classes.column}
+            sm={12}
+            md={6}
         >
             <div
                 className={ClassNames(
@@ -82,10 +79,15 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="h1"
                 >
-                    Heading 1
+                    h1. Heading
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightBold} - ${fontSize(theme.typography.h1.fontSize)} - ${theme.typography.h1.lineHeight}`}
                 </Typography>
 
@@ -96,10 +98,15 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="h2"
                 >
-                    Heading 2
+                    h2. Heading
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightBold} - ${fontSize(theme.typography.h2.fontSize)} - ${theme.typography.h2.lineHeight}`}
                 </Typography>
 
@@ -110,10 +117,15 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="h3"
                 >
-                    Heading 3
+                    h3. Heading
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightBold} - ${fontSize(theme.typography.h3.fontSize)} - ${theme.typography.h3.lineHeight}`}
                 </Typography>
 
@@ -124,10 +136,15 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="h4"
                 >
-                    Heading 4
+                    h4. Heading
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightMedium} - ${fontSize(theme.typography.h4.fontSize)} - ${theme.typography.h4.lineHeight}`}
                 </Typography>
 
@@ -138,10 +155,15 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="h5"
                 >
-                    Heading 5
+                    h5. Heading
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h5.fontSize)} - ${theme.typography.h5.lineHeight}`}
                 </Typography>
 
@@ -150,12 +172,36 @@ function TypographyGridColumn(props) {
                         root: classes.typography,
                     }}
                     color={color}
-                    variant="h6"
+                    variant="subtitle1"
                 >
-                    Heading 6
+                    subtitle1.
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
+                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h6.fontSize)} - ${theme.typography.h6.lineHeight}`}
+                </Typography>
+
+                <Typography
+                    classes={{
+                        root: classes.typography,
+                    }}
+                    color={color}
+                    variant="subtitle2"
+                >
+                    subtitle2.
+                </Typography>
+
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.h6.fontSize)} - ${theme.typography.h6.lineHeight}`}
                 </Typography>
 
@@ -166,10 +212,17 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="body1"
                 >
-                    Body 1
+                    body1.
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.body1.fontSize)} - ${theme.typography.body1.lineHeight}`}
                 </Typography>
 
@@ -180,10 +233,17 @@ function TypographyGridColumn(props) {
                     color={color}
                     variant="body2"
                 >
-                    Body 2
+                    body2.
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.body2.fontSize)} - ${theme.typography.body2.lineHeight}`}
                 </Typography>
 
@@ -192,12 +252,37 @@ function TypographyGridColumn(props) {
                         root: classes.typography,
                     }}
                     color={color}
-                    variant="caption"
+                    variant="button"
                 >
-                    Caption
+                    button.
                 </Typography>
 
-                <Typography classes={{ root: classes.info }}>
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
+                    {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.caption.fontSize)} - ${theme.typography.caption.lineHeight}`}
+                </Typography>
+
+                <Typography
+                    classes={{
+                        root: classes.typography,
+                    }}
+                    color="textSecondary"
+                    color={color}
+                    variant="caption"
+                >
+                    caption.
+                </Typography>
+
+                <Typography
+                    color="textSecondary"
+                    display="block"
+                    variant="caption"
+                    classes={{ root: classes.info }}
+                >
                     {`${fontFamily} - ${fontWeightRegular} - ${fontSize(theme.typography.caption.fontSize)} - ${theme.typography.caption.lineHeight}`}
                 </Typography>
             </div>
