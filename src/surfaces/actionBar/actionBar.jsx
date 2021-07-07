@@ -488,6 +488,7 @@ class ActionBar extends React.PureComponent {
 
                                             {search && (
                                                 <ActionBarSearch
+                                                    autoFocus={search.autoFocus}
                                                     id={search.id}
                                                     onChange={search.onChange}
                                                     onClearClick={search.onClearClick}
