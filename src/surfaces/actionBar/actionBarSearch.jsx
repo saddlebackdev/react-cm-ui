@@ -6,6 +6,7 @@ import Icon from '../../dataDisplay/icon';
 import Input from '../../inputs/input';
 
 const propTypes = {
+    autoFocus: PropTypes.bool,
     id: PropTypes.string,
     isMobileSearch: PropTypes.bool,
     isMobileSearchVisible: PropTypes.bool,
@@ -17,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoFocus: false,
     id: undefined,
     isMobileSearch: false,
     isMobileSearchVisible: false,
@@ -68,6 +70,7 @@ class ActionBarSearch extends React.PureComponent {
 
     render() {
         const {
+            autoFocus,
             id,
             isMobileSearch,
             isMobileSearchVisible,
@@ -95,6 +98,7 @@ class ActionBarSearch extends React.PureComponent {
                 className={inputContainerClasses}
             >
                 <Input
+                    autoFocus={autoFocus}
                     className="action_bar--search_input"
                     fluid
                     icon={value ? (
