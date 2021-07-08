@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.0.3-hotfix-2
+_June 22, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. Commits 5286b17 and 06c9811
+
 ## 10.0.3-hotfix
 _June 22, 2021_
 
