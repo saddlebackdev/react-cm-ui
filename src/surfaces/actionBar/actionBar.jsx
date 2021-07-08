@@ -493,6 +493,7 @@ class ActionBar extends React.PureComponent {
                                                     onChange={search.onChange}
                                                     onClearClick={search.onClearClick}
                                                     onKeyDown={search.onKeyDown}
+                                                    placeholder={search.placeholder}
                                                     value={search.value}
                                                 />
                                             )}
