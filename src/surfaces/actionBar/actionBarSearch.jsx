@@ -6,22 +6,26 @@ import Icon from '../../dataDisplay/icon';
 import Input from '../../inputs/input';
 
 const propTypes = {
+    autoFocus: PropTypes.bool,
     id: PropTypes.string,
     isMobileSearch: PropTypes.bool,
     isMobileSearchVisible: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClearClick: PropTypes.func,
     onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
 
 const defaultProps = {
+    autoFocus: false,
     id: undefined,
     isMobileSearch: false,
     isMobileSearchVisible: false,
     onClearClick: undefined,
     onKeyDown: undefined,
+    placeholder: 'Search',
     style: {},
     value: '',
 };
@@ -68,9 +72,11 @@ class ActionBarSearch extends React.PureComponent {
 
     render() {
         const {
+            autoFocus,
             id,
             isMobileSearch,
             isMobileSearchVisible,
+            placeholder,
             style,
             value,
         } = this.props;
@@ -95,6 +101,7 @@ class ActionBarSearch extends React.PureComponent {
                 className={inputContainerClasses}
             >
                 <Input
+                    autoFocus={autoFocus}
                     className="action_bar--search_input"
                     fluid
                     icon={value ? (
@@ -116,7 +123,7 @@ class ActionBarSearch extends React.PureComponent {
                     id={id}
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
-                    placeholder="Search"
+                    placeholder={placeholder}
                     value={value}
                     style={style}
                 />
