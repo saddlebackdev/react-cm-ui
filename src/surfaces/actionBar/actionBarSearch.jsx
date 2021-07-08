@@ -13,6 +13,7 @@ const propTypes = {
     onChange: PropTypes.func.isRequired,
     onClearClick: PropTypes.func,
     onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
@@ -24,6 +25,7 @@ const defaultProps = {
     isMobileSearchVisible: false,
     onClearClick: undefined,
     onKeyDown: undefined,
+    placeholder: 'Search',
     style: {},
     value: '',
 };
@@ -74,6 +76,7 @@ class ActionBarSearch extends React.PureComponent {
             id,
             isMobileSearch,
             isMobileSearchVisible,
+            placeholder,
             style,
             value,
         } = this.props;
@@ -120,7 +123,7 @@ class ActionBarSearch extends React.PureComponent {
                     id={id}
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
-                    placeholder="Search"
+                    placeholder={placeholder}
                     value={value}
                     style={style}
                 />
