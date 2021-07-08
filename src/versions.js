@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.0.7',
+        package: '10.0.8',
         components: {
             dataDisplay: {
                 dataCards: {
