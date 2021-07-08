@@ -1,6 +1,25 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.2
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. [PR #314](https://github.com/saddlebackdev/react-cm-ui/pull/314)
+- Added `button` and `subtitle2` to and updated `subtitle1` in `./src/styles/createTypography.js`. [PR #313](https://github.com/saddlebackdev/react-cm-ui/pull/313)
+
+## 10.0.8
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. Commits 21a1155 and cf83190
+
+## 10.0.3-hotfix-2
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. Commits 5286b17 and 06c9811
+
 ## 10.1.0
 _July 06, 2021_
 

@@ -32,15 +32,10 @@ function DocsTypography() {
                 </MarkdownContainer>
 
                 <Grid
-                    columns={3}
+                    spacing={2}
                 >
                     <TypographyGridColumn
-                        color="primary"
-                        backgroundColor="primary"
-                    />
-
-                    <TypographyGridColumn
-                        color="textSecondary"
+                        color="textPrimary"
                         backgroundColor="primary"
                     />
 
