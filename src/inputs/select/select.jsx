@@ -4,6 +4,7 @@ import {
     isEmpty,
     isFunction,
     map,
+    noop,
     size,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -19,10 +20,6 @@ import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    /**
-     * If `true`, the dropdown menu will scroll the select option.
-     */
-    autoScrollSelection: PropTypes.bool,
     /**
      * Override or extend the styles applied to Select.
      */
@@ -135,7 +132,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    autoScrollSelection: false,
     classes: null,
     className: null,
     clearable: false,
@@ -569,8 +565,9 @@ const useStyles = makeStyles((theme) => {
                     color: selectOptionFocusedColor,
                 },
                 '&.is-disabled': {
+                    backgroundColor: theme.palette.grey[500],
                     color: selectOptionDisabledColor,
-                    cursor: 'default',
+                    cursor: 'not-allowed',
                 },
             },
             '& .Select-noresults': {
@@ -739,7 +736,6 @@ const useStyles = makeStyles((theme) => {
 // eslint-disable-next-line prefer-arrow-callback
 const Select = React.forwardRef(function Select(props, ref) {
     const {
-        autoScrollSelection,
         className,
         clearable: isClearable,
         creatable: isCreatable,
@@ -755,7 +751,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         multiple,
         onChange: onChangeProp,
         onClose,
-        onOpen,
+        onOpen: onOpenProp,
         optionComponent,
         options,
         placeholder,
@@ -770,12 +766,135 @@ const Select = React.forwardRef(function Select(props, ref) {
     } = props;
 
     const classes = useStyles(props);
-    const dropdownMenuRef = useRef();
+    const innerMenuRef = useRef();
+    const menuScrollBarRef = useRef();
+    const focusedOptionRef = useRef();
+    const [foo, setFoo] = React.useState(false);
 
     React.useEffect(() => {
-        if (autoScrollSelection && dropdownMenuRef && value) {
-            const itemHeight = dropdownMenuRef.getScrollHeight() / size(options);
-            const pageSize = dropdownMenuRef.getClientHeight() / itemHeight;
+        if (
+            foo &&
+            focusedOptionRef && focusedOptionRef.current &&
+            innerMenuRef && innerMenuRef.current &&
+            menuScrollBarRef && menuScrollBarRef.current
+        ) {
+            const focusedDOM = focusedOptionRef.current;
+            const focusedRect = focusedDOM.getBoundingClientRect();
+            const innerMenuDOM = innerMenuRef.current;
+            const innerMenuRect = innerMenuDOM.getBoundingClientRect();
+
+            if (focusedRect.bottom > innerMenuRect.bottom) {
+                menuScrollBarRef.current.scrollTop(
+                    focusedDOM.offsetTop + focusedDOM.clientHeight - innerMenuDOM.offsetHeight,
+                );
+            } else if (focusedRect.top < innerMenuRect.top) {
+                menuScrollBarRef.current.scrollTop(focusedDOM.offsetTop);
+            }
+
+            setFoo(false);
+        }
+    }, [foo]);
+
+    const onChange = (selectedOption) => {
+        if (isFunction(onChangeProp)) {
+            onChangeProp(selectedOption);
+        }
+    };
+
+    const menuRenderer = (params) => {
+        const items = map(params.options, (o, i) => {
+            const isFocused = o === params.focusedOption;
+            const isSelected = params.valueArray && params.valueArray.some((x) => (
+                x[params.valueKey] === o[params.valueKey]
+            ));
+
+            const optionClass = ClassNames(
+                'Select-option',
+                params.optionClassName,
+                {
+                    'is-disabled': o.disabled,
+                    'is-focused': isFocused,
+                    'is-selected': isSelected,
+                },
+            );
+
+            if (optionComponent) {
+                const OptionComponent = optionComponent;
+
+                return (
+                    <OptionComponent
+                        className={optionClass}
+                        focusOption={params.focusOption}
+                        isDisabled={o.disabled}
+                        isFocused={isFocused}
+                        isSelected={isSelected}
+                        key={`select-option-key-${i}`}
+                        onFocus={params.onFocus}
+                        onSelect={params.selectValue}
+                        option={o}
+                        ref={isFocused ? focusedOptionRef : undefined}
+                    />
+                );
+            }
+
+            return (
+                <div
+                    aria-selected={isSelected}
+                    className={optionClass}
+                    isDisabled={o.disabled}
+                    isFocused={isFocused}
+                    isSelected={isSelected}
+                    key={`select-option-key-${i}`}
+                    onClick={() => params.selectValue(o)}
+                    onFocus={noop}
+                    onKeyDown={noop}
+                    onMouseOver={() => params.focusOption(o)}
+                    ref={isFocused ? focusedOptionRef : undefined}
+                    role="option"
+                    tabIndex={0}
+                >
+                    {o.label}
+                </div>
+            );
+        });
+
+        return (
+            <div
+                ref={innerMenuRef}
+            >
+                <ScrollBar
+                    autoHeight
+                    autoHeightMax={dropdownMenuMaxHeight || 180}
+                    autoHeightMin={dropdownMenuMinHeight}
+                    autoHide
+                    className="select-menu-scrollbar"
+                    ref={menuScrollBarRef}
+                >
+                    {items}
+                </ScrollBar>
+            </div>
+        );
+    };
+
+    const onInputKeyDown = (event) => {
+        switch (event.keyCode) {
+            case 38: // up
+            case 40: // down
+                setFoo(true);
+
+                break;
+            default:
+        }
+    };
+
+    const onOpen = () => {
+        if (isFunction(onOpenProp)) {
+            onOpenProp();
+        }
+
+        if (menuScrollBarRef && menuScrollBarRef.current && value) {
+            const itemHeight = menuScrollBarRef.current.getScrollHeight() / size(options);
+            const pageSize = menuScrollBarRef.current.getClientHeight() / itemHeight;
 
             const selectionIndex = findIndex(options, (o) => {
                 if (matchProp === 'any') {
@@ -803,67 +922,9 @@ const Select = React.forwardRef(function Select(props, ref) {
             const scrollRatio = selectionIndex / pageSize;
 
             if (scrollRatio >= 1) {
-                dropdownMenuRef.scrollTop(scrollRatio * pageSize * itemHeight);
+                menuScrollBarRef.current.scrollTop(scrollRatio * pageSize * itemHeight);
             }
         }
-    }, [
-        autoScrollSelection,
-        matchProp,
-        options,
-        value,
-    ]);
-
-    const onChange = (selectedOption) => {
-        if (isFunction(onChangeProp)) {
-            onChangeProp(selectedOption);
-        }
-    };
-
-    const menuRenderer = (params) => {
-        const items = map(params.options, (o, i) => {
-            if (optionComponent) {
-                const OptionComponent = optionComponent;
-
-                return (
-                    <OptionComponent
-                        isFocused={params.isFocused}
-                        key={`select-option-key-${i}`}
-                        onFocus={() => params.onFocus(o)}
-                        onSelect={() => params.selectValue(o)}
-                        option={o}
-                    />
-                );
-            }
-
-            return (
-                <div
-                    className="Select-option"
-                    key={`select-option-key-${i}`}
-                    onClick={() => params.selectValue(o)}
-                    onFocus={() => {}}
-                    onKeyDown={() => {}}
-                    onMouseOver={() => params.focusOption(o)}
-                    role="option"
-                    aria-selected="true"
-                    tabIndex={0}
-                >
-                    {o.label}
-                </div>
-            );
-        });
-
-        return (
-            <ScrollBar
-                autoHeight
-                autoHeightMax={dropdownMenuMaxHeight || 180}
-                autoHeightMin={dropdownMenuMinHeight}
-                autoHide
-                className="select-menu-scrollbar"
-                ref={dropdownMenuRef}
-            >
-                {items}
-            </ScrollBar>
-        );
     };
 
     const rootClasses = ClassNames(
@@ -959,6 +1020,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                 menuStyle={dropdownMenuStyle}
                 multi={multiple}
                 onClose={onClose}
+                onInputKeyDown={onInputKeyDown}
                 onOpen={onOpen}
                 name="firstSelect"
                 onChange={onChange}
