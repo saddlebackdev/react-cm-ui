@@ -7,20 +7,16 @@ import { options } from '../constants';
 
 function ExampleDefaultSelect() {
     const [selectedValue, setOption] = useState({});
-    function onSelect(selectedOption) {
-        setOption(selectedOption);
-    }
 
     return (
-        <div>
-            <Select
-                id="block--select_id"
-                options={options}
-                onChange={onSelect}
-                placeholder="Select"
-                value={!isEmpty(selectedValue) ? selectedValue : null}
-            />
-        </div>
+        <Select
+            id="block--select_id"
+            onChange={setOption}
+            options={options}
+            placeholder="Select"
+            tabIndex={0}
+            value={!isEmpty(selectedValue) ? selectedValue : null}
+        />
     );
 }
 
