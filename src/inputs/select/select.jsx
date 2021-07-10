@@ -769,11 +769,11 @@ const Select = React.forwardRef(function Select(props, ref) {
     const innerMenuRef = useRef();
     const menuScrollBarRef = useRef();
     const focusedOptionRef = useRef();
-    const [foo, setFoo] = React.useState(false);
+    const [scrollToFocusedOption, setScrollToFocusedOption] = React.useState(false);
 
     React.useEffect(() => {
         if (
-            foo &&
+            scrollToFocusedOption &&
             focusedOptionRef && focusedOptionRef.current &&
             innerMenuRef && innerMenuRef.current &&
             menuScrollBarRef && menuScrollBarRef.current
@@ -791,9 +791,9 @@ const Select = React.forwardRef(function Select(props, ref) {
                 menuScrollBarRef.current.scrollTop(focusedDOM.offsetTop);
             }
 
-            setFoo(false);
+            setScrollToFocusedOption(false);
         }
-    }, [foo]);
+    }, [scrollToFocusedOption]);
 
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
@@ -880,7 +880,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         switch (event.keyCode) {
             case 38: // up
             case 40: // down
-                setFoo(true);
+                setScrollToFocusedOption(true);
 
                 break;
             default:
