@@ -1,7 +1,6 @@
 import {
     isFunction,
     isUndefined,
-    noop,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
