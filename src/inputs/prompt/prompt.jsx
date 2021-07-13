@@ -17,6 +17,7 @@ const propTypes = {
      * Override or extend the styles applied to Prompt.
      */
     classes: PropTypes.shape({
+        actions: PropTypes.string,
         root: PropTypes.string,
     }),
     className: PropTypes.oneOfType([
@@ -31,9 +32,11 @@ const propTypes = {
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
     onNoClick: PropTypes.func,
+    onNoKeyDown: PropTypes.func,
     onYesClick: PropTypes.func,
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    onYesKeyDown: PropTypes.func,
     show: PropTypes.bool,
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
             modal: PropTypes.number,
@@ -51,15 +54,15 @@ const defaultProps = {
     inlineMessageColor: undefined,
     message: 'Are you sure?',
     onClick: undefined,
-    onNoClick: undefined,
     onKeyDown: undefined,
+    onNoClick: undefined,
+    onNoKeyDown: undefined,
     onYesClick: undefined,
-    style: undefined,
+    onYesKeyDown: undefined,
     show: undefined,
+    style: undefined,
     theme: null,
 };
-
-const noop = () => {};
 
 const styles = ({
     palette,
@@ -140,10 +143,14 @@ class Prompt extends React.Component {
         };
 
         this.onClick = this.onClick.bind(this);
-        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onChildKeyDown = this.onChildKeyDown.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onNoClick = this.onNoClick.bind(this);
+        this.onNoKeyDown = this.onNoKeyDown.bind(this);
         this.onYesClick = this.onYesClick.bind(this);
+        this.onYesKeyDown = this.onYesKeyDown.bind(this);
+
+        this.noButtonRef = React.createRef();
     }
 
     componentDidMount() {
@@ -155,11 +162,32 @@ class Prompt extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { show: nextShowProp } = this.props;
-        const { show: prevShowProp } = prevProps;
+        const {
+            show: showProp,
+        } = this.props;
 
-        if (nextShowProp !== prevShowProp) {
-            this.setState({ show: nextShowProp });
+        const {
+            show: prevShowProp,
+        } = prevProps;
+
+        const {
+            show: showState,
+        } = this.state;
+
+        const {
+            show: prevShowState,
+        } = prevProps;
+
+        if (showProp !== prevShowProp) {
+            this.setState({
+                show: showProp,
+            }, () => {
+                this.focusNoButton();
+            });
+        }
+
+        if (showState && !prevShowState) {
+            this.focusNoButton();
         }
     }
 
@@ -167,18 +195,16 @@ class Prompt extends React.Component {
         const { onClick } = this.props;
         const { show } = this.state;
 
-        if (show) { return false; }
+        if (show) { return; }
 
         if (!isUndefined(onClick)) {
             onClick(option);
         } else {
             this.setState({ show: true });
         }
-
-        return false;
     }
 
-    onKeyDown(event) {
+    onChildKeyDown(event) {
         const {
             onKeyDown,
         } = this.props;
@@ -204,6 +230,16 @@ class Prompt extends React.Component {
         }
     }
 
+    onNoKeyDown(event) {
+        const {
+            onNoKeyDown,
+        } = this.props;
+
+        if (isFunction(onNoKeyDown)) {
+            onNoKeyDown(event);
+        }
+    }
+
     onYesClick(event) {
         const { onYesClick } = this.props;
 
@@ -214,6 +250,16 @@ class Prompt extends React.Component {
         }
     }
 
+    onYesKeyDown(event) {
+        const {
+            onYesKeyDown,
+        } = this.props;
+
+        if (isFunction(onYesKeyDown)) {
+            onYesKeyDown(event);
+        }
+    }
+
     findInlineVerticalPosition() {
         const childHeight = this.childrenRef.offsetHeight;
         const negativeSpace = 5;
@@ -221,6 +267,12 @@ class Prompt extends React.Component {
         this.setState({
             inlineVerticalAlign: `${childHeight + negativeSpace}px`,
         });
+    }
+
+    focusNoButton() {
+        if (this.noButtonRef && this.noButtonRef.current) {
+            this.noButtonRef.current.focus();
+        }
     }
 
     render() {
@@ -290,7 +342,7 @@ class Prompt extends React.Component {
                 ) : (
                     <div
                         onClick={this.onClick}
-                        onKeyDown={this.onKeyDown}
+                        onKeyDown={this.onChildKeyDown}
                         ref={(ref) => { this.childrenRef = ref; }}
                         role="button"
                         tabIndex={-1}
@@ -309,12 +361,16 @@ class Prompt extends React.Component {
                     )}
                     style={promptActionsStyle}
                 >
-                    <div className={messageClasses}>{message}</div>
+                    <div
+                        className={messageClasses}
+                    >
+                        {message}
+                    </div>
 
                     <div
                         className="prompt-yes-btn"
                         onClick={this.onYesClick}
-                        onKeyDown={noop}
+                        onKeyDown={this.onYesKeyDown}
                         onMouseDown={this.onMouseDown}
                         role="button"
                         tabIndex={0}
@@ -325,8 +381,9 @@ class Prompt extends React.Component {
                     <div
                         className="prompt-no-btn"
                         onClick={this.onNoClick}
-                        onKeyDown={noop}
+                        onKeyDown={this.onNoKeyDown}
                         onMouseDown={this.onMouseDown}
+                        ref={this.noButtonRef}
                         role="button"
                         tabIndex={0}
                     >
