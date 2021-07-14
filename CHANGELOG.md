@@ -1,6 +1,25 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.3
+_July 08, 2021_
+
+### Core
+- Select changes. [PR #315](https://github.com/saddlebackdev/react-cm-ui/pull/315)
+  - Added a bunch of new simple Select options for our examples.
+  - Removed autoScrollSelection. No need for this. it should have been doing this all along without an extra prop. It now scrolls to the selected option on open by default.
+  - Fixed disabled option styling.
+  - Fixed scrolling to focused option, sense our component is using its own menu scroller.
+  - Added and updated option props
+- Prompt changes. [PR #316](https://github.com/saddlebackdev/react-cm-ui/pull/316)
+  - KeyDown Events for No and Yes buttons.
+  - Focuses No button after child element click or enter key.
+
+### Docs
+- Changes to: [PR #315](https://github.com/saddlebackdev/react-cm-ui/pull/315)
+  - Fixed the dropdown deprecated docs page.
+  - Added more Select options for the demos.
+
 ## 10.1.2
 _July 08, 2021_
 
