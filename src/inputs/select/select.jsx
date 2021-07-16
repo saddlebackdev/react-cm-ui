@@ -755,6 +755,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         label,
         matchProp,
         multiple,
+        noResultsText,
         onChange: onChangeProp,
         onClose,
         onOpen: onOpenProp,
@@ -1025,6 +1026,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                 menuRenderer={menuRenderer}
                 menuStyle={dropdownMenuStyle}
                 multi={multiple}
+                noResultsText={noResultsText}
                 onClose={onClose}
                 onInputKeyDown={onInputKeyDown}
                 onOpen={onOpen}
