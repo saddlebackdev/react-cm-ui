@@ -80,6 +80,14 @@ const propTypes = {
      */
     multiple: PropTypes.bool,
     /**
+     * Placeholder displayed when there are no matching search results or a falsy value to hide it
+     * (can also be a react component)
+     */
+    noResultsText: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+    ]),
+    /**
      * The onChange event handler.
      */
     onChange: PropTypes.func,
@@ -146,6 +154,7 @@ const defaultProps = {
     label: null,
     matchProp: 'any',
     multiple: false,
+    noResultsText: 'No results found',
     onChange: null,
     onClose: undefined,
     onOpen: undefined,
@@ -749,6 +758,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         label,
         matchProp,
         multiple,
+        noResultsText,
         onChange: onChangeProp,
         onClose,
         onOpen: onOpenProp,
@@ -1019,6 +1029,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                 menuRenderer={menuRenderer}
                 menuStyle={dropdownMenuStyle}
                 multi={multiple}
+                noResultsText={noResultsText}
                 onClose={onClose}
                 onInputKeyDown={onInputKeyDown}
                 onOpen={onOpen}
