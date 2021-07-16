@@ -80,6 +80,11 @@ const propTypes = {
      */
     multiple: PropTypes.bool,
     /**
+     * Placeholder displayed when there are no matching search results or a falsy value to hide it
+     * (can also be a react component)
+     */
+    noResultsText: PropTypes.string,
+    /**
      * The onChange event handler.
      */
     onChange: PropTypes.func,
@@ -146,6 +151,7 @@ const defaultProps = {
     label: null,
     matchProp: 'any',
     multiple: false,
+    noResultsText: 'No results found',
     onChange: null,
     onClose: undefined,
     onOpen: undefined,
