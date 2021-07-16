@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.4
+_July 16, 2021_
+
+### Core
+- Select changes. [PR #317](https://github.com/saddlebackdev/react-cm-ui/pull/317)
+  - New `noResultText` prop.
+
 ## 10.1.3
 _July 08, 2021_
 
