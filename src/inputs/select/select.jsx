@@ -83,7 +83,10 @@ const propTypes = {
      * Placeholder displayed when there are no matching search results or a falsy value to hide it
      * (can also be a react component)
      */
-    noResultsText: PropTypes.string,
+    noResultsText: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+    ]),
     /**
      * The onChange event handler.
      */
