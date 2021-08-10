@@ -1,4 +1,19 @@
-import _ from 'lodash';
+import {
+    clone,
+    find,
+    isArray,
+    isEmpty,
+    isEqual,
+    isFunction,
+    isNil,
+    isObject,
+    map,
+    partialRight,
+    range as lodashRange,
+    replace,
+    sortBy,
+    trim,
+} from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -16,6 +31,7 @@ const propTypes = {
     ]),
     id: PropTypes.string,
     label: PropTypes.string,
+    nest: PropTypes.bool,
     onChange: PropTypes.func,
     range: PropTypes.bool,
     required: PropTypes.bool,
@@ -29,9 +45,26 @@ const propTypes = {
             PropTypes.shape({}),
         ]),
     }),
-    zoneMatchProp: PropTypes.oneOf([ 'any', 'label', 'value' ]),
-    zoneOptions: PropTypes.array,
+    zoneMatchProp: PropTypes.oneOf(['any', 'label', 'value']),
+    zoneOptions: PropTypes.arrayOf(PropTypes.shape({})),
     zonePlaceholderText: PropTypes.string,
+};
+
+const defaultProps = {
+    className: undefined,
+    disable: false,
+    error: undefined,
+    id: undefined,
+    label: undefined,
+    nest: false,
+    onChange: undefined,
+    range: false,
+    required: false,
+    style: undefined,
+    value: undefined,
+    zoneMatchProp: 'label',
+    zoneOptions: undefined,
+    zonePlaceholderText: 'Select a Time Zone',
 };
 
 class TimePicker extends React.Component {
@@ -46,16 +79,31 @@ class TimePicker extends React.Component {
             isTimePopoverActive: false,
             minuteOptions: this.renderMinuteOptions(),
             periodOptions: this.renderPeriodOptions(),
-            value:  _.clone(props.value) || {
+            value: clone(props.value) || {
                 timeDisplay: null,
                 timeFrom: null,
                 timeTo: null,
-                timeZone: _.find(zoneOptions, o => o.value === guessedTimeZone),
+                timeZone: find(zoneOptions, (o) => o.value === guessedTimeZone),
             },
             zoneOptions,
         };
 
+        this.onChange = this.onChange.bind(this);
         this.onClickOutsideRef = this.onClickOutside.bind(this);
+        this.onInputKeyDown = this.onInputKeyDown.bind(this);
+        this.onInputMask = this.onInputMask.bind(this);
+        this.onTimeDropdownChange = this.onTimeDropdownChange.bind(this);
+        this.onTimePopoverToggle = this.onTimePopoverToggle.bind(this);
+        this.onZoneDropdownChange = this.onZoneDropdownChange.bind(this);
+
+        this.onTimeHourDropdownChange = partialRight(this.onTimeDropdownChange, 'hour');
+        this.onTimeHourToDropdownChange = partialRight(this.onTimeDropdownChange, 'hourTo');
+        this.onTimeMinuteDropdownChange = partialRight(this.onTimeDropdownChange, 'minute');
+        this.onTimeMinuteToDropdownChange = partialRight(this.onTimeDropdownChange, 'minuteTo');
+        this.onTimePeriodDropdownChange = partialRight(this.onTimeDropdownChange, 'period');
+        this.onTimePeriodToDropdownChange = partialRight(this.onTimeDropdownChange, 'periodTo');
+
+        this.timePickerRef = null;
     }
 
     componentDidMount() {
@@ -63,21 +111,31 @@ class TimePicker extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!_.isEqual(this.props.value, prevProps.value)) {
-            let isDirty = false;
-            let newValue = _.clone(this.props.value);
+        const {
+            onChange,
+            range,
+            value: nextValue,
+        } = this.props;
 
-            if (this.props.value) {
-                if (!this.props.value.timeDisplay) {
-                    newValue.timeDisplay = this.props.range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
+        const {
+            value: prevValue,
+        } = prevProps;
+
+        if (!isEqual(nextValue, prevValue)) {
+            let isDirty = false;
+            const newValue = clone(nextValue);
+
+            if (nextValue) {
+                if (!nextValue.timeDisplay) {
+                    newValue.timeDisplay = range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
                     isDirty = true;
                 }
             }
 
             this.setState({ value: newValue });
 
-            if (isDirty && !_.isUndefined(this.props.onChange)) {
-                this.props.onChange(newValue);
+            if (isDirty && isFunction(onChange)) {
+                onChange(newValue);
             }
         }
     }
@@ -87,9 +145,12 @@ class TimePicker extends React.Component {
     }
 
     onClickOutside(event) {
-        const isOutside = this.refs.timePicker.contains(event.target);
+        const isOutside = !isNil(this.timePickerRef) && this.timePickerRef.contains(event.target);
+        const { isTimePopoverActive } = this.state;
 
-        if (isOutside || !isOutside && !this.state.isTimePopoverActive || event.target.className === 'Select-option') {
+        if (isOutside ||
+            !isTimePopoverActive ||
+            event.target.className === 'Select-option') {
             return;
         }
 
@@ -101,20 +162,27 @@ class TimePicker extends React.Component {
     }
 
     onChange(value, field) {
-        const { range } = this.props;
-        let newValue = this.state.value;
+        const {
+            onChange,
+            range,
+        } = this.props;
 
-        if (_.isObject(value)) {
+        const { value: prevValueFromState } = this.state;
+
+        const newValue = clone(prevValueFromState);
+
+        if (isObject(value)) {
             const mask = '__:__ __';
 
             newValue.timeFrom = newValue.timeFrom || mask;
 
+            // TODO: Convert to `switch` ...?
             if (field === 'hour') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[0] + newValue.timeFrom[1] + newValue.timeFrom[2], value.label + ':');
+                newValue.timeFrom = replace(newValue.timeFrom, newValue.timeFrom[0] + newValue.timeFrom[1] + newValue.timeFrom[2], `${value.label}:`);
             } else if (field === 'minute') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[2] + newValue.timeFrom[3] + newValue.timeFrom[4], ':' + value.label);
+                newValue.timeFrom = replace(newValue.timeFrom, newValue.timeFrom[2] + newValue.timeFrom[3] + newValue.timeFrom[4], `:${value.label}`);
             } else if (field === 'period') {
-                newValue.timeFrom = _.replace(newValue.timeFrom, newValue.timeFrom[5] + newValue.timeFrom[6] + newValue.timeFrom[7], ' ' + value.label);
+                newValue.timeFrom = replace(newValue.timeFrom, newValue.timeFrom[5] + newValue.timeFrom[6] + newValue.timeFrom[7], ` ${value.label}`);
             } else if (field === 'zone') {
                 newValue.timeZone = value;
             }
@@ -122,33 +190,36 @@ class TimePicker extends React.Component {
             if (range) {
                 newValue.timeTo = newValue.timeTo || mask;
 
+                // TODO: Convert to `switch` ...?
                 if (field === 'hourTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[0] + newValue.timeTo[1] + newValue.timeTo[2], value.label + ':');
+                    newValue.timeTo = replace(newValue.timeTo, newValue.timeTo[0] + newValue.timeTo[1] + newValue.timeTo[2], `${value.label}:`);
                 } else if (field === 'minuteTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[2] + newValue.timeTo[3] + newValue.timeTo[4], ':' + value.label);
+                    newValue.timeTo = replace(newValue.timeTo, newValue.timeTo[2] + newValue.timeTo[3] + newValue.timeTo[4], `:${value.label}`);
                 } else if (field === 'periodTo') {
-                    newValue.timeTo = _.replace(newValue.timeTo, newValue.timeTo[5] + newValue.timeTo[6] + newValue.timeTo[7], ' ' + value.label);
+                    newValue.timeTo = replace(newValue.timeTo, newValue.timeTo[5] + newValue.timeTo[6] + newValue.timeTo[7], ` ${value.label}`);
                 }
             }
 
             newValue.timeDisplay = range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
         } else {
-            let valueUpperCase = value.toUpperCase();
-            newValue.timeDisplay = valueUpperCase;
-            newValue.timeFrom = range ? _.trim(valueUpperCase.split('-')[0]) : valueUpperCase;
-            newValue.timeTo = range ? _.trim(valueUpperCase.split('-')[1]) : null;
+            const valueUpperCased = value.toUpperCase();
+            newValue.timeDisplay = valueUpperCased;
+            newValue.timeFrom = range ? trim(valueUpperCased.split('-')[0]) : valueUpperCased;
+            newValue.timeTo = range ? trim(valueUpperCased.split('-')[1]) : null;
         }
 
-        if (!_.isUndefined(this.props.onChange)) {
-            this.props.onChange(newValue);
+        if (isFunction(onChange)) {
+            onChange(newValue);
         } else {
             this.setState({ value: newValue });
         }
     }
 
     onInputMask(value) {
+        const { range } = this.props;
+
         // hh:dd am - hh:dd pm
-        if (this.props.range) {
+        if (range) {
             return [
                 /[0-1]/,
                 value.toString()[0] * 1 === 1 ? /[0-2]/ : /[0-9]/,
@@ -197,8 +268,12 @@ class TimePicker extends React.Component {
     }
 
     onTimePopoverToggle() {
-        if (!this.props.disable) {
-            this.setState({ isTimePopoverActive: !this.state.isTimePopoverActive });
+        const { disable } = this.props;
+
+        if (!disable) {
+            this.setState(
+                ({ isTimePopoverActive }) => ({ isTimePopoverActive: !isTimePopoverActive }),
+            );
         }
     }
 
@@ -207,15 +282,15 @@ class TimePicker extends React.Component {
     }
 
     renderHourOptions() {
-        return _.map(_.range(1, 13), v => {
-            const number = v.toString().length < 2 ? '0' + v : v;
+        return map(lodashRange(1, 13), (v) => {
+            const number = v.toString().length < 2 ? `0${v}` : v;
             return { label: number.toString(), value: number * 1 };
         });
     }
 
     renderMinuteOptions() {
-        return _.map(_.range(0, 60, 5), v => {
-            const number = v.toString().length < 2 ? '0' + v : v;
+        return map(lodashRange(0, 60, 5), (v) => {
+            const number = v.toString().length < 2 ? `0${v}` : v;
             return { label: number.toString(), value: number * 1 };
         });
     }
@@ -235,37 +310,39 @@ class TimePicker extends React.Component {
     renderZoneOptions() {
         const { zoneOptions } = this.props;
 
-        if (zoneOptions && _.isArray(zoneOptions)) {
+        if (isArray(zoneOptions) && !isEmpty(zoneOptions)) {
             return zoneOptions;
         }
 
+        /* eslint-disable no-underscore-dangle */
         const zoneNames = Object.keys(moment.tz._zones)
-            .map(function (k) {
+            .map((tz) => {
                 // At some point _zones turns into an array of objects instead of strings.
-                if (typeof moment.tz._zones[k] === 'string') {
-                    return moment.tz._zones[k].split('|')[0];
-                } else {
-                    return moment.tz._zones[k].name;
+                if (typeof moment.tz._zones[tz] === 'string') {
+                    return moment.tz._zones[tz].split('|')[0];
                 }
-            })
-            .filter(function (z) {
-                return z.indexOf('/') >= 0;
-            });
 
-        return _.chain(zoneNames)
-            .map(name => {
-                const zone = moment.tz(name);
-
-                return {
-                    abbr: zone.zoneAbbr(),
-                    label: `(${zone.format('Z z')}) ${name.split('/')[0].replace('_', ' ')} (${name.split('/').slice(-1)[0].replace('_', ' ')})`,
-                    offset: zone.format('Z'),
-                    value: name,
-                };
+                return moment.tz._zones[tz].name;
             })
-            .sortBy(o => {
-                return o.offset;
-            }).value();
+            .filter((tz) => (tz.indexOf('/') >= 0));
+        /* eslint-enable no-underscore-dangle */
+
+        return sortBy(
+            map(
+                zoneNames,
+                (tzName) => {
+                    const zone = moment.tz(tzName);
+
+                    return {
+                        abbr: zone.zoneAbbr(),
+                        label: `(${zone.format('Z z')}) ${tzName.split('/')[0].replace('_', ' ')} (${tzName.split('/').slice(-1)[0].replace('_', ' ')})`,
+                        offset: zone.format('Z'),
+                        value: tzName,
+                    };
+                },
+            ),
+            (tz) => (tz.offset),
+        );
     }
 
     render() {
@@ -279,41 +356,77 @@ class TimePicker extends React.Component {
             range,
             required,
             style,
+            zoneMatchProp,
             zonePlaceholderText,
         } = this.props;
+
         const {
             hourOptions,
             isTimePopoverActive,
             minuteOptions,
             periodOptions,
             value,
-            zoneMatchProp,
             zoneOptions,
         } = this.state;
+
         const containerClasses = ClassNames('ui', 'time-picker', className, {
             'time-picker-disable': disable,
             'time-picker-error': error,
             'time-picker-nest': nest,
             'time-picker-range': range,
         });
-        const hourFromDropdownValue = value && value.timeFrom ? _.find(hourOptions, o => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString()) : null;
-        const minuteFromDropdownValue = value && value.timeFrom ? _.find(minuteOptions, o => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString()) : null;
-        const periodFromDropdownValue = value && value.timeFrom ? _.find(periodOptions, o => o.label === value.timeFrom[6] + value.timeFrom[7]) : null;
+
+        const hasTimeFrom = !isNil(value?.timeFrom);
+
+        const hourFromDropdownValue = hasTimeFrom ?
+            find(
+                hourOptions,
+                (o) => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString(),
+            ) : null;
+
+        const minuteFromDropdownValue = hasTimeFrom ?
+            find(
+                minuteOptions,
+                (o) => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString(),
+            ) : null;
+
+        const periodFromDropdownValue = hasTimeFrom ?
+            find(
+                periodOptions,
+                (o) => o.label === value.timeFrom[6] + value.timeFrom[7],
+            ) : null;
+
         let hourToDropdownValue;
         let minuteToDropdownValue;
         let periodToDropdownValue;
 
         if (range) {
-            hourToDropdownValue = value && value.timeTo ? _.find(hourOptions, o => o.label === (value.timeTo[0] + value.timeTo[1]).toString()) : null;
-            minuteToDropdownValue = value && value.timeTo ? _.find(minuteOptions, o => o.label === (value.timeTo[3] + value.timeTo[4]).toString()) : null;
-            periodToDropdownValue = value && value.timeTo ? _.find(periodOptions, o => o.label === value.timeTo[6] + value.timeTo[7]) : null;
+            const hasTimeTo = !isNil(value?.timeTo);
+
+            hourToDropdownValue = hasTimeTo ?
+                find(
+                    hourOptions,
+                    (o) => o.label === (value.timeTo[0] + value.timeTo[1]).toString(),
+                ) : null;
+
+            minuteToDropdownValue = hasTimeTo ?
+                find(
+                    minuteOptions,
+                    (o) => o.label === (value.timeTo[3] + value.timeTo[4]).toString(),
+                ) : null;
+
+            periodToDropdownValue = hasTimeTo ?
+                find(
+                    periodOptions,
+                    (o) => o.label === value.timeTo[6] + value.timeTo[7],
+                ) : null;
         }
 
         return (
             <div
                 className={containerClasses}
                 id={id}
-                ref="timePicker"
+                ref={(ref) => { this.timePickerRef = ref; }}
                 style={style}
             >
                 <Input
@@ -326,15 +439,15 @@ class TimePicker extends React.Component {
                             color={isTimePopoverActive ? 'highlight' : null}
                             compact
                             type="time"
-                            onClick={this.onTimePopoverToggle.bind(this)}
+                            onClick={this.onTimePopoverToggle}
                         />
                     )}
                     id={id ? `${id}-input` : null}
                     keepCharPositions
                     label={label}
-                    mask={this.onInputMask.bind(this)}
-                    onChange={this.onChange.bind(this)}
-                    onKeyDown={this.onInputKeyDown.bind(this)}
+                    mask={this.onInputMask}
+                    onChange={this.onChange}
+                    onKeyDown={this.onInputKeyDown}
                     placeholder={range ? 'hh:mm AM - hh:mm PM' : 'hh:mm AM'}
                     required={required}
                     tabIndex={1}
@@ -346,7 +459,7 @@ class TimePicker extends React.Component {
                     clearable={false}
                     disable={disable}
                     id={id ? `${id}-zone_dropdown` : null}
-                    onChange={this.onZoneDropdownChange.bind(this)}
+                    onChange={this.onZoneDropdownChange}
                     options={zoneOptions}
                     placeholder={zonePlaceholderText || 'Select a Time Zone'}
                     selection
@@ -361,15 +474,15 @@ class TimePicker extends React.Component {
                         className="time-picker-popover"
                         id={id ? `${id}-popover` : null}
                     >
-                        {this.props.range ? (
-                            <label className="label">From</label>
-                        ) : null}
+                        {/* eslint-disable jsx-a11y/label-has-associated-control */}
+                        {range && <label className="label">From</label>}
+                        {/* eslint-enable jsx-a11y/label-has-associated-control */}
 
                         <div>
                             <Dropdown
                                 clearable={false}
                                 id={id ? `${id}-hour_dropdown` : null}
-                                onChange={this.onTimeDropdownChange.bind(this, 'hour')}
+                                onChange={this.onTimeHourDropdownChange}
                                 options={hourOptions}
                                 placeholder="hh"
                                 selection
@@ -386,7 +499,7 @@ class TimePicker extends React.Component {
                             <Dropdown
                                 clearable={false}
                                 id={id ? `${id}-minute_dropdown` : null}
-                                onChange={this.onTimeDropdownChange.bind(this, 'minute')}
+                                onChange={this.onTimeMinuteDropdownChange}
                                 options={minuteOptions}
                                 placeholder="mm"
                                 selection
@@ -402,7 +515,7 @@ class TimePicker extends React.Component {
                             <Dropdown
                                 clearable={false}
                                 id={id ? `${id}-period_dropdown` : null}
-                                onChange={this.onTimeDropdownChange.bind(this, 'period')}
+                                onChange={this.onTimePeriodDropdownChange}
                                 options={periodOptions}
                                 placeholder="AM"
                                 selection
@@ -415,14 +528,16 @@ class TimePicker extends React.Component {
                             />
                         </div>
 
-                        {this.props.range ? <label className="label">To</label> : null}
+                        {/* eslint-disable jsx-a11y/label-has-associated-control */}
+                        {range && <label className="label">To</label>}
+                        {/* eslint-enable jsx-a11y/label-has-associated-control */}
 
-                        {this.props.range ? (
+                        {range && (
                             <div>
                                 <Dropdown
                                     clearable={false}
                                     id={id ? `${id}-hour_to_dropdown` : null}
-                                    onChange={this.onTimeDropdownChange.bind(this, 'hourTo')}
+                                    onChange={this.onTimeHourToDropdownChange}
                                     options={hourOptions}
                                     placeholder="hh"
                                     selection
@@ -439,7 +554,7 @@ class TimePicker extends React.Component {
                                 <Dropdown
                                     clearable={false}
                                     id={id ? `${id}-minute_to_dropdown` : null}
-                                    onChange={this.onTimeDropdownChange.bind(this, 'minuteTo')}
+                                    onChange={this.onTimeMinuteToDropdownChange}
                                     options={minuteOptions}
                                     placeholder="mm"
                                     selection
@@ -455,7 +570,7 @@ class TimePicker extends React.Component {
                                 <Dropdown
                                     clearable={false}
                                     id={id ? `${id}-period_to_dropdown` : null}
-                                    onChange={this.onTimeDropdownChange.bind(this, 'periodTo')}
+                                    onChange={this.onTimePeriodToDropdownChange}
                                     options={periodOptions}
                                     placeholder="PM"
                                     selection
@@ -467,7 +582,7 @@ class TimePicker extends React.Component {
                                     value={periodToDropdownValue}
                                 />
                             </div>
-                        ) : null}
+                        )}
                     </div>
                 ) : null}
             </div>
@@ -476,5 +591,6 @@ class TimePicker extends React.Component {
 }
 
 TimePicker.propTypes = propTypes;
+TimePicker.defaultProps = defaultProps;
 
 export default TimePicker;
