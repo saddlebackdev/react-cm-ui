@@ -35,6 +35,7 @@ const propTypes = {
     onChange: PropTypes.func,
     range: PropTypes.bool,
     required: PropTypes.bool,
+    showTimezone: PropTypes.bool,
     style: PropTypes.shape({}),
     value: PropTypes.shape({
         timeDisplay: PropTypes.string,
@@ -60,6 +61,7 @@ const defaultProps = {
     onChange: undefined,
     range: false,
     required: false,
+    showTimezone: true,
     style: undefined,
     value: undefined,
     zoneMatchProp: 'label',
@@ -355,6 +357,7 @@ class TimePicker extends React.Component {
             nest,
             range,
             required,
+            showTimezone,
             style,
             zoneMatchProp,
             zonePlaceholderText,
@@ -438,6 +441,7 @@ class TimePicker extends React.Component {
                         <Icon
                             color={isTimePopoverActive ? 'highlight' : null}
                             compact
+                            title="Show Time Picker"
                             type="time"
                             onClick={this.onTimePopoverToggle}
                         />
@@ -454,20 +458,22 @@ class TimePicker extends React.Component {
                     value={value && value.timeDisplay ? value.timeDisplay : null}
                 />
 
-                <Dropdown
-                    className="time-picker-zone-dropdown"
-                    clearable={false}
-                    disable={disable}
-                    id={id ? `${id}-zone_dropdown` : null}
-                    onChange={this.onZoneDropdownChange}
-                    options={zoneOptions}
-                    placeholder={zonePlaceholderText || 'Select a Time Zone'}
-                    selection
-                    selectionMatchProp={zoneMatchProp || 'label'}
-                    menuMaxHeight={448}
-                    tabIndex={isTimePopoverActive ? 5 : 2}
-                    value={value.timeZone}
-                />
+                {showTimezone && (
+                    <Dropdown
+                        className="time-picker-zone-dropdown"
+                        clearable={false}
+                        disable={disable}
+                        id={id ? `${id}-zone_dropdown` : null}
+                        onChange={this.onZoneDropdownChange}
+                        options={zoneOptions}
+                        placeholder={zonePlaceholderText || 'Select a Time Zone'}
+                        selection
+                        selectionMatchProp={zoneMatchProp || 'label'}
+                        menuMaxHeight={448}
+                        tabIndex={0}
+                        value={value.timeZone}
+                    />
+                )}
 
                 {isTimePopoverActive ? (
                     <div
