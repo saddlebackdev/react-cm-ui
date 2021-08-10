@@ -450,7 +450,7 @@ class TimePicker extends React.Component {
                     onKeyDown={this.onInputKeyDown}
                     placeholder={range ? 'hh:mm AM - hh:mm PM' : 'hh:mm AM'}
                     required={required}
-                    tabIndex={1}
+                    tabIndex={0}
                     value={value && value.timeDisplay ? value.timeDisplay : null}
                 />
 
@@ -490,7 +490,7 @@ class TimePicker extends React.Component {
                                 style={{
                                     minWidth: 72,
                                 }}
-                                tabIndex={2}
+                                tabIndex={0}
                                 value={hourFromDropdownValue}
                             />
 
@@ -508,7 +508,7 @@ class TimePicker extends React.Component {
                                 style={{
                                     minWidth: 72,
                                 }}
-                                tabIndex={3}
+                                tabIndex={0}
                                 value={minuteFromDropdownValue}
                             />
 
@@ -523,7 +523,7 @@ class TimePicker extends React.Component {
                                 style={{
                                     minWidth: 72,
                                 }}
-                                tabIndex={4}
+                                tabIndex={0}
                                 value={periodFromDropdownValue}
                             />
                         </div>
@@ -545,7 +545,7 @@ class TimePicker extends React.Component {
                                     style={{
                                         minWidth: 72,
                                     }}
-                                    tabIndex={2}
+                                    tabIndex={0}
                                     value={hourToDropdownValue}
                                 />
 
@@ -563,7 +563,7 @@ class TimePicker extends React.Component {
                                     style={{
                                         minWidth: 72,
                                     }}
-                                    tabIndex={3}
+                                    tabIndex={0}
                                     value={minuteToDropdownValue}
                                 />
 
@@ -578,7 +578,7 @@ class TimePicker extends React.Component {
                                     style={{
                                         minWidth: 72,
                                     }}
-                                    tabIndex={4}
+                                    tabIndex={0}
                                     value={periodToDropdownValue}
                                 />
                             </div>
