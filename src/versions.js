@@ -49,9 +49,9 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
                 },
                 timePicker: {
-                    devLibraryVersion: '???',
-                    designLibraryVersion: '???',
-                    // designLibraryDoc: '???',
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
             },
             layout: {
