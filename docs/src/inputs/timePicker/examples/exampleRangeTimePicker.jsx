@@ -1,4 +1,7 @@
-import { TimePicker } from 'react-cm-ui';
+import {
+    Grid,
+    TimePicker,
+} from 'react-cm-ui';
 import React, { useState } from 'react';
 
 function ExampleDefaultTimePicker() {
@@ -16,16 +19,28 @@ function ExampleDefaultTimePicker() {
                 value={rangeValue}
             />
 
-            <dl>
-                <dt>Time Zone:</dt>
-                <dd>{rangeValue?.timeZone?.label ?? '<NULL>'}</dd>
+            <Grid spacing={1} style={{ marginTop: 22 }}>
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time Zone:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {rangeValue?.timeZone?.label ?? '<NULL>'}
+                </Grid.Column>
 
-                <dt>Time From:</dt>
-                <dd>{rangeValue?.timeFrom ?? '<NULL>'}</dd>
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time From:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {rangeValue?.timeFrom ?? '<NULL>'}
+                </Grid.Column>
 
-                <dt>Time To:</dt>
-                <dd>{rangeValue?.timeTo ?? '<NULL>'}</dd>
-            </dl>
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time To:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {rangeValue?.timeTo ?? '<NULL>'}
+                </Grid.Column>
+            </Grid>
         </React.Fragment>
     );
 }

@@ -1,4 +1,7 @@
-import { TimePicker } from 'react-cm-ui';
+import {
+    Grid,
+    TimePicker,
+} from 'react-cm-ui';
 import React, { useState } from 'react';
 
 function ExampleTimePickerWithoutTimeZoneSelect() {
@@ -16,10 +19,14 @@ function ExampleTimePickerWithoutTimeZoneSelect() {
                 value={value}
             />
 
-            <dl>
-                <dt>Time:</dt>
-                <dd>{value?.timeFrom ?? '<NULL>'}</dd>
-            </dl>
+            <Grid spacing={1} style={{ marginTop: 22 }}>
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {value?.timeFrom ?? '<NULL>'}
+                </Grid.Column>
+            </Grid>
         </React.Fragment>
     );
 }

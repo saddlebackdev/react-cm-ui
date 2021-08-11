@@ -1,4 +1,7 @@
-import { TimePicker } from 'react-cm-ui';
+import {
+    Grid,
+    TimePicker,
+} from 'react-cm-ui';
 import React, { useState } from 'react';
 import { CUSTOM_TIME_ZONE_SELECT_OPTIONS } from '../constants';
 
@@ -18,12 +21,21 @@ function ExampleTimePickerWithZoneMatchProp() {
                 zoneOptions={CUSTOM_TIME_ZONE_SELECT_OPTIONS}
             />
 
-            <dl>
-                <dt>Time:</dt>
-                <dd>{value?.timeFrom ?? '<NULL>'}</dd>
-                <dt>Time Zone:</dt>
-                <dd>{value?.timeZone?.label ?? '<NULL>'}</dd>
-            </dl>
+            <Grid spacing={1} style={{ marginTop: 22 }}>
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {value?.timeFrom ?? '<NULL>'}
+                </Grid.Column>
+
+                <Grid.Column sm={2} style={{ fontWeight: 'bold' }}>
+                    Time Zone:
+                </Grid.Column>
+                <Grid.Column sm={10}>
+                    {value?.timeZone?.label ?? '<NULL>'}
+                </Grid.Column>
+            </Grid>
         </React.Fragment>
     );
 }
