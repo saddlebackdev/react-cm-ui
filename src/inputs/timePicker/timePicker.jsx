@@ -18,25 +18,67 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
+import CreatableOptionComponent from './timePickerCreatableOption';
 import Icon from '../../dataDisplay/icon';
 import Input from '../input';
 import Select from '../select/select';
 
 const propTypes = {
+    /**
+    * Assign additional class names to the TimePicker.
+    */
     className: PropTypes.string,
+    /**
+    * A TimePicker can be disabled.
+    */
     disable: PropTypes.bool,
+    /**
+    * A TimePicker can be in an error state for input validation purposes.
+    */
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
     ]),
+    /**
+     * The `id` of the TimePicker.
+     * Individual subcomponents that comprise the TimePicker will have various
+     * strings appended to this to make up their full `id` prop values.
+     */
     id: PropTypes.string,
+    /**
+     * The label for the TimePicker.
+     */
     label: PropTypes.string,
+    /**
+     * The TimePicker can have "nested" styling applied to it.
+     */
     nest: PropTypes.bool,
+    /**
+     * The `onChange` event handler.
+     */
     onChange: PropTypes.func,
+    /**
+     * Boolean flag indicating whether the TimePicker will be used to select a
+     * range of time (i.e. 'from' time and 'to' time) or just a single time.
+     */
     range: PropTypes.bool,
+    /**
+     * A TimePicker can be required.
+     */
     required: PropTypes.bool,
+    /**
+     * Boolean flag indicating whether or not the TimePicker should include a
+     * Time Zone Select as well.  This prop is optional, and defaults to `true`
+     * (meaning the Time Zone Select will be shown).
+     */
     showTimezone: PropTypes.bool,
+    /**
+    * Assign additional inline styles to the TimePicker.
+    */
     style: PropTypes.shape({}),
+    /**
+     * The value of the TimePicker.
+     */
     value: PropTypes.shape({
         timeDisplay: PropTypes.string,
         timeFrom: PropTypes.string,
@@ -46,8 +88,33 @@ const propTypes = {
             PropTypes.shape({}),
         ]),
     }),
+    /**
+     * This prop dictates how the TimePicker will handle searches on its
+     * Time Zones select (i.e. which attribute will it use to find matches).
+     */
     zoneMatchProp: PropTypes.oneOf(['any', 'label', 'value']),
+    /**
+     * An array of select options representing Time Zones passed to the
+     * TimePicker.
+     *
+     * These should be standard `{ label: '...', value: '...' }` objects.
+     *
+     * The `value`s should be IANA/Olson/TZDB style time zone identifiers,
+     * e.g. 'America/Los_Angeles' for the U.S. Pacific Time Zone.
+     *
+     * This prop should be used if a particular style of Time Zone options
+     * (i.e. with a specific style for the `label`s) is desired (e.g. it is
+     * supplied by the API and is the standard list for the application).
+     *
+     * This prop is optional; if it is elided and if `showTimezone` is `true`
+     * (or elided) then Moment JS will be used to produce a default set of
+     * time zone options to use.
+     */
     zoneOptions: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+    * The placeholder text to be used in the Time Zones select in the
+    * TimePicker.
+    */
     zonePlaceholderText: PropTypes.string,
 };
 
@@ -69,6 +136,29 @@ const defaultProps = {
     zonePlaceholderText: 'Select a Time Zone',
 };
 
+const creatableSelectPromptTextCreator = (label) => (label);
+
+const createableValueComponent = ({
+    children,
+}) => (
+    <div className="Select-value">
+        <span
+            className="Select-value-label"
+        >
+            <span>
+                {children}
+            </span>
+        </span>
+    </div>
+);
+
+/**
+ * The TimePicker component represents a control that allows the user to
+ * select a single time of day or a range (with Time From and Time To).
+ * Usually it also includes a Time Zone selector as well, although this may be
+ * suppressed if so desired for particular use cases where the Time Zone is not
+ * needed.
+ */
 class TimePicker extends React.Component {
     constructor(props) {
         super(props);
@@ -98,12 +188,12 @@ class TimePicker extends React.Component {
         this.onTimePopoverToggle = this.onTimePopoverToggle.bind(this);
         this.onZoneDropdownChange = this.onZoneDropdownChange.bind(this);
 
-        this.onTimeHourDropdownChange = partialRight(this.onTimeDropdownChange, 'hour');
-        this.onTimeHourToDropdownChange = partialRight(this.onTimeDropdownChange, 'hourTo');
-        this.onTimeMinuteDropdownChange = partialRight(this.onTimeDropdownChange, 'minute');
-        this.onTimeMinuteToDropdownChange = partialRight(this.onTimeDropdownChange, 'minuteTo');
-        this.onTimePeriodDropdownChange = partialRight(this.onTimeDropdownChange, 'period');
-        this.onTimePeriodToDropdownChange = partialRight(this.onTimeDropdownChange, 'periodTo');
+        this.onTimeHourDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'hour'), true);
+        this.onTimeHourToDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'hourTo'), true);
+        this.onTimeMinuteDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'minute'), true);
+        this.onTimeMinuteToDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'minuteTo'), true);
+        this.onTimePeriodDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'period'), true);
+        this.onTimePeriodToDropdownChange = partialRight(this.onTimeDropdownChange.bind(null, 'periodTo'), true);
 
         this.timePickerRef = null;
     }
@@ -127,8 +217,8 @@ class TimePicker extends React.Component {
             let isDirty = false;
             const newValue = clone(nextValue);
 
-            if (nextValue) {
-                if (!nextValue.timeDisplay) {
+            if (!isEmpty(nextValue)) {
+                if (!isEmpty(nextValue.timeDisplay)) {
                     newValue.timeDisplay = range ? `${newValue.timeFrom} - ${newValue.timeTo}` : newValue.timeFrom;
                     isDirty = true;
                 }
@@ -146,23 +236,6 @@ class TimePicker extends React.Component {
         document.removeEventListener('click', this.onClickOutsideRef);
     }
 
-    onClickOutside(event) {
-        const isOutside = !isNil(this.timePickerRef) && this.timePickerRef.contains(event.target);
-        const { isTimePopoverActive } = this.state;
-
-        if (isOutside ||
-            !isTimePopoverActive ||
-            event.target.className === 'Select-option') {
-            return;
-        }
-
-        this.onTimePopoverToggle();
-    }
-
-    onTimeDropdownChange(field, selectedOption) {
-        this.onChange(selectedOption, field);
-    }
-
     onChange(value, field) {
         const {
             onChange,
@@ -178,7 +251,6 @@ class TimePicker extends React.Component {
 
             newValue.timeFrom = newValue.timeFrom || mask;
 
-            // TODO: Convert to `switch` ...?
             if (field === 'hour') {
                 newValue.timeFrom = replace(newValue.timeFrom, newValue.timeFrom[0] + newValue.timeFrom[1] + newValue.timeFrom[2], `${value.label}:`);
             } else if (field === 'minute') {
@@ -192,7 +264,6 @@ class TimePicker extends React.Component {
             if (range) {
                 newValue.timeTo = newValue.timeTo || mask;
 
-                // TODO: Convert to `switch` ...?
                 if (field === 'hourTo') {
                     newValue.timeTo = replace(newValue.timeTo, newValue.timeTo[0] + newValue.timeTo[1] + newValue.timeTo[2], `${value.label}:`);
                 } else if (field === 'minuteTo') {
@@ -215,6 +286,19 @@ class TimePicker extends React.Component {
         } else {
             this.setState({ value: newValue });
         }
+    }
+
+    onClickOutside(event) {
+        const isOutside = !isNil(this.timePickerRef) && this.timePickerRef.contains(event.target);
+        const { isTimePopoverActive } = this.state;
+
+        if (isOutside ||
+            !isTimePopoverActive ||
+            (event.target.className?.includes('Select-option') ?? false)) {
+            return;
+        }
+
+        this.onTimePopoverToggle();
     }
 
     onInputMask(value) {
@@ -279,6 +363,10 @@ class TimePicker extends React.Component {
         }
     }
 
+    onTimeDropdownChange(field, selectedOption) {
+        this.onChange(selectedOption, field);
+    }
+
     onZoneDropdownChange(selectedOption) {
         this.onChange(selectedOption, 'zone');
     }
@@ -310,9 +398,16 @@ class TimePicker extends React.Component {
     }
 
     renderZoneOptions() {
-        const { zoneOptions } = this.props;
+        const {
+            showTimezone,
+            zoneOptions,
+        } = this.props;
 
-        if (isArray(zoneOptions) && !isEmpty(zoneOptions)) {
+        // If `showTimezone` is `false` or if `zoneOptions` appears to be set
+        // with an array or time zone options then just return what we have; no
+        // need to calculate our own set of time zone options.
+        if (!showTimezone ||
+            (isArray(zoneOptions) && !isEmpty(zoneOptions))) {
             return zoneOptions;
         }
 
@@ -387,11 +482,17 @@ class TimePicker extends React.Component {
                 (o) => o.label === (value.timeFrom[0] + value.timeFrom[1]).toString(),
             ) : null;
 
+        let timeFromMinutes = value?.timeFrom?.substring(3, 5) ?? '';
+        timeFromMinutes = timeFromMinutes === '__' ? '' : timeFromMinutes;
+
         const minuteFromDropdownValue = hasTimeFrom ?
             find(
                 minuteOptions,
-                (o) => o.label === (value.timeFrom[3] + value.timeFrom[4]).toString(),
-            ) : null;
+                (o) => o.label === timeFromMinutes,
+            ) ?? {
+                label: timeFromMinutes,
+                value: timeFromMinutes,
+            } : null;
 
         const periodFromDropdownValue = hasTimeFrom ?
             find(
@@ -412,11 +513,17 @@ class TimePicker extends React.Component {
                     (o) => o.label === (value.timeTo[0] + value.timeTo[1]).toString(),
                 ) : null;
 
+            let timeToMinutes = value?.timeTo?.substring(3, 5) ?? '';
+            timeToMinutes = timeToMinutes === '__' ? '' : timeToMinutes;
+
             minuteToDropdownValue = hasTimeTo ?
                 find(
                     minuteOptions,
-                    (o) => o.label === (value.timeTo[3] + value.timeTo[4]).toString(),
-                ) : null;
+                    (o) => o.label === timeToMinutes,
+                ) ?? {
+                    label: timeToMinutes,
+                    value: timeToMinutes,
+                } : null;
 
             periodToDropdownValue = hasTimeTo ?
                 find(
@@ -469,6 +576,7 @@ class TimePicker extends React.Component {
                         onChange={this.onZoneDropdownChange}
                         options={zoneOptions}
                         placeholder={zonePlaceholderText || 'Select a Time Zone'}
+                        searchable
                         tabIndex={0}
                         value={value.timeZone}
                     />
@@ -491,6 +599,7 @@ class TimePicker extends React.Component {
                                 onChange={this.onTimeHourDropdownChange}
                                 options={hourOptions}
                                 placeholder="hh"
+                                searchable
                                 style={{
                                     minWidth: 72,
                                 }}
@@ -506,13 +615,17 @@ class TimePicker extends React.Component {
                                 id={id ? `${id}-minute_dropdown` : null}
                                 menuMaxHeight={448}
                                 onChange={this.onTimeMinuteDropdownChange}
+                                optionComponent={CreatableOptionComponent}
                                 options={minuteOptions}
                                 placeholder="mm"
+                                promptTextCreator={creatableSelectPromptTextCreator}
+                                searchable
                                 style={{
                                     minWidth: 72,
                                 }}
                                 tabIndex={0}
                                 value={minuteFromDropdownValue}
+                                valueComponent={createableValueComponent}
                             />
 
                             <Select
@@ -522,6 +635,7 @@ class TimePicker extends React.Component {
                                 onChange={this.onTimePeriodDropdownChange}
                                 options={periodOptions}
                                 placeholder="AM"
+                                searchable
                                 style={{
                                     minWidth: 72,
                                 }}
@@ -543,6 +657,7 @@ class TimePicker extends React.Component {
                                     onChange={this.onTimeHourToDropdownChange}
                                     options={hourOptions}
                                     placeholder="hh"
+                                    searchable
                                     style={{
                                         minWidth: 72,
                                     }}
@@ -558,13 +673,17 @@ class TimePicker extends React.Component {
                                     id={id ? `${id}-minute_to_dropdown` : null}
                                     menuMaxHeight={448}
                                     onChange={this.onTimeMinuteToDropdownChange}
+                                    optionComponent={CreatableOptionComponent}
                                     options={minuteOptions}
                                     placeholder="mm"
+                                    promptTextCreator={creatableSelectPromptTextCreator}
+                                    searchable
                                     style={{
                                         minWidth: 72,
                                     }}
                                     tabIndex={0}
                                     value={minuteToDropdownValue}
+                                    valueComponent={createableValueComponent}
                                 />
 
                                 <Select
@@ -574,6 +693,7 @@ class TimePicker extends React.Component {
                                     onChange={this.onTimePeriodToDropdownChange}
                                     options={periodOptions}
                                     placeholder="PM"
+                                    searchable
                                     style={{
                                         minWidth: 72,
                                     }}

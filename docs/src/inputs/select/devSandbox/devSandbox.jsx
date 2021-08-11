@@ -133,7 +133,8 @@ function ElementsSelect() {
                         anchorLink="select-creatable-advanced"
                         variant="h2"
                     >
-                        Creatable Advanced Select (Option Component, Value Component & Prompt Text Creator )
+                        Creatable Advanced Select
+                        (Option Component, Value Component & Prompt Text Creator )
                     </Heading>
 
                     <Example
