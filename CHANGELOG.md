@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.5
+_August 12, 2021_
+
+### Core
+- TimePicker updates. [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319)
+- Added `mixins` to the theme. [PR #321](https://github.com/saddlebackdev/react-cm-ui/pull/321)
+
+### Docs
+- New TimePicker doc changes. [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319)
+
 ## 10.1.4
 _July 16, 2021_
 

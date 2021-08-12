@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.1.3',
+        package: '10.1.5',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -47,6 +47,11 @@ const versions = {
                     devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
+                },
+                timePicker: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
             },
             layout: {
@@ -116,6 +121,7 @@ const versions = {
             gutters: '1.0.0',
             height: '1.0.0',
             index: '1.0.0',
+            mixins: '1.0.0',
             palette: '1.0.0',
             shape: '1.0.0',
             spacing: '1.0.0',
