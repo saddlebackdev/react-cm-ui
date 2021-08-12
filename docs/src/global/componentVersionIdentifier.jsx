@@ -1,6 +1,7 @@
 import {
     filter,
     get,
+    isEmpty,
     map,
     startCase,
 } from 'lodash';
@@ -60,11 +61,15 @@ function ComponentVersionIdentifier(props) {
                             >
                                 {`${startCase(key)}: `}
 
-                                <a
-                                    href={v}
-                                >
-                                    {v}
-                                </a>
+                                {!isEmpty(v) && v !== 'N/A' ? (
+                                    <a
+                                        href={v}
+                                    >
+                                        {v}
+                                    </a>
+                                ) : (
+                                    <span>{v}</span>
+                                )}
                             </div>
                         );
                     }
