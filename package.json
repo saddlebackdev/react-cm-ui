@@ -37,8 +37,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.10",
-    "@material-ui/styles": "^4.9.10",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/styles": "^4.11.4",
     "autosize": "^3.0.17",
     "classnames": "^2.2.5",
     "country-telephone-data": "^0.4.4",
