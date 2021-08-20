@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.1.3',
+        package: '10.1.5',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -121,6 +121,7 @@ const versions = {
             gutters: '1.0.0',
             height: '1.0.0',
             index: '1.0.0',
+            mixins: '1.0.0',
             palette: '1.0.0',
             shape: '1.0.0',
             spacing: '1.0.0',
