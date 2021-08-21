@@ -135,11 +135,12 @@ class Home extends React.PureComponent {
 
                                 <Button
                                     className={`${bemBlockClassName}--get_started`}
-                                    color="light"
+                                    color="link"
                                     onClick={this.onGetStartedClick}
                                     style={{
                                         margin: '22px 0',
                                     }}
+                                    text
                                 >
                                     Read Installation Doc
                                 </Button>
@@ -167,11 +168,12 @@ class Home extends React.PureComponent {
 
                                 <Button
                                     className={`${bemBlockClassName}--get_started`}
-                                    color="light"
+                                    color="link"
                                     onClick={this.onGetStartedClick}
                                     style={{
                                         margin: '0 0 13px',
                                     }}
+                                    text
                                 >
                                     Read Usage Doc
                                 </Button>

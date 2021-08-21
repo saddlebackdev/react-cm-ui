@@ -175,10 +175,10 @@ export default class ColorSample extends React.Component {
                 <DrawerDeprecated
                     closeButton={(
                         <Button
-                            color="outline"
                             icon
                             inverse
                             onClick={this._onDrawerColorClick}
+                            outline
                         >
                             <Icon compact inverse type="times" />
                         </Button>
@@ -1276,9 +1276,9 @@ export default class ModulesDrawer extends React.Component {
                     <DrawerDeprecated
                         closeButton={(
                             <Button
-                                color="outline"
                                 icon
                                 inverse
+                                outline
                                 onClick={this._onDrawerColorClick}
                             >
                                 <Icon compact inverse type="times" />
