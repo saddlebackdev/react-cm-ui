@@ -94,22 +94,6 @@ function ExampleOutlineInverseColors() {
                 sm="auto"
             >
                 <Button
-                    color="link"
-                    inverse
-                    outline
-                >
-                    <Icon
-                        type="shape-heart"
-                    />
-
-                    <span>Link</span>
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="success"
                     inverse
                     outline

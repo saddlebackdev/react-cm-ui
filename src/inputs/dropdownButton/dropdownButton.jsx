@@ -4,7 +4,13 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
-import { buttonPropTypes, buttonDefaultProps } from '../button/buttonConstants';
+import {
+    buttonV2PropTypes,
+    buttonV2DefaultProps,
+} from '../button/buttonConstants';
+import {
+    ICON_PROP_TYPES,
+} from '../../dataDisplay/icon/iconConstants';
 import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
@@ -12,12 +18,15 @@ import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    ...buttonPropTypes,
+    ...buttonV2PropTypes,
     /**
      * Override or extend the styles applied to ButtonDropdown.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
+    }),
+    iconProps: PropTypes.shape({
+        ...ICON_PROP_TYPES,
     }),
     /**
      * Change the position of the icon.
@@ -57,15 +66,17 @@ const propTypes = {
      * Indicates whether or not the Dropdown Button can be focused.
      */
     tabIndex: PropTypes.number,
+    version: PropTypes.number,
 };
 
 const defaultProps = {
-    ...buttonDefaultProps,
+    ...buttonV2DefaultProps,
     iconSize: 16,
     iconPosition: 'left',
     iconType: 'chevron-down',
     optionsTheme: 'dark',
     tabIndex: -1,
+    version: 1,
 };
 
 const useStyles = makeStyles({
@@ -79,6 +90,7 @@ function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
     const [isMenuOpen, setIsOpen] = useState(false);
     const classes = useStyles();
+
     const {
         children,
         className,
@@ -88,19 +100,24 @@ function DropdownButton(props) {
         fluid,
         id,
         icon,
+        iconProps,
         iconPosition,
         iconSize,
         iconType,
         innerStyle,
         inverse,
         label,
-        outlined,
+        outline,
         optionsTheme,
+        pill,
         relax,
         style,
         tabIndex,
         target,
+        text,
         title,
+        transparent,
+        version,
         width,
     } = props;
 
@@ -129,6 +146,8 @@ function DropdownButton(props) {
             inverse
             style={{ margin: icon && !label ? 0 : null }}
             type={iconType}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...iconProps}
         />
     );
 
@@ -141,7 +160,7 @@ function DropdownButton(props) {
             classes={{
                 root: classes.root,
             }}
-            color={isMenuOpen ? 'active' : color}
+            color={color}
             compact={compact}
             disable={disable}
             fluid={fluid}
@@ -150,14 +169,18 @@ function DropdownButton(props) {
             innerStyle={innerStyle}
             inverse={inverse}
             onClick={onMenuToggle}
-            outlined={outlined}
+            outline={outline}
+            pill={pill}
             ref={dropdownButtonRef}
             relax={relax}
             style={style}
-            target={target}
-            title={title}
-            width={width}
             tabIndex={tabIndex}
+            target={target}
+            text={text}
+            title={title}
+            transparent={transparent}
+            version={version}
+            width={width}
         >
             {iconOnLeft}
 
