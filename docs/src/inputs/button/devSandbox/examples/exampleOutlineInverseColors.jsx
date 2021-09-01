@@ -17,7 +17,7 @@ function ExampleOutlineInverseColors() {
                     color="primary"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -34,7 +34,7 @@ function ExampleOutlineInverseColors() {
                     color="secondary"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -51,7 +51,7 @@ function ExampleOutlineInverseColors() {
                     color="active"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -68,7 +68,7 @@ function ExampleOutlineInverseColors() {
                     disable
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -85,7 +85,7 @@ function ExampleOutlineInverseColors() {
                     color="error"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -102,7 +102,7 @@ function ExampleOutlineInverseColors() {
                     color="success"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -119,7 +119,7 @@ function ExampleOutlineInverseColors() {
                     color="warning"
                     inverse
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"

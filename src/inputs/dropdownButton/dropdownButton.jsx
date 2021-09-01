@@ -25,6 +25,7 @@ const propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
+    designVersion: PropTypes.number,
     iconProps: PropTypes.shape({
         ...ICON_PROP_TYPES,
     }),
@@ -66,17 +67,16 @@ const propTypes = {
      * Indicates whether or not the Dropdown Button can be focused.
      */
     tabIndex: PropTypes.number,
-    version: PropTypes.number,
 };
 
 const defaultProps = {
     ...buttonV2DefaultProps,
+    designVersion: 1,
     iconSize: 16,
     iconPosition: 'left',
     iconType: 'chevron-down',
     optionsTheme: 'dark',
     tabIndex: -1,
-    version: 1,
 };
 
 const useStyles = makeStyles({
@@ -96,6 +96,7 @@ function DropdownButton(props) {
         className,
         color,
         compact,
+        designVersion,
         disable,
         disabled,
         fluid,
@@ -118,11 +119,10 @@ function DropdownButton(props) {
         title,
         transparent,
         variant,
-        version,
         width,
     } = props;
 
-    const isV2 = version === 2;
+    const isDesignV2 = designVersion === 2;
 
     function getParentContainer() {
         return dropdownButtonRef.current;
@@ -165,9 +165,10 @@ function DropdownButton(props) {
             }}
             color={color}
             compact={compact}
-            disable={isV2 ? undefined : disable}
+            designVersion={designVersion}
+            disable={isDesignV2 ? undefined : disable}
             disabled={disabled}
-            fluid={isV2 ? undefined : fluid}
+            fluid={isDesignV2 ? undefined : fluid}
             fullWidth={fullWidth}
             icon={icon}
             id={id}
@@ -183,7 +184,6 @@ function DropdownButton(props) {
             title={title}
             transparent={transparent}
             variant={variant}
-            version={version}
             width={width}
         >
             {iconOnLeft}

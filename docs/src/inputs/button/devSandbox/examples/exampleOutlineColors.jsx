@@ -16,7 +16,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="primary"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -32,7 +32,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="secondary"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -48,7 +48,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="active"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -64,7 +64,7 @@ function ExampleOutlineColors() {
                 <Button
                     disabled
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -80,7 +80,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="error"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -96,7 +96,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="success"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -112,7 +112,7 @@ function ExampleOutlineColors() {
                 <Button
                     color="warning"
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"

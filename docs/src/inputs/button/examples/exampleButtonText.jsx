@@ -15,7 +15,7 @@ function ExampleSolidButton() {
                 <Button
                     disabled
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Disable
                 </Button>
@@ -27,7 +27,7 @@ function ExampleSolidButton() {
                 <Button
                     color="link"
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Link
                 </Button>

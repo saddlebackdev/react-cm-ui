@@ -112,7 +112,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.onDrawerToggle} version={2}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -194,7 +194,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                                         color="success"
                                         onClick={this.onNewTemplateClick}
                                         style={{ margin: 0 }}
-                                        version={2}
+                                        designVersion={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -275,7 +275,7 @@ export default class DrawerFiltersDrawerSample extends React.Component {
                         tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
                         </p>
 
-                        <Button onClick={this.onDrawerToggle} version={2}>Close Drawer</Button>
+                        <Button onClick={this.onDrawerToggle} designVersion={2}>Close Drawer</Button>
                     </Drawer.Content>
                 </Drawer>
             </div>
@@ -503,7 +503,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                         {rowsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={this.onDrawerToggle} version={2}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -585,7 +585,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                             color="success"
                                             onClick={this.onNewTemplateClick}
                                             style={{ margin: 0 }}
-                                            version={2}
+                                            designVersion={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>
@@ -721,7 +721,7 @@ class ModulesDrawerFiltersDrawer extends React.Component {
                                 tortor nisi. Sed nec quam nec leo elementum commodo vel nec nisi.
                                 </p>
 
-                                <Button onClick={this.onDrawerToggle} version={2}>Close Drawer</Button>
+                                <Button onClick={this.onDrawerToggle} designVersion={2}>Close Drawer</Button>
                             </Drawer.Content>
                         </Drawer.Container>
                     </Drawer>

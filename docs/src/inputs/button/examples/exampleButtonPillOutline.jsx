@@ -30,7 +30,7 @@ function ExamplePillOutline() {
                         <Button
                             pill
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             Label
                         </Button>
@@ -57,7 +57,7 @@ function ExamplePillOutline() {
                         <Button
                             pill
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"

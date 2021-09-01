@@ -24,7 +24,7 @@ const propTypes = {
 
 const defaultProps = {
     className: undefined,
-    iconBackgroundColor: 'alternate',
+    iconBackgroundColor: 'secondary',
     iconBackgroundActiveColor: 'active',
     iconType: 'ellipsis-h',
     id: undefined,
@@ -161,6 +161,7 @@ class ActionBarActionsButton extends React.PureComponent {
                     <Button
                         className="action_bar--actions_button"
                         color={isDrawerOpen ? iconBackgroundActiveColor : iconBackgroundColor}
+                        designVersion={2}
                         icon
                         id={id}
                         style={style}

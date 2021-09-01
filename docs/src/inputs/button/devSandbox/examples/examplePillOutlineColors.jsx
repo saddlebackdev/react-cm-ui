@@ -17,7 +17,7 @@ function ExamplePillOutlineColors() {
                     color="primary"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -34,7 +34,7 @@ function ExamplePillOutlineColors() {
                     color="secondary"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -51,7 +51,7 @@ function ExamplePillOutlineColors() {
                     color="active"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -68,7 +68,7 @@ function ExamplePillOutlineColors() {
                     disabled
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -85,7 +85,7 @@ function ExamplePillOutlineColors() {
                     color="error"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -102,7 +102,7 @@ function ExamplePillOutlineColors() {
                     color="success"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -119,7 +119,7 @@ function ExamplePillOutlineColors() {
                     color="warning"
                     pill
                     variant="outlined"
-                    version={2}
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"

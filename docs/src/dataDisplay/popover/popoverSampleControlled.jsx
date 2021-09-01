@@ -22,7 +22,7 @@ function PopoverSample() {
             )}
             open={isTooltipOpen}
         >
-            <Button onClick={toggleOpenTooltip} version={2}>
+            <Button onClick={toggleOpenTooltip} designVersion={2}>
                 Click to Open/Close popover
             </Button>
         </Popover>
