@@ -10,7 +10,7 @@ function PopoverMouseEnterSample() {
             content="Wow! Slick Mouse Events"
             mouseEvent="onMouseEnter"
         >
-            <Button version={2}>
+            <Button designVersion={2}>
                 Hover With A Popover
             </Button>
         </Popover>

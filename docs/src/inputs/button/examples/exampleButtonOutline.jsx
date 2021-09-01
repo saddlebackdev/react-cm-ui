@@ -29,7 +29,7 @@ function ExampleOutline() {
                     >
                         <Button
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             Label
                         </Button>
@@ -56,7 +56,7 @@ function ExampleOutline() {
                         <Button
                             icon
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"
@@ -84,7 +84,7 @@ function ExampleOutline() {
                     >
                         <Button
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"

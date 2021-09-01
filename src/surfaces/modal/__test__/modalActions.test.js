@@ -37,6 +37,8 @@ describe('<ModalActions />', () => {
             >
                 <Button
                     className={className}
+                    color="primary"
+                    designVersion={2}
                 >
                     {text}
                 </Button>

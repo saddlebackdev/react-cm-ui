@@ -115,7 +115,7 @@ class App extends React.Component {
                                         margin: '11px 0',
                                     }}
                                     transparent
-                                    version={2}
+                                    designVersion={2}
                                 >
                                     <Icon type="chevron-left" />
 

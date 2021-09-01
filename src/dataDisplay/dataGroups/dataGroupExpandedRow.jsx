@@ -55,6 +55,7 @@ function DataGroupExpandedRow(props) {
                         <Button
                             color={iconColor || 'primary'}
                             className={`${bemClassName}_button`}
+                            designVersion={2}
                             icon
                             style={{
                                 height: '38px',

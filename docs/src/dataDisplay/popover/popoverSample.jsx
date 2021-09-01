@@ -9,7 +9,7 @@ function PopoverSample() {
         <Popover
             content="Some Popover Content"
         >
-            <Button version={2}>
+            <Button designVersion={2}>
                 Open Popover
             </Button>
         </Popover>

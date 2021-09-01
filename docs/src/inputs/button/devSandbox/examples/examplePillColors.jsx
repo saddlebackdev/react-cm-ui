@@ -15,7 +15,7 @@ function ExamplePillColors() {
                 <Button
                     color="primary"
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Primary
                 </Button>
@@ -27,7 +27,7 @@ function ExamplePillColors() {
                 <Button
                     color="secondary"
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Secondary
                 </Button>
@@ -39,7 +39,7 @@ function ExamplePillColors() {
                 <Button
                     color="active"
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Active
                 </Button>
@@ -51,7 +51,7 @@ function ExamplePillColors() {
                 <Button
                     disabled
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Disable
                 </Button>
@@ -63,7 +63,7 @@ function ExamplePillColors() {
                 <Button
                     color="success"
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Success
                 </Button>
@@ -75,7 +75,7 @@ function ExamplePillColors() {
                 <Button
                     color="warning"
                     pill
-                    version={2}
+                    designVersion={2}
                 >
                     Warning
                 </Button>

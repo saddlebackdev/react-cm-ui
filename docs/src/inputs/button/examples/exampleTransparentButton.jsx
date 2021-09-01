@@ -29,7 +29,7 @@ function ExampleTransparentButton() {
                     >
                         <Button
                             transparent
-                            version={2}
+                            designVersion={2}
                         >
                             Label
                         </Button>
@@ -56,7 +56,7 @@ function ExampleTransparentButton() {
                         <Button
                             icon
                             transparent
-                            version={2}
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"
@@ -86,7 +86,7 @@ function ExampleTransparentButton() {
                     >
                         <Button
                             transparent
-                            version={2}
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"

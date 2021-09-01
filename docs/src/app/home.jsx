@@ -24,7 +24,7 @@ import React from 'react';
 function Example() {
     return (
         <Card>
-            <Button version={2}>
+            <Button designVersion={2}>
                 Hello World
             </Button>
         </Card>
@@ -90,7 +90,7 @@ class Home extends React.PureComponent {
                                 margin: '0 0 13px',
                             }}
                             variant="outlined"
-                            version={2}
+                            designVersion={2}
                         >
                             Get Started
                         </Button>
@@ -142,7 +142,7 @@ class Home extends React.PureComponent {
                                         margin: '22px 0',
                                     }}
                                     variant="text"
-                                    version={2}
+                                    designVersion={2}
                                 >
                                     Read Installation Doc
                                 </Button>
@@ -176,7 +176,7 @@ class Home extends React.PureComponent {
                                         margin: '0 0 13px',
                                     }}
                                     variant="text"
-                                    version={2}
+                                    designVersion={2}
                                 >
                                     Read Usage Doc
                                 </Button>

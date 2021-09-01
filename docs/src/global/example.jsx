@@ -138,7 +138,7 @@ function Example(props) {
                         onClick={onCodeToggle}
                         title={codeButtonTitle}
                         transparent
-                        version={2}
+                        designVersion={2}
                     >
                         <span
                             className={classes.codeToggleIcon}

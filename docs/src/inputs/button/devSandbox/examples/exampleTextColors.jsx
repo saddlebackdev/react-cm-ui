@@ -15,7 +15,7 @@ function ExampleTextColors() {
                 <Button
                     disabled
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Disable
                 </Button>
@@ -27,7 +27,7 @@ function ExampleTextColors() {
                 <Button
                     color="error"
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Error
                 </Button>
@@ -39,7 +39,7 @@ function ExampleTextColors() {
                 <Button
                     color="link"
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Link
                 </Button>
@@ -51,7 +51,7 @@ function ExampleTextColors() {
                 <Button
                     color="success"
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Success
                 </Button>
@@ -63,7 +63,7 @@ function ExampleTextColors() {
                 <Button
                     color="warning"
                     variant="text"
-                    version={2}
+                    designVersion={2}
                 >
                     Warning
                 </Button>

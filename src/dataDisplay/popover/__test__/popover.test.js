@@ -21,6 +21,7 @@ describe('<PersonPanel />', () => {
     const buttonChild = (
         <Button
             className={buttonClassName}
+            designVersion={2}
         >
             Click Me!
         </Button>
@@ -121,6 +122,7 @@ describe('<PersonPanel />', () => {
             >
                 <Button
                     className={buttonClassName}
+                    designVersion={2}
                     onClick={buttonOnClickMock}
                 >
                     Click Me!
@@ -156,6 +158,7 @@ describe('<PersonPanel />', () => {
             >
                 <Button
                     className={buttonClassName}
+                    designVersion={2}
                 >
                     Click Me!
                 </Button>
@@ -185,6 +188,7 @@ describe('<PersonPanel />', () => {
             >
                 <Button
                     className={buttonClassName}
+                    designVersion={2}
                     onMouseEnter={buttonOnMouseEnter}
                     onMouseLeave={buttonOnMouseLeave}
                 >
