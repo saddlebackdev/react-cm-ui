@@ -36,17 +36,29 @@ export const buttonV2PropTypes = {
      * The Button will be resized to its parent container's width.
      */
     fluid: PropTypes.bool,
+    /**
+     * The URL that the hyperlink points to.
+     */
     href: PropTypes.string,
+    /**
+     * If `true`, the button will be a square, housing the icon child.
+     */
     icon: PropTypes.bool,
     /**
      * Assign the button an id attribute value.
      */
     id: PropTypes.string,
+    /**
+     * Allows for style overrides of the Button's inner container.
+     */
     innerStyle: PropTypes.shape({}),
     /**
      * A button can be formatted to appear on dark backgrounds better.
      */
     inverse: PropTypes.bool,
+    /**
+     * The onClick event handler.
+     */
     onClick: PropTypes.func,
     /**
      * A button can be outlined.
@@ -60,11 +72,17 @@ export const buttonV2PropTypes = {
      * A button can relax its padding.
      */
     style: PropTypes.shape({}),
+    /**
+     * Where to display the linked URL.
+     */
     target: PropTypes.oneOf(['_blank']),
     /**
      * If `true`, only the button's text is shown.
      */
     text: PropTypes.bool,
+    /**
+     * The title attribute.
+     */
     title: PropTypes.string,
     /**
      * Set a fixed width.
