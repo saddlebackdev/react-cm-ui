@@ -96,8 +96,10 @@ function DropdownButton(props) {
         className,
         color,
         compact,
+        disable,
         disabled,
         fluid,
+        fullWidth,
         id,
         icon,
         iconProps,
@@ -119,6 +121,8 @@ function DropdownButton(props) {
         version,
         width,
     } = props;
+
+    const isV2 = version === 2;
 
     function getParentContainer() {
         return dropdownButtonRef.current;
@@ -161,8 +165,10 @@ function DropdownButton(props) {
             }}
             color={color}
             compact={compact}
-            disable={disabled}
-            fluid={fluid}
+            disable={isV2 ? undefined : disable}
+            disabled={disabled}
+            fluid={isV2 ? undefined : fluid}
+            fullWidth={fullWidth}
             icon={icon}
             id={id}
             innerStyle={innerStyle}
