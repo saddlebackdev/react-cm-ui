@@ -16,7 +16,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="primary"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -32,7 +33,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="secondary"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -48,7 +50,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="active"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -64,7 +67,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     disable
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -80,7 +84,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="error"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -96,7 +101,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="success"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -112,7 +118,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="warning"
                     inverse
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"

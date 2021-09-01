@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
 
+export const VARIANTS = {
+    contained: 'contained',
+    outlined: 'outlined',
+    text: 'text',
+};
+
 export const buttonV2PropTypes = {
     as: PropTypes.oneOf(['a', 'button']),
     /**
@@ -31,11 +37,11 @@ export const buttonV2PropTypes = {
     /**
      * A button can be disabled.
      */
-    disable: PropTypes.bool,
+    disabled: PropTypes.bool,
     /**
      * The Button will be resized to its parent container's width.
      */
-    fluid: PropTypes.bool,
+    fullWidth: PropTypes.bool,
     /**
      * The URL that the hyperlink points to.
      */
@@ -64,6 +70,10 @@ export const buttonV2PropTypes = {
      * A button can be outlined.
      */
     outline: PropTypes.bool,
+    /**
+     * Set a button with a pill like form.
+     */
+    pill: PropTypes.bool,
     /**
      * A button can relax its padding.
      */
@@ -96,9 +106,9 @@ export const buttonV2PropTypes = {
      */
     transparent: PropTypes.bool,
     /**
-     * Set a button with a pill like form.
+     * The variant to use.
      */
-    pill: PropTypes.bool,
+    variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
 };
 
 export const buttonV2DefaultProps = {
@@ -107,7 +117,7 @@ export const buttonV2DefaultProps = {
     color: 'default',
     compact: false,
     disable: false,
-    fluid: false,
+    fullWidth: false,
     href: undefined,
     icon: false,
     id: undefined,
@@ -120,6 +130,7 @@ export const buttonV2DefaultProps = {
     target: undefined,
     text: false,
     title: undefined,
+    variant: VARIANTS.contained,
     width: undefined,
 };
 

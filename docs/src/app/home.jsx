@@ -24,7 +24,7 @@ import React from 'react';
 function Example() {
     return (
         <Card>
-            <Button>
+            <Button version={2}>
                 Hello World
             </Button>
         </Card>
@@ -86,10 +86,11 @@ class Home extends React.PureComponent {
                         <Button
                             className={`${bemBlockClassName}--get_started`}
                             onClick={this.onGetStartedClick}
-                            outline
                             style={{
                                 margin: '0 0 13px',
                             }}
+                            variant="outlined"
+                            version={2}
                         >
                             Get Started
                         </Button>
@@ -140,7 +141,8 @@ class Home extends React.PureComponent {
                                     style={{
                                         margin: '22px 0',
                                     }}
-                                    text
+                                    variant="text"
+                                    version={2}
                                 >
                                     Read Installation Doc
                                 </Button>
@@ -173,7 +175,8 @@ class Home extends React.PureComponent {
                                     style={{
                                         margin: '0 0 13px',
                                     }}
-                                    text
+                                    variant="text"
+                                    version={2}
                                 >
                                     Read Usage Doc
                                 </Button>

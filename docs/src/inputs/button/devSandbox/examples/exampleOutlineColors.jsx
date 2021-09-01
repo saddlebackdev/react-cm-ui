@@ -15,7 +15,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="primary"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -30,7 +31,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="secondary"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -45,7 +47,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="active"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -59,8 +62,9 @@ function ExampleOutlineColors() {
                 sm="auto"
             >
                 <Button
-                    disable
-                    outline
+                    disabled
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -75,7 +79,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="error"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -90,7 +95,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="success"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -105,7 +111,8 @@ function ExampleOutlineColors() {
             >
                 <Button
                     color="warning"
-                    outline
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"

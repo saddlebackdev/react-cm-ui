@@ -27,7 +27,7 @@ export default class DrawerNavigationSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this._onDrawerToggle} version={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -62,6 +62,7 @@ export default class DrawerNavigationSample extends React.Component {
                             <p>
                                 <Button
                                     onClick={() => this._onDrawerToggle(isTitleBar, isActionBar)}
+                                    version={2}
                                 >
                                     Close Drawer
                                 </Button>
@@ -115,7 +116,7 @@ export default class DrawerNavigationSample extends React.Component {
                             Ut fringilla orci nec magna vehicula iaculis. Donec imperdiet ultrices varius. Ut bibendum pretium neque, eget placerat augue malesuada vitae. Nunc varius nisl sit amet elit auctor, vel ullamcorper dui sodales. Morbi gravida feugiat ligula, eget feugiat tellus posuere nec. Nunc placerat tempus sagittis. Sed convallis aliquet purus, at varius ante dignissim a. Sed egestas auctor metus. Pellentesque facilisis justo ac augue mattis, eu ornare lorem accumsan. Nullam sem erat, molestie ac dapibus eu, tincidunt ac lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                             </p>
 
-                            <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                            <Button onClick={this._onDrawerToggle} version={2}>Close Drawer</Button>
                         </React.Fragment>
                     )}
 
@@ -242,25 +243,25 @@ class ModulesDrawerNavigation extends React.Component {
                         {columnsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                    <Button onClick={() => this._onDrawerToggle(true, true)} version={2}>
                         Open Drawer with TitleBar & ActionBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                    <Button onClick={() => this._onDrawerToggle(false, false)} version={2}>
                         Open Drawer without TitleBar & ActionBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                    <Button onClick={() => this._onDrawerToggle(false, true)} version={2}>
                         Open Drawer without TitleBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                    <Button onClick={() => this._onDrawerToggle(true, false)} version={2}>
                         Open Drawer without ActionBar
                     </Button>
 
@@ -350,6 +351,7 @@ class ModulesDrawerNavigation extends React.Component {
                                                 color="success"
                                                 onClick={this._onNewTemplateClick}
                                                 style={{ margin: 0 }}
+                                                version={2}
                                             >
                                                 <Icon type="plus" />
                                                 <span>New Template</span>
@@ -365,6 +367,7 @@ class ModulesDrawerNavigation extends React.Component {
                                 <p>
                                     <Button
                                         onClick={() => this._onDrawerToggle(isTitleBar, isActionBar)}
+                                        version={2}
                                     >
                                         Close Drawer
                                     </Button>
@@ -418,7 +421,7 @@ class ModulesDrawerNavigation extends React.Component {
                                     Ut fringilla orci nec magna vehicula iaculis. Donec imperdiet ultrices varius. Ut bibendum pretium neque, eget placerat augue malesuada vitae. Nunc varius nisl sit amet elit auctor, vel ullamcorper dui sodales. Morbi gravida feugiat ligula, eget feugiat tellus posuere nec. Nunc placerat tempus sagittis. Sed convallis aliquet purus, at varius ante dignissim a. Sed egestas auctor metus. Pellentesque facilisis justo ac augue mattis, eu ornare lorem accumsan. Nullam sem erat, molestie ac dapibus eu, tincidunt ac lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                                 </p>
 
-                                <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                                <Button onClick={this._onDrawerToggle} version={2}>Close Drawer</Button>
                             </React.Fragment>
                         )}
 
