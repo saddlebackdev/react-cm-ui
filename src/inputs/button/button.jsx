@@ -12,7 +12,8 @@ const defaultProps = {
     version: 1,
 };
 
-function Button(props) {
+// eslint-disable-next-line prefer-arrow-callback
+const Button = React.forwardRef(function Button(props, ref) {
     const {
         children,
         version,
@@ -22,6 +23,7 @@ function Button(props) {
     if (version === 2) {
         return (
             <ButtonV2
+                ref={ref}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
             >
@@ -32,13 +34,14 @@ function Button(props) {
 
     return (
         <ButtonDeprecated
+            ref={ref}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
         >
             {children}
         </ButtonDeprecated>
     );
-}
+});
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
