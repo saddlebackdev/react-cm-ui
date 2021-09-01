@@ -73,7 +73,7 @@ export const ICON_PROP_TYPES = {
     /**
      * Provides a human-readable title for the element that contains it.
      */
-    title: TITLE_PROP_TYPE,
+    title: titlePropType,
     /**
      * The string for the icon you want to display.
      */
