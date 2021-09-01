@@ -87,7 +87,9 @@ function PopoverSamplePlacement() {
                     )}
                     placement={placementValue?.value}
                 >
-                    <Button>
+                    <Button
+                        version={2}
+                    >
                         {upperCase(placementValue?.label)}
                     </Button>
                 </Popover>

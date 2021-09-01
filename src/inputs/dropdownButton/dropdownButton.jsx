@@ -96,7 +96,7 @@ function DropdownButton(props) {
         className,
         color,
         compact,
-        disable,
+        disabled,
         fluid,
         id,
         icon,
@@ -107,16 +107,15 @@ function DropdownButton(props) {
         innerStyle,
         inverse,
         label,
-        outline,
         optionsTheme,
         pill,
         relax,
         style,
         tabIndex,
         target,
-        text,
         title,
         transparent,
+        variant,
         version,
         width,
     } = props;
@@ -162,23 +161,22 @@ function DropdownButton(props) {
             }}
             color={color}
             compact={compact}
-            disable={disable}
+            disable={disabled}
             fluid={fluid}
             icon={icon}
             id={id}
             innerStyle={innerStyle}
             inverse={inverse}
             onClick={onMenuToggle}
-            outline={outline}
             pill={pill}
             ref={dropdownButtonRef}
             relax={relax}
             style={style}
             tabIndex={tabIndex}
             target={target}
-            text={text}
             title={title}
             transparent={transparent}
+            variant={variant}
             version={version}
             width={width}
         >

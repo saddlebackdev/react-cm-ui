@@ -21,7 +21,7 @@ function ModulesDrawerDataGrid() {
 
     return (
         <div>
-            <Button onClick={() => onDrawerToggle()}>Open Drawer</Button>
+            <Button onClick={() => onDrawerToggle()} version={2}>Open Drawer</Button>
 
             <Drawer
                 isOpen={isDrawerOpen}
@@ -104,6 +104,7 @@ function ModulesDrawerDataGrid() {
                                     color="success"
                                     onClick={() => {}}
                                     style={{ margin: 0 }}
+                                    version={2}
                                 >
                                     <Icon type="plus" />
                                     <span>New Template</span>

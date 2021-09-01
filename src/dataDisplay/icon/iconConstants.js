@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
 
-export const TITLE_PROP_TYPE = PropTypes.oneOfType([
+const titlePropType = PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
 ]);

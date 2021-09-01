@@ -15,6 +15,7 @@ function PromptExample() {
                 <Button
                     color="success"
                     tabIndex={0}
+                    version={2}
                 >
                     Save Me!
                 </Button>

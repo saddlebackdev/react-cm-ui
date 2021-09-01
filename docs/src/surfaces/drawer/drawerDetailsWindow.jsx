@@ -36,7 +36,7 @@ export default class DrawerDetailsSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle} version={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -117,6 +117,7 @@ export default class DrawerDetailsSample extends React.Component {
                                         color="success"
                                         onClick={this.onNewTemplateClick}
                                         style={{ margin: 0 }}
+                                        version={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -285,7 +286,7 @@ export default class DrawerDetailsSample extends React.Component {
                     nec dui et tortor pellentesque aliquam.
                     </p>
 
-                    <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} version={2}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
@@ -380,7 +381,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} version={2}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -446,6 +447,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
                                             color="success"
                                             onClick={this.onNewTemplateClick}
                                             style={{ margin: 0 }}
+                                            version={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>
@@ -621,7 +623,7 @@ class ModulesDrawerDetailsWindow extends React.Component {
                             nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                         </p>
 
-                        <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this.onDrawerToggle} version={2}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

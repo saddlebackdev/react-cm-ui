@@ -31,7 +31,7 @@ export default class DrawerStickySample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open The Drawer</Button>
+                <Button onClick={this._onDrawerToggle} version={2}>Open The Drawer</Button>
 
                 <Drawer
                     dimmer={false}
@@ -41,8 +41,8 @@ export default class DrawerStickySample extends React.Component {
                     onClose={this._onDrawerToggle}
                     positionY="bottom"
                 >
-                    <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
-                    <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
+                    <Button onClick={this._onDrawerToggle} version={2}>Close The Drawer</Button>
+                    <Button onClick={this._onFooDrawerToggle} version={2}>Open Foo Drawer</Button>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -50,8 +50,8 @@ export default class DrawerStickySample extends React.Component {
                         isOpen={isFooDrawerOpen}
                         onClose={this._onFooDrawerToggle}
                     >
-                        <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
-                        <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
+                        <Button onClick={this._onFooDrawerToggle} version={2}>Close Foo Drawer</Button>
+                        <Button onClick={this._onBarDrawerToggle} version={2}>Open Bar Drawer</Button>
 
                         <p>Foo Drawer</p>
 
@@ -59,7 +59,7 @@ export default class DrawerStickySample extends React.Component {
                             isOpen={isBarDrawerOpen}
                             onClose={this._onBarDrawerToggle}
                         >
-                            <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
+                            <Button onClick={this._onBarDrawerToggle} version={2}>Close Bar Drawer</Button>
 
                             <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link><br /><br />
 
@@ -202,7 +202,7 @@ class ModulesDrawerSticky extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open The Drawer</Button>
+                    <Button onClick={this._onDrawerToggle} version={2}>Open The Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -212,8 +212,8 @@ class ModulesDrawerSticky extends React.Component {
                         dimmer={false}
                         positionY="bottom"
                     >
-                        <Button onClick={this._onDrawerToggle}>Close The Drawer</Button>
-                        <Button onClick={this._onFooDrawerToggle}>Open Foo Drawer</Button>
+                        <Button onClick={this._onDrawerToggle} version={2}>Close The Drawer</Button>
+                        <Button onClick={this._onFooDrawerToggle} version={2}>Open Foo Drawer</Button>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
@@ -221,8 +221,8 @@ class ModulesDrawerSticky extends React.Component {
                             isOpen={isFooDrawerOpen}
                             onClose={this._onFooDrawerToggle}
                         >
-                            <Button onClick={this._onFooDrawerToggle}>Close Foo Drawer</Button>
-                            <Button onClick={this._onBarDrawerToggle}>Open Bar Drawer</Button>
+                            <Button onClick={this._onFooDrawerToggle} version={2}>Close Foo Drawer</Button>
+                            <Button onClick={this._onBarDrawerToggle} version={2}>Open Bar Drawer</Button>
 
                             <p>Foo Drawer</p>
 
@@ -230,7 +230,7 @@ class ModulesDrawerSticky extends React.Component {
                                 isOpen={isBarDrawerOpen}
                                 onClose={this._onBarDrawerToggle}
                             >
-                                <Button onClick={this._onBarDrawerToggle}>Close Bar Drawer</Button>
+                                <Button onClick={this._onBarDrawerToggle} version={2}>Close Bar Drawer</Button>
 
                                 <Link to={{ pathname: '/modules/modal' }}>Go To The Modal Page</Link>
                                 <br />

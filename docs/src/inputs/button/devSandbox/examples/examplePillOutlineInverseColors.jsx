@@ -16,8 +16,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="primary"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -33,8 +34,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="secondary"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -50,8 +52,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="active"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -65,10 +68,11 @@ function ExamplePillOutlineInverseColors() {
                 sm="auto"
             >
                 <Button
-                    disable
+                    disabled
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -84,8 +88,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="error"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -101,8 +106,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="success"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -118,8 +124,9 @@ function ExamplePillOutlineInverseColors() {
                 <Button
                     color="warning"
                     inverse
-                    outline
                     pill
+                    variant="outlined"
+                    version={2}
                 >
                     <Icon
                         type="shape-heart"

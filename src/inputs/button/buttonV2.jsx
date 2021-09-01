@@ -6,6 +6,7 @@ import React from 'react';
 import {
     buttonV2PropTypes,
     buttonV2DefaultProps,
+    VARIANTS,
 } from './buttonConstants';
 import {
     UI_CLASS_NAME,
@@ -30,9 +31,10 @@ const styles = (theme) => {
 
     const buttonSize = 32;
     const buttonPillSize = 46;
-    const outlineWidth = 'inset 0 0 0 1.5px';
+    const outlinedWidth = 'inset 0 0 0 1.5px';
 
     return {
+        contained: {},
         root: {
             backgroundColor: 'transparent',
             border: 0,
@@ -101,8 +103,8 @@ const styles = (theme) => {
         colorActive: {
             '&:not($text)': {
                 backgroundColor: theme.palette.active.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.active.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.active.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.active.main,
                     },
@@ -118,13 +120,13 @@ const styles = (theme) => {
         colorDefault: {
             '&:not($text)': {
                 backgroundColor: theme.palette.grey[600],
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.grey[600]}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.grey[600]}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.grey[600],
                     },
                     '&$inverse': {
-                        boxShadow: `${outlineWidth} ${theme.palette.common.white}`,
+                        boxShadow: `${outlinedWidth} ${theme.palette.common.white}`,
                         '& .icon .icon-use-path': {
                             fill: theme.palette.common.white,
                         },
@@ -144,8 +146,8 @@ const styles = (theme) => {
         colorLink: {
             '&:not($text)': {
                 backgroundColor: theme.palette.text.link,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.text.link}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.text.link}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.text.link,
                     },
@@ -161,8 +163,8 @@ const styles = (theme) => {
         colorPrimary: {
             '&:not($text)': {
                 backgroundColor: theme.palette.primary.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.primary.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.primary.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.primary.main,
                     },
@@ -178,8 +180,8 @@ const styles = (theme) => {
         colorError: {
             '&:not($text)': {
                 backgroundColor: theme.palette.error.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.error.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.error.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.error.main,
                     },
@@ -195,13 +197,13 @@ const styles = (theme) => {
         colorSecondary: {
             '&:not($text)': {
                 backgroundColor: theme.palette.secondary.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.secondary.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.secondary.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.secondary.main,
                     },
                     '&$inverse': {
-                        boxShadow: `${outlineWidth} ${theme.palette.secondary.constrastMain}`,
+                        boxShadow: `${outlinedWidth} ${theme.palette.secondary.constrastMain}`,
                         '& .icon .icon-use-path': {
                             fill: theme.palette.secondary.constrastMain,
                         },
@@ -221,8 +223,8 @@ const styles = (theme) => {
         colorSuccess: {
             '&:not($text)': {
                 backgroundColor: theme.palette.success.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.success.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.success.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.success.main,
                     },
@@ -238,8 +240,8 @@ const styles = (theme) => {
         colorWarning: {
             '&:not($text)': {
                 backgroundColor: theme.palette.warning.main,
-                '&$outline': {
-                    boxShadow: `${outlineWidth} ${theme.palette.warning.main}`,
+                '&$outlined': {
+                    boxShadow: `${outlinedWidth} ${theme.palette.warning.main}`,
                     '& .icon .icon-use-path': {
                         fill: theme.palette.warning.main,
                     },
@@ -256,7 +258,7 @@ const styles = (theme) => {
             paddingLeft: 11,
             paddingRight: 11,
         },
-        fluid: {
+        fullWidth: {
             width: '100%',
         },
         icon: {},
@@ -264,7 +266,7 @@ const styles = (theme) => {
             paddingLeft: 0,
             paddingRight: 0,
         },
-        outline: {
+        outlined: {
             '&:not($text)': {
                 backgroundColor: 'transparent',
                 color: theme.palette.text.primary,
@@ -295,14 +297,14 @@ const styles = (theme) => {
                 boxShadow: `inset 0 0 0 1px ${theme.palette.border.contrastPrimary}`,
             },
         },
-        disable: {
+        disabled: {
             '&:not($text)': {
                 backgroundColor: theme.palette.action.disabled,
                 color: theme.palette.text.constrastText,
             },
-            '&$outline': {
+            '&$outlined': {
                 backgroundColor: 'transparent',
-                boxShadow: `${outlineWidth} ${theme.palette.action.disabled}`,
+                boxShadow: `${outlinedWidth} ${theme.palette.action.disabled}`,
                 '& .icon .icon-use-path': {
                     fill: theme.palette.action.disabled,
                 },
@@ -342,8 +344,8 @@ class ButtonV2 extends React.PureComponent {
             className,
             color,
             compact,
-            disable,
-            fluid,
+            disabled,
+            fullWidth,
             href,
             icon,
             id,
@@ -357,6 +359,7 @@ class ButtonV2 extends React.PureComponent {
             target,
             title,
             transparent,
+            variant,
             width,
             ...otherProps
         } = this.props;
@@ -369,24 +372,25 @@ class ButtonV2 extends React.PureComponent {
             classes.root,
             className,
             {
-                [classes.colorActive]: !disable && color === 'active',
-                [classes.colorDefault]: !disable && color === 'default',
-                [classes.colorError]: !disable && color === 'error',
-                [classes.colorLink]: !disable && color === 'link',
-                [classes.colorPrimary]: !disable && color === 'primary',
-                [classes.colorSecondary]: !disable && color === 'secondary',
-                [classes.colorSuccess]: !disable && color === 'success',
-                [classes.colorWarning]: !disable && color === 'warning',
+                [classes.colorActive]: !disabled && color === 'active',
+                [classes.colorDefault]: !disabled && color === 'default',
+                [classes.colorError]: !disabled && color === 'error',
+                [classes.colorLink]: !disabled && color === 'link',
+                [classes.colorPrimary]: !disabled && color === 'primary',
+                [classes.colorSecondary]: !disabled && color === 'secondary',
+                [classes.colorSuccess]: !disabled && color === 'success',
+                [classes.colorWarning]: !disabled && color === 'warning',
                 [classes.compact]: compact,
-                [classes.disable]: disable,
+                [classes.disabled]: disabled,
                 [classes.fixedWidth]: !!width,
-                [classes.fluid]: fluid,
+                [classes.fullWidth]: fullWidth,
                 [classes.icon]: icon,
                 [classes.inverse]: inverse,
-                [classes.outline]: outline,
+                [classes.contained]: variant === VARIANTS.contained,
+                [classes.outlined]: variant === VARIANTS.outlined,
                 [classes.pill]: pill,
                 [classes.relax]: relax,
-                [classes.text]: text,
+                [classes.text]: variant === VARIANTS.text,
                 [classes.transparent]: transparent,
             },
         );
@@ -401,7 +405,7 @@ class ButtonV2 extends React.PureComponent {
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
                 className={rootClasses}
-                disabled={disable}
+                disabled={disabled}
                 id={id}
                 href={href}
                 onClick={this.onClick}
