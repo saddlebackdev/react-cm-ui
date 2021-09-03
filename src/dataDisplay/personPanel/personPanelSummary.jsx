@@ -577,17 +577,19 @@ function PersonPanelSummary(props) {
                     </Grid.Column>
                 )}
 
-                <Grid.Column
-                    className={personIdColumnClasses}
-                    textAlign="right"
-                >
-                    <Typography
-                        className={classes.personId}
-                        variant="caption"
+                {personId && (
+                    <Grid.Column
+                        className={personIdColumnClasses}
+                        textAlign="right"
                     >
-                        {`Id: ${personId}`}
-                    </Typography>
-                </Grid.Column>
+                        <Typography
+                            className={classes.personId}
+                            variant="caption"
+                        >
+                            {`Id: ${personId}`}
+                        </Typography>
+                    </Grid.Column>
+                )}
             </Grid>
         </div>
     );

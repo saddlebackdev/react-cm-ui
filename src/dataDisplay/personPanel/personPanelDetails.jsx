@@ -196,10 +196,7 @@ const defaultProps = {
     isExpanded: false,
     isMobile: false,
     otherDataGroups: null,
-    selectButtonProps: {
-        label: 'Select',
-        disable: false,
-    },
+    selectButtonProps: {},
     viewRecordButtonProps: {},
 };
 
