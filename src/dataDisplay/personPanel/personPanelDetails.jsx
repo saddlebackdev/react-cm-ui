@@ -173,6 +173,10 @@ const propTypes = {
         promptId: PropTypes.string,
     }),
     /**
+     * If `false`, select button isn't displayed for PersonPanelDetails.
+     */
+    showSelectButton: PropTypes.bool,
+    /**
      * Button `props` to setup the View Record button.
      */
     viewRecordButtonProps: PropTypes.shape({
@@ -197,6 +201,7 @@ const defaultProps = {
     isMobile: false,
     otherDataGroups: null,
     selectButtonProps: {},
+    showSelectButton: true,
     viewRecordButtonProps: {},
 };
 
@@ -664,6 +669,7 @@ function PersonPanelDetails(props) {
         isMobile,
         otherDataGroups,
         selectButtonProps,
+        showSelectButton,
         viewRecordButtonProps,
     } = props;
 
@@ -888,28 +894,31 @@ function PersonPanelDetails(props) {
 
                     {children}
 
-                    {(!isEmpty(selectButtonProps) || !isEmpty(viewRecordButtonProps)) && (
-                        <div
-                            className={classes.actions}
-                        >
-                            {!isEmpty(selectButtonProps) && (
-                                <PersonPanelDetailsActionButton
-                                    label="Select"
-                                    // eslint-disable-next-line react/jsx-props-no-spreading
-                                    {...selectButtonProps}
-                                />
-                            )}
+                    {
+                        ((!isEmpty(selectButtonProps) && showSelectButton) ||
+                        !isEmpty(viewRecordButtonProps)) && (
+                            <div
+                                className={classes.actions}
+                            >
+                                {!isEmpty(selectButtonProps) && showSelectButton && (
+                                    <PersonPanelDetailsActionButton
+                                        label="Select"
+                                        // eslint-disable-next-line react/jsx-props-no-spreading
+                                        {...selectButtonProps}
+                                    />
+                                )}
 
-                            {!isEmpty(viewRecordButtonProps) && (
-                                <PersonPanelDetailsActionButton
-                                    // eslint-disable-next-line react/jsx-props-no-spreading
-                                    {...viewRecordButtonProps}
-                                    label="View Record"
-                                    outlined
-                                />
-                            )}
-                        </div>
-                    )}
+                                {!isEmpty(viewRecordButtonProps) && (
+                                    <PersonPanelDetailsActionButton
+                                        // eslint-disable-next-line react/jsx-props-no-spreading
+                                        {...viewRecordButtonProps}
+                                        label="View Record"
+                                        outlined
+                                    />
+                                )}
+                            </div>
+                        )
+                    }
                 </div>
             </Collapse>
         </div>
