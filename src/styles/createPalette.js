@@ -37,6 +37,7 @@ export const light = {
     },
     action: {
         disabled: grey[300],
+        disabledBackground: grey[300],
     },
 };
 
@@ -133,13 +134,13 @@ export default function createPalette() {
         return contrastText;
     };
 
-    const mode = 'light';
-    const modes = { dark, light };
+    const type = 'light';
+    const types = { dark, light };
 
     return {
         common,
         ...palette,
-        ...modes[mode],
+        ...types[type],
         blue,
         cyan,
         getContrastText,
@@ -152,7 +153,7 @@ export default function createPalette() {
             900: grey[500], // DO NOT USE
         },
         hexToRGBA,
-        mode: 'light',
+        type,
         pink,
         purple,
         redOrange,
