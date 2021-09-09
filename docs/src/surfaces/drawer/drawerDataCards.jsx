@@ -40,7 +40,7 @@ export default class DrawerGridSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -121,6 +121,7 @@ export default class DrawerGridSample extends React.Component {
                                         color="success"
                                         onClick={this.onNewTemplateClick}
                                         style={{ margin: 0 }}
+                                        designVersion={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -266,7 +267,7 @@ class ModulesDrawerDataCards extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -347,6 +348,7 @@ class ModulesDrawerDataCards extends React.Component {
                                             color="success"
                                             onClick={this.onNewTemplateClick}
                                             style={{ margin: 0 }}
+                                            designVersion={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>

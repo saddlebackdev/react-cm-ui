@@ -626,7 +626,7 @@ class Modal extends React.Component {
                                 classes={{
                                     root: classes.closeButton,
                                 }}
-                                color="alternate" // Change to 'secondary' with UI Button gap closure
+                                designVersion={2}
                                 onClick={this.onClose}
                                 icon
                                 title="Close"

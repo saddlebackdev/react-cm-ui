@@ -17,13 +17,17 @@ function PopoverSample() {
                 >
                     <Icon type="comment" />
                     Some cool tooltip content
-                    <Button>
+                    <Button
+                        designVersion={2}
+                    >
                         Hi
                     </Button>
                 </div>
             )}
         >
-            <Button>
+            <Button
+                designVersion={2}
+            >
                 Some JSX Children
             </Button>
         </Popover>

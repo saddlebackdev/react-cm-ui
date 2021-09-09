@@ -28,7 +28,7 @@ export default class DrawerContentSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this._onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -109,6 +109,7 @@ export default class DrawerContentSample extends React.Component {
                                         color="success"
                                         onClick={this._onNewTemplateClick}
                                         style={{ margin: 0 }}
+                                        designVersion={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -297,7 +298,7 @@ class ModulesDrawerContent extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this._onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -378,6 +379,7 @@ class ModulesDrawerContent extends React.Component {
                                             color="success"
                                             onClick={this._onNewTemplateClick}
                                             style={{ margin: 0 }}
+                                            designVersion={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>

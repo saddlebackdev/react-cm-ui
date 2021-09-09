@@ -408,6 +408,7 @@ class FiltersDrawer extends React.Component {
                                     {isDirty && (
                                         <Button
                                             color="success"
+                                            designVersion={2}
                                             icon
                                             innerStyle={{
                                                 height: '32px',

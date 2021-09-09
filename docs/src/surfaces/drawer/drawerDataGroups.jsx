@@ -25,7 +25,7 @@ export default class DrawerDataGroupsSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -106,6 +106,7 @@ export default class DrawerDataGroupsSample extends React.Component {
                                         color="success"
                                         onClick={this._onNewTemplateClick}
                                         style={{ margin: 0 }}
+                                        designVersion={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -193,7 +194,7 @@ export default class DrawerDataGroupsSample extends React.Component {
                             />
                         </Drawer.DataGroups>
 
-                    <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} designVersion={2}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
@@ -278,7 +279,7 @@ class ModulesDrawerDataGroups extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this.onDrawerToggle}>Open Drawer</Button>
+                    <Button onClick={this.onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                     <Drawer
                         isOpen={isDrawerOpen}
@@ -344,6 +345,7 @@ class ModulesDrawerDataGroups extends React.Component {
                                             color="success"
                                             onClick={this._onNewTemplateClick}
                                             style={{ margin: 0 }}
+                                            designVersion={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>
@@ -429,7 +431,7 @@ class ModulesDrawerDataGroups extends React.Component {
                                 }}
                             />
                         </Drawer.DataGroups>
-                        <Button onClick={this.onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this.onDrawerToggle} designVersion={2}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

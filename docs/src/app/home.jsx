@@ -24,7 +24,7 @@ import React from 'react';
 function Example() {
     return (
         <Card>
-            <Button>
+            <Button designVersion={2}>
                 Hello World
             </Button>
         </Card>
@@ -86,10 +86,11 @@ class Home extends React.PureComponent {
                         <Button
                             className={`${bemBlockClassName}--get_started`}
                             onClick={this.onGetStartedClick}
-                            outline
                             style={{
                                 margin: '0 0 13px',
                             }}
+                            variant="outlined"
+                            designVersion={2}
                         >
                             Get Started
                         </Button>
@@ -135,11 +136,13 @@ class Home extends React.PureComponent {
 
                                 <Button
                                     className={`${bemBlockClassName}--get_started`}
-                                    color="light"
+                                    color="link"
                                     onClick={this.onGetStartedClick}
                                     style={{
                                         margin: '22px 0',
                                     }}
+                                    variant="text"
+                                    designVersion={2}
                                 >
                                     Read Installation Doc
                                 </Button>
@@ -167,11 +170,13 @@ class Home extends React.PureComponent {
 
                                 <Button
                                     className={`${bemBlockClassName}--get_started`}
-                                    color="light"
+                                    color="link"
                                     onClick={this.onGetStartedClick}
                                     style={{
                                         margin: '0 0 13px',
                                     }}
+                                    variant="text"
+                                    designVersion={2}
                                 >
                                     Read Usage Doc
                                 </Button>

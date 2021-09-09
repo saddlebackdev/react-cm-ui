@@ -51,9 +51,9 @@ function PromptDropdownButtonExample() {
             show={showPrompt}
         >
             <DropdownButton
-                color="outline"
                 icon
                 iconType="ellipsis-h"
+                outline
                 style={{ margin: 0 }}
             >
                 <DropdownButton.Option

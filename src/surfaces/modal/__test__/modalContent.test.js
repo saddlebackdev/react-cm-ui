@@ -37,6 +37,8 @@ describe('<ModalContent />', () => {
             >
                 <Button
                     className={className}
+                    color="primary"
+                    designVersion={2}
                 >
                     {text}
                 </Button>

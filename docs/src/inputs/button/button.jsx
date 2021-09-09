@@ -1,194 +1,191 @@
-/* eslint-disable global-require */
-/* eslint-disable import/no-webpack-loader-syntax */
-
 import {
-    Card,
-    Header,
-    TitleBar,
+    Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { buttonDocProps } from './buttonConstants';
-import ButtonColorExample from './ButtonColorExample';
-import ButtonCompactExample from './buttonCompactExample';
-import ButtonDisableExample from './buttonDisableExample';
-import ButtonExample from './buttonExample';
-import ButtonFluidExample from './buttonFluidExample';
-import ButtonIconExample from './buttonIconExample';
-import ButtonIdExample from './buttonIdExample';
-import ButtonInverseExample from './buttonInverseExample';
-import ButtonOutlineExample from './buttonOutlineExample';
-import ButtonRelaxExample from './buttonRelaxExample';
-import ButtonWidthExample from './buttonWidthExample';
-import Highlighter from '../../global/highlighter';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleOutline from './examples/exampleButtonOutline';
+import ExamplePill from './examples/exampleButtonPill';
+import ExamplePillOutline from './examples/exampleButtonPillOutline';
+import ExampleSolid from './examples/exampleButtonSolid';
+import ExampleTextExample from './examples/exampleButtonText';
+import ExampleTransparentButton from './examples/exampleTransparentButton';
+import Heading from '../../global/heading';
 import Main from '../../global/main';
-import TableProps from '../../global/tableProps';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
+/* eslint-enable import/no-named-default, import/extensions */
 
-function ElementsButton() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsButton(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
+
     return (
-        <Main page="headers">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
-                <Card>
-                    <Header size="large">Props</Header>
+                <MarkdownContainer>
+                    <Typography
+                        className="description"
+                        variant="body1"
+                    >
+                        {description}
+                    </Typography>
 
-                    <TableProps props={buttonDocProps} />
-                </Card>
+                    {/**
+                     * Solid Button
+                     */}
+                    <Heading
+                        anchorLink="solid-button"
+                        variant="h2"
+                    >
+                        Solid Button
+                    </Heading>
 
-                {/* Button */}
-                <Header anchor="button" size="large" style={{ marginTop: '55px' }} sub>
-                    Button
-                    <Header.Subheader>
-                        A standard button.
-                    </Header.Subheader>
-                </Header>
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
+                    </Typography>
 
-                <ButtonExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonSolid').default}
+                    >
+                        <ExampleSolid />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonExample').default}
-                </Highlighter>
+                    {/**
+                      * Outline Button
+                      */}
+                    <Heading
+                        anchorLink="outline-button"
+                        variant="h2"
+                    >
+                        Outline Button
+                    </Heading>
 
-                {/* Color */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                    Color
-                    <Header.Subheader>
-                        Buttons can have different colors.
-                    </Header.Subheader>
-                </Header>
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
+                    </Typography>
 
-                <ButtonColorExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonOutline').default}
+                    >
+                        <ExampleOutline />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonColorExample').default}
-                </Highlighter>
+                    {/**
+                      * Transparent Button
+                      */}
+                    <Heading
+                        anchorLink="transparent-button"
+                        variant="h2"
+                    >
+                        Transparent Button
+                    </Heading>
 
-                {/* Compact */}
-                <Header anchor="compact" size="large" style={{ marginTop: '55px' }} sub>
-                    Compact
-                    <Header.Subheader>
-                        A button can have reduced padding.
-                    </Header.Subheader>
-                </Header>
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
+                    </Typography>
 
-                <ButtonCompactExample />
+                    <Example
+                        inverse
+                        rawCode={require('!!raw-loader!./examples/exampleTransparentButton').default}
+                    >
+                        <ExampleTransparentButton />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonCompactExample').default}
-                </Highlighter>
+                    {/**
+                      * Pill Button
+                      */}
+                    <Heading
+                        anchorLink="pill-button"
+                        variant="h2"
+                    >
+                        Pill Button
+                    </Heading>
 
-                {/* Disable */}
-                <Header anchor="disabled" size="large" style={{ marginTop: '55px' }} sub>
-                    Disabled
-                    <Header.Subheader>
-                        A disabled Button.
-                    </Header.Subheader>
-                </Header>
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
+                    </Typography>
 
-                <ButtonDisableExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonPill').default}
+                    >
+                        <ExamplePill />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonDisableExample').default}
-                </Highlighter>
+                    {/**
+                      * Pill & Outline Button
+                      */}
+                    <Heading
+                        anchorLink="pill-outline-button"
+                        variant="h2"
+                    >
+                        Pill &amp; Outline Button
+                    </Heading>
 
-                {/* Fluid */}
-                <Header anchor="fluid" size="large" style={{ marginTop: '55px' }} sub>
-                    Fluid
-                    <Header.Subheader>
-                        A button can take on the width of the container.
-                    </Header.Subheader>
-                </Header>
+                    <Typography
+                        variant="body1"
+                    >
+                        Types
+                    </Typography>
 
-                <ButtonFluidExample />
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonPillOutline').default}
+                    >
+                        <ExamplePillOutline />
+                    </Example>
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonFluidExample').default}
-                </Highlighter>
+                    {/**
+                      * Text Button
+                      */}
+                    <Heading
+                        anchorLink="pill-outline-button"
+                        variant="h2"
+                    >
+                        Text Button
+                    </Heading>
 
-                {/* Icon */}
-                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
-                    Icon
-                    <Header.Subheader>
-                        A button can contain an icon.
-                    </Header.Subheader>
-                </Header>
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleButtonText').default}
+                    >
+                        <ExampleTextExample />
+                    </Example>
+                </MarkdownContainer>
 
-                <ButtonIconExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonIconExample').default}
-                </Highlighter>
-
-                {/* Id */}
-                <Header anchor="icon" size="large" style={{ marginTop: '55px' }} sub>
-                    Id
-                    <Header.Subheader>
-                        A button can contain an id.
-                    </Header.Subheader>
-                </Header>
-
-                <ButtonIdExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonIdExample').default}
-                </Highlighter>
-
-                {/* Inverse */}
-                <Header anchor="color-inverted" size="large" style={{ marginTop: '55px' }} sub>
-                    Inverse
-                    <Header.Subheader>
-                        Button colors can be inverted.
-                    </Header.Subheader>
-                </Header>
-
-                <ButtonInverseExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonInverseExample').default}
-                </Highlighter>
-
-                {/* Outlined */}
-                <Header anchor="color" size="large" style={{ marginTop: '55px' }} sub>
-                Outlined
-                    <Header.Subheader>
-                        Buttons can have different border colors.
-                    </Header.Subheader>
-                </Header>
-
-                <ButtonOutlineExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonOutlineExample').default}
-                </Highlighter>
-
-                {/* Relax */}
-                <Header anchor="relax" size="large" style={{ marginTop: '55px' }} sub>
-                    Relax
-                    <Header.Subheader>
-                        A button can have relaxed padding.
-                    </Header.Subheader>
-                </Header>
-
-                <ButtonRelaxExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonRelaxExample').default}
-                </Highlighter>
-
-                {/* Width */}
-                <Header anchor="width" size="large" style={{ marginTop: '55px' }} sub>
-                    Width
-                    <Header.Subheader>
-                        A button can have a fixed width.
-                    </Header.Subheader>
-                </Header>
-
-                <ButtonWidthExample />
-
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
-                    {require('!!raw-loader!./buttonWidthExample').default}
-                </Highlighter>
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
 
-export default ElementsButton;
+DocsButton.propTypes = propTypes;
+
+export default DocsButton;

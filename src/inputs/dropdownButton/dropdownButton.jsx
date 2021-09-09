@@ -4,7 +4,13 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
-import { buttonPropTypes, buttonDefaultProps } from '../button/buttonConstants';
+import {
+    buttonV2PropTypes,
+    buttonV2DefaultProps,
+} from '../button/buttonConstants';
+import {
+    ICON_PROP_TYPES,
+} from '../../dataDisplay/icon/iconConstants';
 import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
@@ -12,12 +18,16 @@ import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
-    ...buttonPropTypes,
+    ...buttonV2PropTypes,
     /**
      * Override or extend the styles applied to ButtonDropdown.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
+    }),
+    designVersion: PropTypes.number,
+    iconProps: PropTypes.shape({
+        ...ICON_PROP_TYPES,
     }),
     /**
      * Change the position of the icon.
@@ -60,7 +70,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    ...buttonDefaultProps,
+    ...buttonV2DefaultProps,
+    designVersion: 1,
     iconSize: 16,
     iconPosition: 'left',
     iconType: 'chevron-down',
@@ -79,30 +90,39 @@ function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
     const [isMenuOpen, setIsOpen] = useState(false);
     const classes = useStyles();
+
     const {
         children,
         className,
         color,
         compact,
+        designVersion,
         disable,
+        disabled,
         fluid,
+        fullWidth,
         id,
         icon,
+        iconProps,
         iconPosition,
         iconSize,
         iconType,
         innerStyle,
         inverse,
         label,
-        outlined,
         optionsTheme,
+        pill,
         relax,
         style,
         tabIndex,
         target,
         title,
+        transparent,
+        variant,
         width,
     } = props;
+
+    const isDesignV2 = designVersion === 2;
 
     function getParentContainer() {
         return dropdownButtonRef.current;
@@ -129,6 +149,8 @@ function DropdownButton(props) {
             inverse
             style={{ margin: icon && !label ? 0 : null }}
             type={iconType}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...iconProps}
         />
     );
 
@@ -141,23 +163,28 @@ function DropdownButton(props) {
             classes={{
                 root: classes.root,
             }}
-            color={isMenuOpen ? 'active' : color}
+            color={color}
             compact={compact}
-            disable={disable}
-            fluid={fluid}
+            designVersion={designVersion}
+            disable={isDesignV2 ? undefined : disable}
+            disabled={disabled}
+            fluid={isDesignV2 ? undefined : fluid}
+            fullWidth={fullWidth}
             icon={icon}
             id={id}
             innerStyle={innerStyle}
             inverse={inverse}
             onClick={onMenuToggle}
-            outlined={outlined}
+            pill={pill}
             ref={dropdownButtonRef}
             relax={relax}
             style={style}
+            tabIndex={tabIndex}
             target={target}
             title={title}
+            transparent={transparent}
+            variant={variant}
             width={width}
-            tabIndex={tabIndex}
         >
             {iconOnLeft}
 

@@ -277,6 +277,7 @@ class ActionBar extends React.PureComponent {
                                             {button && (
                                                 <Button
                                                     color={button.color}
+                                                    designVersion={2}
                                                     disabled={!!button.disabled}
                                                     icon={button.iconType && !button.label}
                                                     id={button.id}
