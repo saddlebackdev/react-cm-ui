@@ -1,6 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.1.6
+_September 8, 2021_
+
+### Core
+- Theme Palette update. [PR #324](https://github.com/saddlebackdev/react-cm-ui/pull/324)
+  - Add `action.disabledBackground`
+  - Change `mode` to `type` for better compatibility with Material UI v4.x (versus 5.x)
+  - Update Material UI core and style dependency versions.
+- PersonPanel updates. [PR #329](https://github.com/saddlebackdev/react-cm-ui/pull/329)
+  - Add new `showSelectButton` prop to PersonPanelDetails to optionally suppress the Select button.
+  - Make showing Person ID in PersonPanelSummary more defensive.
+- Improve Jest Test environment to remove certain console errors during test runs.  [PR #328](https://github.com/saddlebackdev/react-cm-ui/pull/328)
+- Various dependency upgrades to address vulnerabilities courtesy of GitHub's "Dependabot". 
+
 ## 10.1.5
 _August 12, 2021_
 
