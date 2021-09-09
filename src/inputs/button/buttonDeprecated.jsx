@@ -4,17 +4,17 @@ import {
 import ClassNames from 'classnames';
 import React from 'react';
 import {
-    buttonPropTypes,
-    buttonDefaultProps,
+    buttonDeprecatedPropTypes,
+    buttonDeprecatedDefaultProps,
 } from './buttonConstants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    ...buttonPropTypes,
+    ...buttonDeprecatedPropTypes,
 };
 const defaultProps = {
-    ...buttonDefaultProps,
+    ...buttonDeprecatedDefaultProps,
 };
 
 const styles = (theme) => {

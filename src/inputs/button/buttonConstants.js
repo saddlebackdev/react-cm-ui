@@ -7,7 +7,7 @@ export const VARIANTS = {
     text: 'text',
 };
 
-export const buttonV2PropTypes = {
+export const buttonDesignV2PropTypes = {
     as: PropTypes.oneOf(['a', 'button']),
     /**
      * Primary content.
@@ -111,7 +111,7 @@ export const buttonV2PropTypes = {
     variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
 };
 
-export const buttonV2DefaultProps = {
+export const buttonDesignV2DefaultProps = {
     as: 'button',
     className: undefined,
     color: 'default',
