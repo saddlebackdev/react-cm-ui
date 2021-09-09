@@ -40,23 +40,23 @@ const propTypes = {
      * The content of the subheader, normally `ListSubheader`.
      */
     subheader: PropTypes.node,
-    version: PropTypes.number,
+    designVersion: PropTypes.number,
     ...LIST_DEPRECATED_PROP_TYPES,
 };
 
 const defaultProps = {
-    version: 1,
+    designVersion: 1,
     ...LIST_DEPRECATED_DEFAULT_PROPS,
 };
 
 function List(props) {
     const {
         children,
-        version,
+        designVersion,
         ...otherProps
     } = props;
 
-    if (version === 2) {
+    if (designVersion === 2) {
         return (
             <MUIList
                 // eslint-disable-next-line react/jsx-props-no-spreading
