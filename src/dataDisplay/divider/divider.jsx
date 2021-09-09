@@ -1,44 +1,86 @@
-import ClassNames from 'classnames';
+import MUIDivider from '@material-ui/core/Divider';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Utils from '../../utils/utils';
+import {
+    DIVIDER_DEPRECATED_PROP_TYPES,
+} from './constants';
+import DividerDeprecated from './dividerDeprecated';
 
-class Divider extends React.Component {
+const propTypes = {
+    /**
+     * Absolutely position the element.
+     */
+    absolute: PropTypes.bool,
+    /**
+     * Override or extend the styles applied to the component.
+     * See [CSS API](#css) below for more details.
+     */
+    classes: PropTypes.shape({}),
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: PropTypes.elementType,
+    /**
+     * If `true`, a vertical divider will have the correct height when used in flex container.
+     * (By default, a vertical divider will have a calculated height of `0px` if it is the child of
+     * a flex container.)
+     */
+    flexItem: PropTypes.bool,
+    /**
+     * If `true`, the divider will have a lighter color.
+     */
+    light: PropTypes.bool,
+    /**
+     * The divider orientation.
+     */
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    /**
+     * The variant to use.
+     */
+    variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+    version: PropTypes.number,
+    ...DIVIDER_DEPRECATED_PROP_TYPES,
+};
 
-    render() {
-        const { className, color, compact, hidden, inverse, relaxed, style } = this.props;
+const defaultProps = {
+    absolute: false,
+    classes: null,
+    component: 'hr',
+    flexItem: false,
+    light: false,
+    orientation: 'horizontal',
+    variant: 'fullWidth',
+    version: 1,
+};
 
-        const containerClasses = ClassNames('ui', 'divider', className, {
-            'divider-color-alternate': color === 'alternate',
-            'divider-color-highlight': color === 'highlight',
-            'divider-color-inverse': color === 'inverse',
-            'divider-color-inverse-alternate': color === 'inverse-alternate',
-            'divider-color-light': color === 'light',
-            'divider-color-primary': !color || color === 'primary',
-            'divider-compact': compact,
-            'divider-hidden': hidden,
-            'divider-inverse': inverse,
-            'divider-relaxed': relaxed,
-            'divider-relaxed-very': relaxed === 'very',
-        });
+function Divider(props) {
+    const {
+        children,
+        version,
+        ...otherProps
+    } = props;
 
+    if (version === 2) {
         return (
-            <div className={containerClasses} style={style} />
+            <MUIDivider
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...otherProps}
+            />
         );
     }
 
+    return (
+        <DividerDeprecated
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...otherProps}
+        >
+            {children}
+        </DividerDeprecated>
+    );
 }
-Divider.propTypes = {
-    className: PropTypes.string,
-    color: PropTypes.oneOf(Utils.colorEnums()),
-    compact: PropTypes.bool,
-    hidden: PropTypes.bool,
-    inverse: PropTypes.bool,
-    relaxed: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(['very']),
-    ]),
-    style: PropTypes.shape({}),
-};
+
+Divider.propTypes = propTypes;
+Divider.defaultProps = defaultProps;
 
 export default Divider;
