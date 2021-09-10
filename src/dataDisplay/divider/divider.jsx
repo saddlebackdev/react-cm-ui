@@ -39,6 +39,10 @@ const propTypes = {
      * The variant to use.
      */
     variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+    /**
+     * Dependant on the designVersion number, the component can either use our old Divider component
+     * or the new wrapped MUI Divider component.
+     */
     designVersion: PropTypes.number,
     ...DIVIDER_DEPRECATED_PROP_TYPES,
 };

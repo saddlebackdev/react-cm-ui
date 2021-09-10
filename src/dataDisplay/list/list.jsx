@@ -40,6 +40,10 @@ const propTypes = {
      * The content of the subheader, normally `ListSubheader`.
      */
     subheader: PropTypes.node,
+    /**
+     * Dependant on the designVersion number, the component can either use our old List component
+     * or the new wrapped MUI List component.
+     */
     designVersion: PropTypes.number,
     ...LIST_DEPRECATED_PROP_TYPES,
 };

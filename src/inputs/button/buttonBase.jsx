@@ -5,6 +5,10 @@ import ButtonDeprecated from './buttonDeprecated';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    /**
+     * Dependant on the designVersion number, the component can either use our old Button component
+     * or the new Button component.
+     */
     designVersion: PropTypes.number,
 };
 
