@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Utils from '../../utils/utils';
 
-const titlePropType = PropTypes.oneOfType([
+export const TITLE_PROP_TYPE = PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
 ]);
@@ -73,7 +73,7 @@ export const ICON_PROP_TYPES = {
     /**
      * Provides a human-readable title for the element that contains it.
      */
-    title: titlePropType,
+    title: TITLE_PROP_TYPE,
     /**
      * The string for the icon you want to display.
      */

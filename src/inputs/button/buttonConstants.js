@@ -18,6 +18,12 @@ export const buttonDesignV2PropTypes = {
      */
     className: PropTypes.string,
     /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    /**
      * Color of the button.
      */
     color: PropTypes.oneOf([
@@ -95,13 +101,6 @@ export const buttonDesignV2PropTypes = {
      */
     title: PropTypes.string,
     /**
-     * Set a fixed width.
-     */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    /**
      * Set transparent styles.
      */
     transparent: PropTypes.bool,
@@ -109,14 +108,22 @@ export const buttonDesignV2PropTypes = {
      * The variant to use.
      */
     variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
 export const buttonDesignV2DefaultProps = {
     as: 'button',
     className: undefined,
+    classes: undefined,
     color: 'default',
     compact: false,
-    disable: false,
+    disable: 'false',
     fullWidth: false,
     href: undefined,
     icon: false,

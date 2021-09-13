@@ -31,7 +31,7 @@ const styles = (theme) => {
 
     const buttonSize = 32;
     const buttonPillSize = 46;
-    const outlinedWidth = 'inset 0 0 0 1.5px';
+    const outlinedWidth = 'inset 0 0 0 1px';
 
     return {
         contained: {},
