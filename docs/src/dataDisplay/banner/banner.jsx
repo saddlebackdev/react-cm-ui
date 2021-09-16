@@ -28,11 +28,11 @@ export default class BannerSample extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
+                <Button onClick={this._onBannerNotification1Click.bind(this)} designVersion={2}>Banner Notification 1</Button>
 
-                <Button onClick={this._onBannerNotification2Click.bind(this)}>Banner Notification 2</Button>
+                <Button onClick={this._onBannerNotification2Click.bind(this)} designVersion={2}>Banner Notification 2</Button>
 
-                <Button onClick={this._onBannerNotification3Click.bind(this)}>Banner Notification 3</Button>
+                <Button onClick={this._onBannerNotification3Click.bind(this)} designVersion={2}>Banner Notification 3</Button>
 
                 <Banner
                     id={1}
@@ -93,10 +93,10 @@ export default class OnAfterCloseSample extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 1)}>AC Banner 2</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 2)}>AC Banner 3</Button>
-                <Button onClick={this._onAcBannerClick.bind(this, 3)}>AC Banner 4</Button>
+                <Button onClick={this._onAcBannerClick.bind(this, 0)} designVersion={2}>AC Banner 1</Button>
+                <Button onClick={this._onAcBannerClick.bind(this, 1)} designVersion={2}>AC Banner 2</Button>
+                <Button onClick={this._onAcBannerClick.bind(this, 2)} designVersion={2}>AC Banner 3</Button>
+                <Button onClick={this._onAcBannerClick.bind(this, 3)} designVersion={2}>AC Banner 4</Button>
 
                 {this._renderBanners()}
             </div>
@@ -168,9 +168,9 @@ export default class TypeSample extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>
+                <Button onClick={this._onBannerTypeNotificationClick.bind(this)} designVersion={2}>Notification Banner</Button>
 
-                <Button onClick={this._onBannerTypeAlertClick.bind(this)}>Alert Banner</Button>
+                <Button onClick={this._onBannerTypeAlertClick.bind(this)} designVersion={2}>Alert Banner</Button>
 
                 <Banner
                     id="type-1"
@@ -319,11 +319,11 @@ export default class ViewsBanner extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onBannerNotification1Click.bind(this)}>Banner Notification 1</Button>
+                    <Button onClick={this._onBannerNotification1Click.bind(this)} designVersion={2}>Banner Notification 1</Button>
 
-                    <Button onClick={this._onBannerNotification2Click.bind(this)}>Banner Notification 2</Button>
+                    <Button onClick={this._onBannerNotification2Click.bind(this)} designVersion={2}>Banner Notification 2</Button>
 
-                    <Button onClick={this._onBannerNotification3Click.bind(this)}>Banner Notification 3</Button>
+                    <Button onClick={this._onBannerNotification3Click.bind(this)} designVersion={2}>Banner Notification 3</Button>
 
                     <Banner
                         id={1}
@@ -364,10 +364,10 @@ export default class ViewsBanner extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onAcBannerClick.bind(this, 0)}>AC Banner 1</Button>
-                    <Button onClick={this._onAcBannerClick.bind(this, 1)}>AC Banner 2</Button>
-                    <Button onClick={this._onAcBannerClick.bind(this, 2)}>AC Banner 3</Button>
-                    <Button onClick={this._onAcBannerClick.bind(this, 3)}>AC Banner 4</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 0)} designVersion={2}>AC Banner 1</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 1)} designVersion={2}>AC Banner 2</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 2)} designVersion={2}>AC Banner 3</Button>
+                    <Button onClick={this._onAcBannerClick.bind(this, 3)} designVersion={2}>AC Banner 4</Button>
 
                     {this._renderBanners()}
 
@@ -383,9 +383,9 @@ export default class ViewsBanner extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Button onClick={this._onBannerTypeNotificationClick.bind(this)}>Notification Banner</Button>
+                    <Button onClick={this._onBannerTypeNotificationClick.bind(this)} designVersion={2}>Notification Banner</Button>
 
-                    <Button onClick={this._onBannerTypeAlertClick.bind(this)}>Alert Banner</Button>
+                    <Button onClick={this._onBannerTypeAlertClick.bind(this)} designVersion={2}>Alert Banner</Button>
 
                     <Banner
                         id="type-1"

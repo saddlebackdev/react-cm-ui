@@ -263,12 +263,12 @@ describe('<PersonPanelDetails />', () => {
             selectButtonProps: {
                 ...props.selectButtonProps,
                 disable: true,
-                label: 'My Custom Label'
-            }
-        }
+                label: 'My Custom Label',
+            },
+        };
 
         const wrapper = mountWithTheme(
-            <PersonPanelDetails {...testCaseProps}/>,
+            <PersonPanelDetails {...testCaseProps} />,
         );
 
         const selectRecordButton = wrapper.find('.block_name--select').at(0);
@@ -276,7 +276,7 @@ describe('<PersonPanelDetails />', () => {
         expect(selectRecordButton.find('button').prop('disabled')).toBe(true);
         expect(
             selectRecordButton
-                .find('.button-inner-container').prop('children')
+                .find('.button-inner-container').prop('children'),
         ).toBe('My Custom Label');
     });
 });

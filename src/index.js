@@ -12,6 +12,12 @@ export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as Label } from './dataDisplay/label';
 export { default as List } from './dataDisplay/list';
+export { default as ListItem } from './dataDisplay/listItem';
+export { default as ListItemAvatar } from './dataDisplay/listItemAvatar';
+export { default as ListItemIcon } from './dataDisplay/listItemIcon';
+export { default as ListItemSecondaryAction } from './dataDisplay/listItemSecondaryAction';
+export { default as ListItemText } from './dataDisplay/listItemText';
+export { default as ListSubheader } from './dataDisplay/listSubheader';
 export { default as PersonContactInfo } from './dataDisplay/personContactInfo';
 export { default as PersonCoreMilestones } from './dataDisplay/personCoreMilestones';
 export { default as PersonPanel } from './dataDisplay/personPanel';
@@ -27,6 +33,7 @@ export { default as Typography } from './dataDisplay/typography';
 // Feedback
 export { default as ActivityIndicator } from './feedback/activityIndicator';
 export { default as Loader } from './feedback/loader';
+export { default as Skeleton } from './feedback/skeleton';
 export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs

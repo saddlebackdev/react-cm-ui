@@ -24,6 +24,7 @@ function ExampleSnackbar() {
         <div>
             <Button
                 onClick={onClick}
+                designVersion={2}
             >
                 Open snackbar
             </Button>

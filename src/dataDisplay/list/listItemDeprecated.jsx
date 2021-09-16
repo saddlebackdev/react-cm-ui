@@ -1,28 +1,21 @@
 import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Utils from '../../utils/utils';
+import {
+    LIST_DEPRECATED_DEFAULT_PROPS,
+    LIST_DEPRECATED_PROP_TYPES,
+} from './constants';
 
 const propTypes = {
-    as: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    divide: PropTypes.bool,
-    onClick: PropTypes.func,
-    style: PropTypes.shape({}),
+    ...LIST_DEPRECATED_PROP_TYPES,
 };
 
 const defaultProps = {
-    as: null,
-    children: null,
-    className: null,
-    divide: false,
-    onClick: null,
-    style: null,
+    ...LIST_DEPRECATED_DEFAULT_PROPS,
 };
 
-class ListItem extends React.Component {
+class ListItemDeprecated extends React.Component {
     constructor() {
         super();
 
@@ -65,14 +58,18 @@ class ListItem extends React.Component {
         }
 
         return (
-            <ElementType className={containerClasses} onClick={this.onClick} style={style}>
+            <ElementType
+                className={containerClasses}
+                onClick={this.onClick}
+                style={style}
+            >
                 {children}
             </ElementType>
         );
     }
 }
 
-ListItem.propTypes = propTypes;
-ListItem.defaultProps = defaultProps;
+ListItemDeprecated.propTypes = propTypes;
+ListItemDeprecated.defaultProps = defaultProps;
 
-export default ListItem;
+export default ListItemDeprecated;

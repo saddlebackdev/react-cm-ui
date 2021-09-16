@@ -170,10 +170,10 @@ export default class ColorSample extends React.Component {
                 <DrawerDeprecated
                     closeButton={(
                         <Button
-                            color="outline"
                             icon
                             inverse
                             onClick={this._onDrawerColorClick}
+                            outline
                         >
                             <Icon compact inverse type="times" />
                         </Button>

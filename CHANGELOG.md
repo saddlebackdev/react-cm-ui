@@ -1,6 +1,32 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.2.0
+_September 16, 2021_
+
+### Core
+- Button gap closures. [PR #325](https://github.com/saddlebackdev/react-cm-ui/pull/325)
+- List and Divider Chagnes. [PR #327](https://github.com/saddlebackdev/react-cm-ui/pull/327)
+  - List is now wrapping Material-UI's List and Divider components. You will need to use the prop `designVersion` and pass a value of `2` to be able to use MUI.
+- MUI Skeleton, Button, List and ActionBar fixes, and Popover Update. [PR #330](https://github.com/saddlebackdev/react-cm-ui/pull/330)
+
+### Docs
+- Button doc update. [PR #325](https://github.com/saddlebackdev/react-cm-ui/pull/325)
+
+## 10.1.6
+_September 8, 2021_
+
+### Core
+- Theme Palette update. [PR #324](https://github.com/saddlebackdev/react-cm-ui/pull/324)
+  - Add `action.disabledBackground`
+  - Change `mode` to `type` for better compatibility with Material UI v4.x (versus 5.x)
+  - Update Material UI core and style dependency versions.
+- PersonPanel updates. [PR #329](https://github.com/saddlebackdev/react-cm-ui/pull/329)
+  - Add new `showSelectButton` prop to PersonPanelDetails to optionally suppress the Select button.
+  - Make showing Person ID in PersonPanelSummary more defensive.
+- Improve Jest Test environment to remove certain console errors during test runs.  [PR #328](https://github.com/saddlebackdev/react-cm-ui/pull/328)
+- Various dependency upgrades to address vulnerabilities courtesy of GitHub's "Dependabot".
+
 ## 10.1.5
 _August 12, 2021_
 

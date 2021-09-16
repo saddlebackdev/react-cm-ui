@@ -37,6 +37,7 @@ function Example() {
                 <Button
                     onClick={handleNext}
                     disabled={activeStep === 5}
+                    designVersion={2}
                 >
                     Next
                 </Button>
@@ -45,6 +46,7 @@ function Example() {
                 <Button
                     onClick={handleBack}
                     disabled={activeStep === 0}
+                    designVersion={2}
                 >
                     Back
                 </Button>

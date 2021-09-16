@@ -2,21 +2,31 @@ import {
     Button,
     Grid,
 } from 'react-cm-ui';
-/* eslint-disable import/extensions */
+import ClassNames from 'classnames';
 import Collapse from 'react-cm-ui/utils/collapse';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
-/* eslint-enable import/extensions */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import ExampleFrame from './exampleFrame';
 import Highlighter from './highlighter';
 
 const propTypes = {
     children: PropTypes.node.isRequired,
+    height: PropTypes.number,
+    iframe: PropTypes.bool,
+    inverse: PropTypes.bool,
+    maxWidth: PropTypes.number,
     rawCode: PropTypes.string,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
+    height: null,
+    iframe: false,
+    inverse: false,
+    maxWidth: null,
     rawCode: null,
+    title: null,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -43,10 +53,15 @@ const useStyles = makeStyles((theme) => {
             borderRadius: shape.borderRadius.main,
             boxShadow: `0 0 0 1px ${palette.border.secondary}`,
             padding: 22,
+            '&$inverse': {
+                backgroundColor: palette.background.contrastPrimary,
+                color: palette.text.contrastText,
+            },
         },
         highlighter: {
             marginTop: '11px !important',
         },
+        inverse: {},
         root: {
             margin: '0',
             width: '100%',
@@ -61,35 +76,53 @@ const useStyles = makeStyles((theme) => {
 function Example(props) {
     const {
         children,
+        height,
+        iframe,
+        inverse,
+        maxWidth,
         rawCode,
+        title,
     } = props;
 
     const [isCodeExpanded, setIsCodeExpanded] = useState(false);
-
-    const onCodeToggle = () => {
-        setIsCodeExpanded(!isCodeExpanded);
-    };
 
     const classes = useStyles({
         ...props,
         isCodeExpanded,
     });
+
+    const onCodeToggle = () => {
+        setIsCodeExpanded(!isCodeExpanded);
+    };
+
     const codeButtonTitle = 'Show Source';
 
     return (
         <Grid
+            className="example"
             classes={{
                 root: classes.root,
             }}
             spacing={2}
         >
             <Grid.Column
+                className={ClassNames({
+                    [classes.inverse]: inverse,
+                })}
                 classes={{
                     root: classes.exampleColumn,
                 }}
                 sm={12}
             >
-                {children}
+                {iframe ? (
+                    <ExampleFrame
+                        height={height}
+                        maxWidth={maxWidth}
+                        title={title}
+                    >
+                        {children}
+                    </ExampleFrame>
+                ) : children}
             </Grid.Column>
 
             <Grid.Column
@@ -101,10 +134,11 @@ function Example(props) {
                 <div>
                     <Button
                         className={classes.sourceButton}
-                        color="transparent"
                         icon
                         onClick={onCodeToggle}
                         title={codeButtonTitle}
+                        transparent
+                        designVersion={2}
                     >
                         <span
                             className={classes.codeToggleIcon}

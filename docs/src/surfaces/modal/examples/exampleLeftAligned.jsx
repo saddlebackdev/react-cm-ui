@@ -28,6 +28,7 @@ function ModalLeftAlignedSample() {
             <Button
                 color="primary"
                 onClick={onToggle}
+                designVersion={2}
             >
                 Open Left Aligned Modal
             </Button>
@@ -101,6 +102,7 @@ function ModalLeftAlignedSample() {
                             root: classes.cancelButton,
                         }}
                         onClick={onToggle}
+                        designVersion={2}
                     >
                         Cancel
                     </Button>
@@ -108,6 +110,7 @@ function ModalLeftAlignedSample() {
                     <Button
                         color="primary"
                         onClick={onToggle}
+                        designVersion={2}
                     >
                         CTA Label
                     </Button>
