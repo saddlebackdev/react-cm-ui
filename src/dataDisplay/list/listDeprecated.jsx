@@ -1,33 +1,22 @@
 import _ from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import ListItemDeprecated from './listItemDeprecated';
 import Utils from '../../utils/utils';
+import {
+    LIST_DEPRECATED_DEFAULT_PROPS,
+    LIST_DEPRECATED_PROP_TYPES,
+} from './constants';
 
 const propTypes = {
-    as: PropTypes.oneOf(['div', 'ol', 'ul']),
-    children: PropTypes.node,
-    className: PropTypes.string,
-    divide: PropTypes.bool,
-    fluid: PropTypes.bool,
-    horizontal: PropTypes.bool,
-    inverse: PropTypes.bool,
-    style: PropTypes.shape({}),
+    ...LIST_DEPRECATED_PROP_TYPES,
 };
 
 const defaultProps = {
-    as: null,
-    children: null,
-    className: null,
-    divide: null,
-    fluid: null,
-    horizontal: null,
-    inverse: null,
-    style: null,
+    ...LIST_DEPRECATED_DEFAULT_PROPS,
 };
 
-class List extends React.Component {
+class ListDeprecated extends React.Component {
     onItemClick(index, onChildClick, event) {
         if (!_.isUndefined(onChildClick)) {
             onChildClick(index);
@@ -47,6 +36,7 @@ class List extends React.Component {
             inverse,
             style,
         } = this.props;
+
         const containerClasses = ClassNames('ui', 'list', className, {
             'list-divide': divide,
             'list-horizontal': horizontal,
@@ -56,6 +46,7 @@ class List extends React.Component {
 
         const ElementType = Utils.getElementType(as || 'div', this.props);
 
+        // eslint-disable-next-line consistent-return
         const items = React.Children.map(children, (child, index) => {
             if (!_.isNil(child)) {
                 return (
@@ -78,9 +69,9 @@ class List extends React.Component {
     }
 }
 
-List.Item = ListItemDeprecated;
+ListDeprecated.Item = ListItemDeprecated;
 
-List.propTypes = propTypes;
-List.defaultProps = defaultProps;
+ListDeprecated.propTypes = propTypes;
+ListDeprecated.defaultProps = defaultProps;
 
-export default List;
+export default ListDeprecated;

@@ -39,7 +39,11 @@ const propTypes = {
      * The variant to use.
      */
     variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-    version: PropTypes.number,
+    /**
+     * Dependent on the designVersion number, the component can either use our old Divider component
+     * or the new wrapped MUI Divider component.
+     */
+    designVersion: PropTypes.number,
     ...DIVIDER_DEPRECATED_PROP_TYPES,
 };
 
@@ -51,17 +55,17 @@ const defaultProps = {
     light: false,
     orientation: 'horizontal',
     variant: 'fullWidth',
-    version: 1,
+    designVersion: 1,
 };
 
 function Divider(props) {
     const {
         children,
-        version,
+        designVersion,
         ...otherProps
     } = props;
 
-    if (version === 2) {
+    if (designVersion === 2) {
         return (
             <MUIDivider
                 // eslint-disable-next-line react/jsx-props-no-spreading

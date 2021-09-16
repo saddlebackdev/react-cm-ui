@@ -1,11 +1,6 @@
 import MUIList from '@material-ui/core/List';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-    LIST_DEPRECATED_DEFAULT_PROPS,
-    LIST_DEPRECATED_PROP_TYPES,
-} from './constants';
-import ListDeprecated from './listDeprecated';
 
 const propTypes = {
     /**
@@ -16,7 +11,7 @@ const propTypes = {
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
-    classes: PropTypes.shape({}).isRequired,
+    classes: PropTypes.shape({}),
     /**
      * @ignore
      */
@@ -25,7 +20,7 @@ const propTypes = {
      * The component used for the root node.
      * Either a string to use a HTML element or a component.
      */
-    component: PropTypes.elementType,
+    component: PropTypes.node,
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
      * the list and list items.
@@ -40,42 +35,34 @@ const propTypes = {
      * The content of the subheader, normally `ListSubheader`.
      */
     subheader: PropTypes.node,
-    version: PropTypes.number,
-    ...LIST_DEPRECATED_PROP_TYPES,
 };
 
 const defaultProps = {
-    version: 1,
-    ...LIST_DEPRECATED_DEFAULT_PROPS,
+    children: undefined,
+    className: undefined,
+    component: undefined,
+    classes: undefined,
+    dense: false,
+    disablePadding: false,
+    subheader: undefined,
 };
 
 function List(props) {
     const {
         children,
-        version,
         ...otherProps
     } = props;
 
-    if (version === 2) {
-        return (
-            <MUIList
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...otherProps}
-            >
-                {children}
-            </MUIList>
-        );
-    }
-
     return (
-        <ListDeprecated
+        <MUIList
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
         >
             {children}
-        </ListDeprecated>
+        </MUIList>
     );
 }
+
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;

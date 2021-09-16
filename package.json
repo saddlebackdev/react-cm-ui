@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",
     "autosize": "^3.0.17",
     "classnames": "^2.2.5",

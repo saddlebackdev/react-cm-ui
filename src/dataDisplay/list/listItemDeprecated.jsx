@@ -15,7 +15,7 @@ const defaultProps = {
     ...LIST_DEPRECATED_DEFAULT_PROPS,
 };
 
-class ListItem extends React.Component {
+class ListItemDeprecated extends React.Component {
     constructor() {
         super();
 
@@ -58,14 +58,18 @@ class ListItem extends React.Component {
         }
 
         return (
-            <ElementType className={containerClasses} onClick={this.onClick} style={style}>
+            <ElementType
+                className={containerClasses}
+                onClick={this.onClick}
+                style={style}
+            >
                 {children}
             </ElementType>
         );
     }
 }
 
-ListItem.propTypes = propTypes;
-ListItem.defaultProps = defaultProps;
+ListItemDeprecated.propTypes = propTypes;
+ListItemDeprecated.defaultProps = defaultProps;
 
-export default ListItem;
+export default ListItemDeprecated;

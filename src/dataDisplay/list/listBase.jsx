@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './button';
-import ButtonDeprecated from './buttonDeprecated';
+import List from './list';
+import ListDeprecated from './listDeprecated';
+import ListItemDeprecated from './listItemDeprecated';
 
 const propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     /**
      * Dependent on the designVersion number, the component can either use our old Button component
      * or the new Button component.
@@ -13,11 +14,12 @@ const propTypes = {
 };
 
 const defaultProps = {
+    children: undefined,
     designVersion: 1,
 };
 
 // eslint-disable-next-line prefer-arrow-callback
-const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
+const ListBase = React.forwardRef(function ListBase(props, ref) {
     const {
         children,
         designVersion,
@@ -26,28 +28,30 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
     if (designVersion === 2) {
         return (
-            <Button
+            <List
                 ref={ref}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
             >
                 {children}
-            </Button>
+            </List>
         );
     }
 
     return (
-        <ButtonDeprecated
+        <ListDeprecated
             ref={ref}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
         >
             {children}
-        </ButtonDeprecated>
+        </ListDeprecated>
     );
 });
 
-ButtonBase.propTypes = propTypes;
-ButtonBase.defaultProps = defaultProps;
+ListBase.Item = ListItemDeprecated;
 
-export default ButtonBase;
+ListBase.propTypes = propTypes;
+ListBase.defaultProps = defaultProps;
+
+export default ListBase;

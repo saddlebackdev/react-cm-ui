@@ -7,7 +7,7 @@ export const VARIANTS = {
     text: 'text',
 };
 
-export const buttonV2PropTypes = {
+export const buttonDesignV2PropTypes = {
     as: PropTypes.oneOf(['a', 'button']),
     /**
      * Primary content.
@@ -17,6 +17,12 @@ export const buttonV2PropTypes = {
      * Additional classes.
      */
     className: PropTypes.string,
+    /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     /**
      * Color of the button.
      */
@@ -95,13 +101,6 @@ export const buttonV2PropTypes = {
      */
     title: PropTypes.string,
     /**
-     * Set a fixed width.
-     */
-    width: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
-    /**
      * Set transparent styles.
      */
     transparent: PropTypes.bool,
@@ -109,14 +108,22 @@ export const buttonV2PropTypes = {
      * The variant to use.
      */
     variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
-export const buttonV2DefaultProps = {
+export const buttonDesignV2DefaultProps = {
     as: 'button',
     className: undefined,
+    classes: undefined,
     color: 'default',
     compact: false,
-    disable: false,
+    disable: 'false',
     fullWidth: false,
     href: undefined,
     icon: false,

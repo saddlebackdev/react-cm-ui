@@ -33,6 +33,7 @@ export { default as Typography } from './dataDisplay/typography';
 // Feedback
 export { default as ActivityIndicator } from './feedback/activityIndicator';
 export { default as Loader } from './feedback/loader';
+export { default as Skeleton } from './feedback/skeleton';
 export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs

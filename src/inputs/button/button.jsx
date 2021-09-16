@@ -4,8 +4,8 @@ import {
 import ClassNames from 'classnames';
 import React from 'react';
 import {
-    buttonV2PropTypes,
-    buttonV2DefaultProps,
+    buttonDesignV2PropTypes,
+    buttonDesignV2DefaultProps,
     VARIANTS,
 } from './buttonConstants';
 import {
@@ -16,10 +16,10 @@ import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    ...buttonV2PropTypes,
+    ...buttonDesignV2PropTypes,
 };
 const defaultProps = {
-    ...buttonV2DefaultProps,
+    ...buttonDesignV2DefaultProps,
 };
 
 const styles = (theme) => {
@@ -31,7 +31,7 @@ const styles = (theme) => {
 
     const buttonSize = 32;
     const buttonPillSize = 46;
-    const outlinedWidth = 'inset 0 0 0 1.5px';
+    const outlinedWidth = 'inset 0 0 0 1px';
 
     return {
         contained: {},
