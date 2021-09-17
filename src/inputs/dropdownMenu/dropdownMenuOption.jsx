@@ -39,7 +39,8 @@ function DropdownMenuOption(props) {
         style,
         tabIndex,
     } = props;
-    const containerClasses = ClassNames(OPTION_CLASS_NAME, className, {
+
+    const rootClasses = ClassNames(OPTION_CLASS_NAME, className, {
         [`${OPTION_CLASS_NAME}-disable`]: disable,
     });
 
@@ -57,7 +58,7 @@ function DropdownMenuOption(props) {
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
             id={id}
             onClick={(event) => handleOnClick(event)}
             onKeyDown={(event) => handleOnKeyDown(event)}

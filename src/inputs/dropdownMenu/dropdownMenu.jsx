@@ -13,7 +13,6 @@ import {
     OPTION_INNER_CLASS_NAME,
     OPTIONS_THEME_LIGHT,
 } from './dropdownMenuConstants';
-
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -71,9 +70,11 @@ const useStyles = makeStyles((theme) => {
             ),
             boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.43)',
             boxSizing: 'border-box',
+            cursor: 'default',
             margin: '5px 0',
             padding: 0,
             position: 'absolute',
+            textAlign: 'left',
             transform: 'opacity 300ms ease-in',
             zIndex: '1000',
             '& .dropdown_menu': {
@@ -172,6 +173,7 @@ function DropdownMenu(props) {
         }
 
         const dropdownMenuObj = domUtils.isInViewport(dropdownMenuRef.current, parentContainer);
+
         const {
             isInTop,
             isInRight,
@@ -179,6 +181,7 @@ function DropdownMenu(props) {
             topBias,
             bottomBias,
         } = dropdownMenuObj;
+
         const menuXPosition = isInRight ? 'left' : 'right';
         let menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
 
@@ -236,16 +239,22 @@ function DropdownMenu(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
-    const containerClasses = ClassNames('ui', BEM_BLOCK_NAME, className, classes.root, {
-        [classes.dropdownMenuClosed]: !isOpen,
-        [classes.dropdownMenuOpen]: isOpen,
-        [`${BEM_BLOCK_NAME}-closed`]: !isOpen,
-        [`${BEM_BLOCK_NAME}-opened`]: isOpen,
-    });
+    const rootClasses = ClassNames(
+        'ui',
+        BEM_BLOCK_NAME,
+        className,
+        classes.root,
+        {
+            [classes.dropdownMenuClosed]: !isOpen,
+            [classes.dropdownMenuOpen]: isOpen,
+            [`${BEM_BLOCK_NAME}-closed`]: !isOpen,
+            [`${BEM_BLOCK_NAME}-opened`]: isOpen,
+        },
+    );
 
     return (
         <div
-            className={containerClasses}
+            className={rootClasses}
             id={id}
             ref={dropdownMenuRef}
             style={{
