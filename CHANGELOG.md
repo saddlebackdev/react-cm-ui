@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.2.1
+_September 20, 2021_
+
+### Core
+- Dropdown Button enhancements and fixes. [PR #331](https://github.com/saddlebackdev/react-cm-ui/pull/331)
+  - New DropdownButton.Heading and DropdownButton.Divider components.
+  - Misc. styling fixes.
+
 ## 10.2.0
 _September 16, 2021_
 

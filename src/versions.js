@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.1.6',
+        package: '10.2.1',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -38,6 +38,11 @@ const versions = {
                 },
             },
             inputs: {
+                dropdownButton: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
+                },
                 prompt: {
                     devLibraryVersion: '< 1.0.0',
                     designLibraryVersion: '2.0.0',
