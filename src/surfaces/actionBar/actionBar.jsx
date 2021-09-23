@@ -89,7 +89,7 @@ const defaultProps = {
 };
 
 const HAS_DRAWER_ACTION_BAR_CLASS_NAME = 'drawer-has_action_bar';
-const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page-has_action\_bar';
+const HAS_PAGE_ACTION_BAR_CLASS_NAME = 'page-has_action_bar';
 const HAS_DRAWER_CONTENT_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'drawer--content-has_action_bar_mobile_search_visible';
 const HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME = 'page--container-has_action_bar_mobile_search_visible';
 
