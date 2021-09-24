@@ -5,13 +5,12 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import {
-    buttonDesignV2PropTypes,
-} from '../button/buttonConstants';
-import {
     ICON_PROP_TYPES,
 } from '../../dataDisplay/icon/iconConstants';
 import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
+import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
+import DropdownMenuHeading from '../dropdownMenu/dropdownMenuHeading';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
@@ -21,6 +20,7 @@ const propTypes = {
      * Override or extend the styles applied to ButtonDropdown.
      */
     classes: PropTypes.shape({
+        dropdownMenuRoot: PropTypes.string,
         root: PropTypes.string,
     }),
     /**
@@ -84,6 +84,7 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles({
+    dropdownMenuRoot: {},
     root: {
         overflow: 'visible',
         position: 'relative',
@@ -93,7 +94,7 @@ const useStyles = makeStyles({
 function DropdownButton(props) {
     const dropdownButtonRef = useRef(null);
     const [isMenuOpen, setIsOpen] = useState(false);
-    const classes = useStyles();
+    const classes = useStyles(props);
 
     const {
         children,
@@ -229,6 +230,9 @@ function DropdownButton(props) {
 
             <DropdownMenu
                 className={`${bemClassName}--menu`}
+                classes={{
+                    root: classes.dropdownMenuRoot,
+                }}
                 isOpen={isMenuOpen}
                 onToggleOpen={onMenuToggle}
                 getParentContainer={getParentContainer}
@@ -240,7 +244,9 @@ function DropdownButton(props) {
     );
 }
 
+DropdownButton.Divider = DropdownMenuDivider;
 DropdownButton.Option = DropdownMenuOption;
+DropdownButton.Heading = DropdownMenuHeading;
 
 DropdownButton.propTypes = propTypes;
 DropdownButton.defaultProps = defaultProps;

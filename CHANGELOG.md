@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.2.2
+_September 24, 2021_
+
+### Core
+- Action Bar Mobile Search Auto Focus. [PR #333](https://github.com/saddlebackdev/react-cm-ui/pull/333)
+
 ## 10.2.1
 _September 20, 2021_
 
