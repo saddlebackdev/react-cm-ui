@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.2.1',
+        package: '10.2.2',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -85,7 +85,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/p/577E033D-4ACB-46BE-BC78-81042803D4AD',
                 },
                 actionBar: {
-                    devLibraryVersion: '< 1.0.2',
+                    devLibraryVersion: '< 1.0.3',
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
                 },
