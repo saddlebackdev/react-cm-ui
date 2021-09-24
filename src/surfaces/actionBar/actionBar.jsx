@@ -1,4 +1,5 @@
 import {
+    forEach,
     isArray,
     isEmpty,
     map,
@@ -18,6 +19,10 @@ import Grid from '../../layout/grid';
 import Icon from '../../dataDisplay/icon';
 import List from '../../dataDisplay/list';
 import Utils from '../../utils/utils';
+
+const searchPropTypes = PropTypes.shape({
+    autoFocus: PropTypes.bool,
+});
 
 const propTypes = {
     children: PropTypes.element,
@@ -43,11 +48,11 @@ const propTypes = {
             iconBack: PropTypes.shape({}),
             iconFilter: PropTypes.shape({}),
             iconGrid: PropTypes.shape({}),
-            iconSearch: PropTypes.shape({}),
+            iconSearch: searchPropTypes,
             iconTable: PropTypes.shape({}),
         })),
         md: PropTypes.oneOf(GRID_SIZES),
-        search: PropTypes.shape({}),
+        search: searchPropTypes,
         sm: PropTypes.oneOf(GRID_SIZES),
         xl: PropTypes.oneOf(GRID_SIZES),
     })),
@@ -100,7 +105,9 @@ class ActionBar extends React.PureComponent {
     }
 
     componentDidMount() {
-        const { moduleType } = this.props;
+        const {
+            moduleType,
+        } = this.props;
 
         if (this.actionBarRef) {
             const closestDrawer = this.actionBarRef.closest('.ui.drawer');
@@ -114,6 +121,8 @@ class ActionBar extends React.PureComponent {
             if (moduleType === 'page' && closestPage) {
                 closestPage.classList.add(HAS_PAGE_ACTION_BAR_CLASS_NAME);
             }
+
+            this.setMobileSearchAutoFocus();
         }
     }
 
@@ -180,6 +189,25 @@ class ActionBar extends React.PureComponent {
         });
     }
 
+    setMobileSearchAutoFocus() {
+        const {
+            columns,
+        } = this.props;
+
+        let hasEventBeenCalled = false;
+
+        forEach(columns, (c) => {
+            if (c.list) {
+                forEach(c.list, (l) => {
+                    if (!hasEventBeenCalled && l.iconSearch?.autoFocus) {
+                        this.onMobileSearchIconToggle();
+                        hasEventBeenCalled = true;
+                    }
+                });
+            }
+        });
+    }
+
     render() {
         const {
             children,
@@ -231,6 +259,7 @@ class ActionBar extends React.PureComponent {
                                         jsx,
                                         search,
                                     } = column;
+
                                     let { list } = column;
                                     const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
                                     const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`; // eslint-disable-line no-plusplus
