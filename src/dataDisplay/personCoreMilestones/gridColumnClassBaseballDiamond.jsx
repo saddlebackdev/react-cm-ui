@@ -419,7 +419,7 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass101]: !iconColor && hasTakenClass101,
+            [classes.iconBaseColorClass101]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
@@ -435,7 +435,7 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass201]: !iconColor && hasTakenClass201,
+            [classes.iconBaseColorClass201]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
@@ -451,7 +451,7 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass301]: !iconColor && hasTakenClass301,
+            [classes.iconBaseColorClass301]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
@@ -467,7 +467,7 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass401]: !iconColor && hasTakenClass401,
+            [classes.iconBaseColorClass401]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
