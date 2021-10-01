@@ -60,77 +60,77 @@ function ExampleAdultMaleWhite() {
             case 'acceptedChristDate':
                 newData = {
                     ...data,
-                    acceptedChristDate: value.date,
+                    acceptedChristDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'activeInMissionsDate':
                 newData = {
                     ...data,
-                    activeInMissionsDate: value.date,
+                    activeInMissionsDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'attendedClass101Date':
                 newData = {
                     ...data,
-                    attendedClass101Date: value.date,
+                    attendedClass101Date: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'attendedClass201Date':
                 newData = {
                     ...data,
-                    attendedClass201Date: value.date,
+                    attendedClass201Date: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'attendedClass301Date':
                 newData = {
                     ...data,
-                    attendedClass301Date: value.date,
+                    attendedClass301Date: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'attendedClass401Date':
                 newData = {
                     ...data,
-                    attendedClass401Date: value.date,
+                    attendedClass401Date: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'baptismDate':
                 newData = {
                     ...data,
-                    baptismDate: value.date,
+                    baptismDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'congregationDate':
                 newData = {
                     ...data,
-                    congregationDate: value.date,
+                    congregationDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'firstContactDate':
                 newData = {
                     ...data,
-                    firstContactDate: value.date,
+                    firstContactDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'firstMinistryJoinDate':
                 newData = {
                     ...data,
-                    firstMinistryJoinDate: value.date,
+                    firstMinistryJoinDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'firstSmallGroupJoinDate':
                 newData = {
                     ...data,
-                    firstSmallGroupJoinDate: value.date,
+                    firstSmallGroupJoinDate: moment(value.date).toISOString(),
                 };
 
                 break;
@@ -242,28 +242,28 @@ function ExampleAdultMaleWhite() {
             case 'signedMaturityCovenantDate':
                 newData = {
                     ...data,
-                    signedMaturityCovenantDate: value.date,
+                    signedMaturityCovenantDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'signedMembershipAgreementDate':
                 newData = {
                     ...data,
-                    signedMembershipAgreementDate: value.date,
+                    signedMembershipAgreementDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'signedMinistryCovenantDate':
                 newData = {
                     ...data,
-                    signedMinistryCovenantDate: value.date,
+                    signedMinistryCovenantDate: moment(value.date).toISOString(),
                 };
 
                 break;
             case 'signedMissionCovenantDate':
                 newData = {
                     ...data,
-                    signedMissionCovenantDate: value.date,
+                    signedMissionCovenantDate: moment(value.date).toISOString(),
                 };
 
                 break;
@@ -470,7 +470,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.attendedClass101Date
+                                    data.attendedClass101Date (101)
                                 </Typography>
 
                                 <Grid>
@@ -495,7 +495,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.attendedClass201Date
+                                    data.attendedClass201Date (201)
                                 </Typography>
 
                                 <Grid>
@@ -520,7 +520,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.attendedClass301Date
+                                    data.attendedClass301Date (301)
                                 </Typography>
 
                                 <Grid>
@@ -545,7 +545,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.attendedClass401Date
+                                    data.attendedClass401Date (401)
                                 </Typography>
 
                                 <Grid>
@@ -705,11 +705,11 @@ function ExampleAdultMaleWhite() {
                                             options={[
                                                 {
                                                     label: 'Female',
-                                                    value: 'm',
+                                                    value: 'f',
                                                 },
                                                 {
                                                     label: 'Male',
-                                                    value: 'f',
+                                                    value: 'm',
                                                 },
                                             ]}
                                             onChange={
@@ -764,7 +764,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasSignedMaturityCovenant
+                                    data.hasSignedMaturityCovenant (201)
                                 </Typography>
 
                                 <Grid>
@@ -797,7 +797,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasSignedMembershipAgreement
+                                    data.hasSignedMembershipAgreement (101)
                                 </Typography>
 
                                 <Grid>
@@ -830,7 +830,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasSignedMinistryCovenant
+                                    data.hasSignedMinistryCovenant (301)
                                 </Typography>
 
                                 <Grid>
@@ -863,7 +863,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasSignedMissionCovenant
+                                    data.hasSignedMissionCovenant (401)
                                 </Typography>
 
                                 <Grid>
@@ -896,7 +896,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasTakenClass101
+                                    data.hasTakenClass101  (101)
                                 </Typography>
 
                                 <Grid>
@@ -906,7 +906,7 @@ function ExampleAdultMaleWhite() {
                                             sm="auto"
                                         >
                                             <Radio
-                                                checked={data.hasTakenClass201 === type}
+                                                checked={data.hasTakenClass101 === type}
                                                 id={type.toString()}
                                                 label={type.toString()}
                                                 name="hasTakenClass101RadioGroup"
@@ -929,7 +929,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasTakenClass201
+                                    data.hasTakenClass201 (201)
                                 </Typography>
 
                                 <Grid>
@@ -962,7 +962,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasTakenClass301
+                                    data.hasTakenClass301 (301)
                                 </Typography>
 
                                 <Grid>
@@ -995,7 +995,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.hasTakenClass401
+                                    data.hasTakenClass401 (401)
                                 </Typography>
 
                                 <Grid>
@@ -1200,7 +1200,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.signedMaturityCovenantDate
+                                    data.signedMaturityCovenantDate (201)
                                 </Typography>
 
                                 <Grid>
@@ -1225,7 +1225,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.signedMembershipAgreementDate
+                                    data.signedMembershipAgreementDate (101)
                                 </Typography>
 
                                 <Grid>
@@ -1250,7 +1250,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.signedMinistryCovenantDate
+                                    data.signedMinistryCovenantDate (301)
                                 </Typography>
 
                                 <Grid>
@@ -1275,16 +1275,16 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.signedMissionCovenantDate
+                                    data.signedMissionCovenantDate (401)
                                 </Typography>
 
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.signedMinistryCovenantDate ? moment(data.signedMinistryCovenantDate) : null}
+                                            date={data.signedMissionCovenantDate ? moment(data.signedMissionCovenantDate) : null}
                                             onChange={
                                                 (value) => onDataChange(
-                                                    'signedMinistryCovenantDate',
+                                                    'signedMissionCovenantDate',
                                                     value,
                                                 )
                                             }
