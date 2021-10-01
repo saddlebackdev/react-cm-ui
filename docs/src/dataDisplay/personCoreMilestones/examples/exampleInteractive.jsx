@@ -28,7 +28,7 @@ function ExampleAdultMaleWhite() {
     const [className, setClassName] = React.useState(undefined);
     const [data, setData] = React.useState({ ...DATA_ADULT_MALE });
     const [disablePopover, setDisablePopover] = React.useState(booleanTypes[1]);
-    const [iconColor, setIconColor] = React.useState(undefined);
+    const [iconColor, setIconColor] = React.useState('orange');
     const [iconSize, setIconSize] = React.useState(undefined);
     const [id, setId] = React.useState(undefined);
     const [inverse, setInverse] = React.useState(false);
@@ -408,6 +408,7 @@ function ExampleAdultMaleWhite() {
                                     <Grid.Column>
                                         <Input
                                             onChange={onClassNameChange}
+                                            value={className}
                                         />
                                     </Grid.Column>
                                 </Grid>
@@ -426,7 +427,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.acceptedChristDate ? moment(data.acceptedChristDate) : null}
+                                            date={data.acceptedChristDate ?
+                                                moment(data.acceptedChristDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'acceptedChristDate',
@@ -451,7 +454,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.activeInMissionsDate ? moment(data.activeInMissionsDate) : null}
+                                            date={data.activeInMissionsDate ?
+                                                moment(data.activeInMissionsDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'activeInMissionsDate',
@@ -468,24 +473,108 @@ function ExampleAdultMaleWhite() {
                             >
                                 <Typography
                                     gutterBottom
-                                    variant="h5"
+                                    variant="h4"
                                 >
-                                    data.attendedClass101Date (101)
+                                    101
                                 </Typography>
 
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.attendedClass101Date ? moment(data.attendedClass101Date) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'attendedClass101Date',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
+                                <Card style={{ marginTop: 0 }}>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.attendedClass101Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.attendedClass101Date ?
+                                            moment(data.attendedClass101Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'attendedClass101Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasSignedMembershipAgreement
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasSignedMembershipAgreement === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasSignedMembershipAgreementRadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasSignedMembershipAgreement',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasTakenClass101
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasTakenClass101 === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasTakenClass101RadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasTakenClass101',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.signedMembershipAgreementDate
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.signedMembershipAgreementDate ?
+                                            moment(data.signedMembershipAgreementDate) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'signedMembershipAgreementDate',
+                                                value,
+                                            )
+                                        }
+                                    />
+                                </Card>
                             </Grid.Column>
 
                             <Grid.Column
@@ -493,24 +582,108 @@ function ExampleAdultMaleWhite() {
                             >
                                 <Typography
                                     gutterBottom
-                                    variant="h5"
+                                    variant="h4"
                                 >
-                                    data.attendedClass201Date (201)
+                                    201
                                 </Typography>
 
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.attendedClass201Date ? moment(data.attendedClass201Date) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'attendedClass201Date',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
+                                <Card style={{ marginTop: 0 }}>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.attendedClass201Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.attendedClass201Date ?
+                                            moment(data.attendedClass201Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'attendedClass201Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasSignedMaturityCovenant
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasSignedMaturityCovenant === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasSignedMaturityCovenantRadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasSignedMaturityCovenant',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasTakenClass201
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasTakenClass201 === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasTakenClass201RadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasTakenClass201',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.signedMaturityCovenantDate
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.signedMaturityCovenantDate ?
+                                            moment(data.signedMaturityCovenantDate) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'signedMaturityCovenantDate',
+                                                value,
+                                            )
+                                        }
+                                    />
+                                </Card>
                             </Grid.Column>
 
                             <Grid.Column
@@ -518,24 +691,103 @@ function ExampleAdultMaleWhite() {
                             >
                                 <Typography
                                     gutterBottom
-                                    variant="h5"
+                                    variant="h4"
                                 >
-                                    data.attendedClass301Date (301)
+                                    201
                                 </Typography>
 
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.attendedClass301Date ? moment(data.attendedClass301Date) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'attendedClass301Date',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
+                                <Card style={{ marginTop: 0 }}>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.attendedClass301Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.attendedClass301Date ?
+                                            moment(data.attendedClass301Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'attendedClass301Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasSignedMinistryCovenant
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={
+                                                        data.hasSignedMinistryCovenant === type
+                                                    }
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasSignedMinistryCovenantRadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasSignedMinistryCovenant',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasTakenClass301
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasTakenClass301 === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasTakenClass301RadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasTakenClass301',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <DatePickerInput
+                                        date={data.signedMinistryCovenantDate ?
+                                            moment(data.signedMinistryCovenantDate) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'signedMinistryCovenantDate',
+                                                value,
+                                            )
+                                        }
+                                    />
+                                </Card>
                             </Grid.Column>
 
                             <Grid.Column
@@ -543,24 +795,108 @@ function ExampleAdultMaleWhite() {
                             >
                                 <Typography
                                     gutterBottom
-                                    variant="h5"
+                                    variant="h4"
                                 >
-                                    data.attendedClass401Date (401)
+                                    401
                                 </Typography>
 
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.attendedClass401Date ? moment(data.attendedClass401Date) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'attendedClass401Date',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
+                                <Card style={{ marginTop: 0 }}>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.attendedClass401Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.attendedClass401Date ?
+                                            moment(data.attendedClass401Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'attendedClass401Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasSignedMissionCovenant
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasSignedMissionCovenant === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasSignedMissionCovenantRadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasSignedMissionCovenant',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.hasTakenClass401
+                                    </Typography>
+
+                                    <Grid>
+                                        {map(booleanTypes, (type) => (
+                                            <Grid.Column
+                                                key={type.toString()}
+                                                sm="auto"
+                                            >
+                                                <Radio
+                                                    checked={data.hasTakenClass401 === type}
+                                                    id={type.toString()}
+                                                    label={type.toString()}
+                                                    name="hasTakenClass401RadioGroup"
+                                                    onChange={
+                                                        (value) => onDataChange(
+                                                            'hasTakenClass401',
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            </Grid.Column>
+                                        ))}
+                                    </Grid>
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.signedMissionCovenantDate
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.signedMissionCovenantDate ?
+                                            moment(data.signedMissionCovenantDate) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'signedMissionCovenantDate',
+                                                value,
+                                            )
+                                        }
+                                    />
+                                </Card>
                             </Grid.Column>
 
                             <Grid.Column
@@ -576,7 +912,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.baptismDate ? moment(data.baptismDate) : null}
+                                            date={data.baptismDate ?
+                                                moment(data.baptismDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'baptismDate',
@@ -601,7 +939,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.congregationDate ? moment(data.congregationDate) : null}
+                                            date={data.congregationDate ?
+                                                moment(data.congregationDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'congregationDate',
@@ -626,7 +966,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.firstContactDate ? moment(data.firstContactDate) : null}
+                                            date={data.firstContactDate ?
+                                                moment(data.firstContactDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'firstContactDate',
@@ -651,7 +993,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.firstMinistryJoinDate ? moment(data.firstMinistryJoinDate) : null}
+                                            date={data.firstMinistryJoinDate ?
+                                                moment(data.firstMinistryJoinDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'firstMinistryJoinDate',
@@ -676,7 +1020,9 @@ function ExampleAdultMaleWhite() {
                                 <Grid>
                                     <Grid.Column>
                                         <DatePickerInput
-                                            date={data.firstSmallGroupJoinDate ? moment(data.firstSmallGroupJoinDate) : null}
+                                            date={data.firstSmallGroupJoinDate ?
+                                                moment(data.firstSmallGroupJoinDate) :
+                                                null}
                                             onChange={
                                                 (value) => onDataChange(
                                                     'firstSmallGroupJoinDate',
@@ -748,270 +1094,6 @@ function ExampleAdultMaleWhite() {
                                                 onChange={
                                                     (value) => onDataChange(
                                                         'hasAcceptedChrist',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasSignedMaturityCovenant (201)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasSignedMaturityCovenant === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasSignedMaturityCovenantRadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasSignedMaturityCovenant',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasSignedMembershipAgreement (101)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasSignedMembershipAgreement === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasSignedMembershipAgreementRadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasSignedMembershipAgreement',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasSignedMinistryCovenant (301)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasSignedMinistryCovenant === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasSignedMinistryCovenantRadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasSignedMinistryCovenant',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasSignedMissionCovenant (401)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasSignedMissionCovenant === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasSignedMissionCovenantRadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasSignedMissionCovenant',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasTakenClass101  (101)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasTakenClass101 === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasTakenClass101RadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasTakenClass101',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasTakenClass201 (201)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasTakenClass201 === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasTakenClass201RadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasTakenClass201',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasTakenClass301 (301)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasTakenClass301 === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasTakenClass301RadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasTakenClass301',
-                                                        value,
-                                                    )
-                                                }
-                                            />
-                                        </Grid.Column>
-                                    ))}
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.hasTakenClass401 (401)
-                                </Typography>
-
-                                <Grid>
-                                    {map(booleanTypes, (type) => (
-                                        <Grid.Column
-                                            key={type.toString()}
-                                            sm="auto"
-                                        >
-                                            <Radio
-                                                checked={data.hasTakenClass401 === type}
-                                                id={type.toString()}
-                                                label={type.toString()}
-                                                name="hasTakenClass401RadioGroup"
-                                                onChange={
-                                                    (value) => onDataChange(
-                                                        'hasTakenClass401',
                                                         value,
                                                     )
                                                 }
@@ -1200,106 +1282,6 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h5"
                                 >
-                                    data.signedMaturityCovenantDate (201)
-                                </Typography>
-
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.signedMaturityCovenantDate ? moment(data.signedMaturityCovenantDate) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'signedMaturityCovenantDate',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.signedMembershipAgreementDate (101)
-                                </Typography>
-
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.signedMembershipAgreementDate ? moment(data.signedMembershipAgreementDate) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'signedMembershipAgreementDate',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.signedMinistryCovenantDate (301)
-                                </Typography>
-
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.signedMinistryCovenantDate ? moment(data.signedMinistryCovenantDate) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'signedMinistryCovenantDate',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
-                                    data.signedMissionCovenantDate (401)
-                                </Typography>
-
-                                <Grid>
-                                    <Grid.Column>
-                                        <DatePickerInput
-                                            date={data.signedMissionCovenantDate ? moment(data.signedMissionCovenantDate) : null}
-                                            onChange={
-                                                (value) => onDataChange(
-                                                    'signedMissionCovenantDate',
-                                                    value,
-                                                )
-                                            }
-                                        />
-                                    </Grid.Column>
-                                </Grid>
-                            </Grid.Column>
-
-                            <Grid.Column
-                                sm={12}
-                            >
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                >
                                     disablePopover
                                 </Typography>
 
@@ -1335,6 +1317,7 @@ function ExampleAdultMaleWhite() {
                                     <Grid.Column>
                                         <Input
                                             onChange={onIconColorChange}
+                                            value={iconColor}
                                         />
                                     </Grid.Column>
                                 </Grid>
@@ -1355,6 +1338,7 @@ function ExampleAdultMaleWhite() {
                                         <Input
                                             onChange={onIconSizeChange}
                                             type="number"
+                                            value={iconSize}
                                         />
                                     </Grid.Column>
                                 </Grid>
@@ -1374,6 +1358,7 @@ function ExampleAdultMaleWhite() {
                                     <Grid.Column>
                                         <Input
                                             onChange={onIdChange}
+                                            value={id}
                                         />
                                     </Grid.Column>
                                 </Grid>
@@ -1449,6 +1434,7 @@ function ExampleAdultMaleWhite() {
                                     <Grid.Column>
                                         <Input
                                             onChange={onParentConsumerChange}
+                                            value={parentConsumer}
                                         />
                                     </Grid.Column>
                                 </Grid>
