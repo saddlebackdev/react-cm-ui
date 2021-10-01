@@ -143,30 +143,95 @@ function ExampleAdultMaleWhite() {
 
                 break;
             case 'hasAcceptedChrist':
+                newData = {
+                    ...data,
+                    hasAcceptedChrist: value,
+                };
+
                 break;
             case 'hasSignedMaturityCovenant':
+                newData = {
+                    ...data,
+                    hasSignedMaturityCovenant: value,
+                };
+
                 break;
             case 'hasSignedMembershipAgreement':
+                newData = {
+                    ...data,
+                    hasSignedMembershipAgreement: value,
+                };
+
                 break;
             case 'hasSignedMinistryCovenant':
+                newData = {
+                    ...data,
+                    hasSignedMinistryCovenant: value,
+                };
+
                 break;
             case 'hasSignedMissionCovenant':
+                newData = {
+                    ...data,
+                    hasSignedMissionCovenant: value,
+                };
+
                 break;
             case 'hasTakenClass101':
+                newData = {
+                    ...data,
+                    hasTakenClass101: value,
+                };
+
                 break;
             case 'hasTakenClass201':
+                newData = {
+                    ...data,
+                    hasTakenClass201: value,
+                };
+
                 break;
             case 'hasTakenClass301':
+                newData = {
+                    ...data,
+                    hasTakenClass301: value,
+                };
+
                 break;
             case 'hasTakenClass401':
+                newData = {
+                    ...data,
+                    hasTakenClass401: value,
+                };
+
                 break;
             case 'isActiveInMissions':
+                newData = {
+                    ...data,
+                    isActiveInMissions: value,
+                };
+
                 break;
             case 'isBaptised':
+                newData = {
+                    ...data,
+                    isBaptised: value,
+                };
+
                 break;
             case 'isInMinistry':
+                newData = {
+                    ...data,
+                    isInMinistry: value,
+                };
+
                 break;
             case 'isInSmallGroup':
+                newData = {
+                    ...data,
+                    isInSmallGroup: value,
+                };
+
                 break;
             case 'recordType':
                 newData = {
@@ -176,12 +241,32 @@ function ExampleAdultMaleWhite() {
 
                 break;
             case 'signedMaturityCovenantDate':
+                newData = {
+                    ...data,
+                    signedMaturityCovenantDate: value.date,
+                };
+
                 break;
             case 'signedMembershipAgreementDate':
+                newData = {
+                    ...data,
+                    signedMembershipAgreementDate: value.date,
+                };
+
                 break;
             case 'signedMinistryCovenantDate':
+                newData = {
+                    ...data,
+                    signedMinistryCovenantDate: value.date,
+                };
+
                 break;
             case 'signedMissionCovenantDate':
+                newData = {
+                    ...data,
+                    signedMissionCovenantDate: value.date,
+                };
+
                 break;
             default:
         }
