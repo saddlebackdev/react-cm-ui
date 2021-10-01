@@ -52,7 +52,6 @@ function ExampleAdultMaleWhite() {
     };
 
     const onDataChange = (type, value) => {
-        console.log('value', value);
         let newData = {
             ...data,
         };
@@ -145,91 +144,91 @@ function ExampleAdultMaleWhite() {
             case 'hasAcceptedChrist':
                 newData = {
                     ...data,
-                    hasAcceptedChrist: value,
+                    hasAcceptedChrist: value === 'true',
                 };
 
                 break;
             case 'hasSignedMaturityCovenant':
                 newData = {
                     ...data,
-                    hasSignedMaturityCovenant: value,
+                    hasSignedMaturityCovenant: value === 'true',
                 };
 
                 break;
             case 'hasSignedMembershipAgreement':
                 newData = {
                     ...data,
-                    hasSignedMembershipAgreement: value,
+                    hasSignedMembershipAgreement: value === 'true',
                 };
 
                 break;
             case 'hasSignedMinistryCovenant':
                 newData = {
                     ...data,
-                    hasSignedMinistryCovenant: value,
+                    hasSignedMinistryCovenant: value === 'true',
                 };
 
                 break;
             case 'hasSignedMissionCovenant':
                 newData = {
                     ...data,
-                    hasSignedMissionCovenant: value,
+                    hasSignedMissionCovenant: value === 'true',
                 };
 
                 break;
             case 'hasTakenClass101':
                 newData = {
                     ...data,
-                    hasTakenClass101: value,
+                    hasTakenClass101: value === 'true',
                 };
 
                 break;
             case 'hasTakenClass201':
                 newData = {
                     ...data,
-                    hasTakenClass201: value,
+                    hasTakenClass201: value === 'true',
                 };
 
                 break;
             case 'hasTakenClass301':
                 newData = {
                     ...data,
-                    hasTakenClass301: value,
+                    hasTakenClass301: value === 'true',
                 };
 
                 break;
             case 'hasTakenClass401':
                 newData = {
                     ...data,
-                    hasTakenClass401: value,
+                    hasTakenClass401: value === 'true',
                 };
 
                 break;
             case 'isActiveInMissions':
                 newData = {
                     ...data,
-                    isActiveInMissions: value,
+                    isActiveInMissions: value === 'true',
                 };
 
                 break;
             case 'isBaptised':
                 newData = {
                     ...data,
-                    isBaptised: value,
+                    isBaptised: value === 'true',
                 };
 
                 break;
             case 'isInMinistry':
                 newData = {
                     ...data,
-                    isInMinistry: value,
+                    isInMinistry: value === 'true',
                 };
 
                 break;
             case 'isInSmallGroup':
                 newData = {
                     ...data,
-                    isInSmallGroup: value,
+                    isInSmallGroup: value === 'true',
                 };
 
                 break;
@@ -747,8 +746,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasAcceptedChristRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasAcceptedChrist',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -779,8 +779,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasSignedMaturityCovenantRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasSignedMaturityCovenant',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -811,8 +812,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasSignedMembershipAgreementRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasSignedMembershipAgreement',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -843,8 +845,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasSignedMinistryCovenantRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasSignedMinistryCovenant',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -875,8 +878,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasSignedMissionCovenantRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasSignedMissionCovenant',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -907,8 +911,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasTakenClass101RadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasTakenClass101',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -939,8 +944,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasTakenClass201RadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasTakenClass201',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -971,8 +977,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasTakenClass301RadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasTakenClass301',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -1003,8 +1010,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="hasTakenClass401RadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'hasTakenClass401',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -1035,8 +1043,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="isActiveInMissionsRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'isActiveInMissions',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -1067,8 +1076,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="isBaptisedRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'isBaptised',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -1099,8 +1109,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="isInMinistryRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'isInMinistry',
+                                                        value,
                                                     )
                                                 }
                                             />
@@ -1131,8 +1142,9 @@ function ExampleAdultMaleWhite() {
                                                 label={type.toString()}
                                                 name="isInSmallGroupRadioGroup"
                                                 onChange={
-                                                    () => onDataChange(
+                                                    (value) => onDataChange(
                                                         'isInSmallGroup',
+                                                        value,
                                                     )
                                                 }
                                             />
