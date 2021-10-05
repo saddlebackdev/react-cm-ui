@@ -2,7 +2,7 @@
 import React, {
     Component,
 } from 'react';
-import Classnames from 'classnames';
+import ClassNames from 'classnames';
 import {
     find,
     findIndex,
@@ -27,6 +27,7 @@ const PREFIX_TAB = 'tab-';
 const CONTENT_PREFIX = 'content-';
 const HIDDEN_TABS_ICON_WIDTH = 30;
 const WIDTH_OFFSET = 5; // it ain't neccesary to be too precise when resizing and calculating hidden tabs
+const PADDING_X = 10;
 
 const propTypes = {
     /**
@@ -37,6 +38,7 @@ const propTypes = {
      * Custom classes to override the default styling
      */
     classes: PropTypes.shape({
+        indicator: PropTypes.string,
         root: PropTypes.string,
         sectionalTab: PropTypes.string,
         sectionalTabsPanel: PropTypes.string,
@@ -83,9 +85,7 @@ const defaultProps = {
     selectedTabKey: undefined,
     withContent: false,
 };
-
-const useStyles = (theme) => {
-    const borderColorContrastPrimary = get(theme, 'palette.border.contrastPrimary');
+const styles = (theme) => {
     const borderColorSecondary = get(theme, 'palette.border.secondary');
     const colorActivePrimary = get(theme, 'palette.active.primary');
     const colorHighlight = get(theme, 'palette.cyan[500]');
@@ -93,7 +93,14 @@ const useStyles = (theme) => {
     const textColorSecondary = get(theme, 'palette.text.secondary');
     const textColorPrimary = get(theme, 'palette.text.primary');
 
-    const styles = {
+    return {
+        indicator: {
+            backgroundColor: colorActivePrimary,
+            bottom: 0,
+            height: 2,
+            position: 'absolute',
+            transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        },
         root: {
             position: 'relative',
             '& .button_dropdown': {
@@ -113,39 +120,34 @@ const useStyles = (theme) => {
         sectionalTabsPanel: {
             display: 'flex',
             flexWrap: 'wrap',
+            margin: [[0, -PADDING_X]],
         },
         sectionalTabsPanelContent: {
-            padding: '10px 0 10px 0',
+            padding: [[PADDING_X, 0]],
             borderTop: `1px solid ${borderColorSecondary}`,
         },
         sectionalTab: {
+            backgroundColor: 'transparent',
+            border: 0,
+            borderRadius: 0,
             cursor: 'pointer',
-            zIndex: 1,
-            whiteSpace: 'nowrap',
-            padding: '10px 10px 0 0',
             outline: 'none',
-            '&:not(:first-child)': {
-                padding: '10px 10px 0 10px',
-            },
+            padding: [[5, PADDING_X]],
+            whiteSpace: 'nowrap',
+            zIndex: 1,
         },
         sectionalTabLabel: {
-            fontSize: 14,
             fontWeight: fontWeightMedium,
             color: textColorSecondary,
-            paddingBottom: 5,
             transition: 'color 0.1s, border-bottom 0.1s',
-            borderBottom: `2px solid ${borderColorContrastPrimary}`,
             '&:hover': {
                 color: textColorPrimary,
             },
         },
         sectionalTabLabelSelected: {
             color: `${textColorPrimary} !important`,
-            borderBottom: `2px solid ${colorActivePrimary}`,
         },
     };
-
-    return styles;
 };
 
 /**
@@ -263,6 +265,7 @@ class SectionalTabs extends Component {
                 if (evt) {
                     evt.preventDefault();
                 }
+
                 return null;
             }
         }
@@ -278,7 +281,7 @@ class SectionalTabs extends Component {
 
     setTabsDimensions() {
         if (!this.tabsWrapper) {
-            return null;
+            return;
         }
 
         const blockWidth = this.tabsWrapper.offsetWidth;
@@ -299,8 +302,6 @@ class SectionalTabs extends Component {
             tabsTotalWidth: updatedTabsTotalWidth,
             blockWidth,
         });
-
-        return null;
     }
 
     getTabs() {
@@ -312,6 +313,7 @@ class SectionalTabs extends Component {
         } = this.state;
 
         const selectedTabKey = this.getSelectedTabKey();
+
         let tabIndex = 0;
         let availableWidth = blockWidth - (
             tabsTotalWidth > blockWidth ?
@@ -495,7 +497,7 @@ class SectionalTabs extends Component {
 
         switch (type) {
             case 'tab':
-                return Classnames(
+                return ClassNames(
                     classes.sectionalTab,
                     `${BEM_NAVIGATION_TAB_ROOT_CLASS}`,
                     className,
@@ -506,7 +508,7 @@ class SectionalTabs extends Component {
                     },
                 );
             case 'content':
-                return Classnames(
+                return ClassNames(
                     classes.sectionalTabsPanelContent,
                     `${BEM_NAVIGATION_SECTIONAL_TABS}--content`,
                     className,
@@ -558,14 +560,17 @@ class SectionalTabs extends Component {
         } = this.getTabs();
 
         const selectedTabKey = this.getSelectedTabKey();
-        const containerClasses = Classnames(
+
+        const rootClasses = ClassNames(
             classes.root,
             `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
         );
-        const tabsClasses = Classnames(
+
+        const tabsClasses = ClassNames(
             classes.sectionalTabsPanel,
             `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
         );
+
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
                 iconType="ellipsis-h"
@@ -599,22 +604,44 @@ class SectionalTabs extends Component {
             </DropdownButton>
         );
 
+        let selectedTabLeft = null;
+        let selectedTabWidth = null;
+
+        const indicatorStyle = {
+            left: selectedTabLeft ?? 0,
+            width: selectedTabWidth ? selectedTabWidth - (PADDING_X * 2) : 0,
+        };
+
         return (
             <div
-                className={containerClasses}
-                ref={(ref) => { this.tabsWrapper = ref; }}
+                className={rootClasses}
+                ref={(ref) => { this.tabsWrapperRef = ref; }}
                 role="presentation"
             >
                 <div className={tabsClasses}>
                     {tabsVisible.reduce((result, tab) => {
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        result.push(<SectionalTab {...this.getTabProps(tab)} />);
+                        result.push(
+                            <SectionalTab
+                                // eslint-disable-next-line react/jsx-props-no-spreading
+                                {...this.getTabProps(tab)}
+                            />,
+                        );
 
                         return result;
                     }, [])}
+
+                    <span
+                        className={classes.indicator}
+                        style={{
+                            ...indicatorStyle,
+                        }}
+                    />
+
                     {hiddenTabsDropDown}
                 </div>
+
                 {withContent && this.getExpandedTabs(panels, selectedTabKey)}
+
                 {<ResizeDetector handleWidth onResize={this.onResizeThrottled} />}
             </div>
         );
@@ -624,5 +651,5 @@ class SectionalTabs extends Component {
 SectionalTabs.propTypes = propTypes;
 SectionalTabs.defaultProps = defaultProps;
 
-const SectionalTabsWithStyles = withStyles(useStyles, { withTheme: true })(SectionalTabs);
+const SectionalTabsWithStyles = withStyles(styles, { withTheme: true })(SectionalTabs);
 export default SectionalTabsWithStyles;

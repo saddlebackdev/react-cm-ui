@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import {
     isFunction,
+    noop,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
@@ -60,6 +61,7 @@ const defaultProps = {
 class SectionalTab extends Component {
     constructor(props) {
         super(props);
+
         this.onTabClick = this.onTabClick.bind(this);
         this.renderTab = this.renderTab.bind(this);
     }
@@ -86,6 +88,7 @@ class SectionalTab extends Component {
         if (isFunction(onClick)) {
             onClick(this.props);
         }
+
         if (isFunction(onChange)) {
             onChange(originalKey, evt);
         }
@@ -109,8 +112,9 @@ class SectionalTab extends Component {
 
         return (
             <Typography
-                variant="h4"
                 className={tabLabelClassNames}
+                component="span"
+                variant="h5"
             >
                 {children}
             </Typography>
@@ -121,18 +125,23 @@ class SectionalTab extends Component {
         const {
             classNames,
             id,
+            selected,
         } = this.props;
 
         return (
-            <div
+            <button
+                aria-selected={selected}
                 className={classNames}
                 id={id}
                 onClick={this.onTabClick}
+                onKeyDown={noop}
                 ref={(e) => { this.tab = e; }}
-                role="presentation"
+                role="tab"
+                tabIndex={0}
+                type="button"
             >
                 {this.renderTab()}
-            </div>
+            </button>
         );
     }
 }
