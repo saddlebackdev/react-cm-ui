@@ -693,7 +693,7 @@ function ExampleAdultMaleWhite() {
                                     gutterBottom
                                     variant="h4"
                                 >
-                                    201
+                                    301
                                 </Typography>
 
                                 <Card style={{ marginTop: 0 }}>
