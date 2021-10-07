@@ -14,20 +14,22 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
-import SectionalTab from './sectionalTab';
-import SectionalTabContent from './sectionalTabContent';
-import withStyles from '../../styles/withStyles';
-import DropdownButton from '../../inputs/dropdownButton';
 import {
     BEM_NAVIGATION_SECTIONAL_TABS,
     BEM_NAVIGATION_TAB_ROOT_CLASS,
 } from '../../global/constants';
+import {
+    PADDING_X,
+} from './constants';
+import SectionalTab from './sectionalTab';
+import SectionalTabContent from './sectionalTabContent';
+import withStyles from '../../styles/withStyles';
+import DropdownButton from '../../inputs/dropdownButton';
 
 const PREFIX_TAB = 'tab-';
 const CONTENT_PREFIX = 'content-';
 const HIDDEN_TABS_ICON_WIDTH = 30;
 const WIDTH_OFFSET = 5; // it ain't neccesary to be too precise when resizing and calculating hidden tabs
-const PADDING_X = 10;
 
 const propTypes = {
     /**
@@ -162,6 +164,10 @@ class SectionalTabs extends Component {
             blockWidth: 0,
             items: props.items || [],
             selectedTabKey: props.selectedTabKey,
+            selectedTabDimensions: {
+                left: null,
+                width: null,
+            },
             tabDimensions: {},
             tabsTotalWidth: 0,
         };
@@ -177,6 +183,8 @@ class SectionalTabs extends Component {
         this.onResizeThrottled = throttle(this.onResize, props.resizeThrottle, { trailing: true });
         this.selectedTabKeyProp = props.selectedTabKey;
         this.setTabsDimensions = this.setTabsDimensions.bind(this);
+        this.setSelectedTabDimensions = this.setSelectedTabDimensions.bind(this);
+
         this.tabRefs = {};
     }
 
@@ -192,6 +200,7 @@ class SectionalTabs extends Component {
         const {
             blockWidth,
             selectedTabKey,
+            selectedTabDimensions,
             tabsTotalWidth,
             items: itemsState,
         } = this.state;
@@ -202,7 +211,8 @@ class SectionalTabs extends Component {
             nextState.blockWidth !== blockWidth ||
             nextProps.selectedTabKey !== this.selectedTabKeyProp ||
             nextState.selectedTabKey !== selectedTabKey ||
-            !isEqual(itemsState, nextState.items)
+            !isEqual(itemsState, nextState.items) ||
+            !isEqual(selectedTabDimensions, nextState.selectedTabDimensions)
         );
 
         return shouldUpdate;
@@ -244,8 +254,8 @@ class SectionalTabs extends Component {
     }
 
     onResize() {
-        if (this.tabsWrapper) {
-            this.setState({ blockWidth: this.tabsWrapper.offsetWidth });
+        if (this.tabsWrapperRef) {
+            this.setState({ blockWidth: this.tabsWrapperRef.offsetWidth });
         }
     }
 
@@ -280,27 +290,41 @@ class SectionalTabs extends Component {
     }
 
     setTabsDimensions() {
-        if (!this.tabsWrapper) {
-            return;
+        if (this.tabsWrapperRef) {
+            const blockWidth = this.tabsWrapperRef.offsetWidth;
+            const updatedTabDimensions = {};
+            const tabRefsKeys = Object.keys(this.tabRefs);
+
+            let updatedTabsTotalWidth = 0;
+
+            tabRefsKeys.forEach((key) => {
+                if (this.tabRefs[key]) {
+                    const width = this.tabRefs[key].tab.offsetWidth;
+                    updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
+                    updatedTabsTotalWidth += width;
+                }
+            });
+
+            this.setState({
+                tabDimensions: updatedTabDimensions,
+                tabsTotalWidth: updatedTabsTotalWidth,
+                blockWidth,
+            });
         }
+    }
 
-        const blockWidth = this.tabsWrapper.offsetWidth;
-        let updatedTabsTotalWidth = 0;
-        const updatedTabDimensions = {};
-        const tabRefsKeys = Object.keys(this.tabRefs);
-
-        tabRefsKeys.forEach((key) => {
-            if (this.tabRefs[key]) {
-                const width = this.tabRefs[key].tab.offsetWidth;
-                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
-                updatedTabsTotalWidth += width;
-            }
-        });
-
+    setSelectedTabDimensions({
+        left,
+        width,
+    } = {
+        left: null,
+        width: null,
+    }) {
         this.setState({
-            tabDimensions: updatedTabDimensions,
-            tabsTotalWidth: updatedTabsTotalWidth,
-            blockWidth,
+            selectedTabDimensions: {
+                left,
+                width,
+            },
         });
     }
 
@@ -335,24 +359,28 @@ class SectionalTabs extends Component {
                 } = item;
 
                 const selected = selectedTabKey === key;
+
                 const payload = {
                     disabled,
                     key,
                     selected,
                     tabIndex,
                 };
+
                 const tabPayload = {
                     ...payload,
                     className: tabClassName,
                     onClick,
                     title,
                 };
+
                 const panelPayload = {
                     ...payload,
                     className: panelClassName,
                     content,
                     getContent,
                 };
+
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
                 const isTabVisible = // initial call
@@ -461,6 +489,7 @@ class SectionalTabs extends Component {
             onChange: this.onChangeTab,
             ref: (ref) => { this.tabRefs[PREFIX_TAB + key] = ref; },
             selected,
+            setSelectedTabDimensions: this.setSelectedTabDimensions,
         };
     }
 
@@ -554,6 +583,10 @@ class SectionalTabs extends Component {
         } = this.props;
 
         const {
+            selectedTabDimensions,
+        } = this.state;
+
+        const {
             panels,
             tabsHidden,
             tabsVisible,
@@ -604,12 +637,11 @@ class SectionalTabs extends Component {
             </DropdownButton>
         );
 
-        let selectedTabLeft = null;
-        let selectedTabWidth = null;
-
         const indicatorStyle = {
-            left: selectedTabLeft ?? 0,
-            width: selectedTabWidth ? selectedTabWidth - (PADDING_X * 2) : 0,
+            left: selectedTabDimensions?.left ?? 0,
+            width: selectedTabDimensions?.width ?
+                selectedTabDimensions.width :
+                0,
         };
 
         return (

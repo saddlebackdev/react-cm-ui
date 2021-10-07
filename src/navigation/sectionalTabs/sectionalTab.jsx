@@ -7,8 +7,11 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
-import Typography from '../../dataDisplay/typography';
 import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
+import {
+    PADDING_X,
+} from './constants';
+import Typography from '../../dataDisplay/typography';
 
 const propTypes = {
     /**
@@ -20,7 +23,8 @@ const propTypes = {
      */
     classNames: PropTypes.string.isRequired,
     /**
-     * Aditional classes passed from the parent <SectionalTabs /> component to override the label styling.
+     * Aditional classes passed from the parent <SectionalTabs /> component to override
+     * the label styling.
      */
     classes: PropTypes.shape({
         sectionalTabLabel: PropTypes.string,
@@ -46,6 +50,7 @@ const propTypes = {
      * Boolean used to apply the 'sectionalTabLabelSelected' class.
      */
     selected: PropTypes.bool.isRequired,
+    setSelectedTabDimensions: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -64,6 +69,11 @@ class SectionalTab extends Component {
 
         this.onTabClick = this.onTabClick.bind(this);
         this.renderTab = this.renderTab.bind(this);
+        this.setSelectedTabDimensions = this.setSelectedTabDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        this.setSelectedTabDimensions();
     }
 
     shouldComponentUpdate(nextProps) {
@@ -76,6 +86,20 @@ class SectionalTab extends Component {
         return children !== nextProps.children ||
             selected !== nextProps.selected ||
             classNames !== nextProps.classNames;
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            selected: prevSelected,
+        } = prevProps;
+
+        const {
+            selected,
+        } = this.props;
+
+        if (!prevSelected && selected) {
+            this.setSelectedTabDimensions();
+        }
     }
 
     onTabClick(evt) {
@@ -91,6 +115,20 @@ class SectionalTab extends Component {
 
         if (isFunction(onChange)) {
             onChange(originalKey, evt);
+        }
+    }
+
+    setSelectedTabDimensions() {
+        const {
+            selected,
+            setSelectedTabDimensions,
+        } = this.props;
+
+        if (this.tab && selected) {
+            setSelectedTabDimensions({
+                left: this.tab.offsetLeft + PADDING_X,
+                width: this.tab.offsetWidth - (PADDING_X * 2),
+            });
         }
     }
 
