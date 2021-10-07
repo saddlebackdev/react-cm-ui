@@ -2,6 +2,7 @@ import React, {
     Component,
 } from 'react';
 import {
+    debounce,
     isFunction,
     noop,
 } from 'lodash';
@@ -67,12 +68,15 @@ class SectionalTab extends Component {
     constructor(props) {
         super(props);
 
+        this.onResizeDebounce = debounce(() => this.setSelectedTabDimensions(), 80);
         this.onTabClick = this.onTabClick.bind(this);
         this.renderTab = this.renderTab.bind(this);
         this.setSelectedTabDimensions = this.setSelectedTabDimensions.bind(this);
     }
 
     componentDidMount() {
+        window.addEventListener('resize', this.onResizeDebounce);
+
         this.setSelectedTabDimensions();
     }
 
@@ -100,6 +104,10 @@ class SectionalTab extends Component {
         if (!prevSelected && selected) {
             this.setSelectedTabDimensions();
         }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeDebounce);
     }
 
     onTabClick(evt) {
