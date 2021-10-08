@@ -429,7 +429,7 @@ class ActionBar extends React.PureComponent {
                                                                 })}
                                                             >
                                                                 {/* eslint-disable max-len */}
-                                                                {actionsButton && (
+                                                                {/* {actionsButton && (
                                                                 <ActionBarActionsButton
                                                                     className={actionsButton.className}
                                                                     iconBackgroundColor={actionsButton.iconBackgroundColor}
@@ -442,7 +442,7 @@ class ActionBar extends React.PureComponent {
                                                                     options={actionsButton.options}
                                                                     style={actionsButton.style}
                                                                 />
-                                                                )}
+                                                                )} */}
                                                                 {/* eslint-enable max-len */}
 
                                                                 {iconBack && (

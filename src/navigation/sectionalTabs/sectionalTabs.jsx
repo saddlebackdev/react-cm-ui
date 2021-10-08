@@ -94,6 +94,10 @@ const useStyles = (theme) => {
     const textColorPrimary = get(theme, 'palette.text.primary');
 
     const styles = {
+        hiddenTabsDropdownButton: {
+            position: 'absolute',
+            right: WIDTH_OFFSET,
+        },
         root: {
             position: 'relative',
             '& .button_dropdown': {
@@ -162,6 +166,7 @@ class SectionalTabs extends Component {
             selectedTabKey: props.selectedTabKey,
             tabDimensions: {},
             tabsTotalWidth: 0,
+            shouldUpdateTabsDimensions: false,
         };
 
         this.getClassNamesFor = this.getClassNamesFor.bind(this);
@@ -192,6 +197,7 @@ class SectionalTabs extends Component {
             selectedTabKey,
             tabsTotalWidth,
             items: itemsState,
+            tabDimensions,
         } = this.state;
 
         const shouldUpdate = (
@@ -200,13 +206,14 @@ class SectionalTabs extends Component {
             nextState.blockWidth !== blockWidth ||
             nextProps.selectedTabKey !== this.selectedTabKeyProp ||
             nextState.selectedTabKey !== selectedTabKey ||
-            !isEqual(itemsState, nextState.items)
+            !isEqual(itemsState, nextState.items) ||
+            !isEqual(nextState.tabDimensions, tabDimensions)
         );
 
         return shouldUpdate;
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         const {
             items,
             selectedTabKey,
@@ -215,6 +222,10 @@ class SectionalTabs extends Component {
         const {
             items: prevItems,
         } = prevProps;
+
+        const {
+            shouldUpdateTabsDimensions,
+        } = this.state;
 
         const didPropsItemsChange = !isEqual(prevItems, items);
         const didSelectedTabKeyChange = this.selectedTabKeyProp !== selectedTabKey;
@@ -227,17 +238,17 @@ class SectionalTabs extends Component {
                 }),
                 ...(didPropsItemsChange && {
                     items,
-                    selectedTabKey,
+                    shouldUpdateTabsDimensions: true,
                 }),
             };
 
             this.setState(newState);
         }
-
-        if (didPropsItemsChange) {
+        console.log('TABS DIMMENSIONS', this.state.tabDimensions);
+        // const a = 
+        if (shouldUpdateTabsDimensions) {
             this.setTabsDimensions();
         }
-
         this.selectedTabKeyProp = selectedTabKey;
     }
 
@@ -288,8 +299,10 @@ class SectionalTabs extends Component {
 
         tabRefsKeys.forEach((key) => {
             if (this.tabRefs[key]) {
-                const width = this.tabRefs[key].tab.offsetWidth;
-                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
+                const tabRef = this.tabRefs[key].tab;
+                const width = tabRef.offsetWidth;
+                const title = tabRef.querySelector('.navigation_sectional_tabs--tab-label').innerText;
+                updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth, title};
                 updatedTabsTotalWidth += width;
             }
         });
@@ -298,6 +311,7 @@ class SectionalTabs extends Component {
             tabDimensions: updatedTabDimensions,
             tabsTotalWidth: updatedTabsTotalWidth,
             blockWidth,
+            shouldUpdateTabsDimensions: false,
         });
 
         return null;
@@ -309,6 +323,7 @@ class SectionalTabs extends Component {
             items,
             tabDimensions,
             tabsTotalWidth,
+            shouldUpdateTabsDimensions,
         } = this.state;
 
         const selectedTabKey = this.getSelectedTabKey();
@@ -318,7 +333,7 @@ class SectionalTabs extends Component {
                 HIDDEN_TABS_ICON_WIDTH :
                 0
         );
-
+        // console.log('\n\n')
         let reducedItems = items.reduce(
             (result, item, index) => {
                 const {
@@ -354,14 +369,28 @@ class SectionalTabs extends Component {
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
                 const isTabVisible = // initial call
+                                    shouldUpdateTabsDimensions ||
                                     !blockWidth ||
                                     tabsTotalWidth === 0 ||
-                                    tabWidth === 0 || // posibily re render from a items.prop change
+                                    // tabWidth === 0 || // posibily re render from a items.prop change
                                     // all tabs are fit into the block
                                     (tabWidth > 0 && blockWidth > tabsTotalWidth + WIDTH_OFFSET) ||
                                     // current tab fit into the block
                                     (tabWidth > 0 && availableWidth - tabWidth > WIDTH_OFFSET);
-
+                console.log('isTabVisible', isTabVisible, title, 
+                    // {
+                    //     a: !blockWidth,
+                    //     b: tabsTotalWidth === 0, // 519
+                    //     c: tabWidth === 0,
+                    //     d: (tabWidth > 0 && blockWidth > tabsTotalWidth + WIDTH_OFFSET),
+                    //     e: (tabWidth > 0 && availableWidth - tabWidth > WIDTH_OFFSET), // 87 - 134
+                    // }, {
+                    //     a1blockWidth: blockWidth, // 330
+                    //     a2tabWidth: tabWidth, // 134
+                    //     a3availableWidth: availableWidth, // 87
+                    //     a4: tabsTotalWidth + WIDTH_OFFSET, // 524
+                    // }
+                );
                 if (isTabVisible) {
                     result.tabsVisible.push(tabPayload);
                 } else {
@@ -568,6 +597,7 @@ class SectionalTabs extends Component {
         );
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
+                className={classes.hiddenTabsDropdownButton}
                 iconType="ellipsis-h"
                 optionsTheme="light"
                 color="transparent"
