@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.3 - 10/19/2021
+
+#### Feature
+- [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334) / Merge Commit 22aa683
+  - PersonCoreMilestones documentation improvements, including adding an interactive.
+
+## 0.15.2 - 08/12/2021
+
+#### Feature
+- [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319) / Merge Commit e1b82ee
+  - New TimePicker doc changes.
+
 ## 0.15.1 - 06/14/2021
 
 #### Feature
