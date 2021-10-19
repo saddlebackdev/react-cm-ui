@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.2.3
+_October 19, 2021_
+
+### Core
+- Fix some styling issues on PersonCoreMilestones component. [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334)
+
+### Docs
+- PersonCoreMilestones documentation improvements, including adding an interactive. [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334)
+
 ## 10.2.2
 _September 24, 2021_
 

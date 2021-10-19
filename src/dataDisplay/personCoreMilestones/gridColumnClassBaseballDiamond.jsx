@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => {
         },
     } = theme;
 
-    const hasAttendedStyles = (boxShadowColor) => ({
+    const hasTakenStyles = (boxShadowColor) => ({
         backgroundColor: 'transparent',
         boxShadow: `inset 0 0 0 2px ${boxShadowColor}`,
     });
@@ -163,20 +163,20 @@ const useStyles = makeStyles((theme) => {
             '&$hasTakenClass101': {
                 '&$isAdult': {
                     '&$genderFemale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
                     },
                     '&$genderMale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
                     },
                     '&$genderUndefined': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
                     },
                 },
                 '&$isChild': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
                 },
                 '&$isStudent': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
                 },
             },
         },
@@ -207,20 +207,20 @@ const useStyles = makeStyles((theme) => {
             '&$hasTakenClass201': {
                 '&$isAdult': {
                     '&$genderFemale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
                     },
                     '&$genderMale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
                     },
                     '&$genderUndefined': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
                     },
                 },
                 '&$isChild': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
                 },
                 '&$isStudent': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
                 },
             },
         },
@@ -251,20 +251,20 @@ const useStyles = makeStyles((theme) => {
             '&$hasTakenClass301': {
                 '&$isAdult': {
                     '&$genderFemale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
                     },
                     '&$genderMale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
                     },
                     '&$genderUndefined': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
                     },
                 },
                 '&$isChild': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
                 },
                 '&$isStudent': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
                 },
             },
         },
@@ -296,20 +296,20 @@ const useStyles = makeStyles((theme) => {
             '&$hasTakenClass401': {
                 '&$isAdult': {
                     '&$genderFemale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'f', recordType: 'adult', theme })}`),
                     },
                     '&$genderMale': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ gender: 'm', recordType: 'adult', theme })}`),
                     },
                     '&$genderUndefined': {
-                        ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
+                        ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'adult', theme })}`),
                     },
                 },
                 '&$isChild': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'child', theme })}`),
                 },
                 '&$isStudent': {
-                    ...hasAttendedStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
+                    ...hasTakenStyles(`${RECORD_TYPE_COLOR({ recordType: 'student', theme })}`),
                 },
             },
         },
@@ -332,9 +332,7 @@ const useStyles = makeStyles((theme) => {
             transform: 'rotate(45deg) scale(0.707106)',
             width: basesClassIconSize,
         },
-        hasTakenClass101: ({ iconColor, hasSignedMembershipAgreement }) => (
-            iconColor && !hasSignedMembershipAgreement
-        ) && ({
+        hasTakenClass101: ({ iconColor }) => ({
             backgroundColor: 'transparent !important',
             boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
             opacity: '1 !important',
@@ -342,9 +340,7 @@ const useStyles = makeStyles((theme) => {
         hasSignedMembershipAgreement: {
             opacity: '1 !important',
         },
-        hasTakenClass201: ({ iconColor, hasSignedMaturityCovenant }) => (
-            iconColor && !hasSignedMaturityCovenant
-        ) && ({
+        hasTakenClass201: ({ iconColor }) => ({
             backgroundColor: 'transparent !important',
             boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
             opacity: '1 !important',
@@ -352,9 +348,7 @@ const useStyles = makeStyles((theme) => {
         hasSignedMaturityCovenant: {
             opacity: '1 !important',
         },
-        hasTakenClass301: ({ iconColor, hasSignedMinistryCovenant }) => (
-            iconColor && !hasSignedMinistryCovenant
-        ) && ({
+        hasTakenClass301: ({ iconColor }) => ({
             backgroundColor: 'transparent !important',
             boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
             opacity: '1 !important',
@@ -362,9 +356,7 @@ const useStyles = makeStyles((theme) => {
         hasSignedMinistryCovenant: {
             opacity: '1 !important',
         },
-        hasTakenClass401: ({ iconColor, hasSignedMissionCovenant }) => (
-            iconColor && !hasSignedMissionCovenant
-        ) && ({
+        hasTakenClass401: ({ iconColor }) => ({
             backgroundColor: 'transparent !important',
             boxShadow: `inset 0 0 0 2px ${iconColor} !important`,
             opacity: '1 !important',
@@ -419,12 +411,12 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass101,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass101]: !iconColor && hasTakenClass101,
+            [classes.iconBaseColorClass101]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
-            [classes.hasTakenClass101]: hasTakenClass101,
+            [classes.hasTakenClass101]: hasTakenClass101 && !hasSignedMembershipAgreement,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -435,12 +427,12 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass201,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass201]: !iconColor && hasTakenClass201,
+            [classes.iconBaseColorClass201]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
-            [classes.hasTakenClass201]: hasTakenClass201,
+            [classes.hasTakenClass201]: hasTakenClass201 && !hasSignedMaturityCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -451,12 +443,12 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass301,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass301]: !iconColor && hasTakenClass301,
+            [classes.iconBaseColorClass301]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
-            [classes.hasTakenClass301]: hasTakenClass301,
+            [classes.hasTakenClass301]: hasTakenClass301 && !hasSignedMinistryCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -467,12 +459,12 @@ function GridColumnClassBaseballDiamond(props) {
         classes.iconBaseClass401,
         classes.iconBase,
         {
-            [classes.iconBaseColorClass401]: !iconColor && hasTakenClass401,
+            [classes.iconBaseColorClass401]: !iconColor,
             [classes.genderFemale]: isFemale,
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
-            [classes.hasTakenClass401]: hasTakenClass401,
+            [classes.hasTakenClass401]: hasTakenClass401 && !hasSignedMissionCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
