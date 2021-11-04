@@ -96,7 +96,7 @@ function Image(props) {
                     compact
                     size={avatarSize}
                     title="This person has no image"
-                    type="user"
+                    type={type}
                 />
             )}
         </ElementType>
