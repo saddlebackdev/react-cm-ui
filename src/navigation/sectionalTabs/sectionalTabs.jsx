@@ -87,6 +87,7 @@ const defaultProps = {
     selectedTabKey: undefined,
     withContent: false,
 };
+
 const styles = (theme) => {
     const borderColorSecondary = get(theme, 'palette.border.secondary');
     const colorActivePrimary = get(theme, 'palette.active.primary');
