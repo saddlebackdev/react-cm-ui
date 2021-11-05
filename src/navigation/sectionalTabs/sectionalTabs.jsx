@@ -2,7 +2,6 @@
 import React, {
     Component,
 } from 'react';
-import ClassNames from 'classnames';
 import {
     find,
     findIndex,
@@ -12,6 +11,7 @@ import {
     sortBy,
     throttle,
 } from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
 import {
@@ -21,10 +21,10 @@ import {
 import {
     PADDING_X,
 } from './constants';
+import DropdownButton from '../../inputs/dropdownButton';
 import SectionalTab from './sectionalTab';
 import SectionalTabContent from './sectionalTabContent';
 import withStyles from '../../styles/withStyles';
-import DropdownButton from '../../inputs/dropdownButton';
 
 const PREFIX_TAB = 'tab-';
 const CONTENT_PREFIX = 'content-';
