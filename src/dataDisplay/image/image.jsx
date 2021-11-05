@@ -130,7 +130,7 @@ Image.defaultProps = {
     size: undefined,
     src: undefined,
     style: {},
-    type: undefined,
+    type: 'user',
 };
 
 export default Image;
