@@ -173,6 +173,10 @@ const propTypes = {
         promptId: PropTypes.string,
     }),
     /**
+     * If `false`, select button isn't displayed for PersonPanelDetails.
+     */
+    showSelectButton: PropTypes.bool,
+    /**
      * Button `props` to setup the View Record button.
      */
     viewRecordButtonProps: PropTypes.shape({
@@ -200,6 +204,7 @@ const defaultProps = {
         label: 'Select',
         disable: false,
     },
+    showSelectButton: true,
     viewRecordButtonProps: {},
 };
 
@@ -667,6 +672,7 @@ function PersonPanelDetails(props) {
         isMobile,
         otherDataGroups,
         selectButtonProps,
+        showSelectButton,
         viewRecordButtonProps,
     } = props;
 
@@ -833,6 +839,8 @@ function PersonPanelDetails(props) {
     );
 
     const shouldDataGroupsRender = !isEmpty(data) && !isEmpty(dataGroupsColumns);
+    const shouldRenderSelectButton = showSelectButton && !isEmpty(selectButtonProps);
+    const shouldRenderViewButton = !isEmpty(viewRecordButtonProps);
 
     return (
         <div
@@ -891,11 +899,11 @@ function PersonPanelDetails(props) {
 
                     {children}
 
-                    {(!isEmpty(selectButtonProps) || !isEmpty(viewRecordButtonProps)) && (
+                    {(shouldRenderSelectButton || shouldRenderViewButton) && (
                         <div
                             className={classes.actions}
                         >
-                            {!isEmpty(selectButtonProps) && (
+                            {shouldRenderSelectButton && (
                                 <PersonPanelDetailsActionButton
                                     label="Select"
                                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -903,7 +911,7 @@ function PersonPanelDetails(props) {
                                 />
                             )}
 
-                            {!isEmpty(viewRecordButtonProps) && (
+                            {shouldRenderViewButton && (
                                 <PersonPanelDetailsActionButton
                                     // eslint-disable-next-line react/jsx-props-no-spreading
                                     {...viewRecordButtonProps}

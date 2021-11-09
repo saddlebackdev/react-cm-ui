@@ -25,7 +25,9 @@ function ExampleSolid() {
                     </Grid.Column>
 
                     <Grid.Column>
-                        <Button>
+                        <Button
+                            designVersion={2}
+                        >
                             Label
                         </Button>
                     </Grid.Column>
@@ -48,6 +50,7 @@ function ExampleSolid() {
                     <Grid.Column>
                         <Button
                             icon
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"
@@ -71,7 +74,9 @@ function ExampleSolid() {
                     </Grid.Column>
 
                     <Grid.Column>
-                        <Button>
+                        <Button
+                            designVersion={2}
+                        >
                             <Icon
                                 type="shape-heart"
                             />

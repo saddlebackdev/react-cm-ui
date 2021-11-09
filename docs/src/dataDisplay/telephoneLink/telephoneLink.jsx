@@ -1,45 +1,72 @@
 import {
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleTelephoneLink from './examples/exampleTelephoneLink';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as telephoneLinkDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/telephoneLink/telephoneLink';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/telephoneLink/telephoneLink';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsTelephoneLink() {
-    const descriptionCopy = telephoneLinkDoc.description;
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsTelephoneLink(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="telephone-link">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="telephone-link"
                         variant="h2"
                     >
-                        Coming soon.
+                        Telephone Link
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleTelephoneLink').default}
+                    >
+                        <ExampleTelephoneLink />
+                    </Example>
                 </MarkdownContainer>
 
-                <ComponentApi
-                    docs={[
-                        telephoneLinkDoc,
-                    ]}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>
     );
 }
+
+DocsTelephoneLink.propTypes = propTypes;
 
 export default DocsTelephoneLink;

@@ -5,7 +5,9 @@ import {
     Icon,
 } from 'react-cm-ui';
 import {
+    camelCase,
     flatten,
+    kebabCase,
     map,
     sortBy,
 } from 'lodash';
@@ -13,12 +15,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import withStyles from 'react-cm-ui/styles/withStyles';
 import withWidth from 'react-cm-ui/utils/withWidth';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Heading from '../../global/heading';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/icon/icon';
+/* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
     classes: PropTypes.shape({
         dropdownButton: PropTypes.string,
         iconGridColumn: PropTypes.string,
+    }).isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
     }).isRequired,
     width: PropTypes.string.isRequired,
 };
@@ -298,7 +309,7 @@ const sortByOptions = [
     },
 ];
 
-const useStyles = () => ({
+const styles = () => ({
     iconGridColumn: {
         textAlign: 'center',
     },
@@ -316,7 +327,7 @@ const useStyles = () => ({
     },
 });
 
-class ElementsIconSet extends React.PureComponent {
+class DocsIcon extends React.PureComponent {
     constructor() {
         super();
 
@@ -339,12 +350,21 @@ class ElementsIconSet extends React.PureComponent {
     render() {
         const {
             classes,
+            location: {
+                pathname,
+            },
             width,
         } = this.props;
+
+        const {
+            description,
+            displayName,
+        } = rootDoc;
 
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
+
         let renderCategories;
 
         if (sortSelectedOption.id === 'alphabetical_asc') {
@@ -389,9 +409,12 @@ class ElementsIconSet extends React.PureComponent {
                     <Grid.Column
                         sm={12}
                     >
-                        <Typography size="large" style={{ margin: '0 0 22px' }}>
+                        <Heading
+                            anchorLink={kebabCase(iconSet.category)}
+                            variant="h2"
+                        >
                             {iconSet.category}
-                        </Typography>
+                        </Heading>
                     </Grid.Column>
 
                     {map(iconSet.types, (type, childIndex) => (
@@ -424,161 +447,175 @@ class ElementsIconSet extends React.PureComponent {
         }
 
         return (
-            <Main page="headers">
+            <Main page={camelCase(displayName)}>
                 <Main.Content>
-                    <Grid
-                        alignItems="flex-start"
-                        justifyContent="flex-end"
-                        spacing={2}
-                    >
-                        <Grid.Column
-                            sm="auto"
+                    <MarkdownContainer>
+                        <Typography
+                            className="description"
+                            variant="body1"
                         >
-                            <DropdownButton
-                                className={classes.dropdownButton}
-                                style={{ margin: 0 }}
-                                label={`Sort by: ${sortSelectedOption.label}`}
-                            >
-                                {map(sortByOptions, (option) => (
-                                    <DropdownButton.Option
-                                        key={option.id}
-                                        id={option.id}
-                                        label={option.label}
-                                        onClick={this.onSortAscendingClick}
-                                    />
-                                ))}
-                            </DropdownButton>
-                        </Grid.Column>
-                    </Grid>
+                            {description}
+                        </Typography>
 
-                    <Grid
-                        alignItems="flex-start"
-                        justify="center"
-                        spacing={2}
-                    >
-                        {renderCategories}
-
-                        <Grid.Column
-                            sm={12}
+                        <Grid
+                            spacing={2}
                         >
-                            <Typography size="large" style={{ margin: '0 0 22px' }}>
-                                Older Icons
-                            </Typography>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
-                            <p className="icon-type-name">circle-filled</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="text-lines" />
-                            <p className="icon-type-name">text-lines</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-up" />
-                            <p className="icon-type-name">caret-up</p>
-                        </Grid.Column>
-
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-right" />
-                            <p className="icon-type-name">caret-right</p>
-                        </Grid.Column>
-
-                        {width === 'lg' ? (
                             <Grid.Column
-                                lg={12}
-                            />
-                        ) : null}
+                                sm="auto"
+                            >
+                                <DropdownButton
+                                    className={classes.dropdownButton}
+                                    style={{ margin: 0 }}
+                                    label={`Sort by: ${sortSelectedOption.label}`}
+                                >
+                                    {map(sortByOptions, (option) => (
+                                        <DropdownButton.Option
+                                            key={option.id}
+                                            id={option.id}
+                                            label={option.label}
+                                            onClick={this.onSortAscendingClick}
+                                        />
+                                    ))}
+                                </DropdownButton>
+                            </Grid.Column>
+                        </Grid>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
+                        <Grid
+                            alignItems="flex-start"
+                            justify="center"
+                            spacing={2}
                         >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-down" />
-                            <p className="icon-type-name">caret-down</p>
-                        </Grid.Column>
+                            {renderCategories}
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="caret-left" />
-                            <p className="icon-type-name">caret-left</p>
-                        </Grid.Column>
+                            <Grid.Column
+                                sm={12}
+                            >
+                                <Heading
+                                    anchorLink="older-icons"
+                                    variant="h2"
+                                >
+                                    Older Icons
+                                </Heading>
+                            </Grid.Column>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
-                            <p className="icon-type-name">arrows-alt</p>
-                        </Grid.Column>
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="circle-filled" />
+                                <p className="icon-type-name">circle-filled</p>
+                            </Grid.Column>
 
-                        <Grid.Column
-                            classes={{
-                                root: classes.iconGridColumn,
-                            }}
-                            lg
-                            md={4}
-                            sm={6}
-                        >
-                            <Icon compact={iconCompact} size={iconSize} type="spinner" />
-                            <p className="icon-type-name">spinner</p>
-                        </Grid.Column>
-                    </Grid>
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="text-lines" />
+                                <p className="icon-type-name">text-lines</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-up" />
+                                <p className="icon-type-name">caret-up</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-right" />
+                                <p className="icon-type-name">caret-right</p>
+                            </Grid.Column>
+
+                            {width === 'lg' ? (
+                                <Grid.Column
+                                    lg={12}
+                                />
+                            ) : null}
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-down" />
+                                <p className="icon-type-name">caret-down</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="caret-left" />
+                                <p className="icon-type-name">caret-left</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="arrows-alt" />
+                                <p className="icon-type-name">arrows-alt</p>
+                            </Grid.Column>
+
+                            <Grid.Column
+                                classes={{
+                                    root: classes.iconGridColumn,
+                                }}
+                                lg
+                                md={4}
+                                sm={6}
+                            >
+                                <Icon compact={iconCompact} size={iconSize} type="spinner" />
+                                <p className="icon-type-name">spinner</p>
+                            </Grid.Column>
+                        </Grid>
+                    </MarkdownContainer>
+
+                    <ComponentVersionIdentifier
+                        pathname={pathname}
+                    />
                 </Main.Content>
             </Main>
         );
     }
 }
 
-ElementsIconSet.propTypes = propTypes;
+DocsIcon.propTypes = propTypes;
 
 export default withStyles(
-    useStyles,
+    styles,
     {
         withTheme: true,
     },
-)(withWidth()(ElementsIconSet));
+)(withWidth()(DocsIcon));

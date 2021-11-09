@@ -30,7 +30,7 @@ export default class DrawerWingSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerWingToggle}>Open Drawer Full of Wings</Button>
+                <Button onClick={this._onDrawerWingToggle} designVersion={2}>Open Drawer Full of Wings</Button>
 
                 <Drawer
                     isOpen={isDrawerWingOpen}
@@ -43,19 +43,19 @@ export default class DrawerWingSample extends React.Component {
                         >
                             {wingOpenType === 'blue' ? (
                                 <div>
-                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                    <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                     <p>blue wing render drawer win</p>
                                 </div>
                             ) : wingOpenType === 'grey' ? (
                                 <div>
-                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                    <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                     <p>grey wing render drawer wing</p>
                                 </div>
                             ) : wingOpenType === 'white' ? (
                                 <div>
-                                    <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                    <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                     <p>white wing render drawer wing</p>
                                 </div>
@@ -63,15 +63,15 @@ export default class DrawerWingSample extends React.Component {
                         </Drawer.Wing>
                     }
                 >
-                    <Button onClick={this._onDrawerWingToggle}>Close Drawer</Button>
+                    <Button onClick={this._onDrawerWingToggle} designVersion={2}>Close Drawer</Button>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
-                    <Button onClick={() => this._onOpenWing('white')}>White Wing</Button>
+                    <Button onClick={() => this._onOpenWing('white')} designVersion={2}>White Wing</Button>
 
-                    <Button onClick={() => this._onOpenWing('blue')}>Blue Wing</Button>
+                    <Button onClick={() => this._onOpenWing('blue')} designVersion={2}>Blue Wing</Button>
 
-                    <Button onClick={() => this._onOpenWing('grey')}>Grey Wing</Button>
+                    <Button onClick={() => this._onOpenWing('grey')} designVersion={2}>Grey Wing</Button>
                 </Drawer>
             </div>
         );
@@ -163,7 +163,7 @@ class ModulesDrawerWing extends React.Component {
                         <span>For when UI requires developers to be sneaky by hiding content and actions out of the viewport.</span>
                     </Typography>
 
-                    <Button onClick={this._onDrawerWingToggle}>Open Drawer Full of Wings</Button>
+                    <Button onClick={this._onDrawerWingToggle} designVersion={2}>Open Drawer Full of Wings</Button>
 
                     <Drawer
                         isOpen={isDrawerWingOpen}
@@ -176,19 +176,19 @@ class ModulesDrawerWing extends React.Component {
                             >
                                 {wingOpenType === 'blue' ? (
                                     <div>
-                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                        <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                         <p>blue wing render drawer win</p>
                                     </div>
                                 ) : wingOpenType === 'grey' ? (
                                     <div>
-                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                        <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                         <p>grey wing render drawer wing</p>
                                     </div>
                                 ) : wingOpenType === 'white' ? (
                                     <div>
-                                        <Button onClick={() => this._onOpenWing()}>Close Wing</Button>
+                                        <Button onClick={() => this._onOpenWing()} designVersion={2}>Close Wing</Button>
 
                                         <p>white wing render drawer wing</p>
                                     </div>
@@ -196,15 +196,15 @@ class ModulesDrawerWing extends React.Component {
                             </Drawer.Wing>
                           )}
                     >
-                        <Button onClick={this._onDrawerWingToggle}>Close Drawer</Button>
+                        <Button onClick={this._onDrawerWingToggle} designVersion={2}>Close Drawer</Button>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo pretium odio, quis tristique sem suscipit eget. Morbi sit amet nibh quis lorem sodales suscipit. Nam a convallis sem. Pellentesque convallis tellus ex, nec finibus lacus placerat eget. Sed nec placerat nisl. Nam facilisis dolor non ante sollicitudin sollicitudin. Aliquam magna sem, ullamcorper eget ipsum tincidunt, lobortis semper magna. Mauris cursus urna nec tellus convallis mollis ut eget sem.</p>
 
-                        <Button onClick={() => this._onOpenWing('white')}>White Wing</Button>
+                        <Button onClick={() => this._onOpenWing('white')} designVersion={2}>White Wing</Button>
 
-                        <Button onClick={() => this._onOpenWing('blue')}>Blue Wing</Button>
+                        <Button onClick={() => this._onOpenWing('blue')} designVersion={2}>Blue Wing</Button>
 
-                        <Button onClick={() => this._onOpenWing('grey')}>Grey Wing</Button>
+                        <Button onClick={() => this._onOpenWing('grey')} designVersion={2}>Grey Wing</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

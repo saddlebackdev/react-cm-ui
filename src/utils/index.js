@@ -3,6 +3,7 @@ export { default as DatePickerUtils } from './datePickerUtils';
 export { default as dateUtils } from './dateUtils';
 export { default as domUtils } from './domUtils';
 export { default as Grow } from './grow';
+export { default as Fade } from './fade';
 export { default as Slide } from './slide';
 export { default as useMediaQuery } from './useMediaQuery';
 export { default as Utils } from './utils';

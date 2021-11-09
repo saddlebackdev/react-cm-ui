@@ -13,6 +13,7 @@ import Input from '../../inputs/input';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
+    autoFocus: PropTypes.bool,
     classes: PropTypes.shape({
         clearButtonContainer: PropTypes.string,
         input: PropTypes.string,
@@ -29,15 +30,22 @@ const propTypes = {
     onKeyDown: PropTypes.func.isRequired,
     onSearchClick: PropTypes.func,
     onSearchKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
+    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
 
 const defaultProps = {
+    autoFocus: false,
     id: undefined,
     isMobileSearch: false,
     isMobileSearchVisible: false,
+    onClearClick: undefined,
+    onKeyDown: undefined,
     onSearchClick: null,
     onSearchKeyDown: null,
+    placeholder: 'Search',
+    style: {},
     value: '',
 };
 
@@ -148,10 +156,13 @@ class ActionBarSearch extends React.PureComponent {
 
     render() {
         const {
+            autoFocus,
             classes,
             id,
             isMobileSearch,
             isMobileSearchVisible,
+            placeholder,
+            style,
             value,
         } = this.props;
 
@@ -188,6 +199,7 @@ class ActionBarSearch extends React.PureComponent {
                 )}
 
                 <Input
+                    autoFocus={autoFocus}
                     className={ClassNames(
                         `${BEM_ACTION_BAR_SEARCH}_input`,
                         classes.input,

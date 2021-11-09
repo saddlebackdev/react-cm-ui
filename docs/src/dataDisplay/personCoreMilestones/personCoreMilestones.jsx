@@ -10,6 +10,7 @@ import ComponentVersionIdentifier from '../../global/componentVersionIdentifier'
 import Example from '../../global/example';
 import ExampleAdultFemale from './examples/exampleAdultFemale';
 import ExampleAdultMale from './examples/exampleAdultMale';
+import ExampleInteractive from './examples/exampleInteractive';
 import ExampleChild from './examples/exampleChild';
 import ExampleDisable from './examples/exampleDisable';
 import ExampleStudent from './examples/exampleStudent';
@@ -27,7 +28,7 @@ const propTypes = {
     }).isRequired,
 };
 
-function DocsButton(props) {
+function DocsPersonCoreMilestones(props) {
     const {
         location: {
             pathname,
@@ -51,7 +52,7 @@ function DocsButton(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="record-types"
+                        anchorLink="person-record-types"
                         variant="h2"
                     >
                         Person Record Types
@@ -129,6 +130,25 @@ function DocsButton(props) {
                     >
                         <ExampleDisable />
                     </Example>
+
+                    <Heading
+                        anchorLink="disable-popover"
+                        variant="h2"
+                    >
+                        Interactive Person Core Milestones
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        Go ahead, give it a whirl
+                    </Typography>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleInteractive').default}
+                    >
+                        <ExampleInteractive />
+                    </Example>
                 </MarkdownContainer>
 
                 <ComponentVersionIdentifier
@@ -139,6 +159,6 @@ function DocsButton(props) {
     );
 }
 
-DocsButton.propTypes = propTypes;
+DocsPersonCoreMilestones.propTypes = propTypes;
 
-export default DocsButton;
+export default DocsPersonCoreMilestones;

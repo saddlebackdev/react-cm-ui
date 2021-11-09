@@ -1,6 +1,24 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.3 - 10/19/2021
+
+#### Feature
+- [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334) / Merge Commit 22aa683
+  - PersonCoreMilestones documentation improvements, including adding an interactive.
+
+## 0.15.2 - 08/12/2021
+
+#### Feature
+- [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319) / Merge Commit e1b82ee
+  - New TimePicker doc changes.
+
+## 0.15.1 - 06/14/2021
+
+#### Feature
+- [PR #300](https://github.com/saddlebackdev/react-cm-ui/pull/300) / Merge Commit f0cd0a0
+  - Updated Demo Page and Demo Page's Filters Rail to demonstrate custom scrollbars and also fix some functionality/state-management issues.
+
 ## 0.15.0 - 04/16/2021
 
 #### Bug

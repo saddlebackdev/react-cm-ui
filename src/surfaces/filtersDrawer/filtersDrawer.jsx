@@ -16,6 +16,9 @@ import ClassNames from 'classnames';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import Button from '../../inputs/button';
 import Checkbox from '../../inputs/checkbox/checkbox';
 import Drawer from '../drawer'; // eslint-disable-line import/no-cycle
@@ -48,6 +51,10 @@ const propTypes = {
         wingHeading: PropTypes.string,
     }),
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     isDirty: PropTypes.bool.isRequired,
     isFiltering: PropTypes.bool.isRequired,
@@ -164,6 +171,7 @@ const defaultProps = {
     children: undefined,
     classes: null,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-fitlersDrawer`,
     id: undefined,
     rows: undefined,
     style: {},
@@ -273,6 +281,7 @@ class FiltersDrawer extends React.Component {
             children,
             classes,
             className,
+            dataTestId,
             id,
             isDirty,
             isFiltering,
@@ -303,6 +312,7 @@ class FiltersDrawer extends React.Component {
             >
                 <Drawer
                     className={containerClasses}
+                    data-testid={dataTestId}
                     id={id}
                     isOpen={isOpen}
                     onClose={onClose}
@@ -413,6 +423,7 @@ class FiltersDrawer extends React.Component {
                                     {isDirty && (
                                         <Button
                                             color="success"
+                                            designVersion={2}
                                             icon
                                             innerStyle={{
                                                 height: '32px',

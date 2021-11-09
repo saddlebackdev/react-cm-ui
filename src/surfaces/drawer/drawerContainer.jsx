@@ -1,6 +1,9 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import Container from '../../layout/container';
 
 const propTypes = {
@@ -9,6 +12,10 @@ const propTypes = {
         root: PropTypes.string,
     }),
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
 };
 
@@ -16,6 +23,7 @@ const defaultProps = {
     children: null,
     classes: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-drawer_container`,
     id: null,
 };
 
@@ -24,6 +32,7 @@ function DrawerContainer(props) {
         children,
         classes,
         className,
+        dataTestId,
         id,
     } = props;
 
@@ -37,6 +46,7 @@ function DrawerContainer(props) {
         <Container
             classes={classes}
             className={rootClasses}
+            data-testid={dataTestId}
             id={id}
             moduleType="drawer"
         >

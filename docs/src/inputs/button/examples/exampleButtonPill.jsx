@@ -29,6 +29,7 @@ function ExamplePill() {
                     >
                         <Button
                             pill
+                            designVersion={2}
                         >
                             Label
                         </Button>
@@ -54,6 +55,7 @@ function ExamplePill() {
                     >
                         <Button
                             pill
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"

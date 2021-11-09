@@ -30,7 +30,7 @@ export default class DrawerTtileBarSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this._onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -89,7 +89,7 @@ export default class DrawerTtileBarSample extends React.Component {
                     Ut fringilla orci nec magna vehicula iaculis. Donec imperdiet ultrices varius. Ut bibendum pretium neque, eget placerat augue malesuada vitae. Nunc varius nisl sit amet elit auctor, vel ullamcorper dui sodales. Morbi gravida feugiat ligula, eget feugiat tellus posuere nec. Nunc placerat tempus sagittis. Sed convallis aliquet purus, at varius ante dignissim a. Sed egestas auctor metus. Pellentesque facilisis justo ac augue mattis, eu ornare lorem accumsan. Nullam sem erat, molestie ac dapibus eu, tincidunt ac lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                     </p>
 
-                    <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                    <Button onClick={this._onDrawerToggle} designVersion={2}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
@@ -194,25 +194,25 @@ class ModulesDrawerTitleBar extends React.Component {
                         </span>
                     </Typography>
 
-                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                    <Button onClick={() => this._onDrawerToggle(true, true)} designVersion={2}>
                         Open Drawer with Navigation & ActionBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                    <Button onClick={() => this._onDrawerToggle(false, false)} designVersion={2}>
                         Open Drawer without Navigation & ActionBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                    <Button onClick={() => this._onDrawerToggle(false, true)} designVersion={2}>
                         Open Drawer without Navigation
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                    <Button onClick={() => this._onDrawerToggle(true, false)} designVersion={2}>
                         Open Drawer without ActionBar
                     </Button>
 
@@ -311,6 +311,7 @@ class ModulesDrawerTitleBar extends React.Component {
                         <p>
                             <Button
                                 onClick={() => this._onDrawerToggle(isNavigation, isActionBar)}
+                                designVersion={2}
                             >
                                 Close Drawer
                             </Button>
@@ -364,7 +365,7 @@ class ModulesDrawerTitleBar extends React.Component {
                             Ut fringilla orci nec magna vehicula iaculis. Donec imperdiet ultrices varius. Ut bibendum pretium neque, eget placerat augue malesuada vitae. Nunc varius nisl sit amet elit auctor, vel ullamcorper dui sodales. Morbi gravida feugiat ligula, eget feugiat tellus posuere nec. Nunc placerat tempus sagittis. Sed convallis aliquet purus, at varius ante dignissim a. Sed egestas auctor metus. Pellentesque facilisis justo ac augue mattis, eu ornare lorem accumsan. Nullam sem erat, molestie ac dapibus eu, tincidunt ac lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                         </p>
 
-                        <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this._onDrawerToggle} designVersion={2}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

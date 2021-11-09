@@ -19,12 +19,15 @@ export const BEM_ACTION_BAR_SEARCH = `${BEM_ACTION_BAR}--search`;
 export const BEM_CHECKBOX = 'checkbox';
 export const BEM_GRID = 'grid';
 export const BEM_GRID_COLUMN = `${BEM_GRID}--column`;
+export const BEM_GRID_ROW = `${BEM_GRID}--row`;
 
 export const BEM_EMAIL_LINK = 'email_link';
 
 export const BEM_FILTERS_RAIL = 'filters_rail';
 export const BEM_FILTERS_RAIL_ROW = `${BEM_FILTERS_RAIL}--row`;
 export const BEM_FILTERS_RAIL_ROW_COMPONENT = `${BEM_FILTERS_RAIL}--row_component`;
+
+export const BEM_ICON = 'icon';
 
 export const BEM_INPUT = 'input';
 
@@ -36,8 +39,8 @@ export const BEM_MODAL_INNER_CONTAINER = `${BEM_MODAL}--inner_container`;
 export const BEM_MODAL_TITLE = `${BEM_MODAL}--title`;
 
 export const BEM_NAVIGATION_BREADCRUMBS = 'navigation_breadcrumbs';
-export const BEM_NAVIGATION_TABS = 'navigation_tabs';
-export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_TABS}--tab`;
+export const BEM_NAVIGATION_SECTIONAL_TABS = 'navigation_sectional_tabs';
+export const BEM_NAVIGATION_TAB_ROOT_CLASS = `${BEM_NAVIGATION_SECTIONAL_TABS}--tab`;
 
 export const BEM_PERSON_CONTACT_INFO = 'person_contact_info';
 export const BEM_PERSON_CORE_MILESTONES = 'person_core_milestones';

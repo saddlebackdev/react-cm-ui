@@ -1,175 +1,79 @@
 /**
- * NOTE: Greater than, lesser than symbols signifies a gap.
- * e.g. designItems[0].version: '2.0.0 >' and devVersion: '2.0.0 <'. signifies that the dev
- * component needs to be advanced to close the gap. Visa-versa would signify that design needs to
- * advanced their component.
+ * NOTE: Greater than, lesser than symbols in `devLibraryVersion` key values signifies a gap.
+ * e.g. devLibraryVersion: '< 2.0.0'. signifies that the dev component needs to be advanced to
+ * close the gap.
  */
 
 const versions = {
     'react-cm-ui': {
-        package: '10.0.0',
+        package: '10.2.3',
         components: {
             dataDisplay: {
-                tooltip: {
-                    designArea: 'Tooltip',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/a/3RRWYw',
-                            name: 'Tooltips',
-                            version: '2.0.0 >',
-                        },
-                    ],
-                    devVersion: '2.0.0 <',
+                dataCards: {
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
                 dataGrid: {
                     devLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
+                dataGroups: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
+                },
+                icon: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/E1DB6E1A-4679-47B6-AFBC-3A23CB13C6D1',
+                },
+            },
+            feedback: {
+                snackbar: {
+                    devLibraryVersion: '2.0.1',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/5747fcab-493c-4f90-bde8-c2096f2db6bf/a/rbM1GbA',
+                },
+            },
+            inputs: {
+                dropdownButton: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
+                },
                 table: {
                     devLibraryVersion: '1.0.0',
                     designLibraryVersion: '', // TODO: Add Design Library version
                     designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
-            },
-            inputs: {
-                button: {
-                    designArea: 'Buttons',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/kJJpag',
-                            name: 'Standard Button Styles',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/oGGwYY',
-                            name: 'Touchscreen Button Styles',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/R00L1y',
-                            name: 'Button Types',
-                            version: '2.0.1',
-                        },
-                    ],
-                    devVersion: '2.0.0',
-                },
-                checkbox: {
-                    designArea: 'Checkbox',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/YVVzGM',
-                            name: 'Standard Checkbox',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/Kee1vn',
-                            name: 'Mini Checkbox',
-                            version: '2.0.0',
-                        },
-                    ],
-                    devVersion: '2.0.0',
-                },
-                durationPicker: { // TODO: Design needs to add documentation.
-                    designArea: '',
-                    designItems: [],
-                    devVersion: '2.0.0',
-                },
-                input: {
-                    designArea: 'Text Inputs',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/8KKjya',
-                            name: 'Standard Single Line Input',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/2ooq5J',
-                            name: 'Button & Single Line Input',
-                            version: '2.0.0',
-                        },
-                    ],
-                    devVersion: '2.0.0',
-                },
                 prompt: {
-                    designArea: 'Button Dropdowns',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
-                            name: 'Button with Prompt',
-                            version: '2.0.0',
-                        },
-                    ],
-                    devVersion: '2.0.0',
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
                 },
-                switch: {
-                    designArea: 'Switch',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/gva8jM',
-                            name: 'Standard Toggle',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/83JE8x',
-                            name: 'Mini Toggle',
-                            version: '2.0.0',
-                        },
-                    ],
-                    devVersion: '2.0.0',
+                select: {
+                    devLibraryVersion: '< 1.0.2',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
+                },
+                timePicker: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
             },
             layout: {
                 grid: {
-                    designArea: 'Grid',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/vlljpd',
-                            name: '1200 Desktop',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/4117M3',
-                            name: '768 Desktop',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/e220Z0',
-                            name: '767 Mobile',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/GZZlEL',
-                            name: '729 Desktop',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/ODDKVw',
-                            name: '728 Mobile',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/m44YD7',
-                            name: '496 Mobile',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/Djjamj',
-                            name: '495 Mobile',
-                            version: 'N/A',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/a/a99mrd',
-                            name: '320 Mobile',
-                            version: 'N/A',
-                        },
-                    ],
-                    devVersion: '2.0.0',
+                    devLibraryVersion: '> 2.0.2',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/p/305D0BE8-1CD5-4796-A022-3E25B1E7BD35',
                 },
-                appBar: {
-                    devLibraryVersion: '1.0.0',
-                    designLibraryVersion: '', // TODO: Add Design Library version
-                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                page: {
+                    devLibraryVersion: '< 1.0.2',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/8016dbb8-1bb5-4fac-bea4-09f39aca414a/p/647AD2A6-E3E0-469A-BFD4-A7A8605EC833',
                 },
             },
             navigation: {
@@ -177,6 +81,11 @@ const versions = {
                     designArea: '',
                     designItems: [],
                     devVersion: '2.0.0',
+                },
+                mobileStepper: {
+                    devLibraryVersion: '> 2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
                 tabs: {
                     designArea: 'Content Navigation',
@@ -191,58 +100,45 @@ const versions = {
                 },
             },
             surfaces: {
-                actionBar: {
-                    designArea: 'Actions Bar',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
-                            name: 'Actions Bar - Desktop',
-                            version: '2.1.0 >',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/lvvVP4',
-                            name: 'Actions Bar - Mobile',
-                            version: '2.0.0 >',
-                        },
-                    ],
-                    devVersion: '2.0.0 <',
+                appBar: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/p/577E033D-4ACB-46BE-BC78-81042803D4AD',
                 },
-                appBar: { // TODO: Design needs to add documentation.
-                    designArea: '',
-                    designItems: [],
-                    devVersion: '2.0.0',
+                actionBar: {
+                    devLibraryVersion: '< 1.0.3',
+                    designLibraryVersion: '2.1.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
+                },
+                detailsWindow: {
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/35D0905B-98F5-42E8-B95A-CDBB28612450',
+                },
+                drawer: {
+                    devLibraryVersion: '< 1.0.2',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/04BAC452-896D-4D93-8239-F70B41633674',
                 },
                 filtersDrawer: {
-                    designArea: 'Filters Rail',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/R00Lqx',
-                            name: 'Filters Rail - Mobile',
-                            version: '2.0.1 >',
-                        },
-                    ],
-                    devVersion: '2.0.0 <',
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.1',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/R00Lqx',
                 },
                 filtersRail: {
-                    designArea: 'Filters Rail',
-                    designItems: [
-                        {
-                            doc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/kJJpy9',
-                            name: 'Filters Rail - Desktop',
-                            version: '2.0.0',
-                        },
-                        {
-                            doc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/oGGwxx',
-                            name: 'Filters Rail - Desktop Drawer',
-                            version: '2.0.0',
-                        },
-                    ],
-                    devVersion: '2.0.0',
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/056E3E2A-F668-4346-9EDB-E9F4B7F2931C',
                 },
-                modal: { // TODO: Design needs to add documentation.
-                    designArea: '',
-                    designItems: [],
-                    devVersion: '2.0.0',
+                modalDeprecated: {
+                    devLibraryVersion: '< 1.5.1',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+                modal: {
+                    devLibraryVersion: '2.0.1',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
             },
         },
@@ -251,6 +147,7 @@ const versions = {
             gutters: '1.0.0',
             height: '1.0.0',
             index: '1.0.0',
+            mixins: '1.0.0',
             palette: '1.0.0',
             shape: '1.0.0',
             spacing: '1.0.0',

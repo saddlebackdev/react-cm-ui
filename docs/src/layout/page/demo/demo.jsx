@@ -18,6 +18,7 @@ import DemoFiltersRail from './demoFiltersRail';
 
 const propTypes = {
     classes: PropTypes.shape({
+        appBar: PropTypes.string,
         dataGroupsContainer: PropTypes.string,
     }),
     isMobile: PropTypes.bool.isRequired,
@@ -637,6 +638,7 @@ class PageDemo extends React.PureComponent {
                 {
                     accessor: `phone-${item.id}`,
                     fieldName: item.phoneType,
+                    // eslint-disable-next-line no-nested-ternary
                     iconType: item.phoneTypeId === 1 ? 'phone-home' : (item.phoneTypeId === 2 ? 'phone-work' : 'phone-cell'),
                     iconColor: 'primary',
                 }

@@ -1,82 +1,68 @@
-import _ from 'lodash';
-import ClassNames from 'classnames';
+import MUIList from '@material-ui/core/List';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ListItem from './listItem';
-import Utils from '../../utils/utils';
 
 const propTypes = {
-    as: PropTypes.oneOf(['div', 'ol', 'ul']),
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to the component.
+     * See [CSS API](#css) below for more details.
+     */
+    classes: PropTypes.shape({}),
+    /**
+     * @ignore
+     */
     className: PropTypes.string,
-    divide: PropTypes.bool,
-    fluid: PropTypes.bool,
-    horizontal: PropTypes.bool,
-    inverse: PropTypes.bool,
-    style: PropTypes.shape({}),
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: PropTypes.node,
+    /**
+     * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+     * the list and list items.
+     * The prop is available to descendant components as the `dense` context.
+     */
+    dense: PropTypes.bool,
+    /**
+     * If `true`, vertical padding will be removed from the list.
+     */
+    disablePadding: PropTypes.bool,
+    /**
+     * The content of the subheader, normally `ListSubheader`.
+     */
+    subheader: PropTypes.node,
 };
 
 const defaultProps = {
-    as: null,
-    children: null,
-    className: null,
-    divide: null,
-    fluid: null,
-    horizontal: null,
-    inverse: null,
-    style: null,
+    children: undefined,
+    className: undefined,
+    component: undefined,
+    classes: undefined,
+    dense: false,
+    disablePadding: false,
+    subheader: undefined,
 };
 
-class List extends React.Component {
-    onItemClick(index, onChildClick, event) {
-        if (!_.isUndefined(onChildClick)) {
-            onChildClick(index);
-        }
+function List(props) {
+    const {
+        children,
+        ...otherProps
+    } = props;
 
-        event.preventDefault();
-    }
-
-    render() {
-        const {
-            as,
-            children,
-            className,
-            divide,
-            fluid,
-            horizontal,
-            inverse,
-            style,
-        } = this.props;
-        const containerClasses = ClassNames('ui', 'list', className, {
-            'list-divide': divide,
-            'list-horizontal': horizontal,
-            'list-fluid': fluid,
-            'list-inverse': inverse,
-        });
-
-        const ElementType = Utils.getElementType(as || 'div', this.props);
-
-        const items = React.Children.map(children, (child, index) => {
-            if (!_.isNil(child)) {
-                return (
-                    <ListItem
-                        as={as}
-                        key={'list--item' + index}
-                        {...child.props}
-                    />
-                );
-            }
-        });
-
-        return (
-            <ElementType className={containerClasses} style={style}>
-                {items}
-            </ElementType>
-        );
-    }
+    return (
+        <MUIList
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...otherProps}
+        >
+            {children}
+        </MUIList>
+    );
 }
 
-List.Item = ListItem;
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;

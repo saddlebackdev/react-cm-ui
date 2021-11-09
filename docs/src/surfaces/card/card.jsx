@@ -1,7 +1,9 @@
-import React from 'react';
 import {
-    Card, Grid, Typography,
+    Card,
+    Grid,
+    Typography,
 } from 'react-cm-ui';
+import React from 'react';
 import Block from '../../global/block';
 import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
@@ -101,9 +103,9 @@ export default class CardOnClickSample extends React.Component {
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                         <Typography size="small" sub={true}>
                             A Title
-                            </Typography>
+                        </Typography>
 
-                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                        <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -129,9 +131,9 @@ export default class ActiveSample extends React.Component {
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                         <Typography size="small" sub={true}>
                             A Title
-                            </Typography>
+                        </Typography>
 
-                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                        <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>
@@ -157,9 +159,9 @@ export default class CollapsableSample extends React.Component {
                     <Grid.Column style={{ padding: '0 0 0 22px', width: 'auto' }}>
                         <Typography size="small" sub={true}>
                             A Title
-                            </Typography>
+                        </Typography>
 
-                            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
+                        <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing.</Typography>
                     </Grid.Column>
                 </Grid>
             </Card>

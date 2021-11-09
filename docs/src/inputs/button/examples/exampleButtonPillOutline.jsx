@@ -28,8 +28,9 @@ function ExamplePillOutline() {
                         sm
                     >
                         <Button
-                            outline
                             pill
+                            variant="outlined"
+                            designVersion={2}
                         >
                             Label
                         </Button>
@@ -54,8 +55,9 @@ function ExamplePillOutline() {
                         sm
                     >
                         <Button
-                            outline
                             pill
+                            variant="outlined"
+                            designVersion={2}
                         >
                             <Icon
                                 type="shape-heart"

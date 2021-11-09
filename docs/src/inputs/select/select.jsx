@@ -4,7 +4,9 @@ import {
 import {
     camelCase,
 } from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import ExampleDefaultSelect from './examples/exampleDefaultSelect';
 import Heading from '../../global/heading';
@@ -14,7 +16,19 @@ import MarkdownContainer from '../../global/markdownContainer';
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/select/select';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function DocsSelect() {
+const propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+};
+
+function DocsSelect(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
     const {
         description,
         displayName,
@@ -44,9 +58,15 @@ function DocsSelect() {
                         <ExampleDefaultSelect />
                     </Example>
                 </MarkdownContainer>
+
+                <ComponentVersionIdentifier
+                    pathname={pathname}
+                />
             </Main.Content>
         </Main>
     );
 }
+
+DocsSelect.propTypes = propTypes;
 
 export default DocsSelect;

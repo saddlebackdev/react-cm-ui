@@ -101,12 +101,14 @@ function PersonPanelDetailsActionButton(props) {
                 classes.button,
                 className,
             )}
-            disable={disable}
+            color="primary"
+            designVersion={2}
+            disabled={disable}
             id={id}
-            outline={outline}
             onClick={onClick}
             onKeyDown={onKeyDownClick}
             title={title}
+            variant={outlined ? 'outlined' : 'contained'}
         >
             {label}
         </Button>

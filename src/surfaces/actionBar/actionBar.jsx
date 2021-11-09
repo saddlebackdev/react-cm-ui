@@ -1,7 +1,8 @@
 import {
+    isArray,
     isEmpty,
-    isFunction,
-    find,
+    isUndefined,
+    map,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -13,10 +14,15 @@ import {
     BEM_CONTAINER,
 } from '../../global/constants';
 import { COLUMNS_PROP_TYPES } from './actionBarConstants';
+import ActionBarActionsButton from './actionBarActionsButton'; // eslint-disable-line import/no-cycle
 import ActionBarGridColumns from './actionBarGridColumns';
 import ActionBarSearch from './actionBarSearch';
 import Grid from '../../layout/grid';
 import withStyles from '../../styles/withStyles';
+
+const searchPropTypes = PropTypes.shape({
+    autoFocus: PropTypes.bool,
+});
 
 const propTypes = {
     /**
@@ -41,6 +47,10 @@ const propTypes = {
      * the grid system in the ActionBar.
      */
     columns: COLUMNS_PROP_TYPES,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     /**
      * The `id` of the ActionBar.
      */
@@ -74,9 +84,11 @@ const defaultProps = {
     classes: null,
     className: null,
     columns: [],
-    id: null,
+    dataTestId: `${UI_CLASS_NAME}-action_bar`,
+    id: undefined,
     justifyContent: 'flex-start',
-    moduleType: null,
+    moduleType: undefined,
+    style: {},
     toggleSmSearchVisibleClassName: null,
 };
 
@@ -455,13 +467,13 @@ class ActionBar extends React.Component {
             classes,
             className,
             columns,
+            dataTestId,
             id,
             justifyContent,
             moduleType,
         } = this.props;
 
         const { isMobileSearchVisible } = this.state;
-
 
         const rootClasses = ClassNames(
             UI_CLASS_NAME,

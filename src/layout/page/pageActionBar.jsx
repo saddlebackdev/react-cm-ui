@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import React, {
+    useEffect,
+} from 'react';
 import {
     BEM_CONTAINER,
     UI_CLASS_NAME,
@@ -13,6 +15,10 @@ const propTypes = {
     }),
     className: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     style: PropTypes.shape({}),
 };
@@ -22,6 +28,7 @@ const defaultProps = {
     classes: null,
     className: undefined,
     columns: undefined,
+    dataTestId: `${UI_CLASS_NAME}-page_action_bar`,
     id: undefined,
     style: {},
 };
@@ -46,18 +53,21 @@ function PageActionBar(props) {
     }, []);
 
     const toggleSmSearchVisibleClassName = (isVisible) => {
-        const containerClassName = `.${UI_CLASS_NAME}.${BEM_CONTAINER}`;
+        const containerClassName = `.ui.${BEM_CONTAINER}`;
+        const containerNode = document.querySelector(containerClassName);
 
-        if (isVisible) {
-            document
-                .querySelector(containerClassName)
-                .classList
-                .add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
-        } else {
-            document
-                .querySelector(containerClassName)
-                .classList
-                .remove(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+        if (containerNode) {
+            if (isVisible) {
+                document
+                    .querySelector(containerClassName)
+                    .classList
+                    .add(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+            } else {
+                document
+                    .querySelector(containerClassName)
+                    .classList
+                    .remove(HAS_PAGE_CONTAINER_ACTION_BAR_MOBILE_SEARCH_VISIBLE_CLASS_NAME);
+            }
         }
     };
 
@@ -66,6 +76,7 @@ function PageActionBar(props) {
         classes,
         className,
         columns,
+        dataTestId,
         id,
         style,
     } = props;
@@ -75,6 +86,7 @@ function PageActionBar(props) {
             classes={classes}
             className={className}
             columns={columns}
+            data-testid={dataTestId}
             id={id}
             moduleType="page"
             style={style}

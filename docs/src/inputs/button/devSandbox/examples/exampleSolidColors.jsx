@@ -14,6 +14,7 @@ function ExampleSolidColors() {
             >
                 <Button
                     color="primary"
+                    designVersion={2}
                 >
                     Primary
                 </Button>
@@ -24,6 +25,7 @@ function ExampleSolidColors() {
             >
                 <Button
                     color="secondary"
+                    designVersion={2}
                 >
                     Secondary
                 </Button>
@@ -34,6 +36,7 @@ function ExampleSolidColors() {
             >
                 <Button
                     color="active"
+                    designVersion={2}
                 >
                     Active
                 </Button>
@@ -43,7 +46,8 @@ function ExampleSolidColors() {
                 sm="auto"
             >
                 <Button
-                    disable
+                    disabled
+                    designVersion={2}
                 >
                     Disable
                 </Button>
@@ -54,6 +58,7 @@ function ExampleSolidColors() {
             >
                 <Button
                     color="success"
+                    designVersion={2}
                 >
                     Success
                 </Button>
@@ -64,6 +69,7 @@ function ExampleSolidColors() {
             >
                 <Button
                     color="warning"
+                    designVersion={2}
                 >
                     Warning
                 </Button>

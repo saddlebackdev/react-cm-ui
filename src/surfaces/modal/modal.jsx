@@ -1,8 +1,8 @@
 import {
-    isString,
-    isNumber,
-    isUndefined,
     isFunction,
+    isNumber,
+    isString,
+    isUndefined,
 } from 'lodash';
 import { Portal } from 'react-portal';
 import React from 'react';
@@ -11,10 +11,10 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
 import {
-    UI_CLASS_NAME,
-    BEM_MODAL,
     BEM_MODAL_DIMMER,
     BEM_MODAL_INNER_CONTAINER,
+    BEM_MODAL,
+    UI_CLASS_NAME,
 } from '../../global/constants';
 import Button from '../../inputs/button';
 import domUtils from '../../utils/domUtils';
@@ -47,6 +47,10 @@ const propTypes = {
      * Assign additional class names to Modal.
      */
     className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     /**
      * The `height` of the Modal.
      */
@@ -100,7 +104,11 @@ const propTypes = {
      */
     onClose: PropTypes.func,
     /**
-     * Event handler called after closing animation has completed.
+     * Event handler called after close animation has completed.
+     */
+    onCloseComplete: PropTypes.func,
+    /**
+     * Event handler called after open animation has completed.
      */
     onOpenComplete: PropTypes.func,
     /**
@@ -125,6 +133,7 @@ const defaultProps = {
     children: null,
     classes: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-modal`,
     /**
      * If autoHeight is false the Inner Container's height needs to have a pixel value
      * for the scroll container to work appropriately, otherwise content inside is hidden.
@@ -137,13 +146,20 @@ const defaultProps = {
     minWidth: '375px',
     onClickOutside: false,
     onClose: null,
-    onOpenComplete: null,
+    onCloseComplete: undefined,
+    onOpenComplete: undefined,
     width: null,
 };
 
 const MODAL_ANIMATION_OUT_CLASS_NAME = `${BEM_MODAL}-animation_out`;
 
-const styles = (theme) => ({
+const styles = ({
+    breakpoints,
+    palette,
+    shape,
+    spacing,
+    zIndex,
+}) => ({
     '@keyframes modalDimmerFadeIn': {
         '0%': {
             opacity: 0,
@@ -181,12 +197,16 @@ const styles = (theme) => ({
         },
     },
     closeButton: {
-        borderRadius: theme.spacing(1.5),
+        borderRadius: spacing(1.5),
         margin: 0,
         position: 'absolute',
-        right: -theme.spacing(1.5),
-        top: -theme.spacing(1.5),
+        right: spacing(1),
+        top: spacing(1),
         zIndex: 1,
+        [breakpoints.up('md')]: {
+            right: -spacing(1.5),
+            top: -spacing(1.5),
+        },
     },
     dimmer: {
         animation: '$modalDimmerFadeIn 150ms ease-out forwards',
@@ -199,18 +219,15 @@ const styles = (theme) => ({
         position: 'absolute',
         top: 0,
         width: '100%',
-        zIndex: `${theme.zIndex.drawer + 2}`,
+        zIndex: `${zIndex.drawer + 2}`,
     },
     innerContainerClasses: {
         animation: '$modalSlideIn 200ms ease-out forwards',
         backfaceVisibility: 'hidden',
-        backgroundColor: theme.palette.background.contrastPrimary,
-        borderRadius: theme.shape.borderRadius.main,
+        backgroundColor: palette.background.primary,
+        borderRadius: shape.borderRadius.main,
         boxShadow: '0 15px 28px 0 rgba(0, 0, 0, 0.13)',
         position: 'relative',
-        [theme.breakpoints.up('md')]: {
-            backgroundColor: theme.palette.background.primary,
-        },
     },
     padding: {},
     root: {
@@ -224,9 +241,9 @@ const styles = (theme) => ({
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: theme.zIndex.drawer,
-        [theme.breakpoints.up('md')]: {
-            padding: theme.spacing(3),
+        zIndex: zIndex.drawer,
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
         },
         [`&.${MODAL_ANIMATION_OUT_CLASS_NAME}`]: {
             [`& .${BEM_MODAL_INNER_CONTAINER}`]: {
@@ -238,12 +255,10 @@ const styles = (theme) => ({
         },
     },
     scrollContainer: {
-        color: theme.palette.text.contrastText,
-        padding: [[88, 11, theme.spacing(3)]],
+        padding: [[spacing(5), spacing(2), spacing(2)]],
         position: 'relative',
-        [theme.breakpoints.up('md')]: {
-            color: 'inherit',
-            padding: theme.spacing(3),
+        [breakpoints.up('md')]: {
+            padding: spacing(3),
         },
     },
 });
@@ -260,10 +275,11 @@ class Modal extends React.Component {
         this.mounted = false;
         this.modalContainerNode = null;
 
-        this.onCloseBefore = this.onCloseBefore.bind(this);
+        this.getAutoHeightMax = this.getAutoHeightMax.bind(this);
         this.onClickOutside = this.onClickOutside.bind(this);
-        this.onCloseAnimationComplete = this.onCloseAnimationComplete.bind(this);
         this.onClose = this.onClose.bind(this);
+        this.onCloseAnimationComplete = this.onCloseAnimationComplete.bind(this);
+        this.onCloseBefore = this.onCloseBefore.bind(this);
         this.onOpen = this.onOpen.bind(this);
         this.onOpenAnimationComplete = this.onOpenAnimationComplete.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -365,6 +381,12 @@ class Modal extends React.Component {
 
         this.setState({
             isOpen: false,
+        }, () => {
+            const { onCloseComplete } = this.props;
+
+            if (isFunction(onCloseComplete)) {
+                onCloseComplete();
+            }
         });
     }
 
@@ -432,12 +454,11 @@ class Modal extends React.Component {
         }
 
         if (autoHeight) {
-            const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
-            const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
-            const modalHeight = portalNode.offsetHeight;
-            const newAutoHeightMax = modalHeight - modalPaddingBottom - modalPaddingTop;
+            const newAutoHeightMax = this.getAutoHeightMax();
 
-            this.setState({ autoHeightMax: newAutoHeightMax });
+            this.setState({
+                autoHeightMax: newAutoHeightMax,
+            });
         }
     }
 
@@ -460,6 +481,7 @@ class Modal extends React.Component {
 
     getDimensions() {
         const {
+            autoHeight,
             height,
             maxHeight,
             maxWidth,
@@ -488,10 +510,40 @@ class Modal extends React.Component {
             };
         }
 
+        if (autoHeight) {
+            const newAutoHeightMax = this.getAutoHeightMax();
+
+            dimensions = {
+                ...dimensions,
+                autoHeightMax: newAutoHeightMax,
+            };
+        }
+
         return dimensions;
     }
 
-    toggleBodyStyle({ enable }) {
+    getAutoHeightMax() {
+        const {
+            isOpen,
+        } = this.props;
+
+        if (this.mounted && isOpen) {
+            // eslint-disable-next-line react/no-find-dom-node
+            const portalNode = ReactDOM.findDOMNode(this);
+
+            if (portalNode) {
+                const modalPaddingBottom = parseInt(getComputedStyle(portalNode).paddingBottom, 10);
+                const modalPaddingTop = parseInt(getComputedStyle(portalNode).paddingTop, 10);
+                const modalHeight = portalNode.offsetHeight;
+
+                return modalHeight - modalPaddingBottom - modalPaddingTop;
+            }
+        }
+
+        return null;
+    }
+
+    toggleBodyStyle({ enable } = { enable: false }) {
         if (enable) {
             const { pageYOffset } = window;
 
@@ -517,6 +569,7 @@ class Modal extends React.Component {
             children,
             classes,
             className,
+            dataTestId,
             id,
             onClose: onCloseProp,
         } = this.props;
@@ -556,6 +609,7 @@ class Modal extends React.Component {
             <Portal>
                 <div
                     className={rootClasses}
+                    data-testid={dataTestId}
                     id={id}
                 >
                     <div
@@ -572,7 +626,7 @@ class Modal extends React.Component {
                                 classes={{
                                     root: classes.closeButton,
                                 }}
-                                color="secondary"
+                                designVersion={2}
                                 onClick={this.onClose}
                                 icon
                                 title="Close"
@@ -608,6 +662,7 @@ class Modal extends React.Component {
                             BEM_MODAL_DIMMER,
                             classes.dimmer,
                         )}
+                        data-testid={`${dataTestId}_dimmer`}
                     />
                 </div>
             </Portal>

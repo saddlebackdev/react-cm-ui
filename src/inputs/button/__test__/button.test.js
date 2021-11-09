@@ -88,33 +88,33 @@ describe('<Button />', () => {
         expect(wrapper.prop('id')).toEqual(props.id);
     });
 
-    it('Should be \'disable\'', () => {
+    it('Should add expected class when \'disabled\' prop is true', () => {
         const wrapper = mountWithTheme(
             <Button
                 {...props}
-                disable
+                disabled
             >
                 {text}
             </Button>,
         );
 
-        expect(wrapper.find('button').hasClass(/(Button)-(disable)-(\d+)/)).toEqual(true);
+        expect(wrapper.find('button').hasClass(/(Button)-(disabled)-(\d+)/)).toEqual(true);
     });
 
-    it('Should be a \'fluid\' button', () => {
+    it('Should be a \'fullWidth\' button', () => {
         const wrapper = mountWithTheme(
             <Button
                 {...props}
-                fluid
+                fullWidth
             >
                 {text}
             </Button>,
         );
 
-        expect(wrapper.find('button').hasClass(/(Button)-(fluid)-(\d+)/)).toEqual(true);
+        expect(wrapper.find('button').hasClass(/(Button)-(fullWidth)-(\d+)/)).toEqual(true);
     });
 
-    it('Should be \'pill\' button', () => {
+    it('Should be a \'pill\' button', () => {
         const wrapper = mountWithTheme(
             <Button
                 {...props}
@@ -127,16 +127,16 @@ describe('<Button />', () => {
         expect(wrapper.find('button').hasClass(/(Button)-(pill)-(\d+)/)).toEqual(true);
     });
 
-    it('Should be \'outline\' button', () => {
+    it('Should be an \'outlined\' button', () => {
         const wrapper = mountWithTheme(
             <Button
                 {...props}
-                outline
+                variant="outlined"
             >
                 {text}
             </Button>,
         );
 
-        expect(wrapper.find('button').hasClass(/(Button)-(outline)-(\d+)/)).toEqual(true);
+        expect(wrapper.find('button').hasClass(/(Button)-(outlined)-(\d+)/)).toEqual(true);
     });
 });

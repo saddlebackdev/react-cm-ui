@@ -30,7 +30,7 @@ export default class DrawerActionBarSample extends React.Component {
 
         return (
             <div>
-                <Button onClick={this._onDrawerToggle}>Open Drawer</Button>
+                <Button onClick={this._onDrawerToggle} designVersion={2}>Open Drawer</Button>
 
                 <Drawer
                     isOpen={isDrawerOpen}
@@ -111,6 +111,7 @@ export default class DrawerActionBarSample extends React.Component {
                                         color="success"
                                         onClick={this._onNewTemplateClick}
                                         style={{ margin: 0 }}
+                                        designVersion={2}
                                     >
                                         <Icon type="plus" />
                                         <span>New Template</span>
@@ -235,7 +236,7 @@ export default class DrawerActionBarSample extends React.Component {
                     Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                     </p>
 
-                    <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                    <Button onClick={this._onDrawerToggle} designVersion={2}>Close Drawer</Button>
                 </Drawer>
             </div>
         );
@@ -340,25 +341,25 @@ class ModulesDrawerActionBar extends React.Component {
                         {columnsArrayProps}
                     </Highlighter>
 
-                    <Button onClick={() => this._onDrawerToggle(true, true)}>
+                    <Button onClick={() => this._onDrawerToggle(true, true)} designVersion={2}>
                         Open Drawer with TitleBar & Navigation
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, false)}>
+                    <Button onClick={() => this._onDrawerToggle(false, false)} designVersion={2}>
                         Open Drawer without TitleBar & Navigation
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(false, true)}>
+                    <Button onClick={() => this._onDrawerToggle(false, true)} designVersion={2}>
                         Open Drawer without TitleBar
                     </Button>
                     <br />
                     <br />
 
-                    <Button onClick={() => this._onDrawerToggle(true, false)}>
+                    <Button onClick={() => this._onDrawerToggle(true, false)} designVersion={2}>
                         Open Drawer without Navigation
                     </Button>
 
@@ -445,6 +446,7 @@ class ModulesDrawerActionBar extends React.Component {
                                             color="success"
                                             onClick={this._onNewTemplateClick}
                                             style={{ margin: 0 }}
+                                            designVersion={2}
                                         >
                                             <Icon type="plus" />
                                             <span>New Template</span>
@@ -457,6 +459,7 @@ class ModulesDrawerActionBar extends React.Component {
                         <p>
                             <Button
                                 onClick={() => this._onDrawerToggle(isTitleBar, isNavigation)}
+                                designVersion={2}
                             >
                                 Close Drawer
                             </Button>
@@ -577,7 +580,7 @@ class ModulesDrawerActionBar extends React.Component {
                             Cras et nisi ante. Phasellus nec dui et tortor pellentesque aliquam.
                         </p>
 
-                        <Button onClick={this._onDrawerToggle}>Close Drawer</Button>
+                        <Button onClick={this._onDrawerToggle} designVersion={2}>Close Drawer</Button>
                     </Drawer>
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>

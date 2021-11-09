@@ -5,10 +5,12 @@
 // Data Display
 @import './dataDisplay/dataCards/dataCards';
 @import './dataDisplay/dataGroups/dataGroups';
-@import './dataDisplay/headerDeprecated/headerDeprecated';
+@import './dataDisplay/divider/dividerDeprecated';
+@import './dataDisplay/header/header';
 @import './dataDisplay/icon/icon';
 @import './dataDisplay/image/image';
-@import './dataDisplay/list/list';
+@import './dataDisplay/label/label';
+@import './dataDisplay/list/listDeprecated';
 
 // Feedback
 @import './feedback/activityIndicator/activityIndicator';
@@ -25,15 +27,14 @@
 @import './inputs/textArea/textArea';
 @import './inputs/timePicker/timePicker';
 
-// Layout
-@import './layout/grid/grid';
-
 // Surfaces
 @import './surfaces/accordion/accordion';
 @import './surfaces/detailsWindow/detailsWindow';
 @import './surfaces/drawer/drawer';
+@import './surfaces/drawerDeprecated/drawerDeprecated';
 @import './surfaces/drawer/drawerFiltersDrawer';
 @import './surfaces/drawer/drawerWing';
 @import './surfaces/filtersDrawer/filtersDrawer';
 @import './surfaces/infoBar/infoBar';
+@import './surfaces/modalDeprecated/modalDeprecated';
 @import './surfaces/titleBar/titleBar';

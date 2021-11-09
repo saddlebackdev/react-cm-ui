@@ -15,8 +15,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="primary"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -31,8 +32,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="secondary"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -47,8 +49,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="active"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -62,15 +65,16 @@ function ExamplePillOutlineColors() {
                 sm="auto"
             >
                 <Button
-                    disable
-                    outline
+                    disabled
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
                     />
 
-                    <span>Disable</span>
+                    <span>Disabled</span>
                 </Button>
             </Grid.Column>
 
@@ -79,8 +83,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="error"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -95,8 +100,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="success"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -111,8 +117,9 @@ function ExamplePillOutlineColors() {
             >
                 <Button
                     color="warning"
-                    outline
                     pill
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"

@@ -16,7 +16,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="primary"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -32,7 +33,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="secondary"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -48,7 +50,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="active"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -64,7 +67,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     disable
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -80,7 +84,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="error"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -94,25 +99,10 @@ function ExampleOutlineInverseColors() {
                 sm="auto"
             >
                 <Button
-                    color="link"
-                    inverse
-                    outline
-                >
-                    <Icon
-                        type="shape-heart"
-                    />
-
-                    <span>Link</span>
-                </Button>
-            </Grid.Column>
-
-            <Grid.Column
-                sm="auto"
-            >
-                <Button
                     color="success"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"
@@ -128,7 +118,8 @@ function ExampleOutlineInverseColors() {
                 <Button
                     color="warning"
                     inverse
-                    outline
+                    variant="outlined"
+                    designVersion={2}
                 >
                     <Icon
                         type="shape-heart"

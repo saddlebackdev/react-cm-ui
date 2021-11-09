@@ -299,11 +299,12 @@ const useStyles = makeStyles((theme) => {
         avatarColumn: {
             maxWidth: 55,
             minWidth: 55,
-            paddingRight: 0,
+            padding: [[theme.spacing(1), 0, theme.spacing(1), theme.spacing(1)]],
             width: 'auto !important',
         },
         contactInfoColumn: {
             display: 'none',
+            padding: theme.spacing(1),
             textAlign: 'right',
             width: 'auto !important',
             '&$hasContactInfo': {
@@ -316,7 +317,6 @@ const useStyles = makeStyles((theme) => {
         isExpanded: {},
         hasContactInfo: {},
         grid: {
-            margin: [[5.5, '!important']],
             position: 'relative',
             zIndex: 2,
         },
@@ -328,10 +328,12 @@ const useStyles = makeStyles((theme) => {
         metaInfo: {},
         nameColumn: {
             marginRight: 'auto',
+            padding: theme.spacing(1),
             width: 'auto !important',
         },
         noContactInfo: {},
         personIdColumn: {
+            padding: theme.spacing(1),
             textAlign: 'right',
             width: 'auto !important',
             '&$noContactInfo': {
@@ -533,7 +535,7 @@ function PersonPanelSummary(props) {
             <Grid
                 alignItems="center"
                 className={classes.grid}
-                spacing={1}
+                spacing={0}
                 wrap="nowrap"
             >
                 <Grid.Column
@@ -552,7 +554,6 @@ function PersonPanelSummary(props) {
                     className={classes.nameColumn}
                 >
                     <Typography
-                        component="h4"
                         variant="h4"
                     >
                         {`${prefix || ''} ${firstName} ${(nickName && `(${nickName})`) || ''} ${lastName} ${suffix || ''}`}
@@ -576,17 +577,14 @@ function PersonPanelSummary(props) {
                     </Grid.Column>
                 )}
 
-                <Grid.Column
-                    className={personIdColumnClasses}
-                    textAlign="right"
-                >
-                    <Typography
-                        className={classes.personId}
-                        variant="caption"
+                {personId && (
+                    <Grid.Column
+                        className={contactInfoColumnClasses}
+                        textAlign="right"
                     >
-                        {`Id: ${personId}`}
-                    </Typography>
-                </Grid.Column>
+                        {renderContactInfo}
+                    </Grid.Column>
+                )}
             </Grid>
         </div>
     );

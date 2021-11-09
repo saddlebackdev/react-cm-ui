@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     GENDER_PROP_TYPE,
+    RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -64,7 +65,6 @@ import {
     REMOVE_SMALL_GROUP_COLUMN_DEFAULT_PROP,
     REMOVE_SMALL_GROUP_COLUMN_PROP_TYPE,
     SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
-    SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
     SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
     SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
 } from './constants';
@@ -109,7 +109,6 @@ const propTypes = {
         isInMinistry: IS_IN_MINISTRY_PROP_TYPE,
         isInSmallGroup: IS_IN_SMALL_GROUP_PROP_TYPE,
         recordType: RECORD_TYPE_PROP_TYPE,
-        signedMembershipAgreementDate: SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
         signedMaturityCovenantDate: SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
         signedMinistryCovenantDate: SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
         signedMissionCovenantDate: SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
@@ -235,6 +234,7 @@ const useStyles = makeStyles((theme) => {
         genderUndefined: {},
         grid: {
             margin: `0 -${columnHorizontalPadding}px !important`,
+            width: 'auto',
         },
         icon: ({ iconColor }) => ({
             opacity: iconColor ? 0.25 : 1,
@@ -298,7 +298,6 @@ function PersonCoreMilestones(props) {
         isInMinistry,
         isInSmallGroup,
         recordType,
-        signedMembershipAgreementDate,
         signedMaturityCovenantDate,
         signedMinistryCovenantDate,
         signedMissionCovenantDate,
@@ -354,15 +353,15 @@ function PersonCoreMilestones(props) {
     };
     const relativeTimeRounding = Math.floor;
     const userTimeZone = dateUtils.getDetectedTimeZone();
-    let firstContactDate;
-    let congregationDate;
+    let atSaddlebackDate;
+    let memberForDate;
 
     if (firstContactDateProp) {
-        firstContactDate = moment.utc(firstContactDateProp).tz(userTimeZone);
+        atSaddlebackDate = moment.utc(firstContactDateProp).tz(userTimeZone);
     }
 
     if (congregationDateProp) {
-        congregationDate = moment.utc(congregationDateProp).tz(userTimeZone);
+        memberForDate = moment.utc(congregationDateProp).tz(userTimeZone);
     }
 
     return (
@@ -373,180 +372,172 @@ function PersonCoreMilestones(props) {
             <Grid
                 alignItems="center"
                 className={classes.grid}
-                spacing={1}
+                spacing={0}
             >
-                    <GridColumnAcceptedChrist
-                        acceptedChristDate={acceptedChristDate}
-                        classes={{
-                            root: classes.column,
-                            icon: classes.icon,
-                        }}
-                        disablePopover={disablePopover}
-                        hasAcceptedChrist={hasAcceptedChrist}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isFemale={isFemale}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeAcceptedChristColumn={removeAcceptedChristColumn}
-                    />
+                <GridColumnAcceptedChrist
+                    acceptedChristDate={acceptedChristDate}
+                    classes={{
+                        root: classes.column,
+                        icon: classes.icon,
+                    }}
+                    disablePopover={disablePopover}
+                    hasAcceptedChrist={hasAcceptedChrist}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isFemale={isFemale}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeAcceptedChristColumn={removeAcceptedChristColumn}
+                />
 
-                    <GridColumnBaptised
-                        baptismDate={baptismDate}
-                        classes={{
-                            root: classes.column,
-                            icon: classes.icon,
-                        }}
-                        disablePopover={disablePopover}
-                        isBaptised={isBaptised}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isFemale={isFemale}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeBaptismColumn={removeBaptismColumn}
-                    />
+                <GridColumnBaptised
+                    baptismDate={baptismDate}
+                    classes={{
+                        root: classes.column,
+                        icon: classes.icon,
+                    }}
+                    disablePopover={disablePopover}
+                    isBaptised={isBaptised}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isFemale={isFemale}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeBaptismColumn={removeBaptismColumn}
+                />
 
-                    <GridColumnClassBaseballDiamond
-                        attendedClass101Date={attendedClass101Date}
-                        attendedClass201Date={attendedClass201Date}
-                        attendedClass301Date={attendedClass301Date}
-                        attendedClass401Date={attendedClass401Date}
-                        classes={{
-                            root: classes.column,
-                        }}
-                        disablePopover={disablePopover}
-                        hasSignedMaturityCovenant={hasSignedMaturityCovenant}
-                        hasSignedMembershipAgreement={hasSignedMembershipAgreement}
-                        hasSignedMinistryCovenant={hasSignedMinistryCovenant}
-                        hasSignedMissionCovenant={hasSignedMissionCovenant}
-                        hasTakenClass101={hasTakenClass101}
-                        hasTakenClass201={hasTakenClass201}
-                        hasTakenClass301={hasTakenClass301}
-                        hasTakenClass401={hasTakenClass401}
-                        iconColor={iconColor}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isAdult={isAdult}
-                        isFemale={isFemale}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeClassColumn={removeClassColumn}
-                        signedMaturityCovenantDate={signedMaturityCovenantDate}
-                        signedMembershipAgreementDate={signedMembershipAgreementDate}
-                        signedMinistryCovenantDate={signedMinistryCovenantDate}
-                        signedMissionCovenantDate={signedMissionCovenantDate}
-                    />
+                <GridColumnClassBaseballDiamond
+                    attendedClass101Date={attendedClass101Date}
+                    attendedClass201Date={attendedClass201Date}
+                    attendedClass301Date={attendedClass301Date}
+                    attendedClass401Date={attendedClass401Date}
+                    classes={{
+                        root: classes.column,
+                    }}
+                    congregationDate={congregationDateProp}
+                    disablePopover={disablePopover}
+                    hasSignedMaturityCovenant={hasSignedMaturityCovenant}
+                    hasSignedMembershipAgreement={hasSignedMembershipAgreement}
+                    hasSignedMinistryCovenant={hasSignedMinistryCovenant}
+                    hasSignedMissionCovenant={hasSignedMissionCovenant}
+                    hasTakenClass101={hasTakenClass101}
+                    hasTakenClass201={hasTakenClass201}
+                    hasTakenClass301={hasTakenClass301}
+                    hasTakenClass401={hasTakenClass401}
+                    iconColor={iconColor}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isAdult={isAdult}
+                    isFemale={isFemale}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeClassColumn={removeClassColumn}
+                    signedMaturityCovenantDate={signedMaturityCovenantDate}
+                    signedMinistryCovenantDate={signedMinistryCovenantDate}
+                    signedMissionCovenantDate={signedMissionCovenantDate}
+                />
 
-                    <GridColumnSmallGroup
-                        classes={{
-                            root: classes.column,
-                            icon: classes.icon,
-                        }}
-                        disablePopover={disablePopover}
-                        firstSmallGroupJoinDate={firstSmallGroupJoinDate}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isFemale={isFemale}
-                        isInSmallGroup={isInSmallGroup}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeSmallGroupColumn={removeSmallGroupColumn}
-                    />
+                <GridColumnSmallGroup
+                    classes={{
+                        root: classes.column,
+                        icon: classes.icon,
+                    }}
+                    disablePopover={disablePopover}
+                    firstSmallGroupJoinDate={firstSmallGroupJoinDate}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isFemale={isFemale}
+                    isInSmallGroup={isInSmallGroup}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeSmallGroupColumn={removeSmallGroupColumn}
+                />
 
-                    <GridColumnMinistry
-                        classes={{
-                            root: classes.column,
-                            icon: classes.icon,
-                        }}
-                        disablePopover={disablePopover}
-                        firstMinistryJoinDate={firstMinistryJoinDate}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isFemale={isFemale}
-                        isInMinistry={isInMinistry}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeInMinistryColumn={removeInMinistryColumn}
-                    />
+                <GridColumnMinistry
+                    classes={{
+                        root: classes.column,
+                        icon: classes.icon,
+                    }}
+                    disablePopover={disablePopover}
+                    firstMinistryJoinDate={firstMinistryJoinDate}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isFemale={isFemale}
+                    isInMinistry={isInMinistry}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeInMinistryColumn={removeInMinistryColumn}
+                />
 
-                    <GridColumnMissions
-                        activeInMissionsDate={activeInMissionsDate}
-                        classes={{
-                            root: classes.column,
-                            icon: classes.icon,
-                        }}
-                        disablePopover={disablePopover}
-                        iconSize={iconSize}
-                        inverse={inverse}
-                        isActiveInMissions={isActiveInMissions}
-                        isFemale={isFemale}
-                        isMale={isMale}
-                        recordType={recordType}
-                        removeInTripsColumn={removeInTripsColumn}
-                    />
+                <GridColumnMissions
+                    activeInMissionsDate={activeInMissionsDate}
+                    classes={{
+                        root: classes.column,
+                        icon: classes.icon,
+                    }}
+                    disablePopover={disablePopover}
+                    iconSize={iconSize}
+                    inverse={inverse}
+                    isActiveInMissions={isActiveInMissions}
+                    isFemale={isFemale}
+                    isMale={isMale}
+                    recordType={recordType}
+                    removeInTripsColumn={removeInTripsColumn}
+                />
 
-                {firstContactDate && !removeFirstContactDateColumn && isAdult && (
+                {atSaddlebackDate && !removeFirstContactDateColumn && isAdult && (
                     <Grid.Column
                         className={ClassNames(
                             `${BEM_PERSON_CORE_MILESTONES}--first_contact_date_column`,
                             classes.firstContactDateColumn,
                         )}
                     >
-                        <div
-                            className={classes.dateContainers}
+                        <Typography
+                            className={classes.firstContactDateLabelTypography}
+                            variant="h6"
                         >
-                            <Typography
-                                className={classes.firstContactDateLabelTypography}
-                                variant="h6"
-                            >
-                                At Saddleback
-                            </Typography>
+                            At Saddleback
+                        </Typography>
 
-                            <span
-                                className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    className={classes.firstContactDateTypography}
-                                    date={firstContactDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
-                        </div>
+                        <span
+                            className={`${BEM_PERSON_CORE_MILESTONES}--at_saddleback_date font-size-xsmall font-weight-bold`}
+                        >
+                            <TimeFromNow
+                                className={classes.firstContactDateTypography}
+                                date={atSaddlebackDate}
+                                relativeTime={relativeTime}
+                                relativeTimeThreshold={relativeTimeThreshold}
+                                relativeTimeRounding={relativeTimeRounding}
+                            />
+                        </span>
                     </Grid.Column>
                 )}
 
-                {congregationDate && !removeCongregationDateColumn && isAdult && (
+                {memberForDate && !removeCongregationDateColumn && isAdult && (
                     <Grid.Column
                         className={ClassNames(
                             `${BEM_PERSON_CORE_MILESTONES}--congregation_date_column`,
                             classes.congregationDateColummn,
                         )}
                     >
-                        <div
-                            className={classes.dateContainers}
+                        <Typography
+                            className={classes.congregationDateLabelTypography}
+                            variant="h6"
                         >
-                            <Typography
-                                className={classes.congregationDateLabelTypography}
-                                variant="h6"
-                            >
-                                Member For
-                            </Typography>
+                            Member For
+                        </Typography>
 
-                            <span
-                                className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
-                            >
-                                <TimeFromNow
-                                    className={classes.congregationDateTypography}
-                                    date={congregationDate}
-                                    relativeTime={relativeTime}
-                                    relativeTimeThreshold={relativeTimeThreshold}
-                                    relativeTimeRounding={relativeTimeRounding}
-                                />
-                            </span>
-                        </div>
+                        <span
+                            className={`${BEM_PERSON_CORE_MILESTONES}--member_for_date font-size-xsmall font-weight-bold`}
+                        >
+                            <TimeFromNow
+                                className={classes.congregationDateTypography}
+                                date={memberForDate}
+                                relativeTime={relativeTime}
+                                relativeTimeThreshold={relativeTimeThreshold}
+                                relativeTimeRounding={relativeTimeRounding}
+                            />
+                        </span>
                     </Grid.Column>
                 )}
             </Grid>

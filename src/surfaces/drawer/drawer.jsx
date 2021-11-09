@@ -1,9 +1,14 @@
-import _ from 'lodash';
+import _, {
+    isFunction,
+} from 'lodash';
 import { Portal } from 'react-portal';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import domUtils from '../../utils/domUtils';
 import DrawerActionBar from './drawerActionBar'; // eslint-disable-line import/no-cycle
 import DrawerContainer from './drawerContainer';
@@ -36,6 +41,10 @@ const propTypes = {
         }),
         closest: PropTypes.func,
     }),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     dimmer: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isModal: PropTypes.bool,
@@ -66,6 +75,7 @@ const defaultProps = {
     classes: null,
     className: undefined,
     container: document.body,
+    dataTestId: `${UI_CLASS_NAME}-drawer`,
     dimmer: true,
     isModal: true,
     maxHeight: undefined,
@@ -234,6 +244,7 @@ class Drawer extends React.Component {
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
 
         container.classList.add('drawer-animate-out');
+
         this.drawerContainerRef.classList.add('drawer-animate-out');
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
         this.drawerContainerRef.addEventListener(animationEvent, this.onCloseAnimationComplete);
@@ -261,8 +272,8 @@ class Drawer extends React.Component {
             container.closest('html').removeEventListener('click', this.onClickOutside);
         }
 
-        if (_.isFunction(onCloseProps)) {
-            onCloseProps(...arguments); // eslint-disable-line prefer-rest-params
+        if (isFunction(onClose)) {
+            onClose(...arguments); // eslint-disable-line prefer-rest-params
         } else {
             console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
         }
@@ -305,14 +316,14 @@ class Drawer extends React.Component {
 
         this.drawerContainerRef.style.transform = this.setStartOfTransform();
 
-        if (_.isFunction(onCloseComplete)) {
-            onCloseComplete(true);
-        }
-
         this.useComponentWillUnmount = false;
 
         this.setState({
             isOpen: false,
+        }, () => {
+            if (isFunction(onCloseComplete)) {
+                onCloseComplete(true);
+            }
         });
     }
 
@@ -353,51 +364,70 @@ class Drawer extends React.Component {
         }
 
         setTimeout(() => {
-            if (this.isPositionX('left')) {
-                this.shadowContainerRef.style.right = '-30px';
-                this.shadowRef.style.marginRight = '30px';
-            } else {
-                this.shadowContainerRef.style.left = '-30px';
-                this.shadowRef.style.marginLeft = '30px';
-            }
-
-            if (numberOfModalDrawers >= 2) {
-                const newZIndex = zIndex + numberOfModalDrawers;
-
-                let boxShadow = BOX_SHADOW_SMALL;
-
-                switch (shadowSize) {
-                    case 'large':
-                        boxShadow = BOX_SHADOW_LARGE;
-
-                        break;
-                    case 'xsmall':
-                        boxShadow = BOX_SHADOW_XSMALL;
-
-                        break;
-
-                    default:
+            if (
+                this.shadowContainerRef &&
+                this.shadowRef &&
+                this.drawerRef &&
+                this.drawerContainerRef
+            ) {
+                if (this.isPositionX('left')) {
+                    this.shadowContainerRef.style.right = '-30px';
+                    this.shadowRef.style.marginRight = '30px';
+                } else {
+                    this.shadowContainerRef.style.left = '-30px';
+                    this.shadowRef.style.marginLeft = '30px';
                 }
 
-                domUtils.addClassName(container, 'drawer-open-layered');
+                if (numberOfModalDrawers >= 2) {
+                    const newZIndex = zIndex + numberOfModalDrawers;
 
-                this.drawerRef.style.zIndex = newZIndex;
-                this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
-                this.drawerContainerRef.style.zIndex = newZIndex;
-            } else {
-                let boxShadow = BOX_SHADOW_LARGE;
+                    let boxShadow = BOX_SHADOW_SMALL;
 
-                switch (shadowSize) {
-                    case 'small':
-                        boxShadow = BOX_SHADOW_SMALL;
+                    switch (shadowSize) {
+                        case 'large':
+                            boxShadow = BOX_SHADOW_LARGE;
 
-                        break;
-                    case 'xsmall':
-                        boxShadow = BOX_SHADOW_XSMALL;
+                            break;
+                        case 'xsmall':
+                            boxShadow = BOX_SHADOW_XSMALL;
 
-                        break;
+                            break;
 
-                    default:
+                        default:
+                    }
+
+                    domUtils.addClassName(container, 'drawer-open-layered');
+
+                    this.drawerRef.style.zIndex = newZIndex;
+                    this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
+                    this.drawerContainerRef.style.zIndex = newZIndex;
+                } else {
+                    let boxShadow = BOX_SHADOW_LARGE;
+
+                    switch (shadowSize) {
+                        case 'small':
+                            boxShadow = BOX_SHADOW_SMALL;
+
+                            break;
+                        case 'xsmall':
+                            boxShadow = BOX_SHADOW_XSMALL;
+
+                            break;
+
+                        default:
+                    }
+
+                    if (!positionY && !maxHeight) {
+                        const isOpen = true;
+
+                        toggleBodyStyle(isOpen);
+                    } else {
+                        BODY.classList.add('drawer-nubbin-open');
+                    }
+
+                    this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
+                    this.drawerRef.style.zIndex = zIndex - 1;
+                    this.drawerContainerRef.style.zIndex = zIndex + numberOfModalDrawers;
                 }
 
                 if (!positionY && !maxHeight) {
@@ -408,26 +438,14 @@ class Drawer extends React.Component {
                     container.classList.add('drawer-nubbin-open');
                 }
 
-                this.shadowRef.style.boxShadow = `${boxShadowPositionX}${boxShadow}`;
-                this.drawerRef.style.zIndex = zIndex - 1;
-                this.drawerContainerRef.style.zIndex = zIndex + numberOfModalDrawers;
-            }
+                if (!_.isUndefined(maxHeight)) {
+                    this.drawerContainerRef.style.maxHeight = `${maxHeight}px`;
+                }
 
-            if (!_.isUndefined(maxWidth)) {
-                this.drawerContainerRef.style.maxWidth = _.isNumber(maxWidth) ? `${maxWidth}px` :
-                    maxWidth || `${DEFAULT_DRAWER_WIDTH}px`;
-            } else {
-                this.drawerContainerRef.style.maxWidth =
-                    `${DEFAULT_DRAWER_WIDTH - (layeredOffset * (numberOfModalDrawers - 1))}px`;
+                this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
+                    `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
+                    TRANSLATE_X_END;
             }
-
-            if (!_.isUndefined(maxHeight)) {
-                this.drawerContainerRef.style.maxHeight = `${maxHeight}px`;
-            }
-
-            this.drawerContainerRef.style.transform = _.isNumber(positionYOffset) ?
-                `${TRANSLATE_X_END} translateY(${positionYOffset}px)` :
-                TRANSLATE_X_END;
         }, 30);
     }
 
@@ -480,6 +498,7 @@ class Drawer extends React.Component {
             classes,
             className,
             container,
+            dataTestId,
             isModal,
             positionYOffset,
             style,
@@ -511,6 +530,7 @@ class Drawer extends React.Component {
             >
                 <div
                     className={rootClasses}
+                    data-testid={dataTestId}
                     ref={(ref) => { this.drawerRef = ref; }}
                 >
                     <div
@@ -533,6 +553,7 @@ class Drawer extends React.Component {
 
                         <div
                             className="shadow_container"
+                            data-testid={`${dataTestId}_shadow_container`}
                             ref={(ref) => { this.shadowContainerRef = ref; }}
                         >
                             <div ref={(ref) => { this.shadowRef = ref; }} />
@@ -541,6 +562,7 @@ class Drawer extends React.Component {
 
                     <div
                         className="drawer-dimmer"
+                        data-testid={`${dataTestId}_dimmer`}
                         ref={(ref) => { this.drawerDimmerRef = ref; }}
                     />
                 </div>

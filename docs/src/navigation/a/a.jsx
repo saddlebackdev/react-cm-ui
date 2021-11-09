@@ -1,14 +1,19 @@
 import {
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
+import Example from '../../global/example';
+import ExampleA from './examples/exampleA';
 import Heading from '../../global/heading';
-import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
+import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as aDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/a/a';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/a/a';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
@@ -24,25 +29,34 @@ function DocsA(props) {
         },
     } = props;
 
-    const descriptionCopy = aDoc.description;
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="a">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="record-types"
                         variant="h2"
                     >
-                        Coming soon.
+                        A
                     </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleA').default}
+                    >
+                        <ExampleA />
+                    </Example>
                 </MarkdownContainer>
 
                 <ComponentVersionIdentifier

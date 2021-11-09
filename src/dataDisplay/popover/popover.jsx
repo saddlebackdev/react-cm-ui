@@ -1,6 +1,7 @@
 import {
     get,
     isFunction,
+    isNil,
 } from 'lodash';
 import ClassNames from 'classnames';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -39,7 +40,7 @@ const propTypes = {
     /**
      * The content in the Popover.
      */
-    content: PropTypes.node.isRequired,
+    content: PropTypes.node,
     /**
      * If `true`, Popover will not be fired.
      */
@@ -100,6 +101,7 @@ const propTypes = {
 const defaultProps = {
     classes: undefined,
     className: undefined,
+    content: undefined,
     id: undefined,
     disable: false,
     maxWidth: undefined,
@@ -284,29 +286,12 @@ function Popover(props) {
         className,
     );
 
-    const popoverRootNode = (
-        <div
-            className={classes.popoverRoot}
-        >
-            <span className={classes.arrow} ref={setArrowRef} />
-
-            <div
-                className={ClassNames(
-                    `${BEM_POPOVER}--content`,
-                    classes.content,
-                )}
-            >
-                {content}
-            </div>
-        </div>
-    );
-
     return (
         <div
             className={rootClasses}
             id={id}
         >
-            {!disable ? (
+            {!disable || isNil(content) ? (
                 <React.Fragment>
                     {React.cloneElement(
                         children, {
@@ -346,7 +331,20 @@ function Popover(props) {
                                         mouseEvent="onClick"
                                         onClickAway={onClickAway}
                                     >
-                                        {popoverRootNode}
+                                        <div
+                                            className={classes.popoverRoot}
+                                        >
+                                            <span className={classes.arrow} ref={setArrowRef} />
+
+                                            <div
+                                                className={ClassNames(
+                                                    `${BEM_POPOVER}--content`,
+                                                    classes.content,
+                                                )}
+                                            >
+                                                {content}
+                                            </div>
+                                        </div>
                                     </ClickAwayListener>
                                 </div>
                             </Grow>

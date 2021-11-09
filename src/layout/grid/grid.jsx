@@ -1,18 +1,22 @@
 import {
     camelCase,
     forEach,
+    isNumber,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
     BEM_GRID,
+    BEM_GRID_COLUMN,
+    BEM_GRID_ROW,
     UI_CLASS_NAME,
 } from '../../global/constants';
 import {
     SPACINGS,
 } from './gridConstants';
 import GridColumn from './gridColumn';
+import GridRowDeprecated from './gridRowDeprecated';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -52,6 +56,10 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
      * Defines the `flex-direction` style property.
      * It is applied for all screen sizes.
      */
@@ -83,6 +91,10 @@ const propTypes = {
      */
     spacing: PropTypes.oneOf(SPACINGS),
     /**
+     * Override styles applied to the component.
+     */
+    style: PropTypes.shape({}),
+    /**
      * Defines the `flex-wrap` style property.
      * It's applied for all screen sizes.
      */
@@ -91,6 +103,21 @@ const propTypes = {
         'wrap-reverse',
         'wrap',
     ]),
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
+    /**
+     * Deprecated prop. Please use breakpoint props on the Grid.Column
+     */
+    columns: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+    /**
+     * Deprecated prop. Please use `classes` to override styles.
+     */
+    verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
 };
 
 const defaultProps = {
@@ -99,14 +126,22 @@ const defaultProps = {
     children: null,
     classes: null,
     className: null,
+    dataTestId: `${UI_CLASS_NAME}-${BEM_GRID}`,
     direction: 'row',
     id: null,
     justifyContent: 'flex-start',
     spacing: 0,
+    style: null,
     wrap: 'wrap',
+    // ****
+    // NOTE: All props below are deprecated and should not be used.
+    // ****
+    columns: undefined,
+    textAlign: undefined,
+    verticalAlign: undefined,
 };
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(({ spacing }) => {
     function getOffset(val, div = 1) {
         const parse = parseFloat(val);
 
@@ -116,17 +151,23 @@ const useStyles = makeStyles((theme) => {
     const gutters = {};
 
     // eslint-disable-next-line consistent-return
-    forEach(SPACINGS, (spacing) => {
-        const themeSpacing = theme.spacing(spacing);
+    forEach(SPACINGS, (value) => {
+        const themeSpacing = spacing(value);
 
         if (themeSpacing === 0) {
             return null;
         }
 
-        gutters[`spacing-${spacing}`] = {
+        gutters[`spacing-${value}`] = {
             margin: `-${getOffset(themeSpacing, 2)}`,
             width: `calc(100% + ${getOffset(themeSpacing)})`,
-            '& > .grid--column': {
+            [`& > .${BEM_GRID_COLUMN}`]: {
+                padding: getOffset(themeSpacing, 2),
+            },
+            /**
+             * Note: Remove once Grid.RowDeprecated has been removed.
+             */
+            [`& > .${BEM_GRID_ROW} > .${BEM_GRID_COLUMN}`]: {
                 padding: getOffset(themeSpacing, 2),
             },
         };
@@ -137,6 +178,30 @@ const useStyles = makeStyles((theme) => {
             display: 'flex',
             flexWrap: 'wrap',
             width: '100%',
+            /**
+             * Deprecated classses
+             */
+            '&$deprecatedTextAlignCenter': {
+                textAlign: 'center',
+            },
+            '&$deprecatedTextAlignLeft': {
+                textAlign: 'left',
+            },
+            '&$deprecatedTextAlignRight': {
+                textAlign: 'right',
+            },
+            '&$deprecatedVerticalAlignBottom': {
+                alignItems: 'flex-end',
+            },
+            '&$deprecatedVerticalAlignMiddle': {
+                alignItems: 'center',
+            },
+            '&$deprecatedVerticalAlignTop': {
+                alignItems: 'flex-start',
+            },
+            /**
+             * End of deprecated classes
+             */
         },
         'alignContent-center': {
             alignContent: 'center',
@@ -165,6 +230,23 @@ const useStyles = makeStyles((theme) => {
         'alignItems-baseline': {
             alignItems: 'baseline',
         },
+        /**
+         * Deprecated classses
+         */
+        deprecatedColumns: {
+            [`& > .${BEM_GRID_COLUMN}, & > .${BEM_GRID_ROW} > .${BEM_GRID_COLUMN}`]: {
+                width: ({ columns }) => `${(1 / columns) * 100}%`,
+            },
+        },
+        deprecatedTextAlignCenter: {},
+        deprecatedTextAlignLeft: {},
+        deprecatedTextAlignRight: {},
+        deprecatedVerticalAlignBottom: {},
+        deprecatedVerticalAlignMiddle: {},
+        deprecatedVerticalAlignTop: {},
+        /**
+         * End of deprecated classses
+         */
         'direction-column': {
             flexDirection: 'column',
         },
@@ -200,11 +282,10 @@ const useStyles = makeStyles((theme) => {
 });
 
 /**
- * The Grid layout responsivly adapts to screen size, aiding in dividing up content into their own
- * regions.
+ * The Grid layout responsivly adapts to screen size, aiding in dividing
+ * up content into their own regions.
  */
 const Grid = React.forwardRef(
-    /* eslint-disable react-hooks/rules-of-hooks */
     // eslint-disable-next-line prefer-arrow-callback
     function Grid(props, ref) {
         const {
@@ -212,11 +293,14 @@ const Grid = React.forwardRef(
             alignItems,
             children,
             className,
+            dataTestId,
             id,
             direction,
             justifyContent,
             spacing,
+            style,
             wrap,
+            ...otherProps
         } = props;
 
         const classes = useStyles(props);
@@ -233,23 +317,35 @@ const Grid = React.forwardRef(
                 [classes[`justifyContent-${camelCase(justifyContent)}`]]: justifyContent !== 'flex-start',
                 [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
                 [classes[`wrap-${camelCase(wrap)}`]]: wrap !== 'wrap',
+                /**
+                 * Deprecated classses
+                 */
+                [classes.deprecatedColumns]: isNumber(otherProps.columns),
+                [classes.deprecatedTextAlignCenter]: otherProps.textAlign === 'center',
+                [classes.deprecatedTextAlignLeft]: otherProps.textAlign === 'left',
+                [classes.deprecatedTextAlignRight]: otherProps.textAlign === 'right',
+                [classes.deprecatedVerticalAlignBottom]: otherProps.verticalAlign === 'bottom',
+                [classes.deprecatedVerticalAlignMiddle]: otherProps.verticalAlign === 'middle',
+                [classes.deprecatedVerticalAlignTop]: otherProps.verticalAlign === 'top',
             },
         );
 
         return (
             <div
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 ref={ref}
+                style={style}
             >
                 {children}
             </div>
         );
     },
-    /* eslint-enable react-hooks/rules-of-hooks */
 );
 
 Grid.Column = GridColumn;
+Grid.RowDeprecated = GridRowDeprecated;
 
 Grid.propTypes = propTypes;
 Grid.defaultProps = defaultProps;

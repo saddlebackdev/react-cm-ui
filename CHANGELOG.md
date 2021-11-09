@@ -1,6 +1,236 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.2.3
+_October 19, 2021_
+
+### Core
+- Fix some styling issues on PersonCoreMilestones component. [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334)
+
+### Docs
+- PersonCoreMilestones documentation improvements, including adding an interactive. [PR #334](https://github.com/saddlebackdev/react-cm-ui/pull/334)
+
+## 10.2.2
+_September 24, 2021_
+
+### Core
+- Action Bar Mobile Search Auto Focus. [PR #333](https://github.com/saddlebackdev/react-cm-ui/pull/333)
+
+## 10.2.1
+_September 20, 2021_
+
+### Core
+- Dropdown Button enhancements and fixes. [PR #331](https://github.com/saddlebackdev/react-cm-ui/pull/331)
+  - New DropdownButton.Heading and DropdownButton.Divider components.
+  - Misc. styling fixes.
+
+## 10.2.0
+_September 16, 2021_
+
+### Core
+- Button gap closures. [PR #325](https://github.com/saddlebackdev/react-cm-ui/pull/325)
+- List and Divider Chagnes. [PR #327](https://github.com/saddlebackdev/react-cm-ui/pull/327)
+  - List is now wrapping Material-UI's List and Divider components. You will need to use the prop `designVersion` and pass a value of `2` to be able to use MUI.
+- MUI Skeleton, Button, List and ActionBar fixes, and Popover Update. [PR #330](https://github.com/saddlebackdev/react-cm-ui/pull/330)
+
+### Docs
+- Button doc update. [PR #325](https://github.com/saddlebackdev/react-cm-ui/pull/325)
+
+## 10.1.6
+_September 8, 2021_
+
+### Core
+- Theme Palette update. [PR #324](https://github.com/saddlebackdev/react-cm-ui/pull/324)
+  - Add `action.disabledBackground`
+  - Change `mode` to `type` for better compatibility with Material UI v4.x (versus 5.x)
+  - Update Material UI core and style dependency versions.
+- PersonPanel updates. [PR #329](https://github.com/saddlebackdev/react-cm-ui/pull/329)
+  - Add new `showSelectButton` prop to PersonPanelDetails to optionally suppress the Select button.
+  - Make showing Person ID in PersonPanelSummary more defensive.
+- Improve Jest Test environment to remove certain console errors during test runs.  [PR #328](https://github.com/saddlebackdev/react-cm-ui/pull/328)
+- Various dependency upgrades to address vulnerabilities courtesy of GitHub's "Dependabot".
+
+## 10.1.5
+_August 12, 2021_
+
+### Core
+- TimePicker updates. [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319)
+- Added `mixins` to the theme. [PR #321](https://github.com/saddlebackdev/react-cm-ui/pull/321)
+
+### Docs
+- New TimePicker doc changes. [PR #319](https://github.com/saddlebackdev/react-cm-ui/pull/319)
+
+## 10.1.4
+_July 16, 2021_
+
+### Core
+- Select changes. [PR #317](https://github.com/saddlebackdev/react-cm-ui/pull/317)
+  - New `noResultText` prop.
+
+## 10.1.3
+_July 08, 2021_
+
+### Core
+- Select changes. [PR #315](https://github.com/saddlebackdev/react-cm-ui/pull/315)
+  - Added a bunch of new simple Select options for our examples.
+  - Removed autoScrollSelection. No need for this. it should have been doing this all along without an extra prop. It now scrolls to the selected option on open by default.
+  - Fixed disabled option styling.
+  - Fixed scrolling to focused option, sense our component is using its own menu scroller.
+  - Added and updated option props
+- Prompt changes. [PR #316](https://github.com/saddlebackdev/react-cm-ui/pull/316)
+  - KeyDown Events for No and Yes buttons.
+  - Focuses No button after child element click or enter key.
+
+### Docs
+- Changes to: [PR #315](https://github.com/saddlebackdev/react-cm-ui/pull/315)
+  - Fixed the dropdown deprecated docs page.
+  - Added more Select options for the demos.
+
+## 10.1.2
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. [PR #314](https://github.com/saddlebackdev/react-cm-ui/pull/314)
+- Added `button` and `subtitle2` to and updated `subtitle1` in `./src/styles/createTypography.js`. [PR #313](https://github.com/saddlebackdev/react-cm-ui/pull/313)
+
+## 10.0.8
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. Commits 21a1155 and cf83190
+
+## 10.0.3-hotfix-2
+_July 08, 2021_
+
+### Core
+- New `autoFocus` and `placeholder` props in ActionBarSearch. Commits 5286b17 and 06c9811
+
+## 10.1.0
+_July 06, 2021_
+
+### Core
+- Fix warning messages we were getting from MUI about `ContentProps`. [PR #312](https://github.com/saddlebackdev/react-cm-ui/pull/312)
+
+## 10.1.0
+_June 25, 2021_
+
+### Core
+- New Snackbar component and `theme.palette` updates. [PR #310](https://github.com/saddlebackdev/react-cm-ui/pull/310)
+- New icons added to our Icon set and fixes. [PR #303](https://github.com/saddlebackdev/react-cm-ui/pull/303)
+- New tranistion Fade component. [PR #311](https://github.com/saddlebackdev/react-cm-ui/pull/311)
+- Select updates and fixes. [PR #309](https://github.com/saddlebackdev/react-cm-ui/pull/309)
+
+### Docs
+- New Snackbar docs.
+- Updated Icon docs.
+- New Select docs
+
+## 10.0.7
+_June 25, 2021_
+
+### Core
+- Fixed a typo in ActionBar, causing a JS error.
+
+## 10.0.6
+_June 22, 2021_
+
+### Core
+- Moved Drawer's `onCloseComplete` func call to the `setState` callback.
+
+## 10.0.3-hotfix
+_June 22, 2021_
+
+### Core
+- Moved Drawer's `onCloseComplete` func call to the `setState` callback.
+
+## 10.0.5
+_June 17, 2021_
+
+### Core
+- New `data-testid`s for: [PR #304](https://github.com/saddlebackdev/react-cm-ui/pull/304), [PR #305](https://github.com/saddlebackdev/react-cm-ui/pull/305), [PR #306](https://github.com/saddlebackdev/react-cm-ui/pull/306)
+  - DataCard
+  - DataGrid
+  - DataGroups
+  - Drawer and its sub components
+  - Grid and its sub components
+  - PageActionBar
+- To help with unit testing the Drawer's DOM query's are now defensive.
+
+## 10.0.4
+_June 14, 2021_
+
+### Core
+- Added ability to add a Custom Scrollbar to the FiltersRail. [PR #300](https://github.com/saddlebackdev/react-cm-ui/pull/300)
+
+### Docs
+- Updated Demo Page and Demo Page's Filters Rail to demonstrate custom scrollbars and also fix some functionality/state-management issues.
+
+## 10.0.3
+_June 08, 2021_
+
+### Core
+- Added new `onCloseComplete` prop to Modal.
+
+## 10.0.2
+_June 05, 2021_
+
+### Core
+- Fixed Drawer's refs in `onOpen` to be defensive.
+- Added `data-testid`s to Drawer's shadow container and dimmer.
+
+## 10.0.1
+_May 21, 2021_
+
+### Core
+- Fixed Grid's width styling issue. [PR #296](https://github.com/saddlebackdev/react-cm-ui/pull/296)
+- Added `dataTestId` props to: [PR #298](https://github.com/saddlebackdev/react-cm-ui/pull/298)
+  - ActionBar
+  - AppBar
+  - DetailsWindow
+  - Drawer
+  - FiltersDrawer
+  - FiltersRail
+  - Modal
+  - Page
+
+## 10.0.0
+_May 21, 2021_
+
+### Core
+- New Mobile Stepper component. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [2.0.0]
+- New Modal component. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [2.0.0]
+- Deprecated old Modal. Now renamed to ModalDeprecated. [PR #290](https://github.com/saddlebackdev/react-cm-ui/pull/290) [1.5.1]
+- Updated Grid Component. Most old props deprecated now. [PR #275](https://github.com/saddlebackdev/react-cm-ui/pull/275) [2.0.0]
+
+### Docs
+- Renamed old Modal to ModalDeprecated.
+- New Modal docs
+- New Mobile Stepper docs
+- New Grid docs.
+
+## 9.20-hotfix-3 - 05/06/2021
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
+  - Fixes PersonCoreMilestones Baptism `title`.
+
+## 9.21.4 - 05/06/2021
+  - Fixes PersonCoreMilestones Baptism `title`.
+- [PR #285](https://github.com/saddlebackdev/react-cm-ui/pull/285) / Merge Commit bc11e21
+
+## 9.21.3 - 04/26/2021
+- Fixed PersonCoreMilestones unit test.
+
+## 9.21.2 - 04/26/2021
+- [PR #281](https://github.com/saddlebackdev/react-cm-ui/pull/281) / Merge Commit 89ad6a2
+  - PersonCoreMilestones fixes.
+
+## 9.21.0-hotfix - 04/26/2021
+- [PR #281](https://github.com/saddlebackdev/react-cm-ui/pull/281) / Merge Commit 89ad6a2
+  - PersonCoreMilestones fixes.
+
+## 9.21.1 - 04/19/2021
+- [PR #278](https://github.com/saddlebackdev/react-cm-ui/pull/278) / Merge Commit e5c01e7
+  - FiltersDrawerMultiSelectLabel fix
+
 ## 9.21.0 - 04/16/2021
 - [PR #279](https://github.com/saddlebackdev/react-cm-ui/pull/279) / Merge Commit 5fe25c4
   - PersonCoreMilestones Performance Improvments

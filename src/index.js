@@ -7,10 +7,16 @@ export { default as DataGrid } from './dataDisplay/dataGrid';
 export { default as DataGroups } from './dataDisplay/dataGroups';
 export { default as Divider } from './dataDisplay/divider';
 export { default as EmailLink } from './dataDisplay/emailLink';
-export { default as HeaderDeprecated } from './dataDisplay/headerDeprecated';
+export { default as Header } from './dataDisplay/header';
 export { default as Icon } from './dataDisplay/icon';
 export { default as Image } from './dataDisplay/image';
 export { default as List } from './dataDisplay/list';
+export { default as ListItem } from './dataDisplay/listItem';
+export { default as ListItemAvatar } from './dataDisplay/listItemAvatar';
+export { default as ListItemIcon } from './dataDisplay/listItemIcon';
+export { default as ListItemSecondaryAction } from './dataDisplay/listItemSecondaryAction';
+export { default as ListItemText } from './dataDisplay/listItemText';
+export { default as ListSubheader } from './dataDisplay/listSubheader';
 export { default as PersonContactInfo } from './dataDisplay/personContactInfo';
 export { default as PersonCoreMilestones } from './dataDisplay/personCoreMilestones';
 export { default as PersonPanel } from './dataDisplay/personPanel';
@@ -26,6 +32,9 @@ export { default as Typography } from './dataDisplay/typography';
 
 // Feedback
 export { default as ActivityIndicator } from './feedback/activityIndicator';
+export { default as Loader } from './feedback/loader';
+export { default as Skeleton } from './feedback/skeleton';
+export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs
 export { default as Button } from './inputs/button';
@@ -54,6 +63,7 @@ export { default as Page } from './layout/page';
 // Navigation
 export { default as A } from './navigation/a';
 export { default as Breadcrumbs } from './navigation/breadcrumbs';
+export { default as MobileStepper } from './navigation/mobileStepper';
 export { default as Tabs } from './navigation/tabs';
 
 // Surfaces
@@ -67,6 +77,7 @@ export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
 export { default as Modal } from './surfaces/modal';
+export { default as ModalDeprecated } from './surfaces/modalDeprecated';
 export { default as Rail } from './surfaces/rail';
 export { default as TitleBar } from './surfaces/titleBar';
 
@@ -75,6 +86,7 @@ export { default as Collapse } from './utils/collapse';
 export { default as DatePickerUtils } from './utils/datePickerUtils';
 export { default as dateUtils } from './utils/dateUtils';
 export { default as domUtils } from './utils/domUtils';
+export { default as Fade } from './utils/fade';
 export { default as Grow } from './utils/grow';
 export { default as Slide } from './utils/slide';
 export { default as useMediaQuery } from './utils/useMediaQuery';

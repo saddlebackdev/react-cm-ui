@@ -1,27 +1,32 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-import transitions from '@material-ui/core/styles/transitions';
 import createSpacing from '@material-ui/core/styles/createSpacing';
-import shadows from "@material-ui/core/styles/shadows";
+import shadows from '@material-ui/core/styles/shadows';
+import transitions from '@material-ui/core/styles/transitions';
 import {
     keys as breakpointsKeys,
     values as breakpointsValues,
 } from './breakpointsConstants';
+import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shape from './shape';
 
+const spacing = 11;
+
+const breakpoints = createBreakpoints({
+    keys: breakpointsKeys,
+    values: breakpointsValues,
+});
+
 const theme = {
-    breakpoints: createBreakpoints({
-        keys: breakpointsKeys,
-        values: breakpointsValues,
-    }),
+    breakpoints,
     gutters: {
         drawer: {
-            sm: 22,
+            sm: spacing * 2,
         },
         page: {
-            sm: 22,
-            496: 44,
+            sm: spacing * 2,
+            496: spacing * 4,
         },
     },
     height: {
@@ -30,7 +35,7 @@ const theme = {
             md: 70,
         },
         appHeader: {
-            sm: 55,
+            sm: spacing * 5,
             md: 70,
         },
         drawerTitleBar: {
@@ -38,10 +43,11 @@ const theme = {
             md: 70,
         },
     },
+    mixins: createMixins(breakpoints, spacing, {}),
     palette: createPalette(),
     shadows,
     shape,
-    spacing: createSpacing(11),
+    spacing: createSpacing(spacing),
     transitions,
     typography: createTypography(),
     width: {

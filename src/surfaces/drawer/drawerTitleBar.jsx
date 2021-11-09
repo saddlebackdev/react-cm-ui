@@ -6,6 +6,9 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import Typography from '../../dataDisplay/typography';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
@@ -17,6 +20,10 @@ const propTypes = {
     }),
     className: PropTypes.string,
     closeButton: PropTypes.shape({}),
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
     style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
         PropTypes.node,
@@ -29,6 +36,8 @@ const defaultProps = {
     classes: null,
     className: undefined,
     closeButton: undefined,
+    closeButtonStyle: {},
+    dataTestId: `${UI_CLASS_NAME}-drawer_title_bar`,
     style: {},
     title: undefined,
 };
@@ -95,8 +104,10 @@ function DrawerTitleBar(props) {
         children,
         className,
         closeButton,
+        dataTestId,
         style,
         title,
+        titleStyle,
     } = props;
 
     const classes = useStyles(props);
@@ -137,6 +148,7 @@ function DrawerTitleBar(props) {
     return (
         <header
             className={rootClasses}
+            data-testid={dataTestId}
             ref={rootRef}
             style={style}
         >

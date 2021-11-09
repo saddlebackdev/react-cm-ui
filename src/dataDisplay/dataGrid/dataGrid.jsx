@@ -1,7 +1,10 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { BEM_DATA_GRID } from '../../global/constants';
+import React, { useEffect } from 'react';
+import {
+    BEM_DATA_GRID,
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import { SORTABLE_PROP_TYPES } from './dataGridConstants';
 import DataGridTable from './dataGridTable';
 import makeStyles from '../../styles/makeStyles';
@@ -36,8 +39,9 @@ const propTypes = {
         ]),
     ).isRequired,
     /**
-     * Change the font size of text in the Data Grid.
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
+    dataTestId: PropTypes.string,
     fontSize: PropTypes.string,
     /**
      * Add an id to the Data Grid.
@@ -92,6 +96,7 @@ const defaultProps = {
     bleed: true,
     classes: null,
     className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-${BEM_DATA_GRID}`,
     fontSize: undefined,
     moduleType: null,
     resizableColumnWidthPercentage: undefined,
@@ -153,6 +158,7 @@ function DataGrid(props) {
         className,
         columns,
         data,
+        dataTestId,
         fontSize,
         id,
         moduleType,
@@ -193,6 +199,7 @@ function DataGrid(props) {
     return (
         <div
             className={rootClasses}
+            data-testid={dataTestId}
             style={style}
         >
             <DataGridTable

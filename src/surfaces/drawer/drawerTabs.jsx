@@ -3,9 +3,9 @@ import React from 'react';
 import {
     PROP_TYPES_ITEMS,
     PROP_TYPES_SELECTED_TAB_KEY,
-} from '../../navigation/tabs/constants';
+} from '../../navigation/sectionalTabs/constants';
 import makeStyles from '../../styles/makeStyles';
-import Tabs from '../../navigation/tabs';
+import SectionalTabs from '../../navigation/sectionalTabs';
 
 const propTypes = {
     /**
@@ -48,7 +48,7 @@ function DrawerTabs(props) {
     const classes = useStyles(props);
 
     return (
-        <Tabs
+        <SectionalTabs
             classes={{
                 root: classes.root,
             }}

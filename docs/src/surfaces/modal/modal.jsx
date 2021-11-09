@@ -3,18 +3,16 @@ import {
 } from 'react-cm-ui';
 import {
     camelCase,
-    startCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
-import ModalLeftAlignedSample from './modalLeftAlignedSample';
-import ModalCenterAlignedSample from './modalCenterAlignedSample';
+import ExampleLeftAligned from './examples/exampleLeftAligned';
+import ExampleModalCenterAligned from './examples/exampleModalCenterAligned';
 /* eslint-disable import/no-named-default, import/extensions */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/modal/modal';
 /* eslint-enable import/no-named-default, import/extensions */
@@ -49,7 +47,7 @@ function DocsModal(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="left-aligned-modal"
                         variant="h2"
                     >
                         Left Aligned Modal
@@ -64,13 +62,13 @@ function DocsModal(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./modalLeftAlignedSample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleLeftAligned').default}
                     >
-                        <ModalLeftAlignedSample />
+                        <ExampleLeftAligned />
                     </Example>
 
                     <Heading
-                        anchorLink="example"
+                        anchorLink="center-aligned-modal"
                         variant="h2"
                     >
                         Center Aligned Modal
@@ -85,9 +83,9 @@ function DocsModal(props) {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./modalCenterAlignedSample').default}
+                        rawCode={require('!!raw-loader!./examples/exampleModalCenterAligned').default}
                     >
-                        <ModalCenterAlignedSample />
+                        <ExampleModalCenterAligned />
                     </Example>
                 </MarkdownContainer>
 

@@ -241,6 +241,7 @@ class ActionBarActionsButton extends React.PureComponent {
                     <Button
                         className="action_bar--actions_button"
                         color={isDrawerOpen ? iconBackgroundActiveColor : iconBackgroundColor}
+                        designVersion={2}
                         icon
                         id={id}
                         style={style}

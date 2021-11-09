@@ -1,7 +1,11 @@
 import {
+    findIndex,
+    has,
     isEmpty,
     isFunction,
     map,
+    noop,
+    size,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -17,13 +21,13 @@ import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
-     * Override or extend the styles applied to Prompt.
+     * Override or extend the styles applied to Select.
      */
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
     /**
-    * Assign additional class names to Prompt.
+    * Assign additional class names to Select.
     */
     className: PropTypes.string,
     /**
@@ -76,9 +80,25 @@ const propTypes = {
      */
     multiple: PropTypes.bool,
     /**
+     * Placeholder displayed when there are no matching search results or a falsy value to hide it
+     * (can also be a react component)
+     */
+    noResultsText: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+    ]),
+    /**
      * The onChange event handler.
      */
     onChange: PropTypes.func,
+    /**
+     * The onClose event handler.
+     */
+    onClose: PropTypes.func,
+    /**
+     * The onOpen event handler.
+     */
+    onOpen: PropTypes.func,
     /**
      * A Select can have custom option component
      */
@@ -134,7 +154,10 @@ const defaultProps = {
     label: null,
     matchProp: 'any',
     multiple: false,
+    noResultsText: 'No results found',
     onChange: null,
+    onClose: undefined,
+    onOpen: undefined,
     optionComponent: null,
     options: [],
     promptTextCreator: undefined,
@@ -197,6 +220,7 @@ const CustomCreatableSelect = (props) => (
 const useStyles = makeStyles((theme) => {
     const {
         palette: p,
+        typography,
     } = theme;
 
     const darkThemeBoxShadow = '0 4px 4px 0 rgba(0, 0, 0, 0.43)';
@@ -282,6 +306,12 @@ const useStyles = makeStyles((theme) => {
         isUnderlined: {},
         label: {
             marginBottom: 8,
+        },
+        requiredIndicator: {
+            color: p.error.main,
+            display: 'inline-block',
+            fontSize: typography.pxToRem(14),
+            marginLeft: 3,
         },
         root: {
             display: 'inline-block',
@@ -472,8 +502,8 @@ const useStyles = makeStyles((theme) => {
             '& .Select--multi .Select-clear-zone': {
                 width: selectClearWidth,
             },
-            '& .Select--multi .Select-multi-value-wrapper': {
-                display: 'inline-block',
+            '& .Select-multi-value-wrapper': {
+                position: 'relative',
             },
             '& .Select .Select-aria-only': {
                 display: 'inline-block',
@@ -544,8 +574,9 @@ const useStyles = makeStyles((theme) => {
                     color: selectOptionFocusedColor,
                 },
                 '&.is-disabled': {
+                    backgroundColor: theme.palette.grey[500],
                     color: selectOptionDisabledColor,
-                    cursor: 'default',
+                    cursor: 'not-allowed',
                 },
             },
             '& .Select-noresults': {
@@ -553,7 +584,7 @@ const useStyles = makeStyles((theme) => {
                 color: selectNoresultsColor,
                 cursor: 'default',
                 display: 'block',
-                padding: `${selectOptionPaddingVertical} ${selectOptionPaddingHorizontal}`,
+                padding: `${selectOptionPaddingVertical}px ${selectOptionPaddingHorizontal}px`,
             },
             '& .Select.Select--multi': {
                 '& .Select-control': {
@@ -708,6 +739,9 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
+/**
+ * The Select component represents a control that provides a menu of options.
+ */
 // eslint-disable-next-line prefer-arrow-callback
 const Select = React.forwardRef(function Select(props, ref) {
     const {
@@ -724,9 +758,10 @@ const Select = React.forwardRef(function Select(props, ref) {
         label,
         matchProp,
         multiple,
+        noResultsText,
         onChange: onChangeProp,
         onClose,
-        onOpen,
+        onOpen: onOpenProp,
         optionComponent,
         options,
         placeholder,
@@ -741,7 +776,34 @@ const Select = React.forwardRef(function Select(props, ref) {
     } = props;
 
     const classes = useStyles(props);
-    const dropdownMenuRef = useRef();
+    const innerMenuRef = useRef();
+    const menuScrollBarRef = useRef();
+    const focusedOptionRef = useRef();
+    const [scrollToFocusedOption, setScrollToFocusedOption] = React.useState(false);
+
+    React.useEffect(() => {
+        if (
+            scrollToFocusedOption &&
+            focusedOptionRef && focusedOptionRef.current &&
+            innerMenuRef && innerMenuRef.current &&
+            menuScrollBarRef && menuScrollBarRef.current
+        ) {
+            const focusedDOM = focusedOptionRef.current;
+            const focusedRect = focusedDOM.getBoundingClientRect();
+            const innerMenuDOM = innerMenuRef.current;
+            const innerMenuRect = innerMenuDOM.getBoundingClientRect();
+
+            if (focusedRect.bottom > innerMenuRect.bottom) {
+                menuScrollBarRef.current.scrollTop(
+                    focusedDOM.offsetTop + focusedDOM.clientHeight - innerMenuDOM.offsetHeight,
+                );
+            } else if (focusedRect.top < innerMenuRect.top) {
+                menuScrollBarRef.current.scrollTop(focusedDOM.offsetTop);
+            }
+
+            setScrollToFocusedOption(false);
+        }
+    }, [scrollToFocusedOption]);
 
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
@@ -751,30 +813,54 @@ const Select = React.forwardRef(function Select(props, ref) {
 
     const menuRenderer = (params) => {
         const items = map(params.options, (o, i) => {
+            const isFocused = o === params.focusedOption;
+            const isSelected = params.valueArray && params.valueArray.some((x) => (
+                x[params.valueKey] === o[params.valueKey]
+            ));
+
+            const optionClass = ClassNames(
+                'Select-option',
+                params.optionClassName,
+                {
+                    'is-disabled': o.disabled,
+                    'is-focused': isFocused,
+                    'is-selected': isSelected,
+                },
+            );
+
             if (optionComponent) {
                 const OptionComponent = optionComponent;
 
                 return (
                     <OptionComponent
-                        isFocused={params.isFocused}
+                        className={optionClass}
+                        focusOption={params.focusOption}
+                        isDisabled={o.disabled}
+                        isFocused={isFocused}
+                        isSelected={isSelected}
                         key={`select-option-key-${i}`}
-                        onFocus={() => params.onFocus(o)}
-                        onSelect={() => params.selectValue(o)}
+                        onFocus={params.onFocus}
+                        onSelect={params.selectValue}
                         option={o}
+                        ref={isFocused ? focusedOptionRef : undefined}
                     />
                 );
             }
 
             return (
                 <div
-                    className="Select-option"
+                    aria-selected={isSelected}
+                    className={optionClass}
+                    isDisabled={o.disabled}
+                    isFocused={isFocused}
+                    isSelected={isSelected}
                     key={`select-option-key-${i}`}
                     onClick={() => params.selectValue(o)}
-                    onFocus={() => {}}
-                    onKeyDown={() => {}}
+                    onFocus={noop}
+                    onKeyDown={noop}
                     onMouseOver={() => params.focusOption(o)}
+                    ref={isFocused ? focusedOptionRef : undefined}
                     role="option"
-                    aria-selected="true"
                     tabIndex={0}
                 >
                     {o.label}
@@ -783,17 +869,72 @@ const Select = React.forwardRef(function Select(props, ref) {
         });
 
         return (
-            <ScrollBar
-                autoHeight
-                autoHeightMax={dropdownMenuMaxHeight || 180}
-                autoHeightMin={dropdownMenuMinHeight}
-                autoHide
-                className="select-menu-scrollbar"
-                ref={dropdownMenuRef}
+            <div
+                ref={innerMenuRef}
             >
-                {items}
-            </ScrollBar>
+                <ScrollBar
+                    autoHeight
+                    autoHeightMax={dropdownMenuMaxHeight || 180}
+                    autoHeightMin={dropdownMenuMinHeight}
+                    autoHide
+                    className="select-menu-scrollbar"
+                    ref={menuScrollBarRef}
+                >
+                    {items}
+                </ScrollBar>
+            </div>
         );
+    };
+
+    const onInputKeyDown = (event) => {
+        switch (event.keyCode) {
+            case 38: // up
+            case 40: // down
+                setScrollToFocusedOption(true);
+
+                break;
+            default:
+        }
+    };
+
+    const onOpen = () => {
+        if (isFunction(onOpenProp)) {
+            onOpenProp();
+        }
+
+        if (menuScrollBarRef && menuScrollBarRef.current && value) {
+            const itemHeight = menuScrollBarRef.current.getScrollHeight() / size(options);
+            const pageSize = menuScrollBarRef.current.getClientHeight() / itemHeight;
+
+            const selectionIndex = findIndex(options, (o) => {
+                if (matchProp === 'any') {
+                    const hasValue = has(o, 'value');
+                    const hasLabel = has(o, 'label');
+
+                    if (!hasValue && !hasLabel) {
+                        return false;
+                    }
+
+                    return (
+                        (
+                            hasValue && o.value === value.value
+                        ) || o.value === value
+                    ) || (
+                        (
+                            hasLabel && o.label === value.label
+                        ) || o.label === value
+                    );
+                }
+
+                return o[matchProp] === value[matchProp];
+            });
+
+            const scrollRatio = selectionIndex / pageSize;
+
+            if (scrollRatio >= 1) {
+                menuScrollBarRef.current.scrollTop(scrollRatio * pageSize * itemHeight);
+            }
+        }
     };
 
     const rootClasses = ClassNames(
@@ -829,7 +970,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                     {label}
 
                     {required && showRequiredIndicator ? (
-                        <span className="input-required-indicator">*</span>
+                        <span className={classes.requiredIndicator}>*</span>
                     ) : null}
                 </label>
             )}
@@ -888,6 +1029,10 @@ const Select = React.forwardRef(function Select(props, ref) {
                 menuRenderer={menuRenderer}
                 menuStyle={dropdownMenuStyle}
                 multi={multiple}
+                noResultsText={noResultsText}
+                onClose={onClose}
+                onInputKeyDown={onInputKeyDown}
+                onOpen={onOpen}
                 name="firstSelect"
                 onChange={onChange}
                 onClose={onClose}

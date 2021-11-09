@@ -1,25 +1,13 @@
-import {
-    map,
-    isEmpty,
-    isFunction,
-} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
+import ScrollBar from 'react-custom-scrollbars';
 import {
-    BEM_CONTAINER,
+    UI_CLASS_NAME,
     BEM_CONTENT,
     BEM_FILTERS_RAIL,
-    BEM_FILTERS_RAIL_ROW,
-    UI_CLASS_NAME,
 } from '../../global/constants';
-import {
-    PROP_TYPES_ROOT,
-    DEFAULT_PROPS_ROOT,
-} from './constants';
-import FiltersRailClear from './filtersRailClear';
-import FiltersRailRow from './filtersRailRow';
-import Grid from '../../layout/grid';
+
 import makeStyles from '../../styles/makeStyles';
 import Rail from '../rail';
 import Slide from '../../utils/slide';
@@ -27,7 +15,42 @@ import useMediaQuery from '../../utils/useMediaQuery';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
-    ...PROP_TYPES_ROOT,
+    /**
+     * The content of the FiltersRail
+     */
+    children: PropTypes.node,
+    /**
+     * Override or extend the styles applied to FiltersRail.
+     */
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    /**
+     * Assign additional class names to FiltersRail.
+     */
+    className: PropTypes.string,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
+     * The `id` of the FiltersRail.
+     */
+    id: PropTypes.string,
+    /**
+     * If `true`, FiltersRail is open
+     */
+    isOpen: PropTypes.bool,
+    /**
+     * If `true`, the children of the FiltersRail will be contained within a
+     * `ScrollBar` from the React Custom Scrollbars package.
+     */
+    isScrollable: PropTypes.bool,
+    /**
+     * Assigns styling to the FiltersRail dependant on
+     * whether it is a child of the Page or Drawer component.
+     */
+    moduleType: PropTypes.oneOf(['drawer', 'page']),
     /**
      * HC's theme.
      */
@@ -39,7 +62,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-    ...DEFAULT_PROPS_ROOT,
+    children: undefined,
+    classes: undefined,
+    className: undefined,
+    dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
+    id: undefined,
+    isOpen: undefined,
+    isScrollable: false,
+    moduleType: 'page',
 };
 
 const useStyles = makeStyles((theme) => {
@@ -47,7 +77,6 @@ const useStyles = makeStyles((theme) => {
 
     return {
         innerContainer: {
-            height: 'auto',
             minHeight: '100%',
             overflow: 'hidden',
             pointerEvents: 'auto',
@@ -59,11 +88,19 @@ const useStyles = makeStyles((theme) => {
             '&$isOpen': {
                 overflow: 'visible',
             },
+            '&$isScrollable': {
+                padding: [[0, 0, 0, theme.spacing(2)]],
+            },
+            '&$isNotScrollable': {
+                height: 'auto',
+            },
         },
         isInDrawer: {},
         isNotOpen: {},
         isNotInDrawer: {},
+        isNotScrollable: {},
         isOpen: {},
+        isScrollable: {},
         root: {
             pointerEvents: 'none',
             position: 'absolute',
@@ -92,6 +129,10 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
+        scrollableChildrenContainer: {
+            padding: [[theme.spacing(3), theme.spacing(2), theme.spacing(3), 0]],
+            position: 'relative',
+        },
     };
 });
 
@@ -99,12 +140,11 @@ function FiltersRail(props) {
     const {
         children,
         className,
+        dataTestId,
         id,
-        isFiltering,
         isOpen,
+        isScrollable,
         moduleType,
-        onClear,
-        rows,
         theme,
     } = props;
 
@@ -115,9 +155,9 @@ function FiltersRail(props) {
     useEffect(() => {
         if (!isMobile && filtersRailRef && filtersRailRef.current) {
             const filtersRailNode = filtersRailRef.current;
-            const containerClassName = `.${UI_CLASS_NAME}.${BEM_CONTAINER}`;
+            const containerClassName = '.ui.page--container';
             const containerNode = filtersRailNode.closest(containerClassName);
-            const containerOffsetTop = containerNode.offsetTop;
+            const containerOffsetTop = containerNode ? containerNode.offsetTop : 0;
 
             filtersRailNode.style.height = `calc(100% - ${containerOffsetTop}px)`;
         }
@@ -142,11 +182,10 @@ function FiltersRail(props) {
         },
     );
 
-    let rowKeyNum = 0;
-
     return (
         <div
             className={rootClasses}
+            data-testid={dataTestId}
             id={id}
             ref={filtersRailRef}
         >
@@ -159,43 +198,19 @@ function FiltersRail(props) {
                         classes.innerContainer,
                         {
                             [classes.isOpen]: isOpen,
+                            [classes.isScrollable]: isScrollable,
+                            [classes.isNotScrollable]: !isScrollable,
                         },
                     )}
                 >
-                    {!isEmpty(rows) && (
-                        <Grid
-                            spacing={3}
-                        >
-                            {isFunction(onClear) && (
-                                <Grid.Column
-                                    sm={12}
-                                >
-                                    <FiltersRailClear
-                                        disable={!isFiltering}
-                                        onClear={onClear}
-                                    />
-                                </Grid.Column>
-                            )}
-
-                            {map(rows, (row) => {
-                                rowKeyNum += 1;
-
-                                return (
-                                    <FiltersRailRow
-                                        classes={row.classes}
-                                        className={row.className}
-                                        collapsible={row.collapsible}
-                                        components={row.components}
-                                        id={row.id}
-                                        key={`${BEM_FILTERS_RAIL_ROW}-${rowKeyNum}`}
-                                        heading={row.heading}
-                                    />
-                                );
-                            })}
-                        </Grid>
-                    )}
-
-                    {children}
+                    {isScrollable ? (
+                        <ScrollBar autoHide>
+                            <div className={classes.scrollableChildrenContainer}>
+                                {children}
+                            </div>
+                        </ScrollBar>
+                    ) :
+                        children}
                 </Rail>
             </Slide>
         </div>

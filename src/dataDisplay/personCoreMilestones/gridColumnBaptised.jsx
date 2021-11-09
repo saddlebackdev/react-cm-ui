@@ -82,7 +82,11 @@ const useStyles = makeStyles((theme) => ({
     genderMale: {},
     genderUndefined: {},
     icon: {},
-    isBaptised: {},
+    isBaptised: {
+        '&.icon': {
+            opacity: 1,
+        },
+    },
     isAdult: {},
     isChild: {},
     isStudent: {},
@@ -124,7 +128,7 @@ function GridColumnBaptised(props) {
             compact
             inverse={inverse}
             size={iconSize}
-            title={isBaptised ? false : 'Has not accepted Christ'}
+            title={isBaptised ? false : 'Not Baptized'}
             type="droplet"
         />
     );

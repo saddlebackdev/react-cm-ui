@@ -49,6 +49,13 @@ export const navigationItems = [
                     {
                         component: 'address',
                         label: 'Address',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'address',
                     },
                     {
@@ -76,6 +83,13 @@ export const navigationItems = [
                     {
                         component: 'dataCards',
                         label: 'Data Cards',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'data-cards',
                     },
                     {
@@ -108,6 +122,13 @@ export const navigationItems = [
                     {
                         component: 'emailLink',
                         label: 'Email Link',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'email-link',
                     },
                     {
@@ -118,6 +139,11 @@ export const navigationItems = [
                                 component: 'iconExamples',
                                 label: 'Examples',
                                 path: 'examples',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
                             },
                         ],
                         path: 'icon',
@@ -135,6 +161,13 @@ export const navigationItems = [
                     {
                         component: 'personContactInfo',
                         label: 'Person Contact Info',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'person-contact-info',
                     },
                     {
@@ -191,11 +224,25 @@ export const navigationItems = [
                     {
                         component: 'telephoneLink',
                         label: 'Telephone Link',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'telephone-link',
                     },
                     {
                         component: 'timeFromNow',
                         label: 'Time From Now',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'time-from-now',
                     },
                     {
@@ -226,6 +273,23 @@ export const navigationItems = [
                         component: 'activityIndicator',
                         label: 'Activity Indicator',
                         path: 'activity-indicator',
+                    },
+                    {
+                        component: 'loader',
+                        label: 'Loader',
+                        path: 'loader',
+                    },
+                    {
+                        component: 'snackbar',
+                        label: 'Snackbar',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'snackbar',
                     },
                 ],
                 path: 'feedback',
@@ -386,6 +450,23 @@ export const navigationItems = [
                         path: 'segmented-controls',
                     },
                     {
+                        component: 'select',
+                        label: 'Select',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'select',
+                    },
+                    {
                         component: 'switch',
                         label: 'Switch',
                         levelFour: [
@@ -405,6 +486,18 @@ export const navigationItems = [
                     {
                         component: 'timePicker',
                         label: 'Time Picker',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'time-picker',
                     },
                 ],
@@ -417,6 +510,13 @@ export const navigationItems = [
                     {
                         component: 'grid',
                         label: 'Grid',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'grid',
                     },
                     {
@@ -495,6 +595,23 @@ export const navigationItems = [
                             },
                         ],
                         path: 'a',
+                    },
+                    {
+                        component: 'mobileStepper',
+                        label: 'Mobile Stepper',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'mobile-stepper',
+                    },
+                    {
+                        component: 'subNavigationDeprecated',
+                        label: 'Sub Navigation (Deprecated)',
+                        path: 'sub-navigation-deprecated',
                     },
                     {
                         component: 'tabs',
@@ -611,6 +728,11 @@ export const navigationItems = [
                         component: 'infoBarDeprecated',
                         label: 'Info Bar (Deprecated)',
                         path: 'info-bar-deprecated',
+                    },
+                    {
+                        component: 'modalDeprecated',
+                        label: 'Modal (Deprecated)',
+                        path: 'modal-deprecated',
                     },
                     {
                         component: 'modal',

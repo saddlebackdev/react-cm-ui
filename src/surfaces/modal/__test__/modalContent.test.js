@@ -1,5 +1,5 @@
 /**
- * To run this test from the church-management/client folder, execute the following command:
+ * To run this test:
  * npx jest ./src/surfaces/modal/__test__/modalContent.test.js
  */
 
@@ -37,6 +37,8 @@ describe('<ModalContent />', () => {
             >
                 <Button
                     className={className}
+                    color="primary"
+                    designVersion={2}
                 >
                     {text}
                 </Button>

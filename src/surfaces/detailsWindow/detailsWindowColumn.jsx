@@ -121,11 +121,12 @@ class DetailsWindowColumn extends React.PureComponent {
                 {expandedButton && (
                     <Button
                         className={`${bemClassName}_expandable_toggle_button`}
-                        color="light"
+                        designVersion={2}
                         icon
                         id={expandedButtonId}
+                        inverse
                         onClick={onExpandButtonToggle || nop}
-                        outlined
+                        variant="outlined"
                     >
                         <Icon
                             compact

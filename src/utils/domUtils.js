@@ -67,7 +67,7 @@ const domUtils = {
         let propValue;
 
         Object.keys(animations).forEach((key) => {
-            if (!propValue && element.style[key] !== undefined) {
+            if (!propValue && element && element.style[key] !== undefined) {
                 propValue = animations[key];
             }
         });
@@ -99,7 +99,7 @@ const domUtils = {
     },
 
     isInViewport(el, parentEl) {
-        if (el) {
+        if (el && parentEl) {
             const elRect = el.getBoundingClientRect();
             const parentElRect = parentEl.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -127,6 +127,7 @@ const domUtils = {
                 isInTop, isInRight, isInBottom, isInLeft, topBias, bottomBias,
             };
         }
+
         return false;
     },
 

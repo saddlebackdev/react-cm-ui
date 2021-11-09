@@ -15,6 +15,7 @@ function ExampleDefaultPrompt() {
                 <Button
                     color="success"
                     tabIndex={0}
+                    designVersion={2}
                 >
                     Save Me!
                 </Button>

@@ -200,81 +200,9 @@ function onIconClick() {
 
 class ElementsIconExamples extends React.PureComponent {
     render() {
-        const props = [
-            {
-                name: 'align',
-                type: 'enum',
-                default: '',
-                description: 'Icons can change the side the margin is positioned on.',
-                allowedTypes: 'left, right',
-            }, {
-                name: 'className',
-                type: 'string',
-                default: '',
-                description: 'Additional classes.',
-                allowedTypes: '',
-            }, {
-                name: 'color',
-                type: 'string',
-                default: '',
-                description: 'Color of the icon.',
-                allowedTypes: 'alert, primary, static, success',
-            }, {
-                name: 'compact',
-                type: 'bool',
-                default: '',
-                description: 'Icons can appear without space to left or right.',
-                allowedTypes: '',
-            }, {
-                name: 'inverse',
-                type: 'bool',
-                default: '',
-                description: 'A icon can be formatted to appear on dark backgrounds better.',
-                allowedTypes: '',
-            }, {
-                name: 'onClick',
-                type: 'func',
-                default: '',
-                description: 'Called after the end-user\'s click.',
-                allowedTypes: '',
-            }, {
-                name: 'size',
-                type: 'enum || number',
-                default: '',
-                description: 'Size of icon.',
-                allowedTypes: 'xlarge, large, medium, small, xsmall, xxsmall',
-            }, {
-                name: 'spin',
-                type: 'bool',
-                default: '',
-                description: 'Spins the icon clockwise.',
-                allowedTypes: '',
-            }, {
-                name: 'type',
-                type: 'string',
-                default: '',
-                description: 'Type of icon.',
-                allowedTypes: '',
-            }, {
-                name: 'title',
-                type: 'string',
-                default: '',
-                description: 'Title (tooltip) of icon.',
-                allowedTypes: '',
-            },
-        ];
-        const iconCompact = true;
-        const iconSize = 'xlarge';
-
         return (
             <Main page="headers">
                 <Main.Content>
-                    <Card>
-                        <Typography size="large">Props</Typography>
-
-                        <TableProps props={props} />
-                    </Card>
-
                     {/* Icon */}
                     <Heading variant="h2">
                         Icon

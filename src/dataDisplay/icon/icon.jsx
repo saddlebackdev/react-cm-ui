@@ -5,44 +5,24 @@ import {
     uniqueId,
 } from 'lodash';
 import ClassNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { TITLE_PROP_TYPE } from './iconConstants';
-import Utils from '../../utils/utils';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
+import {
+    ICON_PROP_TYPES,
+} from './iconConstants';
 import IconSVG from './iconSVG';
 
 const propTypes = {
-    align: PropTypes.oneOf(['left', 'right']),
-    className: PropTypes.string,
-    color: PropTypes.oneOf(Utils.colorEnums()),
-    compact: PropTypes.bool,
-    disable: PropTypes.bool,
-    id: PropTypes.string,
-    inverse: PropTypes.bool,
-    onClick: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    rotate: PropTypes.number,
-    size: PropTypes.oneOfType([
-        PropTypes.oneOf(Utils.sizeEnums()),
-        PropTypes.number,
-    ]),
-    spin: PropTypes.bool,
-    style: PropTypes.shape({}),
-    /**
-     * Indicates whether or not the Icon can be focused.
-     */
-    tabIndex: PropTypes.number,
-    /**
-     * Provides a human-readable title for the element that contains it.
-     */
-    title: TITLE_PROP_TYPE,
-    type: PropTypes.string.isRequired,
+    ...ICON_PROP_TYPES,
 };
 
 const defaultProps = {
     align: 'left',
     className: null,
     color: 'primary',
+    dataTestId: `${UI_CLASS_NAME}-icon`,
     compact: false,
     disable: false,
     id: null,
@@ -63,6 +43,9 @@ function iconUniqueId() {
     return now.substring(now.length - 6, now.length) + uniqueId();
 }
 
+/**
+ * The Icon provides a simple way to render an image by requesting it from the set.
+ */
 class Icon extends React.PureComponent {
     constructor() {
         super();
@@ -101,6 +84,7 @@ class Icon extends React.PureComponent {
             className,
             color,
             compact,
+            dataTestId,
             disable,
             id,
             inverse,
@@ -115,29 +99,36 @@ class Icon extends React.PureComponent {
             ...otherProps
         } = this.props;
 
-        const rootClasses = ClassNames('ui', 'icon', `icon-${type}`, className, {
-            'icon-align-left': (!align && !compact) || align === 'left',
-            'icon-align-right': !compact && align === 'right',
-            'icon-clickable': onClick,
-            'icon-color-alert': color === 'alert',
-            'icon-color-disable': color === 'disable',
-            'icon-color-highlight': color === 'highlight',
-            'icon-color-primary': (isNil(color) && !disable) || color === 'primary',
-            'icon-color-static': color === 'static',
-            'icon-color-success': color === 'success',
-            'icon-color-warning': color === 'warning',
-            'icon-compact': compact,
-            'icon-disable': disable,
-            'icon-inverse': inverse,
-            'icon-size-large': size === 'large',
-            'icon-size-medium': size === 'medium',
-            'icon-size-small': size === 'small',
-            'icon-size-xlarge': size === 'xlarge',
-            'icon-size-xsmall': size === 'xsmall',
-            'icon-size-xxlarge': size === 'xxlarge',
-            'icon-size-xxsmall': size === 'xxsmall',
-            'icon-spin': spin || type === 'spinner',
-        });
+        const rootClasses = ClassNames(
+            UI_CLASS_NAME,
+            'ui',
+            'icon',
+            `icon-${type}`,
+            className,
+            {
+                'icon-align-left': (!align && !compact) || align === 'left',
+                'icon-align-right': !compact && align === 'right',
+                'icon-clickable': onClick,
+                'icon-color-alert': color === 'alert',
+                'icon-color-disable': color === 'disable',
+                'icon-color-highlight': color === 'highlight',
+                'icon-color-primary': (isNil(color) && !disable) || color === 'primary',
+                'icon-color-static': color === 'static',
+                'icon-color-success': color === 'success',
+                'icon-color-warning': color === 'warning',
+                'icon-compact': compact,
+                'icon-disable': disable,
+                'icon-inverse': inverse,
+                'icon-size-large': size === 'large',
+                'icon-size-medium': size === 'medium',
+                'icon-size-small': size === 'small',
+                'icon-size-xlarge': size === 'xlarge',
+                'icon-size-xsmall': size === 'xsmall',
+                'icon-size-xxlarge': size === 'xxlarge',
+                'icon-size-xxsmall': size === 'xxsmall',
+                'icon-spin': spin || type === 'spinner',
+            },
+        );
 
         const containerStyle = {
             ...style,
@@ -1079,10 +1070,8 @@ class Icon extends React.PureComponent {
                 break;
             case 'phone-cell':
                 path = {
-                    d: 'M275,336 L288,336 C289.104569,336 290,336.895431 290,338 L290,366 C290,367.104569 289.104569,368 288,368 L275,368 C273.895431,368 273,367.104569 273,366 L273,338 C273,336.895431 273.895431,336 275,336 Z M278.5,338 C278.223858,338 278,338.223858 278,338.5 C278,338.776142 278.223858,339 278.5,339 L284.5,339 C284.776142,339 285,338.776142 285,338.5 C285,338.223858 284.776142,338 284.5,338 L278.5,338 Z M281.5,364 C280.671573,364 280,364.671573 280,365.5 C280,366.328427 280.671573,367 281.5,367 C282.328427,367 283,366.328427 283,365.5 C283,364.671573 282.328427,364 281.5,364 Z M276,341 C275.447715,341 275,341.447715 275,342 L275,362 C275,362.552285 275.447715,363 276,363 L287,363 C287.552285,363 288,362.552285 288,362 L288,342 C288,341.447715 287.552285,341 287,341 L276,341 Z',
+                    d: 'M7.1,0h9.8a1.5,1.5,0,0,1,1.5,1.5v21A1.5,1.5,0,0,1,16.9,24H7.1a1.5,1.5,0,0,1-1.5-1.5V1.5A1.5,1.5,0,0,1,7.1,0ZM9.8,1.5a.4.4,0,0,0-.4.4c0,.2.1.3.4.3h4.4c.3,0,.4-.1.4-.3a.4.4,0,0,0-.4-.4ZM12,21a1.1,1.1,0,1,0,1.1,1.1A1.1,1.1,0,0,0,12,21ZM7.9,3.8a.8.8,0,0,0-.8.7v15a.8.8,0,0,0,.8.7h8.2a.8.8,0,0,0,.8-.7V4.5a.8.8,0,0,0-.8-.7Z',
                     id: pathId,
-
-                    transform: 'translate(-273.000000, -336.000000)',
                 };
 
                 break;
@@ -1759,6 +1748,7 @@ class Icon extends React.PureComponent {
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}

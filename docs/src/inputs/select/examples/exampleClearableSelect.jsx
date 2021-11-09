@@ -8,21 +8,19 @@ import { options } from '../constants';
 function ExampleClearableSelect() {
     const [selectedValue, setOption] = useState({});
 
-    function onSelect(selectedOption) {
+    const onSelect = (selectedOption) => {
         setOption(selectedOption);
-    }
+    };
 
     return (
-        <div>
-            <Select
-                clearable
-                id="block--clearable_select_id"
-                options={options}
-                onChange={onSelect}
-                placeholder="Select Option"
-                value={!isEmpty(selectedValue) ? selectedValue : null}
-            />
-        </div>
+        <Select
+            clearable
+            id="block--clearable_select_id"
+            options={options}
+            onChange={onSelect}
+            placeholder="Select Option"
+            value={!isEmpty(selectedValue) ? selectedValue : null}
+        />
     );
 }
 
