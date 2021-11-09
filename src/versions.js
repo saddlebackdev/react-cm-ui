@@ -6,7 +6,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.2.3',
+        package: '10.2.4',
         components: {
             dataDisplay: {
                 dataCards: {
@@ -29,6 +29,11 @@ const versions = {
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/E1DB6E1A-4679-47B6-AFBC-3A23CB13C6D1',
                 },
+                image: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
             },
             feedback: {
                 snackbar: {
@@ -43,10 +48,10 @@ const versions = {
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
                 },
-                table: {
+                phoneInput: {
                     devLibraryVersion: '1.0.0',
-                    designLibraryVersion: '', // TODO: Add Design Library version
-                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
                 prompt: {
                     devLibraryVersion: '< 1.0.0',
@@ -57,6 +62,11 @@ const versions = {
                     devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
+                },
+                table: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '', // TODO: Add Design Library version
+                    designLibraryDoc: '', // TODO: Add Sketch Cloud Link
                 },
                 timePicker: {
                     devLibraryVersion: '2.0.0',
