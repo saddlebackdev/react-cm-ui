@@ -396,6 +396,11 @@ export const navigationItems = [
                 label: 'Layout',
                 levelThree: [
                     {
+                        component: 'box',
+                        label: 'Box',
+                        path: 'box',
+                    },
+                    {
                         component: 'containerDeprecated',
                         label: 'Container (deprecated)',
                         path: 'container-deprecated',

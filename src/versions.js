@@ -70,6 +70,11 @@ const versions = {
                 },
             },
             layout: {
+                box: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 grid: {
                     devLibraryVersion: '> 2.0.2',
                     designLibraryVersion: 'N/A',
