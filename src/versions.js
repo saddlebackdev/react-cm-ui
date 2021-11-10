@@ -59,6 +59,13 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
             },
+            lab: {
+                timeline: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+            },
             layout: {
                 grid: {
                     devLibraryVersion: '> 2.0.2',

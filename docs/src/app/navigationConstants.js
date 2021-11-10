@@ -392,6 +392,17 @@ export const navigationItems = [
                 path: 'inputs',
             },
             {
+                directory: 'lab',
+                label: 'Lab',
+                levelThree: [
+                    {
+                        component: 'timeline',
+                        label: 'Timeline',
+                        path: 'timeline',
+                    },
+                ],
+                path: 'lab',
+            }, {
                 directory: 'layout',
                 label: 'Layout',
                 levelThree: [
