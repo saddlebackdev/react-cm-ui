@@ -49,7 +49,7 @@ function DocsTimeline(props) {
                         anchorLink="address"
                         variant="h2"
                     >
-                        Address
+                        Timeline
                     </Heading>
 
                     <Example
