@@ -33,6 +33,10 @@ const defaultProps = {
     tabIndex: -1,
 };
 
+/**
+ * @deprecated Label has been deprecated.
+ * Use the Chip component instead.
+ */
 class Label extends React.Component {
     constructor() {
         super();

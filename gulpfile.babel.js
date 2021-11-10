@@ -25,6 +25,12 @@ const paths = {
         ],
         dest: 'core',
     },
+    types: {
+        src: [
+            'src/**/*.d.ts',
+        ],
+        dest: 'core',
+    },
     styles: {
         src: 'src/**/*.scss',
         dest: 'core',
@@ -51,10 +57,16 @@ export function styles() {
         .pipe(dest(paths.styles.dest));
 }
 
+export function types() {
+    return src(paths.types.src)
+        .pipe(dest(paths.types.dest));
+}
+
 function watchFiles() {
     watch(paths.images.src, images);
     watch(paths.scripts.src, scripts);
     watch(paths.styles.src, styles);
+    watch(paths.types.src, types);
 }
 
 export { watchFiles as watch };
@@ -65,5 +77,6 @@ export default series(
         images,
         scripts,
         styles,
+        types,
     ),
 );
