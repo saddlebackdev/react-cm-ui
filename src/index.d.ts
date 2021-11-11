@@ -5,6 +5,9 @@ export * from './dataDisplay/address';
 export { default as Banner } from './dataDisplay/banner';
 export * from './dataDisplay/banner';
 
+export { default as Chip } from './dataDisplay/chip';
+export * from './dataDisplay/chip';
+
 export { default as Comment } from './dataDisplay/comment';
 export * from './dataDisplay/comment';
 

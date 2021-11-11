@@ -1,6 +1,7 @@
 // Data Display
 export { default as Address } from './dataDisplay/address';
 export { default as Banner } from './dataDisplay/banner';
+export { default as Chip } from './dataDisplay/chip';
 export { default as Comment } from './dataDisplay/comment';
 export { default as DataCards } from './dataDisplay/dataCards';
 export { default as DataGrid } from './dataDisplay/dataGrid';
