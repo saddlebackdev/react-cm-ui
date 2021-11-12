@@ -1,5 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
+## 10.2.4
+_November 9, 2021_
+
+### Core
+- Fixed Image `type` prop. [PR #337](https://github.com/saddlebackdev/react-cm-ui/pull/337)
+- Fixed PhoneInput flags not being displayed. [PR #338](https://github.com/saddlebackdev/react-cm-ui/pull/338)
 
 ## 10.2.3
 _October 19, 2021_
