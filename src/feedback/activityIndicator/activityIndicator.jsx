@@ -6,6 +6,9 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from 'global/constants';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
@@ -14,6 +17,7 @@ const propTypes = {
     id: PropTypes.string,
     size: PropTypes.number,
     style: PropTypes.shape({}),
+    title: PropTypes.string,
     theme: PropTypes.shape({
         palette: PropTypes.shape({
             cyan: PropTypes.shape({}),
@@ -25,10 +29,12 @@ const propTypes = {
 const defaultProps = {
     className: undefined,
     color: 'backgroundColorHighlight',
+    dataTestId: `${UI_CLASS_NAME}-data_cards`,
     id: undefined,
     size: 68,
     style: {},
     theme: undefined,
+    title: 'Loading',
 };
 
 const BLOCK_CLASS = 'activity_indicator';
@@ -186,10 +192,12 @@ class ActivityIndicator extends React.PureComponent {
         const {
             className,
             color,
+            dataTestId,
             id,
             size,
             style,
             theme,
+            title,
         } = this.props;
 
         const {
@@ -226,12 +234,14 @@ class ActivityIndicator extends React.PureComponent {
         return (
             <div
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 style={{
                     ...style,
                     transform: `scale(${transformScaleDecimal})`,
                     transformOrigin: 0,
                 }}
+                title={title}
             >
                 <div
                     className={`${BLOCK_CLASS}--left`}
