@@ -14,6 +14,7 @@ import withTheme from '../../styles/withTheme';
 const propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(['backgroundColorHighlight', 'backgroundColorStatic']),
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     size: PropTypes.number,
     style: PropTypes.shape({}),
@@ -26,10 +27,12 @@ const propTypes = {
     }),
 };
 
+const BLOCK_CLASS = 'activity_indicator';
+
 const defaultProps = {
     className: undefined,
     color: 'backgroundColorHighlight',
-    dataTestId: `${UI_CLASS_NAME}-data_cards`,
+    dataTestId: `${UI_CLASS_NAME}-${BLOCK_CLASS}`,
     id: undefined,
     size: 68,
     style: {},
@@ -37,7 +40,6 @@ const defaultProps = {
     title: 'Loading',
 };
 
-const BLOCK_CLASS = 'activity_indicator';
 const BAR_CLASS = `${BLOCK_CLASS}--bar`;
 const BAR_HEIGHT = 68;
 const CIRCLE_CLASS = `${BLOCK_CLASS}--circle`;
