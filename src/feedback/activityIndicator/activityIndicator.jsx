@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     UI_CLASS_NAME,
-} from 'global/constants';
+} from '../../global/constants';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
