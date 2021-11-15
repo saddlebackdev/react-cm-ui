@@ -1,5 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## 10.2.5
+_November 15, 2021_
+
+### Core
+- Fixed Image `type` defaultProps. [PR #342](https://github.com/saddlebackdev/react-cm-ui/pull/342)
+
 ## 10.2.4
 _November 9, 2021_
 
