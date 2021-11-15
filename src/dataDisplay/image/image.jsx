@@ -1,9 +1,47 @@
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../icon';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
+// eslint-disable-next-line import/extensions
 import colorStyles from '../../styles/colorExports';
+import Icon from '../icon';
 import Utils from '../../utils/utils';
+
+const asEnums = ['div', 'img'];
+const typeEnums = ['person', 'user'];
+
+const propTypes = {
+    as: PropTypes.oneOf(asEnums),
+    border: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number,
+    ]),
+    borderInverse: PropTypes.bool,
+    className: PropTypes.string,
+    dataTestId: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.number,
+    src: PropTypes.string,
+    style: PropTypes.shape({}),
+    title: PropTypes.string,
+    type: PropTypes.oneOf(typeEnums),
+};
+
+const defaultProps = {
+    as: 'img',
+    border: undefined,
+    borderInverse: undefined,
+    dataTestId: `${UI_CLASS_NAME}-image`,
+    className: undefined,
+    name: undefined,
+    size: undefined,
+    src: undefined,
+    style: {},
+    title: undefined,
+    type: undefined,
+};
 
 function Image(props) {
     const {
@@ -11,19 +49,30 @@ function Image(props) {
         border,
         borderInverse,
         className,
+        dataTestId,
         name,
         size,
         src,
         style,
+        title,
         type,
+        ...otherProps
     } = props;
+
     let newStyle = style;
+
     const ElementType = Utils.getElementType(!type ? as : 'div', props);
-    const containerClasses = ClassNames('ui', 'image', className, {
-        'image-avatar': type === 'person' || type === 'user',
-        'image-avatar-person': type === 'person',
-        'image-avatar-user': type === 'user',
-    });
+
+    const rootClasses = ClassNames(
+        'ui',
+        'image',
+        className,
+        {
+            'image-avatar': type === 'person' || type === 'user',
+            'image-avatar-person': type === 'person',
+            'image-avatar-user': type === 'user',
+        },
+    );
 
     if (ElementType === 'img') {
         newStyle = {
@@ -34,9 +83,13 @@ function Image(props) {
 
         return (
             <ElementType
-                className={containerClasses}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...otherProps}
+                className={rootClasses}
+                data-testid={dataTestId}
                 src={src}
                 style={newStyle}
+                title={title}
             />
         );
     }
@@ -56,6 +109,7 @@ function Image(props) {
         const borderColorStyle = borderInverse ?
             colorStyles.borderColorInverse :
             colorStyles.borderColor;
+
         const borderWidth = border === true ? '1' : border;
 
         newStyle = {
@@ -84,9 +138,13 @@ function Image(props) {
 
     return (
         <ElementType
-            className={containerClasses}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...otherProps}
+            className={rootClasses}
+            data-testid={dataTestId}
             src={!type ? src : null}
             style={newStyle}
+            title={title}
         >
             {type && !src && name && newInitials}
 
@@ -95,7 +153,7 @@ function Image(props) {
                     color="static"
                     compact
                     size={avatarSize}
-                    title="This person has no image"
+                    title={`This ${type} has no image`}
                     type={type}
                 />
             )}
@@ -103,34 +161,7 @@ function Image(props) {
     );
 }
 
-const asEnums = ['div', 'img'];
-const typeEnums = ['person', 'user'];
-
-Image.propTypes = {
-    as: PropTypes.oneOf(asEnums),
-    border: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.number,
-    ]),
-    borderInverse: PropTypes.bool,
-    className: PropTypes.string,
-    name: PropTypes.string,
-    size: PropTypes.number,
-    src: PropTypes.string,
-    style: PropTypes.shape({}),
-    type: PropTypes.oneOf(typeEnums),
-};
-
-Image.defaultProps = {
-    as: 'img',
-    border: undefined,
-    borderInverse: undefined,
-    className: undefined,
-    name: undefined,
-    size: undefined,
-    src: undefined,
-    style: {},
-    type: 'user',
-};
+Image.propTypes = propTypes;
+Image.defaultProps = defaultProps;
 
 export default Image;
