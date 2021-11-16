@@ -65,6 +65,7 @@ export { default as TimelineOppositeContent } from './lab/timelineOppositeConten
 export { default as TimelineSeparator } from './lab/timelineSeparator';
 
 // Layout
+export { default as Box } from './layout/box';
 export { default as Container } from './layout/container';
 export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
