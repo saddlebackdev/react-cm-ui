@@ -182,6 +182,9 @@ export * from './lab/timelineSeparator';
 
 
 // Layout
+export { default as Box } from './layout/box';
+export * from './layout/box';
+
 export { default as Container } from './layout/container';
 export * from './layout/container';
 
