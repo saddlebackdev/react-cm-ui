@@ -26,7 +26,7 @@ function ExampleChip() {
             <Chip color="green" label="Green" />
             <Chip color="teal" label="Teal" />
             <Chip color="sky" label="Sky" />
-            <Chip color="teal" label="Teal" />
+            <Chip color="cyan" label="Cyan" />
             <Chip color="purple" label="Purple" />
             <Chip color="pink" label="Pink" />
             <Chip color="red" label="Red" />

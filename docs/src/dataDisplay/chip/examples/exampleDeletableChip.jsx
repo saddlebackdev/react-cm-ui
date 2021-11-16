@@ -27,9 +27,10 @@ function ExampleDeletableChip() {
     return (
         <div className={classes.root}>
             <Chip color="green" disabled label="Disabled" onDelete={onDelete} />
+            <Chip color="green" label="Green" onDelete={onDelete}  />
             <Chip color="teal" label="Teal" onDelete={onDelete} />
             <Chip color="sky" label="Sky" onDelete={onDelete} />
-            <Chip color="teal" label="Teal" onDelete={onDelete} />
+            <Chip color="cyan" label="Cyan" onDelete={onDelete} />
             <Chip color="purple" label="Purple" onDelete={onDelete} />
             <Chip color="pink" label="Pink" onDelete={onDelete} />
             <Chip color="red" label="Red" onDelete={onDelete} />

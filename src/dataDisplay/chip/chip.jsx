@@ -46,6 +46,7 @@ const useStyles = makeStyles(({
     const chipHeight = 30;
 
     return {
+        colorCyan: {},
         colorGreen: {},
         colorOrange: {},
         colorPink: {},
@@ -75,6 +76,16 @@ const useStyles = makeStyles(({
         root: {
             borderRadius: shape.borderRadius.main,
             height: chipHeight,
+            '&$colorCyan': {
+                backgroundColor: palette.cyan[500],
+                '& $deleteIcon': {
+                    backgroundColor: palette.cyan[500],
+                    boxShadow: `inset 1px 0 0 ${palette.cyan[600]}`,
+                    '&:hover': {
+                        backgroundColor: palette.cyan[600],
+                    },
+                },
+            },
             '&$colorGreen': {
                 backgroundColor: palette.green[500],
                 '& $deleteIcon': {
@@ -184,6 +195,7 @@ function Chip(props) {
         BEM_CHIP,
         className,
         {
+            [classes.colorCyan]: !disabled && color === 'cyan',
             [classes.colorGreen]: !disabled && color === 'green',
             [classes.colorOrange]: !disabled && color === 'orange',
             [classes.colorPink]: !disabled && color === 'pink',
@@ -191,7 +203,6 @@ function Chip(props) {
             [classes.colorRed]: !disabled && color === 'red',
             [classes.colorRedOrange]: !disabled && color === 'redOrange',
             [classes.colorSky]: !disabled && color === 'sky',
-            [classes.colorTeal]: !disabled && color === 'teal',
             [classes.colorTeal]: !disabled && color === 'teal',
         }
     );

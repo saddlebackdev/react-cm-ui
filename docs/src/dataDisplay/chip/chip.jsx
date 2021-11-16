@@ -47,7 +47,7 @@ function DocsChip(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="address"
+                        anchorLink="chips"
                         variant="h2"
                     >
                         Chips
@@ -60,7 +60,7 @@ function DocsChip(props) {
                     </Example>
 
                     <Heading
-                        anchorLink="address"
+                        anchorLink="deletable-chips"
                         variant="h2"
                     >
                         Deletable Chips
