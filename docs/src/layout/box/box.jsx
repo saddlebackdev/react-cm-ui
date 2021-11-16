@@ -46,7 +46,7 @@ function DocsBox(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="address"
+                        anchorLink="box"
                         variant="h2"
                     >
                         Box
