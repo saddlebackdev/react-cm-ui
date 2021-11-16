@@ -64,6 +64,11 @@ export const navigationItems = [
                         path: 'banner',
                     },
                     {
+                        component: 'chip',
+                        label: 'Chip',
+                        path: 'chip',
+                    },
+                    {
                         component: 'comment',
                         label: 'Comment',
                         path: 'comment',
