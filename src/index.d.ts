@@ -158,6 +158,29 @@ export { default as TimePicker } from './inputs/timePicker';
 export * from './inputs/timePicker';
 
 
+// Lab
+export { default as Timeline } from './lab/timeline';
+export * from './lab/timeline';
+
+export { default as TimelineConnector } from './lab/timelineConnector';
+export * from './lab/timelineConnector';
+
+export { default as TimelineContent } from './lab/timelineContent';
+export * from './lab/timelineContent';
+
+export { default as TimelineDot } from './lab/timelineDot';
+export * from './lab/timelineDot';
+
+export { default as TimelineItem } from './lab/timelineItem';
+export * from './lab/timelineItem';
+
+export { default as TimelineOppositeContent } from './lab/timelineOppositeContent';
+export * from './lab/timelineOppositeContent';
+
+export { default as TimelineSeparator } from './lab/timelineSeparator';
+export * from './lab/timelineSeparator';
+
+
 // Layout
 export { default as Container } from './layout/container';
 export * from './layout/container';
