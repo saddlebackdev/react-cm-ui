@@ -57,6 +57,7 @@ export { default as TextArea } from './inputs/textArea';
 export { default as TimePicker } from './inputs/timePicker';
 
 // Layout
+export { default as Box } from './layout/box';
 export { default as Container } from './layout/container';
 export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';

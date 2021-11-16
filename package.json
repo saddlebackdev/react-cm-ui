@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui",
-  "version": "10.2.4",
+  "version": "10.2.5",
   "description": "React UI for Healthy Church",
   "jsnext:main": "src/",
   "main": "core/",
@@ -75,6 +75,9 @@
     "@jest/globals": "^26.0.1",
     "@mvnu/cpx": "^1.5.2",
     "@selfisekai/gulp-sass": "~4.2.0",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.176",
     "@types/node": "^16.11.7",
