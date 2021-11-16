@@ -4,7 +4,6 @@ import React from 'react';
 /**
  * The timeline displays a list of events in chronological order.
  */
-
 function Timeline(props) {
     return (
         <MuiTimeline

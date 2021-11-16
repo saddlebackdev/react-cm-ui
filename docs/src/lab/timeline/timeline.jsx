@@ -46,7 +46,7 @@ function DocsTimeline(props) {
                     </Typography>
 
                     <Heading
-                        anchorLink="address"
+                        anchorLink="timeline"
                         variant="h2"
                     >
                         Timeline
