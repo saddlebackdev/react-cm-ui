@@ -1,6 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.0
+_November 29, 2021_
+
+### Core
+- Added MUI Chip and Deprecated Label. [PR #341](https://github.com/saddlebackdev/react-cm-ui/pull/341)
+- Added MUI Box. [PR #340](https://github.com/saddlebackdev/react-cm-ui/pull/340)
+- Added MUI Timeline. [PR #339](https://github.com/saddlebackdev/react-cm-ui/pull/339)
+- Replaced Droid Serif with Georgia to help with load time. [PR #336](https://github.com/saddlebackdev/react-cm-ui/pull/336)
+- Fixes Sectional Tabs tab indicator styling issues. [PR #335](https://github.com/saddlebackdev/react-cm-ui/pull/335)
+
+### Docs
+- Added MUI Chip documentation. [PR #341](https://github.com/saddlebackdev/react-cm-ui/pull/341)
+- Added MUI Timeline documentation. [PR #339](https://github.com/saddlebackdev/react-cm-ui/pull/339)
+- Update Sectional Tabs documentation. [PR #335](https://github.com/saddlebackdev/react-cm-ui/pull/335)
+
 ## 10.2.5
 _November 15, 2021_
 
