@@ -6,14 +6,19 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import withTheme from '../../styles/withTheme';
 
 const propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(['backgroundColorHighlight', 'backgroundColorStatic']),
+    dataTestId: PropTypes.string,
     id: PropTypes.string,
     size: PropTypes.number,
     style: PropTypes.shape({}),
+    title: PropTypes.string,
     theme: PropTypes.shape({
         palette: PropTypes.shape({
             cyan: PropTypes.shape({}),
@@ -22,16 +27,19 @@ const propTypes = {
     }),
 };
 
+const BLOCK_CLASS = 'activity_indicator';
+
 const defaultProps = {
     className: undefined,
     color: 'backgroundColorHighlight',
+    dataTestId: `${UI_CLASS_NAME}-${BLOCK_CLASS}`,
     id: undefined,
     size: 68,
     style: {},
     theme: undefined,
+    title: 'Loading',
 };
 
-const BLOCK_CLASS = 'activity_indicator';
 const BAR_CLASS = `${BLOCK_CLASS}--bar`;
 const BAR_HEIGHT = 68;
 const CIRCLE_CLASS = `${BLOCK_CLASS}--circle`;
@@ -186,10 +194,12 @@ class ActivityIndicator extends React.PureComponent {
         const {
             className,
             color,
+            dataTestId,
             id,
             size,
             style,
             theme,
+            title,
         } = this.props;
 
         const {
@@ -226,12 +236,14 @@ class ActivityIndicator extends React.PureComponent {
         return (
             <div
                 className={rootClasses}
+                data-testid={dataTestId}
                 id={id}
                 style={{
                     ...style,
                     transform: `scale(${transformScaleDecimal})`,
                     transformOrigin: 0,
                 }}
+                title={title}
             >
                 <div
                     className={`${BLOCK_CLASS}--left`}

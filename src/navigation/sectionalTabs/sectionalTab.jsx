@@ -2,12 +2,17 @@ import React, {
     Component,
 } from 'react';
 import {
+    debounce,
     isFunction,
+    noop,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
-import Typography from '../../dataDisplay/typography';
 import { BEM_NAVIGATION_TAB_ROOT_CLASS } from '../../global/constants';
+import {
+    PADDING_X,
+} from './constants';
+import Typography from '../../dataDisplay/typography';
 
 const propTypes = {
     /**
@@ -19,7 +24,8 @@ const propTypes = {
      */
     classNames: PropTypes.string.isRequired,
     /**
-     * Aditional classes passed from the parent <SectionalTabs /> component to override the label styling.
+     * Aditional classes passed from the parent <SectionalTabs /> component to override
+     * the label styling.
      */
     classes: PropTypes.shape({
         sectionalTabLabel: PropTypes.string,
@@ -45,6 +51,7 @@ const propTypes = {
      * Boolean used to apply the 'sectionalTabLabelSelected' class.
      */
     selected: PropTypes.bool.isRequired,
+    setSelectedTabDimensions: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -60,8 +67,17 @@ const defaultProps = {
 class SectionalTab extends Component {
     constructor(props) {
         super(props);
+
+        this.onResizeDebounce = debounce(() => this.setSelectedTabDimensions(), 80);
         this.onTabClick = this.onTabClick.bind(this);
         this.renderTab = this.renderTab.bind(this);
+        this.setSelectedTabDimensions = this.setSelectedTabDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.onResizeDebounce);
+
+        this.setSelectedTabDimensions();
     }
 
     shouldComponentUpdate(nextProps) {
@@ -76,6 +92,24 @@ class SectionalTab extends Component {
             classNames !== nextProps.classNames;
     }
 
+    componentDidUpdate(prevProps) {
+        const {
+            selected: prevSelected,
+        } = prevProps;
+
+        const {
+            selected,
+        } = this.props;
+
+        if (!prevSelected && selected) {
+            this.setSelectedTabDimensions();
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeDebounce);
+    }
+
     onTabClick(evt) {
         const {
             onChange,
@@ -86,8 +120,23 @@ class SectionalTab extends Component {
         if (isFunction(onClick)) {
             onClick(this.props);
         }
+
         if (isFunction(onChange)) {
             onChange(originalKey, evt);
+        }
+    }
+
+    setSelectedTabDimensions() {
+        const {
+            selected,
+            setSelectedTabDimensions,
+        } = this.props;
+
+        if (this.tab && selected) {
+            setSelectedTabDimensions({
+                left: this.tab.offsetLeft + PADDING_X,
+                width: this.tab.offsetWidth - (PADDING_X * 2),
+            });
         }
     }
 
@@ -109,8 +158,9 @@ class SectionalTab extends Component {
 
         return (
             <Typography
-                variant="h4"
                 className={tabLabelClassNames}
+                component="span"
+                variant="h5"
             >
                 {children}
             </Typography>
@@ -121,18 +171,23 @@ class SectionalTab extends Component {
         const {
             classNames,
             id,
+            selected,
         } = this.props;
 
         return (
-            <div
+            <button
+                aria-selected={selected}
                 className={classNames}
                 id={id}
                 onClick={this.onTabClick}
+                onKeyDown={noop}
                 ref={(e) => { this.tab = e; }}
-                role="presentation"
+                role="tab"
+                tabIndex={0}
+                type="button"
             >
                 {this.renderTab()}
-            </div>
+            </button>
         );
     }
 }

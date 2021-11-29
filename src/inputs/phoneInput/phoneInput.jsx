@@ -8,6 +8,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import PhoneInputCountryDropdown from './phoneInputCountryDropdown';
+import flags from 'react-phone-number-input/flags'
 
 const propTypes = {
     className: PropTypes.string,
@@ -131,6 +132,7 @@ class PhoneInput extends React.PureComponent {
                     fluid=""
                     international={false}
                     onChange={this.onChange}
+                    flags={flags}
                     style={{}}
                 />
 

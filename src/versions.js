@@ -6,9 +6,14 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.2.3',
+        package: '10.3.0',
         components: {
             dataDisplay: {
+                chip: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/9wwdP0',
+                },
                 dataCards: {
                     devLibraryVersion: '< 1.0.0',
                     designLibraryVersion: 'N/A',
@@ -29,6 +34,11 @@ const versions = {
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/E1DB6E1A-4679-47B6-AFBC-3A23CB13C6D1',
                 },
+                image: {
+                    devLibraryVersion: '> 1.0.1',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
             },
             feedback: {
                 snackbar: {
@@ -42,6 +52,11 @@ const versions = {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
+                },
+                phoneInput: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
                 prompt: {
                     devLibraryVersion: '< 1.0.0',
@@ -59,7 +74,19 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
             },
+            lab: {
+                timeline: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+            },
             layout: {
+                box: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 grid: {
                     devLibraryVersion: '> 2.0.2',
                     designLibraryVersion: 'N/A',
@@ -76,6 +103,11 @@ const versions = {
                     devLibraryVersion: '> 2.0.0',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
+                },
+                sectionalTabs: {
+                    devLibraryVersion: '2.1.0',
+                    designLibraryVersion: '2.1.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/a/aKaPjZ',
                 },
             },
             surfaces: {

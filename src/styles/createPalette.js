@@ -74,6 +74,7 @@ function hexToRGBA(hex, a) {
 export default function createPalette() {
     const palette = {
         active: {
+            dark: cyan[600],
             main: cyan[500],
             primary: cyan[500], // Delete one day.
         },
@@ -88,10 +89,13 @@ export default function createPalette() {
             dark: red[600],
         },
         primary: {
+            contrastText: common.white,
+            light: cyan[500],
             main: cyan[600], // Changed from grey[600]
         },
         secondary: {
-            constrastMain: common.white,
+            contrastText: common.white,
+            light: grey[500], // Changed from blue[500]
             main: grey[600], // Changed from blue[500]
         },
         static: {
@@ -154,8 +158,10 @@ export default function createPalette() {
         },
         hexToRGBA,
         type,
+        orange,
         pink,
         purple,
+        red,
         redOrange,
         sky,
         teal,

@@ -1748,7 +1748,7 @@ class Icon extends React.PureComponent {
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
                 className={rootClasses}
-                data-testid={dataTestId}
+                data-testid={`${dataTestId}-${type}`}
                 id={id}
                 onClick={this.onClick}
                 onKeyDown={this.onKeyDown}

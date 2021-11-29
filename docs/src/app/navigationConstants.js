@@ -64,6 +64,11 @@ export const navigationItems = [
                         path: 'banner',
                     },
                     {
+                        component: 'chip',
+                        label: 'Chip',
+                        path: 'chip',
+                    },
+                    {
                         component: 'comment',
                         label: 'Comment',
                         path: 'comment',
@@ -392,9 +397,25 @@ export const navigationItems = [
                 path: 'inputs',
             },
             {
+                directory: 'lab',
+                label: 'Lab',
+                levelThree: [
+                    {
+                        component: 'timeline',
+                        label: 'Timeline',
+                        path: 'timeline',
+                    },
+                ],
+                path: 'lab',
+            }, {
                 directory: 'layout',
                 label: 'Layout',
                 levelThree: [
+                    {
+                        component: 'box',
+                        label: 'Box',
+                        path: 'box',
+                    },
                     {
                         component: 'containerDeprecated',
                         label: 'Container (deprecated)',

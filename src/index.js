@@ -1,6 +1,7 @@
 // Data Display
 export { default as Address } from './dataDisplay/address';
 export { default as Banner } from './dataDisplay/banner';
+export { default as Chip } from './dataDisplay/chip';
 export { default as Comment } from './dataDisplay/comment';
 export { default as DataCards } from './dataDisplay/dataCards';
 export { default as DataGrid } from './dataDisplay/dataGrid';
@@ -55,7 +56,17 @@ export { default as Select } from './inputs/select';
 export { default as TextArea } from './inputs/textArea';
 export { default as TimePicker } from './inputs/timePicker';
 
+// Lab
+export { default as Timeline } from './lab/timeline';
+export { default as TimelineConnector } from './lab/timelineConnector';
+export { default as TimelineContent } from './lab/timelineContent';
+export { default as TimelineDot } from './lab/timelineDot';
+export { default as TimelineItem } from './lab/timelineItem';
+export { default as TimelineOppositeContent } from './lab/timelineOppositeContent';
+export { default as TimelineSeparator } from './lab/timelineSeparator';
+
 // Layout
+export { default as Box } from './layout/box';
 export { default as Container } from './layout/container';
 export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
