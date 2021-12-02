@@ -37,6 +37,9 @@
     "prepare": "npm run compile",
     "test": "jest"
   },
+  "peerDependencies": {
+    "react": "^16.8.6 || ^17"
+  },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -48,9 +51,7 @@
     "lodash": "^4.17.19",
     "moment-timezone": "^0.5.31",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
     "react-custom-scrollbars": "^4.2.1",
-    "react-dom": "^16.8.6",
     "react-moment-proptypes": "^1.7.0",
     "react-onclickoutside": "^6.7.1",
     "react-phone-number-input": "^2.3.21",
@@ -108,6 +109,8 @@
     "jest-junit": "^10.0.0",
     "jest-react-hooks-shallow": "^1.4.1",
     "jsdom": "^16.2.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "rimraf": "^2.6.1",
     "sass": "^1.32.6",
     "ts-jest": "^27.0.7",
