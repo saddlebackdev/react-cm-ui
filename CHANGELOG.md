@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.1
+_December 20, 2021_
+
+### Core
+- Added a defensive check in PhoneInputCountryDropwdown.  [PR #344](https://github.com/saddlebackdev/react-cm-ui/pull/344)
+
 ## 10.3.0
 _November 29, 2021_
 
