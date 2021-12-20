@@ -53,7 +53,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
             console.warn('PhoneInputCountryDropdown (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
         }
 
-        if (prevProps.value !== value && prevState.selectedOption.value !== value) {
+        if (prevProps.value !== value && prevState.selectedOption?.value !== value) {
             this.setState({
                 selectedOption: _.find(options, (o) => !o.divider && o.value && o.value === value),
             }, () => {
