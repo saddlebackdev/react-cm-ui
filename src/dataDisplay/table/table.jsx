@@ -3,20 +3,20 @@ import {
     debounce,
     get,
 } from 'lodash';
-import PropTypes from 'prop-types';
+import PropTypes, { shape } from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
-import { withStyles } from '../../styles';
-import Utils from '../../utils/utils';
-import TableBody from './tableBody';
-import TableCell from './tableCell';
 import {
     DEBOUNCE_WAIT_TIME,
     TH_RESIZABLE_MAX_WIDTH,
 } from './tableConstants';
+import Utils from '../../utils/utils';
+import TableBody from './tableBody';
+import TableCell from './tableCell';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import TableHeaderCell from './tableHeaderCell';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**
@@ -157,7 +157,45 @@ const STICKY_CELL_RESIZABLE_CLASS = 'sticky-cell-resizable';
 const STICKY_CELL_FIRST_OF_ROW_CLASS = 'sticky-cell-first-of-row';
 const STICKY_CELL_LAST_OF_COLUMN_CLASS = 'sticky-cell-last-of-column';
 
-const useStyles = ({ palette }) => ({
+const styles = ({
+    palette,
+    shape,
+}) => ({
+    root: {
+        backgroundColor: palette.background.default,
+        border: `1px solid ${palette.border.primary}`,
+        borderCollapse: 'separate',
+        borderRadius: shape.borderRadius.main,
+        borderSpacing: 0,
+        color: palette.text.primary,
+        margin: `calc(2rem - .14285em) 0 1rem`,
+        textAlign: 'left',
+        width: '100%',
+        '&:first-child': {
+            marginTop: 0,
+        },
+        '&:last-child': {
+            marginBottom: 0,
+        },
+        '&.table-basic': {
+            border: 0,
+            '& .table-header-cell, & .table-cell': {
+                backgroundColor: palette.background.default,
+            },
+        },
+        '&.table-collapsing': {
+            width: 'auto',
+        },
+        '&.table-color-grey-xxlight': {
+            backgroundColor: palette.background.secondary,
+        },
+        '&.table-fixed': {
+            tableLayout: 'fixed',
+        },
+        '&.table-single-line': {
+            whiteSpace: 'nowrap',
+        },
+    },
     tableStickyColumns: {
         '& .table-cell': {
             backgroundColor: get(palette, 'background.primary'),
@@ -537,8 +575,10 @@ class Table extends React.PureComponent {
         } = this.props;
 
         const shouldHandleStickyBehavior = !fixed && !singleLine;
-        const containerClasses = ClassNames(
+
+        const rootClasses = ClassNames(
             'ui',
+            classes.root,
             'table', {
                 'table-basic': basic,
                 'table-celled': celled,
@@ -565,10 +605,12 @@ class Table extends React.PureComponent {
             },
             className,
         );
+
         const tableChildren = stickyColumnCount > 0 ? this.parseChildren(children) : children;
+
         const tableJsx = (
             <table
-                className={containerClasses}
+                className={rootClasses}
                 id={id}
                 ref={(ref) => { this.tableRef = ref; }}
                 style={style}
@@ -585,6 +627,7 @@ class Table extends React.PureComponent {
                 >
                     <ScrollBar
                         className="table--scroll_container"
+                        autoHide
                         onScrollFrame={this.setStickyCellsStylesOnScroll}
                         onUpdate={this.delayedSetStickyTableContainerWidth}
                         renderTrackHorizontal={(props) => (
@@ -635,4 +678,4 @@ Table.Row = TableRow;
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-export default withStyles(useStyles, { withTheme: true })(Table);
+export default withStyles(styles, { withTheme: true })(Table);
