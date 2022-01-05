@@ -83,7 +83,7 @@ export interface TablePropTypes {
      */
     style: {};
     theme: {
-        palette: {};
+        palette: any;
     };
 }
 
