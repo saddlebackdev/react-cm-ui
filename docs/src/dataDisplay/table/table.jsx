@@ -1,8 +1,11 @@
 import {
     Typography,
 } from 'react-cm-ui';
+import {
+    camelCase,
+} from 'lodash';
 import React from 'react';
-import ComponentApi from '../../global/componentApi';
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -26,20 +29,30 @@ import TableSampleStretch from './tableSampleStretch';
 import TableSampleTextAlign from './tableSampleTextAlign';
 import TableSampleVerticalAlign from './tableSampleVerticalAlign';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as tableDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table/table';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table/table';
+/* eslint-enable import/no-named-default, import/extensions */
 
-function DocsTable() {
-    const descriptionCopy = tableDoc.description;
+function DocsTable(props) {
+    const {
+        location: {
+            pathname,
+        },
+    } = props;
+
+    const {
+        description,
+        displayName,
+    } = rootDoc;
 
     return (
-        <Main page="headers">
+        <Main page={camelCase(displayName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {descriptionCopy}
+                        {description}
                     </Typography>
 
                     <Heading
@@ -408,7 +421,7 @@ function DocsTable() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="children"
+                        anchorLink="sticky-columns"
                         variant="h2"
                     >
                         Sticky Columns
@@ -428,10 +441,8 @@ function DocsTable() {
                     <TableSampleStickyColumns />
                 </Example>
 
-                <ComponentApi
-                    docs={[
-                        tableDoc,
-                    ]}
+                <ComponentVersionIdentifier
+                    pathname={pathname}
                 />
             </Main.Content>
         </Main>

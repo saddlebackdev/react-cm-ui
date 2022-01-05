@@ -93,10 +93,10 @@ $cell-border-color: color(borderColorSecondary);
     }
     &.table-single-line .table-cell { overflow: hidden; text-overflow: ellipsis; }
     &.table-size- {
-        &small .table-cell {
+        &small .table-cell:not(.table-header-cell) {
             height: 44px;
         }
-        &medium .table-cell {
+        &medium .table-cell:not(.table-header-cell) {
             height: 70px;
         }
     }
