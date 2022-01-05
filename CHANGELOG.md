@@ -1,6 +1,17 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.2
+January 05, 2022_
+
+### Core
+- Minor Table fixes.  [PR #345](https://github.com/saddlebackdev/react-cm-ui/pull/345)
+  - Added scroll autoHide
+  - Fixed table size header cell styling.
+  - Moved Table SCSS to JSS.
+
+### Docs
+- Minor Table updates to docs.  [PR #345](https://github.com/saddlebackdev/react-cm-ui/pull/345)
 ## 10.3.1
 _December 20, 2021_
 
