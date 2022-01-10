@@ -16,7 +16,7 @@ export interface ChipPropTypes {
     onClearKeyDown?: Function;
     onClick?: Function;
     onKeyDown?: Function;
-    style?: object;
+    style?: React.CSSProperties;
     tabIndex?: number;
 }
 

@@ -3,13 +3,13 @@ import React from 'react';
 export interface DrawerDataCardPropTypes {
     cardProps?: Function;
     className?: string;
-    columns: {}[],
+    columns: object[],
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId?: string;
-    data: {}[],
-    style?: {};
+    data: object[],
+    style?: React.CSSProperties;
 }
 
 declare const DrawerDataCard: React.ComponentType<DrawerDataCardPropTypes>;

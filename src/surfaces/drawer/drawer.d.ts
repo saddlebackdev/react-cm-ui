@@ -48,11 +48,11 @@ export interface DrawerPropTypes {
     /**
      * Supply any inline styles to the Drawer.
      */
-    style?: {};
+    style?: React.CSSProperties;
     theme?: {
         zIndex: any;
     };
-    wing?: {};
+    wing?: object;
 }
 
 export interface DrawerComponent extends React.FC<DrawerPropTypes> {

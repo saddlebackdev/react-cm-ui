@@ -21,7 +21,7 @@ export interface DrawerDataGroupsPropTypes {
                     iconType?: string;
                     iconColor?: string;
                     iconSize: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
-                    style?: {};
+                    style?: React.CSSProperties;
                 }[];
             }[];
         }[];
@@ -37,16 +37,16 @@ export interface DrawerDataGroupsPropTypes {
             iconType?: string;
             iconColor?: string;
             iconSize: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
-            style?: {};
+            style?: React.CSSProperties;
         }[];
-        style?: {};
+        style?: React.CSSProperties;
     };
-    data: {};
+    data: object;
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId?: string;
-    style?: {};
+    style?: React.CSSProperties;
 }
 
 declare const DrawerDataGroups: React.ComponentType<DrawerDataGroupsPropTypes>;

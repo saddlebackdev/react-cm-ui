@@ -9,14 +9,14 @@ export interface DrawerTitleBarPropTypes {
     /**
      * Supply any inline styles to the Close Button.
      */
-    closeButtonStyle?: {};
+    closeButtonStyle?: object;
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId?: string;
-    style?: {};
+    style?: React.CSSProperties;
     title?: React.ReactNode | string;
-    titleStyle?: {};
+    titleStyle?: object;
 }
 
 declare const DrawerTitleBar: React.ComponentType<DrawerTitleBarPropTypes>;

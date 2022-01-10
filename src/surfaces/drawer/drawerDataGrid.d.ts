@@ -8,8 +8,8 @@ export interface DrawerDataGridPropTypes {
         root?: string;
     };
     className?: string;
-    columns: {}[];
-    data: {}[] | {};
+    columns: object[];
+    data: object[] | {};
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
@@ -33,7 +33,7 @@ export interface DrawerDataGridPropTypes {
     stickyColumnWidth?: number;
     stickyColumns?: number;
     stretch?: 'very' | boolean;
-    style?: {};
+    style?: React.CSSProperties;
 }
 
 declare const DrawerDataGrid: React.ComponentType<DrawerDataGridPropTypes>;

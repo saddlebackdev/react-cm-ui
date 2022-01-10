@@ -9,13 +9,13 @@ export interface DrawerActionBarPropTypes {
      * Add additional classes to the TitleBar.
      */
     className?: string;
-    columns: {}[],
+    columns: object[],
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId?: string;
     id?: string;
-    style?: {};
+    style?: React.CSSProperties;
 }
 
 declare const DrawerActionBar: React.ComponentType<DrawerActionBarPropTypes>;

@@ -86,7 +86,7 @@ export interface TablePropTypes {
     /**
      * Supply any inline styles to the Table.
      */
-    style: {};
+    style?: React.CSSProperties;
     theme: {
         palette: any;
     };

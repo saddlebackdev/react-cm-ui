@@ -17,7 +17,7 @@ export interface DrawerContentPropTypes {
     id?: string;
     isFiltersRailOpen?: boolean;
     scrollable?: boolean;
-    style?: {};
+    style?: React.CSSProperties;
 }
 
 declare const DrawerContent: React.ComponentType<DrawerContentPropTypes>;
