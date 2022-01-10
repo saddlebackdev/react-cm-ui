@@ -7,10 +7,14 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import DatePickerUtils from '../../utils/datePickerUtils';
 import DateUtils from '../../utils/dateUtils';
 import Icon from '../../dataDisplay/icon';
@@ -23,47 +27,153 @@ const propTypes = {
      * Override or extend the styles applied to DatePickerInput.
      */
     classes: PropTypes.shape({
+        isFluid: PropTypes.string,
         root: PropTypes.string,
     }),
+
+    /**
+    * Assign additional class names to DatePickerInput.
+    */
     className: PropTypes.string,
-    date: PropTypes.shape({}),
+
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+
+    /**
+     * Single date value.  Moment object.
+     */
+    date: MomentPropTypes.momentObj,
+
+    /**
+     * 'From' ('Start') Date for a Date Range.  Moment object.
+     */
     dateFrom: PropTypes.shape({}),
+
+    /**
+     * 'To' ('End') Date for a Date Range.  Moment object.
+     */
     dateTo: PropTypes.shape({}),
+
     /**
      * A DatePickerInput can be disabled.
      */
     disable: PropTypes.bool,
+
     /**
      * Deprecated prop. Please use `disable` instead.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * String specifying the way the date value will be formatted.
+     */
     displayFormat: PropTypes.string,
+
+    /**
+     * Indicate that there is a validation error for this DatePickerInput control.
+     */
     errorMessage: PropTypes.string,
-    events: PropTypes.arrayOf(PropTypes.shape({})),
-    excludeDates: PropTypes.arrayOf(PropTypes.shape({})),
+
+    /**
+     * Indicates dates that should be highlighted on the DatePickerInput's calendar control.  Array of Moment objects.
+     */
+    events: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Specifies a range of dates that are not selectable.  Array of Moment objects.
+     */
+    excludeDates: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Function that is used to filter out dates that are to not be selectable.
+     */
     filterDates: PropTypes.func,
+
+    /**
+     * The DatePickerInput will be resized to its parent container's width.
+     */
+    fluid: PropTypes.bool,
+
+    /**
+     * Specify an element ID this DatePickerInput control.
+     */
     id: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
-    includeDates: PropTypes.arrayOf(PropTypes.shape({})),
+
+    /**
+     * Specifies a range of dates that are selectable.  Array of Moment objects.
+     */
+    includeDates: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Specifies a label for the DatePickerInput control.
+     */
     label: PropTypes.string,
+
+    /**
+     * Specifies which locale will be used when formatting date values.
+     */
     locale: PropTypes.string,
-    maxDate: PropTypes.shape({}),
-    minDate: PropTypes.shape({}),
+
+    /**
+     * Specifies maximum selectable date.  Moment object.
+     */
+    maxDate: MomentPropTypes.momentObj,
+
+    /**
+     * Specifies minimum selectable date.   Moment object.
+     */
+    minDate: MomentPropTypes.momentObj,
+
+    /**
+     * DatePickerInput can handle an onBlur event from parent.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * Event handler for consumer to control state outside of the DatePickerInput.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Event handler called when the month in the DatePickerInput's calendar control changes.
+     */
     onMonthChange: PropTypes.func,
+
+    /**
+     * If true, specifies that the DatePickerInput represents the 'From' (or 'Start') date of a date range.
+     */
     rangeFrom: PropTypes.bool,
+
+    /**
+     * If true, specifies that the DatePickerInput represents the 'To' (or 'End') date of a date range.
+     */
     rangeTo: PropTypes.bool,
+
+    /**
+     * Indicates whether the DatePickerInput control represents a required field.
+     */
     required: PropTypes.bool,
+
+    /**
+     * Supply any inline styles to the DatePickerInput's container. Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}),
+
+    /**
+     * Allows the DatePickerInput to be focused via the Tab key.
+     */
     tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
     classes: null,
     className: null,
+    dataTestId: undefined,
     date: null,
     dateFrom: null,
     dateTo: null,
@@ -74,6 +184,7 @@ const defaultProps = {
     events: null,
     excludeDates: null,
     filterDates: null,
+    fluid: false,
     id: null,
     includeDates: null,
     label: null,
@@ -93,7 +204,11 @@ const defaultProps = {
 const styles = (theme) => ({
     root: {
         display: 'inline-block',
+        '&$isFluid': {
+            width: '100%',
+        },
     },
+    isFluid: {},
     '@global': {
         '.date-picker-tether-element': {
             zIndex: theme.zIndex.datePickerInputCalendar,
@@ -356,12 +471,14 @@ class DatePickerInput extends React.PureComponent {
             classes,
             className,
             errorMessage,
+            dataTestId,
             disable,
             disabled,
             displayFormat,
             events,
             excludeDates,
             filterDates,
+            fluid,
             id,
             includeDates,
             label,
@@ -387,6 +504,9 @@ class DatePickerInput extends React.PureComponent {
             'date-picker-input',
             classes.root,
             className,
+            {
+                [classes.isFluid]: fluid,
+            },
         );
 
         let iconColor;
@@ -450,7 +570,9 @@ class DatePickerInput extends React.PureComponent {
                             <Input
                                 autoComplete="off"
                                 data-parsley-error-message={errorMessage}
+                                dataTestId={dataTestId}
                                 disable={isDisabled}
+                                fluid={fluid}
                                 guide
                                 icon={(
                                     <Icon
