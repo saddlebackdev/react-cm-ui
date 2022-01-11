@@ -49,12 +49,12 @@ const propTypes = {
     /**
      * 'From' ('Start') Date for a Date Range.  Moment object.
      */
-    dateFrom: PropTypes.shape({}),
+    dateFrom: MomentPropTypes.momentObj,
 
     /**
      * 'To' ('End') Date for a Date Range.  Moment object.
      */
-    dateTo: PropTypes.shape({}),
+    dateTo: MomentPropTypes.momentObj,
 
     /**
      * A DatePickerInput can be disabled.
@@ -216,6 +216,14 @@ const styles = (theme) => ({
     },
 });
 
+/**
+ * The DatePickerInput represents an input for storing a date value.
+ *
+ * When clicked, it can display an interactive calendar control for selecting
+ * the date.
+ *
+ * A date value can also be typed into the input manually.
+ */
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);
