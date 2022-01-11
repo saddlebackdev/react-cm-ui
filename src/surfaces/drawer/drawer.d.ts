@@ -50,9 +50,11 @@ export interface DrawerPropTypes {
      */
     style?: React.CSSProperties;
     theme?: {
-        zIndex: any;
+        zIndex: {
+            drawer: number;
+        };
     };
-    wing?: object;
+    wing?: React.ReactNode;
 }
 
 export interface DrawerComponent extends React.FC<DrawerPropTypes> {

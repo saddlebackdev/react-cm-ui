@@ -9,7 +9,7 @@ export interface DrawerDataGridPropTypes {
     };
     className?: string;
     columns: object[];
-    data: object[] | {};
+    data: object[] | object;
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
