@@ -1,4 +1,9 @@
 import React from 'react';
+import TableBody from './tableBody';
+import TableCell from './tableCell';
+import TableHeader from './tableHeader';
+import TableHeaderCell from './tableHeaderCell';
+import TableRow from './tableRow';
 
 export interface TablePropTypes {
     /**
@@ -81,12 +86,20 @@ export interface TablePropTypes {
     /**
      * Supply any inline styles to the Table.
      */
-    style: {};
+    style?: React.CSSProperties;
     theme: {
         palette: any;
     };
 }
 
-declare const Table: React.ComponentType<TablePropTypes>;
+export interface TableComponent extends React.FC<TablePropTypes> {
+    Body: typeof TableBody
+    Cell: typeof TableCell
+    Header: typeof TableHeader
+    HeaderCell: typeof TableHeaderCell
+    Row: typeof TableRow
+}
+
+declare const Table: TableComponent
 
 export default Table;
