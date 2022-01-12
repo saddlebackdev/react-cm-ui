@@ -12,6 +12,11 @@ import React from 'react';
 import {
     BEM_NAME,
 } from './constants';
+import {
+    fireEvent,
+    render,
+    screen,
+} from '../../../testUtils';
 import mountWithTheme, { createMatchMedia } from '../../../testUtils/enzymeHelpers';
 import Modal from '../modal';
 
@@ -27,7 +32,9 @@ describe('<Modal />', () => {
     let wrapper;
 
     afterEach(() => {
-        wrapper.unmount();
+        if (wrapper && wrapper.exists()) {
+            wrapper.unmount();
+        }
     });
 
     it('Can render without problems', () => {
@@ -155,5 +162,22 @@ describe('<Modal />', () => {
 
         expect(wrapper.prop('isOpen')).toEqual(false);
         expect(wrapper.find('Modal').find('.modal').exists()).toBe(false);
+    });
+
+    it('Can add `data-testid` attribute to the Close Button', () => {
+        const closeButtonDataTestId = 'foo_modal--close_button';
+        const onCloseMock = jest.fn();
+
+        render(
+            <Modal
+                {...props}
+                closeButtonDataTestId={closeButtonDataTestId}
+                onClose={onCloseMock}
+            />,
+        );
+
+        fireEvent.click(screen.queryByTestId(closeButtonDataTestId));
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
     });
 });

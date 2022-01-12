@@ -33,6 +33,7 @@ const defaultProps = {
     children: null,
     classes: null,
     closeButton: null,
+    closeButtonDataTestId: undefined,
     inverse: null,
     onClose: null,
     title: null,

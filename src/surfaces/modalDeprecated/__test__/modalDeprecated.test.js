@@ -8,6 +8,7 @@ import {
     render,
     screen,
 } from '../../../testUtils';
+import { createMatchMedia } from '../../../testUtils/enzymeHelpers';
 import ModalDeprecated from '../modalDeprecated.jsx';
 
 const childContainerDataTestId = `foo_block--bar_modal_content`;
@@ -30,6 +31,8 @@ const modalContentJsx = (
 );
 
 describe('<ModalDeprecated />', () => {
+    window.matchMedia = createMatchMedia(window.innerWidth);
+
     describe('render()', () => {
         it('OK (all default props)', () => {
             render(
