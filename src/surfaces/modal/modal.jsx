@@ -101,7 +101,7 @@ const propTypes = {
         PropTypes.string,
     ]),
     /**
-     * Event handler that is called when user clicks outside of a Modal.
+     * Boolean indicating whether or not the Modal can be closed when the user clicks outside of it.
      */
     onClickOutside: PropTypes.bool,
     /**
