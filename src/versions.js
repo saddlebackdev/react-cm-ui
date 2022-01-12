@@ -1,12 +1,24 @@
 /**
- * NOTE: Greater than, lesser than symbols in `devLibraryVersion` key values signifies a gap.
- * e.g. devLibraryVersion: '< 2.0.0'. signifies that the dev component needs to be advanced to
- * close the gap.
+ *
+ * - `devLibraryVersion` houses dev's components version value. It can either be 1.x.x or 2.x.x.
+ * 1.x.x indicates that design does not have mockups of this particular component in their library.
+ *     - The greater than (>) and less than (<) symbols on the `devLibraryVersion` indicates whether
+ *     there is a gap and where that gap is; dev or design. Greater than indicates the gap is on
+ *     design. Less than indicates the gap is on us, the devs.
+ *
+ * - `designLibraryVersion` house design's component version value. Pretty simple, if the sketch
+ * docs say 2.0.1 for the Input compnent, then we need to make sure our Input's
+ * `designLibraryVersion` says 2.0.1.
+ *
+ * - `designLibraryDoc` houses the link to the component in the sketch library. If there is not one,
+ * then we can just put "N/A." If there is a given link the UI will render a clickable link on
+ * component's doc and the user can then click and go directly to that components design docs.
+ *
  */
 
 const versions = {
     'react-cm-ui': {
-        package: '10.3.2',
+        package: '10.3.3',
         components: {
             dataDisplay: {
                 chip: {
@@ -53,6 +65,11 @@ const versions = {
                 },
             },
             inputs: {
+                datePickerInput: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 dropdownButton: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
