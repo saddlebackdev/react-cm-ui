@@ -1,8 +1,26 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.3
+_January 12, 2022_
+
+### Core
+- Chip, Drawer, Label, and Table type fixes.  [PR #346](https://github.com/saddlebackdev/react-cm-ui/pull/346)
+- DatePickerInput enhancements.  [PR #347](https://github.com/saddlebackdev/react-cm-ui/pull/347)
+  - Add `fluid` prop to `<DatePickerInput>`
+  - Add `dataTestId` support for `<DatePickerInput>` and add a unit test fixture for it, testing basic render and `onChange` event handling.
+  - Also had to add `dataTestId` support for `<Input>`.
+  - When you specify a `dataTestId` for `<DatePickerInput>` it actually is passed into the `<Input>` and ends up as a `data-testid` attribute on the underling HTML `<input>` element.
+  - The rationale here is that the likeliest unit testing scenario (for higher level molecules and organisms using `<DatePickerInput>`) is needing to be able to trigger a change event and specify a value to the `<DatePickerInput>` directly (i.e. not attempting to interact with the calendar control).
+
+### Docs
+- DatePickerInput enhancements.  [PR #347](https://github.com/saddlebackdev/react-cm-ui/pull/347)
+  - Refactor/modernize the documentation for `<DatePickerInput>`
+  - Divide into main page, Dev Sandbox section, and API section
+  - Move all examples into separate component files and refactor them to use functional style.
+
 ## 10.3.2
-January 05, 2022_
+_January 05, 2022_
 
 ### Core
 - Minor Table fixes.  [PR #345](https://github.com/saddlebackdev/react-cm-ui/pull/345)
