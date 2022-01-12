@@ -54,9 +54,9 @@ const versions = {
             },
             inputs: {
                 datePickerInput: {
-                    devLibraryVersion: '2.0.0', // Is this correct?
-                    designLibraryVersion: 'N/A', // Does anything go here?
-                    designLibraryDoc: 'N/A', // Does anything go here?
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
                 },
                 dropdownButton: {
                     devLibraryVersion: '2.0.0',
