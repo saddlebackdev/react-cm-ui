@@ -18,6 +18,10 @@ const propTypes = {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
     /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
      * An Input can be disabled.
      */
     disable: PropTypes.bool,
@@ -75,6 +79,7 @@ const defaultProps = {
     autoComplete: null,
     autoFocus: null,
     className: null,
+    dataTestId: undefined,
     disable: false,
     disabled: false,
     error: null,
@@ -378,6 +383,7 @@ class Input extends React.PureComponent {
         const {
             autoComplete,
             className,
+            dataTestId,
             disable,
             disabled,
             error,
@@ -404,14 +410,17 @@ class Input extends React.PureComponent {
             showSpinners,
             value,
         } = this.props;
+
         const {
             isFocused,
             inputActionsTopPosition,
             showRequiredIndicator,
         } = this.state;
+
         const type = this.getType();
         const newLabelPosition = labelPosition || 'top';
         const isDisabled = disable || disabled;
+
         const containerClasses = ClassNames('ui', 'input', className, {
             'input-disabled': isDisabled,
             'input-error': error,
@@ -427,10 +436,12 @@ class Input extends React.PureComponent {
             'input-type-tel': type === 'tel',
             'input-type-text': type === 'text',
         });
+
         const labelContainerClassNames = ClassNames('label', {
             'label-bottom': newLabelPosition === 'bottom',
             'label-top': newLabelPosition === 'top',
         });
+
         const renderLabel = () => {
             if (!label) {
                 return null;
@@ -454,6 +465,7 @@ class Input extends React.PureComponent {
                 {mask ? (
                     <InputMasked
                         autoComplete={autoComplete}
+                        data-testid={dataTestId}
                         disabled={isDisabled}
                         guide={guide}
                         id={id}
@@ -478,6 +490,7 @@ class Input extends React.PureComponent {
                 ) : (
                     <input
                         autoComplete={autoComplete}
+                        data-testid={dataTestId}
                         disabled={isDisabled}
                         id={id}
                         name={name}

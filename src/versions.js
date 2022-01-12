@@ -65,6 +65,11 @@ const versions = {
                 },
             },
             inputs: {
+                datePickerInput: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 dropdownButton: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: '2.0.0',
