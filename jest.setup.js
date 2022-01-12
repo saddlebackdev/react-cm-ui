@@ -20,3 +20,5 @@ window.CSSStyleSheet.prototype.insertRule = (rule) => {
 
     return 0;
 };
+
+window.matchMedia = window.matchMedia || function matchMedia() { return { matches: true }; };
