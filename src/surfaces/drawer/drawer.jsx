@@ -503,6 +503,7 @@ class Drawer extends React.Component {
                 >
                     <div
                         className="drawer-container"
+                        data-testid={`${UI_CLASS_NAME}-drawer_container`}
                         ref={(ref) => { this.drawerContainerRef = ref; }}
                         style={{
                             height: _.isNumber(positionYOffset) ? `calc(100% - ${positionYOffset}px)` : null,
