@@ -149,7 +149,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/35D0905B-98F5-42E8-B95A-CDBB28612450',
                 },
                 drawer: {
-                    devLibraryVersion: '< 1.0.2',
+                    devLibraryVersion: '< 1.0.3',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/04BAC452-896D-4D93-8239-F70B41633674',
                 },
@@ -164,12 +164,12 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/056E3E2A-F668-4346-9EDB-E9F4B7F2931C',
                 },
                 modalDeprecated: {
-                    devLibraryVersion: '< 1.5.1',
+                    devLibraryVersion: '< 1.5.2',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
                 modal: {
-                    devLibraryVersion: '2.0.1',
+                    devLibraryVersion: '2.0.2',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
