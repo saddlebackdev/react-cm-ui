@@ -18,6 +18,12 @@ const propTypes = {
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+    /**
+     * Add a `data-testid` attribute to the Modal's Close Button.
+     * Used for DOM Testing.
+     * See https://testing-library.com/docs/queries/bytestid/.
+     */
+    closeButtonDataTestId: PropTypes.string,
     inverse: PropTypes.bool,
     onClose: PropTypes.func,
     style: PropTypes.shape({}),
@@ -28,6 +34,7 @@ const propTypes = {
 const defaultProps = {
     children: null,
     closeButton: null,
+    closeButtonDataTestId: undefined,
     inverse: false,
     onClose: null,
     style: null,
@@ -56,6 +63,7 @@ class ModalHeader extends React.Component {
         const {
             children,
             closeButton,
+            closeButtonDataTestId,
             inverse,
             style,
             title,
@@ -65,6 +73,14 @@ class ModalHeader extends React.Component {
         const titleClass = ClassNames('title', {
             'modal-title-truncate': titleTruncate,
         });
+
+        const isCloseButtonNullish = isNil(closeButton);
+        const isCloseButtonAnObject = isObject(closeButton);
+        const isCloseButtonAString = isString(closeButton);
+
+        // If `closeButton` prop is nullish (`null`/`undefined`) then we want to render default Close Button
+        // HOWEVER if `closeButton` prop is explicitly Boolean `false` we will respect user's wishes and not render a Close Button
+        const shouldRenderCloseButton = isCloseButtonNullish || !!closeButton;
 
         return (
             <header
@@ -81,21 +97,23 @@ class ModalHeader extends React.Component {
                 </Header>
 
                 <div className="modal-close-button-container">
-                    {(isNil(closeButton) || isString(closeButton)) && (
+                    {(shouldRenderCloseButton && !isCloseButtonAnObject) && (
                         <Button
                             className="modal-close-button"
                             color={inverse ? 'transparent' : 'alternate'}
+                            data-testid={closeButtonDataTestId}
                             onClick={this.onCloseClick}
                             icon
                         >
                             <Icon
                                 inverse
-                                type={isString(closeButton) ? closeButton : 'times'}
+                                title={false}
+                                type={isCloseButtonAString ? closeButton : 'times'}
                             />
                         </Button>
                     )}
 
-                    {isObject(closeButton) && closeButton}
+                    {isCloseButtonAnObject && closeButton}
                 </div>
 
                 {children && (

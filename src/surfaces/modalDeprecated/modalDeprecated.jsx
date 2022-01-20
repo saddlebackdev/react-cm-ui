@@ -1,5 +1,10 @@
 import { Portal } from 'react-portal';
-import _ from 'lodash';
+import {
+    isNumber,
+    isString,
+    isUndefined,
+    kebabCase,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,6 +17,12 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     autoHeight: PropTypes.bool,
     /**
+     * Add a `data-testid` attribute to the ModalDeprecated's child container element.
+     * Used for DOM Testing.
+     * See https://testing-library.com/docs/queries/bytestid/.
+     */
+    childContainerDataTestId: PropTypes.string,
+    /**
      * Override or extend the styles applied to Modal.
      */
     classes: PropTypes.shape({
@@ -23,6 +34,18 @@ const propTypes = {
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+    /**
+     * Add a `data-testid` attribute to the ModalDeprecated's Close Button.
+     * Used for DOM Testing.
+     * See https://testing-library.com/docs/queries/bytestid/.
+     */
+    closeButtonDataTestId: PropTypes.string,
+    /**
+     * Add a `data-testid` attribute to the ModalDeprecated's root element.
+     * Used for DOM Testing.
+     * See https://testing-library.com/docs/queries/bytestid/.
+     */
+    dataTestId: PropTypes.string,
     fluidContent: PropTypes.bool,
     header: PropTypes.bool,
     headerStyle: PropTypes.shape({}),
@@ -65,7 +88,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+    childContainerDataTestId: undefined,
     classes: null,
+    closeButtonDataTestId: undefined,
+    dataTestId: undefined,
     headerStyle: undefined,
     theme: null,
 };
@@ -293,10 +319,10 @@ class ModalDeprecated extends React.Component {
             this.modalContainer.style.zIndex = newZIndex + modalLength;
         }
 
-        if (!_.isUndefined(maxWidth)) {
-            this.modalContainer.style.maxWidth = _.isNumber(maxWidth) ?
+        if (!isUndefined(maxWidth)) {
+            this.modalContainer.style.maxWidth = isNumber(maxWidth) ?
                 `${maxWidth}px` :
-                _.isString(maxWidth) ?
+                isString(maxWidth) ?
                     maxWidth :
                     null;
         } else {
@@ -367,9 +393,13 @@ class ModalDeprecated extends React.Component {
     render() {
         const {
             autoHeight,
+            children,
+            childContainerDataTestId,
             classes,
             className,
             closeButton,
+            closeButtonDataTestId,
+            dataTestId,
             fluidContent,
             headerStyle,
             inverse,
@@ -428,7 +458,7 @@ class ModalDeprecated extends React.Component {
 
         return (
             <Portal>
-                <div className={rootClasses}>
+                <div className={rootClasses} data-testid={dataTestId}>
                     <div
                         className={containerInnerClasses}
                         ref={(ref) => this.modalContainerRef = ref}
@@ -449,16 +479,21 @@ class ModalDeprecated extends React.Component {
                                 {(title || closeButton) && (
                                     <ModalHeader
                                         closeButton={closeButton}
+                                        closeButtonDataTestId={closeButtonDataTestId}
                                         inverse={inverse}
-                                        key={`modal-header-${_.kebabCase(title)}`}
+                                        key={`modal-header-${kebabCase(title)}`}
                                         onClose={this._onClose}
                                         title={title}
                                         titleTruncate={titleTruncate}
                                         style={headerStyle}
                                     />
                                 )}
-                                <div className="modal-children" key={`modal-children-${_.kebabCase(title)}`}>
-                                    {this.props.children}
+                                <div
+                                    className="modal-children"
+                                    data-testid={childContainerDataTestId}
+                                    key={`modal-children-${kebabCase(title)}`}
+                                >
+                                    {children}
                                 </div>
                             </div>
                         </ScrollBar>
