@@ -15,12 +15,12 @@ export interface ModalPropTypes {
      * Override or extend the styles applied to Modal.
      */
     classes?: {
-        closeButton: string;
-        dimmer: string;
-        innerContainerClasses: string;
-        padding: string;
-        root: string;
-        scrollContainer: string;
+        closeButton?: string;
+        dimmer?: string;
+        innerContainerClasses?: string;
+        padding?: string;
+        root?: string;
+        scrollContainer?: string;
     } | null;
     /**
      * Assign additional class names to Modal.
@@ -72,19 +72,19 @@ export interface ModalPropTypes {
      * Event handler for closing the Modal.
      * Only used when Modal needs a close button in the top right.
      */
-    onClose?: function | null;
+    onClose?: Function | null;
     /**
      * Event handler called after close animation has completed.
      */
-    onCloseComplete?: function;
+    onCloseComplete?: Function;
     /**
      * Event handler called after open animation has completed.
      */
-    onOpenComplete?: function;
+    onOpenComplete?: Function;
     /**
      * HC's theme.
      */
-    theme: {
+    theme?: {
         zIndex: {
             modal: number;
         },
@@ -95,9 +95,9 @@ export interface ModalPropTypes {
     width?: number | string;
 }
 
-export interface ModalComponent extends React.ComponentType<ModalPropTypes> {
-    Actions: ModalActions;
-    Content: ModalContent;
+export interface ModalComponent extends React.FC<ModalPropTypes> {
+    Actions: typeof ModalActions;
+    Content: typeof ModalContent;
 }
 
 declare const Modal: ModalComponent

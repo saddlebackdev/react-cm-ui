@@ -15,8 +15,8 @@ export interface ModalActionsPropTypes {
      * Override or extend the styles applied to ModalActions.
      */
     classes?: {
-        margin: string;
-        root: string;
+        margin?: string;
+        root?: string;
     } | null;
     /**
      * Assign additional class names to ModalActions.
