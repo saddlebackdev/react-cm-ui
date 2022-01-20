@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.5
+_January 20, 2022_
+
+### Core
+- Fixed Modal TS types.  [9df63a8](https://github.com/saddlebackdev/react-cm-ui/commit/9df63a8ca6f0740b536daebb1bc8de9599ffc057)
+
 ## 10.3.4
 _January 19, 2022_
 
