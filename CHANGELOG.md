@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.4
+_January 19, 2022_
+
+### Core
+- Added data-testid To Drawer Container.  [PR #351](https://github.com/saddlebackdev/react-cm-ui/pull/351)
+- Add some data-testid support for <ModalDeprecated> and add Close Button data-testid to <Modal>  [PR #349](https://github.com/saddlebackdev/react-cm-ui/pull/349)
+
 ## 10.3.3
 _January 12, 2022_
 
