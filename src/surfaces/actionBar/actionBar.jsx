@@ -22,6 +22,7 @@ import Utils from '../../utils/utils';
 
 const searchPropTypes = PropTypes.shape({
     autoFocus: PropTypes.bool,
+    onFocus: PropTypes.func,
 });
 
 const propTypes = {
@@ -523,6 +524,7 @@ class ActionBar extends React.PureComponent {
                                                     id={search.id}
                                                     onChange={search.onChange}
                                                     onClearClick={search.onClearClick}
+                                                    onFocus={search.onFocus}
                                                     onKeyDown={search.onKeyDown}
                                                     placeholder={search.placeholder}
                                                     value={search.value}
