@@ -12,7 +12,7 @@ const propTypes = {
     isMobileSearchVisible: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClearClick: PropTypes.func,
-    onFocused: PropTypes.func,
+    onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
@@ -25,7 +25,7 @@ const defaultProps = {
     isMobileSearch: false,
     isMobileSearchVisible: false,
     onClearClick: undefined,
-    onFocused: undefined,
+    onFocus: undefined,
     onKeyDown: undefined,
     placeholder: 'Search',
     style: {},
@@ -78,7 +78,7 @@ class ActionBarSearch extends React.PureComponent {
             id,
             isMobileSearch,
             isMobileSearchVisible,
-            onFocused,
+            onFocus,
             placeholder,
             style,
             value,
@@ -89,8 +89,8 @@ class ActionBarSearch extends React.PureComponent {
         });
         let magnificationIcon = null;
 
-        if (onFocused) {
-            onFocused(isMobileSearchVisible);
+        if (onFocus) {
+            onFocus(isMobileSearchVisible);
         }
 
         if (!isMobileSearch) {
