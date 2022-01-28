@@ -12,9 +12,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from '../../dataDisplay/icon';
+import { DOT_KEY_CODE } from '../../global/constants';
 
 const propTypes = {
     autoComplete: PropTypes.oneOf(['off', 'on']),
+    allowDecimals: PropTypes.bool,
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
     /**
@@ -77,6 +79,7 @@ const propTypes = {
 
 const defaultProps = {
     autoComplete: null,
+    allowDecimals: false,
     autoFocus: null,
     className: null,
     dataTestId: undefined,
@@ -264,11 +267,18 @@ class Input extends React.PureComponent {
 
     onKeyDown(event) {
         const {
+            allowDecimals,
             onKeyDown,
         } = this.props;
 
+        const type = this.getType();
+
         if (isFunction(onKeyDown)) {
             onKeyDown(event);
+        }
+
+        if (allowDecimals && type === 'number' && event.keyCode === DOT_KEY_CODE) {
+            event.preventDefault();
         }
     }
 

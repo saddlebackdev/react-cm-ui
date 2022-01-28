@@ -375,6 +375,12 @@ export default class ElementsButton extends React.Component {
                 description: 'Indicates whether the value of the control can be automatically completed by the browser.',
                 allowedTypes: 'on, off'
             }, {
+                name: 'allowDecimals',
+                type: 'bool',
+                default: 'false',
+                description: 'Indicates field can have decimal value only for input type number',
+                allowedTypes: ''
+            }, {
                 name: 'autoFocus',
                 type: 'bool',
                 default: '',
@@ -891,6 +897,7 @@ export default class ElementsButton extends React.Component {
                     <Input label="Email" type="email" /><br /><br />
                     <Input label="Number" type="number" min={25} max={99} style={{ width: 75 }} /> <span>Min: 25, Max: 99</span><br /><br />
                     <Input label="Number" type="number" required min={25} max={99} style={{ width: 75 }} /> <span>Min: 25, Max: 99</span><br /><br />
+                    <Input label="Number" type="number" allowDecimals required style={{ width: 75 }} /> <span>Allows Decimals</span><br /><br />
                     <Input label="Password" type="password" /><br /><br />
                     <Input label="Telephone" type="tel" /><br /><br />
                     <Input label="Text" type="text" />

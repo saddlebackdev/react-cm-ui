@@ -1,3 +1,4 @@
+export const DOT_KEY_CODE = 190;
 export const ENTER_KEY_CODE = 13;
 
 export const UI_CLASS_NAME = 'cmui';
