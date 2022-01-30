@@ -545,7 +545,7 @@ class PageDemo extends React.PureComponent {
             maritalStatus: maritalStatus || '',
         };
 
-        const mainCoulumn = [];
+        const mainColumns = [];
 
         const personalColumnInfo = {
             isExpandable: true,
@@ -630,7 +630,7 @@ class PageDemo extends React.PureComponent {
             ],
         };
 
-        mainCoulumn.push(personalColumnInfo);
+        mainColumns.push(personalColumnInfo);
 
         let personPhonesExpandableRows;
         if (!_.isEmpty(phones)) {
@@ -759,7 +759,7 @@ class PageDemo extends React.PureComponent {
                 },
             ],
         };
-        mainCoulumn.push(contactColumnInfo);
+        mainColumns.push(contactColumnInfo);
 
         if (!_.isEmpty(personOccupationInfo)) {
             let occupationsExpandableSection;
@@ -838,7 +838,7 @@ class PageDemo extends React.PureComponent {
                 expandableSections: occupationsExpandableSection,
             };
 
-            mainCoulumn.push(occupationColumnInfo);
+            mainColumns.push(occupationColumnInfo);
 
             const fooColumnInfo = {
                 header: '4 Column',
@@ -850,7 +850,7 @@ class PageDemo extends React.PureComponent {
                 ],
             };
 
-            mainCoulumn.push(fooColumnInfo);
+            mainColumns.push(fooColumnInfo);
 
             const barColumnInfo = {
                 header: '5 Column',
@@ -862,7 +862,7 @@ class PageDemo extends React.PureComponent {
                 ],
             };
 
-            mainCoulumn.push(barColumnInfo);
+            mainColumns.push(barColumnInfo);
         }
 
         return (
@@ -1137,7 +1137,7 @@ class PageDemo extends React.PureComponent {
                                 className={classes.dataGroupsContainer}
                             >
                                 <Page.DataGroups
-                                    columns={mainCoulumn}
+                                    columns={mainColumns}
                                     data={mainData}
                                 />
                             </div> */}
