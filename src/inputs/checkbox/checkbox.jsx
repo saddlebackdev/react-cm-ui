@@ -74,6 +74,8 @@ class Checkbox extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onLabelClick = this.onLabelClick.bind(this);
         this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
+
+        this.checkbox = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -82,7 +84,7 @@ class Checkbox extends React.Component {
         if (checked) {
             // isChecked is already set by the props.checked in the constructor.
             // eslint-disable-next-line no-underscore-dangle
-            this._inputRef.checked = checked;
+            this.checkbox.current.checked = checked;
         }
     }
 
@@ -106,7 +108,7 @@ class Checkbox extends React.Component {
                 isChecked: checked,
             }, () => {
                 // eslint-disable-next-line no-underscore-dangle
-                this._inputRef.checked = checked;
+                this.checkbox.current.checked = checked;
             });
         }
     }
@@ -123,7 +125,7 @@ class Checkbox extends React.Component {
                     isChecked: !isChecked,
                 }, () => {
                     // eslint-disable-next-line no-underscore-dangle
-                    this._inputRef.checked = !isChecked;
+                    this.checkbox.current.checked = !isChecked;
                 });
             }
         } else {
@@ -214,7 +216,7 @@ class Checkbox extends React.Component {
                     name={name}
                     readOnly
                     // eslint-disable-next-line no-underscore-dangle
-                    ref={(ref) => { this._inputRef = ref; }}
+                    ref={this.checkbox}
                     type="checkbox"
                     value={newValue}
                 />
@@ -255,7 +257,12 @@ class Checkbox extends React.Component {
     }
 }
 
-Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
+const CheckboxWrapper = React.forwardRef((props, ref) => {
+    return <Checkbox {...props} forwardedRef={ref} />;
+});
 
-export default Checkbox;
+CheckboxWrapper.displayName = 'Checkbox';
+CheckboxWrapper.propTypes = propTypes;
+CheckboxWrapper.defaultProps = defaultProps;
+
+export default CheckboxWrapper;

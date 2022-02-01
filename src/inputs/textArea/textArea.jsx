@@ -8,7 +8,6 @@ import autosize from 'autosize';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const propTypes = {
     autoFocus: PropTypes.bool,
@@ -98,6 +97,8 @@ class TextArea extends React.Component {
         };
 
         this.onAutoHeightResized = this.onAutoHeightResized.bind(this);
+
+        this.textArea = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -108,9 +109,9 @@ class TextArea extends React.Component {
             value,
         } = this.props;
 
-        if (autoHeight && this.textArea) {
+        if (autoHeight && this.textArea.current) {
             // eslint-disable-next-line react/no-find-dom-node
-            const textArea = ReactDOM.findDOMNode(this.textArea);
+            const textArea = this.textArea.current;
 
             const autoResize = setInterval(() => {
                 if (value || get(this, 'textArea.value')) {
@@ -124,9 +125,9 @@ class TextArea extends React.Component {
             }, 150);
         }
 
-        if (autoFocus && this.textArea) {
+        if (autoFocus && this.textArea.current) {
             // eslint-disable-next-line react/no-find-dom-node
-            ReactDOM.findDOMNode(this.textArea).focus();
+            this.textArea.current.focus();
 
             this.setState({
                 isFocused: true,
@@ -138,6 +139,7 @@ class TextArea extends React.Component {
         const {
             disabled: prevDisabled,
         } = prevProps;
+
         const {
             disabled,
         } = this.props;
@@ -156,9 +158,9 @@ class TextArea extends React.Component {
 
         if (autoHeight && isFunction(onAutoHeightResized)) {
             // eslint-disable-next-line react/no-find-dom-node
-            const textArea = ReactDOM.findDOMNode(this.textArea);
+            const textAreaElement = this.textArea.current;
 
-            textArea.removeEventListener('autosize:resized', this.onAutoHeightResized);
+            textAreaElement.removeEventListener('autosize:resized', this.onAutoHeightResized);
         }
     }
 
@@ -188,12 +190,13 @@ class TextArea extends React.Component {
         const {
             onChange,
         } = this.props;
+
         const valueEvent = event.target.value;
 
         if (isFunction(onChange)) {
             onChange(valueEvent);
         } else {
-            this.textArea.value = valueEvent;
+            this.textArea.current.value = valueEvent;
         }
     }
 
@@ -211,6 +214,7 @@ class TextArea extends React.Component {
         const {
             onFocus,
         } = this.props;
+
         const {
             isFocused,
         } = this.state;
@@ -257,11 +261,14 @@ class TextArea extends React.Component {
             style,
             value,
         } = this.props;
+
         const {
             isFocused,
         } = this.state;
+
         const isDisabled = disable || disabled;
-        const containerClasses = ClassNames('ui', 'text-area', className, {
+
+        const rootClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
             'text-area-disabled': isDisabled,
             'text-area-error': error,
@@ -272,7 +279,7 @@ class TextArea extends React.Component {
         });
 
         return (
-            <div className={containerClasses} style={style}>
+            <div className={rootClasses} style={style}>
                 {label && (
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
@@ -297,7 +304,7 @@ class TextArea extends React.Component {
                         onFocus={this.onFocus.bind(this)}
                         onKeyDown={this.onKeyDown.bind(this)}
                         placeholder={placeholder}
-                        ref={(ref) => { this.textArea = ref; }}
+                        ref={this.textArea}
                         required={required}
                         rows={rows}
                         style={{
@@ -317,7 +324,13 @@ class TextArea extends React.Component {
     }
 }
 
-TextArea.propTypes = propTypes;
-TextArea.defaultProps = defaultProps;
+const TextAreaWrapper = React.forwardRef((props, ref) => {
+    return <TextArea {...props} forwardedRef={ref} />;
+});
 
-export default TextArea;
+TextAreaWrapper.displayName = 'TextArea';
+TextAreaWrapper.propTypes = propTypes;
+TextAreaWrapper.defaultProps = defaultProps;
+
+export default TextAreaWrapper;
+

@@ -851,9 +851,6 @@ const Select = React.forwardRef(function Select(props, ref) {
                 <div
                     aria-selected={isSelected}
                     className={optionClass}
-                    isDisabled={o.disabled}
-                    isFocused={isFocused}
-                    isSelected={isSelected}
                     key={`select-option-key-${i}`}
                     onClick={() => params.selectValue(o)}
                     onFocus={noop}

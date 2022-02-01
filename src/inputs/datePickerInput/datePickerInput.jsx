@@ -265,6 +265,8 @@ class DatePickerInput extends React.PureComponent {
         this.onInputFocus = this.onInputFocus.bind(this);
         this.onInputKeyDown = this.onInputKeyDown.bind(this);
         this.onMonthChange = this.onMonthChange.bind(this);
+
+        this.datePickerInput = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -361,7 +363,7 @@ class DatePickerInput extends React.PureComponent {
 
         if (isNotDisabled) {
             // eslint-disable-next-line no-underscore-dangle, react/no-find-dom-node
-            ReactDOM.findDOMNode(this._datePickerInput._input).focus();
+            this.datePickerInput.current.inputElement.focus();
         }
     }
 
@@ -601,8 +603,7 @@ class DatePickerInput extends React.PureComponent {
                                 onKeyDown={this.onInputKeyDown}
                                 placeholder="mm/dd/yyyy"
                                 required={required}
-                                // eslint-disable-next-line no-underscore-dangle
-                                ref={(inputRef) => { this._datePickerInput = inputRef; }}
+                                ref={this.datePickerInput}
                                 tabIndex={tabIndex}
                                 type="text"
                                 value={inputString}
@@ -617,7 +618,13 @@ class DatePickerInput extends React.PureComponent {
     }
 }
 
-DatePickerInput.propTypes = propTypes;
-DatePickerInput.defaultProps = defaultProps;
+const DatePickerInputWrapper = React.forwardRef((props, ref) => {
+    return <DatePickerInput {...props} forwardedRef={ref} />;
+});
 
-export default withStyles(styles)(DatePickerInput);
+
+DatePickerInputWrapper.propTypes = propTypes;
+DatePickerInputWrapper.defaultProps = defaultProps;
+DatePickerInputWrapper.displayName = 'DatePickerInput';
+
+export default withStyles(styles)(DatePickerInputWrapper);

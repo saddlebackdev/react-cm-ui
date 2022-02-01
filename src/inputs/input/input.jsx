@@ -10,7 +10,6 @@ import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
@@ -133,15 +132,25 @@ class Input extends React.PureComponent {
 
         this.inputTimer = null;
         this.previousInputValue = '';
+
+        this.input = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
-        const { autoFocus, icon, loading } = this.props;
+        const {
+            autoFocus,
+            icon,
+            loading,
+            mask,
+        } = this.props;
+
         const type = this.getType();
 
         if (isString(icon) || isObject(icon) || loading || type === 'number') {
             // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            const inputTop = ReactDOM.findDOMNode(this._input).offsetTop;
+            const inputTop = mask ?
+                this.input.current.inputElement.offsetTop :
+                this.input.current.offsetTop;
 
             if (inputTop > 0) {
                 this.setState({ inputActionsTopPosition: inputTop });
@@ -150,7 +159,11 @@ class Input extends React.PureComponent {
 
         if (autoFocus) {
             // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
-            ReactDOM.findDOMNode(this._input).focus();
+            if (mask) {
+                this.input.current.inputElement.focus();
+            } else {
+                this.input.current.focus();
+            }
 
             this.setState({
                 isFocused: true,
@@ -276,14 +289,20 @@ class Input extends React.PureComponent {
         const {
             disable,
             disabled,
+            mask,
             max,
             min,
             type,
-            onChange,
         } = this.props;
+
         const isDisabled = disable || disabled;
-        // eslint-disable-next-line no-underscore-dangle
-        const { value } = this._input;
+        let value;
+
+        if (mask) {
+            value = this.input.current.inputElement;
+        } else {
+            value = this.input.current;
+        }
 
         if (!isDisabled) {
             let newValue = value ? toNumber(value) : 0;
@@ -362,8 +381,11 @@ class Input extends React.PureComponent {
         if (isFunction(onChange)) {
             onChange(value);
         } else {
-            // eslint-disable-next-line no-underscore-dangle
-            this._input.value = value;
+            if (mask) {
+                this.input.current.inputElement.value = value;
+            } else {
+                this.input.current.value = value;
+            }
         }
     }
 
@@ -388,6 +410,7 @@ class Input extends React.PureComponent {
             disabled,
             error,
             fluid,
+            forwardedRef,
             guide,
             icon,
             id,
@@ -459,7 +482,10 @@ class Input extends React.PureComponent {
         };
 
         return (
-            <div className={containerClasses} style={style}>
+            <div
+                className={containerClasses}
+                style={style}
+            >
                 {newLabelPosition === 'top' && renderLabel()}
 
                 {mask ? (
@@ -480,8 +506,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        // eslint-disable-next-line no-underscore-dangle
-                        ref={(ref) => { this._input = ref; }}
+                        ref={this.input}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -504,8 +529,7 @@ class Input extends React.PureComponent {
                         onFocus={this.onFocus}
                         onKeyDown={this.onKeyDown}
                         placeholder={placeholder}
-                        // eslint-disable-next-line no-underscore-dangle
-                        ref={(ref) => { this._input = ref; }}
+                        ref={this.input}
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
@@ -565,7 +589,12 @@ class Input extends React.PureComponent {
     }
 }
 
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
+const InputWrapper = React.forwardRef((props, ref) => {
+    return <Input {...props} forwardedRef={ref} />;
+});
 
-export default Input;
+InputWrapper.displayName = 'Input';
+InputWrapper.propTypes = propTypes;
+InputWrapper.defaultProps = defaultProps;
+
+export default InputWrapper;

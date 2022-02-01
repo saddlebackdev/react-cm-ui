@@ -363,6 +363,8 @@ export default class ElementsButton extends React.Component {
         super(props);
 
         this.state = { onChangeValue: '' };
+
+        this.basicInputRef = React.createRef();
     }
 
     render() {
@@ -580,7 +582,7 @@ export default class ElementsButton extends React.Component {
                         </Header.Subheader>
                     </Header>
 
-                    <Input />
+                    <Input ref={this.basicInputRef} />
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {inputSample}
