@@ -67,7 +67,6 @@ describe('<DataGroups />', () => {
         expect(rootDataGroupsContainer).toHaveClass(className);
         expect(screen.queryByText('Column 1')).toBeInTheDocument();
         expect(screen.queryByText('Column 2')).toBeInTheDocument();
-        expect(screen.queryByText('Column 1')).toBeInTheDocument();
         expect(screen.queryByText('Foo Property Title')).toBeInTheDocument();
         expect(screen.queryByText('Foo Property Value')).toBeInTheDocument();
         expect(screen.queryByText('Bar Property Title')).toBeInTheDocument();
