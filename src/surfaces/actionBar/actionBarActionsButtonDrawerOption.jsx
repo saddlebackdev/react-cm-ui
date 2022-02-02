@@ -19,6 +19,7 @@ const propTypes = {
     isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     onRequestPrompt: PropTypes.func,
+    onDrawerToggle: PropTypes.func,
     option: PropTypes.shape(rootOptionPropTypeShape).isRequired,
 };
 
@@ -27,6 +28,7 @@ const defaultProps = {
     idNumber: false,
     isSelected: false,
     onRequestPrompt: undefined,
+    onDrawerToggle: undefined,
 };
 
 class ActionBarActionsButtonDrawerOption extends React.PureComponent {
@@ -41,6 +43,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             isSelected,
             onClick,
             onRequestPrompt,
+            onDrawerToggle,
             option,
         } = this.props;
 
@@ -56,7 +59,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                 }
             }
 
-            option.onClick();
+            option.onClick(onDrawerToggle);
             return false;
         }
 
