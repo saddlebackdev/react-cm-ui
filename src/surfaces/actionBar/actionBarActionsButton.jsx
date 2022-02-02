@@ -208,6 +208,7 @@ class ActionBarActionsButton extends React.PureComponent {
                                         key={`actions_button_drawer--option-${optionKeyNum}`}
                                         onClick={this.onOptionClick}
                                         onRequestPrompt={this.onPromptRequested}
+                                        onDrawerToggle={this.onDrawerToggle}
                                         option={option}
                                     />
                                 );
