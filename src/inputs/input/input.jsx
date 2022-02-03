@@ -23,7 +23,8 @@ const propTypes = {
      */
     autoComplete: PropTypes.oneOf(['off', 'on']),
     /**
-     * Indicates field can have decimal value for input type number
+     * Indicates whether or not the field allows decimal values (or just whole numbers)
+     * for Input of type "number".
      */
     allowDecimals: PropTypes.bool,
     /**
@@ -31,7 +32,8 @@ const propTypes = {
      */
     autoFocus: PropTypes.bool,
     /**
-     * Indicates field can have decimal value for input type number
+     * Indicates whether or not the field allows negative numbers (or just positive numbers)
+     * for Input of type "number".
      */
     allowNegativeNumbers: PropTypes.bool,
     /**
@@ -62,7 +64,7 @@ const propTypes = {
      */
     fluid: PropTypes.bool,
     /**
-     * Tells the component whether to be in guide or no guide mode.
+     * Indicates whether or not the Input should be in guide mode.
      */
     guide: PropTypes.bool,
     /**
@@ -73,7 +75,7 @@ const propTypes = {
         PropTypes.string,
     ]),
     /**
-     * The id is used for the a label\'s for.
+     * Assign an element ID to the Input.
      */
     id: PropTypes.string,
     /**
@@ -93,7 +95,7 @@ const propTypes = {
      */
     labelPosition: PropTypes.oneOf(['bottom', 'top']),
     /**
-     * Supply any inline styles to the label.
+     * Supply any inline styles to the Input.
      */
     labelStyle: PropTypes.shape({}),
     /**
@@ -101,7 +103,7 @@ const propTypes = {
      */
     loading: PropTypes.bool,
     /**
-     * Is an array that defines how the user input is going to be masked.
+     * Define a mask to aid in use input by providing either an array of characters or a function.
      */
     mask: PropTypes.oneOfType([
         PropTypes.array,
@@ -128,23 +130,23 @@ const propTypes = {
      */
     name: PropTypes.string,
     /**
-     * Can handle an onBlur event from parent.
+     * Will call an onBlur event handler function provided by the parent.
      */
     onBlur: PropTypes.func,
     /**
-     * Can handle an onChange event from parent.
+     * Will call an onChange event handler function provided by the parent.
      */
     onChange: PropTypes.func,
     /**
-     * Can handle an onClick event from parent.
+     * Will call an onClick event handler function provided by the parent.
      */
     onClick: PropTypes.func,
     /**
-     * Can handle an onFocus event from parent.
+     * Will call an onFocus event handler function provided by the parent.
      */
     onFocus: PropTypes.func,
     /**
-     * Can handle an onKeyDown event from parent.
+     * Will call an onKeyDown event handler function provided by the parent.
      */
     onKeyDown: PropTypes.func,
     /**
@@ -175,7 +177,8 @@ const propTypes = {
      */
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
     /**
-     * The initial value of the control. This attribute is optional.
+     * The initial value of the control. This attribute is optional; however, you must use it
+     * if using `onChange` prop and using the Input as a controlled component.
      */
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -389,11 +392,11 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
-            if (!allowDecimals && event.keyCode === DOT_KEY_CODE) {
-                event.preventDefault();
-            }
+            const shouldAllowCharacter = (event.keyCode >= 48 && event.keyCode <= 57) || // character is a digit
+                (allowDecimals && event.keyCode === DOT_KEY_CODE) || // character is the decimal separator / TODO/FIXME: some locales use comma instead of dot!
+                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE); // character is the negative sign
 
-            if (!allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE) {
+            if (!shouldAllowCharacter) {
                 event.preventDefault();
             }
         }

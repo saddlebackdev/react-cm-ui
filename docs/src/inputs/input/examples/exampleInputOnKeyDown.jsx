@@ -3,6 +3,7 @@ import React from 'react';
 
 function ExampleInputOnKeyDown() {
     const onInputKeyDown = (event) => {
+        // eslint-disable-next-line no-alert
         window.alert('You just pressed the ' + event.key + ' key');
     };
 

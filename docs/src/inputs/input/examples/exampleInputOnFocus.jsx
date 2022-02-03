@@ -3,6 +3,7 @@ import React from 'react';
 
 function ExampleInputOnFocus() {
     const onInputFocus = () => {
+        // eslint-disable-next-line no-console
         console.log('Your focus determines your reality.');
     };
 
