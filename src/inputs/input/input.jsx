@@ -103,7 +103,9 @@ const propTypes = {
      */
     loading: PropTypes.bool,
     /**
-     * Define a mask to aid in use input by providing either an array of characters or a function.
+     * Define an input mask to aid the user in inputting specific kinds of values
+     * (e.g. phone numbers and the like) by providing either an array of characters
+     * or a function.
      */
     mask: PropTypes.oneOfType([
         PropTypes.array,
@@ -130,23 +132,25 @@ const propTypes = {
      */
     name: PropTypes.string,
     /**
-     * Will call an onBlur event handler function provided by the parent.
+     * Specify an event handler function to be called in response to `onBlur` event.
      */
     onBlur: PropTypes.func,
     /**
-     * Will call an onChange event handler function provided by the parent.
+     * Specify an event handler functionto be called to handle `onChange` event.
+     * Necessary for using the Input as a controlled component, in conjunction with
+     * the `value` prop.
      */
     onChange: PropTypes.func,
     /**
-     * Will call an onClick event handler function provided by the parent.
+     * Specify an event handler function to be called in response to `onClick` event.
      */
     onClick: PropTypes.func,
     /**
-     * Will call an onFocus event handler function provided by the parent.
+     * Specify an event handler function to be called in response to `onFocus` event.
      */
     onFocus: PropTypes.func,
     /**
-     * Will call an onKeyDown event handler function provided by the parent.
+     * Specify an event handler function to be called in response to `onKeyDown` event.
      */
     onKeyDown: PropTypes.func,
     /**
