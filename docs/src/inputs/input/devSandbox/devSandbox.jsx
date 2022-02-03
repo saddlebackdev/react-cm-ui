@@ -371,7 +371,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="onBlur"
+                        anchorLink="onblur"
                         variant="h2"
                     >
                         onBlur Event Handler
@@ -392,7 +392,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="onChange"
+                        anchorLink="onchange"
                         variant="h2"
                     >
                         onChange Event Handler
@@ -413,7 +413,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="onClick"
+                        anchorLink="onclick"
                         variant="h2"
                     >
                         onClick Event Handler
@@ -434,7 +434,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="onFocus"
+                        anchorLink="onfocus"
                         variant="h2"
                     >
                         onFocus Event Handler
@@ -455,7 +455,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="onKeyDown"
+                        anchorLink="onkeydown"
                         variant="h2"
                     >
                         onKeyDown Event Handler
