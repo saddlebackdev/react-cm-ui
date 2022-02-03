@@ -55,7 +55,7 @@ function InputDevSandbox() {
                     </Typography>
 
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="auto-complete"
                         variant="h2"
                     >
                         Auto Complete
@@ -76,7 +76,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="auto-focus"
                         variant="h2"
                     >
                         Auto Focus
@@ -118,7 +118,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="error"
                         variant="h2"
                     >
                         Error
@@ -139,7 +139,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="error-custom-message"
                         variant="h2"
                     >
                         Error with custom message
@@ -160,7 +160,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="fluid"
                         variant="h2"
                     >
                         Fluid
@@ -181,7 +181,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="icon"
                         variant="h2"
                     >
                         Icon
@@ -202,7 +202,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="icon-custom-jsx"
                         variant="h2"
                     >
                         Icon (Custom JSX)
@@ -223,7 +223,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="inverse"
                         variant="h2"
                     >
                         Inverse
@@ -244,7 +244,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="label"
                         variant="h2"
                     >
                         Label
@@ -265,7 +265,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="label-position"
                         variant="h2"
                     >
                         Label Position
@@ -286,7 +286,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="loading"
                         variant="h2"
                     >
                         Loading
@@ -308,7 +308,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="max-and-min"
                         variant="h2"
                     >
                         Max & Min
@@ -329,7 +329,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="max-length"
                         variant="h2"
                     >
                         Max Length
@@ -350,7 +350,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="min-length"
                         variant="h2"
                     >
                         Min Length
@@ -371,7 +371,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="onBlur"
                         variant="h2"
                     >
                         onBlur Event Handler
@@ -380,7 +380,7 @@ function InputDevSandbox() {
                     <Typography
                         variant="body1"
                     >
-                        Can handle an <code>onBlur</code> event from parent.
+                        Will call an <code>onBlur</code> event handler function provided by the parent.
                     </Typography>
                 </MarkdownContainer>
 
@@ -392,7 +392,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="onChange"
                         variant="h2"
                     >
                         onChange Event Handler
@@ -401,7 +401,7 @@ function InputDevSandbox() {
                     <Typography
                         variant="body1"
                     >
-                        Can handle an <code>onChange</code> event from parent. The <code>value</code> prop is required along with this handler.
+                        The Input can be used as a controlled component by providing a function to the <code>onChange</code> prop along with the <code>value</code> prop.
                     </Typography>
                 </MarkdownContainer>
 
@@ -413,7 +413,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="onClick"
                         variant="h2"
                     >
                         onClick Event Handler
@@ -422,7 +422,7 @@ function InputDevSandbox() {
                     <Typography
                         variant="body1"
                     >
-                        Can handle an <code>onClick</code> event from parent.
+                        Will call an <code>onClick</code> event handler function provided by the parent.
                     </Typography>
                 </MarkdownContainer>
 
@@ -434,7 +434,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="onFocus"
                         variant="h2"
                     >
                         onFocus Event Handler
@@ -443,7 +443,7 @@ function InputDevSandbox() {
                     <Typography
                         variant="body1"
                     >
-                        Can handle an <code>onFocus</code> event from parent.
+                        Will call an <code>onFocus</code> event handler function provided by the parent.
                     </Typography>
                 </MarkdownContainer>
 
@@ -455,7 +455,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="onKeyDown"
                         variant="h2"
                     >
                         onKeyDown Event Handler
@@ -464,7 +464,7 @@ function InputDevSandbox() {
                     <Typography
                         variant="body1"
                     >
-                        Can handle an <code>onKeyDown</code> event from parent.
+                        Will call an <code>onKeyDown</code> event handler function provided by the parent.
                     </Typography>
                 </MarkdownContainer>
 
@@ -476,7 +476,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="placeholder"
                         variant="h2"
                     >
                         Placeholder
@@ -497,7 +497,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="required"
                         variant="h2"
                     >
                         Required
@@ -518,7 +518,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="type"
                         variant="h2"
                     >
                         Type
@@ -539,7 +539,7 @@ function InputDevSandbox() {
 
                 <MarkdownContainer>
                     <Heading
-                        anchorLink="disabled"
+                        anchorLink="mask"
                         variant="h2"
                     >
                         Mask
