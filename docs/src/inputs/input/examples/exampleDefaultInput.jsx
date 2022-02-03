@@ -10,9 +10,8 @@ function ExampleDefaultInput() {
 
     return (
         <Input
-            fluid
             label="Label"
-            onRequiredChange={onBasicChange}
+            onChange={onBasicChange}
             placeholder="Placeholder"
             value={basicValue}
         />

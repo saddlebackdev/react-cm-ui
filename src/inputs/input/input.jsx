@@ -12,12 +12,31 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from '../../dataDisplay/icon';
-import { DOT_KEY_CODE } from '../../global/constants';
+import {
+    DOT_KEY_CODE,
+    MINUS_KEY_CODE,
+} from '../../global/constants';
 
 const propTypes = {
+    /**
+     * Indicates whether the value of the control can be automatically completed by the browser.
+     */
     autoComplete: PropTypes.oneOf(['off', 'on']),
+    /**
+     * Indicates field can have decimal value for input type number
+     */
     allowDecimals: PropTypes.bool,
+    /**
+     * Gives Input immediate focus.
+     */
     autoFocus: PropTypes.bool,
+    /**
+     * Indicates field can have decimal value for input type number
+     */
+    allowNegativeNumbers: PropTypes.bool,
+    /**
+     * Additional classes.
+     */
     className: PropTypes.string,
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
@@ -31,46 +50,133 @@ const propTypes = {
      * Deprecated prop. Please use `disable` instead.
      */
     disabled: PropTypes.bool,
+    /**
+     * Indicates that the input has an error.
+     */
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,
     ]),
+    /**
+     * An input can take on the size of its container.
+     */
     fluid: PropTypes.bool,
+    /**
+     * Tells the component whether to be in guide or no guide mode.
+     */
     guide: PropTypes.bool,
+    /**
+     * Optional icon to display inside the input.
+     */
     icon: PropTypes.oneOfType([
         PropTypes.shape({}),
         PropTypes.string,
     ]),
+    /**
+     * The id is used for the a label\'s for.
+     */
     id: PropTypes.string,
+    /**
+     * Format to appear on dark backgrounds.
+     */
     inverse: PropTypes.bool,
+    /**
+     * Changes the general behavior of the Text Mask component.
+     */
     keepCharPositions: PropTypes.bool,
+    /**
+     * Optional Label to display with the Input.
+     */
     label: PropTypes.string,
+    /**
+     * Position the label above or below the input.
+     */
     labelPosition: PropTypes.oneOf(['bottom', 'top']),
+    /**
+     * Supply any inline styles to the label.
+     */
     labelStyle: PropTypes.shape({}),
+    /**
+     * An icon input field can show that it is currently loading data.
+     */
     loading: PropTypes.bool,
+    /**
+     * Is an array that defines how the user input is going to be masked.
+     */
     mask: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.func,
     ]),
+    /**
+     * Specifies the maximum value the field can have.
+     */
     max: PropTypes.number,
+    /**
+     * Specifies the maximum number of characters that the user can enter.
+     */
     maxLength: PropTypes.number,
+    /**
+     * Specifies the minimum value the field can have.
+     */
     min: PropTypes.number,
+    /**
+     * Specifies the minimum number of characters that the user needs to enter.
+     */
     minLength: PropTypes.number,
+    /**
+     * Specifies name of the field
+     */
     name: PropTypes.string,
+    /**
+     * Can handle an onBlur event from parent.
+     */
     onBlur: PropTypes.func,
+    /**
+     * Can handle an onChange event from parent.
+     */
     onChange: PropTypes.func,
+    /**
+     * Can handle an onClick event from parent.
+     */
     onClick: PropTypes.func,
+    /**
+     * Can handle an onFocus event from parent.
+     */
     onFocus: PropTypes.func,
+    /**
+     * Can handle an onKeyDown event from parent.
+     */
     onKeyDown: PropTypes.func,
+    /**
+     * A hint to the user of what can be entered in the input.
+     */
     placeholder: PropTypes.string,
+    /**
+     * Specifies that the user must fill in a value before submitting a form.
+     */
     required: PropTypes.bool,
+    /**
+     * Specifies whether or not to show the spinners for the numeric control. This attribute is optional.
+     */
     showSpinners: PropTypes.bool,
+    /**
+     * Supply any inline styles to the Input\'s container. Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}),
+    /**
+     * An Input can receive focus.
+     */
     tabIndex: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * The HTML input type.
+     */
     type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
+    /**
+     * The initial value of the control. This attribute is optional.
+     */
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -79,7 +185,8 @@ const propTypes = {
 
 const defaultProps = {
     autoComplete: null,
-    allowDecimals: false,
+    allowDecimals: true,
+    allowNegativeNumbers: true,
     autoFocus: null,
     className: null,
     dataTestId: undefined,
@@ -115,6 +222,9 @@ const defaultProps = {
     type: null,
 };
 
+/**
+ * The Input represents a field for storing a value. 
+ */
 class Input extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -268,6 +378,7 @@ class Input extends React.PureComponent {
     onKeyDown(event) {
         const {
             allowDecimals,
+            allowNegativeNumbers,
             onKeyDown,
         } = this.props;
 
@@ -277,8 +388,14 @@ class Input extends React.PureComponent {
             onKeyDown(event);
         }
 
-        if (allowDecimals && type === 'number' && event.keyCode === DOT_KEY_CODE) {
-            event.preventDefault();
+        if (type === 'number') {
+            if (!allowDecimals && event.keyCode === DOT_KEY_CODE) {
+                event.preventDefault();
+            }
+
+            if (!allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE) {
+                event.preventDefault();
+            }
         }
     }
 
