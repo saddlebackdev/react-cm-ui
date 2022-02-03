@@ -362,7 +362,6 @@ class DatePickerInput extends React.PureComponent {
         const isNotDisabled = !disable && !disabled;
 
         if (isNotDisabled) {
-            // eslint-disable-next-line no-underscore-dangle, react/no-find-dom-node
             this.datePickerInput.current.inputElement.focus();
         }
     }

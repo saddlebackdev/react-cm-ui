@@ -110,7 +110,6 @@ class TextArea extends React.Component {
         } = this.props;
 
         if (autoHeight && this.textArea.current) {
-            // eslint-disable-next-line react/no-find-dom-node
             const textArea = this.textArea.current;
 
             const autoResize = setInterval(() => {
@@ -126,7 +125,6 @@ class TextArea extends React.Component {
         }
 
         if (autoFocus && this.textArea.current) {
-            // eslint-disable-next-line react/no-find-dom-node
             this.textArea.current.focus();
 
             this.setState({
@@ -157,7 +155,6 @@ class TextArea extends React.Component {
         } = this.props;
 
         if (autoHeight && isFunction(onAutoHeightResized)) {
-            // eslint-disable-next-line react/no-find-dom-node
             const textAreaElement = this.textArea.current;
 
             textAreaElement.removeEventListener('autosize:resized', this.onAutoHeightResized);

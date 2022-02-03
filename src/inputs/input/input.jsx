@@ -147,7 +147,6 @@ class Input extends React.PureComponent {
         const type = this.getType();
 
         if (isString(icon) || isObject(icon) || loading || type === 'number') {
-            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
             const inputTop = mask ?
                 this.input.current.inputElement.offsetTop :
                 this.input.current.offsetTop;
@@ -158,7 +157,6 @@ class Input extends React.PureComponent {
         }
 
         if (autoFocus) {
-            // eslint-disable-next-line react/no-find-dom-node, no-underscore-dangle
             if (mask) {
                 this.input.current.inputElement.focus();
             } else {
@@ -299,9 +297,9 @@ class Input extends React.PureComponent {
         let value;
 
         if (mask) {
-            value = this.input.current.inputElement;
+            value = this.input.current.inputElement.value;
         } else {
-            value = this.input.current;
+            value = this.input.current.value;
         }
 
         if (!isDisabled) {
@@ -375,17 +373,17 @@ class Input extends React.PureComponent {
 
     setNewValue(value) {
         const {
+            mask,
             onChange,
         } = this.props;
 
+
         if (isFunction(onChange)) {
             onChange(value);
+        } else if (mask) {
+            this.input.current.inputElement.value = value;
         } else {
-            if (mask) {
-                this.input.current.inputElement.value = value;
-            } else {
-                this.input.current.value = value;
-            }
+            this.input.current.value = value;
         }
     }
 
