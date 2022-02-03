@@ -308,7 +308,7 @@ class ActionBar extends React.PureComponent {
                                                 <Button
                                                     color={button.color}
                                                     designVersion={1}
-                                                    disabled={!!button.disabled}
+                                                    disable={!!button.disable || !!button.disabled}
                                                     icon={button.iconType && !button.label}
                                                     id={button.id}
                                                     onClick={button.onClick}
@@ -340,7 +340,7 @@ class ActionBar extends React.PureComponent {
                                                         return (
                                                             <DropdownButton.Option
                                                                 className={option.className}
-                                                                disabled={!!option.disabled}
+                                                                disable={!!option.disable || !!option.disabled}
                                                                 id={option.id}
                                                                 key={`action_bar_dropdown_button_option-${dropdownButtonOptionKeyNum}`}
                                                                 label={option.label}

@@ -123,7 +123,7 @@ class DataGroups extends React.PureComponent {
         return (
             <div
                 className={rootClasses}
-                dataTestId={dataTestId}
+                data-testid={dataTestId}
                 ref={(ref) => { this.dataGroups = ref; }}
                 style={style}
             >
