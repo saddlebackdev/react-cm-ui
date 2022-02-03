@@ -71,3 +71,4 @@ function DocsInput(props) {
 DocsInput.propTypes = propTypes;
 
 export default withRouter(DocsInput);
+
