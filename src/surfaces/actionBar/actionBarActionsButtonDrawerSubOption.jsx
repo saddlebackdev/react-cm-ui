@@ -26,12 +26,14 @@ export const singleOptionPropTypeShape = {
 const propTypes = {
     isSelected: PropTypes.bool.isRequired,
     onRequestPrompt: PropTypes.func,
+    onDrawerToggle: ropTypes.func,
     subOption: PropTypes.shape(singleOptionPropTypeShape).isRequired,
     subOptionClassNameNum: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
     onRequestPrompt: undefined,
+    onDrawerToggle: undefined,
 };
 
 class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
@@ -62,6 +64,7 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
     onClick() {
         const {
             onRequestPrompt,
+            onDrawerToggle,
             subOption,
         } = this.props;
         const {
@@ -85,6 +88,7 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
         }
 
         if (isFunction(subOptionOnClick)) {
+            onDrawerToggle();
             subOptionOnClick();
         }
 
