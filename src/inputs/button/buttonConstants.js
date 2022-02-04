@@ -105,6 +105,14 @@ export const buttonDesignV2PropTypes = {
      */
     transparent: PropTypes.bool,
     /**
+     * Set transparent styles.
+     */
+    type: PropTypes.oneOfType([
+        'button',
+        'reset',
+        'submit',
+    ]),
+    /**
      * The variant to use.
      */
     variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
@@ -137,6 +145,7 @@ export const buttonDesignV2DefaultProps = {
     target: undefined,
     text: false,
     title: undefined,
+    type: undefined,
     variant: VARIANTS.contained,
     width: undefined,
 };

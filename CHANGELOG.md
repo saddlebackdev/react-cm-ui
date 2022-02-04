@@ -1,6 +1,25 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.7
+_February 04, 2022_
+
+### Core
+- Fix data-testid issue for <DataGroups>. [PR #354](https://github.com/saddlebackdev/react-cm-ui/pull/354)
+- Warning message is not displaying a properly format. [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353)
+- ForwardedRefs, Button Type Prop, and Select Bug Fixes. [PR #356](https://github.com/saddlebackdev/react-cm-ui/pull/356)
+- close Actions Bar Drawer after option is clicked [PR #355](https://github.com/saddlebackdev/react-cm-ui/pull/355)
+
+### Docs
+- Updated Input Documentation. [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353)
+
+## 10.3.6
+_January 27, 2022_
+
+### Core
+- Added `onFocus` function prop To Action Bar Search component.  [PR #352](https://github.com/saddlebackdev/react-cm-ui/pull/352)
+  - This is to allow consumers to be notified when the search input is focused (e.g. using `autoFocus` prop) and, if necessary, make adjustments to the content area (esp. at smaller viewport widths).
+
 ## 10.3.5
 _January 20, 2022_
 

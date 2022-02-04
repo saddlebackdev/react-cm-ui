@@ -1,8 +1,9 @@
 import { Input } from 'react-cm-ui';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 function ExampleDefaultInput() {
     const [basicValue, setBasicValue] = useState('');
+    const basicInputRef = useRef();
 
     const onBasicChange = (value) => {
         setBasicValue(value);
@@ -10,10 +11,10 @@ function ExampleDefaultInput() {
 
     return (
         <Input
-            fluid
             label="Label"
-            onRequiredChange={onBasicChange}
+            onChange={onBasicChange}
             placeholder="Placeholder"
+            ref={basicInputRef}
             value={basicValue}
         />
     );
