@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.3.6',
+        package: '10.3.7',
         components: {
             dataDisplay: {
                 chip: {
@@ -37,7 +37,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
                 },
                 dataGroups: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
                 },
@@ -65,8 +65,18 @@ const versions = {
                 },
             },
             inputs: {
+                button: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/9578614A-F3CD-4BA2-940C-60367CCD887F',
+                },
+                checkbox: {
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/10182F0A-F2AC-4458-8ABF-C1422BD07B92',
+                },
                 datePickerInput: {
-                    devLibraryVersion: '1.0.0',
+                    devLibraryVersion: '> 1.0.1',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
@@ -75,8 +85,13 @@ const versions = {
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
                 },
+                input: {
+                    devLibraryVersion: '< 1.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/8KKjya',
+                },
                 phoneInput: {
-                    devLibraryVersion: '1.0.0',
+                    devLibraryVersion: '> 1.0.0',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
@@ -86,9 +101,14 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
                 },
                 select: {
-                    devLibraryVersion: '< 1.0.2',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
+                },
+                textArea: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/5EEy28',
                 },
                 timePicker: {
                     devLibraryVersion: '2.0.0',
@@ -139,7 +159,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/p/577E033D-4ACB-46BE-BC78-81042803D4AD',
                 },
                 actionBar: {
-                    devLibraryVersion: '< 1.0.3',
+                    devLibraryVersion: '< 1.0.4',
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
                 },
