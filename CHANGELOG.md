@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.8
+_February 04, 2022_
+
+### Core
+- Fix to undefined `PropType` and removal of a prop warning.
+
 ## 10.3.7
 _February 04, 2022_
 
