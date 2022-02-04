@@ -107,7 +107,7 @@ export const buttonDesignV2PropTypes = {
     /**
      * Set transparent styles.
      */
-    type: PropTypes.oneOfType([
+    type: PropTypes.oneOf([
         'button',
         'reset',
         'submit',

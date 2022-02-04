@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.3.7',
+        package: '10.3.8',
         components: {
             dataDisplay: {
                 chip: {
@@ -66,7 +66,7 @@ const versions = {
             },
             inputs: {
                 button: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.0.1',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/9578614A-F3CD-4BA2-940C-60367CCD887F',
                 },
@@ -159,7 +159,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/e0829215-763e-444a-926d-0ae1e9aec45a/p/577E033D-4ACB-46BE-BC78-81042803D4AD',
                 },
                 actionBar: {
-                    devLibraryVersion: '< 1.0.4',
+                    devLibraryVersion: '< 1.0.5',
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
                 },
