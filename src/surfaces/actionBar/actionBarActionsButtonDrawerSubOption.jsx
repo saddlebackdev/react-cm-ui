@@ -26,7 +26,7 @@ export const singleOptionPropTypeShape = {
 const propTypes = {
     isSelected: PropTypes.bool.isRequired,
     onRequestPrompt: PropTypes.func,
-    onDrawerToggle: ropTypes.func,
+    onDrawerToggle: PropTypes.func,
     subOption: PropTypes.shape(singleOptionPropTypeShape).isRequired,
     subOptionClassNameNum: PropTypes.number.isRequired,
 };
