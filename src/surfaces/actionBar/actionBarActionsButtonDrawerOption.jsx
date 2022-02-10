@@ -59,7 +59,8 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                 }
             }
 
-            option.onClick(onDrawerToggle);
+            onDrawerToggle();
+            option.onClick();
             return false;
         }
 
