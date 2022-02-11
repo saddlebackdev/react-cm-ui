@@ -49,23 +49,22 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
 
         if (_.isFunction(option.onClick)) {
             if (option.disabled) {
-                return false;
+                return;
             }
 
             if (option.requiresPrompt) {
                 if (_.isFunction(onRequestPrompt)) {
                     onRequestPrompt(option);
-                    return false;
+                    return;
                 }
             }
 
             onDrawerToggle();
             option.onClick();
-            return false;
+            return;
         }
 
         onClick(isSelected ? {} : option);
-        return true;
     }
 
     render() {
