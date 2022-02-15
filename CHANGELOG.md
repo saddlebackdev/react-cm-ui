@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.9
+_February 15, 2022_
+
+### Core
+- Mobile ActionBar menu drawer now closes on an option click. [PR #359](https://github.com/saddlebackdev/react-cm-ui/pull/359)
+- ESLINT is back baby! [PR #361](https://github.com/saddlebackdev/react-cm-ui/pull/361)
+
 ## 10.3.8
 _February 04, 2022_
 
