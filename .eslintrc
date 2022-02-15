@@ -1,91 +1,140 @@
 {
-    "extends": [
-        "airbnb-typescript",
-        "airbnb/hooks"
-    ],
     "env": {
         "browser": true,
         "jest": true,
         "node": true
     },
-    "parserOptions": {
-        "project": "tsconfig.json"
-    },
-    "rules": {
-        // Overwriting eslint-config-airbnb-base/rules/best-practices.js
-        "class-methods-use-this": [0],
-        // Overwriting eslint-config-airbnb-base/rules/style.js
-        "indent": ["error", 4, {
-            "SwitchCase": 1,
-            "VariableDeclarator": 1,
-            "outerIIFEBody": 1,
-            "FunctionDeclaration": {
-                "parameters": 1,
-                "body": 1
-            },
-            "FunctionExpression": {
-                "parameters": 1,
-                "body": 1
-            },
-            "CallExpression": {
-                "arguments": 1
-            },
-            "ArrayExpression": 1,
-            "ObjectExpression": 1,
-            "ImportDeclaration": 1,
-            "flatTernaryExpressions": false,
-            "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
-            "ignoreComments": false
-        }],
-        // Added ignoreTemplateLiterals
-        "max-len": ["error", 100, 2, {
-            "ignoreUrls": true,
-            "ignoreComments": false,
-            "ignoreTrailingComments": true,
-            "ignoreRegExpLiterals": true,
-            "ignoreStrings": true,
-            "ignoreTemplateLiterals": true
-        }],
-        "operator-linebreak": ["error", "after"],
-        // Overwriting eslint-config-airbnb-base/rules/imports.js
-        "import/order": ["error", { "groups": [["builtin", "external", "internal"]] }],
-        "import/no-unresolved": [0],
-        // Overwriting eslint-config-airbnb/rules/react.js
-        "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".test.js"] }],
-        "react/jsx-fragments": ["error", "element"],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
-        "react/no-did-update-set-state": "off"
-    },
-    "plugins": [
-        "react",
-        "sort-destructure-keys"
+    "extends": [
+        "airbnb-typescript",
+        "airbnb/hooks"
     ],
     "overrides": [
         {
-            "files": ["*.jsx"],
+            "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
             "rules": {
-               "import/no-named-as-default": "off"
+                "@typescript-eslint/indent": ["error", 4, {
+                    "SwitchCase": 1,
+                    "VariableDeclarator": 1,
+                    "outerIIFEBody": 1,
+                    "FunctionDeclaration": {
+                        "parameters": 1,
+                        "body": 1
+                    },
+                    "FunctionExpression": {
+                        "parameters": 1,
+                        "body": 1
+                    },
+                    "CallExpression": {
+                        "arguments": 1
+                    },
+                    "ArrayExpression": 1,
+                    "ObjectExpression": 1,
+                    "ImportDeclaration": 1,
+                    "flatTernaryExpressions": false,
+                    "ignoredNodes": [
+                        "JSXElement",
+                        "JSXElement > *",
+                        "JSXAttribute",
+                        "JSXIdentifier",
+                        "JSXNamespacedName",
+                        "JSXMemberExpression",
+                        "JSXSpreadAttribute",
+                        "JSXExpressionContainer",
+                        "JSXOpeningElement",
+                        "JSXClosingElement",
+                        "JSXText",
+                        "JSXEmptyExpression",
+                        "JSXSpreadChild"
+                    ],
+                    "ignoreComments": false
+                }],
+                "class-methods-use-this": [0],
+                "import/extensions": [
+                    "error",
+                    "ignorePackages",
+                    {
+                        "js": "always",
+                        "jsx": "always",
+                        "ts": "never",
+                        "tsx": "never",
+                        "mjs": "never"
+                    }
+                ],
+                "import/no-named-as-default": "off",
+                "import/order": ["error", {
+                    "groups": [
+                        ["builtin", "external", "internal"]
+                    ]
+                }],
+                "indent": "off",
+                "max-len": [
+                    "error",
+                    100,
+                    2,
+                    {
+                        "ignoreUrls": true,
+                        "ignoreComments": true,
+                        "ignoreRegExpLiterals": true,
+                        "ignoreStrings": true,
+                        "ignoreTemplateLiterals": true
+                    }
+                ],
+                "operator-linebreak": ["error", "after"],
+                "react/jsx-filename-extension": ["error", {
+                    "extensions": [
+                        ".jsx",
+                        ".tsx",
+                        ".test.js",
+                        ".test.ts"
+                    ]
+                }],
+                "react/jsx-fragments": ["error", "element"],
+                "react/jsx-indent": ["error", 4],
+                "react/jsx-indent-props": ["error", 4],
+                "react/no-did-update-set-state": "off"
             }
-        }, {
+        },
+        {
+            "files": [
+                "*.tsx"
+            ],
+            "rules": {
+                "react/require-default-props": "off"
+            }
+        },
+        {
             "files": ["docs/**/*.jsx"],
             "rules": {
                "global-require": "off",
                "import/no-webpack-loader-syntax": "off"
             }
-        }, {
-            "files": ["*.test.js"],
-            "rules": {
-               "react/jsx-props-no-spreading": "off"
-            }
-        }, {
+        },
+        {
             "files": [
-                "*constants.js",
-                "*Constants.js"
+                "*.test.js",
+                "*.test.tsx"
             ],
             "rules": {
-               "import/prefer-default-export": "off"
+                "react/jsx-props-no-spreading": "off"
+            }
+        },
+        {
+            "files": [
+                "*constants.js",
+                "*constants.ts",
+                "*Constants.js",
+                "*Constants.ts"
+            ],
+            "rules": {
+                "import/prefer-default-export": "off"
             }
         }
+    ],
+    "parserOptions": {
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "sort-destructure-keys"
     ]
 }
